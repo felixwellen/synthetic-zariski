@@ -47,6 +47,8 @@
 \theoremstyle{break}
     \newtheorem*{axiom}{Axiom}
 
+\newcommand{\axiomref}[1]{[\nameref{#1}]}
+    
 \theoremstyle{nonumberplain}
 \theoremsymbol{\ensuremath{\Box}}
     \newtheorem{proof}{Proof}
