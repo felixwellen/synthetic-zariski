@@ -2,7 +2,6 @@
 \documentclass{zariski}
 
 \begin{document}
-Test
 
 \begin{axiom}[Loc]
   $R$ is a local ring.
@@ -49,16 +48,37 @@ Schemes
 \end{definition}
 
 \begin{proposition}
-  There is an isomorphism of partial orders
-  \[ \text{f.g.-ideal} \xrightarrow{{\sim}} \Omega_{cl} \]
+  There is an order-reversing isomorphism of partial orders
+  \begin{align*}
+    \text{f.g.-ideals}(R) &\xrightarrow{{\sim}} \Omega_{cl} \\
+    I &\mapsto (I = (0))
+  \end{align*}
   between the partial oder of finitely generated ideals of $R$
   and the partial order of closed propositions.
 \end{proposition}
 
 \begin{proof}
-  If $I = (x_1, \dots, x_n)$
-  then the proposition $I = (0)$ is indeed a closed proposition,
+  For a finitely generated ideal $I = (x_1, \dots, x_n)$,
+  the proposition $I = (0)$ is indeed a closed proposition,
   since it is equivalent to $x_1 = 0 \land \dots \land x_n = 0$.
+  It is also evident that we get all closed propositions in this way.
+  What remains to show is that
+  \[ I = (0) \Rightarrow J = (0)
+     \qquad\text{iff}\qquad
+     J \subseteq I
+     \rlap{\text{.}}
+  \]
+  For this we use synthetic quasicoherence.
+  Note that the set $\Spec(R/I) = \Hom_R(R/I, R)$ is a proposition
+  (has at most one element),
+  namely it is equivalent to the proposition $I = (0)$.
+  Similarly, $\Hom_R(R/J, R/I)$ is a proposition
+  and equivalent to $J \subseteq I$.
+  But then our claim is just the equation
+  \[ \Hom(\Spec R/I, \Spec R/J) = \Hom_R(R/J, R/I) \]
+  which holds by Lemma \ref{MISSING},
+  since $R/I$ and $R/J$ are finitely presented $R$-algebras
+  if $I$ and $J$ are finitely generated ideals.
 \end{proof}
 
 \ignore{
