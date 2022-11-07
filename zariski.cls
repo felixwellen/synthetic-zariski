@@ -41,6 +41,7 @@
     \newtheorem{remark}[theorem]{Remark}
     \newtheorem{example}[theorem]{Example}
     \newtheorem{corollary}[theorem]{Corollary}
+    \newtheorem{proposition}[theorem]{Proposition}
     
 \theoremstyle{nonumberplain}
 \theoremstyle{break}
