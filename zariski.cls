@@ -41,6 +41,7 @@
     \newtheorem{axiom}[theorem]{Axiom}
     \newtheorem{example}[theorem]{Example}
     \newtheorem{corollary}[theorem]{Corollary}
+    \newtheorem{proposition}[theorem]{Proposition}
 
 \theoremstyle{nonumberplain}
 \theoremsymbol{\ensuremath{\Box}}
