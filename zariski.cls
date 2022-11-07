@@ -15,7 +15,8 @@
 
 % Verweise + Stichwortverzeicnis
 \RequirePackage[linkcolor=black, colorlinks=true, citecolor=black]{hyperref}
-\RequirePackage[german]{cleveref}
+\RequirePackage{thmtools}
+\RequirePackage{nameref,cleveref}
 
 \RequirePackage{makeidx}
 
@@ -38,9 +39,26 @@
     \newtheorem{lemma}[theorem]{Lemma}
     \newtheorem{definition}[theorem]{Definition}
     \newtheorem{remark}[theorem]{Remark}
-    \newtheorem{axiom}[theorem]{Axiom}
     \newtheorem{example}[theorem]{Example}
     \newtheorem{corollary}[theorem]{Corollary}
+    
+\theoremstyle{nonumberplain}
+\theoremstyle{break}
+    \newtheorem*{axiom}{Axiom}
+
+    
+\crefname{axiom}{}{}   % remove "axiom" from references to axiom
+\newcommand{\axiomref}[1]{\cref{#1}\mynameref{#1}{\csname r@#1\endcsname}}
+
+% copied from https://tex.stackexchange.com/questions/109843/cleveref-and-named-theorems
+\def\mynameref#1#2{%
+  \begingroup
+    \edef\@mytxt{#2}%
+    \edef\@mytst{\expandafter\@thirdoffive\@mytxt}%
+    \ifx\@mytst\empty\else
+    \space(\nameref{#1})\fi
+  \endgroup
+}
 
 \theoremstyle{nonumberplain}
 \theoremsymbol{\ensuremath{\Box}}
