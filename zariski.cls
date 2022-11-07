@@ -12,6 +12,7 @@
 \RequirePackage{enumerate}
 \RequirePackage{enumitem}
 \RequirePackage[thmmarks]{ntheorem}
+\RequirePackage{thmtools}
 
 % Verweise + Stichwortverzeicnis
 \RequirePackage[linkcolor=black, colorlinks=true, citecolor=black]{hyperref}
