@@ -85,7 +85,7 @@ Schemes
   and equivalent to $J \subseteq I$.
   But then our claim is just the equation
   \[ \Hom(\Spec R/I, \Spec R/J) = \Hom_R(R/J, R/I) \]
-  which holds by Lemma \ref{MISSING},
+  which holds by Lemma~\ref{MISSING},
   since $R/I$ and $R/J$ are finitely presented $R$-algebras
   if $I$ and $J$ are finitely generated ideals.
 \end{proof}
@@ -102,6 +102,26 @@ Schemes
   => qc-open
 }
 
+\begin{axiom}[Z-choice]
+  Let $A$ be a finitely presented $R$-algebra
+  and let $B : \Spec A \to \mU$ be a family of inhabited types.
+  Then there merely exists
+  a finite list of elements $f_1, \dots, f_n \in A$
+  together with dependent functions $s_i : \Pi_{x : D(f_i)} B(x)$.
+  As a formula:
+  \[ (\Pi_{x : \Spec A} \propTrunc{B(x)}) \to
+     \propTrunc{ \Sigma_{n : \N} \Sigma_{f_1, \dots, f_n : A} \Pi_i \Pi_{x : D(f_i)} B(x) }
+     \rlap{.}
+  \]
+\end{axiom}
+
+\begin{axiom}[bound]
+  Let $A$ be a finitely presented $R$-algebra.
+  Then every function $f : \Spec A \to \N$ is bounded:
+  \[ \Pi_{f : \Spec A \to \N} \propTrunc{\Sigma_{n : \N} \Pi_{x : \Spec A} f(x) \le n}
+     \rlap{.} \]
+\end{axiom}
+
 \begin{example}
   For $A$ a finitely presented $R$-algebra,
   consider the open cover ${(U_i)}_{i \in I}$,
@@ -114,9 +134,11 @@ Schemes
   with the property that $\Spec A$ is empty if $n = 0$.
   In essence, it means to decide whether $\Spec A$ is inhabited or not.
   We claim that this is not possible for all finitely presented $R$-algebras:
-  \[ \lnot (\Pi_{A : f.p. R\text{-Alg}} \propTrunc{\Spec A \amalg \lnot \Spec A} ) \rlap{.} \]
+  \[ \lnot (\Pi_{A : f.p. R\text{-Alg}} \propTrunc{\Spec A \amalg \lnot \Spec A} )
+     \rlap{.} \]
   Indeed, for $A = R/(x)$,
-  the proposition $\propTrunc{\Spec A \amalg \lnot \Spec A}$ means $x = 0 \lor x \neq 0$,
+  the proposition $\propTrunc{\Spec A \amalg \lnot \Spec A}$
+  means $x = 0 \lor x \neq 0$,
   and we saw in~\ref{MISSING} that this is not true for all $x \in R$.
 \end{example}
 
