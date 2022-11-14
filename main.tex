@@ -68,6 +68,8 @@
 Schemes
   we will only define quasi compact schemes  
 
+  qc-open
+
   qc-Open subsets
   
   affine-open
@@ -114,13 +116,34 @@ Schemes
   if $I$ and $J$ are finitely generated ideals.
 \end{proof}
 
+\begin{lemma}[\axiomref{sqc}]
+  Let $A$ be a finitely presented $R$-algebra
+  and let $f, g_1, \dots, g_n \in A$.
+  Then we have $D(f) \subseteq D(g_1, \dots, g_n)$
+  as subsets of $\Spec A$
+  if and only if $f \in \sqrt{(g_1, \dots, g_n)}$.
+\end{lemma}
+
+\begin{proof}
+  Since $D(g_1, \dots, g_n) = \{\, x \in \Spec A \mid x \notin V(g_1, \dots, g_n) \,\}$,
+  the inclusion $D(f) \subseteq D(g_1, \dots, g_n)$
+  can also be written as
+  $D(f) \cap V(g_1, \dots, g_n) = \varnothing$, that is,
+  $\Spec((A/(g_1, \dots, g_n))[f^{-1}]) = \varnothing$.
+  By $\axiomref{sqc}$
+  this means that the finitely presented $R$-algebra $(A/(g_1, \dots, g_n))[f^{-1}]$
+  is zero.
+  And this is the case if and only if $f$ is nilpotent in $A/(g_1, \dots, g_n)$,
+  that is, if $f \in \sqrt{(g_1, \dots, g_n)}$, as stated.
+\end{proof}
+
+\pagebreak
+
 \begin{theorem}[\axiomref{sqc},\axiomref{loc}]
   $\bP^n$ is a scheme.
 \end{theorem}
 
 \ignore{
-
-  qc-open
 
   (Z-choice), (bound) => qc-open is affine-open
 }
