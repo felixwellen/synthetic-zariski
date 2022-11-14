@@ -42,6 +42,7 @@
 }
 
 \begin{proposition}[\axiomref{sqc}, \axiomref{loc}]
+  \label{proposition:A1-connected}
   The set $\A^1$ is \notion{connected}, that is,
   every function $f : \A^1 \to \Bool$ is constant.
 \end{proposition}
@@ -123,6 +124,27 @@ Schemes
 
   (Z-choice), (bound) => qc-open is affine-open
 }
+
+\begin{example}
+  The ring $R$ is a local ring, so we have
+  $\Pi_{x \in R} \propTrunc{\inv(x) \lor \inv(1 - x)}$,
+  but we can prove that
+  the statement without the propositional truncation is false:
+  \[ \lnot \Pi_{x \in R} (\inv(x) \amalg \inv(1 - x)) \rlap{.} \]
+  Namely,
+  a witness of $\Pi_{x \in R} (\inv(x) \amalg \inv(1 - x))$
+  is equivalently a function $f : R \to \Bool$
+  with the property that
+  \[ \text{if $f(x)$ then $\inv(x)$ else $\inv(1 - x)$} \rlap{.} \]
+  But by Proposition $\ref{proposition:A1-connected}$,
+  the function $f$ must be constant,
+  contradicting the fact that
+  $\lnot\inv(x)$ for $x = 0$ and $\lnot\inv(1 - x)$ for $x = 1$.
+
+  In particular,
+  not every type family $B : \A^1 \to \mU$ with $\Pi_{x : \A^1} \propTrunc{B(x)}$
+  merely admits a choice function $\Pi_{x : \A^1} B(x)$.
+\end{example}
 
 \begin{axiom}[Z-choice]
   Let $A$ be a finitely presented $R$-algebra
