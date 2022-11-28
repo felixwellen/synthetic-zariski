@@ -1,0 +1,72 @@
+Maybe this should be in a different section and stated in a different way:
+\begin{theorem}
+  \label{thm:fp-module}
+  Let $X=\Spec(A)$ be affine and $M : X\to \fpMod{R}$,
+  then the $A$-module
+  \[ \tilde{M}\coloneqq\prod_{x:X}M_x \]
+  is finitely presented and for any $x:X$ the $R$-module $\tilde{M}\otimes_A R$ is $M_x$.
+  Under this correspondence, localizing $\tilde{M}$ at $f:A$ corresponds to restricting $M$ to $D(f)$.
+\end{theorem}
+
+\begin{definition}
+  Let $X$ be a type and $A:X\to \AbGroup$ a map to the type of abelian groups.
+  For $x:X$ let $T_x$ be a set with an $A_x$ action.
+  \begin{enumerate}
+  \item $T$ is an \notion{$A$-pseudotorsor}, if the action is free and transitive for all $x:X$.
+  \item $T$ is an \notion{$A$-torsor}, if it is an $A$-pseudotorsor and
+    \[ \prod_{x:X} \| T_x \| \].
+  \end{enumerate}
+\end{definition}
+
+The following is an explicit formulation of the fact, that the Čech-Complex for an
+$\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact in degree 1.
+\begin{lemma}
+  \label{lem:H1-algebra}
+  Let $M$ be a module over a commutative ring $A$, $F_1,\dots,F_l$ a coprime system on $A$
+  and for $i,j\in\{1,\dots,l\}$, let $s_{ij}:{F_i^{-1} F_j}^{-1}M$ such that:
+  \begin{enumerate}
+  \item $s_{ij}=-s_{ji}$
+  \item $s_{ij}-s_{ik}+s_{jk}=0$
+  \end{enumerate}
+  Then there are $u_i:F_i^{-1}M$ such that $s_{ij}=u_j - u_i$.
+\end{lemma}
+\begin{proof}
+  Let $s_{ij}=\frac{m_{ij}}{f_i f_j}$ with $m_{ij}:M$, $f_i:F_i$ and $f_j:F_j$ such that:
+  \begin{enumerate}
+  \item $m_{ij}=-m_{ji}$
+  \item $f_k\cdot m_{ij}-f_j\cdot m_{ik}+f_i\cdot m_{jk}=0$
+  \end{enumerate}
+  Let $r_i$ such that $\sum r_i f_i =1$.
+  Then for
+  \[ b_i\coloneqq \sum_{k=1}^l\frac{r_k}{f_i}m_{ik} \]
+  we have:
+  \begin{align*}
+      b_j-b_i &= \sum_{k=1}^l\frac{r_k}{f_j}m_{jk} - \sum_{k=1}^l\frac{r_k}{f_i}m_{ik} \\
+              &= \sum_{k=1}\frac{r_k}{f_jf_i}f_i m_{jk} - \sum_{k=1}^l\frac{r_k}{f_i f_j} f_j m_{ik} \\
+              &= \sum_{k=1}\frac{r_k}{f_jf_i}(f_i m_{jk} - f_j m_{ik}) \\
+              &= \sum_{k=1}\frac{r_k}{f_jf_i}f_km_{ij} \\
+              &= \frac{m_{ij}}{f_i f_j}
+  \end{align*}
+\end{proof}
+
+\begin{theorem}[\axiomref{Z-choice}]
+  For any affine scheme $X=\Spec(A)$ and coefficients $M: X\to \fpMod{R}$, we have
+  \[ H^1(X,M)=0 \]
+\end{theorem}
+\begin{proof}
+  We need to show, that any $M$-torsor $T$ on $X$ is merely equal to the trivial torsor $M$,
+  or equivalently show the existence of a section of $T$.
+  We have
+  \[ \prod_{x:X}\| T_x \|\]
+  and therefore, by \axiomref{Z-choice},
+  there merely are $f_1,\dots,f_l:A$,
+  such that the $U_i\coloneqq \Spec(A_{f_i})$ cover $X$ and
+  there are local sections
+  \[ s_i:\prod_{x:U_i}T_x\]
+  of $T$. Our goal is to construct a matching family from the $s_i$.
+  On intersections, let $t_{ij}\coloneqq s_i-s_j$ be the difference, so $t_{ij}:(x : U_i\cap U_j) \to M_x$.
+  By \cref{thm:fp-module} equivalently, we have $t_{ij}:\tilde{M}_{f_i f_j}$.
+  Since the $t_{ij}$ were defined as differences, the conditions in \cref{lem:H1-algebra} are satisfied and we get
+  $u_i:M_{f_i}$, such that $t_{ij}=u_i-u_j$.
+  So we merely have a matching family $\tilde{s}_i\coloneqq s_i-u_i$ and therefore merely a section of $T$.
+\end{proof}
