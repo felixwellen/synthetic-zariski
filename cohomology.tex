@@ -1,8 +1,41 @@
-Maybe this should be in a different section and stated in a different way:
+In non-synthetic algebraic geometry,
+the structure sheaf~$\mathcal{O}_X$ is part of the data constituting a scheme~$X$.
+In our internal setting,
+the scheme $X$ is just a set without any additional data,
+but when we want to consider the structure sheaf as an object in its own right,
+then we can represent it by the trivial bundle
+that assings to every point $x : X$ the set $R$.
+Indeed, for an affine scheme $X = \Spec A$,
+taking the sections of this bundle over a basic open $D(f) \subseteq X$
+\[ \prod_{x : D(f)} R = (D(f) \to R) = A[f^{-1}] \]
+yields the localizations of the ring $A$
+expected from the structure sheaf $\mathcal{O}_X$.
+More generally,
+instead of sheaves of abelian groups, $\mathcal{O}_X$-modules, etc.,
+we will consider bundels of abelian groups, $R$-modules, etc.,
+in the form of maps from $X$ to the respective type of algebraic structures.
+
+We now investigate the relationship between bundles of $R$-modules on $X = \Spec A$
+and $A$-modules.
+
+\begin{proposition}
+  Let $A$ be a finitely presented $R$-algebra.
+  There is an adjunction
+  \[ \begin{tikzcd}[row sep=tiny]
+    M \ar[r, mapsto] & {(M \otimes x)}_{x : \Spec A} \\
+    \Mod{A} \ar[r, shift left=2] \ar[r, phantom, "\rotatebox{90}{$\vdash$}"] &
+    \Mod{R}^{\Spec A} \ar[l, shift left=2] \\
+    \prod_{x : \Spec A} N_x & N \ar[l, mapsto]
+  \end{tikzcd} \]
+  between the category of $A$-modules
+  and the category of bundles of $R$-modules on $\Spec A$.
+\end{proposition}
+
 \begin{theorem}%
   \label{thm:fp-module}
-  Let $X=\Spec(A)$ be affine and $M : X\to \fpMod{R}$,
-  then the $A$-module
+  Let $X=\Spec(A)$ be affine and
+  let a bundle of finitely presented $R$-modules $M : X\to \fpMod{R}$ be given.
+  Then the $A$-module
   \[ \tilde{M}\coloneqq\prod_{x:X}M_x \]
   is finitely presented and for any $x:X$ the $R$-module $\tilde{M}\otimes_A R$ is $M_x$.
   Under this correspondence, localizing $\tilde{M}$ at $f:A$ corresponds to restricting $M$ to $D(f)$.
