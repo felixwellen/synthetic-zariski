@@ -22,7 +22,8 @@ We will see below, that there is also a small definition of the same type.
     \[ \prod_{y:V}\left(\mathcal L (y) \Leftrightarrow \exists c:R.y=c\cdot x\right)\]
   \item The space of all lines in a fixed $n$-dimensional vector space $V$ is the projectivization of $V$:
     \[ \bP(V)\colonequiv \sum_{\mathcal L:V\to \Prop} \mathcal L \text{ is a line}  \]
-  \item \notion{Projective $n$-space} is the projectivization of $\bA^{n+1}$.
+  \item \notion{Projective $n$-space} is the projectivization of $\bA^{n+1}$,
+    $\bP^n \colonequiv \bP(\bA^{n+1})$.
   \end{enumerate}
 \end{definition}
 
@@ -35,3 +36,64 @@ We will see below, that there is also a small definition of the same type.
 \begin{theorem}[\axiomref{sqc},\axiomref{loc}]
   $\bP^n$ is a scheme.
 \end{theorem}
+
+\begin{proof}
+  \dots
+\end{proof}
+
+\begin{lemma}
+  All functions $\bP^1 \to R$ are constant.
+\end{lemma}
+
+\begin{proof}
+  \dots
+\end{proof}
+
+\begin{lemma}[using (\axiomref{sqc}), (\axiomref{loc})]
+  Let $p \neq q \in \bP^n$ be given.
+  Then there exists a map $f : \bP^1 \to \bP^n$
+  such that $f([0 : 1]) = p$, $f([1 : 0]) = q$.
+\end{lemma}
+
+\begin{proof}
+  What we want to prove is a proposition,
+  so we can assume chosen $a, b \in \bA^{n+1} \setminus \{0\}$
+  with $p = [a]$, $q = [b]$.
+  Then we set
+  \[ f([x, y]) \colonequiv [xa + yb] \rlap{.}\]
+  Let us check that $xa + yb \neq 0$.
+  By \dots,
+  we have that $x$ or $y$ is invertible
+  and both $a$ and $b$ have at least one invertible entry.
+  If $xa = - yb$
+  then it follows that $x$ and $y$ are both invertible
+  and therefore $a$ and $b$ would be linearly equivalent,
+  contradicting the assumption $p \neq q$.
+  Of course $f$ is also well-defined
+  with respect to linear equivalence in the pair $(x, y)$.
+\end{proof}
+
+\begin{lemma}
+  Let $n \geq 1$.
+  For every point $p \in \bP^n$,
+  we have $p \neq [1 : 0 : 0 : \dots]$
+  or $p \neq [0 : 1 : 0 : \dots]$.
+\end{lemma}
+
+\begin{proof}
+  Let $p = [a]$ with $a \in \bA^{n+1} \setminus \{0\}$.
+  By \dots,
+  there is an $i \in \{0, \dots, n\}$ with $a_i \neq 0$.
+  If $i = 0$ then $p \neq [0 : 1 : 0 : \dots]$,
+  if $i \geq 1$ then $p \neq [1 : 0 : 0 : \dots]$.
+\end{proof}
+
+\begin{theorem}
+  All functions $\bP^n \to R$ are constant,
+  that is,
+  \[ H^0(\bP^n, R) \colonequiv (\bP^n \to R) = R \rlap{.} \]
+\end{theorem}
+
+\begin{proof}
+  \dots
+\end{proof}
