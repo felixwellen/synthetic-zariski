@@ -59,7 +59,8 @@
 
 }
 
-\begin{lemma}
+\begin{lemma}%
+  \label{lem:kraus-glueing}
   Let $D(f_1),\dots,D(f_n)$ be a cover of $\Spec(A)$ and $P:\Spec(A)\to \nType{0}$.
   If for each $i\in\{1,\dots,n\}$ there is a dependent function $s_i:(x:D(f_i))\to P(x)$ together with
   proofs of equality on intersections $p_{ij}:(x:D(f_if_j)\to (s_i(x)=s_j(y)))$,
@@ -98,6 +99,21 @@
   to see that all coefficients of $p$ are zero.
 \end{proof}
 
+\begin{corollary}[\axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  $\neg(\prod_{x:\bA^1}x=0 \vee x\neq 0)$
+\end{corollary}
+
+\begin{proof}
+  Assume $\prod_{x:\bA^1}x=0 \vee x\neq 0$.
+  By \axiomref{Z-choice} we get $s_i:(x:D(f_i))\to x=0 \coprod x\neq 0$
+  for a Zariski-cover $D(f_1),\dots,D(f_n)$ of $\bA^1$. 
+  On intersections $D(f_if_j)$, we have $s_i(x)=s_j(x)$
+  since types of the form $P+\neg P$ for a proposition $P$ are propositions.
+  This means we can use \cref{lem:kraus-glueing} to construct a map $\bA^1\to \Bool$,
+  which decides if $x$ is zero or not.
+  By connectedness of $\bA^1$, this map is constant, but we know $1\neq 0$,
+  so both options for a constant value are impossible.
+\end{proof}
 \ignore{
 
 Schemes
