@@ -61,18 +61,20 @@
 
 \begin{lemma}%
   \label{lem:kraus-glueing}
-  Let $D(f_1),\dots,D(f_n)$ be a cover of $\Spec(A)$ and $P:\Spec(A)\to \nType{0}$.
-  If for each $i\in\{1,\dots,n\}$ there is a dependent function $s_i:(x:D(f_i))\to P(x)$ together with
-  proofs of equality on intersections $p_{ij}:(x:D(f_if_j)\to (s_i(x)=s_j(y)))$,
-  then there is a globally defined dependent function $s:(x:\Spec(A)) \to P(x)$.  
+  Let $X$ and $I$ by types.
+  For $(U_i:X \to \Prop)_{i:I}$ and $P:U_i\to \nType{0}$, we have the following glueing property: \\
+  If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
+  proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(y))$,
+  then there is a globally defined dependent function $s:(x:X) \to P(x)$,
+  such that for all $x:X$ and $i:I$ we have $U_i(x) \to s(x)=s_i(x)$
 \end{lemma}
 \begin{proof}
   We define $s$ pointwise.
-  Let $x:\Spec(A)$.
+  Let $x:X$.
   Using a Lemma of Kraus and the $p_{ij}$, we get a factorization
   \[ \begin{tikzcd}[row sep=0mm]
-    \coprod_i D(f_i) \ar[rr, "\coprod_i s_i(x)"]\ar[rd] & & P(x) \\
-    & \|\coprod_i D(f_i)\|_{-1}\ar[ru,dashed] &
+    \coprod_i U_i(x) \ar[rr, "\coprod_i s_i(x)"]\ar[rd] & & P(x) \\
+    & \|\coprod_i U_i(x)\|_{-1}\ar[ru,dashed] &
   \end{tikzcd} \]
 -- which defines a unique value $s(x):P(x)$.
 \end{proof}
