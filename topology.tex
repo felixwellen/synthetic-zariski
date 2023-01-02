@@ -19,6 +19,7 @@
 -- which defines a unique value $s(x):P(x)$.
 \end{proof}
 
+\subsection{Connectedness}
 The following is in conflict with the usual use of the word ``connected'' in homotopy type theory.
 
 \begin{definition}%
@@ -81,6 +82,7 @@ is already trivial.
   This contradicts $1\neq 0$.
 \end{proof}
 
+\subsection{Open and closed subtypes}
 
 \begin{definition}
   A \notion{closed proposition} is a proposition
@@ -142,3 +144,79 @@ is already trivial.
   And this is the case if and only if $f$ is nilpotent in $A/(g_1, \dots, g_n)$,
   that is, if $f \in \sqrt{(g_1, \dots, g_n)}$, as stated.
 \end{proof}
+
+%duplicate
+\begin{example}
+  The ring $R$ is a local ring, so we have
+  $\Pi_{x \in R} \propTrunc{\inv(x) \lor \inv(1 - x)}$,
+  but we can prove that
+  the statement without the propositional truncation is false:
+  \[ \lnot \Pi_{x \in R} (\inv(x) \amalg \inv(1 - x)) \rlap{.} \]
+  Namely,
+  a witness of $\Pi_{x \in R} (\inv(x) \amalg \inv(1 - x))$
+  is equivalently a function $f : R \to \Bool$
+  with the property that
+  \[ \text{if $f(x)$ then $\inv(x)$ else $\inv(1 - x)$} \rlap{.} \]
+  But by Proposition $\ref{proposition:A1-connected}$,
+  the function $f$ must be constant,
+  contradicting the fact that
+  $\lnot\inv(x)$ for $x = 0$ and $\lnot\inv(1 - x)$ for $x = 1$.
+
+  In particular,
+  not every type family $B : \A^1 \to \mU$ with $\Pi_{x : \A^1} \propTrunc{B(x)}$
+  merely admits a choice function $\Pi_{x : \A^1} B(x)$.
+\end{example}
+
+\subsection{Compactness}
+
+\begin{theorem}[using (\axiomref{loc}), (\axiomref{sqc})]%
+  Let $A$ be a finitely presented $R$-algebra.
+  Then every function $f : \Spec A \to \N$ is bounded:
+  \[ \Pi_{f : \Spec A \to \N} \propTrunc{\Sigma_{n : \N} \Pi_{x : \Spec A} f(x) \le n}
+     \rlap{.} \]
+\end{theorem}
+
+\begin{proof}
+  Let $f : \Spec A \to \N$ be given.
+  We compose this function with the embedding
+  \[ \begin{tikzcd}[row sep=0mm]
+    \N \ar[r, "\iota"] & R[X] \ar[r, phantom, "{=}"] & (\bA^1 \to R) \\
+    n \ar[r, mapsto] & X^n
+  \end{tikzcd} \]
+  (it is an embedding since $1 \neq 0 \in R$ by (\axiomref{loc}))
+  to obtain $\widetilde{f} : \Spec A \to (\bA^1 \to R)$
+  and its transpose $g : \Spec A \times \bA^1 \to R$.
+  Since $\Spec A \times \bA^1 = \Spec (A \otimes R[X]) = \Spec A[X]$
+  (see~\ref{MISSING}),
+  we can regard $g$ as an element of $A[X]$.
+  For $x \in \Spec A$,
+  the polynomial $\iota(f(x)) \in R[X]$ is then obtained from the polynomial~$g$
+  by applying the $R$-algebra homomorphism $x : A \to R$ to all coefficients.
+  This makes it clear that
+  we have a common bound on the degrees of the polynomials $\iota(f(x))$,
+  in other words,
+  the function $f$ is bounded.
+\end{proof}
+
+The following example shows that we can not expect all affine schemes
+to be compact with respect to arbitrary set-indexed open coverings.
+
+\begin{example}
+  For $A$ a finitely presented $R$-algebra,
+  consider the open cover ${(U_i)}_{i \in I}$,
+  where the index set is $I = \Spec A$
+  and for each $i$ we set $U_i = \Spec A = D(1)$.
+  This indeed covers all points of $\Spec A$,
+  since for every $x \in \Spec A$ we clearly have $x \in U_x$.
+  To give a finite subcover of this cover, however,
+  means to give a natural number $n$ and a function $\Fin n \to \Spec A$
+  with the property that $\Spec A$ is empty if $n = 0$.
+  In essence, it means to decide whether $\Spec A$ is inhabited or not.
+  We claim that this is not possible for all finitely presented $R$-algebras:
+  \[ \lnot (\Pi_{A : f.p. R\text{-Alg}} \propTrunc{\Spec A \amalg \lnot \Spec A} )
+     \rlap{.} \]
+  Indeed, for $A = R/(x)$,
+  the proposition $\propTrunc{\Spec A \amalg \lnot \Spec A}$
+  means $x = 0 \lor x \neq 0$,
+  and we saw in~\ref{MISSING} that this is not true for all $x \in R$.
+\end{example}
