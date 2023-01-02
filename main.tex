@@ -109,20 +109,36 @@ The following is in conflict with the usual use of the word ``connected'' in hom
   to see that all coefficients of $p$ are zero.
 \end{proof}
 
+A connected type, that is covered by its point and everything except the point,
+is already trivial.
+
+\begin{corollary}[\axiomref{Z-choice}]%
+  \label{cor:connected-to-contractible}
+  Let $X$ be connected and 
+  \[\prod_{x:X}x=* \vee x\neq *.\]
+  Then $X$ is contractible.
+\end{corollary}
+
+\begin{proof}
+  Assume $\prod_{x:X}x=* \vee x\neq *$.
+  By \axiomref{Z-choice} we get $s_i:(x:D(f_i))\to x=* + x\neq *$
+  for a Zariski-cover $D(f_1),\dots,D(f_n)$ of $X$. 
+  On intersections $D(f_if_j)$, we have $s_i(x)=s_j(x)$
+  since types of the form $P+\neg P$ for a proposition $P$ are propositions.
+  This means we can use \cref{lem:kraus-glueing} to construct a map $X\to \Bool$,
+  which decides if a general $x:X$ is the point $*$ or not.
+  By connectedness of $X$, this map is constant, but we know $*=*$,
+  so $x=*$ for all $x$.
+\end{proof}
+
 \begin{corollary}[\axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
   $\neg(\prod_{x:\A^1}x=0 \vee x\neq 0)$
 \end{corollary}
 
 \begin{proof}
-  Assume $\prod_{x:\A^1}x=0 \vee x\neq 0$.
-  By \axiomref{Z-choice} we get $s_i:(x:D(f_i))\to x=0 + x\neq 0$
-  for a Zariski-cover $D(f_1),\dots,D(f_n)$ of $\A^1$. 
-  On intersections $D(f_if_j)$, we have $s_i(x)=s_j(x)$
-  since types of the form $P+\neg P$ for a proposition $P$ are propositions.
-  This means we can use \cref{lem:kraus-glueing} to construct a map $\A^1\to \Bool$,
-  which decides if $x$ is zero or not.
-  By connectedness of $\A^1$, this map is constant, but we know $1\neq 0$,
-  so both options for a constant value are impossible.
+  By \cref{cor:connected-to-contractible} and by the connectedness of $\A^1$ (\cref{proposition:A1-connected}),
+  we can show from $\prod_{x:\A^1}x=0 \vee x\neq 0$ that $\A^1$ is contractible.
+  This contradicts $1\neq 0$.
 \end{proof}
 \ignore{
 
