@@ -53,4 +53,6 @@
 \theoremsymbol{\ensuremath{\Box}}
     \newtheorem{proof}{Proof}
 
+\makeindex
+    
 \RequirePackage{zariski}
