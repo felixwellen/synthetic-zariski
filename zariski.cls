@@ -10,7 +10,7 @@
 % Schönere Tabellen / Auflistungen / Theoreme
 \RequirePackage{booktabs}
 \RequirePackage{enumerate}
-\RequirePackage{enumitem}
+\RequirePackage[shortlabels]{enumitem}
 \RequirePackage[thmmarks]{ntheorem}
 \RequirePackage{thmtools}
 

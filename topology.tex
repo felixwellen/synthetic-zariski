@@ -18,70 +18,6 @@
   \end{tikzcd} \]
 -- which defines a unique value $s(x):P(x)$.
 \end{proof}
-
-\subsection{Connectedness}
-The following is in conflict with the usual use of the word ``connected'' in homotopy type theory.
-
-\begin{definition}%
-  \label{def:connected}
-  A pointed type $X$ is called \notion{connected},
-  if any function $X\to \Bool$ is constant.
-\end{definition}
-
-\begin{proposition}[\axiomref{sqc}, \axiomref{loc}]%
-  \label{proposition:A1-connected}
-  The set $\A^1$ is connected, that is,
-  every function $f : \A^1 \to \Bool$ is constant.
-\end{proposition}
-
-\begin{proof}
-  We embed $\Bool$ into $R$ as the subset $\{0, 1\} \subseteq R$.
-  (We have $0 \neq 1$ in $R$ by (\axiomref{loc}).)
-  Then we have a function $\widetilde{f} : \A^1 \to R$
-  and we can assume $\widetilde{f}(0) = 0$.
-  Note that $\widetilde{f}$ is an idempotent element of the algebra $R^{\A^1}$,
-  since all its values are idempotent elements of $R$.
-  By (\axiomref{sqc}),
-  $\widetilde{f}$ is given by an idempotent polynomial $p \in R[X]$
-  with $p(0) = 0$.
-  But from this follows $p = 0$:
-  we can factorize $p = X q$
-  and then calculate $p = p^n = X^n q^n$
-  to see that all coefficients of $p$ are zero.
-\end{proof}
-
-A connected type, that is covered by its point and everything except the point,
-is already trivial.
-
-\begin{corollary}[\axiomref{Z-choice}]%
-  \label{cor:connected-to-contractible}
-  Let $X$ be connected and 
-  \[\prod_{x:X}x=* \vee x\neq *.\]
-  Then $X$ is contractible.
-\end{corollary}
-
-\begin{proof}
-  Assume $\prod_{x:X}x=* \vee x\neq *$.
-  By \axiomref{Z-choice} we get $s_i:(x:D(f_i))\to x=* + x\neq *$
-  for a Zariski-cover $D(f_1),\dots,D(f_n)$ of $X$. 
-  On intersections $D(f_if_j)$, we have $s_i(x)=s_j(x)$
-  since types of the form $P+\neg P$ for a proposition $P$ are propositions.
-  This means we can use \cref{lem:kraus-glueing} to construct a map $X\to \Bool$,
-  which decides if a general $x:X$ is the point $*$ or not.
-  By connectedness of $X$, this map is constant, but we know $*=*$,
-  so $x=*$ for all $x$.
-\end{proof}
-
-\begin{corollary}[\axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
-  $\neg(\prod_{x:\A^1}x=0 \vee x\neq 0)$
-\end{corollary}
-
-\begin{proof}
-  By \cref{cor:connected-to-contractible} and by the connectedness of $\A^1$ (\cref{proposition:A1-connected}),
-  we can show from $\prod_{x:\A^1}x=0 \vee x\neq 0$ that $\A^1$ is contractible.
-  This contradicts $1\neq 0$.
-\end{proof}
-
 \subsection{Open and closed subtypes}
 
 \begin{definition}
@@ -166,6 +102,115 @@ is already trivial.
   not every type family $B : \A^1 \to \mU$ with $\Pi_{x : \A^1} \propTrunc{B(x)}$
   merely admits a choice function $\Pi_{x : \A^1} B(x)$.
 \end{example}
+
+\begin{definition}%
+  \begin{enumerate}[(a)]
+  \item A proposition $P$ is \notion{(qc-)open}, if there merely are $f_1,\dots,f_n:R$,
+    such that $P$ is equivalent to one of the $f_i$ being invertible.
+  \item Let $X$ be a type.
+    A subtype $U:X\to\Prop$ is \notion{(qc-)open}, if $U(x)$ is an open proposition for all $x:X$.
+  \end{enumerate}
+\end{definition}
+
+\subsection{Schemes}
+The following definition \emph{does not} define schemes in general,
+but something which is expected to correspond to quasi-compact schemes, locally of finite type externally.
+
+\begin{definition}
+  A type $X$ is a \notion{(qc-)scheme} if there merely is a cover by finitely many open subtypes $U_i:X\to\Prop$,
+  such that each of the $U_i$ is affine.
+\end{definition}
+
+Zariski-choice \axiomref{Z-choice} extends to schemes:
+
+\begin{proposition}[\axiomref{Z-choice}]%
+  Let $X$ be a scheme and $P:X\to \Type$ with $\prod_{x:X}\|P(x)\|$,
+  then there merely is a cover $U_i$ by standard opens of the affine parts of $X$,
+  such that there are $s_i:\prod_{x:U_i}P(x)$ for all $i$.
+\end{proposition}
+
+\subsection{Connectedness}
+The following is in conflict with the usual use of the word ``connected'' in homotopy type theory.
+
+\begin{definition}%
+  \label{def:connected}
+  A pointed type $X$ is called \notion{connected},
+  if any function $X\to \Bool$ is constant.
+\end{definition}
+
+\begin{proposition}[\axiomref{sqc}, \axiomref{loc}]%
+  \label{proposition:A1-connected}
+  The set $\A^1$ is connected, that is,
+  every function $f : \A^1 \to \Bool$ is constant.
+\end{proposition}
+
+\begin{proof}
+  We embed $\Bool$ into $R$ as the subset $\{0, 1\} \subseteq R$.
+  (We have $0 \neq 1$ in $R$ by (\axiomref{loc}).)
+  Then we have a function $\widetilde{f} : \A^1 \to R$
+  and we can assume $\widetilde{f}(0) = 0$.
+  Note that $\widetilde{f}$ is an idempotent element of the algebra $R^{\A^1}$,
+  since all its values are idempotent elements of $R$.
+  By (\axiomref{sqc}),
+  $\widetilde{f}$ is given by an idempotent polynomial $p \in R[X]$
+  with $p(0) = 0$.
+  But from this follows $p = 0$:
+  we can factorize $p = X q$
+  and then calculate $p = p^n = X^n q^n$
+  to see that all coefficients of $p$ are zero.
+\end{proof}
+
+A connected scheme, that is covered by its point and everything except the point,
+is already trivial.
+
+\begin{corollary}[\axiomref{Z-choice}]%
+  \label{cor:connected-to-contractible}
+  Let $X$ be a connected scheme and 
+  \[\prod_{x:X}x=* \vee x\neq *.\]
+  Then $X$ is contractible.
+\end{corollary}
+
+\begin{proof}
+  Assume $\prod_{x:X}x=* \vee x\neq *$.
+  By \axiomref{Z-choice} we get $s_i:(x:D_i)\to x=* + x\neq *$
+  for a Zariski-cover $D_1,\dots,D_n$ of $X$. 
+  On intersections $D_{ij}$, we have $s_i(x)=s_j(x)$
+  since types of the form $P+\neg P$ for a proposition $P$ are propositions.
+  This means we can use \cref{lem:kraus-glueing} to construct a map $X\to \Bool$,
+  which decides if a general $x:X$ is the point $*$ or not.
+  By connectedness of $X$, this map is constant, but we know $*=*$,
+  so $x=*$ for all $x$.
+\end{proof}
+
+\begin{corollary}[\axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  $\neg(\prod_{x:\A^1}x=0 \vee x\neq 0)$
+\end{corollary}
+
+\begin{proof}
+  By \cref{cor:connected-to-contractible} and by the connectedness of $\A^1$ (\cref{proposition:A1-connected}),
+  we can show from $\prod_{x:\A^1}x=0 \vee x\neq 0$ that $\A^1$ is contractible.
+  This contradicts $1\neq 0$.
+\end{proof}
+
+\subsection{Irreducibility}
+We have the following candidate for a definition of irreducibility:
+
+\begin{definition}
+  \label{def:irred}
+  A type $X$ is called \notion{irreducible},
+  if for all pairs of closed subtypes $A:X\to \Prop$ and $B:X\to\Prop$ that cover $X$,
+  we have $X=A$ or $X=B$.
+\end{definition}
+
+\begin{proposition}[\axiomref{Z-choice}]%
+  $\A^1$ is irreducible.
+\end{proposition}
+\begin{proof}
+  Assume $A$ and $B$ as in the definition of irreducibility (\cref{def:irred}).
+  Then there are $f,g:\A^1\to\A^1$ such that for all $x:\A^1$, $f(x)=0$ or $g(x)=0$.
+  Without loss of generality and by \axiomref{Z-choice}, we can assume $f(x)=0$ for all $x:D(h)$,
+  where $D(h)$ is a neighborhood of $0$.
+\end{proof}
 
 \subsection{Compactness}
 
