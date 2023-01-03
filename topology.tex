@@ -105,6 +105,7 @@
 \end{example}
 
 \begin{definition}%
+  \label{def:qc-open}
   \begin{enumerate}[(a)]
   \item A proposition $P$ is \notion{(qc-)open}, if there merely are $f_1,\dots,f_n:R$,
     such that $P$ is equivalent to one of the $f_i$ being invertible.
@@ -217,6 +218,7 @@ We have the following candidate for a definition of irreducibility:
 \subsection{Compactness properties}
 
 \begin{theorem}[using (\axiomref{loc}), (\axiomref{sqc})]%
+  \label{thm:boundedness}
   Let $A$ be a finitely presented $R$-algebra.
   Then every function $f : \Spec A \to \N$ is bounded:
   \[ \Pi_{f : \Spec A \to \N} \propTrunc{\Sigma_{n : \N} \Pi_{x : \Spec A} f(x) \le n}
@@ -268,3 +270,25 @@ to be compact with respect to arbitrary set-indexed open coverings.
   and we saw in~\ref{MISSING} that this is not true for all $x \in R$.
 \end{example}
 
+The compactness we have is however enough,
+to see that our two definitions (\cref{def:affine-open}, \cref{def:qc-open})
+of open subtypes of an affine scheme are equivalent:
+
+\begin{theorem}[(\axiomref{loc}),(\axiomref{sqc}),(\axiomref{Z-choice})]%
+  \label{thm:qc-open-affine-open}
+  Let $X=\Spec A$ and $U:X\to\Prop$ be an open subtype,
+  then $U$ is affine open, i.e. there merely are $f_1,\dots,f_n:X\to R$ such that
+  $U=D(f_1,\dots,f_n)$.
+\end{theorem}
+
+\begin{proof}
+  Let $L(x)$ be the type of finite lists of elements of $R$,
+  such that one of them being invertible is equivalent to $U(x)$.
+  By assumption, we know
+  \[\prod_{x:X}\|L(x)\|\rlap{.}\]
+  So by \axiomref{Z-choice}, we have $s_i:\prod_{x:D(f_i)}L(x)$.
+  We compose with the length function for lists to get functions $l_i:D(f_i)\to\N$.
+  By \cref{thm:boundedness}, the $l_i$ are bounded.
+  Since we are proving a proposition, we can assume we have actual bounds $b_i:\N$.
+  So we have functions $\tilde{s_i}:D(f_i)\to R^{b_i}$.
+\end{proof}
