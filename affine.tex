@@ -62,13 +62,22 @@ Affine-openness is transitive in the following sense:
 \subsection{Fiber products}
 
 \begin{lemma}
-  Let $X=\Spec A,Y=\Spec B$ and $Z=\Spec C$ be affine schemes with maps $f:X\to Z$, $g:Y\to Z$.
+  Let $X=\Spec A,Y=\Spec B$ and $Z=\Spec C$ be affine schemes
+  with maps $f:X\to Z$, $g:Y\to Z$.
   Then the pullback of this diagram is an affine scheme given by $\Spec (A\otimes_C B)$.
 \end{lemma}
 
 \begin{proof}
+  The maps $f:X\to Z$, $g:Y\to Z$ are induced by $R$-algebra homomorphisms $f^*:A\to R$ and $g^*:B\to R$.
   Let
   \[ (h,k,p) : \Spec A \times_{\Spec C} \Spec B \]
-  and define: $B(a,b)\colonequiv h(a)\cdot k(b)$.
-  Then $B$ is $C$-biliniear and corresponds uniquely to a homomorphism $A\otimes_C B \to R$.
+  with $p:h\circ f^*=k\circ g^* $.
+  This defines a $R$-cocone on the diagram
+  \[
+    \begin{tikzcd}
+      A & C\ar[r,"g^*"]\ar[l,"f^*",swap] & B
+    \end{tikzcd}
+  \]
+  Since $A\otimes_C B$ is a pushout in $R$-algebras,
+  there is a unique $R$-algebra homomorphism $A\otimes_C B \to R$ corresponding to $(h,k,p)$.
 \end{proof}
