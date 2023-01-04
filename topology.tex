@@ -293,3 +293,33 @@ of open subtypes of an affine scheme are equivalent:
   Since we are proving a proposition, we can assume we have actual bounds $b_i:\N$.
   So we have functions $\tilde{s_i}:D(f_i)\to R^{b_i}$.
 \end{proof}
+
+This allows us to transfer one important lemma from affine-opens to qc-opens.
+The subtlety of the following is that while it is clear that the intersection of two
+qc-opens on a type, which are \emph{globally} defined is open again, it is not clear,
+that the same holds, if one qc-open is only defined on the other.
+
+\begin{lemma}[(\axiomref{loc}),(\axiomref{sqc}),(\axiomref{Z-choice})]%
+  \label{lem:qc-open-transitive}
+  Let $X$ be a scheme, $U\subseteq X$ qc-open in $X$ and $V\subseteq U$ qc-open in $U$,
+  then $V$ is qc-open in $X$.
+\end{lemma}
+
+\begin{proof}
+  Let $X_i=\Spec A_i$ be a finite affine cover of $X$.
+  It is enough to show, that the restriction $V_i$ of $V$ to $X_i$ is qc-open.
+  $U_i\colonequiv X_i\cap U$ is qc-open in $X_i$, since $X_i$ is qc-open.
+  By \cref{thm:qc-open-affine-open}, $U_i$ is affine-open in $X_i$,
+  so $U_i=D(f_1,\dots,f_n)$.
+  $V_i\cap D(f_j)$ is affine-open in $D(f_j)$, so by \cref{lem:affine-open-trans},
+  $V_i\cap D(f_j)$ is affine-open in $X_i$.
+  This implies $V_i\cap D(f_j)$ is qc-open in $X_i$ and so is $V_i=\bigcup_{j}V_i\cap D(f_j)$.
+\end{proof}
+
+\begin{corollary}[(\axiomref{loc}),(\axiomref{sqc}),(\axiomref{Z-choice})]%
+  qc-open propositions are closed under sums.
+\end{corollary}
+
+\begin{proof}
+  Apply \cref{lem:qc-open-transitive} to the point $\Spec R$.
+\end{proof}

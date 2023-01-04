@@ -1,3 +1,5 @@
+We only talk about affine schemes of finite type, i.e. schemes of the form $\Spec A$,
+where $A$ is a finitely presented algebra.
 
 \begin{definition}%
   A type $X$ is \notion{(qc-)affine},
@@ -28,3 +30,29 @@ When we write ``$\Spec A$'' we implicitly assume $A$ is a finitely presented $R$
     \[U(x) \Leftrightarrow \exists_{i}f_i\neq 0 \]
   \end{enumerate}
 \end{definition}
+
+Note that in general, affine-open subtypes do not need to be affine
+-- this is why we use the dash ``-''.
+
+We will introduce a more general definition of open subtype in \cref{def:qc-open}
+and show in \cref{thm:qc-open-affine-open}, that the two notions agree on affine schemes.
+
+Affine-openness is transitive in the following sense:
+
+\begin{lemma}%
+  \label{lem:affine-open-trans}
+  Let $X=\Spec A$ and $D(f)\subseteq X$ be a standard open.
+  Any affine-open subtype $U$ of $D(f)$ is also affine-open in $X$.
+\end{lemma}
+
+\begin{proof}
+  It is enough to show the statement for $U=D(g)$, $g:A_f$.
+  Then
+  \[ g=\frac{h}{f^k}\rlap{.}\]
+  Now $D(hf)$ is an affine-open in $X$,
+  that coincides with $U$: \\
+  Let $x:X$, then $(hf)(x)$ is invertible, if and only if both $h(x)$ and $f(x)$ are invertible.
+  The latter means $x:D(f)$, so we can interpret $x$ as a homorphism from $A_f$ to $R$.
+  Then $x:D(g)$ means $x(g)$ is invertible, which is equivalent to $x(h)$ being invertible,
+  since $x(f)^k$ is invertible anyway.
+\end{proof}
