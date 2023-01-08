@@ -46,51 +46,6 @@ In this section, we will present a couple of common constructions for schemes.
   But $U_i\cap A$ is closed in $U_i$ and therefore affine by \cref{lem:closed-subtype-affine}.
 \end{proof}
 
-\subsection{Dependent sums}
-
-\begin{theorem}[(\axiomref{loc}),(\axiomref{sqc}),(\axiomref{Z-choice})]%
-  Let $X$ be a scheme and for any $x:X$, let $Y_x$ be a scheme.
-  Then the dependent sum
-  \[ \left((x:X)\times Y_x\right)\equiv \sum_{x:X}Y_x\]
-  is a scheme.
-\end{theorem}
-
-\begin{proof}
-  We start with an affine $X=\Spec A$ and $Y_x=\Spec B_x$.
-  Locally on $U_i$, for a Zariski-cover $f_1,\dots,f_l$,
-  we have $B_x=\Spec R[X_1,\dots,X_{n_i}]/(g_{i,x,1},\dots,g_{i,x,m_i})$
-  with polynomials $g_{i,x,j}$.
-  In other words, $B_x$ is the closed subtype of $\A^{n_i}$
-  where the functions $g_{i,x,1},\dots,g_{i,x,m_i}$ vanish.
-  By \cref{lem:affine-fiber-product}, the product
-  \[ V_i\colonequiv U_i\times \A^{n_i}\]
-  is affine.
-  The type $(x:U_i)\times \Spec B_x\subseteq V_i$ is affine,
-  since it is the zero set of the functions
-  \[ ((x,y):V_i)\mapsto g_{i,x,j}(y) \]
-  Furthermore, $W_i\colonequiv (x:U_i)\times \Spec B_x$
-  is open in $(x:X)\times Y_x$,
-  since $W_i(x)$ is equivalent to $U_i(\pi_1(x))$,
-  which is an open proposition.
-
-  This settles the affine case.
-  We will now assume, that both,
-  $X$ and the $Y_x$ are general schemes.
-  We pass again to a cover of $X$ by affine open $U_1,\dots,U_n$.
-  We can choose the latter cover,
-  such that for each $i$ and $x:U_i$, the $Y_{\pi_1(x)}$
-  are covered by $l_i$ many open affine pieces $V_{i,x,1},\dots,V_{i,x,l_i}$
-  (by \cref{thm:boundedness}).
-  Then $W_{i,j}\colonequiv(x:U_i)\times V_{i,x,j}$ is affine by what we established above.
-  It is also open.
-  To see this, let $(x,y):((x:X)\times Y_x)$.
-  We want to show, that $(x,y)$ being in $W_{i,j}$ is an open proposition.
-  We have to be a bit careful, since the open proposition
-  $V_{i,x,j}$ is only defined, for $x:U_i$.
-  So the proposition we are after is $(z:U_i(x,y))\times V_{i,z,j}(y)$.
-  But this proposition is open by \cref{lem:qc-open-sigma-closed}.
-\end{proof}
-
 \subsection{Fiber products}
 
 \begin{lemma}%
@@ -99,6 +54,7 @@ In this section, we will present a couple of common constructions for schemes.
 \end{lemma}
 
 \begin{proposition}[(\axiomref{loc}),(\axiomref{sqc}),(\axiomref{Z-choice})]%
+  \label{prop:fiber-product-scheme}
   Let
   \[
     \begin{tikzcd}
@@ -149,4 +105,88 @@ In this section, we will present a couple of common constructions for schemes.
 
   So by \cref{lem:affine-fiber-product}, $P_{ijk}$ is affine.
   Repetition of the above shows, that the $P_{ijk}$ are open and cover $P_{ij}$.
+\end{proof}
+
+\subsection{Dependent sums}
+
+\begin{theorem}[(\axiomref{loc}),(\axiomref{sqc}),(\axiomref{Z-choice})]%
+  \label{thm:sigma-scheme}
+  Let $X$ be a scheme and for any $x:X$, let $Y_x$ be a scheme.
+  Then the dependent sum
+  \[ \left((x:X)\times Y_x\right)\equiv \sum_{x:X}Y_x\]
+  is a scheme.
+\end{theorem}
+
+\begin{proof}
+  We start with an affine $X=\Spec A$ and $Y_x=\Spec B_x$.
+  Locally on $U_i$, for a Zariski-cover $f_1,\dots,f_l$,
+  we have $B_x=\Spec R[X_1,\dots,X_{n_i}]/(g_{i,x,1},\dots,g_{i,x,m_i})$
+  with polynomials $g_{i,x,j}$.
+  In other words, $B_x$ is the closed subtype of $\A^{n_i}$
+  where the functions $g_{i,x,1},\dots,g_{i,x,m_i}$ vanish.
+  By \cref{lem:affine-fiber-product}, the product
+  \[ V_i\colonequiv U_i\times \A^{n_i}\]
+  is affine.
+  The type $(x:U_i)\times \Spec B_x\subseteq V_i$ is affine,
+  since it is the zero set of the functions
+  \[ ((x,y):V_i)\mapsto g_{i,x,j}(y) \]
+  Furthermore, $W_i\colonequiv (x:U_i)\times \Spec B_x$
+  is open in $(x:X)\times Y_x$,
+  since $W_i(x)$ is equivalent to $U_i(\pi_1(x))$,
+  which is an open proposition.
+
+  This settles the affine case.
+  We will now assume, that both,
+  $X$ and the $Y_x$ are general schemes.
+  We pass again to a cover of $X$ by affine open $U_1,\dots,U_n$.
+  We can choose the latter cover,
+  such that for each $i$ and $x:U_i$, the $Y_{\pi_1(x)}$
+  are covered by $l_i$ many open affine pieces $V_{i,x,1},\dots,V_{i,x,l_i}$
+  (by \cref{thm:boundedness}).
+  Then $W_{i,j}\colonequiv(x:U_i)\times V_{i,x,j}$ is affine by what we established above.
+  It is also open.
+  To see this, let $(x,y):((x:X)\times Y_x)$.
+  We want to show, that $(x,y)$ being in $W_{i,j}$ is an open proposition.
+  We have to be a bit careful, since the open proposition
+  $V_{i,x,j}$ is only defined, for $x:U_i$.
+  So the proposition we are after is $(z:U_i(x,y))\times V_{i,z,j}(y)$.
+  But this proposition is open by \cref{lem:qc-open-sigma-closed}.
+\end{proof}
+
+\begin{corollary}
+  \label{cor:scheme-map-classification}
+  Let $X$ be a scheme.
+  For any other scheme $Y$ and any map $f:Y\to X$,
+  the fiber map
+  $(x:X)\mapsto \fib_f(x)$
+  has values in the type of schemes $\Sch$.
+  Mapping maps of schemes to their fiber maps,
+  is an equivalence of types
+  \[ \left(\sum_{Y:\Sch}(Y\to X)\right)\simeq (X\to \Sch)\rlap{.}\]
+\end{corollary}
+
+\begin{proof}
+  By univalence, there is an equivalence
+  \[ \left(\sum_{Y:\Type}(Y\to X)\right)\simeq (X\to \Type)\rlap{.} \]
+  From left to right, the equivalence is given by turning a $f:Y\to X$ into $x\mapsto \fib_f(x)$,
+  from right to left is given by taking the depedent sum.
+  So we just have to note, that both constructions preserve schemes.
+  From left to right, this is \cref{prop:fiber-product-scheme}, from right to left,
+  this is \cref{thm:sigma-scheme}.
+\end{proof}
+
+\begin{definition}
+  Let $X$ be a scheme.
+  A \notion{subscheme} of $X$ is a subtype $Y:X\to\Prop$,
+  such that $\sum Y$ is a scheme.
+\end{definition}
+
+\begin{corollary}
+  Let $X$ be a scheme.
+  $Y:X\to\Prop$ is a subscheme,
+  if and only if $Y_x$ is a scheme for all $x:X$.
+\end{corollary}
+
+\begin{proof}
+  Restriction of \cref{cor:scheme-map-classification}.
 \end{proof}
