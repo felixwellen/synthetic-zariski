@@ -1,6 +1,26 @@
 In \cref{def:schemes} we defined a scheme to be a type $X$ such that $X$
 may be covered by finitely many open affine subtypes.
-In this section, we will present a couple of common constructions for schemes.
+In this section, we will present general properies of schemes and a couple of common constructions for schemes.
+
+
+\subsection{General Properties}
+
+\begin{lemma}[\axiomref{sqc},\axiomref{loc}]%
+  \label{lem:intersection-of-all-opens}
+  Let $X$ be a scheme and $x:X$, then for all $y:X$ the proposition
+  \[ \prod_{U:X\to \Open}U(x)\to U(y) \]
+  is equivalent to $\neg\neg (x=y)$.
+\end{lemma}
+
+\begin{proof}
+  By \cref{prop:open-union-intersection},
+  open proposition are always double-negation stable,
+  which settles one implication.
+  For the implication
+  \[ \left(\prod_{U:X\to \Open}U(x)\to U(y)\right) \Rightarrow \neg\neg (x=y) \]
+  we can assume that $x$ and $y$ are both inside an open affine $U$
+  and use that the statement holds for affine schemes by \cref{lem:affine-intersection-of-all-opens}.
+\end{proof}
 
 \subsection{Glueing}
 

@@ -91,16 +91,30 @@ since we also only consider quasi compact schemes later.
   \end{enumerate}
 \end{definition}
 
-\begin{proposition}%
+\begin{proposition}[\axiomref{sqc},\axiomref{loc}]%
   \label{prop:open-union-intersection}
-  Open subtypes are closed under finite unions and finite intersections.
-  In particular, any type is open in itsself and the empty subtype is always open.
+  Let $X$ be a type.
+  \begin{enumerate}[(a)]
+  \item The empty subtype is open in $X$.
+  \item $X$ is open in $X$.
+  \item Finite intersections of open subtypes of $X$ are open subtypes of $X$.
+  \item Finite unions of open subtypes of $X$ are open subtypes of $X$.
+  \item Open subtypes are invariant under pointwise double-negation.
+  \end{enumerate}
+  Axioms are only needed for the last statement.
 \end{proposition}
 
-\begin{proof}
+In \cref{prop:open-subscheme} we will see that open subtypes of open subtypes of a scheme are open in that scheme.
+Which is equivalent to open propositions being closed under dependent sums.
+
+\begin{proof}[of \cref{prop:open-union-intersection}]
   For unions, we can just append lists.
   For intersections, we note that invertibility of a product
   is equivalent to invertibility of both factors.
+  For double-negation stability,
+  we note that by \cref{MISSING},
+  an open proposition $\exists_i f_i \mathrm{inv}$ is equivalent,
+  to $(f_f,\dots,f_n)\neq 0$.
 \end{proof}
 
 \begin{lemma}[\axiomref{sqc}]%
@@ -125,9 +139,10 @@ since we also only consider quasi compact schemes later.
 \end{proof}
 
 \begin{lemma}[\axiomref{sqc},\axiomref{loc}]%
-  Let $X$ be affine and $x:X$, then the subtype
-  \[ (y:X)\times x\neq y \]
-  is open.
+  \label{lem:open-inequality-subtype}
+  Let $X$ be affine and $x:X$, then the proposition
+  \[ x\neq y \]
+  is open for all $y:X$.
 \end{lemma}
 
 \begin{proof}
@@ -136,6 +151,22 @@ since we also only consider quasi compact schemes later.
   But for $x,y:\A^n$, $x\neq y$ is the open propostion that $x-y\neq 0$.
 \end{proof}
 
+The intersection of all open neighborhoods of a point in an affine scheme,
+is the formal neighborhood of the point.
+We will see in \cref{lem:intersection-of-all-opens}, that this also holds for schemes.
+
+\begin{lemma}[\axiomref{sqc},\axiomref{loc}]%
+  \label{lem:affine-intersection-of-all-opens}
+  Let $X$ be affine and $x:X$, then the proposition
+  \[ \prod_{U:X\to \Open}U(x)\to U(y) \]
+  is equivalent to $\neg\neg (x=y)$.
+\end{lemma}
+
+\begin{proof}
+  By \cref{prop:open-union-intersection}, $\neg\neg (x=y)$ implies $\prod_{U:X\to \Open}U(x)\to U(y)$.
+  For the other implication,
+  $\neg (x=y)$ is open \cref{lem:open-inequality-subtype}, so we get a contradiction.
+\end{proof}
 
 \subsection{Definition of schemes}
 The following definition \emph{does not} define schemes in general,
