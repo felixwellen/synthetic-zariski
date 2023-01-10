@@ -36,6 +36,8 @@
 \theorembodyfont{}
 \theoremstyle{break}
     \newtheorem{theorem}{Theorem}[subsection]
+
+\theoremstyle{definition}
     \newtheorem{lemma}[theorem]{Lemma}
     \newtheorem{definition}[theorem]{Definition}
     \newtheorem{remark}[theorem]{Remark}
