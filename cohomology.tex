@@ -64,6 +64,52 @@ The following definition is corresponds to this notion:
   By \cref{lem:regular-zariski-local}.
 \end{proof}
 
+From a line bundle together with a regular section,
+we can produce a closed subtype of a special kind:
+
+\begin{definition}%
+  Let $X$ be a scheme.
+  A \notion{regular closed subtype} of $X$ is a closed subtype
+  $C:X\to \Prop$, such that there merely is an affine open cover $U_1=\Spec A_1,\dots,U_n=\Spec A_n$,
+  and $C\cap U_i$ is $V(f_i)$ for a regular $f_i:A_i$.
+\end{definition}
+
+\begin{lemma}%
+  Let $f,g:A$, $f$ be regular and $V(f)=V(g)$,
+  then $g$ is regular and there is a unique unit $\alpha:A^\times$, such that $\alpha f=g$.
+\end{lemma}
+
+\begin{proof}
+  $V(f)=V(g)$ implies there are $\alpha,\beta:A$ such that
+  $\alpha f = g$ and $\beta g = f$.
+  But then: $f=\beta g=\beta\alpha f$.
+  So by regularity of $f$, $\beta\alpha=1$.
+  By \cref{lem:units-products-regular}, units are regular and products of regular elements are regular,
+  so $g$ is regular.
+  Uniqueness of $\alpha$ follows from regularity.
+\end{proof}
+
+\begin{theorem}[\axiomref{Z-choice}]%
+  Let $X$ be a scheme.
+  For any regular closed subscheme $C$,
+  there is a line bundle with regular section $(\mathcal L,s)$ on $X$,
+  such that $C=V(s)$.
+\end{theorem}
+
+\begin{proof}
+  Let $U_1=\Spec A_1,\dots,U_n=\Spec A_n$ be a cover by standard  affine opens such that we have
+  regular $f_i$ with $C\cap U_i=V(f_i)$. 
+  We define $\mathcal L$ to be the trivial line bundle $\_\mapsto R$ on each $U_i$
+  and by giving automorphisms on the intersections $U_i\cap U_j\colonequiv U_{ij}=\Spec A_{ij}$.
+  On $U_{ij}$, $C$ is given by $V(\frac{f_i}{1})$ and $V(\frac{f_j}{1})$ which are both regular.
+  Therefore, there is a unit $\alpha:A_{ij}^\times$ such that $\alpha\frac{f_i}{1}=\frac{f_j}{1}$,
+  which we can also view as a map $U_{ij}\to R^\times$ and since $R^\times$
+  is equivalent to the automorphism group of $R$ as an $R$-module,
+  this provides the identetification we need to construct $\mathcal L$.
+  Under the identification, the local regular sections are identified, so we get a global section $s$ of $\mathcal L$,
+  which is locally regular.
+\end{proof}
+
 \subsection{Finitely presented bundles}
 
 We now investigate the relationship between bundles of $R$-modules on $X = \Spec A$
