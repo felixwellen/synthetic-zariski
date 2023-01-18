@@ -182,7 +182,7 @@ locally of finite type externally.
 
 \begin{definition}
   \label{def:type-of-schemes}
-  We denote the \notion{type of schemes} with $\Sch$.
+  We denote the \notion{type of schemes} with $\Sch$\index{$\Sch$}.
 \end{definition}
 
 Zariski-choice \axiomref{Z-choice} extends to schemes:
@@ -378,9 +378,45 @@ that the same holds, if one qc-open is only defined on the other.
 
 \begin{lemma}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
   \label{lem:qc-open-sigma-closed}
-  qc-open propositions are closed under sums.
+  \begin{enumerate}[(a)]
+  \item qc-open propositions are closed under sums.
+  \item Let $X$ be a type. Any open subtype of an open subtype of $X$ is an open subtype of $X$.
+  \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-  Apply \cref{lem:qc-open-trans} to the point $\Spec R$.
+  \begin{enumerate}[(a)]
+  \item Apply \cref{lem:qc-open-trans} to the point $\Spec R$.
+  \item Apply the above pointwise.
+  \end{enumerate}
+\end{proof}
+
+\subsection{Dense subtypes}
+
+The following is probably used for lattices:
+
+\begin{definition}
+  A subtype $A\subseteq X$ is called \notion{dense},
+  if for all open subtypes $V\subseteq X$ such that $V\cap A=\emptyset$, we have $V=\emptyset$.
+\end{definition}
+
+Being dense is a local property in the following sense:
+
+\begin{lemma}[using \axiomref{sqc},\axiomref{loc},\axiomref{Z-choice}]%
+  Let $X$ und $U_i\subseteq X$ be open subtypes for $i:I$ such that $\bigcup_{i:I}U_i=X$.
+  Then $A\subseteq X$ is dense, if and only if, $A\cap U_i$ is dense in $U_i$.
+\end{lemma}
+
+\begin{proof}
+  Let all $A\cap U_i$ be dense.
+  To show that $A$ is dense, let $V\subseteq X$ be open and $V\cap A=\empty$.
+  Then $\emptyset=V\cap A=\bigcup_{i:I}(V\cap U_i)\cap (A\cap U_i)$, so $(V\cap U_i)\cap (A\cap U_i)=\empty$ for all $i:I$.
+  $V\cap U_i$ is open in $U_i$, so by assumption, $V\cap U_i=\emptyset$ for all $i:I$.
+  So $V=\bigcup_{i:I}V\cap U_i=\emptyset$ and $A$ is dense.
+
+  This is the part we use the axioms.
+  On the other hand, let $A$ be dense in $X$ and for some $i:I$,
+  let $V\subseteq U_i$ be open with $V\cap (U_i\cap A)=\emptyset$.
+  Using \cref{lem:qc-open-sigma-closed}, $V\subseteq X$ is open and $V\cap A=V\cap (U_i\cap A)=\emptyset$.
+  So $V=\emptyset$.
 \end{proof}
