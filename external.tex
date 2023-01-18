@@ -1,0 +1,33 @@
+\begin{lemma}
+  Let $(C, J)$ be a site,
+  where the Grothendieck topology $J$ is subcanonical.
+  Let
+  \[ f : E \twoheadrightarrow \yo(c) \]
+  be an epimorphism in $\Sh(C, J)$ with representable codomain.
+  Then there is a $J$-cover $(c_i \to c)_{i \in I}$ of $c$
+  such that for every $i$,
+  the pullback of $f$ along $\yo(c_i) \to \yo(c)$
+  is a split epimorphism.
+  \[ \begin{tikzcd}
+    E_i \ar[r] \ar[d, two heads, "f_i"] \ar[dr, phantom, very near start, "\lrcorner"] &
+    E \ar[d, two heads, "f"] \\
+    \yo(c_i) \ar[r] \ar[u, bend left, dashed]&
+    \yo(c)
+  \end{tikzcd} \]
+\end{lemma}
+
+\begin{proof}
+  By the Yoneda lemma,
+  an epimorphism $E \twoheadrightarrow \yo(c)$ is split
+  if and only if
+  the particular element $\id_c \in \yo(c)(c)$
+  is in the image of the map $E(c) \to \yo(c)(c)$.
+  Applying the usual characterization of epimorphisms of sheaves
+  \cite[Corollary III.7.5]{MoerdijkMacLane}
+  to the element $\id_c \in \yo(c)(c)$
+  shows that there is a $J$-cover ${(c_i \xrightarrow{g_i} c)}_{i \in I}$
+  such that $f_{c_i}(e_i) = g_i \in \yo(c)(c_i)$
+  for some $e_i \in E(c_i)$.
+  But this means that $\id_{c_i}$ is in the image of ${(f_i)}_{c_i} : E_i(c_i) \to \yo(c_i)(c_i)$,
+  as we can see by evaluating the pullback diagram at $c_i$.
+\end{proof}
