@@ -21,6 +21,51 @@
 -- which defines a unique value $s(x):P(x)$.
 \end{proof}
 
+\subsection{Subtypes and Logic}
+
+We use the notation $\exists_{x:X}P(x)\colonequiv \|\sum_{x:X}P(x)\|$.
+We use $+$ for the coproduct of types and for types $A,B$ we write
+\[ A\vee B\colonequiv \| A+B \|\rlap{.}\]
+
+We will use subtypes extensively.
+
+\begin{definition}
+  Let $X$ be a type.
+  A \notion{subtype} of $X$ is a function $U:X\to\Prop$ to the type of propositions.
+  We write $U\subseteq X$ to indicate that $U$ is as above.
+  If $X$ is a set, a subtype may be called \notion{subset} for emphasis.
+\end{definition}
+
+We will freely switch between subtypes $U:X\to\Prop$ and the corresponding embeddings
+\[
+  \begin{tikzcd}
+    \sum_{x:X}U(x) \ar[r,hook] & X
+  \end{tikzcd}
+  \rlap{.}
+\]
+In particular, if we write $x:U$ for a subtype $U:X\to\Prop$, we mean that $x:\sum_{x:X}U(x)$ -- but we might silently project $x$ to $X$.
+
+\begin{definition}
+  Let $I$ and $X$ be types and $U_i:X\to\Prop$ a subtype for any $i:I$.
+  \begin{enumerate}[(a)]
+  \item The \notion{union} $\bigcup_{i:I}U_i$ is the subtype $(x:X)\mapsto \exists_{i:I}U_i(x)$.
+  \item The \notion{intersection} $\bigcap_{i:I}U_i$ is the subtype $(x:X)\mapsto\prod_{i:I}U_i(x)$.
+  \end{enumerate}
+\end{definition}
+
+We will use common notation for finite unions and intersections.
+The following formula hold:
+
+\begin{lemma}
+  Let $I$, $X$ be types, $U_i:X\to\Prop$ a subtype for any $i:I$ and $V,W$ subtypes of $X$.
+  \begin{enumerate}[(a)]
+  \item Any subtype $P:V\to\Prop$ is a subtype of $X$ given by $(x:X)\mapsto\sum_{x:V}P(x)$.
+  \item $V\cap \bigcup_{i:I} U_i=\bigcup (V\cap U_i)$.
+  \item If $\bigcup_{i:I}U_i=X$ we have $V=\bigcup_{i:I}U_i\cap V$.
+  \item If $\bigcup_{i:I}U_i=\emptyset$, then $U_i=\emptyset$ for all $i:I$.
+  \end{enumerate}
+\end{lemma}
+
 \subsection{Algebra}
 
 \begin{definition}%
@@ -45,7 +90,7 @@
 \begin{lemma}%
   \label{lem:units-products-regular}
   Let $A$ be a commutative ring.
-  \begin{enumerate}
+  \begin{enumerate}[(a)]
   \item All units of $A$ are regular.
   \item If $f$ and $g$ are regular, their product $fg$ is regular.
   \end{enumerate}
