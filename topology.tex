@@ -420,3 +420,39 @@ Being dense is a local property in the following sense:
   Using \cref{lem:qc-open-sigma-closed}, $V\subseteq X$ is open and $V\cap A=V\cap (U_i\cap A)=\emptyset$.
   So $V=\emptyset$.
 \end{proof}
+
+We will now characterize dense open subsets of affine schemes.
+
+\begin{definition}
+  Let $A$ be a commutative ring.
+  \begin{enumerate}[(a)]
+  \item An element $r:A$ is \notion{nilregular}, if for all $x:A$, such that $rx$ is nilpotent, $x$ is nilpotent.
+  \item A list of elements $r_1,\dots,r_n:A$ is \notion{jointly nilregular}, if for all $x:A$,
+    such that all $r_ix$ are nilpotent, $x$ is nilpotent.
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Any regular (\cref{def:regular-element}) element $r:A$ is nilregular.
+\end{proposition}
+
+\begin{lemma}[using \axiomref{sqc},\axiomref{loc},\axiomref{Z-choice}]%
+  Let $X=\Spec A$ be affine and $U\subseteq X$ open.
+  Then with $U$ is dense, if and only if,
+  $U=D(r_1,\dots,r_n)$, with jointly nilregular $r_1,\dots,r_n:A$.
+\end{lemma}
+
+\begin{proof}
+  Let $U\subseteq X$ be dense and open.
+  By \cref{thm:qc-open-affine-open}, there are $r_1,\dots,r_n:A$ such that $U=D(r_1,\dots,r_n)$.
+  Let $x:A$ such that all $r_ix$ are nilpotent.
+  By \cref{MISSING}, this implies $D(r_ix)=\emptyset$ for all $i$.
+  Since $D(x)\cap D(r_1,\dots,r_n)=D(r_1x)\vee\dots\vee D(r_nx)=\emptyset$,
+  this implies $D(x)=\emptyset$.
+  Therefore $x$ is nilpotent and the $r_i$ are jointly nilregular.
+
+  Now let $U=D(r_1,\dots,r_n)$ with jointly nilregular $r_1,\dots,r_n:A$.
+  Without loss of generality, let $V=D(f)$ and $D(f)\cap U=\emptyset$.
+  Then $D(r_1f)\vee \dots \vee D(r_nf)=\emptyset$, so $D(r_if)=\emptyset$ for all $i$.
+  This means $r_if$ is nilpotent and therefore, $f$ is nilpotent and $D(f)=\emptyset$.
+\end{proof}
