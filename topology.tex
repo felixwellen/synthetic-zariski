@@ -168,6 +168,8 @@ We will see in \cref{lem:intersection-of-all-opens}, that this also holds for sc
   $\neg (x=y)$ is open \cref{lem:open-inequality-subtype}, so we get a contradiction.
 \end{proof}
 
+We will learn more about open subtypes in the section on compactness.
+
 \subsection{Definition of schemes}
 The following definition \emph{does not} define schemes in general,
 but something which is expected to correspond to quasi-compact, quasi separated schemes,
@@ -403,6 +405,7 @@ The following is probably used for lattices:
 Being dense is a local property in the following sense:
 
 \begin{lemma}[using \axiomref{sqc},\axiomref{loc},\axiomref{Z-choice}]%
+  \label{lem:dense-local}
   Let $X$ und $U_i\subseteq X$ be open subtypes for $i:I$ such that $\bigcup_{i:I}U_i=X$.
   Then $A\subseteq X$ is dense, if and only if, $A\cap U_i$ is dense in $U_i$.
 \end{lemma}
@@ -437,6 +440,7 @@ We will now characterize dense open subsets of affine schemes.
 \end{proposition}
 
 \begin{lemma}[using \axiomref{sqc},\axiomref{loc},\axiomref{Z-choice}]%
+  \label{lem:affine-open-dense-nilregular}
   Let $X=\Spec A$ be affine and $U\subseteq X$ open.
   Then with $U$ is dense, if and only if,
   $U=D(r_1,\dots,r_n)$, with jointly nilregular $r_1,\dots,r_n:A$.
@@ -455,4 +459,15 @@ We will now characterize dense open subsets of affine schemes.
   Without loss of generality, let $V=D(f)$ and $D(f)\cap U=\emptyset$.
   Then $D(r_1f)\vee \dots \vee D(r_nf)=\emptyset$, so $D(r_if)=\emptyset$ for all $i$.
   This means $r_if$ is nilpotent and therefore, $f$ is nilpotent and $D(f)=\emptyset$.
+\end{proof}
+
+\begin{theorem}[using \axiomref{sqc},\axiomref{loc},\axiomref{Z-choice}]%
+  Let $X$ be a scheme.
+  An open subtype $U\subseteq X$ is dense,
+  if and only if, there is an open affine cover $U_i=\Spec A_i$
+  and $U\cap U_i=D(r_{i1},\dots,r_{in_i})$ with jointly nilregular $r_{i1},\dots,r_{in_i}:A_i$ for all $i$.
+\end{theorem}
+
+\begin{proof}
+  By \cref{lem:affine-open-dense-nilregular} and \cref{lem:dense-local}.
 \end{proof}
