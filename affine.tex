@@ -25,7 +25,7 @@ When we write ``$\Spec A$'' we implicitly assume $A$ is a finitely presented $R$
 \begin{definition}%
   Let $X=\Spec A$.
   A \notion{(affine) standard open} is the subtype $D(f):X\to\Prop$
-  for some $f:\Spec A\to R$ given by $D(f)(x)\colonequiv f(x)\neq 0$.
+  for some $f:\Spec A\to R$ given by $D(f)(x)\colonequiv \inv(f(x))$.
 \end{definition}
 
 \begin{definition}%
@@ -48,9 +48,24 @@ Note that in general, affine-open subtypes do not need to be affine
 We will introduce a more general definition of open subtype in \cref{def:qc-open}
 and show in \cref{thm:qc-open-affine-open}, that the two notions agree on affine schemes.
 
+\begin{proposition}[using \dots]
+  Let $X = \Spec A$ and $f : A$.
+  Then $D(f) = \Spec A[f^{-1}]$.
+\end{proposition}
+
+\begin{proof}
+  \[ D(f) =
+     \sum_{x : X} D(f)(x) =
+     \sum_{x : \Spec A} \inv(f(x)) =
+     \sum_{x : \Hom_{\Alg{R}}(A, R)} \inv(x(f)) =
+     \Hom_{\Alg{R}}(A[f^{-1}], R) =
+     \Spec A[f^{-1}]
+     \]
+\end{proof}
+
 Affine-openness is transitive in the following sense:
 
-\begin{lemma}%
+\begin{lemma}[using \dots]%
   \label{lem:affine-open-trans}
   Let $X=\Spec A$ and $D(f)\subseteq X$ be a standard open.
   Any affine-open subtype $U$ of $D(f)$ is also affine-open in $X$.
