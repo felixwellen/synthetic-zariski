@@ -121,12 +121,6 @@ Which is equivalent to open propositions being closed under dependent sums.
   to $(f_f,\dots,f_n)\neq 0$.
 \end{proof}
 
-\begin{lemma}%
-  \label{lem:preimage-open}
-  Let $f:X\to Y$ and $U:Y\to\Prop$ open,
-  then the \notion{preimage} $U\circ f:X\to\Prop$ is open.
-\end{lemma}
-
 \begin{lemma}[using \axiomref{sqc}]%
   Let $A$ be a finitely presented $R$-algebra
   and let $f, g_1, \dots, g_n \in A$.
@@ -148,6 +142,12 @@ Which is equivalent to open propositions being closed under dependent sums.
   that is, if $f \in \sqrt{(g_1, \dots, g_n)}$, as stated.
 \end{proof}
 
+\begin{lemma}%
+  \label{lem:preimage-open}
+  Let $f:X\to Y$ and $U:Y\to\Prop$ open,
+  then the \notion{preimage} $U\circ f:X\to\Prop$ is open.
+\end{lemma}
+
 \begin{lemma}[using \axiomref{sqc},\axiomref{loc}]%
   \label{lem:open-inequality-subtype}
   Let $X$ be affine and $x:X$, then the proposition
@@ -156,7 +156,7 @@ Which is equivalent to open propositions being closed under dependent sums.
 \end{lemma}
 
 \begin{proof}
-  We show a proposition, so we can assume$\iota: X\to \A^n$ is a subtype.
+  We show a proposition, so we can assume $\iota: X\to \A^n$ is a subtype.
   Then for $x,y:X$, $x\neq y$ is equivalent to $\iota(x)\neq\iota(y)$.
   But for $x,y:\A^n$, $x\neq y$ is the open propostion that $x-y\neq 0$.
 \end{proof}
@@ -225,7 +225,9 @@ that the same holds, if one qc-open is only defined on the other.
 \begin{lemma}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
   \label{lem:qc-open-sigma-closed}
   \begin{enumerate}[(a)]
-  \item qc-open propositions are closed under sums.
+  \item qc-open propositions are closed under dependent sums:
+    if $P : \Open$ and $U : P \to \Open$,
+    then the proposition $\sum_{x : P} U(x)$ is also open.
   \item Let $X$ be a type. Any open subtype of an open subtype of $X$ is an open subtype of $X$.
   \end{enumerate}
 \end{lemma}
@@ -237,7 +239,14 @@ that the same holds, if one qc-open is only defined on the other.
   \end{enumerate}
 \end{proof}
 
+\begin{remark}
+  \Cref{lem:qc-open-sigma-closed} means that
+  the (qc-) open propositions constitute a \notion{dominance}
+  in the sense of~\cite{Rosolini1986}.
+\end{remark}
+
 \subsection{Definition of schemes}
+
 The following definition \emph{does not} define schemes in general,
 but something which is expected to correspond to quasi-compact, quasi separated schemes,
 locally of finite type externally.

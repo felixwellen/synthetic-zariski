@@ -2,8 +2,15 @@ We only talk about affine schemes of finite type, i.e. schemes of the form $\Spe
 where $A$ is a finitely presented algebra.
 
 \begin{definition}%
-  A type $X$ is \notion{(qc-)affine},
-  if the there is a finitely presented $R$-algebra $A$, such that $X=\Spec A$. 
+  \begin{enumerate}[(i)]
+  \item
+    The \notion{(synthetic) spectrum} of a finitely presented $R$-algebra $A$
+    is the set of $R$-algebra homomorphisms from $A$ to $R$:
+    \[ \Spec A \colonequiv \Hom_{\Alg{R}}(A, R) \]
+  \item
+    A type $X$ is \notion{(qc-)affine},
+    if the there is a finitely presented $R$-algebra $A$, such that $X=\Spec A$.
+  \end{enumerate}
 \end{definition}
 
 \begin{proposition}%
@@ -27,12 +34,14 @@ When we write ``$\Spec A$'' we implicitly assume $A$ is a finitely presented $R$
   A subtype $U:X\to\Prop$ is called \notion{affine-open},
   if one of the following logically equivalent statements holds:
   \begin{enumerate}[(i)]%
-  \item $U$ is the intersection of finitely many affine standard opens.
+  \item $U$ is the union of finitely many affine standard opens.
   \item There are $f_1,\dots,f_n:A$ such that
     \[U(x) \Leftrightarrow \exists_{i} f_i(x)\neq 0 \]
   \end{enumerate}
 \end{definition}
 
+We sometimes write $D(f_1, \dots, f_n) \coloneq D(f_1) \cup \dots \cup D(f_n)$
+for a finite union of standard opens.
 Note that in general, affine-open subtypes do not need to be affine
 -- this is why we use the dash ``-''.
 
@@ -69,6 +78,29 @@ Affine-openness is transitive in the following sense:
   Since $D(f)=\Spec A_f$, by \cref{Weak-Nullstellensatz}, we know $D(f)=\emptyset$,
   if and only if, $A_f=0$.
   The latter is equivalent to $f$ being nilpotent.
+\end{proof}
+
+More generally:
+
+\begin{lemma}[using \axiomref{sqc}]%
+  Let $A$ be a finitely presented $R$-algebra
+  and let $f, g_1, \dots, g_n \in A$.
+  Then we have $D(f) \subseteq D(g_1, \dots, g_n)$
+  as subsets of $\Spec A$
+  if and only if $f \in \sqrt{(g_1, \dots, g_n)}$.
+\end{lemma}
+
+\begin{proof}
+  Since $D(g_1, \dots, g_n) = \{\, x \in \Spec A \mid x \notin V(g_1, \dots, g_n) \,\}$,
+  the inclusion $D(f) \subseteq D(g_1, \dots, g_n)$
+  can also be written as
+  $D(f) \cap V(g_1, \dots, g_n) = \varnothing$, that is,
+  $\Spec((A/(g_1, \dots, g_n))[f^{-1}]) = \varnothing$.
+  By (\axiomref{sqc})
+  this means that the finitely presented $R$-algebra $(A/(g_1, \dots, g_n))[f^{-1}]$
+  is zero.
+  And this is the case if and only if $f$ is nilpotent in $A/(g_1, \dots, g_n)$,
+  that is, if $f \in \sqrt{(g_1, \dots, g_n)}$, as stated.
 \end{proof}
 
 \subsection{Fiber products}
