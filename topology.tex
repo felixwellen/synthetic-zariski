@@ -44,13 +44,17 @@
 \begin{lemma}[using \axiomref{sqc},\axiomref{loc},\axiomref{Z-choice}]%
   \label{lem:closed-subtype-affine}
   A closed subtype $C$ of an affine scheme $X=\Spec A$ is an affine scheme
-  with $C=\Spec (A/I)$ for a finitely generated ideal $A$.
+  with $C=\Spec (A/I)$ for a finitely generated ideal $I\subseteq A$.
 \end{lemma}
 
 \begin{proof}
-  Locally, say on $D(f)$, $C$ is the vanishing set of functions
-  \[ \frac{g_1}{f^{k_1}},\dots,\frac{g_n}{f^{k_n}}\rlap{.} \]
-  So $C$ is the finite union of all the $V(g_1f,\dots,g_nf)$.
+  By \axiomref{Z-choice} and boundedness,
+  there is a cover $D(f_1),\dots,D(f_l)$, $C$ such that
+  on each $D(f_i)$, $C$ is the vanishing set of functions
+  \[ g_1,\dots,g_n:D(f_i)\to R\rlap{.} \]
+  So by \cref{fg-ideal-local-global}, there is a finitely generated ideal $I\subseteq A$,
+  such that $A_{f_i}\cdot I$ is $(g_1,\dots,g_n)$
+  and $C=\Spec A/I$.
 \end{proof}
 
 \subsection{Irreducibility}
