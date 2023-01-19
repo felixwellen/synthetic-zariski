@@ -73,6 +73,7 @@ In this section, we will present general properies of schemes and a couple of co
 \subsection{Equality types}
 
 \begin{lemma}%
+  \label{lem:affine-equality-closed}
   Let $X$ be an affine scheme and $x,y:X$,
   then $x=_Xy$ is an affine scheme
   and $((x,y):X\times X)\mapsto x=_Xy$
@@ -86,15 +87,18 @@ In this section, we will present general properies of schemes and a couple of co
   The latter is a closed proposition.
 \end{proof}
 
-\begin{lemma}%
+\begin{proposition}[using \axiomref{sqc},\axiomref{loc},\axiomref{Z-choice}]%
+  \label{prop:equality-scheme}
   Let $X$ be a scheme.
   The equality type $x=_Xy$ is a scheme for all $x,y:X$.
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
   Let $x,y:X$ and
   $U\subseteq X$ be an affine open containing $x$.
-  Then $U(y)\wedge x=y$ is equivalent to $x=y$.
+  Then $U(y)\wedge x=y$ is equivalent to $x=y$, so it is enough to show that $U(y)\wedge x=y$ is a scheme.
+  As a open subscheme of the point, $U(y)$ is a scheme and $(x:U(y))\mapsto x=y$ defines a closed subtype by \cref{lem:affine-equality-closed}.
+  But this closed subtype is a scheme by \cref{prop:closed-subscheme}.
 \end{proof}
 
 \subsection{Fiber products}
