@@ -174,7 +174,64 @@ We will see in \cref{lem:intersection-of-all-opens}, that this also holds for sc
   $\neg (x=y)$ is open \cref{lem:open-inequality-subtype}, so we get a contradiction.
 \end{proof}
 
-We will learn more about open subtypes in the section on compactness.
+We now show that our two definitions (\cref{def:affine-open}, \cref{def:qc-open})
+of open subtypes of an affine scheme are equivalent.
+
+\begin{theorem}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
+  \label{thm:qc-open-affine-open}
+  Let $X=\Spec A$ and $U:X\to\Prop$ be an open subtype,
+  then $U$ is affine open, i.e. there merely are $f_1,\dots,f_n:X\to R$ such that
+  $U=D(f_1,\dots,f_n)$.
+\end{theorem}
+
+\begin{proof}
+  Let $L(x)$ be the type of finite lists of elements of $R$,
+  such that one of them being invertible is equivalent to $U(x)$.
+  By assumption, we know
+  \[\prod_{x:X}\|L(x)\|\rlap{.}\]
+  So by \axiomref{Z-choice}, we have $s_i:\prod_{x:D(f_i)}L(x)$.
+  We compose with the length function for lists to get functions $l_i:D(f_i)\to\N$.
+  By \cref{thm:boundedness}, the $l_i$ are bounded.
+  Since we are proving a proposition, we can assume we have actual bounds $b_i:\N$.
+  So we have functions $\tilde{s_i}:D(f_i)\to R^{b_i}$.
+\end{proof}
+
+This allows us to transfer one important lemma from affine-opens to qc-opens.
+The subtlety of the following is that while it is clear that the intersection of two
+qc-opens on a type, which are \emph{globally} defined is open again, it is not clear,
+that the same holds, if one qc-open is only defined on the other.
+
+\begin{lemma}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
+  \label{lem:qc-open-trans}
+  Let $X$ be a scheme, $U\subseteq X$ qc-open in $X$ and $V\subseteq U$ qc-open in $U$,
+  then $V$ is qc-open in $X$.
+\end{lemma}
+
+\begin{proof}
+  Let $X_i=\Spec A_i$ be a finite affine cover of $X$.
+  It is enough to show, that the restriction $V_i$ of $V$ to $X_i$ is qc-open.
+  $U_i\colonequiv X_i\cap U$ is qc-open in $X_i$, since $X_i$ is qc-open.
+  By \cref{thm:qc-open-affine-open}, $U_i$ is affine-open in $X_i$,
+  so $U_i=D(f_1,\dots,f_n)$.
+  $V_i\cap D(f_j)$ is affine-open in $D(f_j)$, so by \cref{lem:affine-open-trans},
+  $V_i\cap D(f_j)$ is affine-open in $X_i$.
+  This implies $V_i\cap D(f_j)$ is qc-open in $X_i$ and so is $V_i=\bigcup_{j}V_i\cap D(f_j)$.
+\end{proof}
+
+\begin{lemma}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
+  \label{lem:qc-open-sigma-closed}
+  \begin{enumerate}[(a)]
+  \item qc-open propositions are closed under sums.
+  \item Let $X$ be a type. Any open subtype of an open subtype of $X$ is an open subtype of $X$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}[(a)]
+  \item Apply \cref{lem:qc-open-trans} to the point $\Spec R$.
+  \item Apply the above pointwise.
+  \end{enumerate}
+\end{proof}
 
 \subsection{Definition of schemes}
 The following definition \emph{does not} define schemes in general,
@@ -286,35 +343,12 @@ is already trivial.
 
 \subsection{Compactness properties}
 
-\begin{theorem}[using (\axiomref{loc}), (\axiomref{sqc})]%
-  \label{thm:boundedness}
-  Let $A$ be a finitely presented $R$-algebra.
-  Then every function $f : \Spec A \to \N$ is bounded:
-  \[ \Pi_{f : \Spec A \to \N} \propTrunc{\Sigma_{n : \N} \Pi_{x : \Spec A} f(x) \le n}
-     \rlap{.} \]
-\end{theorem}
-
-\begin{proof}
-  Let $f : \Spec A \to \N$ be given.
-  We compose this function with the embedding
-  \[ \begin{tikzcd}[row sep=0mm]
-    \N \ar[r, "\iota"] & R[X] \ar[r, phantom, "{=}"] & (\bA^1 \to R) \\
-    n \ar[r, mapsto] & X^n
-  \end{tikzcd} \]
-  (it is an embedding since $1 \neq 0 \in R$ by (\axiomref{loc}))
-  to obtain $\widetilde{f} : \Spec A \to (\bA^1 \to R)$
-  and its transpose $g : \Spec A \times \bA^1 \to R$.
-  Since $\Spec A \times \bA^1 = \Spec (A \otimes R[X]) = \Spec A[X]$
-  (see~\ref{MISSING}),
-  we can regard $g$ as an element of $A[X]$.
-  For $x \in \Spec A$,
-  the polynomial $\iota(f(x)) \in R[X]$ is then obtained from the polynomial~$g$
-  by applying the $R$-algebra homomorphism $x : A \to R$ to all coefficients.
-  This makes it clear that
-  we have a common bound on the degrees of the polynomials $\iota(f(x))$,
-  in other words,
-  the function $f$ is bounded.
-\end{proof}
+\Cref{thm:boundedness} can be read as a compactness property
+for countable disjoint open coverings of affine schemes,
+since functions $f : \Spec A \to \N$
+correspond to decompositions $\Spec A = \sum_{n : \N} U_n$,
+and the subsets $U_n \subseteq X$ are automatically open
+because they are detachable.
 
 The following example shows that we can not expect all affine schemes
 to be compact with respect to arbitrary set-indexed open coverings.
@@ -338,66 +372,6 @@ to be compact with respect to arbitrary set-indexed open coverings.
   means $x = 0 \lor x \neq 0$,
   and we saw in~\ref{MISSING} that this is not true for all $x \in R$.
 \end{example}
-
-The compactness we have is however enough,
-to see that our two definitions (\cref{def:affine-open}, \cref{def:qc-open})
-of open subtypes of an affine scheme are equivalent:
-
-\begin{theorem}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
-  \label{thm:qc-open-affine-open}
-  Let $X=\Spec A$ and $U:X\to\Prop$ be an open subtype,
-  then $U$ is affine open, i.e. there merely are $f_1,\dots,f_n:X\to R$ such that
-  $U=D(f_1,\dots,f_n)$.
-\end{theorem}
-
-\begin{proof}
-  Let $L(x)$ be the type of finite lists of elements of $R$,
-  such that one of them being invertible is equivalent to $U(x)$.
-  By assumption, we know
-  \[\prod_{x:X}\|L(x)\|\rlap{.}\]
-  So by \axiomref{Z-choice}, we have $s_i:\prod_{x:D(f_i)}L(x)$.
-  We compose with the length function for lists to get functions $l_i:D(f_i)\to\N$.
-  By \cref{thm:boundedness}, the $l_i$ are bounded.
-  Since we are proving a proposition, we can assume we have actual bounds $b_i:\N$.
-  So we have functions $\tilde{s_i}:D(f_i)\to R^{b_i}$.
-\end{proof}
-
-This allows us to transfer one important lemma from affine-opens to qc-opens.
-The subtlety of the following is that while it is clear that the intersection of two
-qc-opens on a type, which are \emph{globally} defined is open again, it is not clear,
-that the same holds, if one qc-open is only defined on the other.
-
-\begin{lemma}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
-  \label{lem:qc-open-trans}
-  Let $X$ be a scheme, $U\subseteq X$ qc-open in $X$ and $V\subseteq U$ qc-open in $U$,
-  then $V$ is qc-open in $X$.
-\end{lemma}
-
-\begin{proof}
-  Let $X_i=\Spec A_i$ be a finite affine cover of $X$.
-  It is enough to show, that the restriction $V_i$ of $V$ to $X_i$ is qc-open.
-  $U_i\colonequiv X_i\cap U$ is qc-open in $X_i$, since $X_i$ is qc-open.
-  By \cref{thm:qc-open-affine-open}, $U_i$ is affine-open in $X_i$,
-  so $U_i=D(f_1,\dots,f_n)$.
-  $V_i\cap D(f_j)$ is affine-open in $D(f_j)$, so by \cref{lem:affine-open-trans},
-  $V_i\cap D(f_j)$ is affine-open in $X_i$.
-  This implies $V_i\cap D(f_j)$ is qc-open in $X_i$ and so is $V_i=\bigcup_{j}V_i\cap D(f_j)$.
-\end{proof}
-
-\begin{lemma}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
-  \label{lem:qc-open-sigma-closed}
-  \begin{enumerate}[(a)]
-  \item qc-open propositions are closed under sums.
-  \item Let $X$ be a type. Any open subtype of an open subtype of $X$ is an open subtype of $X$.
-  \end{enumerate}
-\end{lemma}
-
-\begin{proof}
-  \begin{enumerate}[(a)]
-  \item Apply \cref{lem:qc-open-trans} to the point $\Spec R$.
-  \item Apply the above pointwise.
-  \end{enumerate}
-\end{proof}
 
 \subsection{Dense subtypes}
 

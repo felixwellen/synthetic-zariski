@@ -95,3 +95,34 @@ Affine-openness is transitive in the following sense:
   there is a unique $R$-algebra homomorphism $A\otimes_C B \to R$ corresponding to $(h,k,p)$.
 \end{proof}
 
+\subsection{Boundedness of functions to $\N$}
+
+\begin{theorem}[using (\axiomref{loc}), (\axiomref{sqc})]%
+  \label{thm:boundedness}
+  Let $A$ be a finitely presented $R$-algebra.
+  Then every function $f : \Spec A \to \N$ is bounded:
+  \[ \Pi_{f : \Spec A \to \N} \propTrunc{\Sigma_{n : \N} \Pi_{x : \Spec A} f(x) \le n}
+     \rlap{.} \]
+\end{theorem}
+
+\begin{proof}
+  Let $f : \Spec A \to \N$ be given.
+  We compose this function with the embedding
+  \[ \begin{tikzcd}[row sep=0mm]
+    \N \ar[r, "\iota"] & R[X] \ar[r, phantom, "{=}"] & (\bA^1 \to R) \\
+    n \ar[r, mapsto] & X^n
+  \end{tikzcd} \]
+  (it is an embedding since $1 \neq 0 \in R$ by (\axiomref{loc}))
+  to obtain $\widetilde{f} : \Spec A \to (\bA^1 \to R)$
+  and its transpose $g : \Spec A \times \bA^1 \to R$.
+  Since $\Spec A \times \bA^1 = \Spec (A \otimes R[X]) = \Spec A[X]$
+  (see~\ref{MISSING}),
+  we can regard $g$ as an element of $A[X]$.
+  For $x \in \Spec A$,
+  the polynomial $\iota(f(x)) \in R[X]$ is then obtained from the polynomial~$g$
+  by applying the $R$-algebra homomorphism $x : A \to R$ to all coefficients.
+  This makes it clear that
+  we have a common bound on the degrees of the polynomials $\iota(f(x))$,
+  in other words,
+  the function $f$ is bounded.
+\end{proof}
