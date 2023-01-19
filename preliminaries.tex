@@ -100,6 +100,31 @@ The following formula hold:
   The monomials $X^k:A[X]$ are regular.
 \end{example}
 
+\begin{lemma}%
+  \label{fg-ideal-local-global}
+  Let $A$ be a commutative ring and $f_1,\dots,f_n:A$.
+  For finitely generated ideals $I_i\subseteq A_{f_i}$,
+  such that $A_{f_if_j}\cdot I_i=A_{f_if_j}\cdot I_j$ for all $i,j$,
+  there is a finitely generated ideal $I\subseteq A$,
+  such that $A_{f_i}\cdot I=I_i$ for all $i$.
+\end{lemma}
+
+\begin{proof}
+  Choose generators 
+  \[ \frac{g_{i1}}{1},\dots,\frac{g_{ik_i}}{1} \]
+  for each $I_i$.
+  These generators will still generate $I_i$, if we multiply any of them with any power of the unit $\frac{f_i}{1}$.
+  Now
+  \[ A_{f_if_j}\cdot I_i\subseteq A_{f_if_j}\cdot I_j \]
+  means that for any $g_{ik}$, we have a relation
+  \[ (f_if_j)^l g_{ik}=\sum_{l}h_{l}g_{jl}\]
+  for some power $l$ and coefficients $h_{l}:A$.
+  This means, that $f_i^lg_{ik}$ is contained in $I_j$.
+  Multiplying $f_i^lg_{ik}$ with further powers of $f_i$ or multiplying $g_{jl}$ with powers of $f_j$ does not change that.
+  So we can repeat this for all $i$ and $k$ to arrive at elements $\tilde{g_{ik}}:A$,
+  which generate an ideal $I\subseteq A$ with the desired properties.
+\end{proof}
+
 \ignore{
     - injective/embedding/-1-truncated map
   pushouts:
