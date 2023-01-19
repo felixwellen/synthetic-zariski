@@ -101,67 +101,6 @@ In this section, we will present general properies of schemes and a couple of co
   But this closed subtype is a scheme by \cref{prop:closed-subscheme}.
 \end{proof}
 
-\subsection{Fiber products}
-
-\begin{lemma}%
-  Let $f:X\to Y$ and $U:Y\to\Prop$ open,
-  then the \notion{preimage} $U\circ f:X\to\Prop$ is open.
-\end{lemma}
-
-\begin{proposition}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
-  \label{prop:fiber-product-scheme}
-  Let
-  \[
-    \begin{tikzcd}
-      X & Z\ar[l,swap,"f"]\ar[r,"g"] & Y
-    \end{tikzcd}
-  \]
-  be schemes, then the \notion{pullback} $X\times_Z Y$ is also a scheme.
-\end{proposition}
-
-\begin{proof}
-  Let $W_1,\dots,W_n$ be a finite affine cover of $Z$.
-  The preimages of $W_i$ under $f$ and $g$ are open
-  and covered by fintely many affine open $U_{ik}$ and $V_{ij}$ by \cref{prop:open-subscheme}.
-  This leads to the following diagram:
-  \begin{center}
-    \begin{tikzcd}
-      X\times_Z Y\ar[rrr]\ar[ddd] & & & Y\ar[ddd] & \\
-      & P_{ij}\ar[hook,lu]\ar[rrr,crossing over] &&& V_{ij}\ar[hook,lu]\ar[ddd] \\
-      &&&& \\
-      X\ar[rrr] & & & Z & \\
-      & U_{i}\ar[rrr]\ar[hook,lu]\ar[from=uuu,crossing over] & & & W_i\ar[hook,lu]
-    \end{tikzcd}
-  \end{center}
-  where the front and bottom square are pullbacks by definition.
-  By pullback-pasting, the top is also a pullback,
-  so all diagonal maps are embeddings.
-  
-  $P_{ij}$ is open, since it is a preimage of $V_{ij}$,
-  which is open in $Y$ by \cref{lem:qc-open-trans}.
-  It remains to show, that the $P_{ij}$ cover $X\times_Z Y$ and that $P_{ij}$ is a scheme.
-  Let $x:X\times_Z Y$.
-  For the image $w$ of $x$ in $W$, there merely is an $i$ such that $w$ is in $W_i$.
-  The image of $x$ in $V_i$ merely lies in some $V_{ij}$,
-  so $x$ is in $P_{ij}$.
-
-  We proceed by showing that $P_{ij}$ is a scheme.
-  Let $U_{ik}$ be a part of the finite affine cover of $U_i$.
-  We repeat part of what we just did:
-  \begin{center}
-    \begin{tikzcd}
-      P_{ij}\ar[rrr]\ar[ddd] & & & U_i\ar[ddd] & \\
-      & P_{ijk}\ar[hook,lu]\ar[rrr,crossing over] &&& U_{ik}\ar[hook,lu]\ar[ddd] \\
-      &&&& \\
-      V_{ij}\ar[rrr] & & & W_i & \\
-      & V_{ij}\ar[rrr]\ar[equal,lu]\ar[from=uuu,crossing over] & & & W_i\ar[equal,lu]
-    \end{tikzcd}
-  \end{center}
-
-  So by \cref{lem:affine-fiber-product}, $P_{ijk}$ is affine.
-  Repetition of the above shows, that the $P_{ijk}$ are open and cover $P_{ij}$.
-\end{proof}
-
 \subsection{Dependent sums}
 
 \begin{theorem}[using \axiomref{loc},\axiomref{sqc},\axiomref{Z-choice}]%
@@ -240,4 +179,76 @@ Subschemes are classified by propositional schemes:
 
 \begin{proof}
   Restriction of \cref{cor:scheme-map-classification}.
+\end{proof}
+
+\subsection{Pullbacks of Schemes}
+
+In this section, we will show in two different ways,
+that the pullback of a cospan of schemes is a scheme.
+The first poof is very short and reuses what we proved about equality and sigma-types,
+the second proof is more direct, uses the proof of the affine case \cref{lem:affine-fiber-product}
+and is along the lines of what one might find in an algebraic geometry textbook.
+
+\begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{thm:fiber-product-scheme}
+  Let
+  \[
+    \begin{tikzcd}
+      X\ar[r,"f"] & Z & Y\ar[l,swap,"g"]
+    \end{tikzcd}
+  \]
+  be schemes, then the \notion{pullback} $X\times_Z Y$ is also a scheme.
+\end{theorem}
+
+\begin{proof}
+  The type $X\times_Z Y$ is given as the following, interated dependent sum:
+  \[ \sum_{x:X}\sum_{y:Y}f(x)=g(y)\rlap{.}\]
+  The innermost type, $f(x)=g(y)$
+  is the equality type in the scheme $Z$ and by \cref{prop:equality-scheme} a scheme.
+  By applying \cref{thm:sigma-scheme} twice, we prove that the itereated dependent sum is a scheme.
+\end{proof}
+
+We conclude with a construction, analogous to the classical treatment:
+
+\begin{proof}[alternative proof of \cref{thm:fiber-product-scheme}]
+  Let $W_1,\dots,W_n$ be a finite affine cover of $Z$.
+  The preimages of $W_i$ under $f$ and $g$ are open
+  and covered by fintely many affine open $U_{ik}$ and $V_{ij}$ by \cref{prop:open-subscheme}.
+  This leads to the following diagram:
+  \begin{center}
+    \begin{tikzcd}
+      X\times_Z Y\ar[rrr]\ar[ddd] & & & Y\ar[ddd] & \\
+      & P_{ij}\ar[hook,lu]\ar[rrr,crossing over] &&& V_{ij}\ar[hook,lu]\ar[ddd] \\
+      &&&& \\
+      X\ar[rrr] & & & Z & \\
+      & U_{i}\ar[rrr]\ar[hook,lu]\ar[from=uuu,crossing over] & & & W_i\ar[hook,lu]
+    \end{tikzcd}
+  \end{center}
+  where the front and bottom square are pullbacks by definition.
+  By pullback-pasting, the top is also a pullback,
+  so all diagonal maps are embeddings.
+  
+  $P_{ij}$ is open, since it is a preimage of $V_{ij}$ (\cref{lem:preimage-open}),
+  which is open in $Y$ by \cref{lem:qc-open-trans}.
+  It remains to show, that the $P_{ij}$ cover $X\times_Z Y$ and that $P_{ij}$ is a scheme.
+  Let $x:X\times_Z Y$.
+  For the image $w$ of $x$ in $W$, there merely is an $i$ such that $w$ is in $W_i$.
+  The image of $x$ in $V_i$ merely lies in some $V_{ij}$,
+  so $x$ is in $P_{ij}$.
+
+  We proceed by showing that $P_{ij}$ is a scheme.
+  Let $U_{ik}$ be a part of the finite affine cover of $U_i$.
+  We repeat part of what we just did:
+  \begin{center}
+    \begin{tikzcd}
+      P_{ij}\ar[rrr]\ar[ddd] & & & U_i\ar[ddd] & \\
+      & P_{ijk}\ar[hook,lu]\ar[rrr,crossing over] &&& U_{ik}\ar[hook,lu]\ar[ddd] \\
+      &&&& \\
+      V_{ij}\ar[rrr] & & & W_i & \\
+      & V_{ij}\ar[rrr]\ar[equal,lu]\ar[from=uuu,crossing over] & & & W_i\ar[equal,lu]
+    \end{tikzcd}
+  \end{center}
+
+  So by \cref{lem:affine-fiber-product}, $P_{ijk}$ is affine.
+  Repetition of the above shows, that the $P_{ijk}$ are open and cover $P_{ij}$.
 \end{proof}
