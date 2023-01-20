@@ -1,4 +1,4 @@
-In \cref{def:schemes} we defined a scheme to be a type $X$ such that $X$
+In \cref{schemes} we defined a scheme to be a type $X$ such that $X$
 may be covered by finitely many open affine subtypes.
 In this section, we will present general properies of schemes and a couple of common constructions for schemes.
 
@@ -6,20 +6,20 @@ In this section, we will present general properies of schemes and a couple of co
 \subsection{General Properties}
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}]%
-  \label{lem:intersection-of-all-opens}
+  \label{intersection-of-all-opens}
   Let $X$ be a scheme and $x:X$, then for all $y:X$ the proposition
   \[ \prod_{U:X\to \Open}U(x)\to U(y) \]
   is equivalent to $\neg\neg (x=y)$.
 \end{lemma}
 
 \begin{proof}
-  By \cref{prop:open-union-intersection},
+  By \cref{open-union-intersection},
   open proposition are always double-negation stable,
   which settles one implication.
   For the implication
   \[ \left(\prod_{U:X\to \Open}U(x)\to U(y)\right) \Rightarrow \neg\neg (x=y) \]
   we can assume that $x$ and $y$ are both inside an open affine $U$
-  and use that the statement holds for affine schemes by \cref{lem:affine-intersection-of-all-opens}.
+  and use that the statement holds for affine schemes by \cref{affine-intersection-of-all-opens}.
 \end{proof}
 
 \subsection{Glueing}
@@ -32,7 +32,7 @@ In this section, we will present general properies of schemes and a couple of co
 \begin{proof}
   As we noted in \cref{MISSING}, such a pushout is always 0-truncated.
   Let $U_1,\dots,U_n$ be a cover of $X$ and $V_1,\dots,V_m$ be a cover of $Y$.
-  By \cref{lem:qc-open-trans}, $U_i\cap U$ is open in $Y$,
+  By \cref{qc-open-trans}, $U_i\cap U$ is open in $Y$,
   so we can use (large) pushout-recursion to construct a subtype $\tilde{U_i}$,
   which is open in the pushout and restricts to $U_i$ on $X$ and $U_i\cap U$ on $Y$.
   Symetrically we define $\tilde{V_i}$ and in total get an open finite cover of the pushout.
@@ -49,16 +49,16 @@ In this section, we will present general properies of schemes and a couple of co
 \end{definition}
 
 \begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
-  \label{prop:open-subscheme}
+  \label{open-subscheme}
   Any open subtype of a scheme is a scheme.
 \end{proposition}
 
 \begin{proof}
-  Using \cref{thm:qc-open-affine-open}.
+  Using \cref{qc-open-affine-open}.
 \end{proof}
 
 \begin{proposition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
-  \label{prop:closed-subscheme}
+  \label{closed-subscheme}
   Any closed subtype $A:X\to \Prop$ of a scheme $X$ is a scheme.
 \end{proposition}
 
@@ -67,13 +67,13 @@ In this section, we will present general properies of schemes and a couple of co
   So it is enough to show,
   that any affine open $U_i$ of $X$,
   has affine intersection with $A$.
-  But $U_i\cap A$ is closed in $U_i$ and therefore affine by \cref{lem:closed-subtype-affine}.
+  But $U_i\cap A$ is closed in $U_i$ and therefore affine by \cref{closed-subtype-affine}.
 \end{proof}
 
 \subsection{Equality types}
 
 \begin{lemma}%
-  \label{lem:affine-equality-closed}
+  \label{affine-equality-closed}
   Let $X$ be an affine scheme and $x,y:X$,
   then $x=_Xy$ is an affine scheme
   and $((x,y):X\times X)\mapsto x=_Xy$
@@ -88,7 +88,7 @@ In this section, we will present general properies of schemes and a couple of co
 \end{proof}
 
 \begin{proposition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
-  \label{prop:equality-scheme}
+  \label{equality-scheme}
   Let $X$ be a scheme.
   The equality type $x=_Xy$ is a scheme for all $x,y:X$.
 \end{proposition}
@@ -97,14 +97,14 @@ In this section, we will present general properies of schemes and a couple of co
   Let $x,y:X$ and
   $U\subseteq X$ be an affine open containing $x$.
   Then $U(y)\wedge x=y$ is equivalent to $x=y$, so it is enough to show that $U(y)\wedge x=y$ is a scheme.
-  As a open subscheme of the point, $U(y)$ is a scheme and $(x:U(y))\mapsto x=y$ defines a closed subtype by \cref{lem:affine-equality-closed}.
-  But this closed subtype is a scheme by \cref{prop:closed-subscheme}.
+  As a open subscheme of the point, $U(y)$ is a scheme and $(x:U(y))\mapsto x=y$ defines a closed subtype by \cref{affine-equality-closed}.
+  But this closed subtype is a scheme by \cref{closed-subscheme}.
 \end{proof}
 
 \subsection{Dependent sums}
 
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
-  \label{thm:sigma-scheme}
+  \label{sigma-scheme}
   Let $X$ be a scheme and for any $x:X$, let $Y_x$ be a scheme.
   Then the dependent sum
   \[ \left((x:X)\times Y_x\right)\equiv \sum_{x:X}Y_x\]
@@ -118,7 +118,7 @@ In this section, we will present general properies of schemes and a couple of co
   with polynomials $g_{i,x,j}$.
   In other words, $B_x$ is the closed subtype of $\A^{n_i}$
   where the functions $g_{i,x,1},\dots,g_{i,x,m_i}$ vanish.
-  By \cref{lem:affine-fiber-product}, the product
+  By \cref{affine-fiber-product}, the product
   \[ V_i\colonequiv U_i\times \A^{n_i}\]
   is affine.
   The type $(x:U_i)\times \Spec B_x\subseteq V_i$ is affine,
@@ -136,7 +136,7 @@ In this section, we will present general properies of schemes and a couple of co
   We can choose the latter cover,
   such that for each $i$ and $x:U_i$, the $Y_{\pi_1(x)}$
   are covered by $l_i$ many open affine pieces $V_{i,x,1},\dots,V_{i,x,l_i}$
-  (by \cref{thm:boundedness}).
+  (by \cref{boundedness}).
   Then $W_{i,j}\colonequiv(x:U_i)\times V_{i,x,j}$ is affine by what we established above.
   It is also open.
   To see this, let $(x,y):((x:X)\times Y_x)$.
@@ -144,11 +144,11 @@ In this section, we will present general properies of schemes and a couple of co
   We have to be a bit careful, since the open proposition
   $V_{i,x,j}$ is only defined, for $x:U_i$.
   So the proposition we are after is $(z:U_i(x,y))\times V_{i,z,j}(y)$.
-  But this proposition is open by \cref{lem:qc-open-sigma-closed}.
+  But this proposition is open by \cref{qc-open-sigma-closed}.
 \end{proof}
 
 \begin{corollary}
-  \label{cor:scheme-map-classification}
+  \label{scheme-map-classification}
   Let $X$ be a scheme.
   For any other scheme $Y$ and any map $f:Y\to X$,
   the fiber map
@@ -165,8 +165,8 @@ In this section, we will present general properies of schemes and a couple of co
   From left to right, the equivalence is given by turning a $f:Y\to X$ into $x\mapsto \fib_f(x)$,
   from right to left is given by taking the depedent sum.
   So we just have to note, that both constructions preserve schemes.
-  From left to right, this is \cref{prop:fiber-product-scheme}, from right to left,
-  this is \cref{thm:sigma-scheme}.
+  From left to right, this is \cref{fiber-product-scheme}, from right to left,
+  this is \cref{sigma-scheme}.
 \end{proof}
 
 Subschemes are classified by propositional schemes:
@@ -178,7 +178,7 @@ Subschemes are classified by propositional schemes:
 \end{corollary}
 
 \begin{proof}
-  Restriction of \cref{cor:scheme-map-classification}.
+  Restriction of \cref{scheme-map-classification}.
 \end{proof}
 
 \subsection{Pullbacks of Schemes}
@@ -186,11 +186,11 @@ Subschemes are classified by propositional schemes:
 In this section, we will show in two different ways,
 that the pullback of a cospan of schemes is a scheme.
 The first poof is very short and reuses what we proved about equality and sigma-types,
-the second proof is more direct, uses the proof of the affine case \cref{lem:affine-fiber-product}
+the second proof is more direct, uses the proof of the affine case \cref{affine-fiber-product}
 and is along the lines of what one might find in an algebraic geometry textbook.
 
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
-  \label{thm:fiber-product-scheme}
+  \label{fiber-product-scheme}
   Let
   \[
     \begin{tikzcd}
@@ -204,16 +204,16 @@ and is along the lines of what one might find in an algebraic geometry textbook.
   The type $X\times_Z Y$ is given as the following, interated dependent sum:
   \[ \sum_{x:X}\sum_{y:Y}f(x)=g(y)\rlap{.}\]
   The innermost type, $f(x)=g(y)$
-  is the equality type in the scheme $Z$ and by \cref{prop:equality-scheme} a scheme.
-  By applying \cref{thm:sigma-scheme} twice, we prove that the itereated dependent sum is a scheme.
+  is the equality type in the scheme $Z$ and by \cref{equality-scheme} a scheme.
+  By applying \cref{sigma-scheme} twice, we prove that the itereated dependent sum is a scheme.
 \end{proof}
 
 We conclude with a construction, analogous to the classical treatment:
 
-\begin{proof}[alternative proof of \cref{thm:fiber-product-scheme}]
+\begin{proof}[alternative proof of \cref{fiber-product-scheme}]
   Let $W_1,\dots,W_n$ be a finite affine cover of $Z$.
   The preimages of $W_i$ under $f$ and $g$ are open
-  and covered by fintely many affine open $U_{ik}$ and $V_{ij}$ by \cref{prop:open-subscheme}.
+  and covered by fintely many affine open $U_{ik}$ and $V_{ij}$ by \cref{open-subscheme}.
   This leads to the following diagram:
   \begin{center}
     \begin{tikzcd}
@@ -228,8 +228,8 @@ We conclude with a construction, analogous to the classical treatment:
   By pullback-pasting, the top is also a pullback,
   so all diagonal maps are embeddings.
   
-  $P_{ij}$ is open, since it is a preimage of $V_{ij}$ (\cref{lem:preimage-open}),
-  which is open in $Y$ by \cref{lem:qc-open-trans}.
+  $P_{ij}$ is open, since it is a preimage of $V_{ij}$ (\cref{preimage-open}),
+  which is open in $Y$ by \cref{qc-open-trans}.
   It remains to show, that the $P_{ij}$ cover $X\times_Z Y$ and that $P_{ij}$ is a scheme.
   Let $x:X\times_Z Y$.
   For the image $w$ of $x$ in $W$, there merely is an $i$ such that $w$ is in $W_i$.
@@ -249,6 +249,6 @@ We conclude with a construction, analogous to the classical treatment:
     \end{tikzcd}
   \end{center}
 
-  So by \cref{lem:affine-fiber-product}, $P_{ijk}$ is affine.
+  So by \cref{affine-fiber-product}, $P_{ijk}$ is affine.
   Repetition of the above shows, that the $P_{ijk}$ are open and cover $P_{ij}$.
 \end{proof}

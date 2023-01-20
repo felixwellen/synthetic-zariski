@@ -42,7 +42,7 @@
 \end{proof}
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
-  \label{lem:closed-subtype-affine}
+  \label{closed-subtype-affine}
   A closed subtype $C$ of an affine scheme $X=\Spec A$ is an affine scheme
   with $C=\Spec (A/I)$ for a finitely generated ideal $I\subseteq A$.
 \end{lemma}
@@ -61,7 +61,7 @@
 We have the following candidate for a definition of irreducibility:
 
 \begin{definition}%
-  \label{def:irred}
+  \label{irred}
   A type $X$ is called \notion{irreducible},
   if for all pairs of closed subtypes $A:X\to \Prop$ and $B:X\to\Prop$ that cover $X$,
   we have $X=A$ or $X=B$.
@@ -71,7 +71,7 @@ We have the following candidate for a definition of irreducibility:
   $\A^1$ is irreducible.
 \end{proposition}
 \begin{proof}
-  Assume $A$ and $B$ as in the definition of irreducibility (\cref{def:irred}).
+  Assume $A$ and $B$ as in the definition of irreducibility (\cref{irred}).
   Then there are $f,g:\A^1\to\A^1$ such that for all $x:\A^1$, $f(x)=0$ or $g(x)=0$.
   Without loss of generality and by \axiomref{Z-choice}, we can assume $f(x)=0$ for all $x:D(h)$,
   where $D(h)$ is a neighborhood of $0$.
@@ -86,7 +86,7 @@ The difference to general opens does not play a role so far,
 since we also only consider quasi compact schemes later.
 
 \begin{definition}%
-  \label{def:qc-open}
+  \label{qc-open}
   \begin{enumerate}[(a)]
   \item A proposition $P$ is \notion{(qc-)open}, if there merely are $f_1,\dots,f_n:R$,
     such that $P$ is equivalent to one of the $f_i$ being invertible.
@@ -96,7 +96,7 @@ since we also only consider quasi compact schemes later.
 \end{definition}
 
 \begin{proposition}[using \axiomref{sqc}, \axiomref{loc}]%
-  \label{prop:open-union-intersection}
+  \label{open-union-intersection}
   Let $X$ be a type.
   \begin{enumerate}[(a)]
   \item The empty subtype is open in $X$.
@@ -108,10 +108,10 @@ since we also only consider quasi compact schemes later.
   Axioms are only needed for the last statement.
 \end{proposition}
 
-In \cref{prop:open-subscheme} we will see that open subtypes of open subtypes of a scheme are open in that scheme.
+In \cref{open-subscheme} we will see that open subtypes of open subtypes of a scheme are open in that scheme.
 Which is equivalent to open propositions being closed under dependent sums.
 
-\begin{proof}[of \cref{prop:open-union-intersection}]
+\begin{proof}[of \cref{open-union-intersection}]
   For unions, we can just append lists.
   For intersections, we note that invertibility of a product
   is equivalent to invertibility of both factors.
@@ -143,13 +143,13 @@ Which is equivalent to open propositions being closed under dependent sums.
 \end{proof}
 
 \begin{lemma}%
-  \label{lem:preimage-open}
+  \label{preimage-open}
   Let $f:X\to Y$ and $U:Y\to\Prop$ open,
   then the \notion{preimage} $U\circ f:X\to\Prop$ is open.
 \end{lemma}
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}]%
-  \label{lem:open-inequality-subtype}
+  \label{open-inequality-subtype}
   Let $X$ be affine and $x:X$, then the proposition
   \[ x\neq y \]
   is open for all $y:X$.
@@ -163,26 +163,26 @@ Which is equivalent to open propositions being closed under dependent sums.
 
 The intersection of all open neighborhoods of a point in an affine scheme,
 is the formal neighborhood of the point.
-We will see in \cref{lem:intersection-of-all-opens}, that this also holds for schemes.
+We will see in \cref{intersection-of-all-opens}, that this also holds for schemes.
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}]%
-  \label{lem:affine-intersection-of-all-opens}
+  \label{affine-intersection-of-all-opens}
   Let $X$ be affine and $x:X$, then the proposition
   \[ \prod_{U:X\to \Open}U(x)\to U(y) \]
   is equivalent to $\neg\neg (x=y)$.
 \end{lemma}
 
 \begin{proof}
-  By \cref{prop:open-union-intersection}, $\neg\neg (x=y)$ implies $\prod_{U:X\to \Open}U(x)\to U(y)$.
+  By \cref{open-union-intersection}, $\neg\neg (x=y)$ implies $\prod_{U:X\to \Open}U(x)\to U(y)$.
   For the other implication,
-  $\neg (x=y)$ is open \cref{lem:open-inequality-subtype}, so we get a contradiction.
+  $\neg (x=y)$ is open \cref{open-inequality-subtype}, so we get a contradiction.
 \end{proof}
 
-We now show that our two definitions (\cref{def:affine-open}, \cref{def:qc-open})
+We now show that our two definitions (\cref{affine-open}, \cref{qc-open})
 of open subtypes of an affine scheme are equivalent.
 
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
-  \label{thm:qc-open-affine-open}
+  \label{qc-open-affine-open}
   Let $X=\Spec A$ and $U:X\to\Prop$ be an open subtype,
   then $U$ is affine open, i.e. there merely are $f_1,\dots,f_n:X\to R$ such that
   $U=D(f_1,\dots,f_n)$.
@@ -195,7 +195,7 @@ of open subtypes of an affine scheme are equivalent.
   \[\prod_{x:X}\|L(x)\|\rlap{.}\]
   So by \axiomref{Z-choice}, we have $s_i:\prod_{x:D(f_i)}L(x)$.
   We compose with the length function for lists to get functions $l_i:D(f_i)\to\N$.
-  By \cref{thm:boundedness}, the $l_i$ are bounded.
+  By \cref{boundedness}, the $l_i$ are bounded.
   Since we are proving a proposition, we can assume we have actual bounds $b_i:\N$.
   So we have functions $\tilde{s_i}:D(f_i)\to R^{b_i}$.
 \end{proof}
@@ -206,7 +206,7 @@ qc-opens on a type, which are \emph{globally} defined is open again, it is not c
 that the same holds, if one qc-open is only defined on the other.
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
-  \label{lem:qc-open-trans}
+  \label{qc-open-trans}
   Let $X$ be a scheme, $U\subseteq X$ qc-open in $X$ and $V\subseteq U$ qc-open in $U$,
   then $V$ is qc-open in $X$.
 \end{lemma}
@@ -215,15 +215,15 @@ that the same holds, if one qc-open is only defined on the other.
   Let $X_i=\Spec A_i$ be a finite affine cover of $X$.
   It is enough to show, that the restriction $V_i$ of $V$ to $X_i$ is qc-open.
   $U_i\colonequiv X_i\cap U$ is qc-open in $X_i$, since $X_i$ is qc-open.
-  By \cref{thm:qc-open-affine-open}, $U_i$ is affine-open in $X_i$,
+  By \cref{qc-open-affine-open}, $U_i$ is affine-open in $X_i$,
   so $U_i=D(f_1,\dots,f_n)$.
-  $V_i\cap D(f_j)$ is affine-open in $D(f_j)$, so by \cref{lem:affine-open-trans},
+  $V_i\cap D(f_j)$ is affine-open in $D(f_j)$, so by \cref{affine-open-trans},
   $V_i\cap D(f_j)$ is affine-open in $X_i$.
   This implies $V_i\cap D(f_j)$ is qc-open in $X_i$ and so is $V_i=\bigcup_{j}V_i\cap D(f_j)$.
 \end{proof}
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
-  \label{lem:qc-open-sigma-closed}
+  \label{qc-open-sigma-closed}
   \begin{enumerate}[(a)]
   \item qc-open propositions are closed under dependent sums:
     if $P : \Open$ and $U : P \to \Open$,
@@ -234,13 +234,13 @@ that the same holds, if one qc-open is only defined on the other.
 
 \begin{proof}
   \begin{enumerate}[(a)]
-  \item Apply \cref{lem:qc-open-trans} to the point $\Spec R$.
+  \item Apply \cref{qc-open-trans} to the point $\Spec R$.
   \item Apply the above pointwise.
   \end{enumerate}
 \end{proof}
 
 \begin{remark}
-  \Cref{lem:qc-open-sigma-closed} means that
+  \Cref{qc-open-sigma-closed} means that
   the (qc-) open propositions constitute a \notion{dominance}
   in the sense of~\cite{Rosolini1986}.
 \end{remark}
@@ -252,14 +252,14 @@ but something which is expected to correspond to quasi-compact, quasi separated 
 locally of finite type externally.
 
 \begin{definition}%
-  \label{def:schemes}
+  \label{schemes}
   A type $X$ is a \notion{(qc-)scheme}\index{scheme}
   if there merely is a cover by finitely many open subtypes $U_i:X\to\Prop$,
   such that each of the $U_i$ is affine.
 \end{definition}
 
 \begin{definition}
-  \label{def:type-of-schemes}
+  \label{type-of-schemes}
   We denote the \notion{type of schemes} with $\Sch$\index{$\Sch$}.
 \end{definition}
 
@@ -275,13 +275,13 @@ Zariski-choice \axiomref{Z-choice} extends to schemes:
 The following is in conflict with the usual use of the word ``connected'' in homotopy type theory.
 
 \begin{definition}%
-  \label{def:connected}
+  \label{connected}
   A pointed type $X$ is called \notion{connected},
   if any function $X\to \Bool$ is constant.
 \end{definition}
 
 \begin{proposition}[using \axiomref{sqc}, \axiomref{loc}]%
-  \label{proposition:A1-connected}
+  \label{A1-connected}
   The set $\A^1$ is connected, that is,
   every function $f : \A^1 \to \Bool$ is constant.
 \end{proposition}
@@ -306,7 +306,7 @@ A connected scheme, that is covered by its point and everything except the point
 is already trivial.
 
 \begin{corollary}%
-  \label{cor:connected-to-contractible}
+  \label{connected-to-contractible}
   Let $X$ be a connected scheme and 
   \[\prod_{x:X}x=* \vee x\neq *.\]
   Then $X$ is contractible.
@@ -327,7 +327,7 @@ is already trivial.
 \end{corollary}
 
 \begin{proof}
-  By \cref{cor:connected-to-contractible} and by the connectedness of $\A^1$ (\cref{proposition:A1-connected}),
+  By \cref{connected-to-contractible} and by the connectedness of $\A^1$ (\cref{A1-connected}),
   we can show from $\prod_{x:\A^1}x=0 \vee x\neq 0$ that $\A^1$ is contractible.
   This contradicts $1\neq 0$.
 \end{proof}
@@ -344,7 +344,7 @@ is already trivial.
   is equivalently a function $f : R \to \Bool$
   with the property that
   \[ \text{if $f(x)$ then $\inv(x)$ else $\inv(1 - x)$} \rlap{.} \]
-  But by Proposition $\ref{proposition:A1-connected}$,
+  But by $\cref{A1-connected}$,
   the function $f$ must be constant,
   contradicting the fact that
   $\lnot\inv(x)$ for $x = 0$ and $\lnot\inv(1 - x)$ for $x = 1$.
@@ -356,7 +356,7 @@ is already trivial.
 
 \subsection{Compactness properties}
 
-\Cref{thm:boundedness} can be read as a compactness property
+\Cref{boundedness} can be read as a compactness property
 for countable disjoint open coverings of affine schemes,
 since functions $f : \Spec A \to \N$
 correspond to decompositions $\Spec A = \sum_{n : \N} U_n$,
@@ -398,7 +398,7 @@ The following is probably used for lattices:
 Being dense is a local property in the following sense:
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
-  \label{lem:dense-local}
+  \label{dense-local}
   Let $X$ und $U_i\subseteq X$ be open subtypes for $i:I$ such that $\bigcup_{i:I}U_i=X$.
   Then $A\subseteq X$ is dense, if and only if, $A\cap U_i$ is dense in $U_i$.
 \end{lemma}
@@ -413,7 +413,7 @@ Being dense is a local property in the following sense:
   This is the part we use the axioms.
   On the other hand, let $A$ be dense in $X$ and for some $i:I$,
   let $V\subseteq U_i$ be open with $V\cap (U_i\cap A)=\emptyset$.
-  Using \cref{lem:qc-open-sigma-closed}, $V\subseteq X$ is open and $V\cap A=V\cap (U_i\cap A)=\emptyset$.
+  Using \cref{qc-open-sigma-closed}, $V\subseteq X$ is open and $V\cap A=V\cap (U_i\cap A)=\emptyset$.
   So $V=\emptyset$.
 \end{proof}
 
@@ -429,11 +429,11 @@ We will now characterize dense open subsets of affine schemes.
 \end{definition}
 
 \begin{proposition}
-  Any regular (\cref{def:regular-element}) element $r:A$ is nilregular.
+  Any regular (\cref{regular-element}) element $r:A$ is nilregular.
 \end{proposition}
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
-  \label{lem:affine-open-dense-nilregular}
+  \label{affine-open-dense-nilregular}
   Let $X=\Spec A$ be affine and $U\subseteq X$ open.
   Then with $U$ is dense, if and only if,
   $U=D(r_1,\dots,r_n)$, with jointly nilregular $r_1,\dots,r_n:A$.
@@ -441,9 +441,9 @@ We will now characterize dense open subsets of affine schemes.
 
 \begin{proof}
   Let $U\subseteq X$ be dense and open.
-  By \cref{thm:qc-open-affine-open}, there are $r_1,\dots,r_n:A$ such that $U=D(r_1,\dots,r_n)$.
+  By \cref{qc-open-affine-open}, there are $r_1,\dots,r_n:A$ such that $U=D(r_1,\dots,r_n)$.
   Let $x:A$ such that all $r_ix$ are nilpotent.
-  By \cref{lem:standard-open-empty}, this implies $D(r_ix)=\emptyset$ for all $i$.
+  By \cref{standard-open-empty}, this implies $D(r_ix)=\emptyset$ for all $i$.
   Since $D(x)\cap D(r_1,\dots,r_n)=D(r_1x)\vee\dots\vee D(r_nx)=\emptyset$,
   this implies $D(x)=\emptyset$.
   Therefore $x$ is nilpotent and the $r_i$ are jointly nilregular.
@@ -462,5 +462,5 @@ We will now characterize dense open subsets of affine schemes.
 \end{theorem}
 
 \begin{proof}
-  By \cref{lem:affine-open-dense-nilregular} and \cref{lem:dense-local}.
+  By \cref{affine-open-dense-nilregular} and \cref{dense-local}.
 \end{proof}
