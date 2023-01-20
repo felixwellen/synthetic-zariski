@@ -24,6 +24,10 @@
 \RequirePackage{polyglossia}
 \setdefaultlanguage{english}
 
+% Referenzen
+\RequirePackage[backend=biber,style=alphabetic]{biblatex}
+\addbibresource{literature.bib}
+
 % Grafiken
 \RequirePackage{tikz}
 \usetikzlibrary{arrows, cd, babel}
