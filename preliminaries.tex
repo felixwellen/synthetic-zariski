@@ -50,8 +50,8 @@ In particular, if we write $x:U$ for a subtype $U:X\to\Prop$, we mean that $x:\s
 \begin{definition}
   Let $I$ and $X$ be types and $U_i:X\to\Prop$ a subtype for any $i:I$.
   \begin{enumerate}[(a)]
-  \item The \notion{union} $\bigcup_{i:I}U_i$ is the subtype $(x:X)\mapsto \exists_{i:I}U_i(x)$.
-  \item The \notion{intersection} $\bigcap_{i:I}U_i$ is the subtype $(x:X)\mapsto\prod_{i:I}U_i(x)$.
+  \item The \notion{union} $\bigcup_{i:I}U_i$\index{$\bigcup_{i:I}U_i$} is the subtype $(x:X)\mapsto \exists_{i:I}U_i(x)$.
+  \item The \notion{intersection} $\bigcap_{i:I}U_i$\index{$\bigcap_{i:I}U_i$} is the subtype $(x:X)\mapsto\prod_{i:I}U_i(x)$.
   \end{enumerate}
 \end{definition}
 
@@ -66,6 +66,19 @@ The following formula hold:
   \item If $\bigcup_{i:I}U_i=X$ we have $V=\bigcup_{i:I}U_i\cap V$.
   \item If $\bigcup_{i:I}U_i=\emptyset$, then $U_i=\emptyset$ for all $i:I$.
   \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+  Let $X$ be a type.
+  \begin{enumerate}[(a)]
+  \item $\emptyset\colonequiv (x:X)\mapsto \emptyset$. \index{$\emptyset$}
+  \item For $U\subseteq X$, let $\neg U\colonequiv (x:X)\mapsto \neg U(x)$. \index{$\neg U$}
+  \item For $U\subseteq X$, let $\neg\neg U\colonequiv (x:X)\mapsto \neg\neg U(x)$. \index{$\neg\neg U$}
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  $U=\emptyset$ if and only if $\neg\left(\exists_{x:X}U(x)\right)$.
 \end{lemma}
 
 \subsection{Algebra}
