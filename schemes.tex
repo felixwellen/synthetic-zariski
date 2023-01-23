@@ -70,6 +70,61 @@ In this section, we will present general properies of schemes and a couple of co
   But $U_i\cap A$ is closed in $U_i$ and therefore affine by \cref{closed-subtype-affine}.
 \end{proof}
 
+We can extend the operation from \cref{affine-n-th-inf-neighborhood}
+to schemes:
+
+\begin{definition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  Let $X$ be a scheme and $C\subseteq X$ a closed subscheme.
+  Then $C^n$ is the closed subscheme of $X$,
+  defined locally as in \cref{affine-n-th-inf-neighborhood}.
+\end{definition}
+
+\begin{proof}
+  We need the axioms to locally get ideals that generate the closed subscheme.
+  We need to show that the construction can be done locally,
+  but this is the case, since for any open affine $U$,
+  $(C\cap U)^n\subseteq \neg\neg (C\cap U)\subseteq U$ by \cref{MISSING}.
+\end{proof}
+
+\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  \label{dense-closed-n-th-neighborhood}
+  Let $U\subseteq X$ be a dense open subtype of a scheme.
+  For any closed subtype $V$ containing $U$,
+  there merely is an $n:\N$, such that $V^n=X$.
+\end{lemma}
+
+\begin{proof}
+  It is enough to do the construction for an open affine $W=\Spec A$,
+  where $V\cap U=\Spec A/(f_1,\dots,f_n)$ and
+  $U=D(g_1,\dots,g_l)$.
+  By \cref{dense-is-jointly-nilregular} we can assume the $g_1,\dots,g_l$
+  are jointly nilregular.
+  For any $f_i$ we know $f_i\cdot g_j$ is nilpotent, since
+  \[ \neg D(f_ig_j)=\neg\{x:W\mid f_ig_i(x)\text{ invertible}\} =\emptyset\rlap{,}\]
+  since if $f_ig_j(x)$ is invertible, then $g_j(x)$ is invertible, but then, we are in
+  $U$ and $f_i(x)$ has to be zero, which contradicts its invertibility.
+
+  By the joint nilregularity of the $g_j$, $f_i$ is nilpotent,
+  so $f_i^n=0$ and $V^n=W$.
+\end{proof}
+
+In the situation of a clopen subset, we get the classical equality:
+
+\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  \label{clopen-dense-is-all}
+  Let $U\subseteq X$ be a dense open and closed subtype of a scheme,
+  then $U=X$
+\end{lemma}
+
+\begin{proof}
+  By \cref{dense-closed-n-th-neighborhood},
+  $U^n=X$.
+  By \cref{affine-n-th-inf-neighborhood-formal}, we have
+  \[
+    X\subseteq U^n\subseteq \neg\neg U = U\rlap{.}
+  \]
+\end{proof}
+
 \subsection{Equality types}
 
 \begin{lemma}%
