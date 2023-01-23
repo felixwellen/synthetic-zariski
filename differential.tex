@@ -9,8 +9,61 @@ on the subject, which also uses homotopy type theory as a basis.
   \[ \D(n)\colonequiv \{x:R^n\vert x^Tx=0\}\rlap{.}\]
 \end{definition}
 
+More genrally, we can consider infinitesimal varieties:
+
+\begin{definition}
+  \begin{enumerate}[(a)]
+  \item A \notion{Weil-algebra} over $R$ is a finitely presented $R$-algebra
+    $W$ together with a homomorphism $a:W\to R$, such that the kernel of $a$ is a nilpotent ideal.
+  \item An \notion{infinitesimal variety}, is a type $D$, such that $D=\Spec W$ for a Weil-algebra $W$.
+  \end{enumerate}
+\end{definition}
+
+The following lemma is hopefully correct and let's us reduce
+from a scheme
+to the affine case:
+
+\begin{lemma}
+  \label{affine-opens-infinitesimal-closed}
+  Let $X$ be a scheme, $V$ an infinitesimal variety and $p:X$.
+  Then for all affine open $U\subseteq X$
+  containing $p$, there is an equivalence
+  of pointed mapping types:
+  \[ V\to^. X \cong V\to^. U\]
+\end{lemma}
+
 \begin{definition}
   Let $X$ be a type and $p:X$ a point in $X$.
   The \notion{tangent space}\index{$T_pX$} of $X$ at $p$, is the type
   \[ T_pX\colonequiv \{d:\D(1)\to X\vert d(0)=p \}\rlap{.}\]
 \end{definition}
+
+We transfer a result of Myers \cite{david-orbifolds}[Theorem 4.2.19] to schemes:
+
+\begin{theorem}%
+  Let $X$ be a scheme.
+  There is a coherent $R$-module structure on the tangent spaces $T_pX$,
+  i.e. there is a map
+  \[ (p:X)\to \text{is-$R$-module}(T_pX)\rlap{.}\]
+\end{theorem}
+
+\begin{proof}
+  Following the proof of \cite{david-orbifolds}[Theorem 4.2.19],
+  it is enough to show, that any scheme is infinitesimal linear,
+  which amount to showing that
+  \[
+    \begin{tikzcd}
+      X^{\D(n+m)}\ar[r]\ar[d] & X^{\D(n)}\ar[d] \\
+      X^{\D(m)}\ar[r]         & X
+    \end{tikzcd}
+  \]
+  is a pullback for all $n,m:\N$.
+  This is equivalent to:
+  For any $p:X$, we have an equivalence of types of pointed maps
+  \[ \left({\D(n+m)}\to^.X\right) = \left({\D(n)}\to^.X \times {\D(m)}\to^.X\right)\rlap{.} \]
+  Let $U=\Spec A$ be an affine open containing $p$.
+  By \cref{affine-opens-infinitesimal-closed},
+  we only need to show:
+  \[ \left({\D(n+m)}\to^.U\right) = \left({\D(n)}\to^.U \times {\D(m)}\to^.U\right)\rlap{.} \]
+  \emph{tbc}
+\end{proof}
