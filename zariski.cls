@@ -25,7 +25,7 @@
 \setdefaultlanguage{english}
 
 % Referenzen
-\RequirePackage[backend=biber,style=alphabetic]{biblatex}
+\RequirePackage[backend=biber,style=alphabetic, backref, backrefstyle=none]{biblatex}
 \addbibresource{literature.bib}
 
 % Grafiken
