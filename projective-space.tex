@@ -27,12 +27,28 @@ We will see below, that there is also a small definition of the same type.
   \end{enumerate}
 \end{definition}
 
-Lines are closed subschemes (not defined yet):
+\begin{proposition}
+  \label{lines-are-one-dimensional}
+  For any vector space $V$ and line $L\subseteq V$,
+  $L$ is 1-dimensional in the sense that $\|L=_{\Mod{R}}R\|$.
+\end{proposition}
+
+\begin{proof}
+  Let $L$ be a line.
+  We merely have $x:V\setminus\{0\}$ such that 
+  \[ \prod_{y:V}\left(L (y) \Leftrightarrow \exists c:R.y=c\cdot x\right)\]
+  We may replace the ``$\exists$'' with a ``$\sum$'',
+  since $c$ is uniquely determined for any $x,y$.
+  This means we can construct the map $\alpha\mapsto \alpha\cdot x:R\to L$ and it is an equivalence.
+\end{proof}
+
+Lines are closed subschemes (at least in $\A^2$):
 
 \begin{proposition}%
   For any line $L : \A^{2}\to \Prop$, there merely is a degree one polynomial $P\in R[X_0,X_1]$ such that
   for all $x:\A^{2}$, $L(x)$ is equivalent to $P(x)=0$.
 \end{proposition}
+
 \begin{proof}
   For $x\equiv(a,b)$ a point on $L$,
   let $P$ be the polynomial, given by inner product with $(b,-a)$. 
@@ -115,6 +131,7 @@ Lines are closed subschemes (not defined yet):
 
 We will construct Serre's twisting sheaves in this section,
 starting with the ``minus first''.
+The following works because of \cref{lines-are-one-dimensional}.
 
 \begin{definition}
   The \notion{tautological bundle} is the line bundle $\mathcal O_{\bP^n}(-1):\bP^n\to \Mod{R}$,
