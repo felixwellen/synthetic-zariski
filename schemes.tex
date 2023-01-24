@@ -307,3 +307,113 @@ We conclude with a construction, analogous to the classical treatment:
   So by \cref{affine-fiber-product}, $P_{ijk}$ is affine.
   Repetition of the above shows, that the $P_{ijk}$ are open and cover $P_{ij}$.
 \end{proof}
+
+
+\subsection{Line bundles}
+
+\begin{definition}%
+  Let $X$ be a type.
+  A \notion{line bundle} is a map $\mathcal L : X\to \Mod{R}$,
+  such that
+  \[ \prod_{x:X} \propTrunc{\mathcal L_x=_{\Mod{R}}R} \rlap{.}\]
+  The \notion{trivial line bundle} on $X$ is the line bundle
+  $X \to \Mod{R}, x \mapsto R$,
+  and when we say that a line bundle $\mathcal{L}$ is trivial
+  we mean that $\mathcal{L}$ is equal to the trivial line bundle,
+  or equivalently $\propTrunc{\prod_{x:X} \mathcal L_x=_{\Mod{R}}R}$.
+\end{definition}
+
+\begin{theorem}
+  Every line bundle on $\A^1$ is not not trivial.
+\end{theorem}
+
+\begin{proof}
+  \dots
+\end{proof}
+
+In classical algebraic geometry,
+there is the concept of a \notion{generic section} of a line bundle.
+Informally, the generic sections have the smallest possible vanishing set.
+The following definition corresponds to this notion:
+
+\begin{definition}%
+  \label{regular-section}
+  Let $X$ be a type and $\mathcal L:X\to \Mod{R}$ a line bundle.
+  A section
+  \[ s:\prod_{x:X}\mathcal L_x \]
+  is \notion{regular}, there merely is a trivializing affine cover $U_1=\Spec A_1,\dots,U_n=\Spec A_n$
+  of $\mathcal L$, such that each trivialized restriction
+  \[ s_i:\Spec A_i\to R \]
+  is a regular element (\cref{regular-element}) of $(\Spec A_i\to R) = A_i$.
+\end{definition}
+
+\begin{lemma}%
+  \label{regular-zariski-local}
+  Let $s:\Spec A\to R$.
+  $s$ being regular is Zariski-local, i.e.
+  for all Zariski-covers $U_1,\dots,U_n$ of $\Spec A$,
+  $s$ is regular, if and only if it is regular on all $U_i$.
+\end{lemma}
+
+\begin{proof}
+  It is enough to check this for a localization at $f:A$.
+  Let
+  \[ \frac{s}{1}\cdot\frac{g}{f^k}=0\rlap{.} \]
+  then $f^lsg=0$, which implies $f^lg=0$ by regularity of $s$ and therefore $\frac{g}{f^l}=0$.
+\end{proof}
+
+\begin{proposition}%
+  The choice of trivializing cover in \cref{regular-section}
+  is irrelevant.
+\end{proposition}
+
+\begin{proof}
+  By \cref{regular-zariski-local}.
+\end{proof}
+
+From a line bundle together with a regular section,
+we can produce a closed subtype of a special kind:
+
+\begin{definition}%
+  Let $X$ be a scheme.
+  A \notion{regular closed subtype} of $X$ is a closed subtype
+  $C:X\to \Prop$, such that there merely is an affine open cover $U_1=\Spec A_1,\dots,U_n=\Spec A_n$,
+  and $C\cap U_i$ is $V(f_i)$ for a regular $f_i:A_i$.
+\end{definition}
+
+\begin{lemma}%
+  Let $f,g:A$, $f$ be regular and $V(f)=V(g)$,
+  then $g$ is regular and there is a unique unit $\alpha:A^\times$, such that $\alpha f=g$.
+\end{lemma}
+
+\begin{proof}
+  $V(f)=V(g)$ implies there are $\alpha,\beta:A$ such that
+  $\alpha f = g$ and $\beta g = f$.
+  But then: $f=\beta g=\beta\alpha f$.
+  So by regularity of $f$, $\beta\alpha=1$.
+  By \cref{units-products-regular}, units are regular and products of regular elements are regular,
+  so $g$ is regular.
+  Uniqueness of $\alpha$ follows from regularity.
+\end{proof}
+
+\begin{theorem}[using \axiomref{Z-choice}]%
+  Let $X$ be a scheme.
+  For any regular closed subscheme $C$,
+  there is a line bundle with regular section $(\mathcal L,s)$ on $X$,
+  such that $C=V(s)$.
+\end{theorem}
+
+\begin{proof}
+  Let $U_1=\Spec A_1,\dots,U_n=\Spec A_n$ be a cover by standard  affine opens such that we have
+  regular $f_i$ with $C\cap U_i=V(f_i)$. 
+  We define $\mathcal L$ to be the trivial line bundle $\_\mapsto R$ on each $U_i$
+  and by giving automorphisms on the intersections $U_i\cap U_j\colonequiv U_{ij}=\Spec A_{ij}$.
+  On $U_{ij}$, $C$ is given by $V(\frac{f_i}{1})$ and $V(\frac{f_j}{1})$ which are both regular.
+  Therefore, there is a unit $\alpha:A_{ij}^\times$ such that $\alpha\frac{f_i}{1}=\frac{f_j}{1}$,
+  which we can also view as a map $U_{ij}\to R^\times$ and since $R^\times$
+  is equivalent to the automorphism group of $R$ as an $R$-module,
+  this provides the identetification we need to construct $\mathcal L$.
+  Under the identification, the local regular sections are identified, so we get a global section $s$ of $\mathcal L$,
+  which is locally regular.
+\end{proof}
+
