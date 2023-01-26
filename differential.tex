@@ -13,11 +13,47 @@ More genrally, we can consider infinitesimal varieties:
 
 \begin{definition}
   \begin{enumerate}[(a)]
-  \item A \notion{Weil-algebra} over $R$ is a finitely presented $R$-algebra
-    $W$ together with a homomorphism $a:W\to R$, such that the kernel of $a$ is a nilpotent ideal.
-  \item An \notion{infinitesimal variety}, is a type $D$, such that $D=\Spec W$ for a Weil-algebra $W$.
+  \item A \notion{Weil algebra} over $R$ is a finitely presented $R$-algebra
+    $W$ together with a homomorphism $\pi : W \to R$, such that the kernel of $\pi$ is a nilpotent ideal.
+  \item An \notion{infinitesimal variety} is a pointed type $D$,
+    such that $D = (\Spec W, \pi)$ for a Weil algebra $(W, \pi)$.
   \end{enumerate}
 \end{definition}
+
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]
+  A pointed affine scheme $(\Spec A, \pi)$
+  is an infinitesimal variety
+  if and only if,
+  for every $x : \Spec A$ we have $\lnot \lnot (x = \pi)$.
+\end{lemma}
+
+\begin{proof}
+  First note that we can choose a finite presentation
+  $A = R[X_1, \dots, X_n]/(r_1, \dots, r_m)$
+  of $A$
+  such that $\pi(X_i) = 0$ for all $i$
+  (see~\cite{david-orbifolds}[Lemma 4.1.3])
+  and therefore $\ker \pi = (X_1, \dots, X_n)$.
+
+  Assume $(\Spec A, \pi)$ is an infinitesimal variety.
+  By (\axiomref{sqc}), this means that $(A, \pi)$ itself is a Weil algebra,
+  so every $X_i$ is nilpotent in $A$.
+  Now if $x : \Spec A$ is any homomorphism $A \to R$,
+  then $x(X_i)$ is also nilpotent in $R$,
+  meaning, by \cref{nilpotence-double-negation}, that $\lnot \lnot (x(X_i) = 0)$.
+  Since we have this for all $i = 1, \dots, n$
+  and double negation commutes with finite conjunctions,
+  we have $\lnot \lnot (x = \pi)$.
+
+  Now assume $\lnot \lnot (x = \pi)$ for all $x : \Spec A$.
+  To show that $(A, \pi)$ is a Weil algebra,
+  let $f : A$ be given with $\pi(f) = 0$.
+  Then in particular we have $\lnot \lnot (x(f) = 0)$
+  for every $x : \Spec A$.
+  But this means $D(f) = 0$
+  (using (\axiomref{loc}) for $\inv(x(f)) \Rightarrow x(f) \neq 0$),
+  so $f$ is nilpotent by \cref{standard-open-empty}.
+\end{proof}
 
 The following lemma is hopefully correct and allows us to reduce
 maps from infinitesimal varieties to schemes
