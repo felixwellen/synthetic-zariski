@@ -20,7 +20,8 @@ More genrally, we can consider infinitesimal varieties:
   \end{enumerate}
 \end{definition}
 
-\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
+  \label{characterization-infinitesimal-variety}
   A pointed affine scheme $(\Spec A, \pi)$
   is an infinitesimal variety
   if and only if,
@@ -55,18 +56,30 @@ More genrally, we can consider infinitesimal varieties:
   so $f$ is nilpotent by \cref{standard-open-empty}.
 \end{proof}
 
-The following lemma is hopefully correct and allows us to reduce
+The following lemma allows us to reduce
 maps from infinitesimal varieties to schemes
 to the affine case:
 
-\begin{lemma}
+\begin{lemma}%
   \label{affine-opens-infinitesimal-closed}
   Let $X$ be a scheme, $V$ an infinitesimal variety and $p:X$.
   Then for all affine open $U\subseteq X$
   containing $p$, there is an equivalence
   of pointed mapping types:
-  \[ V\to^. X \cong V\to^. U\]
+  \[ V\to^. (X, p) \quad\cong\quad V\to^. (U, p) \]
 \end{lemma}
+
+\begin{proof}
+  By \cref{characterization-infinitesimal-variety},
+  all points in $V$ are not not equal,
+  so all points in the image of a pointed map
+  \[ V \to^. (X, p) \]
+  will be not not equal to $p$.
+  Since $p \in U$ and open propositions are double-negation stable
+  (\cref{open-union-intersection}),
+  the image is contained in $U$
+  and the map factors uniquely over $(U, p)$.
+\end{proof}
 
 \begin{definition}
   Let $X$ be a type and $p:X$ a point in $X$.
