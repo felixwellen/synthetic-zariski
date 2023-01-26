@@ -423,7 +423,23 @@ to be compact with respect to arbitrary set-indexed open coverings.
 
 \subsection{Dense subtypes}
 
-The following is probably used for lattices:
+Algebraic preparation:
+
+\begin{lemma}%
+  \label{nilregular-non-zero-polynomial}
+  If $P:R[X]$ we have $P\neq 0$, or equivalently,
+  that merely some coefficient of $P$ is non-zero,
+  then $P$ is nilregular.
+\end{lemma}
+
+\begin{proof}
+  MISSING.
+  The proof should go like this: If $P$ is non-zero, its content $c(P)$ is top.
+  For any $Q:R[X]$ with $P\cdot Q$ nilpotent, we also have $c(P\cdot Q)=c(P)\wedge c(Q)=c(Q)$ is bottom.
+  So $Q$ is nilpotent.
+\end{proof}
+
+The following can be used for lattices:
 
 \begin{definition}
   A subtype $A\subseteq X$ is called \notion{dense},
@@ -579,3 +595,28 @@ which turns out to be the negation of the concept of reducible types.
 \begin{example}
   $X\colonequiv \Spec R[X,Y]/(XY)$ is not irreducible.
 \end{example}
+
+\subsection{Separated types and Apartness}
+
+\begin{definition}
+  A type $X$ is \notion{separated}, if for all $x,y:X$
+  the type $x=y$ is a closed subtype of $X\times X$.
+\end{definition}
+
+\begin{definition}
+  An \notion{apartness relation} on $X$ is a relation $\#:X\to X\to \Prop$, such that it is
+  \begin{enumerate}[(i)]
+  \item irreflexive: $\prod_{x:X}\neg(x \# x)$
+  \item symmetric: $\prod_{x,y:X} x\# y \to y\# x$
+  \item and cotransitive: $\prod_{x,y,z:X} x\# z \to x\# y \vee y\# z$\rlap{.}
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  \label{separated-inequality-apartness}
+  If $X$ is a separated scheme, then inequality is an apartness relation.
+\end{proposition}
+
+\begin{proof}
+  MISSING
+\end{proof}
