@@ -27,7 +27,7 @@ We will see below, that there is also a small definition of the same type.
   \end{enumerate}
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}%
   \label{lines-are-one-dimensional}
   For any vector space $V$ and line $L\subseteq V$,
   $L$ is 1-dimensional in the sense that $\|L=_{\Mod{R}}R\|$.
@@ -54,6 +54,19 @@ Lines are closed subschemes (at least in $\A^2$):
   let $P$ be the polynomial, given by inner product with $(b,-a)$. 
 \end{proof}
 
+We now give the small construction:
+
+\begin{definition}[using \axiomref{loc}]%
+  \label{projective-space-hit}
+  Let $n:\N$.
+  \notion{Projective $n$-space}\index{$\bP^n$} $\bP^n$ is the setquotient of the type $\A^{n+1}\setminus\{0\}$ by the relation
+  \[
+    x \sim y \colonequiv \sum_{\lambda : R} \lambda x=y\rlap{.}
+  \]
+  By locality, the right hand side is a proposition and $\lambda$ is a unit.
+  We write $[x_0:\dots:x_n]:\bP^n$ for the equivalence class of $(x_0,\dots,x_n):\A^{n+1}\setminus\{0\}$.
+\end{definition}
+
 \ignore{
 \begin{definition}
   Let $n:\NN$. Projective $n$-space is the type given 
@@ -70,6 +83,25 @@ Lines are closed subschemes (at least in $\A^2$):
 
 \subsection{Functions on $\bP^n$}
 
+\begin{example}[using \axiomref{loc}]
+  Let $s:\bP^1\to \bP^1$ be given by $s([x:y])\colonequiv [x^2:y^2]$
+  (see \cref{projective-space-hit} for notation).
+  Let us compute some fibers of $s$. The fiber $\fib_s([0:1])$ is
+  \[
+    \sum_{[x:y]:\bP^1}[x^2:y^2]=[0:1]\rlap{.}
+  \]
+  So for any $x:R$ with $x^2=0$, $[x,1]:\fib_s([0:1])$  and
+  any other point $(x,y)$ such that $[x:y]$ is in $\fib_s([0:1])$,
+  already yields an equivalent point, since $y$ has to be invertible.
+
+  This shows that the fiber over $[0:1]$ is a first order disk, i.e. $\D(1)=\{x:R|x^2=0\}$.
+  The same applies to the point $[1:0]$.
+  To analyze $\fib_s([1:1])$, let us assume $2\neq 0$ (in $R$).
+  Then we know, the two points $[1:-1]$ and $[1:1]$ are in $\fib_s([1:1])$ and they are different.
+  Now any $x:R$ with $x^2=1$ is already the $1$ or $-1$,
+  since those are apart by \cref{separated-inequality-apartness}, which means that $(x-1)$ or $(x+1)$ is invertible.  
+\end{example}
+
 \begin{lemma}
   All functions $\bP^1 \to R$ are constant.
 \end{lemma}
@@ -78,7 +110,7 @@ Lines are closed subschemes (at least in $\A^2$):
   \dots
 \end{proof}
 
-\begin{lemma}[using (\axiomref{sqc}), (\axiomref{loc})]
+\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}]
   Let $p \neq q \in \bP^n$ be given.
   Then there exists a map $f : \bP^1 \to \bP^n$
   such that $f([0 : 1]) = p$, $f([1 : 0]) = q$.
