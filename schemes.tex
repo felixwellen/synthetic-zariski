@@ -332,7 +332,7 @@ We conclude with a construction, analogous to the classical treatment:
   either $f = 0$ or
   $f = \alpha \cdot {(X - a_1)}^{e_1} \dots {(X - a_n)}^{e_n}$
   for some $\alpha : R^\times$,
-  $e_i : \N$ and pairwise distinct $a_i : R$.
+  $e_i \geq 1$ and pairwise distinct $a_i : R$.
 \end{lemma}
 
 \begin{proof}
@@ -365,28 +365,21 @@ We conclude with a construction, analogous to the classical treatment:
   with distinct $\widetilde{a}_i$.
 \end{proof}
 
-% \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]
-%   For any $f, g : R[X]$
-%   there does not not exist a polynomial $\gcd(f, g) : R[X]$
-%   with $(f, g) = (\gcd(f, g)) \subseteq R[X]$.
-% \end{lemma}
-%
-% \begin{proof}
-%   TODO
-% \end{proof}
-
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
   For every open subset $U : \A^1 \to \Prop$ of $\A^1$
   we have not not:
   either $U = \emptyset$
-  or $U = \A^1 \setminus \{ a_1, \dots, a_n \}$
+  or $U = D((X - a_1)\dots(X - a_n)) = \A^1 \setminus \{ a_1, \dots, a_n \}$
   for pairwise distinct numbers $a_1, \dots, a_n : R$.
 \end{lemma}
 
 \begin{proof}
   For $U = D(f)$,
-  this is just \cref{polynomials-notnot-decompose}.
-  In general we have $U = D(f_1) \cup \dots \cup D(f_n)$
+  this follows from \cref{polynomials-notnot-decompose}
+  because $D(\alpha \cdot {(X - a_1)}^{e_1} \dots {(X - a_n)}^{e_n})
+  = D((X - a_1) \dots (X - a_n))$.
+  In general,
+  we have $U = D(f_1) \cup \dots \cup D(f_n)$
   by \cref{qc-open-affine-open},
   so we do not not get
   (that $U = \emptyset$ or)
@@ -405,7 +398,37 @@ We conclude with a construction, analogous to the classical treatment:
 \end{lemma}
 
 \begin{proof}
-  TODO
+  By \cref{polynomials-notnot-decompose},
+  we can assume
+  \begin{align*}
+    U \cup V &= D((X - a_1) \dots (X - a_k)) \rlap{,}\\
+    U &= D((X - a_1) \dots (X - a_k) (X - b_1) \dots (X - b_l)) \rlap{,}\\
+    V &= D((X - a_1) \dots (X - a_k) (X - c_1) \dots (X - c_m)) \rlap{,}\\
+    U \cap V &= D((X - a_1) \dots (X - a_k) (X - b_1) \dots (X - b_l) (X - c_1) \dots (X - c_m))
+    \rlap{,}
+  \end{align*}
+  where all linear factors are distinct.
+  Then every function $f : U \cap V \to R^\times$ can
+  by (\axiomref{sqc}), \cref{polynomials-notnot-decompose}
+  and comparing linear factors
+  not not be written in the form
+  \[ f = \alpha \cdot
+     {(X - a_1)}^{e_1} \dots {(X - a_k)}^{e_k}
+     {(X - b_1)}^{e'_1} \dots {(X - b_l)}^{e'_l}
+     {(X - c_1)}^{e''_1} \dots {(X - c_m)}^{e''_m}
+  \]
+  with $\alpha : R^\times$, $e_i, e'_i, e''_i : \Z$.
+  Other linear factors can not appear,
+  since they do not represent invertible functions on $U \cap V$.
+  Now we can write $f = gh$ as desired,
+  for example with
+  \begin{align*}
+    g &= \alpha \cdot
+    {(X - a_1)}^{e_1} \dots {(X - a_k)}^{e_k}
+    {(X - b_1)}^{e'_1} \dots {(X - b_l)}^{e'_l} \rlap{,}\\
+    h &=
+    {(X - c_1)}^{e''_1} \dots {(X - c_m)}^{e''_m} \rlap{.}
+  \end{align*}
 \end{proof}
 
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
