@@ -48,10 +48,11 @@ and $A$-modules.
 \begin{definition}
   Let $X$ be a type and $A:X\to \AbGroup$ a map to the type of abelian groups.
   For $x:X$ let $T_x$ be a set with an $A_x$ action.
-  \begin{enumerate}
+  \begin{enumerate}[(a)]
   \item $T$ is an \notion{$A$-pseudotorsor}, if the action is free and transitive for all $x:X$.
   \item $T$ is an \notion{$A$-torsor}, if it is an $A$-pseudotorsor and
     \[ \prod_{x:X} \| T_x \| \rlap{.}\]
+  \item We write $\Tors{A}(X)$ for the type of $A$-torsors on $X$.
   \end{enumerate}
 \end{definition}
 
@@ -113,13 +114,14 @@ and $\mathcal F:X\to \AbGroup$ a dependent abelien group on $X$.
 We start by repeating the classical definition of Chech-Cohomology groups for a given cover.
 
 \begin{definition}%
+  \label{chech-complex}
   \begin{enumerate}[(a)]
-  \item For open $U\subseteq X$, we use the notation
+  \item \index{$\mathcal F(U)$} For open $U\subseteq X$, we use the notation
     \[
       \mathcal F(U)\colonequiv \prod_{x:U}\mathcal F_x\rlap{.}
     \]
   \item For $s:\mathcal F(U)$ and open $V\subseteq U$ we use the notation $s\colonequiv s_{|V} \colonequiv (x:V)\mapsto s_x$.
-  \item For a slection of indices $i_1,...,i_l:\{1,\dots,n\}$, we use the notation
+  \item \index{$U_{i_1\dots i_l}$}For a selection of indices $i_1,...,i_l:\{1,\dots,n\}$, we use the notation
     \[
       U_{i_1\dots i_l}\colonequiv U_{i_1}\cap\dots\cap U_{i_l}\rlap{.}
     \]
@@ -157,5 +159,49 @@ We start by repeating the classical definition of Chech-Cohomology groups for a 
 \end{theorem}
 
 \begin{proof}
-  MISSING.
+  Let $\pi$ be the projection map
+  \[
+    \pi :
+    \left(
+      \sum_{T:\Tors{\mathcal F}(X)}\prod_{i}\prod_{x:U_i}T_x
+    \right)
+    \to \Tors{\mathcal F}(X)\rlap{.}
+  \]
+  Let us abbreviate the left hand side with $T(\mathcal F,U)$.
+  Since the cover is acyclic, $\pi$ is surjective.
+  There is a map $\iota$ into the kernel of $\partial^1$ (\cref{chech-complex} (e)):
+  \[
+    \iota \colonequiv
+    (T,t) \mapsto (i,j\mapsto t_i - t_j) :
+    T(\mathcal F,U)
+    \to
+    \ker(\partial^1)
+    \subseteq
+    \bigoplus_{i,j}\mathcal F(U_{ij})\rlap{.}
+  \]
+  We will now show, that $\iota$ is an embedding and therefore also, that its domain is a set.
+  Let $(T,t),(T',t'):T(\mathcal F,U)$ such that $\iota((T,t))=\iota((T',t'))$,
+  i.e. for all $i,j$ we have $t_i-t_j=t'_i-t'_j$.
+  The latter shows the well-definedness (needed to apply \cref{kraus-glueing})
+  of a global map $T\simeq T'$, given by sending $t_i(x)$ to $t'_i(x)$
+  for all $i$ and $x$.
+
+  The map $\iota$ is also a surjection and therefore an isomorphism:
+  Let $s:\ker(\partial^1)$.
+  Then we can contruct a torsor,
+  by starting with the trivial torsor on each $U_i$.
+  We use \cref{kraus-glueing-1-type} to get a torsor
+  with the identification given by the $s_{ij}$
+  where the cocycle condition holds because $s$ is in the kernel.
+
+  Realizing, that $\im(\partial^0)$ corresponds to the subtype of $T(\mathcal F,U)$ of trivial torsors,
+  we arrive at the following diagram:
+  \begin{center}
+    \begin{tikzcd}
+      & \Tors{\mathcal F}(X)\ar[r,->>] & H^1(X,\mathcal F) \\
+      \sum_{T:T(\mathcal F,U)}\|\pi_1(T)=\mathcal F\|\ar[r,hook] & T(\mathcal F,U)\ar[u,->>]\ar[d,equal] & \\
+      \im{\partial^0}\ar[r,hook]\ar[u,equal] & \ker{\partial^1}\ar[r,->>] & \check{H}^1(\{U\},\mathcal F)
+    \end{tikzcd}
+  \end{center}
+  So the two cohomology groups are equal, since they are coequalizers of the same diagram.
 \end{proof}
