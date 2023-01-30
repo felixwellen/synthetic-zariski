@@ -328,13 +328,39 @@ We conclude with a construction, analogous to the classical treatment:
   Let $f : R[X]$ be a polynomial.
   Then it is not not the case that:
   either $f = 0$ or
-  $f = \alpha {(X - a_1)}^{e_1} \dots {(X - a_n)}^{e_n}$
+  $f = \alpha \cdot {(X - a_1)}^{e_1} \dots {(X - a_n)}^{e_n}$
   for some $\alpha : R^\times$,
   $e_i : \N$ and pairwise distinct $a_i : R$.
 \end{lemma}
 
 \begin{proof}
-  TODO
+  Let $f : R[X]$ be given.
+  Since our goal is a proposition,
+  we can assume we have a bound $n$ on the degree of $f$,
+  so
+  \[ f = \sum_{i = 0}^n c_i X^i \rlap{.} \]
+  Since our goal is even double-negation stable,
+  we can assume $c_n = 0 \lor c_n \neq 0$
+  and by induction $f = 0$ (in which case we are done)
+  or $c_n \neq 0$.
+  If $n = 0$ we are done,
+  setting $\alpha \colonequiv c_0$.
+  Otherwise,
+  $f$ is not invertible (using $0 \neq 1$ by (\axiomref{loc})),
+  so $R[X]/(f) \neq 0$,
+  which by (\axiomref{sqc}) means that
+  $\Spec(R[X]/(f)) = \{ x : R \mid f(x) = 0 \}$
+  is not empty.
+  Using the double-negation stability of our goal again,
+  we can assume $f(a) = 0$ for some $a : R$
+  and factor $f = (X - a_1) f_{n - 1}$.
+  By induction, we get $f = \alpha \cdot (X - a_1) \dots (X - a_n)$.
+  Finally, we decide each of the finitely many propositions $a_i = a_j$,
+  which we can assume is possible
+  because our goal is still double-negation stable,
+  to get the desired form
+  $f = \alpha \cdot {(X - \widetilde{a}_1)}^{e_1} \dots {(X - \widetilde{a}_n)}^{e_n}$
+  with distinct $\widetilde{a}_i$.
 \end{proof}
 
 % \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]
