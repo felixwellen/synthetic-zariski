@@ -181,6 +181,36 @@ and was already used by Anders Kock in \cite{MISSING}:
   then $M$ has length $n$.
 \end{example}
 
+\begin{definition}
+  $\AbGroup$\index{$\AbGroup$} denotes the type of abelian groups.
+\end{definition}
+
+\begin{lemma}%
+  \label{surjective-abgroup-hom-is-cokernel}
+  Let $A,B:\AbGroup$ and $f:A\to B$ be a homomorphism of abelian groups.
+  Then $f$ is surjective, if and only if, it is a cokernel.
+\end{lemma}
+
+\begin{proof}
+  A cokernel is a set-quotient by an effective relation,
+  so the projection map is surjective.
+  On the other hand, if $f$ is surjective and we are in the situation:
+  \begin{center}
+    \begin{tikzcd}
+      \ker(f)\ar[r,hook]\ar[dr] & A\ar[r,"f",->>]\ar[dr,"g"] & B \\
+      & 0\ar[r] & C
+    \end{tikzcd}
+  \end{center}
+  then we can construct a map $\varphi:B\to C$ as follows.
+  For $x:B$, we define the type of possible values $\varphi(x)$ in $C$ as
+  \[
+    \sum_{z:C}\exists_{y:A}(f(y)=x)
+  \]
+  which is a proposition by algebraic calculation.
+  By surjectivity of $f$, this type is inhabited and therefore contractible.
+  So we can define $\varphi(x)$ as its center of contraction.
+\end{proof}
+
 \ignore{
     - injective/embedding/-1-truncated map
   pushouts:
