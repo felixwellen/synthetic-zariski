@@ -388,7 +388,8 @@ We conclude with a construction, analogous to the classical treatment:
   Then we can not not get rid of any duplicates in the list.
 \end{proof}
 
-\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{decompose-invertible-function-on-intersection-in-A1}
   Let $U, V : \A^1 \to \Prop$ be two open subsets
   and let $f : U \cap V \to R^\times$ be a function.
   Then there do not not exist functions
@@ -431,12 +432,44 @@ We conclude with a construction, analogous to the classical treatment:
   \end{align*}
 \end{proof}
 
-\begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
-  Every line bundle on $\A^1$ is not not trivial.
+\begin{theorem}
+  Every $R^\times$-torsor on $\A^1$ (\cref{torsor})
+  does not not have a global section.
 \end{theorem}
 
 \begin{proof}
-  \dots
+  Let $T$ be an $R^\times$-torsor on $\A^1$,
+  that is,
+  for every $x : \A^1$,
+  $T_x$ is a set with a free and transitive $R^\times$ action
+  and $\propTrunc{T_x}$.
+  By (\axiomref{Z-choice}),
+  we get a cover of $\A^1$ by open subsets $\A^1 = \bigcup_{i = 1}^n U_i$
+  and local sections $s_i : (x : U_i) \to T_x$ of the bundle $T$.
+  From this we can not not construct a global section by induction on $n$:
+  Given any two local sections $s_i, s_j$ defined on $U_i, U_j$,
+  let $f : U_i \cap U_j \to R^\times$ be the unique function with
+  $f(x)s_i(x) = s_j(x)$ for all $x : U_i \cap U_j$.
+  Then by \cref{decompose-invertible-function-on-intersection-in-A1},
+  we not not find $g : U_i \to R^\times$, $h : U_j \to R^\times$
+  such that the sections
+  $x \mapsto g(x)s_i(x)$ and $x \mapsto {h(x)}^{-1}s_j(x)$,
+  defined on $U_i$ respectively $U_j$,
+  agree on $U_i \cap U_j$.
+  This yields a section $\widetilde{s} : (x : U_i \cup U_j) \to T_x$
+  by \cref{kraus-glueing}
+  and we can replace $U$ and $V$ by $U \cup V$ in the cover.
+  Finally, when we get to $n = 1$,
+  we have $U_1 = \A^1$
+  and the global section $s_1 : (x : X) \to T_x$.
+\end{proof}
+
+\begin{corollary}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
+  Every line bundle on $\A^1$ is not not trivial.
+\end{corollary}
+
+\begin{proof}
+  TODO
 \end{proof}
 
 \subsubsection{Regular sections and regular closed subschemes}
