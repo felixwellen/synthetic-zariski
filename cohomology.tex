@@ -56,14 +56,31 @@ and $A$-modules.
   \end{enumerate}
 \end{definition}
 
-Torsors are a concrete implementaion of deloopings:
+Torsors are a concrete implementaion of first deloopings:
 
 \begin{definition}
+  \label{delooping}
   Let $n:\N$.
   A $n$-th \notion{delooping}\index{$K(A,n)$} of an abelian group $A$,
   is a pointed, $n-1$-connected, $n$-truncated type $K(A,n)$,
   such that $\Omega^nK(A,n)=_{\AbGroup}A$.
 \end{definition}
+
+For any abelian group and any $n$, a delooping $K(A,n)$ exists by \cite{licata-finster}.
+Deloopings can be used to represent cohomology groups by mapping spaces.
+This is usually done in homotopy type theory to study higher inductive types, such as spheres and CW-complexes,
+but the same approach works for internally representing sheaf cohomology,
+which is the intent of the following definition:
+
+\begin{definition}
+  \label{cohomology}
+  Let $X$ be a type and $\mathcal F:X\to\AbGroup$ a dependent abelian group.
+  The $k$-th cohomology group of $X$ with coefficients in $\mathcal F$ is
+  \[
+    H^k(X,\mathcal F)\colonequiv \left\|\prod_{x:X}K(\mathcal F,k)\right\|_0\rlap{.}
+  \]
+\end{definition}
+
 
 The following is an explicit formulation of the fact, that the Čech-Complex for an
 $\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact in degree 1.
