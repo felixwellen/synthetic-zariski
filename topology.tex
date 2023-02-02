@@ -430,6 +430,32 @@ The following can be used for lattices:
   if for all open subtypes $V\subseteq X$ such that $V\cap A=\emptyset$, we have $V=\emptyset$.
 \end{definition}
 
+\begin{lemma}%
+  \label{dense-non-empty-intersection}
+  Let $X$ be a type.
+  \begin{enumerate}[(a)]
+  \item If $D\subseteq X$ is dense, then $X\neq \emptyset$ implies $D\neq \emptyset$.
+  \item Let $D,E\subseteq X$ be dense, then $D\cap E$ is dense.
+  \item Let $D\subseteq X$ be dense and $E\subseteq X$ any subtype, then $D\cup E$ is dense.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}[(a)]
+  \item Assume $D\subseteq X$ is dense and empty.
+    Then $X\cap D=\emptyset$ and by denseness of $D$, $X=\emptyset$, which contradicts $X\neq \emptyset$.
+  \item Let $V\subseteq X$ be open with $V\cap D\cap E=\emptyset$.
+    By denseness of $E$, we get the contradiction $V\cap D=\emptyset$
+    and by denseness of $D$, we get $V=\emptyset$.
+  \item Let $V\subseteq X$ be open with
+    \[
+      \emptyset=V\cap (D\cup E)=(V\cap D) \cup (V\cap E)\rlap{.}
+    \]
+    -- which implies $V\cap D=\emptyset$,
+    so $V=\emptyset$.
+  \end{enumerate}
+\end{proof}
+
 Being dense is double negation stable --
 which has the practical implication,
 that we can ``open'' double-negated statements when showing denseness.
