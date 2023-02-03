@@ -481,6 +481,21 @@ that we can ``open'' double-negated statements when showing denseness.
   it is also $\neg\neg$-stable.
 \end{proof}
 
+\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  \label{restrict-dense-to-open}
+  Let $X$ be a type,
+  let $U \subseteq X$ be an open subtype
+  and let $D \subseteq X$ be dense.
+  Then $U \cap D$ is a dense subtype of $U$.
+\end{lemma}
+
+\begin{proof}
+  Let $V\subseteq U$ be open with $V \cap (U\cap D)=\emptyset$.
+  Using \cref{qc-open-sigma-closed}, $V\subseteq X$ is open
+  and $V\cap D = V\cap (U\cap D)=\emptyset$.
+  So $V=\emptyset$ since $D$ is dense in $X$.
+\end{proof}
+
 Being dense is a local property in the following sense:
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
@@ -499,11 +514,7 @@ Being dense is a local property in the following sense:
   But $V\cap U_i$ is open in $U_i$, so by assumption, $V\cap U_i=\emptyset$ for all $i:I$.
   So $V=\bigcup_{i:I}V\cap U_i=\emptyset$ and $A$ is dense.
 
-  This is the part we use the axioms.
-  On the other hand, let $A$ be dense in $X$ and for some $i:I$,
-  let $V\subseteq U_i$ be open with $V\cap (U_i\cap A)=\emptyset$.
-  Using \cref{qc-open-sigma-closed}, $V\subseteq X$ is open and $V\cap A=V\cap (U_i\cap A)=\emptyset$.
-  So $V=\emptyset$.
+  The other direction follows from \cref{restrict-dense-to-open}.
 \end{proof}
 
 We will now characterize dense open subsets of affine schemes.
