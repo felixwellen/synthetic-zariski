@@ -48,3 +48,19 @@ We also use the syntax $\{x : A \mid \varphi(x)\}$
 for bounded set comprehension,
 but this can be translated away.
 TODO
+
+\begin{align*}
+  \varphi_0 &\colonequiv
+  \bigwedge_{n, m \in \N} \forall r_1, \dots, r_m : R[X_1, \dots, X_n].\; \varphi_1 \\
+  \Spec A &\colonequiv
+  \{ x : R^n \mid \mathrm{ev}(r_1, x) = \dots = \mathrm{ev}(r_1, x) = 0 \} \\
+  \varphi_1 &\colonequiv
+  \forall E.\; \forall \pi : E \to \Spec A.\;
+  ((\forall x : \Spec A.\; \exists e : E.\; \pi(e) = x) \Rightarrow \varphi_2) \\
+  \varphi_2 &\colonequiv
+  \bigvee_{k \in \N} \exists f_1, \dots, f_k : R[X_1, \dots, X_n].\;
+  f_1 + \dots + f_k = 1 \land \varphi_3 \\
+  D(f_i) &\colonequiv \{ x : \Spec A \mid \exists y.\; \mathrm{ev}(f_i, x)y = 1 \} \\
+  \varphi_3 &\colonequiv
+  \bigwedge_{i = 1}^k \exists s : D(f_i) \to E.\; \forall x : D(f_i).\; \pi(s(x)) = x
+\end{align*}
