@@ -411,7 +411,7 @@ Algebraic preparation:
 
 \begin{lemma}%
   \label{nilregular-non-zero-polynomial}
-  If $P:R[X]$ we have $P\neq 0$, or equivalently,
+  If $P:R[X]$ and we have $P\neq 0$, or equivalently,
   that merely some coefficient of $P$ is non-zero,
   then $P$ is nilregular.
 \end{lemma}
@@ -423,7 +423,11 @@ Algebraic preparation:
   So $Q$ is nilpotent.
 \end{proof}
 
-The following can be used for lattices:
+In a lattice,
+an element $a$ can be called dense
+if $a \wedge b = \bot$ implies $b = \bot$.
+We apply this definition to the lattice of open subtypes of a type $X$,
+but generalize it to allow for non-open dense subtypes too.
 
 \begin{definition}
   A subtype $A\subseteq X$ is called \notion{dense},
@@ -435,7 +439,8 @@ The following can be used for lattices:
   Let $X$ be a type.
   \begin{enumerate}[(a)]
   \item If $D\subseteq X$ is dense, then $X\neq \emptyset$ implies $D\neq \emptyset$.
-  \item Let $D,E\subseteq X$ be dense, then $D\cap E$ is dense.
+  \item Let $D \subseteq X$ be dense and open and let $E \subseteq X$ be dense,
+    then $D\cap E$ is dense.
   \item Let $D\subseteq X$ be dense and $E\subseteq X$ any subtype, then $D\cup E$ is dense.
   \end{enumerate}
 \end{lemma}
@@ -443,32 +448,37 @@ The following can be used for lattices:
 \begin{proof}
   \begin{enumerate}[(a)]
   \item Assume $D\subseteq X$ is dense and empty.
-    Then $X\cap D=\emptyset$ and by denseness of $D$, $X=\emptyset$, which contradicts $X\neq \emptyset$.
+    Then $X\cap D=\emptyset$ and by denseness of $D$,
+    the open subtype $X \subseteq X$ is empty,
+    which contradicts $X\neq \emptyset$.
   \item Let $V\subseteq X$ be open with $V\cap D\cap E=\emptyset$.
-    By denseness of $E$, we get the contradiction $V\cap D=\emptyset$
+    Since $V \cap D$ is open and $E$ is dense,
+    we get $V \cap D = \emptyset$,
     and by denseness of $D$, we get $V=\emptyset$.
   \item Let $V\subseteq X$ be open with
     \[
       \emptyset=V\cap (D\cup E)=(V\cap D) \cup (V\cap E)\rlap{.}
     \]
-    -- which implies $V\cap D=\emptyset$,
+    This implies $V\cap D=\emptyset$,
     so $V=\emptyset$.
   \end{enumerate}
 \end{proof}
 
-Being dense is double negation stable --
+Being dense is double negation stable ---
 which has the practical implication,
 that we can ``open'' double-negated statements when showing denseness.
 
 \begin{proposition}%
   \label{dense-double-negation-stable}
-  Being dense is $\neg\neg$-stable.
+  Being dense is $\neg\neg$-stable:
+  if a subtype $D \subseteq X$ is not not dense, then it is dense.
 \end{proposition}
 
 \begin{proof}
   We use general facts about modalities.
   $V=\emptyset$ is a pointwise negated statement and therefore $\neg\neg$-stable.
-  Since the proposition, that something is dense, is a $\prod$-type with values in $V=\emptyset$, it is also $\neg\neg$-stable.
+  Since the proposition that $D$ is dense is a $\prod$-type with values in $V=\emptyset$,
+  it is also $\neg\neg$-stable.
 \end{proof}
 
 Being dense is a local property in the following sense:
