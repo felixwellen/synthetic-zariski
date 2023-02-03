@@ -126,15 +126,17 @@ In the situation of a clopen subset, we get the classical equality:
 \end{proof}
 
 \begin{theorem}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
-  The ring $R$ is not coherent, i.e. it is not the case,
+  The ring $R$ is not coherent, i.e.\ it is not the case,
   that all finitely generated ideals in $R$ are finitely presented.
 \end{theorem}
 
 \begin{proof}
   We will show, that it is not the case,
   that any $R$-module map $R\to R$ has a finitely generated kernel.
-  So let $\varphi:R\to R$ be $R$-linear and $x\colonequiv \varphi(1)$.
-  Assume it is always possible to find generators $y_1,\dots,y_n:R$ of the kernel of $\varphi$.
+  Every $R$-linear map $\varphi:R\to R$
+  is of the form $\varphi_x(z) = xz$ for some $x : R$,
+  namely $x\colonequiv \varphi(1)$.
+  Assume it is always possible to find generators $y_1,\dots,y_n:R$ of the kernel of $\varphi_x$.
   That means there is a map
   \[
     c:\prod_{x:R}
@@ -142,21 +144,23 @@ In the situation of a clopen subset, we get the classical equality:
       \exists_{y_1,\dots,y_n:R}
       \prod_{z:R}
       \left(
-        \varphi(z)=0 \text{ iff } \exists_{\lambda_1,\dots,\lambda_n:R}z=\sum_{i=1}^n \lambda_i y_i
+        \varphi_x(z)=0 \text{ iff } \exists_{\lambda_1,\dots,\lambda_n:R}z=\sum_{i=1}^n \lambda_i y_i
       \right)
     \right)
     \rlap{.}
   \]
-  By \axiomref{Z-choice} and boundedness,
-  we translate the first ``$\exists$'' to a function $g:R\to R^n$ on a neighborhood $D(f)$ of $0:R$.
-  We know that if $\varphi(1)$ is invertible, then $\ker(\varphi)=(0)$, which means $y_i=0$ for all $i$.
+  By \axiomref{Z-choice} and boundedness (\cref{boundedness}),
+  we translate the first ``$\exists$'' to a function $g : D(f) \to R^n$
+  on a neighborhood $D(f) \subseteq R$ of $0:R$.
+  We know that if $x$ is invertible, then $\ker(\varphi_x)=(0)$, which means $y_i=0$ for all $i$.
   So $g(x)$ must be the 0-vector for all $x:D(f)\cap D(X)$.
-  Now $D(X)$ and $D(f)$ are both non-empty and therefore dense,
-  since $\A^1$ is irreducible by \cref{A1-irreducible}.
+  Since $\A^1$ is irreducible by \cref{A1-irreducible},
+  $D(X)$ and $D(f)$ are both already dense by being non-empty.
   By \cref{basic-dense-operations} $D(f)\cap D(X)$ is dense,
-  so by \cref{dense-closed-n-th-neighborhood} the entries of $g(x)$ must be nilpotent for all $x:R$.
-  But this is a contradiction, since for $\varphi(x)=0$,
-  the kernel is $R$ and there must be an invertible entry in $g(x)$.
+  so by \cref{dense-closed-n-th-neighborhood} applied to $V(g_i)$,
+  the entries $g_i(x)$ of $g(x)$ must be nilpotent for all $x:D(f)$.
+  But this is a contradiction, since for $x = 0$,
+  the kernel of $\varphi_x$ is $R$ and there must be an invertible entry in $g(x)$.
 \end{proof}
 
 \subsection{Equality types}
