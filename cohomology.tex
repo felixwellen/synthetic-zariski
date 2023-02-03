@@ -38,6 +38,7 @@ like sheaves can be evaluated on open subspaces:
 \end{definition}
 
 \begin{lemma}[using \axiomref{Z-choice}]%
+  \label{module-bundle-localization-pointwise}
   Let $X$ be a scheme and $M:X\to \Mod{R}$ a dependent module.
   Let $U=\Spec A\subseteq X$ be open affine.
   Let $f:A$.
@@ -119,6 +120,48 @@ like sheaves can be evaluated on open subspaces:
     Therefore, the map in (a) is surjective.
     By (b) it is injective, so we have an equivalence of sets.
   \end{enumerate}
+\end{proof}
+
+We will need the following algbraic lemma:
+
+\begin{lemma}[using \axiomref{sqc}]%
+  \label{localization-to-module-if-non-zero}
+  Let $M$ be an $R$-module and $f:R$,
+  then there is an $R$-linear map
+  \[
+    M_f\to M^{f\neq 0}
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  Let $x\equiv \frac{m}{f^k}:M_f$ and $p:f\neq 0$.
+  Then $f$ is invertible, so we have
+  \[
+    x\equiv \frac{m}{f^k}=\frac{f^{-k}m}{1}
+  \]
+  and mapping $x$ to $f^{-k}m$ is an $R$-linear map.
+  
+\end{proof}
+
+\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  Let $X$ be a scheme, $M:X\to\Mod{R}$, $U=\Spec A\subseteq X$ open and $f:A$.
+  then there is an $R$-linear map
+  \[
+    M(U)_f \to M(D(f)) 
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  \color{purple}
+  Combining \cref{module-bundle-localization-pointwise}
+  and pointwise application of \cref{localization-to-module-if-non-zero} we get
+  \[
+    M(U)_f=\left(\prod_{x:U}(M_x)_{f(x)}\right)\to \left(\prod_{x:U}(M_x)^{f(x)\neq 0}\right)
+    =\left(\prod_{x:D(f)}M_x\right)
+    =M(D(f))
+  \]
 \end{proof}
 
 The following is an experimental definition,
