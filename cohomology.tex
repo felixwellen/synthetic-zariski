@@ -20,7 +20,12 @@ in the form of maps from $X$ to the respective type of algebraic structures.
 This subsection is still experimental.
 
 Sometimes we want to ``apply'' a bundle to a subtype,
-like sheaves can be evaluated on open subspaces:
+like sheaves can be evaluated on open subspaces
+and introduce the common notation ``$M(U)$'' for that below.
+It is, however, not jostified to expect, that this application
+and the corresponding theory of ``sheaves'' is ``the same'' as the external one,
+since the definition below, uses the internal hom ``$\prod$''
+-- where the corresponding external construction, would be the set of continuous sections of a bundle.
 
 \begin{definition}
   \index{$M(U)$}
@@ -36,6 +41,9 @@ like sheaves can be evaluated on open subspaces:
     and $M(U)$ is a $(U\to R)$-module.
   \end{enumerate}
 \end{definition}
+
+Somewhat surprisingly, localization of modules $M(U)$
+can be done pointwise:
 
 \begin{lemma}[using \axiomref{Z-choice}]%
   \label{module-bundle-localization-pointwise}
@@ -145,6 +153,7 @@ We will need the following algbraic lemma:
 \end{proof}
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  \label{localization-to-restriction}                    
   Let $X$ be a scheme, $M:X\to\Mod{R}$, $U=\Spec A\subseteq X$ open and $f:A$.
   then there is an $R$-linear map
   \[
@@ -166,8 +175,10 @@ We will need the following algbraic lemma:
 The following is an experimental definition,
 which might be suitable
 to mimic the external notion of quasi-coherent $\mathcal O_X$-module sheaves.
+The equivalence between the two statements in the definition holds because of the
+construction of the canonical map in \cref{localization-to-restriction}.
 
-\begin{definition}
+\begin{definition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
   Let $X$ be a scheme.
   A dependent module $M:X\to \Mod{R}$ is \notion{quasi-coherent},
   if the following equivalent conditions hold:
@@ -185,6 +196,49 @@ to mimic the external notion of quasi-coherent $\mathcal O_X$-module sheaves.
     \]
   \end{enumerate}
 \end{definition}
+
+Quasi-coherent dependent modules turn out to have very good properties,
+which are to be expected from what is known about their external counterparts.
+We will show below, that quasi coherence is preserved by the following constructions:
+
+\begin{definition}
+  \label{pullback-push-forward}
+  Let $X,Y$ be types and $f:X\to Y$ be a map.
+  \begin{enumerate}[(a)]
+  \item \index{$f^*M$} For any dependent module $N:Y\to\Mod{R}$,
+    the \notion{pullback} or \notion{inverse image} is the dependent module
+    \[
+      f^*N\colonequiv (x:X) \mapsto M_{f(x)}\rlap{.}
+    \]
+  \item \index{$f_*M$} For any dependent module $M:X\to\Mod{R}$,
+    the \notion{push-forward} or \notion{direct image} is the dependent module
+    \[
+      f_*M\colonequiv (y:Y) \mapsto \prod_{x:\fib_f(y)}M_{\pi_1(x)}\rlap{.}
+    \]
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  \label{pullback-push-forward-qcoh}
+  Let $X,Y$ be schemes and $f:X\to Y$ be a map.
+  \begin{enumerate}[(a)]
+  \item For any quasi-coherent dependent module $N:Y\to\Mod{R}$,
+    the inverse image $f^*N$ is quasi-coherent.
+  \item For any dependent module $M:X\to\Mod{R}$,
+    the direct image $f_*M$ is quasi-coherent.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \begin{enumerate}[(a)]
+  \item There is nothing to do, when we use the pointwise definition of quasi-coherence. 
+  \item TODO, Ideas:
+
+    Show that the dependent product of modules is a module.
+    Show that this product preserves qcoh, if the index type is a scheme.
+    Use that the fiber of a scheme morphism is a scheme.
+  \end{enumerate}
+\end{proof}
 
 \subsection{Finitely presented bundles}
 
