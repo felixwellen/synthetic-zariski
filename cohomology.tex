@@ -175,27 +175,34 @@ We will need the following algbraic lemma:
 The following is an experimental definition,
 which might be suitable
 to mimic the external notion of quasi-coherent $\mathcal O_X$-module sheaves.
-The equivalence between the two statements in the definition holds because of the
-construction of the canonical map in \cref{localization-to-restriction}.
 
 \begin{definition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
   Let $X$ be a scheme.
   A dependent module $M:X\to \Mod{R}$ is \notion{quasi-coherent},
-  if the following equivalent conditions hold:
-  \begin{enumerate}[(i)]
-  \item For all open affine $U=\Spec A\subseteq X$ and $f:A$
-    the canonical morphism
-    \[
-      M(U)_f\to M(D(f))
-    \]
-    is an equivalence.
-  \item For all $x:X$ and $f:R$, the canonical map from \cref{localization-to-module-if-non-zero} is an equivalence:
+  if for all $x:X$ and $f:R$, the canonical map from \cref{localization-to-module-if-non-zero} is an equivalence:
     \[
       (M_x)_f\simeq M_x^{f\neq 0}
       \rlap{.}
     \]
-  \end{enumerate}
 \end{definition}
+
+An immediate consequence is, that
+quasi coherent dependent modules have
+the property that ``restricting is the same as localizing'':
+
+\begin{lemma}
+  Let $X$ be a scheme and $M:X\to \Mod{R}$ quasi-coherent,
+  then for all open affine $U=\Spec A\subseteq X$ and $f:A$
+  the canonical morphism
+  \[
+    M(U)_f\to M(D(f))
+  \]
+  is an equivalence.
+\end{lemma}
+
+\begin{proof}
+  By construction of the canonical map from \cref{localization-to-restriction}.
+\end{proof}
 
 Quasi-coherent dependent modules turn out to have very good properties,
 which are to be expected from what is known about their external counterparts.
