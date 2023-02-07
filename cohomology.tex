@@ -176,7 +176,8 @@ The following is an experimental definition,
 which might be suitable
 to mimic the external notion of quasi-coherent $\mathcal O_X$-module sheaves.
 
-\begin{definition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+\begin{definition}%
+  \label{quasi-coherent-bundle}
   Let $X$ be a scheme.
   A dependent module $M:X\to \Mod{R}$ is \notion{quasi-coherent},
   if for all $x:X$ and $f:R$,
@@ -191,7 +192,7 @@ An immediate consequence is, that
 quasi coherent dependent modules have
 the property that ``restricting is the same as localizing'':
 
-\begin{lemma}
+\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]
   Let $X$ be a scheme and $M:X\to \Mod{R}$ quasi-coherent,
   then for all open affine $U=\Spec A\subseteq X$ and $f:A$
   the canonical morphism
@@ -203,6 +204,53 @@ the property that ``restricting is the same as localizing'':
 
 \begin{proof}
   By construction of the canonical map from \cref{localization-to-restriction}.
+\end{proof}
+
+\begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
+  Not every $R$-module is quasi-coherent
+  in the sense of \cref{quasi-coherent-bundle}.
+\end{proposition}
+
+\begin{proof}
+  We construct a family of $R$-modules,
+  parametrized by the elements of $R$,
+  and deduce a contradiction from the assumption that
+  all modules of this family are quasi-coherent.
+
+  Given an element $f : R$,
+  the $R$-module we want to consider is
+  the countable product
+  \[ M(f) \colonequiv \prod_{n : \N} R/(f^n) \rlap{.} \]
+  If $f \neq 0$ then $M(f) = 0$
+  (using \cref{non-zero-invertible}).
+  This implies that the $R$-module $M(f)^{f \neq 0}$
+  is trivial:
+  any function $f \neq 0 \to M(f)$ can only assign the value $0$
+  to any of the at most one witnesses of $f \neq 0$.
+  If $M(f)$ is quasi-coherent,
+  then this means that $M(f)_f$ is also trivial.
+  Noting that
+  $M(f)$ is not only an $R$-module
+  but even an $R$-algebra in a natural way,
+  we have
+  \begin{align*}
+    M(f)_f = 0
+    &\;\Leftrightarrow\;
+    \exists k : \N.\; \text{$f^k = 0$ in $M(f)$} \\
+    &\;\Leftrightarrow\;
+    \exists k : \N.\; \forall n : \N.\; f^k \in (f^n) \subseteq R \\
+    &\;\Leftrightarrow\;
+    \exists k : \N.\; f^k \in (f^{k + 1}) \subseteq R
+    \rlap{.}
+  \end{align*}
+
+  In summary,
+  if the module $M(f)$ is quasi-coherent
+  for every $f : R$,
+  then the ring $R$ is zero-dimensional
+  in the sense of \cref{zero-dimensional-ring}.
+  But this is not the case,
+  as we saw in \cref{R-not-zero-dimensional}.
 \end{proof}
 
 Quasi-coherent dependent modules turn out to have very good properties,
