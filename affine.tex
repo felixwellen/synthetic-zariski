@@ -267,6 +267,7 @@ of \cref{eventually-vanishing-sequence-on-affine}
 and \cref{boundedness}.
 
 \begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{strengthened-boundedness}
   Let $A$ be a finitely presented $R$-algebra.
   Let $P : \Spec A \to (\N \to \Prop)$
   be a family of upwards closed, merely inhabited subsets of $\N$.
@@ -306,7 +307,21 @@ We adopt the following definition from
 \end{lemma}
 
 \begin{proof}
-  TODO
+  Assume that $R$ is zero-dimensional,
+  so for every $f : R$ there merely is some $k : \N$ with $f^k \in (f^{k + 1})$.
+  We note that $R = \A^1$ is an affine scheme and
+  that if $f^k \in (f^{k + 1})$,
+  then we also have $f^{k'} \in (f^{k' + 1})$ for every $k' \geq k$.
+  This means that we can apply \cref{strengthened-boundedness}
+  and merely obtain a number $K : \N$
+  such that $f^K \in (f^{K + 1})$ for all $f : R$.
+  In particular, $f^{K + 1} = 0$ implies $f^K = 0$,
+  so the canonical map
+  $\Spec R[X]/(X^K) \to \Spec R[X]/(X^{K + 1})$
+  is a bijection.
+  But this is a contradiction,
+  since the homomorphism $R[X]/(X^{K + 1}) \to R[X]/(X^K)$
+  is not an isomorphism.
 \end{proof}
 
 The following lemma,
