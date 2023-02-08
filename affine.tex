@@ -123,6 +123,10 @@ More generally:
   that is, if $f \in \sqrt{(g_1, \dots, g_n)}$, as stated.
 \end{proof}
 
+In particular,
+we have $\Spec A = \bigcup_{i = 1}^n D(f_i)$
+if and only if $(f_1, \dots, f_n) = (1)$.
+
 \subsection{Pullbacks of affine schemes}
 
 \begin{lemma}%
@@ -203,7 +207,7 @@ as follows.
 \end{proof}
 
 \begin{lemma}[using \axiomref{sqc}]%
-  \label{eventually-zero-sequence-on-affine-scheme}
+  \label{eventually-vanishing-sequence-on-affine}
   Let $A$ be a finitely presented $R$-algebra
   and let $s : \Spec A \to (\N \to R)$
   be a family of sequences,
@@ -254,7 +258,33 @@ as follows.
   \]
   Since $0 \neq 1 : R$ by \axiomref{loc},
   we in fact have $s(x)(n) = 0$ if and only if $n \geq f(x)$.
-  Then the claim follows from \cref{eventually-zero-sequence-on-affine-scheme}.
+  Then the claim follows from \cref{eventually-vanishing-sequence-on-affine}.
+\end{proof}
+
+If we also assume the axiom \axiomref{Z-choice},
+we can formulate the following simultaneous strengthening
+of \cref{eventually-vanishing-sequence-on-affine}
+and \cref{boundedness}.
+
+\begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  Let $A$ be a finitely presented $R$-algebra.
+  Let $P : \Spec A \to (\N \to \Prop)$
+  be a family of upwards closed, merely inhabited subsets of $\N$.
+  Then the set
+  \[ \bigcap_{x : \Spec A} P(x) \subseteq \N \]
+  is merely inhabited.
+\end{proposition}
+
+\begin{proof}
+  By \axiomref{Z-choice},
+  there merely exists a cover
+  $\Spec A = \bigcup_{i = 1}^n D(f_i)$
+  and functions $p_i : D(f_i) \to \N$
+  such that $p_i(x) \in P(x)$ for all $x : D(f_i)$.
+  By \cref{boundedness},
+  every $p_i : D(f_i) = \Spec A[f_i^{-1}] \to \N$
+  is merely bounded by some $N_i : \N$,
+  and then $\mathrm{max}(N_1, \dots, N_n) \in P(x)$ for all $x : \Spec A$.
 \end{proof}
 
 \subsection{Properties of the ring $R$}
