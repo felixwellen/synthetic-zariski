@@ -132,18 +132,18 @@ can be done pointwise:
 
 We will need the following algebraic lemma:
 
-\begin{lemma}[using \axiomref{sqc}]%
+\begin{lemma}%
   \label{localization-to-module-if-non-zero}
   Let $M$ be an $R$-module and $f:R$,
   then there is an $R$-linear map
   \[
-    M_f\to M^{f\neq 0}
+    M_f\to M^{D(f)}
     \rlap{.}
   \]
 \end{lemma}
 
 \begin{proof}
-  Let $x\equiv \frac{m}{f^k}:M_f$ and $p:f\neq 0$.
+  Let $x\equiv \frac{m}{f^k}:M_f$ and $p:D(f)$.
   Then $f$ is invertible, so we have
   \[
     x\equiv \frac{m}{f^k}=\frac{f^{-k}m}{1}
@@ -166,7 +166,7 @@ We will need the following algebraic lemma:
   Combining \cref{module-bundle-localization-pointwise}
   and pointwise application of \cref{localization-to-module-if-non-zero} we get
   \[
-    M(U)_f=\left(\prod_{x:U}(M_x)_{f(x)}\right)\to \left(\prod_{x:U}(M_x)^{f(x)\neq 0}\right)
+    M(U)_f=\left(\prod_{x:U}(M_x)_{f(x)}\right)\to \left(\prod_{x:U}(M_x)^{D(f(x))}\right)
     =\left(\prod_{x:D(f)}M_x\right)
     =M(D(f))
   \]
@@ -183,7 +183,7 @@ to mimic the external notion of quasi-coherent $\mathcal O_X$-module sheaves.
   if for all $x:X$ and $f:R$,
   the canonical map from \cref{localization-to-module-if-non-zero} is an equivalence:
   \[
-    (M_x)_f\simeq M_x^{f\neq 0}
+    (M_x)_f\simeq M_x^{D(f)}
     \rlap{.}
   \]
 \end{definition}
@@ -204,6 +204,22 @@ the property that ``restricting is the same as localizing'':
 
 \begin{proof}
   By construction of the canonical map from \cref{localization-to-restriction}.
+\end{proof}
+
+Let us look at an example.
+
+\begin{proposition}
+  \label{fp-algebra-bundle-is-quasi-coherent}
+  Let $X$ be a scheme and $C:X\to \Alg{R}_{fp}$.
+  Then $C$, as a bundle of $R$-modules, is quasi coherent.
+\end{proposition}
+
+\begin{proof}
+  Then for any $f:R$ and $x:X$, using \cref{algebra-valued-functions-on-affine}, we have
+  \[
+    (C_x)_f=C_x\otimes_R R_f=(\Spec R_f \to C_x)=(D(f)\to C_x)={C_x}^{D(f)}
+    \rlap{.}
+  \]
 \end{proof}
 
 \begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
