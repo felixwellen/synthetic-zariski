@@ -7,7 +7,7 @@ then we can represent it by the trivial bundle
 that assings to every point $x : X$ the set $R$.
 Indeed, for an affine scheme $X = \Spec A$,
 taking the sections of this bundle over a basic open $D(f) \subseteq X$
-\[ \prod_{x : D(f)} R = (D(f) \to R) = A[f^{-1}] \]
+\[ (\prod_{x : D(f)} R) = (D(f) \to R) = A[f^{-1}] \]
 yields the localizations of the ring $A$
 expected from the structure sheaf $\mathcal{O}_X$.
 More generally,
@@ -93,40 +93,41 @@ can be done pointwise:
       \prod_{x:U}f(x)^{k}(m_g(x)f(x)^{k_h}-m_h(x)f(x)^{k_g})=0
     \]
     --- which shows $g=h$.
-  \item We will construct an inverse to the map in (a).
+  \item The map in (a) is injective by (b);
+    it remains to show that it is surjective.
     So let $\varphi:\prod_{x:U}(M_x)_{f(x)}$ and
+    note that
     \[
-      \tilde{\varphi}:
       \prod_{x:U}
       \exists_{k_x:\N,m_x:M_x}
       \varphi(x)=\frac{m_x}{f(x)^{k_x}}
       \rlap{.}
     \]
-    By \axiomref{Z-choice},
-    we get coprime $a_1,\dots,a_l:A$, $k:\N$, $m_i:D(a_i)\to M_x$ such that for each $i$
+    By \cref{strengthened-boundedness} and \axiomref{Z-choice},
+    we get $k:\N$, coprime $a_1,\dots,a_l:A$ and $m_i:(x : D(a_i))\to M_x$
+    such that for each $i$ and $x:D(a_i)$ we have
     \[
-      \prod_{x:D(a_i)}\varphi(x)=\frac{m_i(x)}{f(x)^{k}}
+      \varphi(x)=\frac{m_i(x)}{f(x)^{k}}
       \rlap{.}
     \]
     The problem is now to construct a global $m:(x:U)\to M_x$ from the $m_i$.
-    We use \cref{kraus-glueing} of $\tilde{m}_i$, which we will construct in the following to achieve that.
     We have
     \[
         \prod_{x:D(a_ia_j)}\frac{m_i(x)}{f(x)^k}=\varphi(x)=\frac{m_j(x)}{f(x)^k}
     \]
-    meaning there is pointwise an exponent $t_x:\N$, such that $f(x)^{t_x+k}m_i(x)=f(x)^{t_x+k}m_j(x)$.
-    By \axiomref{Z-choice}, we can find a maximal $t:\N$ with this property and define
+    meaning there is pointwise an exponent $t_x:\N$,
+    such that $f(x)^{t_x}m_i(x)=f(x)^{t_x}m_j(x)$.
+    By \cref{strengthened-boundedness},
+    we can find a single $t:\N$ with this property and define
     \[
-      \tilde{m}_i\colonequiv x \mapsto f(x)^{t+k}m_i(x)
+      \tilde{m}_i(x) \colonequiv f(x)^t m_i(x)
       \rlap{.}
     \]
     Then we have $\tilde{m}_i(x)=\tilde{m}_j(x)$ on all intersections $D(a_i)\cap D(a_j)$,
-    which is needed to get the global $m:(x:U)\to M_x$ from \cref{kraus-glueing}.
-    Since $\varphi(x)=\frac{f(x)^{t+k}m_i(x)}{f(x)^{t+2k}}=\frac{\tilde{m}_i(x)}{f(x)^{t+2k}}$ for all $x$ and $i$,
+    which is what we need to get a global $m:(x:U)\to M_x$ from \cref{kraus-glueing}.
+    Since $\varphi(x)=\frac{f(x)^t m_i(x)}{f(x)^{t+k}}=\frac{\tilde{m}_i(x)}{f(x)^{t+k}}$
+    for all $i$ and $x : D(a_i)$,
     we have found a preimage of $\varphi$ in $M(U)_f$.
-
-    Therefore, the map in (a) is surjective.
-    By (b) it is injective, so we have an equivalence of sets.
   \end{enumerate}
 \end{proof}
 
