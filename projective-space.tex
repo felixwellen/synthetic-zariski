@@ -97,10 +97,11 @@ We now give the small construction:
   Let $s:\bP^1\to \bP^1$ be given by $s([x:y])\colonequiv [x^2:y^2]$
   (see \cref{projective-space-hit} for notation).
   Let us compute some fibers of $s$. The fiber $\fib_s([0:1])$ is
+  by definition the type
   \[
     \sum_{[x:y]:\bP^1}[x^2:y^2]=[0:1]\rlap{.}
   \]
-  So for any $x:R$ with $x^2=0$, $[x,1]:\fib_s([0:1])$  and
+  So for any $x:R$ with $x^2=0$, $[x:1]:\fib_s([0:1])$  and
   any other point $(x,y)$ such that $[x:y]$ is in $\fib_s([0:1])$,
   already yields an equivalent point, since $y$ has to be invertible.
 
@@ -108,12 +109,33 @@ We now give the small construction:
   The same applies to the point $[1:0]$.
   To analyze $\fib_s([1:1])$, let us assume $2\neq 0$ (in $R$).
   Then we know, the two points $[1:-1]$ and $[1:1]$ are in $\fib_s([1:1])$ and they are different.
-  Now any $x:R$ with $x^2=1$ is already $1$ or $-1$,
-  since those are apart by \cref{separated-inequality-apartness}, which means that $(x-1)$ or $(x+1)$ is invertible.
+  It will turn out, that any point in $\fib_s([1:1])$ is equal to one of those two.
+  For any $[x':y']:\fib_s([1:1])$, we can assume $[x':y']=[x:1]$ and $x^2=1$, or equivalently $(x-1)(x+1)=0$.
+  By \cref{projective-space-separated}, $\bP^1$ is separated and by \cref{separated-inequality-apartness}
+  this means that inequality is an apartness relation.
+  So for each $x:R$, we know $x-1$ is invertible or $x+1$ is invertible.
+  But this means that for any $x:R$ with $(x-1)(x+1)=0$, that $x=1$ or $x=-1$.
 
   While the fibers are not the same in general,
   they are all affine and have the same size in the sense that for each $\Spec A_x\colonequiv \fib_s(x)$,
   we have that $A_x$ is an $R$-module of length 2 (\cref{length-of-module}).
+  To see this, let us first note,
+  that $\fib_s([x:y])$ is completely contained in an affine subset of $\bP^1$.
+  This is a proposition, so we can use that either $x$ or $y$ is invertible.
+  Let us assume without loss of generality, that $y$ is invertible,
+  then
+  \[
+    \fib_s([x:y])=\fib_s([\frac{x}{y}:1])
+    \rlap{.}
+  \]
+  The second component of each element in the fiber has to be invertible,
+  so it is contained in an affine subset, which we identify with $\A^1$.
+  Let us rewrite with $z\colonequiv \frac{x}{y}$.
+  Then
+  \[
+    \fib_s([z:1])=\sum_{a:\A^1}(a^2=z)=\Spec R[X]/(X^2-z)
+  \]
+  and $R[X]/(X^2-z)$ is free of length 2 as an $R$-module.
 \end{example}
 
 \begin{lemma}
