@@ -179,13 +179,15 @@ to mimic the external notion of quasi-coherent $\mathcal O_X$-module sheaves.
 \begin{definition}%
   \label{quasi-coherent-bundle}
   Let $X$ be a scheme.
-  A dependent module $M:X\to \Mod{R}$ is \notion{(weakly) quasi-coherent},
+  A dependent module $M:X\to \Mod{R}$ is \notion{weakly quasi-coherent},
   if for all $x:X$ and $f:R$,
   the canonical map from \cref{localization-to-module-if-non-zero} is an equivalence:
   \[
     (M_x)_f\simeq M_x^{D(f)}
     \rlap{.}
   \]
+  We denote the type of weakly quasi-coherent $R$-modules
+  over the point $\Spec R$ with $\Mod{R}_{wqc}$\index{$\Mod{R}_{wqc}$}.
 \end{definition}
 
 An immediate consequence is, that
@@ -449,7 +451,7 @@ $\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact
 
 \begin{theorem}[using \axiomref{Z-choice}]%
   \label{H1-fp-module-affine-trivial}
-  For any affine scheme $X=\Spec(A)$ and coefficients $M: X\to \fpMod{R}$, we have
+  For any affine scheme $X=\Spec(A)$ and coefficients $M: X\to \Mod{R}_{wqc}$, we have
   \[ H^1(X,M)=0 \rlap{.} \]
 \end{theorem}
 \begin{proof}
@@ -464,14 +466,15 @@ $\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact
   \[ s_i:\prod_{x:U_i}T_x\]
   of $T$. Our goal is to construct a matching family from the $s_i$.
   On intersections, let $t_{ij}\coloneqq s_i-s_j$ be the difference, so $t_{ij}:(x : U_i\cap U_j) \to M_x$.
-  By \cref{fp-module} equivalently, we have $t_{ij}:\tilde{M}_{f_i f_j}$.
+  By \cref{weakly-quasi-coherent-open-localization} equivalently,
+  we have $t_{ij}:M(U_{i}\cap U_j)_{f_i f_j}$.
   Since the $t_{ij}$ were defined as differences,
   the condition in \cref{H1-algebra} is satisfied and we get
-  $u_i:\tilde{M}_{f_i}$, such that $t_{ij}=u_i-u_j$.
+  $u_i:M(U_i)_{f_i}$, such that $t_{ij}=u_i-u_j$.
   So we merely have a matching family $\tilde{s}_i\coloneqq s_i-u_i$ and therefore, using Lemma \ref{kraus-glueing} merely a section of $T$.
 \end{proof}
 
-A similar result is provable for $H^2(X,M)$ and we expect that $H^n(X,M)$ holds, at least for any external $n$.
+A similar result is provable for $H^2(X,M)$ and we expect that $H^n(X,M)=0$ holds, at least for any external $n$.
 
 \subsection{Čech-Cohomology}
 
