@@ -154,7 +154,7 @@ We will need the following algebraic lemma:
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
   \label{localization-to-restriction}                    
-  Let $X$ be a scheme, $M:X\to\Mod{R}$, $U=\Spec A\subseteq X$ open and $f:A$.
+  Let $X$ be a scheme, $M:X\to\Mod{R}$, $U\subseteq X$ open and $f:A$.
   Then there is an $R$-linear map
   \[
     M(U)_f \to M(D(f)) 
@@ -189,7 +189,7 @@ to mimic the external notion of quasi-coherent $\mathcal O_X$-module sheaves.
 \end{definition}
 
 An immediate consequence is, that
-quasi coherent dependent modules have
+weakly quasi coherent dependent modules have
 the property that ``restricting is the same as localizing'':
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]
@@ -209,10 +209,10 @@ the property that ``restricting is the same as localizing'':
 
 Let us look at an example.
 
-\begin{proposition}
+\begin{proposition}%
   \label{fp-algebra-bundle-is-quasi-coherent}
   Let $X$ be a scheme and $C:X\to \Alg{R}_{fp}$.
-  Then $C$, as a bundle of $R$-modules, is quasi coherent.
+  Then $C$, as a bundle of $R$-modules, is weakly quasi coherent.
 \end{proposition}
 
 \begin{proof}
@@ -223,8 +223,8 @@ Let us look at an example.
   \]
 \end{proof}
 
-\begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
-  Not every $R$-module is quasi-coherent
+\begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  Not every $R$-module is weakly quasi-coherent
   in the sense of \cref{quasi-coherent-bundle}.
 \end{proposition}
 
@@ -285,7 +285,17 @@ Let us look at an example.
   \[
     \left(\prod_{x:X}M_x\right)_f=\left(\prod_{x:X}M_x\right)^{D(f)}
   \]
-  for all $f:R$. TODO
+  for all $f:R$.
+  By weak \cref{module-bundle-localization-pointwise}, quasi-coherence
+  and \cref{weakly-quasi-coherent-open-localization}
+  we know:
+  \[
+    \left(\prod_{x:X}M_x\right)_f
+    =\prod_{x:X}\left(M_x\right)_{f(x)}
+    =\prod_{x:X}\left(M_x\right)^{D(f)}
+    =\left(\prod_{x:X}M_x\right)^{D(f)}
+    \rlap{.}
+  \]
 \end{proof}
 
 Quasi-coherent dependent modules turn out to have very good properties,
@@ -313,16 +323,16 @@ We will show below, that quasi coherence is preserved by the following construct
   \label{pullback-push-forward-qcoh}
   Let $X,Y$ be schemes and $f:X\to Y$ be a map.
   \begin{enumerate}[(a)]
-  \item For any quasi-coherent dependent module $N:Y\to\Mod{R}$,
-    the inverse image $f^*N$ is quasi-coherent.
-  \item For any dependent module $M:X\to\Mod{R}$,
-    the direct image $f_*M$ is quasi-coherent.
+  \item For any weakly quasi-coherent dependent module $N:Y\to\Mod{R}$,
+    the inverse image $f^*N$ is weakly quasi-coherent.
+  \item For any weakly quasi-coherent dependent module $M:X\to\Mod{R}$,
+    the direct image $f_*M$ is weakly quasi-coherent.
   \end{enumerate}
 \end{theorem}
 
 \begin{proof}
   \begin{enumerate}[(a)]
-  \item There is nothing to do, when we use the pointwise definition of quasi-coherence. 
+  \item There is nothing to do, when we use the pointwise definition of weak quasi-coherence. 
   \item TODO, Ideas:
 
     Show that the dependent product of modules is a module.
