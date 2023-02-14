@@ -48,22 +48,21 @@ can be done pointwise:
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{module-bundle-localization-pointwise}
   Let $X$ be a scheme and $M:X\to \Mod{R}$ a dependent module.
-  Let $U=\Spec A\subseteq X$ be open affine.
-  Let $f:A$.
+  Let $f:X\to R$.
   \begin{enumerate}[(a)]
   \item There is a morphism
     \[
-      M(U)_f\to \prod_{x:U}(M_x)_{f(x)}
+      M(X)_f\to \prod_{x:X}(M_x)_{f(x)}
       \rlap{.}
     \]
-  \item Let $g,h:M(U)_f$. Then $g=h$ if and only if
+  \item Let $g,h:M(X)_f$. Then $g=h$ if and only if
     \[
-      \prod_{x:U}g(x)=_{(M_x)_{f(x)}}h(x)
+      \prod_{x:X}g(x)=_{(M_x)_{f(x)}}h(x)
       \rlap{.}
     \]
   \item The morphism in (a) is an equivalence, i.e.
     \[
-      M(U)_f=\prod_{x:U}(M_x)_{f(x)}
+      M(X)_f=\prod_{x:X}(M_x)_{f(x)}
       \rlap{.}
     \]
   \end{enumerate}
@@ -77,43 +76,43 @@ can be done pointwise:
     \]
     is well-defined. So let $\frac{m}{f^k}=\frac{m'}{f^{k'}}$,
     i.e. let there be an $l:\N$ such that $f^l(mf^{k'}-m'f^k)=0$.
-    But then we can choose the same $l:\N$ for each $x:U$
-    and apply the equation to each $x:U$.
+    But then we can choose the same $l:\N$ for each $x:X$
+    and apply the equation to each $x:X$.
   \item The forward direction was treated in (a).
-    So let $g,h:M(U)_f$ such that $p:\prod_{x:U}g(x)=_{(M_x)_{f(x)}}h(x)$.
-    Let $m_g,m_h:\prod_{x:U} M_x$ and $k_g,k_h:\N$ such that
+    So let $g,h:M(X)_f$ such that $p:\prod_{x:X}g(x)=_{(M_x)_{f(x)}}h(x)$.
+    Let $m_g,m_h:\prod_{x:X} M_x$ and $k_g,k_h:\N$ such that
     \[
       g=\frac{m_g}{f^{k_g}} \quad\text{and}\quad h=\frac{m_h}{f^{k_h}}
       \rlap{.}
     \]
-    From $p$ we know $\prod_{x:U}\exists_{k_x:\N}f(x)^{k_x}(m_g(x)f(x)^{k_h}-m_h(x)f(x)^{k_g})=0$.
+    From $p$ we know $\prod_{x:X}\exists_{k_x:\N}f(x)^{k_x}(m_g(x)f(x)^{k_h}-m_h(x)f(x)^{k_g})=0$.
     By \cref{strengthened-boundedness},
     we find one $k : \N$ with
     \[
-      \prod_{x:U}f(x)^{k}(m_g(x)f(x)^{k_h}-m_h(x)f(x)^{k_g})=0
+      \prod_{x:X}f(x)^{k}(m_g(x)f(x)^{k_h}-m_h(x)f(x)^{k_g})=0
     \]
     --- which shows $g=h$.
   \item The map in (a) is injective by (b);
     it remains to show that it is surjective.
-    So let $\varphi:\prod_{x:U}(M_x)_{f(x)}$ and
+    So let $\varphi:\prod_{x:X}(M_x)_{f(x)}$ and
     note that
     \[
-      \prod_{x:U}
-      \exists_{k_x:\N,m_x:M_x}
+      \prod_{x:X}
+      \exists_{k_x:\N,m_x:M_x}.
       \varphi(x)=\frac{m_x}{f(x)^{k_x}}
       \rlap{.}
     \]
-    By \cref{strengthened-boundedness} and \axiomref{Z-choice},
-    we get $k:\N$, coprime $a_1,\dots,a_l:A$ and $m_i:(x : D(a_i))\to M_x$
-    such that for each $i$ and $x:D(a_i)$ we have
+    By \cref{strengthened-boundedness} and \cref{zariski-choice-scheme},
+    we get $k:\N$, an affine open cover $U_1,\dots,U_n$ of $X$ and $m_i:(x : U_i)\to M_x$
+    such that for each $i$ and $x:U_i$ we have
     \[
       \varphi(x)=\frac{m_i(x)}{f(x)^{k}}
       \rlap{.}
     \]
-    The problem is now to construct a global $m:(x:U)\to M_x$ from the $m_i$.
+    The problem is now to construct a global $m:(x:X)\to M_x$ from the $m_i$.
     We have
     \[
-        \prod_{x:D(a_ia_j)}\frac{m_i(x)}{f(x)^k}=\varphi(x)=\frac{m_j(x)}{f(x)^k}
+        \prod_{x:U_{ij}}\frac{m_i(x)}{f(x)^k}=\varphi(x)=\frac{m_j(x)}{f(x)^k}
     \]
     meaning there is pointwise an exponent $t_x:\N$,
     such that $f(x)^{t_x}m_i(x)=f(x)^{t_x}m_j(x)$.
@@ -123,11 +122,11 @@ can be done pointwise:
       \tilde{m}_i(x) \colonequiv f(x)^t m_i(x)
       \rlap{.}
     \]
-    Then we have $\tilde{m}_i(x)=\tilde{m}_j(x)$ on all intersections $D(a_i)\cap D(a_j)$,
-    which is what we need to get a global $m:(x:U)\to M_x$ from \cref{kraus-glueing}.
+    Then we have $\tilde{m}_i(x)=\tilde{m}_j(x)$ on all intersections $U_{ij}$,
+    which is what we need to get a global $m:(x:X)\to M_x$ from \cref{kraus-glueing}.
     Since $\varphi(x)=\frac{f(x)^t m_i(x)}{f(x)^{t+k}}=\frac{\tilde{m}_i(x)}{f(x)^{t+k}}$
-    for all $i$ and $x : D(a_i)$,
-    we have found a preimage of $\varphi$ in $M(U)_f$.
+    for all $i$ and $x : U_i$,
+    we have found a preimage of $\varphi$ in $M(X)_f$.
   \end{enumerate}
 \end{proof}
 
