@@ -9,7 +9,25 @@ on the subject, which also uses homotopy type theory as a basis.
   \[ \D(n)\colonequiv \{x:R^n \mid xx^T = 0 : R^{n \times n}\}\rlap{.}\]
 \end{definition}
 
-More genrally, we can consider infinitesimal varieties:
+The first order disks are quite convenient to work with,
+as shown in the following example of a tangent bundle\index{tangent bundle},
+which we will define below.
+
+\begin{example}[using \axiomref{sqc}]%
+  Let $S\colonequiv\Spec R[X,Y]/(X^2+Y^2-1)$.
+  We will see that $S^{\D(1)}$ is affine by the following calculation:
+  \begin{align*}
+    S^{\D(1)} &= \Spec R[\epsilon] \to \Spec R[X,Y]/(X^2+Y^2-1) \\
+              &= \Hom_R(R[X,Y]/(X^2+Y^2-1), R[\epsilon]) \\
+              &= \sum_{z,w:R[\epsilon]}z^2+w^2=1 \\
+              &= \sum_{x+\epsilon u, y+\epsilon v:R+\epsilon R}(x+\epsilon u)^2+(y+\epsilon v)^2=1 \\
+              &= \sum_{x,y,u,v:R} x^2+y^2+\epsilon (2xu+2yv)=1 \\
+              &=\sum_{x,y,u,v:R}(x^2+y^2=1)\times(2xu+2yv=0) \\
+    &=\Spec R[X,Y,U,V]/(X^2+Y^2-1,2XU+2YV)
+  \end{align*}
+\end{example}
+
+More generally than first order disks, we can consider infinitesimal varieties:
 
 \begin{definition}
   \begin{enumerate}[(a)]
