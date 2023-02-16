@@ -19,9 +19,9 @@ We will describe these algebras more explicitly.
 \begin{lemma}%
   For all $n:\N$,
   \[
-    R[X_1,\dots,X_n]/(X\cdot X^T) = R+\epsilon_1R+\dots+\epsilon_nR
+    R[X_1,\dots,X_n]/(X\cdot X^T) = R+\varepsilon_1R+\dots+\varepsilon_nR
   \]
-  where $\epsilon_i\epsilon_j=0$ for all $i,j$ and
+  where $\varepsilon_i\varepsilon_j=0$ for all $i,j$ and
   where the equality is in the type of $R$-algebras and the right hand side is a direct sum of $R$-modules,
 \end{lemma}
 
@@ -34,15 +34,34 @@ which we will define below.
   Let $S\colonequiv\Spec R[X,Y]/(X^2+Y^2-1)$.
   We will see that $S^{\D(1)}$ is affine by the following calculation:
   \begin{align*}
-    S^{\D(1)} &= \Spec R[\epsilon] \to \Spec R[X,Y]/(X^2+Y^2-1) \\
-              &= \Hom_R(R[X,Y]/(X^2+Y^2-1), R[\epsilon]) \\
-              &= \{{z,w:R[\epsilon]} \mid z^2+w^2=1 \} \\
-              &= \{x+\epsilon u, y+\epsilon v:R+\epsilon R \mid (x+\epsilon u)^2+(y+\epsilon v)^2=1 \} \\
-              &= \{x,y,u,v:R \mid x^2+y^2+\epsilon (2xu+2yv)=1 \} \\
+    S^{\D(1)} &= \Spec R[\varepsilon] \to \Spec R[X,Y]/(X^2+Y^2-1) \\
+              &= \Hom_R(R[X,Y]/(X^2+Y^2-1), R[\varepsilon]) \\
+              &= \{{z,w:R[\varepsilon]} \mid z^2+w^2=1 \} \\
+              &= \{x+\varepsilon u, y+\varepsilon v:R+\varepsilon R \mid (x+\varepsilon u)^2+(y+\varepsilon v)^2=1 \} \\
+              &= \{x,y,u,v:R \mid x^2+y^2+\varepsilon (2xu+2yv)=1 \} \\
               &=\{x,y,u,v:R \mid (x^2+y^2=1)\times(2xu+2yv=0)\} \\
     &=\Spec R[X,Y,U,V]/(X^2+Y^2-1,2XU+2YV)
   \end{align*}
 \end{example}
+
+\begin{definition}
+  We write $R[\varepsilon]$ for the $R$-algebra $R[X]/(X^2)$ and its generator $\varepsilon\colonequiv X+(X^2)$
+  in the context of $\D(1)=\Spec R[\varepsilon]$\index{$R[\varepsilon]$}.
+\end{definition}
+
+\begin{lemma}[using \axiomref{sqc}]%
+  \label{evaluate-on-first-order-disk}
+  Let $f:\A^n\to R$ be a function or equivalently, $f:R[X_1,\dots,X_n]$.
+  Then, for all $x=(x_1,\dots,x_n):R[\varepsilon]^n\subseteq\A^n$,
+  \[
+    f((x_1+\varepsilon u_1, \dots , x_n+\varepsilon u_n))=f(x_1,\dots,x_n)+\varepsilon(\partial_{X_1}f\cdot u_1+\dots+\partial_{X_n}f\cdot u_n)
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  TODO, maybe reference to code.
+\end{proof}
 
 More generally than first order disks, we can consider infinitesimal varieties:
 
