@@ -1,6 +1,3 @@
-
-
-
 \newcommand{\inc}{\mathsf{inc}}
 \newcommand{\inl}{\mathsf{inl}}
 \newcommand{\inr}{\mathsf{inr}}
@@ -28,8 +25,11 @@ in this way a model of type theory with univalence satisfying the
 3 axioms for Zariski topos. It is then natural to ask how the global section operation behaves for this model, and we show that
 it satisfies a property similar to Zariski local choice. 
 
-
 \subsection{$1$-topos model}
+
+We first build a $1$-sheaf model of the 3 axioms. This model will be formulated as a model of {\em dependent type theory}.
+This will be an {\em internal} model inside a presheaf model. While the presheaf model covers universes, this internal model
+will not cover universes (and univalence), and we need a refined notion of model in the next section to cover these extensions.
 
 For any small category $\CC$ we can form the presheaf model of type theory over the base category $\CC$.
 
@@ -64,7 +64,8 @@ ring $k$.
 
     One can check directly that $\Pi_{x:A}B$ is a sheaf if $B$ is a family of sheaves over $A$
     and that $\Sigma_{x:A}B$ is a sheaf if $A$ is a sheaf and $B$ is a family of sheaves. We hence get a model of type theory
-    by interpreting a type as a sheaf.
+    by interpreting a type as a sheaf. A context is still interpreted as a presheaf, while a type is now a dependent presheaf
+    with a proof that it is {\em modal}. An element is a section of the underlying dependent presheaf.
 
     \medskip
 
@@ -90,11 +91,9 @@ $\Phi$ for cofibrations.
  A particular case is if $\CC$ is the opposite of the category of f.p. $k$-algebras, where $k$ is a
  fixed commutative ring.
 
- We have the presheaf $R$ defined by $R(J,A) = Hom(k[X],A)$
- where $J$ object of $\BB$ and $A$ object of $\CC$.
+ We have the presheaf $R$ defined by $R(J,A) = Hom(k[X],A)$ where $J$ object of $\BB$ and $A$ object of $\CC$.
 
-  The presheaf $\Gm$ is defined by $\Gm(J,A) = Hom(k[X,1/X],A) = A^{\times}$
-  set of invertible elements of $A$.
+  The presheaf $\Gm$ is defined by $\Gm(J,A) = Hom(k[X,1/X],A) = A^{\times}$ set of invertible elements of $A$.
 
 \subsection{Propositional truncation}
 
@@ -126,7 +125,7 @@ satisfies $\ext(u,\psi,v) = v$ on the extent $\psi$.
 We want to force $e_c = \norm{\inv(f_1)+\dots+\inv(f_n)}$ for $f_1,\dots,f_n$ in $Cov$.
 
 Note that we have $e_c\rightarrow p_c$, with $p_c$ is a {\em strict} proposition $\inv(f_1)\vee \dots\vee\inv(f_n)$.
-Without choices in the metatheory, we don't have $p_c\rightarrow e_c$.
+If we work in an effective metatheory, without choices, we cannot expect to have $p_c\rightarrow e_c$.
 
 \begin{lemma}
   The constant map $\sigma:R\rightarrow R^{e_c}$ is an isomorphism.
@@ -137,8 +136,8 @@ Without choices in the metatheory, we don't have $p_c\rightarrow e_c$.
   $e_c$ is a hproposition.
 
   If we are at a stage $A$ and $f_1,\dots,f_n$ comaximal in $A$, and $u:R^{e_c}(A)$ we define $\patch(u)$ as follows.
-  Note that $e_c$ becomes inhabited in each $A[1/f_i]$. We get then element in $A[1/f_i]$
-  that are compatible, hence we can patch them together to an element in $A$.
+  Note that $e_c$ becomes inhabited in each $A[1/f_i]$. We get then a family of element $u_i$ in each $A[1/f_i]$, with $u_i$ compactible
+  with $u_j$. We can then patch these elements together to an element in $A$.
 \end{proof}
 
 (Since $R$ is a strict hset, the canonical map $R^{p_c}\rightarrow R^{e_c}$ is an isomorphism.)
