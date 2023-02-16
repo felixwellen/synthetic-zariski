@@ -141,10 +141,50 @@ to the affine case:
 \end{proof}
 
 \begin{definition}
-  Let $X$ be a type and $p:X$ a point in $X$.
-  The \notion{tangent space}\index{$T_pX$} of $X$ at $p$, is the type
-  \[ T_pX\colonequiv \{d:\D(1)\to X\vert d(0)=p \}\rlap{.}\]
+  Let $X$ be a type.
+  \begin{enumerate}[(a)]
+  \item For $p:X$ a point in $X$.
+    The \notion{tangent space}\index{$T_pX$} of $X$ at $p$, is the type
+    \[ T_pX\colonequiv \{d:\D(1)\to X\vert d(0)=p \}\rlap{.}\]
+  \item The \notion{tangent bundle} of $X$ is the type $X^{\D(1)}$.
+  \end{enumerate}
 \end{definition}
+
+We start our analysis of the tangent bundle,
+by computing it for affine schemes:
+
+\begin{lemma}[using \axiomref{sqc}]%
+  If $X=\Spec R[X_1,\dots,X_n]/(f_1,\dots,f_l)$,
+  then the tangent bundle of $X$ is an affine scheme and we have
+  \[
+    X^{\D(1)}=\Spec R[X_1,\dots,X_n,U_1,\dots,U_n]/(f_1,\dots,f_n,J_f U^T)
+  \]
+  -- where $J_f$ is the Jacobi-matrix of $f=(f_1,\dots,f_n)$:
+  \[
+    J_f=
+    \left(
+    \begin{matrix}
+      \partial_{X_1}f_1 & \dots & \partial_{X_n}f_1 \\
+      \vdots &  & \vdots \\
+      \partial_{X_1}f_n & \dots & \partial_{X_n}f_n 
+    \end{matrix}
+  \right)
+  \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  We calculate as in \cref{example-tangent-bundle} using \cref{evaluate-on-first-order-disk}:
+  \begin{align*}
+    X^{\D(1)}&= \Spec R[\epsilon] \to \Spec R[X_1,\dots,X_n]/(f_1,\dots,f_l)\\
+             &= \Hom_R(R[X_1,\dots,X_n]/(f_1,\dots,f_l),R[\epsilon]) \\
+             &= \{ x:R[\epsilon]^n \mid \forall i. f_i(x)=0 \} \\
+             &= \{ (x_1+\varepsilon u_1, \dots , x_n+\varepsilon u_n):R[\epsilon]^n \mid \forall i. f_i(x_1,\dots,x_n)+\varepsilon(\partial_{X_1}f_i\cdot u_1+\dots+\partial_{X_n}f_i\cdot u_n) =0 \} \\
+             &= \{ (x,u):R^{n+n}\mid (\forall i . f_i(x)=0) \times (J_f\cdot u^T=0) \} \\
+             &= \Spec R[X_1,\dots,X_n,U_1,\dots,U_n]/(f_1,\dots,f_n,J_f U^T)
+               \rlap{.}
+  \end{align*}
+\end{proof}
 
 We transfer a result of Myers \cite{david-orbifolds}[Theorem 4.2.19] to schemes:
 
