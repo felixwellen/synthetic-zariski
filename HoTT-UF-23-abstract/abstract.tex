@@ -1,10 +1,10 @@
 % latexmk -pdfxe -pvc -interaction=nonstopmode abstract.tex
-\documentclass{../zariski}
+\documentclass{../util/zariski}
 
 \begin{document}
 
 \begin{center}
-  \LARGE{Synthetic Algebraic Geometry}
+  \LARGE{A Foundation for Synthetic Algebraic Geometry}
 \end{center}
 
 Algebraic geometry is the study of solutions of non-linear equations using methods from geometry.
@@ -21,10 +21,46 @@ This means, while a scheme in classical algebraic geometry is a complicated comp
 we work in a setting where schemes are types,
 with an additional property we can define using axioms.
 
-Following ideas of Ingo Blechschmidt and Anders Kock,
-we work with a base ring $R$, which is local and ...
+Following ideas of Ingo Blechschmidt and Anders Kock  (\cite{ingo-thesis}, \cite{kock-sdg}[I.12]),
+we work with a base ring $R$, which is local and satisfies an axiom reminiscent of the Kock-Lawvere axioms,
+which is called \emph{synthetic quasi coherence (SQC)} by Blechschmidt and \emph{comprehensive axiom} by Kock.
+Before we state the SQC axiom, let us take a step and look at the basic objects of study in algebraic geometry,
+solutions of polynomial equations. 
+Given a system of polynomial equations
+\begin{align*}
+  p_1(X_1, \dots, X_n) &= 0\rlap{,} \\
+  \vdots  \\
+  p_m(X_1, \dots, X_n) &= 0\rlap{,}
+\end{align*}
+the solution set
+$\{ x : R^n \mid \forall i.\; p_i(x_1, \dots, x_n) = 0 \}$
+is in canonical bijection to the set of $R$-algebra homomorphisms
+\[ \Hom_R(R[X_1, \dots, X_n]/(p_1, \dots, p_m), R) \]
+by identifying a solution $(x_1,\dots,x_n)$ with the homomorphism that maps each $X_i$ to $x_i$.
+Conversely, for any $R$-algebra $A$, which is merely of the form $R[X_1, \dots, X_n]/(p_1, \dots, p_m)$,
+we define the \emph{spectrum} of $A$ to be
+\[
+  \Spec A \colonequiv \Hom_R(A, R)
+  \rlap{.}
+\]
+In contrast to classical, non-synthetic algebraic geometry,
+where this set needs to be equipped with additional structure,
+we postulate axioms that will ensure that $\Spec A$ has the expected geometric properties.
+Namely, SQC is the statement that the canonical map
+  \begin{align*}
+    A&\xrightarrow{\sim} (\Spec A\to R) \\
+    a&\mapsto (\varphi\mapsto \varphi(a))
+  \end{align*}
+is an equivalence.
 
-% \printbibliography
+BEGIN META
+Points to make from here:
+- David Jaz Myers already suggested and worked on synthetic algebraic geometry in HoTT
+- This is a report on work in progress
+- We partially solve the problem of defining cohomology groups synthetically, using higher types
+END META
+
+\printbibliography
 
 \end{document}
 
