@@ -26,7 +26,7 @@
 
 % Referenzen
 \RequirePackage[backend=biber,style=alphabetic, backref, backrefstyle=none]{biblatex}
-\addbibresource{literature.bib}
+\addbibresource{../util/literature.bib}
 
 % Grafiken
 \RequirePackage{tikz}
@@ -61,4 +61,4 @@
 
 \makeindex
     
-\RequirePackage{zariski}
+\RequirePackage{../util/zariski}
