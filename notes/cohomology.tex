@@ -17,14 +17,12 @@ in the form of maps from $X$ to the respective type of algebraic structures.
 
 \subsection{Quasi-coherent bundles}
 
-This subsection is still experimental.
-
 Sometimes we want to ``apply'' a bundle to a subtype,
 like sheaves can be evaluated on open subspaces
 and introduce the common notation ``$M(U)$'' for that below.
 It is, however, not justified to expect, that this application
 and the corresponding theory of ``sheaves'' is ``the same'' as the external one,
-since the definition below, uses the internal hom ``$\prod$''
+since the definition below uses the internal hom ``$\prod$''
 -- where the corresponding external construction, would be the set of continuous sections of a bundle.
 
 \begin{definition}
@@ -349,6 +347,33 @@ We will show below, that quasi coherence is preserved by the following construct
   \end{enumerate}
 \end{proof}
 
+With a non-cyclic forward reference to a cohomological result,
+there is a short proof of the following:
+
+\begin{proposition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  Let $m:N\to M$ be an $R$-linear embedding of weakly quasi-coherent $R$-modules $M$ and $N$,
+  then the cokernel $N/M$ is weakly quasi-coherent.
+\end{proposition}
+
+\begin{proof}
+  We need to show:
+  \[
+    (M/N)_f=(M/N)^{D(f)}.
+  \]
+  By algebra: $(M/N)_f=M_f/N_f$.
+  This means we are done, if $(M/N)^{D(f)}=M^{D(f)}/{N^{D(f)}}$.
+  To see this holds, let us consider $0\to N\to M\to M/N\to 0$ as a short exact sequence of dependent modules,
+  over the subtype of the point $D(f)\subseteq 1=\Spec R$.
+  Then, taking global sections, by \cref{cohomology-les},
+  we have an exact sequence
+  \[
+    0\to N^{D(f)}\to M^{D(f)}\to (M/N)^{D(f)}\to H^1(D(f),M)
+  \]
+  -- but $D(f)=\Spec R_f$ is affine,
+  so the last term is 0 by \cref{H1-wqc-module-affine-trivial}
+  and $(M/N)^{D(f)}$ is the cokernel $M^{D(f)}/N^{D(f)}$.
+\end{proof}
+
 \subsection{Finitely presented bundles}
 
 We now investigate the relationship between bundles of $R$-modules on $X = \Spec A$
@@ -456,6 +481,25 @@ which is the intent of the following definition:
   \]
 \end{definition}
 
+\begin{theorem}%
+  \label{cohomology-les}
+  Let $\mathcal F,\mathcal G,\mathcal H:X\to \AbGroup$ be such that for all $x:X$,
+  \[
+    0\to \mathcal F_x\to\mathcal G_x\to\mathcal H_x\to 0
+  \]
+  is an exact sequence of abelian groups. Then there is a long exact sequence:
+  \begin{center}
+    \begin{tikzcd}
+      & \dots\ar[r] & H^{k-1}(X,\mathcal H)\ar[dll] \\
+      H^k(X,\mathcal F)\ar[r] & H^k(X,\mathcal G)\ar[r] & H^k(X,\mathcal H)\ar[dll] \\
+      H^{k+1}(X,\mathcal F)\ar[r] & \dots &
+    \end{tikzcd}
+  \end{center}
+\end{theorem}
+
+\begin{proof}
+  By applying the long exact homotopy fiber sequence.
+\end{proof}
 
 The following is an explicit formulation of the fact, that the Čech-Complex for an
 $\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact in degree 1.
@@ -485,7 +529,7 @@ $\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact
 \end{proof}
 
 \begin{theorem}[using \axiomref{Z-choice}]%
-  \label{H1-fp-module-affine-trivial}
+  \label{H1-wqc-module-affine-trivial}
   For any affine scheme $X=\Spec(A)$ and coefficients $M: X\to \Mod{R}_{wqc}$, we have
   \[ H^1(X,M)=0 \rlap{.} \]
 \end{theorem}
@@ -520,7 +564,7 @@ We start by repeating the classical definition of Chech-Cohomology groups for a 
 \begin{definition}%
   \label{chech-complex}
   \begin{enumerate}[(a)]
-  \item \index{$\mathcal F(U)$} For open $U\subseteq X$, we use the notation
+  \item \index{$\mathcal F(U)$} For open $U\subseteq X$, we use the notation {\color{purple} DUPLICATION}
     \[
       \mathcal F(U)\colonequiv \prod_{x:U}\mathcal F_x\rlap{.}
     \]
