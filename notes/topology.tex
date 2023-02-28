@@ -651,7 +651,9 @@ which turns out to be the negation of the concept of reducible types.
 
 \subsection{Separated types and apartness}
 
-\begin{definition}
+\Cref{separated-inequality-apartness} was found and proven together with Marc Nieper-Wißkirchen and Ingo Blechschmidt.
+
+\begin{definition}%
   A type $X$ is \notion{separated}, if for all $x,y:X$
   the type $x=y$ is a closed subtype of $X\times X$.
 \end{definition}
@@ -661,15 +663,25 @@ which turns out to be the negation of the concept of reducible types.
   \begin{enumerate}[(i)]
   \item irreflexive: $\prod_{x:X}\neg(x \# x)$
   \item symmetric: $\prod_{x,y:X} x\# y \to y\# x$
-  \item and cotransitive: $\prod_{x,y,z:X} x\# z \to x\# y \vee y\# z$\rlap{.}
+  \item and cotransitive: $\prod_{x,y,z:X} x\# z \to x\# y \vee y\# z$.
   \end{enumerate}
 \end{definition}
 
-\begin{proposition}
+\begin{proposition}%
   \label{separated-inequality-apartness}
   If $X$ is a separated scheme, then inequality is an apartness relation.
 \end{proposition}
 
 \begin{proof}
-  MISSING
+
+\end{proof}
+
+\begin{proposition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
+  Let $X$ be a separated scheme and $U,V$ be open affine in $X$.
+  Then $U\cap V$ is affine.
+\end{proposition}
+
+\begin{proof}
+  $U\cap V$ is equivalently the closed subtype $\{(x,y) : U\times V\mid x=y\}$.
+  $U\times V$ is affine by \cref{affine-fiber-product} and a closed subtype of an affine scheme is affine by \¢ref{closed-subtype-affine}.
 \end{proof}
