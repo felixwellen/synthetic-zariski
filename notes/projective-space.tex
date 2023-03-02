@@ -194,3 +194,47 @@ We now give the small construction:
 \begin{proof}
   \dots
 \end{proof}
+
+
+\subsection{Intersection theory}
+
+\begin{example}[using \axiomref{loc}, \axiomref{sqc}]
+  It is not the case that
+  for any pair of lines $L, L' \subseteq \bP^2$,
+  the $R$-algebra $R^{L \cap L'}$ is free of rank $1$.
+\end{example}
+
+\begin{proof}
+  The $R$-algebra $R^{L \cap L'}$ is free of rank $1$
+  if and only if the structure homomorphism
+  $\varphi : R \to R^{L \cap L'}$ is bijective.
+  We will show that it is not even always injective.
+
+  Consider the lines
+  \[ L = \{\, [x : y : z] : \bP^2 \mid z = 0 \,\} \]
+  and
+  \[ L' = \{\, [x : y : z] : \bP^2 \mid \varepsilon x + \delta y + z = 0 \,\}
+     \rlap{,} \]
+  where $\varepsilon$ and $\delta$ are elements of $R$
+  with $\varepsilon^2 = \delta^2 = 0$.
+  Consider the element $\varphi(\epsilon \delta) : R^{L \cap L'}$,
+  which is the constant function $L \cap L' \to R$
+  with value $\varepsilon \delta$.
+  For any point $[x : y : z] : L \cap L'$,
+  we have $z = 0$ and $\varepsilon x + \delta y = 0$.
+  But also, by definition of $\bP^3$,
+  we have $(x, y, z) \neq 0 : R^3$,
+  so one of $x, y$ must be invertible.
+  This implies $\delta \divides \varepsilon$ or $\varepsilon \divides \delta$,
+  and in both cases we can conclude $\varepsilon \delta = 0$.
+  Thus, $\varphi(\epsilon \delta) = 0 : R^{L \cap L'}$.
+
+  If $\varphi$ was always injective
+  then this would imply $\varepsilon \delta = 0$
+  for any $\varepsilon, \delta : R$
+  with $\varepsilon^2 = \delta^2 = 0$.
+  In other words, the inclusion
+  \[ \Spec R[X, Y]/(X^2, Y^2, XY) \hookrightarrow \Spec R[X, Y]/(X^2, Y^2) \]
+  would be a bijection.
+  But the corresponding $R$-algebra homomorphism is not an isomorphism.
+\end{proof}
