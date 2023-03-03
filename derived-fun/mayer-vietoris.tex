@@ -144,31 +144,30 @@ This is just tailored to prove the following proposition:
   The square
   \begin{center}
     \begin{tikzcd}
-      \prod\varphi_U^*\psi_U^*\mathcal F & \prod\psi_U^*\mathcal F\arrow[l] \\
-      \prod\psi_V^*\mathcal F\arrow[u] & \prod\mathcal F\arrow[u]\arrow[l]
+      \prod\mathcal F\arrow[d]\arrow[r] & \prod\psi_U^*\mathcal F\arrow[d] \\
+      \prod\psi_V^*\mathcal F\arrow[r] & \prod\varphi_U^*\psi_U^*\mathcal F
     \end{tikzcd}
   \end{center}
   is a pullback by \cite[Proposition 2.1.6]{egbert-thesis}.
+  This can be transformed to the following pullback square:
+  \begin{center}
+    \begin{tikzcd}
+      \prod\mathcal F\arrow[d]\arrow[r] & \prod\varphi_U^*\psi_U^*\mathcal F\arrow[d,"\Delta"] \\
+      \prod\psi_V^*\mathcal F\times \prod\psi_U^*\mathcal F\arrow[r,"\times"] & \prod\varphi_U^*\psi_U^*\mathcal F\times\prod\varphi_U^*\psi_U^*\mathcal F
+    \end{tikzcd}
+  \end{center}
   
-  By \cite[Lemma 3.3.6]{wellen-thesis}, we have a pullback square for each $n:\mathbb{N}$:
+  By \cite[Lemma 3.3.6]{wellen-thesis} and the weak group structure on $\prod\varphi_U^*\psi_U^* B^n\mathcal F$,
+  we have a pullback square for each $n:\N$:
   \begin{center}
     \begin{tikzcd}
       \prod\varphi_U^*\psi_U^* B^n\mathcal F\arrow[r]\arrow[d] & 1\arrow[d] \\
       (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \times (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \arrow[r, "-"] & \prod\varphi_U^*\psi_U^* B^n\mathcal F
     \end{tikzcd}
   \end{center}
-  We rotate and paste a transformed \cref{mayer-vietoris-pullback} from above:
+  Pasting gives a fiber-square:
   \begin{center}
     \begin{tikzcd}
-      (\prod\psi_V^*B^n\mathcal F)\times(\prod\psi_U^*B^n\mathcal F)\arrow[d]  & \prod B^n\mathcal F\arrow[l]\arrow[d] \\
-      (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \times (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \arrow[d, "-"] & \prod\varphi_U^*\psi_U^* B^n\mathcal F\arrow[l]\arrow[d] \\
-      \prod\varphi_U^*\psi_U^* B^n\mathcal F  & 1\arrow[l] 
-    \end{tikzcd}
-  \end{center}
-  Now we take the fiber of the top map:
-  \begin{center}
-    \begin{tikzcd}
-      1\arrow[d] & \Omega \prod\varphi_U^*\psi_U^* B^n\mathcal F\arrow[l]\arrow[d] \\
       (\prod\psi_V^*B^n\mathcal F)\times(\prod\psi_U^*B^n\mathcal F)\arrow[d]  & \prod B^n\mathcal F\arrow[l]\arrow[d] \\
       (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \times (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \arrow[d, "-"] & \prod\varphi_U^*\psi_U^* B^n\mathcal F\arrow[l]\arrow[d] \\
       \prod\varphi_U^*\psi_U^* B^n\mathcal F  & 1\arrow[l] 
