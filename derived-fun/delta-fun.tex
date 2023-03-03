@@ -1,0 +1,209 @@
+TODO: This has to be updated...
+
+The following definition, from (\cite[2.1]{tohokuTranslation}) and originally from (\cite{tohoku1957}), is specialized to our needs.
+Grothendieck makes a definition for additive functors from an abelian category to a preadditive category.
+We just state it for abelian categories and will later apply it only to functors from dependent abelian groups over a fixed type to abelian groups.
+While we expect both of these types to admit the structure of an abelian category, we have proved neither and we will use neither in any proofs in this article.
+Instead, we will only use basic facts about abelian groups.
+
+\begin{definition}
+  Let $C$ and $C'$ be abelian categories.
+  
+  A \notion{$\partial$-Functor} is a collection of functors $T^i:C\to C'$, where $0\leq i < a$ with $a\in\N\cup\{\infty\}$,
+  together with a collection of connecting morphisms $\partial_{S,i}$ for any short exact sequence $S$ and $0\leq i\le a$, subject to the following conditions:
+  \begin{enumerate}
+  \item Let $S$ be a short exact sequence
+    \[ 0\to A'\to A\to A''\to 0\]
+    in $C$. Applying the $T^i$ yields a complex, together with connecting morphisms $(\partial_{S,i})_{i\in\N}$:
+    \begin{center}
+      \begin{tikzcd}
+        T^0(A')\ar[r] & T^0(A)\ar[r]  & T^0(A'')\ar[r,"\partial_{S,0}"]  & T^1(A')\ar[r]  & T^1(A)\ar[r]  & \dots
+      \end{tikzcd}
+    \end{center}
+  \item For any homomorphism to a second short exact sequence
+    \[ 0\to B'\to B\to B''\to 0\]
+    and any valid $i$ the corresponding square commutes:
+    \begin{center}
+      \begin{tikzcd}
+        T^i(A'')\ar[r,"\partial"]\ar[d] & T^{i+1}(A')\ar[d] \\
+        T^i(B'')\ar[r,"\partial"] & T^{i+1}(B') \\
+      \end{tikzcd}
+    \end{center}
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  Let $T$ and $T'$ be $\partial$-Functors defined for the same indices.
+  
+  A \notion{morphism of $\partial$-Functors} $f:T\to T'$ is given by a natural transformation $f^i:T^i\to T'^i$ for each valid $i$,
+  such that for any short exact sequence
+  \[ 0\to A'\to A\to A''\to 0\]
+  the following square commutes:
+  \begin{center}
+    \begin{tikzcd}
+      T^i(A'')\ar[r,"\partial"]\ar[d,"f^i_{A''}"] & T^{i+1}(A')\ar[d,"f^{i+1}_{A'}"] \\
+      T'^i(A'')\ar[r,"\partial"] & T'^{i+1}(A') 
+    \end{tikzcd}
+  \end{center}
+\end{definition}
+
+\begin{definition}
+  A $\partial$-Functor $T$ is called \notion{universal}, if for any $T'$, defined for the same indices,
+  any natural transformation $f^0:T^0\to T'^0$ extends uniquely to a morphism of $\partial$-Functors $f:T\to T'$.
+\end{definition}
+
+The following is provable by a constructive adaption of Prop 2.2.1 in the Tohoku-Paper:
+\begin{theorem}
+  \label{thm:universal}
+  Let $X$ be a type.
+  The functors $H^i$ mapping dependent abelian groups over $X$ to abelian groups form a universal $\partial$-Functor.
+\end{theorem}
+
+Before proving the theorem, we will establish some lemmas about extending morphisms between $\partial$-Functors.
+In the following, let $X$ be a type, $A$ a dependent abelian group over $X$, $T$ a $\partial$-Functor and $f$ a morphism of $\partial$-Functors, defined up to degree $i-1$.
+
+\begin{lemma}
+  \label{lem:extend-map}
+  For any gerbe $\chi:(x:X)\to A_{x,k}$ let $S$ be a short exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r,"\iota_\chi"] & R_\chi\ar[r,"c_\chi"] & C_\chi
+    \end{tikzcd}
+  \end{center}
+  of Eilenberg-MacLane spectra over $X$ resolving $\chi$.
+  There is a unique
+  \[\mathrm{ext}(\chi,S) : T^i(A)\]
+  (with $T$ as in \cref{thm:universal}) such that for any $x:H^{i-1}(C_\chi)$ with $\partial_{H,S,i-1}(x)=|\chi|$ we have $\partial_{T,S,i-1}(f^{i-1}(x))=\mathrm{ext}(\chi,S)$.
+\end{lemma}
+\begin{proof}[of \cref{lem:extend-map}]
+  Let
+  \[ A \to R_\chi\to C_\chi\]
+  be a short exact sequence of Eilenberg-MacLane spectra resolving $\chi$.
+  The following diagram commutes:
+  \begin{center}
+    \begin{tikzcd}
+      H^{i-1}(A)\ar[r]\ar[d,"f^{i-1}"]  & H^{i-1}(R_\chi)\ar[r]\ar[d,"f^{i-1}"]  & H^{i-1}(C_\chi)\ar[r,"\partial"]\ar[d,"f^{i-1}"] & H^i(A)\ar[r,"\hat{\iota}_\chi^\ast"] & H^i(R_\chi)\dots \\
+      T^{i-1}(A)\ar[r]  & T^{i-1}(R_\chi)\ar[r,"c_\chi^\ast"]  & T^{i-1}(C_\chi)\ar[r,"\partial"] & T^i(A)\ar[r] & T^i(R_\chi)\dots 
+    \end{tikzcd}
+  \end{center}
+  The upper row is exact and the lower row is a complex.
+
+  Let $E(\chi,S)$ be the type of all possible values of $f^i$ in $T^i(A)$,
+  with which we mean all $y:T^i(A)$ such that there merely is $x:H^{i-1}(C_\chi)$ with $\partial(x)=|\chi|$
+  and $\partial(f^{i-1}(x))=y$.
+  Then $E(\chi,S)$ is inhabited, since $\iota_\chi(|\chi|)=0$ and by exactness, there has to be a mere preimage under $\partial$.
+  So we need to show, that $E(\chi,S)$ is a proposition.
+  
+  Let $x:H^{i-1}(C_\chi)$ such that $\partial(x)=|\chi|$.
+  Then any other element with this property will be of the form $x+k$, with $k$ in the kernel of $\partial$.
+  Any $k$ like that, has a mere preimage $k':H^{i-1}(R_\chi)$ and since the lower row is a complex, we have $\partial(c_\chi^\ast(f^{i-1}(k')))=0$.
+  
+  So for any extension $y:T^{i}(A)$ we have
+  \begin{align*}
+    y &= \partial(f^{i-1}(x+k)) \\
+      &= \partial(f^{i-1}(x))+\partial(f^{i-1}(k)) \\
+      &= \partial(f^{i-1}(x))+\partial(c_\chi^\ast(f^{i-1}(k'))) \\
+      &= \partial(f^{i-1}(x))
+  \end{align*}
+  This means we can define $\mathrm{ext}(\chi,S)$ to be the unique element of $E(\chi,S)$.
+\end{proof}
+
+\begin{lemma}
+  \label{lem:extension-welldefined}
+  For any cohomology classes $\chi:(x:X)\to A_{x,k}$, $\xi:(x:X)\to A_{x,k}$ and any morphism
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[d,"\varphi"] & R_{\chi}\ar[r]\ar[d] & C_{\chi}\ar[d] \\
+      A'\ar[r] & R_{\xi}\ar[r] & C_{\xi}
+    \end{tikzcd}
+  \end{center}
+  of short exact resolving sequences $S_\chi$ and $S_\xi$ for $\chi$ and $\xi$
+  in the sense of \cref{def:morph-resolve}, we have:
+  \[ T^k(\varphi)(\mathrm{ext}(\chi,S_\chi)) = \mathrm{ext}(\xi,S_\xi) \]
+\end{lemma}
+\begin{proof}[of \cref{lem:extension-welldefined}]
+  Apply the $\partial$-Functors $H$ and $T$ to the morphism of resolving sequences, to get the following diagram:
+  \begin{center}
+    \begin{tikzcd}
+      H^{i-1}(R_\chi)\ar[r]\ar[dr]\ar[dd,"f^{i-1}"] & H^{i-1}(C_\chi)\ar[r]\ar[dr]\ar[dd, shift right=1ex, near start, "f^{i-1}"] & H^i(A)\ar[r]\ar[dr,"\varphi^\ast"] & H^i(R_\chi)\dots\ar[dr] & \\
+      & H^{i-1}(R_\xi)\ar[r]\ar[dd,"f^{i-1}",crossing over,near start] & H^{i-1}(C_\xi)\ar[r]\ar[dd,crossing over, near start, "f^{i-1}"] & H^i(A')\ar[r] & H^i(R_\xi)\dots \\
+      T^{i-1}(R_\chi)\ar[r] & T^{i-1}(C_\chi)\ar[r]\ar[dr] & T^i(A)\ar[r]\ar[dr,"T^i(\varphi)"] & T^i(R_\chi)\dots\ar[dr] & \\
+      & T^{i-1}(R_\xi)\ar[r] & T^{i-1}(C_\xi)\ar[r] & T^i(A')\ar[r] & T^i(R_\xi)\dots \\
+      
+      & a\ar[mapsto,r]\ar[dd,mapsto]\ar[rd,mapsto] & \chi\ar[r,mapsto]\ar[rd,mapsto] & 0\ar[rd,mapsto] & \\
+      & & a'\ar[mapsto,r]\ar[dd,mapsto] & \xi\ar[r,mapsto] & 0 \\
+      & b\ar[rd,mapsto]\ar[r,mapsto]& \mathrm{ext}(\chi,S_\chi)\ar[rd,mapsto] & & \\
+      & & b'\ar[r,mapsto] & ? & 
+      
+    \end{tikzcd}
+  \end{center}
+  From exactness of the upper sequence, we get that there is a preimage $a$ of $\chi$.
+  Let $a'$ denote the image of $a$ in $H^{i-1}(C_\xi)$,
+  then $a'$ will be a preimage of $\xi$ in the other sequence by commutativity.
+  That means, $b'$ will be mapped to $ \mathrm{ext}(\xi,S_\xi)$,
+  but by commutativity, $\mathrm{ext}(\chi,S_\chi)$ will be mapped to the same thing by $T^i(\varphi)$.
+  So
+  \[ T^i(\varphi)(\mathrm{ext}(\chi,S_\chi))=\mathrm{ext}(\xi,S_\xi)\]
+  
+\end{proof}
+
+\begin{proof}[of \cref{thm:universal}]
+  First of all, $H$ is a $\partial$-functor by \cref{prop:cohomology-les}.
+
+  To extend a given morphism $f^0$, 
+  we will construct $f^i:H^i\to T^i$ recursively for $i\in\N$.
+  The construction of $f^i$ will be done pointwise, for each element of $H^i(X,A)$ using the recursion principle for 0-truncation.
+  Since the codomain of $f^i$ is 0-truncated, the latter means, we can just assume that each element is of the form $|\chi|:H^i(X,A)$
+  for some cohomology class $\chi:(x:X)\to A_{x,i}$.
+
+  So assume $i\neq 0$ and let $\chi:(x:X)\to A_{x,i}$.
+  By \cref{thm:resolution-exists} we have the standard short exact sequence $S_\chi$ resolving $\chi$,
+  so we can use \cref{lem:extend-map} to construct an image $f^i(|\chi|):\equiv \mathrm{ext}(\chi,S_\chi)$.
+  
+  To see that a natural homomorphism of abelian groups $f^i$ can be constructed in this way,
+  we will \cref{lem:extension-welldefined}.
+
+  We can apply \cref{lem:extension-welldefined} to the morphism from \cref{rem:prod-resolve-sequence},
+  to see that we could have define $f^i(|\chi|)$ as well by
+  a resolution of the three classes $\chi, \xi, \chi+\xi:(x:X)\to A_{x,i}$.
+  But this is already enough to conclude that $f^i(|\chi|+|\xi|)=f^i(|\chi)+f^i(\xi)$, by the homomorphism properties of the maps involved in the construction in \cref{lem:extend-map}.
+
+  For a morphism $\varphi:A\to A'$ of spectra over $X$,
+  we can use the morphism of resolving sequences from \cref{rem:cong-resolve-sequence}.
+  Then \cref{lem:extension-welldefined} tells us directly, that $f^i$ is natural.
+  
+  For the commutativity of $f^i$ with connecting morphisms, let $x:X$ and consider a short exact sequence $S$:
+  \begin{center}
+    \begin{tikzcd}
+      A_x\ar[r,"\psi_x"] & A'_x\ar[r] &  A''_x
+    \end{tikzcd}
+  \end{center}
+  For any $\chi_x:A_{x,i }$, we can construct the following diagram:
+  \begin{center}
+    \begin{tikzcd}
+      A_{x,i}\ar[r,"\psi_{x,i}"]\ar[d,equal] & A_{x,i}'\ar[r]\ar[d] & A_{x,i}''\ar[d,dashed] \\
+      A_{x,i}\ar[r,"\widehat{\Delta\circ\psi_{x,i}}"]\ar[d,equal] & \widehat{\left((\chi_{x}=\ast)\to A_{x,i}'\right)}\ar[r]  & \mathrm{Cok}(\widehat{\Delta\circ\psi_{x,i}}) \\
+      A_{x,i}\ar[r,"\widehat{\Delta}"] &  \widehat{\left((\chi_{x}=\ast)\to A_{x,i}\right)}\ar[r]\ar[u] & \mathrm{Cok}(\widehat{\Delta})\ar[u,dashed]
+    \end{tikzcd}
+  \end{center}
+  If we know $\psi_{x,i}(\chi_{x})=\ast$, then $\chi_{x,i}$ will also equal $\ast$ in $\left((\chi_{x}=\ast)\to A_{x,i}'\right)$ and $\left((\chi_{x}=\ast)\to A_{x,i}\right)$.
+  This is still true in connective covers.
+  So we have morphisms between three resolving sequences and we
+  can apply \cref{lem:extension-welldefined} twice to get:
+  \[ \mathrm{ext}(\chi,S)=\mathrm{ext}(\chi,S_\chi)\equiv f^i(|\chi|)\]
+  -- where $S$ is the given short exact sequence and $S_\chi$ the standard resolving sequence for $\chi$.
+
+  What remains now, is to use this to show that the following diagram (from the LES for $S$) commutes:
+  \begin{center}
+    \begin{tikzcd}
+      H^{i-1}(A'')\ar[r,"\partial"]\ar[d,"f^{i-1}"] & H^i(A)\ar[d,"f^i"] \\
+      T^{i-1}(A'')\ar[r,"\partial"] & T^i(A)
+    \end{tikzcd}
+  \end{center}
+  So let $|\xi|:H^{i-1}(A'')$ and $|\chi|:\equiv \partial(|\xi|)$.
+  Then, by exactness, we know $\psi^\ast(|\chi|):H^i(A')$ is zero.
+  This means the underlying class is merely zero and we can apply what we just proved,
+  to (merely) get that
+  \[ \partial(f^{i-1}(|\xi|))=\mathrm{ext}(\chi,S)=\mathrm{ext}(\chi,S_\chi)\equiv f^i(|\chi|)=f^i(\partial(|\xi|))\]
+  Done.
+\end{proof}
