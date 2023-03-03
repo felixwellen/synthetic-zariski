@@ -52,7 +52,7 @@ commutative diagram.
 \]
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{eventually-join}
 For $r \ge n-1$, the map $J_r \to J_{r+1}$ is an equivalence and
 $J_r \simeq P_1 * \cdots * P_n$ is the join.
 \end{lemma}
@@ -140,7 +140,7 @@ $P_1(x), \ldots, P_n(x)$ is simply a list of types, to which we may apply
 Lemma \ref{cw}.
 Taking sigma over $x : X$ preserves pushouts (since it is a left adjoint),
 	   so we obtain the following pushout square for each $r \ge 0$.
-\[
+\begin{equation}\label{sigma-po}
 \begin{tikzcd}
 (x : X) \times Z_{r+1}(x) \times S^{r-1} \arrow[r] \arrow[d]
 	& (x : X) \times Z_{r+1}(x) \arrow[d] \\
@@ -148,58 +148,114 @@ Taking sigma over $x : X$ preserves pushouts (since it is a left adjoint),
 	(x : X) \times J_r(x)
 	\arrow[ul, phantom, "\ulcorner" , very near start]
 \end{tikzcd}
-\]
+\end{equation}
 
-Now suppose $M$ is a family of abelian groups over $X$,
-and consider the
-corresponding Mayer--Vietoris sequence.
-It can be seen directly by currying that
-\[H^l(Y \times S^{r-1})
-	\cong 
-H^l(Y) \oplus
-H^{l-r+1}(Y),\]
-and that the action on cohomology of the projection $Y \times S^{r-1} \to Y$
-corresponds to the inclusion of the left summand.
-Moreover, $(x : X) \times Z_{r+1}$ is a finite coproduct, and
+We could now use Mayer--Vietoris, % and maybe we should!
+but instead let us
+consider the following lemma which explains how to compute the cohomology of such a pushout.
+It is in the spirit of cellular cohomology. 
+
+\begin{lemma}\label{cw-fibre}
+Let $n \ge 0$ a natural number, and suppose given the
+following pushout square.
+\[
+\begin{tikzcd}
+I \times S^n \arrow[r] \arrow[d]
+	& I \arrow[d] \\
+	C \arrow[r] &
+	C'
+	\arrow[ul, phantom, "\ulcorner" , very near start]
+\end{tikzcd}
+\]
+Then for any parametrised spectrum $A$ over $C'$ we have the following fibre
+sequence of spectra, where $A^C$ denotes the cohomology spectrum of $C$ with
+coefficients in $A$:
+\[
+	A^{C'} \to A^C \to \Omega^n A^I.
+\]
+\end{lemma}
+\begin{proof}
+By the universal property of $A^-$, it turns colimits into limits, so we have the following
+pullback square in spectra.
+\[
+\begin{tikzcd}
+A^{C'} \arrow[r] \arrow[d] \arrow[dr, phantom, "\lrcorner" , very near start]
+	& A^I \arrow[d] \\
+	A^C \arrow[r] &
+	A^{I \times S^n}
+\end{tikzcd}
+\]
+We compute the bottom-right term:
+\[A^{I \times S^n} \simeq (A^{S^n})^I \simeq (A \oplus \Omega^n A)^I \simeq A^I \oplus \Omega^n A^I,\]
+using that $(S^n \to B) \simeq B \times \Omega^n B$ for any homogeneous pointed type $B$.
+Here $\oplus$ denotes biproduct of spectra.
+It can be seen that the map $A^I \to A^{I \times S^n}$ corresponds to the left inclusion into
+this direct sum. We can then paste this pullback diagram with
+\[
+\begin{tikzcd}
+A^I \arrow[r] \arrow[d] \arrow[dr, phantom, "\lrcorner" , very near start]
+	& 0 \arrow[d] \\
+	A^I \oplus \Omega^n A \arrow[r] &
+	\Omega^n A^I
+\end{tikzcd}
+\]
+to get the desired fibre sequence.
+\end{proof}
+
+Now suppose $M$ is a family of abelian groups over $X$, and we are interested in
+cohomology with coefficients in $M$.
+Note that $(x : X) \times Z_{r+1}$ is a finite coproduct, and
 cohomology is additive in those, so we have
 \[H^l((x : X) \times Z_{r+1}(x))
 	\cong
 	\bigoplus_{I : [n]^{(r+1)}} H^l((x : X) \times (i : I) \to P_i(x)).\]
-Now suppose for simplicity that $P_i$ is acyclic with regard to $M$, so 
-that \[H^l((x : X) \times (i: I) \to P_i(x)) = 0\] for $l > 0$ and any
-$I : [n]^{(r)}$.
-In this case, the Mayer--Vietoris sequence mostly degenerates, and
-we are left with the following.
 
-\begin{lemma}
-In the situation above, we have
-\[H^l((x : X) \times J_r(x)) \cong H^l((x : X) \times J_{r-1}(x))\]
+Let us write $C_{r+1}$ for this group in the case where $l = 0$.
+
+\begin{lemma}\label{acyclic-rec}
+If $P_i$ is acyclic with regard to $M$ in the sense that
+$H^l((x : X) \times (i : I) \to P_i(x)) = 0$ for $l > 0$ and any
+$r \ge 1$, $I : [n]^{(r)}$, then we have the following description of
+$H^l_r \coloneqq H^l((x: X) \times J_r(x))$:
+\[H^l_r \cong H^l_{r-1}\]
 for $l < r-1$ (where the map is induced by the map $J_{r-1}(x) \to J_r(x)$),
-	\[H^{r-1}((x : X) \times J_r(x)) \cong \ker\,\delta\]
+	\[H^{r-1}_r \cong \ker\,\delta\]
 	and
-	\[H^r((x : X) \times J_r(x)) \cong \coker\,\delta\]
-	where $\delta : H^{r-1}((x : X) \times J_{r-1}(x)) \to H^0((x : X) \times Z_{r+1}(x))$
+	\[H^r_r \cong \coker\,\delta\]
+	where $\delta : H^{r-1}_{r-1} \to C_{r+1}$
 	is induced by the attaching map $Z_{r+1}(x) \times S^{r-1} \to J_r(x)$,
 	and
-\[H^l((x : X) \times J_r(x)) \cong 0\]
+\[H^l_r \cong 0\]
 for $l > r$.
 \end{lemma}
 \begin{proof}
-By induction on $r$ using Mayer--Vietoris.
+We induct on $r$. For $r = -1$ there is nothing to prove. For $r \ge 0$ we start with
+the pushout square (1). %could not get referencing to work properly
+To this we apply Lemma \ref{cw-fibre}, obtaining
+a fibre sequence of cohomology spectra. Consider the associated long exact sequence
+on homotopy groups. By assumption, one of the spectra in our fibre sequence has
+its cohomology concentrated in degree $r-1$, where it is
+$C_{r+1}$, leading to the desired result.
 \end{proof}
-We expect one can show that the map $\delta$ is induced by the \v{C}ech boundary map
-\[ \bigoplus_{I : [n]^{(r)}} H^0((x : X) \times (i : I) \to P_i(x))
-	\to
-	\bigoplus_{J : [n]^{(r+1)}} H^0((x : X) \times (j : J) \to P_j(x)). \]
-Modulo this, we arrive at our main result.
+From Lemma \ref{acyclic-rec}, we have that $H^r_r$ is a quotient of $C_{r+1}$
+for all $r$. In particular, the map $\delta : H^{r-1}_{r-1} \to C_{r+1}$ appearing in the statement of Lemma \ref{acyclic-rec}
+composes with the quotient map to give a map $C_r \to C_{r+1}$.
+We expect this map to be the usual boundary map appearing in the \v{C}ech complex.
+Modulo this gap, we arrive at our main result.
 \begin{theorem}
 For any $P_1,\ldots,P_n$ which are acyclic with regard to $M$, the cohomology groups 
 \[
 H^l((x: X) \times P_1(x) * \cdots * P_n(x); M)
 \]
-of the fibrewise join with coefficients in $M$ agree with the cohomology of the \v{C}ech complex.
+of the fibrewise join with coefficients in $M$ agree with the cohomology of the \v{C}ech complex,
+i.e.\ the kernel of the boundary map $C_{l+1} \to C_{l+2}$ modulo the image of the boundary
+map $C_l \to C_{l+1}$.
 \end{theorem}
+\begin{proof}
+Combining Lemmas \ref{eventually-join} and \ref{acyclic-rec}. (Modulo the gap about describing
+		the boundary map $C_r \to C_{r+1}$.)
+\end{proof}
 Note that if $P_i(x)$ are propositions, then the fibrewise join
 is simply the union of subtypes, and the types 
-$H^0((x : X) \times (i: I) \to P_i(x))$ appearing in the \v{C}ech complex
+$(x : X) \times (i: I) \to P_i(x)$ appearing in the \v{C}ech complex
 are simply intersections of subtypes.
