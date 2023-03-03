@@ -1,0 +1,205 @@
+\begin{definition}
+The join $X * Y$ of two types $X$, $Y$ is given by the following pushout.
+\[
+\begin{tikzcd}
+X \times Y \arrow[r] \arrow[d]
+	& Y \arrow[d] \\
+	X \arrow[r] &
+	X * Y 
+	\arrow[ul, phantom, "\ulcorner" , very near start]
+\end{tikzcd}
+\]
+\end{definition}
+
+Let $n$ be a natural number and $P_1, \ldots, P_n$ types.
+We define the join $P_1 * \cdots * P_n$ by induction on $n$,
+so that it is empty if $n = 0$ 
+and $P_1 * (P_2 * \cdots * P_n)$ if $n > 1$.
+Our goal is to describe a precise sense in which
+this join is built from the products
+$\Pi_{i : I} P_i$ where $I \subseteq [n]$ ranges over detachable,
+inhabited subsets.
+Note that if $P_i$ are all propositions, then so is the join, with
+$P_1 * \cdots * P_n = P_1 \vee \cdots \vee P_n$.
+
+\begin{definition}
+We define a sequence $J_{-1} \to J_0 \to J_1 \to \cdots$ of types.
+If $n = 0$, we take $J_r = \varnothing$ for all $r$.
+If $n > 0$, let $\widehat J_r$ be the sequence obtained recursively from
+the types $P_2, \ldots, P_n$.
+We take $J_{-1} = \varnothing$ and for $r \ge 0$ define $J_r$ by the following
+pushout diagram.
+\[
+\begin{tikzcd}
+P_1 \times \widehat J_{r-1} \arrow[r] \arrow[d]
+	& P_1 \arrow[d] \\
+	\widehat J_r \arrow[r] &
+	J_r 
+	\arrow[ul, phantom, "\ulcorner" , very near start]
+\end{tikzcd}
+\]
+The map $J_r \to J_{r+1}$ is induced by functoriality of pushouts via the following
+commutative diagram.
+\[
+\begin{tikzcd}
+	\widehat J_{r-1} \arrow[d] &
+	P_1 \times \widehat J_{r-2} \arrow[l] \arrow[d] \arrow[r] &
+	P_1 \arrow[d] \\
+	\widehat J_r &
+	P_1 \times \widehat J_{r-1} \arrow[l] \arrow[r] &
+	P_1 \\
+\end{tikzcd}
+\]
+\end{definition}
+
+\begin{lemma}
+For $r \ge n-1$, the map $J_r \to J_{r+1}$ is an equivalence and
+$J_r \simeq P_1 * \cdots * P_n$ is the join.
+\end{lemma}
+\begin{proof}
+Direct by induction on $n$.
+\end{proof}
+
+\begin{definition}
+For $r$ a natural number, let
+$[n]^{(r)}$ denote the type of $r$-element subsets of $[n]$, and
+define
+\[
+Z_r \coloneqq (I : [n]^{(r)}) \times (i : I) \to P_i.
+\]
+\end{definition}
+\begin{lemma}\label{cw}
+For $r \ge 0$, we have a pushout square of the following form.
+\[
+\begin{tikzcd}
+Z_{r+1} \times S^{r-1} \arrow[r] \arrow[d]
+	& Z_{r+1} \arrow[d] \\
+	J_{r-1} \arrow[r] &
+	J_r
+	\arrow[ul, phantom, "\ulcorner" , very near start]
+\end{tikzcd}
+\]
+\end{lemma}
+That is, $J_r$ is obtained from $J_{r-1}$ by attaching $Z_{r+1}$-many $r$-cells.
+\begin{proof}
+We induct on $n$. For $n = 0$, $Z_{r+1}$ is empty and so there is nothing to prove.
+For $r = 0$ the conclusion is also clear.
+Thus suppose $n > 0$, $r > 0$ and that the lemma holds for the sequence $P_2, \ldots, P_n$.
+Consider the following 3-by-3-diagram, with the pushouts of the rows and columns listed
+at the bottom and to the right.
+\[
+\begin{tikzcd}
+ P_1 &
+ P_1 \times \widehat Z_r \arrow[l] \arrow[r,equal]&
+ P_1 \times \widehat Z_r &
+ P_1 \\
+ P_1 \times \widehat J_{r-2} \arrow[u] \arrow[d] &
+ P_1 \times \widehat Z_r \times S^{r-2} \arrow[l] \arrow[r] \arrow[u] \arrow[d] &
+ P_1 \times \widehat Z_r  \arrow[u,equal] \arrow[d] &
+ P_1 \times \widehat J_{r-1} \arrow[u] \arrow[d] \\
+ \widehat J_{r-1} &
+ \widehat Z_{r+1} \times S^{r-1} + P_1 \times \widehat Z_r  \arrow[l] \arrow[r] &
+ \widehat Z_{r+1} + P_1 \times \widehat Z_r &
+ \widehat J_r \\
+	 J_{r-1} & 
+	 Z_{r+1} \times S^{r-1} \arrow[l] \arrow[r] & 
+	 Z_{r+1} & J_r
+\end{tikzcd}
+\]
+The maps in this diagram are all guessable, and the commutativity of each of
+the four squares is direct. We explain how to compute the pushout of each row and column.
+The pushout of the first row is $P_1$, since
+the pushout of any equivalence is an equivalence.
+The pushout of the second row is $P_1 \times \widehat J_{r-1}$,
+by inductive hypothesis and using that $P_1 \times -$ preserves pushouts.
+The pushout of the third row is $\widehat J_r$, again using inductive hypothesis
+as well as the observation that the $P_1 \times \widehat Z_r$-terms do not
+affect the pushout.
+
+The pushout of the first column is $J_{r-1}$ by definition.
+To compute the pushout of the second column, we observe that the 
+$\widehat Z_{r+1} \times S^{r-1}$-term does not interact with the rest of the column,
+that the suspension of $S^{r-2}$ is $S^{r-1}$, and that $P_1 \times \widehat Z_r \times -$
+preserves pushouts. All together, this shows that
+the pushout is $\widehat Z_{r+1} \times S^{r-1} + P_1 \times \widehat Z_r \times S^{r-1}$,
+i.e.\ $(\widehat Z_{r+1} + P_1 \times \widehat Z_r) \times S^{r-1}$,
+i.e.\ $Z_{r+1} \times S^{r-1}$.
+Finally, the third pushout is 
+$\widehat Z_{r+1} + P_1 \times \widehat Z_r$ since the pushout of an equivalence
+is an equivalence, i.e.\ $Z_{r+1}$.
+
+The $3 \times 3$-lemma tells us that the the pushout of row-wise pushouts is equivalent
+to the pushout of column-wise pushouts. That is, 
+$J_r$ is a pushout of the desired form. (Here one should be careful to
+		check that the maps are the ones we expect.)
+\end{proof}
+
+Now let $X$ be a type, $n$ a natural number, and $P_i$ a type family over
+$X$ for each $i : [n]$. For any $x : X$,
+$P_1(x), \ldots, P_n(x)$ is simply a list of types, to which we may apply
+Lemma \ref{cw}.
+Taking sigma over $x : X$ preserves pushouts (since it is a left adjoint),
+	   so we obtain the following pushout square for each $r \ge 0$.
+\[
+\begin{tikzcd}
+(x : X) \times Z_{r+1}(x) \times S^{r-1} \arrow[r] \arrow[d]
+	& (x : X) \times Z_{r+1}(x) \arrow[d] \\
+	(x : X) \times J_{r-1}(x) \arrow[r] &
+	(x : X) \times J_r(x)
+	\arrow[ul, phantom, "\ulcorner" , very near start]
+\end{tikzcd}
+\]
+
+Now suppose $M$ is a family of abelian groups over $X$,
+and consider the
+corresponding Mayer--Vietoris sequence.
+It can be seen directly by currying that
+\[H^l(Y \times S^{r-1})
+	\cong 
+H^l(Y) \oplus
+H^{l-r+1}(Y),\]
+and that the action on cohomology of the projection $Y \times S^{r-1} \to Y$
+corresponds to the inclusion of the left summand.
+Moreover, $(x : X) \times Z_{r+1}$ is a finite coproduct, and
+cohomology is additive in those, so we have
+\[H^l((x : X) \times Z_{r+1}(x))
+	\cong
+	\bigoplus_{I : [n]^{(r+1)}} H^l((x : X) \times (i : I) \to P_i(x)).\]
+Now suppose for simplicity that $P_i$ is acyclic with regard to $M$, so 
+that \[H^l((x : X) \times (i: I) \to P_i(x)) = 0\] for $l > 0$ and any
+$I : [n]^{(r)}$.
+In this case, the Mayer--Vietoris sequence mostly degenerates, and
+we are left with the following.
+
+\begin{lemma}
+In the situation above, we have
+\[H^l((x : X) \times J_r(x)) \cong H^l((x : X) \times J_{r-1}(x))\]
+for $l < r-1$ (where the map is induced by the map $J_{r-1}(x) \to J_r(x)$),
+	\[H^{r-1}((x : X) \times J_r(x)) \cong \ker\,\delta\]
+	and
+	\[H^r((x : X) \times J_r(x)) \cong \coker\,\delta\]
+	where $\delta : H^{r-1}((x : X) \times J_{r-1}(x)) \to H^0((x : X) \times Z_{r+1}(x))$
+	is induced by the attaching map $Z_{r+1}(x) \times S^{r-1} \to J_r(x)$,
+	and
+\[H^l((x : X) \times J_r(x)) \cong 0\]
+for $l > r$.
+\end{lemma}
+\begin{proof}
+By induction on $r$ using Mayer--Vietoris.
+\end{proof}
+We expect one can show that the map $\delta$ is induced by the \v{C}ech boundary map
+\[ \bigoplus_{I : [n]^{(r)}} H^0((x : X) \times (i : I) \to P_i(x))
+	\to
+	\bigoplus_{J : [n]^{(r+1)}} H^0((x : X) \times (j : J) \to P_j(x)). \]
+Modulo this, we arrive at our main result.
+\begin{theorem}
+For any $P_1,\ldots,P_n$ which are acyclic with regard to $M$, the cohomology groups 
+\[
+H^l((x: X) \times P_1(x) * \cdots * P_n(x); M)
+\]
+of the fibrewise join with coefficients in $M$ agree with the cohomology of the \v{C}ech complex.
+\end{theorem}
+Note that if $P_i(x)$ are propositions, then the fibrewise join
+is simply the union of subtypes, and the types 
+$H^0((x : X) \times (i: I) \to P_i(x))$ appearing in the \v{C}ech complex
+are simply intersections of subtypes.
