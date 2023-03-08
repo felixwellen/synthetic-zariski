@@ -421,7 +421,7 @@ Algebraic preparation:
 \begin{proof}
   If $P$ is non-zero, its content $c(P)$ is top.
   For any $Q:R[X]$ with $P\cdot Q$ nilpotent,
-  by \cite{lombardi-quitte:constructive-algebra}[Theorem III.2.1] we also have $c(P\cdot Q)=c(P)\wedge c(Q)=c(Q)$ is bottom.
+  by \cite{lombardi-quitte}[Theorem III.2.1] we also have $c(P\cdot Q)=c(P)\wedge c(Q)=c(Q)$ is bottom.
   So $Q$ is nilpotent.
 \end{proof}
 
@@ -546,13 +546,13 @@ We will now characterize dense open subsets of affine schemes.
   By \cref{qc-open-affine-open}, there are $r_1,\dots,r_n:A$ such that $U=D(r_1,\dots,r_n)$.
   Let $x:A$ such that all $r_ix$ are nilpotent.
   By \cref{standard-open-empty}, this implies $D(r_ix)=\emptyset$ for all $i$.
-  Since $D(x)\cap D(r_1,\dots,r_n)=D(r_1x)\vee\dots\vee D(r_nx)=\emptyset$,
+  Since $D(x)\cap D(r_1,\dots,r_n)=D(r_1x)\cup\dots\cup D(r_nx)=\emptyset$,
   this implies $D(x)=\emptyset$.
   Therefore $x$ is nilpotent and the $r_i$ are jointly nilregular.
 
   Now let $U=D(r_1,\dots,r_n)$ with jointly nilregular $r_1,\dots,r_n:A$.
   Without loss of generality, let $V=D(f)$ and $D(f)\cap U=\emptyset$.
-  Then $D(r_1f)\vee \dots \vee D(r_nf)=\emptyset$, so $D(r_if)=\emptyset$ for all $i$.
+  Then $D(r_1f)\cup \dots \cup D(r_nf)=\emptyset$, so $D(r_if)=\emptyset$ for all $i$.
   This means $r_if$ is nilpotent and therefore, $f$ is nilpotent and $D(f)=\emptyset$.
 \end{proof}
 
@@ -590,13 +590,32 @@ that any non-empty open subset of $\A^1$ is dense.
 
 \subsection{Irreducible and reducible types}
 
-We will start with the notion irreducible types,
-which turns out to be the negation of the concept of reducible types.
+We start with the notion of reducible types and will then pass to the negation of this concept, to irreducible types.
+
+\begin{definition}
+  A type is called \notion{reducible}, if there are two disjoint, inhabited open subsets.
+\end{definition}
+
+\begin{proposition}
+  The scheme $\Spec R[X,Y]/(XY)$ is reducible.
+\end{proposition}
+
+\begin{proof}
+  We take the subsets $D(X),D(Y)\subseteq \Spec R[X,Y]/(XY)$.
+  Then
+  \[ D(X)\cap D(Y)=\{\,(x,y)\mid xy=0\wedge x\neq 0\wedge y\neq 0\,\}=\emptyset\rlap{.} \]
+  And $(1,0)\in D(X)$, $(0,1)\in D(Y)$.
+\end{proof}
 
 \begin{definition}%
   \label{irred}
   A type $X$ is called \notion{irreducible},
-  if any non-empty open $U\subseteq X$ is dense.
+  if the following equivalent propositions hold:
+  \begin{enumerate}[(i)]
+  \item $X$ is not reducible.
+  \item Any non-empty open $U\subseteq X$ is dense.
+  \item For any open disjoint $U,V\subseteq X$ such that $U\neq\emptyset$, we have $V=\emptyset$.
+  \end{enumerate}
 \end{definition}
 
 \begin{proposition}%
@@ -615,39 +634,29 @@ which turns out to be the negation of the concept of reducible types.
 
 \begin{proof}
   Let $U\subseteq \A^1$ with $U\neq \emptyset$.
-  We have to show that $U$ is dense, so let $V$ be open such that $V\cap U=\emptyset$.
+  We have to show that $U$ is dense.
   Let $U=D(f_1,\dots,f_n)$.
   We merely have a bound for the degree of each of the $f_i:R[X]$,
   so we can concatenate all coefficients of the $f_i$ and, since $U\neq \emptyset$,
   we know that vector is not the zero-vector.
   So one of the $f_i$ is nilregular by \cref{nilregular-non-zero-polynomial}.
-  Now let $V\equiv D(g_1,\dots,g_m)\subseteq \A^1$ be open such that $V\cap U=\emptyset$.
-  Then we have
-  \[ \emptyset=\bigcup_{i,j} D(f_ig_j) \]
-  so $D(f_ig_j)=\emptyset$ for all $i,j$.
-  Since one of the $f_i$ is nilregular,
-  this means that all of the $g_j$ are nilpotent and therefore $V=\emptyset$.
-  This shows $U$ is dense.
-\end{proof}
-
-\begin{definition}
-  A type is called \notion{reducible}, if there are two disjoint, non-empty open subsets.
-\end{definition}
-
-\begin{proposition}
-  $X\colonequiv \Spec R[X,Y]/(XY)$ is reducible.
-\end{proposition}
-
-\begin{proof}
-  We take the subsets $D(X),D(Y)\subseteq X$.
-  Then
-  \[ D(X)\cap D(Y)=\{(x,y)\vert xy=0\wedge x\neq 0\wedge y\neq 0\}=\emptyset\rlap{.} \]
-  And $(1,0)\in D(X)$, $(0,1)\in D(Y)$.
+  In particular,
+  the elements $f_1, \dots, f_n$ are jointly nilregular,
+  so $U$ is dense by \cref{affine-open-dense-nilregular}.
 \end{proof}
 
 \begin{example}
-  $X\colonequiv \Spec R[X,Y]/(XY)$ is not irreducible.
+  The scheme $\Spec R[X,Y]/(XY)$ is not irreducible.
 \end{example}
+
+\begin{remark}
+  In a classical setting,
+  reducibility and irreducibility are usually defined
+  in terms of closed subsets instead of open subsets.
+  However, this does not give the correct notion in our setting,
+  as the example $\Spec R[X, Y]/(XY)$ shows:
+  this scheme is not the union of the closed subsets $V(X)$ and $V(Y)$.
+\end{remark}
 
 We will now explore the relation of connectedness and irreducibility.
 It is not the case, that any open dense subtype of a connected scheme is connected:
@@ -669,13 +678,47 @@ It is not the case, that any open dense subtype of a connected scheme is connect
   \]
 \end{example}
 
+\begin{proposition}[using no axioms]%
+  \label{irreducible-implies-connected}
+  Any irreducible pointed type is connected.
+\end{proposition}
+
+\begin{proof}
+  Let $X$ be an irreducible pointed type
+  and let a decomposition into detachable subsets $X = U \sqcup V$ be given.
+  In particular, $U$ and $V$ are open subsets,
+  and we can assume that the base point of $X$ lies in $U$.
+  But then $U$ is dense since $X$ is irreducible,
+  so we have $V = \emptyset$ and $U = X$.
+\end{proof}
+
+\begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{open-subtype-of-irred-is-irred}
+  Let $X$ be an irreducible type
+  and $U \subseteq X$ an open subtype.
+  Then $U$ is also irreducible.
+\end{proposition}
+
+\begin{proof}
+  Let $V, W \subseteq U$ be open subtypes with $V \cap W = \emptyset$.
+  Assume that both $V$ and $W$ are nonempty,
+  now we have to show a contradiction.
+  By \cref{qc-open-sigma-closed},
+  $V$ and $W$ are also open subsets of $X$,
+  so we indeed get a contradiction
+  from the fact that $X$ is irreducible.
+\end{proof}
+
+
 \subsection{Separated types and apartness}
 
 \Cref{separated-inequality-apartness} was found and proven together with Marc Nieper-Wißkirchen and Ingo Blechschmidt.
 
 \begin{definition}%
   A type $X$ is \notion{separated}, if for all $x,y:X$
-  the type $x=y$ is a closed subtype of $X\times X$.
+  the type $x=y$ is a closed proposition,
+  that is,
+  the diagonal $X \to X\times X$ is the embedding of a closed subtype.
 \end{definition}
 
 \begin{definition}
