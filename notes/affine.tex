@@ -10,7 +10,7 @@ where $A$ is a finitely presented algebra.
 
 \begin{proposition}%
   Let $X$ be a type.
-  The type of all finitely presented $R$-algebra $A$, such that $X=\Spec A$, is a proposition.
+  The type of all finitely presented $R$-algebras $A$, such that $X=\Spec A$, is a proposition.
 \end{proposition}
 
 When we write ``$\Spec A$'' we implicitly assume $A$ is a finitely presented $R$-algebra.
@@ -372,3 +372,51 @@ shows that $R$ is in a weak sense algebraically closed.
   $f = \alpha \cdot {(X - \widetilde{a}_1)}^{e_1} \dots {(X - \widetilde{a}_n)}^{e_n}$
   with distinct $\widetilde{a}_i$.
 \end{proof}
+
+\begin{example}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{non-existence-of-roots}
+  It is not the case that
+  every monic polynomial $f : R[X]$ with $\deg f \geq 1$ has a root.
+  More specifically,
+  if $U \subseteq \A^1$ is an open subset
+  with the property that
+  the polynomial $X^2 - a : R[X]$ merely has a root
+  for every $a : U$,
+  then $U = \emptyset$.
+\end{example}
+
+\begin{proof}
+  Let $U \subseteq \A^1$ be as in the statement.
+  Since we want to show $U = \emptyset$,
+  we can assume a given element $a_0 : U$
+  and now have to derive a contradiction.
+  By \axiomref{Z-choice},
+  there exists in particular a standard open $D(f) \subseteq \A^1$
+  with $a_0 \in D(f)$
+  and a function $g : D(f) \to R$
+  such that ${(g(x))}^2 = x$ for all $x : D(f)$.
+  By \axiomref{sqc},
+  this corresponds to an element $\frac{p}{f^n} : R[X]_f$
+  with ${(\frac{p}{f^n})}^2 = X : R[X]_f$.
+  We use \cref{polynomial-with-regular-value-is-regular}
+  together with the fact that $f(a_0)$ is invertible
+  to get that $f : R[X]$ is regular,
+  and therefore $p^2 = f^{2n}X : R[X]$.
+  Considering this equation over $R^{\mathrm{red}} = R/\sqrt{(0)}$ instead,
+  we can show by induction that all coefficients of $p$ and of $f^n$ are nilpotent,
+  which contradicts the invertibility of $f(a_0)$.
+\end{proof}
+
+\begin{remark}
+  \Cref{non-existence-of-roots} shows that
+  the axioms we are using here
+  are incompatible with a natural axiom that is true
+  for the structure sheaf of the big étale topos,
+  namely that $R$ admits roots for unramifiable monic polynomials.
+  The polynomial $X^2 - a$ is even separable for invertible $a$,
+  assuming that $2$ is invertible in $R$.
+  To get rid of this last assumption,
+  we can use the fact that either $2$ or $3$ is invertible in the local ring $R$
+  and observe that the proof of \cref{non-existence-of-roots}
+  works just the same for $X^3 - a$.
+\end{remark}
