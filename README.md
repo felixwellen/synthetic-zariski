@@ -3,7 +3,7 @@ Latex documentation of our understanding of the synthetic /internal theory of th
 There are currently three parts:
 - Foundations ([pdf](https://felix-cherubini.de/iag.pdf))
 - Chech-Cohomology
-- Differential Geometry (so far, not much)
+- Differential Geometry (so far, [not much](https://felix-cherubini.de/diffgeo.pdf))
 
 There is a related [formatization project](https://github.com/felixwellen/synthetic-geometry).
 
