@@ -1,5 +1,9 @@
 # synthetic-zariski
-Latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos
+Latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos.
+There are currently three parts:
+- Foundations ([pdf](https://felix-cherubini.de/iag.pdf))
+- Chech-Cohomology
+- Differential Geometry (so far, not much)
 
 # Questions
 
