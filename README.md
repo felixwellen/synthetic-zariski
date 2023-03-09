@@ -5,6 +5,9 @@ There are currently three parts:
 - Chech-Cohomology
 - Differential Geometry (so far, not much)
 
+There is a related [formatization project](https://github.com/felixwellen/synthetic-geometry).
+
+
 # Questions
 
 - Is the product of irreducible types/schemes irreducible?
