@@ -5,7 +5,7 @@ There are currently three parts:
 - Chech-Cohomology
 - Differential Geometry (so far, [not much](https://felix-cherubini.de/diffgeo.pdf))
 
-There is a related [formatization project](https://github.com/felixwellen/synthetic-geometry).
+There is a related [formalization project](https://github.com/felixwellen/synthetic-geometry).
 
 
 # Questions
