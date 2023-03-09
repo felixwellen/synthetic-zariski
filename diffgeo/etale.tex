@@ -90,3 +90,24 @@ Since all of our schemes are of finite presentations, this should be a correct d
   such that $\tilde{f}^n(x)=0$ or $\neg\neg(\tilde{f}^n(x)=1)$.
   With the map $1-\_:R\to R$, we can achieve the same for $1$.
 \end{proof}
+
+\begin{proposition}%
+	Let $X$ be an affine scheme and suppose $X \to 1$ is étale. Then $X$ has decidable equality.
+\end{proposition}
+
+\begin{proof}
+	Let $X = \Spec R[X_1,\ldots,X_n]/(f_1,\ldots,f_l)$, and suppose $a : X$.
+	Since $X$ is étale, the tangent space $T_a X$ has a unique point.
+	This tangent space has an explicit description as the spectrum of 
+	$R[U_1,\ldots,U_n]/(J_f U^T)$. Since the tangent space has a unique point,
+	this ring is $R$. This means for each $i = 1,\ldots,n$, we can find
+	$g_i : (f_1,\ldots,f_l)$ with $\partial_{X_j} g_i(a) = \delta_{ij}$.
+	This means we can factor $g_i = (X_i-a_i)q_i$ with $q_i(a) = 1$.
+	Now for $b : X$ we claim that either $a = b$ or $a \ne b$.
+	For each $i$, we have $q_i(b) + (q_i(a) - q_i(b)) = 1$, so either
+	$q_i(b)$ is invertible or $q_i(a) - q_i(b)$ is invertible.
+	In the first case, $b_i = a_i$ since $g_i(b) = 0$.
+	In the second case, $a \ne b$. 
+	By finite choice, we may suppose for each $i$ we purely know one of the alternatives.
+	Thus we either know $b_i = a_i$ for all $i$, so that $a = b$, or that $a \ne b$.
+\end{proof}
