@@ -1,10 +1,30 @@
 
+\subsection{Lifting Properties}
+
+\begin{example}
+  Let us assume $2\neq 0$ in $R$ and look at the following square:
+  \begin{center}
+    \begin{tikzcd}
+      1\ar[r]\ar[d] & \Spec R[X,X^{-1}][Y]/(Y^2)\ar[d,"\pi"] \\
+      \D(1)\ar[r] & \Spec R[X,X^{-1}]
+    \end{tikzcd}
+  \end{center}
+  As the bottom map, we choose the inclusion of $\{x:R^\times \mid (x-1)^2=0 \}$.
+  Then, for any choice of the top map, there is a unique lift in this square:
+  \begin{center}
+    \begin{tikzcd}
+      1\ar[r]\ar[d] & \Spec R[X,X^{-1}][Y]/(Y^2)\ar[d,"\pi"] \\
+      \D(1)\ar[r]\ar[ru,dashed] & \Spec R[X,X^{-1}]
+    \end{tikzcd}
+  \end{center}
+\end{example}
+
 A non-fintely generated version of the following definition is usually used to define \emph{formally étale} maps of schemes and then it is subsequently noted,
 that formally étale maps of finite presentation are étale.
 Since all of our schemes are of finite presentations, this should be a correct definition of étale morphism.
 
 \begin{definition}
-  \begin{enumerate}
+  \begin{enumerate}[(a)]
   \item   A map $f:X\to Y$ is \notion{formally étale},
     if for all finitely presented $R$-algebras $A$ and all finitely generated nilpotent ideal $N\subseteq A$,
     and all squares like below, there is a unique lift:
@@ -25,8 +45,48 @@ Since all of our schemes are of finite presentations, this should be a correct d
   where $a:A$ with $a^2=0$.
 \end{lemma}
 
+\begin{lemma}%
+  \label{nilpotent-ideal-not-not-dense}
+  Let $A$ be a finitely presented $R$-algebra and $N\subseteq A$ be finitely generated nilpotent.
+  Then for $V\colonequiv \Spec (A/N)\subseteq \Spec A$ the following holds:
+  \begin{enumerate}[(a)]
+  \item For all $x:\Spec A$, $\neg\neg V(x)$.
+  \item If $V=\emptyset$, then $\Spec A=\emptyset$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  The generators of $n_1,\dots,n_l$ of $N$ are nilpotent functions.
+  \begin{enumerate}[(a)]
+  \item We have to show a $\neg\neg$-stable proposition,
+    so we can assume $n_1(x)=0,\dots,n_l(x)=0$, but then any $x:\Spec A$ is an element of $V=V(n_1,\dots,v_l)$.
+  \item Assume $V=\emptyset$ and $x:\Spec A$.
+        We want to show the $\neg\neg$-stable proposition $\emptyset$,
+        so we can assume $V(x)$, which is a contradiction.
+  \end{enumerate}
+\end{proof}
+
 \begin{proposition}%
   Let $P$ be a $\neg\neg$-stable proposition,
   then $P\to 1$ is formally étale.
 \end{proposition}
 
+\begin{proof}
+  Direct application of \cref{nilpotent-ideal-not-not-dense}.
+\end{proof}
+
+\begin{proposition}%
+  The map $\Bool\to 1$ is étale.
+\end{proposition}
+
+\begin{proof}
+  We have to extend maps $f:\Spec (A/(a))\to \Bool$, with $a^2=0$.
+  Since $\Bool\subseteq R$, the map $f$ yields an element $f:A/(a)$
+  and we have a lift $\tilde{f}:A$ with $f=\tilde{f}+ab$.
+  By \cref{nilpotent-ideal-not-not-dense},
+  we have for any $x:\Spec A$, that $\neg\neg(\tilde{f}(x)=0)$ or $\neg\neg(\tilde{f}(x)=1)$.
+
+  By Z-choice or computation, we find a $n:\N$,
+  such that $\tilde{f}^n(x)=0$ or $\neg\neg(\tilde{f}^n(x)=1)$.
+  With the map $1-\_:R\to R$, we can achieve the same for $1$.
+\end{proof}
