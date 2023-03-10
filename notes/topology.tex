@@ -136,9 +136,9 @@ since we also only consider quasi compact schemes later.
 \end{proposition}
 
 \begin{proof}
-  Indeed, by \cref{generalized-field-property}
-  the proposition $\exists_i \inv(f_i)$
-  is the negation of $f_1 = 0 \land \dots \land f_n = 0$.
+  Indeed, by \cref{generalized-field-property},
+  the proposition $\inv(f_1) \lor \dots \lor \inv(f_n)$
+  is the negation of ${f_1 = 0} \land \dots \land {f_n = 0}$.
 \end{proof}
 
 \begin{proposition}[using \axiomref{sqc}, \axiomref{loc}]%
@@ -272,6 +272,33 @@ that the same holds, if one qc-open is only defined on the other.
   the (qc-) open propositions constitute a \notion{dominance}
   in the sense of~\cite{rosolini-phd-thesis}.
 \end{remark}
+
+The following fact about the interaction of closed and open propositions
+is due to David Wärn.
+
+\begin{lemma}%
+  \label{implication-from-closed-to-open}
+  Let $P$ and $Q$ be propositions
+  with $P$ closed and $Q$ open.
+  Then $P \to Q$ is equivalent to $\lnot P \lor Q$.
+\end{lemma}
+
+\begin{proof}
+  We can assume $P = (f_1 = \dots = f_n = 0)$
+  and $Q = (\inv(g_1) \lor \dots \lor \inv(g_m))$.
+  Then we have:
+  \begin{align*}
+    (P \to Q) &= \qquad
+    \text{\cref{generalized-field-property} for $g_1, \dots, g_m$}\\
+    (P \to \lnot (g_1 = \dots = g_m = 0)) &= \\
+    \lnot (f_1 = \dots = f_n = g_1 = \dots = g_m = 0) &= \qquad
+    \text{\cref{generalized-field-property} for $f_1, \dots, f_n, g_1, \dots, g_m$}\\
+    (\inv(f_1) \lor \dots \lor \inv(f_n) \lor \inv(g_1) \lor \dots \lor \inv(g_m) &= \qquad
+    \text{\cref{generalized-field-property} for $f_1, \dots, f_n$}\\
+    \lnot P \lor Q &
+  \end{align*}
+\end{proof}
+
 
 \subsection{Definition of schemes}
 
