@@ -2,6 +2,7 @@
 \subsection{Closed subtypes}
 
 \begin{definition}%
+  \label{closed-proposition}\label{closed-subtype}
   \begin{enumerate}[(a)]
   \item
     A \notion{closed proposition} is a proposition
@@ -126,6 +127,20 @@ since we also only consider quasi compact schemes later.
   \end{enumerate}
 \end{definition}
 
+\begin{proposition}%
+  \label{open-iff-negation-of-closed}
+  A proposition $P$ is open
+  if and only if
+  it is the negation of some closed proposition
+  (\cref{closed-proposition}).
+\end{proposition}
+
+\begin{proof}
+  Indeed, by \cref{generalized-field-property}
+  the proposition $\exists_i \inv(f_i)$
+  is the negation of $f_1 = 0 \land \dots \land f_n = 0$.
+\end{proof}
+
 \begin{proposition}[using \axiomref{sqc}, \axiomref{loc}]%
   \label{open-union-intersection}
   Let $X$ be a type.
@@ -146,10 +161,8 @@ Which is equivalent to open propositions being closed under dependent sums.
   For unions, we can just append lists.
   For intersections, we note that invertibility of a product
   is equivalent to invertibility of both factors.
-  For double-negation stability,
-  we note that by \cref{generalized-field-property},
-  an open proposition $\exists_i f_i \mathrm{inv}$ is equivalent,
-  to $(f_1,\dots,f_n)\neq 0$.
+  Double-negation stability
+  follows from \cref{open-iff-negation-of-closed}.
 \end{proof}
 
 \begin{lemma}%
