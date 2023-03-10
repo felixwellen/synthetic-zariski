@@ -92,22 +92,53 @@ Since all of our schemes are of finite presentations, this should be a correct d
 \end{proof}
 
 \begin{proposition}%
-	Let $X$ be an affine scheme and suppose $X \to 1$ is étale. Then $X$ has decidable equality.
+	\label{decidable-of-tangent}
+	Let $X$ be an affine scheme and $a : X$ a point. Suppose the tangent space
+	$T_a X$ has a unique point. Then for any $b : X$, equality $a = b$ is decidable.
 \end{proposition}
 
 \begin{proof}
-	Let $X = \Spec R[X_1,\ldots,X_n]/(f_1,\ldots,f_l)$, and suppose $a : X$.
-	Since $X$ is étale, the tangent space $T_a X$ has a unique point.
-	This tangent space has an explicit description as the spectrum of 
-	$R[U_1,\ldots,U_n]/(J_f U^T)$. Since the tangent space has a unique point,
-	this ring is $R$. This means for each $i = 1,\ldots,n$, we can find
-	$g_i : (f_1,\ldots,f_l)$ with $\partial_{X_j} g_i(a) = \delta_{ij}$.
-	This means we can factor $g_i = (X_i-a_i)q_i$ with $q_i(a) = 1$.
-	Now for $b : X$ we claim that either $a = b$ or $a \ne b$.
-	For each $i$, we have $q_i(b) + (q_i(a) - q_i(b)) = 1$, so either
-	$q_i(b)$ is invertible or $q_i(a) - q_i(b)$ is invertible.
-	In the first case, $b_i = a_i$ since $g_i(b) = 0$.
-	In the second case, $a \ne b$. 
-	By finite choice, we may suppose for each $i$ we purely know one of the alternatives.
-	Thus we either know $b_i = a_i$ for all $i$, so that $a = b$, or that $a \ne b$.
+	Let $X = \Spec R[X_1,\ldots,X_n]/(f_1,\ldots,f_l)$.
+	For $j = 1,\ldots,l$, we have $f_j(a) = 0$, so by the division algorithm
+	we can write $f_j = \sum_{i = 1}^n (X_i-a_i)q_{ij}$, where
+	$q_{ij} \in R[X_1,\ldots,X_n]$.
+	It can be seen that $q_{ij}(a) = \partial_{X_i}f_j$.
+	The tangent space $T_a X$ is thus the kernel of $q(a)$ viewed as 
+	linear map $R^n \to R^l$.
+	Since this is zero, we have that $q(a)$ viewed as a linear map
+	$R^l \to R^n$ is surjective.
+	We claim that if $q(b)$ is also surjective viewed as a linear map
+	$R^l \to R^n$, then $a = b$.
+	Let us show $a_i = b_i$ for a given $i$.
+	By assumption, we can find a vector $p : R^l$ such
+	that $\sum_j q_{kj}(b)p_j = \delta_{ki}$.
+	Now we compute
+	\[
+	0 = \sum_j f_j(b)p_j 
+	= \sum_j \sum_k (b_k-a_k)q_{kj}(b)p_j 
+	= \sum_k (b_k-a_k) \sum_j q_{kj}(b)p_j 
+	= \sum_k (b_k-a_k) \delta_{ki} 
+	= b_i - a_i.
+	\]
+	Thus if $q(b)$ is surjective then $a = b$. The converse is also true,
+	since $q(a)$ is surjective.
+	Moreover, the proposition asserting that $q(b)$ is surjective
+	is open, being equivalent to the assertion that some 
+	$n \times n$-submatrix of $q(b)$ has invertible determinant.
+	Thus $a = b$ itself is an open proposition. 
+	Since it is also closed, it must be decidable.
+\end{proof}
+
+\begin{proposition}%
+	Let $X$ be a separated \'{e}tale scheme. Then $X$ has decidable equality.
+\end{proposition}
+
+\begin{proof}
+	Let $a, b : X$. Since $X$ is separated, $a = b$ is closed.
+	We claim it is also open.
+	To see this, pick an affine open neighbourhood $U$ of $a$.
+	Now $a = b$ is equivalent to $(b \in U) \wedge (a = b)$.
+	Since open propositions are closed under $\Sigma$,
+	it suffices to show that $a = b$ is open assuming $b \in U$.
+	In this case we can apply \cref{decidable-of-tangent}.
 \end{proof}
