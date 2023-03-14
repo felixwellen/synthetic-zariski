@@ -10,6 +10,5 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 
 # Questions
 
-- Is the product of irreducible types/schemes irreducible?
 - Is Pi over an open proposition on projective space open?
 - Is every étale proposition (formally étale and a scheme) an open proposition?
