@@ -127,7 +127,7 @@ since we also only consider quasi compact schemes later.
   \end{enumerate}
 \end{definition}
 
-\begin{proposition}%
+\begin{proposition}[using \axiomref{sqc}, \axiomref{loc}]%
   \label{open-iff-negation-of-closed}
   A proposition $P$ is open
   if and only if
@@ -753,6 +753,34 @@ It is not the case, that any open dense subtype of a connected scheme is connect
   $V$ and $W$ are also open subsets of $X$,
   so we indeed get a contradiction
   from the fact that $X$ is irreducible.
+\end{proof}
+
+\begin{lemma}%
+  Let $X$ and $Y$ be irreducible types.
+  Then $X \times Y$ is irreducible.
+\end{lemma}
+
+The following proof is due to David Wärn.
+
+\begin{proof}
+  Let $U, V \subseteq X \times Y$
+  be disjoint open subsets with $(a, b) \in U$, $(c, d) \in V$.
+  Consider the subtypes
+  \[ U_a \colonequiv \{\, y : Y \mid (a, y) \in U \,\} \]
+  and
+  \[ V_c \colonequiv \{\, y : Y \mid (c, y) \in V \,\} \rlap{.}\]
+  These are two inhabited open subtypes of $Y$,
+  so they can not be disjoint.
+  Since we want to show a contradiction,
+  we can assume we have $e \in U_a \cap V_c$.
+  But then
+  \[ U_e \colonequiv \{\, x : X \mid (x, e) \in U \,\} \]
+  and
+  \[ V_e \colonequiv \{\, x : X \mid (x, e) \in V \,\} \]
+  are open subtypes of $X$ which are
+  disjoint since $U$ and $V$ are disjoint,
+  and inhabited by $a$ respectively $c$.
+  This contradicts the irreducibility of $X$.
 \end{proof}
 
 \begin{lemma}%
