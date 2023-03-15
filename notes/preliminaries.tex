@@ -2,10 +2,16 @@
 
 Our truncation levels start at $-2$, so $(-2)$-types are contractible, $(-1)$-types are propositions and $0$-types are sets.
 
+\begin{definition}%
+  Let $X$ and $I$ be types.
+  A family of propositions $U_i:X\to\Prop$ \notion{covers} $X$,
+  if for all $x:X$, there merely is a $i:I$ such that $U_i(x)$.
+\end{definition}
+
 \begin{lemma}%
   \label{kraus-glueing}
   Let $X$ and $I$ be types.
-  For $(U_i:X \to \Prop)_{i:I}$, such that for all $x:X$ there merely is an $i$ with $U_i(x)$ and $P:X\to \nType{0}$, we have the following glueing property: \\
+  For propositions $(U_i:X \to \Prop)_{i:I}$ that cover $X$ and $P:X\to \nType{0}$, we have the following glueing property: \\
   If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
   proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(x))$,
   then there is a globally defined dependent function $s:(x:X) \to P(x)$,
@@ -28,9 +34,10 @@ Similarly we can prove.
 \begin{lemma}%
   \label{kraus-glueing-1-type}
   Let $X$ and $I$ be types.
-  For $(U_i:X \to \Prop)_{i:I}$ and $P:U_i\to \nType{1}$, we have the following glueing property: \\
+  For propositions $(U_i:X \to \Prop)_{i:I}$ that cover $X$ 
+  and $P:X\to \nType{1}$, we have the following glueing property: \\
   If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
-  proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(y))$ satsfying the cocycle
+  proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(x))$ satsfying the cocycle
   condition $p_{ij}\cdot p_{jk} = p_{ik}$.
   then there is a globally defined dependent function $s:(x:X) \to P(x)$,
   such that for all $x:X$ and $i:I$ we have $p_i:U_i(x) \to s(x)=s_i(x)$ such that $p_i\cdot p_{ij} = p_j$.
