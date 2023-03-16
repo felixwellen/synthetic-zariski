@@ -18,30 +18,38 @@
 \newcommand{\UU}{\mathcal{U}}
 
 In this section, we present models of the 3 axioms, models that are inspired by type theory.
-The first model \rednote{Maybe it would be good to give names to the different models?}
+The first model $M_1$ \rednote{Maybe it would be good to give names to the different models?}
 is a sheaf model, and does not
 take into account universe (and univalence). This model is built
 as an {\em internal} model inside a presheaf model. Rather surprisingly, the same method
 works if we start from a(n effective) model of univalence. We can localise at a family of open modalities, and  obtain
-in this way a model of type theory with univalence satisfying the
-3 axioms for Zariski topos. It is then natural to ask how the global section operation behaves for this model, and we show that
-it satisfies a property similar to Zariski local choice
-\rednote{We do not understand what the global section operation has to do with Zariski choice}. 
+in this way a model $M_2$ of type theory with univalence satisfying the
+3 axioms for Zariski topos.
+%It is then natural to ask how the global section operation behaves for this model, and we show that
+%it satisfies a property similar to Zariski local choice
+%\rednote{We do not understand what the global section operation has to do with Zariski choice}. 
 
 \subsection{$1$-topos model}
 
-We first build a $1$-sheaf model of the 3 axioms. This model will be formulated as a model of {\em dependent type theory}.
-This will be an {\em internal} model inside a presheaf model
+We first build a $1$-sheaf model $M_1$ of the 3 axioms. This model will be formulated as a model of {\em dependent type theory}.
+This will be an {\em internal} model inside a presheaf model. This is done in two steps, where the first step is a presheaf model
+on the base category, which is the opposite of the category of finitely presented $k$-algebras over a fixed commutative ring $k$.
+This is a model of (extensional) type theory with a (cumulative) sequence of universes. We define in the second step a property
+of types, which expresses that this type is a sheaf for Zariski topology. It is direct to show that types satisfying this property are
+closed by dependent products and dependent sums, and so form a model of dependent type theory.
+However, the type of sheaves in a given universe is not itself a sheaf\footnote{This is exactly this problem that motivated the notion
+of stacks.} and we don't get a model of dependent type theory with universes. We need a refined notion of model in the next subsection
+to cover this extension.
 \rednote{We guess this means: The model is constructed in two steps,
   where the first step is a extensional (presheaf?) model. It would defnitely be good to extend this point to clarify.}.
-While the presheaf model covers universes, this internal model
-will not cover universes (and univalence), and we need a refined notion of model in the next section to cover these extensions.
+%While the presheaf model covers universes, this internal model
+%will not cover universes (and univalence), and we need a refined notion of model in the next section to cover these extensions.
 
-For any small category $\CC$ we can form the presheaf model of type theory over the base category $\CC$
+For any small category $\CC$ we can form the presheaf model of type theory over the base category $\CC$ \cite{hofmann,huber-phd-thesis}
 \rednote{Reference to Hoffmann/Simon's thesis?}.
 
 A context is interpreted as a presheaf over $\CC$. A type over a context $\Gamma$ is interpreted as
-a presheaf over the category of elements of $\Gamma$,
+a presheaf over the category of elements $\int\Gamma$ of $\Gamma$,
 \rednote{Maybe introduce notation ``$\int\Gamma$'' for the category of elements, since it will appear a lot in the follow.}
 and an element of this type as a global section
 of this presheaf. For any set theoretic universe $\UU$, we have a corresponding presheaf which to
@@ -57,22 +65,27 @@ ring $k$.
 
     We have the truth value presheaf $\Omega$ with $\Omega(A)$ is the set of sieves on $A$.
     (There is a predicative version of this object if we are working in a predicative metatheory.)
+    Besides the usual operations of dependent type theory, this type $\Omega$ has the usual logical connective (disjunction, conjunction,
+    $\dots$) and existential and universal quantification.
 
-    We have a dependent type $[p]$ for $p:\Omega$, with $[p]$ subpresheaf of the unit presheaf $\top$.
+    We have a dependent type $[p]$ for $p:\Omega$, with $[p]$ subpresheaf of the unit presheaf $\top(A) = \{0\}$. This is a presheaf $[\_]$
+    over $\int\Omega$, defined by $(A,S)\mapsto \{0~|~\mathsf{id}_A\in S\}$.
     \rednote{... presheaf $\top$ on $\int \Omega$?}
     \rednote{Is $[\_]$ given as $(c,S)\mapsto\text{``$S$ maximal''}$? }
 
     We also have a presheaf $Cov$, where $Cov(A)$ is the set of finite sequences $f_1,\dots,f_n\in A$ that are comaximal: $1$ is in the
     ideal generated by $f_1,\dots,f_n$.
 
-    We define $Cov\rightarrow\Omega,~c\mapsto p_c$ by defining $p_c$ to be the proposition $\inv(f_1)\vee\dots\vee\inv(f_n)$
+    We define $Cov\rightarrow\Omega,~c\mapsto p_c$ by defining $p_c$ to be the proposition $\inv(f_1)\vee\dots\vee\inv(f_n)$: $p_c(A)$
+    is the sieve of $\alpha:A\rightarrow B$ such that one $\alpha(f_i)$ is invertible in $B$
     \rednote{It is unclear, what $\vee$ means here. Maybe this should be an explicit description of the sieve.
       It is not clear, where the construction is taking place. Is it internal to the extensional presheaf model?
     If so, what are $f_1,\dots,f_n$}
-    for $c = f_1,\dots,f_c$. In particular, for $n=0$, this is the proposition $\perp$.
+    for $c = f_1,\dots,f_c$. In particular, for $n=0$, this is the proposition $\perp$ (empty presheaf).
 
     We can then define the property $\isSheaf$ of being a sheaf for a type $T$ as being the fact that
-    the constant maps $T\rightarrow T^{[p_c]}$ are isomorphisms for all $c:Cov$.
+    the constant maps $T\rightarrow T^{[p_c]}$ are isomorphisms for all $c:Cov$.  This property $\isSheaf$ is of type
+    $\UU\rightarrow\Omega$, and isomorphisms is in the sense of the present (extensional) presheaf model of type theory.
     \rednote{Is it the same $p_c$ as above? There it seems to have this name on each stage.
       Maybe use more explicit notation, e.g. ``$c_A$'' above.
       What is the type of ``isSheaf''?
@@ -88,7 +101,7 @@ ring $k$.
     
     \medskip
 
-    Any representable presheaf is a sheaf\rednote{... by algbraic facts.}, and in this new model $R$ is a local ring
+    Any representable presheaf is a sheaf by algebraic facts\rednote{... by algbraic facts.}, and in this new model $R$ is a local ring
     \rednote{Is it stated using the ``$\vee$'' one can define explicitly on $\Omega$ using the topology?
       And how are equations turned into elements of $\Omega$?}.
     In particular, we have $\neg (0 = 1)$.
