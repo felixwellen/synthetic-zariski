@@ -628,6 +628,44 @@ There are lots of examples of non-trivial dense subsets.
 For example, the next section will contain a proof,
 that any non-empty open subset of $\A^1$ is dense.
 
+\subsection{Closed dense subtypes}
+
+\begin{lemma}
+For any type $X$, a closed subtype $C : X \to \Prop$ is dense if and only if:
+\[
+\prod_{x:X} \neg\neg C(x)
+\]
+\end{lemma}
+
+\begin{proof}
+Assume $C$ a closed subtype of $X$. 
+If $C$ is dense, as $\neg C$ is open and $\neg C \cap C = \emptyset$, we have that $\neg C = \emptyset$ which is precisely what we want.
+
+Conversely assume that for all $x:X$ we have $\neg\neg C(x)$. Let $U$ be an open subtype of $X$ such that $U\cap C = \emptyset$. Then for any $x:X$ we have $\neg(C(x)\land U(x))$ as well as $\neg\neg C(x)$, so that we have $\neg U(x)$. So we have $U=\emptyset$ and $C$ is indeed dense.
+\end{proof}
+
+\begin{corollary}
+The type of closed propositions $C$ such that $\neg\neg C$ classifies closed dense subtypes.
+\end{corollary}
+
+\begin{proposition}[using \axiomref{sqc}, \axiomref{loc}]
+A closed subscheme $\Spec(A/I)$ of an affine scheme $\Spec(A)$ is dense if and only if $I$ is nilpotent.
+\end{proposition}
+
+\begin{proof}
+%Assume $\Spec(A/I)\subset \Spec(A)$ dense. For any $f:I$, we have $\Spec(A/I)\cap D(f)=\emptyset$ and $D(f)$ open so that $D(f)=\emptyset$ and $f$ is nilpotent.
+
+Let $I$ be a finitely generated ideal in $A$ and write $C(x)$ for the proposition "$x$ is in $\Spec(A/I)$". Then:
+\[
+C(x) \leftrightarrow \prod_{f:I}f(x) = 0
+\]
+and:
+\[
+\prod_{x:X}\neg\neg C(x) \leftrightarrow \prod_{x:X}\prod_{f:I}\neg\neg(f(x)=0) \leftrightarrow \prod_{f:I}\neg\neg(f=0)
+\]
+which holds if and only if any $f:I$ is nilpotent.
+\end{proof}
+
 \subsection{Irreducible and reducible types}
 
 We start with the notion of reducible types and will then pass to the negation of this concept, to irreducible types.

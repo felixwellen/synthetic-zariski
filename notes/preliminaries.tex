@@ -1,44 +1,3 @@
-\subsection{Homotopy type theory}
-
-\begin{lemma}%
-  \label{kraus-glueing}
-  Let $X$ and $I$ be types.
-  For $(U_i:X \to \Prop)_{i:I}$ and $P:U_i\to \nType{0}$, we have the following glueing property: \\
-  If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
-  proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(y))$,
-  then there is a globally defined dependent function $s:(x:X) \to P(x)$,
-  such that for all $x:X$ and $i:I$ we have $U_i(x) \to s(x)=s_i(x)$
-\end{lemma}
-
-\begin{proof}
-  We define $s$ pointwise.
-  Let $x:X$.
-  Using a Lemma of Kraus and the $p_{ij}$, we get a factorization
-  \[ \begin{tikzcd}[row sep=0mm]
-    \sum_{i:I} U_i(x) \ar[rr, "s_{\pi_1(\_)}(x)"]\ar[rd] & & P(x) \\
-    & \|\sum_{i:I} U_i(x)\|_{-1}\ar[ru,dashed] &
-  \end{tikzcd} \]
--- which defines a unique value $s(x):P(x)$.
-\end{proof}
-
-Similarly we can prove.
-
-\begin{lemma}%
-  \label{kraus-glueing-1-type}
-  Let $X$ and $I$ be types.
-  For $(U_i:X \to \Prop)_{i:I}$ and $P:U_i\to \nType{1}$, we have the following glueing property: \\
-  If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
-  proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(y))$ satsfying the cocycle
-  condition $p_{ij}\cdot p_{jk} = p_{ik}$.
-  then there is a globally defined dependent function $s:(x:X) \to P(x)$,
-  such that for all $x:X$ and $i:I$ we have $p_i:U_i(x) \to s(x)=s_i(x)$ such that $p_i\cdot p_{ij} = p_j$.
-\end{lemma}
-
-This can be generalized to $\nType{k}$ for each {\em external} $k$.
-
-The condition for $\nType{0}$ can be seen as an internal version of the usual patching {\em sheaf} condition.
-The condition for $\nType{0}$ is then the internal version of the usual patching {\em $1$-stack} condition.
-
 \subsection{Subtypes and Logic}
 
 We use the notation $\exists_{x:X}P(x)\colonequiv \|\sum_{x:X}P(x)\|$.
@@ -99,6 +58,56 @@ The following formula hold:
   $U=\emptyset$ if and only if $\neg\left(\exists_{x:X}U(x)\right)$.
 \end{lemma}
 
+\subsection{Homotopy type theory}
+
+Our truncation levels start at $-2$, so $(-2)$-types are contractible, $(-1)$-types are propositions and $0$-types are sets.
+
+\begin{definition}%
+  Let $X$ and $I$ be types.
+  A family of propositions $U_i:X\to\Prop$ \notion{covers} $X$,
+  if for all $x:X$, there merely is a $i:I$ such that $U_i(x)$.
+\end{definition}
+
+\begin{lemma}%
+  \label{kraus-glueing}
+  Let $X$ and $I$ be types.
+  For propositions $(U_i:X \to \Prop)_{i:I}$ that cover $X$ and $P:X\to \nType{0}$, we have the following glueing property: \\
+  If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
+  proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(x))$,
+  then there is a globally defined dependent function $s:(x:X) \to P(x)$,
+  such that for all $x:X$ and $i:I$ we have $U_i(x) \to s(x)=s_i(x)$
+\end{lemma}
+
+\begin{proof}
+  We define $s$ pointwise.
+  Let $x:X$.
+  Using a Lemma of Kraus and the $p_{ij}$, we get a factorization
+  \[ \begin{tikzcd}[row sep=0mm]
+    \sum_{i:I} U_i(x) \ar[rr, "s_{\pi_1(\_)}(x)"]\ar[rd] & & P(x) \\
+    & \|\sum_{i:I} U_i(x)\|_{-1}\ar[ru,dashed] &
+  \end{tikzcd} \]
+-- which defines a unique value $s(x):P(x)$.
+\end{proof}
+
+Similarly we can prove.
+
+\begin{lemma}%
+  \label{kraus-glueing-1-type}
+  Let $X$ and $I$ be types.
+  For propositions $(U_i:X \to \Prop)_{i:I}$ that cover $X$ 
+  and $P:X\to \nType{1}$, we have the following glueing property: \\
+  If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
+  proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(x))$ satsfying the cocycle
+  condition $p_{ij}\cdot p_{jk} = p_{ik}$.
+  then there is a globally defined dependent function $s:(x:X) \to P(x)$,
+  such that for all $x:X$ and $i:I$ we have $p_i:U_i(x) \to s(x)=s_i(x)$ such that $p_i\cdot p_{ij} = p_j$.
+\end{lemma}
+
+This can be generalized to $\nType{k}$ for each {\em external} $k$.
+
+The condition for $\nType{0}$ can be seen as an internal version of the usual patching {\em sheaf} condition.
+The condition for $\nType{1}$ is then the internal version of the usual patching {\em $1$-stack} condition.
+
 \subsection{Algebra}
 
 \begin{definition}%
@@ -144,6 +153,22 @@ The following formula hold:
 \begin{proof}
   TODO
 \end{proof}
+
+\begin{definition}
+  Let $A$ be a ring and $f:A$.
+  Then $A_{f}$ denotes the \notion{localization} of $A$ at $f$,
+  i.e. a ring $A_f$ together with a homomorphism $A\to A_f$,
+  such that for all homomorphisms $\varphi:A\to B$ such that
+  $\varphi(f)$ is invertible, there is a unique homomorphism as indicated in the diagram:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[rd,"\varphi",swap] & A_f\ar[d,dashed] \\
+      & B
+    \end{tikzcd}
+    \rlap{.}
+  \end{center}
+  For $a:A$, we denote the image of $a$ in $A_f$ as $\frac{a}{1}$ and the inverse of $f$ as $\frac{1}{f}$.
+\end{definition}
 
 \begin{lemma}%
   \label{fg-ideal-local-global}
