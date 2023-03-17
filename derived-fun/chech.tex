@@ -1,0 +1,37 @@
+
+In this section, let $X$ be a type, $U_1,\dots,U_n\subseteq X$ open subtypes that cover $X$
+and $\mathcal F:X\to \AbGroup$ a dependent abelian group on $X$.
+We start by repeating the classical definition of \v{C}hech-Cohomology groups for a given cover.
+
+\begin{definition}%
+  \label{chech-complex}
+  \begin{enumerate}[(a)]
+  \item \index{$\mathcal F(U)$} For open $U\subseteq X$, we use the notation {\color{purple} DUPLICATION}
+    \[
+      \mathcal F(U)\colonequiv \prod_{x:U}\mathcal F_x\rlap{.}
+    \]
+  \item For $s:\mathcal F(U)$ and open $V\subseteq U$ we use the notation $s\colonequiv s_{|V} \colonequiv (x:V)\mapsto s_x$.
+  \item \index{$U_{i_1\dots i_l}$}For a selection of indices $i_1,...,i_l:\{1,\dots,n\}$, we use the notation
+    \[
+      U_{i_1\dots i_l}\colonequiv U_{i_1}\cap\dots\cap U_{i_l}\rlap{.}
+    \]
+  \item For a list of indices $i_1,\dots,i_l$, let $i_1,\dots,\hat{i_t},\dots,i_l$ be the same list with the $t$-th element removed.
+  \item For $k:\Z$, the $k$-th \notion{Čech-boundary operator}\index{$\partial^k$} is the homomorphism
+    \[
+      \partial^k:\bigoplus_{i_0,\dots,i_k}\mathcal F(U_{i_0\dots i_k})\to \bigoplus_{i_0,\dots,i_{k+1}}\mathcal F(U_{i_0\dots i_{k+1}})
+    \]
+    given by $\partial^k(s)\colonequiv (l_0,\dots,l_{k+1}) \mapsto \sum_{j=0}^k (-1)^j s_{l_0,\dots,\hat{l_j},\dots,l_k|U_{l_0,\dots,l_{k+1}}}$.
+  \item The $k$-th \notion{Čech-Cohomology group} for the cover $U_1,\dots,U_n$ with coefficients in $\mathcal F$ is
+    \[
+      \check{H}^k(\{U\},\mathcal F)\colonequiv \ker\partial^{k} / \im(\partial^{k-1})\rlap{.}
+    \]
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  The cover $U_1,\dots,U_n$ is called \notion{acyclic} for $\mathcal F$,
+  if for all $k:\N$ and $i_0,\dots,i_k$, we have that the higher (non Čech) cohomology groups are trivial:
+  \[
+    \forall l>0. H^l(U_{i_0,\dots,i_k},\mathcal F)=0\rlap{.}
+  \]
+\end{definition}
