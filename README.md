@@ -13,3 +13,4 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Is Pi over an open proposition on projective space open?
 - Is every étale proposition (formally étale and a scheme) an open proposition?
 - Is every étale scheme a sub-quotient of a finite set?
+- For $f : A$, is $f$ not not zero iff $f$ becomes zero in $A \otimes R/\sqrt{0}$?
