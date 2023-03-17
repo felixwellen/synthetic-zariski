@@ -1,7 +1,13 @@
 % latexmk -pdfxe -pvc -interaction=nonstopmode main.tex
 \documentclass{../util/zariski}
 
+\title{\v{C}ech Cohomology in Synthetic Geometry}
+
+\author{Ingo Blechschmidt, Felix Cherubini and David Wärn}
+
 \begin{document}
+
+\maketitle
 
 \begin{center}
   \large{Press CRTL+F5 from time to time, to clear cached versions}
@@ -13,12 +19,43 @@
 \section*{Introduction}
 This is an incomplete draft on work in progress by Ingo Blechschmidt, Felix Cherubini and David Wärn.
 
+In pure mathematics,
+it is a common practice to simplify questions about complicated objects
+by assigning them more simply objects in a systematic way that faithfully represents some features of interest.
+One particular, but still surprisingly broad applicable instantiation of this appraoch,
+is the assignment of a sequence of abelian groups, the cohomology groups, to spaces, sheaves and other things.
+Over the last century, cohomology was first discovered in concrete examples, then generalized and streamlined,
+a process that culminated in the presentation of cohomology groups as mapping spaces in higher toposes.
+
+This is a representation, we can easily and elementary use through the interpretation of homotopy type theory in higher toposes.
+In \cite{evan} results about cohomology theories like the Mayer-Vietoris-Sequence were proven and computations were carried out,
+in \cite{floris}, the Serre-Spectral-Sequence was constructed and used.
+The latter also introduced cohomology with non-constant coefficients,
+which are the right level of generality for the applications we have in mind.
+We are particularly interested in computing cohomology groups of sheaves in algebraic geometry,
+which can be done synthetically using the foundation laid out by \cite{foundations-draft}
+building on work and ideas of \cite{ingo}, \cite{kock}, \cite{david-myers}.
+
+In this setup, the basic spaces in algebraic geometry, schemes, are just sets with a particular property \cite{foundations-draft}[def of scheme],
+and instead of sheaves on a type $X$, we consider, more generally maps $A:X\to\AbGroup$ to the type of abelian groups.
+The cohomology groups are then defined as dependent function types with values in Eilenberg-MacLane-Spaces
+\[ H^n(X,A)\colonequiv \|(x:X)\to K(A(x),n)\|_0\]
+-- a definition first suggested by \cite{mikes-blogpost}.
+Due to its simplicity, this is very convenient to work with.
+But - which is also a problem of the elegant formulation in higher toposes -
+it is unclear how to make computations.
+The problem, at least for a large class of calculations, can roughly be split into two parts:
+First, one has to show that some large class of cohomology groups on simple spaces is trivial,
+second, show that on spaces which are build from theses simple spaces,
+cohomology can be computed by \v{C}ech cohomology.
+
 \ignore{
   PROPOSED CONTENT:
 
   hott preliminaries
   the mayer vietoris sequence
   basic chech cohomological results
+  * def of chech cohomology
   example: synthetic algebraic geometry
   * repetition of basic facts on wqc modules
   * triviality of H^n
@@ -26,7 +63,8 @@ This is an incomplete draft on work in progress by Ingo Blechschmidt, Felix Cher
   * proof so far
   derived functors
   * universality of H^n on some schemes
-  * universality of chech-H^n so far
+  * universality of chech-H^n
+  universality of H^n and chech-H^n
 
   POSSIBLE TITLES:
   Derived Functors in Synthetic (Mathematics|Geometry)
