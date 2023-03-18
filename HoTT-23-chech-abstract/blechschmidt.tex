@@ -1,23 +1,137 @@
-% latexmk -pdfxe -pvc -interaction=nonstopmode main.tex
-\documentclass{../util/zariski}
+% latexmk -pdfxe -pvc blechschmidt.tex
+% This is a template for submissions to HoTT 2023.
+% The file was created on the basis of easychair.tex,v 3.5 2017/03/15 
+%
+% Before submitting, rename the resulting pdf file to "yourname.pdf" 
+%
+\documentclass[letterpaper]{../util/easychair}
+\usepackage{doc}
+%
+\newcommand{\easychair}{\textsf{easychair}}
+\newcommand{\miktex}{MiK{\TeX}}
+\newcommand{\texniccenter}{{\TeX}nicCenter}
+\newcommand{\makefile}{\texttt{Makefile}}
+\newcommand{\latexeditor}{LEd}
 
-\title{\v{C}ech Cohomology in Homotopy Type Theory}
+% some stuff from ../util/zarisky.cls:
 
-\author{Ingo Blechschmidt, Felix Cherubini and David Wärn}
+\RequirePackage{amsmath,amssymb,mathtools}
+% Referenzen
+\RequirePackage[backend=biber,style=alphabetic, backref, backrefstyle=none]{biblatex}
+\addbibresource{../util/literature.bib}
+
+
+% content of ../util/zarisky.sty:
+% names for types
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Bool}{\mathrm{Bool}}
+\DeclareMathOperator{\Fin}{Fin}
+\newcommand{\unit}{\mathbf{1}}
+\newcommand{\two}{\mathbf{2}}
+\newcommand{\isContr}{\mathrm{isContr}}
+\newcommand{\isProp}{\mathrm{isProp}}
+\newcommand{\isSet}{\mathrm{isSet}}
+\newcommand{\isEquiv}{\mathrm{isEquiv}}
+\newcommand{\qinv}{\mathrm{qinv}}
+\newcommand{\mU}{\mathcal{U}}
+\newcommand{\Eq}[1]{\mathrm{Eq}_{#1}}
+\newcommand{\isNType}[1]{\mathrm{is}\mbox{-}{#1}\mbox{-}\mathrm{type}}
+\newcommand{\nType}[1]{#1\mbox{-}\mathrm{Type}}
+\newcommand{\Type}{\mathrm{Type}}
+\newcommand{\Prop}{\mathrm{Prop}}
+\newcommand{\Open}{\mathrm{Open}}
+\newcommand{\propTrunc}[1]{\lVert #1 \rVert}
+
+% names for terms
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\refl}{\mathrm{refl}}
+\newcommand{\pair}{\mathrm{pair}}
+\newcommand{\FunExt}{\mathrm{FunExt}}
+\newcommand{\transp}{\mathrm{tr}}
+\newcommand{\transpconst}{\mathrm{tconst}}
+\newcommand{\ua}{\mathrm{ua}}
+\newcommand{\fib}{\mathrm{fib}}
+
+% category theory
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\yo}{\mathrm{y}}
+
+% algebra
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\divides}{\mathbin{|}}
+\DeclareMathOperator{\AbGroup}{Ab}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\newcommand{\Tors}[1]{#1\text{-}\mathrm{Tors}}
+\newcommand{\Mod}[1]{#1\text{-}\mathrm{Mod}}
+\newcommand{\Vect}[2]{#1\text{-}\mathrm{Vect}_{#2}}
+\newcommand{\fpMod}[1]{#1\text{-}\mathrm{Mod}_{\text{fp}}}
+\newcommand{\Alg}[1]{#1\text{-}\mathrm{Alg}}
+
+% algebraic geometry
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Sch}{\mathrm{Sch}_{qc}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bP}{\mathbb{P}}
+
+
+% misc
+\newcommand{\notion}[1]{\emph{#1}\index{#1}}
+\providecommand*\colonequiv{\vcentcolon\mspace{-1.2mu}\equiv}
+\newcommand{\ignore}[1]{}
+\newcommand{\rednote}[1]{{\color{red}(#1)}}
+
+
+%
+\title{\v{C}ech Cohomology in Homotopy Type Theory
+}
+
+% Authors are joined by \and. 
+% Their affiliations are given by \inst, which indexes
+% into the list defined using \institute
+%
+\author{
+Ingo Blechschmidt \inst{1}
+% uncomment the following for multiple authors.
+\and 
+ Felix Cherubini \inst{1}
+\and 
+ David Wärn \inst{1}
+ \thanks{Speaker.}
+}
+
+% Institutes for affiliations are also joined by \and,
+\institute{
+  \email{iblech@speicherleck.de}
+% uncomment the following for multiple authors.
+\and
+  University of Gothenburg\\
+  \email{felix.cherubini@posteo.de}
+\and
+  University of Gothenburg\\
+  \email{warnd@chalmers.se}
+}
+
+%  \authorrunning{} has to be set for the shorter version of the authors' names;
+% otherwise a warning will be rendered in the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \authorrunning
+% will be rejected by EasyChair
+\authorrunning{Blechschmidt, Cherubini and Wärn}
+
+% \titlerunning{} has to be set to either the main title or its shorter
+% version for the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \titlerunning
+% will be rejected by EasyChair
+\titlerunning{\v{C}ech Cohomology in Homotopy Type Theory}
 
 \begin{document}
-
 \maketitle
 
-\begin{center}
-  \large{Press CRTL+F5 from time to time, to clear cached versions}
-  \large{(if you are viewing these notes online)}
-\end{center}
-
-\tableofcontents
-
-\section*{Introduction}
-This is an incomplete draft on work in progress by Ingo Blechschmidt, Felix Cherubini and David Wärn (\cite{chech-draft}).
+This is a report on work in progress (incomplete draft: \cite{chech-draft}).
 
 In pure mathematics,
 it is a common practice to simplify questions about complicated objects
@@ -74,50 +188,6 @@ The second approach very roughly follows old classical treatments of Grothendiec
 Inspired by this, we aim to show that both cohomology defined using higher types and \v{C}ech cohomology satisfies the universal property
 of a \notion{universal $\partial$-functor} in some furtunate but still quite relevant situations.
 While this approach is far less general, it also seems to need far less involved calculations.
-
-\ignore{
-  PROPOSED CONTENT:
-
-  hott preliminaries
-  the mayer vietoris sequence
-  basic chech cohomological results
-  * def of chech cohomology
-  * vanishing of H^{n+1} for a space with acyclic cover with n pieces?
-  example: synthetic algebraic geometry
-  * repetition of basic facts on wqc modules
-  * triviality of H^n
-  direct chech cohomology
-  * proof so far
-  derived functors
-  * universality of H^n on some schemes
-  * universality of chech-H^n
-  universality of H^n and chech-H^n/construction of local resolutions
-  * for chech cohomology on a space with acyclic cover
-  * for a scheme with cover with cohomologically trivial fibers and EM-Cohomology with values in wqc modules
-  examples?
-  * line bundles on P^n?
-}
-
-
-\section{The Mayer-Vietoris-Sequence}
-\input{mayer-vietoris.tex}
-
-\section{\v{C}ech cohomology}
-\input{chech.tex}
-
-\section{Cohomology of affine schemes}
-\input{affine-vanishing.tex}
-
-\section{\v{C}ech cohomology of a join}
-\input{cech-join.tex}
-
-\section{$\partial$-Funtors}
-\input{delta-fun.tex}
-
-\section{Construction of local resolutions}
-\input{resolutions.tex}
-
-\printindex
 
 \printbibliography
 
