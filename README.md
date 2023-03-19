@@ -14,3 +14,4 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Is every étale proposition (formally étale and a scheme) an open proposition?
 - Is every étale scheme a sub-quotient of a finite set?
 - For $f : A$, is $f$ not not zero iff $f$ becomes zero in $A \otimes R/\sqrt{0}$?
+  (A corollary of that would be: If the algebra $A$ is not not trivial, then it is trivial.)
