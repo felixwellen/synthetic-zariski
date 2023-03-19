@@ -25,9 +25,9 @@ which corresponds to the classical concept of parametrized spectra.
 We fix our terminology in the following definition.
 
 \begin{definition}
-  \begin{enumerate}
+  \begin{enumerate}[(a)]
   \item A \notion{spectrum} is a sequence of pointed types $(A_k)_{k:\N}$, together with pointed equivalences $A_k\simeq \Omega A_{k+1}$.
-  \item A spectrum $(A_k)_{k:\N}$ is \notion{connective} or an \notion{abelian $\infty$-group}, if $\|A_{k+1}\|_0\simeq 1$ for all $k:\N$.
+  \item A spectrum $(A_k)_{k:\N}$ is \notion{connective}, if $\|A_{k+1}\|_0\simeq 1$ for all $k:\N$.
   \item Let $X$ be a type. A \notion{parametrized spectrum} over $X$, is a dependent function, which assigns to any $x:X$, a spectrum $(A_{x,k})_{k:\N}$.
     For brevity, We will call a parametrized spectrum $A\equiv x\mapsto (A_{x,k})_{k:\N}$ over $X$ just \notion{spectrum over $X$}.
   \item A \notion{morphism of spectra} $A,A'$ over $X$, is given by a sequence of pointed maps $f_{x,k}:A_{x,k}\to A_{x,k}'$ for any $x:X$,
@@ -54,7 +54,6 @@ See \cref{def:connected-cover} for the definition of the $k$-connected cover ``$
 An important notion in abelian categories, is that of short exact sequences.
 And it is important to us here, since for every short exact sequence (somewhere), there should be an induced long exact sequence on cohomology groups.
 The cokernel of an exact sequence, corresponds to a cofiber of a map of spectra.
-This is surprisingly pleasant to construct and work with and I have to thank David Jaz Myers for explaining this to me:
 
 \begin{definition}
   Let $f:A\to A'$ be a map of spectra.
@@ -86,7 +85,6 @@ where for example not every map is the kernel of its cokernel.
   \end{center}
   is a \notion{fiber sequence}, if the following equivalent statements hold:
   \begin{enumerate}[(a)]
-  \item $g_x$ is the cofiber of $f_x$ for all $x:X$
   \item $f_x$ is the fiber of $g_x$ for all $x:X$
   \item $f_{x,k}$ is the fiber of $g_{x,k}$ for all $x:X$ and $k:\N$
   \end{enumerate}
@@ -124,7 +122,7 @@ This is just tailored to prove the following proposition:
 \end{proposition}
 
 \begin{proof}
-  Apply homotopy fiber sequence to last proposition for all $k:\N$.
+  Apply homotopy fiber sequence to last proposition for all $n:\N$.
 \end{proof}
 
 \begin{lemma}
@@ -132,15 +130,15 @@ This is just tailored to prove the following proposition:
   Let $\mathcal F$ be a spectrum on $X$ and assume we have a pushout square of spaces
   \begin{center}
     \begin{tikzcd}
-      \mathrm{S}\arrow[r, "\varphi_U"]\arrow[d, "\varphi_V"] & U\arrow[d, "\psi_U"] \\
-      \mathrm{V}\arrow[r, "\psi_V"] & X
+      \mathrm{S}\arrow[r, "f"]\arrow[d, " g"] & U\arrow[d, " h"] \\
+      \mathrm{V}\arrow[r, " k"] & X
     \end{tikzcd}
   \end{center}
   Then we have a Mayer-Vietoris sequence:
   \begin{center}
     \begin{tikzcd}
-      & \dots\ar[r] & H^{n-1}(S,\varphi_U^*\psi_U^* \mathcal F)\ar[dll] \\
-      H^n(X,\mathcal F)\ar[r] & H^n(U,\psi_U^*\mathcal F)\oplus H^n(V,\psi_V^*\mathcal F)\ar[r] & H^n(S,\varphi_U^*\psi_U^*\mathcal F)\ar[dll] \\
+      & \dots\ar[r] & H^{n-1}(S, f^* h^* \mathcal F)\ar[dll] \\
+      H^n(X,\mathcal F)\ar[r] & H^n(U, h^*\mathcal F)\oplus H^n(V, k^*\mathcal F)\ar[r] & H^n(S, f^* h^*\mathcal F)\ar[dll] \\
       H^{n+1}(X,\mathcal F)\ar[r] & \dots &
     \end{tikzcd}
   \end{center}
@@ -150,33 +148,33 @@ This is just tailored to prove the following proposition:
   The square
   \begin{center}
     \begin{tikzcd}
-      \prod\mathcal F\arrow[d]\arrow[r] & \prod\psi_U^*\mathcal F\arrow[d] \\
-      \prod\psi_V^*\mathcal F\arrow[r] & \prod\varphi_U^*\psi_U^*\mathcal F
+      \prod\mathcal F\arrow[d]\arrow[r] & \prod h^*\mathcal F\arrow[d] \\
+      \prod k^*\mathcal F\arrow[r] & \prod f^* h^*\mathcal F
     \end{tikzcd}
   \end{center}
   is a pullback by \cite[Proposition 2.1.6]{egbert-thesis}.
   This can be transformed to the following pullback square:
   \begin{center}
     \begin{tikzcd}
-      \prod\mathcal F\arrow[d]\arrow[r] & \prod\varphi_U^*\psi_U^*\mathcal F\arrow[d,"\Delta"] \\
-      \prod\psi_V^*\mathcal F\times \prod\psi_U^*\mathcal F\arrow[r,"\times"] & \prod\varphi_U^*\psi_U^*\mathcal F\times\prod\varphi_U^*\psi_U^*\mathcal F
+      \prod\mathcal F\arrow[d]\arrow[r] & \prod f^* h^*\mathcal F\arrow[d,"\Delta"] \\
+      \prod k^*\mathcal F\times \prod h^*\mathcal F\arrow[r,"\times"] & \prod f^* h^*\mathcal F\times\prod f^* h^*\mathcal F
     \end{tikzcd}
   \end{center}
   
-  By \cite[Lemma 3.3.6]{wellen-thesis} and the weak group structure on $\prod\varphi_U^*\psi_U^* B^n\mathcal F$,
+  By \cite[Lemma 3.3.6]{wellen-thesis} and the weak group structure on $\prod f^* h^* \Omega^{-n}\mathcal F$,
   we have a pullback square for each $n:\N$:
   \begin{center}
     \begin{tikzcd}
-      \prod\varphi_U^*\psi_U^* B^n\mathcal F\arrow[r]\arrow[d] & 1\arrow[d] \\
-      (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \times (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \arrow[r, "-"] & \prod\varphi_U^*\psi_U^* B^n\mathcal F
+      \prod f^* h^* \Omega^{-n}\mathcal F\arrow[r]\arrow[d] & 1\arrow[d] \\
+      (\prod f^* h^* \Omega^{-n}\mathcal F) \times (\prod f^* h^* \Omega^{-n}\mathcal F) \arrow[r, "-"] & \prod f^* h^* \Omega^{-n}\mathcal F
     \end{tikzcd}
   \end{center}
   Pasting gives a fiber-square:
   \begin{center}
     \begin{tikzcd}
-      (\prod\psi_V^*B^n\mathcal F)\times(\prod\psi_U^*B^n\mathcal F)\arrow[d]  & \prod B^n\mathcal F\arrow[l]\arrow[d] \\
-      (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \times (\prod\varphi_U^*\psi_U^* B^n\mathcal F) \arrow[d, "-"] & \prod\varphi_U^*\psi_U^* B^n\mathcal F\arrow[l]\arrow[d] \\
-      \prod\varphi_U^*\psi_U^* B^n\mathcal F  & 1\arrow[l] 
+      (\prod k^*\Omega^{-n}\mathcal F)\times(\prod h^*\Omega^{-n}\mathcal F)\arrow[d]  & \prod \Omega^{-n}\mathcal F\arrow[l]\arrow[d] \\
+      (\prod f^* h^* \Omega^{-n}\mathcal F) \times (\prod f^* h^* \Omega^{-n}\mathcal F) \arrow[d, "-"] & \prod f^* h^* \Omega^{-n}\mathcal F\arrow[l]\arrow[d] \\
+      \prod f^* h^* \Omega^{-n}\mathcal F  & 1\arrow[l] 
     \end{tikzcd}
   \end{center}
   So we get the desired fiber long exact sequence again by taking the long exact sequence of homotopy groups.
