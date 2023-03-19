@@ -142,8 +142,8 @@ Over the last century, cohomology was first discovered in concrete examples, the
 a process that culminated in the presentation of cohomology groups as mapping spaces in higher toposes.
 
 This is a representation, we can easily and elementary use through the interpretation of homotopy type theory in higher toposes.
-In \cite{evan-master-thesis} results about cohomology theories like the Mayer-Vietoris-Sequence were proven and computations were carried out,
-in \cite{floris-thesis}, the Serre-Spectral-Sequence was constructed and used.
+In \cite{evan-master-thesis} results about cohomology theories like the Mayer--Vietoris sequence were proven and computations were carried out,
+in \cite{floris-thesis}, the Serre spectral sequence was constructed and used.
 The latter also introduced cohomology with non-constant coefficients,
 which are the right level of generality for the applications we have in mind.
 We are particularly interested in computing cohomology groups of sheaves in algebraic geometry,
@@ -153,40 +153,41 @@ and David Jaz Myers (\cite{myers-talk1}, \cite{myers-talk2}).
 
 In this setup, the basic spaces in algebraic geometry, schemes, are just sets with a particular property \cite{draft}[def of scheme],
 and instead of sheaves on a type $X$, we consider, more generally maps $A:X\to\AbGroup$ to the type of abelian groups.
-The cohomology groups are then defined as dependent function types with values in Eilenberg-MacLane-Spaces
+The cohomology groups are then defined as dependent function types with values in Eilenberg--MacLane spaces
 \[ H^n(X,A)\colonequiv \|(x:X)\to K(A(x),n)\|_0\]
 -- a definition first suggested by \cite{mike-blogpost}.
 Due to its simplicity, this is very convenient to work with.
-One common way to calculate cohomology groups $H^n(X,\mathcal F)$ is to
+One common way to compute cohomology groups $H^n(X,\mathcal F)$ is to
 use results about the cohomology of simple subspaces $U_i\subseteq X$.
-A computational result on the case with two subspaces $U,V\subseteq X$ is known as the \notion{Mayer-Vietoris-Sequence}.
-In general this sequence helps to calculate the cohomology groups of a pushout
+A computational result on the case with two subspaces $U,V\subseteq X$ is known as the \notion{Mayer--Vietoris sequence}.
+In general this sequence helps to compute the cohomology groups of a pushout
 and was constructed for cohomology with constant coefficients in a group in \cite{evan-master-thesis}.
 We generalize this result to non-constant coefficients
-with a slick proof the second author learned in parts from Urs Schreiber in the course of his phd-thesis.
+with a slick proof the second author learned in part from Urs Schreiber in the course of his PhD thesis.
 
 \v{C}ech Cohomology, in the sense of this work,
-is a generalization of the Mayer-Vietoris Sequence in the case, where $U,V$ are actually subtypes of a set,
+is a generalization of the Mayer--Vietoris sequence in the case, where $U$ and~$V$ are actually subtypes of a set,
 to a space $X$ which is the union of fintely many subtypes $U_i\subseteq X$, i.e. $\bigcup_{i}U_i=X$.
-From a \emph{synthetic homotopy theory}, this is not very interesting,
-but it is very interesting for our intended applications in \emph{synthetic algebraic geometry}.
-In the latter subhject, it was unclear for a long time how one could set up a theory of cohomology,
-since the classical treatment relies on (non-)constructions, which need the axiom of choice.
+From the point of view of \emph{synthetic homotopy theory}, this is not very interesting,
+but it is fundamental to our intended applications in \emph{synthetic algebraic geometry}.
+In the latter subject, it was unclear for a long time how one could set up a theory of cohomology,
+since the classical treatment relies on injective resolutions or flabby resolutions which, depending on the application, require Zorn's lemma or the law of excluded middle \cite{blechschmidt-flabby}.
 
 In \cite{draft} this problem is circumvented,
-by using a justified axiom which allows a bit of choice which is related to the topology of the relevant topos
+by using a constructively justified axiom which internally reflects the topology of the relevant topos
+as a nonclassical choice principle
 and, secondly, as mentioned above, by using higher types to define work with cohomology.
 
 We present two approaches to a proof of a sufficiently general isomorphism between \v{C}ech Cohomology groups
 and cohomology groups defined using higher types.
-The first appraoch is more conceptual, more general and makes use of the higher types with have available in HoTT.
+The first approach is more conceptual, more general and makes use of the higher types with have available in HoTT.
 It is also related to how one would produce a \v{C}ech Cohomology theorem in higher category theory:
 the space is represented as a colimit, so mapping into the coefficients should yield a limit description of
 the (untruncated) cohomology of the whole space.
 
-The second approach very roughly follows old classical treatments of Grothendieck (\cite{tohoku1957}) and Buchsbaum (\cite{buchsbaum}).
+The second approach very roughly follows seminal classical treatments of Grothendieck~\cite{tohoku1957} and Buchsbaum~\cite{buchsbaum}, but employing Riehl's modern Kan extension framework~\cite{riehl-cathtpy} and language from the Stacks project~\cite{stacks-project}.
 Inspired by this, we aim to show that both cohomology defined using higher types and \v{C}ech cohomology satisfies the universal property
-of a \notion{universal $\partial$-functor} in some furtunate but still quite relevant situations.
+of a \notion{universal $\partial$-functor} in some particular but still quite relevant situations.
 While this approach is far less general, it also seems to need far less involved calculations.
 
 \printbibliography
