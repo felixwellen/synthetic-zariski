@@ -98,10 +98,10 @@
 Ingo Blechschmidt \inst{1}
 % uncomment the following for multiple authors.
 \and 
- Felix Cherubini \inst{1}
+ Felix Cherubini \inst{2}
  \thanks{Speaker.}
 \and 
- David Wärn \inst{1}
+ David Wärn \inst{3}
 }
 
 % Institutes for affiliations are also joined by \and,
@@ -154,8 +154,9 @@ building on work and ideas of Ingo Blechschmidt (\cite{ingo-thesis}), Anders Koc
 and David Jaz Myers (\cite{myers-talk1}, \cite{myers-talk2}).
 
 In this setup, the basic spaces in algebraic geometry, schemes,
-are just sets with a particular property \cite{draft}[def of scheme],
-and instead of sheaves on a type $X$, we consider more generally maps $A:X\to\AbGroup$ to the type of abelian groups.
+are just sets with a particular property \cite{draft}[Definition 4.3.1],
+and instead of sheaves of abelian groups on a type $X$,
+we consider more generally maps $A:X\to\AbGroup$ to the type of abelian groups.
 The cohomology groups are then defined as dependent function types with values in Eilenberg--MacLane spaces
 \[ H^n(X,A)\colonequiv \|(x:X)\to K(A(x),n)\|_0\]
 -- a definition first suggested by \cite{mike-blogpost}.
@@ -171,8 +172,8 @@ with a slick proof the second author learned in part from Urs Schreiber in the c
 \v{C}ech Cohomology, in the sense of this work,
 is a generalization of the Mayer--Vietoris sequence in the case, where $U$ and~$V$ are actually subtypes of a set,
 to a space $X$ which is the union of fintely many subtypes $U_i\subseteq X$, i.e. $\bigcup_{i}U_i=X$.
-From the point of view of \emph{synthetic homotopy theory}, this is not very interesting,
-but it is fundamental to our intended applications in \emph{synthetic algebraic geometry}.
+From the point of view of \emph{synthetic homotopy theory}, the cohomology groups of sets are not very interesting,
+but it is fundamental to our intended applications in \emph{synthetic algebraic geometry}, where schemes are sets.
 In the latter subject, it was unclear for a long time how one could set up a theory of cohomology,
 since the classical treatment relies on injective resolutions or flabby resolutions which, depending on the application, require Zorn's lemma or the law of excluded middle \cite{blechschmidt-flabby}.
 
@@ -183,7 +184,7 @@ and, secondly, as mentioned above, by using higher types to define and work with
 
 We present two approaches to a proof of a sufficiently general isomorphism between \v{C}ech Cohomology groups
 and cohomology groups defined using higher types.
-The first approach is more conceptual, more general and makes use of the higher types with have available in HoTT.
+The first approach is more conceptual and makes use of the higher types we have available in HoTT.
 It is also related to how one would produce a \v{C}ech Cohomology theorem in higher category theory:
 the space is represented as a colimit, so mapping into the coefficients should yield a limit description of
 the (untruncated) cohomology of the whole space.
@@ -191,7 +192,15 @@ the (untruncated) cohomology of the whole space.
 The second approach very roughly follows seminal classical treatments of Grothendieck~\cite{tohoku1957} and Buchsbaum~\cite{buchsbaum}, but employing Riehl's modern Kan extension framework~\cite{riehl-cathtpy} and language from the Stacks project~\cite{stacks-project}.
 Inspired by this, we aim to show that both cohomology defined using higher types and \v{C}ech cohomology satisfies the universal property
 of a \notion{universal $\partial$-functor} in some particular but still quite relevant situations.
-While this approach is far less general, it also seems to need far less involved calculations.
+While this approach seems to work only for particular schemes,
+it also seems to need far less involved calculations.
+Furthermore,
+$\partial$-functors could be reusable as a framework for questions about $\math{ext}$-sheaves and group cohomology.
+
+As a prerequisite to make both approaches to \v{C}ech Cohomology be usable for our intended application,
+we show that some schemes of interest have acyclic covers.
+More specifically, we show that for some particular class of coefficients, called \emph{weakly quasi coherent} modules,
+higher cohomology groups always vanish on affine schemes.
 
 \printbibliography
 
