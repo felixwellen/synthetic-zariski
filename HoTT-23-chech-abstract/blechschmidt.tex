@@ -6,6 +6,7 @@
 %
 \documentclass[letterpaper]{../util/easychair}
 \usepackage{doc}
+\usepackage[expansion=true,protrusion=true]{microtype}
 %
 \newcommand{\easychair}{\textsf{easychair}}
 \newcommand{\miktex}{MiK{\TeX}}
@@ -98,8 +99,8 @@
 Ingo Blechschmidt \inst{1}
 % uncomment the following for multiple authors.
 \and 
- Felix Cherubini \inst{2}
- \thanks{Speaker.}
+ Felix Cherubini \inst{2}%
+ \thanks{Speaker.}%
 \and 
  David Wärn \inst{3}
 }
@@ -140,7 +141,7 @@ that faithfully represents some features of interest.
 One particular, but still surprisingly broad applicable instantiation of this appraoch,
 is the assignment of a sequence of abelian groups, the cohomology groups, to spaces, sheaves and other things.
 Over the last century, cohomology was first discovered in concrete examples, then generalized and streamlined --
-a process that culminated in the presentation of cohomology groups as truncated mapping spaces in higher toposes.
+a process that culminated in the presentation of cohomology groups as truncated mapping spaces in higher toposes.%
 \footnote{See, e.g. the introduction of \cite{lurie-htt}.}
 
 This is a representation, we can easily and elementary use through the interpretation of homotopy type theory in higher toposes.
@@ -150,22 +151,22 @@ The latter also introduced cohomology with non-constant coefficients,
 which are the right level of generality for the applications we have in mind.
 We are particularly interested in computing cohomology groups of sheaves in algebraic geometry,
 which can be done synthetically using the foundation laid out by \cite{draft}
-building on work and ideas of Ingo Blechschmidt (\cite{ingo-thesis}), Anders Kock (\cite{kock-sdg})
-and David Jaz Myers (\cite{myers-talk1}, \cite{myers-talk2}).
+building on work and ideas of Ingo Blechschmidt~\cite{ingo-thesis}, Anders Kock~\cite{kock-sdg}
+and David Jaz Myers~\cite{myers-talk1}, \cite{myers-talk2}.
 
 In this setup, the basic spaces in algebraic geometry, schemes,
-are just sets with a particular property \cite{draft}[Definition 4.3.1],
+are just sets with a particular property \cite[Definition~4.3.1]{draft},
 and instead of sheaves of abelian groups on a type $X$,
 we consider more generally maps $A:X\to\AbGroup$ to the type of abelian groups.
 The cohomology groups are then defined as dependent function types with values in Eilenberg--MacLane spaces
-\[ H^n(X,A)\colonequiv \|(x:X)\to K(A(x),n)\|_0\]
--- a definition first suggested by \cite{mike-blogpost}.
+\[ H^n(X,A)\colonequiv \|(x:X)\to K(A(x),n)\|_0,\]
+a definition first suggested by Shulman~\cite{mike-blogpost}.
 Due to its simplicity, this is very convenient to work with.
 One common way to compute cohomology groups $H^n(X,\mathcal F)$ is to
 use results about the cohomology of simple subspaces $U_i\subseteq X$.
 A computational result on the case with two subspaces $U,V\subseteq X$ is known as the \notion{Mayer--Vietoris sequence}.
 In general this sequence helps to compute the cohomology groups of a pushout
-and was constructed for cohomology with constant coefficients in a group in \cite{evan-master-thesis}.
+and was constructed for cohomology with constant coefficients in a group by Cavallo~\cite{evan-master-thesis}.
 We generalize this result to non-constant coefficients
 with a slick proof the second author learned in part from Urs Schreiber in the course of his PhD thesis.
 
@@ -182,25 +183,31 @@ by using a constructively justified axiom which internally reflects the topology
 as a nonclassical choice principle
 and, secondly, as mentioned above, by using higher types to define and work with cohomology.
 
-We present two approaches to a proof of a sufficiently general isomorphism between \v{C}ech Cohomology groups
+We present two approaches to a proof of a sufficiently general isomorphism between \v{C}ech cohomology groups
 and cohomology groups defined using higher types.
 The first approach is more conceptual and makes use of the higher types we have available in HoTT.
 It is also related to how one would produce a \v{C}ech Cohomology theorem in higher category theory:
 the space is represented as a colimit, so mapping into the coefficients should yield a limit description of
 the (untruncated) cohomology of the whole space.
 
-The second approach very roughly follows seminal classical treatments of Grothendieck~\cite{tohoku1957} and Buchsbaum~\cite{buchsbaum}, but employing Riehl's modern Kan extension framework~\cite{riehl-cathtpy} and language from the Stacks project~\cite{stacks-project}.
-Inspired by this, we aim to show that both cohomology defined using higher types and \v{C}ech cohomology satisfies the universal property
+The second approach very roughly follows the seminal treatments of Grothendieck~\cite{tohoku1957} and Buchsbaum~\cite{buchsbaum}, but employs Riehl's modern Kan extension framework~\cite{riehl-cathtpy} and language from the Stacks project~\cite[Tag~05S7]{stacks-project}.
+Briefly, the idea is first to setup, as a bootstrapping step, \v{C}ech
+cohomology on quasi-compact and separated schemes. A Buchsbaum-style effacement argument
+then shows that \v{C}ech resolutions can be used to construct and
+compute actual (abstract) cohomology. This approach not only yields the
+cohomology groups, but also the total right derived functor $\mathbb{R}\Gamma$.
+In the future, we would like to widen the scope to the étale and fppf
+topology, employing hypercoverings as in Verdier's hypercovering theorem.
+
+We aim to show that both cohomology defined using higher types and \v{C}ech cohomology satisfies the universal property
 of a \notion{universal $\partial$-functor} in some particular but still quite relevant situations.
 While this approach seems to work only for particular schemes,
 it also seems to need far less involved calculations.
-Furthermore,
-$\partial$-functors could be reusable as a framework for other topics, for example,
-$\mathrm{ext}$-sheaves and group cohomology.
+Furthermore, $\partial$-functors could be reusable as a framework for other topics, for example, $\mathcal{E}\!xt$-sheaves and group cohomology.
 
 As a prerequisite to make both approaches to \v{C}ech Cohomology be usable for our intended application,
 we show that some schemes of interest have acyclic covers.
-More specifically, we show that for some particular class of coefficients, called \emph{weakly quasi coherent} modules,
+More specifically, we show that for some particular class of coefficients, called \emph{weakly quasicoherent} modules,
 higher cohomology groups always vanish on affine schemes.
 This result builds on a result for first cohomology groups from \cite{draft}
 and already makes use of higher types and their homotopy theory.
