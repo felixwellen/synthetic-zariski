@@ -32,6 +32,9 @@ Instead, we will only use basic facts about abelian groups.
   \end{enumerate}
 \end{definition}
 
+We will only consider the case that $C$ is $X\to\mathcal A$, where $\mathcal A$ is some subtype of the type of abelian groups
+and $C'$ is the type of abelian groups.
+
 \begin{definition}
   Let $T$ and $T'$ be $\partial$-Functors defined for the same indices.
   
@@ -52,12 +55,34 @@ Instead, we will only use basic facts about abelian groups.
   any natural transformation $f^0:T^0\to T'^0$ extends uniquely to a morphism of $\partial$-Functors $f:T\to T'$.
 \end{definition}
 
-The following is provable by a constructive adaption of Prop 2.2.1 in the Tohoku-Paper:
+The following is provable by a constructive adaption of Prop 2.2.1 in \cite{tohoku-translation}:
 \begin{theorem}
   \label{thm:universal}
   Let $X$ be a type.
-  The functors $H^i$ mapping dependent abelian groups over $X$ to abelian groups form a universal $\partial$-Functor.
+  An exact $\partial$-functor $(T^i)_i$ from $(X\to\mathcal A)$ to $\AbGroup$ is universal,
+  if there are \notion{local resolutions} for $T$:
+  \begin{enumerate}[(i)]
+  \item For any $i>0$, $A:X\to\mathcal A$ and $\chi:T^i(A)$ there merely is a short exact sequence:
+    \[
+      \begin{tikzcd}
+        0\ar[r] & A\ar[r,"m_\chi"] & M_\chi\ar[r] & C_\chi\ar[r] & 0
+      \end{tikzcd}
+    \]
+    such that $T^i(m_\chi)(\chi)=0$.
+  \item For any sequence $A\to R\to S$ such that $\chi$ also vanishes in $T^i(R)$ and any morphism $f:A\to B$,
+    there is a zig--zag of the following shape:
+    \begin{center}
+      \begin{tikzcd}
+        A\ar[r]\ar[d,"f"] & R\ar[r]\ar[d] & S\ar[d] \\
+        B\ar[r] & M_{f,K}\ar[r] & C_{f,K} \\
+        B\ar[r,"m_\chi"]\ar[u,equal] & M_{f(\chi)}\ar[r]\ar[u] & C_{f(\chi)}\ar[u]
+      \end{tikzcd}
+    \end{center}
+  \end{enumerate}
 \end{theorem}
+
+TODO: The proof, which takes the remainder of the section needs to be refactored to match the statement of the theorem
+(the proof is still about $(H^i)_i$ specifically, but we need it for $(H^i(X,\_))_i$ \emph{and} $(\v{H}^i(\{U\},\_))_i$ ).
 
 Before proving the theorem, we will establish some lemmas about extending morphisms between $\partial$-Functors.
 In the following, let $X$ be a type, $A$ a dependent abelian group over $X$, $T$ a $\partial$-Functor and $f$ a morphism of $\partial$-Functors, defined up to degree $i-1$.
