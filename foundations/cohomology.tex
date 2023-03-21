@@ -528,11 +528,12 @@ $\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact
   \ %
 \end{proof}
 
-\begin{theorem}[using \axiomref{Z-choice}]%
+\begin{theorem}[using \axiomref{Z-choice}, \axiomref{loc}, \axiomref{sqc}]%
   \label{H1-wqc-module-affine-trivial}
   For any affine scheme $X=\Spec(A)$ and coefficients $M: X\to \Mod{R}_{wqc}$, we have
   \[ H^1(X,M)=0 \rlap{.} \]
 \end{theorem}
+
 \begin{proof}
   We need to show, that any $M$-torsor $T$ on $X$ is merely equal to the trivial torsor $M$,
   or equivalently show the existence of a section of $T$.
@@ -553,7 +554,8 @@ $\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact
   So we merely have a matching family $\tilde{s}_i\coloneqq s_i-u_i$ and therefore, using Lemma \ref{kraus-glueing} merely a section of $T$.
 \end{proof}
 
-A similar result is provable for $H^2(X,M)$ and we expect that $H^n(X,M)=0$ holds, at least for any external $n$.
+A similar result is provable for $H^2(X,M)$ using the same approach.
+There is an extension of this result to general $n$ in work in progress \cite{chech-draft}.
 
 \subsection{Čech-Cohomology}
 
@@ -587,20 +589,21 @@ We start by repeating the classical definition of Chech-Cohomology groups for a 
 \end{definition}
 
 \begin{definition}
-  The cover $U_1,\dots,U_n$ is called \notion{acyclic} for $\mathcal F$,
+  The cover $U_1,\dots,U_n$ is called \notion{(r-)acyclic} for $\mathcal F$,
   if for all $k:\N$ and $i_0,\dots,i_k$, we have that the higher (non Čech) cohomology groups are trivial:
   \[
-    \forall l>0. H^l(U_{i_0,\dots,i_k},\mathcal F)=0\rlap{.}
+    \forall (r\geq)l>0. H^l(U_{i_0,\dots,i_k},\mathcal F)=0\rlap{.}
   \]
 \end{definition}
 
 \begin{example}
-  If $X$ is a scheme, $U_1,\dots,U_n$ a cover by affine open subtypes and $\mathcal F$ pointwise a finitely presented $R$-module,
-  then $U_1,\dots,U_n$ is acyclic for $\mathcal F$ by \cref{H1-fp-module-affine-trivial}.
+  If $X$ is a scheme, $U_1,\dots,U_n$ a cover by affine open subtypes
+  and $\mathcal F$ pointwise a weakly quasi coherent $R$-module,
+  then $U_1,\dots,U_n$ is 1-acyclic for $\mathcal F$ by \cref{H1-wqc-module-affine-trivial}.
 \end{example}
 
 \begin{theorem}[using \axiomref{Z-choice}]%
-  If $U_1,\dots,U_n$ is an acyclic cover for $\mathcal F$, then
+  If $U_1,\dots,U_n$ is a 1-acyclic cover for $\mathcal F$, then
   \[
     \check{H}^1(\{U\},\mathcal F)=H^1(X,\mathcal F)\rlap{.}
   \]
