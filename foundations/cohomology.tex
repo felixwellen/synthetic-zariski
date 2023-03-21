@@ -591,6 +591,7 @@ We start by repeating the classical definition of \v{C}hech-Cohomology groups fo
 It is possible to construct a torsor from a \v{c}ech cocycle:
 
 \begin{lemma}%
+  \label{deligne-construction}
   Let $A$ be an abelian group and $L$ a set with decidable equality and $\|L\|$.
   Let us call $c:(i,j:L)\to A$ a $L$-cocycle, if $c_{ij}+c_{jk}=c_{ik}$ for all $i,j:L$.
   Then there is a bijection:
@@ -675,8 +676,15 @@ It is possible to construct a torsor from a \v{c}ech cocycle:
     \to \Tors{\mathcal F}(X)\rlap{.}
   \]
   Let us abbreviate the left hand side with $T(\mathcal F,U)$.
-  Since the cover is acyclic, $\pi$ is surjective.
-  There is a map $\iota$ into the kernel of $\partial^1$ (\cref{chech-complex} (e)):
+  Since the cover is 1-acyclic, $\pi$ is surjective.
+  With $L_x\colonequiv \sum_{i}U_i(x)$ and \cref{deligne-construction} we get:
+  \begin{align*}
+    T(\mathcal F,U)&=\prod_{x:X}\sum_{T_x:\Tors{\mathcal F_x}}T_x^{L_x} \\
+                   &=\prod_{x:X}\text{$L_x$-cocycles}
+                     \rlap{.}
+  \end{align*}
+  The latter is the type of \v{c}ech-1-cocycles (\cref{chech-complex} (e))
+  and in total the equality is given by the isomorphism
   \[
     \iota \colonequiv
     (T,t) \mapsto (i,j\mapsto t_i - t_j) :
@@ -686,20 +694,6 @@ It is possible to construct a torsor from a \v{c}ech cocycle:
     \subseteq
     \bigoplus_{i,j}\mathcal F(U_{ij})\rlap{.}
   \]
-  We will now show, that $\iota$ is an embedding and therefore also, that its domain is a set.
-  Let $(T,t),(T',t'):T(\mathcal F,U)$ such that $\iota((T,t))=\iota((T',t'))$,
-  i.e. for all $i,j$ we have $t_i-t_j=t'_i-t'_j$.
-  The latter shows the well-definedness (needed to apply \cref{kraus-glueing})
-  of a global map $T\simeq T'$, given by sending $t_i(x)$ to $t'_i(x)$
-  for all $i$ and $x$.
-
-  The map $\iota$ is also a surjection and therefore an isomorphism:
-  Let $s:\ker(\partial^1)$.
-  Then we can contruct a torsor,
-  by starting with the trivial torsor on each $U_i$.
-  We use \cref{kraus-glueing-1-type} to get a torsor
-  with the identification given by the $s_{ij}$
-  where the cocycle condition holds because $s$ is in the kernel.
 
   Realizing, that $\im(\partial^0)$ corresponds to the subtype of $T(\mathcal F,U)$ of trivial torsors,
   we arrive at the following diagram:
