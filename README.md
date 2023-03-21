@@ -2,7 +2,7 @@
 Latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos.
 There are currently three parts:
 - Foundations ([pdf](https://felix-cherubini.de/iag.pdf))
-- Chech-Cohomology
+- Chech-Cohomology ([early draft pdf](https://felix-cherubini.de/chech.pdf))
 - Differential Geometry (so far, [not much](https://felix-cherubini.de/diffgeo.pdf))
 
 There is a related [formalization project](https://github.com/felixwellen/synthetic-geometry).
