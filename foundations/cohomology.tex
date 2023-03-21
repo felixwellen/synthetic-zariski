@@ -588,6 +588,60 @@ We start by repeating the classical definition of Chech-Cohomology groups for a 
   \end{enumerate}
 \end{definition}
 
+It is possible to construct a torsor from a \v{c}ech cocycle:
+
+\begin{lemma}%
+  Let $A$ be an abelian group and $L$ a set with decidable equality and $\|L\|$.
+  Let us call $c:(i,j:L)\to A$ a $L$-cocycle, if $c_{ij}+c_{jk}=c_{ik}$ for all $i,j:L$.
+  Then there is a bijection:
+  \[
+    \left((T:\text{$A$-torsor})\times T^L\right) \to \text{$L$-cocylces}
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  Let us first check, that the left side is a set.
+  Let $(T,u),(T',u'):(T:\text{$A$-torsor})\times T^L$,
+  then $(T,u)=(T',u')$ is equivalent to $(e:T\cong T')\times ((i:L)\to e(u_i)=e(u'_i))$.
+  But two maps $e$ with this property are equal,
+  since a map between torsors is determined by the image of a single element and $L$ is inhabited.
+  
+  Assume now $(T,u):(T:\text{$A$-torsor})\times T^L$ to construct the map.
+  Then $c_{ij}\colonequiv u_i-u_j$ defines an $L$-cocycle,
+  because
+  \[
+    u_i-u_j + u_j-u_k = u_i-u_k
+    \rlap{.}
+  \]
+  This defines an embedding: Assume $(T,u)$ and $(T',u')$ define the same $L$-cocycle,
+  then $u_i-u_j=u'_i-u'_j$ for all $i,j:L$.
+  We want to show a proposition, so we can assume there is $i:L$ and use that to get a map $e:T\to T'$
+  that sends $u_i$ to $u'_i$.
+  But then we also have
+  \[
+    e(u_j)=e(u_j-u_i+u_i)=e(u'_j-u'_i+u_i)=u'_j-u'_i+e(u_i)=u'_j-u'_i+u'_i=u'_j
+  \]
+  for all $j:L$, wich means $(T,u)=(T',u')$.
+    
+  Now let $c$ be an $L$-cocylce.
+  Following \cite{DELIGNE}, we can define a preimage-candidate:
+  \[
+    T_c\colonequiv \{u:A^L\mid u_i-u_j=c_{ij}\}
+    \rlap{.}
+  \]
+  $A$ acts on $T_c$ pontwise, since $(a+u_i)-(a+u_j)=u_i-u_j=c_{ij}$ for all $a:A$.
+  
+  TODO: Show that $T$ is inhabited.
+
+  Now $c$ is of type $(A^L)^L=A^{L\times L}$, so we have an element of the left hand side.
+  Applying the map constructed above yields a cocycle
+  \[
+    \tilde{c}_{ij}=(k\mapsto c_{ki})-(k\mapsto c_{kj})=(k\mapsto c_{ki}-c_{kj})=(k\mapsto c_{kj}+c_{ji}-c_{kj})=(k\mapsto c_{ji})
+  \]
+  -- so $(T_c,c)$ is a preimage of $c_{ij}$.
+\end{proof}
+
 \begin{definition}
   The cover $U_1,\dots,U_n$ is called \notion{(r-)acyclic} for $\mathcal F$,
   if for all $k:\N$ and $i_0,\dots,i_k$, we have that the higher (non Čech) cohomology groups are trivial:
