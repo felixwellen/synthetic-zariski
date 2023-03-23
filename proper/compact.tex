@@ -1,0 +1,50 @@
+
+The following is expected to be analogous to completeness in algebraic geometry.
+Since it coincides with the defintion of compactness in sythetic topology,
+we just call it compact:
+
+\begin{definition}
+  A type $X$ is \notion{compact},
+  if for any open proposition $U:X\to\Prop$ on $X$,
+  the type $(x:X)\to U(x)$ is open.
+\end{definition}
+
+\begin{example}
+  All finite types are compact, since a conjuction of open propositions is open.
+\end{example}
+
+\begin{lemma}
+  \label{dependent-sum-compact}
+  If $A$ is compact and for each $x:A$ $B(x)$ is a compact type,
+  then the dependent sum $(x:A)\times B(x)$ is compact.
+\end{lemma}
+
+\begin{proof}
+  Let $U:((x:A)\times B(x))\to\Prop$ be open.
+  We have to show $(y:(x:A)\times B(x))\to U(y)$ is open.
+  By currying, this is $(x:A)\to (z:B(x))\to U(x,z)$.
+  By compactness of each $B(x)$, the type $V_x\colonequiv (z:B(x)\to U((x,z))$ is open for all $x:A$.
+  So we have to show $(x:A)\to V_x$ is open, but this is the case by compactness of $A$.
+\end{proof}
+
+\begin{lemma}
+  \label{closed-proposition-compact}
+  Any closed proposition is compact.
+\end{lemma}
+
+\begin{proof}
+  Let $U:C\to\Open$.
+  Then, by \cref{commute-open-in-closed}, there is $\tilde{U}:\Open$,
+  such that $(x:C)\to U(x)$ is equivalent to $C\to\tilde{U}$.
+  By \cref{closed-implies-open-to-or}, the latter is equivalent to $\neg C\vee \tilde{U}$,
+  which is open.
+\end{proof}
+
+\begin{lemma}
+  \label{closed-subtype-compact}
+  A closed subtype of a compact type is compact.
+\end{lemma}
+
+\begin{proof}
+  By \cref{closed-proposition-compact} and \cref{dependent-sum-compact}.
+\end{proof}
