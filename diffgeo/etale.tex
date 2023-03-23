@@ -1,5 +1,96 @@
-
 \subsection{Lifting Properties}
+
+\begin{lemma}%
+  If a map $f$ has the left lifting property with respect to $l:A_0\to A_1$ and $l':A_1\to A_2$,
+  then $f$ has the left lifting property with respect to $l'\circ l$.
+\end{lemma}
+
+\begin{proof}
+  TODO
+\end{proof}
+
+\begin{lemma}
+\label{lifts-equivalence-pointwise}
+Assume given a commutative square of the form:
+ \begin{center}
+    \begin{tikzcd}
+      A \ar[r,"g"]\ar[d,swap,"u"]& X\ar[d,"p"]\\
+      B \ar[r,swap,"f"]& Y
+    \end{tikzcd}
+  \end{center}
+Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item A lift of the square.
+\item For all $b:B$ a lift of:
+ \begin{center}
+    \begin{tikzcd}
+      \mathrm{fib}_u(b)\ar[d]\ar[r,"g"] & X\ar[d,"p"]\\
+      1 \ar[r,swap,"f(b)"]& Y
+    \end{tikzcd}
+  \end{center}
+ \item For all $b:B$ a lift of:
+  \begin{center}
+    \begin{tikzcd}
+      \mathrm{fib}_u(b)\ar[r,"g"]\ar[d] & \mathrm{fib}_p(f(b))\ar[d]\\
+      1 \ar[r] & 1
+    \end{tikzcd}
+  \end{center}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We have that (ii) is equivalent to (iii) by definition of the fiber.
+
+We can assume that the square is of the form:
+ \begin{center}
+    \begin{tikzcd}
+   \sum_{b:B}P_b\ar[d]\ar[r] & \sum_{y:Y} Q_y\ar[d]\\
+     B \ar[r,swap,"f"]& Y
+    \end{tikzcd}
+  \end{center}
+  where the top map is:
+  \[
+  \lambda (b,p). (f(b),g(b,p))
+  \]
+  for some $g:\prod_{b:B} P_b \to Q_{f(b)}$. A lift of this square is the same as an inhabitant of:
+ % \[
+ % h : B \to \sum_{y:Y}Q_y
+ % \]
+  %such that $\pi_Y\circ h = f$ and for all $b:B$ and $p:P(b)$ we have $(f(b),g(b,p)) = h(b)$. But this is equivalent to a giving:
+  %\[
+  %h: \prod_{b:B}Q_{f(b)}
+  %\]
+  % such that for all $b:B$ and $p:P(b)$ we have $g(b,p) = h(b)$. This in turn is the same as an inhabitant of:
+  \[
+  \prod_{b:B} \sum_{q:Q_{f(b)}} \prod_{p:P_b} g(b,p)=q
+  \]
+  which is equivalent to (iii).
+\end{proof}
+
+\begin{lemma}
+Assume given maps $u:A\to B$ and $p:X\to Y$.
+Then if $p$ has the right lifting property (resp. at most one lift) against $\mathrm{fib}_u(b)\to 1$ for all $b:B$, then it has the right lifting property (resp. at most one lift) against $u$.
+\end{lemma}
+
+\begin{proof}
+By \cref{lifts-equivalence-pointwise} a lift of a square
+ \begin{center}
+    \begin{tikzcd}
+      A \ar[r]\ar[d,swap,"u"]& X\ar[d,"p"]\\
+      B \ar[r]& Y
+    \end{tikzcd}
+  \end{center}
+  is equivalent a family of lifts of squares of the form: 
+   \begin{center}
+    \begin{tikzcd}
+      \mathrm{fib}_u(b)\ar[d]\ar[r] & X\ar[d,"p"]\\
+      1 \ar[r]& Y
+    \end{tikzcd}
+  \end{center}
+  But a product of contractible types (resp. propositions) is itself contractible (resp. a proposition) so we can conclude. 
+\end{proof}
+
+\subsection{\'Etale maps}
 
 \begin{example}
   Let us assume $2\neq 0$ in $R$ and look at the following square:
@@ -19,7 +110,7 @@
   \end{center}
 \end{example}
 
-A non-fintely generated version of the following definition is usually used
+A non-finitely generated version of the following definition is usually used
 to define \emph{formally étale} maps of schemes
 \footnote{In \cite{EGAIV3}[§17], the definition of formally étale maps ranges over arbitrary ideals, but uses the same lifting condition as below.}
 and then it is subsequently noted,
@@ -45,15 +136,6 @@ Since all of our schemes are of finite presentations, this should be a correct d
 Another way to phrase our definition of formally étale maps would be to say,
 that they are the maps with the right lifting property (\cite{modalities}[definition 1.45]) with respect to ``left`` maps of the form $\Spec (A/N)\to \Spec A$.
 We will use some well known, general closure properties of left maps, starting with closure under composition:
-
-\begin{lemma}%
-  If a map $f$ has the left lifting property with respect to $l:A_0\to A_1$ and $l':A_1\to A_2$,
-  then $f$ has the left lifting property with respect to $l'\circ l$.
-\end{lemma}
-
-\begin{proof}
-  TODO
-\end{proof}
 
 \begin{lemma}%
   A map $f:X\to Y$ is formally étale,
@@ -162,7 +244,7 @@ We will use some well known, general closure properties of left maps, starting w
 	In this case we can apply \cref{decidable-of-tangent}.
 \end{proof}
 
-\subsection{Unramified morphisms}
+\subsection{Unramified maps}
 
 \begin{definition}
 For any types $X,Y$, a map $f:X\to Y$ is called formally unramified if for any closed proposition $P$ such that $\neg\neg P$ the following square has at most one lift:
