@@ -48,3 +48,22 @@ we just call it compact:
 \begin{proof}
   By \cref{closed-proposition-compact} and \cref{dependent-sum-compact}.
 \end{proof}
+
+\begin{lemma}
+  \label{not-not-surjection-compact}
+  If $A$ is compact and $f:A\to B$ is such that for all $y:B$,
+  there not not exists $x:A$ with $f(x)=y$,
+  then $B$ is compact.
+\end{lemma}
+
+\begin{proof}
+  Let $U:B\to\Open$.
+  The assumtion on $f$ can be written as $(y:B)\to \neg\neg \| (x:A)\times f(x)=y \|$.
+  Then, by $\neg\neg$-stability of opens and our assumtion:
+  \begin{align*}
+    (y:B)\to U(x) &= (y:B)\to \neg\neg \| U(y) \| \\
+                  &= (x:A)\to \neg\neg \| U(f(x)) \| \\
+                  &= (x:A)\to U(f(x))
+  \end{align*}
+  Where the latter is open by the assumption that $A$ is compact.
+\end{proof}
