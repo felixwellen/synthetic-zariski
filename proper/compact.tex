@@ -33,13 +33,31 @@ we just call it compact:
 \end{lemma}
 
 \begin{proof}
-  WRONG...
-  
   Let $U:C\to\Open$.
-  Then, by \cref{commute-open-in-closed}, there merely is $\tilde{U}:\Open$,
-  such that $(x:C)\to U(x)$ is equivalent to $C\to\tilde{U}$.
+  Then, by \cref{commute-open-in-closed-prop},
+  there merely is $\tilde{U}:\Open$,
+  such that $C\times\tilde{U}=(x:C)\times U(x)$.
+  And then, using generalities on dependent functions and that all types involved are propositions:
+  \begin{align*}
+    (x:C)\to U(x) &= ((s: C\to ((x:C)\times U(x)))\to (y:C) \to \pi_1(s(y))=y) \\
+                  &= C\to ((x:C)\times U(x)) \\
+                  &= C\to (C\times\tilde{U}) \\
+                  &= C\to\tilde{U}
+  \end{align*}
   By \cref{closed-implies-open-to-or}, the latter is equivalent to $\neg C\vee \tilde{U}$,
   which is open.
+\end{proof}
+
+With this we can generalize \cref{commute-open-in-closed-prop} to types:
+
+\begin{proposition}
+  \label{commute-open-in-closed}
+  Let $X$ be a type, $C\subseteq X$ a closed subtype and $U\subseteq C$ open.
+  Then there is an open $\tilde{U}\subseteq X$ such that $\tilde{U}\cap C = U$.
+\end{proposition}
+
+\begin{proof}
+  We take $\tilde{U}(x)\colonequiv (C(x)\to U(x))$.
 \end{proof}
 
 \begin{lemma}
