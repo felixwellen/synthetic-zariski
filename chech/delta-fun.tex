@@ -268,49 +268,31 @@ The following is provable by a constructive adaption of Prop 2.2.1 in \cite{toho
                                      &=0
                                        \rlap{.}
   \end{align*}
-  This shows that $f^i$ is as homomorphism and the only thing left to show,
-  is that $f^i$ commutes with all connecting maps $\partial_{\mathcal{S},A,i}$.
+  This shows that $f^i$ is as homomorphism.
   
+  Let $\mathcal{S}=A\to B\to C$ be an arbitrary exact sequence.
+  To see that $f^i$ commutes with the connecting morphism $\partial_{\mathcal{S},i-1}$,
+  let $x:T^{i-1}(C)$ and $\chi$ be the image of $x$ in $T^i(A)$.
+  By exactness, $\chi$ will be mapped to 0 in $T^i(B)$, so $\mathcal{S}$
+  resolves $\chi$ and therefore, the desired commutativity follows from the well-definedness proof for $f^i$.
   
-  TODO: The proof, which takes the remainder of the section needs to be refactored to match the statement of the theorem
-(the proof is still about $(H^i)_i$ specifically, but we need it for $(H^i(X,\_))_i$ \emph{and} $(\v{H}^i(\{U\},\_))_i$ ).
-
-  For a morphism $\varphi:A\to A'$ of spectra over $X$,
-  we can use the morphism of resolving sequences from \cref{rem:cong-resolve-sequence}.
-  Then \cref{lem:extension-welldefined} tells us directly, that $f^i$ is natural.
-  
-  For the commutativity of $f^i$ with connecting morphisms, let $x:X$ and consider a short exact sequence $S$:
+  The only thing left to show
+  is that $f^i$ is a natural transformation $T^i\to T'^i$.
+  Let $\varphi:A\to B$ and $\chi:T^i(A)$.
+  By our definition of local resolutions,
+  there is a zig-zag:
   \begin{center}
     \begin{tikzcd}
-      A_x\ar[r,"\psi_x"] & A'_x\ar[r] &  A''_x
+      A\ar[r]\ar[d,"\varphi"] & M_\chi\ar[r]\ar[d] & C_\chi\ar[d] \\
+      B\ar[r] & M_{\varphi,\mathcal{S}'}\ar[r] & C_{\varphi,\mathcal{S}'} \\
+      B\ar[r,"m_{\varphi(\chi)}"]\ar[u,equal] & M_{\varphi(\chi)}\ar[r]\ar[u] & C_{\varphi(\chi)}\ar[u]
     \end{tikzcd}
   \end{center}
-  For any $\chi_x:A_{x,i }$, we can construct the following diagram:
-  \begin{center}
-    \begin{tikzcd}
-      A_{x,i}\ar[r,"\psi_{x,i}"]\ar[d,equal] & A_{x,i}'\ar[r]\ar[d] & A_{x,i}''\ar[d,dashed] \\
-      A_{x,i}\ar[r,"\widehat{\Delta\circ\psi_{x,i}}"]\ar[d,equal] & \widehat{\left((\chi_{x}=\ast)\to A_{x,i}'\right)}\ar[r]  & \mathrm{Cok}(\widehat{\Delta\circ\psi_{x,i}}) \\
-      A_{x,i}\ar[r,"\widehat{\Delta}"] &  \widehat{\left((\chi_{x}=\ast)\to A_{x,i}\right)}\ar[r]\ar[u] & \mathrm{Cok}(\widehat{\Delta})\ar[u,dashed]
-    \end{tikzcd}
-  \end{center}
-  If we know $\psi_{x,i}(\chi_{x})=\ast$, then $\chi_{x,i}$ will also equal $\ast$ in $\left((\chi_{x}=\ast)\to A_{x,i}'\right)$ and $\left((\chi_{x}=\ast)\to A_{x,i}\right)$.
-  This is still true in connective covers.
-  So we have morphisms between three resolving sequences and we
-  can apply \cref{lem:extension-welldefined} twice to get:
-  \[ \mathrm{ext}(\chi,S)=\mathrm{ext}(\chi,S_\chi)\equiv f^i(|\chi|)\]
-  -- where $S$ is the given short exact sequence and $S_\chi$ the standard resolving sequence for $\chi$.
-
-  What remains now, is to use this to show that the following diagram (from the LES for $S$) commutes:
-  \begin{center}
-    \begin{tikzcd}
-      H^{i-1}(A'')\ar[r,"\partial"]\ar[d,"f^{i-1}"] & H^i(A)\ar[d,"f^i"] \\
-      T^{i-1}(A'')\ar[r,"\partial"] & T^i(A)
-    \end{tikzcd}
-  \end{center}
-  So let $|\xi|:H^{i-1}(A'')$ and $|\chi|:\equiv \partial(|\xi|)$.
-  Then, by exactness, we know $\psi^\ast(|\chi|):H^i(A')$ is zero.
-  This means the underlying class is merely zero and we can apply what we just proved,
-  to (merely) get that
-  \[ \partial(f^{i-1}(|\xi|))=\mathrm{ext}(\chi,S)=\mathrm{ext}(\chi,S_\chi)\equiv f^i(|\chi|)=f^i(\partial(|\xi|))\]
-  Done.
+  and therefore by \cref{lem:extension-welldefined} to the upper rectangle:
+  \begin{align*}
+    T^i(\varphi)(f^i(\chi)) &= T^i(\varphi)(\mathrm{ext}(f,\chi,\mathcal{S}_\chi)) \\
+                            &=\mathrm{ext}(f,\varphi(\chi),\mathcal{M}) \\
+                            &=f^i(\varphi(\chi))
+                              \rlap{.}
+  \end{align*}
 \end{proof}
