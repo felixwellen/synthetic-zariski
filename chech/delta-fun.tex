@@ -13,8 +13,8 @@ Therefore, we will state our definitions and results only for this particular si
 \emph{Let $R$ be a fixed commutative ring and $\mathcal A$ be a subcategory of the category of dependent $R$-modules over a fixed type $X$.}
 
 \begin{definition}
-  A \notion{$\partial$-Functor} is a collection of functors $T^i:\mathcal A\to \AbGroup$, where $0\leq i < a$ with $a\in\N\cup\{\infty\}$,
-  together with a collection of connecting morphisms $\partial_{S,i}$ for any short exact sequence $S$ and $0\leq i\le a$, subject to the following conditions:
+  A \notion{($l$-truncated) $\partial$-Functor} is a collection of functors $T^i:\mathcal A\to \AbGroup$, where $0\leq i < l$ with $l\in\N\cup\{\infty\}$,
+  together with a collection of connecting morphisms $\partial_{S,i}$ for any short exact sequence $S$ and $0\leq i\le l$, subject to the following conditions:
   \begin{enumerate}[(a)]
   \item Let $S$ be a short exact sequence
     \[ 0\to A'\to A\to A''\to 0\]
@@ -34,6 +34,13 @@ Therefore, we will state our definitions and results only for this particular si
       \end{tikzcd}
     \end{center}
   \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  Let $l,k:\N$.
+  The $l$-th \notion{truncation} of a $(l+k)$-truncated $\partial$-functor $T$
+  is just the restriction of $(T^i)_{i<l+k}$ to $(T^i)_{i<l}$, together with a restriction of the $\partial$-maps
+  and we denote the $l$-th truncation with \notion{$T^{\leq l}$}.
 \end{definition}
 
 \begin{definition}
@@ -70,7 +77,7 @@ This is something that could be achieved with injective resolutions classically 
 
 \begin{lemma}
   \label{lem:extend-map}
-  Let $i>0$ and $T$ be an exact $\partial$-functor defined at least up to index $i$, $S=A\to R_\chi\to S_\chi$ a short exact sequence in $\mathcal A$
+  Let $l\geq i>0$ and $T$ be an exact, $l$-truncated $\partial$-functor, $S=A\to R_\chi\to S_\chi$ a short exact sequence in $\mathcal A$
   and $\chi:T^i(A)$
   \begin{center}
     \begin{tikzcd}
@@ -78,8 +85,8 @@ This is something that could be achieved with injective resolutions classically 
     \end{tikzcd}
   \end{center}
   such that $T^i(r_\chi)(\chi)=0$.
-  For $\partial$-functor $T'$ of the same truncation level as $T$
-  and any morphism of $(i-1)$-truncated $\partial$-functors $f:T\to T'$, there is a unique\index{$\mathrm{ext}(\chi,S)$}
+  For an $l$-truncated $\partial$-functor $T'$
+  and any morphism of $(i-1)$-truncated $\partial$-functors $f:T^{\leq (i-1)}\to T'^{\leq (i-1)}$, there is a unique\index{$\mathrm{ext}(\chi,S)$}
   \[\mathrm{ext}(\chi,S) : T'^i(A)\]
   such that for any $x:T^{i-1}(S_\chi)$ with $\partial_{T,S,i-1}(x)=|\chi|$ we have $\partial_{T,S,i-1}(f^{i-1}(x))=\mathrm{ext}(\chi,S)$.
 \end{lemma}
@@ -114,6 +121,7 @@ This is something that could be achieved with injective resolutions classically 
   This means we can define $\mathrm{ext}(\chi,S)$ to be the unique element of $E(\chi,S)$.
 \end{proof}
 
+While this is enough to extend
 
 The following is provable by a constructive adaption of Prop 2.2.1 in \cite{tohoku-translation}:
 \begin{theorem}
