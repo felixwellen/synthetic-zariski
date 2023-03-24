@@ -61,6 +61,60 @@ Therefore, we will state our definitions and results only for this particular si
   any natural transformation $f^0:T^0\to T'^0$ extends uniquely to a morphism of $\partial$-Functors $f:T\to T'$.
 \end{definition}
 
+To prove that some $\partial$-functor has this universal property,
+we will \emph{extend} morphisms of $\partial$-functors, level by level.
+By observing the diagram in the proof of the lemma below,
+one can see that this is possible using exact sequences with the property,
+that some particular element is zero in their middle term.
+This is something that could be achieved with injective resolutions classically -- for all elements at once.
+
+\begin{lemma}
+  \label{lem:extend-map}
+  Let $i>0$ and $T$ be an exact $\partial$-functor defined at least up to index $i$, $S=A\to R_\chi\to S_\chi$ a short exact sequence in $\mathcal A$
+  and $\chi:T^i(A)$
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r,"r_\chi"] & R_\chi\ar[r,"s_\chi"] & S_\chi
+    \end{tikzcd}
+  \end{center}
+  such that $T^i(r_\chi)(\chi)=0$.
+  For $\partial$-functor $T'$ of the same truncation level as $T$
+  and any morphism of $(i-1)$-truncated $\partial$-functors $f:T\to T'$, there is a unique\index{$\mathrm{ext}(\chi,S)$}
+  \[\mathrm{ext}(\chi,S) : T'^i(A)\]
+  such that for any $x:T^{i-1}(S_\chi)$ with $\partial_{T,S,i-1}(x)=|\chi|$ we have $\partial_{T,S,i-1}(f^{i-1}(x))=\mathrm{ext}(\chi,S)$.
+\end{lemma}
+
+\begin{proof}
+  The following diagram commutes:
+  \begin{center}
+    \begin{tikzcd}
+      T^{i-1}(A)\ar[r]\ar[d,"f^{i-1}"]  & T^{i-1}(R_\chi)\ar[r]\ar[d,"f^{i-1}"]  & T^{i-1}(S_\chi)\ar[r,"\partial"]\ar[d,"f^{i-1}"] & T^i(A)\ar[r,"r_\chi^\ast"] & T^i(R_\chi)\dots \\
+      T'^{i-1}(A)\ar[r]  & T'^{i-1}(R_\chi)\ar[r,"s_\chi^\ast"]  & T'^{i-1}(S_\chi)\ar[r,"\partial"] & T'^i(A)\ar[r] & T'^i(R_\chi)\dots 
+    \end{tikzcd}
+  \end{center}
+  The upper row is exact and the lower row is a complex.
+
+  Let $E(\chi,S)$ be the type of all possible values of $f^i$ in $T'^i(A)$,
+  with which the dependent sum over all $y:T'^i(A)$ such that there merely is $x:T^{i-1}(S_\chi)$ with $\partial(x)=|\chi|$
+  and $\partial(f^{i-1}(x))=y$.
+  Then $E(\chi,S)$ is inhabited, since $r_\chi(|\chi|)=0$ and by exactness, there has to be a mere preimage under $\partial$.
+  So we need to show, that $E(\chi,S)$ is a proposition.
+  
+  Let $x:T^{i-1}(S_\chi)$ such that $\partial(x)=|\chi|$.
+  Then any other element with this property will be of the form $x+k$, with $k$ in the kernel of $\partial$.
+  Any $k$ like that, has a mere preimage $k':T^{i-1}(R_\chi)$ and since the lower row is a complex, we have $\partial(s_\chi^\ast(f^{i-1}(k')))=0$.
+  
+  So for any extension $y:T'^{i}(A)$ we have
+  \begin{align*}
+    y &= \partial(f^{i-1}(x+k)) \\
+      &= \partial(f^{i-1}(x))+\partial(f^{i-1}(k)) \\
+      &= \partial(f^{i-1}(x))+\partial(s_\chi^\ast(f^{i-1}(k'))) \\
+      &= \partial(f^{i-1}(x))
+  \end{align*}
+  This means we can define $\mathrm{ext}(\chi,S)$ to be the unique element of $E(\chi,S)$.
+\end{proof}
+
+
 The following is provable by a constructive adaption of Prop 2.2.1 in \cite{tohoku-translation}:
 \begin{theorem}
   \label{thm:universal}
@@ -92,52 +146,6 @@ TODO: The proof, which takes the remainder of the section needs to be refactored
 
 Before proving the theorem, we will establish some lemmas about extending morphisms between $\partial$-Functors.
 In the following, let $X$ be a type, $A$ a dependent abelian group over $X$, $T$ a $\partial$-Functor and $f$ a morphism of $\partial$-Functors, defined up to degree $i-1$.
-
-\begin{lemma}
-  \label{lem:extend-map}
-  For any gerbe $\chi:(x:X)\to A_{x,k}$ let $S$ be a short exact sequence
-  \begin{center}
-    \begin{tikzcd}
-      A\ar[r,"\iota_\chi"] & R_\chi\ar[r,"c_\chi"] & C_\chi
-    \end{tikzcd}
-  \end{center}
-  of Eilenberg-MacLane spectra over $X$ resolving $\chi$.
-  There is a unique
-  \[\mathrm{ext}(\chi,S) : T^i(A)\]
-  (with $T$ as in \cref{thm:universal}) such that for any $x:H^{i-1}(C_\chi)$ with $\partial_{H,S,i-1}(x)=|\chi|$ we have $\partial_{T,S,i-1}(f^{i-1}(x))=\mathrm{ext}(\chi,S)$.
-\end{lemma}
-\begin{proof}[of \cref{lem:extend-map}]
-  Let
-  \[ A \to R_\chi\to C_\chi\]
-  be a short exact sequence of Eilenberg-MacLane spectra resolving $\chi$.
-  The following diagram commutes:
-  \begin{center}
-    \begin{tikzcd}
-      H^{i-1}(A)\ar[r]\ar[d,"f^{i-1}"]  & H^{i-1}(R_\chi)\ar[r]\ar[d,"f^{i-1}"]  & H^{i-1}(C_\chi)\ar[r,"\partial"]\ar[d,"f^{i-1}"] & H^i(A)\ar[r,"\hat{\iota}_\chi^\ast"] & H^i(R_\chi)\dots \\
-      T^{i-1}(A)\ar[r]  & T^{i-1}(R_\chi)\ar[r,"c_\chi^\ast"]  & T^{i-1}(C_\chi)\ar[r,"\partial"] & T^i(A)\ar[r] & T^i(R_\chi)\dots 
-    \end{tikzcd}
-  \end{center}
-  The upper row is exact and the lower row is a complex.
-
-  Let $E(\chi,S)$ be the type of all possible values of $f^i$ in $T^i(A)$,
-  with which we mean all $y:T^i(A)$ such that there merely is $x:H^{i-1}(C_\chi)$ with $\partial(x)=|\chi|$
-  and $\partial(f^{i-1}(x))=y$.
-  Then $E(\chi,S)$ is inhabited, since $\iota_\chi(|\chi|)=0$ and by exactness, there has to be a mere preimage under $\partial$.
-  So we need to show, that $E(\chi,S)$ is a proposition.
-  
-  Let $x:H^{i-1}(C_\chi)$ such that $\partial(x)=|\chi|$.
-  Then any other element with this property will be of the form $x+k$, with $k$ in the kernel of $\partial$.
-  Any $k$ like that, has a mere preimage $k':H^{i-1}(R_\chi)$ and since the lower row is a complex, we have $\partial(c_\chi^\ast(f^{i-1}(k')))=0$.
-  
-  So for any extension $y:T^{i}(A)$ we have
-  \begin{align*}
-    y &= \partial(f^{i-1}(x+k)) \\
-      &= \partial(f^{i-1}(x))+\partial(f^{i-1}(k)) \\
-      &= \partial(f^{i-1}(x))+\partial(c_\chi^\ast(f^{i-1}(k'))) \\
-      &= \partial(f^{i-1}(x))
-  \end{align*}
-  This means we can define $\mathrm{ext}(\chi,S)$ to be the unique element of $E(\chi,S)$.
-\end{proof}
 
 \begin{lemma}
   \label{lem:extension-welldefined}
