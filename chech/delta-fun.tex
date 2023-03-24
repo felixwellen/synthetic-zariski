@@ -198,12 +198,13 @@ together with the existence of enough ``good'' short exact sequences in the foll
       \end{tikzcd}
     \]
     such that $T^i(m_\chi)(\chi)=0$.
-  \item For any sequence $A\to R\to S$ such that $\chi$ also vanishes in $T^i(R)$ and any morphism $f:A\to B$,
+  \item For any short exact sequence $\mathcal{S}=A\to R\to S$
+    such that $\chi$ also vanishes in $T^i(R)$ and any morphism $f:A\to B$,
     there is a zig--zag of the following shape:
     \begin{center}
       \begin{tikzcd}
         A\ar[r]\ar[d,"f"] & R\ar[r]\ar[d] & S\ar[d] \\
-        B\ar[r] & M_{f,K}\ar[r] & C_{f,K} \\
+        B\ar[r] & M_{f,\mathcal{S}}\ar[r] & C_{f,\mathcal{S}} \\
         B\ar[r,"m_{f(\chi)}"]\ar[u,equal] & M_{f(\chi)}\ar[r]\ar[u] & C_{f(\chi)}\ar[u]
       \end{tikzcd}
     \end{center}
@@ -219,12 +220,37 @@ The following is provable by a constructive adaption of Prop 2.2.1 in \cite{toho
   if $\mathcal A$ has local resolutions for $T$.
 \end{theorem}
 
-TODO: The proof, which takes the remainder of the section needs to be refactored to match the statement of the theorem
-(the proof is still about $(H^i)_i$ specifically, but we need it for $(H^i(X,\_))_i$ \emph{and} $(\v{H}^i(\{U\},\_))_i$ ).
-
 \begin{proof}[of \cref{thm:universal}]
   To extend a given morphism $f^0$, 
-  we will construct $f^i:T^i\to T'^i$ recursively for $0<i<l$.
+  we will construct $f^i:T^i\to T'^i$ by induction on $i$ for $0<i<l$.
+  So let $T'$ be a $\partial$-functor and assume, we already have a morphism for $i-1$ and lower indices.
+  We start by constructing a group homomorphism $f^i:T^i(A)\to T'^i(A)$ for arbitrary $A:\mathcal A$.
+
+  By \cref{lem:extend-map},
+  we merely get $f^{i}(\chi)\colonequiv \mathrm{ext}(f,\chi,\mathcal{S}_\chi)$,
+  for each $\chi:T^i(A)$ and their merely given local resolutions $\mathcal{S}_\chi$.
+  To see that this yields an actual map, we have to check that the
+  values $\mathrm{ext}(f,\chi,\mathcal{S}_\chi)$ are independent of the short exact sequence $\mathcal{S}_\chi$.
+  For any other short exact sequence $\mathcal{S}'=A\to R_\chi\to S_\chi$
+  such that $T^i(\dots)(\chi)=0$, we get a zig-zag by our requirement on local resolutions:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[d,"\id"] & R_\chi\ar[r]\ar[d] & S_\chi\ar[d] \\
+      A\ar[r] & M_{\id,\mathcal{S}'}\ar[r] & C_{\id,\mathcal{S}'} \\
+      A\ar[r,"m_{\chi}"]\ar[u,equal] & M_{\chi}\ar[r]\ar[u] & C_{\chi}\ar[u]
+    \end{tikzcd}
+  \end{center}
+    
+  
+  
+  This is proven by direct application of \cref{lem:extension-welldefined},
+  To get the homomorphism property,
+  let 
+  
+
+  TODO: The proof, which takes the remainder of the section needs to be refactored to match the statement of the theorem
+(the proof is still about $(H^i)_i$ specifically, but we need it for $(H^i(X,\_))_i$ \emph{and} $(\v{H}^i(\{U\},\_))_i$ ).
+
   Since the codomain of $f^i$ is 0-truncated, the latter means, we can just assume that each element is of the form $|\chi|:H^i(X,A)$
   for some cohomology class $\chi:(x:X)\to A_{x,i}$.
 
