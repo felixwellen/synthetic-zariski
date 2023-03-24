@@ -16,12 +16,12 @@ Therefore, we will state our definitions and results only for this particular si
   An \notion{($l$-truncated) $\partial$-functor} is a collection of functors $T^i:\mathcal A\to \AbGroup$, where $0\leq i < l$ with $l\in\N\cup\{\infty\}$,
   together with a collection of connecting morphisms $\partial_{S,i}$ for any short exact sequence $S$ and $0\leq i\le l$, subject to the following conditions:
   \begin{enumerate}[(a)]
-  \item Let $S$ be a short exact sequence
+  \item Let $\mathcal{S}$ be a short exact sequence
     \[ 0\to A'\to A\to A''\to 0\]
-    in $\mathcal A$. Applying the $T^i$ yields a complex, together with connecting morphisms $(\partial_{S,i})_{0\leq i<l-1}$:
+    in $\mathcal A$. Applying the $T^i$ yields a complex, together with connecting morphisms $(\partial_{\mathcal{S},i})_{0\leq i<l-1}$:
     \begin{center}
       \begin{tikzcd}
-        0\ar[r] & T^0(A')\ar[r] & T^0(A)\ar[r]  & T^0(A'')\ar[r,"\partial_{S,0}"]  & T^1(A')\ar[r]  & T^1(A)\ar[r]  & \dots
+        0\ar[r] & T^0(A')\ar[r] & T^0(A)\ar[r]  & T^0(A'')\ar[r,"\partial_{\mathcal{S},0}"]  & T^1(A')\ar[r]  & T^1(A)\ar[r]  & \dots
       \end{tikzcd}
     \end{center}
   \item For any homomorphism to a second short exact sequence
@@ -77,7 +77,7 @@ This is something that could be achieved with injective resolutions classically 
 
 \begin{lemma}
   \label{lem:extend-map}
-  Let $l\geq i>0$ and $T$ be an exact, $l$-truncated $\partial$-functor, $S=A\to R_\chi\to S_\chi$ a short exact sequence in $\mathcal A$
+  Let $l\geq i>0$ and $T$ be an exact, $l$-truncated $\partial$-functor, $\mathcal{S}=A\to R_\chi\to S_\chi$ a short exact sequence in $\mathcal A$
   and $\chi:T^i(A)$
   \begin{center}
     \begin{tikzcd}
@@ -86,9 +86,9 @@ This is something that could be achieved with injective resolutions classically 
   \end{center}
   such that $T^i(r_\chi)(\chi)=0$.
   For an $l$-truncated $\partial$-functor $T'$
-  and any morphism of $(i-1)$-truncated $\partial$-functors $f:T^{\leq (i-1)}\to T'^{\leq (i-1)}$, there is a unique\index{$\mathrm{ext}(\chi,S)$}
-  \[\mathrm{ext}(\chi,S) : T'^i(A)\]
-  such that for any $x:T^{i-1}(S_\chi)$ with $\partial_{T,S,i-1}(x)=|\chi|$ we have $\partial_{T,S,i-1}(f^{i-1}(x))=\mathrm{ext}(\chi,S)$.
+  and any morphism of $(i-1)$-truncated $\partial$-functors $f:T^{\leq (i-1)}\to T'^{\leq (i-1)}$, there is a unique\index{$\mathrm{ext}(\chi,\mathcal{S})$}
+  \[\mathrm{ext}(\chi,\mathcal{S}) : T'^i(A)\]
+  such that for any $x:T^{i-1}(S_\chi)$ with $\partial_{T,\mathcal{S},i-1}(x)=|\chi|$ we have $\partial_{T,S,i-1}(f^{i-1}(x))=\mathrm{ext}(\chi,\mathcal{S})$.
 \end{lemma}
 
 \begin{proof}
@@ -101,11 +101,11 @@ This is something that could be achieved with injective resolutions classically 
   \end{center}
   The upper row is exact and the lower row is a complex.
 
-  Let $E(\chi,S)$ be the type of all possible values of $f^i$ in $T'^i(A)$,
+  Let $E(\chi,\mathcal{S})$ be the type of all possible values of $f^i$ in $T'^i(A)$,
   with which the dependent sum over all $y:T'^i(A)$ such that there merely is $x:T^{i-1}(S_\chi)$ with $\partial(x)=|\chi|$
   and $\partial(f^{i-1}(x))=y$.
-  Then $E(\chi,S)$ is inhabited, since $r_\chi(|\chi|)=0$ and by exactness, there has to be a mere preimage under $\partial$.
-  So we need to show, that $E(\chi,S)$ is a proposition.
+  Then $E(\chi,\mathcal{S})$ is inhabited, since $r_\chi(|\chi|)=0$ and by exactness, there has to be a mere preimage under $\partial$.
+  So we need to show, that $E(\chi,\mathcal{S})$ is a proposition.
   
   Let $x:T^{i-1}(S_\chi)$ such that $\partial(x)=|\chi|$.
   Then any other element with this property will be of the form $x+k$, with $k$ in the kernel of $\partial$.
@@ -118,7 +118,7 @@ This is something that could be achieved with injective resolutions classically 
       &= \partial(f^{i-1}(x))+\partial(s_\chi^\ast(f^{i-1}(k'))) \\
       &= \partial(f^{i-1}(x))
   \end{align*}
-  This means we can define $\mathrm{ext}(\chi,S)$ to be the unique element of $E(\chi,S)$.
+  This means we can define $\mathrm{ext}(\chi,\mathcal{S})$ to be the unique element of $E(\chi,\mathcal{S})$.
 \end{proof}
 
 While this shows, that existence of these special short exact sequences
@@ -175,19 +175,19 @@ TODO: The lemma has to be updated
 \end{lemma}
 
 \begin{proof}[of \cref{lem:extension-welldefined}]
-  Apply the $\partial$-Functors $H$ and $T$ to the morphism of resolving sequences, to get the following diagram:
+  Let $T'$ be another $\partial$-functor.
+  Apply the $\partial$-Functors $T$ and $T'$ to the morphism of resolving sequences, to get the following diagram:
   \begin{center}
     \begin{tikzcd}
-      H^{i-1}(R_\chi)\ar[r]\ar[dr]\ar[dd,"f^{i-1}"] & H^{i-1}(C_\chi)\ar[r]\ar[dr]\ar[dd, shift right=1ex, near start, "f^{i-1}"] & H^i(A)\ar[r]\ar[dr,"\varphi^\ast"] & H^i(R_\chi)\dots\ar[dr] & \\
-      & H^{i-1}(R_\xi)\ar[r]\ar[dd,"f^{i-1}",crossing over,near start] & H^{i-1}(C_\xi)\ar[r]\ar[dd,crossing over, near start, "f^{i-1}"] & H^i(A')\ar[r] & H^i(R_\xi)\dots \\
-      T^{i-1}(R_\chi)\ar[r] & T^{i-1}(C_\chi)\ar[r]\ar[dr] & T^i(A)\ar[r]\ar[dr,"T^i(\varphi)"] & T^i(R_\chi)\dots\ar[dr] & \\
-      & T^{i-1}(R_\xi)\ar[r] & T^{i-1}(C_\xi)\ar[r] & T^i(A')\ar[r] & T^i(R_\xi)\dots \\
+      T^{i-1}(R_\chi)\ar[r]\ar[dr]\ar[dd,"f^{i-1}"] & T^{i-1}(C_\chi)\ar[r]\ar[dr]\ar[dd, shift right=1ex, near start, "f^{i-1}"] & T^i(A)\ar[r]\ar[dr,"\varphi^\ast"] & T^i(R_\chi)\dots\ar[dr] & \\
+      & T^{i-1}(R_\xi)\ar[r]\ar[dd,"f^{i-1}",crossing over,near start] & T^{i-1}(C_\xi)\ar[r]\ar[dd,crossing over, near start, "f^{i-1}"] & T^i(A')\ar[r] & T^i(R_\xi)\dots \\
+      T'^{i-1}(R_\chi)\ar[r] & T'^{i-1}(C_\chi)\ar[r]\ar[dr] & T'^i(A)\ar[r]\ar[dr,"T'^i(\varphi)"] & T'^i(R_\chi)\dots\ar[dr] & \\
+      & T'^{i-1}(R_\xi)\ar[r] & T'^{i-1}(C_\xi)\ar[r] & T'^i(A')\ar[r] & T'^i(R_\xi)\dots \\
       
       & a\ar[mapsto,r]\ar[dd,mapsto]\ar[rd,mapsto] & \chi\ar[r,mapsto]\ar[rd,mapsto] & 0\ar[rd,mapsto] & \\
       & & a'\ar[mapsto,r]\ar[dd,mapsto] & \xi\ar[r,mapsto] & 0 \\
       & b\ar[rd,mapsto]\ar[r,mapsto]& \mathrm{ext}(\chi,S_\chi)\ar[rd,mapsto] & & \\
       & & b'\ar[r,mapsto] & ? & 
-      
     \end{tikzcd}
   \end{center}
   From exactness of the upper sequence, we get that there is a preimage $a$ of $\chi$.
