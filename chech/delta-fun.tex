@@ -121,16 +121,20 @@ This is something that could be achieved with injective resolutions classically 
   This means we can define $\mathrm{ext}(\chi,S)$ to be the unique element of $E(\chi,S)$.
 \end{proof}
 
-While this is enough to extend
+While this show, that existence of these special short exact sequences
+is enough to extend a \emph{map} from one truncation level to the next,
+it is not clear, that an extension constructed in this way,
+is actually a morphism of truncated $\partial$-functors.
+For that, some ``functoriality'' is needed.
 
-The following is provable by a constructive adaption of Prop 2.2.1 in \cite{tohoku-translation}:
-\begin{theorem}
-  \label{thm:universal}
-  Let $X$ be a type.
-  An exact $\partial$-functor $(T^i)_i$ from $\mathcal A$ to $\AbGroup$ is universal,
-  if there are \notion{local resolutions} for $T$:
+We summarize the exact condition we found useful to prove universality of $\partial$-functors,
+together with the existence of enough ``good'' short exact sequences in the following definition.
+
+\begin{definition}
+  Let $T$ be a $\partial$-functor.
+  We say that $\mathcal A$ \notion{has local resolutions for $T$}, if
   \begin{enumerate}[(i)]
-  \item For any $i>0$, $A:X\to\mathcal A$ and $\chi:T^i(A)$ there merely is a short exact sequence:
+  \item For any $i>0$, $A:\mathcal A$ and $\chi:T^i(A)$ there merely is a short exact sequence:
     \[
       \begin{tikzcd}
         0\ar[r] & A\ar[r,"m_\chi"] & M_\chi\ar[r] & C_\chi\ar[r] & 0
@@ -147,13 +151,12 @@ The following is provable by a constructive adaption of Prop 2.2.1 in \cite{toho
       \end{tikzcd}
     \end{center}
   \end{enumerate}
-\end{theorem}
+\end{definition}
 
-TODO: The proof, which takes the remainder of the section needs to be refactored to match the statement of the theorem
-(the proof is still about $(H^i)_i$ specifically, but we need it for $(H^i(X,\_))_i$ \emph{and} $(\v{H}^i(\{U\},\_))_i$ ).
+We will now show, the ``functoriality'' from the last definition is enough to show,
+that the extensions constructed in \cref{lem:extend-map} are actually morphisms of $\partial$-functors.
 
-Before proving the theorem, we will establish some lemmas about extending morphisms between $\partial$-Functors.
-In the following, let $X$ be a type, $A$ a dependent abelian group over $X$, $T$ a $\partial$-Functor and $f$ a morphism of $\partial$-Functors, defined up to degree $i-1$.
+TODO: The lemma has to be updated
 
 \begin{lemma}
   \label{lem:extension-welldefined}
@@ -168,6 +171,7 @@ In the following, let $X$ be a type, $A$ a dependent abelian group over $X$, $T$
   in the sense of \cref{def:morph-resolve}, we have:
   \[ T^k(\varphi)(\mathrm{ext}(\chi,S_\chi)) = \mathrm{ext}(\xi,S_\xi) \]
 \end{lemma}
+
 \begin{proof}[of \cref{lem:extension-welldefined}]
   Apply the $\partial$-Functors $H$ and $T$ to the morphism of resolving sequences, to get the following diagram:
   \begin{center}
@@ -190,9 +194,20 @@ In the following, let $X$ be a type, $A$ a dependent abelian group over $X$, $T$
   That means, $b'$ will be mapped to $ \mathrm{ext}(\xi,S_\xi)$,
   but by commutativity, $\mathrm{ext}(\chi,S_\chi)$ will be mapped to the same thing by $T^i(\varphi)$.
   So
-  \[ T^i(\varphi)(\mathrm{ext}(\chi,S_\chi))=\mathrm{ext}(\xi,S_\xi)\]
-  
+  \[ T^i(\varphi)(\mathrm{ext}(\chi,S_\chi))=\mathrm{ext}(\xi,S_\xi)\]  
 \end{proof}
+
+
+The following is provable by a constructive adaption of Prop 2.2.1 in \cite{tohoku-translation}:
+\begin{theorem}
+  \label{thm:universal}
+  Let $X$ be a type.
+  An exact $\partial$-functor $(T^i)_i$ from $\mathcal A$ to $\AbGroup$ is universal,
+  if $\mathcal A$ has local resolutions for $T$.
+\end{theorem}
+
+TODO: The proof, which takes the remainder of the section needs to be refactored to match the statement of the theorem
+(the proof is still about $(H^i)_i$ specifically, but we need it for $(H^i(X,\_))_i$ \emph{and} $(\v{H}^i(\{U\},\_))_i$ ).
 
 \begin{proof}[of \cref{thm:universal}]
   First of all, $H$ is a $\partial$-functor by \cref{prop:cohomology-les}.
