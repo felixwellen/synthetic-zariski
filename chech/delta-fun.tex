@@ -86,9 +86,9 @@ This is something that could be achieved with injective resolutions classically 
   \end{center}
   such that $T^i(r_\chi)(\chi)=0$.
   For an $l$-truncated $\partial$-functor $T'$
-  and any morphism of $(i-1)$-truncated $\partial$-functors $f:T^{\leq (i-1)}\to T'^{\leq (i-1)}$, there is a unique\index{$\mathrm{ext}(\chi,\mathcal{S})$}
-  \[\mathrm{ext}(\chi,\mathcal{S}) : T'^i(A)\]
-  such that for any $x:T^{i-1}(S_\chi)$ with $\partial_{T,\mathcal{S},i-1}(x)=|\chi|$ we have $\partial_{T,S,i-1}(f^{i-1}(x))=\mathrm{ext}(\chi,\mathcal{S})$.
+  and any morphism of $(i-1)$-truncated $\partial$-functors $f:T^{\leq (i-1)}\to T'^{\leq (i-1)}$, there is a unique\index{$\mathrm{ext}(f,\chi,\mathcal{S})$}
+  \[\mathrm{ext}(f,\chi,\mathcal{S}) : T'^i(A)\]
+  such that for any $x:T^{i-1}(S_\chi)$ with $\partial_{T,\mathcal{S},i-1}(x)=|\chi|$ we have $\partial_{T,S,i-1}(f^{i-1}(x))=\mathrm{ext}(f,\chi,\mathcal{S})$.
 \end{lemma}
 
 \begin{proof}
@@ -118,19 +118,72 @@ This is something that could be achieved with injective resolutions classically 
       &= \partial(f^{i-1}(x))+\partial(s_\chi^\ast(f^{i-1}(k'))) \\
       &= \partial(f^{i-1}(x))
   \end{align*}
-  This means we can define $\mathrm{ext}(\chi,\mathcal{S})$ to be the unique element of $E(\chi,\mathcal{S})$.
+  This means we can define $\mathrm{ext}(f,\chi,\mathcal{S})$ to be the unique element of $E(\chi,\mathcal{S})$.
 \end{proof}
 
 While this shows, that existence of these special short exact sequences
 is enough to extend a \emph{map} from one truncation level to the next,
 it is not clear, that an extension constructed in this way,
 is actually a morphism of truncated $\partial$-functors.
-For that, some ``functoriality'' is needed.
+
+It is also unclear, if the construction even yields a well-defined map,
+independent of the short exact sequence we chose in the construction.
+
+A solution to these problems is essentially given by
+requiring some ``functoriality'' of the short exact sequences we will use (\cref{local-resolution}) and
+the following naturality result:
+
+\begin{lemma}
+  \label{lem:extension-welldefined}
+  Let $T$ be an exact $\partial$-functor that has local resultions.
+  Let $\chi:T^i(A)$ and
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r,"r_\chi"]\ar[d,"\varphi"] & R_{\chi}\ar[r]\ar[d,"\varphi_R"] & S_{\chi}\ar[d,"\varphi_S"] \\
+      A'\ar[r] & R_{\varphi(\chi)}\ar[r] & S_{\varphi(\chi)}
+    \end{tikzcd}
+  \end{center}
+  be a morphism of short exact sequences ${\mathcal S}_\chi$ and $\mathcal{S}_{\varphi(\chi)}$ in $\mathcal A$,
+  where $T^i(r_\chi)(\chi)=0$.
+  Then, for the construction from \cref{lem:extend-map}, we have the following commutativity:
+  \[ T^i(\varphi)(\mathrm{ext}(f,\chi,{\mathcal S}_\chi)) = \mathrm{ext}(f,\varphi(\chi),\mathcal{S}_{\varphi(\chi)}) \]
+\end{lemma}
+
+\begin{proof}[of \cref{lem:extension-welldefined}]
+  Let $T'$ be another $\partial$-functor and $f:T^{\leq i-1}\to T'^{\leq i-1}$.
+  Apply the $\partial$-Functors $T$ and $T'$ to the morphism of short exact sequences,
+  to get the following diagram:
+  \begin{center}
+    \begin{tikzcd}
+      T^{i-1}(R_\chi)\ar[r]\ar[dr]\ar[dd,"f^{i-1}"] &
+      T^{i-1}(S_\chi)\ar[r]\ar[dr]\ar[dd, shift right=1ex, near start, "f^{i-1}"] &
+      T^i(A)\ar[r]\ar[dr,"\varphi^\ast"] & T^i(R_\chi)\dots\ar[dr] & \\
+      & T^{i-1}(R_{\varphi(\chi)})\ar[r]\ar[dd,"f^{i-1}",crossing over,near start] &
+      T^{i-1}(S_{\varphi(\chi)})\ar[r]\ar[dd,crossing over, near start, "f^{i-1}"] & T^i(A')\ar[r] & T^i(R_{\varphi(\chi)})\dots \\
+      T'^{i-1}(R_\chi)\ar[r] & T'^{i-1}(S_\chi)\ar[r]\ar[dr] & T'^i(A)\ar[r]\ar[dr,"T'^i(\varphi)"] & T'^i(R_\chi)\dots\ar[dr] & \\
+      & T'^{i-1}(R_{\varphi(\chi)})\ar[r] & T'^{i-1}(S_{\varphi(\chi)})\ar[r] & T'^i(A')\ar[r] & T'^i(R_{\varphi(\chi)})\dots \\
+      
+      & a\ar[mapsto,r]\ar[dd,mapsto]\ar[rd,mapsto] & \chi\ar[r,mapsto]\ar[rd,mapsto] & 0\ar[rd,mapsto] & \\
+      & & a'\ar[mapsto,r]\ar[dd,mapsto] & {\varphi(\chi)}\ar[r,mapsto] & 0 \\
+      & b\ar[rd,mapsto]\ar[r,mapsto]& \mathrm{ext}(\chi,R_\chi)\ar[rd,mapsto] & & \\
+      & & b'\ar[r,mapsto] & ? & 
+    \end{tikzcd}
+  \end{center}
+  From exactness of the upper sequence, we get that there is a preimage $a$ of $\chi$.
+  Let $a'$ denote the image of $a$ in $T^{i-1}(S_{\varphi(\chi)})$,
+  then $a'$ will be a preimage of ${\varphi(\chi)}$ in the parallel sequence by commutativity.
+  That means, that $b'$, the image of $a'$ in the lower sequence,
+  will be mapped to $ \mathrm{ext}(f,\varphi(\chi),\mathcal{S}_{\varphi(\chi)})$,
+  but by commutativity, $\mathrm{ext}(f,\chi,\mathcal{S}_\chi)$ will be mapped to the same thing by $T^i(\varphi)$.
+  So:
+  \[ T^i(\varphi)(\mathrm{ext}(f,\chi,\mathcal{S}_\chi))=\mathrm{ext}(f,\xi,\mathcal{S}_{\varphi(\chi)})\]  
+\end{proof}
 
 We summarize the exact condition we found useful to prove universality of $\partial$-functors,
 together with the existence of enough ``good'' short exact sequences in the following definition.
 
 \begin{definition}
+  \label{local-resolution}
   Let $T$ be a $\partial$-functor.
   We say that $\mathcal A$ \notion{has local resolutions for $T$}, if
   \begin{enumerate}[(i)]
@@ -153,58 +206,12 @@ together with the existence of enough ``good'' short exact sequences in the foll
   \end{enumerate}
 \end{definition}
 
-We will now essentially show, the ``functoriality'' from the last definition is enough to show,
-that the extensions constructed in \cref{lem:extend-map} are actually morphisms of $\partial$-functors.
-
-TODO: The lemma has to be updated
-
-\begin{lemma}
-  \label{lem:extension-welldefined}
-  Let $T$ be an exact $\partial$-functor that has local resultions.
-  Let $\chi:T^i(A)$ and
-  \begin{center}
-    \begin{tikzcd}
-      A\ar[r,"r_\chi"]\ar[d,"\varphi_A"] & R_{\chi}\ar[r]\ar[d,"\varphi_R"] & S_{\chi}\ar[d,"\varphi_S"] \\
-      A'\ar[r] & R_{\varphi(\chi)}\ar[r] & S_{\varphi(\chi)}
-    \end{tikzcd}
-  \end{center}
-  be a morphism of short exact sequences ${\mathcal S}_\chi$ and $\mathcal{S}_{\varphi(\chi)}$ in $\mathcal A$,
-  where $T^i(r_\chi)(\chi)=0$.
-  Then, for the construction from \cref{lem:extend-map}, we have the following commutativity:
-  \[ T^i(\varphi)(\mathrm{ext}(\chi,{\mathcal S}_\chi)) = \mathrm{ext}(\varphi(\chi),\mathcal{S}_{\varphi(\chi)}) \]
-\end{lemma}
-
-\begin{proof}[of \cref{lem:extension-welldefined}]
-  Let $T'$ be another $\partial$-functor.
-  Apply the $\partial$-Functors $T$ and $T'$ to the morphism of resolving sequences, to get the following diagram:
-  \begin{center}
-    \begin{tikzcd}
-      T^{i-1}(R_\chi)\ar[r]\ar[dr]\ar[dd,"f^{i-1}"] & T^{i-1}(C_\chi)\ar[r]\ar[dr]\ar[dd, shift right=1ex, near start, "f^{i-1}"] & T^i(A)\ar[r]\ar[dr,"\varphi^\ast"] & T^i(R_\chi)\dots\ar[dr] & \\
-      & T^{i-1}(R_\xi)\ar[r]\ar[dd,"f^{i-1}",crossing over,near start] & T^{i-1}(C_\xi)\ar[r]\ar[dd,crossing over, near start, "f^{i-1}"] & T^i(A')\ar[r] & T^i(R_\xi)\dots \\
-      T'^{i-1}(R_\chi)\ar[r] & T'^{i-1}(C_\chi)\ar[r]\ar[dr] & T'^i(A)\ar[r]\ar[dr,"T'^i(\varphi)"] & T'^i(R_\chi)\dots\ar[dr] & \\
-      & T'^{i-1}(R_\xi)\ar[r] & T'^{i-1}(C_\xi)\ar[r] & T'^i(A')\ar[r] & T'^i(R_\xi)\dots \\
-      
-      & a\ar[mapsto,r]\ar[dd,mapsto]\ar[rd,mapsto] & \chi\ar[r,mapsto]\ar[rd,mapsto] & 0\ar[rd,mapsto] & \\
-      & & a'\ar[mapsto,r]\ar[dd,mapsto] & \xi\ar[r,mapsto] & 0 \\
-      & b\ar[rd,mapsto]\ar[r,mapsto]& \mathrm{ext}(\chi,S_\chi)\ar[rd,mapsto] & & \\
-      & & b'\ar[r,mapsto] & ? & 
-    \end{tikzcd}
-  \end{center}
-  From exactness of the upper sequence, we get that there is a preimage $a$ of $\chi$.
-  Let $a'$ denote the image of $a$ in $H^{i-1}(C_\xi)$,
-  then $a'$ will be a preimage of $\xi$ in the other sequence by commutativity.
-  That means, $b'$ will be mapped to $ \mathrm{ext}(\xi,S_\xi)$,
-  but by commutativity, $\mathrm{ext}(\chi,S_\chi)$ will be mapped to the same thing by $T^i(\varphi)$.
-  So
-  \[ T^i(\varphi)(\mathrm{ext}(\chi,S_\chi))=\mathrm{ext}(\xi,S_\xi)\]  
-\end{proof}
-
 
 The following is provable by a constructive adaption of Prop 2.2.1 in \cite{tohoku-translation}:
 \begin{theorem}
   \label{thm:universal}
   Let $X$ be a type.
-  An exact $\partial$-functor $(T^i)_i$ from $\mathcal A$ to $\AbGroup$ is universal,
+  An exact $\partial$-functor $(T^i)_{i<l}$ from $\mathcal A$ to $\AbGroup$ is universal,
   if $\mathcal A$ has local resolutions for $T$.
 \end{theorem}
 
