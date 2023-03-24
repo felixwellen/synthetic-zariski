@@ -13,7 +13,11 @@ Therefore, we will state our definitions and results only for this particular si
 \emph{Let $R$ be a fixed commutative ring and $\mathcal A$ be a subcategory of the category of dependent $R$-modules over a fixed type $X$.}
 
 \begin{definition}
-  An \notion{($l$-truncated) $\partial$-functor} is a collection of functors $T^i:\mathcal A\to \AbGroup$, where $0\leq i < l$ with $l\in\N\cup\{\infty\}$,
+  An \notion{($l$-truncated) $\partial$-functor} is a collection of additve\footnote{
+    The zero object and binary direct sums are preserved.
+  }
+  functors
+  $T^i:\mathcal A\to \AbGroup$, where $0\leq i < l$ with $l\in\N\cup\{\infty\}$,
   together with a collection of connecting morphisms $\partial_{S,i}$ for any short exact sequence $S$ and $0\leq i\le l$, subject to the following conditions:
   \begin{enumerate}[(a)]
   \item Let $\mathcal{S}$ be a short exact sequence
@@ -219,11 +223,8 @@ TODO: The proof, which takes the remainder of the section needs to be refactored
 (the proof is still about $(H^i)_i$ specifically, but we need it for $(H^i(X,\_))_i$ \emph{and} $(\v{H}^i(\{U\},\_))_i$ ).
 
 \begin{proof}[of \cref{thm:universal}]
-  First of all, $H$ is a $\partial$-functor by \cref{prop:cohomology-les}.
-
   To extend a given morphism $f^0$, 
-  we will construct $f^i:H^i\to T^i$ recursively for $i\in\N$.
-  The construction of $f^i$ will be done pointwise, for each element of $H^i(X,A)$ using the recursion principle for 0-truncation.
+  we will construct $f^i:T^i\to T'^i$ recursively for $0<i<l$.
   Since the codomain of $f^i$ is 0-truncated, the latter means, we can just assume that each element is of the form $|\chi|:H^i(X,A)$
   for some cohomology class $\chi:(x:X)\to A_{x,i}$.
 
