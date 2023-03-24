@@ -13,12 +13,12 @@ Therefore, we will state our definitions and results only for this particular si
 \emph{Let $R$ be a fixed commutative ring and $\mathcal A$ be a subcategory of the category of dependent $R$-modules over a fixed type $X$.}
 
 \begin{definition}
-  A \notion{($l$-truncated) $\partial$-Functor} is a collection of functors $T^i:\mathcal A\to \AbGroup$, where $0\leq i < l$ with $l\in\N\cup\{\infty\}$,
+  An \notion{($l$-truncated) $\partial$-functor} is a collection of functors $T^i:\mathcal A\to \AbGroup$, where $0\leq i < l$ with $l\in\N\cup\{\infty\}$,
   together with a collection of connecting morphisms $\partial_{S,i}$ for any short exact sequence $S$ and $0\leq i\le l$, subject to the following conditions:
   \begin{enumerate}[(a)]
   \item Let $S$ be a short exact sequence
     \[ 0\to A'\to A\to A''\to 0\]
-    in $\mathcal A$. Applying the $T^i$ yields a complex, together with connecting morphisms $(\partial_{S,i})_{i\in\N}$:
+    in $\mathcal A$. Applying the $T^i$ yields a complex, together with connecting morphisms $(\partial_{S,i})_{0\leq i<l-1}$:
     \begin{center}
       \begin{tikzcd}
         0\ar[r] & T^0(A')\ar[r] & T^0(A)\ar[r]  & T^0(A'')\ar[r,"\partial_{S,0}"]  & T^1(A')\ar[r]  & T^1(A)\ar[r]  & \dots
@@ -26,7 +26,7 @@ Therefore, we will state our definitions and results only for this particular si
     \end{center}
   \item For any homomorphism to a second short exact sequence
     \[ 0\to B'\to B\to B''\to 0\]
-    and any valid $i$ the corresponding square commutes:
+    and any $i<l-1$ the corresponding square commutes:
     \begin{center}
       \begin{tikzcd}
         T^i(A'')\ar[r,"\partial"]\ar[d] & T^{i+1}(A')\ar[d] \\
@@ -44,9 +44,9 @@ Therefore, we will state our definitions and results only for this particular si
 \end{definition}
 
 \begin{definition}
-  Let $T$ and $T'$ be $\partial$-Functors defined for the same indices.
+  Let $T$ and $T'$ be $\partial$-functors defined for the same indices.
   
-  A \notion{morphism of $\partial$-Functors} $f:T\to T'$ is given by a natural transformation $f^i:T^i\to T'^i$ for each valid $i$,
+  A \notion{morphism of $\partial$-functors} $f:T\to T'$ is given by a natural transformation $f^i:T^i\to T'^i$ for each valid $i$,
   such that for any short exact sequence
   \[ 0\to A'\to A\to A''\to 0\]
   the following square commutes:
@@ -59,13 +59,13 @@ Therefore, we will state our definitions and results only for this particular si
 \end{definition}
 
 \begin{definition}
-  A $\partial$-Functor $T$ is called \notion{exact},
+  A $\partial$-functor $T$ is called \notion{exact},
   if all values are exact complexes.
 \end{definition}
 
 \begin{definition}
-  A $\partial$-Functor $T$ is called \notion{universal}, if for any $T'$, defined for the same indices,
-  any natural transformation $f^0:T^0\to T'^0$ extends uniquely to a morphism of $\partial$-Functors $f:T\to T'$.
+  A $\partial$-functor $T$ is called \notion{universal}, if for any $T'$, defined for the same indices,
+  any natural transformation $f^0:T^0\to T'^0$ extends uniquely to a morphism of $\partial$-functors $f:T\to T'$.
 \end{definition}
 
 To prove that some $\partial$-functor has this universal property,
@@ -121,7 +121,7 @@ This is something that could be achieved with injective resolutions classically 
   This means we can define $\mathrm{ext}(\chi,S)$ to be the unique element of $E(\chi,S)$.
 \end{proof}
 
-While this show, that existence of these special short exact sequences
+While this shows, that existence of these special short exact sequences
 is enough to extend a \emph{map} from one truncation level to the next,
 it is not clear, that an extension constructed in this way,
 is actually a morphism of truncated $\partial$-functors.
@@ -153,23 +153,25 @@ together with the existence of enough ``good'' short exact sequences in the foll
   \end{enumerate}
 \end{definition}
 
-We will now show, the ``functoriality'' from the last definition is enough to show,
+We will now essentially show, the ``functoriality'' from the last definition is enough to show,
 that the extensions constructed in \cref{lem:extend-map} are actually morphisms of $\partial$-functors.
 
 TODO: The lemma has to be updated
 
 \begin{lemma}
   \label{lem:extension-welldefined}
-  For any cohomology classes $\chi:(x:X)\to A_{x,k}$, $\xi:(x:X)\to A_{x,k}$ and any morphism
+  Let $T$ be an exact $\partial$-functor that has local resultions.
+  Let $\chi:T^i(A)$ and
   \begin{center}
     \begin{tikzcd}
-      A\ar[r]\ar[d,"\varphi"] & R_{\chi}\ar[r]\ar[d] & C_{\chi}\ar[d] \\
-      A'\ar[r] & R_{\xi}\ar[r] & C_{\xi}
+      A\ar[r,"r_\chi"]\ar[d,"\varphi_A"] & R_{\chi}\ar[r]\ar[d,"\varphi_R"] & S_{\chi}\ar[d,"\varphi_S"] \\
+      A'\ar[r] & R_{\varphi(\chi)}\ar[r] & S_{\varphi(\chi)}
     \end{tikzcd}
   \end{center}
-  of short exact resolving sequences $S_\chi$ and $S_\xi$ for $\chi$ and $\xi$
-  in the sense of \cref{def:morph-resolve}, we have:
-  \[ T^k(\varphi)(\mathrm{ext}(\chi,S_\chi)) = \mathrm{ext}(\xi,S_\xi) \]
+  be a morphism of short exact sequences ${\mathcal S}_\chi$ and $\mathcal{S}_{\varphi(\chi)}$ in $\mathcal A$,
+  where $T^i(r_\chi)(\chi)=0$.
+  Then, for the construction from \cref{lem:extend-map}, we have the following commutativity:
+  \[ T^i(\varphi)(\mathrm{ext}(\chi,{\mathcal S}_\chi)) = \mathrm{ext}(\varphi(\chi),\mathcal{S}_{\varphi(\chi)}) \]
 \end{lemma}
 
 \begin{proof}[of \cref{lem:extension-welldefined}]
