@@ -139,7 +139,7 @@ the following naturality result:
 
 \begin{lemma}
   \label{lem:extension-welldefined}
-  Let $T$ be an exact $\partial$-functor that has local resultions.
+  Let $T$ be an exact $\partial$-functor.
   Let $\chi:T^i(A)$ and
   \begin{center}
     \begin{tikzcd}
@@ -180,7 +180,7 @@ the following naturality result:
   will be mapped to $ \mathrm{ext}(f,\varphi(\chi),\mathcal{S}_{\varphi(\chi)})$,
   but by commutativity, $\mathrm{ext}(f,\chi,\mathcal{S}_\chi)$ will be mapped to the same thing by $T^i(\varphi)$.
   So:
-  \[ T^i(\varphi)(\mathrm{ext}(f,\chi,\mathcal{S}_\chi))=\mathrm{ext}(f,\xi,\mathcal{S}_{\varphi(\chi)})\]  
+  \[ T^i(\varphi)(\mathrm{ext}(f,\chi,\mathcal{S}_\chi))=\mathrm{ext}(f,\varphi(\chi),\mathcal{S}_{\varphi(\chi)})\]  
 \end{proof}
 
 We summarize the exact condition we found useful to prove universality of $\partial$-functors,
@@ -240,12 +240,15 @@ The following is provable by a constructive adaption of Prop 2.2.1 in \cite{toho
       A\ar[r,"m_{\chi}"]\ar[u,equal] & M_{\chi}\ar[r]\ar[u] & C_{\chi}\ar[u]
     \end{tikzcd}
   \end{center}
-    
-  
-  
-  This is proven by direct application of \cref{lem:extension-welldefined},
-  To get the homomorphism property,
-  let 
+  Let us call the middle sequence $\mathcal{M}$.
+  Applying \cref{lem:extension-welldefined} first to the lower rectangle and then to the upper one gives us:
+  \begin{align*}
+    \mathrm{ext}(f,\chi,\mathcal{S}_\chi) &= T^i(\id)(\mathrm{ext}(f,\chi,\mathcal{S}_\chi)) \\
+                                          &=\mathrm{ext}(f,\id(\chi),\mathcal{M}) \\
+                                          &=T^i(\id)(\mathrm{ext}(f,\chi,\mathcal{S}')) \\
+                                          &=\mathrm{ext}(f,\chi,\mathcal{S}')
+                                            \rlap{.}
+  \end{align*}
   
 
   TODO: The proof, which takes the remainder of the section needs to be refactored to match the statement of the theorem
