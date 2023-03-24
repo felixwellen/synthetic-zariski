@@ -10,7 +10,7 @@ We will only need the theory for functors from certain subcategories of dependen
 Also, some arguments are a lot more convenient when we can use elements of modules instead of abstract categorical language.
 Therefore, we will state our definitions and results only for this particular situation.
 
-\emph{Let $R$ be a fixed commutative ring and $\mathcal A$ be a subcategory of the category of dependent $R$-modules over a fixed type $X$.}
+\emph{Let $R$ be a fixed commutative ring and $\mathcal A$ be a subcategory of the category of dependent $R$-modules over a fixed type $X$, which is closed under finite direct sums.}
 
 \begin{definition}
   An \notion{($l$-truncated) $\partial$-functor} is a collection of additve\footnote{
@@ -249,25 +249,31 @@ The following is provable by a constructive adaption of Prop 2.2.1 in \cite{toho
                                           &=\mathrm{ext}(f,\chi,\mathcal{S}')
                                             \rlap{.}
   \end{align*}
+  So we have a well-defined map $f^{i}:T^i(A)\to T'^i(A)$.
+  We will show that it is a homomorphism of groups.
+  First, note that $f^i(0)=0$,
+  because $0$ has the identity as a local resolution, i.e. the sequence $0\to A\to A\to 0\to 0$.
   
-
+  Now let $\xi,\chi,\xi+\chi:T^i(A)$.
+  We need to show that $f^i(\xi)+f^i(\chi)=f^i(\xi+\chi)$.
+  By additivity of the $T^i$,
+  we can ``resolve'' these three elements at once, applying our construction to $(\xi,\chi,\xi+\chi):T^i(A\oplus A\oplus A)$.
+  Again by \cref{lem:extension-welldefined} using the inclusions $A\to A\oplus A\oplus A$,
+  we get $f^i(\xi,\chi,\xi+\chi)=(f^i(\xi),f^i(\chi),f^i(\xi+\chi))$.
+  By using \cref{lem:extension-welldefined} on the map $a\colonequiv (x,y,z)\mapsto x+y-z:A\oplus A\oplus A\to A$, we get:
+  \begin{align*}
+    f^i(\xi)+f^i(\chi)-f^i(\xi+\chi) &=T^i(a)((f^i(\xi),f^i(\chi),f^i(\xi+\chi))) \\
+                                     &=f^i(a(\xi,\chi,\xi+\chi)) \\
+                                     &=f^i(0) \\
+                                     &=0
+                                       \rlap{.}
+  \end{align*}
+  This shows that $f^i$ is as homomorphism and the only thing left to show,
+  is that $f^i$ commutes with all connecting maps $\partial_{\mathcal{S},A,i}$.
+  
+  
   TODO: The proof, which takes the remainder of the section needs to be refactored to match the statement of the theorem
 (the proof is still about $(H^i)_i$ specifically, but we need it for $(H^i(X,\_))_i$ \emph{and} $(\v{H}^i(\{U\},\_))_i$ ).
-
-  Since the codomain of $f^i$ is 0-truncated, the latter means, we can just assume that each element is of the form $|\chi|:H^i(X,A)$
-  for some cohomology class $\chi:(x:X)\to A_{x,i}$.
-
-  So assume $i\neq 0$ and let $\chi:(x:X)\to A_{x,i}$.
-  By \cref{thm:resolution-exists} we have the standard short exact sequence $S_\chi$ resolving $\chi$,
-  so we can use \cref{lem:extend-map} to construct an image $f^i(|\chi|):\equiv \mathrm{ext}(\chi,S_\chi)$.
-  
-  To see that a natural homomorphism of abelian groups $f^i$ can be constructed in this way,
-  we will \cref{lem:extension-welldefined}.
-
-  We can apply \cref{lem:extension-welldefined} to the morphism from \cref{rem:prod-resolve-sequence},
-  to see that we could have define $f^i(|\chi|)$ as well by
-  a resolution of the three classes $\chi, \xi, \chi+\xi:(x:X)\to A_{x,i}$.
-  But this is already enough to conclude that $f^i(|\chi|+|\xi|)=f^i(|\chi)+f^i(\xi)$, by the homomorphism properties of the maps involved in the construction in \cref{lem:extend-map}.
 
   For a morphism $\varphi:A\to A'$ of spectra over $X$,
   we can use the morphism of resolving sequences from \cref{rem:cong-resolve-sequence}.
