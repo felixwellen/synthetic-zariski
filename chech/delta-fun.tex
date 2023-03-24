@@ -1,23 +1,27 @@
 TODO: This has to be updated...
 
+Cohomology has the universal property of being a \notion{universal $\partial$-functor}.
+In this section, we will construct a tool for proving this in some particular situations,
+both for the cohomology defined using Eilenberg-MacLane spaces and \v{C}hech cohomology.
+
 The following definition, from (\cite[2.1]{tohoku-translation}) and originally from (\cite{tohoku1957}), is specialized to our needs.
 Grothendieck makes a definition for additive functors from an abelian category to a preadditive category.
-We just state it for abelian categories and will later apply it only to functors from dependent abelian groups over a fixed type to abelian groups.
-While we expect both of these types to admit the structure of an abelian category, we have proved neither and we will use neither in any proofs in this article.
-Instead, we will only use basic facts about abelian groups.
+We will only need the theory for functors from certain subcategories of dependent $R$-modules over a fixed type to abelian groups.
+Also, some arguments are a lot more convenient when we can use elements of modules instead of abstract categorical language.
+Therefore, we will state our definitions and results only for this particular situation.
+
+\emph{Let $R$ be a fixed commutative ring and $\mathcal A$ be a subcategory of the category of dependent $R$-modules over a fixed type $X$.}
 
 \begin{definition}
-  Let $C$ and $C'$ be abelian categories.
-  
-  A \notion{$\partial$-Functor} is a collection of functors $T^i:C\to C'$, where $0\leq i < a$ with $a\in\N\cup\{\infty\}$,
+  A \notion{$\partial$-Functor} is a collection of functors $T^i:\mathcal A\to \AbGroup$, where $0\leq i < a$ with $a\in\N\cup\{\infty\}$,
   together with a collection of connecting morphisms $\partial_{S,i}$ for any short exact sequence $S$ and $0\leq i\le a$, subject to the following conditions:
   \begin{enumerate}[(a)]
   \item Let $S$ be a short exact sequence
     \[ 0\to A'\to A\to A''\to 0\]
-    in $C$. Applying the $T^i$ yields a complex, together with connecting morphisms $(\partial_{S,i})_{i\in\N}$:
+    in $\mathcal A$. Applying the $T^i$ yields a complex, together with connecting morphisms $(\partial_{S,i})_{i\in\N}$:
     \begin{center}
       \begin{tikzcd}
-        T^0(A')\ar[r] & T^0(A)\ar[r]  & T^0(A'')\ar[r,"\partial_{S,0}"]  & T^1(A')\ar[r]  & T^1(A)\ar[r]  & \dots
+        0\ar[r] & T^0(A')\ar[r] & T^0(A)\ar[r]  & T^0(A'')\ar[r,"\partial_{S,0}"]  & T^1(A')\ar[r]  & T^1(A)\ar[r]  & \dots
       \end{tikzcd}
     \end{center}
   \item For any homomorphism to a second short exact sequence
@@ -31,9 +35,6 @@ Instead, we will only use basic facts about abelian groups.
     \end{center}
   \end{enumerate}
 \end{definition}
-
-We will only consider the case that $C$ is $X\to\mathcal A$, where $\mathcal A$ is some subtype of the type of abelian groups
-and $C'$ is the type of abelian groups.
 
 \begin{definition}
   Let $T$ and $T'$ be $\partial$-Functors defined for the same indices.
@@ -51,6 +52,11 @@ and $C'$ is the type of abelian groups.
 \end{definition}
 
 \begin{definition}
+  A $\partial$-Functor $T$ is called \notion{exact},
+  if all values are exact complexes.
+\end{definition}
+
+\begin{definition}
   A $\partial$-Functor $T$ is called \notion{universal}, if for any $T'$, defined for the same indices,
   any natural transformation $f^0:T^0\to T'^0$ extends uniquely to a morphism of $\partial$-Functors $f:T\to T'$.
 \end{definition}
@@ -59,7 +65,7 @@ The following is provable by a constructive adaption of Prop 2.2.1 in \cite{toho
 \begin{theorem}
   \label{thm:universal}
   Let $X$ be a type.
-  An exact $\partial$-functor $(T^i)_i$ from $(X\to\mathcal A)$ to $\AbGroup$ is universal,
+  An exact $\partial$-functor $(T^i)_i$ from $\mathcal A$ to $\AbGroup$ is universal,
   if there are \notion{local resolutions} for $T$:
   \begin{enumerate}[(i)]
   \item For any $i>0$, $A:X\to\mathcal A$ and $\chi:T^i(A)$ there merely is a short exact sequence:
@@ -75,7 +81,7 @@ The following is provable by a constructive adaption of Prop 2.2.1 in \cite{toho
       \begin{tikzcd}
         A\ar[r]\ar[d,"f"] & R\ar[r]\ar[d] & S\ar[d] \\
         B\ar[r] & M_{f,K}\ar[r] & C_{f,K} \\
-        B\ar[r,"m_\chi"]\ar[u,equal] & M_{f(\chi)}\ar[r]\ar[u] & C_{f(\chi)}\ar[u]
+        B\ar[r,"m_{f(\chi)}"]\ar[u,equal] & M_{f(\chi)}\ar[r]\ar[u] & C_{f(\chi)}\ar[u]
       \end{tikzcd}
     \end{center}
   \end{enumerate}
