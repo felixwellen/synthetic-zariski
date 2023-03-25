@@ -1,10 +1,115 @@
 
-META: This section is still very incomplete, but expected to work out with high level of confidence
-(at least in the case of the second author).
+\rednote{META: This section is still very incomplete, but expected to work out with high level of confidence
+(at least in the case of the second author).}
 
 \subsection{General local resolutions}
 
+\rednote{TODO: For the vanishing result and join-based chech cohomology, we also use what is explained below.
+That should somehow be consolidated/brought into the right order.}
+
 Among 1-truncated $\partial$-functors, $H^0, H^1$, i.e. the zeroth and first cohomology groups defined in terms of Eilenberg-MacLane spaces, will always be universal.
+We will show this, by constructing local resolutions for $(H^0,H^1)$ in the sense of \cref{local-resolution}.
+The construction will follow a general pattern,
+which we will also use in the following sections for all other resolutions.
+What follows, is an explanation in more classical terms -- a reader not familiar with those,
+can safely skip that explanation, since the construction we use, will be quite simple
+and can be understood without the classical notions of torsors or fibre bundles.
+
+Let $X$ be a type and $A:X\to \AbGroup$.
+An element $\chi:H^1(X,A)$ can be merely represented by a map $T:(x:X)\to K(A_x,1)$.
+If we use the particular implementation of the deloopings $K(A_x,1)$ as
+$A_x$-torsors, $T_x$ will be a set with an action and it is natural to view $T$ as a bundle over $X$.
+Let us relax the usual notion of fibre bundle a bit, to also admit the case of our $A$-torsors,
+i.e. let the following be the type of $A$-fibre bundles over $X$:
+\[ \sum_{T:X\to\mathcal U}\|T_x=A_x\|\]
+Then, $A$-torsors will in particular also be $A$-fibre bundles.
+
+A canonical trivialization for fibre bundles with constant prescribed fiber
+is given in (\cite{cherubini-cartan})[Definition 4.9, Definition 4.11] -- but this works for the more general notion as well.
+The canonical trivialization is given by
+\[ V_T:\equiv \sum_{x:X}T_x=A_x \]
+Then, from the definition above, we get that $\pi_1:V_T\to X$ is surjective
+and the second projection will give a trivialization witness for the pullback of $T$ along $\pi_1$.
+
+Now, since the local resolution has to be something over $X$, we have to push-forward the construction above.
+But that really just means we have to take a dependent product instead of a sum.
+So the resulting dependent group is just:
+\[ x\mapsto A_x^{(T_x=\ast)} : X\to\AbGroup\]
+The canonical map $A_x\to A_x^{(T_x=\ast)}$ maps an element $a_x:A_x$ to the function $p\mapsto a_x$.
+Since $T_x=\ast$, this map will be an embedding.
+
+For a more general $T:(x:X)\to K(A_x,l)$,
+the type $\|T_x=\ast\|_0$ will be trivial if $l>1$ and therefore $A_x\to A_x^{(T_x=\ast)}$ will be an equivalence,
+since $A_x$ is 0-truncated.
+This means the same construction will \emph{not} work for cohomology groups above degree 1,
+with coefficients in Eilenberg-MacLane spaces.
+Another way to phrase the problem is,
+that the spectrum $K(A,\_)^{(T_x=\ast)}$ fails to be an Eilenberg-MacLane spectrum.
+This happens, if and only if, ${T_x=\ast}$ has non-trivial cohomology.
+So one thing we can use to resolve higher cohomology classes, are covers of $X$ with cohomologically trivial fibers,
+which we will do in the next section.
+Now we will show, how we can use the general construction for degree 1 to get all requirements of \cref{local-resolution}:
+
+\begin{lemma}
+  \label{general-1-resolution-exists}
+  Let $A:X\to\AbGroup$ and $\chi:H^1(X,A)$.
+  Then there merely is a short exact sequence $\mathcal{S}_\chi$:
+  \begin{center}
+    \begin{tikzcd}
+      0\ar[r] & A\ar[r,"m_\chi"] & M_\chi\ar[r] & C_\chi\ar[r] & 0
+    \end{tikzcd}
+  \end{center}
+  such that for any other short exact sequence $\mathcal{S}=A\to R\to S$
+  such that $\chi$ is mapped to zero in $H¹(X,R)$ and any morphism $f:A\to B$ we have
+  a zig-zag:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[d,"f"] & R\ar[r]\ar[d] & S\ar[d] \\
+      B\ar[r] & M_{f,\mathcal{S}}\ar[r] & C_{f,\mathcal{S}} \\
+      B\ar[r,"m_{f(\chi)}"]\ar[u,equal] & M_{f(\chi)}\ar[r]\ar[u] & C_{f(\chi)}\ar[u]
+    \end{tikzcd}
+  \end{center}
+\end{lemma}
+
+\begin{proof}
+  As explained above, we merely have $T:(x:X)\to K(A_x,1)$ with $|T|_0=\chi$ and the definition
+  $M_\chi\colonequiv ((x:X)\mapsto A_x^{(T_x=\ast)}$ together with the diagonal map $(a\mapsto (x, p\mapsto a_x)):A\to M_\chi$,
+  gives a monomorphism $A\to M_\chi$.
+  So we can take the cokernel, to a short exact sequence as required.
+  $m_\chi^\ast(\chi)$ is zero by $x\mapsto \id_{(T_x=\ast)}:(x:X)\to T_x=\ast$.
+  Note that this construction is well-defined in the sense that
+  for another $T'$ with $|T'|=\chi$, we merely have $\|T=T'\|$ and therefire an isomorphism between the resulting sequences.
+
+  Now, let $\mathcal{S}=A\to R\to S$ be a short exact sequence
+  such that $\chi$ is mapped to zero in $H¹(X,R)$ and $\varphi:A\to B$ any morphism.
+  For $T:(x:X)\to K(A_x,1)$ with $|T|=\chi$ and $T'\colonequiv (x\mapsto K(\varphi_x,1)(T_x))$ 
+  a zig-zag can be constructed,
+  whose maps we will describe below the diagram: 
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[d,equal] & R\ar[r]\ar[d,"\Delta"] & S\ar[d,dashed] \\
+      A\ar[r,"\varphi\Delta"]\ar[d,equal] & (x\mapsto R_x^{T_x=\ast})\ar[r] & \coker(\varphi\Delta) \\
+      A\ar[r,"\Delta"]\ar[d,"\varphi"] & (x\mapsto A_x^{T_x=\ast})\ar[r]\ar[d]\ar[u] & \coker(\Delta)\ar[d, dashed]\ar[u,dashed] \\
+      B\ar[r,"\Delta'"] & (x\mapsto B_x^{T_x=\ast})\ar[r] & \coker(\Delta') \\
+      B\ar[r,"\Delta''"]\ar[u,equal] & (x\mapsto B_x^{T'_x=\ast})\ar[r]\ar[u] & \coker(\Delta'')\ar[u,dashed]
+    \end{tikzcd}
+  \end{center}
+  The maps in the middle column are all given by postcomposition with given maps,
+  except for the last map, which is given by precomposition with a map
+  $T_x=\ast\to T'_x=\ast$ given by using the pointed map $K(\varphi_x,1)$.
+  All maps in the right column, are then induced by the universal property of cokernels.
+  As noted above, the last row is isomorphic to any $\mathcal{S}_\chi$,
+  so the zig-zag does indeed satisfy the specification from \cref{local-resolution}.
+\end{proof}
+
+\begin{theorem}
+  $H^{\leq 1}$ is a 1-truncated, universal $\partial$-functor.
+\end{theorem}
+
+\begin{proof}
+  By \cref{general-1-resolution-exists} we have local resolutions for $H^{\leq 1}$,
+  we can apply \cref{thm:universal}.
+\end{proof}
 
 \subsection{Local resolutions for schemes}
 
