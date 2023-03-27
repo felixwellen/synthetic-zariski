@@ -13,14 +13,14 @@
 \newcommand{\isSheaf}{\mathsf{isSheaf}}
 \newcommand{\Fib}{\mathsf{Fib}}
 
-%\newcommand{\Type}{\mathsf{Type}}
+\newcommand{\Typp}{\mathsf{Type}}
 \newcommand{\Elem}{\mathsf{Elem}}
 \newcommand{\Cont}{\mathsf{Cont}}
 
 \newcommand{\BB}{\mathcal{B}}
 \newcommand{\CC}{\mathcal{C}}
 \newcommand{\UU}{\mathcal{U}}
-\newcommand{\WW}{\mathcal{WW}}
+\newcommand{\WW}{\mathcal{W}}
 \newcommand{\VV}{\mathcal{V}}
 
 In this section, we present models of the 3 axioms, models that are inspired by type theory.
@@ -56,7 +56,7 @@ For any small category $\CC$ we can form the presheaf model of type theory over 
 
 A model is given by the following data. First, a collection of contexts $\Cont$,
 then for two contexts $\Delta,\Gamma$, a collection of substitutions $\Delta\rightarrow\Gamma$, and for each context $\Gamma$
-a collection of types $\Type(\Gamma)$ and finally, for each $A$ in $\Type(\Gamma)$ we have a collection of elements
+a collection of types $\Typp(\Gamma)$ and finally, for each $A$ in $\Typp(\Gamma)$ we have a collection of elements
 $\Elem(\Gamma,A)$. We also have a collection of operations satisfying some equations, corresponding to the usual operations in
 dependent type theory, and described in \cite{huber-phd-thesis}. 
 
@@ -64,15 +64,15 @@ We describe the model assuming a constructive set theory as our metalanguage. We
 $\UU,\VV,\dots$, and we consider only universes contained in a fixed universe $\WW$. We consider next a category $\CC$ in $\WW$
 and describe now the presheaf model over $\CC$.
 
-A context is interpreted as a presheaf valued in $\WW$ over $\CC$. We interpret $\Type(\Gamma)$ as the collection of
+A context is interpreted as a presheaf valued in $\WW$ over $\CC$. We interpret $\Typp(\Gamma)$ as the collection of
 $\WW$-valued presheaves over the category of elements $\int\Gamma$ of $\Gamma$,
 %\rednote{Maybe introduce notation ``$\int\Gamma$'' for the category of elements, since it will appear a lot in the follow.}
 and $\Elem(\Gamma,A)$ as the set of global sections of the presheaf $A$. The set $\Delta\rightarrow\Gamma$ is then the set
 of natural transformations between the presheaves $\Delta$ and $\Gamma$.
-For any set theoretic universe $\UU$ (contained in $\WW$), we write $\Type_{\UU}(\Gamma)$ the set of $\UU$-valued
+For any set theoretic universe $\UU$ (contained in $\WW$), we write $\Typp_{\UU}(\Gamma)$ the set of $\UU$-valued
 presheaves over $\int\Gamma$. Each object $X$ of $\CC$ defines a context $Yo(X)$ by the Yoneda embedding.
 To each set theoretic universe $\UU$ strictly contained in $\WW$, we can associate a type theoretic universe $U$ by interpreting
-$U(X)$ to be $\Type_{\UU}(Yo(X))$.
+$U(X)$ to be $\Typp_{\UU}(Yo(X))$.
 
 We get in this way a model of type theory with a collection of universes \cite{huber-phd-thesis}.
 
