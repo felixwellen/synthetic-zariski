@@ -68,6 +68,7 @@ We can assume that the square is of the form:
 \end{proof}
 
 \begin{lemma}
+\label{pointwise-lift-is-enough}
 Assume given maps $u:A\to B$ and $p:X\to Y$.
 Then if $p$ has the right lifting property (resp. at most one lift) against $\mathrm{fib}_u(b)\to 1$ for all $b:B$, then it has the right lifting property (resp. at most one lift) against $u$.
 \end{lemma}
@@ -88,6 +89,15 @@ By \cref{lifts-equivalence-pointwise} a lift of a square
     \end{tikzcd}
   \end{center}
   But a product of contractible types (resp. propositions) is itself contractible (resp. a proposition) so we can conclude. 
+\end{proof}
+
+\begin{lemma}
+\label{lifting-defined-fiberwise}
+A map $p$ has the right lifting property (resp. at most one lift) against a map $P\to 1$ if and only all the fibers of $p$ have this property against $P\to 1$.
+\end{lemma}
+
+\begin{proof}
+This is an immediate consequence of the universal property of the fibers.
 \end{proof}
 
 \subsection{\'Etale maps}
@@ -138,10 +148,53 @@ that they are the maps with the right lifting property (\cite{modalities}[defini
 We will use some well known, general closure properties of left maps, starting with closure under composition:
 
 \begin{lemma}%
-  A map $f:X\to Y$ is formally étale,
-  if and only if it has unique lifts against left maps of the form $\Spec A/(a)\to \Spec A$,
-  where $a:A$ with $a^2=0$.
+\label{decomposition-nilpotent}
+For $A$ an algebra and $N$ a nilpotent ideal in $A$, the map:
+\[A
+\to A/N
+\] 
+can be factored as maps of the form:
+\[
+B\to B/(b)
+\]
+where $b:B$ is such that $b^2=0$.
 \end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+\label{equivalence-etale}
+Having the right lifting property against the following class of maps is equivalent:
+\begin{enumerate}[(i)]
+\item Maps of the form $\Spec(A/N)\to \Spec(A)$ for $A$ f.g. algebra and $N$ a nilpotent ideal.
+\item Maps of the form $P\to 1$ for $P$ a closed dense proposition.
+\item Closed dense embeddings of types.
+\item Maps of the form $(\epsilon=0)\to 1$ for $\epsilon:R$ such that $\epsilon^2=0$.
+\item Maps of the form $\Spec(A/(a)) \to \Spec(A)$ for $A$ f.g. algebra and $a:A$ such that $a^2=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) implies (ii) because closed dense proposition are of the form $\Spec(R/N)$ for $N$ a nilpotent ideal.
+
+(ii) implies (iii) because of \cref{pointwise-lift-is-enough}.
+
+(iii) implies (iv) because $\epsilon=0$ is closed dense when $\epsilon$ is nilpotent.
+
+(iv) implies (v) because of \cref{pointwise-lift-is-enough}, as the fiber of $\Spec(A/(a)) \to \Spec(A)$ over $x$ is $a(x)=0$.
+
+(v) implies (i) because of \cref{decomposition-nilpotent}.
+\end{proof}
+
+\begin{lemma}
+A map is formally étale if and only if all its fibers are formally étale.
+\end{lemma}
+
+\begin{proof}
+By \cref{lifting-defined-fiberwise} and the characterisation (ii) from the previous lemma.
+\end{proof}
 
 \begin{lemma}%
   \label{nilpotent-ideal-not-not-dense}
@@ -275,6 +328,30 @@ A map $f:X\to Y$ is unramified if $X$ and $Y$ are schemes and $f$ is formally un
 \end{definition}
 
 It is clear that formally étale maps are formally unramified. As usual a type $X$ is called formally unramified if the map from $X$ to $1$ is unramified, and a map is formally unramified if and only if all its fibers are formally unramified.
+
+\begin{lemma}
+\label{equivalence-unramified}
+Having at most one lift against the following class of maps is equivalent:
+\begin{enumerate}[(i)]
+\item Maps of the form $\Spec(A/N)\to \Spec(A)$ for $A$ f.g. algebra and $N$ a nilpotent ideal.
+\item Maps of the form $P\to 1$ for $P$ a closed dense proposition.
+\item Closed dense embeddings of types.
+\item Maps of the form $(\epsilon=0)\to 1$ for $\epsilon:R$ such that $\epsilon^2=0$.
+\item Maps of the form $\Spec(A/(a)) \to \Spec(A)$ for $A$ f.g. algebra and $a:A$ such that $a^2=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Same as \cref{equivalence-etale}.
+\end{proof}
+
+\begin{lemma}
+A map is formally unramified if and only if all its fibers are formally unramified.
+\end{lemma}
+
+\begin{proof}
+By \cref{lifting-defined-fiberwise} and the characterisation (ii) from the previous lemma.
+\end{proof}
 
 \begin{lemma}
 A type $X$ is formally unramified if and only if for any $x,y:X$ and any dense closed proposition $P$ we have:
