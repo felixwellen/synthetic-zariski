@@ -13,9 +13,15 @@
 \newcommand{\isSheaf}{\mathsf{isSheaf}}
 \newcommand{\Fib}{\mathsf{Fib}}
 
+\newcommand{\Type}{\mathsf{Type}}
+\newcommand{\Elem}{\mathsf{Elem}}
+\newcommand{\Cont}{\mathsf{Cont}}
+
 \newcommand{\BB}{\mathcal{B}}
 \newcommand{\CC}{\mathcal{C}}
 \newcommand{\UU}{\mathcal{U}}
+\newcommand{\WW}{\mathcal{WW}}
+\newcommand{\VV}{\mathcal{V}}
 
 In this section, we present models of the 3 axioms, models that are inspired by type theory.
 The first model $M_1$ \rednote{Maybe it would be good to give names to the different models?}
@@ -40,21 +46,35 @@ closed by dependent products and dependent sums, and so form a model of dependen
 However, the type of sheaves in a given universe is not itself a sheaf\footnote{This is exactly this problem that motivated the notion
 of stacks.} and we don't get a model of dependent type theory with universes. We need a refined notion of model in the next subsection
 to cover this extension.
-\rednote{We guess this means: The model is constructed in two steps,
-  where the first step is a extensional (presheaf?) model. It would defnitely be good to extend this point to clarify.}.
+%\rednote{We guess this means: The model is constructed in two steps,
+%  where the first step is a extensional (presheaf?) model. It would defnitely be good to extend this point to clarify.}.
 %While the presheaf model covers universes, this internal model
 %will not cover universes (and univalence), and we need a refined notion of model in the next section to cover these extensions.
 
-For any small category $\CC$ we can form the presheaf model of type theory over the base category $\CC$ \cite{hofmann,huber-phd-thesis}
-\rednote{Reference to Hoffmann/Simon's thesis?}.
+For any small category $\CC$ we can form the presheaf model of type theory over the base category $\CC$ \cite{hofmann,huber-phd-thesis}.
+%\rednote{Reference to Hoffmann/Simon's thesis?}.
 
-A context is interpreted as a presheaf over $\CC$. A type over a context $\Gamma$ is interpreted as
-a presheaf over the category of elements $\int\Gamma$ of $\Gamma$,
-\rednote{Maybe introduce notation ``$\int\Gamma$'' for the category of elements, since it will appear a lot in the follow.}
-and an element of this type as a global section
-of this presheaf. For any set theoretic universe $\UU$, we have a corresponding presheaf ${\cal U}$ which to
-any object $X$ associates the set of $\UU$-small types over $Yo(X)$, and this gives the interpretation
-of universes. 
+A model is given by the following data. First, a collection of contexts $\Cont$,
+then for two contexts $\Delta,\Gamma$, a collection of substitutions $\Delta\rightarrow\Gamma$, and for each context $\Gamma$
+a collection of types $\Type(\Gamma)$ and finally, for each $A$ in $\Type(\Gamma)$ we have a collection of elements
+$\Elem(\Gamma,A)$. We also have a collection of operations satisfying some equations, corresponding to the usual operations in
+dependent type theory, and described in \cite{huber-phd-thesis}. 
+
+We describe the model assuming a constructive set theory as our metalanguage. We have a collection of set theoretic universes
+$\UU,\VV,\dots$, and we consider only universes contained in a fixed universe $\WW$. We consider next a category $\CC$ in $\WW$
+and describe now the presheaf model over $\CC$.
+
+A context is interpreted as a presheaf valued in $\WW$ over $\CC$. We interpret $\Type(\Gamma)$ as the collection of
+$\WW$-valued presheaves over the category of elements $\int\Gamma$ of $\Gamma$,
+%\rednote{Maybe introduce notation ``$\int\Gamma$'' for the category of elements, since it will appear a lot in the follow.}
+and $\Elem(\Gamma,A)$ as the set of global sections of the presheaf $A$. The set $\Delta\rightarrow\Gamma$ is then the set
+of natural transformations between the presheaves $\Delta$ and $\Gamma$.
+For any set theoretic universe $\UU$ (contained in $\WW$), we write $\Type_{\UU}(\Gamma)$ the set of $\UU$-valued
+presheaves over $\int\Gamma$. Each object $X$ of $\CC$ defines a context $Yo(X)$ by the Yoneda embedding.
+To each set theoretic universe $\UU$ strictly contained in $\WW$, we can associate a type theoretic universe $U$ by interpreting
+$U(X)$ to be $\Type_{\UU}(Yo(X))$.
+
+We get in this way a model of type theory with a collection of universes \cite{huber-phd-thesis}.
 
 \medskip
 
@@ -63,71 +83,109 @@ ring $k$.
 
     In this model we have a presheaf $R(A) = Hom(k[X],A)$ which has a ring structure.
 
-    We have the truth value presheaf $\Omega$ with $\Omega(A)$ is the set of sieves on $A$.
-    (There is a predicative version of this object if we are working in a predicative metatheory.)
-    Besides the usual operations of dependent type theory, this type $\Omega$ has the usual logical connective (disjunction, conjunction,
+    We have the truth value presheaf $\Omega_{\UU}$ with $\Omega_{\UU}(A)$ is the set of $\UU$-small valued sieves on $A$.
+%    (There is a predicative version of this object if we are working in a predicative metatheory.)
+    This type $\Omega_{\UU}$ has the usual logical connective (disjunction, conjunction,
     $\dots$) and existential and universal quantification. We also have an (extensional and strict)
-    equality $F\times F\rightarrow\Omega$ for each type/presheaf $F$.
+    equality $F\times F\rightarrow\Omega$ for each $\UU$-valued presheaf $F$. We may write simply $\Omega$ instead
+    of $\Omega_{\UU}$ if $\UU$ is not relevant.
 
-    We have a dependent type $[p]$ for $p:\Omega$, with $[p]$ subpresheaf of the unit presheaf $\top(A) = \{0\}$. This is a presheaf $[\_]$
+    We have a dependent type $[p]$ for $p:\Omega$, with $[p]$ subpresheaf of the unit presheaf $\top(A) = \{0\}$.
+    This is a presheaf $[\_]$
     over $\int\Omega$, defined by $(A,S)\mapsto \{0~|~\mathsf{id}_A\in S\}$.
-    \rednote{... presheaf $\top$ on $\int \Omega$?}
-    \rednote{Is $[\_]$ given as $(c,S)\mapsto\text{``$S$ maximal''}$? }
+%    \rednote{... presheaf $\top$ on $\int \Omega$?}
+%    \rednote{Is $[\_]$ given as $(c,S)\mapsto\text{``$S$ maximal''}$? }
 
-    We have a strict truncation operation $F\mapsto \norm{F}_S,~{\cal U}\rightarrow\Omega$, which to any presheaf $F$ on $\int Yo(B)$
+    We have a strict truncation operation $F\mapsto \norm{F}_S,~U\rightarrow\Omega$, which to any presheaf $F$ on $\int Yo(B)$
     associates the sieve of $\alpha:B\rightarrow A$ such that $F(A,\alpha)$ is inhabited. If $\psi:T\rightarrow\Omega$
     we then have an equivalence between  $\norm{\Sigma_{x:T}[\psi x]}_S$ and $\exists_{x:T}\psi x$.
     
-
     We also have a presheaf $Cov$, where $Cov(A)$ is the set of finite sequences $f_1,\dots,f_n\in A$ that are comaximal: $1$ is in the
     ideal generated by $f_1,\dots,f_n$.
 
     We define $Cov\rightarrow\Omega,~c\mapsto p_c$ by defining $p_c$ to be the proposition $\inv(f_1)\vee\dots\vee\inv(f_n)$: $p_c(A)$
-    is the sieve of $\alpha:A\rightarrow B$ such that one $\alpha(f_i)$ is invertible in $B$
-    \rednote{It is unclear, what $\vee$ means here. Maybe this should be an explicit description of the sieve.
-      It is not clear, where the construction is taking place. Is it internal to the extensional presheaf model?
-    If so, what are $f_1,\dots,f_n$}
-    for $c = f_1,\dots,f_c$. In particular, for $n=0$, this is the proposition $\perp$ (empty presheaf).
+    is the sieve of $\alpha:A\rightarrow B$ such that one $\alpha(f_i)$ is invertible in $B$.
+%    \rednote{It is unclear, what $\vee$ means here. Maybe this should be an explicit description of the sieve.
+%      It is not clear, where the construction is taking place. Is it internal to the extensional presheaf model?
+%    If so, what are $f_1,\dots,f_n$}
+    %    for $c = f_1,\dots,f_c$.
+    In particular, for $n=0$, this is the proposition $\perp$ (empty presheaf).
 
     We can then define the property $\isSheaf$ of being a sheaf for a type $T$ as being the fact that
     the constant maps $T\rightarrow T^{[p_c]}$ are isomorphisms for all $c:Cov$.  This property $\isSheaf$ is of type
-    $\UU\rightarrow\Omega$, and isomorphisms is in the sense of the present (extensional) presheaf model of type theory.
-    \rednote{Is it the same $p_c$ as above? There it seems to have this name on each stage.
-      Maybe use more explicit notation, e.g. ``$c_A$'' above.
-      What is the type of ``isSheaf''?
-      Is ``isomorphism'' meant in the sense of the extensional preaheaf model? }
+    $U\rightarrow\Omega$, and isomorphisms is in the sense of the present (extensional) presheaf model of type theory.
+%    \rednote{Is it the same $p_c$ as above? There it seems to have this name on each stage.
+%      Maybe use more explicit notation, e.g. ``$c_A$'' above.
+%      What is the type of ``isSheaf''?
+%      Is ``isomorphism'' meant in the sense of the extensional preaheaf model? }
+
+    \medskip
+
+    Any representable presheaf is a sheaf by algebraic facts. If $B$ is a finitely presented $k$-algebra
+    to check that $Yo(B)$ is a sheaf reduces to a local-global principle: that for any covering $f_1,\dots,f_n$ of a finitely presented
+    algebra $A$, given a compatible family of elements $u_i:A_{f_i}$ there exists a unique element $u$ in $A$ such that $\alpha_i u = u_i$
+    for the localisation map $\alpha_i:A\rightarrow A_{f_i}$.
 
     \medskip
 
     One can check directly that $\Pi_{x:A}B$ is a sheaf if $B$ is a family of sheaves over $A$
     and that $\Sigma_{x:A}B$ is a sheaf if $A$ is a sheaf and $B$ is a family of sheaves. We hence get a model of type theory
-    by interpreting a type as a sheaf. A context is still interpreted as a presheaf, while a type is now a dependent presheaf
-    with a proof that it is {\em modal}. An element is a section of the underlying dependent presheaf.
-    \rednote{``modal''=''isSheaf'' }
+    by interpreting a type as a sheaf. A context is still interpreted as a presheaf, while a type is now a dependent presheaf $T$
+    with a proof of $\isSheaf(T)$. An element is a section of the underlying dependent presheaf.
+    We have a new type of propositions $\Omega_s$ which is the subpresheaf of $\Omega$ of sieves satisfying the sheaf condition.
+    We can check that $\Omega_s$ itself satisfies the sheaf condition. If $F$ is a sheaf, then $a =_F b$ is in $\Omega_s$
+    for $a$ and $b$ in $F$. We have a modal operation $M:\Omega\rightarrow \Omega_s$, and the logical operations $\perp,\vee,\exists$
+    are redefined using this modal operation.
+
+%    \rednote{``modal''=''isSheaf'' }
     
-    \medskip
 
-    Any representable presheaf is a sheaf by algebraic facts\rednote{... by algbraic facts.}. If $B$ is a finitely presented $k$-algebra
-    to check that $Yo(B)$ is a sheaf reduces to a local-global principle: that for any covering $f_1,\dots,f_n$ of a finitely presented
-    algebra $A$, given a compatible family of elements $u_i:A_{f_i}$ there exists a unique element $u$ in $A$ such that $\alpha_i u = u_i$
-    for the localisation map $\alpha_i:A\rightarrow A_{f_i}$.
+%%     We define then a sheafification/modality operation $L:\Omega\rightarrow\Omega$, by defining $L(S)(B)$ to be the sieve of maps
+%%     $\alpha:B\rightarrow A$ such that there exists a covering $f_1,\dots,f_n$ of $A$ with each composition $\alpha_i\alpha$ in $S$.
+%%     A proposition $\psi:\Omega$ is modal if, and only if, $\psi\leftrightarrow L(\psi)$. Also, it can be checked that
+%%     $a=_F b$ is modal if $F$ is modal and $a$ and $b$ are in $F$.
 
-    We define then a sheafification/modality operation $L:\Omega\rightarrow\Omega$, by defining $L(S)(B)$ to be the sieve of maps
-    $\alpha:B\rightarrow A$ such that there exists a covering $f_1,\dots,f_n$ of $A$ with each composition $\alpha_i\alpha$ in $S$.
-    A proposition $\psi:\Omega$ is modal if, and only if, $\psi\leftrightarrow L(\psi)$. Also, it can be checked that
-    $a=_F b$ is modal if $F$ is modal and $a$ and $b$ are in $F$.
-
-    In this new model $R$ is a local ring
-    \rednote{Is it stated using the ``$\vee$'' one can define explicitly on $\Omega$ using the topology?
-      And how are equations turned into elements of $\Omega$?}.
-    In particular, we have $\neg (0 = 1)$.
+    In this new model $R$ is a local ring.
+%    \rednote{Is it stated using the ``$\vee$'' one can define explicitly on $\Omega$ using the topology?
+%      And how are equations turned into elements of $\Omega$?}.
+    In particular, we have $\neg (0 =_R 1)$, since $M\perp$ is $0 =_R 1$.
     
     \medskip
 
     However the type of sheaves in a given universe $\Sigma_{X:\UU}[\isSheaf(X)]$ is not a sheaf.
 
-    We present another model which both interprets a cumulative hierarchy of universes\rednote{s?}
+    We shall present another model which both interprets a cumulative hierarchy of universes\rednote{s?}
     and {\em univalence} and {\em propositional truncation}.
+
+\subsection{An example: projective space}    
+
+We have defined $\bP^n$ to be the set of lines in $V = R^{n+1}$, so we have
+$$
+\bP^n ~=~ \Sigma_{L:V\rightarrow \Omega}[\exists_{v:V}\neg (v = 0)\wedge L = R v]
+$$
+The following was noticed in \cite{kockreyes}.
+
+\begin{proposition}
+  $\bP^n(A)$ is the set of submodules of $A^{n+1}$ factor direct in $A^{n+1}$ and of rank $1$.
+\end{proposition}
+
+We recall \cite{lombardi-quitte}
+that a vector $u = (u_0,\dots,u_n)$ in $A^{n+1}$ is unimodular iff the ideal generated by $u_0,\dots,u_n$ in $A$ contains $1$.
+
+\begin{proof}
+  $\bP^n$ is the set of pairs $L,0$ where $L:\Omega^V(A)$ satisfies the proposition $\exists_{v:V}\neg (v = 0)\wedge L = Rv$ at stage
+  $A$. The first condition $L:\Omega^V(A)$ means that $L$ is a family $L_{\alpha}\subseteq B^{n+1}$ for $\alpha:A\rightarrow B$ which is
+  monotone in $\alpha$: we have $\alpha_1(u)\in L_{\alpha_1\alpha}$ if $u$ in $L_{\alpha}$ and $\alpha_1:B\rightarrow B_1$.
+  Also $u$ is in $L_{\alpha}$ if we have a covering $\alpha_i:B\righatrrow B_{b_i}$ and each $\alpha_i(u)$ is in $L_{\alpha_i\alpha}$.
+  The second condition is that, for each $\alpha$, we can find a covering $\alpha_i:B\rightarrow B_i$ with $B_i = B_{b_i}$
+  and $v_i$ unimodular in $B_i^{n+1}$. It follows that $L_i = L_{\alpha_i\alpha}$ is actually the localisation of $L$ at $b_i$: if $u$
+  is in $B^{n+1}$ and $\alpha_i(u)$ is in $L_i$ then $\alpha_j(u)$ is also in $L_j$ and each $u$ is in $L_{\alpha}$.
+  This implies \cite{lombardi-quitte} that $L_{\alpha}$ is finitely generated. But then we can apply Theorem 5.14 of
+  \cite{lombardi-quitte} to deduce that $L_{\alpha}$ is factor direct in $B^{n+1}$ and of rank $1$.
+\end{proof}
+
+
+
 
 \subsection{Models of univalence}
 
