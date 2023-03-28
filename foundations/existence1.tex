@@ -1,6 +1,7 @@
 \newcommand{\inc}{\mathsf{inc}}
 \newcommand{\inl}{\mathsf{inl}}
 \newcommand{\inr}{\mathsf{inr}}
+\newcommand{\id}{\mathsf{id}}
 %\newcommand{\UU}{\mathcal{U}}
 \newcommand{\II}{\mathbf{I}}
 \newcommand\norm[1]{\left\lVert #1 \right\rVert}
@@ -157,7 +158,17 @@ ring $k$.
     We shall present another model which both interprets a cumulative hierarchy of universes\rednote{s?}
     and {\em univalence} and {\em propositional truncation}.
 
-\subsection{An example: projective space}    
+\subsection{Some examples: quasi-coherence and projective space}    
+
+A module $M$ in the sheaf model defined at stage $A$, where $A$ is a f.p.\@ $k$-algebra, is given by a sheaf over the category
+of elements of $A$. It is thus given by a family of modules $M(B,\alpha)$, for $\alpha:A\rightarrow B$, and restriction maps
+$M(B,\alpha)\rightarrow M(C,\gamma\alpha)$ for $\gamma:B\rightarrow C$. In general this family is not determined by
+its value $M_A = M(A,\id_A)$ at $A,\id_A$.
+
+\begin{proposition}
+  $M$ is internally quasi-coherent iff we have $M(B,\alpha) = M_A\otimes_A B$ and the restriction map for
+  $\gamma:B\rightarrow C$ is $M_A\otimes_A\gamma$.
+\end{proposition}
 
 We have defined $\bP^n$ to be the set of lines in $V = R^{n+1}$, so we have
 $$
@@ -174,24 +185,35 @@ that a vector $u = (u_0,\dots,u_n)$ in $A^{n+1}$ is unimodular iff the ideal gen
 
 \begin{proof}
   $\bP^n$ is the set of pairs $L,0$ where $L:\Omega^V(A)$ satisfies the proposition $\exists_{v:V}\neg (v = 0)\wedge L = Rv$ at stage
-  $A$. The first condition $L:\Omega^V(A)$ means that $L$ is a family $L_{\alpha}\subseteq B^{n+1}$ for $\alpha:A\rightarrow B$ which is
-  monotone in $\alpha$: we have $\alpha_1(u)\in L_{\alpha_1\alpha}$ if $u$ in $L_{\alpha}$ and $\alpha_1:B\rightarrow B_1$.
-  Also $u$ is in $L_{\alpha}$ if we have a covering $\alpha_i:B\rightarrow B_{b_i}$ and each $\alpha_i(u)$ is in $L_{\alpha_i\alpha}$.
-  The second condition is that, for each $\alpha$, we can find a covering $\alpha_i:B\rightarrow B_i$ with $B_i = B_{b_i}$
-  and $v_i$ unimodular in $B_i^{n+1}$. It follows that $L_i = L_{\alpha_i\alpha}$ is actually the localisation of $L$ at $b_i$: if $u$
-  is in $B^{n+1}$ and $\alpha_i(u)$ is in $L_i$ then $\alpha_j(u)$ is also in $L_j$ and each $u$ is in $L_{\alpha}$.
-  This implies \cite{lombardi-quitte} that $L_{\alpha}$ is finitely generated. We can then apply Theorem 5.14 of
-  \cite{lombardi-quitte} to deduce that $L_{\alpha}$ is factor direct in $B^{n+1}$ and of rank $1$.
+  $A$. This condition implies that $L$ is a quasicoherent submodule of $R^{n+1}$ defined at stage $A$.
+  It is thus determined by its value $L(A,\id_A) = L_A$.
+
+  Furthermore, the condition also implies that $L_A$ is locally free of rank $1$. By local-global principle \cite{lombardi-quitte},
+  $L_A$ is finitely generated. We can then apply Theorem 5.14 of
+  \cite{lombardi-quitte} to deduce that $L_A$ is factor direct in $A^{n+1}$ and of rank $1$.
 \end{proof}
 
-
-
+One point in this argument was to notice that the condition
+$$
+\exists_{v:V}\neg (v = 0)\wedge L = R v
+$$
+implies that $L$ is quasi-coherent. This would be direct in presence of univalence, since we would have then $L = R$ as a $R$-module
+and $R$ is quasi-coherent. But it can also be proved without univalence by transport along isomorphism: a $R$-module which is
+isomorphic to a quasi-coherent module is itself quasi-coherent.
 
 \subsection{Models of univalence}
 
 The constructive models of univalence are presheaf models parametrised by an interval object $\II$
 (presheaf with two global distinct elements $0$ and $1$ and which is tiny) and a classifier object
-$\Phi$ for cofibrations.
+$\Phi$ for cofibrations. The model is then obtained as an internal model of type theory inside the
+presheaf model. For this, we define $C:U\rightarrow U$, uniform in the universe $U$,
+which is closed by dependent product and sum, and which satisfies, for $A:U^{\II}$, the transport principle
+$$
+(\Pi_{i:\II}C(Ai))\rightarrow (A0\rightarrow A1)
+$$
+We get then a model of univalence by interpreting a type as a presheaf $A$ together with an element
+of $C(A)$.
+
 
  This is over a base category $\BB$.
  
@@ -311,7 +333,7 @@ If $c = f_1,\dots,f_n$ is a covering of $A$ and $P:Sp(A)\rightarrow \UU$ we defi
 $\Pi_c P$ to be $\Pi_{D(f_1)}P\times\Pi_{D(f_n)}P$. In this way, $\Pi_c$ is an operation
 $\UU^{Sp(A)}\rightarrow\UU$.
 
-We prove local choice: if $A$ is a f.p. algebra over $R$ then we have a map
+We prove local choice: if $A$ is a f.p.\@ algebra over $R$ then we have a map
 $$
 l:(\Pi_{x:Sp(A)}\norm{P})\rightarrow \norm{\Sigma_{c:Cov(A)}\Pi_cT}
 $$
