@@ -12,6 +12,7 @@
 \newcommand{\patch}{\mathsf{patch}}
 \newcommand{\cov}{\mathsf{cov}}
 \newcommand{\isSheaf}{\mathsf{isSheaf}}
+\newcommand{\isIso}{\mathsf{isIso}}
 \newcommand{\Fib}{\mathsf{Fib}}
 
 \newcommand{\Typp}{\mathsf{Type}}
@@ -92,7 +93,8 @@ $U(X)$ to be $\Typp_{\UU}(Yo(X))$.
     associates the sieve of $\alpha:Y\rightarrow X$ such that $F(Y,\alpha)$ is inhabited. If $\psi:T\rightarrow\Omega$
     we then have an equivalence between  $\norm{\Sigma_{x:T}[\psi x]}_S$ and $\exists_{x:T}\psi x$.
 
-We get in this way a model of type theory with a collection of universes \cite{huber-phd-thesis}.
+    We get in this way a model of type theory with a collection of universes \cite{huber-phd-thesis} and a type of propositions
+    which is proof-irrelevant and where function extensionality and propositional extensionality are valid.
 
 \medskip
 
@@ -100,6 +102,11 @@ We look at the special case where $\CC$ is the opposite of the category of finit
 ring $k$.
 
     In this model we have a presheaf $R(A) = Hom(k[X],A)$ which has a ring structure.
+
+    In the {\em presheaf} model, we can check that we have $\neg\neg (0=_R 1)$. Indeed, at any stage $A$ we have
+    a map $\alpha:A\rightarrow 0$ to the trivial f.p. algebra $0$, and $0 =_R 1$ is valid at the stage $0$.
+
+    \medskip
 
     
     We also have a presheaf $Cov$, where $Cov(A)$ is the set of finite sequences $f_1,\dots,f_n\in A$ that are comaximal: $1$ is in the
@@ -114,8 +121,11 @@ ring $k$.
     In particular, for $n=0$, this is the proposition $\perp$ (empty presheaf).
 
     We can then define the property $\isSheaf$ of being a sheaf for a type $T$ as being the fact that
-    the diagonal maps $T\rightarrow T^{[p_c]}$ are isomorphisms for all $c:Cov$.  This property $\isSheaf$ is of type
-    $U\rightarrow\Omega$, and isomorphisms is in the sense of the present (extensional) presheaf model of type theory.
+    the diagonal maps $\delta_c : T\rightarrow T^{[p_c]}$ are isomorphisms for all $c:Cov$.
+    If $f:T\rightarrow T'$ is a map, we can define $\isIso f$ which expresses that $f$ is a bijection,
+    in the sense of the present (extensional) presheaf model of type theory.
+    The property $\isSheaf$ can then be defined as $\isSheaf~=~\forall_{c:Cov}\isIso\delta_c$ and is of type
+    $U\rightarrow\Omega$.
 %    \rednote{Is it the same $p_c$ as above? There it seems to have this name on each stage.
 %      Maybe use more explicit notation, e.g. ``$c_A$'' above.
 %      What is the type of ``isSheaf''?
@@ -326,8 +336,8 @@ $T^{1=0}$ is contractible (using the covering with $n=0$), since this is equival
 If $P$ is a proposition, then $P$ is modal if, and only if,
 we have $P^{e_c}\rightarrow P$.
 (Thus $\perp$ is not modal, since we don't have $\neg\neg(1=0)$; indeed we have instead $\neg(1=0)$ in
-the original presheaf model.
-{\color{red} REVISIT})
+the original presheaf model.)
+%{\color{red} REVISIT})
 Since $P$ is a
 proposition, $P^{e_c}$ is equivalent to $P^{\inv(f_1)}\times \dots\times P^{\inv(f_n)}$.
 
