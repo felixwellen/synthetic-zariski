@@ -236,7 +236,7 @@ Let us look at an example.
 
 \begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   Not every $R$-module is weakly quasi-coherent
-  in the sense of \cref{quasi-coherent-bundle}.
+  in the sense of \cref{weakly-quasi-coherent-module}.
 \end{proposition}
 
 \begin{proof}
@@ -362,27 +362,37 @@ With a non-cyclic forward reference to a cohomological result,
 there is a short proof of the following:
 
 \begin{proposition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
-  Let $m:N\to M$ be an $R$-linear embedding of weakly quasi-coherent $R$-modules $M$ and $N$,
-  then the cokernel $M/N$ is weakly quasi-coherent.
+  Let $f:M\to N$ be an $R$-linear map of weakly quasi-coherent $R$-modules $M$ and $N$,
+  then the cokernel $N/M$ is weakly quasi-coherent.
 \end{proposition}
 
 \begin{proof}
+  We will first show, that for an $R$-linear embedding $m:M\to N$
+  of weakly quasi-coherent $R$-modules $M$ and $N$,
+  the cokernel $N/M$ is weakly quasi-coherent.
   We need to show:
   \[
-    (M/N)_f=(M/N)^{D(f)}.
+    (N/M)_f=(N/M)^{D(f)}.
   \]
-  By algebra: $(M/N)_f=M_f/N_f$.
-  This means we are done, if $(M/N)^{D(f)}=M^{D(f)}/{N^{D(f)}}$.
-  To see this holds, let us consider $0\to N\to M\to M/N\to 0$ as a short exact sequence of dependent modules,
+  By algebra: $(N/M)_f=N_f/M_f$.
+  This means we are done, if $(N/M)^{D(f)}=N^{D(f)}/{M^{D(f)}}$.
+  To see this holds, let us consider $0\to M\to N\to N/M\to 0$ as a short exact sequence of dependent modules,
   over the subtype of the point $D(f)\subseteq 1=\Spec R$.
   Then, taking global sections, by \cref{cohomology-les},
   we have an exact sequence
   \[
-    0\to N^{D(f)}\to M^{D(f)}\to (M/N)^{D(f)}\to H^1(D(f),M)
+    0\to M^{D(f)}\to N^{D(f)}\to (N/M)^{D(f)}\to H^1(D(f),M)
   \]
   -- but $D(f)=\Spec R_f$ is affine,
   so the last term is 0 by \cref{H1-wqc-module-affine-trivial}
-  and $(M/N)^{D(f)}$ is the cokernel $M^{D(f)}/N^{D(f)}$.
+  and $(N/M)^{D(f)}$ is the cokernel $N^{D(f)}/M^{D(f)}$.
+
+  Now we will show the statement for a general $R$-linear map $f:M\to N$.
+  By algebra, the cokernel of $f$ is the same as the cokernel of the induced map
+  $M/K\to N$, where $K$ is the kernel of $f$.
+  By \cref{kernel-wqc}, $K$ is weakly quasi-coherent, so by the proof above,
+  $M/K$ is weakly quasi-coherent.
+  $M/K\to N$ is an embedding, so again by the proof above, its cokernel is weakly quasi-coherent.
 \end{proof}
 
 \subsection{Finitely presented bundles}
