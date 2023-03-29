@@ -129,6 +129,7 @@ We will need the following algebraic observation:
     M_f\to M^{D(f)}
     \rlap{.}
   \]
+  The map $M\otimes A\to M^{\Spec A}$ is natural in $M$.
 \end{remark}
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
@@ -174,7 +175,19 @@ We will use it to get a good subcategory of the $R$-module bundles over a scheme
   Let $K\to M$ be the kernel of $f$.
   For any $f:R$, the map $K^{D(f)}\to M^{D(f)}$ is the kernel of $M^{D(f)}\to N^{D(f)}$.
   The latter map is equal to $M_f\to N_f$ by weak quasi-coherence of $M$ and $N$
-  and $K_f\to M_f$ is the kernel of $M_f\to N_f$, so TODO
+  and $K_f\to M_f$ is the kernel of $M_f\to N_f$.
+  Let the vertical maps in
+  \begin{center}
+    \begin{tikzcd}
+      K_f\ar[r]\ar[d] & M_f\ar[r]\ar[d,"\simeq"] & N_f\ar[d,"\simeq"] \\
+      K^{D(f)}\ar[r] & M^{D(f)}\ar[r] & N^{D(f)}
+    \end{tikzcd}
+  \end{center}
+  be the canonical maps from \cref{localization-to-module-if-non-zero}.
+  The squares commute because of the naturality of the vertical maps.
+  Then the map $K_f\to K^{D(f)}$ is an isomorphism,
+  because by commutativity, it is equal to the induced map between the kernels $K_f$ and $K^{D(f)}$,
+  which has to be an isomorphism, since it is induced by an isomorphism of diagrams.
 \end{proof}
 
 \begin{definition}%
