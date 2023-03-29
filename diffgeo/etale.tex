@@ -388,6 +388,14 @@ Now we check they are equivalent to being unramified:
 Unramified implies (iii) because it implies having at most one lifting against any closed dense subtype, so that by considering $1\subset \mathbb{D}(1)$ it implies having at most one tangent vector.
 \end{proof}
 
+\begin{example}
+Any proposition is formally unramified, so any embedding of types is formally unramified.
+
+Finite sets are unramified, as their identity types are decidable and therefore $\neg\neg$-stable.
+
+The affine line $\A^1$ is not unramified, as its identity types are not $\neg\neg$-stable. Same for $\mathbb{D}(1)$.
+\end{example}
+
 \begin{lemma}
 \label{kernel-is-tangent-of-fibers}
 For any map $f:X\to Y$ and $x:X$, we have that:
@@ -422,4 +430,105 @@ On the other hand having fibers with trivial tangent space is equivalent to:
 Both are equivalent by path elimination on $p$.
 \end{proof}
 
+\subsection{Smooth morphisms}
+
+\begin{definition}
+A morphism $f:X\to Y$ is smooth if for any f.p. $R$-algebra $A$ and f.g. nilpotent ideal $N$ in $A$, any commutative square:
+ \begin{center}
+      \begin{tikzcd}
+        \Spec(A/N)\ar[r]\ar[d] & X\ar[d,"f"] \\
+       \Spec(A) \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+merely has a lift.
+\end{definition}
+
+Note that here since we do not have: 
+\[
+\prod_{x:A} ||B(x)|| \to ||\prod_{x:A}B(x)||
+\]
+we do not seem to have an analogue to \cref{equivalence-etale} or \cref{equivalence-unramified}. Similarly it does not seem that maps with smooth fibers are always smooth, although I did not find a counter-example yet.
+
+\begin{proposition}
+Smooth unramified maps are étale.
+\end{proposition}
+
+\begin{lemma}
+A proposition is smooth if and only if it is étale. %Any $\neg\neg$-stable proposition is smooth. In particular open propositions are smooth. % are smooth.
+\end{lemma}
+
+\begin{proof}
+All propositions are unramified.
+\end{proof}
+
+\begin{lemma}
+The scheme $\A^n$ is smooth for any $n$.
+\end{lemma}
+
+\begin{proof}
+We need to prove that there merely exists a dotted lift in any:
+ \begin{center}
+      \begin{tikzcd}
+        A/N & R[X_1,\cdots,X_n]\ar[l]\ar[ld,dashed] \\
+        A \ar[u]& 
+      \end{tikzcd}
+    \end{center}
+    It is enough to choose a lift for each $X_i$.
+\end{proof}
+
+What about $\mathbb{P}^n$?
+
+\begin{lemma}
+The scheme $\D(1)$ is not smooth.
+\end{lemma}
+
+\begin{proof}
+If it were smooth we would be able to merely find a dotted lift in:
+ \begin{center}
+      \begin{tikzcd}
+        R[X]/(X^2) & R[X]/(X^2)\ar[l]\ar[ld,dashed] \\
+        R[X]/(X^3) \ar[u]& 
+      \end{tikzcd}
+    \end{center}
+\end{proof}
+
+\begin{lemma}
+The scheme $\Spec(R[X,Y]/(XY))$ is not smooth.
+\end{lemma}
+
+\begin{proof}
+If it were smooth we could merely find a dotted lift in:
+ \begin{center}
+      \begin{tikzcd}
+        R[X]/(X^2) & R[X,Y]/(XY)\ar[l]\ar[ld,dashed] \\
+        R[X]/(X^3)\ar[u] & 
+      \end{tikzcd}
+    \end{center}
+    where the top map send both $X$ and $Y$ to $X$. This can't be done.
+\end{proof}
+
+\begin{lemma}
+The map:
+\[
+p:\Spec(R[X,Y]/(XY))\to \A^1
+\] 
+corresponding to the map in:
+\[
+R[X,Y]/(XY) \r R[X]
+\]
+sending $X$ to $X$ and $Y$ to $0$ is not smooth.
+\end{lemma}
+
+\begin{proof}
+If it were smooth all its fibers would be smooth, i.e. for all $z:R$ the scheme $\Spec(R[X]/(zX))$ would be smooth. This would imply that for any $z:R$ such that $z^2=0$ we merely have a dotted lift to:
+ \begin{center}
+      \begin{tikzcd}
+        R/z & R[X]/(X^2)\ar[l]\ar[ld,dashed] \\
+        R \ar[u]& 
+      \end{tikzcd}
+    \end{center} 
+    where the top map send $X$ to $1$. Such a lift is an $x:R$ such that $x=1$ modulo $z$, and $zx=0$, but then $x=(1+bz)$ and $0=zx=z+bz^2=z$. So we would get that $z^2=0$ implies $z=0$ for all $z:R$, which is not possible.
+\end{proof}
+
+I think in the traditional setting this map has smooth fibers, but not here.
 
