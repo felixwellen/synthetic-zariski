@@ -114,27 +114,22 @@ for all $i$ and $x : U_i$,
 we have found a preimage of $\varphi$ in $M(X)_f$.
 \end{proof}
 
-We will need the following algebraic lemma:
+We will need the following algebraic observation:
 
-\begin{lemma}%
+\begin{remark}%
   \label{localization-to-module-if-non-zero}
-  Let $M$ be an $R$-module and $f:R$,
+  Let $M$ be an $R$-module and $A$ a finitely presented $R$-algebra,
   then there is an $R$-linear map
+  \[
+    M\otimes A\to M^{\Spec A}
+  \]
+  induced by mapping $m\otimes f$ to $x\mapsto x(f)\cdot m$.
+  In particular, for any $f:R$, there is a
   \[
     M_f\to M^{D(f)}
     \rlap{.}
   \]
-\end{lemma}
-
-\begin{proof}
-  Let $x\equiv \frac{m}{f^k}:M_f$ and $p:D(f)$.
-  Then $f$ is invertible, so we have
-  \[
-    x\equiv \frac{m}{f^k}=\frac{f^{-k}m}{1}
-  \]
-  and mapping $x$ to $f^{-k}m$ is an $R$-linear map.
-  
-\end{proof}
+\end{remark}
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
   \label{localization-to-restriction}                    
@@ -156,12 +151,34 @@ We will need the following algebraic lemma:
   \]
 \end{proof}
 
-The following is an experimental definition,
-which might be suitable
-to mimic the external notion of quasi-coherent $\mathcal O_X$-module sheaves.
+The following definition was used in \cite{ingo-thesis},
+to characterize quasi coherent sheaves in the little Zariski-topos.
+We will use it to get a good subcategory of the $R$-module bundles over a scheme.
+
+\begin{definition}
+  \label{weakly-quasi-coherent-module}
+  An $R$-module $M$ is \notion{weakly quasi-coherent},
+  if for all $f:R$, the canonical homomorphism
+  \[
+    M_f\to M^{D(f)}
+  \]
+  from \cref{localization-to-module-if-non-zero} is an equivalence.
+\end{definition}
+
+\begin{lemma}
+  For any $R$-linear map $f:M\to N$ of weakly quasi-coherent modules $M$ and $N$,
+  the kernel of $f$ is weakly quasi-coherent.
+\end{lemma}
+
+\begin{proof}
+  Let $K\to M$ be the kernel of $f$.
+  For any $f:R$, the map $K^{D(f)}\to M^{D(f)}$ is the kernel of $M^{D(f)}\to N^{D(f)}$.
+  The latter map is equal to $M_f\to N_f$ by weak quasi-coherence of $M$ and $N$
+  and $K_f\to M_f$ is the kernel of $M_f\to N_f$, so TODO
+\end{proof}
 
 \begin{definition}%
-  \label{quasi-coherent-bundle}
+  \label{weakly-quasi-coherent-bundle}
   Let $X$ be a scheme.
   A dependent module $M:X\to \Mod{R}$ is \notion{weakly quasi-coherent},
   if for all $x:X$ and $f:R$,
