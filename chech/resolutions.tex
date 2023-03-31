@@ -1,6 +1,5 @@
 
-\rednote{META: This section is still very incomplete, but expected to work out with high level of confidence
-(at least in the case of the second author).}
+\rednote{META: This section is somewhat incomplete, but expected to work out with high level of confidence.}
 
 \subsection{General local resolutions}
 
@@ -114,63 +113,84 @@ Now we will show, how we can use the general construction for degree 1 to get al
 \subsection{Local resolutions for schemes}
 
 \begin{definition}
-  Let $X,Y$ be schemes and.
+  Let $X,Y$ be schemes.
   \begin{enumerate}[(a)]
   \item For $M:Y\to\Mod{R}$ and $f:X\to Y$ let $f^*M:\equiv (x:X)\mapsto M_{f(x)}$.
   \item For $M:X\to\Mod{R}$ and $f:X\to Y$ let $f_*M:\equiv (y:Y)\mapsto \prod_{x:\fib_f(y)}M_{\pi_1(x)}$.
   \end{enumerate}
 \end{definition}
 
-Both operations preserve weakly quasi coherent modules by \cite{draft}[Theorem 9.1.11].
-At the heart of the construction of local resolutions below,
-is what is called \notion{Zariski-local choice} in \cite{draft} and justified as an axiom there.
-A special case is local-triviality of cohomology classes:
+Both operations preserve weakly quasi-coherent modules by \cite{draft}[Theorem 9.1.11].
+As defined in \cite{draft}, a \notion{scheme} is a type $X$, such that there merely is an open cover by affine schemes $U_i=\Spec A_i$.
+As shown in \cref{affine-vanishing},
+higher cohomology with coefficients in weakly quasi-coherent modules is trivial on affine schemes.
+So we know that, for a general scheme, cohomology will be locally trivial.
+A \notion{separated scheme}, is defined in \cite{draft}, as a scheme where equality of points is a \emph{closed} proposition
+-- we will not explain that here and only mention that examples include projective and affine schemes.
+The consequence of relevance here, is that for a separated scheme,
+intersections of affine opens are affine.
+This means the open affines form an acyclic cover:
 
-\begin{axiom}
-  Let $X=\Spec A$ be an affine scheme and $M:X\to\Mod{R}$.
-  For $n>0$ and each $\chi:\prod_{x:X}K(M_x,n)$ there merely is a Zariski cover,
-  i.e. coprime
-  $f_1,\dots,f_n:A$ such that on each subtype $D(f_i):\equiv (x:X)\mapsto D(f_i(x))$,
-  $\chi$ is trivial.
-\end{axiom}
+\begin{remark}
+  For a separated scheme $X$ and $M:X\to\Mod{R}_{wqc}$,
+  any open affine cover $(U_i)_{i:I}$ is \notion{acyclic},
+  i.e\footnote{Using notation from \cref{chech-complex}}.
+  \[
+    H^k(U_{i_0\dotsi_l},M)=0\quad \forall l>0, k>0 \text{ and } i_0,\dots,i_l:I
+    \rlap{.}
+  \]
+\end{remark}
 
-With that, there merely are finite covers of schemes trivializing any $M$-cohomology class $\chi$.
-Let us denote the coproduct of such a cover with $U_\chi$,
-so we have a surjection $u_\chi:U_\chi\to X$ such that $\prod_{x:U_\chi}\chi_x=M_x$.
-If we started with a weakly quasi coherent $M$,
-we get an injective map of weakly quasi coherent modules:
-\[
-  M_x \to M_x^{\fib_{u_\chi}(x)}
-\]
-where the domain is weakly quasi coherent, since it is $({u_\chi}_*u_\chi^*M)_x$.
+We will use these covers in a way similar to the last section.
+For a cover $(U_i)_{i:I}$, we can view as a map from the coproduct $u:\coprod_iU_i\to X$.
+Then pullback along $u$ trivializes all higher cohomology of $X$ with values in $M:X\to \Mod{R}_{wqc}$
+and we can take the push-forward again to get a candidate for a sequence that resolves higher cohomology classes.
 
-To get a resolution from that, we need to see that cokernels of monomorphisms
-of weakly quasi coherent modules are weakly quasi coherent.
-In symbols, for $N\subseteq M$ one of those morphisms, we need:
-\[
-  (M/N)_f=(M/N)^{D(f)}.
-\]
-by algebra $(M/N)_f=M_f/N_f$.
-This means we are done, if $(M/N)^{D(f)}=M^{D(f)}/{N^{D(f)}}$.
-To see this holds, let us consider $0\to N\to M\to M/N\to 0$ as a short exact sequence of dependent modules,
-over the subtype of the point $D(f)\subseteq 1=\Spec R$.
-Then, taking global sections, we have an exact sequence
-\[
- 0\to N^{D(f)}\to M^{D(f)}\to (M/N)^{D(f)}\to H^1(D(f),M)
-\]
--- but $D(f)=\Spec R_f$ is affine,
-so the last term is 0 and $(M/N)^{D(f)}$ is the cokernel $M^{D(f)}/N^{D(f)}$.
-So we know that dependent wqc modules over a scheme,
-always merely have local resolutions consisting of dependent wqc modules.
+\begin{remark}
+  \label{resolving-mono}
+  For a separated scheme $X$ and $M:X\to\Mod{R}_{wqc}$.
+  Then, for any finite affine open cover $(U_i)_{i:I}$, $x:X$
+  and $u:\coprod_i U_i\to X$,
+  the $R$-linear map of weakly quasi-coherent $R$-modules
+  \[ \Delta\colonequiv m_x\mapsto (\_\mapsto m_x):M_x\to M_x^{\fib_u(x)}\]
+  is an embedding and resolves any $\chi:H^k(X,M)$ with $k>0$.
+\end{remark}
 
-By \cref{vanishing-conjecture},
-the types $K(M_x,n)^{U_\chi}$, where $M_x$ is wqc and $n>0$ are $0$-connected
--- note that $M_x$ is weakly quasi coherent on $U_\chi$, since it is the push-forwad
-of $M_x$ along the map $U_\chi\to 1$.
+\begin{proof}
+  $(U_i)_{i:I}$ is a cover, so $\fib_u(x)$ is inhabited and therefore $\Delta$ is an embedding.
+  For the resolving-property, we will use that $\fib_u(x)$ is affine.
+  To see that,
+  we compute the fiber as an iterated pullback,
+  starting with an inclusion $\iota_i:U_i\to X$ such that $U_i(x)$:
+  \begin{center}
+    \begin{tikzcd}
+      \fib_u(x)\ar[r]\ar[d] & \coprod_j U_i\cap U_j \ar[r]\ar[d] & \coprod_i U_i\ar[d,"u"] \\
+      1\ar[r] & U_i\ar[r] & X
+    \end{tikzcd}
+  \end{center}
+  The right pullback, $\coprod_j U_i\cap U_j$, is affine, since it is a finite coproduct of the affine schemes $U_i\cap U_j$.
+  The left square is a pullback by pasting, and as a pullback of affine schemes, $\fib_u(x)$ is affine.
 
-This means that $\left(K(M_x,n)^{U_\chi}\right)_{n:\N}$ is an Eilenberg-MacLane spectrum.
-So we have found resolving sequences for all gerbes on a scheme with coefficients in weakly quasic coherent modules.
+  So we know that for any $k>0$, $H^k(\fib_u(x),M_x)=0$.
+  Equivalently, the latter means $\fib_u(x)\to K(M_x,k)$ is connected.
+  By the uniqueness of connected deloopings, this means that
+  \[
+    K(M_x,k)^{\fib_u(x)} = K(M_x^{\fib_u(x)},k)
+    \rlap{.}
+  \]
+  And connectedness of the latter means that all higher cohomology classes are resolved.
+\end{proof}
 
+\begin{theorem}
+  For a separated scheme $X$ and $M:X\to\Mod{R}_{wqc}$.
+  Then the $H^k$, for $k\in\N$ form a universal $\partial$-functor with domain $X\to \Mod{R}_{wqc}$.
+\end{theorem}
+
+\begin{proof}
+  The resolving sequences can be constructed from the monomorphism in \cref{resolving-mono}
+  by taking cokernels, which are proven to be weakly quasi-coherent in \cite{draft}.
+  The second property of local resolutions can be proven analogous to the last section.
+\end{proof}
 
 \subsection{Local resolutions for \v{C}ech-Cohomology}
 
