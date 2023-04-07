@@ -128,3 +128,64 @@ This is closer to the usual statement that the image of a constructible set is c
   Supposing each linear factor divides $p$, $q$ must divide $p^d$
   since the linear factors are coprime, as needed.
 \end{proof}
+
+While it is not clear how to characterise open propositions among constructible propositions,
+we do have the following result.
+
+\begin{lemma}
+Let $P$ be a proposition of the form
+$(u_1 \ne 0 \wedge I_1 = 0) \vee \ldots \vee (u_n \ne 0 \wedge I_n = 0)$
+where $I_i$ are finitely generated ideals of $R$.
+Then $P$ is open if and only if $P$ is equivalent to $P'$ where
+\[P' \coloneqq (u_1 \ne 0 \wedge I_1^2 = 0) \vee \ldots \vee (u_n \ne 0 \wedge I_n^2 = 0)\]
+if and only if $P$ is double negation stable.
+\end{lemma}
+
+Morally, this expresses the idea that an open subset is one which does not get bigger
+after `infinitesimal fattening'.
+
+\begin{proof}
+Clearly if $P$ is open then it is double negation stable. 
+We have $P \to P'$ and $P' \to \neg \neg P$,
+so if $P$ is double negation stable then $P$ is equivalent to $P'$.
+It remains to show that if $P' \to P$, then $P$ is open.
+We prove this by induction on $n$.
+We have $P \to (u_1 \ne 0) \vee \ldots \vee (u_n \ne 0)$, where
+the latter is open. Since open propositions are closed under sigma, we may
+suppose that $(u_1 \ne 0) \vee \ldots \vee (u_n \ne 0)$ holds.
+Without loss of generality, say $u_1 \ne 0$ (so that in particular $n \ge 1$).
+Thus $P$ is equivalent to
+$(I_1 = 0) \vee Q$, where $Q \coloneqq (u_2 \ne 0 \wedge I_2 = 0) \vee \ldots$,
+	and $P'$ is equivalent to $(I_1^2 = 0) \vee Q'$, with $Q'$ defined in
+	the evident way.
+
+	Since $P' \to P$, we have in particular $(I_1^2 = 0) \to (I_1 = 0) \vee Q$.
+	By the following lemma, this means $(I_1^2 = 0) \to (I_1 = 0)$ or
+	$(I_1^2 = 0) \to Q$. In the first case, $I_1 = 0$ is decidable by \cite{etale-draft}.
+	If $I_1 = 0$ is true, then $P$ is true, and hence decidable.
+	If $I_1 \ne 0$, then $P$ is equivalent to $Q$ and $P'$ is equivalent to $Q'$,
+	so $Q$ is equivalent to $Q'$ and we are done by inductive hypothesis.
+	In the second case, where $(I_1^2 = 0) \to Q$, we again have that
+	$P$ is equivalent to $Q$ and $P'$ to $Q'$, so we are done for the same reason.
+\end{proof}
+
+\begin{lemma}
+Let $P$ be a closed proposition and $A$, $B$ arbitrary propositions.
+Then $P \to (A \vee B)$ is equivalent to 
+$(P \to A) \vee (P \to B)$.
+\end{lemma}
+This captures the idea that closed propositions are not disjunctive, i.e.\ cannot
+be partitioned.
+\begin{proof}
+The reverse implication is direct. So suppose $P \to (A \vee B)$.
+We claim $P \to (A + B)$.
+To see this, we apply Zariski local choice together with the fact that
+$R^P$ has no Zariski covers
+(it is essentially a local ring, being a quotient of $R$, except we do not know $0 \ne 1$).
+This determines a map $P \to \Bool$, and hence by composition a map
+$P \to R$. Again, since $R^P$ is a quotient of $R$, we find one element $r : R$
+representing our function $P \to \Bool$.
+Since $R$ is local, either $r$ or $1-r$ is invertible. In either case we have
+an element of $\Bool$ such that the map $P \to \Bool$ is constantly this element.
+This means $(P \to A) + (P \to B)$, as needed.
+\end{proof}
