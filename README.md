@@ -15,3 +15,5 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Is every étale scheme a sub-quotient of a finite set?
 - For $f : A$, is $f$ not not zero iff $f$ becomes zero in $A \otimes R/\sqrt{0}$?
   (A corollary of that would be: If the algebra $A$ is not not trivial, then it is trivial.)
+- If $A$ is an étale $R$-algebra (finitely presented and the spectrum is étale),
+  is it impossible to have an injective algebra map $R[X] \to A$?
