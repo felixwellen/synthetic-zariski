@@ -1,0 +1,33 @@
+We present some sketches of synthetic linear algebra.
+
+\begin{lemma}\label{inf-has-choice}
+Let $X$ be an infinitesimal variety. Then choice over $X$ is valid:
+for any type family $P$ with $(x : X) \to \propTrunc{P(x)}$,
+we have $\propTrunc{(x : X) \to P(x)}$.
+\end{lemma}
+\begin{proof}
+By Zariski local choice, it suffices to show that every Zariski cover
+of $X \to R$ is trivial, that is that $X \to R$ is a local ring.
+Indeed this is the case, since the evaluation $(X \to R) \to R$
+reflects invertible elements.
+\end{proof}
+
+\begin{lemma}
+In the category of finitely co-presented $R$-modules, every object is projective.
+That is, if $M,N,L$ are finitely co-presented $R$-modules,
+$f : M \to L$ is $R$-linear and $g : N \to L$ is $R$-linear and surjective,
+then there merely exists $h : M \to N$ such that $f = g \circ h$.
+\end{lemma}
+\begin{proof}
+We apply \cref{inf-has-choice} to obtain
+$(m : \D(M^\star)) \to (n : N) \times g(n) = f(m)$.
+That is, we have $h_0 : \D(M^\star) \to N$ such that $f = g \circ h_0$ on $\D(M)$.
+Without loss of generality, $h_0(0) = 0$; otherwise we may replace $h_0$
+by $h_0 - h_0(0)$, since in any case $g(h_0(0)) = f(0) = 0$.
+Now $h_0$ lifts to a pointed map $\D(M^\star) \to_\pt \D(N^\star)$.
+This corresponds to an $R$-linear map $N^\star \to M^\star$, and hence to
+an $R$-linear map $M \to N$, as desired.
+\end{proof}
+
+In particular, since $R$ is a local ring, we have that if $M$ is finitely co-presented and
+finitely generated, then $M$ is free.
