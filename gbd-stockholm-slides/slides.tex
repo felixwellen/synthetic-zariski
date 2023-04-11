@@ -8,7 +8,9 @@
 % literatur
 \usepackage[backend=biber,style=alphabetic]{biblatex}
 
-\addbibresource{../util/literatur.bib}
+\addbibresource{../util/literature.bib}
+
+\usepackage{../util/zariski}
 
 \usepackage{csquotes}
 \usepackage{hyperref}
@@ -24,67 +26,6 @@
 
 % für tabellen
 \usepackage{booktabs}
-
-
-% Modalities
-\newcommand{\Red}{\Re}
-\newcommand{\Cored}{\Im}
-\newcommand{\Wat}{\&}
-\newcommand{\shape}{\int} %{\ensuremath{\mathord{\raisebox{0.5pt}{\text{\rm\esh}}}}}
-\newcommand{\submodality}{\rotatebox[origin=c]{90}{$\subset$}}
-
-\newcommand{\inT}{\colon\hspace{-1.16mm}}
-\newcommand{\NN}{\mathbb N}
-\newcommand{\ZZ}{\mathbb Z}
-\newcommand{\RR}{\mathbb R}
-\newcommand{\CC}{\mathbb C}
-\newcommand{\QQ}{\mathbb Q}
-
-\newcommand{\PP}{\mathbb P}
-\newcommand{\id}{\mathrm{id}}
-\newcommand{\cat}[1]{\ensuremath{\text{#1}}}
-\newcommand{\topos}[1]{\ensuremath{\mathcal{#1}}}
-\newcommand{\functor}[1]{\ensuremath{\operatorname{\mathrm{#1}}}}
-\newcommand{\Abb}[5]{\ensuremath{#1:\begin{array}{ccc} #2 & \longrightarrow & #3 \\ #4 & \longmapsto & #5 \end{array}}}
-\newcommand{\Spec}{\ensuremath{\mathrm{Spec}}}
-\newcommand{\red}[1]{\ensuremath{{#1}_{\mathrm{red}}}}
-\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
-\newcommand{\Cos}{\ensuremath{\mathrm{cos}}}
-\newcommand{\Sin}{\ensuremath{\mathrm{sin}}}
-\newcommand{\Sh}{\ensuremath{\mathrm{Sh}}}
-\newcommand{\Lim}{\ensuremath{\mathrm{lim~}}}
-\newcommand{\op}{\ensuremath{\mathrm{op}}}
-\newcommand{\bu}{\ensuremath{\mathsmaller{\mathsmaller{\,\bullet\,}}}}
-\newcommand{\defequal}{\ensuremath{\colon\!\!\!\equiv}}
-\newcommand{\equaldef}{\ensuremath{\equiv\!\!\colon}}
-\newcommand{\pointbetween}[2]{($(#1)!0.5!(#2)$)} % use like this:  \node (middle) at \pointbetween{A}{B};
-\newcommand{\pbsquare}[3]{
-        \node (h-mid) at \pointbetween{#2}{#3} {};
-        \node (v-mid) at \pointbetween{#2}{#1} {};
-        \node (center) at (h-mid |- v-mid) {\small{(pb)}};
-}
-\newcommand{\oneImage}{\ensuremath{\text{1-image}}}
-\newcommand{\ImCompute}{\ensuremath{\text{$\Im$-compute}}}
-\newcommand{\ImInduction}{\ensuremath{\text{$\Im$-induction}}}
-\newcommand{\ImRecursion}{\ensuremath{\text{$\Im$-recursion}}}
-\newcommand{\ImNaturality}{\ensuremath{\text{$\Im$-naturality}}}
-\newcommand{\epi}{\ensuremath{\twoheadrightarrow}}
-\newcommand{\mono}{\ensuremath{\hookrightarrow}}
-\newcommand{\et}{\ensuremath{-\text{ét}\to}}
-\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
-\newcommand{\BAut}{\ensuremath{\mathrm{BAut}}}
-\newcommand{\BGL}{\ensuremath{\mathrm{BGL}}}
-\newcommand{\GL}{\ensuremath{\mathrm{GL}}}
-\newcommand{\Sch}{\ensuremath{\mathfrak{Sch}}}
-\newcommand{\Zar}{\ensuremath{\mathfrak{Zar}}}
-\newcommand{\ba}{\ensuremath{\mathbb{A}}}
-\newcommand{\DD}{\ensuremath{\mathbb{D}}}
-\newcommand{\colim}{\ensuremath{\mathrm{colim}}}
-\newcommand{\agda}[1]{\href{#1}{\color{darkgreen} \ensuremath{✓}}}
-\newcommand{\ignore}[1]{}
-\newcommand{\infclose}{\sim_{\text{\tiny{inf}}}}
-% \newcommand{\submodality}{\rotatebox[origin=c]{90}{$\subset$}}
-
 
 \title[ConCoh]
 {Synthetic Algebraic Geometry}
@@ -157,19 +98,23 @@
   \end{center}
   ~\\
   ~\\
-  {\footnotesize Schemes = quasi-compact, quasic-seperated schemes of finite type}
+  {\footnotesize Schemes = quasi-compact, quasic-separated schemes of finite type}
 \end{frame}
 
 \begin{frame}
   \frametitle{Synthetic algebraic geometry}
-  There is a local, commutative ring $R$. \\
+  \textbf{Axiom:} We have a local, commutative ring $R$. \\
   \pause
-  We define $\mathrm{Spec}(A)$ for a finitely presented $R$-algebra $A$ by
-  \[ \mathrm{Spec}(A):\equiv \mathrm{Hom}_{R\mathrm{-algebra}}(A,R)\]
+  We define $\Spec(A)$ for a finitely presented $R$-algebra $A$ by
+  \[ \Spec(A):\equiv \Hom_{R\mathrm{-algebra}}(A,R)\]
   \pause
-  Then the \emph{synthetic quasi-coherence} (SQC) axiom states that for finitely presented $R$-algebras $A$, the evaluation map
-  \[ r\mapsto (f\mapsto f(r)):A\to R^{\mathrm{Spec}(A)} \]
+  \textbf{Axiom (synthetic quasi-coherence/(SQC)):} \\
+  For any finitely presented $R$-algebras $A$, the evaluation map
+  \[ r\mapsto (f\mapsto f(r)):A\to R^{\Spec(A)} \]
   is an equivalence.
+  \pause
+  \textbf{Standard open} subsets of $\Spec(A)$ are given for each $f:A$:
+  \[ D(f):\equiv \{ x:\Spec(A) \mid x(f)\text{ is invertible}\}\]
 \end{frame}
 
 \begin{frame}
@@ -177,7 +122,7 @@
   Let $X$ be a type and $\mathcal F:X\to \mathrm{Ab}$ a dependent abelian group on $X$. \\
   \pause
   The $n$-th cohomology group of $\mathcal F$ is
-  \[ H^n(X,\mathcal F):\equiv\left\|\prod_{x:X}B^n\mathcal F_x\right\|_0\equiv \|(x:X)\to B^n\mathcal F_x\|_0 \]
+  \[ H^n(X,\mathcal F):\equiv\left\|\prod_{x:X}K(\mathcal F_x,n)\right\|_0 \]
   \pause
   Properties: \\
   \pause
@@ -192,10 +137,21 @@
 
 \begin{frame}
   \frametitle{Zariski-Choice and Cohomology}  
-  Let $X=\mathrm{Spec}(A)$ and $M:X\to R\text{-Mod}$ such that $((x:D(f))\to M_x)=((x:X)\to M)_f$, then
+  Let $X=\Spec(A)$ and $M:X\to R\text{-Mod}$ such that $((x:D(f))\to M_x)=((x:X)\to M)_f$, then
   \[ H^1(X,M)=0 \]
   \pause
-  \textbf{Proof:} TODO
+  \textbf{Proof:} Let $|T|: H^1(X,M)\equiv \|(x:X)\to K(M_x,1)\|_0$ and from that $(x:X)\to \|T_x=M_x\|$.
+  \pause
+  Our third axiom, \textbf{Zariski-local choice}, merely gives us coprime $f_1,\dots,f_n:A$, such that for each $i$ we have
+  \[
+    s_i:(x:D(f_i)) \to T_x=M_x
+    \rlap{.}
+  \]
+  \pause
+  So for $t_{ij}(x):\equiv s_j(x)^{-1}\cdot s_i(x)$ we have $t_{ij}+t_{jk}=t_{ik}$.
+  \pause
+  By algebra, we get $u_i:(x:D(f_i))\to M_x$ with $t_{ij}=u_i-u_j$.
+  Then the $\tilde{s}_i:\equiv s_i-u_i$ glues to a global trivialization.
 \end{frame}
 
 \end{document}
