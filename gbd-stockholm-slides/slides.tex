@@ -1,0 +1,201 @@
+% latexmk -pdflatex='xelatex %O %S' -pvc -pdf slides.tex
+\documentclass{beamer}
+
+% für xelatex:
+\usepackage{xltxtra}
+\usepackage{unicode-math}
+
+% literatur
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+
+\addbibresource{../util/literatur.bib}
+
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{cd,arrows,shapes,calc,through,backgrounds,matrix,trees,decorations.pathmorphing,positioning,automata}
+\usepackage{graphicx}
+\usepackage{color}
+
+\usepackage{mathpartir}
+\newcommand{\yields}{\vdash}
+\newcommand{\cbar}{\, | \,}
+
+
+% für tabellen
+\usepackage{booktabs}
+
+
+% Modalities
+\newcommand{\Red}{\Re}
+\newcommand{\Cored}{\Im}
+\newcommand{\Wat}{\&}
+\newcommand{\shape}{\int} %{\ensuremath{\mathord{\raisebox{0.5pt}{\text{\rm\esh}}}}}
+\newcommand{\submodality}{\rotatebox[origin=c]{90}{$\subset$}}
+
+\newcommand{\inT}{\colon\hspace{-1.16mm}}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\CC}{\mathbb C}
+\newcommand{\QQ}{\mathbb Q}
+
+\newcommand{\PP}{\mathbb P}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\cat}[1]{\ensuremath{\text{#1}}}
+\newcommand{\topos}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\functor}[1]{\ensuremath{\operatorname{\mathrm{#1}}}}
+\newcommand{\Abb}[5]{\ensuremath{#1:\begin{array}{ccc} #2 & \longrightarrow & #3 \\ #4 & \longmapsto & #5 \end{array}}}
+\newcommand{\Spec}{\ensuremath{\mathrm{Spec}}}
+\newcommand{\red}[1]{\ensuremath{{#1}_{\mathrm{red}}}}
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\Cos}{\ensuremath{\mathrm{cos}}}
+\newcommand{\Sin}{\ensuremath{\mathrm{sin}}}
+\newcommand{\Sh}{\ensuremath{\mathrm{Sh}}}
+\newcommand{\Lim}{\ensuremath{\mathrm{lim~}}}
+\newcommand{\op}{\ensuremath{\mathrm{op}}}
+\newcommand{\bu}{\ensuremath{\mathsmaller{\mathsmaller{\,\bullet\,}}}}
+\newcommand{\defequal}{\ensuremath{\colon\!\!\!\equiv}}
+\newcommand{\equaldef}{\ensuremath{\equiv\!\!\colon}}
+\newcommand{\pointbetween}[2]{($(#1)!0.5!(#2)$)} % use like this:  \node (middle) at \pointbetween{A}{B};
+\newcommand{\pbsquare}[3]{
+        \node (h-mid) at \pointbetween{#2}{#3} {};
+        \node (v-mid) at \pointbetween{#2}{#1} {};
+        \node (center) at (h-mid |- v-mid) {\small{(pb)}};
+}
+\newcommand{\oneImage}{\ensuremath{\text{1-image}}}
+\newcommand{\ImCompute}{\ensuremath{\text{$\Im$-compute}}}
+\newcommand{\ImInduction}{\ensuremath{\text{$\Im$-induction}}}
+\newcommand{\ImRecursion}{\ensuremath{\text{$\Im$-recursion}}}
+\newcommand{\ImNaturality}{\ensuremath{\text{$\Im$-naturality}}}
+\newcommand{\epi}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\mono}{\ensuremath{\hookrightarrow}}
+\newcommand{\et}{\ensuremath{-\text{ét}\to}}
+\newcommand{\Aut}{\ensuremath{\mathrm{Aut}}}
+\newcommand{\BAut}{\ensuremath{\mathrm{BAut}}}
+\newcommand{\BGL}{\ensuremath{\mathrm{BGL}}}
+\newcommand{\GL}{\ensuremath{\mathrm{GL}}}
+\newcommand{\Sch}{\ensuremath{\mathfrak{Sch}}}
+\newcommand{\Zar}{\ensuremath{\mathfrak{Zar}}}
+\newcommand{\ba}{\ensuremath{\mathbb{A}}}
+\newcommand{\DD}{\ensuremath{\mathbb{D}}}
+\newcommand{\colim}{\ensuremath{\mathrm{colim}}}
+\newcommand{\agda}[1]{\href{#1}{\color{darkgreen} \ensuremath{✓}}}
+\newcommand{\ignore}[1]{}
+\newcommand{\infclose}{\sim_{\text{\tiny{inf}}}}
+% \newcommand{\submodality}{\rotatebox[origin=c]{90}{$\subset$}}
+
+
+\title[ConCoh]
+{Synthetic Algebraic Geometry}
+\author[Author, Anders] 
+{Ingo Blechschmidt, Felix Cherubini, Thierry Coquand, Matthias Hutzler, Hugo Moeneclaey, Josselin Poiret and David Wärn}
+\institute
+{Working on various sub-projects}
+
+\begin{document}
+
+\date{}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Acknowledgements and Subprojects}
+  The approach to cohomology we use was proposed by \textbf{Michael Shulman} in 2013 and was later worked out by \textbf{Floris van Doorn}.
+  It is known to many people in the field. \\ ~\\
+  \pause
+  The approach to synthetic algebraic geometry is based on work by  \textbf{Ingo Blechschmidt}, \textbf{Anders Kock} and \textbf{David Jaz Myers}. \\  ~\\
+  \pause
+  Currently, there are the following projects:
+  \begin{table}
+    \centering
+    \begin{tabular}{lp{7.5cm}}
+      Foundations & Felix, Matthias, Thierry \\
+      Proper Schemes & David, Felix, Matthias, Thierry \\
+      Differential Geometry & David, Felix, Hugo, Matthias \\
+      \v{C}ech Cohomology & David, Felix, Ingo \\
+      Formalization & Felix, Joisselin, Matthias \\
+    \end{tabular}
+  \end{table}
+  
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    \begin{tikzpicture} 
+      [ 
+      node distance=.8cm, 
+      circled/.style={draw, ellipse, ultra thick, fill=blue!12},
+      edge from parent/.style={very thick,draw=black,-latex},
+      plaintext/.style={}
+      ]
+
+      \tikzstyle{level 1}=[sibling angle=81,level distance=4cm]
+
+      \node[circled] (hott) {HoTT+Axioms} [counterclockwise from=207]
+      child { 
+        node[circled] (grp) {$\infty$-Groupoids} 
+        edge from parent [-latex] node (grp) 
+        {
+          \begin{tikzpicture}[scale=0.8, rotate=25]
+            \draw[-, red, ultra thick] (0,0) to (1,1);
+            \draw[-, red, ultra thick] (1,0) to (0,1);
+          \end{tikzpicture}
+        } 
+      }
+      child { node[matrix, circled, inner sep=0pt] (smgrp) 
+        {
+          \node[circled, minimum height=0.7cm, minimum width=3cm] (mfd) {Schemes};
+          \node[below of=mfd, text width=3cm, 
+          node distance=0.9cm] 
+          {``Cubical Zariski-sheaves''}; \\
+        }
+      }
+      ;
+    \end{tikzpicture}
+  \end{center}
+  ~\\
+  ~\\
+  {\footnotesize Schemes = quasi-compact, quasic-seperated schemes of finite type}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Synthetic algebraic geometry}
+  There is a local, commutative ring $R$. \\
+  \pause
+  We define $\mathrm{Spec}(A)$ for a finitely presented $R$-algebra $A$ by
+  \[ \mathrm{Spec}(A):\equiv \mathrm{Hom}_{R\mathrm{-algebra}}(A,R)\]
+  \pause
+  Then the \emph{synthetic quasi-coherence} (SQC) axiom states that for finitely presented $R$-algebras $A$, the evaluation map
+  \[ r\mapsto (f\mapsto f(r)):A\to R^{\mathrm{Spec}(A)} \]
+  is an equivalence.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cohomology of sheaves}
+  Let $X$ be a type and $\mathcal F:X\to \mathrm{Ab}$ a dependent abelian group on $X$. \\
+  \pause
+  The $n$-th cohomology group of $\mathcal F$ is
+  \[ H^n(X,\mathcal F):\equiv\left\|\prod_{x:X}B^n\mathcal F_x\right\|_0\equiv \|(x:X)\to B^n\mathcal F_x\|_0 \]
+  \pause
+  Properties: \\
+  \pause
+  The $H^n(X,\mathcal F)$ are all abelian groups. \\
+  \pause
+  Functoriality, covariant in $\mathcal F$, contravariant in $X$. \\
+  \pause
+  Some long exact sequence for coefficients. \\
+  \pause
+  We have a Mayer-Vietoris-Lemma and more generally correspondence with \v{C}ech-Cohomology, for nice enough spaces. \\
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zariski-Choice and Cohomology}  
+  Let $X=\mathrm{Spec}(A)$ and $M:X\to R\text{-Mod}$ such that $((x:D(f))\to M_x)=((x:X)\to M)_f$, then
+  \[ H^1(X,M)=0 \]
+  \pause
+  \textbf{Proof:} TODO
+\end{frame}
+
+\end{document}
