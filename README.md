@@ -17,3 +17,5 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
   (A corollary of that would be: If the algebra $A$ is not not trivial, then it is trivial.)
 - If $A$ is an étale $R$-algebra (finitely presented and the spectrum is étale),
   is it impossible to have an injective algebra map $R[X] \to A$?
+- Is the proposition "X is affine" not-not-stable, for X a scheme?
+  (Then deformations ($D(1) \to \Sch$) of affine schemes would stay affine.)
