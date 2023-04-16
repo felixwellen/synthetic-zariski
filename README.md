@@ -19,3 +19,5 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
   is it impossible to have an injective algebra map $R[X] \to A$?
 - Is the proposition "X is affine" not-not-stable, for X a scheme?
   (Then deformations ($D(1) \to \Sch$) of affine schemes would stay affine.)
+- Can every bundle (on $Sp A$) of strongly quasicoherent $R$-modules be recovered
+  from its $A$-module of global sections.
