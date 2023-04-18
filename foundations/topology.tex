@@ -15,8 +15,17 @@ Reduced schemes are defined in the work in progress draft \cite{etale-draft}.
     Let $X$ be a type.
     A subtype $U : X \to \Prop$ is \notion{closed}
     if for all $x : X$, the proposition $U(x)$ is closed.
+  \item
+    For $A$ a finitely presented $R$-algebra
+    and $f_1, \dots, f_n : A$,
+    we set
+    $V(f_1, \dots, f_n) \colonequiv
+    \{\, x : \Spec A \mid f_1(x) = \dots = f_n(x) = 0 \,\}$.
   \end{enumerate}
 \end{definition}
+
+Note that $V(f_1, \dots, f_n) \subseteq \Spec A$ is a closed subtype
+and we have $V(f_1, \dots, f_n) = \Spec (A/(f_1, \dots, f_n))$.
 
 \begin{proposition}[using \axiomref{sqc}]%
   There is an order-reversing isomorphism of partial orders
@@ -52,7 +61,7 @@ Reduced schemes are defined in the work in progress draft \cite{etale-draft}.
   if $I$ and $J$ are finitely generated ideals.
 \end{proof}
 
-\begin{lemma}%
+\begin{lemma}[using \axiomref{sqc}]%
   \label{ideals-embed-into-closed-subsets}
   We have $V(f_1, \dots, f_n) \subseteq V(g_1, \dots, g_m)$
   as subsets of $\Spec A$
@@ -62,7 +71,12 @@ Reduced schemes are defined in the work in progress draft \cite{etale-draft}.
 \end{lemma}
 
 \begin{proof}
-  TODO
+  The inclusion $V(f_1, \dots, f_n) \subseteq V(g_1, \dots, g_m)$
+  means a map $\Spec (A/(f_1, \dots, f_n)) \to \Spec (A/(g_1, \dots, g_m))$
+  over $\Spec A$.
+  By \cref{spec-embedding}, this is equivalent to
+  a homomorphism $A/(g_1, \dots, g_m) \to A/(f_1, \dots, f_n)$,
+  which in turn means the stated inclusion of ideals.
 \end{proof}
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
