@@ -21,3 +21,4 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
   (Then deformations ($D(1) \to \Sch$) of affine schemes would stay affine.)
 - Can every bundle (on $Sp A$) of strongly quasicoherent $R$-modules be recovered
   from its $A$-module of global sections.
+- Is $\Spec A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
