@@ -1,6 +1,8 @@
 % latexmk -pdflatex='xelatex %O %S' -pvc -pdf slides.tex
 \documentclass{beamer}
 
+\beamertemplatenavigationsymbolsempty
+
 % für xelatex:
 \usepackage{xltxtra}
 \usepackage{unicode-math}
@@ -28,9 +30,9 @@
 \usepackage{booktabs}
 
 \title[ConCoh]
-{Synthetic Algebraic Geometry}
+{A Foundation for Synthetic Algebraic Geometry}
 \author[Author, Anders] 
-{Ingo Blechschmidt, Felix Cherubini, Thierry Coquand, Matthias Hutzler, Hugo Moeneclaey, Josselin Poiret and David Wärn}
+{Felix Cherubini, Thierry Coquand, Matthias Hutzler}
 
 \begin{document}
 
@@ -41,26 +43,36 @@
 
 \begin{frame}
   \frametitle{Acknowledgements and Subprojects}
+  The approach to synthetic algebraic geometry is based on work by  \textbf{Ingo Blechschmidt}, \textbf{Anders Kock} and \textbf{David Jaz Myers}.
+
+  \pause
+  \vspace{0.25cm}
   The approach to cohomology we use was proposed by \textbf{Michael Shulman} in 2013 and was later worked out by \textbf{Floris van Doorn}.
-  It is known to many people in the field. \\ ~\\
+  It is known to many people in the field.
+
   \pause
-  The approach to synthetic algebraic geometry is based on work by  \textbf{Ingo Blechschmidt}, \textbf{Anders Kock} and \textbf{David Jaz Myers}. \\  ~\\
-  \pause
-  Currently, there are the following projects:
-  \begin{table}
-    \centering
-    \begin{tabular}{lp{7.5cm}}
-      Foundations & Felix, Matthias, Thierry \\
-      Proper Schemes & David, Felix, Matthias, Thierry \\
-      Differential Geometry & David, Felix, Hugo, Matthias \\
-      \v{C}ech Cohomology & David, Felix, Ingo \\
-      Formalization & Felix, Joisselin, Matthias \\
-    \end{tabular}
-  \end{table}
-  
+  \vspace{0.5cm}
+  Present work is joint with
+  Ingo Blechschmidt,
+  Hugo Moeneclaey,
+  Josselin Poiret, and
+  David Wärn.
+
+  \vspace{0.25cm}
+  \begin{tabular}{lp{7.5cm}}
+    \textit{Foundations} & (Felix, Matthias, Thierry) \\
+    \textit{Proper Schemes} & (David, Felix, Matthias, Thierry) \\
+    \textit{Differential Geometry} & (David, Felix, Hugo, Matthias) \\
+    \textit{\v{C}ech Cohomology} & (David, Felix, Ingo) \\
+    \textit{Formalization} & (Felix, Joisselin, Matthias) \\
+  \end{tabular}
+
+  \vspace{0.25cm}
+  \url{https://github.com/felixwellen/synthetic-zariski/}
 \end{frame}
 
 \begin{frame}
+  \vspace{1cm}
   \begin{center}
     \begin{tikzpicture} 
       [ 
@@ -86,7 +98,7 @@
       child { node[matrix, circled, inner sep=0pt] (smgrp) 
         {
           \node[circled, minimum height=0.7cm, minimum width=3cm] (mfd) {Schemes};
-          \node[below of=mfd, text width=3cm, 
+          \node[below of=mfd, text width=3cm,
           node distance=0.9cm] 
           {``Cubical Zariski-sheaves''}; \\
         }
@@ -94,25 +106,96 @@
       ;
     \end{tikzpicture}
   \end{center}
-  ~\\
-  ~\\
-  {\footnotesize Schemes = quasi-compact, quasic-separated schemes of finite type}
+  \vspace{1cm}
+  {\footnotesize * Schemes = quasi-compact, quasic-separated schemes of finite type}
 \end{frame}
 
 \begin{frame}
   \frametitle{Synthetic algebraic geometry}
   \textbf{Axiom:} We have a local, commutative ring $R$. \\
+
   \pause
-  We define $\Spec(A)$ for a finitely presented $R$-algebra $A$ by
-  \[ \Spec(A):\equiv \Hom_{R\mathrm{-algebra}}(A,R)\]
+  \vspace{0.25cm}
+  For a finitely presented $R$-algebra $A$, define:
+  \[ \Spec(A):\equiv \Hom_{R\text{-algebra}}(A,R)\]
   \pause
-  \textbf{Axiom (synthetic quasi-coherence/(SQC)):} \\
-  For any finitely presented $R$-algebras $A$, the evaluation map
-  \[ r\mapsto (f\mapsto f(r)):A\to R^{\Spec(A)} \]
+  \textbf{Axiom (synthetic quasi-coherence (SQC)):} \\
+  For any finitely presented $R$-algebra $A$, the map
+  \[ a\mapsto (\varphi\mapsto \varphi(a)):A \xrightarrow{\sim} R^{\Spec(A)} \]
   is an equivalence.
+
   \pause
-  \textbf{Standard open} subsets of $\Spec(A)$ are given for each $f:A$:
-  \[ D(f):\equiv \{ x:\Spec(A) \mid x(f)\text{ is invertible}\}\]
+  \vspace{0.25cm}
+  \textbf{Example:}
+  $\Spec(R[X]) = R$.
+  \pause
+  Thus:
+  \[ R[X] \xrightarrow{\sim} R^R \]
+  \[ \text{polynomials} = \text{functions}\rlap{\quad\text{!!}} \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Towards schemes}
+  For $f:A$ define:
+  \[ D(f):\equiv \{\, x:\Spec(A) \mid x(f)\text{ is invertible} \,\}\]
+  \pause
+  For $A = R$, we get \emph{open propositions}:
+  \[ \mathrm{OpenProp} :\equiv
+    \{\,(r_1 \text{ inv.}) \lor \dots \lor (r_n \text{ inv.}) \mid r_i : R \,\}
+  \]
+  \pause
+  \textbf{Lemma:}
+  There is an embedding:
+  \[ \{\,D(f_1) \cup \dots \cup D(f_n) \mid f_i : A \,\}
+     \hookrightarrow
+     \mathrm{OpenProp}^{\Spec(A)}
+  \]
+  But is it an equivalence??\\
+  \pause
+  Yes, using \emph{Zariski-local choice}!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zariski-local choice}
+  \textbf{Axiom (Zariski-local choice):}\\
+  For every surjective $\pi$, there merely exist local sections $s_i$
+  \[ \begin{tikzcd}[ampersand replacement=\&, column sep=small]
+    \& E \ar[d, two heads, "\pi"] \\
+    D(f_i) \ar[r, hook] \ar[ur, bend left, dashed, "s_i"] \& \Spec(A)
+  \end{tikzcd} \]
+  with $f_1, \dots, f_n : A$ coprime.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Some more results}
+  \begin{itemize}
+    \item
+      $\mathrm{OpenProp}^{\Spec(A)} \cong \{\text{f.g. radical ideals of $A$}\}$
+    \item
+      $\mathrm{OpenProp}$ is closed under $\Sigma$-types.
+    \item
+      All functions $\Spec A \to \mathbb{N}$ are bounded.
+    \item
+      The type of schemes is closed under $\Sigma$-types.
+  \end{itemize}
+
+  \pause
+  \vspace{0.25cm}
+  For $A : X \to \mathrm{Ab}$, define \emph{cohomology} as:
+  \[ H^n(X, A) :\equiv \Big\| \prod_{x:X}K(A_x,n) \Big\|_{\mathrm{set}} \]
+  \begin{itemize}
+    \item
+      $H^n$ coincides with \v{C}ech-Cohomology.
+    \item
+      A scheme $X$ is affine if and only if
+      \[ H^n(X, M) = 0 \]
+      for all $M : X \to R\text{-}\mathrm{Mod}_{\mathrm{wqc}}$ and $n > 0$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \centering
+  Thank you!
 \end{frame}
 
 \begin{frame}
