@@ -1,13 +1,49 @@
+\subsection{Generalities on modalities}
+
+In this section we state useful facts about modalities in HoTT. We assume $L$ a left exact modality and $L'$ the modality corresponding to $L$-separated types, i.e. types with $L$-modal identity types. We have in mind $L$ the formally étale modality and $L'$ the formally unramified modality. Precise references should be added.
+
+\begin{lemma}
+If $L$ is accessible (i.e. defined by unique litfting conditions), then $L'$ is defined by the corresponding 'at most one' lifting conditions.
+\end{lemma}
+
+\begin{lemma}
+The modality $L$ preserves $n$-types for any $n$.
+\end{lemma}
+
+The following is one of the many equivalent characterisations of left exact modalities.
+
+\begin{lemma}
+For any $X$ the localisation $\eta_X:X\to L(X)$ induces $L$-localisations:
+\[x=_Xy \to \eta_X(x)=_{LX}\eta_X(y)\]
+\end{lemma}
+
+\begin{proposition}
+\label{separatedLocalisationIsQuotient}
+A map $f:X\to Y$ is an $L'$-localisation if and only if $f$ is surjective and for all $x,y:X$ the map:
+\[ap_f : x=_Xy\to f(x)=_Yf(y)\] 
+is an $L$-localisation.
+\end{proposition}
+
+\begin{corollary}
+The modality $L'$ preserve $n$-types for any $n$.
+\end{corollary}
+
+\begin{corollary}
+If $X$ is $L'$-modal then:
+\[X\to LX\]
+is an embedding.
+\end{corollary}
+
+This means that the successive localisations:
+\[X\to L'X\to LX\]
+are the image factorisation of the localisation $X\to LX$.
+
 \subsection{Lifting Properties}
 
 \begin{lemma}%
   If a map $f$ has the left lifting property with respect to $l:A_0\to A_1$ and $l':A_1\to A_2$,
   then $f$ has the left lifting property with respect to $l'\circ l$.
 \end{lemma}
-
-\begin{proof}
-  TODO
-\end{proof}
 
 \begin{lemma}
 \label{lifts-equivalence-pointwise}
@@ -483,7 +519,7 @@ We need to prove that there merely exists a dotted lift in any:
 A type covered by finitely many formally smooth subtype is formally smooth.
 \end{lemma}
 \begin{proof}
-We assume $P_1,\cdots,P_n:X\r \Prop$ covering $X$, i.e. for all $x:X$ we have:
+We assume $P_1,\cdots,P_n:X\to \Prop$ covering $X$, i.e. for all $x:X$ we have:
 \[
 \prod_{x:X}P_1(x)\lor\cdots\lor P_n(x)
 \]
@@ -504,7 +540,7 @@ as $P$ is closed. So $\phi$ factors through $\Sigma_{x:X}P_i(x)$ which is formal
 \end{proof}
 
 \begin{corollary}
-The $\mathbb{P}^n$ are smooth.
+The scheme $\mathbb{P}^n$ is smooth for any $n$.
 \end{corollary}
 
 \begin{lemma}
@@ -544,7 +580,7 @@ p:\Spec(R[X,Y]/(XY))\to \A^1
 \] 
 corresponding to the map in:
 \[
-R[X,Y]/(XY) \r R[X]
+R[X,Y]/(XY) \to R[X]
 \]
 sending $X$ to $X$ and $Y$ to $0$ is not smooth.
 \end{lemma}
@@ -563,6 +599,7 @@ If it were smooth all its fibers would be smooth, i.e. for all $z:R$ the scheme 
 I think in the traditional setting this map has smooth fibers, but not here. Now we give stability properties for formally smooth types.
 
 \begin{proposition}
+\label{smoothSurjective}
 The image of a formally smooth type by any map is formally smooth.
 \end{proposition}
 \begin{proof}
@@ -592,4 +629,101 @@ is formally smooth.
 
 Formally smooth types are not stable by identity types (e.g. identity types in $\A^1$ are not smooth, otherwise they would be closed and étale, i.e. decidable).
 
+\subsection{Etale replacement of schemes}
+
+We write $\mathrm{Cld}$ for the type of closed dense proposition, i.e. closed propositions $P$ such that $\neg\neg P$.
+
+\begin{lemma}
+Closed dense propositions are closed under $\Sigma$.
+\end{lemma}
+\begin{proof}
+We know that closed proposition are closed under $\Sigma$, so we just need to check that when $\neg\neg P$ and for all $x:P$ we have $\neg\neg Q(x)$ then $\neg\neg(\Sigma_{x:P}Q(x))$. This is easy.
+\end{proof}
+
+\begin{lemma}
+The formally étale replacement of a proposition $P$ is:
+\[\exists (Q :\mathrm{Cld}). P^Q\]
+\end{lemma}
+
+\begin{proof}
+First we check that:
+\[\exists(Q :\mathrm{Cld}). P^Q\]
+is étale. Assume $R$ closed dense such that: 
+\[R\to \exists(Q :\mathrm{Cld}). P^Q\]
+Then since closed propositions satisfy choice and we try to prove a proposition, we can assume:
+\[R\to \Sigma_{Q :\mathrm{Cld}} P^Q\]
+i.e. we have $Q : R\to \mathrm{Cld}$ such that:
+\[\prod_{x:R} P^{Q(x)}\]
+Then $\Sigma_{x:R}Q(x)$ is closed dense and it implies $P$ so:
+\[\exists(Q :\mathrm{Cld}). P^Q\]
+holds.
+
+We know that the formally étale replacement of a proposition is a proposition, so to conclude it is enough to prove that:
+\[\exists(Q :\mathrm{Cld}). P^Q\]
+is initial among formally étale propositions implied by $P$. Assume $U$ a formally étale proposition such that $P\to U$, we want to prove that:
+\[(\exists(Q :\mathrm{Cld}). P^Q)\to U\]
+Since we want to prove a proposition we can assume $Q$ closed dense such that $P^Q$, then $U^Q$ holds and this implies $U$ since $U$ is formally étale.
+\end{proof}
+
+This can be generalised to sets:
+
+\begin{proposition}
+\label{etaleReplacementUnramified}
+Let $X$ be a formally unramified set, then the formally étale replacement of $X$ is:
+\[\mathrm{colim}_{Q:\mathrm{Cld}} X^Q\]
+\end{proposition}
+
+\begin{proof}
+TODO, might be optimistic.
+\end{proof}
+
+\begin{proposition}
+\label{unramifiedReplacementEtaleForSmooth}
+Let $X$ be formally smooth, then the formally unramified replacement of $X$ is formally étale.
+\end{proposition}
+
+The converse does not hold, e.g. by considering an infinitesimal variety.
+
+\begin{proof}
+The map from $X$ to its formally unramified replacement is surjective by \cref{separatedLocalisationIsQuotient}, so the formally unramified replacement is formally smooth by \cref{smoothSurjective}.
+\end{proof}
+
+Now we focus on étale replacement for schemes.
+
+\begin{lemma}
+Let $P$ be a closed proposition, then the étale replacement of $P$ is $\neg\neg P$.
+\end{lemma}
+
+\begin{proof}
+We have that $\neg\neg P$ is étale because it is $\neg\neg$-stable. It is initial among maps from $P$ to étale types because $P\to \neg\neg P$ is a closed dense embedding.
+\end{proof}
+
+\begin{lemma}
+Let $P$ be an identity types in a scheme, then the étale replacement of $P$ is $\neg\neg P$.
+\end{lemma}
+
+\begin{proof}
+An identity type in a scheme is of the form:
+\[\Sigma_{x:U}C(x)\]
+for $U$ open and $C(x)$ closed for all $x:U$. Then:
+\[\neg\neg(\Sigma_{x:U}C(x)) \to \Sigma_{x:U}\neg\neg C(x)\]
+because $\neg\neg U \to U$ and we can conclude because $\neg\neg C(x)$ is the étale replacement of $C(x)$.
+\end{proof}
+
+\begin{corollary}
+\label{unramifiedReplacementScheme}
+The unramified replacement of a scheme $X$ is the quotient of $X$ by the relation $\neg\neg(x=_Xy)$.
+\end{corollary} 
+
+\begin{proof}
+By \cref{separatedLocalisationIsQuotient} combined with the previous lemma.
+\end{proof}
+
+By combining \cref{etaleReplacementUnramified} and \cref{unramifiedReplacementScheme} we can compute the étale replacement of any scheme. By \cref{unramifiedReplacementEtaleForSmooth} the second step is not necessary for smooth scheme. 
+
+\begin{example}
+The étale replacement of $\A^n$ is $\tilde{R}^n$ where $\tilde{R}$ is the quotient of $R$ by its nilradical.
+\end{example}
+
+The étale replacement of $\mathbb{P}^n$ should be $\mathbb{P}_{\tilde{R}}^n$ but I did not make this precise.
 
