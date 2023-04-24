@@ -5,6 +5,8 @@ There are currently the following parts:
 - Chech-Cohomology ([early draft pdf](https://felix-cherubini.de/chech.pdf))
 - Differential Geometry/étale maps ([early draft pdf](https://felix-cherubini.de/diffgeo.pdf))
 - Proper Schemes ([early draft pdf](https://felix-cherubini.de/proper.pdf))
+- Topology of Synthetic Schemes ([early draft pdf](https://felix-cherubini.de/topology.pdf))
+- Random Facts, i.e. a collection of everything that still needs to find a good place ([almost empty pdf](https://felix-cherubini.de/random.pdf))
 
 There is a related [formalization project](https://github.com/felixwellen/synthetic-geometry).
 
