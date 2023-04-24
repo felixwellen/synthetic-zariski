@@ -1,0 +1,57 @@
+
+This is a proof that pullbacks of schemes are schemes, which is analogous to what could be found in a textbook.
+
+\begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{fiber-product-scheme}
+  Let
+  \[
+    \begin{tikzcd}
+      X\ar[r,"f"] & Z & Y\ar[l,swap,"g"]
+    \end{tikzcd}
+  \]
+  be schemes, then the \notion{pullback} $X\times_Z Y$ is also a scheme.
+\end{theorem}
+
+\begin{proof}[alternative proof of \cref{fiber-product-scheme}]
+  Let $W_1,\dots,W_n$ be a finite affine cover of $Z$.
+  The preimages of $W_i$ under $f$ and $g$ are open
+  and covered by fintely many affine open $U_{ik}$ and $V_{ij}$ by \cref{open-subscheme}.
+  This leads to the following diagram:
+  \begin{center}
+    \begin{tikzcd}
+      X\times_Z Y\ar[rrr]\ar[ddd] & & & Y\ar[ddd] & \\
+      & P_{ij}\ar[hook,lu]\ar[rrr,crossing over] &&& V_{ij}\ar[hook,lu]\ar[ddd] \\
+      &&&& \\
+      X\ar[rrr] & & & Z & \\
+      & U_{i}\ar[rrr]\ar[hook,lu]\ar[from=uuu,crossing over] & & & W_i\ar[hook,lu]
+    \end{tikzcd}
+  \end{center}
+  where the front and bottom square are pullbacks by definition.
+  By pullback-pasting, the top is also a pullback,
+  so all diagonal maps are embeddings.
+  
+  $P_{ij}$ is open, since it is a preimage of $V_{ij}$ (\cref{preimage-open}),
+  which is open in $Y$ by \cref{qc-open-trans}.
+  It remains to show, that the $P_{ij}$ cover $X\times_Z Y$ and that $P_{ij}$ is a scheme.
+  Let $x:X\times_Z Y$.
+  For the image $w$ of $x$ in $W$, there merely is an $i$ such that $w$ is in $W_i$.
+  The image of $x$ in $V_i$ merely lies in some $V_{ij}$,
+  so $x$ is in $P_{ij}$.
+
+  We proceed by showing that $P_{ij}$ is a scheme.
+  Let $U_{ik}$ be a part of the finite affine cover of $U_i$.
+  We repeat part of what we just did:
+  \begin{center}
+    \begin{tikzcd}
+      P_{ij}\ar[rrr]\ar[ddd] & & & U_i\ar[ddd] & \\
+      & P_{ijk}\ar[hook,lu]\ar[rrr,crossing over] &&& U_{ik}\ar[hook,lu]\ar[ddd] \\
+      &&&& \\
+      V_{ij}\ar[rrr] & & & W_i & \\
+      & V_{ij}\ar[rrr]\ar[equal,lu]\ar[from=uuu,crossing over] & & & W_i\ar[equal,lu]
+    \end{tikzcd}
+  \end{center}
+
+  So by \cref{affine-fiber-product}, $P_{ijk}$ is affine.
+  Repetition of the above shows, that the $P_{ijk}$ are open and cover $P_{ij}$.
+\end{proof}
+
