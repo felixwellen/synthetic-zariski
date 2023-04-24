@@ -408,36 +408,61 @@ On the other hand having fibers with trivial tangent space is equivalent to:
 Both are equivalent by path elimination on $p$.
 \end{proof}
 
-\subsection{Smooth morphisms}
+\subsection{Smooth maps}
 
 \begin{definition}
-A morphism $f:X\to Y$ is smooth if for any f.p. $R$-algebra $A$ and f.g. nilpotent ideal $N$ in $A$, any commutative square:
+A morphism $f:X\to Y$ is formally smooth for any closed dense proposition $P$ the square:
+ \begin{center}
+      \begin{tikzcd}
+        P\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+merely has a lift.
+\end{definition}
+
+\begin{remark}
+The usual definition for formally smooth is to ask for lifting in:
  \begin{center}
       \begin{tikzcd}
         \Spec(A/N)\ar[r]\ar[d] & X\ar[d,"f"] \\
        \Spec(A) \ar[r]\ar[ru,dashed] & Y
       \end{tikzcd}
     \end{center}
-merely has a lift.
-\end{definition}
-
-Note that here since we do not have: 
+    with $N$ nilpotent. Note that here since we do not have: 
 \[
 \prod_{x:A} ||B(x)|| \to ||\prod_{x:A}B(x)||
 \]
-we do not seem to have an analogue to \cref{equivalence-etale} or \cref{equivalence-unramified}. Similarly it does not seem that maps with smooth fibers are always smooth, although I did not find a counter-example yet.
+we do not seem to have a direct analogue to \cref{equivalence-etale} or \cref{equivalence-unramified}. From the Stack Project Section 37.11 I expect these definitions to nevertheless be  equivalent.
+\end{remark}
 
-\begin{proposition}
-Smooth unramified maps are étale.
-\end{proposition}
+Our definition of formal smoothness is convenient because it implies:
 
 \begin{lemma}
-A proposition is smooth if and only if it is étale. %Any $\neg\neg$-stable proposition is smooth. In particular open propositions are smooth. % are smooth.
+A map is formally smooth if and only if its fibers are formally smooth.
 \end{lemma}
-
 \begin{proof}
-All propositions are unramified.
+The type of filler for:
+ \begin{center}
+      \begin{tikzcd}
+        P\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r,"y"]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+   is equivalent to the type of filler for:
+    \begin{center}
+      \begin{tikzcd}
+        P\ar[r]\ar[d] & \mathrm{fib}_f(y) \\
+       1 \ar[ru,dashed] & 
+      \end{tikzcd}
+    \end{center}
 \end{proof}
+
+\begin{remark}
+Formally smooth and formally unramified implies formally étale.
+\end{remark}
+
+We give a few examples and counter-examples:
 
 \begin{lemma}
 The scheme $\A^n$ is smooth for any $n$.
@@ -447,27 +472,54 @@ The scheme $\A^n$ is smooth for any $n$.
 We need to prove that there merely exists a dotted lift in any:
  \begin{center}
       \begin{tikzcd}
-        A/N & R[X_1,\cdots,X_n]\ar[l]\ar[ld,dashed] \\
-        A \ar[u]& 
+        R/N & R[X_1,\cdots,X_n]\ar[l]\ar[ld,dashed] \\
+        R \ar[u]& 
       \end{tikzcd}
     \end{center}
     It is enough to choose a lift for each $X_i$.
 \end{proof}
 
-What about $\mathbb{P}^n$?
+\begin{lemma}
+A type covered by finitely many formally smooth subtype is formally smooth.
+\end{lemma}
+\begin{proof}
+We assume $P_1,\cdots,P_n:X\r \Prop$ covering $X$, i.e. for all $x:X$ we have:
+\[
+\prod_{x:X}P_1(x)\lor\cdots\lor P_n(x)
+\]
+such that $\Sigma_{x:X}P_i(x)$ is formally smooth for all $i$.
+
+Assume given:
+   \begin{center}
+      \begin{tikzcd}
+        P\ar[r,"\phi"]\ar[d] &X \\
+       1 \ar[ru,dashed] & 
+      \end{tikzcd}
+    \end{center}
+   then we have:
+   \[\prod_{p:P} P_1(\phi(p))\lor\cdots\lor P_n(\phi(p))\]
+   so that for some $i$ we have:
+      \[\prod_{p:P} P_i(\phi(p))\]
+as $P$ is closed. So $\phi$ factors through $\Sigma_{x:X}P_i(x)$ which is formally smooth and we can conclude. %Then we can simply lift in $P_i$, which is assumed    
+\end{proof}
+
+\begin{corollary}
+The $\mathbb{P}^n$ are smooth.
+\end{corollary}
 
 \begin{lemma}
 The scheme $\D(1)$ is not smooth.
 \end{lemma}
 
 \begin{proof}
-If it were smooth we would be able to merely find a dotted lift in:
+If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$. Indeed would merely is a dotted lift in:
  \begin{center}
       \begin{tikzcd}
-        R[X]/(X^2) & R[X]/(X^2)\ar[l]\ar[ld,dashed] \\
-        R[X]/(X^3) \ar[u]& 
+        R/(\epsilon^2)& R[X]/(X^2)\ar[l,"\epsilon"]\ar[ld,dashed] \\
+        R \ar[u]& 
       \end{tikzcd}
     \end{center}
+    that is a $r:R$ such that $(\epsilon+r\epsilon^2)^2=0$. Then $\epsilon^2=0$.
 \end{proof}
 
 \begin{lemma}
@@ -475,14 +527,14 @@ The scheme $\Spec(R[X,Y]/(XY))$ is not smooth.
 \end{lemma}
 
 \begin{proof}
-If it were smooth we could merely find a dotted lift in:
+If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$. Indeed would merely is a dotted lift in:
  \begin{center}
       \begin{tikzcd}
-        R[X]/(X^2) & R[X,Y]/(XY)\ar[l]\ar[ld,dashed] \\
-        R[X]/(X^3)\ar[u] & 
+        R/(\epsilon^2) & R[X,Y]/(XY)\ar[l]\ar[ld,dashed] \\
+        R\ar[u] & 
       \end{tikzcd}
     \end{center}
-    where the top map send both $X$ and $Y$ to $X$. This can't be done.
+    where the top map send both $X$ and $Y$ to $\epsilon$. Then we have $r,r':R$ such that $(\epsilon+r\epsilon^2)(\epsilon+r'\epsilon^2)=0$ so that $\epsilon^2=0$. %This can't be done.
 \end{proof}
 
 \begin{lemma}
@@ -498,15 +550,46 @@ sending $X$ to $X$ and $Y$ to $0$ is not smooth.
 \end{lemma}
 
 \begin{proof}
-If it were smooth all its fibers would be smooth, i.e. for all $z:R$ the scheme $\Spec(R[X]/(zX))$ would be smooth. This would imply that for any $z:R$ such that $z^2=0$ we merely have a dotted lift to:
+If it were smooth all its fibers would be smooth, i.e. for all $z:R$ the scheme $\Spec(R[X]/(zX))$ would be smooth. This would imply that for any $\epsilon:R$ such that $\epsilon^2=0$ we merely have a dotted lift to:
  \begin{center}
       \begin{tikzcd}
-        R/z & R[X]/(X^2)\ar[l]\ar[ld,dashed] \\
+        R/\epsilon & R[X]/(\epsilon X)\ar[l]\ar[ld,dashed] \\
         R \ar[u]& 
       \end{tikzcd}
     \end{center} 
-    where the top map send $X$ to $1$. Such a lift is an $x:R$ such that $x=1$ modulo $z$, and $zx=0$, but then $x=(1+bz)$ and $0=zx=z+bz^2=z$. So we would get that $z^2=0$ implies $z=0$ for all $z:R$, which is not possible.
+    where the top map send $X$ to $1$. Such a lift gives an $r:R$ such that $\epsilon(1+r\epsilon)=0$, so that $\epsilon=0$.
 \end{proof}
 
-I think in the traditional setting this map has smooth fibers, but not here.
+I think in the traditional setting this map has smooth fibers, but not here. Now we give stability properties for formally smooth types.
+
+\begin{proposition}
+The image of a formally smooth type by any map is formally smooth.
+\end{proposition}
+\begin{proof}
+We assume $X$ formally smooth and $p:X\to Y$ surjective. Then for any $P$ closed dense and diagram:
+ \begin{center}
+      \begin{tikzcd}
+      P \ar[rd,dotted]\ar[d]\ar[r]& Y\\
+      1 \ar[r,dotted,swap,"x"]& X\ar[u,swap,"p"]
+      \end{tikzcd}
+    \end{center} 
+    by choice for closed propositions we merely get the dotted diagonal, and since $X$ is formally smooth we get the dotted $x$, and then $p(x)$ gives a lift.
+\end{proof}
+
+\begin{lemma}
+If $X$ is a type satifying choice and for all $x:X$ we have a formally smooth type $Y_x$, then:
+\[\prod_{x:X}Y_x\]
+is formally smooth.
+\end{lemma}
+
+So for example formally smooth types are stable by finite products. 
+
+\begin{lemma}
+If $X$ is a formally smooth type and for all $x:X$ we have a formally smooth type $Y_x$, then:
+\[\sum_{x:X}Y_x\]
+is formally smooth.
+\end{lemma}
+
+Formally smooth types are not stable by identity types (e.g. identity types in $\A^1$ are not smooth, otherwise they would be closed and étale, i.e. decidable).
+
 
