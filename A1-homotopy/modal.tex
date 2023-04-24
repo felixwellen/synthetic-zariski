@@ -1,0 +1,36 @@
+\begin{definition}
+  A type $X$ is called \notion{$\A^1$-modal}, if all maps $\gamma:\A^1\to X$ factor uniquely over $1$:
+  \begin{center}
+    \begin{tikzcd}
+      \A^1\ar[r,"\gamma"]\ar[d] & X \\
+      1\ar[ru,dashed,"\exists!"]
+    \end{tikzcd}
+  \end{center}
+\end{definition}
+
+\begin{definition}
+  Let $\shape_{\A^1}$ be the nullification modality at $\A^1$ and $\sigma_X:X\to \shape_{\A^1}X$ its unit at a type $X$. 
+\end{definition}
+
+As a consequence, $X$ is $\A^1$-modal, if and only if, $\shape_{\A^1}X=X$.
+
+The following was observed by David Jaz Myers in 2018 for affine schemes of the form $\Spec (R[X]/P)$ for some special polynomials $P$.
+We rediscovered this for a similar class of schemes by using surprising results on étale schemes.
+
+\begin{proposition}
+  Let $X$ be a type with decidable equality, then $X$ is $\A^1$-modal.
+  In particular, every separated étale scheme is $\A^1$-modal.
+\end{proposition}
+
+\begin{proof}
+  Let $\gamma:\A^1\to X$.
+  Then $\gamma(0):X$, so we get $\tilde{\gamma}$ with:
+  \begin{center}
+    \begin{tikzcd}
+      \A^1\ar[r,"\gamma"]\ar[d,equal] & X\ar[d,equal] \\
+      \A^1\ar[r,"\tilde{\gamma}"]\ar[d] & 1 + \left(\prod_{x:X}x\neq \gamma(0)\right) \\
+      1\ar[ru,dashed]
+    \end{tikzcd}
+  \end{center}
+  By \cite{etale-draft}[Proposition 4.2.10] any separated étale scheme has decidable equality.
+\end{proof}

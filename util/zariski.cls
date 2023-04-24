@@ -62,3 +62,6 @@
 \makeindex
     
 \RequirePackage{../util/zariski}
+
+% shape
+\RequirePackage{tipa}
