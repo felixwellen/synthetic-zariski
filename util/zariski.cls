@@ -44,6 +44,7 @@
 \theoremstyle{definition}
     \newtheorem{lemma}[theorem]{Lemma}
     \newtheorem{definition}[theorem]{Definition}
+    \newtheorem{conjecture}[theorem]{Conjecture}
     \newtheorem{remark}[theorem]{Remark}
     \newtheorem{example}[theorem]{Example}
     \newtheorem{corollary}[theorem]{Corollary}
