@@ -45,7 +45,19 @@ at least $k+1$ in $q_1,\ldots,q_n$. Since each monomial vanishes, so does the su
 
 As a corollary, we have that $N_k(x)$ is an affine scheme
 for any point $x$ of a scheme; 
-indeed it is a closed subscheme of any open affine neighborhood of $x$.
+indeed it is a closed subscheme of any open affine neighborhood of $x$. We give another criterion:
+
+\begin{lemma}\label{nbhd-criterion-ideal}
+Let $X = \Spec A$ be an affine scheme. Then $x$ and $y$ in $X$ are neighbors of order $k$ iff 
+there merely exists a fg ideal $I$ in $R$ such that $I^{k+1}=0$ and $I=0 \to x=_Xy$.
+\end{lemma}
+\begin{proof}
+Given such an ideal $I$ and $q_0,\cdots,q_n : U\to R$ with $x,y\in U$, we have that $I=0$ implies $q_j(x) = q_j(y)$, i.e. $q_j(x)-q_j(y) \in I$, so that:
+\[(q_0(x)-q_0(y))\cdots (q_k(x)-q_k(y)) \in I^{k+1} = 0\]
+and $x$ and $y$ are neighbours of order $k$.
+
+Conversely assume $x$ and $y$ are neighbours of order $k$. If $f_0,\cdots,f_n$ generate $A$, then $I = (f_0(x)-f_0(y),\cdots, f_n(x)-f_n(y))$ satisfies the condition by \cref{neighbor-criterion}.
+\end{proof}
 
 \begin{lemma}\label{formal-nbhd-union}
 Let $X$ be a scheme and $x, y : X$. If $y$ is in the formal neighborhood of $x$,
