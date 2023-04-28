@@ -727,3 +727,59 @@ The étale replacement of $\A^n$ is $\tilde{R}^n$ where $\tilde{R}$ is the quoti
 
 The étale replacement of $\mathbb{P}^n$ should be $\mathbb{P}_{\tilde{R}}^n$ but I did not make this precise.
 
+\subsection{Smooth morphisms between schemes}
+
+\begin{lemma}\label{lifting-is-torsor}
+Let $X$ be a scheme and $\epsilon:R$ such that $\epsilon^2=0$. Then the type of liftings of:
+ \begin{center}
+      \begin{tikzcd}
+      \epsilon=0 \ar[d]\ar[r,"\phi"]& X\\
+      1 & 
+      \end{tikzcd}
+    \end{center} 
+is an $M$-pseudotorsor where:
+\[M = \Hom_{R/\epsilon}\big(\prod_{p:\epsilon=0}T^\star_{\phi(p)}(X),(\epsilon)\big)\]
+\end{lemma}
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{M-is-wqc}
+The $R$-module $M$ from the previous lemma is wqc.
+\end{lemma}
+
+\begin{proof}
+For any $p:\epsilon=0$ we have that $T^\star_{\phi(p)}(X)$ is a finitely presented $R$-module, so that:
+\[N = \prod_{p:\epsilon=0}T^\star_{\phi(p)}(X)\]
+is a finitely presented $R/\epsilon$-module. Assume a presentation:
+\[
+(R/\epsilon)^m \to (R/\epsilon)^n\to N\to 0
+\]
+then we have an exact sequence of $R$-modules:
+\[
+0\to \Hom_{R/\epsilon}(N,(\epsilon)) \to (\epsilon)^n\to (\epsilon)^m
+\]
+but $(\epsilon)$ is wqc so that $\Hom_{R/\epsilon}(N,(\epsilon))$ is the kernel of a map between wqc $R$-modules and it is wqc.
+\end{proof}
+
+\begin{proposition}
+Let $p:X\to Y$ be a map which fibers are schemes. Then $p$ merely having lifts against the following class of maps is equivalent:
+\begin{enumerate}[(i)]
+\item The maps $\epsilon=0\to 1$ where $\epsilon^2=0$.
+\item The maps $P\to 1$ where $P$ is closed dense (i.e. $p$ being formally smooth).
+\item The maps $\Spec(A/a)\to \Spec(A)$ where $A$ fp $R$-algebra and $a^2=0$.
+\item The maps $\Spec(A/N)\to \Spec(A)$ where $A$ fp $R$-algebra and $N$ fg nilpotent ideal.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+It is enough to prove that (i) implies (iii), as any map in (iv) is a composite of maps in (iii). Assume a diagram:
+ \begin{center}
+      \begin{tikzcd}
+      \Spec(A/a) \ar[d]\ar[r]& X\ar[d,"p"]\\
+      \Spec(A) \ar[r] & Y
+      \end{tikzcd}
+    \end{center} 
+    with $a^2=0$, we try to merely find a lift. By \csref{lifting-is-torsor}, we know that the type of lifts over $x:\Spec(A)$ is an $M_x$-pseudotorsor. By hypothesis (i) this is in fact an $M_x$-torsor. A lift for the diagram is then precisely a section of the dependent torsor $(x:\Spec(A))\mapsto M_x$, i.e. a proof that it is trivial. But then $M_x$ is wqc by \csref{M-is-wqc} so that $H^1(\Spec(A),M)=0$ and any $M$-torsor is merely trivial, meaning we merely have a lift.
+\end{proof}
+
