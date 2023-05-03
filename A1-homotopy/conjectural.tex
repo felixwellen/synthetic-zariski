@@ -11,11 +11,38 @@ We introduce yet another name for the coreduction, deRham stack, infinitesimal s
   Let $\A^\times\colonequiv \A^1\setminus\{0\}$.
 \end{definition}
 
-The following two statements might need some commutativity of $\shape_{\A^1}$ with colimits.
+\begin{lemma}
+  Let $(X,*)$ be a pointed type with a multiplicative left action of $R$,
+  such that for all $x:X$, we have $0\cdot x=*$ and $1\cdot x=x$.
+  Then $\shape_{\A^1}X=1$.
+\end{lemma}
 
-\begin{conjecture}
+\begin{proof}
+  For all $x:X$, we can construct the map
+  \[
+    \gamma_x\colonequiv (r:\A^1)\mapsto r\cdot x : \A^1\to X
+  \]
+  Since $\shape_{\A^1}X$ is modal, $\sigma_X\circ \gamma_x$ factors over a point for each $x:X$.
+  Using the universal property of a modality,
+  this yields a contraction of $\shape_{\A^1}X$ to $\sigma_X(*)$.
+\end{proof}
+
+\begin{proposition}
   $\shape_{\A^1}\A^\times=\widetilde{\A^\times}$.
-\end{conjecture}
+\end{proposition}
+
+\begin{proof}
+  Use Zariski choice in the situation
+  \begin{center}
+    \begin{tikzcd}
+      & \A^\times\ar[d,->>] \\
+      \A^1\ar[r] & \widetilde{\A^\times} 
+    \end{tikzcd}
+  \end{center}
+  Glue the resulting sections under a $\neg\neg$ to a section $\A^1\to\A^\times$.
+  The section is merely of the form $x\mapsto a_0+\sum_{i=1}^na_ix^i$ with $a_0\neq 0$ and nilpotent $a_i$ for $i>0$.
+  So the original map $\A^1\to \A^\times$ is constantly $\widetilde{a_o}$.
+\end{proof}
 
 \begin{conjecture}
   $\shape_{\A^1}\bP^1=\Susp(\widetilde{\A^\times})$
