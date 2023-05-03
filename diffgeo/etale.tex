@@ -783,3 +783,28 @@ It is enough to prove that (i) implies (iii), as any map in (iv) is a composite 
     with $a^2=0$, we try to merely find a lift. By \cref{lifting-is-torsor}, we know that the type of lifts over $x:\Spec(A)$ is an $M_x$-pseudotorsor. By hypothesis (i) this is in fact an $M_x$-torsor. A lift for the diagram is then precisely a section of the dependent torsor $(x:\Spec(A))\mapsto M_x$, i.e. a proof that it is trivial. But then $M_x$ is wqc by \cref{M-is-wqc} so that $H^1(\Spec(A),M)=0$ and any $M$-torsor is merely trivial, meaning we merely have a lift.
 \end{proof}
 
+
+\subsection{Hensel lifting}
+
+\begin{lemma}
+  Let $f : \A^1 \to \A^1$ and
+  $p : \A^1$ with $f(p)$ nilpotent and
+  $f'(p)$ invertible.
+  Then there exists $q : \A^1$
+  with $\lnot \lnot (q = p)$
+  and $f(q) = 0$.
+\end{lemma}
+
+\begin{proof}
+  Let $f(p)^n = 0$, induct on $n$.
+  If $n \leq 1$ we are done.
+  Otherwise, let $p' = p - f(p)/f'(p)$.
+  Then $\lnot \lnot (p' = p)$ and we have
+  \[ f(p')
+     = f(p) - f'(p) (f(p)/f'(p)) + r (f(p)/f'(p))^2
+     = r (f(p)/f'(p))^2 \]
+  for some $r : R$
+  by Taylor expansion.
+  Thus ${f(p')}^m = 0$ for $2m \geq n$
+  and we are done by inductive hypothesis.
+\end{proof}
