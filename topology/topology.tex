@@ -615,3 +615,36 @@ We will see in \cref{projective-space-irreducible}, that the projective $n$-spac
   $U\cap V$ is equivalently the closed subtype $\{(x,y) : U\times V\mid x=y\}$.
   $U\times V$ is affine by \cref{affine-fiber-product} and a closed subtype of an affine scheme is affine by \cref{closed-subtype-affine}.
 \end{proof}
+
+\begin{example}[using \axiomref{sqc}, \axiomref{loc}]
+  It is not the case that
+  for every finitely presented $R$-algebra $A$
+  and every $A$-module $M$
+  the map $\eta_M$ is injective.
+\end{example}
+
+\begin{proof}
+  Instead of giving a single counterexample,
+  we construct a family of potential counterexamples,
+  indexed by an element $f : R$.
+  We set $A \colonequiv R/(f)$ and
+  \[ M \colonequiv A^1 / \langle \{ 1 \mid f =_R 0 \} \rangle \rlap{.} \]
+  Then we have $M \otimes x = 0$ for all $x : \Spec A$:
+  an element $x : \Spec A$ is a witness that $f : R$ is invertible
+  and if $f$ is invertible then $A = 0$, so $M = 0$, so $M \otimes x = 0$.
+  This implies that
+  if $\eta_M$ is injective
+  then $M = 0$.
+  But we have $M = 0$ if and only if
+  $1_A \in \langle \{ 1 \mid f = 0 \} \rangle$
+  if and only if
+  $1_A$ a linear combination (of some length $n$)
+  of elements of the set $\{ 1 \mid f = 0 \}$
+  if and only if
+  $f = 0$ ($n > 0$) or
+  $1 =_A 0$, that is, $f$ is invertible ($n = 0$).
+  In summary,
+  if $\eta_M$ is injective for every choice of $f : R$,
+  then every $f : R$ is zero or invertible.
+  But this would be a contradiction to \cref{R-not-discrete}.
+\end{proof}
