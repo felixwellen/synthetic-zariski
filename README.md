@@ -1,5 +1,7 @@
 # Synthetic Algebraic Geometry in the Zariski-Topos
-Latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos.
+Stay updated on synthetic algebraic geometry with the [mailing list](https://lists.chalmers.se/mailman/listinfo/sag).
+
+This is a latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos.
 There are currently the following parts:
 - Foundations ([draft pdf](https://felix-cherubini.de/iag.pdf))
 - Chech-Cohomology ([early draft pdf](https://felix-cherubini.de/chech.pdf))
