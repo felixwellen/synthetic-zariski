@@ -65,4 +65,4 @@
 \RequirePackage{../util/zariski}
 
 % shape
-\RequirePackage{tipa}
+\RequirePackage[safe]{tipa}
