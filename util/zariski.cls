@@ -5,7 +5,7 @@
 
 \RequirePackage[a4paper,margin=2.5cm]{geometry}
 
-\RequirePackage{amsmath,amssymb,mathtools}
+\RequirePackage{amsmath,amssymb,mathtools,amsxtra}
 
 % Schönere Tabellen / Auflistungen / Theoreme
 \RequirePackage{booktabs}
@@ -20,7 +20,7 @@
 
 \RequirePackage{makeidx}
 
-% 
+%
 \RequirePackage{polyglossia}
 \setdefaultlanguage{english}
 
@@ -32,7 +32,7 @@
 \RequirePackage{tikz}
 \usetikzlibrary{arrows, cd, babel}
 
-% 
+%
 \setitemize{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
 \setenumerate{topsep=0pt,itemsep=1ex,partopsep=1ex,parsep=1ex}
 
@@ -49,19 +49,19 @@
     \newtheorem{example}[theorem]{Example}
     \newtheorem{corollary}[theorem]{Corollary}
     \newtheorem{proposition}[theorem]{Proposition}
-    
+
 \theoremstyle{nonumberplain}
 \theoremstyle{break}
     \newtheorem*{axiom}{Axiom}
 
 \newcommand{\axiomref}[1]{\nameref{#1}}
-    
+
 \theoremstyle{nonumberplain}
 \theoremsymbol{\ensuremath{\Box}}
     \newtheorem{proof}{Proof}
 
 \makeindex
-    
+
 \RequirePackage{../util/zariski}
 
 % shape
