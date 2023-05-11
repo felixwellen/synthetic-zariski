@@ -1,0 +1,119 @@
+\begin{lemma}
+Any $\shape_{\A^1}$-connected map is surjective. In particular, for any type $X$ the map:
+\[\eta_X:X\to \shape_{\A^1}X\]
+is surjective.
+\end{lemma}
+
+\begin{proof}
+This holds because any $\shape_{\A^1}$-connected type is merely inhabited, as any proposition is $\A^1$-local so that for any $X$ we have a map:
+\[\shape_{\A^1}X \to \propTrunc{X}\]
+\end{proof}
+
+%\begin{lemma}\label{colimit-shape}
+%For any colimit:
+%\[\mathrm{colim}_{i:I} X_i\]
+%that exists in HoTT (e.g. pushouts, sequential colimits), the map:
+%\[\mathrm{colim}_{i:I} X_i \to \mathrm{colim}_{i:I} \shape_{\A^1}X_i\]
+%is a $\shape_{\A^1}$-equivalence.
+%\end{lemma}
+
+%\begin{proof}
+%For any $\A^1$-local type $Y$, we have that:
+%\[(\mathrm{colim}_{i:I} \shape_{\A^1}X_i) \to Y \simeq \mathrm{lim}_{i:I} (\shape_{\A^1}X_i \to Y)\]
+%\[\simeq \mathrm{lim}_{i:I} (X_i \to Y) \simeq (\mathrm{colim}_{i:I} X_i) \to Y\]
+%which implies what we want.
+%\end{proof}
+
+\begin{lemma}\label{colimit-shape}
+If colimits indexed by $I$ exists in HoTT (e.g. pushouts, sequential colimits, quotients of group actions), and we have a map of $I$-indexed diagram:
+\[f_i : X_i \to Y_i\]
+such that for all $i:I$ the map $f_i$ is a $\shape_{\A^1}$-equivalence, then the induced map: 
+\[\mathrm{colim}_{i:I} X_i \to \mathrm{colim}_{i:I} Y_i\]
+is a $\shape_{\A^1}$-equivalence.
+\end{lemma}
+
+\begin{proof}
+%Same as \cref{colimit-shape}.
+For any $\A^1$-local type $Z$, we have that:
+\[(\mathrm{colim}_{i:I} Y_i) \to Y \simeq \mathrm{lim}_{i:I} (Y_i \to Z)\]
+\[\simeq \mathrm{lim}_{i:I} (X_i \to Z) \simeq (\mathrm{colim}_{i:I} X_i) \to Z\]
+which implies what we want.
+\end{proof}
+
+We often use this lemma with the $\shape_{\A^1}$-equivalences:
+\[\eta_X : X \to \shape_{\A^1} X\]
+
+\begin{proposition}
+We have that:
+\[\shape_{\A^1} \bP^1 \simeq \shape_{\A^1} \Susp(\A^\times)\]
+\end{proposition}
+
+\begin{proof}
+We apply the \cref{colimit-shape} to the pushout diagram:
+ \begin{center}
+    \begin{tikzcd}
+      \A^\times\ar[r]\ar[d] &  \A^1\ar[d] \\
+      \A^1\ar[r] & \bP^1
+    \end{tikzcd}
+  \end{center}
+  \end{proof}
+
+\begin{lemma}\label{free-module-minus-point-shape}
+For any natural number $n$ and any $V:B\A^\times$ we have a $\shape_{\A^1}$-equivalence:
+\[V^{n}-\{0\} \to (V^\times)^{*n}\]
+where $(V^\times)^{*n}$ in the $n$-th iterated join of $V^\times$.
+\end{lemma}
+
+\begin{proof}
+It is clear for $n=0$ or $1$. Inductively we can apply \cref{colimit-shape} to the $\shape_{\A^1}$-equivalences from the pushout diagram:
+ \begin{center}
+    \begin{tikzcd}
+      V^\times\times V^n-\{0\}\ar[r]\ar[d] & V\times V^n-\{0\}\ar[d] \\
+      V^\times \times V^n \ar[r] & V^{n+1}-\{0\}
+    \end{tikzcd}
+  \end{center}
+  to the pushout diagram:
+   \begin{center}
+    \begin{tikzcd}
+      V^\times\times (V^\times)^{*n}\ar[r]\ar[d] & 1\times (V^\times)^{*n}\ar[d] \\
+      V^\times \times 1\ar[r] & (V^\times)^{*n+1}
+    \end{tikzcd}
+  \end{center}
+\end{proof}
+
+\begin{proposition}
+For any $n$ we have that:
+\[\shape_{\A^1} \bP^n \simeq \shape_{\A^1} \sum_{V:B\A^\times} (V^\times)^{*n+1}\]
+\end{proposition}
+
+\begin{proof}
+Using the fact that:
+\[\bP^n = \sum_{V:B\A^\times} V^{n+1}-\{0\}\]
+with \cref{colimit-shape} and \cref{free-module-minus-point-shape}.
+\end{proof}
+
+One might try to compute the previous type more explicitely using the following result:
+
+\begin{lemma}
+For any $n$ we have a pushout diagram:
+ \begin{center}
+    \begin{tikzcd}
+      (R^\times)^{*n}\ar[r]\ar[d] & \sum_{V:B\A^\times} (V^\times)^{*n}\ar[d] \\
+      1 \ar[r] & \sum_{V:B\A^\times} (V^\times)^{*n+1}
+    \end{tikzcd}
+  \end{center}
+  where the top map is the natural inclusion.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{proposition}
+We have that:
+\[\shape_{\A^1} \bP^\infty \simeq \shape_{\A^1} B\A^\times\]
+\end{proposition}
+
+\begin{proof}
+TODO
+\end{proof}
