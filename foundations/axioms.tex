@@ -35,6 +35,9 @@ by listing the shorthands introduced in the axioms below.
 
 \subsection{First consequences}
 
+Let us draw some first conclusions from the axiom (\axiomref{sqc}),
+in combination with (\axiomref{loc}) where needed.
+
 \begin{proposition}[using \axiomref{sqc}]%
   \label{spec-embedding}
   For all finitely presented $R$-algebras $A$ and $B$ we have
@@ -63,18 +66,41 @@ An important consequence, which may be called \notion{weak nullstellensatz}:
   since $1 \neq 0$ in $R$ by (\axiomref{loc}).
 \end{proof}
 
-The following are originally proven in 
-\cite{ingo-thesis}[Section 18]:
+For example, this weak nullstellensatz suffices
+to prove the following properties of the ring $R$,
+which were already proven in
+\cite{ingo-thesis}[Section 18.4].
 
 \begin{proposition}[using \axiomref{sqc}, \axiomref{loc}]%
   \label{nilpotence-double-negation}\label{non-zero-invertible}\label{generalized-field-property}
   
   \begin{enumerate}[(a)]
-  \item An element $x:R$ is nilpotent,
-    if and only if $\neg \neg (x=0)$.
   \item An element $x:R$ is invertible,
     if and only if $x\neq 0$.
   \item A vector $x:R^n$ is non-zero,
     if and only if one of its entries is invertible.
+  \item An element $x:R$ is nilpotent,
+    if and only if $\neg \neg (x=0)$.
   \end{enumerate}
 \end{proposition}
+
+\begin{proof}
+  Part (a) is the special case $n = 1$ of (b).
+  For (b),
+  consider the $R$-algebra $A \colonequiv R/(x_1, \dots, x_n)$.
+  Then the set $\Spec A \equiv \Hom_{\Alg{R}}(A, R)$
+  is a proposition (that is, it has at most one element),
+  and, more precisely, it is equivalent to the proposition $x = 0$.
+  By \cref{weak-nullstellensatz},
+  the negation of this proposition is equivalent to $A = 0$
+  and thus to $(x_1, \dots, x_n) = R$.
+  Using (\axiomref{loc}),
+  this is the case if and only if one of the $x_i$ is invertible.
+
+  For (c),
+  we instead consider the algebra $A \colonequiv R_x \equiv R[\frac{1}{x}]$.
+  Here we have $A = 0$ if and only if $x$ is nilpotent,
+  while $\Spec A$ is the proposition $\inv(x)$.
+  Thus, we can finish by \cref{weak-nullstellensatz},
+  together with part (a) to go from $\lnot \inv(x)$ to $\lnot \lnot (x = 0)$.
+\end{proof}
