@@ -63,6 +63,10 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
   $D(n,\vec{r})$, i.e. such that all diagonal maps $T\rightarrow T^{D(n,\vec{r})}$ are equivalences.
     We call this new model of modal types the \emph{sheaf} model.
 
+    This way of building a new sheaf model can be described purely syntactically, as in \cite{Quirin16}. In \cite{CRS21}, we extend
+    this interpretation to cover inductive data types. In particular, we describe there the sheafification $nats_S$ of the type
+    of natural numbers with the unit map $\eta:\nats\rightarrow\nats_S$. 
+
     Note that exactly the same description works starting with the $1$-presheaf model. In this case, we get a model
     of type theory without universes.
 
@@ -80,7 +84,7 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
     \end{proof}
 
     \begin{proposition}
-      In this new sheaf model, $\perp_M$ is $1 =_R 0$.
+      In this new sheaf model, $\perp_S$ is $1 =_R 0$.
     \end{proposition}
 
     \begin{proof}
@@ -114,9 +118,8 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
     \end{corollary}
     
     We can define the type of presentations $Pr_{n,m}(A)$ as the type $A[X_1,\dots,X_n]^m$. Each element in $Pr_{n,m}(A)$ defines a
-    f.p. $A$-algebra. We write $Pr(A)$ for $\Sigma_{n:\nats}\Sigma_{m:\nats}Pr_{n,m}(A)$. We have the map
-    $Fp$ from the type $Pr(A)$ to the type of $R$-algebra (in a given universe), such that $Fp(n,m,\vec{P})$ is the $R$-algebra
-    presented by $\vec{P}$. The type of f.p. $R$-algebra is the image of this map. This image does not depend on the universe.
+    f.p. $A$-algebra. Since $Pr_{n,m}(A)$ is a modal type if $A$ is modal, the type of presentations $Pr_{n,m}(A)_S$ in the sheaf model
+    defined for $n$ and $m$ in $\nats_S$ will be such that $Pr_{\eta p,\eta q}(A)_S = Pr_{p,q}(A)$ \cite{CRS21}.
 
     \begin{corollary}
       If $A$ is a f.p. ring, then any function in $Pr(R)^{Sp(A)}$ is given by
@@ -124,12 +127,12 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
     \end{corollary}
     
     \begin{proposition}\label{norm}
-      For any modal type $T$, the proposition $\norm{T}_M$ is
+      For any modal type $T$, the proposition $\norm{T}_S$ is
       $$\norm{\Sigma_{(n,r_1,\dots,r_n):Um}T^{D(r_1)}\times\dots\times T^{D(r_n)}}$$
     \end{proposition}
     
     \begin{proof}
-      The proposition $\norm{T}_M$ is
+      The proposition $\norm{T}_S$ is
       $$\norm{\Sigma_{(n,r_1,\dots,r_n):Um}\norm{T}^{D(r_1)\vee\dots\vee D(r_n)}}$$
       and we get the result using the fact that choice holds for each $D(r_i)$.
     \end{proof}
@@ -142,7 +145,7 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
       This follows from Proposition \ref{norm} and Lemmas \ref{Um} and \ref{nats}.
     \end{proof}
 
-    \begin{lemma}
+    \begin{lemma}\label{localfp}
       If $A$ is a $R$-algebra which is modal and there exists $r_1,\dots,r_n$ in $Um_n(R)$ such that each
       $A^{D(r_i)}$ is a f.p. $R_{r_i}$-algebra, then $A$ is a f.p. $R$-algebra.
     \end{lemma}
@@ -153,15 +156,26 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
       and hence equal to $A$ since $A$ is modal.
     \end{proof}
 
-    Let $MRalg$ be the type of modal $R$-algebra.
-
-    \begin{lemma}
-      If $A:MRalg$ then $\norm{\Sigma_{p:Pr(R)}A =_{MRalg} Fp(p)}_M$ expresses in the sheaf model that $A$ is finitely presented.
-    \end{lemma}
-    
     \begin{corollary}
       The type of f.p. $R$-algebras is modal and is the type of f.p. $R$-algebras in the sheaf model.
     \end{corollary}
+
+    \begin{proof}
+          For any $R$-algebra $A$, we can form a type $\Phi(n,m,A)$ expressing that $A$ has a presentation for some $v:Pr_{n,m}(R)$,
+    as the type stating that there is some map $\alpha:R[X_1,\dots,X_n]\rightarrow A$ and that $(A,\alpha)$ is universal such that
+    $\alpha$ is $0$ on all elements of $v$. We can also look at this type $\Phi(n,m,A)_S$ in the sheaf model. Using the translation
+    from \cite{Quirin16,CRS21}, we see that the type $\Phi(\eta n,\eta m,A)_S$ is exacty the type stating that $A$ is presented by
+    some $v:Pr_{n,m}(A)$ among the modal $R$-algebras. This is actually equivalent to $\Phi(n,m,A)$ since any f.p. $R$-algebra is modal.
+
+     If $A$ is a modal $R$-algebra which is f.p. in the sense of the sheaf model, this means that we have
+     $$\norm{\Sigma_{n:\nats_S}\Sigma_{m:\nats_S}\Phi(n,m,A)_S}_S$$
+     This is equivalent to
+     $$\norm{\Sigma_{n:\nats}\Sigma_{m:\nats}\Phi(\eta n,\eta m,A)_S}_S$$
+     which in turn is equivalent to
+     $$\norm{\Sigma_{n:\nats}\Sigma_{m:\nats}\Phi(n,m,A)}_S$$
+     Using Lemma \ref{localfp} and Proposition \ref{norm}, this is equivalent to
+     $$\norm{\Sigma_{n:\nats}\Sigma_{m:\nats}\Phi(n,m,A)}$$     
+    \end{proof}
 
      Note that the type of f.p. $R$-algebra is universe independent.
 
@@ -171,7 +185,7 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
     \end{proposition}
     
     \begin{proof}
-      Let $P(x)$ be a family of types over $x:Sp(A)$ and assume $\Pi_{x:Sp(A)}\norm{P(x)}_M$. By Proposition \ref{norm},
+      Let $P(x)$ be a family of types over $x:Sp(A)$ and assume $\Pi_{x:Sp(A)}\norm{P(x)}_S$. By Proposition \ref{norm},
       this means $\Pi_{x:Sp(A)}\norm{\Sigma_{(n,r_1,\dots,r_n):Um}P(x)^{D(r_1)}\times\dots\times P(x)^{D(r_n)}}$. The result follows
       then from choice over $Sp(A)$ and Lemmas \ref{Um} and \ref{nats}.
     \end{proof}      
