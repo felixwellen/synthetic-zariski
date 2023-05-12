@@ -1,0 +1,37 @@
+\begin{lemma}\label{A1-replacement-surjective}
+Any $\shape_{\A^1}$-connected map is surjective. In particular, for any type $X$ the map:
+\[\eta_X:X\to \shape_{\A^1}X\]
+is surjective.
+\end{lemma}
+
+\begin{proof}
+This holds because any $\shape_{\A^1}$-connected type is merely inhabited, as any proposition is $\A^1$-local so that for any $X$ we have a map:
+\[\shape_{\A^1}X \to \propTrunc{X}\]
+\end{proof}
+
+\begin{lemma}
+If $X$ is path-connected then so is $\shape_{\A^1}X$.
+\end{lemma}
+
+\begin{proof}
+Immediate from \cref{A1-replacement-surjective}.
+\end{proof}
+
+\begin{lemma}\label{colimit-shape}
+If colimits indexed by $I$ exists in HoTT (e.g. pushouts, sequential colimits, quotients of group actions), and we have a map of $I$-indexed diagram:
+\[f_i : X_i \to Y_i\]
+such that for all $i:I$ the map $f_i$ is a $\shape_{\A^1}$-equivalence, then the induced map: 
+\[\mathrm{colim}_{i:I} X_i \to \mathrm{colim}_{i:I} Y_i\]
+is a $\shape_{\A^1}$-equivalence.
+\end{lemma}
+
+\begin{proof}
+%Same as \cref{colimit-shape}.
+For any $\A^1$-local type $Z$, we have that:
+\[(\mathrm{colim}_{i:I} Y_i) \to Z \simeq \mathrm{lim}_{i:I} (Y_i \to Z)\]
+\[\simeq \mathrm{lim}_{i:I} (X_i \to Z) \simeq (\mathrm{colim}_{i:I} X_i) \to Z\]
+which implies what we want.
+\end{proof}
+
+We often use this lemma with the $\shape_{\A^1}$-equivalences:
+\[\eta_X : X \to \shape_{\A^1} X\]

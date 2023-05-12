@@ -136,7 +136,7 @@ A map $p$ has the right lifting property (resp. at most one lift) against a map 
 This is an immediate consequence of the universal property of the fibers.
 \end{proof}
 
-\subsection{\'Etale maps}
+\subsection{Formally étale maps}
 
 \begin{example}
   Let us assume $2\neq 0$ in $R$ and look at the following square:
@@ -232,6 +232,22 @@ A map is formally étale if and only if all its fibers are formally étale.
 By \cref{lifting-defined-fiberwise} and the characterisation (ii) from the previous lemma.
 \end{proof}
 
+From (ii) we even get that being formally étale is a lex modality, so we have the following:
+
+\begin{proposition}
+We have the following stability results:
+\begin{itemize}
+\item If $X$ is any type and for all $x:X$ we have a formally étale type $Y_x$, then:
+\[\prod_{x:X}Y_x\]
+is formally étale. 
+\item  If $X$ is formally étale and for all $x:X$ we have a formally étale type $Y_x$, then:
+\[\sum_{x:X}Y_x\]
+is formally étale. 
+\item If $X$ is formally étale then for all $x,y : X$ the type $x=y$ is formally étale.
+\item The type of formally étale types is formally étale.
+\end{itemize}
+\end{proposition}
+
 \begin{lemma}%
   \label{nilpotent-ideal-not-not-dense}
   Let $A$ be a finitely presented $R$-algebra and $N\subseteq A$ be finitely generated nilpotent.
@@ -325,7 +341,7 @@ By \cref{lifting-defined-fiberwise} and the characterisation (ii) from the previ
 	$P$ is decidable.
 \end{proof}
 
-\subsection{Unramified maps}
+\subsection{Formally unramified maps}
 
 \begin{definition}
 For any types $X,Y$, a map $f:X\to Y$ is called formally unramified if for any closed proposition $P$ such that $\neg\neg P$ the following square has at most one lift:
@@ -368,11 +384,31 @@ By \cref{lifting-defined-fiberwise} and the characterisation (ii) from the previ
 \end{proof}
 
 \begin{lemma}
-A type $X$ is formally unramified if and only if for any $x,y:X$ and any dense closed proposition $P$ we have:
-\[
-(P\to x=y)\to x=y
-\]
+A type $X$ is formally unramified if and only if for any $x,y:X$ the type $x=y$ is formally étale.
 \end{lemma}
+\begin{proof}
+A type $X$ is formally unramified iff for any closed dense proposition $P$ the fibers of the canonical map in:
+\[X\to X^P\]
+are propositions. This is equivalent to the induced maps in:
+\[(x=y)\to (x=y)^P\]
+being equivalences for all $x,y:X$, i.e. all types $x=y$ being formally étale.
+\end{proof}
+
+In the langage of modalities, this means that formally unramified types are precisely formally étale-separated types. So being formally unramified is a (non-lex) modality, so that:
+
+\begin{proposition}
+We have the following stability results:
+\begin{itemize}
+\item If $X$ is any type and for all $x:X$ we have a formally unramified type $Y_x$, then:
+\[\prod_{x:X}Y_x\]
+is formally unramified. 
+\item  If $X$ is formally unramified and for all $x:X$ we have a formally unramified type $Y_x$, then:
+\[\sum_{x:X}Y_x\]
+is formally unramified.
+\end{itemize}
+\end{proposition}
+
+\subsection{Unramified schemes}
 
 \begin{proposition}
 A scheme $X$ is unramified if and only if any of the following propositions hold:
@@ -469,7 +505,7 @@ The usual definition for formally smooth is to ask for lifting in:
 \[
 \prod_{x:A} ||B(x)|| \to ||\prod_{x:A}B(x)||
 \]
-we do not seem to have a direct analogue to \cref{equivalence-etale} or \cref{equivalence-unramified}. From the Stack Project Section 37.11 I expect these definitions to nevertheless be  equivalent.
+we do not have a direct analogue to \cref{equivalence-etale} or \cref{equivalence-unramified}.
 \end{remark}
 
 Our definition of formal smoothness is convenient because it implies:
@@ -674,15 +710,40 @@ Let $X$ be a formally unramified set, then the formally étale replacement of $X
 \end{proposition}
 
 \begin{proof}
-TODO, might be optimistic.
+For any closed dense proposition $P$ and $Q$ such that $P\to Q$, we have that the fibers of:
+\[P\to Q\]
+are simply $P$ so that this is a closed dense embedding and the map:
+\[X^Q\to X^P\]
+is an embedding as $X$ is unramified. So we have that:
+\[\mathrm{colim}_{Q:\mathrm{Cld}} X^Q\]
+is a filtered colimit of embeddings. Now we have the following:
+\begin{itemize}
+\item The colimit is formally unramified, i.e. its identity types are étale. Since it is a filtered colimit of embeddings, it is enough to prove that identity types in $X^Q$ are étale for any closed dense $Q$, which holds because $X$ is unramified.
+\item The colimit is formally smooth. By \cref{smoothSurjective} it is enough to show that:
+\[ \Sigma_{Q:\mathrm{Cld}} X^Q \]
+is formally smooth. But this follow from stability of closed dense propositions by dependent sum.
+\item Now we show that the map:
+\[X \to \mathrm{colim}_{Q:\mathrm{Cld}} X^Q\]
+is étale-connected. Since we have a filitered colimit of embeddings, the fiber over $\phi:X^Q$ is simply the type of filler for:
+  \begin{center}
+      \begin{tikzcd}
+      Q \ar[r,"\phi"]\ar[d]& X\\
+      1 & 
+      \end{tikzcd}
+    \end{center}
+    This type is a proposition since $X$ is unramified, so its formally étale replacement is a proposition and we just need to check that it is inhabited. But under the formally étale modality we can assume $Q$ and then we have a lift.
+\end{itemize}
 \end{proof}
+
+It should be noted that the fact, that $X$ is a set, was only used to define the colimit in the previous proposition,
+which extends readily to all the cases where the colimit can be defined in HoTT.
 
 \begin{proposition}
 \label{unramifiedReplacementEtaleForSmooth}
 Let $X$ be formally smooth, then the formally unramified replacement of $X$ is formally étale.
 \end{proposition}
 
-The converse does not hold, e.g. by considering an infinitesimal variety.
+The converse does not hold, e.g.\ by considering an infinitesimal variety.
 
 \begin{proof}
 The map from $X$ to its formally unramified replacement is surjective by \cref{separatedLocalisationIsQuotient}, so the formally unramified replacement is formally smooth by \cref{smoothSurjective}.
@@ -763,7 +824,7 @@ but $(\epsilon)$ is wqc so that $\Hom_{R/\epsilon}(N,(\epsilon))$ is the kernel 
 \end{proof}
 
 \begin{proposition}
-Let $p:X\to Y$ be a map which fibers are schemes. Then $p$ merely having lifts against the following class of maps is equivalent:
+Let $p:X\to Y$ be a map which fibers are schemes. Then $p$ merely having lifts against the following classes of maps is equivalent:
 \begin{enumerate}[(i)]
 \item The maps $\epsilon=0\to 1$ where $\epsilon^2=0$.
 \item The maps $P\to 1$ where $P$ is closed dense (i.e. $p$ being formally smooth).
@@ -780,7 +841,7 @@ It is enough to prove that (i) implies (iii), as any map in (iv) is a composite 
       \Spec(A) \ar[r] & Y
       \end{tikzcd}
     \end{center} 
-    with $a^2=0$, we try to merely find a lift. By \cref{lifting-is-torsor}, we know that the type of lifts over $x:\Spec(A)$ is an $M_x$-pseudotorsor. By hypothesis (i) this is in fact an $M_x$-torsor. A lift for the diagram is then precisely a section of the dependent torsor $(x:\Spec(A))\mapsto M_x$, i.e. a proof that it is trivial. But then $M_x$ is wqc by \cref{M-is-wqc} so that $H^1(\Spec(A),M)=0$ and any $M$-torsor is merely trivial, meaning we merely have a lift.
+    with $a^2=0$, we try to merely find a lift. By \cref{lifting-is-torsor}, we know that the type of lifts over $x:\Spec(A)$ is an $M_x$-pseudotorsor. By hypothesis (i) this is in fact an $M_x$-torsor. Mere existence of a lift for the diagram is then precisely a mere section of the dependent torsor $(x:\Spec(A))\mapsto M_x$, i.e. a proof that it is merely trivial. But $M_x$ is wqc by \cref{M-is-wqc} so that $H^1(\Spec(A),M)=0$ by \cite{draft}[Theorem 8.3.6] and any $M$-torsor is merely trivial, meaning we merely have a lift.
 \end{proof}
 
 
