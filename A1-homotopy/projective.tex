@@ -60,16 +60,16 @@ We apply the \cref{colimit-shape} to the pushout diagram:
 
 \begin{lemma}\label{free-module-minus-point-shape}
 For any natural number $n$ and any $V:B\A^\times$ we have a $\shape_{\A^1}$-equivalence:
-\[V^{n}-\{0\} \to (V^\times)^{*n}\]
-where $(V^\times)^{*n}$ is the $n$-th iterated join of $V^\times$.
+\[V^{n}\setminus\{0\} \to (V^\times)^{*n}\]
+where $(V^\times)^{*n}$ is the $n$-th iterated join of $V^\times$. Moreover these maps are natural in $n$.
 \end{lemma}
 
 \begin{proof}
 It is clear for $n=0$ or $1$. Inductively we can apply \cref{colimit-shape} to the $\shape_{\A^1}$-equivalences from the pushout diagram:
  \begin{center}
     \begin{tikzcd}
-      V^\times\times V^n-\{0\}\ar[r]\ar[d] & V\times V^n-\{0\}\ar[d] \\
-      V^\times \times V^n \ar[r] & V^{n+1}-\{0\}
+      V^\times\times V^n\setminus\{0\}\ar[r]\ar[d] & V\times V^n\setminus\{0\}\ar[d] \\
+      V^\times \times V^n \ar[r] & V^{n+1}\setminus\{0\}
     \end{tikzcd}
   \end{center}
   to the pushout diagram:
@@ -79,6 +79,7 @@ It is clear for $n=0$ or $1$. Inductively we can apply \cref{colimit-shape} to t
       V^\times \times 1\ar[r] & (V^\times)^{*n+1}
     \end{tikzcd}
   \end{center}
+  Naturality is a straightforward induction.
 \end{proof}
 
 \begin{proposition}
@@ -88,7 +89,7 @@ For any $n$ we have that:
 
 \begin{proof}
 Using the fact that:
-\[\bP^n = \sum_{V:B\A^\times} V^{n+1}-\{0\}\]
+\[\bP^n = \sum_{V:B\A^\times} V^{n+1}\setminus\{0\}\]
 with \cref{colimit-shape} and \cref{free-module-minus-point-shape}.
 \end{proof}
 
@@ -98,7 +99,7 @@ One might try to compute the previous type more explicitely using the following 
 For any $n$ we have a pushout diagram:
  \begin{center}
     \begin{tikzcd}
-      (R^\times)^{*n}\ar[r]\ar[d] & \sum_{V:B\A^\times} (V^\times)^{*n}\ar[d] \\
+      (\A^\times)^{*n}\ar[r]\ar[d] & \sum_{V:B\A^\times} (V^\times)^{*n}\ar[d] \\
       1 \ar[r] & \sum_{V:B\A^\times} (V^\times)^{*n+1}
     \end{tikzcd}
   \end{center}
@@ -106,7 +107,38 @@ For any $n$ we have a pushout diagram:
 \end{lemma}
 
 \begin{proof}
-TODO
+For any $V:B\A^\times$, we have a pushout diagram:
+   \begin{center}
+    \begin{tikzcd}
+      V^\times\times (V^\times)^{*n}\ar[r]\ar[d] & 1\times (V^\times)^{*n}\ar[d] \\
+      V^\times \times 1\ar[r] & (V^\times)^{*n+1}
+    \end{tikzcd}
+  \end{center}
+  So that we have a pushout diagram:
+     \begin{center}
+    \begin{tikzcd}
+      \sum_{V:B\A^\times}V^\times\times (V^\times)^{*n}\ar[r]\ar[d] &  \sum_{V:B\A^\times} (V^\times)^{*n}\ar[d] \\
+       \sum_{V:B\A^\times}V^\times\ar[r] &  \sum_{V:B\A^\times}(V^\times)^{*n+1}
+    \end{tikzcd}
+  \end{center}
+  But we have that:
+  \[V^\times \simeq (V=_{\Mod{R}}R)\]
+  so that:
+  \[ (\sum_{V:B\A^\times}V^\times) \simeq 1\]
+  \[ (\sum_{V:B\A^\times}V^\times\times (V^\times)^{*n}) \simeq (\A^\times)^{*n}\]
+  and we can conclude.
+\end{proof}
+
+\begin{lemma}\label{infinite-sphere-contractible}
+For any $V:B\A^\times$, we have that:
+\[\mathrm{colim}_{n:\N} (V^\times)^{*n}\]
+is contractible.
+\end{lemma}
+
+\begin{proof}
+Since we want to prove a property, we may assume $V=R$. Since $R^\times$ is inhabited by $1$, for all $n$ the map:
+\[(V^\times)^{*n} \to (V^\times)^{*(n+1)}\]
+is constant and their sequential colimit is contractible.
 \end{proof}
 
 \begin{proposition}
@@ -115,5 +147,11 @@ We have that:
 \end{proposition}
 
 \begin{proof}
-TODO
+We consider:
+\[\bP^\infty = \mathrm{colim}_{n:\N} \sum_{V:B\A^\times} V^{n+1}\setminus\{0\}\]
+but this is equivalent to:
+\[ \sum_{V:B\A^\times}\mathrm{colim}_{n:\N} (V^{n+1}\setminus\{0\}) \]
+which, by \cref{free-module-minus-point-shape} and \cref{colimit-shape} is $\shape_{\A^1}$-equivalent to:
+\[ \sum_{V:B\A^\times}\mathrm{colim}_{n:\N} (V^\times)^{*(n+1)}\]
+but by \cref{infinite-sphere-contractible} this is equivalent to $B\A^\times$.
 \end{proof}
