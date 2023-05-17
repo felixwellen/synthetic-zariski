@@ -35,3 +35,54 @@ which implies what we want.
 
 We often use this lemma with the $\shape_{\A^1}$-equivalences:
 \[\eta_X : X \to \shape_{\A^1} X\]
+Next lemma says that $\A^1$-pullbacks can be computed as plain pullbacks for $\A^1$-étale maps.
+
+\begin{lemma}
+Assume a pulllback square:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[d] & X\ar[d] \\
+       B\ar[r] &  Y
+    \end{tikzcd}
+  \end{center}
+  where the right map is $\A^1$-étale, then it is an $\A^1$-pullback, meaning the square:  
+  \begin{center}
+    \begin{tikzcd}
+      \shape_{\A^1}A\ar[r]\ar[d] & \shape_{\A^1}X\ar[d] \\
+       \shape_{\A^1}B\ar[r] &  \shape_{\A^1}Y
+    \end{tikzcd}
+  \end{center}
+  is a pullback square.
+\end{lemma}
+
+\begin{proof}
+Any such pullback square is of the form:
+  \begin{center}
+    \begin{tikzcd}
+      \sum_{b:B}P(\shape_{\A^1}g\eta_A(b))\ar[r]\ar[d] & \sum_{y:Y}P(\eta_Y(y))\ar[d] \\
+       B\ar[r,swap,"g"] &  Y
+    \end{tikzcd}
+  \end{center}
+for some $P: \shape_{\A^1}Y \to {\mathcal U}_{\A^1}$, by Corollary 5.5 in Modal Descent. Applying $\A^1$-localisation to this square gives:
+  \begin{center}
+    \begin{tikzcd}
+      \sum_{b:\shape_{\A^1}B}P(\shape_{\A^1}g(b)))\ar[r]\ar[d] & \sum_{y:\shape_{\A^1}Y}P(y)\ar[d] \\
+       \shape_{\A^1}B\ar[r,swap,"\shape_{\A^1}g"] &  \shape_{\A^1}Y
+    \end{tikzcd}
+  \end{center}
+  which is a pullback square.
+\end{proof}
+
+\begin{corollary}
+Any fiber sequence:
+\[X\to Y\to Z\]
+with the second map $\A^1$-étale is an $\A^1$-fiber sequence.
+\end{corollary}
+
+\begin{lemma}
+A map is $\A^1$-étale if and only if it induces equivalences of $\A^1$-disks. 
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
