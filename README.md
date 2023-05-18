@@ -4,7 +4,7 @@ Stay updated on synthetic algebraic geometry with the [mailing list](https://lis
 This is a latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos.
 There are currently the following parts:
 - Foundations ([draft pdf](https://felix-cherubini.de/iag.pdf))
-- Chech-Cohomology ([early draft pdf](https://felix-cherubini.de/chech.pdf))
+- Čech-Cohomology ([early draft pdf](https://felix-cherubini.de/chech.pdf))
 - Differential Geometry/étale maps ([early draft pdf](https://felix-cherubini.de/diffgeo.pdf))
 - Proper Schemes ([early draft pdf](https://felix-cherubini.de/proper.pdf))
 - Topology of Synthetic Schemes ([early draft pdf](https://felix-cherubini.de/topology.pdf))
