@@ -189,7 +189,7 @@ We will see in \cref{intersection-of-all-opens}, that this also holds for scheme
 \begin{proof}
   By \cref{open-union-intersection}, $\neg\neg (x=y)$ implies $\prod_{U:X\to \Open}U(x)\to U(y)$.
   For the other implication,
-  $\neg (x=y)$ is open \cref{open-inequality-subtype}, so we get a contradiction.
+  $\neg (x=y)$ is open by \cref{open-inequality-subtype}, so we get a contradiction.
 \end{proof}
 
 We now show that our two definitions (\cref{affine-open}, \cref{qc-open})
@@ -198,8 +198,8 @@ of open subtypes of an affine scheme are equivalent.
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{qc-open-affine-open}
   Let $X=\Spec A$ and $U:X\to\Prop$ be an open subtype,
-  then $U$ is affine open, i.e. there merely are $f_1,\dots,f_n:X\to R$ such that
-  $U=D(f_1,\dots,f_n)$.
+  then $U$ is affine open, i.e. there merely are $h_1,\dots,h_n:X\to R$ such that
+  $U=D(h_1,\dots,h_n)$.
 \end{theorem}
 
 \begin{proof}
@@ -211,10 +211,19 @@ of open subtypes of an affine scheme are equivalent.
   We compose with the length function for lists to get functions $l_i:D(f_i)\to\N$.
   By \cref{boundedness}, the $l_i$ are bounded.
   Since we are proving a proposition, we can assume we have actual bounds $b_i:\N$.
-  So we have functions $\tilde{s_i}:D(f_i)\to R^{b_i}$.
+  So we get functions $\tilde{s_i}:D(f_i)\to R^{b_i}$,
+  by append zeros to lists which are too short,
+  i.e. $\widetilde{s}_i(x)$ is $s_i(x)$ with $b_i-l_i(x)$ zeros appended.
 
-  \color{red}
-  TBC
+  Then one of the entries of $\widetilde{s}_i(x)$ being invertible,
+  is still equivalent to $U(x)$.
+  So if we define $g_{ij}(x)\colonequiv \pi_j(\widetilde{s}_i(x))$,
+  we have functions on $D(f_i)$, such that
+  \[
+    D(g_{i1},\dots,g_{ib_i})=U\cap D(f_i)
+    \rlap{.}
+  \]
+  By \cref{affine-open-trans}, this is enough to solve the problem on all of $X$.
 \end{proof}
 
 This allows us to transfer one important lemma from affine-opens to qc-opens.
