@@ -125,6 +125,70 @@ we show that our two constructions are equivalent:
 
 \subsection{Functions on $\bP^n$}
 
+We start with some preliminaries on equality of points in $\bP^n$,
+before we work towards the classical fact, that all functions $\bP^n\to R$ are constant.
+
+\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}]
+  \label{equality-2-by-2-minor}
+  For two points $[x_0:\dots:x_n],[y_0:\dots:y_n]:\bP^n$ we have:
+  \[
+    [x]=[y] \Leftrightarrow \prod_{i\neq j}x_iy_j=y_ix_j
+    \rlap{.}
+  \]
+  And dually:
+  \[
+    [x]\neq [y] \Leftrightarrow \bigvee_{i\neq j}x_iy_j\neq y_ix_j
+    \rlap{.}
+  \]
+  As a consequence, $[x]=[y]$ is closed and $[x]\neq [y]$ is open.
+\end{lemma}
+
+\begin{proof}
+  $[x]$ and $[y]$ are equal,
+  if and only if there merely is a $\lambda:R^\times$,
+  such that $\lambda x = y$.
+  By calculation, if there is such a $\lambda$,
+  we always have $x_iy_j=y_ix_j$.
+
+  So let $x_iy_j=y_ix_j$ for all $i\neq j$.
+  Then, in particular, there are $i,j$ such that $x_i\neq 0$ and $y_j\neq 0$.
+  If $i=j$, we define $\lambda \colonequiv \frac{x_i}{y_i}$.
+  If $i\neq j$, we have $x_iy_j=y_ix_j$ and therefore $y_i\neq 0$ and $x_j\neq 0$,
+  so we can also set $\lambda \colonequiv \frac{x_i}{y_i}$.
+  By calculation, we have $\lambda y=x$.
+
+  The dual statement follows with locality of $R$.
+\end{proof}
+
+\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}]
+  Inequality of points of $\bP^n$ is an \notion{apartness relation}.
+  That means the following holds:
+  \begin{enumerate}[(i)]
+  \item $\forall x:\bP^n. x\neq x$.
+  \item $\forall x,y:\bP^n. x\neq y\Rightarrow y\neq x$.
+  \item If $x\neq y$, we have $\forall z:\bP^n. x\neq z \vee z\neq y$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  The first two statements hold in general for inequality.
+  For the third statement, let $x,y,z:\bP^n$.
+  Note that if $x=z$ and $z=y$, it follows that $x=y$.
+  So we have $\neg (x=y)\Rightarrow \neg (x=z\wedge z=y)$.
+  By \cref{equality-2-by-2-minor}, $x=y$ and $x=z\wedge z=y$
+  are both equivalent to the statement that some vector with components in $R$ is zero,
+  so we can replace negated equality, with existence of a non-zero element,
+  or more explicitly, the following are equivalent:
+  \begin{align*}
+    &\neg (x=y)\Rightarrow \neg (x=z\wedge z=y) \\
+    &\neg \left(\prod_{i\neq j}x_iy_j=y_ix_j\right)
+       \Rightarrow \neg \left(\prod_{i\neq j}x_iz_j=z_ix_j \wedge \prod_{i\neq j}y_iz_j=z_iy_j \right) \\
+    & \left(\bigvee_{i\neq j}x_iy_j\neq y_ix_j\right) \Rightarrow \left(\bigvee_{i\neq j}x_iz_j\neq z_ix_j
+       \vee \bigvee_{i\neq j}z_iy_j\neq y_iz_j\right) \\
+    & (x\neq y) \Rightarrow (x\neq z) \vee (z\neq y)
+  \end{align*}
+\end{proof}
+
 \begin{example}[using \axiomref{loc}]
   Let $s:\bP^1\to \bP^1$ be given by $s([x:y])\colonequiv [x^2:y^2]$
   (see \cref{projective-space-hit} for notation).
