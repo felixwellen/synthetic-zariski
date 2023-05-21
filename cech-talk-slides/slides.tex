@@ -183,30 +183,77 @@
 
 \begin{frame}
   \frametitle{Examples: Cohomology of Pushouts}
-  \begin{tikzpicture}[node distance=1.6cm, auto]
-    \node (Ax) {$\A^\times$};
-    \node[right of=Ax] (A1r) {$\A^1$};
-    \node[below of=Ax] (A1l) {$\A^1$};
-    \node[right of=A1l] (A1dp) {$\A^1_{..}$};
+  \begin{minipage}{.5\textwidth}
+    \begin{tikzpicture}[node distance=1.6cm, auto]
+      \node (Ax) {$\A^\times$};
+      \node[right of=Ax] (A1r) {$\A^1$};
+      \node[below of=Ax] (A1l) {$\A^1$};
+      \node[right of=A1l] (A1dp) {$\A^1_{..}$};
+      
+      \draw[->] (Ax) to (A1r);
+      \draw[->] (Ax) to (A1l);
+      \draw[->] (A1l) to (A1dp);
+      \draw[->] (A1r) to (A1dp);
+    \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}{.4\textwidth}
+    \[
+      \A^1_{..}
+    \]
+    \begin{tikzpicture}[node distance=2cm]
+      \node (left) {$ $};
+      \node[right of=left] (middle) {$\circ$};
+      \node[right of=middle] (right) {$ $};
 
-    \draw[->] (Ax) to (A1r);
-    \draw[->] (Ax) to (A1l);
-    \draw[->] (A1l) to (A1dp);
-    \draw[->] (A1r) to (A1dp);
+      \draw[shorten >=2pt] (left) to ([yshift = 0.5pt] middle.center);
+      \draw[shorten <=2pt] ([yshift = 0.5pt] middle.center) to (right);
+    \end{tikzpicture}
+  \end{minipage}
+  \pause
+  \begin{tikzpicture}[node distance=3cm]
+    \node (RR) {$R[X]\times R[X]$};
+    \node[right of=RR] (RI) {$R[X][X^{-1}]$};
+    \node[right of=RI] (H1) {$H^1(\A^1_{..},R)$};
+
+    \draw[->] (RR) to node[below,yshift=-4pt] {$(P,Q)\mapsto P-Q$} (RI);
+    \draw[->>] (RI) to (H1);
   \end{tikzpicture}
 
-  \vspace{1.5cm}
+  \vspace{.5cm}
   \pause
-  \begin{tikzpicture}[node distance=1.6cm, auto]
-    \node (Ax) {$\A^\times$};
-    \node[right of=Ax] (A1r) {$\A^1$};
-    \node[below of=Ax] (A1l) {$\A^1$};
-    \node[right of=A1l] (A1dp) {$\bP^1$};
+  \begin{minipage}{.5\linewidth}
+    \begin{tikzpicture}[node distance=1.6cm, auto]
+      \node (Ax) {$\A^\times$};
+      \node[right of=Ax] (A1r) {$\A^1$};
+      \node[below of=Ax] (A1l) {$\A^1$};
+      \node[right of=A1l] (A1dp) {$\bP^1$};
+      
+      \draw[->] (Ax) to (A1r);
+      \draw[->] (Ax) to node[swap] {$\frac{1}{x}$} (A1l);
+      \draw[->] (A1l) to (A1dp);
+      \draw[->] (A1r) to (A1dp);
+    \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}{.4\linewidth}
+    \begin{tikzpicture}
+      \draw (0,0) circle [radius=0.6cm];
+      \fill (0,0.6cm) circle [radius=0.05cm];
+      \fill (0,-0.6cm) circle [radius=0.05cm];
+      
+      \node (M) at (0,0) {$ $};
+      \node[above of=M] {$\infty$};
+      \node[below of=M] {$0$};
+      \node[right of=M] {$ \bP^1$};
+    \end{tikzpicture}
+  \end{minipage}
+  \pause
+  \begin{tikzpicture}[node distance=3cm]
+    \node (RR) {$R[X]\times R[X]$};
+    \node[right of=RR] (RI) {$R[X][X^{-1}]$};
+    \node[right of=RI] (H1) {$H^1(\bP^1,R)$};
 
-    \draw[->] (Ax) to (A1r);
-    \draw[->] (Ax) to node[swap] {$\frac{1}{x}$} (A1l);
-    \draw[->] (A1l) to (A1dp);
-    \draw[->] (A1r) to (A1dp);
+    \draw[->] (RR) to node[below,yshift=-4pt] {$(P,Q)\mapsto P-Q(X^{-1})$} (RI);
+    \draw[->>] (RI) to (H1);
   \end{tikzpicture}
 
 \end{frame}
@@ -238,8 +285,8 @@
   \pause
   To show a scheme is affine!
 
-  This holds if for all $M:X\to \Mod{R}_{\mathrm{wqc}}$,
-  we have $H^1(X,M)=0$, by a recent theorem of Ingo Blechschmidt and David Wärn.
+  This holds if for all $I:X\to \Mod{R}_{\mathrm{wqc}}$ such that $I_x$ is an ideal in $R$ for all $x:X$,
+  we have $H^1(X,I)=0$, by a recent theorem of Ingo Blechschmidt and David Wärn.
 \end{frame}
 
 \begin{frame}
