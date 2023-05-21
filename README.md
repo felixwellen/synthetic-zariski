@@ -8,7 +8,7 @@ There are currently the following parts:
 - Differential Geometry/étale maps ([early draft pdf](https://felix-cherubini.de/diffgeo.pdf))
 - Proper Schemes ([early draft pdf](https://felix-cherubini.de/proper.pdf))
 - Topology of Synthetic Schemes ([early draft pdf](https://felix-cherubini.de/topology.pdf))
-- $\mathbb A^1$-homotopy theory ([almost empty pdf](https://felix-cherubini.de/A1-homotopy.pdf))
+- $\mathbb A^1$-homotopy theory ([early empty pdf](https://felix-cherubini.de/A1-homotopy.pdf))
 - Random Facts, i.e. a collection of everything that still needs to find a good place ([almost empty pdf](https://felix-cherubini.de/random.pdf))
 
 There is a related [formalization project](https://github.com/felixwellen/synthetic-geometry).
