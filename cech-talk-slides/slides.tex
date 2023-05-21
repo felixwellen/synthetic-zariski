@@ -84,17 +84,15 @@
   \frametitle{Reminder: The 3 Axioms}
   \textbf{Axiom:} We have a local, commutative ring $R$. \\
 
-  \pause
   \vspace{0.25cm}
   For a finitely presented $R$-algebra $A$, define:
   \[ \Spec(A):\equiv \Hom_{R\text{-algebra}}(A,R)\]
-  \pause
+
   \textbf{Axiom (synthetic quasi-coherence (SQC)):} \\
   For any finitely presented $R$-algebra $A$, the map
   \[ a\mapsto (\varphi\mapsto \varphi(a)):A \xrightarrow{\sim} R^{\Spec(A)} \]
   is an equivalence.
 
-  \pause
   \textbf{Axiom (Zariski-local choice):}\\
   For every surjective $\pi$, there merely exist local sections $s_i$
   \[ \begin{tikzcd}[ampersand replacement=\&, column sep=small]
@@ -108,20 +106,134 @@
   \vspace{0.25cm}
   For $A : X \to \mathrm{Ab}$, define \emph{cohomology} as:
   \[ H^n(X, A) :\equiv \Big\| \prod_{x:X}K(A_x,n) \Big\|_{\mathrm{set}} \]
+  
+  \pause
+  Good because:
   \begin{itemize}
-  \item LES and MVS.
-  \item $H^n(X,M)=0$ if $n>0$, $X$ is affine and $M:X\to \Mod{R}_{\mathrm{wqc}}$.
+  \item $\prod$-type.
+  \item Homotopy group: $H^n(X,A)=\pi_{k}(\prod_{x:X}K(A,n+k))$.
+  \item $\|\_\|_{\mathrm{set}}$ is a modality.
+  \end{itemize}
+
+  \pause
+  Non-trivial for $X:\mathrm{Set}$ because:
+
+  $X=$ Pushout of sets $U\leftarrow Y\to V$, \\
+  Then a ``cohomology class'' $X\to K(A,1)$ is given by:
+  \begin{itemize}
+  \item Maps $f:U\to K(A,1)$, $g:V\to K(A,1)$.
+  \item And $h:(x:Y)\to f(x)=g(x)$, which is essentially a map $Y\to A$,
+    if $U$ and $V$ don't have higher cohomology...
+  \end{itemize}
+\end{frame}
+
+
+\ignore{
+    \item $H^n(X,M)=0$ if $n>0$, $X$ is affine and $M:X\to \Mod{R}_{\mathrm{wqc}}$.
   \item $H^n(X,M)$ coincides with \v{C}ech-Cohomology (for \emph{separated} schemes).
   \item By work of Blechschmidt and Wärn: A scheme $X$ is affine if and only if
       \[ H^n(X, M) = 0 \]
       for all $M : X \to R\text{-}\mathrm{Mod}_{\mathrm{wqc}}$ and $n > 0$.
-  \end{itemize}
+
+}
+
+\begin{frame}
+  \frametitle{Mayer-Vietoris Sequence}
+  $X=U\cup V$ (or some other pushout). Then the following is exact:
+  \begin{center}
+    \begin{tikzpicture}[node distance=1.6cm, auto]
+      \node (zero) {$0$};
+      
+      \node[right of=zero] (H0X)               {$H^0(X)$};
+      \node[below of=H0X] (H1X) {$H^1(X)$};
+      \node[below of=H1X] (H2X) {$H^2(X)$};
+      \node[right of=H0X] (Space1) {$ $}; % ugly hack
+      
+      \node[right of=Space1]   (H0UxV) {$H^0(U)\times H^0(V)$};
+      \node[below of=H0UxV] (H1UxV) {$H^1(U)\times H^1(V)$};
+      \node[below of=H1UxV] (H2UxV) {$H^2(U)\times H^2(V)$};
+      \node[right of=H0UxV] (Space2) {$ $};
+      
+      \node[right of=Space2] (H0UV) {$H^0(U\cap V)$};
+      \node[below of=H0UV]  (H1UV) {$H^1(U\cap V)$};
+      \node[below of=H1UV]  (H2UV) {$\dots$};
+      \node[right of=H2UV] (Space3) {$ $};
+
+      \draw[->] (zero) to (H0X);
+      
+      \draw[->] (H0X) to (H0UxV);
+      \draw[->] (H1X) to (H1UxV);
+      \draw[->] (H2X) to (H2UxV);
+      
+      \draw[->] (H0UxV) to (H0UV);
+      \draw[->] (H1UxV) to (H1UV);
+      \draw[->] (H2UxV) to (H2UV);
+
+      \draw[->] (H0UV) to (H1X);
+      \draw[->] (H1UV) to (H2X);
+      
+    \end{tikzpicture}
+  \end{center}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Example}
-  Ideally an example showing how \v{C}ech-Cohomology works.
-  Or: Explanation of the proof ideas...
+  \frametitle{Examples: Cohomology of Pushouts}
+  \begin{tikzpicture}[node distance=1.6cm, auto]
+    \node (Ax) {$\A^\times$};
+    \node[right of=Ax] (A1r) {$\A^1$};
+    \node[below of=Ax] (A1l) {$\A^1$};
+    \node[right of=A1l] (A1dp) {$\A^1_{..}$};
+
+    \draw[->] (Ax) to (A1r);
+    \draw[->] (Ax) to (A1l);
+    \draw[->] (A1l) to (A1dp);
+    \draw[->] (A1r) to (A1dp);
+  \end{tikzpicture}
+
+  \vspace{1.5cm}
+  \pause
+  \begin{tikzpicture}[node distance=1.6cm, auto]
+    \node (Ax) {$\A^\times$};
+    \node[right of=Ax] (A1r) {$\A^1$};
+    \node[below of=Ax] (A1l) {$\A^1$};
+    \node[right of=A1l] (A1dp) {$\bP^1$};
+
+    \draw[->] (Ax) to (A1r);
+    \draw[->] (Ax) to node[swap] {$\frac{1}{x}$} (A1l);
+    \draw[->] (A1l) to (A1dp);
+    \draw[->] (A1r) to (A1dp);
+  \end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vanishing on Affine Schemes}
+  \begin{theorem}
+    Let $X=\Spec A$, $n>0$ and $M:X\to \Mod{R}_{\mathrm{wqc}}$, then
+    \[
+      H^n(X,M)=0
+      \rlap{.}
+    \]
+  \end{theorem}
+  \pause
+  \begin{proof}
+    Uses: Homotopy theory, algebra, Zariski-local choice and properties of wqc-modules.
+  \end{proof}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\v{C}ech-Cohomology}
+  Generalization of Mayer-Vietoris for spaces $X=\bigcup_{i=1}^nU_i$, where $U_i$ and all their $k$-ary intersections have trivial higher cohomology.
+  
+  \pause
+  By Vanishing, separated schemes with their open affine cover, are an example.
+  
+  \pause
+  Two proofs:
+  \begin{itemize}
+  \item By universal property, that both \v{C}ech and Eilenberg-MacLane cohomology have.
+  \item Roughly, by pointwise turning the colimit $U_1(x)\vee\dots\vee U_n(x)$ into a limit.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
