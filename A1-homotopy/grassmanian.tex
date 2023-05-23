@@ -1,0 +1,75 @@
+\begin{definition}
+For any $R$-module $V$, we define $F_n(V)$ as the type of surjective maps in:
+\[\Hom_{\Mod{R}}(R^n,V)\]
+\end{definition}
+
+\begin{remark}
+We identify $BGL_k$ with the type:
+\[\sum_{V:\Mod{R}} \propTrunc{V=R^k}\]
+\end{remark}
+
+\begin{definition}
+We define the grassmanians:
+\[Gr_{n,k} = \sum_{V:BGL_k}F_n(V)\]
+\end{definition}
+
+A link to another part where the grassmanians are already defined should probably be added...
+
+\begin{definition}
+We define:
+\[F_\infty(V) = \mathrm{colim}_{n:\N} F_n(V)\]
+where we use the maps:
+\[F_n(V) \to F_{n+1}(V)\]
+given by precomposing with the projection forgetting the last scalar:
+\[R^{n+1}\to R^{n}\]
+\end{definition}
+
+\begin{definition}
+We define:
+\[Gr_{\infty,k} = \mathrm{colim}_{n:\N} Gr_{n,k}\]
+\end{definition}
+
+\begin{lemma}\label{embedding-null-homotopic}
+The maps:
+\[F_n(R^k) \to F_{n+k}(R^k)\]
+given by precomposing with the projection: 
+\[p : R^{n+k}\to R^n\] 
+is $\A^1$-homotopic to a constant map.
+\end{lemma}
+
+\begin{proof}
+For any $t:\A^1$ and $f:\Hom_{\Mod{R}}(R^n,R^k)$, we define:
+\[g : \Hom_{\Mod{R}}(R^n\oplus R^k,R^k)\]
+\[g(x,y) = tf(x) + (1-t)y\]
+We check that if $f$ is surjective then so is $g$. But since we want to prove a property we can assume that $t$ is invertible or $1-t$ is invertible, and it is easy to conclude in both cases. 
+
+So this indeed gives a map:
+\[H : \A^1\times F_n(R^k) \to F_{n+k}(R^k)\]
+Checking that $H(0,f) = f\circ p$ and that $H(1,f)$ does not depend on $f$ is straightforward.
+\end{proof}
+
+\begin{lemma}\label{shape-frame-contratible}
+For any $V$ in $BGL_k$, we have that: 
+\[\shape_{\A^1} F_\infty(V) = 1\]
+\end{lemma}
+
+\begin{proof}
+Since we want to prove a proposition we can assume that $V=R^k$. Then we have that:
+\[F_\infty(R^k) = \mathrm{colim}_{n:\N} F_{nk}(R^k)\]
+but by \cref{embedding-null-homotopic} the $\A^1$-localisation of the connecting maps:
+\[F_{nk}(R^k)\to F_{nk + k}(R^k)\]
+are constant, so that by \cref{colimit-shape} we have that $F_\infty(R^k)$ is $\A^1$-equivalent to a sequential colimit of constant maps, i.e a contractible type.
+\end{proof}
+
+\begin{proposition}
+We have that:
+\[\shape_{\A^1} Gr_{\infty,k} = \shape_{\A^1} BGL_k\]
+\end{proposition}
+
+\begin{proof}
+As sequential colimits commute with dependent sums, we have that: 
+\[Gr_{\infty,k} \simeq \sum_{V:BGL_k} F_\infty(V)\]
+but by \cref{shape-frame-contratible} and \cref{colimit-shape}, we know that this is $\A^1$-equivalent to $BGL_k$.
+\end{proof}
+
+
