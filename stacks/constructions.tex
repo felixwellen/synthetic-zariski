@@ -14,7 +14,8 @@ So any scheme is an algebraic space.
   A 1-type $X$ is a \notion{algebraic stack},
   if $x=_Xy$ is an algebraic space for all $x,y:X$ and
   and there merely is a scheme $U$ with a formally smooth surjection $u$ onto $X$.
-  If, in addition, there is a formally étale surjection $u$,
+  If, in addition, there is a
+  formally étale surjection $u:U\to X$,
   $X$ is called a \notion{Deligne-Mumford stack}.
 \end{definition}
 
@@ -24,5 +25,16 @@ So any scheme is an algebraic space.
 \end{proposition}
 
 \begin{proof}
-  TODO
+  The fibers of $X\to X//G$ are merely equivalent to $G$
+  and therefore étale.
+  This means the map $X\to X//G$ is formally étale.
+  Let the action of $G$ be given by a dependent type
+  $\rho:BG\to \Sch$.
+  The identity types in $X//G$ are of the form:
+  \begin{align*}
+    &(x,p)=(x',p') \\
+    \simeq& \sum_{g:x=_{BG}x'}\mathrm{transport}_{\rho}(g)(p)=_Xp'
+  \end{align*}
+  So as a dependent sum of schemes over a scheme,
+  the identity types are always scheme. 
 \end{proof}
