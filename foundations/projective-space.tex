@@ -75,7 +75,8 @@ We now give the small construction:
   We write $[x_0:\dots:x_n]:\bP^n$ for the equivalence class of $(x_0,\dots,x_n):\A^{n+1}\setminus\{0\}$.
 \end{definition}
 
-\begin{theorem}[using \axiomref{sqc}, \axiomref{loc}]
+\begin{theorem}[using \axiomref{sqc}, \axiomref{loc}]%
+  \label{projective-space-is-scheme}
   $\bP^n$ is a scheme.
 \end{theorem}
 
@@ -238,13 +239,44 @@ before we work towards the classical fact, that all functions $\bP^n\to R$ are c
   and $R[X]/(X^2-z)$ is free of rank 2 as an $R$-module.
 \end{example}
 
+Let us now prove the special case $n = 1$ of our goal.
+
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
   \label{functions-on-projective-line-constant}
   All functions $\bP^1 \to R$ are constant.
 \end{lemma}
 
 \begin{proof}
-  \dots
+  Consider the affine cover of $\bP^1 = U_0 \cup U_1$
+  as in the proof of \cref{projective-space-is-scheme}.
+  Both $U_0$ and $U_1$ are isomorphic to $\A^1$
+  and the intersection $U_0 \cap U_1$ is $\A^1 \setminus \{0\}$,
+  embedded in $U_0$ by $x \mapsto x$
+  and in $U_1$ by $x \mapsto \frac{1}{x}$.
+  So we have a pushout square as follows.
+  \[ \begin{tikzcd}
+    \A^1 \setminus \{0\} \ar[r] \ar[d]
+    \ar[dr, phantom, very near end, "\ulcorner"] &
+    \A^1 \ar[d] \\
+    \A^1 \ar[r] &
+    \bP^1
+  \end{tikzcd} \]
+  If we apply the functor $X \mapsto R^X$ to this diagram,
+  we obtain a pullback square of $R$ algebras,
+  and we can insert the known $R$ algebras for the affine schemes involved.
+  \[ \begin{tikzcd}
+    R[X, Y]/(1 - XY) &
+    R[Y] \ar[l] \\
+    R[X] \ar[u] &
+    R^{\bP^1} \ar[l] \ar[u]
+    \ar[lu, phantom, very near start, "\ulcorner"]
+  \end{tikzcd} \]
+  Here, the different variable names $X$ and $Y$ indicate
+  the resulting homomorphisms.
+  Now it is an algebraic computation,
+  understanding the elements of $R[X, Y]/(1 - XY)$ as Laurent polynomials,
+  to see that the pullback is the algebra $R$,
+  so we have $R^{\bP^1} = R$ as desired.
 \end{proof}
 
 \begin{lemma}[using \axiomref{sqc}, \axiomref{loc}]%
