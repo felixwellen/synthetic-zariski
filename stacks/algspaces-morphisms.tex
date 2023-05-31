@@ -1,0 +1,170 @@
+\subsection{Étale-local properties of types and morphisms}
+
+\begin{definition}
+A property $P$ of types is étale-local if $P(1)$ holds, $P$ is stable by dependent sum and given an étale surjection:
+\[X \to Y\]
+we have $P(X)$ if and only if $P(Y)$.
+\end{definition}
+
+\begin{definition}
+A property $P$ of morphisms between types is called étale-local if:
+\begin{itemize}
+\item We have $P(\id)$, and $P$ is stable by composition.
+\item Given a pullback square:
+  \begin{center}
+    \begin{tikzcd}
+      U\ar[r]\ar[d,swap,"g"] & V\ar[d,"f"]\\
+      X\ar[r] & Y
+    \end{tikzcd}
+  \end{center}
+ where the bottom map is a formally étale surjection, we have that $P(f)$ if and only if $P(g)$.
+\item Given a commutative triangle:
+  \begin{center}
+    \begin{tikzcd}
+      U\ar[rr]\ar[dr,swap,"g"] & & V\ar[dl,"f"]\\
+      & Y &
+    \end{tikzcd}
+  \end{center}
+  where the top map is a formally étale surjection, we have that $P(f)$ if and only if $P(g)$.
+\end{itemize}
+\end{definition}
+
+Any étale local class of maps contains all formally étale surjection. The conjunction of étale-local property is étale-local.
+
+\begin{lemma}\label{etale-local-morphisms-from-types}
+Assume given an étale-local propriety of types $P$. Then having fibers in $P$ is an étale-local propriety of morphisms. 
+\end{lemma}
+
+\begin{proof}
+Since $P(1)$ we know that fiber of equivalences obeys $P$. Stability of $P$ by dependent sums gives stability of maps with fibers satisfying $P$ by composition.
+
+Given a pullback square:
+  \begin{center}
+    \begin{tikzcd}
+      U\ar[r]\ar[d,swap,"g"] & V\ar[d,"f"]\\
+      X\ar[r] & Y
+    \end{tikzcd}
+  \end{center}
+  with the bottom map surjective, we know that fibers of $f$ have propriety $P$ if and only if fibers of $g$ do.
+  
+  Given a commutative triangle:
+    \begin{center}
+    \begin{tikzcd}
+      U\ar[rr]\ar[dr,swap,"g"] & & V\ar[dl,"f"]\\
+      & Y &
+    \end{tikzcd}
+  \end{center}
+  with the top map étale surjective, we know that for any $y:Y$ there is a formally étale surjection:
+  \[\mathrm{fib}_g(y) \to \mathrm{fib}_f(y)\]
+  so we can conclude using étale-locality of $P$.
+\end{proof}
+
+\begin{lemma}\label{etale-local-class-maps}
+The following propriety of morphisms are étale-local:
+\begin{enumerate}[(i)]
+\item Being surjective.
+\item Being formally smooth.
+\item Being formally étale.
+\item Being surjective and formally smooth.
+\item Being surjective and formally étale.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Just need to prove (i)-(iii) as conjunction of étale-local propriety are étale-local.
+
+By \cref{etale-local-morphisms-from-types}, we just need being merely inhabited, formally smooth and formally étale are étale-local property of types. Stability by unit and dependent sum is straightforward.
+
+(i) If we have a formally étale surjection: 
+\[X\to Y\]
+then $X$ is merely inhabited if and only if $Y$ is.
+
+(ii) If we have a formally étale surjection: 
+\[X\to Y\]
+then if $Y$ is formally smooth so is $X$ as the map $X\to Y$ is formally smooth. Conversely if $X$ is formally smooth then by \cref{smoothSurjective} so is $Y$ as the map $X\to Y$ is surjective.
+
+(iii) If we have a formally étale surjection: 
+\[X\to Y\]
+then if $Y$ is formally étale so is $X$ as the map $X\to Y$ is formally étale. Conversely assume $X$ formally étale. Then the square:
+    \begin{center}
+    \begin{tikzcd}
+      X\ar[r]\ar[d] & Y\ar[d]\\
+      \mathrm{Et}(X)\ar[r] & \mathrm{Et}(Y)
+    \end{tikzcd}
+  \end{center}
+  is a pullback square as the top map is formally étale and being formally étale is a lex modality. Since $X$ is formally smooth so is $Y$ by (ii), so that the right map of the square is surjective. Then the bottom map is surjective and since the left map is an equivalence, we can conclude that right map is an equivalence and $Y$ is formally étale.
+\end{proof}
+
+\begin{remark}
+We expect flat and open maps to be étale-local as well, this time not using a fiberwise characterisation.
+\end{remark}
+
+
+\subsection{Morphisms of algebraic spaces}
+
+\begin{lemma}
+  Let $X,Y$ be algebraic spaces and $f:X\to Y$ a map.
+  Then there merely are schemes $U,V$ together with formally étale surjections
+  $u:U\to X$, $v:V\to Y$ and $\widetilde{f}:U\to V$ such that
+  \begin{center}
+    \begin{tikzcd}
+      U\ar[r,"\widetilde{f}"]\ar[d,"u"] & V\ar[d,"v"] \\
+      X\ar[r,"f"] & Y
+    \end{tikzcd}
+  \end{center}
+\end{lemma}
+
+\begin{proof}
+  We merely have a formally étale surjections $v:V\to Y$ and $u:U\to X$ by assumption.
+  Let $P'$ be the iterated pullback:
+  \begin{center}
+    \begin{tikzcd}
+      P'\ar[r]\ar[d,"p'"] & P\ar[r]\ar[d,"p"] & V\ar[d,"v"] \\
+      U\ar[r,swap,"u"] & X\ar[r,swap,"f"] & Y
+    \end{tikzcd}
+  \end{center}
+  Then $P=(x:X)\times W_x$, with $W_x\colonequiv (z:V)\times f(x)=v(z)$.
+  As a dependent sum of schemes, $W_x$ is a scheme.
+  For the same reason, $P'=(x:U)\times W_{u(x)}$ is a scheme.
+  As itereted pullback of a formally étale surjection,
+  $p'$ is a formally étale surjection and
+  therefore also the composition with $u$.
+\end{proof}
+
+Such a map $\widetilde{f}$ is called a scheme-cover for $f$. Now we check the maps with an étale-local propriety have scheme cover enjoying the same property.
+
+\begin{lemma}\label{scheme-replacement-nice-maps}
+Assume given a morphism $f$ between algebraic spaces, and an étale-local property $P$ of morphisms. The following are equivalent:
+\begin{enumerate}[(i)]
+\item The map $f$ has property $P$. 
+\item There exists a scheme-cover of $f$ that has property $P$.  
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Assume given a map between algebraic spaces $f:X\to Y$ such that $P(f)$ for $P$ an étale-local propriety. Then as in the previous lemma we consider the iterated pullbacks:
+  \begin{center}
+    \begin{tikzcd}
+      P'\ar[r,"u'"]\ar[d,"p'"] & P\ar[r,"g"]\ar[d,"p"] & V\ar[d,"v"] \\
+      U\ar[r,swap,"u"] & X\ar[r,swap,"f"] & Y
+    \end{tikzcd}
+  \end{center}
+  Since $P(f)$ we have $P(g)$ as $g$ is a pullback of $f$ along a formally étale surjective maps. Then $u$ formally étale surjective implies $u'$ formally etale surjective and then $P(g\circ u')$, giving a scheme cover of $f$ having $P$.
+  
+  Conversely assume given a commutative square:
+  \begin{center}
+    \begin{tikzcd}
+      U\ar[r,"g"]\ar[d,"u"] & V\ar[d,"v"] \\
+      X\ar[r,"f"] & Y
+    \end{tikzcd}
+  \end{center}
+  with vertical maps formally étale surjective, such that $P(g)$. Then we know that $P(v)$ holds as $v$ is formally étale surjective, so that we have $P(v\circ g)$ as $P$ is stable by composition, and then $P(f\circ u)$ with $u$ formally étale surjective implies $P(f)$.
+\end{proof}
+
+\begin{corollary}
+A map between algebraic spaces is surjective (resp. formally smooth, formally étale) if and only if it has a surjective (resp. smooth, étale) scheme-cover.
+\end{corollary}
+
+\begin{proof}
+From \cref{scheme-replacement-nice-maps} and \cref{etale-local-class-maps}.
+\end{proof}
