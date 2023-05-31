@@ -235,7 +235,8 @@ before we work towards the classical fact, that all functions $\bP^n\to R$ are c
   and $R[X]/(X^2-z)$ is free of rank 2 as an $R$-module.
 \end{example}
 
-\begin{lemma}
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
+  \label{functions-on-projective-line-constant}
   All functions $\bP^1 \to R$ are constant.
 \end{lemma}
 
@@ -243,7 +244,8 @@ before we work towards the classical fact, that all functions $\bP^n\to R$ are c
   \dots
 \end{proof}
 
-\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}]
+\begin{lemma}[using \axiomref{sqc}, \axiomref{loc}]%
+  \label{parametrized-line-through-two-points-in-projective-space}
   Let $p \neq q \in \bP^n$ be given.
   Then there exists a map $f : \bP^1 \to \bP^n$
   such that $f([0 : 1]) = p$, $f([1 : 0]) = q$.
@@ -256,7 +258,7 @@ before we work towards the classical fact, that all functions $\bP^n\to R$ are c
   Then we set
   \[ f([x, y]) \colonequiv [xa + yb] \rlap{.}\]
   Let us check that $xa + yb \neq 0$.
-  By \dots,
+  By \cref{generalized-field-property},
   we have that $x$ or $y$ is invertible
   and both $a$ and $b$ have at least one invertible entry.
   If $xa = - yb$
@@ -267,7 +269,8 @@ before we work towards the classical fact, that all functions $\bP^n\to R$ are c
   with respect to linear equivalence in the pair $(x, y)$.
 \end{proof}
 
-\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
+  \label{point-in-projective-space-apart-from-two-standard-points}
   Let $n \geq 1$.
   For every point $p \in \bP^n$,
   we have $p \neq [1 : 0 : 0 : \dots]$
@@ -284,12 +287,23 @@ before we work towards the classical fact, that all functions $\bP^n\to R$ are c
   if $i \geq 1$ then $p \neq [1 : 0 : 0 : \dots]$.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}[using \axiomref{loc}, \axiomref{sqc}]%
+  \label{functions-on-projective-space-constant}
   All functions $\bP^n \to R$ are constant,
   that is,
   \[ H^0(\bP^n, R) \colonequiv (\bP^n \to R) = R \rlap{.} \]
 \end{theorem}
 
 \begin{proof}
-  \dots
+  Let $f : \bP^n \to R$ be given.
+  For any two distinct points $p \neq q : \bP^n$,
+  we can apply \cref{parametrized-line-through-two-points-in-projective-space}
+  and (merely) find a map $\widetilde{f} : \bP^1 \to R$
+  with $\widetilde{f}([0 : 1]) = f(p)$
+  and $\widetilde{f}([1 : 0]) = f(q)$.
+  Then we see $f(p) = f(q)$
+  by \cref{functions-on-projective-line-constant}.
+  In particular, we have $f([1 : 0 : 0 : \dots]) = f([0 : 1 : 0 : \dots])$.
+  And then, by \cref{point-in-projective-space-apart-from-two-standard-points},
+  we get $f(p) = f([1 : 0 : 0 : \dots])$ for every $p : \bP^n$.
 \end{proof}
