@@ -1,6 +1,6 @@
 # Synthetic Algebraic Geometry in the Zariski-Topos
 Stay updated on synthetic algebraic geometry with the [mailing list](https://lists.chalmers.se/mailman/listinfo/sag).
-Due to a *bug* in the mailinglist-service of chalmers, it does not work to just answer to the subscription-confirmation email - so use the link to confirm your email address instead. You know that you really signed up to the list, if you can login on the page linked above. Or if you received the email I sent on the 29th of May (will resend soon)...
+Due to a *bug* in the mailinglist-service of chalmers, it does not work to just answer to the subscription-confirmation email - so use the link to confirm your email address instead. You know that you really signed up to the list, if you can login on the page linked above. 
 
 This is a latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos.
 There are currently the following parts:
