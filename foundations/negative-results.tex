@@ -86,6 +86,13 @@ We adopt the following definition from
   works just the same for $X^3 - a$.
 \end{remark}
 
+We now give two different proofs that not all $R$-modules are weakly quasi-coherent
+in the sense of \cref{weakly-quasi-coherent-module}.
+The first shows that the map
+\[ M_f \to M^{D(f)} \]
+is not always surjective,
+the second shows that it is not always injective.
+
 \begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{RN-non-wqc}
   The $R$-module $R^\N$ is not weakly quasi-coherent
@@ -116,17 +123,20 @@ We adopt the following definition from
 
 \begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{non-wqc-module-family}
-  Not every $R$-module is weakly quasi-coherent
-  in the sense of \cref{weakly-quasi-coherent-module}.
-  {\color{red} NOTE: Does this add any value compared to \cref{RN-non-wqc}?
-  It only uses injectivity of $M_f \to M^{D(f)}$?}
+  The implication
+  \[ M^{D(f)} = 0 \quad\Rightarrow\quad M_f = 0 \]
+  does not hold for all $R$-modules $M$ and $f : R$.
+  In particular,
+  the map $M_f \to M^{D(f)}$ from \cref{weakly-quasi-coherent-module}
+  is not always injective.
 \end{proposition}
 
 \begin{proof}
+  Assume that the implication always holds.
   We construct a family of $R$-modules,
   parametrized by the elements of $R$,
-  and deduce a contradiction from the assumption that
-  all modules of this family are weakly quasi-coherent.
+  and deduce a contradiction from the assumption
+  applied to the $R$-modules in this family.
 
   Given an element $f : R$,
   the $R$-module we want to consider is
@@ -138,8 +148,7 @@ We adopt the following definition from
   is trivial:
   any function $f \neq 0 \to M(f)$ can only assign the value $0$
   to any of the at most one witnesses of $f \neq 0$.
-  If $M(f)$ is weakly quasi-coherent,
-  then this means that $M(f)_f$ is also trivial.
+  By assumption, this implies that $M(f)_f$ is also trivial.
   Noting that
   $M(f)$ is not only an $R$-module
   but even an $R$-algebra in a natural way,
@@ -156,10 +165,8 @@ We adopt the following definition from
   \end{align*}
 
   In summary,
-  if the module $M(f)$ is weakly quasi-coherent
-  for every $f : R$,
-  then the ring $R$ is zero-dimensional
-  in the sense of \cref{zero-dimensional-ring}.
+  our assumption implies that the ring $R$ is zero-dimensional
+  (in the sense of \cref{zero-dimensional-ring}).
   But this is not the case,
   as we saw in \cref{R-not-zero-dimensional}.
 \end{proof}
