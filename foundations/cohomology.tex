@@ -549,7 +549,7 @@ It is possible to construct a torsor from a \v{c}ech cocycle:
 \begin{lemma}%
   \label{deligne-construction}
   Let $A$ be an abelian group and $L$ a type with $\propTrunc{L}$.
-  Let us call $c:(i,j:L)\to A$ a $L$-cocycle, if $c_{ij}+c_{jk}=c_{ik}$ for all $i,j:L$.
+  Let us call $c:(i,j:L)\to A$ a $L$-cocycle, if $c_{ij}+c_{jk}=c_{ik}$ for all $i,j,k:L$.
   Then there is a bijection:
   \[
     \left((T:\text{$A$-torsor})\times T^L\right) \to \text{$L$-cocylces}
@@ -664,5 +664,48 @@ It is possible to construct a torsor from a \v{c}ech cocycle:
   So the two cohomology groups are equal, since they are cokernels of the same diagram.
 \end{proof}
 
-There is follow-up work in progress \cite{chech-draft},
-that answers the question if \v{C}ech cohomology with respect to an acyclic cover agrees with our definition of cohomology in general positively.
+It is possible to pass from torsors to gerbes,
+which are the degree 2 analogue of torsors
+\footnote{We use the description of second deloopings in \cite{wärn2023eilenbergmaclane}[4.1] for this definition.}:
+
+\begin{definition}
+  \label{gerbe}
+  Let $X$ be a type and $A:X\to \AbGroup$ a map.
+  A \notion{$A$-banded gerbe} on $X$ is a dependent, pointwise connected type $\mathcal G:X\to \mathcal U$,
+  together with, for all $x:X$ and $y:\mathcal G_x$ an identification of groups $\Omega (\mathcal G_x,y)=A_x$.
+\end{definition}
+
+As with torsors, gerbes over the point provide a second delooping of an abelian group $A$.
+With gerbes, we can formulate a second degree version of \cref{deligne-construction}:
+
+\begin{theorem}
+  \label{deligne-construction-gerbes}
+  Let $A$ be an abelian group and $L$ a type with $\propTrunc{L}$.
+  Let us call $c:(i j k : L)\to A$ a $L$-2-cocylce,
+  if $c_{jkl}-c_{ikl}+c_{ijl}-c_{ijk}=0$ for all $i,j,k,l : L$.
+  Then there is a bijection:
+  \[
+    \left((\mathcal G:\text{$A$-gerbe})\times (u:\mathcal G^{L})\times (i j : L) \to u_i=u_j\right) \to \text{$L$-2-cocycle}
+    \rlap{.}
+  \]
+\end{theorem}
+
+This is provable, again, by translating Deligne's argument \cite{Deligne91}[Section 5.3].
+Using this, the correspondence of Eilenberg-MacLane and \v{C}ech-Cohomology can be extended in the following way:
+
+\begin{theorem}
+  If $U_1,\dots,U_n$ is a 2-acyclic cover for $\mathcal F$, then
+  \[
+    \check{H}^2(\{U\},\mathcal F)=H^2(X,\mathcal F)\rlap{.}
+  \]  
+\end{theorem}
+
+However, with this approach, we need versions of \cref{kraus-glueing}, with increasing truncation level.
+While this suggests, we can prove the correspondence for any \emph{external} degree $n$,
+there is follow-up work in progress \cite{chech-draft},
+which proves the correspondence for all \emph{internal} $n:\N$.
+A stronger assumption is needed in that work, though: The cover $U_1,\dots,U_n$ needs to be acyclic in the sense,
+that all higher cohomology groups of all intersections $U_{i_0}\cap \dots \cap U_{i_k}$, with $k:\N$, vanish.
+In the same draft, there is also a version of the vanishing result for all internal $n$,
+and it is shown that separated schemes, like projective space, have an acyclic cover.
+This means that many of the usual, essential computations with \v{C}ech-Cohomology can be transfered to synthetic algebraic geometry.
