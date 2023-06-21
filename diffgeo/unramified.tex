@@ -1,0 +1,175 @@
+\subsection{Definition}
+
+\begin{definition}
+For any types $X,Y$, a map $f:X\to Y$ is called formally unramified if for any closed proposition $P$ such that $\neg\neg P$ the following square has at most one lift:
+ \begin{center}
+      \begin{tikzcd}
+        P\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+\end{definition}
+
+\begin{definition}
+A map $f:X\to Y$ is unramified if $X$ and $Y$ are schemes and $f$ is formally unramified.
+\end{definition}
+
+It is clear that formally étale maps are formally unramified. As usual a type $X$ is called formally unramified if the map from $X$ to $1$ is unramified, and a map is formally unramified if and only if all its fibers are formally unramified.
+
+\begin{lemma}
+\label{equivalence-unramified}
+Having at most one lift against the following class of maps is equivalent:
+\begin{enumerate}[(i)]
+\item Maps of the form $\Spec(A/N)\to \Spec(A)$ for $A$ f.g. algebra and $N$ a nilpotent ideal.
+\item Maps of the form $P\to 1$ for $P$ a closed dense proposition.
+\item Closed dense embeddings of types.
+\item Maps of the form $(\epsilon=0)\to 1$ for $\epsilon:R$ such that $\epsilon^2=0$.
+\item Maps of the form $\Spec(A/(a)) \to \Spec(A)$ for $A$ f.g. algebra and $a:A$ such that $a^2=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Same as \cref{equivalence-etale}.
+\end{proof}
+
+\begin{lemma}
+A map is formally unramified if and only if all its fibers are formally unramified.
+\end{lemma}
+
+\begin{proof}
+By \cref{lifting-defined-fiberwise} and the characterisation (ii) from the previous lemma.
+\end{proof}
+
+\begin{lemma}
+A type $X$ is formally unramified if and only if for any $x,y:X$ the type $x=y$ is formally étale.
+\end{lemma}
+\begin{proof}
+A type $X$ is formally unramified iff for any closed dense proposition $P$ the fibers of the canonical map in:
+\[X\to X^P\]
+are propositions. This is equivalent to the induced maps in:
+\[(x=y)\to (x=y)^P\]
+being equivalences for all $x,y:X$, i.e. all types $x=y$ being formally étale.
+\end{proof}
+
+In the langage of modalities, this means that formally unramified types are precisely formally étale-separated types. So being formally unramified is a (non-lex) modality, so that:
+
+\begin{proposition}
+We have the following stability results:
+\begin{itemize}
+\item If $X$ is any type and for all $x:X$ we have a formally unramified type $Y_x$, then:
+\[\prod_{x:X}Y_x\]
+is formally unramified. 
+\item  If $X$ is formally unramified and for all $x:X$ we have a formally unramified type $Y_x$, then:
+\[\sum_{x:X}Y_x\]
+is formally unramified.
+\end{itemize}
+\end{proposition}
+
+\subsection{Examples}
+
+Formally étale types are formally unramified.
+
+\begin{proposition}
+Any proposition is formally unramified.
+\end{proposition}
+
+This means any embedding is formally unramified.
+
+\begin{proposition}
+Subtype of formally étale types are formally unramified.
+\end{proposition}
+
+\begin{proof}
+By the previous example and stability by dependent sum.
+\end{proof}
+
+We will see all examples are of this form.
+
+\subsection{Unramified schemes}
+
+\begin{proposition}\label{characterisation-unramified-schemes}
+A scheme $X$ is unramified if and only if any of the following propositions hold:
+  \begin{enumerate}[(i)]
+  \item For all $x,y:X$, the proposition $x=y$ is open.
+  \item For all $x,y:X$, the proposition $x=y$ is $\neg\neg$-stable.
+  \item For all $x:X$, we have $T_x(X)=0$.
+  \item For all infinitesimal pointed type $(D,*)$ (meaning that for all $x:D$ we have $\neg\neg(x=*)$), any map from $D$ to $X$ is constant.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+First we prove that the four propositions are equivalent:
+
+(i) implies (ii) because open propositions are $\neg\neg$-stable.
+
+(ii) implies (iv) because for any $f:D\to X$ and $x:D$ we have $\neg\neg(x=*)$ so that $\neg\neg(f(x)=f(*))$ and finally $f(x)=f(*)$.
+
+(iv) implies (iii) by taking $D=\mathbb{D}(1)$.
+
+(iii) implies (i) because for any $x:X$ there an open affine $U$ such that $x\in U$. Then $x=y$ is equivalent to $(y\in U)\land x=_U y$, but $x=_Uy$ is decidable by \cref{decidable-of-tangent} and open propositions are stable by $\Sigma$.
+
+Now we check they are equivalent to being unramified:
+
+(ii) implies unramified, indeed we need to check that for $x,y:X$ and $P$ closed dense such that $P\to x=y$, we have $x=y$. But $\neg\neg P$ so that $\neg\neg(x=y)$, and by (ii) we have $x=y$.
+
+Unramified implies (iii) because it implies having at most one lifting against any closed dense subtype, so that by considering $1\subset \mathbb{D}(1)$ it implies having at most one tangent vector.
+\end{proof}
+
+\subsection{Separated formally unramified schemes have decidable equality}
+
+\begin{proposition}\label{closed-notnot-stable-decidable}% TODO: put this in context, maybe deduce the above from this
+	Let $P$ be a closed, $\neg \neg$-stable proposition. Then $P$ is decidable.
+\end{proposition}
+\begin{proof}
+	Let $P$ be the proposition $I = 0$ where $I$ is a finitely generated ideal of $R$.
+	We claim $(I^2 = 0) \to (I = 0)$. Indeed, if $I^2 = 0$, then no element of $I$
+	can be invertible, so $I$ is not not zero, and since $P$ is $\neg \neg$-stable,
+	$I = 0$. Hence $I$ is
+	generated by a single idempotent $e$ of $R$.
+	Since $R$ is local, $e$ is either $0$ or $1$. Since $P$ is equivalent to $e = 0$,
+	$P$ is decidable.
+\end{proof}
+
+\begin{proposition}
+Any separated unramified scheme has decidable equality.
+\end{proposition}
+
+\begin{proof}
+By \cref{characterisation-unramified-schemes} its identity types are $\not\not$-stable. We conclude by \cref{closed-notnot-stable-decidable}.
+\end{proof}
+
+\subsection{Unramified maps between schemes}
+
+\begin{lemma}
+\label{kernel-is-tangent-of-fibers}
+For any map $f:X\to Y$ and $x:X$, we have that:
+\[
+\mathrm{Ker}(df_x) = T_{(x,\refl_{f(x)})}(\mathrm{fib}_f(f(x)))
+\]
+\end{lemma}
+\begin{proof}
+This holds because:
+\[
+(\mathrm{fib}_f(f(x)),(x,\refl_{f(x)}))
+\]
+is the pullback of:
+\[
+(X,x) \to (Y,f(y)) \leftarrow (1,*)
+\]
+in pointed types, applied using $(\mathbb{D}(1),0)$.
+\end{proof}
+
+\begin{proposition}
+A map between schemes is unramified if and only if its differentials are injective. 
+\end{proposition}
+\begin{proof}
+The map $df_x$ is injective if and only if its kernel is $0$. By \cref{kernel-is-tangent-of-fibers}, this means that $df_x$ is injective for all $x:X$ if and only if:
+\[
+\prod_{x:X}T_{(x,\refl_{f(x)})}(\mathrm{fib}_f(f(x)))=0
+\]
+On the other hand having fibers with trivial tangent space is equivalent to:
+\[
+\prod_{y:Y}\prod_{x:X}\prod_{p:f(x)=y} T_{(x,p)}(\mathrm{fib}_f(y)) = 0
+\]
+Both are equivalent by path elimination on $p$.
+\end{proof}

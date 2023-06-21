@@ -1,0 +1,123 @@
+
+\subsection{Etale replacement of schemes}
+
+We write $\mathrm{Cld}$ for the type of closed dense proposition, i.e. closed propositions $P$ such that $\neg\neg P$.
+
+\begin{lemma}
+Closed dense propositions are closed under $\Sigma$.
+\end{lemma}
+\begin{proof}
+We know that closed proposition are closed under $\Sigma$, so we just need to check that when $\neg\neg P$ and for all $x:P$ we have $\neg\neg Q(x)$ then $\neg\neg(\Sigma_{x:P}Q(x))$. This is easy.
+\end{proof}
+
+\begin{lemma}
+The formally étale replacement of a proposition $P$ is:
+\[\exists (Q :\mathrm{Cld}). P^Q\]
+\end{lemma}
+
+\begin{proof}
+First we check that:
+\[\exists(Q :\mathrm{Cld}). P^Q\]
+is étale. Assume $R$ closed dense such that: 
+\[R\to \exists(Q :\mathrm{Cld}). P^Q\]
+Then since closed propositions satisfy choice and we try to prove a proposition, we can assume:
+\[R\to \Sigma_{Q :\mathrm{Cld}} P^Q\]
+i.e. we have $Q : R\to \mathrm{Cld}$ such that:
+\[\prod_{x:R} P^{Q(x)}\]
+Then $\Sigma_{x:R}Q(x)$ is closed dense and it implies $P$ so:
+\[\exists(Q :\mathrm{Cld}). P^Q\]
+holds.
+
+We know that the formally étale replacement of a proposition is a proposition, so to conclude it is enough to prove that:
+\[\exists(Q :\mathrm{Cld}). P^Q\]
+is initial among formally étale propositions implied by $P$. Assume $U$ a formally étale proposition such that $P\to U$, we want to prove that:
+\[(\exists(Q :\mathrm{Cld}). P^Q)\to U\]
+Since we want to prove a proposition we can assume $Q$ closed dense such that $P^Q$, then $U^Q$ holds and this implies $U$ since $U$ is formally étale.
+\end{proof}
+
+This can be generalised to sets:
+
+\begin{proposition}
+\label{etaleReplacementUnramified}
+Let $X$ be a formally unramified set, then the formally étale replacement of $X$ is:
+\[\mathrm{colim}_{Q:\mathrm{Cld}} X^Q\]
+\end{proposition}
+
+\begin{proof}
+For any closed dense proposition $P$ and $Q$ such that $P\to Q$, we have that the fibers of:
+\[P\to Q\]
+are simply $P$ so that this is a closed dense embedding and the map:
+\[X^Q\to X^P\]
+is an embedding as $X$ is unramified. So we have that:
+\[\mathrm{colim}_{Q:\mathrm{Cld}} X^Q\]
+is a filtered colimit of embeddings. Now we have the following:
+\begin{itemize}
+\item The colimit is formally unramified, i.e. its identity types are étale. Since it is a filtered colimit of embeddings, it is enough to prove that identity types in $X^Q$ are étale for any closed dense $Q$, which holds because $X$ is unramified.
+\item The colimit is formally smooth. By \cref{smoothSurjective} it is enough to show that:
+\[ \Sigma_{Q:\mathrm{Cld}} X^Q \]
+is formally smooth. But this follow from stability of closed dense propositions by dependent sum.
+\item Now we show that the map:
+\[X \to \mathrm{colim}_{Q:\mathrm{Cld}} X^Q\]
+is étale-connected. Since we have a filitered colimit of embeddings, the fiber over $\phi:X^Q$ is simply the type of filler for:
+  \begin{center}
+      \begin{tikzcd}
+      Q \ar[r,"\phi"]\ar[d]& X\\
+      1 & 
+      \end{tikzcd}
+    \end{center}
+    This type is a proposition since $X$ is unramified, so its formally étale replacement is a proposition and we just need to check that it is inhabited. But under the formally étale modality we can assume $Q$ and then we have a lift.
+\end{itemize}
+\end{proof}
+
+It should be noted that the fact, that $X$ is a set, was only used to define the colimit in the previous proposition,
+which extends readily to all the cases where the colimit can be defined in HoTT.
+
+\begin{proposition}
+\label{unramifiedReplacementEtaleForSmooth}
+Let $X$ be formally smooth, then the formally unramified replacement of $X$ is formally étale.
+\end{proposition}
+
+The converse does not hold, e.g.\ by considering an infinitesimal variety.
+
+\begin{proof}
+The map from $X$ to its formally unramified replacement is surjective by \cref{separatedLocalisationIsQuotient}, so the formally unramified replacement is formally smooth by \cref{smoothSurjective}.
+\end{proof}
+
+Now we focus on étale replacement for schemes.
+
+\begin{lemma}
+Let $P$ be a closed proposition, then the étale replacement of $P$ is $\neg\neg P$.
+\end{lemma}
+
+\begin{proof}
+We have that $\neg\neg P$ is étale because it is $\neg\neg$-stable. It is initial among maps from $P$ to étale types because $P\to \neg\neg P$ is a closed dense embedding.
+\end{proof}
+
+\begin{lemma}
+Let $P$ be an identity types in a scheme, then the étale replacement of $P$ is $\neg\neg P$.
+\end{lemma}
+
+\begin{proof}
+An identity type in a scheme is of the form:
+\[\Sigma_{x:U}C(x)\]
+for $U$ open and $C(x)$ closed for all $x:U$. Then:
+\[\neg\neg(\Sigma_{x:U}C(x)) \to \Sigma_{x:U}\neg\neg C(x)\]
+because $\neg\neg U \to U$ and we can conclude because $\neg\neg C(x)$ is the étale replacement of $C(x)$.
+\end{proof}
+
+\begin{corollary}
+\label{unramifiedReplacementScheme}
+The unramified replacement of a scheme $X$ is the quotient of $X$ by the relation $\neg\neg(x=_Xy)$.
+\end{corollary} 
+
+\begin{proof}
+By \cref{separatedLocalisationIsQuotient} combined with the previous lemma.
+\end{proof}
+
+By combining \cref{etaleReplacementUnramified} and \cref{unramifiedReplacementScheme} we can compute the étale replacement of any scheme. By \cref{unramifiedReplacementEtaleForSmooth} the second step is not necessary for smooth scheme. 
+
+\begin{example}
+The étale replacement of $\A^n$ is $\tilde{R}^n$ where $\tilde{R}$ is the quotient of $R$ by its nilradical.
+\end{example}
+
+The étale replacement of $\mathbb{P}^n$ should be $\mathbb{P}_{\tilde{R}}^n$ but I did not make this precise.

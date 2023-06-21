@@ -1,0 +1,137 @@
+\subsection{Generalities on modalities}
+
+In this section we state useful facts about modalities in HoTT. We assume $L$ a left exact modality and $L'$ the modality corresponding to $L$-separated types, i.e. types with $L$-modal identity types. We have in mind $L$ the formally étale modality and $L'$ the formally unramified modality. Precise references should be added.
+
+\begin{lemma}
+If $L$ is accessible (i.e. defined by unique litfting conditions), then $L'$ is defined by the corresponding 'at most one' lifting conditions.
+\end{lemma}
+
+\begin{lemma}
+The modality $L$ preserves $n$-types for any $n$.
+\end{lemma}
+
+The following is one of the many equivalent characterisations of left exact modalities.
+
+\begin{lemma}
+For any $X$ the localisation $\eta_X:X\to L(X)$ induces $L$-localisations:
+\[x=_Xy \to \eta_X(x)=_{LX}\eta_X(y)\]
+\end{lemma}
+
+\begin{proposition}
+\label{separatedLocalisationIsQuotient}
+A map $f:X\to Y$ is an $L'$-localisation if and only if $f$ is surjective and for all $x,y:X$ the map:
+\[ap_f : x=_Xy\to f(x)=_Yf(y)\] 
+is an $L$-localisation.
+\end{proposition}
+
+\begin{corollary}
+The modality $L'$ preserve $n$-types for any $n$.
+\end{corollary}
+
+\begin{corollary}
+If $X$ is $L'$-modal then:
+\[X\to LX\]
+is an embedding.
+\end{corollary}
+
+This means that the successive localisations:
+\[X\to L'X\to LX\]
+are the image factorisation of the localisation $X\to LX$.
+
+\subsection{Lifting Properties}
+
+\begin{lemma}%
+  If a map $f$ has the left lifting property with respect to $l:A_0\to A_1$ and $l':A_1\to A_2$,
+  then $f$ has the left lifting property with respect to $l'\circ l$.
+\end{lemma}
+
+\begin{lemma}
+\label{lifts-equivalence-pointwise}
+Assume given a commutative square of the form:
+ \begin{center}
+    \begin{tikzcd}
+      A \ar[r,"g"]\ar[d,swap,"u"]& X\ar[d,"p"]\\
+      B \ar[r,swap,"f"]& Y
+    \end{tikzcd}
+  \end{center}
+Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item A lift of the square.
+\item For all $b:B$ a lift of:
+ \begin{center}
+    \begin{tikzcd}
+      \mathrm{fib}_u(b)\ar[d]\ar[r,"g"] & X\ar[d,"p"]\\
+      1 \ar[r,swap,"f(b)"]& Y
+    \end{tikzcd}
+  \end{center}
+ \item For all $b:B$ a lift of:
+  \begin{center}
+    \begin{tikzcd}
+      \mathrm{fib}_u(b)\ar[r,"g"]\ar[d] & \mathrm{fib}_p(f(b))\ar[d]\\
+      1 \ar[r] & 1
+    \end{tikzcd}
+  \end{center}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We have that (ii) is equivalent to (iii) by definition of the fiber.
+
+We can assume that the square is of the form:
+ \begin{center}
+    \begin{tikzcd}
+   \sum_{b:B}P_b\ar[d]\ar[r] & \sum_{y:Y} Q_y\ar[d]\\
+     B \ar[r,swap,"f"]& Y
+    \end{tikzcd}
+  \end{center}
+  where the top map is:
+  \[
+  \lambda (b,p). (f(b),g(b,p))
+  \]
+  for some $g:\prod_{b:B} P_b \to Q_{f(b)}$. A lift of this square is the same as an inhabitant of:
+ % \[
+ % h : B \to \sum_{y:Y}Q_y
+ % \]
+  %such that $\pi_Y\circ h = f$ and for all $b:B$ and $p:P(b)$ we have $(f(b),g(b,p)) = h(b)$. But this is equivalent to a giving:
+  %\[
+  %h: \prod_{b:B}Q_{f(b)}
+  %\]
+  % such that for all $b:B$ and $p:P(b)$ we have $g(b,p) = h(b)$. This in turn is the same as an inhabitant of:
+  \[
+  \prod_{b:B} \sum_{q:Q_{f(b)}} \prod_{p:P_b} g(b,p)=q
+  \]
+  which is equivalent to (iii).
+\end{proof}
+
+\begin{lemma}
+\label{pointwise-lift-is-enough}
+Assume given maps $u:A\to B$ and $p:X\to Y$.
+Then if $p$ has the right lifting property (resp. at most one lift) against $\mathrm{fib}_u(b)\to 1$ for all $b:B$, then it has the right lifting property (resp. at most one lift) against $u$.
+\end{lemma}
+
+\begin{proof}
+By \cref{lifts-equivalence-pointwise} a lift of a square
+ \begin{center}
+    \begin{tikzcd}
+      A \ar[r]\ar[d,swap,"u"]& X\ar[d,"p"]\\
+      B \ar[r]& Y
+    \end{tikzcd}
+  \end{center}
+  is equivalent a family of lifts of squares of the form: 
+   \begin{center}
+    \begin{tikzcd}
+      \mathrm{fib}_u(b)\ar[d]\ar[r] & X\ar[d,"p"]\\
+      1 \ar[r]& Y
+    \end{tikzcd}
+  \end{center}
+  But a product of contractible types (resp. propositions) is itself contractible (resp. a proposition) so we can conclude. 
+\end{proof}
+
+\begin{lemma}
+\label{lifting-defined-fiberwise}
+A map $p$ has the right lifting property (resp. at most one lift) against a map $P\to 1$ if and only all the fibers of $p$ have this property against $P\to 1$.
+\end{lemma}
+
+\begin{proof}
+This is an immediate consequence of the universal property of the fibers.
+\end{proof}

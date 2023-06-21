@@ -1,0 +1,251 @@
+
+\subsection{Smooth maps}
+
+\begin{definition}
+A morphism $f:X\to Y$ is formally smooth for any closed dense proposition $P$ the square:
+ \begin{center}
+      \begin{tikzcd}
+        P\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+merely has a lift.
+\end{definition}
+
+\begin{remark}
+The usual definition for formally smooth is to ask for lifting in:
+ \begin{center}
+      \begin{tikzcd}
+        \Spec(A/N)\ar[r]\ar[d] & X\ar[d,"f"] \\
+       \Spec(A) \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+    with $N$ nilpotent. Note that here since we do not have: 
+\[
+\prod_{x:A} ||B(x)|| \to ||\prod_{x:A}B(x)||
+\]
+we do not have a direct analogue to \cref{equivalence-etale} or \cref{equivalence-unramified}.
+\end{remark}
+
+Our definition of formal smoothness is convenient because it implies:
+
+\begin{lemma}
+A map is formally smooth if and only if its fibers are formally smooth.
+\end{lemma}
+\begin{proof}
+The type of filler for:
+ \begin{center}
+      \begin{tikzcd}
+        P\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r,"y"]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+   is equivalent to the type of filler for:
+    \begin{center}
+      \begin{tikzcd}
+        P\ar[r]\ar[d] & \mathrm{fib}_f(y) \\
+       1 \ar[ru,dashed] & 
+      \end{tikzcd}
+    \end{center}
+\end{proof}
+
+\begin{remark}
+Formally smooth and formally unramified implies formally étale.
+\end{remark}
+
+\subsection{Examples}
+
+We give a few examples and counter-examples:
+
+\begin{lemma}
+The scheme $\A^n$ is smooth for any $n$.
+\end{lemma}
+
+\begin{proof}
+We need to prove that there merely exists a dotted lift in any:
+ \begin{center}
+      \begin{tikzcd}
+        R/N & R[X_1,\cdots,X_n]\ar[l]\ar[ld,dashed] \\
+        R \ar[u]& 
+      \end{tikzcd}
+    \end{center}
+    It is enough to choose a lift for each $X_i$.
+\end{proof}
+
+\begin{lemma}
+A type covered by finitely many formally smooth subtype is formally smooth.
+\end{lemma}
+\begin{proof}
+We assume $P_1,\cdots,P_n:X\to \Prop$ covering $X$, i.e. for all $x:X$ we have:
+\[
+\prod_{x:X}P_1(x)\lor\cdots\lor P_n(x)
+\]
+such that $\Sigma_{x:X}P_i(x)$ is formally smooth for all $i$.
+
+Assume given:
+   \begin{center}
+      \begin{tikzcd}
+        P\ar[r,"\phi"]\ar[d] &X \\
+       1 \ar[ru,dashed] & 
+      \end{tikzcd}
+    \end{center}
+   then we have:
+   \[\prod_{p:P} P_1(\phi(p))\lor\cdots\lor P_n(\phi(p))\]
+   so that for some $i$ we have:
+      \[\prod_{p:P} P_i(\phi(p))\]
+as $P$ is closed. So $\phi$ factors through $\Sigma_{x:X}P_i(x)$ which is formally smooth and we can conclude. %Then we can simply lift in $P_i$, which is assumed    
+\end{proof}
+
+\begin{corollary}
+The scheme $\mathbb{P}^n$ is smooth for any $n$.
+\end{corollary}
+
+\begin{lemma}
+The scheme $\D(1)$ is not smooth.
+\end{lemma}
+
+\begin{proof}
+If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$. Indeed would merely is a dotted lift in:
+ \begin{center}
+      \begin{tikzcd}
+        R/(\epsilon^2)& R[X]/(X^2)\ar[l,"\epsilon"]\ar[ld,dashed] \\
+        R \ar[u]& 
+      \end{tikzcd}
+    \end{center}
+    that is a $r:R$ such that $(\epsilon+r\epsilon^2)^2=0$. Then $\epsilon^2=0$.
+\end{proof}
+
+\begin{lemma}
+The scheme $\Spec(R[X,Y]/(XY))$ is not smooth.
+\end{lemma}
+
+\begin{proof}
+If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$. Indeed would merely is a dotted lift in:
+ \begin{center}
+      \begin{tikzcd}
+        R/(\epsilon^2) & R[X,Y]/(XY)\ar[l]\ar[ld,dashed] \\
+        R\ar[u] & 
+      \end{tikzcd}
+    \end{center}
+    where the top map send both $X$ and $Y$ to $\epsilon$. Then we have $r,r':R$ such that $(\epsilon+r\epsilon^2)(\epsilon+r'\epsilon^2)=0$ so that $\epsilon^2=0$. %This can't be done.
+\end{proof}
+
+\begin{lemma}
+The map:
+\[
+p:\Spec(R[X,Y]/(XY))\to \A^1
+\] 
+corresponding to the map in:
+\[
+R[X,Y]/(XY) \to R[X]
+\]
+sending $X$ to $X$ and $Y$ to $0$ is not smooth.
+\end{lemma}
+
+\begin{proof}
+If it were smooth all its fibers would be smooth, i.e. for all $z:R$ the scheme $\Spec(R[X]/(zX))$ would be smooth. This would imply that for any $\epsilon:R$ such that $\epsilon^2=0$ we merely have a dotted lift to:
+ \begin{center}
+      \begin{tikzcd}
+        R/\epsilon & R[X]/(\epsilon X)\ar[l]\ar[ld,dashed] \\
+        R \ar[u]& 
+      \end{tikzcd}
+    \end{center} 
+    where the top map send $X$ to $1$. Such a lift gives an $r:R$ such that $\epsilon(1+r\epsilon)=0$, so that $\epsilon=0$.
+\end{proof}
+
+I think in the traditional setting this map has smooth fibers, but not here. 
+
+\subsection{Stability property}
+
+Now we give stability properties for formally smooth types.
+
+\begin{proposition}
+\label{smoothSurjective}
+The image of a formally smooth type by any map is formally smooth.
+\end{proposition}
+\begin{proof}
+We assume $X$ formally smooth and $p:X\to Y$ surjective. Then for any $P$ closed dense and diagram:
+ \begin{center}
+      \begin{tikzcd}
+      P \ar[rd,dotted]\ar[d]\ar[r]& Y\\
+      1 \ar[r,dotted,swap,"x"]& X\ar[u,swap,"p"]
+      \end{tikzcd}
+    \end{center} 
+    by choice for closed propositions we merely get the dotted diagonal, and since $X$ is formally smooth we get the dotted $x$, and then $p(x)$ gives a lift.
+\end{proof}
+
+\begin{lemma}
+If $X$ is a type satifying choice and for all $x:X$ we have a formally smooth type $Y_x$, then:
+\[\prod_{x:X}Y_x\]
+is formally smooth.
+\end{lemma}
+
+So for example formally smooth types are stable by finite products. 
+
+\begin{lemma}
+If $X$ is a formally smooth type and for all $x:X$ we have a formally smooth type $Y_x$, then:
+\[\sum_{x:X}Y_x\]
+is formally smooth.
+\end{lemma}
+
+Formally smooth types are not stable by identity types (e.g. identity types in $\A^1$ are not smooth, otherwise they would be closed and étale, i.e. decidable).
+
+\subsection{Smooth morphisms between schemes}
+
+Here we prove that our definition coincide with the usual one for maps with scheme fibers.
+
+\begin{lemma}\label{lifting-is-torsor}
+Let $X$ be a scheme and $\epsilon:R$ such that $\epsilon^2=0$. Then the type of liftings of:
+ \begin{center}
+      \begin{tikzcd}
+      \epsilon=0 \ar[d]\ar[r,"\phi"]& X\\
+      1 & 
+      \end{tikzcd}
+    \end{center} 
+is an $M$-pseudotorsor where:
+\[M = \Hom_{R/\epsilon}\big(\prod_{p:\epsilon=0}T^\star_{\phi(p)}(X),(\epsilon)\big)\]
+\end{lemma}
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{M-is-wqc}
+The $R$-module $M$ from the previous lemma is wqc.
+\end{lemma}
+
+\begin{proof}
+For any $p:\epsilon=0$ we have that $T^\star_{\phi(p)}(X)$ is a finitely presented $R$-module, so that:
+\[N = \prod_{p:\epsilon=0}T^\star_{\phi(p)}(X)\]
+is a finitely presented $R/\epsilon$-module. Assume a presentation:
+\[
+(R/\epsilon)^m \to (R/\epsilon)^n\to N\to 0
+\]
+then we have an exact sequence of $R$-modules:
+\[
+0\to \Hom_{R/\epsilon}(N,(\epsilon)) \to (\epsilon)^n\to (\epsilon)^m
+\]
+but $(\epsilon)$ is wqc so that $\Hom_{R/\epsilon}(N,(\epsilon))$ is the kernel of a map between wqc $R$-modules and it is wqc.
+\end{proof}
+
+\begin{proposition}
+Let $p:X\to Y$ be a map which fibers are schemes. Then $p$ merely having lifts against the following classes of maps is equivalent:
+\begin{enumerate}[(i)]
+\item The maps $\epsilon=0\to 1$ where $\epsilon^2=0$.
+\item The maps $P\to 1$ where $P$ is closed dense (i.e. $p$ being formally smooth).
+\item The maps $\Spec(A/a)\to \Spec(A)$ where $A$ fp $R$-algebra and $a^2=0$.
+\item The maps $\Spec(A/N)\to \Spec(A)$ where $A$ fp $R$-algebra and $N$ fg nilpotent ideal.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+It is enough to prove that (i) implies (iii), as any map in (iv) is a composite of maps in (iii). Assume a diagram:
+ \begin{center}
+      \begin{tikzcd}
+      \Spec(A/a) \ar[d]\ar[r]& X\ar[d,"p"]\\
+      \Spec(A) \ar[r] & Y
+      \end{tikzcd}
+    \end{center} 
+    with $a^2=0$, we try to merely find a lift. By \cref{lifting-is-torsor}, we know that the type of lifts over $x:\Spec(A)$ is an $M_x$-pseudotorsor. By hypothesis (i) this is in fact an $M_x$-torsor. Mere existence of a lift for the diagram is then precisely a mere section of the dependent torsor $(x:\Spec(A))\mapsto M_x$, i.e. a proof that it is merely trivial. But $M_x$ is wqc by \cref{M-is-wqc} so that $H^1(\Spec(A),M)=0$ by \cite{draft}[Theorem 8.3.6] and any $M$-torsor is merely trivial, meaning we merely have a lift.
+\end{proof}
+
+
