@@ -341,3 +341,174 @@ Let us now prove the special case $n = 1$ of our goal.
   And then, by \cref{point-in-projective-space-apart-from-two-standard-points},
   we get $f(p) = f([1 : 0 : 0 : \dots])$ for every $p : \bP^n$.
 \end{proof}
+
+
+\subsection{Line Bundles}
+
+We will construct Serre's twisting sheaves in this section,
+starting with the ``minus first''.
+The following works because of \cref{lines-are-one-dimensional}.
+
+We will also give some indication on which line bundles exist in general.
+
+\begin{definition}%
+  Let $X$ be a type.
+  A \notion{line bundle} is a map $\mathcal L : X\to \Mod{R}$,
+  such that
+  \[ \prod_{x:X} \propTrunc{\mathcal L_x=_{\Mod{R}}R} \rlap{.}\]
+  The \notion{trivial line bundle} on $X$ is the line bundle
+  $X \to \Mod{R}, x \mapsto R$,
+  and when we say that a line bundle $\mathcal{L}$ is trivial
+  we mean that $\mathcal{L}$ is equal to the trivial line bundle,
+  or equivalently $\propTrunc{\prod_{x:X} \mathcal L_x=_{\Mod{R}}R}$.
+\end{definition}
+
+\begin{definition}
+  \begin{enumerate}[(a)]
+  \item The \notion{tautological bundle} is the line bundle $\mathcal O_{\bP^n}(-1):\bP^n\to \Mod{R}$,
+    given by
+    \[ (L:\bP^n)\mapsto L\rlap{.}\]
+  \item The \notion{dual}\index{$\mathcal L^\vee$} $\mathcal L^\vee$ of a line bundle $\mathcal L:\bP^n\to \Mod{R}$,
+    is the line bundle given by
+    \[ (x:\bP^n)\mapsto \Hom_{\Mod{R}}(\mathcal L_x,R)\rlap{.}\]
+  \item The \notion{tensor product} of $R$-module bundles $\mathcal F\otimes \mathcal G$\index{$\mathcal F\otimes \mathcal G$}
+    on a scheme $X$
+    is given by pointwise taking the tensor product of $R$-modules.
+  \item For $k:\Z$, the $k$-th \notion{Serre twisting sheaf} on $\bP^n$
+    is given by taking the $-k$-th tensor power of $\mathcal O_{\bP^n}(-1)$ for negative $k$
+    and the $k$-th tensor power of $\mathcal O_{\bP^n}(-1)^{\vee}$ otherwise.
+  \end{enumerate}
+\end{definition}
+
+With this, we expect that many classical results can be reproduced.
+It is however, far from clear, in what sense we can expect that every line bundle on $\bP^n$
+is a Serre twisting sheaf.
+The expectation is, that this is not the case,
+since even on $\A^1$, we should not expect that all line bundles are trivial.
+The background of this expectation is the external fact, that the relative picard group of
+the affine line over the spectrum of the base ring is not always trivial.
+
+We will proceed by showing the claim about line bundles on $\A^1$,
+which will require some preparation.
+
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
+  For every open subset $U : \A^1 \to \Prop$ of $\A^1$
+  we have not not:
+  either $U = \emptyset$
+  or $U = D((X - a_1)\dots(X - a_n)) = \A^1 \setminus \{ a_1, \dots, a_n \}$
+  for pairwise distinct numbers $a_1, \dots, a_n : R$.
+\end{lemma}
+
+\begin{proof}
+  For $U = D(f)$,
+  this follows from \cref{polynomials-notnot-decompose}
+  because $D(\alpha \cdot {(X - a_1)}^{e_1} \dots {(X - a_n)}^{e_n})
+  = D((X - a_1) \dots (X - a_n))$.
+  In general,
+  we have $U = D(f_1) \cup \dots \cup D(f_n)$
+  by \cref{qc-open-affine-open},
+  so we do not not get
+  (that $U = \emptyset$ or)
+  a list of elements $a_1, \dots, a_n : R$
+  such that $U = \A^1 \setminus \{ a_1, \dots, a_n \}$.
+  Then we can not not get rid of any duplicates in the list.
+\end{proof}
+
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{decompose-invertible-function-on-intersection-in-A1}
+  Let $U, V : \A^1 \to \Prop$ be two open subsets
+  and let $f : U \cap V \to R^\times$ be a function.
+  Then there do not not exist functions
+  $g : U \to R^\times$ and
+  $h : V \to R^\times$
+  such that $f(x) = g(x)h(x)$ for all $x : U \cap V$.
+\end{lemma}
+
+\begin{proof}
+  By \cref{polynomials-notnot-decompose},
+  we can assume
+  \begin{align*}
+    U \cup V &= D((X - a_1) \dots (X - a_k)) \rlap{,}\\
+    U &= D((X - a_1) \dots (X - a_k) (X - b_1) \dots (X - b_l)) \rlap{,}\\
+    V &= D((X - a_1) \dots (X - a_k) (X - c_1) \dots (X - c_m)) \rlap{,}\\
+    U \cap V &= D((X - a_1) \dots (X - a_k) (X - b_1) \dots (X - b_l) (X - c_1) \dots (X - c_m))
+    \rlap{,}
+  \end{align*}
+  where all linear factors are distinct.
+  Then every function $f : U \cap V \to R^\times$ can
+  by (\axiomref{sqc}), \cref{polynomials-notnot-decompose}
+  and comparing linear factors
+  not not be written in the form
+  \[ f = \alpha \cdot
+     {(X - a_1)}^{e_1} \dots {(X - a_k)}^{e_k}
+     {(X - b_1)}^{e'_1} \dots {(X - b_l)}^{e'_l}
+     {(X - c_1)}^{e''_1} \dots {(X - c_m)}^{e''_m}
+  \]
+  with $\alpha : R^\times$, $e_i, e'_i, e''_i : \Z$.
+  Other linear factors can not appear,
+  since they do not represent invertible functions on $U \cap V$.
+  Now we can write $f = gh$ as desired,
+  for example with
+  \begin{align*}
+    g &= \alpha \cdot
+    {(X - a_1)}^{e_1} \dots {(X - a_k)}^{e_k}
+    {(X - b_1)}^{e'_1} \dots {(X - b_l)}^{e'_l} \rlap{,}\\
+    h &=
+    {(X - c_1)}^{e''_1} \dots {(X - c_m)}^{e''_m} \rlap{.}
+  \end{align*}
+\end{proof}
+
+\begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{Gm-torsors-on-A1}
+  Every $R^\times$-torsor on $\A^1$ (\cref{torsor})
+  does not not have a global section.
+\end{theorem}
+
+\begin{proof}
+  Let $T$ be an $R^\times$-torsor on $\A^1$,
+  that is,
+  for every $x : \A^1$,
+  $T_x$ is a set with a free and transitive $R^\times$ action
+  and $\propTrunc{T_x}$.
+  By (\axiomref{Z-choice}),
+  we get a cover of $\A^1$ by open subsets $\A^1 = \bigcup_{i = 1}^n U_i$
+  and local sections $s_i : (x : U_i) \to T_x$ of the bundle $T$.
+  From this we can not not construct a global section by induction on $n$:
+  Given any two local sections $s_i, s_j$ defined on $U_i, U_j$,
+  let $f : U_i \cap U_j \to R^\times$ be the unique function with
+  $f(x)s_i(x) = s_j(x)$ for all $x : U_i \cap U_j$.
+  Then by \cref{decompose-invertible-function-on-intersection-in-A1},
+  we not not find $g : U_i \to R^\times$, $h : U_j \to R^\times$
+  such that the sections
+  $x \mapsto g(x)s_i(x)$ and $x \mapsto {h(x)}^{-1}s_j(x)$,
+  defined on $U_i$ respectively $U_j$,
+  agree on $U_i \cap U_j$.
+  This yields a section $\widetilde{s} : (x : U_i \cup U_j) \to T_x$
+  by \cref{kraus-glueing}
+  and we can replace $U$ and $V$ by $U \cup V$ in the cover.
+  Finally, when we get to $n = 1$,
+  we have $U_1 = \A^1$
+  and the global section $s_1 : (x : X) \to T_x$.
+\end{proof}
+
+\begin{corollary}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
+  Every line bundle on $\A^1$ is not not trivial.
+\end{corollary}
+
+\begin{proof}
+  Given a line bundle $L$,
+  we can construct an $R^\times$ torsor
+  \[ x \mapsto L_x \setminus \{0\} \rlap{.} \]
+  Note that there is a well-defined $R^\times$ action on $M \setminus \{0\}$
+  for every $R$ module $M$,
+  and the action on $L_x \setminus \{0\}$ is free and transitive
+  and we have $\propTrunc{L_x \setminus \{0\}}$
+  since we merely have $L_x = R$ as $R$ modules.
+  By \cref{Gm-torsors-on-A1},
+  there not not is a global section of this torsor,
+  so we have a section $s : (x : \A^1) \to L_x$
+  with $s(x) \neq 0$ for all $x : \A^1$.
+  But this means that the line bundle $L$ is trivial,
+  since we can build an identification $L_x = R$
+  by sending $s(x)$ to $1$.
+\end{proof}
