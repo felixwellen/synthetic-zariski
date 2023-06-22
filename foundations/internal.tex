@@ -4,7 +4,7 @@
 \newcommand{\idd}{\mathsf{id}}
 %\newcommand{\UU}{\mathcal{U}}
 \newcommand{\II}{\mathbf{I}}
-\newcommand{\nats}{\mathbf{N}}
+\newcommand{\nats}{\mathbb{N}}
 \newcommand\norm[1]{\left\lVert #1 \right\rVert}
 
 
@@ -34,33 +34,34 @@ This method works both in a $1$-topos framework and for models on univalent type
 
 \subsection{Internal sheaf model}
 
-We start from 3 axioms, that can be seen as variation of our 3 axioms for synthetic algebraic geometric.
-These 3 axioms are the following.
+We start from 4 axioms. The 3 first axioms can be seen as variation of our 3 axioms for synthetic algebraic geometric.
 
 \begin{enumerate}
 \item $R$ is a ring,
-\item for any f.p. $R$-algebra $A$, the canonical map $A\rightarrow R^{Sp(A)}$ is an equivalence
-\item for any f.p. $R$-algebra $A$, the set $Sp(A)$ satisfies choice, which can be formulated as
-  the fact that for any family of types $P(x)$ for $x:Sp(A)$ there is a map
-  $(\Pi_{x:Sp(A)}\norm{P(x)})\rightarrow \norm{\Pi_{x:A}P(x)}$.
+\item for any f.p. $R$-algebra $A$, the canonical map $A\rightarrow R^{\Spec(A)}$ is an equivalence
+\item for any f.p. $R$-algebra $A$, the set $\Spec(A)$ satisfies choice, which can be formulated as
+  the fact that for any family of types $P(x)$ for $x:\Spec(A)$ there is a map
+  $(\Pi_{x:\Spec(A)}\norm{P(x)})\rightarrow \norm{\Pi_{x:A}P(x)}$.
+\item for any f.p. $R$-algebra $A$, the diagonal map $\nats\rigtharrow\nats^{\Spec(A)}$ is an equivalence.
+  
 \end{enumerate}
 
-As before, $Sp(A)$ denotes the type of $R$-algebra maps from $A$ to $R$, and
-if $r$ is in $R$, we write $D(r)$ the proposition $Sp(R_r)$.
+As before, $\Spec(A)$ denotes the type of $R$-algebra maps from $A$ to $R$, and
+if $r$ is in $R$, we write $D(r)$ the proposition $\Spec(R_r)$.
 
-Note that the second axiom is the same: any f.p. $R$-algebra is quasi-coherent. The first axiom does not require
-$R$ to be local, and the last axiom states that $Sp(A)$ satisfies \emph{choice} and not only Zariski local choice,
+Note that fhe first axiom does not require
+$R$ to be local, and the third axiom states that $\Spec(A)$ satisfies \emph{choice} and not only Zariski local choice,
 for any f.p. $R$-algebra $A$.
 
-We define now a family of propositions. If $A$ is a $R$-algebra, let $Um_n(A)$ be the type of unimodular sequences
+We define now a family of propositions. As before, if $A$ is a ring, we let $\Um(A)$ be the type of unimodular sequences
 \cite{lombardi-quitte}
 $f_1,\dots,f_n$ in $A$, i.e. such that $(1) = (f_1,\dots,f_n)$. To any element $\vec{r} = r_1,\dots,r_n$
-in $Um_n(R)$ we associate
-the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get the proposition $1=_R 0$.
+in $\Um(R)$ we associate
+the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get the proposition $1=_R 0$.
 
-  Starting from any model of dependent type theory with univalence satisfying the 3 axioms above, we build a new
+  Starting from any model of dependent type theory with univalence satisfying the 4 axioms above, we build a new
   model of univalent type theory by considering the types $T$ that are modal for all modalities defined by the propositions
-  $D(n,\vec{r})$, i.e. such that all diagonal maps $T\rightarrow T^{D(n,\vec{r})}$ are equivalences.
+  $D(\vec{r})$, i.e. such that all diagonal maps $T\rightarrow T^{D(\vec{r})}$ are equivalences.
     We call this new model of modal types the \emph{sheaf} model.
 
     This way of building a new sheaf model can be described purely syntactically, as in \cite{Quirin16}. In \cite{CRS21}, we extend
@@ -75,12 +76,12 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
     \end{proposition}
 
     \begin{proof}
-      If $r_1,\dots,r_n$ is in $Um_n(R)$, we build a patch function $R^{D(r_1)\vee\dots\vee D(r_n)}\rightarrow R$.
+      If $r_1,\dots,r_n$ is in $\Um(R)$, we build a patch function $R^{D(r_1)\vee\dots\vee D(r_n)}\rightarrow R$.
       Any element $u:R^{D(r_1)\vee\dots\vee D(r_n)}$ gives a compatible family of elements $u_i:R^{D(r_i)}$, hence
       a compatible family of elements in $R_{r_i}$ by quasi-coherence. But then it follows from local-global
       principle \cite{lombardi-quitte}, that we can patch this family to a unique element of $R$.
       
-      If $A$ is a f.p. $R$-algebra then $A$ is isomorphic to $R^{Sp(A)}$ and hence is modal.
+      If $A$ is a f.p. $R$-algebra then $A$ is isomorphic to $R^{\Spec(A)}$ and hence is modal.
     \end{proof}
 
     \begin{proposition}
@@ -90,41 +91,37 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
     \begin{proof}
       The proposition $1=_R0$ is modal by the previous proposition.
       If $T$ is modal, all diagonal maps $T\rightarrow T^{D(n,\vec{r})}$ are equivalences. For $n = 0$, we have
-      an element in $Um_n(R)$ exactly when $1=_R0$, and this implies that $(1=_R0)\rightarrow T$ is contractible.
+      an element in $\Um(R)$ exactly when $1=_R0$, and this implies that $(1=_R0)\rightarrow T$ is contractible.
     \end{proof}
     
     \begin{lemma}\label{Um}
-      For any f.p. $R$ algebra $A$, we have $Um_n(R)^{Sp(A)} = Um_n(A)$.
+      For any f.p. $R$ algebra $A$, we have $\Um(R)^{\Spec(A)} = \Um(A)$.
     \end{lemma}
 
     \begin{proof}
       This follows from the second axiom, that $A$ is quasi-coherent.
     \end{proof}
 
-    If $A$ is a ring, a fundamental system of orthogonal idempotents $e_1,\dots,e_p$ of $A$ is a sequence of 
-    idempotent elements satisying $e_1+\dots+e_p = 1$ and $e_ie_j = 0$ if $i\neq j$. We then have a partition
-    of $Sp(A)$ into open subsets $Sp(A_{e_i})$.
+%%     If $A$ is a ring, a fundamental system of orthogonal idempotents $e_1,\dots,e_p$ of $A$ is a sequence of 
+%%     idempotent elements satisying $e_1+\dots+e_p = 1$ and $e_ie_j = 0$ if $i\neq j$. We then have a partition
+%%     of $\Spec(A)$ into open subsets $\Spec(A_{e_i})$.
 
-    \begin{lemma}\label{nats}
-      For any function $u:\nats^{Sp(A)}$ there exists a fundamental system of orthogonal idempotents $e_1,\dots,e_p$, and corresponding
-      numbers $n_1,\dots,n_p$ such that $u$ is constant and equal to $n_i$ on $Sp(A_{e_i})$.
-    \end{lemma}
+%%     \begin{lemma}\label{nats}
+%%       For any function $u:\nats^{\Spec(A)}$ there exists a fundamental system of orthogonal idempotents $e_1,\dots,e_p$, and corresponding
+%%       numbers $n_1,\dots,n_p$ such that $u$ is constant and equal to $n_i$ on $\Spec(A_{e_i})$.
+%%     \end{lemma}
 
-    We write $Um(A)$ for $\Sigma_{n:\nats}Um_n(A)$.
+%%     We write $Um(A)$ for $\Sigma_{n:\nats}\Um(A)$.
 
-    \begin{corollary}
-      If $A$ is a f.p. ring, then any function in $Um(R)^{Sp(A)}$ is given by
-      a fundamental system of orthogonal idempotents $e_1,\dots,e_p$, and corresponding elements in $Um(A_{e_1}),\dots,Um(A_{e_p})$.
-    \end{corollary}
+%%     \begin{corollary}
+%%       If $A$ is a f.p. ring, then any function in $Um(R)^{\Spec(A)}$ is given by
+%%       a fundamental system of orthogonal idempotents $e_1,\dots,e_p$, and corresponding elements in $Um(A_{e_1}),\dots,Um(A_{e_p})$.
+%%     \end{corollary}
     
     We can define the type of presentations $Pr_{n,m}(A)$ as the type $A[X_1,\dots,X_n]^m$. Each element in $Pr_{n,m}(A)$ defines a
     f.p. $A$-algebra. Since $Pr_{n,m}(A)$ is a modal type if $A$ is modal, the type of presentations $Pr_{n,m}(A)_S$ in the sheaf model
     defined for $n$ and $m$ in $\nats_S$ will be such that $Pr_{\eta p,\eta q}(A)_S = Pr_{p,q}(A)$ \cite{CRS21}.
-
-    \begin{corollary}
-      If $A$ is a f.p. ring, then any function in $Pr(R)^{Sp(A)}$ is given by
-      a fundamental system of orthogonal idempotents $e_1,\dots,e_p$, and corresponding elements in $Pr(A_{e_1}),\dots,Pr(A_{e_p})$.
-    \end{corollary}
+    We have $Pr(R)^{\Spec(A)} = Pr(A)$.
     
     \begin{proposition}\label{norm}
       For any modal type $T$, the proposition $\norm{T}_S$ is
@@ -146,7 +143,7 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
     \end{proof}
 
     \begin{lemma}\label{localfp}
-      If $A$ is a $R$-algebra which is modal and there exists $r_1,\dots,r_n$ in $Um_n(R)$ such that each
+      If $A$ is a $R$-algebra which is modal and there exists $r_1,\dots,r_n$ in $\Um(R)$ such that each
       $A^{D(r_i)}$ is a f.p. $R_{r_i}$-algebra, then $A$ is a f.p. $R$-algebra.
     \end{lemma}
     
@@ -179,14 +176,14 @@ the proposition $D(n,\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get t
      Note that the type of f.p. $R$-algebra is universe independent.
 
     \begin{proposition}
-      For any f.p. algebra $A$, the type $Sp(A)$ is modal and satisfies the axiom of Zariski local choice in
+      For any f.p. algebra $A$, the type $\Spec(A)$ is modal and satisfies the axiom of Zariski local choice in
       the sheaf model.
     \end{proposition}
     
     \begin{proof}
-      Let $P(x)$ be a family of types over $x:Sp(A)$ and assume $\Pi_{x:Sp(A)}\norm{P(x)}_S$. By Proposition \ref{norm},
-      this means $\Pi_{x:Sp(A)}\norm{\Sigma_{(n,r_1,\dots,r_n):Um}P(x)^{D(r_1)}\times\dots\times P(x)^{D(r_n)}}$. The result follows
-      then from choice over $Sp(A)$ and Lemmas \ref{Um} and \ref{nats}.
+      Let $P(x)$ be a family of types over $x:\Spec(A)$ and assume $\Pi_{x:\Spec(A)}\norm{P(x)}_S$. By Proposition \ref{norm},
+      this means $\Pi_{x:\Spec(A)}\norm{\Sigma_{(n,r_1,\dots,r_n):Um}P(x)^{D(r_1)}\times\dots\times P(x)^{D(r_n)}}$. The result follows
+      then from choice over $\Spec(A)$ and Lemmas \ref{Um} and \ref{nats}.
     \end{proof}      
 
 %It is then natural to ask how the global section operation behaves for this model, and we show that
@@ -250,11 +247,11 @@ satisfies $\ext(u,\psi,v) = v$ on the extent $\psi$ \cite{CoquandHM18}.
 
 We prove choice in the presheaf model: if $A$ is a f.p.\@ algebra over $R$ then we have a map
 $$
-l:(\Pi_{x:Sp(A)}\norm{P})\rightarrow \norm{\Pi_{x:Sp(A)}P}
+l:(\Pi_{x:\Spec(A)}\norm{P})\rightarrow \norm{\Pi_{x:\Spec(A)}P}
 $$
 
 For defining the map $l$, we define $l(v)$ by induction on $v$.
-The element $v$ is in $(\Pi_{x:Sp(A)}\norm{P})(B)$, which can be seen as
+The element $v$ is in $(\Pi_{x:\Spec(A)}\norm{P})(B)$, which can be seen as
 an element of $\norm{P}(A)$. If it is $\inc(u)$ we associate $\inc(u)$ and 
 if it is $\ext(u,\psi,v)$ the image is $\ext(l(u),\psi,l(v))$.
 
@@ -328,12 +325,12 @@ isomorphic to a quasi-coherent module is itself quasi-coherent.
 
 \subsection{Global sections and Zariski global choice}
 
-If $T$ is a sheaf defined at level $A$, we let $\Box_A T$ the type of global sections.
-If $c = f_1,\dots,f_n$ is in $Um_n(A)$ we let $\Box_c T$ be the type $\Box_{A_{f_1}}T\times\dots\times\Box_{A_{f_n}}T$.
+We let $\Box T$ the type of global sections of a globally defined sheaf $T$.
+If $c = r_1,\dots,r_n$ is in $\Um(R)$ we let $\Box_c T$ be the type $\Box T^{D(r_1)}\times\dots\times\Box T^{D(r_n)}$.
 
 Using these notations, we can state the principle of Zariski global choice
 $$
-(\Box \norm{T})\leftrightarrow \norm{\Sigma_{n,c:Um_n(k)}\Box_c T}
+(\Box \norm{T})\leftrightarrow \norm{\Sigma_{c:\Um(k)}\Box_c T}
 $$
 
 This principle is valid in the present model.
