@@ -1,23 +1,49 @@
-I'm not very confident in the next lemma.
+\subsection{Neighborhoods for sets}
+
+\begin{definition}
+Let $X$ be a set with $x:X$. The $n$-order neighborhood $N_n(x)$ is defined as the set of $y:X$ such that the exists a f.g. ideal $I$ such that $I^{n+1}=0$ and:
+\[I=0 \to x=y\]
+\end{definition}
+
+We write:
+\[N_\infty(x) = \cup_{n:\N} N_n(x)\]
+
+\begin{lemma}
+For any set $X$ and $x$, we have that:
+\[N_\infty(x) \simeq \sum_{y:Y} \mathrm{Et}(x=y)\]
+\end{lemma}
+
+\begin{proof}
+By \cref{etale-replacement-proposition}.
+\end{proof}
+
+%\begin{lemma}
+%Let $f:X\to Y$ be a map between sets. Then for all $x:X$ we have that:
+%TODO
+%\end{lemma}
+
+\subsection{Recap on modules and infinitesimal disks}
 
 \begin{lemma}\label{tangent-infinitesimal-disks}
 For any finitely presented $R$-module $M$, we have a natural iso:
-\[T_0\D(V) = V^\star\]
+\[T_0\D(M) = M^\star\]
 \end{lemma}
 
 \begin{proof}
-TODO
+This is a direct application of \cref{equivalence-module-infinitesimal}.
 \end{proof}
 
-\begin{lemma}
-A map between finitely copresented module:
+\begin{lemma}\label{neighborhood-tangent-correspondence}
+A linear map between finitely copresented module:
 \[f:M\to N\]
-is injective iff the corresponding pointed map:
+is injective (resp. an iso) iff the corresponding pointed map:
 \[\D(M^\star) \to \D(N^\star)\]
-is an embedding.
+is an embedding (resp. an equivalence).
 \end{lemma}
 
 \begin{proof}
+The case of isomorphisms is a direct consequence of \cref{equivalence-module-infinitesimal}.
+
 Assume $f$ injective, then $f^\star$ is surjective the induced map:
 \[R\oplus N^\star \to R\oplus M^\star\]
 is surjective as well, giving an embedding of affine schemes. 
@@ -33,7 +59,7 @@ by \cref{tangent-infinitesimal-disks}.
 
 \subsection{Formally unramified maps between sets}
 
-\begin{proposition}
+\begin{proposition}\label{unramified-sets-map}
 Let $f:X\to Y$ be a map between sets. The following are equivalent:
 \begin{enumerate}[(i)]
 \item The map $f$ is formally unramified.
@@ -47,13 +73,31 @@ is an embedding.
 \end{proposition}
 
 \begin{proof}
-TODO
+Let us assume (i) to prove (ii). Assume given $x$ with $y,z\in N_\infty(x)$ such that $f(y)=f(z)$, we want to prove $y=z$. But we have $\mathrm{Et}(y=z)$ so there is a closed dense $P$ such that $P\to y=z$, and then $y$ and $z$ are both lifting of the same square: 
+ \begin{center}
+      \begin{tikzcd}
+        P\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+so they are equal by (i). 
+
+Let us assume (ii) to prove (iii). Assume given $x:X$ and $y,z\in N_1(x)$ such that $f(y)=f(z)$. Then $y,z\in N_\infty(x)$ so by (ii) they are equal.
+
+Let us assume (iii) to prove (i). Assume given two lifts $x,y:X$ to a square:
+ \begin{center}
+      \begin{tikzcd}
+        \epsilon=0\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+    with $\epsilon^2=0$. Then $\epsilon=0 \to x=y$ so that $x\in N_1(y)$ and since $f(x)=f(y)$, we conclude by (iii) that we have $x=y$.
 \end{proof}
 
 \begin{corollary}\label{unramified-map-between-scheme-alt}
-Let $f:X\to Y$ be a map between schemes. Assume $X$ is smooth. Then the following are equivalent:
+Let $f:X\to Y$ be a map between schemes. Then the following are equivalent:
 \begin{enumerate}[(i)]
-\item The map $f$ is étale. 
+\item The map $f$ is unramified. 
 \item For all $x:X$, the induced map:
 \[df : T_x(X)\to T_{f(x)}(Y)\]
 is injective.
@@ -61,13 +105,12 @@ is injective.
 \end{corollary}
 
 \begin{proof}
-TODO
+By \cref{unramified-sets-map} with \cref{neighborhood-tangent-correspondence}
 \end{proof}
-
 
 \subsection{Formally étale maps between sets}
 
-\begin{proposition}
+\begin{proposition}\label{etale-sets-map}
 Let $f:X\to Y$ be a map between sets. Assume $X$ is formally smooth. Then the following are equivalent:
 \begin{enumerate}[(i)]
 \item The map $f$ is formally étale. 
@@ -81,7 +124,32 @@ is an equivalence.
 \end{proposition}
 
 \begin{proof}
-TODO
+Let us assume (i) to prove (ii). Since $N_\infty(x) = \sum_{y:X}\mathrm{Et}(x=y)$ this is a general property of lex modalities.
+
+Let us assume (ii) to prove (iii). Any map preserve first order neighborhood, so for any $x:X$ the equivalence:
+\[N_\infty(x)\simeq N_\infty(f(x))\]
+induces an equivalence:
+\[N_1(x)\simeq N_1(f(x))\]
+
+Let us assume (iii) to prove (i). By \cref{unramified-sets-map} we know that $f$ is formally unramified. It is enough to check that for any $\epsilon:R$ such that $\epsilon^2=0$ there merely is a lifting to any square:
+ \begin{center}
+      \begin{tikzcd}
+        \epsilon=0\ar[r,"\phi"]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r,"y"]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+Since $X$ is formally smooth we have an $x:X$ such that:
+\[\prod_{p:\epsilon=0} \phi(p)=x\]
+and therefore:
+\[\prod_{p:\epsilon=0} y=f(x)\]
+This means that we can factor the square:
+ \begin{center}
+      \begin{tikzcd}
+        \epsilon=0\ar[r,"\phi"]\ar[d] & N_1(x) \ar[d]\ar[r]& X\ar[d,"f"] \\
+       1 \ar[r,"y"]\ar[ru,dashed] & N_1(f(x)) \ar[r]&Y
+      \end{tikzcd}
+    \end{center}
+    where we can find the lifting because the middle arrow is an equivalence.
 \end{proof}
 
 \begin{corollary}
@@ -95,6 +163,6 @@ is an iso.
 \end{corollary}
 
 \begin{proof}
-Same as \cref{unramified-map-between-scheme-alt}.
+By \cref{etale-sets-map}  with \cref{neighborhood-tangent-correspondence}.
 \end{proof}
 
