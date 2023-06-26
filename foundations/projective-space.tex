@@ -492,6 +492,7 @@ which will require some preparation.
 \end{proof}
 
 \begin{corollary}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
+  \label{line-bundle-A1-notnot-trivial}
   Every line bundle on $\A^1$ is not not trivial.
 \end{corollary}
 
@@ -516,6 +517,7 @@ which will require some preparation.
 We now transfer this result to line bundles on $\bP^1$.
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]
+  \label{invertible-laurent-polynomials}
   Every invertible element of the ring of Laurent polynomials $R[X]_X$
   is not not of the form $\alpha X^n$
   for some $\alpha : R^{\times}$ and $n : \Z$.
@@ -535,12 +537,29 @@ We now transfer this result to line bundles on $\bP^1$.
   we see that $n > 0$ is indeed impossible.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
   For every line bundle $\mathcal{L}$ on $\bP^1$,
   there not not exists a $k : \Z$
   such that $\mathcal{L} = \mathcal{O}_{\bP^1}(k)$.
 \end{theorem}
 
 \begin{proof}
-  TODO
+  Let $\mathcal{L}:\bP^1\to \Mod{R}$ be a line bundle on $\bP^1$.
+  By pushout recursion, $\mathcal{L}$ is given by two line bundles $\mathcal L_0,\mathcal L_1:\A^1\to\Mod{R}$
+  and a glueing function $g:(x:\A^1\setminus\{0\})\to \mathcal L_0(x)=\mathcal L_1(\frac{1}{x})$.
+  Since we are proving a double negation, we can assume identifications $p_0:(x:\A^1)\to \mathcal L_0=R^1$
+  and $p_1:(x:\A^1)\to \mathcal L_1=R^1$ by \cref{line-bundle-A1-notnot-trivial}.
+
+  Now we can define $g':(x:\A^1\setminus\{0\})\to R^1=R^1$ by $g'(x)\colonequiv p_0^{-1}(x)\cdot g(x)\cdot p_1(\frac{1}{x})$.
+  By synthetic quasi-coherence, equivalently, $g'$ is an invertible element of $R[X]_X$
+  and therefore by \cref{invertible-laurent-polynomials} given by $\alpha X^n$ for some $\alpha:R^\times$ and $n:\Z$.
+  We can assume $\alpha=1$, since this just amounts to concatenating
+  our final equality with the automorphism of line bundles given by $\alpha^{-1}$ at all points.
+
+  By explicit calculation, the tautological bundle $\mathcal O_{\bP^1}(-1)$ on $\bP^1$ is given by glueing trivial line bundles along
+  a glueing function $g_{-1}:(x:\A^1\setminus\{0\})\to R^1=R^1$ with $g_{-1}(x)\colonequiv \lambda\mapsto x\cdot \lambda$.
+  Note that an arbitrary choice of sign is involved, made by choosing the direction of the glueing function.
+  Sticking with the same choice, calculation shows $g_1(x)\colonequiv \lambda\mapsto \frac{1}{x}\cdot \lambda$
+  is a glueing function for the dual of the tautological bundle $\mathcal O_{\bP^1}(1)$
+  and the tensor product of line bundles corresponds to multiplication.
 \end{proof}
