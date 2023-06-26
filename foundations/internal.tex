@@ -128,14 +128,28 @@ $D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1
     defined for $n$ and $m$ in $\nats_S$ will be such that $Pr_{\eta p,\eta q}(A)_S = Pr_{p,q}(A)$ \cite{CRS21}.
 %    We have $Pr(R)^{\Spec(A)} = Pr(A)$. \rednote{Def of Pr missing}
     
+    \begin{lemma}\label{propsheaf}
+      If $P$ is a proposition, then the sheafification of $P$ is
+      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}P^{D(r_1,\dots,r_n)}}$$
+    \end{lemma}
+    
+    \begin{proof}
+      If $Q$ is a modal proposition and $P\rightarrow Q$ we have
+      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}P^{D(r_1,\dots,r_n)}}\rightarrow Q$$
+      since
+      $P^{D(r_1,\dots,r_n)}\rightarrow Q^{D(r_1,\dots,r_n)}$ and $Q^{D(r_1,\dots,r_n)}\rightarrow Q$.
+      It is thus enough to show that $P_0 = \norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}P^{D(r_1,\dots,r_n)}}$ is modal.
+      If $s_1,\dots,s_m$ is in $\Um(R)$ we show $P_0^{D(s_1,\dots,s_m)}\rightarrow P_0$. This follows
+      from $\Um(R)^D(r) = \Um(R_r)$, Lemma \ref{Um}.
+    \end{proof}
+    
+
     \begin{proposition}\label{norm}
       For any modal type $T$, the proposition $\norm{T}_S$ is
       $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}T^{D(r_1)}\times\dots\times T^{D(r_n)}}$$
     \end{proposition}
     
     \begin{proof}
-      If $P$ is a proposition, then the sheafification of $P$ is
-      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}P^{D(r_1,\dots,r_n)}}$$
       It follows that the proposition $\norm{T}_S$ is
       $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}\norm{T}^{D(r_1)\vee\dots\vee D(r_n)}}$$
       and we get the result using the fact that choice holds for each $D(r_i)$.
