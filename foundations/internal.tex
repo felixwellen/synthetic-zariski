@@ -20,7 +20,7 @@
 \newcommand{\Elem}{\mathsf{Elem}}
 \newcommand{\Cont}{\mathsf{Cont}}
 
-\newcommand{\BB}{\mathcal{B}}
+\newcommand{\BB}{\square}
 \newcommand{\CC}{\mathcal{C}}
 \newcommand{\UU}{\mathcal{U}}
 \newcommand{\WW}{\mathcal{W}}
@@ -43,7 +43,6 @@ We start from 4 axioms. The 3 first axioms can be seen as variation of our 3 axi
   the fact that for any family of types $P(x)$ for $x:\Spec(A)$ there is a map
   $(\Pi_{x:\Spec(A)}\norm{P(x)})\rightarrow \norm{\Pi_{x:A}P(x)}$.
 \item for any f.p.\ $R$-algebra $A$, the diagonal map $\nats\rightarrow\nats^{\Spec(A)}$ is an equivalence.
-  
 \end{enumerate}
 
 As before, $\Spec(A)$ denotes the type of $R$-algebra maps from $A$ to $R$, and
@@ -57,27 +56,29 @@ We define now a family of propositions. As before, if $A$ is a ring, we let $\Um
 (\cref{unimodular})
 $f_1,\dots,f_n$ in $A$, i.e.\ such that $(1) = (f_1,\dots,f_n)$. To any element $\vec{r} = r_1,\dots,r_n$
 in $\Um(R)$ we associate
-the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get the proposition $1=_R 0$.
+the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$. If $\vec{r}$ is the empty sequence then
+$D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1=_R 0$.
 
   Starting from any model of dependent type theory with univalence satisfying the 4 axioms above, we build a new
   model of univalent type theory by considering the types $T$ that are modal for all modalities defined by the propositions
   $D(\vec{r})$, i.e.\ such that all diagonal maps $T\rightarrow T^{D(\vec{r})}$ are equivalences.
-    We call this new model of modal types the \emph{sheaf} model.
+  This new model is called the \emph{sheaf model}.
 
     This way of building a new sheaf model can be described purely syntactically, as in \cite{Quirin16}. In \cite{CRS21}, we extend
     this interpretation to cover inductive data types. In particular, we describe there the sheafification $\nats_S$ of the type
     of natural numbers with the unit map $\eta:\nats\rightarrow\nats_S$. 
 
-    Note that exactly the same description works starting with the $1$-presheaf model. In this case, we get a model
-    of type theory without universes.
+    A similar description can be done starting with the $1$-presheaf model. In this case, we use for the propositional truncation of a
+    presheaf $A$ the image of the canonical map $A\rightarrow 1$. We however get a model of type theory {\em without} universes when we
+    consider modal types.
 
     \begin{proposition}\label{modal}
       The ring $R$ is modal. It follows that any f.p.\ $R$-algebra is modal.
     \end{proposition}
 
     \begin{proof}
-      If $r_1,\dots,r_n$ is in $\Um(R)$, we build a patch function $R^{D(r_1)\vee\dots\vee D(r_n)}\rightarrow R$.
-      Any element $u:R^{D(r_1)\vee\dots\vee D(r_n)}$ gives a compatible family of elements $u_i:R^{D(r_i)}$, hence
+      If $r_1,\dots,r_n$ is in $\Um(R)$, we build a patch function $R^{D(r_1,\dots,r_n)}\rightarrow R$.
+      Any element $u:R^{D(r_1,\dots,r_n)}$ gives a compatible family of elements $u_i:R^{D(r_i)}$, hence
       a compatible family of elements in $R_{r_i}$ by quasi-coherence. But then it follows from local-global
       principle \cite{lombardi-quitte}, that we can patch this family to a unique element of $R$.
       
@@ -90,8 +91,10 @@ the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get the
 
     \begin{proof}
       The proposition $1=_R0$ is modal by the previous proposition.
-      If $T$ is modal, all diagonal maps $T\rightarrow T^{D(\vec{r})}$ are equivalences. For $n = 0$, we have
-      an element in $\Um(R)$ exactly when $1=_R0$, and this implies that $(1=_R0)\rightarrow T$ is contractible.
+      If $T$ is modal, all diagonal maps $T\rightarrow T^{D(\vec{r})}$ are equivalences. For the empty sequence $\vec{r}$
+      we have that $D(\vec{r})$ is $\perp$, and the empty sequence is unimodular exactly when $1 =_R 0$. So $1=_R0$
+      implies that $T$ and $T^{\perp}$ are equivalent, and so implies that $T$ is contractible. By extensionality,
+      we get that $(1=_R0)\rightarrow T$ is contractible when $T$ is modal.
     \end{proof}
     
     \begin{lemma}\label{Um}
@@ -99,8 +102,8 @@ the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get the
     \end{lemma}
 
     \begin{proof}
-      This follows from the second axiom, that $A$ is quasi-coherent.
-      \rednote{I think it follows from axioms 4,2 and 3.}
+      This follows from axioms 2 and 4.%, that $A$ is quasi-coherent.
+%      \rednote{I think it follows from axioms 4,2 and 3.}
     \end{proof}
 
 %%     If $A$ is a ring, a fundamental system of orthogonal idempotents $e_1,\dots,e_p$ of $A$ is a sequence of 
@@ -119,10 +122,11 @@ the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get the
 %%       a fundamental system of orthogonal idempotents $e_1,\dots,e_p$, and corresponding elements in $Um(A_{e_1}),\dots,Um(A_{e_p})$.
 %%     \end{corollary}
     
-    For an f.p.\ $R$-algebra $A$ \rednote{?}, we can define the type of presentations $Pr_{n,m}(A)$ as the type $A[X_1,\dots,X_n]^m$. Each element in $Pr_{n,m}(A)$ defines an
-    f.p.\ $A$-algebra. Since $Pr_{n,m}(A)$ is a modal type if $A$ is modal \rednote{I think we only know that, if A is fp R-algebra}, the type of presentations $Pr_{n,m}(A)_S$ in the sheaf model
+    For an f.p.\ $R$-algebra $A$, we can define the type of presentations $Pr_{n,m}(A)$ as the type $A[X_1,\dots,X_n]^m$.
+    Each element in $Pr_{n,m}(A)$ defines an
+    f.p.\ $A$-algebra. Since $Pr_{n,m}(A)$ is a modal type since $A$ is f.p., the type of presentations $Pr_{n,m}(A)_S$ in the sheaf model
     defined for $n$ and $m$ in $\nats_S$ will be such that $Pr_{\eta p,\eta q}(A)_S = Pr_{p,q}(A)$ \cite{CRS21}.
-    We have $Pr(R)^{\Spec(A)} = Pr(A)$. \rednote{Def of Pr missing}
+%    We have $Pr(R)^{\Spec(A)} = Pr(A)$. \rednote{Def of Pr missing}
     
     \begin{proposition}\label{norm}
       For any modal type $T$, the proposition $\norm{T}_S$ is
@@ -130,7 +134,9 @@ the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get the
     \end{proposition}
     
     \begin{proof}
-      The proposition $\norm{T}_S$ is
+      If $P$ is a proposition, then the sheafification of $P$ is
+      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}P^{D(r_1,\dots,r_n)}}$$
+      It follows that the proposition $\norm{T}_S$ is
       $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}\norm{T}^{D(r_1)\vee\dots\vee D(r_n)}}$$
       and we get the result using the fact that choice holds for each $D(r_i)$.
     \end{proof}
@@ -198,14 +204,13 @@ the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$.%For $n=0$, we get the
 The constructive models of univalence are presheaf models parametrised by an interval object $\II$
 (presheaf with two global distinct elements $0$ and $1$ and which is tiny) and a classifier object
 $\Phi$ for cofibrations. The model is then obtained as an internal model of type theory inside the
-presheaf model. For this, we define $C:U\rightarrow U$, uniform in the universe $U$,
-which is closed by dependent product and sum, and which satisfies, for $A:U^{\II}$, the transport principle
+presheaf model. For this, we define $C:U\rightarrow U$, uniform in the universe $U$, operation
+closed by dependent products, sums and such that $C(\Sigma_{X:U}X)$ holds. It further satisfies, for $A:U^{\II}$, the transport principle
 $$
 (\Pi_{i:\II}C(Ai))\rightarrow (A0\rightarrow A1)
 $$
 We get then a model of univalence by interpreting a type as a presheaf $A$ together with an element
 of $C(A)$.
-
 
  This is over a base category $\BB$.
  
