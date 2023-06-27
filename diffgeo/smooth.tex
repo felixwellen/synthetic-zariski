@@ -12,6 +12,35 @@ A morphism $f:X\to Y$ is formally smooth for any closed dense proposition $P$ th
 merely has a lift.
 \end{definition}
 
+\begin{lemma}
+For any morphism  $f:X\to Y$ the following are equivalent:
+\begin{enumerate}[(i)]
+\item The map $f$ is formally smooth. 
+\item For any $\epsilon:R$ such that $\epsilon^2=0$, there merely exists a dotted lift to any square:
+ \begin{center}
+      \begin{tikzcd}
+        \epsilon=0\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+It is clear that (i) implies (ii). Conversely any map $P\to 1$ for $P$ dense closed can be decomposed as:
+\[P_n \to P_{n-1} \to P_1\to 1\]
+where:
+\begin{itemize}
+\item For all $k$ we have that $P_k$ is the spectrum of a local ring so it has choice.
+\item For all $k$ the map:
+\[P_{k}\to P_{k-1}\]
+is of the form:
+\[\Spec(A/a)\to \Spec(A)\]
+where $a^2=0$.
+\end{itemize}
+Then by (ii) we can merely find a lift pointwise to $P_k\to P_{k-1}$, and since $P_{k-1}$ has choice we merely get a global lift. By iterating we merely get a lift to $P\to 1$.
+\end{proof}
+
 \begin{remark}
 The usual definition for formally smooth is to ask for lifting in:
  \begin{center}
@@ -190,7 +219,7 @@ is formally smooth.
 
 Formally smooth types are not stable by identity types (e.g. identity types in $\A^1$ are not smooth, otherwise they would be closed and étale, i.e. decidable).
 
-\subsection{Smooth morphisms between schemes}
+\subsection{Equivalence with the usual definition for maps between schemes}
 
 Here we prove that our definition coincide with the usual one for maps with scheme fibers.
 
@@ -205,6 +234,7 @@ Let $X$ be a scheme and $\epsilon:R$ such that $\epsilon^2=0$. Then the type of 
 is an $M$-pseudotorsor where:
 \[M = \Hom_{R/\epsilon}\big(\prod_{p:\epsilon=0}T^\star_{\phi(p)}(X),(\epsilon)\big)\]
 \end{lemma}
+
 \begin{proof}
 TODO
 \end{proof}
@@ -247,5 +277,9 @@ It is enough to prove that (i) implies (iii), as any map in (iv) is a composite 
     \end{center} 
     with $a^2=0$, we try to merely find a lift. By \cref{lifting-is-torsor}, we know that the type of lifts over $x:\Spec(A)$ is an $M_x$-pseudotorsor. By hypothesis (i) this is in fact an $M_x$-torsor. Mere existence of a lift for the diagram is then precisely a mere section of the dependent torsor $(x:\Spec(A))\mapsto M_x$, i.e. a proof that it is merely trivial. But $M_x$ is wqc by \cref{M-is-wqc} so that $H^1(\Spec(A),M)=0$ by \cite{draft}[Theorem 8.3.6] and any $M$-torsor is merely trivial, meaning we merely have a lift.
 \end{proof}
+
+\subsection{Smooth schemes}
+
+TODO
 
 
