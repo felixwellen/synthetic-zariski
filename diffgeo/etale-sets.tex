@@ -36,9 +36,9 @@ This is a direct application of \cref{equivalence-module-infinitesimal}.
 \begin{lemma}\label{neighborhood-tangent-correspondence}
 A linear map between finitely copresented module:
 \[f:M\to N\]
-is injective (resp. an iso) iff the corresponding pointed map:
+is injective (resp. an iso, surjective) iff the corresponding pointed map:
 \[\D(M^\star) \to \D(N^\star)\]
-is an embedding (resp. an equivalence).
+is an embedding (resp. an equivalence, surjective).
 \end{lemma}
 
 \begin{proof}
@@ -55,6 +55,8 @@ is an embedding then the induced map:
 is a injective as well, but it is equivalent to the map:
 \[M\to N\]
 by \cref{tangent-infinitesimal-disks}.
+
+Now we deal with surjectivity. But since finitely copresented modules are projective and $\D(N^\star)$ has choice, being surjective is equivalent to merely having a section in both cases, which is preserved by any functor.
 \end{proof}
 
 \subsection{Formally unramified maps between sets}
@@ -108,6 +110,72 @@ is injective.
 By \cref{unramified-sets-map} with \cref{neighborhood-tangent-correspondence}
 \end{proof}
 
+\subsection{Formally smooth maps between sets}
+
+\begin{proposition}\label{smooth-sets-map}
+Let $f:X\to Y$ be a map between sets. Assume $X$ is formally smooth. Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item The map $f$ is formally smooth. 
+\item For all $x:X$, the induced map:
+\[N_\infty(f) : N_\infty(x)\to N_\infty(f(x))\]
+is surjective.
+\item For all $x:X$, the induced map:
+\[N_1(f) : N_1(x)\to N_1(f(x))\]
+is surjective.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Assume (i) to prove (ii). Assume given $y\in N_\infty(f(x))$. Then there is a closed dense $P$ such that:
+\[P \to y=f(x)\]
+We consider:
+ \begin{center}
+      \begin{tikzcd}
+        P\ar[r,"x"]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r,"y"]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+by (i) we merely have a dotted arrow giving $z:X$ such that $f(z)=y$. Commutation of the top triangle give that $z\in N_\infty(x)$.
+
+Assume (ii) to prove (iii). For all $x:X$, since $N_\infty(f(x))$ has choice we merely have a section to the assumed surjective map: 
+\[N_\infty(f) : N_\infty(x)\to N_\infty(f(x))\]
+This section preserves first-order neighbourhood it it induces (iii).
+
+Finally we assume (iii) to prove (i). Assume given $\epsilon:R$ such that $\epsilon^2=0$ and try to merely find a lift in:
+ \begin{center}
+      \begin{tikzcd}
+        \epsilon=0\ar[r,"\phi"]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r,"y"]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+    Since $X$ is formally smooth we have an $x:X$ such that:
+\[\prod_{p:\epsilon=0} \phi(p)=x\]
+and therefore:
+\[ \epsilon=0 \to y=f(x)\]
+This means that we can factor the square:
+ \begin{center}
+      \begin{tikzcd}
+        \epsilon=0\ar[r,"\phi"]\ar[d] & N_1(x) \ar[d]\ar[r]& X\ar[d,"f"] \\
+       1 \ar[r,"y"]\ar[ru,dashed] & N_1(f(x)) \ar[r]&Y
+      \end{tikzcd}
+    \end{center}
+    where we can find a lift because the middle arrow is surjective.
+\end{proof}
+
+\begin{corollary}
+Let $f:X\to Y$ be a map between schemes. Assume $X$ is smooth. Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item The map $f$ is smooth. 
+\item For all $x:X$, the induced map:
+\[df : T_x(X)\to T_{f(x)}(Y)\]
+is a surjective.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+By \cref{smooth-sets-map} with \cref{neighborhood-tangent-correspondence}.
+\end{proof}
+
 \subsection{Formally étale maps between sets}
 
 \begin{proposition}\label{etale-sets-map}
@@ -124,32 +192,7 @@ is an equivalence.
 \end{proposition}
 
 \begin{proof}
-Let us assume (i) to prove (ii). Since $N_\infty(x) = \sum_{y:X}\mathrm{Et}(x=y)$ this is a general property of lex modalities.
-
-Let us assume (ii) to prove (iii). Any map preserve first order neighborhood, so for any $x:X$ the equivalence:
-\[N_\infty(x)\simeq N_\infty(f(x))\]
-induces an equivalence:
-\[N_1(x)\simeq N_1(f(x))\]
-
-Let us assume (iii) to prove (i). By \cref{unramified-sets-map} we know that $f$ is formally unramified. It is enough to check that for any $\epsilon:R$ such that $\epsilon^2=0$ there merely is a lifting to any square:
- \begin{center}
-      \begin{tikzcd}
-        \epsilon=0\ar[r,"\phi"]\ar[d] & X\ar[d,"f"] \\
-       1 \ar[r,"y"]\ar[ru,dashed] & Y
-      \end{tikzcd}
-    \end{center}
-Since $X$ is formally smooth we have an $x:X$ such that:
-\[\prod_{p:\epsilon=0} \phi(p)=x\]
-and therefore:
-\[\prod_{p:\epsilon=0} y=f(x)\]
-This means that we can factor the square:
- \begin{center}
-      \begin{tikzcd}
-        \epsilon=0\ar[r,"\phi"]\ar[d] & N_1(x) \ar[d]\ar[r]& X\ar[d,"f"] \\
-       1 \ar[r,"y"]\ar[ru,dashed] & N_1(f(x)) \ar[r]&Y
-      \end{tikzcd}
-    \end{center}
-    where we can find the lifting because the middle arrow is an equivalence.
+Combine \cref{unramified-sets-map} with \cref{smooth-sets-map}.
 \end{proof}
 
 \begin{corollary}
