@@ -1,0 +1,321 @@
+\subsection{Subtypes and Logic}
+
+We use the notation $\exists_{x:X}P(x)\colonequiv \propTrunc{\sum_{x:X}P(x)}$.
+We use $+$ for the coproduct of types and for types $A,B$ we write
+\[ A\vee B\colonequiv \propTrunc{ A+B }\rlap{.}\]
+
+We will use subtypes extensively.
+
+\begin{definition}
+  \index{$\subseteq$}
+  Let $X$ be a type.
+  A \notion{subtype} of $X$ is a function $U:X\to\Prop$ to the type of propositions.
+  We write $U\subseteq X$ to indicate that $U$ is as above.
+  If $X$ is a set, a subtype may be called \notion{subset} for emphasis.
+  For subtypes $A,B\subseteq X$, we write $A\subseteq B$ as a shorthand for pointwise implication.
+\end{definition}
+
+We will freely switch between subtypes $U:X\to\Prop$ and the corresponding embeddings
+\[
+  \begin{tikzcd}
+    \sum_{x:X}U(x) \ar[r,hook] & X
+  \end{tikzcd}
+  \rlap{.}
+\]
+In particular, if we write $x:U$ for a subtype $U:X\to\Prop$, we mean that $x:\sum_{x:X}U(x)$ -- but we might silently project $x$ to $X$.
+
+\begin{definition}
+  Let $I$ and $X$ be types and $U_i:X\to\Prop$ a subtype for any $i:I$.
+  \begin{enumerate}[(a)]
+  \item The \notion{union} $\bigcup_{i:I}U_i$\index{$\bigcup_{i:I}U_i$} is the subtype $(x:X)\mapsto \exists_{i:I}U_i(x)$.
+  \item The \notion{intersection} $\bigcap_{i:I}U_i$\index{$\bigcap_{i:I}U_i$} is the subtype $(x:X)\mapsto\prod_{i:I}U_i(x)$.
+  \end{enumerate}
+\end{definition}
+
+We will use common notation for finite unions and intersections.
+The following formula hold:
+
+\begin{lemma}
+  Let $I$, $X$ be types, $U_i:X\to\Prop$ a subtype for any $i:I$ and $V,W$ subtypes of $X$.
+  \begin{enumerate}[(a)]
+  \item Any subtype $P:V\to\Prop$ is a subtype of $X$ given by $(x:X)\mapsto\sum_{x:V}P(x)$.
+  \item $V\cap \bigcup_{i:I} U_i=\bigcup (V\cap U_i)$.
+  \item If $\bigcup_{i:I}U_i=X$ we have $V=\bigcup_{i:I}U_i\cap V$.
+  \item If $\bigcup_{i:I}U_i=\emptyset$, then $U_i=\emptyset$ for all $i:I$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{definition}
+  Let $X$ be a type.
+  \begin{enumerate}[(a)]
+  \item $\emptyset\colonequiv (x:X)\mapsto \emptyset$. \index{$\emptyset$}
+  \item For $U\subseteq X$, let $\neg U\colonequiv (x:X)\mapsto \neg U(x)$. \index{$\neg U$}
+  \item For $U\subseteq X$, let $\neg\neg U\colonequiv (x:X)\mapsto \neg\neg U(x)$. \index{$\neg\neg U$}
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  $U=\emptyset$ if and only if $\neg\left(\exists_{x:X}U(x)\right)$.
+\end{lemma}
+
+\subsection{Homotopy type theory}
+
+Our truncation levels start at $-2$, so $(-2)$-types are contractible, $(-1)$-types are propositions and $0$-types are sets.
+
+\begin{definition}%
+  Let $X$ and $I$ be types.
+  A family of propositions $U_i:X\to\Prop$ \notion{covers} $X$,
+  if for all $x:X$, there merely is a $i:I$ such that $U_i(x)$.
+\end{definition}
+
+\begin{lemma}%
+  \label{kraus-glueing}
+  Let $X$ and $I$ be types.
+  For propositions $(U_i:X \to \Prop)_{i:I}$ that cover $X$ and $P:X\to \nType{0}$, we have the following glueing property: \\
+  If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
+  proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(x))$,
+  then there is a globally defined dependent function $s:(x:X) \to P(x)$,
+  such that for all $x:X$ and $i:I$ we have $U_i(x) \to s(x)=s_i(x)$
+\end{lemma}
+
+\begin{proof}
+  We define $s$ pointwise.
+  Let $x:X$.
+  Using a Lemma of Kraus\footnote{For example this is the $n=-1$ case of \cite{dagstuhl-kraus}[Theorem 2.1].}
+  and the $p_{ij}$, we get a factorization
+  \[ \begin{tikzcd}[row sep=0mm]
+    \sum_{i:I} U_i(x) \ar[rr, "s_{\pi_1(\_)}(x)"]\ar[rd] & & P(x) \\
+    & \propTrunc{\sum_{i:I} U_i(x)}_{-1}\ar[ru,dashed] &
+  \end{tikzcd} \]
+-- which defines a unique value $s(x):P(x)$.
+\end{proof}
+
+Similarly we can prove.
+
+\begin{lemma}%
+  \label{kraus-glueing-1-type}
+  Let $X$ and $I$ be types.
+  For propositions $(U_i:X \to \Prop)_{i:I}$ that cover $X$ 
+  and $P:X\to \nType{1}$, we have the following glueing property: \\
+  If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
+  proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(x))$ satsfying the cocycle
+  condition $p_{ij}\cdot p_{jk} = p_{ik}$.
+  then there is a globally defined dependent function $s:(x:X) \to P(x)$,
+  such that for all $x:X$ and $i:I$ we have $p_i:U_i(x) \to s(x)=s_i(x)$ such that $p_i\cdot p_{ij} = p_j$.
+\end{lemma}
+
+This can be generalized to $\nType{k}$ for each {\em external} $k$.
+
+The condition for $\nType{0}$ can be seen as an internal version of the usual patching {\em sheaf} condition.
+The condition for $\nType{1}$ is then the internal version of the usual patching {\em $1$-stack} condition.
+
+\subsection{Algebra}
+
+\begin{definition}%
+  A commutative ring $R$ is \notion{local} if $1\neq 0$ in $R$ and
+  if for all $x,y:R$ such that $x+y$ is invertible, $x$ is invertible or $y$ is invertible.
+\end{definition}
+
+\begin{definition}%
+  Let $R$ be a commutative ring.
+  A \notion{finitely presented} $R$-algebra is an $R$-algebra $A$,
+  such that there merely are natural numbers $n,m$ and polynomials $f_1,\dots,f_m:R[X_1,\dots,X_n]$
+  and an equivalence of $R$-algebras $A\simeq R[X_1,\dots,X_n]/(f_1,\dots,f_m)$.
+\end{definition}
+
+\begin{definition}%
+  \label{regular-element}
+  Let $A$ be a commutative ring.
+  An element $r:A$ is \notion{regular},
+  if the multiplication map $r\cdot\_:A\to A$ is injective.
+\end{definition}
+
+\begin{lemma}%
+  \label{units-products-regular}
+  Let $A$ be a commutative ring.
+  \begin{enumerate}[(a)]
+  \item All units of $A$ are regular.
+  \item If $f$ and $g$ are regular, their product $fg$ is regular.
+  \end{enumerate}
+\end{lemma}
+
+\begin{example}
+  The monomials $X^k:A[X]$ are regular.
+\end{example}
+
+\begin{lemma}%
+  \label{polynomial-with-regular-value-is-regular}
+  Let $f : A[X]$ be a polynomial
+  and $a : A$ an element
+  such that $f(a) : A$ is regular.
+  Then $f$ is regular as an element of $A[X]$.
+\end{lemma}
+
+\begin{proof}
+  After a variable substitution $X \mapsto X + a$
+  we can assume that $f(0)$ is regular.
+  Now let $g : A[X]$ be given with $fg = 0$.
+  Then in particular $f(0) g(0) = 0$,
+  so $g(0) = 0$.
+  By induction,
+  all coefficients of $g$ vanish.
+\end{proof}
+
+\begin{definition}
+  Let $A$ be a ring and $f:A$.
+  Then $A_{f}$ denotes the \notion{localization} of $A$ at $f$,
+  i.e. a ring $A_f$ together with a homomorphism $A\to A_f$,
+  such that for all homomorphisms $\varphi:A\to B$ such that
+  $\varphi(f)$ is invertible, there is a unique homomorphism as indicated in the diagram:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[rd,"\varphi",swap] & A_f\ar[d,dashed] \\
+      & B
+    \end{tikzcd}
+    \rlap{.}
+  \end{center}
+  For $a:A$, we denote the image of $a$ in $A_f$ as $\frac{a}{1}$ and the inverse of $f$ as $\frac{1}{f}$.
+\end{definition}
+
+\begin{lemma}%
+  \label{fg-ideal-local-global}
+  Let $A$ be a commutative ring and $f_1,\dots,f_n:A$.
+  For finitely generated ideals $I_i\subseteq A_{f_i}$,
+  such that $A_{f_if_j}\cdot I_i=A_{f_if_j}\cdot I_j$ for all $i,j$,
+  there is a finitely generated ideal $I\subseteq A$,
+  such that $A_{f_i}\cdot I=I_i$ for all $i$.
+\end{lemma}
+
+\begin{proof}
+  Choose generators 
+  \[ \frac{g_{i1}}{1},\dots,\frac{g_{ik_i}}{1} \]
+  for each $I_i$.
+  These generators will still generate $I_i$, if we multiply any of them with any power of the unit $\frac{f_i}{1}$.
+  Now
+  \[ A_{f_if_j}\cdot I_i\subseteq A_{f_if_j}\cdot I_j \]
+  means that for any $g_{ik}$, we have a relation
+  \[ (f_if_j)^l g_{ik}=\sum_{l}h_{l}g_{jl}\]
+  for some power $l$ and coefficients $h_{l}:A$.
+  This means, that $f_i^lg_{ik}$ is contained in $I_j$.
+  Multiplying $f_i^lg_{ik}$ with further powers of $f_i$ or multiplying $g_{jl}$ with powers of $f_j$ does not change that.
+  So we can repeat this for all $i$ and $k$ to arrive at elements $\tilde{g_{ik}}:A$,
+  which generate an ideal $I\subseteq A$ with the desired properties.
+\end{proof}
+
+The following definition also appears as \cite{ingo-thesis}[Definition 18.5]
+and a version restricted to external finitely presented algebras was already used by Anders Kock in \cite{kock-sdg}[I.12]:
+
+\begin{definition}
+  \label{spec}
+  The \notion{(synthetic) spectrum}\index{$\Spec A$} of a finitely presented $R$-algebra $A$
+  is the set of $R$-algebra homomorphisms from $A$ to $R$:
+  \[ \Spec A \colonequiv \Hom_{\Alg{R}}(A, R) \]
+\end{definition}
+
+The construction is functorial:
+
+\begin{definition}
+  \label{spec-on-maps}
+  For an algebra homomorphism $f:\Hom_{\Alg{R}}(A,B)$
+  between finitely presented $R$-algebras $A$ and $B$,
+  we write \notion{$\Spec f$} for the map from $\Spec B$ to $\Spec A$
+  given by precomposition with $f$.
+\end{definition}
+
+\begin{definition}%
+  \label{standard-open-subset}
+  Let $A$ be a finitely presented $R$-algebra.
+  For $f:A$, the \notion{standard open subset} given by $f$,
+  is the subtype 
+  \[
+    D(f)\colonequiv (x:\Spec A)\mapsto (x(f)\text{ is invertible})
+    \rlap{.}
+  \]
+\end{definition}
+
+later, we will use the following more general and related definitions:
+
+\begin{definition}
+  \label{open-closed-affine-subsets}
+  Let $A$ be a finitely presented $R$-algebra.
+  For $n:\N$ and $f_1,\dots,f_n:A$, there are
+  \begin{enumerate}[(i)]
+  \item the ``open'' subset
+    \[
+      D(f_1,\dots,f_n)\colonequiv (x:\Spec A)\mapsto (\text{$\exists_i$ such that $x(f_i)$ is invertible})
+    \]  
+  \item the ``closed'' subset
+    \[
+      V(f_1,\dots,f_n)\colonequiv (x:\Spec A)\mapsto (\forall_i\ x(f_i)=0)
+    \]  
+  \end{enumerate}
+  It will be made precise in \Cref{topology-of-schemes}, in which sense these subsets are open or closed.
+\end{definition}
+
+We will later also need the notion of a \emph{Zariski-Cover} of a spectrum $\Spec A$,
+for some finitely presented $R$-algebra $A$.
+Intuitively, this is a collection of standard opens which jointly cover $\Spec A$.
+Since it is more practical, we will however stay on the side of algebras.
+A finite list of elements $f_1,\dots,f_nA$ yields a Zariski-Cover,
+if and only if they are a \emph{unimodular vector}:
+
+\begin{definition}
+  \label{unimodular}
+  Let $A$ be a finitely presented $R$-algebra.
+  Then a list $f_1,\dots,f_n:A$ of elements of $A$ is called \notion{unimodular}
+  if we have an identity of ideals $(f_1,\dots,f_n)=(1)$.
+  We use $\Um(A)$\index{$\Um(A)$} to denote the type of unimodular sequences in $A$:
+  \[
+    \Um(A)\colonequiv \sum_{n:\N}\sum_{f_1,\dots,f_n:A} (f_1,\dots,f_n)=(1)
+    \rlap{.}
+  \]
+  We will sometimes drop the natural number and the equality and just write $(f_1,\dots,f_n):\Um(A)$.
+\end{definition}
+
+\begin{definition}
+  $\AbGroup$\index{$\AbGroup$} denotes the type of abelian groups.
+\end{definition}
+
+\begin{lemma}%
+  \label{surjective-abgroup-hom-is-cokernel}
+  Let $A,B:\AbGroup$ and $f:A\to B$ be a homomorphism of abelian groups.
+  Then $f$ is surjective, if and only if, it is a cokernel.
+\end{lemma}
+
+\begin{proof}
+  A cokernel is a set-quotient by an effective relation,
+  so the projection map is surjective.
+  On the other hand, if $f$ is surjective and we are in the situation:
+  \begin{center}
+    \begin{tikzcd}
+      \ker(f)\ar[r,hook]\ar[dr] & A\ar[r,"f",->>]\ar[dr,"g"] & B \\
+      & 0\ar[r] & C
+    \end{tikzcd}
+  \end{center}
+  then we can construct a map $\varphi:B\to C$ as follows.
+  For $x:B$, we define the type of possible values $\varphi(x)$ in $C$ as
+  \[
+    \sum_{z:C}\exists_{y:A}(f(y)=x) \wedge g(y)=z
+  \]
+  which is a proposition by algebraic calculation.
+  By surjectivity of $f$, this type is inhabited and therefore contractible.
+  So we can define $\varphi(x)$ as its center of contraction.
+\end{proof}
+
+\ignore{
+    - injective/embedding/-1-truncated map
+  pushouts:
+    - inclusions are jointly surjective,
+    - pushouts of embeddings between sets are sets
+  subtypes:
+    - embeddings (composition, multiple definitions, relation to injection)  
+    - we freely switch between predicates and types
+    - subtypes of subtypes are subtypes
+  pullbacks:
+    - pasting (reference)
+    - pullback of subtype = composition
+  algebra:
+    - free comm algebras, quotients
+    - other definitions of polynomials
+    - fp closed under: quotients, adjoining variables, tensor products
+}

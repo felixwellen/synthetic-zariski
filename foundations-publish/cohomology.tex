@@ -1,0 +1,710 @@
+In non-synthetic algebraic geometry,
+the structure sheaf~$\mathcal{O}_X$ is part of the data constituting a scheme~$X$.
+In our internal setting,
+the scheme $X$ is just a set without any additional data,
+but when we want to consider the structure sheaf as an object in its own right,
+then we can represent it by the trivial bundle
+that assings to every point $x : X$ the set $R$.
+Indeed, for an affine scheme $X = \Spec A$,
+taking the sections of this bundle over a basic open $D(f) \subseteq X$
+\[ \left(\prod_{x : D(f)} R\right) = (D(f) \to R) = A[f^{-1}] \]
+yields the localizations of the ring $A$
+expected from the structure sheaf $\mathcal{O}_X$.
+More generally,
+instead of sheaves of abelian groups, $\mathcal{O}_X$-modules, etc.,
+we will consider bundels of abelian groups, $R$-modules, etc.,
+in the form of maps from $X$ to the respective type of algebraic structures.
+
+\subsection{Quasi-coherent bundles}
+
+Sometimes we want to ``apply'' a bundle to a subtype,
+like sheaves can be evaluated on open subspaces
+and introduce the common notation ``$M(U)$'' for that below.
+It is, however, not justified to expect, that this application
+and the corresponding theory of ``sheaves'' is ``the same'' as the external one,
+since the definition below uses the internal hom ``$\prod$''
+-- where the corresponding external construction, would be the set of continuous sections of a bundle.
+
+\begin{definition}
+  \index{$M(U)$}
+  \label{application-of-bundle-to-subtype}
+  Let $X$ be a type and $M:X\to \Mod{R}$ a dependent module.
+  Let $U\subseteq X$ be any subtype.
+  \begin{enumerate}[(a)]
+  \item We write:
+    \[
+      M(U)\colonequiv \prod_{x:U}M_x
+      \rlap{.}
+    \]
+  \item With pointwise structure, $U\to R$ is an $R$-algebra
+    and $M(U)$ is a $(U\to R)$-module.
+  \end{enumerate}
+\end{definition}
+
+Somewhat surprisingly, localization of modules $M(U)$
+can be done pointwise:
+
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{module-bundle-localization-pointwise}
+  Let $X$ be a scheme and $M:X\to \Mod{R}$ a dependent module.
+  For any $f:X\to R$, there is an equality
+  \[
+    M(X)_f=\prod_{x:X}(M_x)_{f(x)}
+  \]
+  of $(X\to R)$-modules.
+\end{lemma}
+
+\begin{proof}
+First we construct a map, by realizing that the following is well-defined:
+\[
+  \frac{m}{f^k}\mapsto\left(x\mapsto \frac{m(x)}{f(x)^k}\right)
+\]
+So let $\frac{m}{f^k}=\frac{m'}{f^{k'}}$,
+i.e. let there be an $l:\N$ such that $f^l(mf^{k'}-m'f^k)=0$.
+But then we can choose the same $l:\N$ for each $x:X$
+and apply the equation to each $x:X$.
+
+We will now show, that the map we defined is an embedding.
+So let $g,h:M(X)_f$ such that $p:\prod_{x:X}g(x)=_{(M_x)_{f(x)}}h(x)$.
+Let $m_g,m_h:\prod_{x:X} M_x$ and $k_g,k_h:\N$ such that
+\[
+  g=\frac{m_g}{f^{k_g}} \quad\text{and}\quad h=\frac{m_h}{f^{k_h}}
+  \rlap{.}
+\]
+From $p$ we know $\prod_{x:X}\exists_{k_x:\N}f(x)^{k_x}(m_g(x)f(x)^{k_h}-m_h(x)f(x)^{k_g})=0$.
+By \Cref{strengthened-boundedness},
+we find one $k : \N$ with
+\[
+  \prod_{x:X}f(x)^{k}(m_g(x)f(x)^{k_h}-m_h(x)f(x)^{k_g})=0
+\]
+--- which shows $g=h$.
+
+It remains to show that the map is surjective.
+So let $\varphi:\prod_{x:X}(M_x)_{f(x)}$ and
+note that
+\[
+  \prod_{x:X}
+  \exists_{k_x:\N,m_x:M_x}.
+  \varphi(x)=\frac{m_x}{f(x)^{k_x}}
+  \rlap{.}
+\]
+By \Cref{strengthened-boundedness} and \Cref{zariski-choice-scheme},
+we get $k:\N$, an affine open cover $U_1,\dots,U_n$ of $X$ and $m_i:(x : U_i)\to M_x$
+such that for each $i$ and $x:U_i$ we have
+\[
+  \varphi(x)=\frac{m_i(x)}{f(x)^{k}}
+  \rlap{.}
+\]
+The problem is now to construct a global $m:(x:X)\to M_x$ from the $m_i$.
+We have
+\[
+    \prod_{x:U_{ij}}\frac{m_i(x)}{f(x)^k}=\varphi(x)=\frac{m_j(x)}{f(x)^k}
+\]
+meaning there is pointwise an exponent $t_x:\N$,
+such that $f(x)^{t_x}m_i(x)=f(x)^{t_x}m_j(x)$.
+By \Cref{strengthened-boundedness},
+we can find a single $t:\N$ with this property and define
+\[
+  \tilde{m}_i(x) \colonequiv f(x)^t m_i(x)
+  \rlap{.}
+\]
+Then we have $\tilde{m}_i(x)=\tilde{m}_j(x)$ on all intersections $U_{ij}$,
+which is what we need to get a global $m:(x:X)\to M_x$ from \Cref{kraus-glueing}.
+Since $\varphi(x)=\frac{f(x)^t m_i(x)}{f(x)^{t+k}}=\frac{\tilde{m}_i(x)}{f(x)^{t+k}}$
+for all $i$ and $x : U_i$,
+we have found a preimage of $\varphi$ in $M(X)_f$.
+\end{proof}
+
+We will need the following algebraic observation:
+
+\begin{remark}%
+  \label{localization-to-module-if-non-zero}
+  Let $M$ be an $R$-module and $A$ a finitely presented $R$-algebra,
+  then there is an $R$-linear map
+  \[
+    M\otimes A\to M^{\Spec A}
+  \]
+  induced by mapping $m\otimes f$ to $x\mapsto x(f)\cdot m$.
+  In particular, for any $f:R$, there is a
+  \[
+    M_f\to M^{D(f)}
+    \rlap{.}
+  \]
+  The map $M\otimes A\to M^{\Spec A}$ is natural in $M$.
+\end{remark}
+
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{localization-to-restriction}                    
+  Let $X$ be a scheme, $M:X\to\Mod{R}$, $U\subseteq X$ open and $f:A$.
+  Then there is an $R$-linear map
+  \[
+    M(U)_f \to M(D(f)) 
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  Combining \Cref{module-bundle-localization-pointwise}
+  and pointwise application of \Cref{localization-to-module-if-non-zero} we get
+  \[
+    M(U)_f=\left(\prod_{x:U}(M_x)_{f(x)}\right)\to \left(\prod_{x:U}(M_x)^{D(f(x))}\right)
+    =\left(\prod_{x:D(f)}M_x\right)
+    =M(D(f))
+  \]
+\end{proof}
+
+A characterization of quasi coherent sheaves in the little Zariski-topos was found with \cite{ingo-thesis}[Theorem 8.3].
+This characterization is similar to our following definition of weak quasi-coherence,
+which will provide us with an abelian subcategory of the $R$-module bundles over a scheme,
+where we can show that higher cohomology vanishes if the scheme is affine.
+
+\begin{definition}
+  \label{weakly-quasi-coherent-module}
+  An $R$-module $M$ is \notion{weakly quasi-coherent},
+  if for all $f:R$, the canonical homomorphism
+  \[
+    M_f\to M^{D(f)}
+  \]
+  from \Cref{localization-to-module-if-non-zero} is an equivalence.
+  We denote the type of weakly quasi-coherent $R$-modules
+  with $\Mod{R}_{wqc}$\index{$\Mod{R}_{wqc}$}.
+\end{definition}
+
+\begin{lemma}
+  \label{kernel-wqc}
+  For any $R$-linear map $f:M\to N$ of weakly quasi-coherent modules $M$ and $N$,
+  the kernel of $f$ is weakly quasi-coherent.
+\end{lemma}
+
+\begin{proof}
+  Let $K\to M$ be the kernel of $f$.
+  For any $f:R$, the map $K^{D(f)}\to M^{D(f)}$ is the kernel of $M^{D(f)}\to N^{D(f)}$.
+  The latter map is equal to $M_f\to N_f$ by weak quasi-coherence of $M$ and $N$
+  and $K_f\to M_f$ is the kernel of $M_f\to N_f$.
+  Let the vertical maps in
+  \begin{center}
+    \begin{tikzcd}
+      K_f\ar[r]\ar[d] & M_f\ar[r]\ar[d,"\simeq"] & N_f\ar[d,"\simeq"] \\
+      K^{D(f)}\ar[r] & M^{D(f)}\ar[r] & N^{D(f)}
+    \end{tikzcd}
+  \end{center}
+  be the canonical maps from \Cref{localization-to-module-if-non-zero}.
+  The squares commute because of the naturality of the vertical maps.
+  Then the map $K_f\to K^{D(f)}$ is an isomorphism,
+  because by commutativity, it is equal to the induced map between the kernels $K_f$ and $K^{D(f)}$,
+  which has to be an isomorphism, since it is induced by an isomorphism of diagrams.
+\end{proof}
+
+\begin{definition}%
+  \label{weakly-quasi-coherent-bundle}
+  Let $X$ be a scheme.
+  A weakly quasi-coherent bundle on $X$, is a map $M:X\to \Mod{R}_{wqc}$.
+\end{definition}
+
+An immediate consequence is, that
+weakly quasi coherent dependent modules have
+the property that ``restricting is the same as localizing'':
+
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
+  \label{weakly-quasi-coherent-open-localization}
+  Let $X$ be a scheme and $M:X\to \Mod{R}$ weakly quasi-coherent,
+  then for all open $U\subseteq X$ and $f:U\to R$
+  the canonical morphism
+  \[
+    M(U)_f\to M(D(f))
+  \]
+  is an equivalence.
+\end{lemma}
+
+\begin{proof}
+  By construction of the canonical map from \Cref{localization-to-restriction}.
+\end{proof}
+
+Let us look at an example.
+
+\begin{proposition}%
+  \label{fp-algebra-bundle-is-quasi-coherent}
+  Let $X$ be a scheme and $C:X\to \Alg{R}_{fp}$.
+  Then $C$, as a bundle of $R$-modules, is weakly quasi coherent.
+\end{proposition}
+
+\begin{proof}
+  Then for any $f:R$ and $x:X$, using \Cref{algebra-valued-functions-on-affine}, we have
+  \[
+    (C_x)_f=C_x\otimes_R R_f=(\Spec R_f \to C_x)=(D(f)\to C_x)={C_x}^{D(f)}
+    \rlap{.}
+  \]
+\end{proof}
+
+For examples of non weakly quasicoherent modules,
+see \Cref{non-wqc-module-family}
+and \Cref{RN-non-wqc}.
+
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{weakly-quasi-coherent-pi}
+  Let $X$ be an affine scheme and $M_x$ a weakly quasi-coherent $R$-module for any $x:X$,
+  then
+  \[
+    \prod_{x:X}M_x
+  \]
+  is a weakly quasi-coherent $R$-module.
+\end{lemma}
+
+\begin{proof}
+  We need to show:
+  \[
+    \left(\prod_{x:X}M_x\right)_f=\left(\prod_{x:X}M_x\right)^{D(f)}
+  \]
+  for all $f:R$.
+  By weak \Cref{module-bundle-localization-pointwise}, quasi-coherence
+  and \Cref{weakly-quasi-coherent-open-localization}
+  we know:
+  \[
+    \left(\prod_{x:X}M_x\right)_f
+    =\prod_{x:X}\left(M_x\right)_{f(x)}
+    =\prod_{x:X}\left(M_x\right)^{D(f)}
+    =\left(\prod_{x:X}M_x\right)^{D(f)}
+    \rlap{.}
+  \]
+\end{proof}
+
+Quasi-coherent dependent modules turn out to have very good properties,
+which are to be expected from what is known about their external counterparts.
+We will show below, that quasi coherence is preserved by the following constructions:
+
+\begin{definition}
+  \label{pullback-push-forward}
+  Let $X,Y$ be types and $f:X\to Y$ be a map.
+  \begin{enumerate}[(a)]
+  \item \index{$f^*M$} For any dependent module $N:Y\to\Mod{R}$,
+    the \notion{pullback} or \notion{inverse image} is the dependent module
+    \[
+      f^*N\colonequiv (x:X) \mapsto M_{f(x)}\rlap{.}
+    \]
+  \item \index{$f_*M$} For any dependent module $M:X\to\Mod{R}$,
+    the \notion{push-forward} or \notion{direct image} is the dependent module
+    \[
+      f_*M\colonequiv (y:Y) \mapsto \prod_{x:\fib_f(y)}M_{\pi_1(x)}\rlap{.}
+    \]
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{pullback-push-forward-qcoh}
+  Let $X,Y$ be schemes and $f:X\to Y$ be a map.
+  \begin{enumerate}[(a)]
+  \item For any weakly quasi-coherent dependent module $N:Y\to\Mod{R}$,
+    the inverse image $f^*N$ is weakly quasi-coherent.
+  \item For any weakly quasi-coherent dependent module $M:X\to\Mod{R}$,
+    the direct image $f_*M$ is weakly quasi-coherent.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \begin{enumerate}[(a)]
+  \item There is nothing to do, when we use the pointwise definition of weak quasi-coherence. 
+  \item We need to show, that
+    \[
+      \prod_{x:\fib_f(y)}M_{\pi_1(x)}
+    \]
+    is a weakly quasi-coherent $R$-module.
+    By \Cref{fiber-product-scheme},
+    the type $\fib_f(y)$ is a scheme.
+    So by \Cref{weakly-quasi-coherent-pi},
+    the module in question is weakly quasi-coherent.
+  \end{enumerate}
+\end{proof}
+
+With a non-cyclic forward reference to a cohomological result,
+there is a short proof of the following:
+
+\begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  Let $f:M\to N$ be an $R$-linear map of weakly quasi-coherent $R$-modules $M$ and $N$,
+  then the cokernel $N/M$ is weakly quasi-coherent.
+\end{proposition}
+
+\begin{proof}
+  We will first show, that for an $R$-linear embedding $m:M\to N$
+  of weakly quasi-coherent $R$-modules $M$ and $N$,
+  the cokernel $N/M$ is weakly quasi-coherent.
+  We need to show:
+  \[
+    (N/M)_f=(N/M)^{D(f)}.
+  \]
+  By algebra: $(N/M)_f=N_f/M_f$.
+  This means we are done, if $(N/M)^{D(f)}=N^{D(f)}/{M^{D(f)}}$.
+  To see this holds, let us consider $0\to M\to N\to N/M\to 0$ as a short exact sequence of dependent modules,
+  over the subtype of the point $D(f)\subseteq 1=\Spec R$.
+  Then, taking global sections, by \Cref{cohomology-les},
+  we have an exact sequence
+  \[
+    0\to M^{D(f)}\to N^{D(f)}\to (N/M)^{D(f)}\to H^1(D(f),M)
+  \]
+  -- but $D(f)=\Spec R_f$ is affine,
+  so the last term is 0 by \Cref{H1-wqc-module-affine-trivial}
+  and $(N/M)^{D(f)}$ is the cokernel $N^{D(f)}/M^{D(f)}$.
+
+  Now we will show the statement for a general $R$-linear map $f:M\to N$.
+  By algebra, the cokernel of $f$ is the same as the cokernel of the induced map
+  $M/K\to N$, where $K$ is the kernel of $f$.
+  By \Cref{kernel-wqc}, $K$ is weakly quasi-coherent, so by the proof above,
+  $M/K$ is weakly quasi-coherent.
+  $M/K\to N$ is an embedding, so again by the proof above, its cokernel is weakly quasi-coherent.
+\end{proof}
+
+\subsection{Finitely presented bundles}
+
+We now investigate the relationship between bundles of $R$-modules on $X = \Spec A$
+and $A$-modules.
+
+\begin{proposition}
+  Let $A$ be a finitely presented $R$-algebra.
+  There is an adjunction
+  \[ \begin{tikzcd}[row sep=tiny]
+    M \ar[r, mapsto] & {(M \otimes x)}_{x : \Spec A} \\
+    \Mod{A} \ar[r, shift left=2] \ar[r, phantom, "\rotatebox{90}{$\vdash$}"] &
+    \Mod{R}^{\Spec A} \ar[l, shift left=2] \\
+    \prod_{x : \Spec A} N_x & N \ar[l, mapsto]
+  \end{tikzcd} \]
+  between the category of $A$-modules
+  and the category of bundles of $R$-modules on $\Spec A$.
+\end{proposition}
+
+For an $A$-module $M$,
+the unit of the adjunction is:
+\begin{align*}
+  \eta_M : M &\to \prod_{x : \Spec A} (M \otimes x) \\
+  m &\mapsto (m \otimes 1)_{x : \Spec A}
+\end{align*}
+
+\begin{example}[using \axiomref{sqc}, \axiomref{loc}]
+  It is not the case that
+  for every finitely presented $R$-algebra $A$
+  and every $A$-module $M$
+  the map $\eta_M$ is injective.
+\end{example}
+
+\begin{proof}
+  \cite{topology-draft}.
+\end{proof}
+
+\begin{theorem}%
+  \label{fp-module}
+  Let $X=\Spec(A)$ be affine and
+  let a bundle of finitely presented $R$-modules $M : X\to \fpMod{R}$ be given.
+  Then the $A$-module
+  \[ \tilde{M}\coloneqq\prod_{x:X}M_x \]
+  is finitely presented and for any $x:X$ the $R$-module $\tilde{M}\otimes_A R$ is $M_x$.
+  Under this correspondence, localizing $\tilde{M}$ at $f:A$ corresponds to restricting $M$ to $D(f)$.
+\end{theorem}
+
+\subsection{Cohomology on affine schemes}
+
+\begin{definition}%
+  \label{torsor}
+  Let $X$ be a type and $A:X\to \AbGroup$ a map to the type of abelian groups.
+  For $x:X$ let $T_x$ be a set with an $A_x$ action.
+  \begin{enumerate}[(a)]
+  \item $T$ is an \notion{$A$-pseudotorsor}, if the action is free and transitive for all $x:X$.
+  \item $T$ is an \notion{$A$-torsor}, if it is an $A$-pseudotorsor and
+    \[ \prod_{x:X} \propTrunc{ T_x } \rlap{.}\]
+  \item We write $\Tors{A}(X)$ for the type of $A$-torsors on $X$.
+  \end{enumerate}
+\end{definition}
+
+Torsors on a point are a concrete implementaion of first deloopings:
+
+\begin{definition}
+  \label{delooping}
+  Let $n:\N$.
+  A $n$-th \notion{delooping}\index{$K(A,n)$} of an abelian group $A$,
+  is a pointed, $(n-1)$-connected, $n$-truncated type $K(A,n)$,
+  such that $\Omega^nK(A,n)=_{\AbGroup}A$.
+\end{definition}
+
+For any abelian group and any $n$, a delooping $K(A,n)$ exists by \cite{licata-finster}.
+Deloopings can be used to represent cohomology groups by mapping spaces.
+This is usually done in homotopy type theory to study higher inductive types, such as spheres and CW-complexes,
+but the same approach works for internally representing sheaf cohomology,
+which is the intent of the following definition:
+
+\begin{definition}
+  \label{cohomology}
+  Let $X$ be a type and $\mathcal F:X\to\AbGroup$ a dependent abelian group.
+  The $n$-th cohomology group of $X$ with coefficients in $\mathcal F$ is
+  \[
+    H^n(X,\mathcal F)\colonequiv \left\propTrunc{\prod_{x:X}K(\mathcal F,n)\right}_0\rlap{.}
+  \]
+\end{definition}
+
+\begin{theorem}%
+  \label{cohomology-les}
+  Let $\mathcal F,\mathcal G,\mathcal H:X\to \AbGroup$ be such that for all $x:X$,
+  \[
+    0\to \mathcal F_x\to\mathcal G_x\to\mathcal H_x\to 0
+  \]
+  is an exact sequence of abelian groups. Then there is a long exact sequence:
+  \begin{center}
+    \begin{tikzcd}
+      & \dots\ar[r] & H^{n-1}(X,\mathcal H)\ar[dll] \\
+      H^n(X,\mathcal F)\ar[r] & H^n(X,\mathcal G)\ar[r] & H^n(X,\mathcal H)\ar[dll] \\
+      H^{n+1}(X,\mathcal F)\ar[r] & \dots &
+    \end{tikzcd}
+  \end{center}
+\end{theorem}
+
+\begin{proof}
+  By applying the long exact homotopy fiber sequence.
+\end{proof}
+
+The following is an explicit formulation of the fact, that the Čech-Complex for an
+$\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact in degree 1.
+\begin{lemma}%
+  \label{H1-algebra}
+  Let $M$ be a module over a commutative ring $A$, $F_1,\dots,F_l$ a coprime system on $A$
+  and for $i,j\in\{1,\dots,l\}$, let $s_{ij} : F_i^{-1} F_j^{-1} M$ such that:
+  \[ s_{jk}-s_{ik}+s_{ij}=0 \rlap{.}\]
+  Then there are $u_i:F_i^{-1}M$ such that $s_{ij}=u_j - u_i$.
+\end{lemma}
+
+\begin{proof}
+  Let $s_{ij}=\frac{m_{ij}}{f_i f_j}$ with $m_{ij}:M$, $f_i:F_i$ and $f_j:F_j$ such that:
+  \[ f_i\cdot m_{jk}-f_j\cdot m_{ik}+f_k\cdot m_{ij}=0 \rlap{.}\]
+  Let $r_i$ such that $\sum r_i f_i =1$.
+  Then for
+  \[ u_i \coloneqq -\sum_{k=1}^l\frac{r_k}{f_i}m_{ik} \]
+  we have:
+  \begin{align*}
+      u_j-u_i &= -\sum_{k=1}^l\frac{r_k}{f_j}m_{jk} + \sum_{k=1}^l\frac{r_k}{f_i}m_{ik} \\
+              &= -\sum_{k=1}^l\frac{r_k}{f_j f_i}f_i m_{jk} + \sum_{k=1}^l\frac{r_k}{f_i f_j} f_j m_{ik} \\
+              &= \sum_{k=1}^l\frac{r_k}{f_j f_i}(-f_i m_{jk} + f_j m_{ik}) \\
+              &= \sum_{k=1}^l\frac{r_k}{f_j f_i}f_k m_{ij} \\
+              &= \frac{m_{ij}}{f_i f_j}
+  \end{align*}
+  \ %
+\end{proof}
+
+\begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{H1-wqc-module-affine-trivial}
+  For any affine scheme $X=\Spec(A)$ and coefficients $M: X\to \Mod{R}_{wqc}$, we have
+  \[ H^1(X,M)=0 \rlap{.} \]
+\end{theorem}
+
+\begin{proof}
+  We need to show, that any $M$-torsor $T$ on $X$ is merely equal to the trivial torsor $M$,
+  or equivalently show the existence of a section of $T$.
+  We have
+  \[ \prod_{x:X}\propTrunc{ T_x }\]
+  and therefore, by (\axiomref{Z-choice}),
+  there merely are $f_1,\dots,f_l:A$,
+  such that the $U_i\coloneqq \Spec(A_{f_i})$ cover $X$ and
+  there are local sections
+  \[ s_i:\prod_{x:U_i}T_x\]
+  of $T$. Our goal is to construct a matching family from the $s_i$.
+  On intersections, let $t_{ij}\coloneqq s_i-s_j$ be the difference, so $t_{ij}:(x : U_i\cap U_j) \to M_x$.
+  By \Cref{weakly-quasi-coherent-open-localization} equivalently,
+  we have $t_{ij}:M(U_{i}\cap U_j)_{f_i f_j}$.
+  Since the $t_{ij}$ were defined as differences,
+  the condition in \Cref{H1-algebra} is satisfied and we get
+  $u_i:M(U_i)_{f_i}$, such that $t_{ij}=u_i-u_j$.
+  So we merely have a matching family $\tilde{s}_i\coloneqq s_i-u_i$ and therefore, using Lemma \ref{kraus-glueing} merely a section of $T$.
+\end{proof}
+
+A similar result is provable for $H^2(X,M)$ using the same approach.
+There is an extension of this result to general $n$ in work in progress \cite{chech-draft}.
+
+\subsection{Čech-Cohomology}
+
+In this section, let $X$ be a type, $U_1,\dots,U_n\subseteq X$ open subtypes that cover $X$
+and $\mathcal F:X\to \AbGroup$ a dependent abelian group on $X$.
+We start by repeating the classical definition of \v{C}hech-Cohomology groups for a given cover.
+
+\begin{definition}%
+  \label{chech-complex}
+  \begin{enumerate}[(a)]
+  \item \index{$\mathcal F(U)$} For open $U\subseteq X$, we use the notation from \Cref{application-of-bundle-to-subtype}:
+    \[
+      \mathcal F(U)\colonequiv \prod_{x:U}\mathcal F_x\rlap{.}
+    \]
+  \item For $s:\mathcal F(U)$ and open $V\subseteq U$ we use the notation $s\colonequiv s_{|V} \colonequiv (x:V)\mapsto s_x$.
+  \item \index{$U_{i_1\dots i_l}$}For a selection of indices $i_1,...,i_l:\{1,\dots,n\}$, we use the notation
+    \[
+      U_{i_1\dots i_l}\colonequiv U_{i_1}\cap\dots\cap U_{i_l}\rlap{.}
+    \]
+  \item For a list of indices $i_1,\dots,i_l$, let $i_1,\dots,\hat{i_t},\dots,i_l$ be the same list with the $t$-th element removed.
+  \item For $k:\Z$, the $k$-th \notion{Čech-boundary operator}\index{$\partial^k$} is the homomorphism
+    \[
+      \partial^k:\bigoplus_{i_0,\dots,i_k}\mathcal F(U_{i_0\dots i_k})\to \bigoplus_{i_0,\dots,i_{k+1}}\mathcal F(U_{i_0\dots i_{k+1}})
+    \]
+    given by $\partial^k(s)\colonequiv (l_0,\dots,l_{k+1}) \mapsto \sum_{j=0}^k (-1)^j s_{l_0,\dots,\hat{l_j},\dots,l_k|U_{l_0,\dots,l_{k+1}}}$.
+  \item The $k$-th \notion{Čech-Cohomology group} for the cover $U_1,\dots,U_n$ with coefficients in $\mathcal F$ is
+    \[
+      \check{H}^k(\{U\},\mathcal F)\colonequiv \ker\partial^{k} / \im(\partial^{k-1})\rlap{.}
+    \]
+  \end{enumerate}
+\end{definition}
+
+It is possible to construct a torsor from a \v{c}ech cocycle:
+
+\begin{lemma}%
+  \label{deligne-construction}
+  Let $A$ be an abelian group and $L$ a type with $\propTrunc{L}$.
+  Let us call $c:(i,j:L)\to A$ a $L$-cocycle, if $c_{ij}+c_{jk}=c_{ik}$ for all $i,j,k:L$.
+  Then there is a bijection:
+  \[
+    \left((T:\text{$A$-torsor})\times T^L\right) \to \text{$L$-cocylces}
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  Let us first check, that the left side is a set.
+  Let $(T,u),(T',u'):(T:\text{$A$-torsor})\times T^L$,
+  then $(T,u)=(T',u')$ is equivalent to $(e:T\cong T')\times ((i:L)\to e(u_i)=u'_i)$.
+  But two maps $e$ with this property are equal,
+  since a map between torsors is determined by the image of a single element and $L$ is inhabited.
+  
+  Assume now $(T,u):(T:\text{$A$-torsor})\times T^L$ to construct the map.
+  Then $c_{ij}\colonequiv u_i-u_j$ defines an $L$-cocycle,
+  because
+  \[
+    u_i-u_j + u_j-u_k = u_i-u_k
+    \rlap{.}
+  \]
+  This defines an embedding: Assume $(T,u)$ and $(T',u')$ define the same $L$-cocycle,
+  then $u_i-u_j=u'_i-u'_j$ for all $i,j:L$.
+  We want to show a proposition, so we can assume there is $i:L$ and use that to get a map $e:T\to T'$
+  that sends $u_i$ to $u'_i$.
+  But then we also have
+  \[
+    e(u_j)=e(u_j-u_i+u_i)=e(u'_j-u'_i+u_i)=u'_j-u'_i+e(u_i)=u'_j-u'_i+u'_i=u'_j
+  \]
+  for all $j:L$, wich means $(T,u)=(T',u')$.
+    
+  Now let $c$ be an $L$-cocylce.
+  Following \cite{Deligne91}[Section 5.2], we can define a preimage-candidate:
+  \[
+    T_c\colonequiv \{u:A^L\mid u_i-u_j=c_{ij}\}
+    \rlap{.}
+  \]
+  $A$ acts on $T_c$ pontwise, since $(a+u_i)-(a+u_j)=u_i-u_j=c_{ij}$ for all $a:A$.
+  
+  To show that $T_c$ is inhabited,
+  we may assume $i_0:L$.
+  Then we define $u_i\colonequiv -c_{i_0i}$ to get $u_i-u_j=-c_{i_0i}+c_{i_0j}=c_{ij}$.
+
+  Now $c$ is of type $(A^L)^L=A^{L\times L}$, so we have an element of the left hand side.
+  Applying the map constructed above yields a cocycle
+  \[
+    \tilde{c}_{ij}=(k\mapsto c_{ki})-(k\mapsto c_{kj})=(k\mapsto c_{ki}-c_{kj})=(k\mapsto c_{kj}+c_{ji}-c_{kj})=(k\mapsto c_{ji})
+  \]
+  -- so $(T_c,c)$ is a preimage of $c_{ij}$.
+\end{proof}
+
+\begin{definition}
+  The cover $U_1,\dots,U_n$ is called \notion{r-acyclic} for $\mathcal F$,
+  if we have the following triviality of higher (non Čech) cohomology groups:
+  \[
+    \forall r\geq l>0\forall i_0,\dots,i_{r-l}. H^l(U_{i_0,\dots,i_{r-l}},\mathcal F)=0\rlap{.}
+  \]
+\end{definition}
+
+\begin{example}
+  If $X$ is a scheme, $U_1,\dots,U_n$ a cover by affine open subtypes
+  and $\mathcal F$ pointwise a weakly quasi coherent $R$-module,
+  then $U_1,\dots,U_n$ is 1-acyclic for $\mathcal F$ by \Cref{H1-wqc-module-affine-trivial}.
+\end{example}
+
+\begin{theorem}[using \axiomref{Z-choice}]%
+  If $U_1,\dots,U_n$ is a 1-acyclic cover for $\mathcal F$, then
+  \[
+    \check{H}^1(\{U\},\mathcal F)=H^1(X,\mathcal F)\rlap{.}
+  \]
+\end{theorem}
+
+\begin{proof}
+  Let $\pi$ be the projection map
+  \[
+    \pi :
+    \left(
+      \sum_{T:\Tors{\mathcal F}(X)}\prod_{i}\prod_{x:U_i}T_x
+    \right)
+    \to \Tors{\mathcal F}(X)\rlap{.}
+  \]
+  Let us abbreviate the left hand side with $T(\mathcal F,U)$.
+  Since the cover is 1-acyclic, $\pi$ is surjective.
+  With $L_x\colonequiv \sum_{i}U_i(x)$ and \Cref{deligne-construction} we get:
+  \begin{align*}
+    T(\mathcal F,U)&=\prod_{x:X}(T_x:\Tors{\mathcal F_x})\times T_x^{L_x} \\
+                   &=\prod_{x:X}\text{$L_x$-cocycles}
+                     \rlap{.}
+  \end{align*}
+  The latter is the type of \v{c}ech-1-cocycles (\Cref{chech-complex} (e))
+  and in total the equality is given by the isomorphism
+  \[
+    (T,t) \mapsto (i,j\mapsto t_i - t_j) :
+    T(\mathcal F,U)
+    \to
+    \ker(\partial^1)
+    \subseteq
+    \bigoplus_{i,j}\mathcal F(U_{ij})\rlap{.}
+  \]
+
+  Realizing, that $\im(\partial^0)$ corresponds to the subtype of $T(\mathcal F,U)$ of trivial torsors,
+  we arrive at the following diagram:
+  \begin{center}
+    \begin{tikzcd}
+      & \Tors{\mathcal F}(X)\ar[r,->>] & H^1(X,\mathcal F) \\
+      \sum_{T:T(\mathcal F,U)}\propTrunc{\pi_1(T)=\mathcal F}\ar[r,hook] & T(\mathcal F,U)\ar[u,->>]\ar[d,equal] & \\
+      \im{\partial^0}\ar[r,hook]\ar[u,equal] & \ker{\partial^1}\ar[r,->>] & \check{H}^1(\{U\},\mathcal F)
+    \end{tikzcd}
+  \end{center}
+  The composed map $T(\mathcal F,U)\to H^1(X,\mathcal F)$ is a homomorphism
+  and therefore by \Cref{surjective-abgroup-hom-is-cokernel} a cokernel.
+  So the two cohomology groups are equal, since they are cokernels of the same diagram.
+\end{proof}
+
+It is possible to pass from torsors to gerbes,
+which are the degree 2 analogue of torsors:
+
+\begin{definition}
+  \label{gerbe}
+  Let $A:\AbGroup$ be an abelian group.
+  An \notion{$A$-banded gerbe}, is a connected type $\mathcal G:\mathcal U$,
+  together with, for all $y:\mathcal G$ an identification of groups $\Omega (\mathcal G,y)=A$.
+\end{definition}
+
+Analogous to the type of $A$-torsors, the type of $A$-banded gerbes is a second delooping of an abelian group $A$.
+We can formulate a second degree version of \Cref{deligne-construction}:
+
+\begin{theorem}
+  \label{deligne-construction-gerbes}
+  Let $A$ be an abelian group and $L$ a type with $\propTrunc{L}$.
+  Let us call $c:(i,j,k : L)\to A$ a $L$-2-cocylce,
+  if $c_{jkl}-c_{ikl}+c_{ijl}-c_{ijk}=0$ for all $i,j,k,l : L$.
+  Then there is a bijection:
+  \[
+    \left((\mathcal G:\text{$A$-gerbe})\times (u:\mathcal G^{L})\times (i,j : L) \to u_i=u_j\right) \to \text{$L$-2-cocycle}
+    \rlap{.}
+  \]
+\end{theorem}
+
+This is provable, again, by translating Deligne's argument \cite{Deligne91}[Section 5.3].
+Using this, the correspondence of Eilenberg-MacLane-Cohomology and \v{C}ech-Cohomology can be extended in the following way:
+
+\begin{theorem}
+  If $U_1,\dots,U_n$ is a 2-acyclic cover for $\mathcal F$, then
+  \[
+    \check{H}^2(\{U\},\mathcal F)=H^2(X,\mathcal F)\rlap{.}
+  \]  
+\end{theorem}
+
+However, with this approach, we need versions of \Cref{kraus-glueing}, with increasing truncation level.
+While this suggests, we can prove the correspondence for any \emph{external} degree $n$,
+there is follow-up work in progress \cite{chech-draft},
+which proves the correspondence for all \emph{internal} $n:\N$.
+A stronger assumption is needed in that work, though: The cover $U_1,\dots,U_n$ needs to be acyclic in the sense,
+that all higher cohomology groups of all intersections $U_{i_0}\cap \dots \cap U_{i_k}$, with $k:\N$, vanish.
+In the same draft, there is also a version of the vanishing result for all internal $n$,
+and it is shown that separated schemes, like projective space, have an acyclic cover.
+This means that many of the usual, essential computations with \v{C}ech-Cohomology can be transfered to synthetic algebraic geometry.
