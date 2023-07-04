@@ -4,14 +4,14 @@ Due to a *bug* in the mailinglist-service of chalmers, it does not work to just 
 
 This is a latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos.
 There are currently the following parts:
-- Foundations ([draft pdf](https://felix-cherubini.de/iag.pdf))
+- Foundations ([latest pdf](https://felix-cherubini.de/iag.pdf), [arxiv](https://arxiv.org/abs/2307.00073))
 - Čech-Cohomology ([early draft pdf](https://felix-cherubini.de/chech.pdf))
 - Differential Geometry/étale maps ([early draft pdf](https://felix-cherubini.de/diffgeo.pdf))
 - Proper Schemes ([early draft pdf](https://felix-cherubini.de/proper.pdf))
 - Topology of Synthetic Schemes ([early draft pdf](https://felix-cherubini.de/topology.pdf))
 - $\mathbb A^1$-homotopy theory ([early draft pdf](https://felix-cherubini.de/A1-homotopy.pdf))
 - Algebraic spaces and stacks ([very early draft pdf](https://felix-cherubini.de/stacks.pdf))
-- Random Facts, i.e. a collection of everything that still needs to find a good place ([almost empty pdf](https://felix-cherubini.de/random.pdf))
+- Random Facts, i.e. a collection of everything that still needs to find a good place ([very early draft pdf](https://felix-cherubini.de/random.pdf))
 
 There is a related [formalization project](https://github.com/felixwellen/synthetic-geometry).
 
