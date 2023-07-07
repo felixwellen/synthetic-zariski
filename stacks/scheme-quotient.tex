@@ -13,7 +13,7 @@ TODO why this hypothesis on $A^G$ f.p.?
 \end{remark}
 
 \begin{lemma}\label{injective-on-open}
-Assume given $V:\OO(\Spec(A^G))$ such that $f^{-1}(V) = \Spec(A)$. Then $V=\Spec(A^G)$. 
+Assume given $U,V:\OO(\Spec(A^G))$ such that $f^{-1}(U) \subset f^{-1}(V)$. Then $U\subset V$. 
 \end{lemma}
 
 \begin{proof}
@@ -38,6 +38,25 @@ is an affine scheme quotient by the $G$-action.
 TODO
 \end{proof}
 
+\begin{lemma}\label{piece-wise-contractible}
+Assume given $Y$ a set with a dependent set $P(y)$ for $y:Y$. Assume given an open cover $(V_i)_{i:I}$ such that:
+\begin{itemize}
+\item For all $i:I$ we have that:
+\[\prod_{y:V_i} P(y)\]
+is contractible.
+\item For all $i,j:I$ we have that:
+\[\prod_{y:V_i\cap V_j} P(y)\]
+is contractible.
+\end{itemize}
+Then:
+\[\prod_{y:Y} P(y)\]
+is contractible.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
 \begin{proposition}
 The map:
 \[f:\Spec(A)\to \Spec(A^G)\] 
@@ -56,47 +75,83 @@ We cover $X$ by affine schemes $U_i$. Then using \cref{surjective-on-open} for a
 \[f^{-1}(V_i) = g^{-1}(U_i)\]
 By \cref{injective-on-open} we know that the $V_i$ cover $\Spec(A^G)$. 
 
-By \cref{affine-scheme-quotient-on-open} we know that the type of lifts over any $V_i$ is contractible, as is the type of fillings over any $V_i\cap V_j$. From this we conclude that the type of lifts on the whole $\Spec(A)$ is contractible.
+By \cref{piece-wise-contractible} it is enough to prove that there is a unique lifting over any $V_i$ and over any $V_i\cap V_j$ in order to conclude. 
+
+\begin{itemize}
+
+\item Let's prove this for $V_i$, assume given $h$ a liftings:
+\begin{center}
+\begin{tikzcd}
+f^{-1}(V_i)\ar[r,"f"]\ar[rd,swap,"g"] & V_i\ar[d,"h'"]\\
+& X
+\end{tikzcd}
+\end{center}
+We check that:
+\[h(V_i) \subset U_i\] 
+and the same with $h'$. This is equivalent to:
+\[V_i \subset h^{-1}(U_i)\]
+which by \cref{injective-on-open} is equivalent to:
+\[f^{-1}(V_i)\subset f^{-1}h^{-1}(U_i)\]
+i.e.
+\[f^{-1}(V_i)\subset g^{-1}(U_i)\]
+which holds by definition. Then we have a triangle:
+\begin{center}
+\begin{tikzcd}
+f^{-1}(V_i)\ar[r,"f"]\ar[rd,swap,"g"] & V_i\ar[d,"h"]\\
+& U_i
+\end{tikzcd}
+\end{center}
+with $U_i$ affine so that by \cref{affine-scheme-quotient-on-open} there is a unique such $h$.
+
+\item Now for $V_i\cap V_j$, by the same reasoning we have:
+\[h(V_i\cap V_j) \subset U_i\cap U_j\] 
+but $U_i\cap U_j$ is affine so we can conclude.
+\end{itemize}
+
 \end{proof}
 
 \subsection{Not all algebraic space are schemes}
 
-We give two different proofs.
+We assume $0\not=2$, and consider the free action of $\Z/2\Z$ on $\A^\times$ induced by $x\mapsto -x$. Then:
+\[\A^\times /_{\Z/2\Z} \]
+is an algebraic space. We want to prove it is not a scheme.
 
-INCOMPLETE SECTION We give two different proofs.
-
-\begin{lemma}
-Consider $f:\A^1\to X$ with $X$ a scheme, such that for all $x:\A^1\setminus\{0\}$ we have $f(x)=f(-x)$. Then for all $x:\A^1$ we have $f(x)=f(-x)$.
+\begin{lemma}\abel{scheme-quotient-Ax-Z2Z}
+The scheme quotient of this action is the map:
+\[\A^\times \to \A^\times\]
+\[x\mapsto x^2\]
 \end{lemma}
-
-\begin{proof}
-I CAN'T SEEM TO PROVE THIS.
-
-Let us consider an affine $V$ open in $X$ such that $f(0)\in V$. Write $U=f^{-1}(0)$. 
-
-Then:
-\[\prod_{x:\A^1} (U(x)\times x\not=0) \to f(x)=_Uf(-x)\]
-But $U$ is affine so $f(x)=_Uf(-x)$ is closed, and $U(x)\times x\not=0$ is open, so that we have:
-\[\prod_{x:\A^1} \not(U(x)\times x\not=0) \lor f(x)=_Uf(-x)\]
-Then any 
-\end{proof}
-
-\begin{corollary}
-Assume $2\not=0$. If the quotient $X$ of $\A^1$ by the relation $x=-x$ when $x\not=0$ was a scheme, then the canonical map:
-\[X\to \A^1\]
-\[[x]\mapsto x^2\]
-would be an equivalence.
-\end{corollary}
 
 \begin{proof}
 TODO
 \end{proof}
 
 \begin{proposition}
-Assume $2\not=0$. The quotient $X$ of $\A^1$ by the relation $x=-x$ when $x\not=0$ is an algebraic space, but it is not a scheme.
+The algebraic space quotient is not a scheme.
 \end{proposition}
 
 \begin{proof}
-TODO
+For all $x,y:\A^\times$, we have that:
+\begin{itemize}
+\item In the algebraic space quotient $[x]=[y]$ if and only if:
+\[\sum_{g: \Z/2\Z} gx = y\]
+which is equivalent to:
+\[x=y + x=-y\]
+\item In the scheme quotient $[x]=[y]$ if and only if:
+\[x^2 = y^2\]
+by \cref{scheme-quotient-Ax-Z2Z}.
+\end{itemize}
+So if the algebraic space quotient was a scheme, for any $x,y:\A^\times$ we would have that:
+\[x^2=y^2 \leftrightarrow x=y + x=-y\]
+We need to prove this leads to a contradiciton. 
+
+In particular this implies that for all $y:R$, we have that:
+\[y^2=1 \leftrightarrow y=1\lor y=-1\]
+TODO derive contradiction
+
 \end{proof}
+
+
+
+
 
