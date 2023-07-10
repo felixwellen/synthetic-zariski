@@ -9,23 +9,67 @@ In all this section we assume $G$ a finite group acting on $\Spec(A)$, such that
 is universal among $G$-invariant maps from $\Spec(A)$ to a scheme.
 
 \begin{remark}
-TODO why this hypothesis on $A^G$ f.p.?
+This hypothesis on $A^G$ f.p. might not be easy (or possible) to remove, for example consider $R[X]$ quotiented by the $\Z/2\Z$-action sending $X$ to $-X$. If $0\not=2$ then:
+\[(R[X])^{\Z/2\Z} \cong R[X^2]\]
+and if $0=2$ the action is trivial and:
+\[(R[X])^{\Z/2\Z} \cong R[X]\]
+and it seems delicate to choose a presentation without using  $0\not=2$ or $0=2$.
 \end{remark}
+
+\begin{lemma}\label{surjective-on-open}
+For all $U: \OO(\Spec(A))$ that is $G$-invariant, there merely exists $V:\OO(\Spec(A^G))$ such that $f^{-1}(V)=U$.
+\end{lemma}
+
+\begin{proof}
+We proceed in three steps:
+\begin{itemize}
+\item First we prove that for any $a:A$, writing:
+\[\prod_{g:G}(X-ga) = X^n + b_{n-1}X^{n-1} + \cdots + b_0\]
+we have:
+\[ \lor_{g:G} D(ga) = D(b_{n-1},\cdots,b_0)\]
+Indeed if for all $g:G$ we have that $ga$ is nilpotent, then the $b_j$ are nilpotent as well as they are symmetric polynomials in $ga$. Conversely if all the $b_j$ are nilpotent then for all $g:G$ we have:
+\[(ga)^n + b_{n-1}(ga)^{n-1} + \cdots + b_0 = 0\]
+so that $(ga)^n$ is a sum of nilpotent elements, so it is nilpotent.
+
+\item Since $b_{n-1},\cdots,b_0:A^G$ we have:
+\[V = D(b_{n-1},\cdots,b^0):\OO(\Spec(A^G))\]
+such that:
+\[f^{-1}(V) = \lor_{g:G} D(ga)\]
+
+\item Then given $D(a_1,\cdots,a_m):\OO(\Spec(A))$ that is $G$-invariant we have:
+\[D(a_1,\cdots,a_m) = \lor_{g:G}D(ga_1,\cdots,ga_m)\]
+\[= \lor_i\lor_{g:G}D(ga_i)\]
+But by the previous point, for all $i$ we get $V_i:\OO(\Spec(A^G))$ such that:
+\[f^{-1}(V_i) = \lor_{g:G}D(ga_i)\]
+Then:
+\[f^{-1}(\cup_iV_i) = D(a_1,\cdots,a_m)\]
+
+\item We conclude by using the fact that any $U:\OO(\Spec(A))$ is merely of the form $D(a_1,\cdots,a_m)$ for $a_1,\cdots,a_m:A$.
+
+\end{itemize}
+\end{proof}
 
 \begin{lemma}\label{injective-on-open}
 Assume given $U,V:\OO(\Spec(A^G))$ such that $f^{-1}(U) \subset f^{-1}(V)$. Then $U\subset V$. 
 \end{lemma}
 
 \begin{proof}
-TODO
-\end{proof}
+It is enough to prove the result when $U = D(a)$ and $V=D(b_1,\cdots,b_m)$ for $a,b_1,\cdots,b_m:A^G$. In this case the hypothesis $f^{-1}(U) \subset f^{-1}(V)$ means that there is $m$ and $c_1,\cdots,c_m:A$ such that:
+\[a^m = \sum_{i}c_ib_i\]
+To prove $U\subset V$ we need the same thing for some $c_i:A^g$. But for all $g:G$ we have:
+\[a^m = (ga)^m = \sum_{i}(gc_i)b_i\]
+so that for $n$ the cardinal of $G$ we have:
+\[a^{mn} = \prod_{g:G} \sum_{i}(gc_i)b_i\]
+Consider $i_1,\cdots,i_n: \{1,\cdots,m\}$, it is enough to describe $d_{i_1,\cdots,i_n}$ the coefficient in front of $b_{i_1}\cdots b_{i_n}$ in the development of the right hand side, and to prove that it is $G$-invariant in order to conclude. 
 
-\begin{lemma}\label{surjective-on-open}
-For all $U: \OO(\Spec(A))$ that is $G$-invariant, there exists $V:\OO(\Spec(A^G))$ such that $f^{-1}(V)=U$.
-\end{lemma}
-
-\begin{proof}
-TODO
+Consider $Z$ the type of $\psi:G\to \{1,\cdots,m\}$ whose image is $i_1,\cdots,i_n$ counting multiplicities. Then:
+\[d_{i_1,\cdots,i_n} = \sum_{\psi: Z} \prod_{g:G} gc_{\psi(g)} \]
+To see it is invariant we remark that any $g:G$ acts on $Z$ sending $\psi$ to:
+\[\psi_g : g' \mapsto \psi(g^{-1}g')\]
+Then we have that:
+\[g'd_{i_1,\cdots,i_n} =  \sum_{\psi: Z} \prod_{g:G} g'gc_{\psi(g)}\]
+\[ = \sum_{\psi: Z} \prod_{h:G} hc_{\psi_{g'}(h)}\]
+by using the change of variable $h=g'g$.
 \end{proof}
 
 \begin{lemma}\label{affine-scheme-quotient-on-open}
@@ -35,7 +79,25 @@ is an affine scheme quotient by the $G$-action.
 \end{lemma}
 
 \begin{proof}
-TODO
+We proceed in two steps:
+\begin{itemize}
+\item We prove that for any algebra $B$ and $b:B^G$, the canonical map:
+\[(B^G)_b\to (B_b)^G \]
+is an equivalence. It is clear that it is an embedding. We show that it is surjective. Assume:
+\[\frac{c}{b^n} : (B_b)^G\]
+Then for all $g:G$ we have that there exists $m$ such that:
+\[b^m(c-gc) = 0\]
+Since $g$ is finite we can take the sup of such $m$ to get $l$ such that for all $g:G$ we have:
+\[b^l(c-gc) = 0\]
+Then we have:
+\[\frac{c}{b^n} = \frac{b^lc}{b^(l+n)} : (B_b)^G\]
+and $b^lc : B^G$ so we can conclude.
+\item Now any open $V$ in $\Spec(A^G)$ is of the form $D(a_1,\cdots,a_n)$ with $a_1,\cdots,a_n:A^G$ and we can apply the previous point $n$-times to get a canonical equivalence:
+\[(A_{a_1,\cdots,a_n})^G \cong (A^G)_{a_1,\cdots,a_n}\]
+so it is enough to prove that:
+\[ \Spec(B)\to \Spec(B^G)\]
+is an affine scheme-quotient for any f.p. $B$. This holds because of the duality between algebras and affine schemes.
+\end{itemize}
 \end{proof}
 
 \begin{lemma}\label{piece-wise-contractible}
@@ -54,11 +116,11 @@ is contractible.
 \end{lemma}
 
 \begin{proof}
-TODO
+Omitted. Plain HoTT.
 \end{proof}
 
-\begin{proposition}
-The map:
+\begin{proposition}\label{scheme-quotient-finite-group-action}
+Assume $G$ a finite group acting on an affine scheme $\Spec(A)$ such that $A^G$ is a f.p. algebra. Then the map:
 \[f:\Spec(A)\to \Spec(A^G)\] 
 is the scheme quotient of $\Spec(A)$ by the action of $G$.
 \end{proposition}
@@ -116,42 +178,30 @@ We assume $0\not=2$, and consider the free action of $\Z/2\Z$ on $\A^\times$ ind
 \[\A^\times /_{\Z/2\Z} \]
 is an algebraic space. We want to prove it is not a scheme.
 
-\begin{lemma}\abel{scheme-quotient-Ax-Z2Z}
-The scheme quotient of this action is the map:
+\begin{lemma}\label{scheme-quotient-Ax-Z2Z}
+Assuming $0\not=2$, the scheme quotient of this action is the map:
 \[\A^\times \to \A^\times\]
 \[x\mapsto x^2\]
 \end{lemma}
 
 \begin{proof}
-TODO
+We use \cref{scheme-quotient-finite-group-action}. We prove that the map:
+\[R[X^2]_{X^2} \to (R[X]_X)^{\Z/2\Z} \]
+is an equivalence. It is clear that it is an embedding. We prove that it is surjective. Assume given:
+\[\frac{P(X)}{X^n} : R[X]_X\]
+such that:
+\[\frac{P(X)}{X^n} = \frac{P(-X)}{(-X)^n} \]
+is $n$ is odd, then all even coefficients of $P$ are zero and we can simplify by $X$ to get to $n$ even. If $n$ is even then all odd coefficients of $P$ are zero and we can conclude.
 \end{proof}
 
 \begin{proposition}
-The algebraic space quotient is not a scheme.
+Assuming $0\not=2$, the quotient of this action is an algebraic space, but it is not a scheme.
 \end{proposition}
 
 \begin{proof}
-For all $x,y:\A^\times$, we have that:
-\begin{itemize}
-\item In the algebraic space quotient $[x]=[y]$ if and only if:
-\[\sum_{g: \Z/2\Z} gx = y\]
-which is equivalent to:
-\[x=y + x=-y\]
-\item In the scheme quotient $[x]=[y]$ if and only if:
-\[x^2 = y^2\]
-by \cref{scheme-quotient-Ax-Z2Z}.
-\end{itemize}
-So if the algebraic space quotient was a scheme, for any $x,y:\A^\times$ we would have that:
-\[x^2=y^2 \leftrightarrow x=y + x=-y\]
-We need to prove this leads to a contradiciton. 
-
-In particular this implies that for all $y:R$, we have that:
-\[y^2=1 \leftrightarrow y=1\lor y=-1\]
-TODO derive contradiction
-
+If the quotient was a scheme, it would be equivalent to the scheme-quotient. Then the map:
+\[\A^\times\to\A^\times\]
+\[x\mapsto x^2\]
+would be surjective. But this contradicts \cref{non-existence-of-roots} from Foundations.
 \end{proof}
-
-
-
-
 
