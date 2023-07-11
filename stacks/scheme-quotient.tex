@@ -174,34 +174,94 @@ but $U_i\cap U_j$ is affine so we can conclude.
 
 \subsection{Not all algebraic space are schemes}
 
-We assume $0\not=2$, and consider the free action of $\Z/2\Z$ on $\A^\times$ induced by $x\mapsto -x$. Then:
-\[\A^\times /_{\Z/2\Z} \]
-is an algebraic space. We want to prove it is not a scheme.
+Let $p$ be a prime number. We consider the action of:
+\[\mu_p = \Spec(R[X]/X^p-1)\]
+on $\A^\times$ via multiplication.
 
-\begin{lemma}\label{scheme-quotient-Ax-Z2Z}
-Assuming $0\not=2$, the scheme quotient of this action is the map:
+\begin{lemma}\label{quotient-is-algebraic-space}
+Assuming $p\not=0$, the quotient of this action is an algebraic space.
+\end{lemma}
+
+\begin{proof}
+The polynomial $X^p-1$ is separable when $p\not=0$. So the scheme $\mu_p$ is étale. Moreover the action is free as it is multiplication by invertibles. So the quotient is an algebraic space.
+\end{proof}
+
+\begin{lemma}\label{some-root-is-not-one}
+Assume $a:R$ such that for all $j:\mu_p$ we have:
+\[(1-j)a = 0\]
+Then $a=0$.
+\end{lemma}
+
+\begin{proof}
+Through sqc, the assumption means that we have a map:
+\[R[X]/X^p-1,(1-X)a \to R[X]/X^p-1\]
+sending $X$ to $X$. So this means that $(1-X)a = 0$ modulo $X^p-1$, so that $a=0$.
+\end{proof}
+
+\begin{lemma}\label{scheme-quotient-Ax-mup}
+Assuming $p\not=0$, and that $\mu_p$ is finite, the scheme-quotient of this action is the map:
 \[\A^\times \to \A^\times\]
-\[x\mapsto x^2\]
+\[x\mapsto x^p\]
 \end{lemma}
 
 \begin{proof}
 We use \cref{scheme-quotient-finite-group-action}. We prove that the map:
-\[R[X^2]_{X^2} \to (R[X]_X)^{\Z/2\Z} \]
+\[R[X^p]_{X^p} \to (R[X]_X)^{\mu_p} \]
 is an equivalence. It is clear that it is an embedding. We prove that it is surjective. Assume given:
 \[\frac{P(X)}{X^n} : R[X]_X\]
-such that:
-\[\frac{P(X)}{X^n} = \frac{P(-X)}{(-X)^n} \]
-is $n$ is odd, then all even coefficients of $P$ are zero and we can simplify by $X$ to get to $n$ even. If $n$ is even then all odd coefficients of $P$ are zero and we can conclude.
+such that for all $j:\mu_p$ we have:
+\[\frac{P(X)}{X^n} = \frac{P(jX)}{(jX)^n} \]
+Then writing:
+\[P(X) = a_0 + \cdots + a_l X^l\]
+we have for all $k$ we have:
+\[ a_k j^{k-n} = a_k\]
+By \cref{some-root-is-not-one} this implies that whenever $k\not=n$ modulo $p$, we have $a_k=0$. So writing:
+\[n = dp + r\]
+ our fraction is of the form:
+\[\frac{a_rX^r + a_{r+p} X^{r+p} +\cdots + a_{ep + r} X^{ep + r}}{X^{dp+r}} = \frac{a_r + a_{r+p} X^{p} +\cdots + a_{ep + r} X^{ep}}{X^{dp}}\]
+which is of the desired form.
 \end{proof}
 
-\begin{proposition}
-Assuming $0\not=2$, the quotient of this action is an algebraic space, but it is not a scheme.
+\begin{lemma}\label{no-roots-for-any-p}
+If the map:
+\[\A^1\to \A^1\]
+\[x\mapsto x^p\] 
+is surjective on an open $U$, then this open is empty.
+\end{lemma}
+
+\begin{proof}
+Consider $a\in U$, by Zarsiki choice we have $g:R$ such that $g\in D(f)$ and we have:
+\[\frac{f}{g^n}\]
+inverse to $x\mapsto x^p$. Since $g(a)$ is invertible, $g$ is regular, then:
+\[\frac{f^p}{g^{pn}} = X\]
+implies that:
+\[f^p = g^{pn}X\]
+By induction we prove that all the coefficients of $f$ and $g$ are nilpotent, which contradicts $g(a)\not=0$.
+\end{proof}
+
+\begin{lemma}\label{mup-not-not-finite}
+Assuming $p\not=0$, we not not have that $\mu_p$ is finite.
+\end{lemma}
+
+\begin{proof}
+Any separable polynomial can be factored into pairwise distinct linear components under a not-not.
+\end{proof}
+
+\begin{proposition}\label{quotient-is-not-scheme}
+Assuming $p\not=0$, the quotient is an algebraic space but not a scheme.
 \end{proposition}
 
 \begin{proof}
-If the quotient was a scheme, it would be equivalent to the scheme-quotient. Then the map:
+By \cref{quotient-is-algebraic-space} the quotient is an algebraic space. Since we want to prove a negation, we can assume $\mu_p$ finite by \cref{mup-not-not-finite}. If the quotient was a scheme, it would be equivalent to the scheme-quotient. Then by \cref{scheme-quotient-Ax-mup} the map:
 \[\A^\times\to\A^\times\]
-\[x\mapsto x^2\]
-would be surjective. But this contradicts \cref{non-existence-of-roots} from Foundations.
+\[x\mapsto x^p\]
+would be surjective. This is a contradiction by \cref{no-roots-for-any-p}.
 \end{proof}
 
+\begin{corollary}
+Some algebraic spaces are not schemes.
+\end{corollary}
+
+\begin{proof}
+The base ring is local, so either $2\not=0$ or $3\not=0$. In both cases we can conclude using \cref{quotient-is-not-scheme}.
+\end{proof}
