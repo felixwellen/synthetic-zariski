@@ -16,6 +16,7 @@
 
 % Verweise + Stichwortverzeicnis
 \RequirePackage[linkcolor=black, colorlinks=true, citecolor=black]{hyperref}
+\RequirePackage[hyphenbreaks]{breakurl}
 \RequirePackage{nameref,cleveref}
 
 \RequirePackage{makeidx}
