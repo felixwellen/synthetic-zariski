@@ -42,6 +42,117 @@ Any étale (resp. smooth) scheme $X$ the type $\propTrunc{X}$ is a Deligne-Mumfo
 Immediate using the Zariski cover of $X$ by an étale (resp. smooth) affine scheme.
 \end{proof}
 
+\subsection{Schemes are étale sheaves}
+
+This section should be moved to some file on sheaves at some point.
+
+\begin{definition}
+A type $X$ is called an étale sheaf if for all monic separable polynomial $g:R[X]$, the type $X$ is $\propTrunc{\Spec(R[X]/g)}$-local.
+\end{definition}
+
+\begin{lemma}\label{fppf-subcanonical}
+The type $R$ is $\propTrunc{\Spec(R[X]/g)}$-local for any monic polynomial $g$. 
+\end{lemma}
+
+\begin{proof}
+See section on sheaves in diffgeo.
+\end{proof}
+
+\begin{lemma}\label{scheme-are-sheaf-from-affine}
+Assume given a type $P$ such that:
+\begin{itemize}
+\item The type $R$ is $P$-local.
+\item The type of open proposition is $P$-smooth.
+\end{itemize}
+Then any scheme is $P$-local.
+\end{lemma}
+
+\begin{proof}
+Since $R$ is $P$-local we see that all affine schemes are $P$ local through stability under products and identity types. 
+
+We check that any scheme $X$ is $P$-smooth. TODO
+
+Now we conclude that any scheme is $P$-local, indeed its identity types are schemes, so they are $P$-smooth propositions, so they are $P$-local and any scheme is $P$-unramified.
+\end{proof}
+
+\begin{lemma}\label{constant-open-affine}
+Assume given $A$ an f.p. algebra, then for any $h_1,\cdots,h_n:A$ such that the open $D(h_1,\cdots,h_n)$ is constant, for any $x:\Spec(A)$ we have that:
+\[x\in D(h_1,\cdots,h_n) \leftrightarrow \exists i. h_i\ \mathrm{not\ nilpotent}\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+Any formally étale type $X$ is reduced, meaning that any closed dense embedding into $X$ not not has a section.
+\end{lemma}
+
+\begin{proof}
+It is immediate that is actually has a section.
+\end{proof}
+
+\begin{corollary}\label{etale-affine-reduced}
+For any affine étale scheme $\Spec(A)$we have that:
+\[h \mathrm{nilpotent} \leftrightarrow \neg\neg h=0\]
+\end{corollary}
+
+\begin{proof}
+The reverse implication is always true. If $h$ is nilpotent then for all $x:\Spec(A)$ is nilpotent, so that:
+\[\prod_{x:\Spec(A)} \neg\neg h(x)=0\]
+But then we have that $V(h)$ is a closed dense embedding, so it not not has a section, meaning $\neg\neg h = 0$.
+\end{proof}
+
+\begin{proposition}\label{schemes-are-etale-sheaves}
+Any scheme is an étale sheaf.
+\end{proposition}
+
+\begin{proof}
+Assume given $g:R[X]$ monic, by \cref{scheme-are-sheaf-from-affine} it is enough to prove that $R$ is $\propTrunc{\Spec(R[X]/g)}$-local, this is \cref{fppf-subcanonical}, and that the type of open proposition is $\propTrunc{\Spec(R[X]/g)}$-smooth. Assume given a constant open $D(h_1,\cdots,h_n)$ in $\Spec(R[X]/g)$. By \cref{constant-open-affine}, for all $x:\Spec(R[X]/g)$ we have that:
+\[x\in D(h_1,\cdots,h_n) \leftrightarrow \exists i. h_i\ \mathrm{not\ nilpotent}\] 
+So it is enough to prove that:
+\[\exists i. h_i\ \mathrm{not\ nilpotent}\] 
+is open to conclude. But this is \cref{}.
+
+But by \cref{etale-affine-reduced} we have that $h_i$ not nilpotent iff and only $h_i\not=0$, which means that one of the coefficient in $h$ is not zero (as $g$ is monic), so it is indeed open.
+\end{proof}
+
+\begin{remark}
+We conjecture that we even have that any scheme is an fppf sheaf. To prove this it would be enough to prove that for all monic $g:R[X]$ and $h:R[X]/g$, we have that $h$ not being nilpotent is an open proposition.
+\end{remark}
+
 \subsection{Not all Deligne-Mumford propositions are schemes}
+
+\begin{lemma}\label{no-roots-for-any-p}
+If the map:
+\[\A^1\to \A^1\]
+\[x\mapsto x^p\] 
+is surjective on an open $U$, then this open is empty.
+\end{lemma}
+
+\begin{proof}
+Consider $a\in U$, by Zarsiki choice we have $g:R$ such that $g\in D(f)$ and we have:
+\[\frac{f}{g^n}\]
+inverse to $x\mapsto x^p$. Since $g(a)$ is invertible, $g$ is regular, then:
+\[\frac{f^p}{g^{pn}} = X\]
+implies that:
+\[f^p = g^{pn}X\]
+By induction we prove that all the coefficients of $f$ and $g$ are nilpotent, which contradicts $g(a)\not=0$.
+\end{proof}
+
+\begin{proposition}
+Not all Deligne-Mumford propositions are schemes.
+\end{proposition}
+
+\begin{proof}
+We have that $p\not=0$ for some prime $p$ (we know this holds for $2$ or $3$). Then for all $a:R$ we consider the étale affine scheme:
+\[X_a = \Spec(R[X]/X^p-a)\]
+Then $\propTrunc{X_a}$ is a Deligne-Mumford proposition. We assume they are schemes and reach a contradiction. Indeed by \cref{schemes-are-etale-sheaves} then $\propTrunc{X_a}$ would be an étale sheaf, so it would be $\propTrunc{X_a}$-local, so it would be inhabited. This means that map:
+\[R\to R\]
+\[x\mapsto x^p\]
+would be surjective. This is a contradiction by \cref{no-roots-for-any-p}.
+\end{proof}
+
+A natural question to ask at this point is wether any Deligne-Mumford proposition that is an fppf sheaf is indeed a scheme?
 
 TODO
