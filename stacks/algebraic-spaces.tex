@@ -1,39 +1,18 @@
 \subsection{Definition and basic properties}
 
-SHOULD BE REWRITTEN TO ACCOUNT FOR STACKS
-
-Usually, in some of the definitions below,
-there is the additional condition that types are sheaves for the fppf topology.
-We will just ignore this condition for now.
-
 \begin{definition}
-  A set $X$ is an \notion{algebraic space},
-  if $x=_Xy$ is a scheme for all $x,y:X$ and
-  there merely is a scheme $U$ with a formally étale surjection onto $X$.
+  An algebraic space is a Deligne-Mumford $0$-stack.
 \end{definition}
 
-Such a map $U\to X$ is called a scheme cover for $X$. So any scheme is an algebraic space.
+Map from an algebraic space to $\N$ are bounded, and algebraic spaces have étale-local choice.
 
-\begin{lemma}
-Let $X$ be an algebraic space. Any function from $X$ to $\N$ is merely bounded.
-\end{lemma}
-
-\begin{proof}
-  This holds for schemes.
-  So given a surjective map $U\to X$ with $U$ a scheme, this holds for $X$.
-\end{proof}
-
-\begin{lemma}
-Algebraic spaces have étale-local choice.
-\end{lemma}
-
-\begin{proof}
-Immediate from the definition using the fact that Zariski-local choice implies étale-local choice.
-\end{proof}
+\begin{remark}
+In the traditional definition it is additionally required that identity types in an algebraic space are schemes. Maybe we will change this later.
+\end{remark}
 
 \subsection{Fundamental theorem of algebraic spaces}
 
-In brief, algebraic spaces are quotients of schemes by étale equivalence relations.
+In brief, algebraic spaces are quotients of schemes by Deligne-Mumford étale equivalence relations.
 
 \begin{lemma}\label{quotient-by-equivalence-relation}
 Assume given a set $X$ then the map:
@@ -44,13 +23,13 @@ is an equivalence with inverse the map:
 \end{lemma}
 
 \begin{proof}
-TODO, plain HoTT, beware that we need to use the set-truncation to define the quotient.
+Plain HoTT, beware that we need to use the set-truncation to define the quotient.
 \end{proof}
 
 \begin{definition}
 An equivalence relation $R$ on a type $X$ is called:
 \begin{itemize}
-\item Schematic if for all $x,y:X$ the proposition $R(x,y)$ is a scheme.
+\item Deligne-Mumford if for all $x,y:X$ the proposition $R(x,y)$ is Deligne-Mumford.
 \item Étale if for any $x:X$ its fibers:
 \[\sum_{x:X} R(x,y)\]
 are formally étale.
@@ -60,17 +39,17 @@ are formally étale.
 \begin{proposition}\label{fundamental-propriety-algebraic-spaces}
 Assume given a set $X$, then the following types are equivalent:
 \begin{itemize}
-\item The type of schematic étale equivalence relation over $X$.
-\item The type of sets $Y$ with schemes as identity types and a surjective formally étale map from $X$ to $Y$.
+\item The type of Deligne-Mumford étale equivalence relation over $X$.
+\item The type of sets $Y$ with Deligne-Mumford identity types and a surjective formally étale map from $X$ to $Y$.
 \end{itemize}
 \end{proposition}
 
 \begin{proof}
 By the equivalence in \cref{quotient-by-equivalence-relation}, it is enough to check that:
 \begin{itemize}
-\item The identity types in $X/R$ are schemes if and only if the relation $R$ is schematic. For any $x,y:X$ we know that:
+\item The identity types in $X/R$ are Deligne-Mumford if and only if the relation $R$ is Deligne-Mumford. For any $x,y:X$ we know that:
 \[R(x,y) \simeq [x] =_{X/R}[y]\]
-so the direct direction is immediate. For the converse we use that being a scheme is a proposition and that the map $[\_]:X\to X/R$ is surjective.
+so the direct direction is immediate. For the converse we use that being Deligne-Mumford is a proposition and that the map $[\_]:X\to X/R$ is surjective.
 \item The fibers of: 
 \[[\_]:X\to X/R\] 
 are formally étale if and only if the relation $R$ is étale. For any $y:X$ we have that:
@@ -80,7 +59,7 @@ so the direct direction is immediate. Here as well the converse follows from sur
 \end{proof}
 
 \begin{theorem}
-A type is an algebraic space if and only if it is merely the quotient of a scheme by a schematic étale equivalence relation.
+A type is an algebraic space if and only if it is merely the quotient of a scheme by a Deligne-Mumford étale equivalence relation.
 \end{theorem}
 
 \begin{proof}
@@ -89,34 +68,12 @@ This is a direct application of \cref{fundamental-propriety-algebraic-spaces}.
 
 \subsection{Stability for algebraic spaces}
 
-\begin{lemma}\label{sum-etale-etale}
-Assume given $X$ a type with $Y_x$ a type depending on $x:X$. If we have a formally étale surjection:
-\[p:U\to X\]
-and for all $u:U$ a formally étale surjection:
-\[q_x : V_u \to Y_{p(u)}\]
-then the induced map in:
-\[\sum_{u:U} V_u \to \sum_{x:X}Y_x\]
-is a formally étale surjection.
-\end{lemma}
-
-\begin{proof}
-Formally étale merely inhabited types are closed under dependent sums, and fibers of the induced maps are dependent sums of fibers of $p$ and some $q_x$, so they are formally étale and merely inhabited.
-\end{proof}
-
 \begin{lemma}\label{algebraic-space-sum}
 Algebraic spaces are stable by dependent sums.
 \end{lemma}
 
 \begin{proof}
-Assume given an algebraic space $X$ and for all $x:X$ an algebraic space $Y_x$. Identity types in $\sum_{x:X} Y_x$ are schemes because schemes are stable by dependent sums. We need to merely find a scheme-cover for $\sum_{x:X} Y_x$. 
-
-For any $x:X$ we merely have:
-\[\sum_{V_x:\mathrm{Scheme}} \sum_{q_x: V_x \to Y_x} q_x\ \mathrm{étale\ surjection}\]
-So by étale-local choice for $X$, there merely is a scheme $U$ with an étale surjection $p: U \to X$ such that we merely have:
-\[\prod_{u:U} \sum_{V_u:\mathrm{Scheme}} \sum_{q_u: V_u \to Y_{p(u)}} q_u\ \mathrm{étale\ surjection}\]
-Then we merely have a scheme $\sum_{u:U}V_u$ with an induced map:
-\[\sum_{u:U}V_u \to \sum_{x:X} Y_x\]
-which is étale surjective by \cref{sum-etale-etale}.
+By \cref{infty-stacks-sum}.
 \end{proof}
 
 \begin{lemma}\label{algebraic-space-identity}
@@ -124,17 +81,17 @@ Algebraic spaces are stable by identity types.
 \end{lemma}
 
 \begin{proof}
-Because schemes are algebraic spaces.
+By definition.
 \end{proof}
 
 By \cref{algebraic-space-sum} and \cref{algebraic-space-identity}, algebraic spaces are stable by finite limits.
 
 \begin{lemma}
-Algebraic spaces are stable by quotients by schematic étale equivalence relations.
+Algebraic spaces are stable by quotients by Deligne-Mumford étale equivalence relations.
 \end{lemma}
 
 \begin{proof}
-Assume given an algebraic space $X$. By \cref{fundamental-propriety-algebraic-spaces} it is enough to check that for any set $Y$ which identity types are schemes with a formally étale surjection:
+Assume given an algebraic space $X$. By \cref{fundamental-propriety-algebraic-spaces} it is enough to check that for any set $Y$ which identity types are Deligne-Mumford with a formally étale surjection:
 \[p:X\to Y\]
 we have that $Y$ is an algebraic space. Composing a scheme cover for $X$ with $p$ gives a scheme cover for $Y$.
 \end{proof}
@@ -146,9 +103,9 @@ The scheme $\A^1$ quotiented by the relation which identifies $x$ and $-x$ when 
 \end{example}
 
 \begin{proof}
-We need to show that the equivalence relation $E$ generated by $E(x,-x)$ when $x\not=0$ is schematic and étale. This equivalence relation is:
+We need to show that the equivalence relation $E$ generated by $E(x,-x)$ when $x\not=0$ is Deligne-Mumford and étale. This equivalence relation is:
 \[E(x,y) = (x=y) + (x\not=0 \land x=-y)\]
-It is clearly schematic. To check that it is étale, for any $y:R$ we compute:
+It is clearly a scheme. To check that it is étale, for any $y:R$ we compute:
 \[\sum_{x:X}(x=y) + (x\not=0 \land x=-y) \simeq 1 + (y\not=0)\]
 which is indeed étale.
 \end{proof}
@@ -160,14 +117,14 @@ quotiented by the relation which identifies $(x,0)$ and $(0,x)$ when $x\not=0$ i
 \end{example}
 
 \begin{proof}
-We need to show that the equivalence relation $E$ generated by $E((x,0),(0,x))$ when $x\not=0$ is schematic and étale. This equivalence relation is:
+We need to show that the equivalence relation $E$ generated by $E((x,0),(0,x))$ when $x\not=0$ is Deligne-Mumford and étale. This equivalence relation is:
 \[E((x,y),(x',y')) = (x=x'\land y=y') + (x\not=0 \land x=y' \land x'=0)\]
-as $x\not=0$ implies $y=0$ since $xy=0$. It is clearly schematic. To check that it is étale, for any $x',y':R$ such that $x'y'=0$ we compute:
+as $x\not=0$ implies $y=0$ since $xy=0$. It is clearly a scheme. To check that it is étale, for any $x',y':R$ such that $x'y'=0$ we compute:
 \[\sum_{x,y:R} xy=0 \land E((x,y),(x',y')) \simeq 1+ (y'\not=0)\]
 which is indeed étale.
 \end{proof}
 
-\subsection{Algebraic Spaces and group actions}
+\subsection{Algebraic spaces and group actions}
 
 \begin{definition}
 An action of a group $G$ on a type $X$ is free if for all $x,y:X$ the type:
