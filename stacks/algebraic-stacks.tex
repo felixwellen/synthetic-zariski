@@ -143,37 +143,125 @@ Let $G$ be a higher groups that is formally étale (resp. formally smooth) and a
 By \cref{infty-stacks-sum} and \cref{delooping-stacks}.
 \end{proof}
 
+\subsection{Tiny types}
+
+This section might better be placed elsewhere at a latter point.
+
+\begin{definition}
+A type $D$ is tiny if:
+\begin{itemize}
+\item The type $D$ has choice.
+\item Given a family $X(d)$ of affine shemes for $d:D$, the type:
+\[\prod_{d:D}X(d)\] 
+is an affine scheme.
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+For our application in the next section, it is enough to ask that given a family $X(a)$ of affine shemes for $a:A$, the type:
+\[\prod_{a:A}X(a)\] 
+has an étale (resp. smooth) atlas.
+\end{remark}
+
+\begin{lemma}
+Finite types are tiny.
+\end{lemma}
+
+\begin{proof}
+Because finite types always have choice, and finite product of affine schemes are affine.
+\end{proof}
+
+\begin{lemma}\label{tiny-sums}
+Tiny types are stable by dependent sums.
+\end{lemma}
+
+\begin{proof}
+Both comes straightforwardly from the adjunction between dependent sums and dependent products.
+\end{proof}
+
+\begin{lemma}\label{product-finite-preserve-scheme}
+Assume $A$ a finitely presented algebra such that $A$ is merely equivalent to $R^n$ as an $R$-module. Then given any family of f.p. algebras $B_x$ for $x:\Spec(A)$, the type:
+\[\prod_{x:\Spec(A)}\Spec(B_x)\]
+is an affine scheme.
+\end{lemma}
+
+\begin{proof}
+We have an f.p. $A$-algebra $B$ such that:
+\[\prod_{x:\Spec(A)}\Spec(B_x)\]
+is equivalent to the type of sections of the map:
+\[\Spec(B)\to\Spec(A)\]
+We have that $B$ is an f.p. $R$-algebra, assume it is of the form:
+\[B = R[X_1,\cdots,X_n]/P_1,\cdots,P_m\]
+and $A$ is of the form $R^k$ as an $R$-module. 
+
+We consider $Q_1,\cdots,Q_k$ the images of the canonical basis $e_1,\cdots,e_k$ of $R^k$ under the map $A\to B$ making $B$ an $A$-algebra.
+
+Then a section of the map:
+\[\Spec(B)\to\Spec(A)\] 
+is equivalent to a map of algebra:
+\[\psi: R[X_1,\cdots,X_n]/P_1,\cdots,P_m \to R^k\]
+such that:
+\[\psi(Q_j) = e_j\]
+so it is equivalent to giving:
+\[x_1,\cdots,x_n : R^k\]
+such that:
+\[P_i(x_1,\cdots,x_n) = 0\]
+\[Q_j(x_1,\cdots,x_n) = e_j\]
+This is an affine scheme.
+\end{proof}
+
+\begin{lemma}\label{sums-infinitesimal-tiny}
+Any finite sums of infinitesimal variety $X$ such that $R^X$ is merely iso to $R^n$ as an $R$-module is tiny.
+\end{lemma}
+
+\begin{proof}
+By \cref{tiny-sums} it is enough to prove this for one such infinitesimal variety. This holds by \cref{product-finite-preserve-scheme} together with the fact that infinitesimal variety have choice.
+\end{proof}
+
+\begin{example}
+Finite sums of standard infinitesimal disks are tiny.
+\end{example}
+
+Does $\Spec(R[X]/g)$ has choice for $g$ monic? This would be very good for the fppf topology.
+
 \subsection{$\infty$-stacks and exponentials}
 
 \begin{lemma}
-Assume given a type $A$ such that:
-\begin{itemize}
-\item The type $A$ has choice.
-\item Given a family $X(a)$ of affine shemes for $a:A$, the type:
-\[\prod_{a:A}X(a)\] 
-has an étale (resp. smooth) atlas.
-\end{itemize}
-Then given a family $P(a)$ of Deligne-Mumford (resp. Artin) $\infty$-stack for $a:A$, the type:
-\[\prod_{a:A}P(a)\]
+Assume given a tiny type $D$. Then given a family $P(d)$ of Deligne-Mumford (resp. Artin) $\infty$-stack for $d:D$, the type:
+\[\prod_{d:D}P(d)\]
 is a Deligne-Mumford (resp. Artin) $\infty$-stack.
 \end{lemma}
 
 \begin{proof}
 First we prove that we have an étale (resp. smooth) atlas for:
-\[\prod_{a:A}P(a)\]
-Indeed using choice for $A$, we merely get for all $a:A$ an affine scheme $X(a)$ and a formally étale (resp. formally smooth) map:
-\[X(a)\to P(x)\]
+\[\prod_{d:D}P(d)\]
+Indeed using choice for $A$, we merely get for all $d:D$ an affine scheme $X(d)$ and a formally étale (resp. formally smooth) map:
+\[X(d)\to P(d)\]
 The induced map:
-\[\prod_{a:A}X(a) \to \prod_{a:A}P(a)\] 
-is surjective because $A$ has choice, and formally étale using general proprieties of modalities (resp. formally smooth using the fact that $A$ has choice). But:
-\[\prod_{a:A}X(a)\]
+\[\prod_{d:D}X(d) \to \prod_{d:D}P(d)\] 
+is surjective because $D$ has choice, and formally étale using general proprieties of modalities (resp. formally smooth using the fact that $D$ has choice). But:
+\[\prod_{d:D}X(d)\]
 has an étale (resp. smooth) atlas by hypothesis and therefore so does:
-\[\prod_{a:A}P(a)\]
+\[\prod_{d:D}P(d)\]
 
 The coinductive step is straightforward using the commutation of identity types and dependent products.
 \end{proof}
 
-TODO it seems to work for $P = \Spec(R[X]/X^2)$. How far can it be extended?
+We can apply this to \cref{sums-infinitesimal-tiny}.
+
+\subsection{$\infty$-stacks and truncations}
+
+\begin{proposition}
+Let $X$ be a formally étale Deligne-Mumford $\infty$-stack. Then for all $n$ we have that $\propTrunc{X}_n$ is a formally étale Deligne-Mumford $\infty$-stack.
+\end{proposition}
+
+\begin{proof}
+We proceed by induction on $n$. The base case $n=-2$ is trivial. Assume it holds for $n-1$. Then consider:
+\[[\_] : X\to \propTrunc{X}_n\]
+To apply \cref{infty-stacks-quotients} and conclude, it is enough to prove that the fibers of this map are formally étale Deligne-Mumford $\infty$-stack, but the fiber over $[y]:\propTrunc{X}_n$ is:
+\[\sum_{x:X} \propTrunc{x=_Xy}_{n-1}\]
+and by induction we know that $\propTrunc{x=_Xy}_{n-1}$ is a formally étale Deligne-Mumford $\infty$-stack, so we can conclude since by the surjectivity of $[\_]$ any fiber merely is of this form.
+\end{proof}
 
 \subsection{A remark on the fundamental theorem for stacks}
 

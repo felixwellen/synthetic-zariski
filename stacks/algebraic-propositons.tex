@@ -1,7 +1,7 @@
 \subsection{Definition}
 
 \begin{definition}
-A Deligne-Mumford (resp. Artin) proposition is a Deligne-Mumford (resp. Artin) $-1$-stack.
+A Deligne-Mumford (resp. Artin) proposition is a Deligne-Mumford (resp. Artin) $(-1)$-stack.
 \end{definition}
 
 \begin{remark}
@@ -25,55 +25,28 @@ Since this map is surjective it induces an equivalence:
 \[\propTrunc{\Spec(A)} \simeq P\]
 and the fact that:
 \[\Spec(A)\to \propTrunc{\Spec(A)}\]
-is étale (resp. smooth) is precisely the given condition.
+is étale (resp. smooth) is precisely the given condition. The converse if clear.
 \end{proof}
 
 \subsection{Examples}
 
-\begin{remark}
+\begin{lemma}
 Any propositional scheme is a Deligne-Mumford proposition.
-\end{remark}
+\end{lemma}
 
 \begin{lemma}
-Any étale (resp. smooth) scheme $X$ the type $\propTrunc{X}$ is a Deligne-Mumford (resp. Artin) proposition.
+Any étale (resp. smooth) scheme $X$, the type $\propTrunc{X}$ is a Deligne-Mumford (resp. Artin) proposition.
 \end{lemma}
 
 \begin{proof}
 Immediate using the Zariski cover of $X$ by an étale (resp. smooth) affine scheme.
 \end{proof}
 
-\subsection{Schemes are étale sheaves}
-
-This section should be moved to some file on sheaves at some point.
-
-\begin{definition}
-A type $X$ is called an étale sheaf if for all monic separable polynomial $g:R[X]$, the type $X$ is $\propTrunc{\Spec(R[X]/g)}$-local.
-\end{definition}
-
-\begin{lemma}\label{fppf-subcanonical}
-The type $R$ is $\propTrunc{\Spec(R[X]/g)}$-local for any monic polynomial $g$. 
+\begin{lemma}
+Any fomally étale (resp. formally smooth) Deligne-Mumford $\infty$-stack $X$, the type $\propTrunc{X}$ is a Deligne-Mumford (resp. Artin) proposition.
 \end{lemma}
 
-\begin{proof}
-See section on sheaves in diffgeo.
-\end{proof}
-
-\begin{lemma}\label{scheme-are-sheaf-from-affine}
-Assume given a type $P$ such that:
-\begin{itemize}
-\item The type $R$ is $P$-local.
-\item The type of open proposition is $P$-smooth.
-\end{itemize}
-Then any scheme is $P$-local.
-\end{lemma}
-
-\begin{proof}
-Since $R$ is $P$-local we see that all affine schemes are $P$ local through stability under products and identity types. 
-
-We check that any scheme $X$ is $P$-smooth. TODO
-
-Now we conclude that any scheme is $P$-local, indeed its identity types are schemes, so they are $P$-smooth propositions, so they are $P$-local and any scheme is $P$-unramified.
-\end{proof}
+\subsection{Schemes are étale sheaves (obsolete)}
 
 \begin{lemma}\label{constant-open-affine}
 Assume given $A$ an f.p. algebra, then for any $h_1,\cdots,h_n:A$ such that the open $D(h_1,\cdots,h_n)$ is constant, for any $x:\Spec(A)$ we have that:
@@ -94,7 +67,7 @@ It is immediate that is actually has a section.
 
 \begin{corollary}\label{etale-affine-reduced}
 For any affine étale scheme $\Spec(A)$we have that:
-\[h \mathrm{nilpotent} \leftrightarrow \neg\neg h=0\]
+\[h\ \mathrm{nilpotent} \leftrightarrow \neg\neg h=0\]
 \end{corollary}
 
 \begin{proof}
@@ -103,37 +76,98 @@ The reverse implication is always true. If $h$ is nilpotent then for all $x:\Spe
 But then we have that $V(h)$ is a closed dense embedding, so it not not has a section, meaning $\neg\neg h = 0$.
 \end{proof}
 
-\begin{proposition}\label{schemes-are-etale-sheaves}
-Any scheme is an étale sheaf.
+\subsection{Schemes are fppf sheaves}
+
+This section should be moved to some file on sheaves at some point.
+
+\begin{definition}
+A type $X$ is called an fppf sheaf if for all monic polynomial $g:R[X]$, the type $X$ is $\propTrunc{\Spec(R[X]/g)}$-local.
+\end{definition}
+
+\begin{lemma}\label{fppf-subcanonical}
+The type $R$ is $\propTrunc{\Spec(R[X]/g)}$-local for any monic polynomial $g$. 
+\end{lemma}
+
+\begin{proof}
+See section on sheaves in diffgeo.
+\end{proof}
+
+\begin{lemma}\label{scheme-are-sheaf-from-affine}
+Assume given a type $P$ such that:
+\begin{itemize}
+\item The type $R$ is $P$-local.
+\item The type of open propositions is $P$-smooth.
+\end{itemize}
+Then any scheme is $P$-local.
+\end{lemma}
+
+\begin{proof}
+Since $R$ is $P$-local we see that all affine schemes are $P$-local through stability under dependent products and identity types.
+
+We check that any scheme $X$ is $P$-smooth. Assume given constant map:
+\[f:P\to X\]
+Take $(U_i)_{i:I}$ a finite cover of $X$ by affine scheme. Then for any $i:I$ we have that $f^{-1}(U_i)$ is a constant open in $P$, so since the type of open is $P$-smooth, we merely have an open proposition $V_i$ such that for all $x:P$, we have:
+\[(x\in f^{-1}(U_i) )\leftrightarrow V_i\]
+Since the $f^{-1}(U_i)$ cover $P$, we have that:
+\[P\to \lor_{i:I} V_i\]
+But open propositions are affine schemes and affine schemes are $P$-local, so we have:
+\[ \lor_{i:I} V_i\]
+Assume $k:I$ such that $V_k$ holds. Then $f^{-1}(U_k) = P$ and the map $f$ factors through the affine scheme $U_k$. Since affine schemes are $P$-local, we merely have a lift for $f$.
+
+Now we conclude that any scheme is $P$-local by proving that its identity types are $P$-local. Indeed they are propositional schemes, so they are $P$-smooth propositions, so they are $P$-local.
+\end{proof}
+
+\begin{lemma}\label{roots-monic-proper}
+For any monic $g:R[X]$, we have that $\Spec(R[X]/g)$ is compact, meaning that for any open $U$ in $\Spec(R[X]/g)$ the proposition:
+\[\prod_{x:\Spec(R[X]/g)}U(x)\]
+is open.
+\end{lemma}
+
+\begin{proof}
+Assume that:
+\[g=X^n+a_{n-1}X^{n-1}+\cdots+a_0\]
+Then we consider the homogeneous polynomial:
+\[f(X,Y) = X^n + a_{n-1}X^{n-1}Y+\cdots+a_0Y^n\]
+We prove that:
+\[\sum_{[x,y]:\bP^1}f(x,y) = 0\]
+is equivalent to $\Spec(R[X]/g)$. Indeed for any $x,y:R$ such that $f(x,y)=0$, we have that $x\not=0$ implies $y\not=0$, so that $(x,y)\not=0$ implies $y\not=0$. Then:
+\[\sum_{[x,y]:\bP^1}f(x,y) = 0\]
+is equivalent to:
+\[\sum_{x:R} f(x,1)=0\]
+which is the type of roots of $g$. 
+
+Now we conclude using the fact that 
+\[\sum_{[x,y]:\bP^1}f(x,y) = 0\]
+is closed in the compact scheme $\bP^1$, so that it is compact.
+\end{proof}
+
+\begin{proposition}\label{schemes-are-fppf-sheaves}
+Any scheme is an fppf sheaf.
 \end{proposition}
 
 \begin{proof}
-Assume given $g:R[X]$ monic, by \cref{scheme-are-sheaf-from-affine} it is enough to prove that $R$ is $\propTrunc{\Spec(R[X]/g)}$-local, this is \cref{fppf-subcanonical}, and that the type of open proposition is $\propTrunc{\Spec(R[X]/g)}$-smooth. Assume given a constant open $D(h_1,\cdots,h_n)$ in $\Spec(R[X]/g)$. By \cref{constant-open-affine}, for all $x:\Spec(R[X]/g)$ we have that:
-\[x\in D(h_1,\cdots,h_n) \leftrightarrow \exists i. h_i\ \mathrm{not\ nilpotent}\] 
-So it is enough to prove that:
-\[\exists i. h_i\ \mathrm{not\ nilpotent}\] 
-is open to conclude. But this is \cref{TODO}.
+Assume given $g:R[X]$ monic, by \cref{scheme-are-sheaf-from-affine} it is enough to prove that $R$ is $\propTrunc{\Spec(R[X]/g)}$-local (this is \cref{fppf-subcanonical}) and that the type of open propositions is $\propTrunc{\Spec(R[X]/g)}$-smooth. 
 
-But by \cref{etale-affine-reduced} we have that $h_i$ not nilpotent iff and only $h_i\not=0$, which means that one of the coefficient in $h$ is not zero (as $g$ is monic), so it is indeed open.
+Assume given a constant open $D(h_1,\cdots,h_n)$ in $\Spec(R[X]/g)$. Then for any $x:\Spec(R[x]/g)$ we have that:
+\[x\in D(h_1,\cdots,h_n) \leftrightarrow \prod_{y:\Spec(R[x]/g)} y\in D(h_1,\cdots,h_n)\]
+because the open $D(h_1,\cdots,h_n)$ is constant. But the right hand side is open by \cref{roots-monic-proper}, so we indeed have a lift.
 \end{proof}
-
-\begin{remark}
-We conjecture that we even have that any scheme is an fppf sheaf. To prove this it would be enough to prove that for all monic $g:R[X]$ and $h:R[X]/g$, we have that $h$ not being nilpotent is an open proposition.
-\end{remark}
 
 \subsection{Not all Deligne-Mumford propositions are schemes}
 
 \begin{lemma}\label{no-roots-for-any-p}
 If the map:
-\[\A^1\to \A^1\]
-\[x\mapsto x^p\] 
+\[\psi:\A^1\to \A^1\]
+\[\psi(x)=x^p\] 
 is surjective on an open $U$, then this open is empty.
 \end{lemma}
 
 \begin{proof}
-Consider $a\in U$, by Zarsiki choice we have $g:R$ such that $g\in D(f)$ and we have:
+Assume an open $U\subset \A^1$ such that:
+\[\psi: \psi^{-1}(U) \to U\]
+is surjective. Assume $a\in U$, by Zarsiki-local choice we have $f,g:R[X]$ such that $a\in D(g)$ and we have:
 \[\frac{f}{g^n}\]
-inverse to $x\mapsto x^p$. Since $g(a)$ is invertible, $g$ is regular, then:
+inverse to $\psi$. Since $g(a)$ is invertible, we have that $g$ is regular, so that:
 \[\frac{f^p}{g^{pn}} = X\]
 implies that:
 \[f^p = g^{pn}X\]
@@ -145,14 +179,12 @@ Not all Deligne-Mumford propositions are schemes.
 \end{proposition}
 
 \begin{proof}
-We have that $p\not=0$ for some prime $p$ (we know this holds for $2$ or $3$). Then for all $a:R$ we consider the étale affine scheme:
-\[X_a = \Spec(R[X]/X^p-a)\]
-Then $\propTrunc{X_a}$ is a Deligne-Mumford proposition. We assume they are schemes and reach a contradiction. Indeed by \cref{schemes-are-etale-sheaves} then $\propTrunc{X_a}$ would be an étale sheaf, so it would be $\propTrunc{X_a}$-local, so it would be inhabited. This means that map:
-\[R\to R\]
-\[x\mapsto x^p\]
-would be surjective. This is a contradiction by \cref{no-roots-for-any-p}.
+We have that $p\not=0$ for some prime $p$, because locality of the ring implies that $2\not=0$ or $3\not=0$. Then for all $a:R$ such that $a\not=0$, we consider the étale affine scheme:
+\[E_a = \Spec(R[X]/X^p-a)\]
+We see that the propositions $\propTrunc{E_a}$ are Deligne-Mumford. We assume that they are schemes and reach a contradiction. Indeed then $\propTrunc{E_a}$ would be an fppf sheaf by \cref{schemes-are-fppf-sheaves}, so it would be $\propTrunc{E_a}$-local, so it would be inhabited. This means that thet map:
+\[\psi:R\to R\]
+\[\psi(x)=x^p\]
+would be surjective on $R^\times$. This contradicts \cref{no-roots-for-any-p}.
 \end{proof}
 
-A natural question to ask at this point is wether any Deligne-Mumford proposition that is an fppf sheaf is indeed a scheme?
-
-TODO
+A natural question to ask at this point is wether any Deligne-Mumford proposition that is an fppf sheaf is a scheme?
