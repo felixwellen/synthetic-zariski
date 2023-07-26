@@ -51,17 +51,45 @@ We proceed as in \cref{sheaf-replacement-proposition}, using Zariski-local choic
 Let $T$ be a pre-topology. A $T$-cover of an affine scheme is inductively defined by:
 \begin{itemize}
 \item The identity is a $T$-cover, and the composite of $T$-covers is a $T$-cover.
-\item Given a Zariski cover $(U_i)_{i:I}$ of $X$ and for all $i$ is a $T$-cover of $U_i$, the induced map to $X$ is a $T$-cover.
+\item A map:
+\[f:X\to Y\] 
+is a $T$-cover if we have a Zariski cover $(U_i)_{i:I}$ of $Y$ where the maps:
+\[f:f^{-1}(U_i) \to U_i\]
+are $T$-cover.
 \item A map which fibers are in $T$ is a $T$-cover.
 \end{itemize}
 \end{definition}
+
+\begin{lemma}\label{zariski-cover-are-cover}
+For any pre-topology $T$, Zariski covers are $T$-cover.
+\end{lemma}
+
+\begin{proof}
+Zariski covers are Zariski-locally identity maps.
+\end{proof}
 
 \begin{lemma}\label{cover-can-be-defined-pointwise}
 Let $T$ be a pre-topology generating the topology $T'$. Then a map is a $T$-cover if and only if its fibers are in $T'$.
 \end{lemma}
 
 \begin{proof}
-TODO
+First we prove inductively that $T$-covers have fibers in $T'$. 
+\begin{itemize}
+\item If the $T$-cover is the identity, we can conclude as $1\in T'$. If it is a composite we conclude using the stability of $T'$ under dependent sums.
+\item Assume a map:
+\[f:X\to Y\] 
+with a Zariski cover $(U_i)_{i:I}$ of $Y$ where the induced maps:
+\[f_i:f^{-1}(U_i) \to U_i\]
+have fibers in $T'$. Then any $y:Y$ is in $U_i$ for some $i$ so the fiber of $f$ over $y$ is equivalent to the fiber of $f_i$, which is in $T'$.
+\item If the fibers of the $T$-cover are in $T$, then we can conclude as $T\subset T'$.
+\end{itemize}
+Now let us prove the converse. Assume given a map between affine schemes with fibers in $T'$. Zariski-locally we can assume we are in one of the following case:
+\begin{itemize}
+\item The fibers are $1$. We can conclude because identity maps are $T$-covers.
+\item The fibers are dependent sum of things in $T'$. Here we conclude inductively from the fact that  $T$-covers are stable under composition.
+\item The fibers are Zariski coverings of things in $T'$. Then the map is a composite of a Zariski cover followed by a $T$-cover. We conclude by \cref{zariski-cover-are-cover} and the stability of $T$-cover by composition. 
+\item The fibers are in $T$. Then we conclude by definition.
+\end{itemize}
 \end{proof}
 
 \begin{lemma}\label{cover-local-choice}
@@ -70,7 +98,7 @@ Let $T$ be a pre-topology, assume given an affine scheme $\Spec(A)$ and a family
 then there exists a $T$-cover:
 \[f:\Spec(B)\to \Spec(A)\]
 such that:
-\[\prod{y:\Spec(B)} P(f(y))\]
+\[\prod_{y:\Spec(B)} P(f(y))\]
 \end{lemma}
 
 \begin{proof}
