@@ -96,7 +96,7 @@ because the open $D(h_1,\cdots,h_n)$ is constant. But the right hand side is ope
 \begin{definition}
 A map between affine schemes:
 \[\Spec(B)\to \Spec(A)\]
-is flat if for all injective morphism of f.p. $A$-module: 
+is flat if for all injective morphism of $A$-modules: 
 \[M\to N\]
 the induced map:
 \[B\otimes_A M \to B\otimes_A N\]
@@ -112,7 +112,7 @@ is flat.
 \begin{proof}
 Since $g$ is monic we have:
 \[A[X]/g\simeq A^n\]
-as $A$-modules. Then given an injective map of f.p. $A$-modules:
+as $A$-modules. Then given an injective map of $A$-modules:
 \[f:M\to N\]
 the induced map;
 \[A[X]/g\otimes_AM \to A[X]/g\otimes_AN\]
@@ -128,7 +128,7 @@ is flat.
 \end{lemma}
 
 \begin{proof}
-Assume given an injective map of f.p. $A$-modules:
+Assume given an injective map of $A$-modules:
 \[g:M\to N\]
 Assume given:
 \[\frac{m}{f^i},\frac{n}{f^j}\]
@@ -148,7 +148,7 @@ in $A_f\otimes_AM$.
 We have a kind of converse:
 
 \begin{lemma}\label{injectivity-is-zariski-local}
-Let $A$ be a f.p. $R$ algebra and $f_1,\cdots,f_n:A$ such that $(f_1,\cdots,f_n) = A$ . Assume given a map between between f.p. $A$-modules:
+Let $A$ be a f.p. $R$ algebra and $f_1,\cdots,f_n:A$ such that $(f_1,\cdots,f_n) = A$ . Assume given a map between between $A$-modules:
 \[g:M\to N\] 
 such that for all $i$ the induced map:
 \[A_{f_i}\otimes_AM \to A_{f_i}\otimes_AN\]
@@ -183,7 +183,7 @@ is injective for all $i$, and from \cref{injectivity-is-zariski-local} we conclu
 is injective.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{cover-is-flat}
 Any fppf cover is flat.
 \end{lemma}
 
@@ -198,9 +198,115 @@ with $f$ monic and we conclude by \cref{flat-zariski-local} and \cref{root-monic
 \end{itemize}
 \end{proof}
 
-\subsection{Faithfully flat maps}
+\subsection{Fppf covers are faithfully flat}
 
-We think fppf cover are faithfully flat. This implies all fppf surjective flat maps between affine schemes are faithfully flat. Do we have a converse?
+\begin{definition}
+A map between affine schemes:
+\[\Spec(B)\to \Spec(A)\]
+is faithfully flat if it is flat and for all $A$-module $M$ we have that $B\otimes_AM = 0$ implies $M=0$.
+\end{definition}
+
+\begin{lemma}\label{root-monic-faithfully-flat}
+Assume a f.p. $R$-algebra $A$ and $g:A[X]$ monic, then the induced map:
+\[\Spec(A[X]/g)\to \Spec(A)\]
+is faithfully flat.
+\end{lemma}
+
+\begin{proof}
+It is flat by \cref{root-monic-flat}. Assume $M$ an $A$-module such that:
+\[ A[X]/g\otimes_AM = 0\]
+then since $A[X]/g = A^n$ as $A$-modules we have $M^n = 0$ so that $M=0$.
+\end{proof}
+
+\begin{lemma}\label{pullback-faitfully-flat}
+Assume given a pullback square of affine schemes:
+ \begin{center}
+      \begin{tikzcd}
+        \Spec(B\otimes_AC)\ar[d,swap,"g"]\ar[r]& \Spec(B)\ar[d,"f"] \\
+       \Spec(C) \ar[r]& \Spec(A)
+      \end{tikzcd}
+    \end{center}
+If $f$ is flat so is $g$. If $f$ is faithfully flat so is $g$.
+\end{lemma}
+
+\begin{proof}
+Assume $f$ flat. Then for all injective map of $C$-modules:
+\[M\to N\]
+we have that:
+\[B\otimes_A M \to B\otimes_A N\]
+so that:
+\[M\to N\]
+is injective as a map of $A$-modules, so it is injective as a map of $C$-modules as well.
+
+Now assume $f$ faithfully flat. If $M$ is a $C$-module such that:
+\[B\otimes_A C\otimes M = 0\]
+i.e. $B\otimes_A M = 0$, then $M=0$ as an $A$-module, so $M=0$ as a $C$-module.
+\end{proof}
+
+\begin{lemma}\label{faithfully-flat-zariski-local}
+Being faithfully flat is Zariski-local in the target. More precisely assume given a map between affine schemes:
+\[f:\Spec(B)\to \Spec(A)\]
+and a Zariski cover $(U_i)_{i:I}$ of $\Spec(A)$. If for all $i:I$ the map:
+\[f : f^{-1}(U_i)\to U_i\]
+is faithfully flat, then the map $f$ is faithfully flat.
+\end{lemma}
+
+\begin{proof}
+The map is flat by \cref{flat-zariski-local}. Now assume an $A$-module $M$ such that $B\otimes_AM=0$. Up to refinement, using \cref{pullback-faitfully-flat}, we can assume that $U_i = D(f_i)$ for all $i$, with the $f_i$ generating $A$. Then we have:
+\[B\otimes_AA_{f_i}\otimes_{A_{f_i}}A_{f_i}\otimes M = 0\]
+so that since by hypothesis:
+\[\Spec(B\otimes_AA_{f_i}) \to \Spec(A_{f_i})\]
+is faithfully flat, for all $i$ we have that:
+\[A_{f_i}\otimes_A M = 0\]
+Then we conclude using \cref{injectivity-is-zariski-local} on the map $M\to 0$, concluding that it is injective so that $M=0$.
+\end{proof}
+
+\begin{proposition}\label{cover-is-faithfully-flat}
+Any fppf cover is faithfully flat.
+\end{proposition}
+
+\begin{proof}
+It is flat by \cref{cover-is-flat}. The rest the proof for faithfulness is very similar. More precisely, to see that it is faithfully flat we proceed by induction on the fppf cover:
+\begin{itemize}
+\item If the fppf cover is an identity or a composite of fppf cover, we just need to check that identity maps are faithfully flat and that faithfully flat maps are stable under composition.
+\item If the fppf cover is Zariski-locally an fppf cover we use \cref{faithfully-flat-zariski-local}.
+\item If the fppf cover has fibers of the form $\Spec(R[x]/g)$ with $g$ monic, then we know that it is Zariski-locally of the form:
+\[\Spec(B[X]/f)\to \Spec(B)\]
+with $f$ monic and we conclude by \cref{faithfully-flat-zariski-local} and \cref{root-monic-faithfully-flat}.
+\end{itemize}
+\end{proof}
+
+\begin{lemma}\label{faithfully-flat-choice}
+Assume an affine scheme $\Spec(A)$ with a family of types $P(x)$ for $x:\Spec(A)$ such that:
+\[\prod_{x:\Spec(A)}L_{fppf}\propTrunc{P(x)}\]
+Then there merely exists a faithfully flat map:
+\[f:\Spec(B)\to\Spec(A)\]
+such that:
+\[\prod_{x:\Spec(B)}P(f(x))\]
+\end{lemma}
+
+\begin{proof}
+By \cref{cover-local-choice} there exists an such an $f$ that is an fppf cover. We conclude by \cref{cover-is-faithfully-flat}.
+\end{proof}
+
+\begin{proposition}
+Any flat and fppf surjective map between affine schemes is faithfully flat.
+\end{proposition}
+
+\begin{proof}
+We have an fppf surjective map:
+\[f:\Spec(B)\to \Spec(A)\]
+meaning that:
+\[\prod_{x:\Spec(A)}L_{fppf}\propTrunc{\mathrm{fib}_f(x)}\]
+Then by \cref{faithfully-flat-choice} we have a commutative diagram:
+ \begin{center}
+      \begin{tikzcd}
+        & \Spec(B)\ar[d,"f"] \\
+       \Spec(C)\ar[ru] \ar[r,swap,"g"] & \Spec(A)git 
+      \end{tikzcd}
+    \end{center}
+where $g$ is faithfully flat. It is easy to conclude from this.
+\end{proof}
 
 \subsection{The fppf sheaf model TODO}
 
