@@ -5,7 +5,7 @@ Due to a *bug* in the mailinglist-service of chalmers, it does not work to just 
 This is a latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos.
 There are currently the following parts:
 - Foundations ([latest pdf](https://felix-cherubini.de/iag.pdf), [arxiv](https://arxiv.org/abs/2307.00073))
-- Čech-Cohomology ([early draft pdf](https://felix-cherubini.de/chech.pdf))
+- Čech-Cohomology ([early draft pdf](https://felix-cherubini.de/cech.pdf))
 - Differential Geometry/étale maps ([early draft pdf](https://felix-cherubini.de/diffgeo.pdf))
 - Proper Schemes ([early draft pdf](https://felix-cherubini.de/proper.pdf))
 - Topology of Synthetic Schemes ([early draft pdf](https://felix-cherubini.de/topology.pdf))
@@ -29,3 +29,18 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Can every bundle (on $Sp A$) of strongly quasicoherent $R$-modules be recovered
   from its $A$-module of global sections?
 - Is $\Spec A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
+
+# Building the drafts
+
+We use latex now instead of xelatex, to be compatible with the arxiv.
+For each draft, a build command may be found at the start of ```main.tex```.
+
+# Arxiv
+
+To put one of the drafts on the arxiv, we have to
+
+- copy everything into one (temporary) folder: all tex-files, zariski.cls, zariski.sty from util and main.bbl.
+- change the paths in zariski.cls and main.tex
+- remove "if you are viewing online [...]" from main.tex
+- possibly change formulation from "This is a draft [...]"
+- test by running latexmk
