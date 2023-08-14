@@ -11,7 +11,7 @@
 \RequirePackage{booktabs}
 \RequirePackage{enumerate}
 \RequirePackage[shortlabels]{enumitem}
-\RequirePackage[thmmarks]{ntheorem}
+\RequirePackage[amsmath, thmmarks]{ntheorem}
 \RequirePackage{thmtools}
 
 % Verweise + Stichwortverzeicnis
