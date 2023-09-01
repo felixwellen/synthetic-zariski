@@ -26,13 +26,16 @@
 \newcommand{\WW}{\mathcal{W}}
 \newcommand{\VV}{\mathcal{V}}
 
-In this section, we present a model of the 3 axioms. This model is best described as an \emph{internal} model
+In this section, we present a model of the 3 axioms stated in \Cref{statement-of-axioms}.
+This model is best described as an \emph{internal} model
 of a presheaf model. The first part can then be described purely syntactically, starting from any model
 of 4 other axioms that are valid in a suitable \emph{presheaf} model. We obtain then the sheaf model by defining
 a family of open left exact modalities, and the new model is the model of types that are modal for all these modalities.
 This method works both in a $1$-topos framework and for models of univalent type theory.
 
 \subsection{Internal sheaf model}
+
+\subsubsection{Axioms for the presheaf model}
 
 We start from 4 axioms. The 3 first axioms can be seen as variation of our 3 axioms for synthetic algebraic geometric.
 
@@ -41,7 +44,7 @@ We start from 4 axioms. The 3 first axioms can be seen as variation of our 3 axi
 \item for any f.p.\ $R$-algebra $A$, the canonical map $A\rightarrow R^{\Spec(A)}$ is an equivalence
 \item for any f.p.\ $R$-algebra $A$, the set $\Spec(A)$ satisfies choice, which can be formulated as
   the fact that for any family of types $P(x)$ for $x:\Spec(A)$ there is a map
-  $(\Pi_{x:\Spec(A)}\norm{P(x)})\rightarrow \norm{\Pi_{x:A}P(x)}$.
+  $(\Pi_{x:\Spec(A)}\norm{P(x)})\rightarrow \norm{\Pi_{x:\Spec(A)}P(x)}$.
 \item for any f.p.\ $R$-algebra $A$, the diagonal map $\nats\rightarrow\nats^{\Spec(A)}$ is an equivalence.
 \end{enumerate}
 
@@ -51,6 +54,85 @@ if $r$ is in $R$, we write $D(r)$ for the proposition $\Spec(R_r)$.
 Note that the first axiom does not require
 $R$ to be local, and the third axiom states that $\Spec(A)$ satisfies \emph{choice} and not only Zariski local choice,
 for any f.p. $R$-algebra $A$.
+
+
+\subsubsection{Axioms for the presheaf model}
+
+\newcommand{\FP}{\mathsf{FP}}
+
+We justify briefly the second axiom (synthetic quasi-coherence). This justification will be done
+in a $1$-topos setting, but exactly the same argument holds in the setting of presheaf models of
+univalent type theory, since it only involves strict presheaves. A similar direct verification holds
+for the other axioms.
+
+We work with presheaves on the opposite of the category of finitely presented $k$-algebra. We write
+$L,M,N,\dots$ for such objects, and $f,g,h,\dots$ for the morphisms. A presheaf $F$ on this category is given
+by a collection of sets $F(L)$ with restriction maps $F(L)\rightarrow F(M),~u\mapsto f u$ for
+$f:L\rightarrow M$ satisfying the usual uniformity conditions.
+
+We first introduce the presheaf $\FP$ of {\em finite presentations}. This is internally the type
+$$
+\Sigma_{n:\nats}\Sigma_{m:\nats}R[X_1,\dots,X_n]^m
+$$
+which is interpreted by $\FP(L) = \Sigma_{n:\nats}\Sigma_{m:\nats}L[X_1,\dots,X_n]^m$.
+If $\xi = (n,m,q_1,\dots,q_m)\in\FP(L)$ is such a presentation, we build a natural extension
+$\iota:L\rightarrow L_{\xi} = L[X_1,\dots,X_n]/(q_1,\dots,q_m)$ where the system $q_1 = \dots = q_m = 0$
+has a solution $s_{\xi}$. Furthermore, if we have another extension $f:L\rightarrow M$
+and a solution $s\in M^n$ of this system in $M$, there exists a unique map $i(f,s):L_{\xi}\rightarrow M$
+such that $i(f,s) s_{\xi} = s$ and $i(f,s)\circ \iota = f$.
+Note that $i(\iota,s_{\xi}) = \id$.
+
+\medskip
+
+Internally, we have a map $A:\FP\rightarrow R\mathsf{-alg}(\UU_0)$, which to any presentation
+$\xi = (n,m,q_1,\dots,q_m)$ associates the $R$-algebra $A(\xi) = L[X_1,\dots,X_n]/(q_1,\dots,q_m)$.
+This corresponds externally to the presheaf on the category of elements of $\FP$ defined
+by $A(L,\xi) = L_{\xi}$.
+
+Internally, we have a map $\Spec(A):\FP\rightarrow \UU_0$, defined by $\Spec(A)(\xi) = Hom(A(\xi),R)$.
+We can replace it by the isomorphic map which to $\xi = (n,m,q_1,\dots,q_m)$ associates the set
+$S(\xi)$ of solutions of the system $q_1=\dots=q_m= 0$ in $R^n$.
+Externally, this corresponds to the presheaf on the category of elements of $\FP$ so that
+$\Spec(A)(L,n,m,q_1,\dots,q_m)$ is the set of solutions of the system $q_1=\dots=q_m=0$ in $L^n$.
+
+\medskip
+
+We now define externally two inverse maps $\varphi:A(\xi)\rightarrow R^{\Spec(A(\xi))}$ and
+$\psi:R^{\Spec(A(\xi))}\rightarrow A(\xi)$.
+
+\medskip
+
+Notice first that $R^{\Spec(A)}(L,\xi)$, for $\xi = (n,m,q_1,\dots,q_m)$,
+is the set of families of elements $l_{f,s}:M$ indexed by $f:L\rightarrow M$
+and $s:M^n$ a solution of $fq_1 = \dots = fq_m=0$, satisfying the uniformity condition
+$g(l_{f,s}) = l_{(g\circ f),gs}$ for $g:M\rightarrow N$.
+
+\medskip
+
+For $u$ in $A(L,\xi) = L_{\xi}$ we define $\varphi~u$ in $R^{\Spec(A)}(L,\xi)$ by
+$$
+(\varphi~u)_{f,s} = i(f,s)~u
+$$
+and for $l$ in $R^{\Spec(A)}(L,\xi)$ we define $\psi~l$ in $A(L,\xi) = L_{\xi}$ by
+$$
+\psi~ l = l_{\iota,s_{\xi}}
+$$
+These maps are natural, and one can check
+$$
+\psi~(\varphi~u) = (\varphi~u)_{\iota,s_{\xi}} = i(\iota,s_{\xi})~u = u
+$$
+and
+$$
+(\varphi~(\psi~l))_{f,s} = i(f,s)~(\psi~l) = i(f,s)~l_{\iota,s_{\xi}} = l_{(i(f,s)\circ \iota),(i(f,s)~s_{\xi})} = l_{f,s}
+$$
+which shows that $\varphi$ and $\xi$ are inverse natural transformations.
+
+Furthermore, the map $\varphi$ is the external version of the canonical map $A(\xi)\rightarrow R^{\Spec(A(\xi))}$.
+The fact that this map is an isomorphism is an (internally) equivalent statement of the second axiom.
+
+
+
+\subsubsection{Sheaf model obtained by localisation from the presheaf model}
 
 We define now a family of propositions. As before, if $A$ is a ring, we let $\Um(A)$ be the type of unimodular sequences
 (\Cref{unimodular})
