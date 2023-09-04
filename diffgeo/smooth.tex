@@ -278,7 +278,7 @@ It is enough to prove that (i) implies (iii), as any map in (iv) is a composite 
     with $a^2=0$, we try to merely find a lift. By \cref{lifting-is-torsor}, we know that the type of lifts over $x:\Spec(A)$ is an $M_x$-pseudotorsor. By hypothesis (i) this is in fact an $M_x$-torsor. Mere existence of a lift for the diagram is then precisely a mere section of the dependent torsor $(x:\Spec(A))\mapsto M_x$, i.e. a proof that it is merely trivial. But $M_x$ is wqc by \cref{M-is-wqc} so that $H^1(\Spec(A),M)=0$ by \cite{draft}[Theorem 8.3.6] and any $M$-torsor is merely trivial, meaning we merely have a lift.
 \end{proof}
 
-\subsection{Smooth schemes}
+\subsection{Smooth schemes and Jacobians}
 
 \begin{lemma}
 Assume given a smooth affine scheme:
@@ -358,5 +358,83 @@ which is the point whenever $b\not=c$, so that it is smooth, but has its jacobia
 
 \subsection{Smooth schemes have free tangent spaces}
 
-TODO
+\begin{lemma}\label{smooth-implies-smooth-tangent}
+Assume $X$ is a smooth scheme. Then for any $x:X$ the type $T_x(X)$ is formally smooth.
+\end{lemma}
 
+\begin{proof}
+Consider $T(X) = X^{\mathbb{D}(1)}$ the total tangent bundle of $X$. We have to prove that the map:
+\[p:T(X)\to X\]
+is formally smooth. Both source and target are schemes, and the source is formally smooth because $X$ is smooth and $\mathbb{D}(1)$ has choice. So by \cref{smooth-schemes-iff-submersion} it is enough to prove that for all $x:X$ and $v:T_x(X)$ the induced map:
+\[dp:T_{(x,v)}(T(X))\to T_x(X)\]
+is surjective. 
+
+Consider $v':T_x(X)$. By unpacking the definition of tangent spaces, we see that merely finding $w:T_{(x,v)}(T(X))$ such that $dp(w) = v'$ means merely finding:
+\[\phi : \mathbb{D}(1) \times \mathbb{D}(1) \to X\]
+such that for all $t:\mathbb{D}(1)$ we have that:
+\[\phi(0,t) = v(t)\]
+\[\phi(t,0) = v'(t)\]
+
+But we know that there exists a unique:
+\[\psi : \mathbb{D}(2)\to X\]
+such that:
+\[\psi(0,t) = v(t)\]
+\[\psi(t,0) = v'(t)\]
+used for example to define $(v+w)(t) = \psi(t,t)$.
+
+Then the fact that $X$ is smooth and that:
+\[\mathbb{D}(2) \to\mathbb{D}(1) \times \mathbb{D}(1) \]
+is a closed dense embedding means that there merely exists a lift of $\psi$ to $\mathbb{D}(1) \times \mathbb{D}(1)$, which gives us the $\phi$ we wanted.
+\end{proof}
+
+\begin{lemma}\label{smooth-kernel-decidable}
+Assume given a linear map:
+\[M:R^m\to R^n\] 
+which has a formally smooth kernel. Then we can decide whether $M=0$.
+\end{lemma}
+
+\begin{proof}
+Since $M=0$ is closed, it is enough to prove that it is $\neg\neg$-stable to conclude that it is decidable. Assume $\neg\neg(M=0)$, then for any $x:R^m$ we have a dotted lift in:
+ \begin{center}
+      \begin{tikzcd}
+        M=0\ar[d] \ar[r,"\_\mapsto x"] & K \\
+       1 \ar[dotted,ru] &
+      \end{tikzcd}
+\end{center}
+because $K$ is formally smooth, so that we merely have $y:K$ such that: 
+\[M=0\to x=y\]
+which implies that $\neg\neg(x=y)$ since we assumed $\neg\neg(M=0)$.
+
+Then considering a basis $(x_1,\cdots,x_n)$ of $R^m$, we get $(y_1,\cdots,y_n)$ such that for all $i$ we have that $M(y_i) = 0$ and $\neg\neg(y_i=x_i)$. But then we have that $(y_1,\cdots,y_n)$ is infinitesimally close to a basis and that being a basis is an open proposition, so that $(y_1,\cdots,y_n)$ is a basis and $M=0$.
+\end{proof}
+
+\begin{lemma}\label{smooth-corpresented-implies-free}
+Assume that $K$ is a finitely copresented module that is also formally smooth. Then it is finite free.
+\end{lemma}
+
+\begin{proof}
+Assume a finite copresentation:
+\[0\to K\to R^m\overset{M}{\to} R^n\]
+We proceed by induction on $m$. By \cref{smooth-kernel-decidable} we can decide whether $M=0$ or not.
+\begin{itemize}
+\item If $M=0$ then $K=R^m$ and we can conclude.
+\item If $M\not=0$ then we can find a non-zero coefficient in the matrix corresponding to $M$, and so up to base change it is of the form:
+
+\[
+\begin{pmatrix}
+1 & \begin{matrix}0&\cdots & 0\end{matrix}  \\
+\begin{matrix}0\\ \vdots\\ 0\end{matrix} & \widetilde{M} \\
+\end{pmatrix}
+\]
+
+But then we know that the kernel of $M$ is equivalent to the kernel of $\widetilde{M}$, and by applying the induction hypothesis we can conclude that it is finite free.
+\end{itemize}
+\end{proof}
+
+\begin{proposition}
+Let $X$ be a smooth scheme. Then for any $x:X$ we have that $T_x(X)$ is finite free.
+\end{proposition}
+
+\begin{proof}
+By \cref{smooth-implies-smooth-tangent} we have that $T_x(X)$ is formally smooth, so that we can conclude by \cref{smooth-corpresented-implies-free}.
+\end{proof}
