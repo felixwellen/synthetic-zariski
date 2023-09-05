@@ -2,7 +2,8 @@
 \subsection{Smooth maps}
 
 \begin{definition}
-A morphism $f:X\to Y$ is formally smooth for any closed dense proposition $P$ the square:
+A morphism $f:X\to Y$ is formally smooth if for any closed dense proposition $P$,
+any square:
  \begin{center}
       \begin{tikzcd}
         P\ar[r]\ar[d] & X\ar[d,"f"] \\
@@ -16,7 +17,7 @@ merely has a lift.
 For any morphism  $f:X\to Y$ the following are equivalent:
 \begin{enumerate}[(i)]
 \item The map $f$ is formally smooth. 
-\item For any $\epsilon:R$ such that $\epsilon^2=0$, there merely exists a dotted lift to any square:
+\item For any $\epsilon:R$ such that $\epsilon^2=0$, there merely exists a lift to any square:
  \begin{center}
       \begin{tikzcd}
         \epsilon=0\ar[r]\ar[d] & X\ar[d,"f"] \\
@@ -102,7 +103,7 @@ We need to prove that there merely exists a dotted lift in any:
 \end{proof}
 
 \begin{lemma}
-A type covered by finitely many formally smooth subtype is formally smooth.
+A type covered by finitely many formally smooth subtypes is formally smooth.
 \end{lemma}
 \begin{proof}
 We assume $P_1,\cdots,P_n:X\to \Prop$ covering $X$, i.e. for all $x:X$ we have:
@@ -134,14 +135,15 @@ The scheme $\D(1)$ is not smooth.
 \end{lemma}
 
 \begin{proof}
-If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$. Indeed would merely is a dotted lift in:
+If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$.
+Indeed we would merely have a dotted lift in:
  \begin{center}
       \begin{tikzcd}
         R/(\epsilon^2)& R[X]/(X^2)\ar[l,"\epsilon"]\ar[ld,dashed] \\
         R \ar[u]& 
       \end{tikzcd}
     \end{center}
-    that is a $r:R$ such that $(\epsilon+r\epsilon^2)^2=0$. Then $\epsilon^2=0$.
+    that is, an $r:R$ such that $(\epsilon+r\epsilon^2)^2=0$. Then $\epsilon^2=0$.
 \end{proof}
 
 \begin{lemma}
@@ -149,14 +151,15 @@ The scheme $\Spec(R[X,Y]/(XY))$ is not smooth.
 \end{lemma}
 
 \begin{proof}
-If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$. Indeed would merely is a dotted lift in:
+If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$.
+Indeed we would merely have a dotted lift in:
  \begin{center}
       \begin{tikzcd}
         R/(\epsilon^2) & R[X,Y]/(XY)\ar[l]\ar[ld,dashed] \\
         R\ar[u] & 
       \end{tikzcd}
     \end{center}
-    where the top map send both $X$ and $Y$ to $\epsilon$. Then we have $r,r':R$ such that $(\epsilon+r\epsilon^2)(\epsilon+r'\epsilon^2)=0$ so that $\epsilon^2=0$. %This can't be done.
+    where the top map sends both $X$ and $Y$ to $\epsilon$. Then we have $r,r':R$ such that $(\epsilon+r\epsilon^2)(\epsilon+r'\epsilon^2)=0$ so that $\epsilon^2=0$. %This can't be done.
 \end{proof}
 
 \begin{lemma}
@@ -164,27 +167,30 @@ The map:
 \[
 p:\Spec(R[X,Y]/(XY))\to \A^1
 \] 
-corresponding to the map in:
+corresponding to the map:
 \[
-R[X,Y]/(XY) \to R[X]
+R[X,Y]/(XY) \leftarrow R[X]
 \]
-sending $X$ to $X$ and $Y$ to $0$ is not smooth.
+sending $X$ to $X$ is not smooth.
 \end{lemma}
 
 \begin{proof}
-If it were smooth all its fibers would be smooth, i.e. for all $z:R$ the scheme $\Spec(R[X]/(zX))$ would be smooth. This would imply that for any $\epsilon:R$ such that $\epsilon^2=0$ we merely have a dotted lift to:
+If it were smooth all its fibers would be smooth,
+i.e.\ for all $z:R$ the scheme $\Spec(R[X]/(zX))$ would be smooth.
+This would imply that for any $\epsilon:R$ such that $\epsilon^2=0$ we merely have a dotted lift in:
  \begin{center}
       \begin{tikzcd}
         R/\epsilon & R[X]/(\epsilon X)\ar[l]\ar[ld,dashed] \\
         R \ar[u]& 
       \end{tikzcd}
     \end{center} 
-    where the top map send $X$ to $1$. Such a lift gives an $r:R$ such that $\epsilon(1+r\epsilon)=0$, so that $\epsilon=0$.
+    where the top map sends $X$ to $1$.
+    Such a lift gives an $r:R$ such that $\epsilon(1+r\epsilon)=0$, so that $\epsilon=0$.
 \end{proof}
 
 I think in the traditional setting this map has smooth fibers, but not here. 
 
-\subsection{Stability property}
+\subsection{Stability properties}
 
 Now we give stability properties for formally smooth types.
 
@@ -193,7 +199,7 @@ Now we give stability properties for formally smooth types.
 The image of a formally smooth type by any map is formally smooth.
 \end{proposition}
 \begin{proof}
-We assume $X$ formally smooth and $p:X\to Y$ surjective. Then for any $P$ closed dense and diagram:
+We assume $X$ formally smooth and $p:X\to Y$ surjective. Then for any $P$ closed dense and any diagram:
  \begin{center}
       \begin{tikzcd}
       P \ar[rd,dotted]\ar[d]\ar[r]& Y\\
@@ -221,7 +227,7 @@ Formally smooth types are not stable by identity types (e.g. identity types in $
 
 \subsection{Equivalence with the usual definition for maps between schemes}
 
-Here we prove that our definition coincide with the usual one for maps with scheme fibers.
+Here we prove that our definition coincides with the usual one for maps with scheme fibers.
 
 \begin{lemma}\label{lifting-is-torsor}
 Let $X$ be a scheme and $\epsilon:R$ such that $\epsilon^2=0$. Then the type of liftings of:
