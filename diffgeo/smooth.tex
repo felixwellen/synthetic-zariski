@@ -284,7 +284,7 @@ It is enough to prove that (i) implies (iii), as any map in (iv) is a composite 
     with $a^2=0$, we try to merely find a lift. By \cref{lifting-is-torsor}, we know that the type of lifts over $x:\Spec(A)$ is an $M_x$-pseudotorsor. By hypothesis (i) this is in fact an $M_x$-torsor. Mere existence of a lift for the diagram is then precisely a mere section of the dependent torsor $(x:\Spec(A))\mapsto M_x$, i.e. a proof that it is merely trivial. But $M_x$ is wqc by \cref{M-is-wqc} so that $H^1(\Spec(A),M)=0$ by \cite{draft}[Theorem 8.3.6] and any $M$-torsor is merely trivial, meaning we merely have a lift.
 \end{proof}
 
-\subsection{Smooth schemes and Jacobians}
+\subsection{Smooth schemes and Jacobians (obsolete?)}
 
 \begin{lemma}
 Assume given a smooth affine scheme:
@@ -437,10 +437,129 @@ But then we know that the kernel of $M$ is equivalent to the kernel of $\widetil
 \end{itemize}
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{smooth-have-free-tangent}
 Let $X$ be a smooth scheme. Then for any $x:X$ we have that $T_x(X)$ is finite free.
 \end{proposition}
 
 \begin{proof}
 By \cref{smooth-implies-smooth-tangent} we have that $T_x(X)$ is formally smooth, so that we can conclude by \cref{smooth-corpresented-implies-free}.
 \end{proof}
+
+The dimension of $T_x(X)$ is called the dimension of $X$ at $x$.
+
+\begin{corollary}
+Any smooth scheme is a finite disjoint union of component of fixed dimension.
+\end{corollary}
+
+\subsection{Smooth schemes are locally standard}
+
+\begin{definition}
+A standard smooth scheme is an affine scheme of the form:
+\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big)\]
+where $G$ divides the determinant of:
+\[\left( \frac{\partial P_i}{\partial X_j}\right)_{1\leq i,j\leq n}\]
+in:
+\[R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\]
+\end{definition}
+
+\begin{lemma}\label{standard-smooth-etale-over-A}
+For any standard smooth scheme:
+\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big)\]
+the map:
+\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big) \to \Spec(R[Y_1,\cdots Y_{k}])\]
+is formally étale.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{corollary}
+A standard smooth scheme:
+\[\Spec((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G)\]
+is smooth of dimension $k$.
+\end{corollary}
+
+\begin{proposition}\label{smooth-are-locally-standard}
+A scheme is smooth if and only if it has a Zariski cover by standard smooth schemes.
+\end{proposition}
+
+\begin{proof}
+We can assume the scheme $X$ affine, say of the form:
+\[X = \Spec(R[X_1,\cdots,X_m]/P_1,\cdots,P_l)\]
+
+By \cref{smooth-have-free-tangent}, for any $x:X$ we have that $dP_x$ has free kernel. We partition by the dimension $n$ of the kernel. Then by \cref{rank-equivalent-definitions} we know that $dP_x$ has rank $n$ for every $x$.
+
+We cover $X$ according to which $n$-minor is invertible, so that up to a rearranging of variables and polynomials we can assume that:
+\[X = \Spec(R[X_1,\cdots,X_n,Y_1,\cdots,Y_k]/P_1,\cdots,P_n,Q_1,\cdots, Q_l)\]
+where we have:
+\[dP_{x,y} = \begin{pmatrix}
+\left(\frac{\partial P}{\partial X}\right)_{x,y} & \left(\frac{\partial P}{\partial Y}\right)_{x,y} \\
+\left(\frac{\partial Q}{\partial X}\right)_{x,y} & \left(\frac{\partial Q}{\partial Y}\right)_{x,y} \\
+\end{pmatrix}\]
+where we used the notation:
+\[\left(\frac{\partial P}{\partial X}\right)_{x,y} = \begin{pmatrix}\left(\frac{\partial P_i}{\partial X_j}\right)_{x,y}\end{pmatrix}_{i,j}\]
+so that $\frac{\partial P}{\partial X}$ is invertible of size $n$. Moreover by \cref{rank-bloc-matrix} we get:
+\[\left(\frac{\partial Q}{\partial Y}\right)_{x,y} = \left(\frac{\partial Q}{\partial X}\right)_{x,y}\left(\frac{\partial P}{\partial X}\right)_{x,y}^{-1} \left(\frac{\partial P}{\partial Y}\right)_{x,y} \]
+which will be useful later.
+
+Now we prove that for any $(x,y):R^{n+k}$ such that $P(x,y)=0$ it is decidable whether
+\[Q(x,y)=0 \] 
+To do this it is enough to prove that:
+\[(Q_1(x,y),\cdots,Q_l(x,y))^2=0 \to (Q_1(x,y),\cdots,Q_l(x,y))=0\]
+Assuming $(Q_1(x,y),\cdots,Q_l(x,y))^2=0$, by smoothness there is a dotted lifting in:
+ \begin{center}
+      \begin{tikzcd}
+        R/(Q_1(x,y),\cdots,Q_l(x,y)) & \Spec(R[X_1,\cdots,X_n,Y_1,\cdots,Y_k]/P_1,\cdots,P_n,Q_1,\cdots, Q_l)\ar[l,swap,"(x{,}y)"] \ar[dotted,ld,"(x{'}{,}y{'})"]\\
+       R\ar[u] & \\
+      \end{tikzcd}
+\end{center}
+Let us prove that that $Q(x,y) = 0$. Indeed we have $(x,y) \sim_1 (x',y')$ so that we have:
+\[P(x,y) = P(x',y')+ \left(\frac{\partial P}{\partial X}\right)_{x',y'}(x-x') + \left(\frac{\partial P}{\partial Y}\right)_{x',y'}(y-y') \]
+\[Q(x,y) = Q(x',y')+ \left(\frac{\partial Q}{\partial X}\right)_{x',y'}(x-x') + \left(\frac{\partial Q}{\partial Y}\right)_{x',y'}(y-y') \]
+Then we have $P(x,y) = 0$, $P(x',y')=0$ and $Q(x',y') = 0$. From the first equality we get:
+\[x-x' =  -\left(\frac{\partial P}{\partial X}\right)_{x',y'}^{-1}\left(\frac{\partial P}{\partial Y}\right)_{x',y'}(y-y')\]
+so that from the second we get:
+\[Q(x,y) = -\left(\frac{\partial Q}{\partial X}\right)_{x',y'}\left(\frac{\partial P}{\partial X}\right)_{x',y'}^{-1}\left(\frac{\partial P}{\partial Y}\right)_{x',y'}(y-y') + \left(\frac{\partial Q}{\partial Y}\right)_{x',y'}(y-y')\]
+so that $Q(x,y)=0$ as we have seen previously that:
+\[\left(\frac{\partial Q}{\partial Y}\right)_{x',y'} = \left(\frac{\partial Q}{\partial X}\right)_{x',y'}\left(\frac{\partial P}{\partial X}\right)_{x',y'}^{-1} \left(\frac{\partial P}{\partial Y}\right)_{x',y'} \]
+
+From the decidability of $Q(x,y)=0$ we get that $X$ is an open in:
+\[\Spec(R[X_1,\cdots,X_n,Y_1,\cdots,Y_k]/P_1,\cdots,P_n)\]
+and from there we conclude exactly as in \cref{etale-are-locally-standard}.
+\end{proof}
+
+The following definition is reasonable from a synthetic differential geometry standpoint:
+
+\begin{definition}
+A type $X$ is called a manifold of dimension $k$ if there merely is a span:
+ \begin{center}
+      \begin{tikzcd}
+         &  U\ar[dl,swap,"p"]\ar[dr,"q"]& \\
+      \A^k & & X \\
+      \end{tikzcd}
+\end{center}
+where $p$ and $q$ are formally étale and $q$ is surjective.
+\end{definition}
+
+\begin{proposition}
+Given a scheme $X$ the following are equivalent:
+\begin{itemize}
+\item The scheme $X$ is formally smooth of dimension $k$.
+\item The scheme $X$ is a manifold of dimension $k$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+The fact that $k$-manifolds are smooth is immediate, as in the span:
+ \begin{center}
+      \begin{tikzcd}
+         &  U\ar[dl,swap,"p"]\ar[dr,"q"]& \\
+      \A^k & & X \\
+      \end{tikzcd}
+\end{center}
+we have that $\A^k$ smooth and $p$ étale implies $U$ smooth, and then $q$ surjective implies $X$ smooth. To know that $X$ is of dimension $k$ we use that any étale map induces isomorphisms of tangent spaces plus surjectivity.
+
+For the converse we use \cref{smooth-are-locally-standard} and \cref{standard-smooth-etale-over-A}.
+\end{proof}
+
