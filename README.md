@@ -44,3 +44,4 @@ To put one of the drafts on the arxiv, we have to
 - remove "if you are viewing online [...]" from main.tex
 - possibly change formulation from "This is a draft [...]"
 - test by running latexmk
+- put all the files into a ```.tar.gz```, so everything can be uploaded in one step
