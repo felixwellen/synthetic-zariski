@@ -38,6 +38,7 @@ We start by repeating the classical definition of \v{C}hech-Cohomology groups fo
 \end{definition}
 
 \begin{remark}
+  \label{cech-sheaf-to-complex}
   Let $X$ be a type covered by $\{U\}_{i:I}$ and $\mathcal F : X\to \AbGroup$.
   Let $I_x\colonequiv (i:I)\times U_i(x)$ and $u:\coprod_i U_i\to X$ have cohomologically trivial fibers.
   Then 
@@ -56,10 +57,11 @@ We start by repeating the classical definition of \v{C}hech-Cohomology groups fo
 
 \begin{theorem}%
   \label{chech-les}
-  Let $X$ have an acyclic cover $\{U\}$ such that the map $\coprod_i U_i\to X$ has cohomologically trivial fibers.
-  Then any short exact sequence of coefficients
+  Let $X$ be covered by a finite $\{U\}$ and let 
   \[ 0\to \mathcal F\to \mathcal G\to \mathcal H\to 0\]
-  induces a long exact sequence of \v{C}ech-Cohomology groups:
+  be a short exact sequence of depedent abelian groups on $X$.
+  If the map $\coprod_i U_i\to X$ has cohomologically trivial fibers and for all $k:\N$ we have $H^1(U_{i_0\dots i_k},\mathcal F)$,
+  then a long exact sequence of \v{C}ech-Cohomology groups is induced:
   \begin{center}
     \begin{tikzcd}
       &\dots\ar[r] & \check{H}^{k-1}(\{U\},\mathcal H)\ar[dll] \\
@@ -70,12 +72,19 @@ We start by repeating the classical definition of \v{C}hech-Cohomology groups fo
 \end{theorem}
 
 \begin{proof}
-  TODO:
-  \begin{enumerate}
-  \item Apply sheaf-chech.
-  \item Apply Pi and note the result is exakt.
-  \item Note that this does it.
-  \end{enumerate}
+  For each $k:\N$, we get a short exact sequence
+  \[
+    0\to \check{\mathcal F^k}\to \check{\mathcal G}^k\to \check{\mathcal H}^k\to 0
+    \rlap{.}
+  \]
+  Furthermore, applying $\prod$ preserves the exactness, since $H^1(X,\check{\mathcal F^k})=0$
+  by the assumtion $H^1(U_{i_0\dots i_k},\mathcal F)$ and \Cref{cohomologically-trivial-fibers}.
+  So by \Cref{cech-sheaf-to-complex}, we have short exact sequences:
+  \[
+  0\to \bigoplus_{i_0,\dots,i_k}\mathcal F(U_{i_0\dots i_k}) \to \bigoplus_{i_0,\dots,i_k}\mathcal G(U_{i_0\dots i_k}) \to \bigoplus_{i_0,\dots,i_k}\mathcal H(U_{i_0\dots i_k})\to 0
+  \]
+  which assemble to a short exact sequence of chain complexes.
+  By homological algebra, this induces the desired long exact sequence of the cohomology groups of these complexes.
 \end{proof}
 
 A very specific consequence we will need for the proof that \v{C}ech cohomology is a universal $\partial$-functor:
