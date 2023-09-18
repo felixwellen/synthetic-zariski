@@ -46,11 +46,6 @@ See \cref{def:connected-cover} for the definition of the $k$-connected cover ``$
   There is also a sequence of pointed maps $\varphi_k:\hat{A}_k\to A_k$, given by the projection from the connected covers.
 \end{definition}
 
-\begin{definition}
-  The $k$-th cohomology group of $X$ with coefficients in $A$ is the following:
-  \[ H^k(X,A):\equiv\left\|(x:X)\to A_{x,k}\right\|_0 \]
-\end{definition}
-
 The following fact will be useful to us on various occations and can be proven using the uniqueness of Eilenberg-MacLane spaces:
 
 \begin{lemma}
@@ -62,6 +57,35 @@ The following fact will be useful to us on various occations and can be proven u
     \rlap{.}
   \]
 \end{lemma}
+
+\begin{definition}
+  The $k$-th cohomology group of $X$ with coefficients in $A$ is the following:
+  \[ H^k(X,A):\equiv\left\|(x:X)\to A_{x,k}\right\|_0 \]
+\end{definition}
+
+\begin{definition}
+  Let $f:Y\to X$ be a map of types and $\mathcal F:X\to \AbGroup$ and $\mathcal G:Y\to \AbGroup$ dependent abelian groups.
+  \begin{enumerate}[(a)]
+  \item $f^\ast \mathcal F\colonequiv (y:Y)\mapsto \mathcal F_{f(y)}$ is called the \notion{pullback}\index{$f^\ast \mathcal F$} of $\mathcal F$ along $f$.
+  \item $f_{\ast}\mathcal G\colonequiv (x:X)\mapsto \mathcal G^{\fib_f(x)}$ is called the \notion{push forward}\index{$f_{\ast}\mathcal G$} of $\mathcal G$ along $f$.
+  \end{enumerate}
+\end{definition}
+
+Cohomology does not change along maps with cohomologically trivial fibers:
+
+\begin{lemma}
+  \label{cohomologically-trivial-fibers}
+  Let $f:Y\to X$ and $\mathcal F:Y\to\AbGroup$ be such that $H^l(\fib_f(x),\pi_1^\ast\mathcal F)=0$,
+  then
+  \[
+    H^n(Y,\mathcal F)=H^n(X,f_\ast\mathcal F)
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  By direct application of \Cref{em-comm-pi}.
+\end{proof}
 
 An important notion in abelian categories, is that of short exact sequences.
 And it is important to us here, since for every short exact sequence (somewhere), there should be an induced long exact sequence on cohomology groups.
