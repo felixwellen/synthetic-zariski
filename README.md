@@ -23,8 +23,6 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Is every étale scheme a sub-quotient of a finite set?
 - For $f : A$, is $f$ not not zero iff $f$ becomes zero in $A \otimes R/\sqrt{0}$?
   (A corollary of that would be: If the algebra $A$ is not not trivial, then it is trivial.)
-- If $A$ is an étale $R$-algebra (finitely presented and the spectrum is étale),
-  is it impossible to have an injective algebra map $R[X] \to A$?
 - Is the proposition "X is affine" not-not-stable, for X a scheme?
   (Then deformations ($D(1) \to \mathrm{Sch}$) of affine schemes would stay affine.)
 - Can every bundle (on $Sp A$) of strongly quasicoherent $R$-modules be recovered
@@ -33,6 +31,9 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 # Answered Questions
 - Is $\mathrm{Spec} A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
   *Yes*: By the discussion in #5 and #6, $\mathrm{Spec} A$ is even projective, whenever $A$ is finitely generated as an $R$-module.
+- If $A$ is an étale $R$-algebra (finitely presented and the spectrum is étale),
+  is it impossible to have an injective algebra map $R[X] \to A$?
+  The answer should be *No*: $R_f$ is an étale $R$-algebra, since its spectrum is an open proposition. Mapping $X$ to $1/f$ cannot be non-injective in general, since that would in particular imply that every invertible element is algebraic.
   
 # Building the drafts
 
