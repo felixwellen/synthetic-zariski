@@ -30,6 +30,10 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Can every bundle (on $Sp A$) of strongly quasicoherent $R$-modules be recovered
   from its $A$-module of global sections?
 
+# Answered Questions
+- Is $\mathrm{Spec} A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
+  *Yes*: By the discussion in #5 and #6, $\mathrm{Spec} A$ is even projective, whenever $A$ is finitely generated as an $R$-module.
+  
 # Building the drafts
 
 We use latex now instead of xelatex, to be compatible with the arxiv.
