@@ -30,9 +30,11 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 
 # Answered Questions
 - Is $\mathrm{Spec} A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
+
   *Yes*: By the discussion in #5 and #6, $\mathrm{Spec} A$ is even projective, whenever $A$ is finitely generated as an $R$-module.
 - If $A$ is an étale $R$-algebra (finitely presented and the spectrum is étale),
   is it impossible to have an injective algebra map $R[X] \to A$?
+
   The answer should be *No*: $R_f$ is an étale $R$-algebra, since its spectrum is an open proposition. Mapping $X$ to $1/f$ cannot be non-injective in general, since that would in particular imply that every invertible element is algebraic.
   
 # Building the drafts
