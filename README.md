@@ -61,4 +61,5 @@ for mathematical discussions.
 If you watch this repo, you should be notified by email if there are new posts.
 You can watch it, by clicking this button:
 
-![grafik](https://github.com/felixwellen/synthetic-zariski/assets/22154668/a059c394-7315-4c7a-91ef-0c670e81e955)
+![grafik](https://github.com/felixwellen/synthetic-zariski/assets/22154668/a25ec091-f1db-42bb-9d0f-3c1dff47c8f6)
+
