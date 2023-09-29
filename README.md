@@ -33,7 +33,7 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 # Answered Questions
 - Is $\mathrm{Spec} A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
 
-  *Yes*: By the discussion in [#5](/../../issues/5) and [#6](/../../issues/6), $\mathrm{Spec} A$ is even projective, whenever $A$ is finitely generated as an $R$-module.
+  *Yes*: By the discussion in [#5](../../issues/5) and [#6](../../issues/6), $\mathrm{Spec} A$ is even projective, whenever $A$ is finitely generated as an $R$-module.
   
 # Building the drafts
 
