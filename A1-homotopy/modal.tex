@@ -2,6 +2,10 @@
 We introduce yet another name for the coreduction, deRham stack, infinitesimal shape or crystalline modality:
 
 \begin{definition}
+  For any type $X$, let $\widetilde{X}$ denote the formally étale replacement of $X$.
+\end{definition}
+
+\begin{definition}
   A type $X$ is called \notion{$\A^1$-modal}, if all maps $\gamma:\A^1\to X$ factor uniquely over $1$:
   \begin{center}
     \begin{tikzcd}
@@ -40,6 +44,7 @@ We rediscovered this for a similar class of schemes by using surprising results 
 \end{proof}
 
 \begin{lemma}
+  \label{R-action-A1-connected}
   Let $(X,*)$ be a pointed type with a multiplicative left action of $R$,
   such that for all $x:X$, we have $0\cdot x=*$ and $1\cdot x=x$.
   Then $\shape_{\A^1}X=1$.
@@ -56,10 +61,6 @@ We rediscovered this for a similar class of schemes by using surprising results 
 \end{proof}
 
 \begin{definition}
-  For any type $X$, let $\widetilde{X}$ denote the formally étale replacement of $X$.
-\end{definition}
-
-\begin{definition}
   Let $\A^\times\colonequiv \A^1\setminus\{0\}$.
 \end{definition}
 
@@ -68,14 +69,20 @@ We rediscovered this for a similar class of schemes by using surprising results 
 \end{proposition}
 
 \begin{proof}
+  By \Cref{R-action-A1-connected}, the fibers of $\A^\times\to \widetilde{\A^\times}$ are $\shape_{\A^1}$-connected,
+  so it is enough to show that $\widetilde{\A^\times}$ is $\shape_{\A^1}$-modal.
   Use Zariski choice in the situation
   \begin{center}
     \begin{tikzcd}
       & \A^\times\ar[d,->>] \\
-      \A^1\ar[r] & \widetilde{\A^\times} 
+      \A^1\ar[r,"\gamma"] & \widetilde{\A^\times} 
     \end{tikzcd}
   \end{center}
-  Glue the resulting sections under a $\neg\neg$ to a section $\A^1\to\A^\times$.
-  The section is merely of the form $x\mapsto a_0+\sum_{i=1}^na_ix^i$ with $a_0\neq 0$ and nilpotent $a_i$ for $i>0$.
+  to get $s_i:D(f_i)\to\widetilde{\A^\times}$ with $\neg\neg (s_i=s_j)$ on intersections.
+  Fix $x:\A^1$. We will show that $\neg\neg(\gamma(x)=\gamma(0))$.
+  We can assume $s_i=s_j$, so the $s_i$ glue to a map $\A^1\to\A^\times$, which is a lift of $\gamma$.
+  This lift is merely of the form $x\mapsto a_0+\sum_{i=1}^na_ix^i$ with $a_0\neq 0$ and nilpotent $a_i$ for $i>0$,
+  which means $\neg\neg (\gamma(0)=\gamma(x)=a_0)$.
+  
   So the original map $\A^1\to \A^\times$ is constantly $\widetilde{a_o}$.
 \end{proof}
