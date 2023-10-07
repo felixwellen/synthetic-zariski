@@ -44,21 +44,50 @@ We rediscovered this for a similar class of schemes by using surprising results 
 \end{proof}
 
 \begin{lemma}
-  \label{R-action-A1-connected}
-  Let $(X,*)$ be a pointed type with a multiplicative left action of $R$,
-  such that for all $x:X$, we have $0\cdot x=*$ and $1\cdot x=x$.
-  Then $\shape_{\A^1}X=1$.
+  \label{A1-paths-to-A1-prop}
+  Let $X$ be a type such that
+  \[
+  \prod_{x,y:X} \sum_{\gamma:\A^1\to X} (\gamma(0)=x)\times (\gamma(1)=y)
+  \]
+  then $\shape X$ is a proposition.
 \end{lemma}
 
 \begin{proof}
-  For all $x:X$, we can construct the map
+  First, using the inverse of the map
   \[
-    \gamma_x\colonequiv (r:\A^1)\mapsto r\cdot x : \A^1\to X
+    (\shape X) \cong  \shape X^{\A^1}
   \]
-  Since $\shape_{\A^1}X$ is modal, $\sigma_X\circ \gamma_x$ factors over a point for each $x:X$.
-  Using the universal property of a modality,
-  this yields a contraction of $\shape_{\A^1}X$ to $\sigma_X(*)$.
+  to construct $(x,y:X)\to \sigma_X(x)=\sigma_X(y)$.
+  By direct applications of the dependent universal property of a uniquely eliminating modality we conclude
+  $(x,y:\shape X)\to x=y$.
 \end{proof}
+
+\begin{example}
+  \label{basic-A1-connected-types}
+  \begin{enumerate}[(a)]
+  \item Let $(X,*)$ be a pointed type with a multiplicative left action of $R$,
+    such that for all $x:X$, we have $0\cdot x=*$ and $1\cdot x=x$.
+    Then $\shape X$ is a proposition by \Cref{A1-paths-to-A1-prop} and therefore contractible,
+    using the maps
+    \[
+    \gamma_x\colonequiv (r:\A^1)\mapsto r\cdot x : \A^1\to X
+    \rlap{.}
+    \]
+    This entails that $\D(n)$, $\D$ and all types with an $R$-module structure are $\A^1$-connected.
+  \item For any pair of types $A,B:\mathcal U$, we have the maps
+    \begin{align*}
+      f_{A,B}&\colonequiv (x:\A^1)\mapsto A^{x=0}\times B^{x=1} \\
+      g_{A,B}&\colonequiv (x:\A^1)\mapsto A\times (x=0) + B\times(x=1)
+    \end{align*}
+    both constructions imply with \Cref{A1-paths-to-A1-prop}
+    that $\shape \mathcal U$ is a proposition and therefore contractible.
+  \item For $A,B:\Mod{R}$ we can use the maps $f_{A,B}$ from above to construct a path
+    where all values carry an $R$-module structure.
+    Therefore $\shape \Mod{R}$ is constractbile as well.
+    The same argument applies to all types of structured types closed under product
+    and exponentiation with propositional affine schemes, e.g.\ $\Mod{R}_{wqc}$.
+  \end{enumerate}
+\end{example}
 
 \begin{definition}
   Let $\A^\times\colonequiv \A^1\setminus\{0\}$.
@@ -79,10 +108,10 @@ We rediscovered this for a similar class of schemes by using surprising results 
     \end{tikzcd}
   \end{center}
   to get $s_i:D(f_i)\to\widetilde{\A^\times}$ with $\neg\neg (s_i=s_j)$ on intersections.
-  Fix $x:\A^1$. We will show that $\neg\neg(\gamma(x)=\gamma(0))$.
+  Fix $x,y:\A^1$. We will show that $\neg\neg(\gamma(x)=\gamma(y))$.
   We can assume $s_i=s_j$, so the $s_i$ glue to a map $\A^1\to\A^\times$, which is a lift of $\gamma$.
   This lift is merely of the form $x\mapsto a_0+\sum_{i=1}^na_ix^i$ with $a_0\neq 0$ and nilpotent $a_i$ for $i>0$,
-  which means $\neg\neg (\gamma(0)=\gamma(x)=a_0)$.
+  which means $\neg\neg (\gamma(x)=a_0=\gamma(y))$.
   
-  So the original map $\A^1\to \A^\times$ is constantly $\widetilde{a_o}$.
+  So the original map $\A^1\to \A^\times$ is weakly constant and therefore constant.
 \end{proof}
