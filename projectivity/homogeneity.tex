@@ -73,69 +73,73 @@
 \subsection{Vector spaces and their duals}
 
 \begin{example}
-  Let $V$ be a finitely presented $R$-module.  The symmetric algebra
-  $\Sym^* V$ of $V$ over $R$ is naturally graded.  In particular, the
+  Let $M$ be a finitely presented $R$-module.  The symmetric algebra
+  $\Sym^* M$ of $M$ over $R$ is naturally graded.  In particular, the
   affine scheme
   \begin{equation*}
-    V\spcheck \coloneqq \Spec \Sym^* V
+    V \coloneqq M\spcheck \coloneqq \Spec \Sym^* V
   \end{equation*}
-  carries a natural action by the multiplicative group $R^\times$.
+  carries a natural action by the multiplicative group $\Gm$.
 \end{example}
 
 \begin{remark}
-  We write $V\spcheck$ as
+  We write $M\spcheck$ as
   \begin{equation*}
-    \Spec \Sym^* V = \Hom_{\Alg R}(\Sym^* V, R) = \Hom_{\Mod R}(V, R)
+    \Spec \Sym^* M = \Hom_{\Alg R}(\Sym^* M, R) = \Hom_{\Mod R}(M, R)
   \end{equation*}
-  by the universal property of $\Sym^* V$.  In particular, $V\spcheck$
-  carries the structure of a (finitely copresented) $R$-module.
-  Moreover, the natural action of $R^\times$ on the left hand side
-  corresponds to scalar multiplication on the right hand side.
+  by the universal property of $\Sym^* M$.  In particular,
+  $V = M\spcheck$, being the module dual of $M$, carries the structure
+  of a (finitely copresented) $\A$-module.  Moreover, the natural
+  action of $\Gm$ on the left hand side corresponds to scalar
+  multiplication on the right hand side.
 \end{remark}
 
-From the above, we can deduce that $V$ is reflexive:
+\begin{definition}
+  A \emph{vector space} is a finite copresented $\A$-module.
+\end{definition}
+
+From the above, we can deduce that $M$ is reflexive in the following
+sense:
 
 \begin{theorem}
-  Let $V$ be a finitely presented $R$-module.  Set
+  Let $M$ be a finitely presented $R$-module.  Set
   \begin{equation*}
-    V^{\vee\vee} \coloneqq \Hom_{\Mod R}(V\spcheck, R).
+    M^{\vee\vee} \coloneqq \Hom_{\Mod A}(M\spcheck, \A).
   \end{equation*}
   The natural map
   \begin{equation*}
-    V \to V^{\vee\vee}, f \mapsto (p \mapsto p(f))
+    M \to M^{\vee\vee}, f \mapsto (p \mapsto p(f))
   \end{equation*}
-  is an isomorphism of $R$-modules.  In particular, $V$ is reflexive
-  and the dual of every finitely copresented $R$-module (which is
-  always the dual of a finitely presented $R$-module) is finitely
-  presented.
+  is an isomorphism of $R$-modules.  In particular, $M$ is reflexive
+  and the dual of every vector space, that is every finitely
+  copresented $R$-module (which is always the dual of a finitely
+  presented $R$-module), is finitely presented.
 \end{theorem}
 
 \begin{proof}
   The identification
   \begin{equation*}
-    \Sym^* V \to R^{\Spec \Sym^* V} = R^{V\spcheck}
+    \Sym^* M \to R^{\Spec \Sym^* M} = R^{M\spcheck}
   \end{equation*}
   is an identity of $R$-algebras with an $R^\times$-action.  In
   particular, the homogeneous elements of degree $1$ on the left hand
   side correspond to the homogeneous elements of degree $1$ on the
   right hand side.  This yields an isomorphism
   \begin{equation*}
-    \phi\colon V \to \Hom_{R^\times}(V\spcheck, R) \coloneqq \{u\colon V\spcheck \to R \mid \forall t \in R^\times\forall v \in V\colon u(vt) = u(v) t\},
+    \phi\colon M \to \Hom_{\Gm}(M\spcheck, \A) \coloneqq \{u\colon M\spcheck \to \A \mid \forall a \in \Gm\forall v\colon M. u(v a) = u(v) a\},
     v \mapsto (p \mapsto p(v))
   \end{equation*}
   of $R$-modules.  As the image of $\phi$ lies inside
-  $V^{\vee\vee} \subseteq \Hom_{R^\times}(V\spcheck, R)$ we
-  actually have $V^{\vee\vee} = \Hom_{R^\times}(V\spcheck, R)$ and
-  the theorem is proven.
+  $M^{\vee\vee} \subseteq \Hom_{\Gm}(M\spcheck, \A)$ we actually have
+  $M^{\vee\vee} = \Hom_{\Gm}(M\spcheck, \A)$ and the theorem is
+  proven.
 \end{proof}
 
 \begin{remark}
-  It follows from the above that for a finitely copresented $R$-module
-  $V\spcheck$, a ($1$-)homogenous map $V\spcheck \to R$ is already
-  $R$-linear (principle of microlinearity).
+  It follows from the above that for a vector space $V$, a
+  ($1$-)homogenous map $V \to \A$ is already $\A$-linear (principle of
+  microlinearity).
 \end{remark}
-
-
 
 %%% Local Variables:
 %%% mode: latex
