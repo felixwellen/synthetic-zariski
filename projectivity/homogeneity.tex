@@ -1,3 +1,141 @@
+\subsection{Graded $R$-algebras}
+
+\begin{definition}
+  A \emph{graded} $R$-algebra $S$ is an $R$-algebra $S$ together with the datum of a direct sum decomposition
+  \begin{equation*}
+    S = \oplus_{n \in \Z} S_n
+  \end{equation*}
+  as an $R$-module such that $S_k \cdot S_\ell \subseteq S_{k + l}$
+  for every $k$, $\ell \in \Z$.  We identify each $S_n$ for $n \in \Z$
+  with its image in $S$.  The elements of $S_n$ are called \emph{homogeneous} of degree $n$.
+\end{definition}
+
+\begin{remark}
+  The datum of a grading of an $R$-algebra $S$ thus gives us an
+  essentially finite decomposition\footnote{That means there merely
+    are $i$, $j :\Z$ such that $u_n = 0$ if $n < i$ or $n > j$.}
+  $u = \sum_{n \in \Z} u_n$ for every $u \in S$ where each $u_n$ is
+  homogeneous of degree $n$.  Furthermore, the decomposition of a
+  homogeneous element $u$ is just $u = u$.
+\end{remark}
+
+\begin{proposition}\label{spectrum of graded algebra}
+  Let $S$ be a graded $R$-algebra and let $X \coloneqq \Spec S$.  For each $a \in \Gm$ and each $p \in X$ we define
+  \begin{equation*}
+    a \cdot p \coloneqq \left(u \mapsto \sum_{n \in \Z} p(u_n) a(T)^n\right) \in \Spec S.
+  \end{equation*}
+  This defines an operation of the multiplicative group $\Gm$ on $X$.
+\end{proposition}
+
+\begin{proof}
+  That $1 \cdot p = p$ for every $p \in X$ follows from
+  $p(u) = \sum_{n \in \Z} p(u_n)\cdot 1^n$.  That
+  $a \cdot (a' \cdot p) = (a \cdot a') \cdot p$ follows from the
+  homogeneity of each $u_n$.
+\end{proof}
+
+\begin{theorem}
+  The construction in \cref{spectrum of graded algebra} yields an
+  identification between the type of graded $R$-algebras and the type
+  of affine schemes together with an action of the multiplicative
+  group $\Gm$.
+\end{theorem}
+
+\begin{proof}
+  We give the converse construction.  Let $X = \Spec S$ be an affine
+  scheme together with the datum $X \times \Gm \to X$ of an action of
+  the multiplicative group $\Gm$.  By synthetic quasi-coherence, the
+  function $X \times \Gm \to X$ yields a homomorphism
+  \begin{equation*}
+    \alpha(T)\colon S \to S[T, T^{-1}] = S \otimes R[T, T^{-1}], u \mapsto \sum_{n \in Z} u_n T^n
+  \end{equation*}
+  of $R$-algebras where the sum on the right hand side is essentially
+  finite.  That $1 \cdot p = p$ for all $p \in X$ is equivalent to
+  $\alpha(1) = \id_S$, which, in turn, yields
+  $u = \sum_{n \in \Z} u_n$.  That $a \cdot (a' \cdot p) = (a \cdot a') \cdot p$ is equivalent to
+  $(\alpha(T) \otimes \id_{R[T, T^{-1}]}) \circ \alpha(T') = \alpha(T \cdot T')$, from which $\alpha(T) (u_n) = u_n T^n$ follows.
+\end{proof}
+
+\begin{remark}
+  Let $S$ be a graded $R$-algebra.  The action of $\Gm$ on $\Spec S$ induces a natural action of $R^\times$ on the $R$-algebra of functions
+  on $\Spec S$ given by
+  \begin{equation*}
+    R^{\Spec S} \times R^\times \to R^{\Spec S}, (f, t) \mapsto (p \mapsto f(p \cdot t))
+  \end{equation*}
+  where $a \in \Gm$ such that $a(T) = t$.
+  Under the identification $R^{\Spec S} = S$ given by synthetic quasicoherence, this gives the action
+  \begin{equation*}
+    S \times R^\times \to S, (u, t) \mapsto \sum_{n \in \Z} u_n t^n
+  \end{equation*}
+  of $R^\times$ on the $R$-algebra $S$.
+\end{remark}
+
+\subsection{Vector spaces and their duals}
+
+\begin{example}
+  Let $V$ be a finitely presented $R$-module.  The symmetric algebra
+  $\Sym^* V$ of $V$ over $R$ is naturally graded.  In particular, the
+  affine scheme
+  \begin{equation*}
+    V\spcheck \coloneqq \Spec \Sym^* V
+  \end{equation*}
+  carries a natural action by the multiplicative group $R^\times$.
+\end{example}
+
+\begin{remark}
+  We write $V\spcheck$ as
+  \begin{equation*}
+    \Spec \Sym^* V = \Hom_{\Alg R}(\Sym^* V, R) = \Hom_{\Mod R}(V, R)
+  \end{equation*}
+  by the universal property of $\Sym^* V$.  In particular, $V\spcheck$
+  carries the structure of a (finitely copresented) $R$-module.
+  Moreover, the natural action of $R^\times$ on the left hand side
+  corresponds to scalar multiplication on the right hand side.
+\end{remark}
+
+From the above, we can deduce that $V$ is reflexive:
+
+\begin{theorem}
+  Let $V$ be a finitely presented $R$-module.  Set
+  \begin{equation*}
+    V^{\vee\vee} \coloneqq \Hom_{\Mod R}(V\spcheck, R).
+  \end{equation*}
+  The natural map
+  \begin{equation*}
+    V \to V^{\vee\vee}, f \mapsto (p \mapsto p(f))
+  \end{equation*}
+  is an isomorphism of $R$-modules.  In particular, $V$ is reflexive
+  and the dual of every finitely copresented $R$-module (which is
+  always the dual of a finitely presented $R$-module) is finitely
+  presented.
+\end{theorem}
+
+\begin{proof}
+  The identification
+  \begin{equation*}
+    \Sym^* V \to R^{\Spec \Sym^* V} = R^{V\spcheck}
+  \end{equation*}
+  is an identity of $R$-algebras with an $R^\times$-action.  In
+  particular, the homogeneous elements of degree $1$ on the left hand
+  side correspond to the homogeneous elements of degree $1$ on the
+  right hand side.  This yields an isomorphism
+  \begin{equation*}
+    \phi\colon V \to \Hom_{R^\times}(V\spcheck, R) \coloneqq \{u\colon V\spcheck \to R \mid \forall t \in R^\times\forall v \in V\colon u(vt) = u(v) t\},
+    v \mapsto (p \mapsto p(v))
+  \end{equation*}
+  of $R$-modules.  As the image of $\phi$ lies inside
+  $V^{\vee\vee} \subseteq \Hom_{R^\times}(V\spcheck, R)$ we
+  actually have $V^{\vee\vee} = \Hom_{R^\times}(V\spcheck, R)$ and
+  the theorem is proven.
+\end{proof}
+
+\begin{remark}
+  It follows from the above that for a finitely copresented $R$-module
+  $V\spcheck$, a ($1$-)homogenous map $V\spcheck \to R$ is already
+  $R$-linear (principle of microlinearity).
+\end{remark}
+
+
 
 %%% Local Variables:
 %%% mode: latex
