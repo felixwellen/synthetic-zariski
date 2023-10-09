@@ -5,7 +5,7 @@
 
 \RequirePackage[a4paper,margin=2.5cm]{geometry}
 
-\RequirePackage{amsmath,amssymb,mathtools,amsxtra}
+\RequirePackage{amsmath,amssymb,mathtools,amsxtra,upgreek}
 
 % Schönere Tabellen / Auflistungen / Theoreme
 \RequirePackage{booktabs}
