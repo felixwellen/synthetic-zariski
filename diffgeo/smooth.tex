@@ -192,22 +192,7 @@ I think in the traditional setting this map has smooth fibers, but not here.
 
 \subsection{Stability properties}
 
-Now we give stability properties for formally smooth types.
-
-\begin{proposition}
-\label{smoothSurjective}
-The image of a formally smooth type by any map is formally smooth.
-\end{proposition}
-\begin{proof}
-We assume $X$ formally smooth and $p:X\to Y$ surjective. Then for any $P$ closed dense and any diagram:
- \begin{center}
-      \begin{tikzcd}
-      P \ar[rd,dotted]\ar[d]\ar[r]& Y\\
-      1 \ar[r,dotted,swap,"x"]& X\ar[u,swap,"p"]
-      \end{tikzcd}
-    \end{center} 
-    by choice for closed propositions we merely get the dotted diagonal, and since $X$ is formally smooth we get the dotted $x$, and then $p(x)$ gives a lift.
-\end{proof}
+Now we give stability properties for formally smooth types. We start by expected ones:
 
 \begin{lemma}
 If $X$ is a type satifying choice and for all $x:X$ we have a formally smooth type $Y_x$, then:
@@ -225,6 +210,49 @@ is formally smooth.
 \end{lemma}
 
 Formally smooth types are not stable by identity types (e.g. identity types in $\A^1$ are not smooth, otherwise they would be closed and étale, i.e. decidable).
+
+One typically expects quotienting to sometimes break smoothness. Surprisingly, this is not the case in our setting when using homotopy quotients:
+
+\begin{proposition}
+\label{smoothSurjective}
+The image of a formally smooth type by any map is formally smooth.
+\end{proposition}
+\begin{proof}
+We assume $X$ formally smooth and $p:X\to Y$ surjective. Then for any $P$ closed dense and any diagram:
+ \begin{center}
+      \begin{tikzcd}
+      P \ar[rd,dotted]\ar[d]\ar[r]& Y\\
+      1 \ar[r,dotted,swap,"x"]& X\ar[u,swap,"p"]
+      \end{tikzcd}
+    \end{center} 
+    by choice for closed propositions we merely get the dotted diagonal, and since $X$ is formally smooth we get the dotted $x$, and then $p(x)$ gives a lift.
+\end{proof}
+
+\begin{lemma}\label{pointed-connected-smooth}
+Any pointed connected type $X$ is formally smooth.
+\end{lemma}
+
+\begin{proof}
+We have a surjection:
+\[1\to X\]
+and $1$ is formally smooth so we conclude by \cref{smoothSurjective}.
+\end{proof}
+
+Formal smoothness is really about sets in some way:
+
+\begin{lemma}
+A type $X$ is formally smooth if and only if its set truncation $\propTrunc{X}_0$ is formally smooth.
+\end{lemma}
+
+\begin{proof}
+Consider the map:
+\[p:X\to \propTrunc{X}_0\]
+\begin{itemize}
+\item If $X$ is formally smooth, then since $p$ is surjective we conclude using \cref{smoothSurjective}.
+\item The map $p$ has merely inhabited connected fibers so by \cref{pointed-connected-smooth} it is formally smooth, so that if $\propTrunc{X}_0$ is formally smooth so is $X$ by \cref{smooth-sigma-closed}.
+\end{itemize}
+\end{proof}
+
 
 \subsection{Equivalence with the usual definition for maps between schemes}
 
