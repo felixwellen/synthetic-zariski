@@ -103,3 +103,42 @@ With this we can generalize \cref{commute-open-in-closed-prop} to types:
 \end{proof}
 
 So also any type $Y$ that admits a surjection to $\A^1$ is not compact, which includes all $\A^n$ for $n>0$.
+
+\begin{lemma}
+A type $X$ is compact if and only if $\propTrunc{X}_0$ is compact.
+\end{lemma}
+
+\begin{proof}
+Clear as open in $X$ are equivalent to open in $\propTrunc{X}_0$.
+\end{proof}
+
+\subsection{Compact propositions}
+
+Written by Hugo.
+
+\begin{lemma}
+An open proposition is compact if and only if it is decidable.
+\end{lemma}
+
+\begin{proof}
+If it is decidable then it is compact. Conversely let $U$ be a compact open proposition. Then there merely exists $C$ closed such that $U = \neg C$. Since $U$ is compact and $\bot$ is open, we have that $\neg U$ is open, i.e. $\neg\neg C$ is open. Then:
+\[C\to \neg\neg C\]
+gives:
+\[\neg C \lor \neg\neg C\]
+and this is precisely:
+\[U \lor \neg U\] 
+\end{proof}
+
+\begin{lemma}\label{compact-proposition-scheme-are-closed}
+Let $U$ be an open proposition, and $C:U\to \Prop$ a family of closed propositions. Then $\Sigma_{x:U}C(x)$ is compact if and only if it is closed.
+\end{lemma}
+
+\begin{proof}
+If it is closed then it is compact. Conversely assume $\Sigma_{x:U}C(x)$ is compact. Then $U$ is merely of the form $\neg D$ for $D$ a closed proposition and we have that:
+\[\neg U \to \neg(\Sigma_{x:U}C(x))\]
+so that:
+\[D\to \neg(\Sigma_{x:U}C(x))\]
+Since $\Sigma_{x:U}C(x)$ is compact we have that $\neg(\Sigma_{x:U}C(x))$ is open, and then we have that:
+\[\neg D \lor \neg(\Sigma_{x:U}C(x))\]
+Since $\neg D = U$ we can conclude $\Sigma_{x:U}C(x)$ closed in both cases.
+\end{proof}
