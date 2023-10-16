@@ -36,7 +36,7 @@ We have a central extension:
 \end{proposition}
 
 \begin{proof}
-TODO, difficult, says $Aut(\bP^n) = PGL_{n+1}$.
+TODO, difficult, says $Aut(\bP^n) = PGL_{n+1}$. David has a sketch for $n=1$.
 \end{proof}
 
 A projective space is a type merely equal to $\bP^k$ for some $k$.
@@ -55,14 +55,51 @@ though which we lift is precisely projectivisation, and we can conclude.
 
 \subsection{Projectivisation of a finite free line bundles over a projective space is projective scheme}
 
-\begin{lemma}\label{projectivisation-line-bundle-over-Pn-projective}
-Assume given a bundle $V$ of finite free module of $\bP^n$. Then:
-\[\Sigma_{x:\bP^n}\bP(V_x)\]
+\begin{lemma}
+A locally finite free bundle $M$ on a type $X$ is said to be globally generated if there exists $k:\N$ and:
+\[\phi : (x:X) \to \Hom_R(R^k,V_x)\]
+for all $x:X$ we have $\phi_x$ surjective.
+\end{lemma}
+
+\begin{lemma}\label{projectivisation-globally-generated-bundle-over-Pn-projective}
+Assume given globally generated bundle $V$ of finite free module of $\bP^n$. Then:
+\[\sum_{x:\bP^n}\bP(V^\star_x)\]
 is a projective scheme.
 \end{lemma}
 
 \begin{proof}
-TODO, we presumably have to twist enough to get global sections.
+TODO, easy
+\end{proof}
+
+\begin{lemma}\label{twisting-invariant-projectivisation}
+Assume $V$ is a finite free module. Then for all finite free module $L$ of dimension $1$ we have that:
+\[\bP(V) = \bP(\Hom_R(L,V))\]
+\end{lemma}
+
+\begin{proof}
+TODO, easy
+\end{proof}
+
+\begin{lemma}\label{twisted-enough-globally-generated}
+Assume given of locally finite free bundle on $\bP^n$. Then for $d$ large enough we have that $V(d)$ is globally generated.
+\end{lemma}
+
+\begin{proof}
+TODO, hard... Know how to do it for sums of twisted canonical line bundles.
+\end{proof}
+
+\begin{lemma}\label{projectivisation-bundle-over-Pn-projective}
+Assume given a bundle $V$ of finite free module over $\bP^n$. Then:
+\[\sum_{x:\bP^n}\bP(V_x)\]
+is a projective scheme.
+\end{lemma}
+
+\begin{proof}
+By \cref{twisted-enough-globally-generated} we know that $V^\star(d)$ is globally generated for $d$ large enough. Then by \cref{projectivisation-globally-generated-bundle-over-Pn-projective} we know that:
+\[\sum_{x:\bP^n}\bP((V^\star(d))^\star_x)\] 
+is a projective scheme. Finally, for all $x:\bP^n$ we have that:
+\[\bP((V^\star(d))^\star_x) = \bP(\Hom_R(\OO(d)_x,V_x)) = \bP(V_x)\]
+by \cref{twisting-invariant-projectivisation} because $\OO(d)_x$ is free of dimension $1$. So we can conclude.
 \end{proof}
 
 \subsection{Projective schemes are stable under dependent sum}
@@ -77,11 +114,11 @@ TODO
 \end{proof}
 
 \begin{proposition}
-Assume given $X$ a projective scheme and $Y_x$ a family of projective schemes for $x:X$. Then the scheme $\Sigma_{x:X}Y_x$ is projective.
+Assume given $X$ a projective scheme and $Y_x$ a family of projective schemes for $x:X$. Then the scheme $\sum_{x:X}Y_x$ is projective.
 \end{proposition}
 
 \begin{proof}
-If $X$ is a closed proposition this is clear because closed propositions have choice. Then it is enough to show that for any family of projective spaces over $\bP^n$ their total space is a projective scheme. This holds since by \cref{projective-2-cohomology-Ax-vanish} and \cref{projective-space-are-projectivisation-bundle} the family is a projectivisation of a bundle of finite free modules, and then we conclude by \cref{projectivisation-line-bundle-over-Pn-projective}.
+If $X$ is a closed proposition this is clear because closed propositions have choice. Then it is enough to show that for any family of projective spaces over $\bP^n$ their total space is a projective scheme. This holds since by \cref{projective-2-cohomology-Ax-vanish} and \cref{projective-space-are-projectivisation-bundle} the family is a projectivisation of a bundle of finite free modules, and then we conclude by \cref{projectivisation-bundle-over-Pn-projective}.
 \end{proof}
 
 \subsection{Projectivisation of a finite free line bundle over an open proposition is a quasi-projective scheme}
