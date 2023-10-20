@@ -324,7 +324,16 @@ is surjective. Then $X$ is smooth.
 \end{lemma}
 
 \begin{proof}
-TODO
+We write $P: R^n\to R^m$ the map sending $x$ to $(P_1(x),\cdots,P_m(x))$. Assume given $\epsilon:R$ such that $\epsilon^2 = 0$. For any:
+ \begin{center}
+      \begin{tikzcd}
+      R/\epsilon & R[X_1,\cdots,X_n]/P_1,\cdots,P_m\ar[l]\ar[ld,dotted]\\
+      R\ar[u] &  \\
+      \end{tikzcd}
+    \end{center} 
+    we need to find a dotted lift. This means that given $x:R^n$ such that $P(x)=0$ mod $\epsilon$, we need to merely find $y:R^n$ such that $P(x+\epsilon y) = 0$. But since $\epsilon^2=0$, we have that:
+    \[P(x+\epsilon y) = P(x) + \epsilon J(x)y\]
+    But we know that $P(x)$ is merely equal to $\epsilon z$ for some $z$ in $R^m$, so to conclude it is enough to prove $J(x)$ surjective. But $J(x)$ being surjective is an open proposition as it can be expressed as the invertibility of some determinants, so in particular it is $\neg\neg$-stable. Since $P(x)=0$ implies $J(x)$ surjective and we have $\neg\neg(P(x)=0)$ we can conclude.
 \end{proof}
 
 We want to show some kind of converse. We start with a simple case, when $m=1$. First an auxiliary lemma.
@@ -500,7 +509,7 @@ is formally étale.
 \end{lemma}
 
 \begin{proof}
-TODO
+The fibers of this map are standard étale, so we can conclude by \cref{standard-etale-are-etale}.
 \end{proof}
 
 \begin{corollary}
