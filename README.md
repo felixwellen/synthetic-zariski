@@ -35,6 +35,10 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 
   *Yes*: By the discussion in [#5](../../issues/5) and [#6](../../issues/6), $\mathrm{Spec} A$ is even projective, whenever $A$ is finitely generated as an $R$-module.
   
+# Learning material
+There are some recordings of talks from the last [workshop](https://www.felix-cherubini.de/sag-meeting-3.html) on synthetic algebraic geometry.
+And there is [hottest talk](https://www.youtube.com/watch?v=lp4kcmQ0ueY) on the foundations article.
+
 # Building the drafts
 
 We use latex now instead of xelatex, to be compatible with the arxiv.
