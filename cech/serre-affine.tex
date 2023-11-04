@@ -1,9 +1,6 @@
 \rednote{Give some context, i.e. important theorem in the foundations of
 algebraic geometry, useful for X, Y, Z, ...}
 
-\rednote{Discuss refined theorem where we only require vanishing of $H^1$ for
-wqc bundles of ideals (instead of wqc bundles of modules)}
-
 \rednote{Discuss slight apparent mismatch to classical version regarding
 finiteness hypotheses}
 
@@ -44,7 +41,7 @@ and quasi-separated schemes.
 \rednote{Decide on notation for constant bundle}
 
 \begin{lemma}\label{serre-workhorse}
-  Let~$X$ be a scheme. Assume that~$H^1(X, E) = 0$ for all wqc bundles~$E$
+  Let~$X$ be a scheme. Assume that~$H^1(X, E) = 0$ for all wqc bundles of ideals~$E$
   on~$X$. Let~$X = U \cup V$ be an open covering with~$U$ affine. Then there
   merely is a function~$f : X \to R$ such that~$D(f) \subseteq U$ and such
   that~$X = D(f) \cup V$.
@@ -90,7 +87,7 @@ and quasi-separated schemes.
 \end{proof}
 
 \begin{proposition}\label{serre-prop}
-  Let~$X$ be a scheme. If~$H^1(X, E) = 0$ for all wqc bundles~$E$ on~$X$, then
+  Let~$X$ be a scheme. If~$H^1(X, E) = 0$ for all wqc bundles of ideals~$E$ on~$X$, then
   there exist global functions as in~\cref{enough-functions-affine}.
 \end{proposition}
 
@@ -104,14 +101,23 @@ and quasi-separated schemes.
   Because~$X = U_1 \cup \dots \cup U_n$, for every point~$x : X$ we trivially
   have that the numbers~$f_1(x),\ldots,f_n(x)$ generate the unit ideal in~$R$.
   In other words, the bundle morphism~$\underline{R}^n \to \underline{R}$ given by
-  the matrix~$(f_1 \cdots f_n)$ is surjective at each fiber. Because the first
-  cohomology of its kernel vanishes, this morphism is also surjective on global
-  sections. Hence the functions~$f_1,\ldots,f_n$ generate the unit ideal
-  in~$R^X$.
+  the matrix~$(f_1 \cdots f_n)$ is surjective at each fiber. The
+  functions~$f_1,\ldots,f_n$ generate the unit ideal in~$R^X$ iff this morphism
+  is also surjective on global sections. Hence we need to verify that its
+  kernel has vanishing first cohomology.
+
+  If the assumption would have been that all wqc bundles of modules have
+  vanishing first cohomology, this task would be trivial. However, the
+  kernel~$K$ is a subbundle of~$\underline{R}^n$ and hence not a bundle of
+  ideals of~$\underline{R}$. But~$K$ is filtered by its subbundles~$K_j = (\{
+  (a_1,\ldots,a_n) : K_x \,|\, \text{$a_i = 0$ for~$i > j$} \})_{x:X}$ for~$j =
+  0,\ldots,n$, and each quotient~$K_{j+1}/K_j$ has vanishing first cohomology
+  as it is isomorphic to a wqc bundle of ideals of~$\underline{R}$ (by
+  projecting to the~$j$-th coordinate).
 \end{proof}
 
 \begin{theorem}
-  Let~$X$ be a scheme. If~$H^1(X, E) = 0$ for all wqc bundles~$E$
+  Let~$X$ be a scheme. If~$H^1(X, E) = 0$ for all wqc bundles of ideals~$E$
   on~$X$, then~$X$ is affine.
 \end{theorem}
 
