@@ -30,29 +30,49 @@ We start by repeating the classical definition of \v{C}hech-Cohomology groups fo
 
 \begin{definition}
   \label{sheaf-cech}
-  Let $X$ be a type covered by $\{U\}_{i:I}$ and $\mathcal F : X\to \AbGroup$.
-  Let $I_x^k\colonequiv (i_0 \cdots i_k:I)\times U_{i_0\dots i_k}(x)$ for $k:\N$.
+  Let $\{U\}_{i:I}$ be a finite collection of open subtypes of $X$ and $\mathcal F : X\to \AbGroup$.
+  Let $I_x^k\colonequiv (i_0, \dots, i_k:I)\times U_{i_0\dots i_k}(x)$ for $k:\N$ and $i^k:(x:X)\times I^k_x\to X$ be the first projection.
   Then the dependent abelian group\index{$\check{\mathcal F}$}
-  \[ \check{\mathcal F}^k\colonequiv (x:X)\mapsto \mathcal F_x^{I_x^k} \]
-  is called the \notion{\v{C}ech-sheaf} of $\mathcal F$.
+  \[ \check{\mathcal F}^k\colonequiv (x:X)\mapsto \mathcal F_x^{I_x^k} \equiv i^k_\ast {i^k}^\ast\mathcal F \]
+  is called the $k$-th \notion{\v{C}ech-sheaf} of $\mathcal F$.
 \end{definition}
 
 \begin{remark}
-  \label{cech-sheaf-to-complex}
-  Let $X$ be a type covered by $\{U\}_{i:I}$ and $\mathcal F : X\to \AbGroup$.
-  Let $I_x\colonequiv (i:I)\times U_i(x)$ and $u:\coprod_i U_i\to X$ have cohomologically trivial fibers.
-  Then 
-  \[
-    \prod_{x:X} \check{\mathcal F}^k_x=\bigoplus_{i_0,\dots,i_k}\mathcal F(U_{i_0\dots i_k})
-  \]
+  \label{cech-sheaf-pi-direct-sum}
+  \begin{enumerate}[(a)]
+  \item The functor $\prod:\mathcal A \to \AbGroup$ is additive.
+  \item Let $X$ be a type covered by $\{U\}_{i:I}$ and $\mathcal F : X\to \AbGroup$.
+    Then 
+    \[
+      \prod_{x:X} \check{\mathcal F}^k_x=\bigoplus_{i_0,\dots,i_k}\mathcal F(U_{i_0\dots i_k})
+      \rlap{.}
+    \]
+  \end{enumerate}
 \end{remark}
 
+\begin{proof}
+  \begin{enumerate}[(a)]
+  \item The finite biproducts in $\mathcal A$ are in particular finite products, which commute with $\prod$.
+  \item \begin{align*}
+          \prod_{x:X} \check{\mathcal F}^k_x &= \prod_{x:X} \mathcal F_x^{I^k_x} \\
+                                             &= \prod_{x:X} ((i_0, \dots, i_k:I)\times U_{i_0\dots i_k}(x))\to \mathcal F_x \\
+                                             &= \prod_{x:X} \prod_{i_0, \dots, i_k:I} \mathcal F_x^{U_{i_0\dots i_k}(x)} \\
+                                             &= \prod_{i_0, \dots, i_k:I} \prod_{x:X} \mathcal F_x^{U_{i_0\dots i_k}(x)} \\
+                                             &= \bigoplus_{i_0,\dots,i_k}\mathcal F(U_{i_0\dots i_k})\rlap{.}
+        \end{align*}
+  \end{enumerate}
+\end{proof}
+
 \begin{definition}
-  The cover $\{U\}=U_1,\dots,U_n$ is called \notion{acyclic} for $\mathcal F$,
-  if for all $k:\N$ and $i_0,\dots,i_k$, we have that the higher (non Čech) cohomology groups are trivial:
-  \[
-    \forall l>0. H^l(U_{i_0,\dots,i_k},\mathcal F)=0\rlap{.}
-  \]
+  \begin{enumerate}[(a)]
+  \item A cover $\{U\}=U_1,\dots,U_n$ is called \notion{acyclic} for $\mathcal F$
+    if for all $k:\N$ and $i_0,\dots,i_k$, we have that the higher (non Čech) cohomology groups are trivial:
+    \[
+      \forall l>0. H^l(U_{i_0,\dots,i_k},\mathcal F)=0\rlap{.}
+    \]
+  \item A cover $\{U\}=U_1,\dots,U_n$ is called \notion{\v{C}ech-trivializing} for $\mathcal F$
+    if for all $l>0$, $k\geq 0$ and indices $i_o,\dots,i_n:I$ we have $H^1(U_{i_0\dots i_k},\mathcal F)=0$ and $H^1(U_{i_0\dots i_k}(x),\mathcal F_x)$ for all $x:X$.
+  \end{enumerate}
 \end{definition}
 
 \begin{theorem}%
@@ -60,8 +80,7 @@ We start by repeating the classical definition of \v{C}hech-Cohomology groups fo
   Let $X$ be covered by a finite $\{U\}$ and let 
   \[ 0\to \mathcal F\to \mathcal G\to \mathcal H\to 0\]
   be a short exact sequence of depedent abelian groups on $X$.
-  If the map $\coprod_i U_i\to X$ has cohomologically trivial fibers
-  and for all $k:\N$ we have $H^1(U_{i_0\dots i_k},\mathcal F)=0$,
+  If $\{U\}$ is \v{C}ech-trivializing for $\mathcal F$, $\mathcal G$ and $\mathcal H$
   then a long exact sequence of \v{C}ech-Cohomology groups is induced:
   \begin{center}
     \begin{tikzcd}
@@ -78,9 +97,15 @@ We start by repeating the classical definition of \v{C}hech-Cohomology groups fo
     0\to \check{\mathcal F^k}\to \check{\mathcal G}^k\to \check{\mathcal H}^k\to 0
     \rlap{.}
   \]
-  Furthermore, applying $\prod$ preserves the exactness, since $H^1(X,\check{\mathcal F^k})=0$
-  by the assumtion $H^1(U_{i_0\dots i_k},\mathcal F)$ and \Cref{cohomologically-trivial-fibers}.
-  So by \Cref{cech-sheaf-to-complex}, we have short exact sequences:
+  The cover is \v{C}ech-trivializing, so using \Cref{cohomologically-trivial-fibers} and \Cref{cohomology-copropduct-direct-sum} we have
+  \begin{align*}
+    H^1(X,\check{\mathcal F^k})&=H^1(X,i_\ast^k {i^k}^\ast\mathcal F) \\
+                               &=H^1((x:X)\times (i_0,\dots,i_k)\times U_{i_0\dots i_k}(x),{i^k}^\ast\mathcal F) \\
+                               &=\bigoplus_{i_0\dots i_k} H^1(U_{i_0\dots i_k},\mathcal F) \\
+                               &=0    
+  \end{align*}
+  This implies, by the long exact sequence for non-\v{C}ech cohomology, that applying $\prod$ preserves the exactness.
+  So by \Cref{cech-sheaf-pi-direct-sum}, we have short exact sequences:
   \[
   0\to \bigoplus_{i_0,\dots,i_k}\mathcal F(U_{i_0\dots i_k}) \to \bigoplus_{i_0,\dots,i_k}\mathcal G(U_{i_0\dots i_k}) \to \bigoplus_{i_0,\dots,i_k}\mathcal H(U_{i_0\dots i_k})\to 0
   \]
