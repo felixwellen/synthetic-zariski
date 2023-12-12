@@ -182,8 +182,25 @@ The definition of curve we will use here is not tested much and therefore prelim
   \item Two Cartier divisors $(U_i,f_i)_i$ and $(V_j,g_j)_j$ are equal
     if there are $\lambda_{ij}:U_i\cap V_j \to R^\times$ such that $\lambda_{ij}f_i=g_j$.
     This notion of equality defines a set-quotient $\mathrm{Ca}(X)$, the \notion{type of Cartier divisors}.
-  \item Since Cartier divisors do not change by restriction to refinements of their covering,
-    that any finite list of Cartier divisors is defined on the same covering.
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  Let $X$ be a type.
+  Let $(U_i,f_i)_i:\mathrm{Ca}(X)$ and $(V_j)_j$ be a an open cover of $X$.
+  Then $(U_i\cap V_j, f_{i\mid U_i\cap V_j})_{(i,j)}$ is a Cartier divisor and equal to $(U_i,f_i)_i$.
+\end{lemma}
+
+\begin{proof}
+  $(U_i\cap V_j)_{(i,j)}$ is an open cover of $X$ and on $(U_i \cap V_j)\cap U_l$, the $\lambda_{il}:U_i\cap U_l\to R^\times$
+  shows that the restrictions of $f_i$ and $f_l$ only differ by a unit.
+\end{proof}
+
+This means, given a finite list of Cartier divisors, we can assume they are all defined on the same open covering.
+
+\begin{definition}
+  Let $X$ be a type.
+  \begin{enumerate}[(a)]
   \item For Cartier divisors $(U_i,f_i)_i$ and $(U_i,g_i)_i$ we define the following multiplication:
     \[
       (U_i,f_i)_i\cdot (U_i,g_i)_i \colonequiv (U_i,f_i\cdot g_i)
@@ -193,10 +210,19 @@ The definition of curve we will use here is not tested much and therefore prelim
   \item A Cartier divisor is called \notion{principal} if it is of the form $(X,f)$ with $f:\mathcal K(X)^\times$.
   \item The quotient of the group $\mathrm{Ca}(X)$ by the subgroup of principal divisors is denoted with $\mathrm{CaCl}(X)$
     and called the (Cartier) \notion{divisor class group}.
-  \item For any $D\colonequiv (U_i,f_i)_i:\mathrm{CaCl}(X)$ we define a line bundle $\mathcal L_D:X\to \mathrm{Lines}$,
-    given by the trivial line bundle on each $U_i$ identified using the $\lambda_{ij}$.
   \end{enumerate}
 \end{definition}
+
+\begin{proposition}
+  Let $X$ be a type and $D\colonequiv (U_i,f_i)_i:\mathrm{CaCl}(X)$.
+  We can define a line bundle $\mathcal L_D:X\to \mathrm{Lines}$,
+    given by the trivial line bundle on each $U_i$ identified using the $\lambda_{ij}$.
+\end{proposition}
+
+\begin{proof}
+  We can use a Krauss-lemma as stated in \cite{draft}[Lemma 1.2.3],
+  since the $\lambda_{ij}$ satisfy the neccessary cocycle condition.
+\end{proof}
 
 \rednote{Taking div should give a map from Ca(X) to Weil divisors on X}
 
