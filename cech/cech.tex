@@ -71,7 +71,7 @@ We start by repeating the classical definition of \v{C}hech-Cohomology groups fo
       \forall l>0. H^l(U_{i_0,\dots,i_k},\mathcal F)=0\rlap{.}
     \]
   \item A cover $\{U\}=U_1,\dots,U_n$ is called \notion{\v{C}ech-trivializing} \rednote{Better names welcome!} for $\mathcal F$
-    if for all $l>0$, $k\geq 0$ and indices $i_o,\dots,i_n:I$ we have $H^1(U_{i_0\dots i_k},\mathcal F)=0$ and $H^1(U_{i_0\dots i_k}(x),\mathcal F_x)$ for all $x:X$.
+    if for all $l>0$, $k\geq 0$ and indices $i_o,\dots,i_n:I$ we have $H^1(U_{i_0\dots i_k},\mathcal F)=0$ and $H^1(U_{i_0\dots i_k}(x),\mathcal F_x)=0$ for all $x:X$.
   \end{enumerate}
 \end{definition}
 
@@ -92,12 +92,19 @@ We start by repeating the classical definition of \v{C}hech-Cohomology groups fo
 \end{theorem}
 
 \begin{proof}
-  For each $k:\N$, we get a short exact sequence
+  The cover is \v{C}ech-trivializing for $\mathcal F$,
+  so $H^1(U_{i_0\dots i_k}(x),\mathcal F)=0$.
+  Using the long exact sequence for Eilenberg-MacLane Cohomology \Cref{EM-les},
+  this means that for all $x:X$, the sequence
+  \[
+    0\to {\mathcal F}^{U_{i_0\dots i_k}(x)}\to {\mathcal G}^{U_{i_0\dots i_k}(x)}\to {\mathcal H}^{U_{i_0\dots i_k}(x)}\to 0
+  \]
+  is exact, which implies exactness of all sequences:
   \[
     0\to \check{\mathcal F^k}\to \check{\mathcal G}^k\to \check{\mathcal H}^k\to 0
     \rlap{.}
   \]
-  The cover is \v{C}ech-trivializing, so using \Cref{cohomologically-trivial-fibers} and \Cref{cohomology-copropduct-direct-sum} we have
+  The cover is \v{C}ech-trivializing for $\mathcal F$, so using \Cref{cohomologically-trivial-fibers} and \Cref{cohomology-copropduct-direct-sum} we have
   \begin{align*}
     H^1(X,\check{\mathcal F^k})&=H^1(X,i_\ast^k {i^k}^\ast\mathcal F) \\
                                &=H^1((x:X)\times (i_0,\dots,i_k)\times U_{i_0\dots i_k}(x),{i^k}^\ast\mathcal F) \\
