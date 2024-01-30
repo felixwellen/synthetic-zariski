@@ -11,6 +11,7 @@ There are currently the following parts:
 - Topology of Synthetic Schemes ([early draft pdf](https://felix-cherubini.de/topology.pdf))
 - $\mathbb A^1$-homotopy theory ([early draft pdf](https://felix-cherubini.de/A1-homotopy.pdf))
 - Algebraic spaces and stacks ([very early draft pdf](https://felix-cherubini.de/stacks.pdf))
+- Automorphisms of and line bundles on projective space ([very early draft pdf](https://felix-cherubini.de/projective.pdf))
 - More general topologies, in particular fppf ([very early draft pdf](https://felix-cherubini.de/sheaves.pdf))
 - Random Facts, i.e. a collection of everything that still needs to find a good place ([very early draft pdf](https://felix-cherubini.de/random.pdf))
 
