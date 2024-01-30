@@ -1,0 +1,105 @@
+We follow the notations and setting for Synthetic Algebraic Geometry \cite{SAG}.
+In particular, $R$ denotes the generic
+local ring and $GL_1$ is the multiplicative group of unit of $R$.
+
+In Synthetic Algebraic Geometry, a scheme is defined as a set satisfying some property \cite{SAG}. In particular
+the projective space $\bP^n$ can be defined to be the quotient of $R^{n+1}-\{0\}$ by the
+equivalence relation $a\equiv b$ which expresses that $a$ and $b$ are proportional, i.e.
+$a_ib_j=a_jb_i$, which is equal to $\Sigma_{r:GL_1}ar = b$. We can then prove \cite{SAG}
+that this set is a scheme.
+
+There is another definition of $\bP^n$ which uses ``higher'' notions. Let $BGL_1$ be the delooping
+of $GL_1$, which can be defined as the type of line bundle $\Sigma_{M:R-Mod}\|{M=R^1}\|$.
+An equivalent definition of $\bP^n$ is then \cite{Sym}
+$$
+\bP^n = \Sigma_{l,p:BGL_1}l^{n+1}-\{0\}
+$$
+That is, we replaced the quotient operation by a sum type.
+
+\medskip
+
+Connected to this definition, we can note the following equalities.
+
+\begin{proposition}\label{end}
+  $$\prod_{(l,p):BGL_1}l^n\rightarrow l ~~=~~ Hom(R^n,R)$$
+\end{proposition}
+
+\begin{proof}
+We rewrite $Hom(R^n,R)$, the set of $R$-module morphism, as
+$$
+\Sigma_{\alpha:R^n\rightarrow R}\prod_{\lambda:GL_1}\prod_{x:R^n}\alpha(\lambda x) = \lambda \alpha(x)
+$$
+This follows from the axioms of Synthetic Algebraic Geometry: the map $\alpha$ has to be a polynomial. And a polynomial
+satisfying $\alpha(\lambda x) = \lambda \alpha(x)$ for $\lambda$ in $R^{\times}$ has to be linear.
+
+\medskip
+
+It is then a general fact that if we have a pointed connected groupoid $A,a$ and a family of
+sets $T(x)$ for $x:A$, then $\prod_{x:A}T(x)$ is the set of fixedpoints of $T(a)$ for the $(a=a)$ action
+\cite{Sym}.
+\end{proof}
+
+We will use the following remark, proved in \cite{SAG}.
+
+\begin{lemma}\label{ext}
+  Any map $R^{n+1}-\{0\}\rightarrow R$ can be uniquely extended to a map $R^{n+1}\rightarrow R$ for $n>0$.
+\end{lemma}
+
+A similar reasoning proves the following.
+
+\begin{proposition}\label{const}
+ Any map from $\bP^n$ to $R$ is constant.
+\end{proposition}
+
+\begin{proof}
+  $\bP^n\rightarrow R$ is equivalent to
+  $$\prod_{(l,p):BGL_1}l^{n+1}-\{0\}\rightarrow R$$
+  and, using \cite{Sym}, this is the set of maps $\alpha:R^{n+1}-\{0\}\rightarrow R$
+  such that $\alpha(\lambda x) = \alpha(x)$ for all $\lambda$ in $GL_1$. These are exactly the constant maps
+  using Lemma \ref{ext} \cite{SAG}.
+\end{proof}
+
+\begin{proposition}\label{aut}
+$$\prod_{(l,p):BGL_1}(l^{n+1}-\{0\})\rightarrow (l^{n+1}-\{0\}) ~~=~~ GL_{n+1}$$
+\end{proposition}
+
+\begin{proof}
+  This follows from two remarks.
+
+  The first remark is that it follows from Lemma \ref{ext} that the restriction map
+$$
+(l^{n+1}\rightarrow l)\rightarrow ((l^{n+1}-\{0\})\rightarrow l)
+$$
+is a bijection for $n>0$ if $(l,p):BGL_1$.
+
+\medskip
+
+The second remark is that a linear map $u:R^{m}\rightarrow R^{m}$ such that
+$$
+x\neq 0~\rightarrow~u(x)\neq 0
+$$
+is exactly an element of $GL_{m}$.
+
+We show this by induction on $m$. For $m=1$ we have $u(1)\neq 0$ iff $u(1)$ invertible.
+
+For $m>1$, we look at $u(e1) = \Sigma \alpha_ie_i$ with $e_1,\dots,e_m$ basis of $R^m$.
+We have one $\alpha_i$ invertible. By composing $u$ with an element in $GL_m$, we can then
+assume that $u(e_1) = e_1+v_1$ and $u(e_i) = v_i$, for $i>1$, with $v_1,\dots,v_m$ in $Re_2+\dots+Re_m$.
+We can then conclude by induction.
+\end{proof}
+
+We define $l^{\otimes n}:BGL_1$ for $l:BGL_1$ by $l^{\otimes 0} = R^1$ and $l^{\otimes (n+1)} = l^{\otimes n}\otimes l$.
+
+We define the line bundle $O(n):\bP^n\rightarrow BGL_1$ by $O(n)(l,s) = l^{\otimes (-n)}$ if $n\geq 0$ and 
+and $O(n)(l,s) = O(-n)(l,s)$ if $n\geq 0$.
+
+\medskip
+
+ A similar argument as the one used for Proposition \ref{aut} gives also the following result.
+ 
+ \begin{lemma}\label{hom}
+   An element in
+  $$\prod_{(l,p):BGL_1}(l^{n+1}-\{0\})\rightarrow ((l^{\otimes d})^{m+1}-\{0\})$$
+  is given by $m+1$ homogeneous polynomials $p = (p_0,\dots,p_m)$ of degree $d$ such that
+  $x\neq 0$ implies $p(x)\neq 0$.
+\end{lemma}
