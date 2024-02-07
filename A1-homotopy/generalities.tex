@@ -1,3 +1,85 @@
+\subsection{About torsors and modalities}
+
+We assume given a modality $\bigcirc$ such that for any $X$ the localisation:
+\[X\to \bigcirc X\]
+is surjective (e.g. $\A^1$-localisation).
+
+\begin{proposition}\label{torsor-and-modalities}
+Let $G$ be a group. The following are equivalent:
+\begin{enumerate}[(i)]
+\item The type $BG$ is $\bigcirc$-modal.
+\item For all $X$, any $G$-torsor over $X$ is $\bigcirc$-étale.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) implies (ii). Let $f:X\to Y$ be $G$-torsor, and $i:A\to B$ an $\bigcirc$-equivalence. Assume given a square:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r,"s"]\ar[d,swap,"i"] & X\ar[d,"f"] \\
+      B\ar[r]\ar[dotted,ur] & Y
+    \end{tikzcd}
+  \end{center}
+  We want to prove there is a unique dotted lifting. 
+  
+  First we prove that there exists such a lifting. We get a $G$-torsor over $B$ by pulling back the one over $Y$. By the commutation of the diagram we know that the torsor is trivial when restricted to $A$, and since $BG$ is $\bigcirc$-modal and $i$ is an $\bigcirc$-equivalence there is a unique dotted lift in:
+    \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[d,swap,"i"] & BG\\
+      B\ar[dotted,ur] & 
+    \end{tikzcd}
+  \end{center}
+  So that the torsor is trivial on $B$ as well. From this we get $h$ making the triangle commute:
+    \begin{center}
+    \begin{tikzcd}
+      & X\ar[d,"f"] \\
+      B\ar[r]\ar[ur,"h"] & Y
+    \end{tikzcd}
+  \end{center}
+  By the definition of torsors, we know that there is $g:A\to G$ such that for all $x:A$ we have:
+  \[g(x)\cdot h(i(x)) = s(x)\]
+  But since $G$ is $\bigcirc$-modal (as $BG$ is) and $i$ is an $\bigcirc$-equivalence, we can lift this map to:
+    \begin{center}
+    \begin{tikzcd}
+      A\ar[r,"g"]\ar[d,swap,"i"] & G\\
+      B\ar[ur,swap,"g'"] & 
+    \end{tikzcd}
+  \end{center}
+  And then $y\mapsto g'(y)\cdot h(y)$ makes the square commutes.
+  
+  Now assume given $h_1,h_2$ two such liftings, we consider $g:B\to G$ such that for all $y:B$ we have $g(y)\cdot h_1(y) = h_2(y)$. We know that $g$ has constant value $1$ on $A$, but there is a unique dotted lift in:
+      \begin{center}
+    \begin{tikzcd}
+      A\ar[r,"1"]\ar[d] & G\\
+      B\ar[dotted,ur] & 
+    \end{tikzcd}
+  \end{center}
+  so $g$ has constant value $1$ on all of $B$ and we have $h_1=h_2$.
+  
+  (ii) implies (i). Saying that $BG$ is $\bigcirc$-modal means there is a for any $\bigcirc$-connected type $X$ there is a unique dotted lift in any:
+        \begin{center}
+    \begin{tikzcd}
+      X\ar[r]\ar[d] & BG\\
+      1\ar[dotted,ur] & 
+    \end{tikzcd}
+  \end{center}
+Since any $G$-torsor is assumed $\bigcirc$-étale, by considering the trivial torsor $G\to 1$ and the fact that $\bigcirc$-étale maps are modal we conclude that $G$ is $\bigcirc$-modal. Then identity types in $BG$ are $\bigcirc$-modal and there is at most one dotted lift.
+ 
+ To show there merely exists a dotted lift, we need to show that any $G$-torsor $P:X\to BG$ merely is trivial. We know that $X$ is merely inhabited as the localisation:
+ \[X\to \bigcirc X = 1\]
+ is assumed to be surjective. Since we want to prove a proposition and we know that $X$ is merely inhabited, and we can assume $x:X$. Since torsors are merely inhabited we can assume $t:P(x)$. Consider:
+    \begin{center}
+    \begin{tikzcd}
+      1\ar[r,"{(}x{,}t{)}"]\ar[d,swap,"0"] & \sum_{x:X}P(x)\ar[d]\\
+      X\ar[dotted,ur]\ar[r,swap,"id"] & X
+    \end{tikzcd}
+  \end{center}
+ The right map is a $G$-torsor so it is assumed $\bigcirc$-étale, and then we merely have a dotted lift because the left map is an $\bigcirc$-equivalence, and this means that the torsor merely is trivial.
+ 
+\end{proof}
+
+\subsection{About $\A^1$-localisation}
+
 \begin{lemma}\label{A1-replacement-surjective}
 Any $\shape_{\A^1}$-connected map is surjective. In particular, for any type $X$ the map:
 \[\eta_X:X\to \shape_{\A^1}X\]

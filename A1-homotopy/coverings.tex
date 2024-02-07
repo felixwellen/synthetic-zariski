@@ -1,23 +1,5 @@
-\subsection{Universal $\A^1$-coverings}
-
 The aim here is to copy the abstract covering theory in \cite{cherubini_rijke_2021}[Section 8],
-using the $\A^1$-shape defined further down.
-
-\begin{definition}
-  Let $\shape_n\colonequiv\shape_{\A^1,n}$ be the nullification at $\A^1$ and $S^{n+1}$.
-\end{definition}
-
-\begin{definition}
-  The \notion{universal cover} of $X$ is the type $\hat{X}$ obtained by pullback:
-  \begin{center}
-    \begin{tikzcd}
-      \hat{X}\ar[r]\ar[d] & 1\ar[d] \\
-      X\ar[r] & \shape_1 X
-    \end{tikzcd}
-  \end{center}
-\end{definition}
-
-We import the notion of $\bigcirc$-étale maps for a modality $\bigcirc$ from \cite{cherubini_rijke_2021}.
+using the $\A^1$-shape defined further down. We cite results from it without proofs. We import the notion of $\bigcirc$-étale maps for a modality $\bigcirc$ from \cite{cherubini_rijke_2021}.
 
 \begin{definition}
   Let $\bigcirc$ be a modality (in the sense of the HoTT-Book),
@@ -33,91 +15,79 @@ We import the notion of $\bigcirc$-étale maps for a modality $\bigcirc$ from \c
   The ($\bigcirc$-equivalences, $\bigcirc$-étale maps) is an orthogonal factorization system. 
 \end{definition}
 
-\begin{proposition}
-  Let $X$ be a type, then $\hat{X}\to X$ is $\shape_{\A^1,1}$-étale and $\shape_{\A^1,1}\hat{X}=1$.
-  In particular, we have the following lifting property:
+\begin{definition}
+  Let $\shape_n\colonequiv\shape_{\A^1,n}$ be the nullification at $\A^1$ and $S^{n+1}$.
+\end{definition}
+
+\begin{definition}
+An $\A^1$-covering of $X$ is a $\shape_1$-étale maps to $X$ which fibers are sets.
+\end{definition}
+
+\begin{lemma}
+The type of $\A^1$-covering of $X$ is equivalent to families of $\A^1$-local sets over $\shape_{\A^1}$.
+\end{lemma}
+
+\begin{remark}
+  For any $\A^1$-covering $Y\to X$ we have the following lifting property:
   \begin{center}
     \begin{tikzcd}
-      1\ar[r]\ar[d] & \hat{X}\ar[d] \\
+      1\ar[r]\ar[d] & Y\ar[d] \\
       \A^1\ar[r]\ar[ru,dashed,"\exists!"] & X
     \end{tikzcd}
   \end{center}
-\end{proposition}
+  which gives perhaps clearer geometric intuitions.
+\end{remark}
 
-\begin{proof}
-  All statements are true for general modalities.
-\end{proof}
-
-\subsection{Torsor and $\A^1$-coverings}
-
-\begin{proposition}
-Let $G$ be a group. The following are equivalent:
-\begin{enumerate}[(i)]
-\item The type $BG$ is $\A^1$-local.
-\item For all $X$, any $G$-torsor over $X$ is $\A^1$-étale.
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}
-(i) implies (ii). Let $f:X\to Y$ be $G$-torsor, and $i:A\to B$ an $\A^1$-equivalence. Assume given a square:
+\begin{definition}
+  The \notion{universal cover} of a pointed type $X$ is the pointed map $\hat{X}$ obtained by pullback:
   \begin{center}
     \begin{tikzcd}
-      A\ar[r,"s"]\ar[d,swap,"i"] & X\ar[d,"f"] \\
-      B\ar[r]\ar[dotted,ur] & Y
+      \hat{X}\ar[r]\ar[d] & 1\ar[d] \\
+      X\ar[r] & \shape_1 X
     \end{tikzcd}
   \end{center}
-  We want to prove there is a unique dotted lifting. 
+\end{definition}
+
+\begin{proposition}
+  Let $X$ be a type, then $\hat{X}\to X$ is indeed an $\A^1$-covering. It is initial among pointed $\A^1$-covering.
+\end{proposition}
+
+\begin{proposition}\label{universal-cover-contractible}
+A pointed $\A^1$-covering $Y\to X$ is universal if and only if $\shape_1 Y = 1$.
+\end{proposition}
+
+\begin{proof}
+Since an $\A^1$-covering is $\shape_1$-étale we have a pullback square:
+  \begin{center}
+    \begin{tikzcd}
+      Y\ar[r]\ar[d] & \shape_1Y\ar[d] \\
+      X\ar[r] & \shape_1 X
+    \end{tikzcd}
+  \end{center}
+  so if $\shape_1Y = 1$ it is indeed the universal covering.
   
-  First we prove that there exists such a lifting. We get a $G$-torsor over $B$ by pulling back the one over $Y$. By the commutation of the diagram we know that the torsor is trivial when restricted to $A$, and since $BG$ is $\A^1$-local and $i$ is an $\A^1$-equivalence there is a unique dotted lift in:
+  Conversely the pullback square:
     \begin{center}
     \begin{tikzcd}
-      A\ar[r]\ar[d,swap,"i"] & BG\\
-      B\ar[dotted,ur] & 
+      \hat{X}\ar[r]\ar[d] &1\ar[d] \\
+      X\ar[r] & \shape_1 X
     \end{tikzcd}
   \end{center}
-  So that the torsor is trivial on $B$ as well. From this we get $h$ making the triangle commute:
+  as a $\shape_1$-étale right map, so its $\shape_1$-localisation is still a pullback and we can conclude that $\shape_1\hat{X} = 1$.
+\end{proof}
+
+\begin{proposition}\label{universal-cover-pi1}
+Assume $G\to Y\to X$ is a fiber sequence with the right map being a universal cover. Then we have:
+\[\pi_1^{\A^1}(X) = G\]
+where $\pi_1^{\A^1}(X)$ is defined as $\Omega (\shape_1 X)$.
+\end{proposition}
+
+\begin{proof}
+Compose the pullback squares:
     \begin{center}
     \begin{tikzcd}
-      & X\ar[d,"f"] \\
-      B\ar[r]\ar[ur,"h"] & Y
+     G\ar[d]\ar[r] & Y\ar[r]\ar[d] &1\ar[d] \\
+      1\ar[r] &X\ar[r] & \shape_1 X
     \end{tikzcd}
   \end{center}
-  By the definition of torsors, we know that there is $g:A\to G$ such that for all $x:A$ we have:
-  \[g(x)\cdot h(i(x)) = s(x)\]
-  But since $G$ is $\A^1$-local (as $BG$ is) and $i$ is an $\A^1$-equivalence, we can lift this map to:
-    \begin{center}
-    \begin{tikzcd}
-      A\ar[r,"g"]\ar[d,swap,"i"] & G\\
-      B\ar[ur,swap,"g'"] & 
-    \end{tikzcd}
-  \end{center}
-  And then $y\mapsto g'(y)\cdot h(y)$ makes the square commutes.
-  
-  Now assume given $h_1,h_2$ two such liftings, we consider $g:B\to G$ such that for all $y:B$ we have $g(y)\cdot h_1(y) = h_2(y)$. We know that $g$ has constant value $1$ on $A$, bit there is a unique dotted lift in:
-      \begin{center}
-    \begin{tikzcd}
-      A\ar[r,"1"]\ar[d] & G\\
-      B\ar[dotted,ur] & 
-    \end{tikzcd}
-  \end{center}
-  so $g$ has constant value $1$ on all of $B$ and we have $h_1=h_2$.
-  
-  (ii) implies (i). Saying that $BG$ is $\A^1$-local means there is a unique dotted lift in any:
-        \begin{center}
-    \begin{tikzcd}
-      \A^1\ar[r]\ar[d] & BG\\
-      1\ar[dotted,ur] & 
-    \end{tikzcd}
-  \end{center}
-Since any $G$-torsor is assumed $\A^1$-étale, by considering the trivial torsor $G\to 1$ and the fact that $\A^1$-étale maps are modal we conclude that $G$ is $\A^1$-local. Then identity types in $BG$ are $\A^1$-local and there is at most one dotted lift.
- 
- To show there merely exists a dotted lift, we need to show that any $G$-torsor $P:\A^1\to BG$ merely is trivial. Since we want to prove a proposition, we can assume $t:P(0)$. Consider:
-    \begin{center}
-    \begin{tikzcd}
-      1\ar[r,"{(}0{,}t{)}"]\ar[d,swap,"0"] & \sum_{x:\A^1}P(x)\ar[d]\\
-      \A^1\ar[dotted,ur]\ar[r,swap,"id"] & \A^1
-    \end{tikzcd}
-  \end{center}
- The right map is a $G$-torsor so it is assumed $\A^1$-étale, and then we merely have a dotted lift because the left map is an $\A^1$-equivalence, and this means that the torsor merely is trivial.
- 
 \end{proof}
