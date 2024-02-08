@@ -36,7 +36,12 @@ The following result is standard.
   We have $\prod_{L:\bP^1\rightarrow BGL_1}\Sigma_{p:\Z}\|L = O(p)\|$
 \end{corollary}
 
-Matthias has noticed that we can deduce from this the following strengthening.
+\begin{proof}
+A line bundle $L([x_0,x_1])$ on $\bP^1$ is trivial on each affine charts $x_0\neq 0$ and $x_1\neq 0$ by Corollary \ref{c1}, so
+it is characterised by an invertible Laurent polynomial on $R$, and the result follows from Lemma \ref{nilpotent}.
+\end{proof}
+
+We can then state the following strengthening.
 
 \begin{proposition}\label{Matthias}
   The map $BGL_1\times\Z\rightarrow (\bP^1\rightarrow BGL_1)$
@@ -51,14 +56,13 @@ Matthias has noticed that we can deduce from this the following strengthening.
  It is a curious remark that $BGL_1\rightarrow BGL_1$ is also equivalent
  to $BGL_1\times Hom(GL_1,GL_1) = BGL_1\times\Z$.
 
-
 \begin{corollary}\label{Matthias1}
   We have $\prod_{L:\bP^1\rightarrow BGL_1}\prod_{x:R}L([1:x]) = L([0:1])$.
 \end{corollary}
 
 \section{Line bundles on $\bP^n$}
 
-We can now reformulate Quillen argument \cite{Quillen} in our setting.
+We can now reformulate Quillen argument for Theorem 2' \cite{Quillen} in our setting.
 
 \begin{proposition}\label{trivial}
   If we have $V:\bP^n\rightarrow BGL_1$ we have ${\prod_{s:R^n}V([1:s]) = V([1:0])}$.
@@ -69,6 +73,9 @@ We can now reformulate Quillen argument \cite{Quillen} in our setting.
   We apply Corollary \ref{Matthias1} and we get
   $$V([1:s]) = L~s~[1:r] = L~s~[1:1] = L~s~[0:1] = V([0:1:0])$$
 \end{proof}
+
+ Note that the use of Corollary \ref{Matthias1} replaces the use of the ``Quillen patching''
+ \cite{LQ} introduced in \cite{Quillen}.
 
 \medskip
 
@@ -94,8 +101,7 @@ are nilpotent. The result $\Pic(\bP^n) = \Z$ will then follow from the following
 \end{proposition}
 
 \begin{proof}
-  (We follow essentially David's argument.)
-
+%  (We follow essentially David's argument.)
   Each $u_{ij}$ is such that $u_{ij}(p)$ unit for $p=0$ and
   all $u_{ij}(p)$ nilpotent for $p\neq 0$.
 
@@ -121,14 +127,33 @@ are nilpotent. The result $\Pic(\bP^n) = \Z$ will then follow from the following
   $\Pic(\bP^n) = \Z$.
 \end{corollary}
 
-We then have the same strengthening as for Proposition \ref{Matthias}.
+We can then strengthen this result, with the same reasoning as in Proposition \ref{Matthias}.
 
 \begin{theorem}\label{Matthias2}
   The map $BGL_1\times\Z\rightarrow (\bP^n\rightarrow BGL_1)$
   which associates to $L,p$ the map $x\mapsto L\otimes O(p)(x)$ is an equivalence.
 \end{theorem}
 
-Following the usual argument, we deduce the characterisation of $\Aut(\bP^n)$, which is a
+We deduce from this a characterisation of the maps $\bP^n\rightarrow\bP^m$.% using Lemma \ref{hom}.
+
+\begin{corollary}\label{map}
+  A map $\bP^n\rightarrow\bP^m$ is given by $m+1$ homogeneous polynomials $p = (p_0,\dots,p_m)$ on $R^{n+1}$
+  of the same   degree $d$ such that $x\neq 0$ implies $p(x)\neq 0$.
+\end{corollary}
+
+\begin{proof}
+Write $T_n(l)$ for $l^{n+1}-\{0\}$. We have $\bP^n = \Sigma_{l:BGL_1}T_n(l)$ and so
+$$
+\bP^n\rightarrow\bP^m = \sum_{s:\bP^n\rightarrow BGL_1}\prod_{x:\bP^n}T_m((s~x).\pi_1)
+$$
+Using Theorem \ref{Matthias2}, this is equal to
+$$
+\sum_{d:\Z}\prod_{l:BGL_1}T_n(l)\rightarrow T_m(l^{\otimes d})
+$$
+and the result follows from Lemma \ref{hom}.
+\end{proof}
+
+We deduce the characterisation of $\Aut(\bP^n)$. This is a
 remarkable result, since the automorphisms are in this framework only bijections of sets.
 
 \begin{corollary}
@@ -136,12 +161,6 @@ remarkable result, since the automorphisms are in this framework only bijections
 \end{corollary}
 
 \begin{proof}
-This follows from Proposition \ref{aut} and Theorem \ref{Matthias2}.
+ For any bijection 
 \end{proof}
 
-More generally we can look at maps $\bP^n\rightarrow\bP^m$ using Lemma \ref{hom}.
-
-\begin{corollary}
-  A map $\bP^n\rightarrow\bP^m$ is given by $m+1$ homogeneous polynomials $p = (p_0,\dots,p_m)$ on $R^{n+1}$
-  of the same   degree $d$ such that $x\neq 0$ implies $p(x)\neq 0$.
-\end{corollary}
