@@ -1,0 +1,144 @@
+
+The following is expected to be analogous to completeness in algebraic geometry.
+Since it coincides with the defintion of compactness in synthetic topology (\cite{MISSING}) due to Martín Escardó,
+we just call it compact:
+
+\begin{definition}
+  A type $X$ is \notion{compact},
+  if for any open proposition $U:X\to\Open$ on $X$,
+  the type $(x:X)\to U(x)$ is open.
+\end{definition}
+
+\begin{example}
+  All finite types are compact, since a conjuction of open propositions is open.
+\end{example}
+
+\begin{lemma}
+  \label{dependent-sum-compact}
+  If $A$ is compact and for each $x:A$, $B(x)$ is a compact type,
+  then the dependent sum $(x:A)\times B(x)$ is compact.
+\end{lemma}
+
+\begin{proof}
+  Let $U:((x:A)\times B(x))\to\Open$ be open.
+  We have to show $(y:(x:A)\times B(x))\to U(y)$ is open.
+  By currying, this is $(x:A)\to (z:B(x))\to U(x,z)$.
+  By compactness of each $B(x)$, the type $V_x\colonequiv (z:B(x)\to U((x,z))$ is open for all $x:A$.
+  So we have to show $(x:A)\to V_x$ is open, but this is the case by compactness of $A$.
+\end{proof}
+
+\begin{lemma}
+  \label{closed-proposition-compact}
+  Any closed proposition is compact.
+\end{lemma}
+
+\begin{proof}
+  Let $U:C\to\Open$.
+  Then, by \cref{commute-open-in-closed-prop},
+  there merely is $\tilde{U}:\Open$,
+  such that $U(c) = \tilde{U}$ for any $c : C$.
+  Thus $(x : C) \to U(x)$ is equivalent to $C \to \tilde U$.
+  By \cref{closed-implies-open-to-or}, this is equivalent to $\neg C\vee \tilde{U}$,
+  which is open.
+\end{proof}
+
+With this we can generalize \cref{commute-open-in-closed-prop} to types:
+
+\begin{proposition}
+  \label{commute-open-in-closed}
+  Let $X$ be a type, $C\subseteq X$ a closed subtype and $U\subseteq C$ open.
+  Then there is an open $\tilde{U}\subseteq X$ such that $\tilde{U}\cap C = U$.
+\end{proposition}
+
+\begin{proof}
+  We take $\tilde{U}(x)\colonequiv (C(x)\to U(x))$.
+\end{proof}
+
+\begin{lemma}
+  \label{closed-subtype-compact}
+  A closed subtype of a compact type is compact.
+\end{lemma}
+
+\begin{proof}
+  By \cref{closed-proposition-compact} and \cref{dependent-sum-compact}.
+\end{proof}
+
+\begin{lemma}
+  \label{not-not-surjection-compact}
+  If $A$ is compact and $f:A\to B$ is such that for all $y:B$,
+  there not not exists $x:A$ with $f(x)=y$,
+  then $B$ is compact.
+\end{lemma}
+
+\begin{proof}
+  Let $U:B\to\Open$.
+  The assumption on $f$ can be written as $(y:B)\to \neg\neg \propTrunc{ (x:A)\times f(x)=y }$.
+  Then, by $\neg\neg$-stability of opens and our assumption:
+  \begin{align*}
+    (y:B)\to U(x) &= (y:B)\to \neg\neg \propTrunc{ U(y) } \\
+                  &= (x:A)\to \neg\neg \propTrunc{ U(f(x)) } \\
+                  &= (x:A)\to U(f(x))
+  \end{align*}
+  Where the latter is open by the assumption that $A$ is compact.
+\end{proof}
+
+\begin{corollary}
+  \label{image-compact}
+  Let $f:A\to B$, then the image of any compact subtype of $A$ is compact.
+\end{corollary}
+
+\begin{proposition}
+  $\A^1$ is not compact.
+\end{proposition}
+
+\begin{proof}
+  Assume $\A^1$ is compact.
+  For $a:R$, $x:\A^1$, let $U_a(x)\colonequiv (1+ax \neq 0)$.
+  Note that $(x:\A^1)\to U_a(x)$ is equivalent to $\neg(\text{$a$ invertible})=\neg\neg(a=0)$.
+  So by assumed compactness of $\A^1$, the proposition $\neg\neg(a=0)$ is open,
+  and therefore the formal disk $\D\colonequiv \{x:R\mid \neg\neg(x=0)\}$ is open.
+
+  To see this, assume $\D$ is open and note $\D\cap (\A^1\setminus\{0\})=\emptyset$.
+  $\A^1\setminus\{0\}\subseteq \A^1$ is dense, so $\D=\emptyset$, which contradicts $0\in\D$.
+\end{proof}
+
+So also any type $Y$ that admits a surjection to $\A^1$ is not compact, which includes all $\A^n$ for $n>0$.
+
+\begin{lemma}
+A type $X$ is compact if and only if $\propTrunc{X}_0$ is compact.
+\end{lemma}
+
+\begin{proof}
+Clear as open in $X$ are equivalent to open in $\propTrunc{X}_0$.
+\end{proof}
+
+\subsection{Compact propositions}
+
+Written by Hugo.
+
+\begin{lemma}
+An open proposition is compact if and only if it is decidable.
+\end{lemma}
+
+\begin{proof}
+If it is decidable then it is compact. Conversely let $U$ be a compact open proposition. Then there merely exists $C$ closed such that $U = \neg C$. Since $U$ is compact and $\bot$ is open, we have that $\neg U$ is open, i.e. $\neg\neg C$ is open. Then:
+\[C\to \neg\neg C\]
+gives:
+\[\neg C \lor \neg\neg C\]
+and this is precisely:
+\[U \lor \neg U\] 
+\end{proof}
+
+\begin{lemma}\label{compact-proposition-scheme-are-closed}
+Let $U$ be an open proposition, and $C:U\to \Prop$ a family of closed propositions. Then $\Sigma_{x:U}C(x)$ is compact if and only if it is closed.
+\end{lemma}
+
+\begin{proof}
+If it is closed then it is compact. Conversely assume $\Sigma_{x:U}C(x)$ is compact. Then $U$ is merely of the form $\neg D$ for $D$ a closed proposition and we have that:
+\[\neg U \to \neg(\Sigma_{x:U}C(x))\]
+so that:
+\[D\to \neg(\Sigma_{x:U}C(x))\]
+Since $\Sigma_{x:U}C(x)$ is compact we have that $\neg(\Sigma_{x:U}C(x))$ is open, and then we have that:
+\[\neg D \lor \neg(\Sigma_{x:U}C(x))\]
+Since $\neg D = U$ we can conclude $\Sigma_{x:U}C(x)$ closed in both cases.
+\end{proof}

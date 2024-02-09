@@ -1,0 +1,175 @@
+\subsection{Definition}
+
+We assume the characteristic different from $2$ and $3$.
+
+\begin{definition}
+Given $a,b:R$, we define the standard cubic curve $E_{a,b}$ as the type of zeros of:
+\[Y^2Z - X^3 - a XZ^2 - b Z^3\]
+in $\bP^2$, pointed by $\infty = [0:1:0]$.
+\end{definition}
+
+\begin{definition}
+Given $a,b:R$ we define the discriminant $\Delta$ of $E_{a,b}$ as:
+\[\Delta = 4a^3 + 27 b^2\]
+\end{definition}
+
+\begin{definition}
+A Weierstrass curve is a pointed type $(X,*)$ such that there merely exists $a,b:R$ with $\Delta\not=0$ and:
+\[(X,*) = (E_{a,b},\infty)\]
+\end{definition}
+
+\begin{lemma}\label{standard-cover-cubic}
+The standard cubic $E_{a,b}$ curve has an open cover by two affine pieces of the form:
+\[\Spec(R[X,Y]/Y^2-X^3-aX-b)\]
+and:
+\[\Spec(R[X,Z])/Z-X^3-aXZ^2-bZ^3)\]
+\end{lemma}
+
+\begin{proof}
+As a closed subscheme of $\bP^2$, we know that any standard cubic curve is covered by affines given by $x\not=0$, $y\not=0$ and $z\not=0$. But since for any $[x:y:z]:E_{a,b}$ we have that:
+\[y^2z - x^3 - a xz^2 - b z^3 = 0\]
+we have that:
+\[x\not=0 \to (y\not=0 \lor z\not=0)\]
+so we can conclude.
+\end{proof}
+
+\subsection{Connectedness and smoothness for standard cubic curves}
+
+\begin{lemma}
+Standard cubic curves are connected.
+\end{lemma}
+
+\begin{proof}
+By \cref{cohomology-weierstrass-curve-0-1} we know that $(E_{a,b}\to R) = R$. Then a map from $E_{a,b}$ to $\mathbf{2}$ gives an idempotent in $R$, which is $0$ or $1$ by locality of $R$, and we conclude from this.
+\end{proof}
+
+\begin{lemma}\label{smoothness-iff-discriminant-invertible}
+A standard cubic curve $E_{a,b}$ is smooth if and only if $\Delta\not=0$. Then it is of dimension $1$.
+\end{lemma}
+
+\begin{proof}
+Assume $\Delta\not=0$. Then by \cref{standard-cover-cubic} it is enough to show that:
+\[\Spec(R[X,Y]/Y^2-X^3-aX-b)\]
+and:
+\[\Spec(R[X,Z])/Z-X^3-aXZ^2-bZ^3)\]
+are smooth. To do this it is enough to prove that the differential of the defining polynomial is surjective in both cases:
+\begin{itemize}
+\item When $z\not=0$, we need to prove that for all $x,y:R$ such that:
+\[y^2 = x^3+ a x + b\]
+we have that:
+\[(2y\not=0) \lor (3x^2 + a \not= 0)\]
+To do this we can assume:
+\[(2y=0)\land(3x^2+a=0)\]
+and reach a contradiction by proving $\Delta=0$.
+\item When $y\not=0$, we need to prove that for all $x,z:R$ such that:
+\[z-x^3-axz^2-bz^3\]
+we have that:
+\[(3x^2+az^2 \not= 0)\lor (1-2axz-3bz^2 \not=0)\]
+To do this we can assume:
+\[(3x^2+az^2 = 0)\land (1-2axz-3bz^2 =0)\]
+and reach a contradiction directly (done in Macaulay, not sure it is correct...).
+\end{itemize}
+Now let us assume given a smooth Weierstrass curve. Since it is connected we know it has constant dimension $1$ or $2$.
+\begin{itemize}
+\item Dimension $2$ is not possible, by fixing $z\not=0$ and $x=0$ we would get that $y^2=b$ implies $y=0$ for all $y:R$ which is contradictory.
+\item If it is of dimension $1$, then by fixing $z\not=0$ and $y=0$, by surjectivity of the differentials we have that $x^3+ a x + b$ is a separable polynomial. Now we assume $\Delta=0$ and reach a contradiction. We use case distinction on $a$ and $b$ being $0$.
+
+If $a=b=0$, then we would have $x^3$ separable, a contradiction.
+
+If $b\not=0$ or $a\not=0$ then both holds because $\Delta=0$. Then $-\frac{3b}{2a}$ is a double root of $x^3+ a x + b$, which contradicts it being separable.
+\end{itemize}
+\end{proof}
+
+\begin{corollary}
+Weierstrass curves are smooth projective schemes of dimension $1$.
+\end{corollary}
+
+\subsection{A remark on affine Weierstrass curves}
+
+One might be tempted to try to reduce the study of Weierstrass curves to the study of affine schemes of the form:
+\[ \sum_{x,y:R} y^2 = x^3 + ax + b\]
+We indeed have that for any Weierstrass curve $(X,*)$, the scheme $X - \{*\}$ merely is of this form, indeed for any $[x:y:z] : E_{a,b}$ we have that $[x:y:z]\not=[0:1:0]$ if and only if $z\not=0$. 
+
+However we do not expect this to be part of an equivalence as the affine versions have infinitesimal deformations of the identity that are automorphisms, e.g. for any $\epsilon$ such that $\epsilon^2=0$ we have an automorphism of $E_{a,b}$ given by:
+\[\phi : (x,y) \mapsto (x+y\epsilon , y+ \frac{3x^2 + a}{2} \epsilon)\]
+\[\phi^{-1} : (x',y') \mapsto (x'-y'\epsilon , y'- \frac{3{x'}^2 + a}{2} \epsilon)\]
+
+\subsection{Standard cubic curves have cohomological genus $1$}
+
+\begin{lemma}
+Let $X$ be a standard cubic curve and $M$ be a wqc module on $X$. Then $H^i(X,M) = 0$ when $i>1$.
+\end{lemma}
+
+\begin{proof}
+By \cref{standard-cover-cubic} and Mayer-Vietoris, with the fact that affine schemes have trivial cohomology with coefficent in wqc modules.
+\end{proof}
+
+\begin{lemma}\label{cohomology-weierstrass-curve-0-1}
+Let $X$ be a standard cubic curve. Then we have:
+\[H^0(X,R) = R\]
+\[H^1(X,R) = R\]
+\end{lemma}
+
+\begin{proof}
+We can assume $X = E_{a,b}$ for some $a,b:R$. By \cref{standard-cover-cubic} and Mayer-Vietoris, we have an exact sequence:
+\[0 \to H^0(E_{a,b},R) \to \left(\frac{R[X,Y]}{Y^2-X^3-aX-b} \oplus \frac{R[X,Z]}{Z-X^3-aXZ^2-bZ^3}\right) \to \left(\frac{R[X,Y]_Y}{Y^2-X^3-aX-b}\right) \to H^1(E_{a,b},R)\to 0 \] 
+where the middle map sends:
+\[(P,Q) : \frac{R[X,Y]}{Y^2-X^3-aX-b} \oplus \frac{R[X,Z]}{Z-X^3-aXZ^2-bZ^3}\]
+to:
+\[P(X,Y) - Q(X/Y,1/Y)\]
+We have countable basis for the modules involved, so the middle map is the map in:
+\[R\langle X^kY^m\rangle_{0\leq k\leq 2,0\leq m} \oplus R\langle X^kZ^m\rangle_{0\leq k\leq 2,0\leq m} \to R\langle X^kY^m\rangle_{0\leq k\leq 2}\]
+defined by sending:
+\[X^kY^m \mapsto X^kY^m\]
+\[X^kZ^m \mapsto -X^kY^{-k-m}\]
+So we are in the situation where we have countably free modules $M,N,P$ with $M,N\subset P$ and we want to find the kernel and cokernel of the map:
+\[M\oplus N \to P\]
+\begin{itemize}
+\item The image of this map is precisely the vector space spanned by $X^kY^m$ when $k\not=2$ or $m\not=-1$, so its cokernel is isomorphic to the space spanned by $\frac{X^2}{Y}$. This means that:
+\[H^1(E_{a,b},R) = R\]
+\item Its kernel is the intersection of both subspaces, which is spanned by $1$. This means that:
+\[H^0(E_{a,b},R) = R\]
+\end{itemize}
+\end{proof}
+
+From $H^1(X,R) = R$, we should get that Weierstrass curves have genus $1$ more or less by definition. We might need the next lemma as well, as we do not know whether smoothness implies flatness.
+
+\begin{lemma}
+Standard cubic curves are flat. In particular Weierstrass curves are flat.
+\end{lemma}
+
+\begin{proof}
+It is enough to prove that the pieces from \cref{standard-cover-cubic} are flat. But both corresponding are free with a countable basis when seen as modules, so they are flat.
+\end{proof}
+
+\subsection{The $j$-invariant}
+
+Beware, the $j$-invariant as defined below should not determine the iso class of the elliptic curve.
+
+\begin{definition}
+Given $E_{a,b}$ a standard Weierstrass curve, we define the the $j$-invariant by:
+\[j  = \frac{(4a)^3}{\Delta}\] 
+\end{definition}
+
+\begin{lemma}
+Consider $E_{a,b}$ and $E_{a',b'}$ two standard Weiestrass curves. If there exists $u:R$ such that $u\not=0$ and:
+\[au^4 = a'\]
+\[bu^6 = b'\]
+then we have that:
+\[\propTrunc{E_{a,b} = E_{a',b'}}\]
+\end{lemma}
+
+\begin{proof}
+We just define the map:
+\[E_{a,b} \to E_{a',b'}\]
+\[[x:y:z] \mapsto [u^2x:u^3y:z]\]
+and check that it is an isomorphism.
+\end{proof}
+
+\begin{remark}
+We know that $E_{a,b}$ and $E_{a',b'}$ having the same $j$-invariant does not imply that such $u$ exists, indeed:
+\begin{itemize}
+\item Having the same $j$-invariant is equivalent to $a^3(b')^2 = (a')^3b^2$.
+\item Taking $a=a'=1$ and $b'=0$ we would get that for all $b$ such that $b^2 = 0$, we have an invertible $u$ with $bu^6 = 0$, i.e. $b=0$.
+\end{itemize} 
+\end{remark}

@@ -1,0 +1,117 @@
+
+Let $R$ be a fixed commutative ring,
+serving as a base ring for the definitions from the preprint \cite{draft},
+we will now import:
+
+\begin{definition}
+  Let $A$ be an $R$-algebra.
+  \begin{enumerate}[(a)]
+  \item For $r:R$ let
+    \[
+      D(r):\equiv \text{$r$ is invertible}
+    \]
+    be the proposition that $r$ has a multiplicative inverse.
+  \item A subtype $U:X\to \Prop$ of any type $X$ is open,
+    if for all $x:X$, there merely are $r_1,\dots,r_n$ such that $U(x)=D(r_1)\vee \dots \vee D(r_n)$.
+  \item The type
+    \[
+      \Spec A :\equiv \Hom_{R}(A,R)
+    \]
+    of $R$-algebra homomorphisms is called the \notion{spectrum of $A$}
+    and there is a correspondence with external affine spectra in the Zariski-topos.
+  \item A scheme is a type $X$ which is covered by finitely many open affine subtypes.
+    These schemes are expected to correspond to
+    external quasi-compact, quasi-separated schemes, locally of finite type.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  Let $M$ be an $R$-module.
+  $M$ is \notion{weakly quasi-coherent}, if the canonical $R$-linear map
+  \[
+    \frac{m}{r^k}\mapsto ((\_: r\text{ inv})\mapsto r^{-k}\frac{m}{r^k}):M_f\to M^{D(r)}
+  \]
+  is an isomorphism.
+  We denote the type of weakly quasi-coherent $R$-modules with $\Mod{R}_{\text{wqc}}$.
+\end{definition}
+
+\begin{remark}
+  Let $M:X\to \Mod{R}_{\mathrm{wqc}}$.
+  Then for any $f:X\to R$ there are isomorphisms of $R^X$-modules\index{$M(D(f))$}
+  \[
+  M(D(f))\colonequiv \prod_{x:D(f)}M_x  = \prod_{x:X}M_{f(x)} = \prod_{x:X}M^{D(f(x))}
+  \rlap{.}
+  \]
+\end{remark}
+
+\begin{proof}
+  \cite{draft}[Lemma 7.1.4].
+\end{proof}
+
+\begin{theorem}
+  \label{affine-vanishing}
+Let $X = \Spec(A)$ be an affine scheme, 
+$M : X \to \Mod{R}_{\text{wqc}}$ a family of weakly quasi-coherent $R$-modules,
+and $n > 0$.
+Then we have
+	\[
+		H^n(X;M) = 0.
+		\]
+\end{theorem}
+
+\begin{proof}
+We induct on $n$. The base case $n = 1$ is \cite{draft}[Theorem 8.3.6].
+Thus suppose $n \ge 2$ and that the theorem holds for all $0 < l < n$ and
+any $X,M$.
+
+Let $\chi : (x : X) \to K(M_x, n)$ represent a cohomology class.
+We wish to show $\propTrunc{\chi = 0}$, a proposition.
+We know that $\propTrunc{\chi(x) = 0}$ for all $x$, since $K(M_x,n)$ is connected.
+By Zariski choice, we obtain a covering
+$X = \bigcup_{i \in [m]} U_i$,
+such that $\chi(x) = 0$ for $x \in U_i$, and
+such that the proposition $x \in U_i$ is standard open for each $x$, $i$.
+For $x : X$, let $I_x \coloneqq (i : [m]) \times (x \in U_i)$.
+Note that $I_x$ is an affine scheme, since affine schemes are closed under finite
+coproducts.
+
+Since $\chi(x) = 0$ when $x \in U_i$, the image of $\chi(x)$ under the diagonal
+map $K(M_x,n) \to K(M_x,n)^{I_x}$ is zero.
+This diagonal map can be factored as $K(M_x,n) \to K(M_x^{I_x},n) \to K(M_x,n)^{I_x}$,
+where the first map is induced by the diagonal $\Delta_x : M_x \to M_x^{I_x}$,
+and the second is given by the equivalence
+$M_x^{I_x} \simeq \Omega^n(K(M_x,n)^{I_x})$ (\rednote{Cite David's preprint?}).
+We claim that $\chi(x)$ maps to zero already in $K(M_x^{I_x},n)$.
+To this end, it suffices to show that
+$K(M_x^{I_x},n) \to K(M_x,n)^{I_x}$ is an embedding.
+Since the domain is connected, it suffices to show that this map becomes
+an equivalence after applying $\Omega$.
+So we need to show that the canonical map
+$K(M_x^{I_x},n-1) \to K(M_x,n-1)^{I_x}$ is an equivalence.
+It becomes an equivalence after applying $\Omega^{n-1}$, and
+the domain is $(n-2)$-connected, so by Whitehead's principle it suffices 
+to show that the codomain is also $(n-2)$-connected.
+Since $\pi_j(K(M_x,n-1)^{I_x}) = H^{n-1-j}(I_x;M_x)$,
+it suffices to show that $H^l(I_x;M_x) = 0$ for
+$0 < l \le n-1$. This follows from induction hypothesis
+(using that $I_x$ is an affine scheme).
+
+From this we can conclude that $\chi$ maps to zero in
+$H^n(X;M_x^{I_x})$.
+Since $I_x$ is merely inhabited, $\Delta_x$ is an embedding.
+Hence we have a short exact sequence
+$0 \to M_x \to M_x^{I_x} \to \coker \Delta_x \to 0$.
+This induces a long exact sequence on cohomology.
+One part of this long exact sequence is
+$H^{n-1}(X;\coker\Delta_x) \to H^n(X;M_x) \to H^n(X;M_x^{I_x})$.
+By inductive hypothesis, $H^{n-1}(X;\coker\Delta_x) = 0$
+(using that weakly quasi-coherent modules are closed under
+ cokernels of monomorphisms, finite products, and exponentiation
+ with standard opens).
+Hence $H^n(X;M_x)$ embeds in $H^n(X;M_x^{I_x})$, so
+$\chi$ must already have been zero in $H^n(X;M_x)$, as needed.
+\end{proof}
+
+One should be able to follow the above reasoning to show also vanishing of
+$H^1$, provided we know that $H^0$ is right exact.
+

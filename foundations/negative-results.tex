@@ -1,0 +1,214 @@
+Here we collect some results of
+the theory developed from the axioms
+(\axiomref{loc}), (\axiomref{sqc}) and (\axiomref{Z-choice})
+that are of a negative nature
+and primarily serve the purpose of counterexamples.
+
+We adopt the following definition from
+\cite[Section IV.8]{lombardi-quitte}.
+
+\begin{definition}%
+  \label{zero-dimensional-ring}
+  A ring $A$ is \notion{zero-dimensional}
+  if for all $x : A$
+  there exists $a : A$ and $k : \N$
+  such that $x^k = a x^{k + 1}$.
+\end{definition}
+
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{R-not-zero-dimensional}
+  The ring $R$ is not zero-dimensional.
+\end{lemma}
+
+\begin{proof}
+  Assume that $R$ is zero-dimensional,
+  so for every $f : R$ there merely is some $k : \N$ with $f^k \in (f^{k + 1})$.
+  We note that $R = \A^1$ is an affine scheme and
+  that if $f^k \in (f^{k + 1})$,
+  then we also have $f^{k'} \in (f^{k' + 1})$ for every $k' \geq k$.
+  This means that we can apply \Cref{strengthened-boundedness}
+  and merely obtain a number $K : \N$
+  such that $f^K \in (f^{K + 1})$ for all $f : R$.
+  In particular, $f^{K + 1} = 0$ implies $f^K = 0$,
+  so the canonical map
+  $\Spec R[X]/(X^K) \to \Spec R[X]/(X^{K + 1})$
+  is a bijection.
+  But this is a contradiction,
+  since the homomorphism $R[X]/(X^{K + 1}) \to R[X]/(X^K)$
+  is not an isomorphism.
+\end{proof}
+
+\begin{example}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{non-existence-of-roots}
+  It is not the case that
+  every monic polynomial $f : R[X]$ with $\deg f \geq 1$ has a root.
+  More specifically,
+  if $U \subseteq \A^1$ is an open subset
+  with the property that
+  the polynomial $X^2 - a : R[X]$ merely has a root
+  for every $a : U$,
+  then $U = \emptyset$.
+\end{example}
+
+\begin{proof}
+  Let $U \subseteq \A^1$ be as in the statement.
+  Since we want to show $U = \emptyset$,
+  we can assume a given element $a_0 : U$
+  and now have to derive a contradiction.
+  By \axiomref{Z-choice},
+  there exists in particular a standard open $D(f) \subseteq \A^1$
+  with $a_0 \in D(f)$
+  and a function $g : D(f) \to R$
+  such that ${(g(x))}^2 = x$ for all $x : D(f)$.
+  By \axiomref{sqc},
+  this corresponds to an element $\frac{p}{f^n} : R[X]_f$
+  with ${(\frac{p}{f^n})}^2 = X : R[X]_f$.
+  We use \Cref{polynomial-with-regular-value-is-regular}
+  together with the fact that $f(a_0)$ is invertible
+  to get that $f : R[X]$ is regular,
+  and therefore $p^2 = f^{2n}X : R[X]$.
+  Considering this equation over $R^{\mathrm{red}} = R/\sqrt{(0)}$ instead,
+  we can show by induction that all coefficients of $p$ and of $f^n$ are nilpotent,
+  which contradicts the invertibility of $f(a_0)$.
+\end{proof}
+
+\begin{remark}
+  \Cref{non-existence-of-roots} shows that
+  the axioms we are using here
+  are incompatible with a natural axiom that is true
+  for the structure sheaf of the big étale topos,
+  namely that $R$ admits roots for unramifiable monic polynomials.
+  The polynomial $X^2 - a$ is even separable for invertible $a$,
+  assuming that $2$ is invertible in $R$.
+  To get rid of this last assumption,
+  we can use the fact that either $2$ or $3$ is invertible in the local ring $R$
+  and observe that the proof of \Cref{non-existence-of-roots}
+  works just the same for $X^3 - a$.
+\end{remark}
+
+We now give two different proofs that not all $R$-modules are weakly quasi-coherent
+in the sense of \Cref{weakly-quasi-coherent-module}.
+The first shows that the map
+\[ M_f \to M^{D(f)} \]
+is not always surjective,
+the second shows that it is not always injective.
+
+\begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{RN-non-wqc}
+  The $R$-module $R^\N$ is not weakly quasi-coherent
+  (in the sense of \Cref{weakly-quasi-coherent-module}).
+\end{proposition}
+
+\begin{proof}
+  For $f : R$,
+  we have ${(R^{\N})}^{D(f)} = {(R^{D(f)})}^\N = {(R_f)}^\N$,
+  so the question is whether the canonical map
+  \[ {(R^\N)}_f \to {(R_f)}^\N \]
+  is an equivalence.
+  If it is,
+  for a fixed $f : R$,
+  then the sequence $(1, \frac{1}{f}, \frac{1}{f^2}, \dots)$
+  has a preimage,
+  so there is an $n : \N$ such that
+  for all $k : \N$,
+  $\frac{a_k}{f^n} = \frac{1}{f^k}$ in $R_f$
+  for some $a_k : R$.
+  In particular, $\frac{a_{n+1}}{f^n} = \frac{1}{f^{n+1}}$ in $R_f$
+  and therefore $a_{n+1} f^{n+1+\ell} = f^{n+\ell}$ in $R$ for some $\ell : \N$.
+  This shows that $R$ is zero-dimensional
+  (\Cref{zero-dimensional-ring})
+  if $R^\N$ is weakly quasi-coherent.
+  So we are done by \Cref{R-not-zero-dimensional}.
+\end{proof}
+
+\begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
+  \label{non-wqc-module-family}
+  The implication
+  \[ M^{D(f)} = 0 \quad\Rightarrow\quad M_f = 0 \]
+  does not hold for all $R$-modules $M$ and $f : R$.
+  In particular,
+  the map $M_f \to M^{D(f)}$ from \Cref{weakly-quasi-coherent-module}
+  is not always injective.
+\end{proposition}
+
+\begin{proof}
+  Assume that the implication always holds.
+  We construct a family of $R$-modules,
+  parametrized by the elements of $R$,
+  and deduce a contradiction from the assumption
+  applied to the $R$-modules in this family.
+
+  Given an element $f : R$,
+  the $R$-module we want to consider is
+  the countable product
+  \[ M(f) \colonequiv \prod_{n : \N} R/(f^n) \rlap{.} \]
+  If $f \neq 0$ then $M(f) = 0$
+  (using \Cref{non-zero-invertible}).
+  This implies that the $R$-module $M(f)^{f \neq 0}$
+  is trivial:
+  any function $f \neq 0 \to M(f)$ can only assign the value $0$
+  to any of the at most one witnesses of $f \neq 0$.
+  By assumption, this implies that $M(f)_f$ is also trivial.
+  Noting that
+  $M(f)$ is not only an $R$-module
+  but even an $R$-algebra in a natural way,
+  we have
+  \begin{align*}
+    M(f)_f = 0
+    &\;\Leftrightarrow\;
+    \exists k : \N.\; \text{$f^k = 0$ in $M(f)$} \\
+    &\;\Leftrightarrow\;
+    \exists k : \N.\; \forall n : \N.\; f^k \in (f^n) \subseteq R \\
+    &\;\Leftrightarrow\;
+    \exists k : \N.\; f^k \in (f^{k + 1}) \subseteq R
+    \rlap{.}
+  \end{align*}
+
+  In summary,
+  our assumption implies that the ring $R$ is zero-dimensional
+  (in the sense of \Cref{zero-dimensional-ring}).
+  But this is not the case,
+  as we saw in \Cref{R-not-zero-dimensional}.
+\end{proof}
+
+\begin{example}[using \axiomref{loc}, \axiomref{sqc}]
+  It is not the case that
+  for any pair of lines $L, L' \subseteq \bP^2$,
+  the $R$-algebra $R^{L \cap L'}$ is
+  as an $R$-module free of rank $1$.
+\end{example}
+
+\begin{proof}
+  The $R$-algebra $R^{L \cap L'}$ is free of rank $1$
+  if and only if the structure homomorphism
+  $\varphi : R \to R^{L \cap L'}$ is bijective.
+  We will show that it is not even always injective.
+
+  Consider the lines
+  \[ L = \{\, [x : y : z] : \bP^2 \mid z = 0 \,\} \]
+  and
+  \[ L' = \{\, [x : y : z] : \bP^2 \mid \varepsilon x + \delta y + z = 0 \,\}
+     \rlap{,} \]
+  where $\varepsilon$ and $\delta$ are elements of $R$
+  with $\varepsilon^2 = \delta^2 = 0$.
+  Consider the element $\varphi(\epsilon \delta) : R^{L \cap L'}$,
+  which is the constant function $L \cap L' \to R$
+  with value $\varepsilon \delta$.
+  For any point $[x : y : z] : L \cap L'$,
+  we have $z = 0$ and $\varepsilon x + \delta y = 0$.
+  But also, by definition of $\bP^3$,
+  we have $(x, y, z) \neq 0 : R^3$,
+  so one of $x, y$ must be invertible.
+  This implies $\delta \divides \varepsilon$ or $\varepsilon \divides \delta$,
+  and in both cases we can conclude $\varepsilon \delta = 0$.
+  Thus, $\varphi(\epsilon \delta) = 0 : R^{L \cap L'}$.
+
+  If $\varphi$ was always injective
+  then this would imply $\varepsilon \delta = 0$
+  for any $\varepsilon, \delta : R$
+  with $\varepsilon^2 = \delta^2 = 0$.
+  In other words, the inclusion
+  \[ \Spec R[X, Y]/(X^2, Y^2, XY) \hookrightarrow \Spec R[X, Y]/(X^2, Y^2) \]
+  would be a bijection.
+  But the corresponding $R$-algebra homomorphism is not an isomorphism.
+\end{proof}

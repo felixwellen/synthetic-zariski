@@ -1,0 +1,143 @@
+% latexmk -pdfxe -pvc -interaction=nonstopmode abstract.tex
+\documentclass{../util/zariski}
+
+\title{A Foundation for Synthetic Algebraic Geometry}
+\author{Felix Cherubini, Thierry Coquand and Matthias Hutzler}
+
+\begin{document}
+\maketitle
+
+Algebraic geometry is the study of solutions of non-linear equations using methods from geometry.
+Most prominently, algebraic geometry was essential in the proof of Fermat's last theorem by Wiles and Taylor.
+The central geometric objects in algebraic geometry are called \emph{schemes}.
+Their basic building blocks are called \emph{affine schemes}.
+Most commonly used schemes are \emph{of finite type} and in this case,
+informally, an affine scheme corresponds to a solution set of polynomial equations.
+While this correspondence is clearly visible in the functorial approach to algebraic geometry and our synthetic approach,
+it is somewhat obfuscated in the most commonly used, topological appraoch.
+
+In recent years,
+formalization of the intricate notion of affine schemes
+received some attention as a benchmark problem
+-- this is, however, \emph{not} a problem addressed by this work.
+Instead, we use a synthetic approach to algebraic geometry,
+very much alike to that of synthetic differential geometry.
+This means, while a scheme in classical algebraic geometry is a complicated compound datum,
+we work in a setting where schemes are types,
+with an additional property that can be defined within our synthetic theory.
+
+In our work in progress \cite{draft},
+following ideas of Ingo Blechschmidt and Anders Kock  (\cite{ingo-thesis}, \cite{kock-sdg}[I.12]),
+we use a base ring $R$, which is local and satisfies an axiom reminiscent of the Kock-Lawvere axiom.
+The more general axiom we use, is called \emph{synthetic quasi coherence (SQC)} by Blechschmidt and
+a version quantifying over external algebras is called the \emph{comprehensive axiom}\footnote{
+  In \cite{kock-sdg}[I.12], Kock's ``axiom $2_k$'' could equivalently be Theorem 12.2,
+  which is exactly our synthetic quasi coherence axiom, except that it only quantifies over external algebras.
+}
+by Kock.
+The exact concise form of the SQC axiom we use, was noted by David Jaz Myers in 2018 and communicated to the first author.
+
+Before we state the SQC axiom, let us take a step back and look at the basic objects of study in algebraic geometry,
+solutions of polynomial equations.
+Given a system of polynomial equations
+\begin{align*}
+  p_1(X_1, \dots, X_n) &= 0\rlap{,} \\
+  \vdots\quad\quad\;\;   \\
+  p_m(X_1, \dots, X_n) &= 0\rlap{,}
+\end{align*}
+the solution set
+$\{ x : R^n \mid \forall i.\; p_i(x_1, \dots, x_n) = 0 \}$
+is in canonical bijection to the set of $R$-algebra homomorphisms
+\[ \Hom_R(R[X_1, \dots, X_n]/(p_1, \dots, p_m), R) \]
+by identifying a solution $(x_1,\dots,x_n)$ with the homomorphism that maps each $X_i$ to $x_i$.
+Conversely, for any $R$-algebra $A$, which is merely of the form $R[X_1, \dots, X_n]/(p_1, \dots, p_m)$,
+we define the \emph{spectrum} of $A$ to be
+\[
+  \Spec A \colonequiv \Hom_R(A, R)
+  \rlap{.}
+\]
+In contrast to classical, non-synthetic algebraic geometry,
+where this set needs to be equipped with additional structure,
+we postulate axioms that will ensure that $\Spec A$ has the expected geometric properties.
+Namely, SQC is the statement that, for all finitely presented $R$-algebras $A$, the canonical map
+  \begin{align*}
+    A&\xrightarrow{\sim} (\Spec A\to R) \\
+    a&\mapsto (\varphi\mapsto \varphi(a))
+  \end{align*}
+is an equivalence.
+A prime example of a spectrum is $\A^1\colonequiv \Spec R[X]$,
+which turns out to be the underlying set of $R$.
+With the SQC axiom,
+\emph{any} function $f:\A^1\to \A^1$ is given as a polynomial with coefficients in $R$.
+In fact, all functions between affine schemes are given by polynomials.
+Furthermore, for any affine scheme $\Spec A$,
+the axiom ensures that
+the algebra $A$ can be reconstructed as the algebra of functions $\Spec A \to R$,
+therefore establishing a duality between affine schemes and algebras.
+
+The Kock-Lawvere axiom used in synthetic differential geometry,
+might be stated as the SQC axiom restricted to (external) \emph{Weil-algebras},
+whose spectra correspond to pointed infinitesimal spaces.
+These spaces can be used in both, synthetic differential and algebraic geometry,
+in very much the same way.
+
+In the accompanying formalization \cite{formalization} of some basic results,
+we use a setup which was already proposed by David Jaz Myers
+in a conference talk (\cite{myers-talk1, myers-talk2}).
+On top of Myers' ideas,
+we were able to define schemes, develop some topological properties of schemes,
+and construct projective space.
+
+An important, not yet formalized result
+is the construction of cohomology groups.
+This is where the \emph{homotopy} type theory really comes to bear --
+instead of the hopeless adaption of classical, non-constructive definitions of cohomology,
+we make use of higher types,
+for example the $n$-th Eilenberg-MacLane space $K(R,n)$ of the group $(R,+)$.
+As an analogue of classical cohomology with values in the structure sheaf,
+we then define cohomology with coefficients in the base ring as:
+\[
+  H^n(X,R):\equiv \|X\to K(R,n)\|_0
+  \rlap{.}
+\]
+This definition is very convenient for proving abstract properties of cohomology.
+For concrete calculations we make use of another axiom,
+which we call \emph{Zariski-local choice}.
+While this axiom was conceived of for exactly these kind of calculations,
+it turned out to settle numerous questions with no apparent connection to cohomology.
+One example is the equivalence of two notions of \emph{open subspace}.
+A pointwise definition of openness was suggested to us by Ingo Blechschmidt and
+is very convenient to work with.
+However, classically, basic open subsets of an affine scheme are given
+by functions on the scheme and the corresponding open is morally the collection of points where the function does not vanish.
+With Zariski-local choice, we were able to show that these notions of openness agree in our setup.
+
+Apart from SQC, locality of the base ring $R$ and Zariski-local choice,
+we only use homotopy type theory, including univalent universes, truncations and some very basic higher inductive types.
+Roughly, Zariski-local choice states, that any surjection into an affine scheme merely has sections on a \emph{Zariski}-cover.
+The latter, internal, notion of cover corresponds quite directly to the covers in the site of the \emph{Zariski topos},
+which we use to construct a model of homotopy type theory with our axioms.
+
+More precisely, we can use the \emph{Zariski topos} over any base ring.
+Toposes built using other Grothendieck topologies, like for example the étale topology, are not compatible with Zariski-local choice.
+We did not explore whether an analogous setup can be used for derived algebraic geometry
+\footnote{Here, the word ``derived'' refers to the rings the algebraic geometry is built up from -- instead of the 0-truncated rings we use, ``derived'' algebraic geometry would use simplicial or spectral rings.
+  Sometimes, ``derived'' refers to homotopy types appearing in ``the other direction'', namely as the values of the sheaves that used.
+  In that direction, our theory is already derived, since we use homotopy type theory.
+  Practically that means that we expect no problems when expanding our theory of synthetic schemes to what classic algebraic geometers
+  call ``stacks''.
+}
+-- meaning that the 0-truncated rings we used are replaced by higher rings.
+This is only because for a derived approach, would have to work with higher monoids, which is currently infeasible
+-- we are not aware of any obstructions for, say, an SQC axiom holding in derived algebraic geometry.
+
+In total, the scope of our theory so far, includes quasi-compact, quasi-separated schemes of finite type over an arbitrary ring.
+These are all finiteness assumptions, that were chosen for convenience and include closed subspaces of projective space,
+which we want to study in future work, as example applications.
+So far, we know that basic internal constructions, like affine schemes, correspond to the correct classical external constructions.
+This can be expanded using our model, which is of course also important to ensure the consistency of our setup.
+
+\printbibliography
+
+\end{document}
+

@@ -1,0 +1,113 @@
+\subsection{Definition}
+
+\begin{definition}
+A Deligne-Mumford (resp. Artin) proposition is a Deligne-Mumford (resp. Artin) $(-1)$-stack.
+\end{definition}
+
+\begin{remark}
+A proposition is Deligne-Mumford (resp. Artin) if and only is it has an étale (resp. smooth) atlas.
+\end{remark}
+
+We suspect any Artin propositon is in fact Deligne-Mumford.
+
+\subsection{Fundamental theorem for algebraic propositions}
+
+\begin{proposition}
+A proposition is Deligne-Mumford (resp. Artin) if and only if it is merely of the form:
+\[\propTrunc{\Spec(A)}\]
+where $\propTrunc{\Spec(A)}$ implies that $\Spec(A)$ is formally étale (resp. formally smooth).
+\end{proposition}
+
+\begin{proof}
+Let $P$ be such a proposition, then we merely have an étale (resp. smooth) atlas:
+\[\Spec(A)\to P\]
+Since this map is surjective it induces an equivalence:
+\[\propTrunc{\Spec(A)} \simeq P\]
+and the fact that:
+\[\Spec(A)\to \propTrunc{\Spec(A)}\]
+is étale (resp. smooth) is precisely the given condition. The converse if clear.
+\end{proof}
+
+\subsection{Examples}
+
+\begin{lemma}
+Any propositional scheme is a Deligne-Mumford proposition.
+\end{lemma}
+
+\begin{lemma}
+Any étale (resp. smooth) scheme $X$, the type $\propTrunc{X}$ is a Deligne-Mumford (resp. Artin) proposition.
+\end{lemma}
+
+\begin{proof}
+Immediate using the Zariski cover of $X$ by an étale (resp. smooth) affine scheme.
+\end{proof}
+
+\begin{lemma}
+Any fomally étale (resp. formally smooth) Deligne-Mumford $\infty$-stack $X$, the type $\propTrunc{X}$ is a Deligne-Mumford (resp. Artin) proposition.
+\end{lemma}
+
+\subsection{Schemes are étale sheaves (obsolete)}
+
+\begin{lemma}\label{constant-open-affine}
+Assume given $A$ an f.p. algebra, then for any $h_1,\cdots,h_n:A$ such that the open $D(h_1,\cdots,h_n)$ is constant, for any $x:\Spec(A)$ we have that:
+\[x\in D(h_1,\cdots,h_n) \leftrightarrow \exists i. h_i\ \mathrm{not\ nilpotent}\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+Any formally étale type $X$ is reduced, meaning that any closed dense embedding into $X$ not not has a section.
+\end{lemma}
+
+\begin{proof}
+It is immediate that is actually has a section.
+\end{proof}
+
+\begin{corollary}\label{etale-affine-reduced}
+For any affine étale scheme $\Spec(A)$we have that:
+\[h\ \mathrm{nilpotent} \leftrightarrow \neg\neg h=0\]
+\end{corollary}
+
+\begin{proof}
+The reverse implication is always true. If $h$ is nilpotent then for all $x:\Spec(A)$ is nilpotent, so that:
+\[\prod_{x:\Spec(A)} \neg\neg h(x)=0\]
+But then we have that $V(h)$ is a closed dense embedding, so it not not has a section, meaning $\neg\neg h = 0$.
+\end{proof}
+
+\subsection{Not all Deligne-Mumford propositions are schemes}
+
+\begin{lemma}\label{no-roots-for-any-p}
+If the map:
+\[\psi:\A^1\to \A^1\]
+\[\psi(x)=x^p\] 
+is surjective on an open $U$, then this open is empty.
+\end{lemma}
+
+\begin{proof}
+Assume an open $U\subset \A^1$ such that:
+\[\psi: \psi^{-1}(U) \to U\]
+is surjective. Assume $a\in U$, by Zarsiki-local choice we have $f,g:R[X]$ such that $a\in D(g)$ and we have:
+\[\frac{f}{g^n}\]
+inverse to $\psi$. Since $g(a)$ is invertible, we have that $g$ is regular, so that:
+\[\frac{f^p}{g^{pn}} = X\]
+implies that:
+\[f^p = g^{pn}X\]
+By induction we prove that all the coefficients of $f$ and $g$ are nilpotent, which contradicts $g(a)\not=0$.
+\end{proof}
+
+\begin{proposition}
+Not all Deligne-Mumford propositions are schemes.
+\end{proposition}
+
+\begin{proof}
+We have that $p\not=0$ for some prime $p$, because locality of the ring implies that $2\not=0$ or $3\not=0$. Then for all $a:R$ such that $a\not=0$, we consider the étale affine scheme:
+\[E_a = \Spec(R[X]/X^p-a)\]
+We see that the propositions $\propTrunc{E_a}$ are Deligne-Mumford. We assume that they are schemes and reach a contradiction. Indeed then $\propTrunc{E_a}$ would be an fppf sheaf by \cref{schemes-are-fppf-sheaves}, so it would be $\propTrunc{E_a}$-local, so it would be inhabited. This means that thet map:
+\[\psi:R\to R\]
+\[\psi(x)=x^p\]
+would be surjective on $R^\times$. This contradicts \cref{no-roots-for-any-p}.
+\end{proof}
+
+A natural question to ask at this point is wether any Deligne-Mumford proposition that is an fppf sheaf is a scheme?

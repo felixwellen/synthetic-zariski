@@ -1,0 +1,202 @@
+Recall from \cite{draft} that for a type $X$ with $x : X$, we say that $y : X$ is in the
+\emph{formal neighborhood} of $x$ if $\neg \neg (x = y)$.
+We will write $N_\infty(x)$ for the type of $y : X$ such that $\neg \neg(x = y)$.
+
+\begin{definition}
+For a type $X$ and $k : \N$, we say $x, y : X$ are \notion{neighbors of order $k$}
+if $\neg \neg (x = y)$ and for all $U \subseteq X$ open containing $x$ (and hence $y$), 
+and $q_0,\ldots,q_k : U \to R$,
+we have $(q_0(x) - q_0(y))\cdots (q_k(x)-q_k(y)) = 0$.
+This is equivalent to $q_0(y)\cdots q_k(y) = 0$ for all $q_i : U \to R$ such that $q_i(x) = 0$.
+We write $N_k(x)$ for the type of all order $k$ neighbors of $x$.
+\end{definition}
+Note that this defines a symmetric and reflexive relation on $X$. It is functorial in the
+sense that if $x$, $y$ are neighbors of order $k$ and $f : X \to Y$ is some map,
+then $f(x)$ and $f(y)$ are also neigbors of order $k$.
+The relation is not transitive, but we do have that if $x$, $y$ are neighbors of order
+$k$ and $y$, $z$ are neighbors of order $l$, then $x$ and $z$ are neighbors of order
+$k+l$. If $X$ is a scheme, then $x,y$ are order $0$ neighbors if and only if $x = y$.
+
+\begin{lemma}\label{neighbor-criterion}
+Let $X = \Spec A$ be an affine scheme and suppose $f_1,\ldots,f_n$ generate $A$.
+Then $x$ and $y$ are neighbors of order $k$ iff 
+$(f_1(x) - f_1(y))^{e_1} \cdots (f_n(x) - f_n(y))^{e_n} = 0$ for any $e_1,\ldots,e_n : \N$
+with $e_1 + \ldots + e_n = k+1$.
+\end{lemma}
+\begin{proof}
+The forward implication is direct, so let us consider the reverse.
+We may suppose $f_i(x) = 0$, since $f_i - f_i(x)$ also forms a generating set of $A$.
+In particular $f_i(y)$ is nilpotent, so not not zero.
+So not not every $f_i(y)$ is zero. This shows that not not $x = y$, since
+points of an affine scheme are separated by functions $X \to R$.
+
+Now let $U \subseteq X$ be an open neighborhood of $x$ and $q_0,\ldots,q_k : U \to R$
+with $q_i(x) = 0$.
+We can write $U$ as $D(g_1,\ldots,g_m)$ with $g_j : A$.
+Since $x \in U$ we have $x : D(g_j)$ for some $j$.
+Write $g = g_j$.
+Now $q_i$ restricts to a map $D(g) \to R$, which corresponds to an element
+$p_i : A_g$. Write $p_i = a_i/{g^l}$ with $a_i : A$.
+We want to show $a_0(y)\cdots a_k(y) = 0$.
+By assumption we can write each $a_i$ as a polynomial in $f_1,\ldots,f_n$
+with zero constant term. Thus $a_0(y)\cdots a_k(y)$ is a sum of monomials of degree
+at least $k+1$ in $q_1,\ldots,q_n$. Since each monomial vanishes, so does the sum.
+\end{proof}
+
+As a corollary, we have that $N_k(x)$ is an affine scheme
+for any point $x$ of a scheme; 
+indeed it is a closed subscheme of any open affine neighborhood of $x$. We give another criterion:
+
+\begin{lemma}\label{nbhd-criterion-ideal}
+Let $X = \Spec A$ be an affine scheme. Then $x$ and $y$ in $X$ are neighbors of order $k$ iff 
+there merely exists a fg ideal $I$ in $R$ such that $I^{k+1}=0$ and $I=0 \to x=_Xy$.
+\end{lemma}
+\begin{proof}
+Given such an ideal $I$ and $q_0,\cdots,q_n : U\to R$ with $x,y\in U$, we have that $I=0$ implies $q_j(x) = q_j(y)$, i.e. $q_j(x)-q_j(y) \in I$, so that:
+\[(q_0(x)-q_0(y))\cdots (q_k(x)-q_k(y)) \in I^{k+1} = 0\]
+and $x$ and $y$ are neighbours of order $k$.
+
+Conversely assume $x$ and $y$ are neighbours of order $k$. If $f_0,\cdots,f_n$ generate $A$, then $I = (f_0(x)-f_0(y),\cdots, f_n(x)-f_n(y))$ satisfies the condition by \cref{neighbor-criterion}.
+\end{proof}
+
+\begin{lemma}\label{formal-nbhd-union}
+Let $X$ be a scheme and $x, y : X$. If $y$ is in the formal neighborhood of $x$,
+then there merely exists $k : \N$ such that $y$ is in $N_k(x)$.
+\end{lemma}
+\begin{proof}
+Without loss of generality $X = \Spec A$ is affine. Pick generators
+$f_1,\ldots,f_n$ of $A$. Then $\neg \neg(f_i(x)=f_i(y))$.
+So $f_i(x)-f_i(y)$ is nilpotent for each $i$.
+Say $(f_i(x)-f_i(y))^{k_i+1} = 0$.
+Then $x$ and $y$ are order $k_1+\ldots+k_n$ neighbors, since
+if $e_1+\ldots+e_n = k_1+\ldots+k_n+1$, we have
+$e_i \ge k_i+1$ for some $i$.
+\end{proof}
+
+\begin{definition}
+For $X$ a type and $x : X$ a point, the stalk $\OO_x$ is the (filtered) 
+colimit of $U \to R$ over open neighbourhoods $x \in U \subseteq X$.
+\end{definition}
+
+As a warning, note that we cannot expect $\OO_x$ to be finitely presented.
+If $X = \Spec A$ is affine, then $\OO_x$ is the localisation of $A$ away from the kernel
+of $x : A \to R$.
+There is a natural map $\OO_x \to R$ of $R$-algebras, evaluating a germ at $x$.
+
+\begin{lemma}
+The map $\OO_x \to R$ reflects invertible elements. In particular $\OO_x$ is a local ring.
+\end{lemma}
+\begin{proof}
+Consider $x \in U \subseteq X$, $f : U \to R$. Suppose $f(x)$ is invertible.
+Then $\{y : U \mid f(y) \ne 0 \}$ is also an open neighborhood of $x$,
+and $f$ is invertible on it. Hence $f$ is invertible in $\OO_x$.
+\end{proof}
+\begin{definition}
+The kernel of the evaluation map $\OO_x \to R$ is the `maximal ideal' $\mm_x$.
+\end{definition}
+
+\begin{lemma}\label{nbhd-is-spec}
+If $X$ is a scheme with $x : X$, then $N_k(x)$ is the
+spectrum of $\OO_x / \mm_x^{k+1}$. In particular the latter is finitely presented
+over $R$.
+\end{lemma}
+\begin{proof}
+The map from $N_k(x)$ neighboorhood can be described directly, by evaluating
+at $y$. To see this is an equivalence, we suppose without loss of generality that
+$X = \Spec A$ is affine. Then $\OO_x / \mm_x^{k+1} = A / (\mm_x \cap A)^{k+1}$,
+essentially since if $f : A$ with $f(x) \ne 0$, then we have that
+$f$ is invertible in $A / (\mm_x \cap A)^{k+1}$, by the formula
+$(1 - g)(1 + g + \ldots + g^k) = 1$ modulo $g^{k+1}$.
+The spectrum of the latter is clearly the order $k$ neighborhood of $x$.
+\end{proof}
+
+\begin{lemma}
+For $V$ a finitely presented $R$-module, the disk $\D(V)$ is the
+first order neighborhood of $0$ in $V^\star$.
+\end{lemma}
+\begin{proof}
+By \cref{functions-on-module}, the algebra $V^\star \to R$ is generated by
+elements $f \mapsto f(v)$ for $v : V$. The result follows from \cref{neighbor-criterion}.
+\end{proof}
+
+\begin{lemma}\label{maximal-cotangent}
+Let $X$ be a scheme and $x : X$ a point. 
+Then $N_1(x)$ is equivalent to the
+disk $\D(T^\star_x X)$. Moreover, we have an isomorphism
+of $R$-modules
+\[ \mm_x / \mm_x^2 \simeq T^\star_p X. \]
+\end{lemma}
+This means that $x : X$ and $0 : T_p X$ have the same first order neighborhoods,
+which aligns well with an intuitive understanding of tangent spaces.
+\begin{proof} %TODO think about simplifying this proof!!
+The ring of functions $N_1(x) \to R$ is equivalent to
+$\OO_x / \mm_x^2$, which is equivalent to the square-zero extension
+$R \oplus \mm_x / \mm_x^2$. Any $r : R$ determines an endomorphism of
+$\mm_x / \mm_x^2$ (multiplication by $r$), and hence an endomorphism
+of $\OO_x / \mm_x^2$, and hence an endomorphism of $N_1(x)$, which
+by abuse of notation we write $y \mapsto (1-r)x + ry$. 
+The defining property is that
+for $f : N_1(x) \to R$, we have $f((1-r)x + ry) = (1-r)f(x) + rf(y)$.
+Given $y : N_1(x)$,
+we define a tangent vector $\D(1) \to_\pt (X,x)$ by $t \mapsto (1-t)x + ty$.
+This defines a map $N_1(x) \to_\pt (T_x X, 0)$. It lifts to
+a map $N_1(x) \to_\pt \D(T^\star_x X)$ by functoriality of $N_1$.
+
+Next, we define a map $(N_1(x) \to R) \to \D(T^\star_x X) \to R$.
+Suppose $f : N_1(x) \to R$ and $v : \D(T^\star_x X)$.
+Then $v$ restricts to a map $\D(1) \to_\pt N_1(x)$
+(as does any tangent vector),
+so we have $f \circ v : \D(1) \to_\pt (R,f(x))$.
+By SQC, we can write $f(v(t)) = f(x) + ct$ for a well-defined $c : R$.
+We claim the map $f \mapsto v \mapsto f(x) + c$ respects multiplication;
+it is clear that it is $R$-linear in $f$. Thus suppose $f, f' : N_1(x) \to R$.
+Note that $(ff')(v(t)) = (f(x) + ct)(f'(x)+c't) = (ff')(x) + (f(x)c' + f'(x)c)t$,
+since $t^2 = 0$. It remains to show that
+$(ff')(x) + f(x)c' + f'(x)c = (f(x) + c)(f'(x) + c')$, i.e. that
+$cc' = 0$. This follows from the fact that $v$ is in the first order neighbourhood
+of $0$.
+
+This defines maps back and forth between
+$N_1(x)$ and $\D(T^\star_x X)$. We omit the verification that they are inverse to
+each other. The claim that $\mm_x / \mm_x^2 = T^\star_p X$ follows from the
+fact that a module can be recovered from its square-zero extension.
+\end{proof}
+
+The axiom of synethetic quasi-coherence applies only to finitely presented $R$-algebras,
+and would be false for general $R$-algebras. Surprisingly, it is still true in 
+the following special case.
+\begin{definition} 
+For $X$ a type and $x : X$ a point, let $\widehat \OO_x$ denote the
+completion of $\OO_x$ at the ideal $\mm_x$. That is, $\widehat \OO_x$ is 
+the inverse limit of 
+$R \leftarrow \OO_x / \mm_x \leftarrow \OO_x / \mm_x^2 \leftarrow \ldots$
+\end{definition}
+For example, if $X = \A^n$, then $\widehat \OO_x$ is the power series ring
+in $n$ variables.
+\begin{lemma}%TODO attribute this to Ingo?
+For $X$ a scheme and $p : X$ a point, $\widehat \OO_p$ is the ring of functions
+on the formal neighborhood $N_\infty(p)$ of $p$. Conversely,
+$N_\infty(p)$ is the spectrum of $\widehat \OO_p$.
+\end{lemma}
+\begin{proof}
+Without loss of generality we assume $X$ is affine. Since $N_\infty(p)$ is the
+sequential colimit of $N_k(p)$ over $k : \N $ by \cref{formal-nbhd-union}, the
+ring of functions $N_\infty(p) \to R$ is indeed the limit of the rings of
+functions $N_k(p) \to R$, which is $\OO_p / \mm_p^{k+1}$ by \cref{nbhd-is-spec}.
+
+It remains to show that any $R$-algebra homomorphism $\widehat \OO_p \to R$
+is given by evaluation at some $y : N_k(p)$. That is, given
+$f : \widehat \OO_p \to R$, we need to show that $f$ factors through
+$\OO_p / \mm_p^k$ for some $k$.
+Let $\mm_p$ be generated by $X_1, \ldots X_n$.
+We claim that $\neg \neg (f(X_i) = 0)$.
+Indeed suppose $f(X_i) \ne 0$, so that $f(X_i)$ is invertible. Say
+$yf(X_i) = 1$ with $y : R$. Now $Z \coloneqq 1 + yX_i + y^2X_i^2 + \ldots$
+is a well-defined element of $\widehat \OO_p$, with
+$Z = 1 + yX_i Z$. Hence $f(Z) = 1 + y f(X_i)f(Z) = 1 + f(Z)$.
+This means $1 = 0$ in $\widehat \OO_p$, which means $1 = 0$ in $R$, which is impossible.
+
+Thus $\neg \neg (f(X_i) = 0)$, so $f(X_i)$ is nilpotent in $R$.
+Say $f(X_i)^{k_i+1} = 0$. Then $f(\mm_x^{k+1}) = 0$ where $k = k_1 + \ldots + k_n$.
+So $f$ factors through $\OO_x / \mm_x^{k+1}$, as needed.
+\end{proof}

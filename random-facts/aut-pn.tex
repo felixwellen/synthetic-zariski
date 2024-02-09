@@ -1,0 +1,62 @@
+The following should be one part of showing that autormorphisms of $\mathbb P^n$ are
+given by $\PGL_{n+1}(R)$.
+
+\begin{theorem}
+Let $f : \mathbb P^n \to \mathbb P^n$ be an arbitrary map.
+Suppose $f$ is not not in $\PGL_{n+1}(R)$. Then $f$ is in $\PGL_{n+1}(R)$.
+\end{theorem}
+\begin{proof}
+First note that $f$ sends any $n+1$ points in general position to $n+1$ points in general position.
+This is because to be in general position means that a determinant is invertible, which
+is a negative property, and any map in $\PGL$ preserves the property of being in general position.
+
+Let $e_i$ be the point of $\mathbb P^n$ with zeroes in all coordinates except the $i$th.
+Since $e_0, \cdots, e_n$ are in general position, so are $f(e_0), \cdots, f(e_n)$.
+Thus we can find $f' \in \PGL$ with $f'(e_i) = f(e_i)$. Replacing $f$ by $f'^{-1} \circ f$,
+we may assume that $f(e_i) = e_i$. Now if $f$ is in $\PGL$, it must be given by a diagonal matrix,
+so $f$ is not not given by a diagonal matrix.
+
+Write $U_i \subseteq \mathbb P^n$ for the standard affine patch of $\mathbb P^n$
+consisting of points whose $i$th coordinate is invertible. 
+We have that $f(U_i) \subseteq U_i$, since to be in $U_i$ is a negative property
+and this containment holds if $f$ is given by a diagonal matrix.
+Now $f$ restricts to a map $U_i \to U_i$ which by SQC is given by $n+1$
+polynomials in $n$ variables. Homogenising these polynomials,
+we see that for $x = [X_0 : \cdots : X_n] \in U_i$,
+$f(x)$ is given by polynomials
+$p_{i0},\cdots,p_{in} \in R[X_0, \cdots, X_n]$ homogeneous of some degree $d_i$,
+so that $f(x) = [p_{i0} : \cdots : p_{in}]$,
+where $p_{ii} = X_i^{d_i}$.
+
+Since $f(e_i) = e_i$, we have that the coefficient of $X_i^{d_i}$ in $p_{ij}$ is
+zero for $i \ne j$. We also have that the coefficient of $X_i^{d_i-1} X_j$ in $p_{ij}$
+is invertible, since this holds when $f$ is given by a diagonal matrix 
+(in this case the coefficient is the ratio of diagonal entries).
+We also know that $p_{ij}p_{kl} = p_{il}p_{kj}$ for all $i, j, k, l$ since
+the descriptions of $f$ on all the patches match up.
+
+We claim that $p_{ij}$ is a unit multiple of $X_i^{d_i-1} X_j$. 
+To this end, we claim that $p_{ij}$ is a sum of monomials which contain neither
+$X_j^2$ nor $X_k$ for $k \ne i$, $k \ne j$. 
+We prove both of these claims separately but using the same idea. The idea is that of
+fixing a monomial ordering, and using the fact that if $g$, $h$ are monomials with $g$ `pseudomonic'
+in the sense that $g$ has invertible leading coefficient,
+then any bound on the degree of $gh$ gives a bound on the degree of $h$.
+We may assume $i \ne j$ in either case.
+\begin{enumerate}
+\item $X_j^2$: consider the equation $p_{ij}p_{ji} = X_i^{d_i} X_j^{d_j}$. Consider some
+monomial ordering which is lexicographic first on the degree of $X_j$ and then on $X_i$.
+Here $p_{ji}$ is pseudomonic of degree $X_j^{d_j-1}X_i$.
+Thus $p_{ij}$ has degree at most $X_j X_i^{d_i-1}$ 
+(and indeed that coefficient is assumed invertible). So $X_j^2$ cannot appear in $p_{ij}$.
+\item $X_k$ where $k \ne i$, $k \ne j$: consider the equation $p_{ij} p_{jk} = p_{ik} X_j^{d_j}$.
+Consider some monomial ordering which is lexicographic first on the degree of $X_k$
+and then on $X_j$. By the above, $p_{jk}$ is pseudomonic of degree $X_j^{d_j-1} X_k$,
+and the degree of $p_{ik}$ is at most $X_k X_j^{d_i-1}$.
+Thus the degree of $p_{ij}$ is at most $X_k X_j^{d_i-1} X_j^{d_j} / (X_j^{d_j-1}X_k) = X_j^{d_i}$.
+Thus $X_k$ cannot appear.
+\end{enumerate}
+
+Given that $p_{ij}$ is a unit multiple of $X_i^{d_i-1} X_j$, it is direct that
+$f$ is given by a diagonal matrix. This finishes the proof.
+\end{proof}

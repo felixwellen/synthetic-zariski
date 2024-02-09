@@ -1,0 +1,214 @@
+\subsection{Neighborhoods for sets}
+
+\begin{definition}
+Let $X$ be a set with $x:X$. The $n$-order neighborhood $N_n(x)$ is defined as the set of $y:X$ such that the exists a f.g. ideal $I$ such that $I^{n+1}=0$ and:
+\[I=0 \to x=y\]
+\end{definition}
+
+We write:
+\[N_\infty(x) = \cup_{n:\N} N_n(x)\]
+
+\begin{lemma}
+For any set $X$ and $x$, we have that:
+\[N_\infty(x) \simeq \sum_{y:Y} \mathrm{Et}(x=y)\]
+\end{lemma}
+
+\begin{proof}
+By \cref{etale-replacement-proposition}.
+\end{proof}
+
+\subsection{Recap on modules and infinitesimal disks}
+
+\begin{lemma}\label{tangent-infinitesimal-disks}
+For any finitely presented $R$-module $M$, we have a natural iso:
+\[T_0\D(M) = M^\star\]
+\end{lemma}
+
+\begin{proof}
+This is a direct application of \cref{equivalence-module-infinitesimal}.
+\end{proof}
+
+\begin{lemma}\label{neighborhood-tangent-correspondence}
+A linear map between finitely copresented module:
+\[f:M\to N\]
+is injective (resp. an iso) iff the corresponding pointed map:
+\[\D(M^\star) \to \D(N^\star)\]
+is an embedding (resp. an equivalence).
+\end{lemma}
+
+\begin{proof}
+The case of isomorphisms is a direct consequence of \cref{equivalence-module-infinitesimal}.
+
+Assume $f$ injective, then $f^\star$ is surjective the induced map:
+\[R\oplus N^\star \to R\oplus M^\star\]
+is surjective as well, giving an embedding of affine schemes. 
+
+Conversely assume the pointed map:
+\[\D(M^\star) \to \D(N^\star)\]
+is an embedding then the induced map:
+\[T_0\D(M^\star) \to T_0\D(N^\star)\]
+is a injective as well, but it is equivalent to the map:
+\[M\to N\]
+by \cref{tangent-infinitesimal-disks}.
+\end{proof}
+
+\begin{lemma}\label{neighborhood-tangent-correspondence-smooth}
+A linear map between finitely copresented module:
+\[f:M\to N\]
+is surjective if and only if the corresponding pointed map:
+\[\D(M^\star) \to \D(N^\star)\]
+merely has a section preserving $0$.
+\end{lemma}
+
+\begin{proof}
+We know that \cref{equivalence-module-infinitesimal} we know that:
+\[\D(M^\star) \to \D(N^\star)\]
+merely having a section preserving $0$ is equivalent to:
+\[M\to N\]
+merely having a section. But since any finitely copresented module is projective, this is equivalent to $f$ being surjective.
+\end{proof}
+
+\subsection{Formally unramified maps between sets}
+
+\begin{proposition}\label{unramified-sets-map}
+Let $f:X\to Y$ be a map between sets. The following are equivalent:
+\begin{enumerate}[(i)]
+\item The map $f$ is formally unramified.
+\item For all $x:X$, the induced map:
+\[N_\infty(f) : N_\infty(x)\to N_\infty(f(x))\]
+is an embedding.
+\item For all $x:X$, the induced map:
+\[N_1(f) : N_1(x)\to N_1(f(x))\]
+is an embedding.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Let us assume (i) to prove (ii). Assume given $x$ with $y,z\in N_\infty(x)$ such that $f(y)=f(z)$, we want to prove $y=z$. But we have $\mathrm{Et}(y=z)$ so there is a closed dense $P$ such that $P\to y=z$, and then $y$ and $z$ are both lifting of the same square: 
+ \begin{center}
+      \begin{tikzcd}
+        P\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+so they are equal by (i). 
+
+Let us assume (ii) to prove (iii). Assume given $x:X$ and $y,z\in N_1(x)$ such that $f(y)=f(z)$. Then $y,z\in N_\infty(x)$ so by (ii) they are equal.
+
+Let us assume (iii) to prove (i). Assume given two lifts $x,y:X$ to a square:
+ \begin{center}
+      \begin{tikzcd}
+        \epsilon=0\ar[r]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+    with $\epsilon^2=0$. Then $\epsilon=0 \to x=y$ so that $x\in N_1(y)$ and since $f(x)=f(y)$, we conclude by (iii) that we have $x=y$.
+\end{proof}
+
+\begin{corollary}\label{unramified-map-between-scheme-alt}
+Let $f:X\to Y$ be a map between schemes. Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item The map $f$ is unramified. 
+\item For all $x:X$, the induced map:
+\[df : T_x(X)\to T_{f(x)}(Y)\]
+is injective.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+By \cref{unramified-sets-map} with \cref{neighborhood-tangent-correspondence}
+\end{proof}
+
+\subsection{Formally smooth maps between sets}
+
+Here we do not find an equivalence, but just an implication. This might be possible to correct.
+
+\begin{proposition}\label{smooth-sets-map}
+Let $f:X\to Y$ be a map between sets. Assume that $X$ is formally smooth and that for all $x:X$, the induced map:
+\[N_1(f) : N_1(x)\to N_1(f(x))\]
+merely has a section sending $f(x)$ to $x$. Then $f$ is formally smooth.
+\end{proposition}
+
+\begin{proof}
+Assume given $\epsilon:R$ such that $\epsilon^2=0$ and try to merely find a lift in:
+ \begin{center}
+      \begin{tikzcd}
+        \epsilon=0\ar[r,"\phi"]\ar[d] & X\ar[d,"f"] \\
+       1 \ar[r,"y"]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+    Since $X$ is formally smooth we merely have an $x:X$ such that:
+\[\prod_{p:\epsilon=0} \phi(p)=x\]
+and therefore:
+\[ \epsilon=0 \to y=f(x)\]
+This means that we can factor the square:
+ \begin{center}
+      \begin{tikzcd}
+        \epsilon=0\ar[r,"\phi"]\ar[d] & N_1(x) \ar[d]\ar[r]& X\ar[d,"f"] \\
+       1 \ar[r,"y"]\ar[ru,dashed] & N_1(f(x)) \ar[r]&Y
+      \end{tikzcd}
+    \end{center}
+    where we can find a lift because the middle arrow has a section sending $f(x)$ to $x$.
+\end{proof}
+
+Note that it is immediate from the definition of smoothness that smooth maps induce surjections on tangent spaces. We have a converse when the domain is smooth.
+
+\begin{corollary}\label{smooth-schemes-iff-submersion}
+Let $f:X\to Y$ be a map between schemes with $X$ smooth. Then the following are equivalent:
+\begin{enumerate}[(i)] 
+\item The map $f$ is smooth.
+\item For all $x:X$, the induced map:
+\[df : T_x(X)\to T_{f(x)}(Y)\]
+is surjective.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+It is straightforward to prove that (i) implies (ii), even without any assumption on $X$ and $Y$, by considering the diagram:
+ \begin{center}
+      \begin{tikzcd}
+        1\ar[r]\ar[d] & X\ar[d,"f"] \\
+       \mathbb{D}(1) \ar[r] \ar[r]&Y
+      \end{tikzcd}
+    \end{center}
+To prove that (ii) implies (i) we use \cref{smooth-sets-map} with \cref{neighborhood-tangent-correspondence-smooth}.
+\end{proof}
+
+\subsection{Formally étale maps between sets}
+
+\begin{proposition}\label{etale-sets-map}
+Let $f:X\to Y$ be a map between sets. Assume that $X$ is formally smooth. Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item The map $f$ is formally étale. 
+\item For all $x:X$, the induced map:
+\[N_\infty(f) : N_\infty(x)\to N_\infty(f(x))\]
+is an equivalence.
+\item For all $x:X$, the induced map:
+\[N_1(f) : N_1(x)\to N_1(f(x))\]
+is an equivalence.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Assume (i) to prove (ii). This is a general propriety of lex modalities that modal maps induces equivalence of the modal disks.
+
+Assume (ii) to prove (iii). For all $x:X$, the inverse to the map: 
+\[N_\infty(f) : N_\infty(x)\to N_\infty(f(x))\]
+has to preserve first-order neighbourhood so it induces an equivalence as in (iii).
+
+Finally we assume (iii) to prove (i). By \cref{unramified-sets-map} we already know that $f$ is unramified. We see that it is smooth by using \cref{smooth-sets-map}.
+\end{proof}
+
+\begin{corollary}
+Let $f:X\to Y$ be a map between schemes. Assume $X$ is smooth. Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item The map $f$ is étale. 
+\item For all $x:X$, the induced map:
+\[df : T_x(X)\to T_{f(x)}(Y)\]
+is an iso.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+By \cref{etale-sets-map}  with \cref{neighborhood-tangent-correspondence}.
+\end{proof}

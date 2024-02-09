@@ -1,0 +1,179 @@
+We present some sketches of synthetic linear algebra.
+
+\begin{lemma}\label{inf-has-choice}
+Let $X$ be an infinitesimal variety. Then choice over $X$ is valid:
+for any type family $P$ with $(x : X) \to \propTrunc{P(x)}$,
+we have $\propTrunc{(x : X) \to P(x)}$.
+\end{lemma}
+\begin{proof}
+By Zariski local choice, it suffices to show that every Zariski cover
+of $X \to R$ is trivial, that is that $X \to R$ is a local ring.
+Indeed this is the case, since the evaluation $(X \to R) \to R$
+reflects invertible elements.
+\end{proof}
+
+\begin{lemma}
+In the category of finitely co-presented $R$-modules, every object is projective.
+That is, if $M,N,L$ are finitely co-presented $R$-modules,
+$f : M \to L$ is $R$-linear and $g : N \to L$ is $R$-linear and surjective,
+then there merely exists $h : M \to N$ such that $f = g \circ h$.
+\end{lemma}
+\begin{proof}
+We apply \cref{inf-has-choice} to obtain
+$(m : \D(M^\star)) \to (n : N) \times g(n) = f(m)$.
+That is, we have $h_0 : \D(M^\star) \to N$ such that $f = g \circ h_0$ on $\D(M)$.
+Without loss of generality, $h_0(0) = 0$; otherwise we may replace $h_0$
+by $h_0 - h_0(0)$, since in any case $g(h_0(0)) = f(0) = 0$.
+Now $h_0$ lifts to a pointed map $\D(M^\star) \to_\pt \D(N^\star)$.
+This corresponds to an $R$-linear map $N^\star \to M^\star$, and hence to
+an $R$-linear map $M \to N$, as desired.
+\end{proof}
+
+In particular, since $R$ is a local ring, we have that if $M$ is finitely 
+co-presented and finitely generated, then $M$ is free.
+
+Note that for any $R$-linear map $f : M \to N$, we have
+$(\coker(f))^\star = \ker(f^\star)$, where $f^\star : N^\star \to M^\star$ is
+the dual map.
+If $M$ and $N$ are finitely presented, then
+so is $\coker(f)$,
+and $\ker(f^\star)$ is finitely co-presented.
+Hence if $M$ and $N$ are finitely presented, then 
+$f$ is surjective iff $f^\star$ is injective.
+
+\begin{definition}
+For $M$ finitely presented, we say $\dim M \le n$ if
+there merely exists a surjective linear map $R^n \to M$.
+
+For $V$ finitely co-presented, we say $\dim V \le n$ if
+there merely exists an injective linear map $V \to R^n$.
+\end{definition}
+It is direct  that there merely exists $n$ such that $\dim M \le n$ in
+either case.
+Note that as usual in constructive algebra, we do not define $\dim M$ as a natural
+number, but only what it means to compare it with natural numbers.
+To see that our notation is consistent, consider $M$ which is both
+finitely presented and finitely co-presented.
+In this case $M$ is free of some rank $k$, and we have that
+$\dim M = k$, in the appropriate sense.
+\begin{lemma}
+We have $\dim M \le n$ iff $\dim M^\star \le n$.
+\end{lemma}
+\begin{proof}
+Follows from $(R^n)^\star = R^n$ and the fact that $f$ is surjective if and only if
+$f^\star$ is injective.
+\end{proof}
+\begin{lemma}\label{surjective-iff-nonzero-wedge}
+A map $f : R^m \to R^n$ is surjective if and only if the induced map
+$\bigwedge^n f : \bigwedge^n R^m \to \bigwedge^n R^n$ on the 
+$n$th exterior power is non-zero.
+In particular, this is an open proposition, asserting that a certain list of
+$m \choose n$ numbers is nonzero.
+\end{lemma}
+\begin{proof}
+For the forward implication, pick preimages for the basis vectors,
+$f(u_i) = e_i$, 
+and note $f(u_1 \wedge \ldots \wedge u_n) = e_1 \wedge \ldots \wedge e_n \ne 0$.
+For the reverse implication, if $\bigwedge^n f$ is nonzero, then
+there are $u_1,\ldots,u_n : R^m$ such that
+$f(u_1\wedge\ldots\wedge u_n) = e_1 \wedge \ldots \wedge e_n$.
+This means that $u_i$ determine a map $R^n \to R^m$ such that
+the composite $R^n \to R^m \to R^n$ has invertible determinant and hence is surjective.
+\end{proof}
+\begin{lemma}\label{matrix-algorith}
+For any linear map $f : R^m \to R^n$, it is not not the case that
+$f$ is a composite $R^m \simeq R^r \oplus R^{m-r} \to R^r \to R^r \oplus R^n \simeq R^n$, 
+where $r \le m,n$, the maps to and from $R^r$ are projections and inclusions
+from and to a direct sum, and the outer isomorphisms are arbitrary.
+\end{lemma}
+\begin{proof}
+Since we are proving a negated statement, we can pretend that $R$ is a discrete field.
+In this case we follow a well-known matrix algorithm. % What is it called?
+\end{proof}
+In particular this shows that any finitely presented module is not not free.
+\begin{lemma}
+$\dim M \le n$ is an open proposition.
+\end{lemma}
+\begin{proof}
+Let $M$ be represented as the cokernel of a map $f : R^k \to R^l$.
+We claim that $\dim M \le n$ is equivalent to the assertion that
+for some detachable subset $I \subseteq [l]$ of size at most $n$,
+the composite $R^I \to R^l \to M$ is surjective.
+Surjectivity of this map is equivalent to surjectivity of
+$R^I \oplus R^k \to R^l$, which is an
+open proposition by \cref{surjective-iff-nonzero-wedge}.
+Since open propositions are closed under finite disjunction, it is enough
+to prove our claim.
+One direction is clear: if $R^I \to M$ is surjective, then $\dim M \le |I| \le n$.
+Conversely, suppose $\dim M \le n$. Since our goal is to prove an
+open proposition, and $M$ is not not free, we may assume $M$ is free
+of rank $r \le n$. In this case, since we have a surection $R^l \to R^r$, 
+we obtain a subset $I \subseteq [l]$
+of size $r$ such that the composite $R^I \to R^l \to R^r$ is surjective,
+as needed.
+\end{proof}
+
+From this proof, it is natural to define $\dim M \ge n$ as follows.
+If $M$ is the cokernel of $f : R^k \to R^l$, then $\dim M \ge n+1$
+iff $\bigwedge^l (\iota_I \oplus f) : \bigwedge^l (R^I \oplus R^k) \to \bigwedge^l R^l$
+is zero for all $I \subseteq [l]$ of size less than $n$, with $\iota_I : R^I \to R^l$
+the usual inclusion. This would make $\dim M \ge n$ a closed proposition,
+whose negation is $\dim M \le n-1$. But with this definition, it is unclear
+what $\dim M \ge n$ means for $M$ directly. For example, it does not imply that
+there exists a surjection $M \to R^n$, even if $k = l = 2$ and $n = 1$.
+
+\begin{definition}
+For $X$ a scheme, we take $\dim X \le n$ to mean that
+the set of $p : X$ with $\dim T_p X \le n$ is dense in $X$.
+\end{definition}
+
+
+\subsection{Rank of matrices}
+
+This section should probably go elsewhere.
+
+\begin{definition}
+A matrix is said of rank $n$ if it has an invertible $n$-minor, and all its $n+1$-minor have determinant $0$.
+\end{definition}
+
+Beware that having a rank is a property of matrices, and there is not rank function defined on all matrices.
+
+\begin{lemma}\label{rank-bloc-matrix}
+Assume given a matrix $M$ of rank $n$ decomposed into blocks:
+\[M = \begin{pmatrix}
+P & Q  \\
+R & S \\
+\end{pmatrix}\]
+Such that $P$ is square of size $n$ and invertible. Then we have:
+\[S = RP^{-1}Q\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{definition}
+Two matrices $M,N$ are said equivalent if there are invertible matrices $P,Q$ such that $M = PNQ$.
+\end{definition}
+
+It is clear that equivalent matrices have the same rank.
+
+\begin{lemma}\label{rank-equivalent-definitions}
+Assume given a matrix:
+\[M : R^m\to R^k\]
+Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item $M$ has rank $n$.
+\item The kernel of $M$ is equivalent to $R^{m-n}$.
+\item The image of $M$ is equivalent to $R^n$.
+\item $M$ is equivalent to the bloc matrix:
+\[\begin{pmatrix}
+I_n & (0)  \\
+(0) & (0) \\
+\end{pmatrix}\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}

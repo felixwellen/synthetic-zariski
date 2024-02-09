@@ -1,0 +1,277 @@
+\subsection{Definition and basic properties}
+
+\begin{definition}
+A Deligne-Mumford $\infty$-stack is a type $X$ such that:
+\begin{itemize}
+\item The type $X$ merely has a formally étale atlas. 
+\item Coinductively, identity types in $X$ are Deligne-Mumford $\infty$-stacks.
+\end{itemize}
+\end{definition}
+
+Deligne-Mumford $\infty$-stacks enjoys boundedness of map to $\N$, as well as étale-local choice.
+
+\begin{definition}
+An Artin $\infty$-stack is a type $X$ such that:
+\begin{itemize}
+\item The type $X$ merely has a formally smooth atlas. 
+\item Identity types in $X$ are Deligne-Mumford $\infty$-stacks.
+\end{itemize}
+\end{definition}
+
+Artin $\infty$-stacks enjoys boundedness of map to $\N$, as well as smooth-local choice.
+
+\begin{remark}
+In the previous definition one would be typically ask that $X$ is an fppf or étale sheaf, and the atlas would only be required to be fppf or étale surjective rather than surjective. We leave it as is for now.
+\end{remark}
+
+\begin{definition}
+A Deligne-Mumford (resp. Artin) $\infty$-stack that is an $n$-type is called a Deligne-Mumford (resp. Artin) $n$-stack.
+\end{definition}
+
+\begin{remark}
+Our definition is unusual in several ways:
+\begin{itemize}
+\item We consider stacks without any truncation hypothesis, whereas traditionally one only consider Deligne-Mumford $0$-stacks (called algebraic spaces), Artin $1$-stacks (often called algebraic stacks) and Deligne-Mumford $1$-stacks (called Deligne-Mumford stacks). While it is unclear to us if considering $k$-stacks for $k>1$ is useful, setting things up this way allows us to factor proofs of results for $0$ and $1$-stacks.
+\item Traditionally, identity types in algebraic spaces are assumed to be schemes that are propositions, whereas we just assume Deligne-Mumford $\infty$-stacks. We will see in \cref{TODO} that our hypothesis is less restrictive. We could mimic this by asking for a $-1$-stack to be a propositional scheme, and define inductively $n+1$-stacks as a type with an appropriate cover and $n$-stacks as identity types.
+
+Our set up allow for smoother generalisation of properties, e.g. it is obvious for us that an $n+1$-stack that is an $n$-type is an $n$-stack, whereas this fails for $n=-1$ using the traditional definition)
+\end{itemize}
+We might change our mind in the future about how to set things up.
+\end{remark}
+
+\subsection{Basic stability results}
+
+Here we prove that schemes are $\infty$-stacks and that $\infty$-stacks are stable by finite limits and the appropriate notion of quotient.
+
+\begin{remark}
+Contractible types are Deligne-Mumford $\infty$-stacks.
+\end{remark}
+
+\begin{lemma}
+Schemes are Deligne-Mumford $\infty$-stacks.
+\end{lemma}
+
+\begin{proof}
+Given a scheme $X$ its Zariski cover by affine schemes gives an étale atlas for $X$, using the fact that finite sums of open propositions are formally étale. Then we know that identity types in schemes are schemes and we can conclude coinductively.
+\end{proof}
+
+\begin{lemma}\label{sum-etale-etale}
+Assume given $X$ a type with $Y_x$ a type depending on $x:X$. If we have a formally étale (resp. formally smooth) surjection:
+\[p:U\to X\]
+and for all $u:U$ a formally étale (resp. formally smooth) surjection:
+\[q_x : V_u \to Y_{p(u)}\]
+then the induced map in:
+\[\sum_{u:U} V_u \to \sum_{x:X}Y_x\]
+is a formally étale (resp. formally smooth) surjection.
+\end{lemma}
+
+\begin{proof}
+Formally étale (resp. formally smooth) merely inhabited types are closed under dependent sums, and fibers of the induced maps are dependent sums of fibers of $p$ and some $q_x$, so they are formally étale (resp. formally smooth) and merely inhabited.
+\end{proof}
+
+Next result implies that Deligne-Mumford and Artin $\infty$-stacks are stable under finite limits, as it is obvious that they are stable under identity types.
+
+\begin{proposition}\label{infty-stacks-sum}
+Deligne-Mumford (resp. Artin) $\infty$-stacks are stable by dependent sums.
+\end{proposition}
+
+\begin{proof}
+Assume given a Deligne-Mumford (resp. Artin) $\infty$-stacks $X$ and for all $x:X$ an algebraic space $Y_x$. We need to merely find a scheme-cover for $\sum_{x:X} Y_x$. 
+
+For any $x:X$ we merely have:
+\[ \sum_{V_x:\mathrm{Scheme}} \sum_{q_x: V_x \to Y_x} q_x\ \mathrm{\acute{e}tale\ (resp.\ smooth)\ surjection}\]
+So by étale-local (resp. smooth-local) choice for $X$, there merely is a scheme $U$ with an formally étale (resp. formally smooth) surjection $p: U \to X$ such that we merely have:
+\[\prod_{u:U} \sum_{V_u:\mathrm{Scheme}} \sum_{q_u: V_u \to Y_{p(u)}} q_u\ \mathrm{\acute{e}tale\ (resp.\ smooth)\ surjection}\]
+Then we merely have a scheme $\sum_{u:U}V_u$ with an induced map:
+\[\sum_{u:U}V_u \to \sum_{x:X} Y_x\]
+which is formally étale (resp. formally smooth) surjective by \cref{sum-etale-etale}.
+
+Then we know that dependent sums commutes with identity so we can conclude coinductively.
+\end{proof}
+
+We can even do a bit better:
+
+\begin{lemma}
+Let us assume a pullback square:
+ \begin{center}
+    \begin{tikzcd}
+      X\ar[d] & X\times_ZY\ar[d]\ar[l] \\
+      Z & Y\ar[l]
+    \end{tikzcd}
+  \end{center}
+ where $Y$ is an Artin $\infty$-stack and $X$ and $Y$ and Deligne-Mumford $\infty$-stack. Then:
+ $X\times_ZY$ is a Deligne-Mumford $\infty$-stack.
+\end{lemma}
+
+Next result should be interpreted as saying that Deligne-Mumford and Artin $\infty$-stacks are stable under nice quotients:
+
+\begin{proposition}\label{infty-stacks-quotients}
+Assume given a type $Y$ such that there merely exists:
+\begin{itemize} 
+\item A Deligne-Mumford (resp. Artin) $\infty$-stack $X$.
+\item A formally étale (resp. formally smooth) surjective map:
+\[f:X\to Y\]
+which fibers are Deligne-Mumford $\infty$-stacks. 
+\end{itemize}
+Then $Y$ is a Deligne-Mumford (resp. Artin) $\infty$-stack.
+\end{proposition}
+
+\begin{proof}
+It is clear from the hypothesis that $Y$ has an étale (resp. smooth) atlas. Now we need to prove that identity types in $Y$ are Deligne-Mumford $\infty$-stack. But for all $x,x':X$ we have the following pullback square:
+ \begin{center}
+    \begin{tikzcd}
+      \sum_{x:X}f(x)=_Yf(x')\ar[d] & f(x)=_Yf(x')\ar[d]\ar[l] \\
+      X & 1\ar[l,"x"]
+    \end{tikzcd}
+  \end{center}
+  Where $X$ is a Deligne-Mumford (resp. Artin) $\infty$-stack and $\sum_{x:X}f(x)=_Yf(x')$ is a Deligne-Mumford $\infty$-stack by hypothesis, so that for all $x,x':X$ we have that $f(x)=_Yf(x')$ is a Deligne-Mumford $\infty$-stack. We can conclude using the surjectivity of $f$.
+\end{proof}
+
+\subsection{$\infty$-stacks and group actions}
+
+\begin{lemma}\label{delooping-stacks}
+Let $G$ be a higher groups that is formally étale (resp. formally smooth) and a Deligne-Mumford $\infty$-stack. Then $BG$ is a Deligne-Mumford (resp. Artin) $\infty$-satck.
+\end{lemma}
+
+\begin{proof}
+We use \cref{infty-stacks-quotients} on the map:
+\[1\to BG\]
+Indeed the fibers of this maps are all merely equivalent to $G$, so that they are Deligne-Mumford $\infty$-stack and formally étale (resp. formally smooth), as well as merely inhabited.
+\end{proof}
+
+\begin{corollary}
+Let $G$ be a higher groups that is formally étale (resp. formally smooth) and a Deligne-Mumford $\infty$-stack. Assume $G$ acts on a Deligne-Mumford (resp. Artin) $\infty$-stack $X$. Then the homotopy quotient $X//G$ is a Deligne-Mumford (resp. Artin) $\infty$-stack.
+\end{corollary}
+
+\begin{proof}
+By \cref{infty-stacks-sum} and \cref{delooping-stacks}.
+\end{proof}
+
+\subsection{Tiny types}
+
+This section might better be placed elsewhere at a latter point.
+
+\begin{definition}
+A type $D$ is tiny if:
+\begin{itemize}
+\item The type $D$ has choice.
+\item Given a family $X(d)$ of affine shemes for $d:D$, the type:
+\[\prod_{d:D}X(d)\] 
+is an affine scheme.
+\end{itemize}
+\end{definition}
+
+\begin{remark}
+For our application in the next section, it is enough to ask that given a family $X(a)$ of affine shemes for $a:A$, the type:
+\[\prod_{a:A}X(a)\] 
+has an étale (resp. smooth) atlas.
+\end{remark}
+
+\begin{lemma}
+Finite types are tiny.
+\end{lemma}
+
+\begin{proof}
+Because finite types always have choice, and finite product of affine schemes are affine.
+\end{proof}
+
+\begin{lemma}\label{tiny-sums}
+Tiny types are stable by dependent sums.
+\end{lemma}
+
+\begin{proof}
+Both comes straightforwardly from the adjunction between dependent sums and dependent products.
+\end{proof}
+
+\begin{lemma}\label{product-finite-preserve-scheme}
+Assume $A$ a finitely presented algebra such that $A$ is merely equivalent to $R^n$ as an $R$-module. Then given any family of f.p. algebras $B_x$ for $x:\Spec(A)$, the type:
+\[\prod_{x:\Spec(A)}\Spec(B_x)\]
+is an affine scheme.
+\end{lemma}
+
+\begin{proof}
+We have an f.p. $A$-algebra $B$ such that:
+\[\prod_{x:\Spec(A)}\Spec(B_x)\]
+is equivalent to the type of sections of the map:
+\[\Spec(B)\to\Spec(A)\]
+We have that $B$ is an f.p. $R$-algebra, assume it is of the form:
+\[B = R[X_1,\cdots,X_n]/P_1,\cdots,P_m\]
+and $A$ is of the form $R^k$ as an $R$-module. 
+
+We consider $Q_1,\cdots,Q_k$ the images of the canonical basis $e_1,\cdots,e_k$ of $R^k$ under the map $A\to B$ making $B$ an $A$-algebra.
+
+Then a section of the map:
+\[\Spec(B)\to\Spec(A)\] 
+is equivalent to a map of algebra:
+\[\psi: R[X_1,\cdots,X_n]/P_1,\cdots,P_m \to R^k\]
+such that:
+\[\psi(Q_j) = e_j\]
+so it is equivalent to giving:
+\[x_1,\cdots,x_n : R^k\]
+such that:
+\[P_i(x_1,\cdots,x_n) = 0\]
+\[Q_j(x_1,\cdots,x_n) = e_j\]
+This is an affine scheme.
+\end{proof}
+
+\begin{lemma}\label{sums-infinitesimal-tiny}
+Any finite sums of infinitesimal variety $X$ such that $R^X$ is merely iso to $R^n$ as an $R$-module is tiny.
+\end{lemma}
+
+\begin{proof}
+By \cref{tiny-sums} it is enough to prove this for one such infinitesimal variety. This holds by \cref{product-finite-preserve-scheme} together with the fact that infinitesimal variety have choice.
+\end{proof}
+
+\begin{example}
+Finite sums of standard infinitesimal disks are tiny.
+\end{example}
+
+Does $\Spec(R[X]/g)$ has choice for $g$ monic? This would be a good for the fppf topology.
+
+\subsection{$\infty$-stacks and exponentials}
+
+\begin{lemma}
+Assume given a tiny type $D$. Then given a family $P(d)$ of Deligne-Mumford (resp. Artin) $\infty$-stack for $d:D$, the type:
+\[\prod_{d:D}P(d)\]
+is a Deligne-Mumford (resp. Artin) $\infty$-stack.
+\end{lemma}
+
+\begin{proof}
+First we prove that we have an étale (resp. smooth) atlas for:
+\[\prod_{d:D}P(d)\]
+Indeed using choice for $A$, we merely get for all $d:D$ an affine scheme $X(d)$ and a formally étale (resp. formally smooth) map:
+\[X(d)\to P(d)\]
+The induced map:
+\[\prod_{d:D}X(d) \to \prod_{d:D}P(d)\] 
+is surjective because $D$ has choice, and formally étale using general proprieties of modalities (resp. formally smooth using the fact that $D$ has choice). But:
+\[\prod_{d:D}X(d)\]
+has an étale (resp. smooth) atlas by hypothesis and therefore so does:
+\[\prod_{d:D}P(d)\]
+
+The coinductive step is straightforward using the commutation of identity types and dependent products.
+\end{proof}
+
+We can apply this to \cref{sums-infinitesimal-tiny}.
+
+\subsection{$\infty$-stacks and truncations}
+
+\begin{proposition}
+Let $X$ be a formally étale Deligne-Mumford $\infty$-stack. Then for all $n$ we have that $\propTrunc{X}_n$ is a formally étale Deligne-Mumford $\infty$-stack.
+\end{proposition}
+
+\begin{proof}
+We proceed by induction on $n$. The base case $n=-2$ is trivial. Assume it holds for $n-1$. Then consider:
+\[[\_] : X\to \propTrunc{X}_n\]
+To apply \cref{infty-stacks-quotients} and conclude, it is enough to prove that the fibers of this map are formally étale Deligne-Mumford $\infty$-stack, but the fiber over $[y]:\propTrunc{X}_n$ is:
+\[\sum_{x:X} \propTrunc{x=_Xy}_{n-1}\]
+and by induction we know that $\propTrunc{x=_Xy}_{n-1}$ is a formally étale Deligne-Mumford $\infty$-stack, so we can conclude since by the surjectivity of $[\_]$ any fiber merely is of this form.
+\end{proof}
+
+\subsection{A remark on the fundamental theorem for stacks}
+
+Any surjective map:
+\[f:X\to Y\]
+morally means that $Y$ is the quotient of $X$ by a kind of $\infty$-pregroupoid structure on $X$ defined via:
+\[\mathrm{Hom}(x,x') = f(x)=_Yf(x')\]
+It is not possible to state this precisely because it would involve infinite towers of coherences that we don't know how to write down in HoTT. But when $X$ is an affine scheme and $Y$ is an $n$-type for $n$ low enough, it can be worked out it details. We will do this for $n<2$ in the rest of the notes, under the name of fundamental theorem for $n$-stacks.
+

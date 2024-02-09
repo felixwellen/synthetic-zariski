@@ -1,0 +1,335 @@
+\subsection{The Tangent Space}
+
+We will use the concept of tangent spaces from synthetic differential geometry.
+More concretely, we follow \cite{david-orbifolds}[Section 4]
+on the subject, which also uses homotopy type theory as a basis.
+
+\begin{definition}
+  The \notion{first order disk}\index{$\D(n)$} of dimension $n$ is the type
+  \[ \D(n)\colonequiv \{x:R^n \mid xx^T = 0 : R^{n \times n}\}\rlap{.}\]
+
+  More generally, for an $R$-module $V$, the first order disk of $V$ is the type
+  \[ \D(V) \colonequiv \{ f : V^\star \mid \forall v\,v'. f(v)f(v') = 0 \}, \]
+  where $V^\star$ is the $R$-linear dual of $V$.
+\end{definition}
+
+Note that $\D(n)$ is equivalent to $\D(R^n)$.
+
+\begin{definition}
+  For $V$ an $R$-module, the associated square-zero extension of $R$ is the
+  $R$-module $R \oplus V$ with multiplication given by
+  \[ (r,v)(r',v') \coloneqq (rr', rv' + r'v).\]
+\end{definition}
+Note that if $V$ is a finitely presented $R$-module, then so is $R \oplus V$.
+Hence in particular $R \oplus V$ is a finitely presented $R$ algebra in this case.
+
+\begin{lemma}
+  For any $R$-module $V$, we have an equivalence
+  \[ \Spec(R \oplus V) \simeq \D(V)\]
+\end{lemma}
+\begin{proof}
+An $R$-algebra morphism $R \oplus V \to R$ is determined by an $R$ linear map
+$R \oplus V \to R$ that respects multiplication. Equivalently, this is an $R$-linear map
+$f : V \to R$ such that $rr' + f(rv'+r'v) = rr' + r'f(v) + rf(v') + f(v)f(v')$.
+By linearity, this condition amounts to $f(v) f(v') = 0$.
+\end{proof}
+
+Thus $\D(V)$ is an affine scheme whenever $V$ is finitely presented. In particular
+$\D(n)$ is always an affine scheme. %
+% TODO commented out for now, maybe bring the example back later
+%
+%\begin{example}[using \axiomref{sqc}]%
+%  \label{example-tangent-bundle}
+%  Let $S\colonequiv\Spec R[X,Y]/(X^2+Y^2-1)$.
+%  We will see that $S^{\D(1)}$ is affine by the following calculation:
+%  \begin{align*}
+%    S^{\D(1)} &= \Spec R[\varepsilon] \to \Spec R[X,Y]/(X^2+Y^2-1) \\
+%              &= \Hom_R(R[X,Y]/(X^2+Y^2-1), R[\varepsilon]) \\
+%              &= \{{z,w:R[\varepsilon]} \mid z^2+w^2=1 \} \\
+%              &= \{x+\varepsilon u, y+\varepsilon v:R+\varepsilon R \mid (x+\varepsilon u)^2+(y+\varepsilon v)^2=1 \} \\
+%              &= \{x,y,u,v:R \mid x^2+y^2+\varepsilon (2xu+2yv)=1 \} \\
+%              &=\{x,y,u,v:R \mid (x^2+y^2=1)\times(2xu+2yv=0)\} \\
+%    &=\Spec R[X,Y,U,V]/(X^2+Y^2-1,2XU+2YV)
+%  \end{align*}
+%\end{example}
+More generally than first order disks, we can consider infinitesimal varieties:
+
+\begin{definition}
+  \begin{enumerate}[(a)]
+  \item A \notion{Weil algebra} over $R$ is a finitely presented $R$-algebra
+    $W$ together with a homomorphism $\pi : W \to R$, such that the kernel of $\pi$ is a nilpotent ideal.
+  \item An \notion{infinitesimal variety} is a pointed type $D$,
+    such that $D = (\Spec W, \pi)$ for a Weil algebra $(W, \pi)$.
+  \end{enumerate}
+\end{definition}
+
+Note that the kernel of $\pi$ is a finitely generated ideal,
+as the kernel of a surjective homomorphism between finitely presented algebras.
+To ask that $\ker \pi$ is nilpotent as an ideal
+is therefore the same as to ask that each of its elements is nilpotent.
+
+\begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
+  \label{characterization-infinitesimal-variety}
+  A pointed affine scheme $(\Spec A, \pi)$
+  is an infinitesimal variety
+  if and only if,
+  for every $x : \Spec A$ we have $\lnot \lnot (x = \pi)$.
+\end{lemma}
+
+\begin{proof}
+  First note that we can choose generators
+  $X_1,\ldots,X_n$ of $A$
+  such that $\pi(X_i) = 0$ for all $i$
+  (by replacing $X_i$ with $X_i - \pi(X_i)$ if necessary)
+  and therefore $\ker \pi = (X_1, \dots, X_n)$.
+
+  Assume $(\Spec A, \pi)$ is an infinitesimal variety.
+  By (\axiomref{sqc}), this means that $(A, \pi)$ itself is a Weil algebra,
+  so every $X_i$ is nilpotent in $A$.
+  Now if $x : \Spec A$ is any homomorphism $A \to R$,
+  then $x(X_i)$ is also nilpotent in $R$,
+  meaning, by \cref{nilpotence-double-negation}, that $\lnot \lnot (x(X_i) = 0)$.
+  Since we have this for all $i = 1, \dots, n$
+  and double negation commutes with finite conjunctions,
+  we have $\lnot \lnot (x = \pi)$.
+
+  Now assume $\lnot \lnot (x = \pi)$ for all $x : \Spec A$.
+  To show that $(A, \pi)$ is a Weil algebra,
+  let $f : A$ be given with $\pi(f) = 0$.
+  Then in particular we have $\lnot \lnot (x(f) = 0)$
+  for every $x : \Spec A$.
+  But this means $D(f) = 0$
+  (using (\axiomref{loc}) for $\inv(x(f)) \Rightarrow x(f) \neq 0$),
+  so $f$ is nilpotent by \cref{standard-open-empty}.
+\end{proof}
+
+The following lemma allows us to reduce
+maps from infinitesimal varieties to schemes
+to the affine case:
+
+\begin{lemma}%
+  \label{affine-opens-infinitesimal-closed}
+  Let $X$ be a scheme, $V$ an infinitesimal variety and $p:X$.
+  Then for all affine open $U\subseteq X$
+  containing $p$, there is an equivalence
+  of pointed mapping types:
+  \[ V\to_\pt  (X, p) \quad\cong\quad V\to_\pt  (U, p) \]
+\end{lemma}
+
+\begin{proof}
+  By \cref{characterization-infinitesimal-variety},
+  all points in $V$ are not not equal,
+  so all points in the image of a pointed map
+  \[ V \to_\pt  (X, p) \]
+  will be not not equal to $p$.
+  Since $p \in U$ and open propositions are double-negation stable
+  (\cref{open-union-intersection}),
+  the image is contained in $U$
+  and the map factors uniquely over $(U, p)$.
+\end{proof}
+
+\begin{definition}
+  Let $X$ be a type.
+  \begin{enumerate}[(a)]
+  \item For $p:X$ a point in $X$.
+    The \notion{tangent space}\index{$T_pX$} of $X$ at $p$, is the type
+    \[ T_p X \colonequiv \{ t : \D(1) \to X \mid t(0)=p \}\rlap{.}\]
+  \item The \notion{tangent bundle} of $X$ is the type $X^{\D(1)}$.
+  \end{enumerate}
+\end{definition}
+
+Note that for any map $f : X \to Y$, we have a map 
+$Df_p : T_p X \to T_{f(p)}Y$ given by $Df_p(t,x) = f(t(x))$.
+This makes tangent spaces functorial.
+
+\begin{definition}
+For $A$ an $R$-algebra and $M$ an $A$-module, a \notion{derivation}
+is an $R$-linear map $d : A \to M$ satisfying the Leibniz rule
+\[ d(fg) = f \cdot dg + g \cdot df.\]
+\end{definition}
+
+\begin{lemma}
+For $A$ an $R$-algebra and $V$ an $R$-module, we have an equivalence
+between $R$-algebra maps $A \to R \oplus V$ and 
+pairs $(p,d)$ where $p : A \to R$ is an $R$-algebra map, and
+$d : A \to V$ is a derivation, where the $A$-module structure on $V$
+is obtained by restricting scalars along $p$.
+\end{lemma}
+\begin{proof}
+An $R$-algebra map is $A \to R \oplus V$ is given by an 
+$R$-algebra map $p : A \to R$ and an $R$-linear map
+$d : A \to V$ such that $a \mapsto (p(a), d(a))$ respects multiplication.
+Since $p$ respects multiplication and $d$ is linear, this
+amounts to the Leibniz rule.
+\end{proof}
+
+We transfer a result of Myers \cite{david-orbifolds}[Theorem 4.2.19] to schemes:
+
+\begin{theorem}[using \axiomref{sqc}]%
+  Let $X$ be a scheme and $p : X$ a point. Then $T_pX$ is an $R$-module.
+\end{theorem}
+
+We emphasize that this is an untruncated statement: we construct an
+$R$-module structure on $T_p X$, as opposed to showing the mere existence of
+an $R$-module structure.
+
+\begin{proof}
+  Following the proof of \cite{david-orbifolds}[Theorem 4.2.19],
+  it is enough to show that any scheme is infinitesimal linear
+  in the sense that
+  \[
+    \begin{tikzcd}
+      X^{\D(n+m)}\ar[r]\ar[d] & X^{\D(n)}\ar[d] \\
+      X^{\D(m)}\ar[r]         & X
+    \end{tikzcd}
+  \]
+  is a pullback for all $n,m:\N$.
+  This amounts to showing that for any point $p : X$, the map 
+  \[
+    \left(\D(n+m)\to_\pt X\right) \to 
+    \left(\D(n)\to_\pt X\right) \times \left({\D(m)}\to_\pt X\right)
+  \]
+  is an equivalence.
+  Since this statement is a proposition, we may assume given a
+  an affine open $U = \Spec A$ containing $p$.
+  By \cref{affine-opens-infinitesimal-closed}, we may assume $X = U$.
+  In this case, $\D(n) \to_\pt X$ is equivalent to the type
+  of derivations $A \to R^n$, where the $A$-module structure on $R^n$
+  is obtained by restricting scalars along $p : A \to R$.
+  It is clear that a derivation $A \to R^n \oplus R^m$
+  is described by a pair of derivations $A \to R^n$, $A \to R^m$,
+  as needed.
+\end{proof}
+
+We can characterise addition $+ : T_p X \to T_p X \to T_p X$ on
+tangent spaces as follows. Given $f, g : T_p X$,
+there is a unique $h : \D(2) \to X$ such that
+$h(x,0) = f(x)$, $h(0,y) = g(y)$ for all $x, y : \D(1)$.
+Then $(f + g)(x) = h(x,x)$.
+The scalar action of $R$ on $T_p X$ is given by
+$(rf)(x) = f(rx)$.
+This makes it clear that $Df_p : T_p X \to T_p X$ is $R$-linear.
+
+For an alternative characterisation, we note that for any 
+map $q : X \to \A^1$, we have
+$q((f+g)(x)) = q(f(x)) + q(g(x))$. This determines $f + g : \D(1) \to X$
+uniquely in the case where points of $X$ are separated by functions
+$X \to \A^1$ (e.g. if $X$ is an affine scheme).
+
+\begin{lemma}
+For any $p : \A^n$, the map
+$R^n \to T_p \A^n$ given by
+$v \mapsto x \mapsto p + xv$ is an isomorphism of $R$-modules.
+\end{lemma}
+\begin{proof}
+It is direct that the map is $R$-linear. It remains to show it is an equivalence.
+By considering each component separately, we may assume $n = 1$.
+In this case $T_p \A^1$ corresponds by SQC to elements of $R \oplus R$
+whose first component is zero.
+We omit the verification that the map is the one we described.
+\end{proof}
+
+\begin{definition}
+We say an $R$-module $V$ is \notion{finitely co-presented} 
+if it can merely be represented as the kernel of some linear 
+map $R^n \to R^m$ of finite free modules.
+
+Equivalently, an $R$-module is finitely co-presented if it is the dual
+of some finitely presented $R$ module.
+\end{definition}
+
+\begin{lemma}
+Let $X$ be a scheme and $p : X$ a point. Then $T_p X$ is finitely
+co-presented.
+
+Explicitly, if $X$ is affine and given by the following pullback
+diagram 
+\[
+\begin{tikzcd}
+X \arrow[r] \arrow[d] \arrow [dr,phantom,"\lrcorner",very near start] 
+  & 1 \arrow[d] \\
+\A^n \arrow[r] & \A^m
+\end{tikzcd}
+\]
+then $T_p X$ is given by a pullback diagram of $R$-modules
+\[
+\begin{tikzcd}
+T_p X \arrow[r] \arrow[d] \arrow [dr,phantom,"\lrcorner",very near start] 
+  & 1 \arrow[d] \\
+R^n \arrow[r] & R^m
+\end{tikzcd}
+\]
+\end{lemma}
+\begin{proof}
+If $X$ is a general scheme, we reduce to the affine case by picking an affine patch.
+The affine case follows from the fact that pointed exponentiation with $\D(1)$
+preserves pullback squares.
+\end{proof}
+Since finitely co-presented modules are affine schemes, it follows that any tangent space
+of a scheme is an affine scheme. Since schemes are closed under sigma-types,
+the tangent bundle of any scheme is again a scheme.
+
+The following is a completely general algebraic fact about Taylor expansions of polynomials.
+\begin{lemma}
+For any map $f : \A^n \to \A^m$, the Jacobian of $f$ is an $n \times m$ matrix
+describing a linear map $Jf_p : R^n \to R^m$, such that
+for all $p : \A^n$, $x : \D(1)$, $v : R^n$, we have
+\[ f(p + xv) = f(p) + x Jf_p v.\]
+\end{lemma}
+
+It follows that the derivative $R^n \to R^m$ of a map $\A^n \to \A^m$
+at a point of $\A^n$ is given by the Jacobian matrix. In this way we can effectively
+compute the tangent space of an affine scheme.
+For example, since the Jacobian of a linear map is that same linear map,
+we see that any tangent space of a finitely co-presented $R$-module
+is naturally that same $R$-module.
+
+\begin{lemma}\label{equivalence-module-infinitesimal}
+Let $M$, $N$ be finitely presented modules. Then linear maps $M \to N$ correspond to
+pointed maps $\D(N) \to_\pt \D(M)$. Explicitly, a linear map $g : M \to N$
+corresponds to the pointed map $f \mapsto m \mapsto f(g(m))$.
+\end{lemma}
+\begin{proof}
+Pointed maps $\D(N) \to_\pt \D(M)$ correspond to 
+$R$-algebra maps $R \oplus M \to R \oplus N$ lifting the
+projection $R \oplus M \to R$, and hence to derivations
+$R \oplus M \to N$, where the $R \oplus M$-module structure on $M$ is obtained by
+restricting scalars along the projection $R \oplus M \to R$.
+The Leibniz rule amounts to $dr = 0$ for $r : R$, so we obtain all $R$-linear 
+maps $M \to N$ in this way.
+\end{proof}
+
+\begin{lemma}\label{fp-duality}
+Every finitely presented $R$-module is naturally isomorphic to its double dual.
+Hence every finitely co-presented $R$-module is naturally isomorphic to its double dual.
+Hence taking $R$-linear duals is a self-inverse contravariant equivalence of categories between
+finitely presented and finitely co-presented $R$-modules.
+\end{lemma}
+Note that this is true for discrete fields but wildly false for general rings. 
+For example $\Z/2\Z$ is a finitely presented $\Z$-module whose double dual is zero.
+\begin{proof}
+Let $M$ be a finitely presented $R$-module, and let $c : M^\star \to R$ be an element 
+of the double dual.
+We can restrict $c$ to a map $\D(M) \to_\pt R$. By SQC, this corresponds to
+an element of $R \oplus M$ whose first component is zero.
+It remains to check that this determines an equivalence $M^{\star\star} \simeq M$.
+By construction, $c$ is sent to $m : M$ if and only if for all
+$f : \D(M)$, $c(f) = f(m)$.
+It remains to show that this condition is equivalent to the condition
+that for all $f : M^\star$, $c(f) = f(m)$.
+The reverse implication is clear. Thus let us consider the forward implication.
+Suppose $f : M^\star$ and we want to show $c(f) = f(m)$ in $R$.
+By SQC it suffices to show $x c(f) = xf(m)$ for all $x : \D(1)$.
+   Indeed $xc(f) = c(xf) = xf(m)$ by linearity and using the fact
+   that $xf : \D(M)$.
+\end{proof}
+
+\begin{lemma}\label{functions-on-module}
+For $V$ a finitely co-presented $R$-module, $V$ is the spectrum of
+the free $R$-algebra on the $R$-module $V^\star$, i.e. of the symmetrisation of
+the tensor algebra on $V^\star$.
+\end{lemma}
+\begin{proof}
+By universal properties, the relevant spectrum is equivalent to the type
+of $R$-module maps $V^\star \to R$, i.e. to $V$.
+\end{proof}

@@ -1,0 +1,201 @@
+
+\rednote{META: This section is somewhat incomplete, but expected to work out with high level of confidence.}
+
+\subsection{General local resolutions}
+
+\rednote{TODO: For the vanishing result and join-based chech cohomology, we also use what is explained below.
+That should somehow be consolidated/brought into the right order.}
+
+Among 1-truncated $\partial$-functors, $H^0, H^1$, i.e. the zeroth and first cohomology groups defined in terms of Eilenberg-MacLane spaces, will always be universal.
+We will show this, by constructing local resolutions for $(H^0,H^1)$ in the sense of \cref{local-resolution}.
+The construction will follow a general pattern,
+which we will also use in the following sections for all other resolutions.
+What follows, is an explanation in more classical terms -- a reader not familiar with those,
+can safely skip that explanation, since the construction we use, will be quite simple
+and can be understood without the classical notions of torsors or fibre bundles.
+
+Let $X$ be a type and $A:X\to \AbGroup$.
+An element $\chi:H^1(X,A)$ can be merely represented by a map $T:(x:X)\to K(A_x,1)$.
+If we use the particular implementation of the deloopings $K(A_x,1)$ as
+$A_x$-torsors, $T_x$ will be a set with an action and it is natural to view $T$ as a bundle over $X$.
+Let us relax the usual notion of fibre bundle a bit, to also admit the case of our $A$-torsors,
+i.e. let the following be the type of $A$-fibre bundles over $X$:
+\[ \sum_{T:X\to\mathcal U}\|T_x=A_x\|\]
+Then, $A$-torsors will in particular also be $A$-fibre bundles.
+
+A canonical trivialization for fibre bundles with constant prescribed fiber
+is given in (\cite{cherubini-cartan})[Definition 4.9, Definition 4.11] -- but this works for the more general notion as well.
+The canonical trivialization is given by
+\[ V_T:\equiv \sum_{x:X}T_x=A_x \]
+Then, from the definition above, we get that $\pi_1:V_T\to X$ is surjective
+and the second projection will give a trivialization witness for the pullback of $T$ along $\pi_1$.
+
+Now, since the local resolution has to be something over $X$, we have to push-forward the construction above.
+But that really just means we have to take a dependent product instead of a sum.
+So the resulting dependent group is just:
+\[ x\mapsto A_x^{(T_x=\ast)} : X\to\AbGroup\]
+The canonical map $A_x\to A_x^{(T_x=\ast)}$ maps an element $a_x:A_x$ to the function $p\mapsto a_x$.
+Since $T_x=\ast$, this map will be an embedding.
+
+For a more general $T:(x:X)\to K(A_x,l)$,
+the type $\|T_x=\ast\|_0$ will be trivial if $l>1$ and therefore $A_x\to A_x^{(T_x=\ast)}$ will be an equivalence,
+since $A_x$ is 0-truncated.
+This means the same construction will \emph{not} work for cohomology groups above degree 1,
+with coefficients in Eilenberg-MacLane spaces.
+Another way to phrase the problem is,
+that the spectrum $K(A_x,\_)^{(T_x=\ast)}$ fails to be an Eilenberg-MacLane spectrum.
+This happens, if and only if, ${T_x=\ast}$ has non-trivial cohomology.
+So one thing we can use to resolve higher cohomology classes, are covers of $X$ with cohomologically trivial fibers,
+which we will do in the next section.
+Now we will show, how we can use the general construction for degree 1 to get all requirements of \cref{local-resolution}:
+
+\begin{lemma}
+  \label{general-1-resolution-exists}
+  Let $A:X\to\AbGroup$ and $\chi:H^1(X,A)$.
+  Then there merely is a short exact sequence $\mathcal{S}_\chi$:
+  \begin{center}
+    \begin{tikzcd}
+      0\ar[r] & A\ar[r,"m_\chi"] & M_\chi\ar[r] & C_\chi\ar[r] & 0
+    \end{tikzcd}
+  \end{center}
+  such that for any other short exact sequence $\mathcal{S}=A\to R\to S$
+  such that $\chi$ is mapped to zero in $H^1(X,R)$ and any morphism $f:A\to B$ we have
+  a zig-zag:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[d,"f"] & R\ar[r]\ar[d] & S\ar[d] \\
+      B\ar[r] & M_{f,\mathcal{S}}\ar[r] & C_{f,\mathcal{S}} \\
+      B\ar[r,"m_{f(\chi)}"]\ar[u,equal] & M_{f(\chi)}\ar[r]\ar[u] & C_{f(\chi)}\ar[u]
+    \end{tikzcd}
+  \end{center}
+\end{lemma}
+
+\begin{proof}
+  As explained above, we merely have $T:(x:X)\to K(A_x,1)$ with $|T|_0=\chi$ and the definition
+  $M_\chi\colonequiv ((x:X)\mapsto A_x^{(T_x=\ast)}$ together with the diagonal map $(a\mapsto (x, p\mapsto a_x)):A\to M_\chi$,
+  gives a monomorphism $A\to M_\chi$.
+  So we can take the cokernel, to a short exact sequence as required.
+  $m_\chi^\ast(\chi)$ is zero by $x\mapsto \id_{(T_x=\ast)}:(x:X)\to T_x=\ast$.
+  Note that this construction is well-defined in the sense that
+  for another $T'$ with $|T'|=\chi$, we merely have $\|T=T'\|$ and therefire an isomorphism between the resulting sequences.
+
+  Now, let $\mathcal{S}=A\to R\to S$ be a short exact sequence
+  such that $\chi$ is mapped to zero in $H^1(X,R)$ and $\varphi:A\to B$ any morphism.
+  For $T:(x:X)\to K(A_x,1)$ with $|T|=\chi$ and $T'\colonequiv (x\mapsto K(\varphi_x,1)(T_x))$ 
+  a zig-zag can be constructed,
+  whose maps we will describe below the diagram: 
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r]\ar[d,equal] & R\ar[r]\ar[d,"\Delta"] & S\ar[d,dashed] \\
+      A\ar[r,"\varphi\Delta"]\ar[d,equal] & (x\mapsto R_x^{T_x=\ast})\ar[r] & \coker(\varphi\Delta) \\
+      A\ar[r,"\Delta"]\ar[d,"\varphi"] & (x\mapsto A_x^{T_x=\ast})\ar[r]\ar[d]\ar[u] & \coker(\Delta)\ar[d, dashed]\ar[u,dashed] \\
+      B\ar[r,"\Delta'"] & (x\mapsto B_x^{T_x=\ast})\ar[r] & \coker(\Delta') \\
+      B\ar[r,"\Delta''"]\ar[u,equal] & (x\mapsto B_x^{T'_x=\ast})\ar[r]\ar[u] & \coker(\Delta'')\ar[u,dashed]
+    \end{tikzcd}
+  \end{center}
+  The maps in the middle column are all given by postcomposition with given maps,
+  except for the last map, which is given by precomposition with a map
+  $T_x=\ast\to T'_x=\ast$ given by using the pointed map $K(\varphi_x,1)$.
+  All maps in the right column, are then induced by the universal property of cokernels.
+  As noted above, the last row is isomorphic to any $\mathcal{S}_\chi$,
+  so the zig-zag does indeed satisfy the specification from \cref{local-resolution}.
+\end{proof}
+
+\begin{theorem}
+  $H^{\leq 1}$ is a 1-truncated, universal $\partial$-functor.
+\end{theorem}
+
+\begin{proof}
+  By \cref{general-1-resolution-exists} we have local resolutions for $H^{\leq 1}$,
+  we can apply \cref{thm:universal}.
+\end{proof}
+
+\subsection{Local resolutions for schemes}
+
+\begin{definition}
+  Let $X,Y$ be schemes.
+  \begin{enumerate}[(a)]
+  \item For $M:Y\to\Mod{R}$ and $f:X\to Y$ let $f^*M:\equiv (x:X)\mapsto M_{f(x)}$.
+  \item For $M:X\to\Mod{R}$ and $f:X\to Y$ let $f_*M:\equiv (y:Y)\mapsto \prod_{x:\fib_f(y)}M_{\pi_1(x)}$.
+  \end{enumerate}
+\end{definition}
+
+Both operations preserve weakly quasi-coherent modules by \cite{draft}[Theorem 9.1.11].
+As defined in \cite{draft}, a \notion{scheme} is a type $X$, such that there merely is an open cover by affine schemes $U_i=\Spec A_i$.
+As shown in \cref{affine-vanishing},
+higher cohomology with coefficients in weakly quasi-coherent modules is trivial on affine schemes.
+So we know that, for a general scheme, cohomology will be locally trivial.
+A \notion{separated scheme}, is defined in \cite{draft}, as a scheme where equality of points is a \emph{closed} proposition
+-- we will not explain that here and only mention that examples include projective and affine schemes.
+The consequence of relevance here, is that for a separated scheme,
+intersections of affine opens are affine.
+This means the open affines form an acyclic cover:
+
+\begin{remark}
+  For a separated scheme $X$ and $M:X\to\Mod{R}_{wqc}$,
+  any open affine cover $(U_i)_{i:I}$ is \notion{acyclic},
+  i.e\footnote{Using notation from \cref{chech-complex}}.
+  \[
+    H^k(U_{i_0\dotsi_l},M)=0\quad \forall l>0, k>0 \text{ and } i_0,\dots,i_l:I
+    \rlap{.}
+  \]
+\end{remark}
+
+We will use these covers in a way similar to the last section.
+For a cover $(U_i)_{i:I}$, we can view as a map from the coproduct $u:\coprod_iU_i\to X$.
+Then pullback along $u$ trivializes all higher cohomology of $X$ with values in $M:X\to \Mod{R}_{wqc}$
+and we can take the push-forward again to get a candidate for a sequence that resolves higher cohomology classes.
+
+\begin{remark}
+  \label{resolving-mono}
+  For a separated scheme $X$ and $M:X\to\Mod{R}_{wqc}$.
+  Then, for any finite affine open cover $(U_i)_{i:I}$, $x:X$
+  and $u:\coprod_i U_i\to X$,
+  the $R$-linear map of weakly quasi-coherent $R$-modules
+  \[ \Delta\colonequiv m_x\mapsto (\_\mapsto m_x):M_x\to M_x^{\fib_u(x)}\]
+  is an embedding and resolves any $\chi:H^k(X,M)$ with $k>0$.
+\end{remark}
+
+\begin{proof}
+  $(U_i)_{i:I}$ is a cover, so $\fib_u(x)$ is inhabited and therefore $\Delta$ is an embedding.
+  For the resolving-property, we will use that $\fib_u(x)$ is affine.
+  To see that,
+  we compute the fiber as an iterated pullback,
+  starting with an inclusion $\iota_i:U_i\to X$ such that $U_i(x)$:
+  \begin{center}
+    \begin{tikzcd}
+      \fib_u(x)\ar[r]\ar[d] & \coprod_j U_i\cap U_j \ar[r]\ar[d] & \coprod_i U_i\ar[d,"u"] \\
+      1\ar[r] & U_i\ar[r] & X
+    \end{tikzcd}
+  \end{center}
+  The right pullback, $\coprod_j U_i\cap U_j$, is affine, since it is a finite coproduct of the affine schemes $U_i\cap U_j$.
+  The left square is a pullback by pasting, and as a pullback of affine schemes, $\fib_u(x)$ is affine.
+
+  So we know that for any $k>0$, $H^k(\fib_u(x),M_x)=0$.
+  Equivalently, the latter means $\fib_u(x)\to K(M_x,k)$ is connected.
+  By the uniqueness of connected deloopings, this means that
+  \[
+    K(M_x,k)^{\fib_u(x)} = K(M_x^{\fib_u(x)},k)
+    \rlap{.}
+  \]
+  And connectedness of the latter means that all higher cohomology classes are resolved.
+\end{proof}
+
+\begin{theorem}
+  For a separated scheme $X$ and $M:X\to\Mod{R}_{wqc}$.
+  Then the $H^k$, for $k\in\N$ form a universal $\partial$-functor with domain $X\to \Mod{R}_{wqc}$.
+\end{theorem}
+
+\begin{proof}
+  The resolving sequences can be constructed from the monomorphism in \cref{resolving-mono}
+  by taking cokernels, which are proven to be weakly quasi-coherent in \cite{draft}.
+  The second property of local resolutions can be proven analogous to the last section.
+\end{proof}
+
+\subsection{Local resolutions for \v{C}ech-Cohomology}
+
+Let $X$ be a fixed set and $\{U\}=(U_0,\dots,U_n)$ a fixed cover of $X$.
+If $\{U\}$ is acyclic, then the \v{C}ech Cohomology of weakly quasi-coherent modules on $X$
+will be a universal $\partial$-functor.
+
+The local resolutions can be constructed using the \notion{\v{C}ech-sheaf construction}.

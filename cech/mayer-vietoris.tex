@@ -1,0 +1,236 @@
+
+TODO: This needs to be updated and made coherent.
+
+An $n$-th delooping of a pointed space $A$ which is also $(n-1)$-connected is unique and usually written as $B^nA$ or $K(A,n)$ and called an \notion{Eilenberg-MacLane space}.
+We will just write $A_n$ for an $n$-th delooping.
+
+It is known, that in HoTT, a (0-truncated) abelian group can be delooped arbitrarily often (\cite{LicataFinster}).
+
+Contents of this section are from Mike Shulman's posts on the HoTT-Blog about cohomology,
+Floris van Doorn's thesis (\cite{floris-thesis})[section 5.3]
+and common knowledge in the field that is not written up,
+with the possible exception of the Mayer-Vietoris-Sequence with non-constant coefficients (\cref{mayer-vietoris-sequence}).
+
+Suppose we have a pointed type $A$ with delooping $A_k$ for any $k:\N$.
+Then, analogous to the definition of the $k$-th homotopy group
+\[ \pi_k:\equiv\|\Omega^kA \|_0 \]
+one could define homotopy groups of \emph{negative} degree $-k$ by:
+\[ \pi_{-k}:\equiv\|A_k \|_0 \]
+Note that these will be trivial for any Eilenberg-MacLane spectrum, since for those, $A_{k+1}$ is $k$-connected for $k:\N$.
+In general, spectra with trivial homotopy groups in negative degree are called \emph{connective}.
+The result in this article is concerned with Eilenberg-MacLane spectra.
+
+We will use spectra varying over a space as coefficints for cohomology,
+which corresponds to the classical concept of parametrized spectra.
+We fix our terminology in the following definition.
+
+\begin{definition}
+  \begin{enumerate}[(a)]
+  \item A \notion{spectrum} is a sequence of pointed types $(A_k)_{k:\N}$, together with pointed equivalences $A_k\simeq \Omega A_{k+1}$.
+  \item A spectrum $(A_k)_{k:\N}$ is \notion{connective}, if $\|A_{k+1}\|_0\simeq 1$ for all $k:\N$.
+  \item Let $X$ be a type. A \notion{parametrized spectrum} over $X$, is a dependent function, which assigns to any $x:X$, a spectrum $(A_{x,k})_{k:\N}$.
+    For brevity, We will call a parametrized spectrum $A\equiv x\mapsto (A_{x,k})_{k:\N}$ over $X$ just \notion{spectrum over $X$}.
+  \item A \notion{morphism of spectra} $A,A'$ over $X$, is given by a sequence of pointed maps $f_{x,k}:A_{x,k}\to A_{x,k}'$ for any $x:X$,
+    such that $\Omega f_{x,k+1}=f_{x,k}$ (using the pointed equivalences).
+  \end{enumerate}
+\end{definition}
+
+The connective spectra form a nice ``subcategory'':
+We will need the following (coreflective) construction that turns a spectrum into a connective spectrum.
+See \cref{def:connected-cover} for the definition of the $k$-connected cover ``$D^k_Xd$''.
+
+\begin{definition}
+  For a spectrum $A$,
+  the following construction is called the \notion{connective cover}:
+  \[ \hat{A}:\equiv k\mapsto D_{A,k}^{k-1}\]
+  There is also a sequence of pointed maps $\varphi_k:\hat{A}_k\to A_k$, given by the projection from the connected covers.
+\end{definition}
+
+The following fact will be useful to us on various occations and can be proven using the uniqueness of Eilenberg-MacLane spaces:
+
+\begin{lemma}
+  \label{em-comm-pi}
+  Let $X$ be a type and $A:X\to\AbGroup$ a dependent abelian group.
+  If for all $0<l\leq n$ the type $(x:X)\to K(A_x,l)$ is connected, then
+  \[
+    ((x:X)\to K(A_x,n)) = K((x:X)\to A_x,n)
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{definition}
+  The $k$-th cohomology group of $X$ with coefficients in $A$ is the following:
+  \[ H^k(X,A):\equiv\left\|(x:X)\to A_{x,k}\right\|_0 \]
+\end{definition}
+
+\rednote{Add a disclaimer: pullback and push forward do not coincide with the classical constructions}
+
+\begin{definition}
+  Let $f:Y\to X$ be a map of types and $\mathcal F:X\to \AbGroup$ and $\mathcal G:Y\to \AbGroup$ dependent abelian groups.
+  \begin{enumerate}[(a)]
+  \item $f^\ast \mathcal F\colonequiv (y:Y)\mapsto \mathcal F_{f(y)}$ is called the \notion{pullback}\index{$f^\ast \mathcal F$} of $\mathcal F$ along $f$.
+  \item $f_{\ast}\mathcal G\colonequiv (x:X)\mapsto (((y,\_):\fib_f(x)) \to \mathcal G_y)$ is called the \notion{push-forward}\index{$f_{\ast}\mathcal G$} of $\mathcal G$ along $f$.
+  \end{enumerate}
+\end{definition}
+
+Cohomlogy commutes with finite coproducts:
+
+\begin{lemma}
+  \label{cohomology-copropduct-direct-sum}
+  Let $Y_i$, $i:I\colonequiv \{1,\dots,l\}$ be types and $f_i:(i:I)\times Y_i\to X$ and $\mathcal F:((i:I)\times  Y_i)\to\AbGroup$. Then for all $n:\N$
+  \[
+    H^n((i:I)\times  Y_i, \mathcal F)=\bigoplus_i H^n(Y_i, f_i^\ast\mathcal F)
+    \rlap{.}
+  \]
+  
+\end{lemma}
+
+\begin{proof}
+  Direct by currying, using that $\|\_\|_0$ preserves finite products.
+\end{proof}
+
+Cohomology does not change under push-forward along maps with cohomologically trivial fibers:
+
+\begin{lemma}
+  \label{cohomologically-trivial-fibers}
+  Let $f:Y\to X$ and $\mathcal F:Y\to\AbGroup$ be such that $H^l(\fib_f(x),\pi_1^\ast\mathcal F)=0$ for all $0<l\leq n$,
+  then
+  \[
+    H^n(Y,\mathcal F)=H^n(X,f_\ast\mathcal F)
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  By direct application of \Cref{em-comm-pi}.
+\end{proof}
+
+An important notion in abelian categories, is that of short exact sequences.
+And it is important to us here, since for every short exact sequence (somewhere), there should be an induced long exact sequence on cohomology groups.
+The cokernel of an exact sequence, corresponds to a cofiber of a map of spectra.
+
+\begin{definition}
+  Let $f:A\to A'$ be a map of spectra.
+  \begin{enumerate}[(a)]
+  \item The \notion{cofiber} of $f$ is given by the spectrum
+    \[ C_{f,k}:\equiv \fib_{f_{k+1}}\]
+    together with the map $c:A'\to C_f$, where $c_k$ is induced in the following diagram of pullback-squares:
+    \begin{center}
+      \begin{tikzcd}
+        A_k\ar[r,"f_k"]\ar[d] & A'_k\ar[d,dashed]\ar[r] & 1\ar[d] \\
+        1\ar[r] & C_{f,k}\ar[r]\ar[d] & A_{k+1}\ar[d] \\
+        & 1\ar[r] & A'_{k+1}
+      \end{tikzcd}
+    \end{center}
+  \item The \notion{fiber} of $f$ is given by the spectrum
+    \[ \fib_{f,k}:\equiv \fib_{f_k}\]
+  \end{enumerate}
+\end{definition}
+
+Note that $f:A\to A'$ is always the fiber of its cofiber and conversely, $f:A\to A'$ is always the cofiber of its fiber, which is very different from the situation in a general abelian category,
+where for example not every map is the kernel of its cokernel.
+
+\begin{definition}
+  A sequence of morphisms of spectra over $X$
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r,"f"] & A'\ar[r,"g"] & A''
+    \end{tikzcd}
+  \end{center}
+  is a \notion{fiber sequence}, if the following equivalent statements hold:
+  \begin{enumerate}[(a)]
+  \item $f_x$ is the fiber of $g_x$ for all $x:X$
+  \item $f_{x,k}$ is the fiber of $g_{x,k}$ for all $x:X$ and $k:\N$
+  \end{enumerate}
+  If all spectra involved are Eilenberg-MacLane spectra, we call the sequence \notion{exact}, and vice versa,
+  if we speak of a \notion{short exact sequence} of spectra (over $X$), we assume all spectra involved are Eilenberg-MacLane and we have a fiber sequence.
+\end{definition}
+
+\begin{lemma}
+  If $A\to A'\to A''$ is a fiber sequence, then the induced square:
+  \begin{center}
+    \begin{tikzcd}
+      \prod_{x:X}A_{x,k}\ar[r]\ar[d] & \prod_{x:X}A'_{x,k}\ar[d] \\
+      1\ar[r] & \prod_{x:X}A''_{x,k}
+    \end{tikzcd}
+  \end{center}
+  is a pullback square for all $k:\N$.
+\end{lemma}
+\begin{proof}
+  $\prod$ maps families of pullback squares to a pullback square.
+\end{proof}
+
+This is just tailored to prove the following proposition:
+
+\begin{proposition}
+\label{EM-les}
+  For any fiber sequence
+  \[ A\to A'\to A'' \]
+  of spectra over $X$, there is a long exact sequence of cohomology groups:
+  \begin{center}
+    \begin{tikzcd}
+      & \dots\ar[r]& H^{n-1}(X,A'')\ar[dll]\\
+      H^n(X,A)\ar[r] & H^n(X,A')\ar[r] & H^n(X,A'')\ar[lld] \\
+      H^{n+1}(X,A)\ar[r] & H^{n+1}(X,A')\ar[r] & \dots
+    \end{tikzcd}
+  \end{center}
+\end{proposition}
+
+\begin{proof}
+  Apply homotopy fiber sequence to last proposition for all $n:\N$.
+\end{proof}
+
+\begin{lemma}
+  \label{mayer-vietoris-sequence}
+  Let $\mathcal F$ be a spectrum on $X$ and assume we have a pushout square of spaces
+  \begin{center}
+    \begin{tikzcd}
+      \mathrm{S}\arrow[r, "f"]\arrow[d, " g"] & U\arrow[d, " h"] \\
+      \mathrm{V}\arrow[r, " k"] & X
+    \end{tikzcd}
+  \end{center}
+  Then we have a Mayer-Vietoris sequence:
+  \begin{center}
+    \begin{tikzcd}
+      & \dots\ar[r] & H^{n-1}(S, f^* h^* \mathcal F)\ar[dll] \\
+      H^n(X,\mathcal F)\ar[r] & H^n(U, h^*\mathcal F)\oplus H^n(V, k^*\mathcal F)\ar[r] & H^n(S, f^* h^*\mathcal F)\ar[dll] \\
+      H^{n+1}(X,\mathcal F)\ar[r] & \dots &
+    \end{tikzcd}
+  \end{center}
+\end{lemma}
+ 
+\begin{proof}
+  The square
+  \begin{center}
+    \begin{tikzcd}
+      \prod\mathcal F\arrow[d]\arrow[r] & \prod h^*\mathcal F\arrow[d] \\
+      \prod k^*\mathcal F\arrow[r] & \prod f^* h^*\mathcal F
+    \end{tikzcd}
+  \end{center}
+  is a pullback by \cite[Proposition 2.1.6]{egbert-thesis}.
+  This can be transformed to the following pullback square:
+  \begin{center}
+    \begin{tikzcd}
+      \prod\mathcal F\arrow[d]\arrow[r] & \prod f^* h^*\mathcal F\arrow[d,"\Delta"] \\
+      \prod k^*\mathcal F\times \prod h^*\mathcal F\arrow[r,"\times"] & \prod f^* h^*\mathcal F\times\prod f^* h^*\mathcal F
+    \end{tikzcd}
+  \end{center}
+  
+  By \cite[Lemma 3.3.6]{wellen-thesis} and the weak group structure on $\prod f^* h^* \Omega^{-n}\mathcal F$,
+  we have a pullback square for each $n:\N$:
+  \begin{center}
+    \begin{tikzcd}
+      \prod f^* h^* \Omega^{-n}\mathcal F\arrow[r]\arrow[d] & 1\arrow[d] \\
+      (\prod f^* h^* \Omega^{-n}\mathcal F) \times (\prod f^* h^* \Omega^{-n}\mathcal F) \arrow[r, "-"] & \prod f^* h^* \Omega^{-n}\mathcal F
+    \end{tikzcd}
+  \end{center}
+  Pasting gives a fiber-square:
+  \begin{center}
+    \begin{tikzcd}
+      (\prod k^*\Omega^{-n}\mathcal F)\times(\prod h^*\Omega^{-n}\mathcal F)\arrow[d]  & \prod \Omega^{-n}\mathcal F\arrow[l]\arrow[d] \\
+      (\prod f^* h^* \Omega^{-n}\mathcal F) \times (\prod f^* h^* \Omega^{-n}\mathcal F) \arrow[d, "-"] & \prod f^* h^* \Omega^{-n}\mathcal F\arrow[l]\arrow[d] \\
+      \prod f^* h^* \Omega^{-n}\mathcal F  & 1\arrow[l] 
+    \end{tikzcd}
+  \end{center}
+  So we get the desired fiber long exact sequence again by taking the long exact sequence of homotopy groups.
+\end{proof}

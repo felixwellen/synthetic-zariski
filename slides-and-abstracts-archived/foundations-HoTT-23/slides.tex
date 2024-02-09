@@ -1,0 +1,342 @@
+% latexmk -pdflatex='xelatex %O %S' -pvc -pdf slides.tex
+\documentclass{beamer}
+
+\beamertemplatenavigationsymbolsempty
+
+% für xelatex:
+\usepackage{xltxtra}
+\usepackage{unicode-math}
+
+% literatur
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+
+\addbibresource{../util/literature.bib}
+
+\usepackage{../util/zariski}
+
+\usepackage{csquotes}
+\usepackage{cancel}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{cd,arrows,shapes,calc,through,backgrounds,matrix,trees,decorations.pathmorphing,positioning,automata}
+\usepackage{graphicx}
+\usepackage{color}
+
+\usepackage{mathpartir}
+\newcommand{\yields}{\vdash}
+\newcommand{\cbar}{\, | \,}
+
+
+% für tabellen
+\usepackage{booktabs}
+
+\title{A Foundation for Synthetic Algebraic Geometry}
+\author[Author, Anders] 
+{Felix Cherubini, Thierry Coquand, Matthias Hutzler}
+\date{Homotopy Type Theory 2023}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Thinking about algebra in a geometric way}
+  Let $R$ be a ring.
+
+  \[
+    \onslide<+(1)->{\Spec \left(}
+    \begin{aligned}
+      X^2 + Y = 0 \\
+      Y^2 = 0
+    \end{aligned}
+    \onslide<.(1)->{\right)
+    \coloneq
+    \Big\{\, (x, y) \in R^2 \mid x^2 + y = 0, y^2 = 0 \,\Big\}}
+  \]
+  %
+  \pause
+  \[
+    \Spec\Big(\underbrace{(X^2 + Y, Y^2)}_{\text{ideal in $R[X, Y]$}}\Big)
+    \coloneq
+    \Big\{\, (x, y) \in R^2 \mid x^2 + y = 0, y^2 = 0 \,\Big\}
+  \]
+  %
+  \pause
+  \[
+    \Spec\Big(R[X, Y]/(X^2 + Y, Y^2)\Big)
+    \coloneq
+    \Big\{\, (x, y) \in R^2 \mid x^2 + y = 0, y^2 = 0 \,\Big\}
+  \]
+  \[
+    \Spec(A) \coloneq \Hom_{R\text{-Alg}}(A, R)
+  \]
+
+  \vspace{5mm}
+  \pause
+  But does $\Spec(A)$ retain all information from $A$? No. :-(
+\end{frame}
+
+\begin{frame}
+  \frametitle{Classical vs synthetic}
+
+  How can we make the functor
+  \[ A \mapsto \Spec(A) \]
+  fully faithful?
+  \vspace{5mm}
+
+  \begin{tabularx}{\textwidth}{X|X}
+    Classical algebraic geometry
+    &
+    Synthetic algebraic geometry
+    \\ \midrule
+    Endow $\Spec(A)$ with additional structure:
+    \begin{itemize}
+      \item
+        Zariski topology
+      \item
+        structure sheaf $\mathcal{O}_{\Spec(A)}$
+    \end{itemize}
+    &
+    Just postulate it! :-)
+
+    \textbf{Axiom (SQC)\footnote{%
+    \enquote{Synthetic Quasi-Coherence}, due to Ingo Blechschmidt}.}
+    The map
+    \begin{align*}
+      A \to R^{\Spec A} \\
+      a\mapsto (\varphi\mapsto \varphi(a))
+    \end{align*}
+    is an equivalence,
+    for every finitely presented $R$-algebra $A$.
+  \end{tabularx}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Basic consequences of SQC}
+
+  \[ A \xrightarrow{\sim} R^{\Spec A}\]
+
+  \vspace{5mm}
+  \begin{itemize}
+    \item
+      $\Spec(R[X]) = R$.
+      Thus:
+      $R[X] \xrightarrow{\sim} R^R$
+  \end{itemize}
+
+  \pause
+  \vspace{5mm}
+  If $\Spec(A) = \varnothing$,
+  then $A = R^\varnothing = 0$.
+
+  \vspace{2.5mm}
+  \begin{itemize}
+    \item
+      $\Spec(R/(r)) = (r = 0)$.
+      Thus:
+      if $r \neq 0$,
+      then $r$ is invertible.
+    \item
+      $\Spec(R[r^{-1}]) = (\text{$r$ is invertible})$.
+      Thus:
+      if $r$ is not invertible,
+      then $r$ is nilpotent.
+  \end{itemize}
+
+  \pause
+  \vspace{5mm}
+  \textbf{Axiom:} The ring $R$ is local.
+
+  \vspace{2.5mm}
+  \begin{itemize}
+    \item
+      If $r_1, \dots, r_n : R$ are not all zero,
+      then some $r_i$ is invertible.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Closed and open propositions}
+
+  For $r_1, \dots, r_n : R$ we have the propositions
+  \[ V(r_1, \dots, r_n) \coloneq (r_1 = \dots = r_n = 0) \rlap{,}\]
+  \[ D(r_1, \dots, r_n) \coloneq (\text{$r_1$ inv.} \lor \dots \lor \text{$r_1$ inv.}) \rlap{.}\]
+
+  Then define:
+  \[ \mathrm{closedProp} \coloneq
+     \sum_{p : \mathrm{hProp}} \exists r_1, \dots, r_n.\, (p = V(r_1, \dots, r_n))
+  \]
+  \[ \mathrm{openProp} \coloneq
+     \sum_{p : \mathrm{hProp}} \exists r_1, \dots, r_n.\, (p = D(r_1, \dots, r_n))
+  \]
+
+  \vspace{5mm}
+  A \emph{closed subtype} of $X$
+  is a map $X \to \mathrm{closedProp}$.\\
+  An \emph{open subtype} of $X$
+  is a map $X \to \mathrm{openProp}$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Schemes}
+
+  A type $X$ is an \emph{affine scheme} if
+  it is of the form $X = \Spec(A)$.
+
+  \vspace{5mm}
+  A type $X$ is a \emph{scheme} if
+  there exist $U_1, \dots, U_n : X \to \mathrm{openProp}$
+  such that $X = \bigcup_i U_i$
+  and every $U_i$ is an affine scheme.
+
+  \pause
+  \vspace{5mm}
+  \textbf{Example.}
+  \emph{Projective $n$-space}:
+  \begin{align*}
+    \bP^n
+    &\coloneq \{\,\text{lines through $0$ in $R^{n+1}$}\,\} \\
+    &\coloneq \{\,\text{sub-$R$-modules $L \subseteq R^{n+1}$ such that $\lVert L = R^1 \rVert$}\,\}
+  \end{align*}
+  is a scheme:
+  \[
+    U_i(L) \coloneq \text{($b_i$ is invertible) \textit{(for any chosen base $\{b\}$ of $L$)}}
+  \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Line bundles}
+
+  The type
+  \[ \mathrm{Lines} \coloneq \sum_{L : R\text{-Mod}} \lVert L = R^1 \rVert \]
+  has a wild group structure:
+  \begin{itemize}
+    \item
+      $L \otimes L'$ is again a line
+    \item
+      $L^{\vee} \coloneq \Hom(L, R^1)$ is the inverse
+  \end{itemize}
+
+  \pause
+  \vspace{5mm}
+  A \emph{line bundle} on $X$ is a map $X \to \mathrm{Lines}$.
+
+  \textbf{Example.}
+  tautological line bundle on $\bP^n$
+
+  \pause
+  \vspace{5mm}
+  The \emph{Picard group} of $X$ is
+  \[ \mathrm{Pic}(X) \coloneq \lVert X \to \mathrm{Lines} \rVert_{\text{set}} \rlap{.}\]
+
+  \vspace{5mm}
+  (In fact, $\mathrm{Lines} = K(R^{\times}, 1)$
+  and $\mathrm{Pic}(X) = H^1(X, R^{\times})$.)
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zariski-local choice}
+
+  For $f : A$ define $D(f) \coloneq \{\,\varphi : \Spec(A) \mid \text{$\varphi(f)$ is invertible}\,\}$.
+
+  \vspace{2.5mm}
+  \textbf{Axiom (Zariski-local choice):}\\
+  For every surjective $\pi$, there merely exist local sections $s_i$
+  \[ \begin{tikzcd}[ampersand replacement=\&, column sep=small]
+    \& E \ar[d, two heads, "\pi"] \\
+    D(f_i) \ar[r, hook] \ar[ur, bend left, dashed, "s_i"] \& \Spec(A)
+  \end{tikzcd} \]
+  with $f_1, \dots, f_n : A$ coprime.
+
+  \pause
+  \vspace{5mm}
+  Some consequences:
+  \begin{itemize}
+    \item
+      Every line bundle (on a scheme) is locally trivial.
+    \item
+      $(\Spec A \to \mathrm{closedProp}) \cong \{\,\text{fin. gen. ideals in $A$}\,\}$
+    \item
+      $(\Spec A \to \mathrm{openProp}) \cong \{\,\text{fin. gen. radical ideals in $A$}\,\}$
+    \item
+      If $U \subseteq X$ open and $V \subseteq U$ open,
+      then $V \subseteq X$ open.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The scheme classifier}
+
+  Let $\mathrm{Sch} \hookrightarrow \mathrm{Type}$
+  be the type of schemes.
+
+  \vspace{5mm}
+  \textbf{Theorem.}
+  Let $X$ be a scheme and $Y : X \to \mathrm{Sch}$ be given.
+  Then $\sum_{x : X} Y(x)$ is a scheme.
+
+  \vspace{2.5mm}
+  \textbf{Corollary.}
+  For $f : Y \to X$ a map between schemes
+  and $x : X$,
+  the fiber $\sum_{y : Y} \underbrace{f(y) = x}_{\text{a scheme}}$
+  is a scheme.
+
+  \pause
+  \vspace{5mm}
+  This means we have a scheme classifier:
+  \[ \mathrm{Sch}/X = (X \to \mathrm{Sch}) \]
+
+  \vspace{2.5mm}
+  In particular, we have a subscheme-classifier:
+  $\mathrm{Sch} \cap \mathrm{hProp}$.
+\end{frame}
+
+\begin{frame}
+  \centering
+  Thank you!
+\end{frame}
+
+\end{document}
+
+
+\begin{frame}
+  \frametitle{Cohomology of sheaves}
+  Let $X$ be a type and $\mathcal F:X\to \mathrm{Ab}$ a dependent abelian group on $X$. \\
+  \pause
+  The $n$-th cohomology group of $\mathcal F$ is
+  \[ H^n(X,\mathcal F):\equiv\left\|\prod_{x:X}K(\mathcal F_x,n)\right\|_0 \]
+  \pause
+  Properties: \\
+  \pause
+  The $H^n(X,\mathcal F)$ are all abelian groups. \\
+  \pause
+  Functoriality, covariant in $\mathcal F$, contravariant in $X$. \\
+  \pause
+  Some long exact sequence for coefficients. \\
+  \pause
+  We have a Mayer-Vietoris-Lemma and more generally correspondence with \v{C}ech-Cohomology, for nice enough spaces. \\
+\end{frame}
+
+\begin{frame}
+  \frametitle{Zariski-Choice and Cohomology}  
+  Let $X=\Spec(A)$ and $M:X\to R\text{-Mod}$ such that $((x:D(f))\to M_x)=((x:X)\to M)_f$, then
+  \[ H^1(X,M)=0 \]
+  \pause
+  \textbf{Proof:} Let $|T|: H^1(X,M)\equiv \|(x:X)\to K(M_x,1)\|_0$ and from that $(x:X)\to \|T_x=M_x\|$.
+  \pause
+  Our third axiom, \textbf{Zariski-local choice}, merely gives us coprime $f_1,\dots,f_n:A$, such that for each $i$ we have
+  \[
+    s_i:(x:D(f_i)) \to T_x=M_x
+    \rlap{.}
+  \]
+  \pause
+  So for $t_{ij}(x):\equiv s_j(x)^{-1}\cdot s_i(x)$ we have $t_{ij}+t_{jk}=t_{ik}$.
+  \pause
+  By algebra, we get $u_i:(x:D(f_i))\to M_x$ with $t_{ij}=u_i-u_j$.
+  Then the $\tilde{s}_i:\equiv s_i-u_i$ glues to a global trivialization.
+\end{frame}
+

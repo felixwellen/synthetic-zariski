@@ -1,0 +1,33 @@
+This section consists of informal notes by Hugo. It is mostly based on skimming through $\A^1$-Algebraic Topology over a Field by Morel.
+
+There are two possible definitions for motivic homotopy groups:
+\begin{itemize}
+\item The naive one:
+\[\pi_n^{\A^1}(X) = \pi_n(\shape_{\A^1}X)\]
+\item The refined one:
+\[\pi_n^{\A^1}(X) = \Omega^n(\shape_{\A^1,S^{n+1}} X)\]
+\end{itemize}
+
+Traditionally (e.g. In $\A^1$-Algebraic Topology over a Field by Morel), the naive one is used, and a some work is spent proving that it agrees with the refined one in favorable cases, allowing computations. The proof relies crucially on the fact that we have a base field.
+
+This is formulated using three key definitions:
+\begin{itemize}
+\item A set $X$ is $\A^1$-invariant when it is $\A^1$-local.
+\item A group $G$ is strongly $\A^1$-invariant when $BG$ (and therefore $G$) is $\A^1$-local.
+\item An abelian group $A$ is strictly $\A^1$-invariant when $B^nA$ is $\A^1$-local for any $n:\N$.
+\end{itemize}
+
+Then Theorem 1.9 states that for any $X$ we have that: 
+\begin{itemize}
+\item The naive $\pi_1^{\A^1}(X)$ is strongly $\A^1$-invariant. I think this implies that if $X$ is $\A^1$-connected then $\propTrunc{\shape_{\A^1}X}_1$ is $\A^1$-local.
+\item For any $n>1$ the naive $\pi_n^{\A^1}(X)$ is strictly $\A^1$-invariant. I think this together with the previous point implies that if $X$ is $\A^1$-connected then $\propTrunc{\shape_{\A^1}X}_n$ is $\A^1$-local for any $n>1$, using a Postnikov tower.
+\item It is conjectured that $\pi^{\A^1}_0(X)$ is $\A^1$-invariant. This and the previous two points should imply that the naive and refined definition of motivic homotopy groups agree, again using a Postnikov tower, and probably Whitehead.
+\end{itemize}
+
+The proof relies crucially on the base being a field, and we do not expect both definitions to agree in general.
+
+\begin{remark}
+Theorem 1.18 states that if $X$ is $n$-connected, then $\shape_{\A^1}X$ is $n$-connected. It also states that this fails when the base is not a field. When using the refined definition this is seems provable using reasoning on modalities. This seems to contradict both definitions agreeing when the base is not a field.
+\end{remark}
+
+I believe it would be more fruitful to use the refined definition (as my naming of the definitions subtly suggests...), but an unpleasant consequence of it is that we cannot reuse results from HoTT (long exact sequences, universal covers, ...) directly, they have to be proven again. Maybe this work can be done using any localisation instead of $\A^1$-localisation, making it somewhat reusable?

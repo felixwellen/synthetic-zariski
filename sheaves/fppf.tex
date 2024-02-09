@@ -1,0 +1,124 @@
+This section is about fppf sheaves.
+
+\subsection{Flat and faithfully flat modules}
+
+\begin{definition}
+An $A$-module $M$ is flat if $\_\otimes_AM$ preserve monomorphisms of $A$-module.
+\end{definition}
+
+\begin{lemma}
+
+\end{lemma}
+
+\subsection{Flat and faithfully flat algebras}
+
+\begin{definition}
+Given a map between f.p. algebras $A\to B$ we say that $B$ is a flat (resp. faithfully flat) $A$-algebra if $B$ is flat (resp. faithfully flat) as an $A$-module.
+
+Then we say that the induced map $\Spec(B)\to \Spec(A)$ is flat (resp. faithfully flat).
+\end{definition}
+
+The following two propositions are based on Lombardi:
+
+\begin{proposition}
+Assume given a map of fp algebras $\rho:A\to B$, then the following are equivalent:
+\begin{enumerate}[(i)]
+\item $B$ is a flat $A$ algebra.
+\item TODO
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{proposition}
+Assume given a map of fp algebras $\rho:A\to B$, then the following are equivalent:
+\begin{enumerate}[(i)]
+\item $B$ is a faithfully flat $A$ algebra.
+\item TODO
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+A map $\Spec(B)\to \Spec(A)$ is flat if (resp. faithfully flat) and only if its fibers are flat (resp. faithfully flat) $R$-algebras.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+Let $A$ be a finitely presented algebra, then the following are equivalent:
+\begin{enumerate}[(i)]
+\item We have $\neg\neg\Spec(A)$.
+\item For all f.p. algebras $B$, we have that:
+\[(A\otimes B = 0) \to (B=0)\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The second condition can be reformulated as:
+\[\neg(\Spec(A)\times\Spec(B))\to \neg\Spec(B)\]
+so we get (ii) implies (i) by taking $B=R$, and (i) implies (ii) is just negation manipulation.
+\end{proof}
+
+This is a first step toward a flat f.p. algebra being faithfully flat if and only if its spectrum is non-empty. It shows one direction.
+% Ingo: Why is this not already the full result?
+% Hugo: I do not know how to prove (A\otimes M = 0 \to M=0) for any module M from  (A\otimes B = 0 implies B=0) for any f.p. algebra B. Maybe I'm missing something?
+% Ingo: Oh, I see! You are right. Mentally I was just in the category of algebras.
+
+Next lemma should perhaps disappear?
+
+\begin{lemma}
+If $\rho: A\to B$ makes $B$ a faithfully flat $A$-algebra, then $\rho$ is injective.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\subsection{Definition}
+
+\begin{definition}
+The fppf pre-topology is the pre-topology consisting of $\Spec(A)$ for $A$ faithfully flat.
+\end{definition}
+
+\begin{lemma}
+The fppf pre-topology is a topology.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+
+\subsection{The fppf topology is subcanonical}
+
+\begin{lemma}\label{split-algebras-exactness}
+Assume given a $A\to B$ a map of fp algebras, if $A\to B$ has a section then the sequence:
+\[0 \to A \to B \to B\otimes_AB\]
+where the last map send $b$ to $b\otimes 1 - 1 \otimes b$ is exact.
+\end{lemma}
+
+\begin{proof}
+Form the hypothesis we get that $B = A\oplus A'$ and then we can compute using the distributivity of $\otimes$ over $\oplus$.
+\end{proof}
+
+\begin{proposition}
+We have that $R$ is an fppf sheaf.
+\end{proposition}
+
+\begin{proof}
+By unfolding the definition of sheaves, we just need to prove that for any faithfully flat algebra $A$ we have an exact the sequence:
+\[0\to R\to A\to A\otimes_R A\]
+where the last map send $a$ to $a\otimes 1 - 1 \otimes a$. Since $A$ is faithfully flat it is enough to prove that the induced sequence:
+\[0 \to A \to A\otimes_RA\to A\otimes_RA\otimes_RA\]
+is exact, but this sequence is isomorphic to the sequence:
+\[0\to A\to A\otimes_RA \to (A\otimes_RA)\otimes_A(A\otimes_RA)\]
+where the last map sends $a\otimes b$ to $(a\otimes b)\otimes (1\otimes 1) - (1\otimes 1)\otimes (a\otimes b)$. This sequence is exact by \cref{split-algebras-exactness} since the map $A\otimes A\otimes_RA$ sending $a$ to $a\otimes 1$ has a section sending $a\otimes b$ to $ab$. 
+\end{proof}

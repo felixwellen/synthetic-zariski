@@ -1,0 +1,250 @@
+The main goal of this section is to show that not every algebraic space is a scheme, even when its identity types are schemes. To do this we work with scheme quotients.
+
+\subsection{Quotient of an affine scheme by a finite group action}
+
+In all this section we assume $G$ a finite group acting on $\Spec(A)$, such that the algebra of invariant $A^G$ is finitely presented. Our goal is to prove that:
+
+\[f:\Spec(A)\to \Spec(A^G)\] 
+
+is universal among $G$-invariant maps from $\Spec(A)$ to a scheme.
+
+\begin{remark}
+This hypothesis on $A^G$ f.p. might not be easy (or possible) to remove, for example consider $R[X]$ quotiented by the $\Z/2\Z$-action sending $X$ to $-X$. If $0\not=2$ then:
+\[(R[X])^{\Z/2\Z} \cong R[X^2]\]
+and if $0=2$ the action is trivial and:
+\[(R[X])^{\Z/2\Z} \cong R[X]\]
+and it seems delicate to choose a presentation without using  $0\not=2$ or $0=2$.
+\end{remark}
+
+\begin{lemma}\label{surjective-on-open}
+For all $U: \OO(\Spec(A))$ that is $G$-invariant, there merely exists $V:\OO(\Spec(A^G))$ such that $f^{-1}(V)=U$.
+\end{lemma}
+
+\begin{proof}
+We proceed in three steps:
+\begin{itemize}
+\item First we prove that for any $a:A$, writing:
+\[\prod_{g:G}(X-ga) = X^n + b_{n-1}X^{n-1} + \cdots + b_0\]
+we have:
+\[ \lor_{g:G} D(ga) = D(b_{n-1},\cdots,b_0)\]
+Indeed if for all $g:G$ we have that $ga$ is nilpotent, then the $b_j$ are nilpotent as well as they are symmetric polynomials in $ga$. Conversely if all the $b_j$ are nilpotent then for all $g:G$ we have:
+\[(ga)^n + b_{n-1}(ga)^{n-1} + \cdots + b_0 = 0\]
+so that $(ga)^n$ is a sum of nilpotent elements, so it is nilpotent.
+
+\item Since $b_{n-1},\cdots,b_0:A^G$ we have:
+\[V = D(b_{n-1},\cdots,b^0):\OO(\Spec(A^G))\]
+such that:
+\[f^{-1}(V) = \lor_{g:G} D(ga)\]
+
+\item Then given $D(a_1,\cdots,a_m):\OO(\Spec(A))$ that is $G$-invariant we have:
+\[D(a_1,\cdots,a_m) = \lor_{g:G}D(ga_1,\cdots,ga_m)\]
+\[= \lor_i\lor_{g:G}D(ga_i)\]
+But by the previous point, for all $i$ we get $V_i:\OO(\Spec(A^G))$ such that:
+\[f^{-1}(V_i) = \lor_{g:G}D(ga_i)\]
+Then:
+\[f^{-1}(\cup_iV_i) = D(a_1,\cdots,a_m)\]
+
+\item We conclude by using the fact that any $U:\OO(\Spec(A))$ is merely of the form $D(a_1,\cdots,a_m)$ for $a_1,\cdots,a_m:A$.
+
+\end{itemize}
+\end{proof}
+
+\begin{lemma}\label{injective-on-open}
+Assume given $U,V:\OO(\Spec(A^G))$ such that $f^{-1}(U) \subset f^{-1}(V)$. Then $U\subset V$. 
+\end{lemma}
+
+\begin{proof}
+It is enough to prove the result when $U = D(a)$ and $V=D(b_1,\cdots,b_m)$ for $a,b_1,\cdots,b_m:A^G$. In this case the hypothesis $f^{-1}(U) \subset f^{-1}(V)$ means that there is $m$ and $c_1,\cdots,c_m:A$ such that:
+\[a^m = \sum_{i}c_ib_i\]
+To prove $U\subset V$ we need the same thing for some $c_i:A^g$. But for all $g:G$ we have:
+\[a^m = (ga)^m = \sum_{i}(gc_i)b_i\]
+so that for $n$ the cardinal of $G$ we have:
+\[a^{mn} = \prod_{g:G} \sum_{i}(gc_i)b_i\]
+Consider $i_1,\cdots,i_n: \{1,\cdots,m\}$, it is enough to describe $d_{i_1,\cdots,i_n}$ the coefficient in front of $b_{i_1}\cdots b_{i_n}$ in the development of the right hand side, and to prove that it is $G$-invariant in order to conclude. 
+
+Consider $Z$ the type of $\psi:G\to \{1,\cdots,m\}$ whose image is $i_1,\cdots,i_n$ counting multiplicities. Then:
+\[d_{i_1,\cdots,i_n} = \sum_{\psi: Z} \prod_{g:G} gc_{\psi(g)} \]
+To see it is invariant we remark that any $g:G$ acts on $Z$ sending $\psi$ to:
+\[\psi_g : g' \mapsto \psi(g^{-1}g')\]
+Then we have that:
+\[g'd_{i_1,\cdots,i_n} =  \sum_{\psi: Z} \prod_{g:G} g'gc_{\psi(g)}\]
+\[ = \sum_{\psi: Z} \prod_{h:G} hc_{\psi_{g'}(h)}\]
+by using the change of variable $h=g'g$.
+\end{proof}
+
+\begin{lemma}\label{affine-scheme-quotient-on-open}
+For all $V:\Spec(A^G)$ the map:
+\[f : f^{-1}(V) \to V\]
+is an affine scheme quotient by the $G$-action.
+\end{lemma}
+
+\begin{proof}
+We proceed in two steps:
+\begin{itemize}
+\item We prove that for any algebra $B$ and $b:B^G$, the canonical map:
+\[(B^G)_b\to (B_b)^G \]
+is an equivalence. It is clear that it is an embedding. We show that it is surjective. Assume:
+\[\frac{c}{b^n} : (B_b)^G\]
+Then for all $g:G$ we have that there exists $m$ such that:
+\[b^m(c-gc) = 0\]
+Since $g$ is finite we can take the sup of such $m$ to get $l$ such that for all $g:G$ we have:
+\[b^l(c-gc) = 0\]
+Then we have:
+\[\frac{c}{b^n} = \frac{b^lc}{b^(l+n)} : (B_b)^G\]
+and $b^lc : B^G$ so we can conclude.
+\item Now any open $V$ in $\Spec(A^G)$ is of the form $D(a_1,\cdots,a_n)$ with $a_1,\cdots,a_n:A^G$ and we can apply the previous point $n$-times to get a canonical equivalence:
+\[(A_{a_1,\cdots,a_n})^G \cong (A^G)_{a_1,\cdots,a_n}\]
+so it is enough to prove that:
+\[ \Spec(B)\to \Spec(B^G)\]
+is an affine scheme-quotient for any f.p. $B$. This holds because of the duality between algebras and affine schemes.
+\end{itemize}
+\end{proof}
+
+\begin{lemma}\label{piece-wise-contractible}
+Assume given $Y$ a set with a dependent set $P(y)$ for $y:Y$. Assume given an open cover $(V_i)_{i:I}$ such that:
+\begin{itemize}
+\item For all $i:I$ we have that:
+\[\prod_{y:V_i} P(y)\]
+is contractible.
+\item For all $i,j:I$ we have that:
+\[\prod_{y:V_i\cap V_j} P(y)\]
+is contractible.
+\end{itemize}
+Then:
+\[\prod_{y:Y} P(y)\]
+is contractible.
+\end{lemma}
+
+\begin{proof}
+Omitted. Plain HoTT.
+\end{proof}
+
+\begin{proposition}\label{scheme-quotient-finite-group-action}
+Assume $G$ a finite group acting on an affine scheme $\Spec(A)$ such that $A^G$ is a f.p. algebra. Then the map:
+\[f:\Spec(A)\to \Spec(A^G)\] 
+is the scheme quotient of $\Spec(A)$ by the action of $G$.
+\end{proposition}
+
+\begin{proof}
+Assume given a $G$-invariant map from $\Spec(A)$ to a scheme $X$, we want to prove there is a unique dotted lift in:
+\begin{center}
+\begin{tikzcd}
+\Spec(A)\ar[r,"f"]\ar[rd,swap,"g"] & \Spec(A^G)\ar[d,dotted]\\
+& X
+\end{tikzcd}
+\end{center}
+We cover $X$ by affine schemes $U_i$. Then using \cref{surjective-on-open} for all $i$ we choose $V_i$ such that:
+\[f^{-1}(V_i) = g^{-1}(U_i)\]
+By \cref{injective-on-open} we know that the $V_i$ cover $\Spec(A^G)$. 
+
+By \cref{piece-wise-contractible} it is enough to prove that there is a unique lifting over any $V_i$ and over any $V_i\cap V_j$ in order to conclude. 
+
+\begin{itemize}
+
+\item Let's prove this for $V_i$, assume given $h$ a liftings:
+\begin{center}
+\begin{tikzcd}
+f^{-1}(V_i)\ar[r,"f"]\ar[rd,swap,"g"] & V_i\ar[d,"h'"]\\
+& X
+\end{tikzcd}
+\end{center}
+We check that:
+\[h(V_i) \subset U_i\] 
+and the same with $h'$. This is equivalent to:
+\[V_i \subset h^{-1}(U_i)\]
+which by \cref{injective-on-open} is equivalent to:
+\[f^{-1}(V_i)\subset f^{-1}h^{-1}(U_i)\]
+i.e.
+\[f^{-1}(V_i)\subset g^{-1}(U_i)\]
+which holds by definition. Then we have a triangle:
+\begin{center}
+\begin{tikzcd}
+f^{-1}(V_i)\ar[r,"f"]\ar[rd,swap,"g"] & V_i\ar[d,"h"]\\
+& U_i
+\end{tikzcd}
+\end{center}
+with $U_i$ affine so that by \cref{affine-scheme-quotient-on-open} there is a unique such $h$.
+
+\item Now for $V_i\cap V_j$, by the same reasoning we have:
+\[h(V_i\cap V_j) \subset U_i\cap U_j\] 
+but $U_i\cap U_j$ is affine so we can conclude.
+\end{itemize}
+
+\end{proof}
+
+\subsection{Not all algebraic space are schemes}
+
+Let $p$ be a prime number. We consider the action of:
+\[\mu_p = \Spec(R[X]/X^p-1)\]
+on $\A^\times$ via multiplication.
+
+\begin{lemma}\label{quotient-is-algebraic-space}
+Assuming $p\not=0$, the quotient of this action is an algebraic space.
+\end{lemma}
+
+\begin{proof}
+The polynomial $X^p-1$ is separable when $p\not=0$. So the scheme $\mu_p$ is étale. Moreover the action is free as it is multiplication by invertibles. So the quotient is an algebraic space.
+\end{proof}
+
+\begin{lemma}\label{some-root-is-not-one}
+Assume $a:R$ such that for all $j:\mu_p$ we have:
+\[(1-j)a = 0\]
+Then $a=0$.
+\end{lemma}
+
+\begin{proof}
+Through sqc, the assumption means that we have a map:
+\[R[X]/X^p-1,(1-X)a \to R[X]/X^p-1\]
+sending $X$ to $X$. So this means that $(1-X)a = 0$ modulo $X^p-1$, so that $a=0$.
+\end{proof}
+
+\begin{lemma}\label{scheme-quotient-Ax-mup}
+Assuming $p\not=0$, and that $\mu_p$ is finite, the scheme-quotient of this action is the map:
+\[\A^\times \to \A^\times\]
+\[x\mapsto x^p\]
+\end{lemma}
+
+\begin{proof}
+We use \cref{scheme-quotient-finite-group-action}. We prove that the map:
+\[R[X^p]_{X^p} \to (R[X]_X)^{\mu_p} \]
+is an equivalence. It is clear that it is an embedding. We prove that it is surjective. Assume given:
+\[\frac{P(X)}{X^n} : R[X]_X\]
+such that for all $j:\mu_p$ we have:
+\[\frac{P(X)}{X^n} = \frac{P(jX)}{(jX)^n} \]
+Then writing:
+\[P(X) = a_0 + \cdots + a_l X^l\]
+we have for all $k$ we have:
+\[ a_k j^{k-n} = a_k\]
+By \cref{some-root-is-not-one} this implies that whenever $k\not=n$ modulo $p$, we have $a_k=0$. So writing:
+\[n = dp + r\]
+ our fraction is of the form:
+\[\frac{a_rX^r + a_{r+p} X^{r+p} +\cdots + a_{ep + r} X^{ep + r}}{X^{dp+r}} = \frac{a_r + a_{r+p} X^{p} +\cdots + a_{ep + r} X^{ep}}{X^{dp}}\]
+which is of the desired form.
+\end{proof}
+
+\begin{lemma}\label{mup-not-not-finite}
+Assuming $p\not=0$, we not not have that $\mu_p$ is finite.
+\end{lemma}
+
+\begin{proof}
+Any separable polynomial can be factored into pairwise distinct linear components under a not-not.
+\end{proof}
+
+\begin{proposition}\label{quotient-is-not-scheme}
+Assuming $p\not=0$, the quotient is an algebraic space but not a scheme.
+\end{proposition}
+
+\begin{proof}
+By \cref{quotient-is-algebraic-space} the quotient is an algebraic space. Since we want to prove a negation, we can assume $\mu_p$ finite by \cref{mup-not-not-finite}. If the quotient was a scheme, it would be equivalent to the scheme-quotient. Then by \cref{scheme-quotient-Ax-mup} the map:
+\[\A^\times\to\A^\times\]
+\[x\mapsto x^p\]
+would be surjective. This is a contradiction by \cref{no-roots-for-any-p}.
+\end{proof}
+
+\begin{corollary}
+Some algebraic spaces are not schemes.
+\end{corollary}
+
+\begin{proof}
+The base ring is local, so either $2\not=0$ or $3\not=0$. In both cases we can conclude using \cref{quotient-is-not-scheme}.
+\end{proof}

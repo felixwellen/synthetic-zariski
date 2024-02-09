@@ -1,0 +1,74 @@
+The goal here is to prove that any quasi-projective scheme is $\A^1$-equivalent to an affine scheme. We roughly follow [Homotopy Algebraic $K$-theory by Weibel].
+
+\begin{definition}
+An affine $\A^1$-replacement for a scheme $X$ consists of an affine scheme $W$ with an $\A^1$-connected map:
+\[W\to X\]
+\end{definition}
+
+Typical affine $\A^1$-replacement are vector bundles or torsors over a vector bundle.
+
+\begin{lemma}\label{projective-A1-replacement}
+There exists an affine $\A^1$-replacement for $\bP^n$.
+\end{lemma}
+
+\begin{proof}
+Consider $W$ the type of projection of $R^{n+1}$ of rank $1$. There is a map:
+\[p:W\to \bP^n\] 
+sending a projection to its image.
+
+The type $W$ is an affine scheme because it is equivalent to the type of square $n+1$ matrices $M$ such that $M^2=M$ and $M$ characteristic polynomial is $X^n(X-1)$. 
+
+Now we need to check that the fibers of $p$ are $\A^1$-connected. Since giving a projection is equivalent to giving its image and its kernel, any fiber of $p$ is merely equivalent to the type of complements for a line in $R^{n+1}$. So all fibers are merely equivalent and we can just check that the fiber over $[1:0:\cdots:0]$ is $\A^1$-connected. This fiber is the type of matrices where the first line is of the form $(1,a_1,\cdots,a_n)$ and the rest is $0$. This is equivalent to $\A^n$ which is indeed $\A^1$-connected.
+\end{proof}
+
+\begin{lemma}\label{affine-map-A1-replacement}
+Let $p:X\to Y$ be an affine map between schemes. Then the pullback of an affine $\A^1$-replacement for $Y$ along $p$ is an affine $\A^1$-replacement for $X$.
+\end{lemma}
+
+\begin{proof}
+Immediate, as affine schemes are closed under dependent product.
+\end{proof}
+
+\begin{lemma}\label{open-A1-replacement}
+Let $U\subset\Spec(A)$ be an open subscheme of an affine scheme. Then there exists an affine $\A^1$-replacement for $U$.
+\end{lemma}
+
+\begin{proof}
+Assume $U$ is of the form $D(f_1)\cup \cdots \cup D(f_n)$. Then we consider affine scheme:
+\[M = \{x:\Spec(A),y_1,\cdots, y_n:R\ |\ f_1(x)y_1 + \cdots + f_n(x)y_n = 1\}\]
+There is a canonical projection map from $M$ to $U$, using the fact that if $f_1(x)y_1 + \cdots + f_n(x)y_n = 1$ then one of the $f_i(x)$ is non-zero.
+
+We just need to prove that the fibers of this map are $\A^1$-connected. But assume $x:\Spec(A)$ such that say $f_j(x)\not=0$, we see that the fiber over $x$ is equivalent to $\A^{n-1}$, as the equation:
+\[f_1(x)y_1 + \cdots + f_n(x)y_n = 1\]
+defines $y_j$ as a function of the other $y_k$s.
+\end{proof}
+
+\begin{proposition}\label{open-closed-A1-replacement}
+Let $X$ be a scheme with an $\A^1$-affine replacement. Then any open or closed subscheme of $X$ has an $\A^1$-replacement.
+\end{proposition}
+
+\begin{proof}
+Given a closed subscheme of $X$ we just apply \cref{affine-map-A1-replacement} and the fact that closed propositions are affine.
+
+Given an open subscheme $U\subset X$, we consider $\Spec(A)\to X$ an affine $\A^1$-replacement and $U'\subset \Spec(A)$ the pullback of $U$. The map $U'\to U$ is $\A^1$-connected as it is a pullback of the $\A^1$-connected map $\Spec(A)\to X$. By \cref{open-A1-replacement} we have an affine $\A^1$-replacement for $U'$, and we can conclude by using the fact that the composition of $\A^1$-connected maps is $\A^1$-connected.
+\end{proof}
+
+Next proposition could be called Jouanolou's trick.
+
+\begin{proposition}
+Any quasi-projective scheme (defined as closed in open in projective space) merely has an affine $\A^1$-replacement.
+\end{proposition}
+
+\begin{proof}
+We just apply \cref{projective-A1-replacement} and \cref{open-closed-A1-replacement}.
+\end{proof}
+
+\begin{remark}
+The map $W\to X$ given in the last proposition is surjective and smooth (as it is a composition of maps with fibers merely equivalent to affine spaces), therefore $W$ is smooth if and only if $X$ is smooth. So a smooth quasi-projective scheme has a smooth affine $\A^1$-replacement.
+\end{remark}
+
+\begin{remark}
+This result can be extended to any scheme with an ample family of line bundles (known as Jouanolou-Thomason Theorem).
+\end{remark}
+
+

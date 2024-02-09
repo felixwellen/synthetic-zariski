@@ -1,0 +1,402 @@
+\subsection{Definition}
+
+\begin{example}
+  Let us assume $2\neq 0$ in $R$ and look at the following square:
+  \begin{center}
+    \begin{tikzcd}
+      1\ar[r]\ar[d] & \A^1\setminus\{0\}\ar[d,"x\mapsto x^2"] \\
+      \D(1)\ar[r] & \A^1\setminus\{0\}
+    \end{tikzcd}
+  \end{center}
+  As the bottom map, we choose the inclusion of $\{x:R^\times \mid (x-1)^2=0 \}$.
+  Then, for any choice of the top map, there is a unique lift in this square:
+  \begin{center}
+    \begin{tikzcd}
+      1\ar[r]\ar[d] & \A^1\setminus\{0\}\ar[d,"x\mapsto x^2"] \\
+      \D(1)\ar[r]\ar[ru,dashed] & \A^1\setminus\{0\}
+    \end{tikzcd}
+  \end{center}
+\end{example}
+
+A non-finitely generated version of the following definition is usually used
+to define \emph{formally étale} maps of schemes
+\footnote{In \cite{EGAIV3}[§17], the definition of formally étale maps ranges over arbitrary ideals, but uses the same lifting condition as below.}
+and then it is subsequently noted,
+that formally étale maps of finite presentation are étale.
+Since all of our schemes are of finite presentations, this should be a correct definition of étale morphism:
+
+\begin{definition}
+  \begin{enumerate}[(a)]
+  \item   A map $f:X\to Y$ is \notion{formally étale},
+    if for all finitely presented $R$-algebras $A$ and all finitely generated nilpotent ideals $N\subseteq A$,
+    and all squares like below, there is a unique lift:
+    \begin{center}
+      \begin{tikzcd}
+        \Spec (A/N)\ar[r]\ar[d,"\iota",swap] & X\ar[d,"f"] \\
+        \Spec A \ar[r]\ar[ru,dashed] & Y
+      \end{tikzcd}
+    \end{center}
+    -- where $\iota:\Spec (A/N)\to \Spec A$ is induced by the quotient map.
+  \item A map $f:X\to Y$ of schemes is \notion{étale}, if it is formally étale.
+  \end{enumerate}
+\end{definition}
+
+Another way to phrase our definition of formally étale maps would be to say,
+that they are the maps with the right lifting property (\cite{modalities}[definition 1.45]) with respect to ``left`` maps of the form $\Spec (A/N)\to \Spec A$.
+We will use some well known, general closure properties of left maps, starting with closure under composition:
+
+\begin{lemma}%
+\label{decomposition-nilpotent}
+For $A$ an algebra and $N$ a nilpotent ideal in $A$, the map:
+\[A
+\to A/N
+\] 
+can be factored as maps of the form:
+\[
+B\to B/(b)
+\]
+where $b:B$ is such that $b^2=0$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+\label{equivalence-etale}
+Having the right lifting property against the following class of maps is equivalent:
+\begin{enumerate}[(i)]
+\item Maps of the form $\Spec(A/N)\to \Spec(A)$ for $A$ f.g. algebra and $N$ a nilpotent ideal.
+\item Maps of the form $P\to 1$ for $P$ a closed dense proposition.
+\item Closed dense embeddings of types.
+\item Maps of the form $(\epsilon=0)\to 1$ for $\epsilon:R$ such that $\epsilon^2=0$.
+\item Maps of the form $\Spec(A/(a)) \to \Spec(A)$ for $A$ f.g. algebra and $a:A$ such that $a^2=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) implies (ii) because closed dense proposition are of the form $\Spec(R/N)$ for $N$ a nilpotent ideal.
+
+(ii) implies (iii) because of \cref{pointwise-lift-is-enough}.
+
+(iii) implies (iv) because $\epsilon=0$ is closed dense when $\epsilon$ is nilpotent.
+
+(iv) implies (v) because of \cref{pointwise-lift-is-enough}, as the fiber of $\Spec(A/(a)) \to \Spec(A)$ over $x$ is $a(x)=0$.
+
+(v) implies (i) because of \cref{decomposition-nilpotent}.
+\end{proof}
+
+\begin{lemma}
+A map is formally étale if and only if all its fibers are formally étale.
+\end{lemma}
+
+\begin{proof}
+By \cref{lifting-defined-fiberwise} and the characterisation (ii) from the previous lemma.
+\end{proof}
+
+From (ii) we even get that being formally étale is a lex modality, so we have the following:
+
+\begin{proposition}
+We have the following stability results:
+\begin{itemize}
+\item If $X$ is any type and for all $x:X$ we have a formally étale type $Y_x$, then:
+\[\prod_{x:X}Y_x\]
+is formally étale. 
+\item  If $X$ is formally étale and for all $x:X$ we have a formally étale type $Y_x$, then:
+\[\sum_{x:X}Y_x\]
+is formally étale. 
+\item If $X$ is formally étale then for all $x,y : X$ the type $x=y$ is formally étale.
+\item The type of formally étale types is formally étale.
+\end{itemize}
+\end{proposition}
+
+\begin{lemma}%
+  \label{nilpotent-ideal-not-not-dense}
+  Let $A$ be a finitely presented $R$-algebra and $N\subseteq A$ be finitely generated nilpotent.
+  Then for $V\colonequiv \Spec (A/N)\subseteq \Spec A$ the following holds:
+  \begin{enumerate}[(a)]
+  \item For all $x:\Spec A$, $\neg\neg V(x)$.
+  \item If $V=\emptyset$, then $\Spec A=\emptyset$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}[(a)]
+  \item
+    Let $x : \Spec A$ be given.
+    The generators $n_1,\dots,n_l$ of $N$ are nilpotent functions,
+    so in particular the elements $n_1(x), \dots, n_l(x)$ of $R$
+    are not not zero.
+    This means precisely $\neg\neg V(x)$.
+  \item Assume $V=\emptyset$ and $x:\Spec A$.
+        We want to show the $\neg\neg$-stable proposition $\emptyset$,
+        so we can assume $V(x)$, which is a contradiction.
+  \end{enumerate}
+\end{proof}
+
+\subsection{Examples}
+
+\begin{proposition}%
+  Let $P$ be a $\neg\neg$-stable proposition,
+  then $P\to 1$ is formally étale.
+\end{proposition}
+
+\begin{proof}
+  Direct application of \cref{nilpotent-ideal-not-not-dense}.
+\end{proof}
+
+\begin{proposition}\label{bool-is-etale}
+  The map $\Bool\to 1$ is étale.
+\end{proposition}
+
+\begin{proof}
+  We have to extend maps $f:\Spec (A/(a))\to \Bool$, with $a^2=0$.
+  Since $\Bool\subseteq R$, the map $f$ yields an element $f:A/(a)$
+  and we have a lift $\tilde{f}:A$ with $f=\tilde{f}+ab$.
+  By \cref{nilpotent-ideal-not-not-dense},
+  we have for any $x:\Spec A$, that $\neg\neg(\tilde{f}(x)=0)$ or $\neg\neg(\tilde{f}(x)=1)$.
+
+  By Z-choice or computation, we find a $n:\N$,
+  such that $\tilde{f}^n(x)=0$ or $\neg\neg(\tilde{f}^n(x)=1)$.
+  With the map $1-\_:R\to R$, we can achieve the same for $1$.
+\end{proof}
+
+\begin{proposition}\label{finite-are-etale}
+Formally étale types are stable by sums, so that finite types are formally étale.
+\end{proposition}
+
+\begin{proof}
+Binary sums are dependent sums over the booleans, which are formally étale by \cref{bool-is-etale}.
+\end{proof}
+
+\begin{proposition}
+The type $\N$ is formally étale.
+\end{proposition}
+
+\begin{proof}
+Assume given a map:
+\[P\to \N\]
+for $P$ a closed dense proposition. We want to show it factors uniquely through $1$. It is clear there is at most one lift as $\N$ has decidable equality.
+
+By boundedness the map merely factors through a finite type, which is formally étale by \cref{finite-are-etale} so it merely has a lift.
+\end{proof}
+
+\begin{proposition}
+Let $g$ be a polynomial in $R[X]$ such that for all $x:R$ we have that $g(x)=0$ implies $g'(x)\not=0$. Then:
+\[\Spec(R[X]/g)\]
+is formally étale.
+\end{proposition}
+
+\begin{proof}
+Assume given $\epsilon:R$ such that $\epsilon^2=0$, we try to prove there is a unique dotted lift to any:
+    \begin{center}
+      \begin{tikzcd}
+       R/\epsilon & R[X]/g\ar[l]\ar[dotted,ld] \\
+       R\ar[u]&
+      \end{tikzcd}
+    \end{center}
+We proceed in two steps:
+\begin{itemize}
+\item We prove there merely is a lift. We can assume $x:R$ such that $g(x)=0$ module $\epsilon$, say $g(x)=b\epsilon$. For all $y:R$ we have:
+\[g(x+y\epsilon) = g(x)+ y g'(x) \epsilon\]
+Since $\not\not(g(x)=0)$, we have that $g'(x)\not=0$ so it is invertible. Then: 
+\[y=-\frac{b}{g'(x)}\]
+gives a lift.
+\item We prove there is at most one lift. Assume $x,y:R$ two lifts, then $g(x)=g(y)=0$ and $x=y$ modulo $\epsilon$. Then:
+\[0 = g(x) = g(y + (x - y)) = g(y) + g'(y) (x-y) = g'(y) (x- y)\]
+Since $g'(y)$ is invertible, we have that $x=y$.
+\end{itemize}
+\end{proof}
+
+We can generalise the previous example:
+
+\begin{proposition}
+Assume given $P_1,\cdots,P_n : R[X_1,\cdots, X_n]$, inducing:
+\[P = (P_1,\cdots,P_n) : R^n \to R^n\]
+Assume that for all $X:R^n$ such that $P(X)=0$ we have that the jacobian matrix $J(X)$ is invertible. Then:
+\[\Spec(R[X_1,\cdots, X_n]/P_1,\cdots,P_n)\]
+is formally étale.
+\end{proposition}
+
+\begin{proof}
+Same as the previous lemma using the fact that for all $\epsilon:R$ such that $\epsilon^2=0$ and for all $X:R^n$ and $Y:(\epsilon)^n$ we have:
+\[P(X+Y) = P(X) + J(X)Y\]
+\end{proof}
+
+\subsection{Separated étale schemes have decidable equality}
+
+Kind of outdated.
+
+\begin{proposition}%
+	\label{decidable-of-tangent}
+	Let $X$ be an affine scheme and $a : X$ a point. Suppose the tangent space
+	$T_a X$ has a unique point. Then for any $b : X$, equality $a = b$ is decidable.
+\end{proposition}
+
+\begin{proof}
+	Given that $T_a X = \{0\}$, we also have $T^\star_a X = \mm_a / \mm_a^2 = 0$
+	by \cref{maximal-cotangent}.
+	So $\mm_a^2 = \mm_a$. By \cite[Lemma II.4.6]{lombardi-quitte}
+	(proved using Nakayama's lemms, or the determinant trick), $\mm_a$ is generated
+	by a single idempotent $e$ of $A$. We have $e(b)$ idempotent in $R$,
+	so since $R$ is local it is either 0 or 1. We have $e(a) = 0$, so if $e(b) = 1$
+	we have $a \ne b$. If $e(b) = 0$, then $a = b$ since $b$ is in the order 0
+	neighborhood of $a$.
+\end{proof}
+
+\begin{proposition}%
+	Let $X$ be a separated \'{e}tale scheme. Then $X$ has decidable equality.
+\end{proposition}
+
+\begin{proof}
+	Let $a, b : X$. Since $X$ is separated, $a = b$ is closed.
+	We claim it is also open.
+	To see this, pick an affine open neighbourhood $U$ of $a$.
+	Now $a = b$ is equivalent to $(b \in U) \wedge (a = b)$.
+	Since open propositions are closed under $\Sigma$,
+	it suffices to show that $a = b$ is open assuming $b \in U$.
+	In this case we can apply \cref{decidable-of-tangent}.
+\end{proof}
+
+\subsection{Hensel lifting}
+
+\begin{lemma}
+  Let $f : \A^1 \to \A^1$ and
+  $p : \A^1$ with $f(p)$ nilpotent and
+  $f'(p)$ invertible.
+  Then there exists $q : \A^1$
+  with $\lnot \lnot (q = p)$
+  and $f(q) = 0$.
+\end{lemma}
+
+\begin{proof}
+  Let $f(p)^n = 0$, induct on $n$.
+  If $n \leq 1$ we are done.
+  Otherwise, let $p' = p - f(p)/f'(p)$.
+  Then $\lnot \lnot (p' = p)$ and we have
+  \[ f(p')
+     = f(p) - f'(p) (f(p)/f'(p)) + r (f(p)/f'(p))^2
+     = r (f(p)/f'(p))^2 \]
+  for some $r : R$
+  by Taylor expansion.
+  Thus ${f(p')}^m = 0$ for $2m \geq n$
+  and we are done by inductive hypothesis.
+\end{proof}
+
+\subsection{Étale schemes are locally standard étale}
+
+\begin{definition}
+An algebra is called standard étale if it is merely of the form:
+\[(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\]
+where $\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n))$ divides $G$ in $R[X_1,\cdots,X_n]/P_1,\cdots,P_n$.
+\end{definition}
+
+\begin{definition}
+A scheme is called standard étale if it is merely of the form $\Spec(A)$ for $A$ a standard étale algebra.
+\end{definition}
+
+\begin{lemma}\label{standard-etale-are-etale}
+Standard étale schemes are étale.
+\end{lemma}
+
+\begin{proof}
+Assume given a standard étale algebra:
+\[(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\]
+and write:
+\[P:R^n\to R^m\]
+for the map induced by $P_1,\cdots,P_m$.
+
+Assume given $\epsilon:R$ such that $\epsilon^2=0$, we need to prove that there is a unique dotted lifting in:
+  \begin{center}
+      \begin{tikzcd}
+       R/\epsilon & (R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\ar[l,swap,"x"]\ar[dotted,ld] \\
+       R\ar[u]&
+      \end{tikzcd}
+    \end{center}
+This means that for all $x:R^n$ such that $P(x)=0$ mod $\epsilon$ and $G(x)$ invertible modulo $\epsilon$ (or equivalently $G(x)$ invertible), there exists a unique $y:R^n$ such that:
+\begin{itemize} 
+\item We have $x=y$ mod $\epsilon$.
+\item We have $P(y)=0$.
+\item We have $G(y)\not=0$ (this is implied by $x=y$ mod $\epsilon$ and $G(x)\not=0$).
+\end{itemize}
+
+First we prove existence. For any $b:R^n$ we compute:
+\[P(x+\epsilon b) = P(x) + \epsilon\ dP_x(b)\]
+We have that $P(x)=0$ mod $\epsilon$, say $P(x) = \epsilon a$. Then since $G(x)\not=0$ and $\mathrm{det}(dP)$ divides $G$, we have that $dP_x$ is invertible. Then taking $b = -(dP_x)^{-1}(a)$ gives a lift $y=x+\epsilon b$ such that $P(y) = 0$.
+
+Now we check unicity. Assume $y,y'$ two such lifts, then $y=y'$ mod $\epsilon$ and we have:
+\[P(y) = P(y') + dP_{y'}(y-y')\]
+and $P(y)=0$ and $P(y')=0$ so that:
+\[dP_{y'}(y-y') = 0\]
+But $G(y')\not=0$ so $dP_{y'}$ is invertible and we can conclude that $y=y'$.
+\end{proof}
+
+\begin{proposition}\label{etale-are-locally-standard}
+Any étale scheme has a finite open cover by standard étale schemes.
+\end{proposition}
+
+\begin{proof}
+It is enough to prove this when the scheme is affine, say of the form:
+\[\Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_m)\]
+Consider the map:
+\[P:R^n\to R^m\]
+induced by $P_1,\cdots,P_m$. Since the fiber of $P$ over $0$ is étale, its tangent spaces are $0$, meaning that the map:
+\[\mathrm{Jac}(P_1,\cdots,P_m)_x = dP_x : R^n\to R^m\]
+is injective for all: 
+\[x:\Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_m)\]
+This means that one of the $n\times n$ minors of the jacobian is invertible, giving an open cover of:
+\[\Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_m)\] 
+Up to rearranging the the order of the polynomials, we can assume that each piece merely is of the form:
+\[\Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_n,Q_1,\cdots,Q_k)\]
+where $\mathrm{Jac}(P_1,\cdots,P_n)_x$ is invertible for all $x$ in the scheme.
+
+Then we consider $x:\Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)$, we want to show that the proposition:
+\[Q_1(x)=0\land \cdots\land Q_k(x)=0\]
+is decidable. To do this it is enough to prove that: 
+\[(Q_1(x),\cdots,Q_k(x))^2 = 0\] 
+implies: 
+\[(Q_1(x),\cdots,Q_k(x))=0\] 
+because then:
+\[(Q_1(x),\cdots,Q_k(x))^2 = (Q_1(x),\cdots,Q_k(x))\]
+and we conclude using Nakayama. 
+
+So let us assume: 
+\[(Q_1(x),\cdots,Q_k(x))^2=0\]
+Then we consider:
+  \begin{center}
+      \begin{tikzcd}
+       R/Q_1(x),\cdots,Q_k(x) & R[X_1,\cdots,X_n]/P_1,\cdots,P_n,Q_1,\cdots,Q_k\ar[l,swap,"x"]\ar[dotted,ld,"y"] \\
+       R\ar[u]&
+      \end{tikzcd}
+    \end{center}
+    We have a dotted lift because the scheme is étale, meaning we get $y:R^n$ such that:
+    \[y = x\ \mathrm{mod}\ Q_1(x),\cdots,Q_k(x)\]
+    and for all $i,j$ we have:
+    \[P_i(y) = 0,\ Q_j(y)=0\]
+    Let us prove that $x=y$. Indeed $(x-y)(x-y)^t=0$ so that:
+    \[P(x) = P(y) + (dP)_y (x-y)\]
+    but $P(x)=0$, $P(y)=0$ and $(dP)_y$ is invertible, so that $x=y$. From this we conclude that:
+    \[(Q_1(x),\cdots,Q_k(x)) = 0\]
+    as desired.
+    
+    So at this point we have decomposed our scheme into decidable subtypes $U$ of schemes of the form:
+    \[\Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)\]
+    where for all $x\in U$ we have:
+    \[\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n)_x)\not=0\] 
+    Since $U$ is decidable, it is in particular open so it is of the form $D(G_1,\cdots,G_n)$, and we have an open cover of our scheme by pieces of the form:
+    \[\Spec((R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G)\]
+    Where $P_i(x)=0$ for all $i$ and $G(x)\not=0$ implies:
+    \[\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n)_x)\not=0\]
+    
+    We write:
+    \[F(x)=\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n)_x)\]
+    Then for all $x:\Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)$ we have that:
+    \[(G(x)\not=0) \to (F(x)\not=0)\]
+    so that there exists $n$ such that:
+    \[F(x) | G(x)^n\]
+    and using boundedness we get $N$ such that for all $x:\Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)$ we have:
+    \[F(x) | G(x)^N\]
+    and we conclude that $F$ divides $G^N$ in $R[X_1,\cdots,X_n]/P_1,\cdots,P_n$. So by replacing $G$ by $G^N$, we get standard étale pieces.
+    
+\end{proof}
+
