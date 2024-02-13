@@ -1,10 +1,10 @@
 We follow the notations and setting for Synthetic Algebraic Geometry \cite{draft}.
-In particular, $R$ denotes the generic local ring and $GL_1$ is the multiplicative group of units of $R$.
+In particular, $R$ denotes the generic local ring and $\Gm$ is the multiplicative group of units of $R$.
 
 In Synthetic Algebraic Geometry, a scheme is defined as a set satisfying some property \cite{draft}. In particular
 the projective space $\bP^n$ can be defined to be the quotient of $R^{n+1}-\{0\}$ by the
 equivalence relation $a\sim b$ which expresses that $a$ and $b$ are proportional, %i.e. $a_ib_j=a_jb_i$,
-which is equal to $\Sigma_{r:GL_1}ar = b$. We can then prove \cite{draft}
+which is equal to $\Sigma_{r:\Gm}ar = b$. We can then prove \cite{draft}
 that this set is a scheme. This definition goes back to \cite{Kock74}.
 
  In this setting, a map of schemes is simply an arbitrary set theoretic map. An application of this work is to show
@@ -13,35 +13,35 @@ that this set is a scheme. This definition goes back to \cite{Kock74}.
 \medskip
 
 
-There is another definition of $\bP^n$ which uses ``higher'' notions. Let $BGL_1$ be the delooping
-of $GL_1$. It can be defined as the type of lines $\Sigma_{M:\Mod{R}}\|{M=R^1}\|$.
+There is another definition of $\bP^n$ which uses ``higher'' notions. Let $B\Gm$ be the delooping
+of $\Gm$. It can be defined as the type of lines $\Sigma_{M:\Mod{R}}\|{M=R^1}\|$.
 An equivalent definition of $\bP^n$ is then
 $$
-\bP^n = \sum_{l:BGL_1}l^{n+1}-\{0\}
+\bP^n = \sum_{l:B\Gm}l^{n+1}-\{0\}
 $$
 That is, we replaced the quotient operation, here a set of orbits for a group action, by a sum type over the delooping of this group
 \cite{Sym}.
-Note that we use the same notation for an element $l : BGL_1$ and its underlying set.
+Note that we use the same notation for an element $l : B\Gm$ and its underlying set.
 
 The standard line bundles (or twisting sheaves) on $\bP^n$ can then be constructed as follows.
-We define $l^{\otimes n}:BGL_1$ for $l:BGL_1$ by
+We define $l^{\otimes n}:B\Gm$ for $l:B\Gm$ by
 $l^{\otimes 0} = R^1$,
 $l^{\otimes (n+1)} = l^{\otimes n}\otimes l$ for $n \geqslant 0$
 and $l^{\otimes (n-1)} = l^{\otimes n}\otimes l^{\vee}$ for $n \leqslant 0$.
-Then we define the line bundle $O(d):\bP^n\rightarrow BGL_1$ by $O(d)(l,s) = l^{\otimes d}$.
+Then we define the line bundle $O(d):\bP^n\rightarrow B\Gm$ by $O(d)(l,s) = l^{\otimes d}$.
 
 \medskip
 
 Connected to this definition of $\bP^n$, we can note the following equalities.
 
 \begin{proposition}\label{end}
-  $$\prod_{(l,p):BGL_1}l^n\rightarrow l \;\;\;=\;\;\; \Hom(R^n,R)$$
+  $$\prod_{(l,p):B\Gm}l^n\rightarrow l \;\;\;=\;\;\; \Hom(R^n,R)$$
 \end{proposition}
 
 \begin{proof}
 We rewrite $\Hom(R^n,R)$, the set of $R$-module morphism, as
 $$
-\sum_{\alpha:R^n\rightarrow R}\prod_{\lambda:GL_1}\prod_{x:R^n}\alpha(\lambda x) = \lambda \alpha(x)
+\sum_{\alpha:R^n\rightarrow R}\prod_{\lambda:\Gm}\prod_{x:R^n}\alpha(\lambda x) = \lambda \alpha(x)
 $$
 This follows from the axioms of Synthetic Algebraic Geometry: the map $\alpha$ has to be a polynomial. And a polynomial
 satisfying $\alpha(\lambda x) = \lambda \alpha(x)$ for $\lambda$ in $R^{\times}$ has to be linear.
@@ -67,14 +67,14 @@ A similar reasoning to Proposition \ref{end} gives an alternative proof of the f
 
 \begin{proof}
   $\bP^n\rightarrow R$ is equivalent to
-  $$\prod_{(l,p):BGL_1}l^{n+1}-\{0\}\rightarrow R$$
+  $$\prod_{(l,p):B\Gm}l^{n+1}-\{0\}\rightarrow R$$
   and, using \cite{Sym}, this is the set of maps $\alpha:R^{n+1}-\{0\}\rightarrow R$
-  such that $\alpha(\lambda x) = \alpha(x)$ for all $\lambda$ in $GL_1$. These are exactly the constant maps
+  such that $\alpha(\lambda x) = \alpha(x)$ for all $\lambda$ in $\Gm$. These are exactly the constant maps
   using Lemma \ref{ext} \cite{draft}.
 \end{proof}
 
 \begin{proposition}\label{aut}
-$$\prod_{(l,p):BGL_1}(l^{n+1}-\{0\})\rightarrow (l^{n+1}-\{0\}) \;\;=\;\; GL_{n+1}$$
+$$\prod_{(l,p):B\Gm}(l^{n+1}-\{0\})\rightarrow (l^{n+1}-\{0\}) \;\;=\;\; GL_{n+1}$$
 \end{proposition}
 
 \begin{proof}
@@ -84,7 +84,7 @@ $$\prod_{(l,p):BGL_1}(l^{n+1}-\{0\})\rightarrow (l^{n+1}-\{0\}) \;\;=\;\; GL_{n+
 $$
 (l^{n+1}\rightarrow l)\rightarrow ((l^{n+1}-\{0\})\rightarrow l)
 $$
-is a bijection for $n>0$ if $(l,p):BGL_1$.
+is a bijection for $n>0$ if $(l,p):B\Gm$.
 
 \medskip
 
@@ -106,7 +106,7 @@ We can then conclude by induction.
  
  \begin{lemma}\label{hom}
    An element in
-  $$\prod_{(l,p):BGL_1}(l^{n+1}-\{0\})\rightarrow ((l^{\otimes d})^{m+1}-\{0\})$$
+  $$\prod_{(l,p):B\Gm}(l^{n+1}-\{0\})\rightarrow ((l^{\otimes d})^{m+1}-\{0\})$$
   is given by $m+1$ homogeneous polynomials $p = (p_0,\dots,p_m)$ of degree $d$ such that
   $x\neq 0$ implies $p(x)\neq 0$.
 \end{lemma}
