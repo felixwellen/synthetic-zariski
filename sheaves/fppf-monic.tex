@@ -33,26 +33,27 @@ Any affine scheme is a fppf sheaf. Any f.p. $R$-algebra is an fppf sheaf.
 \begin{lemma}\label{scheme-are-sheaf-from-affine}
 Assume given a type $P$ such that:
 \begin{itemize}
-\item The type $R$ is $P$-local.
-\item The type of open propositions is $P$-smooth.
+\item The type $R$ is $\propTrunc{P}$-local.
+\item Any open proposition is $\propTrunc{P}$-local.
+\item The type of open propositions is $\propTrunc{P}$-smooth.
 \end{itemize}
-Then any scheme is $P$-local.
+Then any scheme is $\propTrunc{P}$-local.
 \end{lemma}
 
 \begin{proof}
-Since $R$ is $P$-local we see that all affine schemes are $P$-local through stability under dependent products and identity types.
+Since $R$ is $\propTrunc{P}$-local we see that all affine schemes are $\propTrunc{P}$-local through stability under dependent products and identity types.
 
-We check that any scheme $X$ is $P$-smooth. Assume given constant map:
+We check that any scheme $X$ is $\propTrunc{P}$-smooth. Assume given constant map:
 \[f:P\to X\]
-Take $(U_i)_{i:I}$ a finite cover of $X$ by affine scheme. Then for any $i:I$ we have that $f^{-1}(U_i)$ is a constant open in $P$, so since the type of open is $P$-smooth, we merely have an open proposition $V_i$ such that for all $x:P$, we have:
+Take $(U_i)_{i:I}$ a finite cover of $X$ by affine scheme. Then for any $i:I$ we have that $f^{-1}(U_i)$ is a constant open in $P$, so since the type of open is $\propTrunc{P}$-smooth, we merely have an open proposition $V_i$ such that for all $x:P$, we have:
 \[(x\in f^{-1}(U_i) )\leftrightarrow V_i\]
 Since the $f^{-1}(U_i)$ cover $P$, we have that:
 \[P\to \lor_{i:I} V_i\]
-But open propositions are affine schemes and affine schemes are $P$-local, so we have:
+But open propositions are assumed are $\propTrunc{P}$-local, we have that:
 \[ \lor_{i:I} V_i\]
-Assume $k:I$ such that $V_k$ holds. Then $f^{-1}(U_k) = P$ and the map $f$ factors through the affine scheme $U_k$. Since affine schemes are $P$-local, we merely have a lift for $f$.
+Assume $k:I$ such that $V_k$ holds. Then $f^{-1}(U_k) = P$ and the constant map $f$ factors through the affine scheme $U_k$. Since affine schemes are $\propTrunc{P}$-local, we merely have a lift for $f$.
 
-Now we conclude that any scheme is $P$-local by proving that its identity types are $P$-local. Indeed they are propositional schemes, so they are $P$-smooth propositions, so they are $P$-local.
+Now we conclude that any scheme is $\propTrunc{P}$-local by proving that its identity types are $\propTrunc{P}$-local. Indeed they are propositional schemes, so they are $\propTrunc{P}$-smooth propositions, so they are $\propTrunc{P}$-local.
 \end{proof}
 
 \begin{lemma}\label{roots-monic-proper}
@@ -79,12 +80,22 @@ Now we conclude using the fact that
 is closed in the compact scheme $\bP^1$, so that it is compact.
 \end{proof}
 
+\begin{remark}
+There should be an alternative computational proof along the line of 
+\[\prod_{x:\Spec(R[X]/g)}f_1(x)\not=0\lor\cdots\lor f_n(x)\not=0\]
+is equivalent to an explicit open proposition depending on the $f_i$ and the coefficient of $g$.
+\end{remark}
+
 \begin{proposition}\label{schemes-are-fppf-sheaves}
 Any scheme is an fppf sheaf.
 \end{proposition}
 
 \begin{proof}
-Assume given $g:R[X]$ monic, by \cref{scheme-are-sheaf-from-affine} it is enough to prove that $R$ is $\propTrunc{\Spec(R[X]/g)}$-local (this is \cref{fppf-subcanonical}) and that the type of open propositions is $\propTrunc{\Spec(R[X]/g)}$-smooth. 
+Assume given $g:R[X]$ monic, by \cref{scheme-are-sheaf-from-affine} it is enough to prove that $R$ is $\propTrunc{\Spec(R[X]/g)}$-local (this is \cref{fppf-subcanonical}), that open propositions are $\propTrunc{\Spec(R[X]/g)}$-local and that the type of open propositions is $\propTrunc{\Spec(R[X]/g)}$-smooth. 
+
+To prove that open propositions are $\propTrunc{\Spec(R[X]/g)}$-local, we assume a map:
+\[\propTrunc{\Spec(R[X]/g)} \to U\]
+but we have $\neg\neg\Spec(R[X]/g)$ and $\neg\neg U\to U$ so we can conclude.
 
 Assume given a constant open $D(h_1,\cdots,h_n)$ in $\Spec(R[X]/g)$. Then for any $x:\Spec(R[X]/g)$ we have that:
 \[x\in D(h_1,\cdots,h_n) \leftrightarrow \prod_{y:\Spec(R[X]/g)} y\in D(h_1,\cdots,h_n)\]
