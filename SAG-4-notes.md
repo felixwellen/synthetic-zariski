@@ -28,10 +28,10 @@ Renamings
 ---------
 There is the idea to discuss a couple of possible renamings.
 
-| Current name               | Alternatives                                   | 
-|----------------------------|------------------------------------------------|
-| SQC axion                  | Duality axiom/principle                        |
-|                            | Regularity axiom/principle                     |
-|                            | Blechschmidt duality                           |
-| formally étale replacement | Crytalline modality, Coreduction, deRham stack |
-| o-étale                    | o-cover (o-étale is already used a lot)        |
+| Current name               | Alternatives                                   | Remarks                                     |
+|----------------------------|------------------------------------------------|---------------------------------------------|
+| SQC axiom                  | Duality axiom/principle                        | In general we should speak of a 'principle' |
+|                            | Regularity axiom/principle                     |                                             |
+|                            | Blechschmidt duality                           | Kock had a more external precursor of SQC   |
+| formally étale replacement | Crytalline modality, Coreduction, deRham stack |						    |
+| o-étale                    | o-cover	  	    		              | o-étale is already used a lot               |
