@@ -13,6 +13,8 @@ There are currently the following parts:
 - Algebraic spaces and stacks ([very early draft pdf](https://felix-cherubini.de/stacks.pdf))
 - Automorphisms of and line bundles on projective space ([very early draft pdf](https://felix-cherubini.de/projective.pdf))
 - More general topologies, in particular fppf ([very early draft pdf](https://felix-cherubini.de/sheaves.pdf))
+- Calculations with (elliptic) curves and divisors ([very early draft pdf](https://felix-cherubini.de/elliptic.pdf))
+- Applications what we learned from SAG to light condensed sets ([very early draft pdf](https://felix-cherubini.de/condensed.pdf))
 - Random Facts, i.e. a collection of everything that still needs to find a good place ([very early draft pdf](https://felix-cherubini.de/random.pdf))
 
 There is a related [formalization project](https://github.com/felixwellen/synthetic-geometry).
