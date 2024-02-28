@@ -73,7 +73,7 @@ Components:
   # call build container for SAG pdfs and publish
   
   # sub folders in the synthetic-zariski repo that contain some latex to be build
-  folders=("A1-homotopy" "cech" "diffgeo" "elliptic" "foundations" "proper" "random-facts" "sheaves" "stacks" "topology" "projective")
+  folders=("A1-homotopy" "cech" "condensed" "diffgeo" "elliptic" "foundations" "proper" "random-facts" "sheaves" "stacks" "topology" "projective")
   
   # build using the podman container,
   # delete possibly existing containers with the name before that
