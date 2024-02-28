@@ -1,0 +1,234 @@
+(This section is preliminary, it is not clear if the notions of divisors presented here are the best we can do synthetically...)
+
+
+Weil divisors are an important classical tool.
+They can be used to describe zero and pole orders at closed points or other closed subspaces. 
+In the case of curves over a field in classical algebraic geometry
+the set of Weil divisors may be defined as the free abelian group over the closed points of the curve.
+
+
+This is unlikely to be a good way to go synthetically,
+since it is unclear how to produce actual integers from, say, a rational function which describe its zero or pole orders.
+As noted by David Jaz Myers \cite{myers-talk2},
+it is already not possible to define a degree function with values in the natural numbers and one should therefore pass to upper naturals.
+We will start by extending Myers' proposed course of action to generalized integers which can serve as ``coefficients'' for Weil divisors and see how we can assign a Weil divisor to a rational function on a curve.  
+
+
+Following a definition of Weil divisors, we will define Cartier divisors as well and compare the two notions.
+
+
+\subsection{Generalized Integers}
+
+The upper naturals are ``increasing'' sequences of propositions.
+They can be thought of as upward closed subsets of the naturals
+and a upper natural is called bounded, if it is inhabited as a subset.
+
+\begin{definition}
+  The \notion{upper naturals}\index{$\N^{\downarrow}$} are the following type:
+  \[
+  \N^{\downarrow}\colonequiv (s:\N\to \Prop)\times \left((n:\N)\to s(n) \to s(n+1)\right)
+  \rlap{.}
+  \]
+  An upper natural $s:\N^{\downarrow}$ is called \notion{bounded} if there exists an $n$ such that $s(n)$
+  \footnote{We will suppress the second component of some sigma types here.}.
+  We denote the type of bounded upper naturals with $\N^{\downarrow}_b$\index{$\N^{\downarrow}_b$}.
+\end{definition}
+
+As suggested by Myers' we can define addition and multiplication via enriched Day convolution.
+The latter means, that we view $\N$ as a category given by the order and with monoidal structure given by $+$ or $\cdot$ and monoidally embedd $\N$ into the $\Prop$-valued functors $\N\to \Prop$.
+This leads to the following definitions:
+
+\begin{definition}
+  Let $s,s':\N^\downarrow$. Then for all $n:\N$ we define:
+  \begin{align*}
+    (s+s')(n)&\colonequiv \exists_{(l,k):\N^2} s(l)\wedge s(k)\wedge (l+k\leq n) \\
+    (s\cdot s')(n)&\colonequiv \exists_{(l,k):\N^2} s(l)\wedge s(k)\wedge (l\cdot k\leq n) 
+  \end{align*}
+\end{definition}
+
+One might expect that this inherits the full structure of a semiring from $\N$,
+but this is only true if one passes to bounded upper naturals.
+
+\begin{proposition}
+  \begin{enumerate}[(a)]
+  \item $+$ and $\cdot$ preserve boundedness of upper naturals.
+  \item $\N^\downarrow_b$ is a commutative semiring with respect to $+$ and $\cdots$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \cite{cubical-library} in \href{https://github.com/agda/cubical/blob/master/Cubical/Algebra/CommSemiring/Instances/UpperNat.agda}{Cubical/Algebra/CommSemiring/Instances/UpperNat}.
+\end{proof}
+
+The order $\leq$ on $\N$ is decidable and therefore open.
+Since $+$ and $\cdot$ only use existence over finite sets and $\wedge$,
+being pointwise open is preserved by these operations.
+From this we group complete to get generalized integers, which we do not really know how to denote yet.
+
+\begin{definition}
+  Let $\N_{\mathcal O,b}^\downarrow\subseteq \N_b^\downarrow$
+  be the sub-semiring of pointwise \notion{open bounded upper naturals}\index{$\N_{\mathcal O,b}^\downarrow$}.
+  The \notion{generalized integers} are the group completion of $\N_{\mathcal O,b}^\downarrow$, which is again a commutative semiring and essentially small. We will denote the generalized integers with $\Z_{\mathcal O}$\index{$\Z_{\mathcal O}$}.
+\end{definition}
+
+\subsection{Weil divisors and rational functions}
+
+We will now aim at definining Weil divisors and start with rational function on a curve.
+The definition of curve we will use here is not tested much and therefore preliminary.
+
+\begin{definition}
+  A \notion{curve} is an irreducible, inhabited, projective scheme $C$ which is smooth of dimension 1.
+\end{definition}
+
+\begin{definition}
+  The type of \notion{rational functions} on a type $X$ is the quotient of
+  \[
+  \mathcal K(X)\colonequiv \{(f,U)\mid U\subseteq X\text{  dense open, } f:U\to R \}
+  \]
+  by the relation $(f,U) \sim (g,V) \colonequiv (f_{\mid U\cap V}=g_{\mid U\cap V})$.
+\end{definition}
+
+\begin{lemma}
+  Let $X$ be an irreducible scheme.
+  \begin{enumerate}[(a)]
+  \item For any $(f,U):\mathcal K(X)$, any point $x:X$ and affine open $V$ containing $x$,
+    there is a $g:V\to R$ such that $(f,U)$ is equivalent to $(f_{D(g)},D(g))$ (and $D(g)\subseteq U$).
+    In other words: Zariski-locally, $(f,U)$ is of the form $(f_{D(g)},D(g))$
+  \item Any non-zero $f:\mathcal K(X)$ has a multiplicative inverse.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Let  $(f,U):\mathcal K(X)$ be a rational function.
+
+  If we assume a point $x:X$ contained in a chart $V$,
+  and note $V\cap U = D(g_1,\dots,g_l)$,
+  we have a dense open $D(g_i)$ containing $x$.
+
+  So $(f,U)$ is equivalent to $(f_{D(g)},D(g))$ for $g\colonequiv g_i$.
+
+  Now let $f$ be non-zero.
+  Without loss of generality we can assume that $f$ is non-zero on all of $U$,
+  since by irreducibility of $X$, the non-empty subset where $f \neq 0$ is dense open
+  and the intersection of dense opens is dense open.
+  But then $f$ is pointwise invertible on $U$ and therefore invertible.
+\end{proof}
+
+\begin{lemma}
+  \label{order-is-bounded}
+  Let $X$ be an irreducible scheme smooth of dimension 1.
+  If $U\subseteq X$ is dense open and $f:U\to R$ non-zero,
+  then for every point $P:X$, there is a natural $k$ such that $f_{|\D(P,k)}\neq 0$.
+\end{lemma}
+
+\begin{proof}
+  \rednote{MISSING, Hope this can be done by knowing it for $\A^1$ and moving it around using that a smooth scheme is a manifold... Alternative: Throw out the boundedness everywhere, the Weil divisors will still form an abelian group}
+\end{proof}
+
+\begin{definition}
+  Let $X$ be an inrreducible scheme smooth of dimension 1.
+  Then for a non-zero function $f:X\to R$ and $P:X$ we define the zero-order\index{$n_P$} of $f$ at $P$ to be
+  the bounded (by \Cref{order-is-bounded}) open upper natural number
+  \[
+  n_p(f)\colonequiv (k:\N)\mapsto f_{\mid \D(P,k+1)}\neq 0
+  \rlap{.}
+  \]
+\end{definition}
+
+\begin{lemma}
+  Let $X$ be an inrreducible scheme smooth of dimension 1 and $f,g:X\to R$.
+  Then
+  \[
+  n_P(f\cdot g)=n_P( f) + n_P (g)
+  \]
+  for all $P:X$.
+\end{lemma}
+
+\begin{definition}
+  The type of \notion{Weil divisors} $\mathrm{Div}(C)$\index{$\mathrm{Div}$} on a curve $C$ is
+  the type of functions $C\to \Z_{\mathcal O}$ vanishing on a open dense subset.
+\end{definition}
+
+\begin{theorem}
+  Let $X$ be an irreducible scheme smooth of dimension 1.
+  Then there is a function $\mathrm{div}:\mathcal K(C)^\times \to \mathrm{Div}(C)$ given locally by:
+  \[
+  \mathrm{div}(\frac{f}{g})(P)=n_P(f)-n_P(g)
+  \]
+  And we have:
+  \begin{enumerate}[(i)]
+  \item There is a dense open $U\subseteq X$ such that $\mathrm{div}(f)=0$.
+  \item $\mathrm{div}(f\cdot g)=\mathrm{div}(f)+\mathrm{div}(g)$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Let $f:\mathcal K(X)^\times$.
+  The local requirement defines a unique value $\mathrm{div}(f)$ by multiplicativity of $n_P$.
+  \begin{enumerate}[(i)]
+  \item This is locally the case since $f$ is of the form $\frac{h}{g}$ and both $D(h)$ and $D(g)$ are dense.
+  \item By multiplicativity of $n_P$.
+  \end{enumerate}
+\end{proof}
+
+\subsection{Cartier divisors}
+
+\begin{definition}
+  Let $X$ be a type.
+  \begin{enumerate}[(a)]
+  \item A \notion{Cartier divisor} on $X$ is given by an open cover $U_1,\dots,U_n$ of $X$
+    together with rational functions $f_i:\mathcal K(U_i)^\times$
+    such that there are (uniquely determined) $\lambda_{ij}:U_i\cap U_j \to R^\times$ with $\lambda_{ij} f_i =f_j$.
+  \item Two Cartier divisors $(U_i,f_i)_i$ and $(V_j,g_j)_j$ are equal
+    if there are $\lambda_{ij}:U_i\cap V_j \to R^\times$ such that $\lambda_{ij}f_i=g_j$.
+    This notion of equality defines a set-quotient $\mathrm{Ca}(X)$, the \notion{type of Cartier divisors}.
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  Let $X$ be a type.
+  Let $(U_i,f_i)_i:\mathrm{Ca}(X)$ and $(V_j)_j$ be a an open cover of $X$.
+  Then $(U_i\cap V_j, f_{i\mid U_i\cap V_j})_{(i,j)}$ is a Cartier divisor and equal to $(U_i,f_i)_i$.
+\end{lemma}
+
+\begin{proof}
+  $(U_i\cap V_j)_{(i,j)}$ is an open cover of $X$ and on $(U_i \cap V_j)\cap U_l$, the $\lambda_{il}:U_i\cap U_l\to R^\times$
+  shows that the restrictions of $f_i$ and $f_l$ only differ by a unit.
+\end{proof}
+
+This means, given a finite list of Cartier divisors, we can assume they are all defined on the same open covering.
+
+\begin{definition}
+  Let $X$ be a type.
+  \begin{enumerate}[(a)]
+  \item For Cartier divisors $(U_i,f_i)_i$ and $(U_i,g_i)_i$ we define the following multiplication:
+    \[
+      (U_i,f_i)_i\cdot (U_i,g_i)_i \colonequiv (U_i,f_i\cdot g_i)
+      \rlap{.}
+    \]
+    $\mathrm{Ca}(X)$ is an abelian group with this multiplication.
+  \item A Cartier divisor is called \notion{principal} if it is of the form $(X,f)$ with $f:\mathcal K(X)^\times$.
+  \item The quotient of the group $\mathrm{Ca}(X)$ by the subgroup of principal divisors is denoted with $\mathrm{CaCl}(X)$
+    and called the (Cartier) \notion{divisor class group}.
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Let $X$ be a type and $D\colonequiv (U_i,f_i)_i:\mathrm{CaCl}(X)$.
+  We can define a line bundle $\mathcal L_D:X\to \mathrm{Lines}$,
+    given by the trivial line bundle on each $U_i$ identified using the $\lambda_{ij}$.
+\end{proposition}
+
+\begin{proof}
+  We can use a Krauss-lemma as stated in \cite{draft}[Lemma 1.2.3],
+  since the $\lambda_{ij}$ satisfy the neccessary cocycle condition.
+\end{proof}
+
+\rednote{Mapping D to $\mathcal L_D$ should be a group homomorphism with respect to the tensor product of line bundles.
+  So the map should also descent to divisor classes.}
+
+\rednote{Taking div should give a map from Ca(X) to Weil divisors on X}
+
+\rednote{Is it possible, for a point P on a curve, to construct a Cartier divisor D such that the line bundle $\mathcal L_D$ is $\mathcal O(P)$?
+  Equivalent question: if for a standard smooth of dimenstion 1 affine scheme X
+  and a point P in X, we can construct a function on X which is zero at P and non-zero at all points different from P.}
