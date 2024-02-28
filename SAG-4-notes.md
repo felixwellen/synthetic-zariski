@@ -36,3 +36,4 @@ There is the idea to discuss a couple of possible renamings.
 |                            | Blechschmidt duality                           | Kock used a precursor of SQC                |
 | formally étale replacement | Crytalline modality, Coreduction, deRham stack |						    |
 | o-étale                    | o-cover	  	    		              | o-étale is already used a lot               |
+| finitely copresented module | Vector space                                  |                                             |
