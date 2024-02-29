@@ -4,13 +4,12 @@ In this work, we study countably presented Boolean algebras instead.
 Where the finitely presented algebras over a commutative ring induce a Zariski topos, 
 %the opposite category of these 
 the countably presented Boolean algebras induce the topos of light condensed sets \cite{TODO}. 
-\cite{draft} proposes an axiomatization of the Zariski topos. 
+\cite{draft} proposes an axiomatization of the Zariski topos in univalent homotopy type theory \cite{HoTT}. 
 In this work, we propose a similar axiomatization for light condensed sets. 
 % Furthermore, spectra of countably presented Boolean algebras correspond to quotients of Cantor space
 % which is cool because reasons
 \end{abstract} 
 
-\subsection{Definitions}
 \begin{definition}
   A countably presented Boolean algebra $B$ is a Boolean algebra such that there mererly are countable sets $I,J$, 
   a set of generators $(g_i)_{i\in I}$ and a set $(f_j)_{j\in J}$ of Boolean expressions over these generators 
@@ -25,22 +24,32 @@ the Boolean algebra $2 = 1+1$. Note that we don't need to postulate an alternati
 
 \begin{definition}
   For $B$ a countably presented Boolean algebra, we define $Sp(B)$ as the set of Boolean morphisms from $B$ to $2$. 
-  We assign a pointwise Boolean algebra structure on $Sp(B)$. 
+%  We assign a pointwise Boolean algebra structure on $Sp(B)$. 
+  %This is not necessarily a Boolean algebra, structure, consider the free BA on 1 generator (the diamond).
+  %The maps send the generator to either 0 or 1, but the pointwise conjunction of these maps sends both the generator 
+  % and it's negation to 0, which shouldn't happen.
 \end{definition}
 
-\begin{definition}
-  A type $X$ is called $Stone$ if it comes equiped with a Boolean algebra $B$ such that
-  $X = Sp(B)$. 
-\end{definition}
-
-
-
-\subsection{Axioms}
 \begin{axiom}[Stone duality]
   For any Boolean algebra $B$, there
   is an isomorphism of Boolean algebras
   $$B\simeq  2^{Sp(B)}.$$ 
 \end{axiom} 
+\begin{definition}
+  A type $X$ is called \textit{Stone} if it comes equiped with a Boolean algebra $B$ such that
+  $X = Sp(B)$. 
+\end{definition}
+\begin{remark}
+  By Stone duality, if $Sp(B) \simeq  Sp(B')$, then $$B \simeq 2^{Sp(B)} \simeq 2^{Sp(B')} \simeq B'.$$
+  Furthermore, for any Boolean algebra $B$, we have that the composite
+  $$ 
+  \sum\limits_{B' : BA} Sp(B') = Sp(B) \to 
+  \sum\limits_{B' : BA} 2^{Sp(B')} = 2^{Sp(B)} \to
+  \sum\limits_{B' : BA} B' = B 
+  $$ 
+  is an equivalence. As the latter type is contractible, being Stone is a proposition. 
+\end{remark} 
+
 \begin{axiom}[Local choice]
   Whenever $X$ Stone and $E\twoheadrightarrow X$ surjective, then there is some $Y$ Stone,
     a surjection $Y \twoheadrightarrow X$ and a map $Y\to E$ such that the following diagram commutes:
@@ -54,7 +63,3 @@ the Boolean algebra $2 = 1+1$. Note that we don't need to postulate an alternati
   A map $f:Sp(B)\to Sp(B')$ is surjective iff the corresponding map $B' \to B$ is injective.
 \end{axiom} 
 
-%\subsection{First consequences}
-%\begin{remark}
-%  By Stone duality, being Stone is a proposition. 
-%\end{remark} 
