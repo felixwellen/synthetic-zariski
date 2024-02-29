@@ -1,1 +1,60 @@
-This draft is empty so far.
+\begin{abstract}
+In synthetic algebraic geometry (SAG) \cite{draft}, we study finitely presented algebras over a commutative ring. 
+In this work, we study countably presented Boolean algebras instead. 
+Where the finitely presented algebras over a commutative ring induce a Zariski topos, 
+%the opposite category of these 
+the countably presented Boolean algebras induce the topos of light condensed sets \cite{TODO}. 
+\cite{draft} proposes an axiomatization of the Zariski topos. 
+In this work, we propose a similar axiomatization for light condensed sets. 
+% Furthermore, spectra of countably presented Boolean algebras correspond to quotients of Cantor space
+% which is cool because reasons
+\end{abstract} 
+
+\subsection{Definitions}
+\begin{definition}
+  A countably presented Boolean algebra $B$ is a Boolean algebra such that there mererly are countable sets $I,J$, 
+  a set of generators $(g_i)_{i\in I}$ and a set $(f_j)_{j\in J}$ of Boolean expressions over these generators 
+  such that $B$ is equivalent to the quotient of the free Boolean algebra over the generators by the relations
+  $(f_j=0)_{j\in J}$. 
+\end{definition} 
+
+
+In SAG, we deal with a fixed commutative ring $R$. For this project, the role of $R$ is taken over by 
+the Boolean algebra $2 = 1+1$. Note that we don't need to postulate an alternative for the \textbf{Loc} axiom. 
+
+
+\begin{definition}
+  For $B$ a countably presented Boolean algebra, we define $Sp(B)$ as the set of Boolean morphisms from $B$ to $2$. 
+  We assign a pointwise Boolean algebra structure on $Sp(B)$. 
+\end{definition}
+
+\begin{definition}
+  A type $X$ is called $Stone$ if it comes equiped with a Boolean algebra $B$ such that
+  $X = Sp(B)$. 
+\end{definition}
+
+
+
+\subsection{Axioms}
+\begin{axiom}[Stone duality]
+  For any Boolean algebra $B$, there
+  is an isomorphism of Boolean algebras
+  $$B\simeq  2^{Sp(B)}.$$ 
+\end{axiom} 
+\begin{axiom}[Local choice]
+  Whenever $X$ Stone and $E\twoheadrightarrow X$ surjective, then there is some $Y$ Stone,
+    a surjection $Y \twoheadrightarrow X$ and a map $Y\to E$ such that the following diagram commutes:
+    \begin{equation}\begin{tikzcd}
+      E \arrow[d,""',two heads]\\
+      X & \arrow[l, "", two heads] Y\arrow[lu, ""']
+    \end{tikzcd}\end{equation}  
+\end{axiom} 
+
+\begin{axiom}
+  A map $f:Sp(B)\to Sp(B')$ is surjective iff the corresponding map $B' \to B$ is injective.
+\end{axiom} 
+
+%\subsection{First consequences}
+%\begin{remark}
+%  By Stone duality, being Stone is a proposition. 
+%\end{remark} 
