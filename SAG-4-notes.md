@@ -34,6 +34,7 @@ There is the idea to discuss a couple of possible renamings.
 | SQC axiom                  | Duality principle (or axiom)                   | In general we should speak of a 'principle' |
 |                            | Regularity principle (or axiom)                |                                             |
 |                            | Blechschmidt duality                           | Kock used a precursor of SQC                |
+|                            | Reflexivity principle (or axiom)               |                                             |
 | formally étale replacement | Crytalline modality, Coreduction, deRham stack |						    |
 | o-étale                    | o-cover	  	    		              | o-étale is already used a lot               |
 | finitely copresented module | Vector space                                  |                                             |
