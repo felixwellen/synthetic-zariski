@@ -17,6 +17,9 @@ In this work, we propose a similar axiomatization for light condensed sets.
   $f_j=0$.
 \end{definition} 
 
+ Alternatively, we can define a countably presented Boolean algebra as an inductive limite of finite Boolean algebras.
+
+ \medskip
 
 In SAG, we deal with a fixed commutative ring $R$. For this project, the role of $R$ is taken over by 
 the Boolean algebra $2 = 1+1$. Note that we don't need to postulate an alternative for the \textbf{Loc} axiom. 
@@ -31,7 +34,7 @@ the Boolean algebra $2 = 1+1$. Note that we don't need to postulate an alternati
 \end{definition}
 
 \begin{axiom}[Stone duality]
-  For any Boolean algebra $B$, the canonical map   $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
+  For any countably presented Boolean algebra $B$, the canonical map   $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
 \end{axiom} 
 
 \begin{definition}
@@ -58,14 +61,19 @@ the Boolean algebra $2 = 1+1$. Note that we don't need to postulate an alternati
     \end{tikzcd}\end{equation}  
 \end{axiom} 
 
-\begin{axiom}
-  A map $f:Sp(B)\to Sp(B')$ is surjective iff the corresponding map $B' \to B$ is injective.
+In formal/point-free topology, we consider that a Boolean algebra $B$ represents a Stone space $Sp(B)$ and a map
+$Sp(B') \to Sp(B)$ is represented by a map $B\rightarrow B'$; the map $Sp(B')\to Sp(B)$ is then said to be
+{\em formally surjective} if the corresponding map $B\to B'$ is injective. In the topos of light condensed sets,
+this becomes a true duality.
+
+\begin{axiom}[Surjections are Formal Surjections]
+  A map $f:Sp(B')\to Sp(B)$ is surjective iff the corresponding map $B \to B'$ is injective.
 \end{axiom} 
 
 The last axiom is Dependent Choice.
 
-\begin{axiom}
+\begin{axiom}[Dependent Choice]
   Given a family of types $E_n$ and $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
   for all $n$ and $x:E_n$ there exists $y:E_n$ with $p:R~x~y$ then given $x_0:E_0$ there exists
-  $u:\Pi_{n:\Nats}E_n$ and $v:\Pi_{n:\Nats}R~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
+  $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
 \end{axiom}
