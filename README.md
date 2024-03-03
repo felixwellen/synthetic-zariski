@@ -55,7 +55,6 @@ To put one of the drafts on the arxiv, we have to
 
 - copy everything into one (temporary) folder: all tex-files, zariski.cls, zariski.sty from util and main.bbl.
 - change the paths in zariski.cls and main.tex
-- remove "if you are viewing online [...]" from main.tex
 - possibly change formulation from "This is a draft [...]"
 - test by running latexmk
 - put all the files into a ```.tar.gz```, so everything can be uploaded in one step
