@@ -66,6 +66,7 @@ set $Sp(B_{\infty})$ is the set $\Noo$ of binary sequences with at most one elem
   A type $X$ is called \textit{Stone} if $is-Stone(X)$ is inhabited.
 \end{definition}
 
+<<<<<<< HEAD
 \begin{lemma}
   $is-Stone(X)$ is a proposition for every $X$. 
 \end{lemma} 
@@ -102,6 +103,8 @@ set $Sp(B_{\infty})$ is the set $\Noo$ of binary sequences with at most one elem
 %  \end{tikzcd}   \end{equation} 
 %  is an equivalence. As the latter type is contractible, being Stone is a proposition. 
 %\end{remark} 
+=======
+>>>>>>> 29418248f9f2eda17f4c71e9b035454f7b88bf70
 
 It thus follows from the first axiom that $Sp$ is an embedding from $\Boole$ to any universe of types. We call
 $\Stone$ its image. Both groupoids $\Boole$ and $\Stone$ have a natural category structure.
@@ -113,7 +116,7 @@ Any Stone set has a natural topology, where basic open are decidable subsets.
 \medskip
 
 \begin{proposition}
-Any map between $f: Sp(B)\rightarrow\N$ is uniformely continuous.
+Any map $f: Sp(B)\rightarrow\N$ is uniformely continuous.
 \end{proposition}  
 
 \begin{proof}
@@ -142,17 +145,35 @@ An example of a surjective map (since it is an epimorphism, since it corresponds
 between $\Stone$ and $\Boole$) is the map sum of the maps $\Noo\rightarrow \Noo$ sending $n$ to $2n$ (resp. $n$ to $2n+1$).
 This map has no section. This shows that $\Noo$ is not projective.
 
-Another way to formulate this result is the following.
+Here is another way to formulate this result.
 
 \begin{proposition}
   LLPO is a consequence of Axioms $1$ and $2$.
 \end{proposition}
 
-Here is another consequence of this characterisation of surjective maps.
+A consequence of this characterisation of surjective maps is the following.
 
 \begin{proposition}
   The image of any map between two Stone types is Stone.
 \end{proposition}
+
+Here is an example showing how to use this axiom. A closed subset of a Stone set is given by a countable
+intersection of decidable subset.
+
+\begin{proposition}
+  Let $f:X'\rightarrow X$ a surjective map and $F_n$ a decreasing sequence of closed subsets of $X'$ such that
+  each restriction $f_{|F_n}$ is surjective. Then if $F = \cap_n F_n$ the restriction $f_{|F}$ is still surjective.
+\end{proposition}
+
+\begin{proof}
+  Dually, we have an injective map $i:B\rightarrow B'$ with an increasing sequence $I_n$ of ideals of $B'$ such that
+  $b = 0$ if $i(b) = 0$ mod. $I_n$. The subset $F$ corresponds to the ideal $I = \cup_n I_n$. If $i(b) = 0$ mod. $I$
+  then we have $i(b) = 0$ mod. $I_n$ for some $n$ and $b = 0$. 
+\end{proof}
+
+
+
+
 
 \begin{axiom}[Local choice]
   Whenever $X$ Stone and $E\twoheadrightarrow X$ surjective, then there is some $Y$ Stone,
@@ -180,7 +201,7 @@ We recall two basic results about the category $\Boole$, which holds constructiv
 that can now be formulate as results about $\Stone$.
 
 \begin{proposition}
-  And injective map in $\Stone$ has a retraction. Any surjective {\em open} map in $\Stone$ has a section.
+  Any injective map in $\Stone$ has a retraction and any surjective {\em open} map in $\Stone$ has a section.
 \end{proposition}
 
 \medskip
@@ -194,8 +215,8 @@ the proposition $\forall_n \alpha(n) = 0$ for some $\alpha$ in $2^{\N}$.
 
 \medskip
 
-We have seen that $\Noo$ is not projective. Using Local and Dependent Choice, we can show the following.
-We can follow the argument presented by Scholze in lecture 3 in the present axiomatic setting.
+We have seen that $\Noo$ is not projective. Using Local and Dependent Choice, we can 
+follow the arguments presented by Scholze in lecture 3 in the present axiomatic setting. 
 
 \begin{theorem}
   $\ints[\Noo]$ is projective in the category of Abelian Groups.
