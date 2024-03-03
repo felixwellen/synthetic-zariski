@@ -2,7 +2,9 @@
 Stay updated on synthetic algebraic geometry by [watching this repository](#watching-this-repo), joining the next [meeting](https://felix-cherubini.de/sag-meeting-4.html) or with the [mailing list](https://lists.chalmers.se/mailman/listinfo/sag).
 Due to a *bug* in the mailinglist-service of chalmers, it does not work to just answer to the  email-confirmation email - so use the link to confirm your email address instead. You know that you really signed up to the list, if you can login on the page linked above. 
 
-This is a latex documentation of our understanding of the synthetic /internal theory of the Zariski-Topos.
+This is a latex documentation of our understanding of the synthetic theory of the Zariski-Topos
+and related ideas. The drafts below are currently built hourly -
+if you want to make sure you are viewing the latest built, CTRL+F5 should clear all caches in most browsers.
 There are currently the following parts:
 - Foundations ([latest pdf](https://felix-cherubini.de/iag.pdf), [arxiv](https://arxiv.org/abs/2307.00073))
 - Čech-Cohomology ([early draft pdf](https://felix-cherubini.de/cech.pdf))

@@ -1,0 +1,48 @@
+\begin{definition}
+  The image of a map $f:X\to Y$ between types is given by
+  \[
+  \im(f) \colonequiv \sum_{y:Y} \exists_{x:X}f(x)=y
+  \]
+  and yields a factorization using the canonical maps:
+  \begin{center}
+    \begin{tikzcd}
+      X\ar[rr,"f"]\ar[dr] & & Y \\
+      & \im(f)\ar[ru] & \\
+    \end{tikzcd}
+  \end{center}
+\end{definition}
+
+\begin{proposition}
+  \label{stone-image}
+  The image $\im(f)$ of a map $f:X\to Y$ between stone spaces $X=\Spec(B),Y=\Spec(B')$ is a subtype of the form $\Spec(B'/I)\subseteq \Spec(B')$ for a countably generated ideal $I\subseteq B'$.  
+\end{proposition}
+
+\begin{proof}
+  TODO
+\end{proof}
+
+\begin{definition}
+  \begin{enumerate}[(a)]
+  \item A proposition $P$ is \notion{closed} if there merely is a sequence $s:2^\N$ such that $P$ is equivalent to $s=0$.
+  \item Let $X$ be an arbitrary type.
+    A subtype $C\subseteq X$ is \notion{closed} if $C(x)$ is a closed proposition for all $x:X$.
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Let $X$ be a stone space and $C\subseteq X$ a subset.
+  Then the following are equivalent:
+  \begin{enumerate}[(i)]
+  \item $C$ is closed.
+  \item $C$ is a countable intersection of decidable subsets.
+  \item There is a countable family of functions $(f_i:X\to 2)_{i:\N}$ such that
+    \[
+    C=\{ x:X \mid \forall i. f_i(x)=0 \}
+    \rlap{.}
+    \]
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  TODO using \Cref{local-choice} and \Cref{stone-image}.
+\end{proof}
