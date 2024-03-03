@@ -3,7 +3,7 @@ In synthetic algebraic geometry (SAG) \cite{draft}, we study finitely presented 
 In this work, we study countably presented Boolean algebras instead. 
 Where the finitely presented algebras over a commutative ring induce a Zariski topos, 
 %the opposite category of these 
-the countably presented Boolean algebras induce the topos of light condensed sets \cite{TODO}. 
+the countably presented Boolean algebras induce the topos of light condensed sets \cite{Scholze}. 
 \cite{draft} proposes an axiomatization of the Zariski topos in univalent homotopy type theory \cite{HoTT}. 
 In this work, we propose a similar axiomatization for light condensed sets. 
 % Furthermore, spectra of countably presented Boolean algebras correspond to quotients of Cantor space
@@ -11,35 +11,36 @@ In this work, we propose a similar axiomatization for light condensed sets.
 \end{abstract} 
 
 \begin{definition}
-  A countably presented Boolean algebra $B$ is a Boolean algebra such that there mererly are countable sets $I,J$, 
+  A countably presented Boolean algebra $B$ is a Boolean algebra such that there merely are 
+  %decidable 
+  countable sets $I,J$, 
   a set of generators $g_i,~{i\in I}$ and a set $f_j,~{j\in J}$ of Boolean expressions over these generators 
   such that $B$ is equivalent to the quotient of the free Boolean algebra over the generators by the relations
-  $f_j=0$.
+  $f_j=0$. 
 \end{definition} 
+If $I,J$ are finite, we call $B$ a finitely presented Boolean algebra. 
 
-Alternatively, we can define a countably presented Boolean algebra as an inductive limite of finite Boolean algebras
-that are given by a sequence of finite sets and maps between then.
+\begin{remark}
+  As Boolean algebras are rings, any relation of the form $f=g$ with both $f,g$ Boolean expressions 
+  can be written as $h=0$ with $h=f-g$ a Boolean expression. 
+\end{remark} 
+We can express a countably presented Boolean algebra as the colimit of a finitely presented Boolean algebra. 
+This is the formulation closer to \cite{Scholze}.
 
- \medskip
+\input{Profinite}
+
+\medskip
 
 In SAG, we deal with a fixed commutative ring $R$. For this project, the role of $R$ is taken over by 
 the Boolean algebra $2 = 1+1$. Note that we don't need to postulate an alternative for the \textbf{Loc} axiom. 
 We write $\Boole$ the type of countably presented Boolean algebras.
-
-
+Note that as each Boolean algebra is a Set, we $\Boole$ is a subtype of $hSet$.
+Also, as being countable is a notion independent of universes, $\Boole$ is independent of universes.
 
 \medskip
 
-
-
-
-
 \begin{definition}
   For $B$ a countably presented Boolean algebra, we define $Sp(B)$ as the set of Boolean morphisms from $B$ to $2$. 
-%  We assign a pointwise Boolean algebra structure on $Sp(B)$. 
-  %This is not necessarily a Boolean algebra, structure, consider the free BA on 1 generator (the diamond).
-  %The maps send the generator to either 0 or 1, but the pointwise conjunction of these maps sends both the generator 
-  % and it's negation to 0, which shouldn't happen.
 \end{definition}
 
 \medskip
@@ -52,22 +53,55 @@ set $Sp(B_{\infty})$ is the set $\Noo$ of binary sequences with at most one elem
 
 \begin{axiom}[Stone duality]
   For any countably presented Boolean algebra $B$, the canonical map   $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
+  \begin{equation}
+    \prod_{B : \Boole} B \simeq 2^{Sp(B)}
+  \end{equation} 
 \end{axiom} 
 
 \begin{definition}
-  A type $X$ is called \textit{Stone} if there exists $B$ in $\Boole$ such that $X = Sp(B)$. 
+  We define the predicate on types $is-Stone$ by 
+  \begin{equation}
+    is-Stone(X) = \sum\limits_{B : Boole} X = Sp(B)
+  \end{equation} 
+  A type $X$ is called \textit{Stone} if $is-Stone(X)$ is inhabited.
 \end{definition}
 
-\begin{remark}
-  By Stone duality, if $Sp(B) \simeq  Sp(B')$, then $$B \simeq 2^{Sp(B)} \simeq 2^{Sp(B')} \simeq B'.$$
-  Furthermore, for any Boolean algebra $B$, we have that the composite
-  $$ 
-  \sum\limits_{B' : BA} Sp(B') = Sp(B) \to 
-  \sum\limits_{B' : BA} 2^{Sp(B')} = 2^{Sp(B)} \to
-  \sum\limits_{B' : BA} B' = B 
-  $$ 
-  is an equivalence. As the latter type is contractible, being Stone is a proposition. 
-\end{remark} 
+\begin{lemma}
+  $is-Stone(X)$ is a proposition for every $X$. 
+\end{lemma} 
+\begin{proof}
+%  We'll show that $is-Stone$ is contractible as soon as it is inhabited. 
+  Let $(B,p), (B',p'): is-Stone(X)$. 
+  
+%  As $Sp(B) = X = Sp(B')$, by Stone duality we have $$B \simeq 2^{Sp(B)} \simeq 2^{Sp(B')} \simeq B'.$$
+  Furthermore, 
+  for $SD: 2^{Sp(B')} = 2^{Sp(B)} \to B' = B$ conjugation by Stone duality, the map 
+  $$SD \circ tr_{2^-} : Sp(B') = Sp(B) \to B' = B$$
+  has inverse $tr_{Sp}$ by a path induction argument. 
+  Therefore 
+  $$
+    \sum\limits_{B' : BA} Sp(B') = Sp(B)  
+    \simeq 
+    \sum\limits_{B' : BA} B' = B  
+    $$
+    as the latter is contractible, so is the former. 
+    Hence $(B,refl) = (B', p' \cdot p ^{-1})$ and $(B,p) = (B',p')$. 
+    Thus $is-Stone(X)$ is contractible for any $X$. 
+\end{proof} 
+
+%\begin{remark}
+%  By Stone duality, if $Sp(B) \simeq  Sp(B')$, then 
+%  Furthermore, for any Boolean algebra $B$, we have that the composite
+%
+%  \begin{equation} \begin{tikzcd}
+%    \sum\limits_{B' : BA} Sp(B') = Sp(B) \arrow[r, "tr_{2^\_}"] & 
+%    \sum\limits_{B' : BA} 2^{Sp(B')} = 2^{Sp(B)} \arrow[r , "SD(B')^{-1} \cdot \_ \cdot SD(B)"]&
+%    \sum\limits_{B' : BA} B' = B  
+%   % \arrow[r, "tr_{Sp}"] & 
+%   % \sum\limits_{B' : BA} Sp(B') = Sp(B) 
+%  \end{tikzcd}   \end{equation} 
+%  is an equivalence. As the latter type is contractible, being Stone is a proposition. 
+%\end{remark} 
 
 It thus follows from the first axiom that $Sp$ is an embedding from $\Boole$ to any universe of types. We call
 $\Stone$ its image. Both groupoids $\Boole$ and $\Stone$ have a natural category structure.

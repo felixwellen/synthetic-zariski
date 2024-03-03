@@ -1,0 +1,61 @@
+
+\begin{lemma}
+  $B$ is a countably presented Boolean algebra iff 
+  it merely is the inductive limit of a countable sequence of finitely presented Boolean algebras.
+\end{lemma} 
+%Alternatively, we can define a countably presented Boolean algebra as an inductive limit of finite Boolean algebras
+%that are given by a sequence of finite sets and maps between then.
+
+\begin{proof}
+  \item[$\impliedby$] 
+    If $B_n  = \widetilde {B_n} / F_n$ is a sequence of finitely presented Boolean algebras.
+    The maps of Boolean algebras $B_n\to B_m$ induce maps on the generators $ \widetilde {B_n} \to \widetilde{B_m}$. 
+
+    The colimit is given by 
+    $B = \{ b \in B_n | n\in\mathbb N \} / \sim$ where for $n\leq m$, $ b\in B_n, c \in B_m$, 
+    we have $b \sim c$ iff $f(b)=c$ for $f:B_n \to B_m$. 
+
+    We claim that $B$ is the quotient of the free Boolean algebra on 
+    the colimit of the generators under the relation equating two elements 
+    if they are in some relation 
+    TODO finish. 
+
+    
+  \item[$\implies$] Let $B$ be a countably presented Boolean algebra. 
+%    Because we need to prove a proposition, we can de-truncate our assumption. 
+    Assume a surjection from the natural numbers to the generators, 
+    and a countable set $F$ of relations such that $B$ is the quotient of the generators by $F$. 
+%    For convenience, we assume that $F$ contains equalities of generators.
+    \medskip 
+
+    Let $\widetilde{B_n}$ be the free Boolean algebra on the first $n$ generators. 
+%    Let $F_n$ be the set of all relations between these generators that can be deduced from $F$. 
+    And let $F_n\subseteq F$ be the set of all relations in $B$ we can express with the first $n$ generators. 
+    Note that both $B_n,F_n$ are finite as we can express only finitely many 
+    Boolean expressions with finitely many generators. 
+    Define then $B_n = \widetilde {B_n} / F_n$. 
+    For $n\leq m$, there is an Boolean morphism $B_n\to B_m$ induced by embedding the 
+    first $n$ generators into the first $m$ generators.
+    These morphisms are compatible in the sense that if $n\leq m \leq k$, then 
+    the composition $B_n \to B_m \to B_k$ and $B_n \to B_k$ match. 
+
+    \medskip
+
+    We claim that $B$ is isomorphic to the colimit of $B_n, ~{n\in\mathbb N}$.
+    By earlier reasoning the colimit is a Boolean algebra. 
+    Clearly, any generator of $B$ occurs in $B_n$ for some $n\in\mathbb N$. 
+    Because $F$ contained equalities of generators,  the choice of $n$ does not matter. 
+    Hence all generators of $B$ can be embedded in the colimit.
+%
+    As any Boolean expression $f$ concerns only finitely many generators in total, 
+    there is some $m\in\mathbb N$ with $f\in F_m$.
+%
+    Thus $B$ is a sub-Boolean algebra of the colimit. 
+    Conversely, by embedding the first $n$ generators into the set of generators, 
+    we have compatible Boolean morphisms $B_n \to B$. 
+    Therefore we have a Boolean morphism from the colimit to $B$. 
+%
+    Therefore, $B$ is the colimit. 
+
+  \item 
+\end{proof} 
