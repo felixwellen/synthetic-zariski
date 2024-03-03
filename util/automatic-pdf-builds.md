@@ -119,11 +119,11 @@ import subprocess
 class RequestHandler(http.server.SimpleHTTPRequestHandler):                       
     def do_POST(self):                                                            
         # Start systemd user service                                              
-        subprocess.run(['systemctl', '--user', 'restart', 'sag-latex'])           
+        subprocess.run(['systemctl', '--user', 'start', 'sag-latex'])           
         self.send_response(200)                                                   
                                                                                   
 with socketserver.TCPServer(('127.0.0.1', 1728), RequestHandler) as httpd:        
     print('Server started on http://127.0.0.1:1728')                              
     httpd.serve_forever()
 ```
-which (re)starts the service that builds all drafts. I chose restart so if multiple posts come in a short time, the time of the last request counts (haven't checked if this works).
+which starts the service that builds all drafts. ```restart``` would be great when multiple posts come in a short time, but unfortunately, that messes up podman in a wicked way. So currently the building is started event based *and* time based.
