@@ -99,3 +99,31 @@ Components:
   systemctl --user enable sag-latex.timer 
   systemctl --user start sag-latex.timer 
   ```
+
+Webhooks
+--------
+Under Settings/Webhooks on the github page of this repo, I created a webhook which sends a post 'https://felix-cherubini.de/synthetic-zariski-push'. The plan is that this section in the ```nginx.conf``` on ```felix-cherubini.de```:
+```
+        location /synthetic-zariski-push {
+             proxy_pass http://127.0.0.1:1728;
+             proxy_pass_request_body off;
+             proxy_pass_request_headers off;
+        }
+```
+proxies the post to a http server defined by this python script:
+```python
+import http.server                                                                
+import socketserver                                                               
+import subprocess                                                                 
+                                                                                  
+class RequestHandler(http.server.SimpleHTTPRequestHandler):                       
+    def do_POST(self):                                                            
+        # Start systemd user service                                              
+        subprocess.run(['systemctl', '--user', 'restart', 'sag-latex'])           
+        self.send_response(200)                                                   
+                                                                                  
+with socketserver.TCPServer(('127.0.0.1', 1728), RequestHandler) as httpd:        
+    print('Server started on http://127.0.0.1:1728')                              
+    httpd.serve_forever()
+```
+which (re)starts the service that builds all drafts. I chose restart so if multiple posts come in a short time, the time of the last request counts (haven't checked if this works).
