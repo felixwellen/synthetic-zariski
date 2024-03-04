@@ -39,6 +39,9 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Is $\mathrm{Spec} A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
 
   *Yes*: By the discussion in [#5](../../issues/5) and [#6](../../issues/6), $\mathrm{Spec} A$ is even projective, whenever $A$ is finitely generated as an $R$-module.
+- Can there be a flat-modality for $\mathbb{A}^1$-homotopy theory?
+
+  *No*: By the disucssion in [#18](../../issues/18), this should not be possible, because it would imply that the category of $\mathbb{A}^1$-local types is a topos, which is known to be false.
   
 # Learning material
 There are some [recordings](https://www.youtube.com/playlist?list=PLrnCInSNK7UT_JnKwnderE8eIkWtoW_az) of talks from the last [workshop](https://www.felix-cherubini.de/sag-meeting-3.html) on synthetic algebraic geometry.
