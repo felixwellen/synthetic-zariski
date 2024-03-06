@@ -51,6 +51,51 @@
   \subseteq I$.  This proves $Y \subset X^{\Gm}$.
 \end{proof}
 
+\begin{definition}
+  In the situation of \cref{irrelevant ideal}, a \emph{$\Gm$-invariant
+    open subscheme} or just \emph{invariant open subscheme} of $X$ is
+  an open subscheme of the affine scheme $\Spec S$ that is defined by
+  a homogeneously finitely generated ideal of $S$.
+\end{definition}
+
+\begin{remark}
+  If $f$ is homogeneous, each standard-open $D(f) \subseteq X$ is
+  indeed $\Gm$-invariant in the sense that the action $X \times \Gm
+  \to X$ restricts to an action $D(f) \times \Gm \to D(f)$.
+
+  It follows that the action $X \times \Gm \to X$ restricts to all
+  invariant open subschemes $U$.
+\end{remark}
+
+\begin{lemma}\label{finite invariant union}
+  In the situation of \cref{irrelevant ideal}, a finite union of
+  invariant open subschemes is again invariant open.
+\end{lemma}
+
+\begin{proof}
+  This is clear by definition.
+\end{proof}
+
+\begin{lemma}\label{open subset of invariant open}
+  In the situation of \cref{irrelevant ideal}, let $U$ be an invariant
+  open subscheme and $f\colon U \to R$ a $\Gm$-invariant map that is,
+  a map with
+  \begin{equation*}
+    \forall p: X \forall t: \Gm f(p \cdot t) = f(p).
+  \end{equation*}
+  Then $U \cap D(f)$ is again an invariant open subscheme.
+\end{lemma}
+
+\begin{proof}
+  By precondition, $f$ is homogeneous of degree zero. Let $U =
+  \bigcup_{i = 1}^n D(f_i)$ where each $f_i\colon U \to R$ is
+  homogeneous (of some degree). Then
+  \begin{equation*}
+    U \cap D(f) = \bigcup_{i = 1}^n D(f f_i),
+  \end{equation*}
+  and each $f f_i$ is homogeneous (of some degree).
+\end{proof}
+
 \begin{proposition}
   In the situation of \cref{irrelevant ideal}, the set
   \begin{equation*}
@@ -62,8 +107,7 @@
 
 \begin{proof}
   Let $f_1$, \dots, $f_m$ be homogeneous generators of the irrelevant
-  ideal $S^+$.  By homogeneity, each standard-open
-  $D(f_i) \subseteq X$ is $\Gm$-invariant.  As
+  ideal $S^+$.  As
   $X^\circ = \bigcup_{i = 1}^m D(f_i)$, it follows that $X^\circ$ is a
   $\Gm$-invariant open subscheme of $X$.
 
@@ -75,22 +119,54 @@
   it follows that $g^d = 1$.
 \end{proof}
 
-\subsection{Invariant morphisms}
+\subsection{Invariant maps}
 
-\begin{definition}
-  Let $X$ be a set with an action $X \times G \to X$ of a group $G$.  Let $Y$ be another
-  set.  A \emph{$G$-invariant map} (or just an \emph{invariant map})
-  $\phi : X \to Y$ is a map such that
+\begin{definition}\label{invariant map}
+  Let $X \coloneqq \Spec S$ be an affine scheme with an action of the
+  multiplicative group $\Gm$.  A map $\phi\colon U \to Y$ from an
+  invariant open subscheme $U$ of $X$ to a scheme $Y$ is a
+  \emph{$\Gm$-invariant} or just \emph{invariant} map if
   \begin{equation*}
-    \forall x: X \forall g: G. \phi(x \cdot g) = \phi(x).
+    \forall p : U \forall g : \Gm. \phi(pg) = \phi(p)
   \end{equation*}
-  The set of invariant maps $X \to Y$ is denoted by $\Hom(X, Y)^G$.
+  and if there merely exists
+  an affine open cover $(V_j)_{j \in J}$ of $Y$ such that $\phi^{-1}(V_j)$
+  is an invariant open subscheme of $U$ for each $j \in J$.
 \end{definition}
 
+\begin{proposition}\label{inverse invariant image}
+  In the situation of \cref{invariant map}, let $V \subseteq Y$ be any
+  open subscheme of $Y$.  Then $\phi^{-1}(V)$ is an invariant open
+  subscheme of $U$.
+\end{proposition}
+
+\begin{proof}
+  Assume that the proposition is true for open subschemes $V$ and $V'$
+  of $Y$. Then it is also true for $V \cup V'$ because
+  \begin{equation*}
+    \phi^{-1}(V \cup V') = \phi^{-1}(V) \cup \phi^{-1}(V')
+  \end{equation*}
+  and because a (finite) union of open invariant subschemes is an open
+  invariant subscheme by \cref{finite invariant union}.
+
+  Assume that the proposition is true for an affine open subscheme $V$
+  and let $f\colon V \to R$ be a map.  Then it is also true for $V
+  \cap D(f)$ because
+  \begin{equation*}
+    \phi^{-1}(V \cap D(f)) = \phi^{-1}(V) \cap D(f \circ \phi)
+  \end{equation*}
+  and because $f \circ \phi\colon U \to R$ is $\Gm$-invariant; see
+  \cref{open subset of invariant open}.
+
+  This is enough to deduce the statement of the proposition to be
+  proven from the validity for some affine open cover of $X$.
+\end{proof}
+
 \begin{definition}
-  Let $X$ be a scheme with an action $X \times G \to X$ of a group scheme $G$.
-  A \emph{(categorical) quotient} of $X$ by $G$ is a scheme $Y$
-  together with a $G$-invariant map $\phi : X \to Y$ such that
+  Let $X \coloneqq \Spec S$ be an affine scheme with an action of the
+  multiplicative group $\Gm$.  Let $U$ be an invariant open subscheme.
+  A \emph{(categorical) quotient} of $U$ by $\Gm$ is a scheme $Y$
+  together with an invariant map $\phi : X \to Y$ such that
   every invariant map $X \to Z$ into a scheme $Z$ factors uniquely
   over $\phi$.
 \end{definition}
@@ -145,7 +221,7 @@ We will make use of the following two lemmata to proof the theorem.
 \end{proof}
 
 \begin{lemma}\label{proj construction lemma 2}
-  In the situation of \cref{proj construction, lemma 1}, the map
+  In the situation of \cref{proj construction lemma 1}, the map
   $\pi\colon \Spec S \to \Spec S_0$ induced by the inclusion $S_0 \to
   S$ is a categorical quotient $X \to X/\Gm$.
 \end{lemma}
@@ -153,8 +229,7 @@ We will make use of the following two lemmata to proof the theorem.
 \begin{remark}
   In the situation of the lemma, the irrelevant ideal is the unit
   ideal, thus $X = X^\circ$.  With the notation introduced in
-  \cref{proj construction}, the statement of \cref{proj construction,
-    lemma 2} can thus be phrased as
+  \cref{proj construction}, the statement of \cref{proj construction lemma 2} can thus be phrased as
   \begin{equation*}
     \Proj S = \Spec S_0.
   \end{equation*}
@@ -170,7 +245,55 @@ We will make use of the following two lemmata to proof the theorem.
   morphism has to factor (uniquely) over $S_0 \subseteq S$.  Thus
   $\phi$ factors (uniquely) over $\pi$.
 
-  \dots
+  For general $Z$ consider an affine open cover $(W_i)_{i \in I}$.
+  By \cref{inverse invariant image}, $\phi^{-1}(W_i)$ is
+  an invariant open subset.  By \cref{proj construction lemma 1}, we
+  can therefore assume that there are standard-open subsets $V_i$ of
+  $\Spec S_0$ such that the $U_i \coloneqq \pi^{-1}(V_i)$ form a
+  $(U_i)_{i \in I}$ of $X$ by invariant open subschemes of $U$ with
+  $\phi(U_i) \subseteq W_i$ for each $i \in I$.
+
+  By the affine case already covered (i.e.\ for $Z = W_i$), it follows
+  that the canonical map $\pi_i\colon U_i \to V_i$ is the
+  $\Gm$-quotient of the restriction $\phi_i\colon U_i \to W_i$ for all
+  $i \in I$. In particular, there are unique morphisms $\psi_i\colon
+  V_i \to Z$ with $\phi_i \circ \pi|_{U_i} = \phi_i$.  By (local) uniqueness
+  and because the $V_i$ cover $\Spec S_0$, the maps $\psi_i$ glue to a
+  morphism $\psi\colon \Spec S_0 \to Z$ with $\psi \circ \pi = \phi$.
+
+  It remains to show that $\psi$ is unique with this property. This
+  follows again from a local consideration by restricting to an affine
+  cover in the target and \cref{proj construction lemma 2}.
+\end{proof}
+
+\begin{proof}[of \cref{proj construction}]
+  We first construct $\Proj S$ as a scheme together with a map
+  $\pi\colon X^\circ \to \Proj S$ and then show that it is a
+  categorical quotient.
+
+  Let $g_1$, \dots, $g_n$ be homogeneous generators of the irrelevant
+  ideal $S^+$ of $S$.  Then $D(g_1)$, \dots, $D(g_n)$ cover
+  $X^\circ$.  As the $g_i$ are homogeneous, the localizations
+  $S[g_i^{-1}]$ inherit gradings.  Set $Y_i \coloneqq \Spec
+  S[g_i^{-1}]_0$ and $Y_{i, j} \coloneqq \Spec[(g_i g_j)^{-1}]_0$.  We
+  can view $Y_{i,j}$ as a standard-open affine subspace of $Y_i$.
+  Moreover, there is a canonical identification $Y_{i,j} \sim
+  Y_{j,i}$. Thus, we can glue the $Y_i$ to a scheme $Y = \Proj S$.
+
+  The inclusion $S[g_i^{-1}]_0 \to S[g_i^{-1}$ induces a map
+  $\pi_i\colon D(g_i) \to Y_i$.  By \cref{proj construction lemma 2},
+  this map turns $Y_i$ into the categorical quotient $D(g_i)/\Gm$.
+  The maps $\pi_i$ glue to a morphism $\pi\colon X^\circ \to Y$.
+
+  It remains to show that $\pi$ fulfills the universal property of the
+  categorical quotient.  For this, let $\phi\colon X^\circ \to Z$ be
+  an invariant map into some scheme $Z$.  We have to show that a
+  unique map $\psi\colon Y \to Z$ with $\phi = \psi \circ \pi$
+  exists.  As $Y_i = D(g_i)/\Gm$, there exist unique maps
+  $\psi_i\colon Y_i \to Z$ with $\phi|_{D(g_i)} = \psi_i \circ
+  \pi_i$.  Because of (local) uniqueness, the maps $\phi_i$ glue to a
+  map $\psi\colon Y \to Z$ with $\phi = \psi \circ \pi$.  The
+  uniqueness of $\psi$ follows again by local uniqueness.
 \end{proof}
 
 %%% Local Variables:
