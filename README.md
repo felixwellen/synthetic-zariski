@@ -37,6 +37,7 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Can every bundle (on $Sp A$) of strongly quasicoherent $R$-modules be recovered
   from its $A$-module of global sections?
 - Can we compute some interesting étale/fppf cohomology groups?
+- Is the intergral closure of $R$ in a finitely presented $R$-algebra $A$ finitely presented?
 
 # Answered Questions
 - Is $\mathrm{Spec} A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
