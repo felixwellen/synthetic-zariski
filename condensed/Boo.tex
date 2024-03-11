@@ -1,0 +1,35 @@
+%Be a bit more careful about empty set for I
+We claim the map $\Boo \to \Boo+ \Boo$ sending $p_{2k} \to (p_k,0)$ and 
+$p_{2k+1}$ to $(0,p_k)$ has no retraction. 
+Such a retraction $r$ would satisfy that $r(0,1)\geq p_{2_k+1}$ and
+$r(1,0) \geq p_{2k}$ for all $k:\mathbb N$. 
+
+We should be able to express both $r(0,1)$ and $r(1,0)$ as a finite 
+Boolean combination of generators. 
+Let $K$ be such that for $n\geq K$, we have that 
+$p_n$ does not occur in either expression.
+We claim that if $r(0,1)\geq p_n$ for any $n\geq K$, then 
+$r(0,1) \geq p_m$ for all $m\geq K$, and the same holds for $r(1,0)$. 
+As both $r(0,1),r(1,0)$ are bigger than some $p_n$ with $n\geq k$, 
+it will follow that the're both bigger than $p_K$. 
+But then $r(0,1) \wedge r(1,0) \geq p_K$, which is 
+a contradiction as $r(0,1) \wedge r(1,0) = r ((1,0)\wedge r(0,1)) = r (0) = 0$. 
+
+Write $r(0,1)$ in disjunctive normal form as $\bigvee_{i\in I} x_i$
+with $x_i = \bigwedge_{j\in J_i^+} p_j \wedge \bigwedge_{j\in J_i^-} \neg p_j$. 
+Now $r(0,1) \geq p_n$ for some odd $n\geq K$, 
+hence $r(0,1) \wedge p_n = p_n$. 
+Thus for all $x_i$, we have $x_i \wedge p_n = p_n$. 
+Now $x_i \wedge p_n = \bigwedge_{j\in J_i^+} (p_j\wedge p_n) 
+\wedge \bigwedge_{j\in J_i^-} (\neg p_j \wedge p_n$. 
+As $p_n$ doesn't occur in $r(0,1)$, $p_j \wedge p_n = 0$ for all $j\in J_i^+$, and
+$\neg p_j \wedge p_n = p_n$ for all $j \in J_i^-$. 
+Thus $p_n = \bigwedge_{j \in J_i^-} p_n$
+Therefore, $J_i^-$ is non-empty for all $i\in I$. 
+But by the same reasoning, it follows that $x_i \wedge p_m = p_m$ 
+for all $m\geq K$. 
+Thus $r(0,1) \wedge p_m = \bigvee_{i\in I} p_m \geq p_m$. 
+The same reasoning holds for $r(1,0)$, thus 
+$r(0,1) , r(1,0)\geq p_K$, which by the above leads to a contradiction. 
+
+Thus no retraction exists. 
