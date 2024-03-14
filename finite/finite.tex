@@ -20,24 +20,32 @@ There are a couple of equivalent definitions of finite schemes, which we will in
   \begin{enumerate}[(i)]
   \item $X$ is a finite scheme.
   \item There is an $R$-algebra $A$, such that $X=\Spec A$ where $A$ is a finitely presented $R$-module.
+  \item WIP: There are finitely presented $R$-algebras $A,B$ with a surjective homomorphism $B\to A$, such that $X=\Spec A$, $A$ is a finitely presented $R$-module and $B$ is finite free as an $R$-module.
   \item $X$ is projective and affine.
   \item $X$ is compact and affine.
   \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-  (i) $\Leftrightarrow$ (ii): By constructive reading of Tag 0564 in the Stacks Project (TODO: turn into reference).
+  (i) $\Leftrightarrow$ (iii): By constructive reading of Tag 0564 in the Stacks Project (TODO: turn into reference).
   
-  (i) $\Rightarrow$ (iii): We consider the projective space $\mathbb PA^\star$ associated with the R-linear dual of $A$.
+  (iii) $\Rightarrow$ (iv): Let $A$ be finite free for now.
+  We consider the projective space $\mathbb PA^\star$ associated with the R-linear dual of $A$.
   This is $\bP^{n-1}$ after choosing a basis of $A$.
   Given $[\varphi] : \bP A^\star$ we consider the proposition $C([\varphi])$ that $\varphi(1) \varphi(xy) = \varphi(x) \varphi(y)$ for all $x, y  : A$.
   This is well-defined and a closed proposition because it suffices to check it for basis elements of $A$.
   $C([\varphi])$ implies $\varphi(1) \ne 0$ because otherwise $\varphi(x)^2 = 0$ for all $x : A$ and then $\varphi$ is not-not zero (projective space contains only non-zero vectors).
   So $x \mapsto \varphi(x) / \varphi(1)$ determines a point of Spec A for $[\varphi] : \bP A^\star$ such that $C([\varphi])$ holds (and one can go in the reverse direction, and verify that the two maps are inverse to each other).
-
-  (iii) $\Rightarrow$ (iv): Projective schemes are compact by \cite[Theorem 3.0.7]{proper-draft}. 
   
-  (iv) $\Rightarrow$ (i): (TODO: copy from \#6)
+  \rednote{The case for an $R$-algebra $A$ which is a finitely presented $R$-module $A$ and a quotient of a finite free module $B$, it might go as follows:
+  $\Spec(A)\subseteq \Spec(B)$ is closed, so compact, since $\Spec(R^n)$ is compact by the above.
+  So the image of $\Spec(A)$ in $\bP^{n-1}$ is a compact $C$ and therefore the complement of an open in $\bP^{n-1}$.
+  Specifically in $\bP^{n-1}$, this implies that $C$ is closed.
+  }
+
+  (iv) $\Rightarrow$ (v): Projective schemes are compact by \cite[Theorem 3.0.7]{proper-draft}. 
+  
+  (v) $\Rightarrow$ (i): (TODO: copy from \#6)
 \end{proof}
 
 \begin{lemma}
