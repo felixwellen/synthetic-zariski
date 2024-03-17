@@ -28,8 +28,6 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 
 - Is every étale proposition (formally étale and a scheme) an open proposition?
 - Is every étale scheme a sub-quotient of a finite set?
-- For $f : A$, is $f$ not not zero iff $f$ becomes zero in $A \otimes R/\sqrt{0}$?
-  (A corollary of that would be: If the algebra $A$ is not not trivial, then it is trivial.)
 - If $A$ is an étale $R$-algebra (finitely presented and the spectrum is étale),
   is it impossible to have an injective algebra map $R[X] \to A$?
 - Is the proposition "X is affine" not-not-stable, for X a scheme?
@@ -46,6 +44,10 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Can there be a flat-modality for $\mathbb{A}^1$-homotopy theory?
 
   *No*: By the disucssion in [#18](../../issues/18), this should not be possible, because it would imply that the category of $\mathbb{A}^1$-local types is a topos, which is known to be false.
+
+- For $f : A$, is $f$ not not zero iff $f$ becomes zero in $A \otimes R/\sqrt{0}$?
+
+  *No*: for $r : R$, we have $r + (r^2)$ not not zero in $R/(r^2)$, but if it were always zero in $R/(r^2,\sqrt{0})$, then we would have a nilpotent polynomial $f : R[x]$ such that $x \in f + (x^2)$, which is false.
   
 # Learning material
 There are some [recordings](https://www.youtube.com/playlist?list=PLrnCInSNK7UT_JnKwnderE8eIkWtoW_az) of talks from the last [workshop](https://www.felix-cherubini.de/sag-meeting-3.html) on synthetic algebraic geometry.
