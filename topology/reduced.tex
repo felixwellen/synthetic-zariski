@@ -1,0 +1,65 @@
+
+\subsection{Reduced schemes}
+
+\rednote{What follows is a not completely satisfactory candidate definition of reduced schemes. Marc Nieper-Wißkirchen and Fabian Endres were involved in finding this notion.}
+
+There is a \emph{candidate} definition of reduced schemes.
+The analogue to the classical definition, that an affine scheme is reduced,
+if its algebra of functions is reduced, is expected to be useless in the synthetic setup.
+We start with a notion which is only suitable for affine schemes\footnote{An example where this fails for general schemes, is $V(X^2)\subseteq\bP^2$.}.
+
+\begin{definition}
+  An affine scheme $X=\Spec A$ is \notion{reduced},
+  if for all functions $f:A$, nilpotency implies $\neg\neg (f=0)$.
+\end{definition}
+
+An alternative, stronger criterion would be that if $f : A$ is nilpotent, then
+$f = r_1 a_1 + \ldots + r_n a_n$ with $r_i : R$ nilpotent and $a_i : A$.
+
+\begin{example}
+  \begin{enumerate}[(a)]
+  \item $\D(1)$ is not reduced.
+    The algebra of functions is $R+\varepsilon R$ and we know that $\varepsilon$ is nilpotent and non-zero.
+  \item $\A^1$ is reduced. To see this, let $f:R[X]$ be nilpotent.
+    Then all coefficients of $f$ are nilpotent and since we proof a double-negation,
+    we can assume they are zero.
+  \item A basic open $D(f)$ of an affine reduced scheme is reduced:
+    If $\left(\frac{a}{f^l}\right)^n=0$, we want to show $\neg\neg \frac{a}{f^l} = 0$.
+    Since we want to show a double negated proposition, we can decide if $f$ is regular or nilpontent.
+    If it is regular, $f^ka^n=0$ implies $\neg\neg a = 0$ and if it is nilpotent, every function on $D(f)$ is $0$ anyway.
+  \item Any closed dense proposition, i.e.\ affine scheme of the form $\Spec (R/(\varepsilon_1,\dots,\varepsilon_n))$ is reduced.
+  \item The cross with one infinitesimal axis $\Spec R[X,Y]/(XY,Y^2)$ is not reduced, since $Y$ is a nilpotent, non-zero function.
+  \end{enumerate}
+\end{example}
+
+From a notion of ``reduced'' for general schemes, we would expect that it is closed under
+\begin{enumerate}[(i)]
+\item taking open subtypes
+\item and finite open unions.
+\end{enumerate}
+
+For the notion of affine reduced scheme from above, (i) holds for basic opens of affines,
+which is enough to make the following definition well-defined and fullfil the requirements above:
+
+\begin{definition}
+  A scheme $X$ is \notion{reduced} if there is a finite affine open cover $X=\bigcup_i U_i$ such that each $U_i$ is reduced.
+\end{definition}
+
+In fact, if there is one cover, any cover will be reduced.
+
+\begin{remark}
+  For a reduced scheme $X$ we have:
+  \begin{enumerate}[(i)]
+  \item Any open $U\subseteq X$ is reduced.
+  \item For any finite open affine cover of $X=\bigcup U_i$, all $U_i$ are reduced.
+  \end{enumerate}
+\end{remark}
+
+\begin{proof}
+  Any open subscheme of an affine scheme is covered by basic opens, so it is reduced.
+  For any cover $(U_i)_i$ of $X$ and a given reduced cover $(V_j)_j$, we have $U_i=\bigcup_j V_j\cap U_i$, so $U_i$ is reduced.
+\end{proof}
+
+\begin{examples}
+  $V(X^2)\subseteq \bP^2$ is not reduced.
+\end{examples}
