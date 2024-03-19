@@ -17,7 +17,7 @@ we work in a setting, based on homotopy type theory, where schemes are types,
 with an additional property that can be defined within our synthetic theory.
 
 Following ideas of Ingo Blechschmidt and Anders Kock  (\cite{ingo-thesis}, \cite{kock-sdg}[I.12]),
-we use a base ring $R$ which is local and satisfies an axiom reminiscent of the Kock-Lawvere axiom.
+we use a base ring $\A$ which is local and satisfies an axiom reminiscent of the Kock-Lawvere axiom.
 This more general axiom is called \emph{synthetic quasi coherence (SQC)} by Blechschmidt and
 a version quantifying over external algebras is called the \emph{comprehensive axiom}\footnote{
   In \cite{kock-sdg}[I.12], Kock's ``axiom $2_k$'' could equivalently be Theorem 12.2,
@@ -35,33 +35,33 @@ Given a system of polynomial equations
   p_m(X_1, \dots, X_n) &= 0\rlap{,}
 \end{align*}
 the solution set
-$\{\, x : R^n \mid \forall i.\; p_i(x_1, \dots, x_n) = 0 \,\}$
-is in canonical bijection to the set of $R$-algebra homomorphisms
-\[ \Hom_{\Alg{R}}(R[X_1, \dots, X_n]/(p_1, \dots, p_m), R) \]
+$\{\, x : \A^n \mid \forall i.\; p_i(x_1, \dots, x_n) = 0 \,\}$
+is in canonical bijection to the set of $\A$-algebra homomorphisms
+\[ \Hom_{\AAlg}(\A[X_1, \dots, X_n]/(p_1, \dots, p_m), \A) \]
 by identifying a solution $(x_1,\dots,x_n)$ with the homomorphism that maps each $X_i$ to $x_i$.
-Conversely, for any $R$-algebra $A$ which is merely of the form $R[X_1, \dots, X_n]/(p_1, \dots, p_m)$,
+Conversely, for any $\A$-algebra $A$ which is merely of the form $\A[X_1, \dots, X_n]/(p_1, \dots, p_m)$,
 we define the \emph{spectrum} of $A$ to be
 \[
-  \Spec A \colonequiv \Hom_{\Alg{R}}(A, R)
+  \Spec A \colonequiv \Hom_{\AAlg}(A, \A)
   \rlap{.}
 \]
 In contrast to classical, non-synthetic algebraic geometry,
 where this set needs to be equipped with additional structure,
 we postulate axioms that will ensure that $\Spec A$ has the expected geometric properties.
-Namely, SQC is the statement that, for all finitely presented $R$-algebras $A$, the canonical map
+Namely, SQC is the statement that, for all finitely presented $\A$-algebras $A$, the canonical map
   \begin{align*}
-    A&\xrightarrow{\sim} (\Spec A\to R) \\
+    A&\xrightarrow{\sim} (\Spec A\to \A) \\
     a&\mapsto (\varphi\mapsto \varphi(a))
   \end{align*}
 is an equivalence.
-A prime example of a spectrum is $\A^1\colonequiv \Spec R[X]$,
-which turns out to be the underlying set of $R$.
+A prime example of a spectrum is $\A^1\colonequiv \Spec \A[X]$,
+which turns out to be the underlying set of $\A$.
 With the SQC axiom,
-\emph{any} function $f:\A^1\to \A^1$ is given as a polynomial with coefficients in $R$.
+\emph{any} function $f:\A^1\to \A^1$ is given as a polynomial with coefficients in $\A$.
 In fact, all functions between affine schemes are given by polynomials.
 Furthermore, for any affine scheme $\Spec A$,
 the axiom ensures that
-the algebra $A$ can be reconstructed as the algebra of functions $\Spec A \to R$,
+the algebra $A$ can be reconstructed as the algebra of functions $\Spec A \to \A$,
 therefore establishing a duality between affine schemes and algebras.
 
 The Kock-Lawvere axiom used in synthetic differential geometry
@@ -82,11 +82,11 @@ is the construction of cohomology groups.
 This is where the \emph{homotopy} type theory really comes to bear --
 instead of the hopeless adaption of classical, non-constructive definitions of cohomology,
 we make use of higher types,
-for example the $n$-th Eilenberg-MacLane space $K(R,n)$ of the group $(R,+)$.
+for example the $n$-th Eilenberg-MacLane space $K(\A,n)$ of the group $(\A,+)$.
 As an analogue of classical cohomology with values in the structure sheaf,
 we then define cohomology with coefficients in the base ring as:
 \[
-  H^n(X,R):\equiv \propTrunc{X\to K(R,n)}_0
+  H^n(X,\A):\equiv \propTrunc{X\to K(\A,n)}_0
   \rlap{.}
 \]
 This definition is very convenient for proving abstract properties of cohomology.
@@ -101,7 +101,7 @@ However, classically, basic open subsets of an affine scheme are given
 by functions on the scheme and the corresponding open is morally the collection of points where the function does not vanish.
 With Zariski-local choice, we were able to show that these notions of openness agree in our setup.
 
-Apart from SQC, locality of the base ring $R$ and Zariski-local choice,
+Apart from SQC, locality of the base ring $\A$ and Zariski-local choice,
 we only use homotopy type theory, including univalent universes, truncations and some very basic higher inductive types.
 Roughly, Zariski-local choice states that any surjection into an affine scheme merely has sections on a \emph{Zariski}-cover.%
 \footnote{It is related to the set-theoretic axiom called

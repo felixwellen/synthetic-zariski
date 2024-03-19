@@ -39,20 +39,20 @@ This method works both in a $1$-topos framework and for models of univalent type
 We start from 4 axioms. The 3 first axioms can be seen as variation of our 3 axioms for synthetic algebraic geometric.
 
 \begin{enumerate}[(1)]
-\item $R$ is a ring,
-\item for any f.p.\ $R$-algebra $A$, the canonical map $A\rightarrow R^{\Spec(A)}$ is an equivalence
-\item for any f.p.\ $R$-algebra $A$, the set $\Spec(A)$ satisfies choice, which can be formulated as
+\item $\A$ is a ring,
+\item for any f.p.\ $\A$-algebra $A$, the canonical map $A\rightarrow \A^{\Spec(A)}$ is an equivalence
+\item for any f.p.\ $\A$-algebra $A$, the set $\Spec(A)$ satisfies choice, which can be formulated as
   the fact that for any family of types $P(x)$ for $x:\Spec(A)$ there is a map
   $(\Pi_{x:\Spec(A)}\norm{P(x)})\rightarrow \norm{\Pi_{x:\Spec(A)}P(x)}$.
-\item for any f.p.\ $R$-algebra $A$, the diagonal map $\nats\rightarrow\nats^{\Spec(A)}$ is an equivalence.
+\item for any f.p.\ $\A$-algebra $A$, the diagonal map $\nats\rightarrow\nats^{\Spec(A)}$ is an equivalence.
 \end{enumerate}
 
-As before, $\Spec(A)$ denotes the type of $R$-algebra maps from $A$ to $R$, and
-if $r$ is in $R$, we write $D(r)$ for the proposition $\Spec(R_r)$.
+As before, $\Spec(A)$ denotes the type of $\A$-algebra maps from $A$ to $\A$, and
+if $r$ is in $\A$, we write $D(r)$ for the proposition $\Spec(\A_r)$.
 
 Note that the first axiom does not require
-$R$ to be local, and the third axiom states that $\Spec(A)$ satisfies \emph{choice} and not only Zariski local choice,
-for any f.p. $R$-algebra $A$.
+$\A$ to be local, and the third axiom states that $\Spec(A)$ satisfies \emph{choice} and not only Zariski local choice,
+for any f.p. $\A$-algebra $A$.
 
 
 \subsubsection{Justification of the axioms for the presheaf model}
@@ -71,7 +71,7 @@ $f:L\rightarrow M$ satisfying the usual uniformity conditions.
 
 We first introduce the presheaf $\FP$ of {\em finite presentations}. This is internally the type
 $$
-\Sigma_{n:\nats}\Sigma_{m:\nats}R[X_1,\dots,X_n]^m
+\Sigma_{n:\nats}\Sigma_{m:\nats}\A[X_1,\dots,X_n]^m
 $$
 which is interpreted by $\FP(L) = \Sigma_{n:\nats}\Sigma_{m:\nats}L[X_1,\dots,X_n]^m$.
 If $\xi = (n,m,q_1,\dots,q_m)\in\FP(L)$ is such a presentation, we build a natural extension
@@ -83,36 +83,36 @@ Note that $i(\iota,s_{\xi}) = \id$.
 
 \medskip
 
-Internally, we have a map $A:\FP\rightarrow R\mathsf{-alg}(\UU_0)$, which to any presentation
-$\xi = (n,m,q_1,\dots,q_m)$ associates the $R$-algebra $A(\xi) = L[X_1,\dots,X_n]/(q_1,\dots,q_m)$.
+Internally, we have a map $A:\FP\rightarrow \A\mathsf{-alg}(\UU_0)$, which to any presentation
+$\xi = (n,m,q_1,\dots,q_m)$ associates the $\A$-algebra $A(\xi) = L[X_1,\dots,X_n]/(q_1,\dots,q_m)$.
 This corresponds externally to the presheaf on the category of elements of $\FP$ defined
 by $A(L,\xi) = L_{\xi}$.
 
-Internally, we have a map $\Spec(A):\FP\rightarrow \UU_0$, defined by $\Spec(A)(\xi) = Hom(A(\xi),R)$.
+Internally, we have a map $\Spec(A):\FP\rightarrow \UU_0$, defined by $\Spec(A)(\xi) = Hom(A(\xi),\A)$.
 We can replace it by the isomorphic map which to $\xi = (n,m,q_1,\dots,q_m)$ associates the set
-$S(\xi)$ of solutions of the system $q_1=\dots=q_m= 0$ in $R^n$.
+$S(\xi)$ of solutions of the system $q_1=\dots=q_m= 0$ in $\A^n$.
 Externally, this corresponds to the presheaf on the category of elements of $\FP$ so that
 $\Spec(A)(L,n,m,q_1,\dots,q_m)$ is the set of solutions of the system $q_1=\dots=q_m=0$ in $L^n$.
 
 \medskip
 
-We now define externally two inverse maps $\varphi:A(\xi)\rightarrow R^{\Spec(A(\xi))}$ and
-$\psi:R^{\Spec(A(\xi))}\rightarrow A(\xi)$.
+We now define externally two inverse maps $\varphi:A(\xi)\rightarrow \A^{\Spec(A(\xi))}$ and
+$\psi:\A^{\Spec(A(\xi))}\rightarrow A(\xi)$.
 
 \medskip
 
-Notice first that $R^{\Spec(A)}(L,\xi)$, for $\xi = (n,m,q_1,\dots,q_m)$,
+Notice first that $\A^{\Spec(A)}(L,\xi)$, for $\xi = (n,m,q_1,\dots,q_m)$,
 is the set of families of elements $l_{f,s}:M$ indexed by $f:L\rightarrow M$
 and $s:M^n$ a solution of $fq_1 = \dots = fq_m=0$, satisfying the uniformity condition
 $g(l_{f,s}) = l_{(g\circ f),gs}$ for $g:M\rightarrow N$.
 
 \medskip
 
-For $u$ in $A(L,\xi) = L_{\xi}$ we define $\varphi~u$ in $R^{\Spec(A)}(L,\xi)$ by
+For $u$ in $A(L,\xi) = L_{\xi}$ we define $\varphi~u$ in $\A^{\Spec(A)}(L,\xi)$ by
 $$
 (\varphi~u)_{f,s} = i(f,s)~u
 $$
-and for $l$ in $R^{\Spec(A)}(L,\xi)$ we define $\psi~l$ in $A(L,\xi) = L_{\xi}$ by
+and for $l$ in $\A^{\Spec(A)}(L,\xi)$ we define $\psi~l$ in $A(L,\xi) = L_{\xi}$ by
 $$
 \psi~ l = l_{\iota,s_{\xi}}
 $$
@@ -126,7 +126,7 @@ $$
 $$
 which shows that $\varphi$ and $\xi$ are inverse natural transformations.
 
-Furthermore, the map $\varphi$ is the external version of the canonical map $A(\xi)\rightarrow R^{\Spec(A(\xi))}$.
+Furthermore, the map $\varphi$ is the external version of the canonical map $A(\xi)\rightarrow \A^{\Spec(A(\xi))}$.
 The fact that this map is an isomorphism is an (internally) equivalent statement of the second axiom.
 
 
@@ -136,9 +136,9 @@ The fact that this map is an isomorphism is an (internally) equivalent statement
 We define now a family of propositions. As before, if $A$ is a ring, we let $\Um(A)$ be the type of unimodular sequences
 (\Cref{unimodular})
 $f_1,\dots,f_n$ in $A$, i.e.\ such that $(1) = (f_1,\dots,f_n)$. To any element $\vec{r} = r_1,\dots,r_n$
-in $\Um(R)$ we associate
+in $\Um(\A)$ we associate
 the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$. If $\vec{r}$ is the empty sequence then
-$D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1=_R 0$.
+$D(\vec{r})$ is the proposition $1 =_\A 0$. %For $n=0$, we get the proposition $1=_\A 0$.
 
   Starting from any model of dependent type theory with univalence satisfying the 4 axioms above, we build a new
   model of univalent type theory by considering the types $T$ that are modal for all modalities defined by the propositions
@@ -154,39 +154,39 @@ $D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1
     consider modal types.
 
     \begin{proposition}\label{modal}
-      The ring $R$ is modal. It follows that any f.p.\ $R$-algebra is modal.
+      The ring $\A$ is modal. It follows that any f.p.\ $\A$-algebra is modal.
     \end{proposition}
 
     \begin{proof}
-      If $r_1,\dots,r_n$ is in $\Um(R)$, we build a patch function $R^{D(r_1,\dots,r_n)}\rightarrow R$.
-      Any element $u:R^{D(r_1,\dots,r_n)}$ gives a compatible family of elements $u_i:R^{D(r_i)}$, hence
-      a compatible family of elements in $R_{r_i}$ by quasi-coherence. But then it follows from local-global
-      principle \cite{lombardi-quitte}, that we can patch this family to a unique element of $R$.
+      If $r_1,\dots,r_n$ is in $\Um(\A)$, we build a patch function $\A^{D(r_1,\dots,r_n)}\rightarrow \A$.
+      Any element $u:\A^{D(r_1,\dots,r_n)}$ gives a compatible family of elements $u_i:\A^{D(r_i)}$, hence
+      a compatible family of elements in $\A_{r_i}$ by quasi-coherence. But then it follows from local-global
+      principle \cite{lombardi-quitte}, that we can patch this family to a unique element of $\A$.
       
-      If $A$ is a f.p.\ $R$-algebra, then $A$ is isomorphic to $R^{\Spec(A)}$ and hence is modal.
+      If $A$ is a f.p.\ $\A$-algebra, then $A$ is isomorphic to $\A^{\Spec(A)}$ and hence is modal.
     \end{proof}
 
     \begin{proposition}
-      In this new sheaf model, $\perp_S$ is $1 =_R 0$.
+      In this new sheaf model, $\perp_S$ is $1 =_\A 0$.
     \end{proposition}
 
     \begin{proof}
-      The proposition $1=_R0$ is modal by the previous proposition.
+      The proposition $1=_\A0$ is modal by the previous proposition.
       If $T$ is modal, all diagonal maps $T\rightarrow T^{D(\vec{r})}$ are equivalences. For the empty sequence $\vec{r}$
-      we have that $D(\vec{r})$ is $\perp$, and the empty sequence is unimodular exactly when $1 =_R 0$. So $1=_R0$
+      we have that $D(\vec{r})$ is $\perp$, and the empty sequence is unimodular exactly when $1 =_\A 0$. So $1=_\A0$
       implies that $T$ and $T^{\perp}$ are equivalent, and so implies that $T$ is contractible. By extensionality,
-      we get that $(1=_R0)\rightarrow T$ is contractible when $T$ is modal.
+      we get that $(1=_\A0)\rightarrow T$ is contractible when $T$ is modal.
     \end{proof}
     
     \begin{lemma}\label{Um}
-      For any f.p.\ $R$-algebra $A$, we have $\Um(R)^{\Spec(A)} = \Um(A)$.
+      For any f.p.\ $\A$-algebra $A$, we have $\Um(\A)^{\Spec(A)} = \Um(A)$.
     \end{lemma}
 
     \begin{proof}
       Note that the fact that $r_1,\dots,r_n$ is unimodular is expressed by
-      $$\norm{\Sigma_{s_1,\dots,s_n:R}r_1s_1+\dots+r_ns_n = 1}$$
+      $$\norm{\Sigma_{s_1,\dots,s_n:\A}r_1s_1+\dots+r_ns_n = 1}$$
       and we can use these axioms 2 and 3 to get
-      $$\norm{\Sigma_{s_1,\dots,s_n:R}r_1s_1+\dots+r_ns_n = 1}^{\Spec(A)} = \norm{\Sigma_{v_1,\dots,v_n:A}\Pi_{x:\Spec(A)}r_1v_1(x)+\dots+r_nv_n(x) = 1}$$
+      $$\norm{\Sigma_{s_1,\dots,s_n:\A}r_1s_1+\dots+r_ns_n = 1}^{\Spec(A)} = \norm{\Sigma_{v_1,\dots,v_n:A}\Pi_{x:\Spec(A)}r_1v_1(x)+\dots+r_nv_n(x) = 1}$$
       The result follows then from this and axiom 4.
     \end{proof}      
       %, that $A$ is quasi-coherent.
@@ -205,49 +205,49 @@ $D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1
 %%     We write $Um(A)$ for $\Sigma_{n:\nats}\Um(A)$.
 
 %%     \begin{corollary}
-%%       If $A$ is a f.p. ring, then any function in $Um(R)^{\Spec(A)}$ is given by
+%%       If $A$ is a f.p. ring, then any function in $Um(\A)^{\Spec(A)}$ is given by
 %%       a fundamental system of orthogonal idempotents $e_1,\dots,e_p$, and corresponding elements in $Um(A_{e_1}),\dots,Um(A_{e_p})$.
 %%     \end{corollary}
     
-    For an f.p.\ $R$-algebra $A$, we can define the type of presentations $Pr_{n,m}(A)$ as the type $A[X_1,\dots,X_n]^m$.
+    For an f.p.\ $\A$-algebra $A$, we can define the type of presentations $Pr_{n,m}(A)$ as the type $A[X_1,\dots,X_n]^m$.
     Each element in $Pr_{n,m}(A)$ defines an
     f.p.\ $A$-algebra. Since $Pr_{n,m}(A)$ is a modal type since $A$ is f.p., the type of presentations $Pr_{n,m}(A)_S$ in the sheaf model
     defined for $n$ and $m$ in $\nats_S$ will be such that $Pr_{\eta p,\eta q}(A)_S = Pr_{p,q}(A)$ \cite{CRS21}.
-%    We have $Pr(R)^{\Spec(A)} = Pr(A)$. \rednote{Def of Pr missing}
+%    We have $Pr(\A)^{\Spec(A)} = Pr(A)$. \rednote{Def of Pr missing}
     
     \begin{lemma}\label{propsheaf}
       If $P$ is a proposition, then the sheafification of $P$ is
-      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}P^{D(r_1,\dots,r_n)}}$$
+      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(\A)}P^{D(r_1,\dots,r_n)}}$$
     \end{lemma}
     
     \begin{proof}
       If $Q$ is a modal proposition and $P\rightarrow Q$ we have
-      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}P^{D(r_1,\dots,r_n)}}\rightarrow Q$$
+      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(\A)}P^{D(r_1,\dots,r_n)}}\rightarrow Q$$
       since
       $P^{D(r_1,\dots,r_n)}\rightarrow Q^{D(r_1,\dots,r_n)}$ and $Q^{D(r_1,\dots,r_n)}\rightarrow Q$.
       It is thus enough to show that
-      $$P_0 = \norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}P^{D(r_1,\dots,r_n)}}$$
+      $$P_0 = \norm{\Sigma_{(r_1,\dots,r_n):\Um(\A)}P^{D(r_1,\dots,r_n)}}$$
       is modal.
-      If $s_1,\dots,s_m$ is in $\Um(R)$ we show $P_0^{D(s_1,\dots,s_m)}\rightarrow P_0$. This follows
-      from $\Um(R)^{D(r)} = \Um(R_r)$, Lemma \ref{Um}.
+      If $s_1,\dots,s_m$ is in $\Um(\A)$ we show $P_0^{D(s_1,\dots,s_m)}\rightarrow P_0$. This follows
+      from $\Um(\A)^{D(r)} = \Um(\A_r)$, Lemma \ref{Um}.
     \end{proof}
     
 
     \begin{proposition}\label{norm}
       For any modal type $T$, the proposition $\norm{T}_S$ is
-      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}T^{D(r_1)}\times\dots\times T^{D(r_n)}}$$
+      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(\A)}T^{D(r_1)}\times\dots\times T^{D(r_n)}}$$
     \end{proposition}
     
     \begin{proof}
       It follows from Lemma \ref{propsheaf} that the proposition $\norm{T}_S$ is
-      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}\norm{T}^{D(r_1,\dots,r_n)}} = \norm{\Sigma_{(r_1,\dots,r_n):\Um(R)}\norm{T}^{D(r_1)}\times\dots\times\norm{T}^{D(r_n)}}$$
+      $$\norm{\Sigma_{(r_1,\dots,r_n):\Um(\A)}\norm{T}^{D(r_1,\dots,r_n)}} = \norm{\Sigma_{(r_1,\dots,r_n):\Um(\A)}\norm{T}^{D(r_1)}\times\dots\times\norm{T}^{D(r_n)}}$$
       and we get the result using the fact that choice holds for each $D(r_i)$, so that
       \[\norm{T}^{D(r_1)}\times\dots\times\norm{T}^{D(r_n)} = \norm{T^{D(r_1)}}\times\dots\times\norm{T^{D(r_n)}} =
         \norm{T^{D(r_1)}\times\dots\times T^{D(r_n)}}\]
     \end{proof}
     
     \begin{proposition}
-      In the sheaf model, $R$ is a local ring.
+      In the sheaf model, $\A$ is a local ring.
     \end{proposition}
 
     \begin{proof}
@@ -255,28 +255,28 @@ $D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1
     \end{proof}
 
     \begin{lemma}\label{localfp}
-      If $A$ is a $R$-algebra which is modal and there exists $r_1,\dots,r_n$ in $\Um(R)$ such that each
-      $A^{D(r_i)}$ is a f.p.\ $R_{r_i}$-algebra, then $A$ is a f.p.\ $R$-algebra.
+      If $A$ is a $\A$-algebra which is modal and there exists $r_1,\dots,r_n$ in $\Um(\A)$ such that each
+      $A^{D(r_i)}$ is a f.p.\ $\A_{r_i}$-algebra, then $A$ is a f.p.\ $\A$-algebra.
     \end{lemma}
     
     \begin{proof}
-      Using the local-global principles presented in \cite{lombardi-quitte}, we can patch together the f.p.\ $R_{r_i}$-algebra
-      to a global f.p.\ $R$-algebra. This f.p.\ $R$-algebra is modal by Proposition \ref{modal}, and is locally equal to $A$
+      Using the local-global principles presented in \cite{lombardi-quitte}, we can patch together the f.p.\ $\A_{r_i}$-algebra
+      to a global f.p.\ $\A$-algebra. This f.p.\ $\A$-algebra is modal by Proposition \ref{modal}, and is locally equal to $A$
       and hence equal to $A$ since $A$ is modal.
     \end{proof}
 
     \begin{corollary}
-      The type of f.p.\ $R$-algebras is modal and is the type of f.p.\ $R$-algebras in the sheaf model.
+      The type of f.p.\ $\A$-algebras is modal and is the type of f.p.\ $\A$-algebras in the sheaf model.
     \end{corollary}
 
     \begin{proof}
-          For any $R$-algebra $A$, we can form a type $\Phi(n,m,A)$ expressing that $A$ has a presentation for some $v:Pr_{n,m}(R)$,
-    as the type stating that there is some map $\alpha:R[X_1,\dots,X_n]\rightarrow A$ and that $(A,\alpha)$ is universal such that
+          For any $\A$-algebra $A$, we can form a type $\Phi(n,m,A)$ expressing that $A$ has a presentation for some $v:Pr_{n,m}(\A)$,
+    as the type stating that there is some map $\alpha:\A[X_1,\dots,X_n]\rightarrow A$ and that $(A,\alpha)$ is universal such that
     $\alpha$ is $0$ on all elements of $v$. We can also look at this type $\Phi(n,m,A)_S$ in the sheaf model. Using the translation
     from \cite{Quirin16,CRS21}, we see that the type $\Phi(\eta n,\eta m,A)_S$ is exactly the type stating that $A$ is presented by
-    some $v:Pr_{n,m}(A)$ among the modal $R$-algebras. This is actually equivalent to $\Phi(n,m,A)$ since any f.p. $R$-algebra is modal.
+    some $v:Pr_{n,m}(A)$ among the modal $\A$-algebras. This is actually equivalent to $\Phi(n,m,A)$ since any f.p. $\A$-algebra is modal.
 
-     If $A$ is a modal $R$-algebra which is f.p. in the sense of the sheaf model, this means that we have
+     If $A$ is a modal $\A$-algebra which is f.p. in the sense of the sheaf model, this means that we have
      $$\norm{\Sigma_{n:\nats_S}\Sigma_{m:\nats_S}\Phi(n,m,A)_S}_S$$
      This is equivalent to
      $$\norm{\Sigma_{n:\nats}\Sigma_{m:\nats}\Phi(\eta n,\eta m,A)_S}_S$$
@@ -285,10 +285,10 @@ $D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1
      Using Lemma \ref{localfp} and Proposition \ref{norm}, this is equivalent to $\norm{\Sigma_{n:\nats}\Sigma_{m:\nats}\Phi(n,m,A)}$.
     \end{proof}
 
-     Note that the type of f.p. $R$-algebra is universe independent.
+     Note that the type of f.p. $\A$-algebra is universe independent.
 
     \begin{proposition}
-      For any f.p.\ $R$-algebra $A$, the type $\Spec(A)$ is modal and satisfies the axiom of Zariski local choice in
+      For any f.p.\ $\A$-algebra $A$, the type $\Spec(A)$ is modal and satisfies the axiom of Zariski local choice in
       the sheaf model.
     \end{proposition}
     
@@ -326,7 +326,7 @@ of $C(A)$.
  A particular case is if $\CC$ is the opposite of the category of f.p.\@ $k$-algebras, where $k$ is a
  fixed commutative ring.
 
- We have the presheaf $R$ defined by $R(J,A) = Hom(k[X],A)$ where $J$ object of $\BB$ and $A$ object of $\CC$.
+ We have the presheaf $\A$ defined by $\A(J,A) = Hom(k[X],A)$ where $J$ object of $\BB$ and $A$ object of $\CC$.
 
   The presheaf $\Gm$ is defined by $\Gm(J,A) = Hom(k[X,1/X],A) = A^{\times}$, the set of invertible elements of $A$.
 
@@ -357,7 +357,7 @@ satisfies $\ext(u,\psi,v) = v$ on the extent $\psi$ \cite{CoquandHM18}.
 
 \subsection{Choice}
 
-We prove choice in the presheaf model: if $A$ is a f.p.\@ algebra over $R$ then we have a map
+We prove choice in the presheaf model: if $A$ is a f.p.\@ algebra over $\A$ then we have a map
 $$
 l:(\Pi_{x:\Spec(A)}\norm{P})\rightarrow \norm{\Pi_{x:\Spec(A)}P}
 $$
@@ -370,17 +370,16 @@ if it is $\ext(u,\psi,v)$ the image is $\ext(l(u),\psi,l(v))$.
 \subsection{$1$-topos model}
 
 For any small category $\CC$ we can form the presheaf model of type theory over the base category $\CC$ \cite{hofmann,huber-phd-thesis}.
-%\rednote{Reference to Hoffmann/Simon's thesis?}.
 
 \medskip
 
 We look at the special case where $\CC$ is the opposite of the category of finitely presented $k$-algebras for a fixed
 ring $k$.
 
-    In this model we have a presheaf $R(A) = Hom(k[X],A)$ which has a ring structure.
+    In this model we have a presheaf $\A(A) = Hom(k[X],A)$ which has a ring structure.
 
-    In the {\em presheaf} model, we can check that we have $\neg\neg (0=_R 1)$. Indeed, at any stage $A$ we have
-    a map $\alpha:A\rightarrow 0$ to the trivial f.p. algebra $0$, and $0 =_R 1$ is valid at the stage $0$.
+    In the {\em presheaf} model, we can check that we have $\neg\neg (0=_\A 1)$. Indeed, at any stage $A$ we have
+    a map $\alpha:A\rightarrow 0$ to the trivial f.p. algebra $0$, and $0 =_\A 1$ is valid at the stage $0$.
 
     The previous internal description of the sheaf model applies as well in the $1$-topos setting.
 
@@ -401,15 +400,15 @@ its value $M_A = M(A,\idd_A)$ at $A,\idd_A$. The next proposition expresses when
 
 \begin{proposition}
   $M$ is internally quasi-coherent\footnote{In the sense that the canonical map $M\otimes A\rightarrow M^{\Spec(A)}$ is an isomorphism for any
-  f.p. $R$-algebra $A$.} iff we have $M(B,\alpha) = M_A\otimes_A B$ and the restriction map for
+  f.p. $\A$-algebra $A$.} iff we have $M(B,\alpha) = M_A\otimes_A B$ and the restriction map for
   $\gamma:B\rightarrow C$ is $M_A\otimes_A\gamma$.
 \end{proposition}
 
     \subsubsection{Projective space}
 
-We have defined $\bP^n$ to be the set of lines in $V = R^{n+1}$, so we have
+We have defined $\bP^n$ to be the set of lines in $V = \A^{n+1}$, so we have
 $$
-\bP^n ~=~ \Sigma_{L:V\rightarrow \Omega}[\exists_{v:V}\neg (v = 0)\wedge L = R v]
+\bP^n ~=~ \Sigma_{L:V\rightarrow \Omega}[\exists_{v:V}\neg (v = 0)\wedge L = \A v]
 $$
 The following was noticed in \cite{kockreyes}.
 
@@ -418,8 +417,8 @@ The following was noticed in \cite{kockreyes}.
 \end{proposition}
 
 \begin{proof}
-  $\bP^n$ is the set of pairs $L,0$ where $L:\Omega^V(A)$ satisfies the proposition $\exists_{v:V}\neg (v = 0)\wedge L = Rv$ at stage
-  $A$. This condition implies that $L$ is a quasicoherent submodule of $R^{n+1}$ defined at stage $A$.
+  $\bP^n$ is the set of pairs $L,0$ where $L:\Omega^V(A)$ satisfies the proposition $\exists_{v:V}\neg (v = 0)\wedge L = \A v$ at stage
+  $A$. This condition implies that $L$ is a quasicoherent submodule of $\A^{n+1}$ defined at stage $A$.
   It is thus determined by its value $L(A,\idd_A) = L_A$.
 
   Furthermore, the condition also implies that $L_A$ is locally free of rank $1$. By local-global principle \cite{lombardi-quitte},
@@ -429,17 +428,17 @@ The following was noticed in \cite{kockreyes}.
 
 One point in this argument was to notice that the condition
 $$
-\exists_{v:V}\neg (v = 0)\wedge L = R v
+\exists_{v:V}\neg (v = 0)\wedge L = \A v
 $$
-implies that $L$ is quasi-coherent. This would be direct in presence of univalence, since we would have then $L = R$ as a $R$-module
-and $R$ is quasi-coherent. But it can also be proved without univalence by transport along isomorphism: a $R$-module which is
+implies that $L$ is quasi-coherent. This would be direct in presence of univalence, since we would have then $L = \A$ as a $\A$-module
+and $\A$ is quasi-coherent. But it can also be proved without univalence by transport along isomorphism: a $\A$-module which is
 isomorphic to a quasi-coherent module is itself quasi-coherent.
 
 
 \subsection{Global sections and Zariski global choice}
 
 We let $\Box T$ the type of global sections of a globally defined sheaf $T$.
-If $c = r_1,\dots,r_n$ is in $\Um(R)$ we let $\Box_c T$ be the type $\Box T^{D(r_1)}\times\dots\times\Box T^{D(r_n)}$.
+If $c = r_1,\dots,r_n$ is in $\Um(\A)$ we let $\Box_c T$ be the type $\Box T^{D(r_1)}\times\dots\times\Box T^{D(r_n)}$.
 
 Using these notations, we can state the principle of Zariski global choice
 $$
@@ -449,7 +448,7 @@ $$
 This principle is valid in the present model.
 
 Using this principle, we can show that $\Box K(\Gm,1)$ is equal to the type of projective modules of rank $1$ over $k$
-and that each $\Box K(R,n)$ for $n>0$ is contractible.
+and that each $\Box K(\A,n)$ for $n>0$ is contractible.
                                                                                   
 %This should work over $\bP^n$ as well.
 
