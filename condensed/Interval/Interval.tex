@@ -1,0 +1,82 @@
+\subsection{The interval}
+The goal of this section is to define the interval $[0,1]_\mathbb R$ as a scheme. 
+We assume $\mathbb N, \mathbb Q$ have been defined in HoTT
+with linear propostional order relations $<,\leq, > ,\geq$ playing nicely together 
+and standard algebraic operations. 
+From these, we can define the subtype $\mathbb Q_{>0}=\sigma _{q : \mathbb Q} (q>0)$, 
+and the absolute-value function $|\cdot|$ on $\mathbb Q$. 
+
+\begin{definition}
+  A pre-Cauchy sequence is a sequence of rational numbers $(q_n)_{n: \mathbb N}$ with $0 \leq q_n \leq 1$ 
+  for all $n:\mathbb N$
+%  together with a term of type
+  such that for every $\epsilon: \mathbb Q_{>0}$, we have an $N:\mathbb N$, 
+  such that whenever $n,m \geq N$, we have 
+\begin{equation}
+%  \forall \epsilon : \mathbb Q_{>0} \Sigma N : \mathbb N \forall m,n : \mathbb N (m,n \geq N) \to 
+  | q_n - q_m | \leq \epsilon
+\end{equation} 
+\end{definition}
+
+\begin{definition}
+Given two pre-Cauchy sequences $p = (p_n)_{n\in\mathbb N}, q=(q_n)_{n\in\mathbb N}$, 
+we define the proposition $p \sim_C  q$ as 
+%for all $\epsilon : \mathbb Q_{>0}$ there exists an $N :\mathbb N$ such that whenever $n \geq N$, we have
+\begin{equation}
+  p \sim_C q : = \forall (\epsilon : \mathbb Q_{>0} )\exists ( N :\mathbb N) \forall (n : \mathbb N) ((n \geq N) \to 
+  (| p_n - q_n| \leq  \epsilon))
+\end{equation}
+\end{definition}
+Note that $\sim_C$ defines an equivalence relation on pre-Cauchy sequences. 
+\begin{definition}
+We define the type of Cauchy sequences as the type of pre-Cauchy sequences quotiented by $\sim_C$. 
+\end{definition}
+
+%\begin{definition}
+%  A binary sequence consists of an initial segment $I \subseteq \mathbb N$
+%  and a function $x:I \to 2$. 
+%If $I$ is (in)finite, we call the binary sequence (in)finite as well. 
+%\end{definition} 
+%
+%For $x$ a finite binary sequence and $y$ any binary sequence, 
+%we'll denote $(x,y)$ for their concatenation, 
+%and $\overline x$ for the infinite sequence repeating $x$. 
+%
+Consider the relation $\sim_s$ on $2^{\mathbb N}$, 
+such that for any finite binary sequence $x$, we have 
+$$(x,1,\overline 0) \sim_s (x ,0, \overline 1).$$
+\begin{proposition}
+  Cauchy sequences are in isomorphism with $2^\mathbb N / \sim_s$. 
+\end{proposition} 
+\begin{proof}
+  For $\alpha: 2^\mathbb N$, define the rational sequence $bin(\alpha)$ by 
+  \begin{equation} (bin (\alpha))_n :  = \sum\limits_{0 \leq i \leq n} \alpha(i) / 2^{i+1}\end{equation}  
+  This sequence is pre-Cauchy and whenever $\alpha\sim_s \beta$, we have 
+  $bin(\alpha) \sim_C bin(\beta)$. 
+  Therefore $bin$ induces a function from $2^\mathbb N / \sim_s$ to Cauchy sequences. 
+  
+  \medskip 
+
+  Conversely, assume we are given a pre-Cauchy sequence $p$. 
+  We will define a binary sequence $\alpha  = c(p): 2^\mathbb N$.
+  Consider any $i:\mathbb N$, and suppose $\alpha(j)$ has been defined for $0 \leq j<i$. 
+
+  Let $\epsilon = (\frac12)^{i^2}$. %Placeholder value.
+  Let $N$ be such that for $n,m \geq N$, we have $|p_n - p_m| < \epsilon$. 
+  Consider $\widetilde p_i = p_N - \sum\limits_{0\leq j < i} \frac {\alpha(j)}{2^j}$.
+  As the order on $\mathbb Q$ is total, we can define 
+  \begin{equation}
+    \alpha(i) = \begin{cases}
+    1 \text{ if } \widetilde p_i > ((\frac12)^{i} - \epsilon) \\
+    0 \text{ otherwise } 
+    \end{cases} 
+  \end{equation}  
+  This is a binary sequence, hence $c$ defines a function from pre-Cauchy sequences to $2^\mathbb N$.
+  We claim that whenever $p \sim_C q$, we have $c(p) \sim_s c(q)$. 
+
+  Suppose that $c(p)(n) = 0$ and $c(p)(n) = 1$, we shall show that in this case, 
+  for $m > n$ we'll have $c(p)(m) =1 , c(p)(m) = 0$. 
+
+\end{proof}
+
+
