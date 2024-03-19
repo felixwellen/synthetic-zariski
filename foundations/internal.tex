@@ -48,7 +48,7 @@ We start from 4 axioms. The 3 first axioms can be seen as variation of our 3 axi
 \end{enumerate}
 
 As before, $\Spec(A)$ denotes the type of $\A$-algebra maps from $A$ to $\A$, and
-if $r$ is in $\A$, we write $D(r)$ for the proposition $\Spec(R_r)$.
+if $r$ is in $\A$, we write $D(r)$ for the proposition $\Spec(\A_r)$.
 
 Note that the first axiom does not require
 $\A$ to be local, and the third axiom states that $\Spec(A)$ satisfies \emph{choice} and not only Zariski local choice,
@@ -83,7 +83,7 @@ Note that $i(\iota,s_{\xi}) = \id$.
 
 \medskip
 
-Internally, we have a map $A:\FP\rightarrow R\mathsf{-alg}(\UU_0)$, which to any presentation
+Internally, we have a map $A:\FP\rightarrow \A\mathsf{-alg}(\UU_0)$, which to any presentation
 $\xi = (n,m,q_1,\dots,q_m)$ associates the $\A$-algebra $A(\xi) = L[X_1,\dots,X_n]/(q_1,\dots,q_m)$.
 This corresponds externally to the presheaf on the category of elements of $\FP$ defined
 by $A(L,\xi) = L_{\xi}$.
@@ -138,7 +138,7 @@ We define now a family of propositions. As before, if $A$ is a ring, we let $\Um
 $f_1,\dots,f_n$ in $A$, i.e.\ such that $(1) = (f_1,\dots,f_n)$. To any element $\vec{r} = r_1,\dots,r_n$
 in $\Um(\A)$ we associate
 the proposition $D(\vec{r}) = D(r_1)\vee\dots\vee D(r_n)$. If $\vec{r}$ is the empty sequence then
-$D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1=_R 0$.
+$D(\vec{r})$ is the proposition $1 =_\A 0$. %For $n=0$, we get the proposition $1=_\A 0$.
 
   Starting from any model of dependent type theory with univalence satisfying the 4 axioms above, we build a new
   model of univalent type theory by considering the types $T$ that are modal for all modalities defined by the propositions
@@ -158,7 +158,7 @@ $D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1
     \end{proposition}
 
     \begin{proof}
-      If $r_1,\dots,r_n$ is in $\Um(\A)$, we build a patch function $\A^{D(r_1,\dots,r_n)}\rightarrow R$.
+      If $r_1,\dots,r_n$ is in $\Um(\A)$, we build a patch function $\A^{D(r_1,\dots,r_n)}\rightarrow \A$.
       Any element $u:\A^{D(r_1,\dots,r_n)}$ gives a compatible family of elements $u_i:\A^{D(r_i)}$, hence
       a compatible family of elements in $\A_{r_i}$ by quasi-coherence. But then it follows from local-global
       principle \cite{lombardi-quitte}, that we can patch this family to a unique element of $\A$.
@@ -167,15 +167,15 @@ $D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1
     \end{proof}
 
     \begin{proposition}
-      In this new sheaf model, $\perp_S$ is $1 =_R 0$.
+      In this new sheaf model, $\perp_S$ is $1 =_\A 0$.
     \end{proposition}
 
     \begin{proof}
-      The proposition $1=_R0$ is modal by the previous proposition.
+      The proposition $1=_\A0$ is modal by the previous proposition.
       If $T$ is modal, all diagonal maps $T\rightarrow T^{D(\vec{r})}$ are equivalences. For the empty sequence $\vec{r}$
-      we have that $D(\vec{r})$ is $\perp$, and the empty sequence is unimodular exactly when $1 =_R 0$. So $1=_R0$
+      we have that $D(\vec{r})$ is $\perp$, and the empty sequence is unimodular exactly when $1 =_\A 0$. So $1=_\A0$
       implies that $T$ and $T^{\perp}$ are equivalent, and so implies that $T$ is contractible. By extensionality,
-      we get that $(1=_R0)\rightarrow T$ is contractible when $T$ is modal.
+      we get that $(1=_\A0)\rightarrow T$ is contractible when $T$ is modal.
     \end{proof}
     
     \begin{lemma}\label{Um}
@@ -229,7 +229,7 @@ $D(\vec{r})$ is the proposition $1 =_R 0$. %For $n=0$, we get the proposition $1
       $$P_0 = \norm{\Sigma_{(r_1,\dots,r_n):\Um(\A)}P^{D(r_1,\dots,r_n)}}$$
       is modal.
       If $s_1,\dots,s_m$ is in $\Um(\A)$ we show $P_0^{D(s_1,\dots,s_m)}\rightarrow P_0$. This follows
-      from $\Um(\A)^{D(r)} = \Um(R_r)$, Lemma \ref{Um}.
+      from $\Um(\A)^{D(r)} = \Um(\A_r)$, Lemma \ref{Um}.
     \end{proof}
     
 
@@ -370,7 +370,6 @@ if it is $\ext(u,\psi,v)$ the image is $\ext(l(u),\psi,l(v))$.
 \subsection{$1$-topos model}
 
 For any small category $\CC$ we can form the presheaf model of type theory over the base category $\CC$ \cite{hofmann,huber-phd-thesis}.
-%\rednote{Reference to Hoffmann/Simon's thesis?}.
 
 \medskip
 
@@ -379,8 +378,8 @@ ring $k$.
 
     In this model we have a presheaf $\A(A) = Hom(k[X],A)$ which has a ring structure.
 
-    In the {\em presheaf} model, we can check that we have $\neg\neg (0=_R 1)$. Indeed, at any stage $A$ we have
-    a map $\alpha:A\rightarrow 0$ to the trivial f.p. algebra $0$, and $0 =_R 1$ is valid at the stage $0$.
+    In the {\em presheaf} model, we can check that we have $\neg\neg (0=_\A 1)$. Indeed, at any stage $A$ we have
+    a map $\alpha:A\rightarrow 0$ to the trivial f.p. algebra $0$, and $0 =_\A 1$ is valid at the stage $0$.
 
     The previous internal description of the sheaf model applies as well in the $1$-topos setting.
 
@@ -409,7 +408,7 @@ its value $M_A = M(A,\idd_A)$ at $A,\idd_A$. The next proposition expresses when
 
 We have defined $\bP^n$ to be the set of lines in $V = \A^{n+1}$, so we have
 $$
-\bP^n ~=~ \Sigma_{L:V\rightarrow \Omega}[\exists_{v:V}\neg (v = 0)\wedge L = R v]
+\bP^n ~=~ \Sigma_{L:V\rightarrow \Omega}[\exists_{v:V}\neg (v = 0)\wedge L = \A v]
 $$
 The following was noticed in \cite{kockreyes}.
 
@@ -418,7 +417,7 @@ The following was noticed in \cite{kockreyes}.
 \end{proposition}
 
 \begin{proof}
-  $\bP^n$ is the set of pairs $L,0$ where $L:\Omega^V(A)$ satisfies the proposition $\exists_{v:V}\neg (v = 0)\wedge L = Rv$ at stage
+  $\bP^n$ is the set of pairs $L,0$ where $L:\Omega^V(A)$ satisfies the proposition $\exists_{v:V}\neg (v = 0)\wedge L = \A v$ at stage
   $A$. This condition implies that $L$ is a quasicoherent submodule of $\A^{n+1}$ defined at stage $A$.
   It is thus determined by its value $L(A,\idd_A) = L_A$.
 
@@ -429,9 +428,9 @@ The following was noticed in \cite{kockreyes}.
 
 One point in this argument was to notice that the condition
 $$
-\exists_{v:V}\neg (v = 0)\wedge L = R v
+\exists_{v:V}\neg (v = 0)\wedge L = \A v
 $$
-implies that $L$ is quasi-coherent. This would be direct in presence of univalence, since we would have then $L = R$ as a $\A$-module
+implies that $L$ is quasi-coherent. This would be direct in presence of univalence, since we would have then $L = \A$ as a $\A$-module
 and $\A$ is quasi-coherent. But it can also be proved without univalence by transport along isomorphism: a $\A$-module which is
 isomorphic to a quasi-coherent module is itself quasi-coherent.
 
