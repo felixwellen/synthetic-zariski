@@ -24,9 +24,9 @@ we show that the two constructions are equivalent.
   \begin{enumerate}[(a)]
   \item An $n$-dimensional $\A$-\notion{vector space} is an $\A$-module $V$,
     such that $\propTrunc{ V = \A^n }$. 
-  \item We write $\Vect{R}{n}$ for the type of these vector spaces and $V\setminus\{0\}$ for the type
+  \item We write $\Vect{\A}{n}$ for the type of these vector spaces and $V\setminus\{0\}$ for the type
     \[ \sum_{x:V}x\neq 0\]
-  \item A \notion{vector bundle} on a type $X$ is a map $V:X\to \Vect{R}{n}$. 
+  \item A \notion{vector bundle} on a type $X$ is a map $V:X\to \Vect{\A}{n}$. 
   \end{enumerate}
 \end{definition}
 
@@ -49,7 +49,7 @@ We will see below, that the second, equivalent definition is small.
 \begin{proposition}%
   \label{lines-are-one-dimensional}
   For any vector space $V$ and line $L\subseteq V$,
-  $L$ is 1-dimensional in the sense that $\propTrunc{L=_{\Mod{R}}R}$.
+  $L$ is 1-dimensional in the sense that $\propTrunc{L=_{\Mod{\A}}\A}$.
 \end{proposition}
 
 \begin{proof}
@@ -237,12 +237,12 @@ Let us prove some basic facts about equality of points in $\bP^n$.
 
 \subsection{Functions on $\bP^n$}
 
-Here we prove the classical fact that all functions $\bP^n\to R$ are constant.
+Here we prove the classical fact that all functions $\bP^n\to \A$ are constant.
 We start with the case $n = 1$.
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
   \label{functions-on-projective-line-constant}
-  All functions $\bP^1 \to R$ are constant.
+  All functions $\bP^1 \to \A$ are constant.
 \end{lemma}
 
 \begin{proof}
@@ -265,7 +265,7 @@ We start with the case $n = 1$.
   and we can insert the known $\A$ algebras for the affine schemes involved.
   \[ \begin{tikzcd}
     \A[X, Y]/(1 - XY) &
-    R[Y] \ar[l] \\
+    \A[Y] \ar[l] \\
     \A[X] \ar[u] &
     \A^{\bP^1} \ar[l] \ar[u]
     \ar[lu, phantom, very near start, "\ulcorner"]
@@ -275,7 +275,7 @@ We start with the case $n = 1$.
   Now it is an algebraic computation,
   understanding the elements of $\A[X, Y]/(1 - XY)$ as Laurent polynomials,
   to see that the pullback is the algebra $\A$,
-  so we have $\A^{\bP^1} = R$ as desired.
+  so we have $\A^{\bP^1} = \A$ as desired.
 \end{proof}
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
@@ -323,16 +323,16 @@ We start with the case $n = 1$.
 
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}]%
   \label{functions-on-projective-space-constant}
-  All functions $\bP^n \to R$ are constant,
+  All functions $\bP^n \to \A$ are constant,
   that is,
-  \[ H^0(\bP^n, \A) \colonequiv (\bP^n \to \A) = R \rlap{.} \]
+  \[ H^0(\bP^n, \A) \colonequiv (\bP^n \to \A) = \A \rlap{.} \]
 \end{theorem}
 
 \begin{proof}
-  Let $f : \bP^n \to R$ be given.
+  Let $f : \bP^n \to \A$ be given.
   For any two distinct points $p \neq q : \bP^n$,
   we can apply \Cref{parametrized-line-through-two-points-in-projective-space}
-  and (merely) find a map $\widetilde{f} : \bP^1 \to R$
+  and (merely) find a map $\widetilde{f} : \bP^1 \to \A$
   with $\widetilde{f}([0 : 1]) = f(p)$
   and $\widetilde{f}([1 : 0]) = f(q)$.
   Then we see $f(p) = f(q)$
@@ -345,16 +345,16 @@ We start with the case $n = 1$.
 \begin{remark}
   Another proof of \Cref{functions-on-projective-space-constant}
   goes as follows:
-  A function $f : \bP^n \to R$
+  A function $f : \bP^n \to \A$
   is by definition of $\bP^n$
   (\Cref{projective-space-hit})
   given by an $\A^{\times}$-invariant function
-  $g : \A^{n+1}\setminus\{0\} \to R$.
+  $g : \A^{n+1}\setminus\{0\} \to \A$.
   But it is possible to show that the restriction function
   \[ (\A^{n+1} \to \A) \xrightarrow{\sim} (\A^{n+1}\setminus\{0\} \to \A) \]
   is bijective
   (as long as $n \geq 1$),
-  so $g$ corresponds to a function $\widetilde{g} : \A^{n+1} \to R$
+  so $g$ corresponds to a function $\widetilde{g} : \A^{n+1} \to \A$
   which is constant on every subset of the form
   $\{\, rx \mid r : \A^{\times} \,\}$
   for $x : \A^{n+1} \setminus \{0\}$.
@@ -371,13 +371,13 @@ We start with the case $n = 1$.
   so it is the colimit (in the category of sets) of a diagram
   of finite intersections of them,
   which are all affine schemes.
-  The set of functions $\bP^n \to R$
+  The set of functions $\bP^n \to \A$
   is thus the limit of a corresponding diagram of algebras.
   These algebras are most conveniently described as sub-algebras
   of the degree $0$ part of the graded algebra
   ${\A[X_0, \dots, X_n]}_{X_0 \dots X_n}$,
   for example
-  $(U_0 \to \A) = R[\frac{X_1}{X_0}, \dots, \frac{X_n}{X_0}]$.
+  $(U_0 \to \A) = \A[\frac{X_1}{X_0}, \dots, \frac{X_n}{X_0}]$.
   Then the limit can be computed to be $\A$.
 \end{remark}
 
@@ -392,24 +392,24 @@ We will also give some indication on which line bundles exist in general.
 
 \begin{definition}%
   Let $X$ be a type.
-  A \notion{line bundle} is a map $\mathcal L : X\to \Mod{R}$,
+  A \notion{line bundle} is a map $\mathcal L : X\to \Mod{\A}$,
   such that
-  \[ \prod_{x:X} \propTrunc{\mathcal L_x=_{\Mod{R}}R} \rlap{.}\]
+  \[ \prod_{x:X} \propTrunc{\mathcal L_x=_{\Mod{\A}}\A} \rlap{.}\]
   The \notion{trivial line bundle} on $X$ is the line bundle
-  $X \to \Mod{R}, x \mapsto R$,
+  $X \to \Mod{\A}, x \mapsto \A$,
   and when we say that a line bundle $\mathcal{L}$ is trivial
   we mean that $\mathcal{L}$ is equal to the trivial line bundle,
-  or equivalently $\propTrunc{\prod_{x:X} \mathcal L_x=_{\Mod{R}}R}$.
+  or equivalently $\propTrunc{\prod_{x:X} \mathcal L_x=_{\Mod{\A}}\A}$.
 \end{definition}
 
 \begin{definition}
   \begin{enumerate}[(a)]
-  \item The \notion{tautological bundle} is the line bundle $\mathcal O_{\bP^n}(-1):\bP^n\to \Mod{R}$,
+  \item The \notion{tautological bundle} is the line bundle $\mathcal O_{\bP^n}(-1):\bP^n\to \Mod{\A}$,
     given by
     \[ (L:\bP^n)\mapsto L\rlap{.}\]
-  \item The \notion{dual}\index{$\mathcal L^\vee$} $\mathcal L^\vee$ of a line bundle $\mathcal L:\bP^n\to \Mod{R}$,
+  \item The \notion{dual}\index{$\mathcal L^\vee$} $\mathcal L^\vee$ of a line bundle $\mathcal L:\bP^n\to \Mod{\A}$,
     is the line bundle given by
-    \[ (x:\bP^n)\mapsto \Hom_{\Mod{R}}(\mathcal L_x,\A)\rlap{.}\]
+    \[ (x:\bP^n)\mapsto \Hom_{\Mod{\A}}(\mathcal L_x,\A)\rlap{.}\]
   \item The \notion{tensor product} of $\A$-module bundles $\mathcal F\otimes \mathcal G$\index{$\mathcal F\otimes \mathcal G$}
     on a scheme $X$
     is given by pointwise taking the tensor product of $\A$-modules.
@@ -536,13 +536,13 @@ which will require some preparation.
   for every $\A$ module $M$,
   and the action on $\mathcal{L}_x \setminus \{0\}$ is free and transitive
   and we have $\propTrunc{\mathcal{L}_x \setminus \{0\}}$
-  since we merely have $\mathcal{L}_x = R$ as $\A$ modules.
+  since we merely have $\mathcal{L}_x = \A$ as $\A$ modules.
   By \Cref{Gm-torsors-on-A1},
   there not not is a global section of this torsor,
   so we have a section $s : (x : \A^1) \to \mathcal{L}_x$
   with $s(x) \neq 0$ for all $x : \A^1$.
   But this means that the line bundle $\mathcal{L}$ is trivial,
-  since we can build an identification $\mathcal{L}_x = R$
+  since we can build an identification $\mathcal{L}_x = \A$
   by sending $s(x)$ to $1$.
 \end{proof}
 
@@ -576,8 +576,8 @@ We now transfer this result to line bundles on $\bP^1$.
 \end{theorem}
 
 \begin{proof}
-  Let $\mathcal{L}:\bP^1\to \Mod{R}$ be a line bundle on $\bP^1$.
-  By pushout recursion, $\mathcal{L}$ is given by two line bundles $\mathcal L_0,\mathcal L_1:\A^1\to\Mod{R}$
+  Let $\mathcal{L}:\bP^1\to \Mod{\A}$ be a line bundle on $\bP^1$.
+  By pushout recursion, $\mathcal{L}$ is given by two line bundles $\mathcal L_0,\mathcal L_1:\A^1\to\Mod{\A}$
   and a glueing function $g:(x:\A^1\setminus\{0\})\to \mathcal L_0(x)=\mathcal L_1(\frac{1}{x})$.
   Since we are proving a double negation, we can assume identifications $p_0:(x:\A^1)\to \mathcal L_0=\A^1$
   and $p_1:(x:\A^1)\to \mathcal L_1=\A^1$ by \Cref{line-bundle-A1-notnot-trivial}.

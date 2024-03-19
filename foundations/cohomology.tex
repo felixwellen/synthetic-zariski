@@ -7,7 +7,7 @@ we can represent it by the trivial bundle
 that assigns to every point $x : X$ the set $\A$.
 Indeed, for an affine scheme $X = \Spec A$,
 taking the sections of this bundle over a basic open $D(f) \subseteq X$
-\[ \left(\prod_{x : D(f)} R\right) = (D(f) \to \A) = A[f^{-1}] \]
+\[ \left(\prod_{x : D(f)} \A\right) = (D(f) \to \A) = A[f^{-1}] \]
 yields the localizations of the ring $A$
 expected from the structure sheaf $\mathcal{O}_X$.
 More generally,
@@ -28,7 +28,7 @@ since the definition below uses the internal hom ``$\prod$''
 \begin{definition}
   \index{$M(U)$}
   \label{application-of-bundle-to-subtype}
-  Let $X$ be a type and $M:X\to \Mod{R}$ a dependent module.
+  Let $X$ be a type and $M:X\to \Mod{\A}$ a dependent module.
   Let $U\subseteq X$ be any subtype.
   \begin{enumerate}[(a)]
   \item We write:
@@ -36,7 +36,7 @@ since the definition below uses the internal hom ``$\prod$''
       M(U)\colonequiv \prod_{x:U}M_x
       \rlap{.}
     \]
-  \item With pointwise structure, $U\to R$ is an $\A$-algebra
+  \item With pointwise structure, $U\to \A$ is an $\A$-algebra
     and $M(U)$ is a $(U\to \A)$-module.
   \end{enumerate}
 \end{definition}
@@ -46,8 +46,8 @@ can be done pointwise:
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{module-bundle-localization-pointwise}
-  Let $X$ be a scheme and $M:X\to \Mod{R}$ a dependent module.
-  For any $f:X\to R$, there is an equality
+  Let $X$ be a scheme and $M:X\to \Mod{\A}$ a dependent module.
+  For any $f:X\to \A$, there is an equality
   \[
     M(X)_f=\prod_{x:X}(M_x)_{f(x)}
   \]
@@ -135,7 +135,7 @@ We will need the following algebraic observation:
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{localization-to-restriction}                    
-  Let $X$ be a scheme, $M:X\to\Mod{R}$, $U\subseteq X$ open and $f:A$.
+  Let $X$ be a scheme, $M:X\to\Mod{\A}$, $U\subseteq X$ open and $f:A$.
   Then there is an $\A$-linear map
   \[
     M(U)_f \to M(D(f)) 
@@ -167,7 +167,7 @@ where we can show that higher cohomology vanishes if the scheme is affine.
   \]
   from \Cref{localization-to-module-if-non-zero} is an equivalence.
   We denote the type of weakly quasi-coherent $\A$-modules
-  with $\Mod{R}_{wqc}$\index{$\Mod{R}_{wqc}$}.
+  with $\Mod{\A}_{wqc}$\index{$\Mod{\A}_{wqc}$}.
 \end{definition}
 
 \begin{lemma}
@@ -198,7 +198,7 @@ where we can show that higher cohomology vanishes if the scheme is affine.
 \begin{definition}%
   \label{weakly-quasi-coherent-bundle}
   Let $X$ be a scheme.
-  A weakly quasi-coherent bundle on $X$, is a map $M:X\to \Mod{R}_{wqc}$.
+  A weakly quasi-coherent bundle on $X$, is a map $M:X\to \Mod{\A}_{wqc}$.
 \end{definition}
 
 An immediate consequence is, that
@@ -207,8 +207,8 @@ the property that ``restricting is the same as localizing'':
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]
   \label{weakly-quasi-coherent-open-localization}
-  Let $X$ be a scheme and $M:X\to \Mod{R}$ weakly quasi-coherent,
-  then for all open $U\subseteq X$ and $f:U\to R$
+  Let $X$ be a scheme and $M:X\to \Mod{\A}$ weakly quasi-coherent,
+  then for all open $U\subseteq X$ and $f:U\to \A$
   the canonical morphism
   \[
     M(U)_f\to M(D(f))
@@ -231,7 +231,7 @@ Let us look at an example.
 \begin{proof}
   Then for any $f:\A$ and $x:X$, using \Cref{algebra-valued-functions-on-affine}, we have
   \[
-    (C_x)_f=C_x\otimes_R R_f=(\Spec R_f \to C_x)=(D(f)\to C_x)={C_x}^{D(f)}
+    (C_x)_f=C_x\otimes_\A \A_f=(\Spec \A_f \to C_x)=(D(f)\to C_x)={C_x}^{D(f)}
     \rlap{.}
   \]
 \end{proof}
@@ -277,12 +277,12 @@ We will show below, that quasi coherence is preserved by the following construct
   \label{pullback-push-forward}
   Let $X,Y$ be types and $f:X\to Y$ be a map.
   \begin{enumerate}[(a)]
-  \item \index{$f^*M$} For any dependent module $N:Y\to\Mod{R}$,
+  \item \index{$f^*M$} For any dependent module $N:Y\to\Mod{\A}$,
     the \notion{pullback} or \notion{inverse image} is the dependent module
     \[
       f^*N\colonequiv (x:X) \mapsto M_{f(x)}\rlap{.}
     \]
-  \item \index{$f_*M$} For any dependent module $M:X\to\Mod{R}$,
+  \item \index{$f_*M$} For any dependent module $M:X\to\Mod{\A}$,
     the \notion{push-forward} or \notion{direct image} is the dependent module
     \[
       f_*M\colonequiv (y:Y) \mapsto \prod_{x:\fib_f(y)}M_{\pi_1(x)}\rlap{.}
@@ -294,9 +294,9 @@ We will show below, that quasi coherence is preserved by the following construct
   \label{pullback-push-forward-qcoh}
   Let $X,Y$ be schemes and $f:X\to Y$ be a map.
   \begin{enumerate}[(a)]
-  \item For any weakly quasi-coherent dependent module $N:Y\to\Mod{R}$,
+  \item For any weakly quasi-coherent dependent module $N:Y\to\Mod{\A}$,
     the inverse image $f^*N$ is weakly quasi-coherent.
-  \item For any weakly quasi-coherent dependent module $M:X\to\Mod{R}$,
+  \item For any weakly quasi-coherent dependent module $M:X\to\Mod{\A}$,
     the direct image $f_*M$ is weakly quasi-coherent.
   \end{enumerate}
 \end{theorem}
@@ -335,13 +335,13 @@ there is a short proof of the following:
   By algebra: $(N/M)_f=N_f/M_f$.
   This means we are done, if $(N/M)^{D(f)}=N^{D(f)}/{M^{D(f)}}$.
   To see this holds, let us consider $0\to M\to N\to N/M\to 0$ as a short exact sequence of dependent modules,
-  over the subtype of the point $D(f)\subseteq 1=\Spec R$.
+  over the subtype of the point $D(f)\subseteq 1=\Spec \A$.
   Then, taking global sections, by \Cref{cohomology-les},
   we have an exact sequence
   \[
     0\to M^{D(f)}\to N^{D(f)}\to (N/M)^{D(f)}\to H^1(D(f),M)
   \]
-  -- but $D(f)=\Spec R_f$ is affine,
+  -- but $D(f)=\Spec \A_f$ is affine,
   so the last term is 0 by \Cref{H1-wqc-module-affine-trivial}
   and $(N/M)^{D(f)}$ is the cokernel $N^{D(f)}/M^{D(f)}$.
 
@@ -364,7 +364,7 @@ and $A$-modules.
   \[ \begin{tikzcd}[row sep=tiny]
     M \ar[r, mapsto] & {(M \otimes x)}_{x : \Spec A} \\
     \Mod{A} \ar[r, shift left=2] \ar[r, phantom, "\rotatebox{90}{$\vdash$}"] &
-    \Mod{R}^{\Spec A} \ar[l, shift left=2] \\
+    \Mod{\A}^{\Spec A} \ar[l, shift left=2] \\
     \prod_{x : \Spec A} N_x & N \ar[l, mapsto]
   \end{tikzcd} \]
   between the category of $A$-modules
@@ -392,10 +392,10 @@ the unit of the adjunction is:
 \begin{theorem}%
   \label{fp-module}
   Let $X=\Spec(A)$ be affine and
-  let a bundle of finitely presented $\A$-modules $M : X\to \fpMod{R}$ be given.
+  let a bundle of finitely presented $\A$-modules $M : X\to \fpMod{\A}$ be given.
   Then the $A$-module
   \[ \tilde{M}\coloneqq\prod_{x:X}M_x \]
-  is finitely presented and for any $x:X$ the $\A$-module $\tilde{M}\otimes_A R$ is $M_x$.
+  is finitely presented and for any $x:X$ the $\A$-module $\tilde{M}\otimes_A \A$ is $M_x$.
   Under this correspondence, localizing $\tilde{M}$ at $f:A$ corresponds to restricting $M$ to $D(f)$.
 \end{theorem}
 
@@ -491,7 +491,7 @@ $\mathcal{O}_X$-module sheaf on $X=\Spec(A)$ given by an $A$-module $M$ is exact
 
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{H1-wqc-module-affine-trivial}
-  For any affine scheme $X=\Spec(A)$ and coefficients $M: X\to \Mod{R}_{wqc}$, we have
+  For any affine scheme $X=\Spec(A)$ and coefficients $M: X\to \Mod{\A}_{wqc}$, we have
   \[ H^1(X,M)=0 \rlap{.} \]
 \end{theorem}
 
