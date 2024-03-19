@@ -22,8 +22,8 @@ we show that the two constructions are equivalent.
 
 \begin{definition}%
   \begin{enumerate}[(a)]
-  \item An $n$-dimensional $R$-\notion{vector space} is an $R$-module $V$,
-    such that $\propTrunc{ V = R^n }$. 
+  \item An $n$-dimensional $\A$-\notion{vector space} is an $\A$-module $V$,
+    such that $\propTrunc{ V = \A^n }$. 
   \item We write $\Vect{R}{n}$ for the type of these vector spaces and $V\setminus\{0\}$ for the type
     \[ \sum_{x:V}x\neq 0\]
   \item A \notion{vector bundle} on a type $X$ is a map $V:X\to \Vect{R}{n}$. 
@@ -37,9 +37,9 @@ We will see below, that the second, equivalent definition is small.
 \begin{definition}%
   \label{projective-space-as-space-of-lines}
   \begin{enumerate}[(a)]
-  \item A \notion{line} in an $R$-vector space $V$ is a subtype $L:V\to \Prop$,
+  \item A \notion{line} in an $\A$-vector space $V$ is a subtype $L:V\to \Prop$,
     such that there exists an $x:V\setminus\{0\}$ with
-    \[ \prod_{y:V}\left(L (y) \Leftrightarrow \exists c:R.y=c\cdot x\right)\]
+    \[ \prod_{y:V}\left(L (y) \Leftrightarrow \exists c:\A.y=c\cdot x\right)\]
   \item The space of all lines in a fixed $n$-dimensional vector space $V$ is the \notion{projectivization} of $V$:
     \[ \bP(V)\colonequiv \sum_{L:V\to \Prop} L \text{ is a line}  \]
   \item \notion{Projective $n$-space} $\bP^n \colonequiv \bP(\A^{n+1})$ is the projectivization of $\A^{n+1}$.
@@ -55,10 +55,10 @@ We will see below, that the second, equivalent definition is small.
 \begin{proof}
   Let $L$ be a line.
   We merely have $x:V\setminus\{0\}$ such that 
-  \[ \prod_{y:V}\left(L (y) \Leftrightarrow \exists c:R.y=c\cdot x\right)\]
+  \[ \prod_{y:V}\left(L (y) \Leftrightarrow \exists c:\A.y=c\cdot x\right)\]
   We may replace the ``$\exists$'' with a ``$\sum$'',
   since $c$ is uniquely determined for any $x,y$.
-  This means we can construct the map $\alpha\mapsto \alpha\cdot x:R\to L$ and it is an equivalence.
+  This means we can construct the map $\alpha\mapsto \alpha\cdot x:\A\to L$ and it is an equivalence.
 \end{proof}
 
 We now give the small construction:
@@ -68,7 +68,7 @@ We now give the small construction:
   Let $n:\N$.
   \notion{Projective $n$-space}\index{$\bP^n$} $\bP^n$ is the set quotient of the type $\A^{n+1}\setminus\{0\}$ by the relation
   \[
-    x \sim y \colonequiv \sum_{\lambda : R} \lambda x=y\rlap{.}
+    x \sim y \colonequiv \sum_{\lambda : \A} \lambda x=y\rlap{.}
   \]
   By \Cref{generalized-field-property}, the non-zero vector $y$ has an invertible entry,
   so that the right hand side is a proposition and $\lambda$ is a unit.
@@ -123,7 +123,7 @@ we show that our two constructions are equivalent:
   that we can take as a preimage.
   To conclude, we note that $\varphi$ is also an embedding.
   So let $\varphi([x])=\varphi([y])$.
-  Then, since $\langle x\rangle=\langle y\rangle$, there is a $\lambda\in R^\times$,
+  Then, since $\langle x\rangle=\langle y\rangle$, there is a $\lambda\in \A^\times$,
   such that $x=\lambda y$, so $[x]=[y]$.
 \end{proof}
 
@@ -146,7 +146,7 @@ Let us prove some basic facts about equality of points in $\bP^n$.
 
 \begin{proof}
   $[x]$ and $[y]$ are equal,
-  if and only if there merely is a $\lambda:R^\times$,
+  if and only if there merely is a $\lambda:\A^\times$,
   such that $\lambda x = y$.
   By calculation, if there is such a $\lambda$,
   we always have $x_iy_j=y_ix_j$.
@@ -178,7 +178,7 @@ Let us prove some basic facts about equality of points in $\bP^n$.
   Note that if $x=z$ and $z=y$, it follows that $x=y$.
   So we have $\neg (x=y)\Rightarrow \neg (x=z\wedge z=y)$.
   By \Cref{equality-2-by-2-minor}, $x=y$ and $x=z\wedge z=y$
-  are both equivalent to the statement that some vector with components in $R$ is zero,
+  are both equivalent to the statement that some vector with components in $\A$ is zero,
   so we can replace negated equality, with existence of a non-zero element,
   or more explicitly, the following are equivalent:
   \begin{align*}
@@ -199,23 +199,23 @@ Let us prove some basic facts about equality of points in $\bP^n$.
   \[
     \sum_{[x:y]:\bP^1}[x^2:y^2]=[0:1]\rlap{.}
   \]
-  So for any $x:R$ with $x^2=0$, $[x:1]:\fib_s([0:1])$  and
+  So for any $x:\A$ with $x^2=0$, $[x:1]:\fib_s([0:1])$  and
   any other point $(x,y)$ such that $[x:y]$ is in $\fib_s([0:1])$,
   already yields an equivalent point, since $y$ has to be invertible.
 
-  This shows that the fiber over $[0:1]$ is a first order disk, i.e. $\D(1)=\{x:R|x^2=0\}$.
+  This shows that the fiber over $[0:1]$ is a first order disk, i.e. $\D(1)=\{x:\A|x^2=0\}$.
   The same applies to the point $[1:0]$.
-  To analyze $\fib_s([1:1])$, let us assume $2\neq 0$ (in $R$).
+  To analyze $\fib_s([1:1])$, let us assume $2\neq 0$ (in $\A$).
   Then we know, the two points $[1:-1]$ and $[1:1]$ are in $\fib_s([1:1])$ and they are different.
   It will turn out, that any point in $\fib_s([1:1])$ is equal to one of those two.
   For any $[x':y']:\fib_s([1:1])$, we can assume $[x':y']=[x:1]$ and $x^2=1$, or equivalently $(x-1)(x+1)=0$.
   By \Cref{projective-space-apartness-relation}, inequality in $\bP^n$ is an apartness relation.
-  So for each $x:R$, we know $x-1$ is invertible or $x+1$ is invertible.
-  But this means that for any $x:R$ with $(x-1)(x+1)=0$, that $x=1$ or $x=-1$.
+  So for each $x:\A$, we know $x-1$ is invertible or $x+1$ is invertible.
+  But this means that for any $x:\A$ with $(x-1)(x+1)=0$, that $x=1$ or $x=-1$.
 
   While the fibers are not the same in general,
   they are all affine and have the same size in the sense that for each $\Spec A_x\colonequiv \fib_s(x)$,
-  we have that $A_x$ is free of rank 2 as an $R$-module.
+  we have that $A_x$ is free of rank 2 as an $\A$-module.
   To see this, let us first note,
   that $\fib_s([x:y])$ is completely contained in an affine subset of $\bP^1$.
   This is a proposition, so we can use that either $x$ or $y$ is invertible.
@@ -230,9 +230,9 @@ Let us prove some basic facts about equality of points in $\bP^n$.
   Let us rewrite with $z\colonequiv \frac{x}{y}$.
   Then
   \[
-    \fib_s([z:1])=\sum_{a:\A^1}(a^2=z)=\Spec R[X]/(X^2-z)
+    \fib_s([z:1])=\sum_{a:\A^1}(a^2=z)=\Spec \A[X]/(X^2-z)
   \]
-  and $R[X]/(X^2-z)$ is free of rank 2 as an $R$-module.
+  and $\A[X]/(X^2-z)$ is free of rank 2 as an $\A$-module.
 \end{example}
 
 \subsection{Functions on $\bP^n$}
@@ -260,22 +260,22 @@ We start with the case $n = 1$.
     \A^1 \ar[r] &
     \bP^1
   \end{tikzcd} \]
-  If we apply the functor $X \mapsto R^X$ to this diagram,
-  we obtain a pullback square of $R$ algebras,
-  and we can insert the known $R$ algebras for the affine schemes involved.
+  If we apply the functor $X \mapsto \A^X$ to this diagram,
+  we obtain a pullback square of $\A$ algebras,
+  and we can insert the known $\A$ algebras for the affine schemes involved.
   \[ \begin{tikzcd}
-    R[X, Y]/(1 - XY) &
+    \A[X, Y]/(1 - XY) &
     R[Y] \ar[l] \\
-    R[X] \ar[u] &
-    R^{\bP^1} \ar[l] \ar[u]
+    \A[X] \ar[u] &
+    \A^{\bP^1} \ar[l] \ar[u]
     \ar[lu, phantom, very near start, "\ulcorner"]
   \end{tikzcd} \]
   Here, the different variable names $X$ and $Y$ indicate
   the resulting homomorphisms.
   Now it is an algebraic computation,
-  understanding the elements of $R[X, Y]/(1 - XY)$ as Laurent polynomials,
-  to see that the pullback is the algebra $R$,
-  so we have $R^{\bP^1} = R$ as desired.
+  understanding the elements of $\A[X, Y]/(1 - XY)$ as Laurent polynomials,
+  to see that the pullback is the algebra $\A$,
+  so we have $\A^{\bP^1} = R$ as desired.
 \end{proof}
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
@@ -325,7 +325,7 @@ We start with the case $n = 1$.
   \label{functions-on-projective-space-constant}
   All functions $\bP^n \to R$ are constant,
   that is,
-  \[ H^0(\bP^n, R) \colonequiv (\bP^n \to R) = R \rlap{.} \]
+  \[ H^0(\bP^n, \A) \colonequiv (\bP^n \to \A) = R \rlap{.} \]
 \end{theorem}
 
 \begin{proof}
@@ -348,20 +348,20 @@ We start with the case $n = 1$.
   A function $f : \bP^n \to R$
   is by definition of $\bP^n$
   (\Cref{projective-space-hit})
-  given by an $R^{\times}$-invariant function
+  given by an $\A^{\times}$-invariant function
   $g : \A^{n+1}\setminus\{0\} \to R$.
   But it is possible to show that the restriction function
-  \[ (\A^{n+1} \to R) \xrightarrow{\sim} (\A^{n+1}\setminus\{0\} \to R) \]
+  \[ (\A^{n+1} \to \A) \xrightarrow{\sim} (\A^{n+1}\setminus\{0\} \to \A) \]
   is bijective
   (as long as $n \geq 1$),
   so $g$ corresponds to a function $\widetilde{g} : \A^{n+1} \to R$
   which is constant on every subset of the form
-  $\{\, rx \mid r : R^{\times} \,\}$
+  $\{\, rx \mid r : \A^{\times} \,\}$
   for $x : \A^{n+1} \setminus \{0\}$.
   But then it is constant on the whole line
-  $\{\, rx \mid r : R \,\}$,
+  $\{\, rx \mid r : \A \,\}$,
   since the restriction function
-  $(\A^1 \to R) \hookrightarrow (\A^1\setminus\{0\} \to R)$
+  $(\A^1 \to \A) \hookrightarrow (\A^1\setminus\{0\} \to \A)$
   is injective.
   From this it follows that $f$ is constant with value $\widetilde{g}(0)$.
 
@@ -375,10 +375,10 @@ We start with the case $n = 1$.
   is thus the limit of a corresponding diagram of algebras.
   These algebras are most conveniently described as sub-algebras
   of the degree $0$ part of the graded algebra
-  ${R[X_0, \dots, X_n]}_{X_0 \dots X_n}$,
+  ${\A[X_0, \dots, X_n]}_{X_0 \dots X_n}$,
   for example
-  $(U_0 \to R) = R[\frac{X_1}{X_0}, \dots, \frac{X_n}{X_0}]$.
-  Then the limit can be computed to be $R$.
+  $(U_0 \to \A) = R[\frac{X_1}{X_0}, \dots, \frac{X_n}{X_0}]$.
+  Then the limit can be computed to be $\A$.
 \end{remark}
 
 
@@ -409,10 +409,10 @@ We will also give some indication on which line bundles exist in general.
     \[ (L:\bP^n)\mapsto L\rlap{.}\]
   \item The \notion{dual}\index{$\mathcal L^\vee$} $\mathcal L^\vee$ of a line bundle $\mathcal L:\bP^n\to \Mod{R}$,
     is the line bundle given by
-    \[ (x:\bP^n)\mapsto \Hom_{\Mod{R}}(\mathcal L_x,R)\rlap{.}\]
-  \item The \notion{tensor product} of $R$-module bundles $\mathcal F\otimes \mathcal G$\index{$\mathcal F\otimes \mathcal G$}
+    \[ (x:\bP^n)\mapsto \Hom_{\Mod{R}}(\mathcal L_x,\A)\rlap{.}\]
+  \item The \notion{tensor product} of $\A$-module bundles $\mathcal F\otimes \mathcal G$\index{$\mathcal F\otimes \mathcal G$}
     on a scheme $X$
-    is given by pointwise taking the tensor product of $R$-modules.
+    is given by pointwise taking the tensor product of $\A$-modules.
   \item For $k:\Z$, the $k$-th \notion{Serre twisting sheaf} $\mathcal{O}_{\bP^n}(k)$ on $\bP^n$
     is given by taking the $-k$-th tensor power of $\mathcal O_{\bP^n}(-1)$ for negative $k$
     and the $k$-th tensor power of $\mathcal O_{\bP^n}(-1)^{\vee}$ otherwise.
@@ -428,7 +428,7 @@ which will require some preparation.
   we have not not:
   either $U = \emptyset$
   or $U = D((X - a_1)\dots(X - a_n)) = \A^1 \setminus \{ a_1, \dots, a_n \}$
-  for pairwise distinct numbers $a_1, \dots, a_n : R$.
+  for pairwise distinct numbers $a_1, \dots, a_n : \A$.
 \end{lemma}
 
 \begin{proof}
@@ -441,7 +441,7 @@ which will require some preparation.
   by \Cref{qc-open-affine-open},
   so we do not not get
   (that $U = \emptyset$ or)
-  a list of elements $a_1, \dots, a_n : R$
+  a list of elements $a_1, \dots, a_n : \A$
   such that $U = \A^1 \setminus \{ a_1, \dots, a_n \}$.
   Then we can not not get rid of any duplicates in the list.
 \end{proof}
@@ -449,10 +449,10 @@ which will require some preparation.
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{decompose-invertible-function-on-intersection-in-A1}
   Let $U, V : \A^1 \to \Prop$ be two open subsets
-  and let $f : U \cap V \to R^\times$ be a function.
+  and let $f : U \cap V \to \A^\times$ be a function.
   Then there do not not exist functions
-  $g : U \to R^\times$ and
-  $h : V \to R^\times$
+  $g : U \to \A^\times$ and
+  $h : V \to \A^\times$
   such that $f(x) = g(x)h(x)$ for all $x : U \cap V$.
 \end{lemma}
 
@@ -467,7 +467,7 @@ which will require some preparation.
     \rlap{,}
   \end{align*}
   where all linear factors are distinct.
-  Then every function $f : U \cap V \to R^\times$ can
+  Then every function $f : U \cap V \to \A^\times$ can
   by (\axiomref{sqc}), \Cref{polynomials-notnot-decompose}
   and comparing linear factors
   not not be written in the form
@@ -476,7 +476,7 @@ which will require some preparation.
      {(X - b_1)}^{e'_1} \dots {(X - b_l)}^{e'_l}
      {(X - c_1)}^{e''_1} \dots {(X - c_m)}^{e''_m}
   \]
-  with $\alpha : R^\times$, $e_i, e'_i, e''_i : \Z$.
+  with $\alpha : \A^\times$, $e_i, e'_i, e''_i : \Z$.
   Other linear factors can not appear,
   since they do not represent invertible functions on $U \cap V$.
   Now we can write $f = gh$ as desired,
@@ -492,25 +492,25 @@ which will require some preparation.
 
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{Gm-torsors-on-A1}
-  Every $R^\times$-torsor on $\A^1$ (\Cref{torsor})
+  Every $\A^\times$-torsor on $\A^1$ (\Cref{torsor})
   does not not have a global section.
 \end{theorem}
 
 \begin{proof}
-  Let $T$ be an $R^\times$-torsor on $\A^1$,
+  Let $T$ be an $\A^\times$-torsor on $\A^1$,
   that is,
   for every $x : \A^1$,
-  $T_x$ is a set with a free and transitive $R^\times$ action
+  $T_x$ is a set with a free and transitive $\A^\times$ action
   and $\propTrunc{T_x}$.
   By (\axiomref{Z-choice}),
   we get a cover of $\A^1$ by open subsets $\A^1 = \bigcup_{i = 1}^n U_i$
   and local sections $s_i : (x : U_i) \to T_x$ of the bundle $T$.
   From this we can not not construct a global section by induction on $n$:
   Given any two local sections $s_i, s_j$ defined on $U_i, U_j$,
-  let $f : U_i \cap U_j \to R^\times$ be the unique function with
+  let $f : U_i \cap U_j \to \A^\times$ be the unique function with
   $f(x)s_i(x) = s_j(x)$ for all $x : U_i \cap U_j$.
   Then by \Cref{decompose-invertible-function-on-intersection-in-A1},
-  we not not find $g : U_i \to R^\times$, $h : U_j \to R^\times$
+  we not not find $g : U_i \to \A^\times$, $h : U_j \to \A^\times$
   such that the sections
   $x \mapsto g(x)s_i(x)$ and $x \mapsto {h(x)}^{-1}s_j(x)$,
   defined on $U_i$ respectively $U_j$,
@@ -530,13 +530,13 @@ which will require some preparation.
 
 \begin{proof}
   Given a line bundle $\mathcal{L}$,
-  we can construct an $R^\times$ torsor
+  we can construct an $\A^\times$ torsor
   \[ x \mapsto \mathcal{L}_x \setminus \{0\} \rlap{.} \]
-  Note that there is a well-defined $R^\times$ action on $M \setminus \{0\}$
-  for every $R$ module $M$,
+  Note that there is a well-defined $\A^\times$ action on $M \setminus \{0\}$
+  for every $\A$ module $M$,
   and the action on $\mathcal{L}_x \setminus \{0\}$ is free and transitive
   and we have $\propTrunc{\mathcal{L}_x \setminus \{0\}}$
-  since we merely have $\mathcal{L}_x = R$ as $R$ modules.
+  since we merely have $\mathcal{L}_x = R$ as $\A$ modules.
   By \Cref{Gm-torsors-on-A1},
   there not not is a global section of this torsor,
   so we have a section $s : (x : \A^1) \to \mathcal{L}_x$
@@ -550,15 +550,15 @@ We now transfer this result to line bundles on $\bP^1$.
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]
   \label{invertible-laurent-polynomials}
-  Every invertible element of the ring of Laurent polynomials $R[X]_X$
+  Every invertible element of the ring of Laurent polynomials $\A[X]_X$
   is not not of the form $\alpha X^n$
-  for some $\alpha : R^{\times}$ and $n : \Z$.
+  for some $\alpha : \A^{\times}$ and $n : \Z$.
 \end{lemma}
 
 \begin{proof}
-  Every element $f : R[X]_X$ is of the form
+  Every element $f : \A[X]_X$ is of the form
   $f = \sum_{i = m}^{m + n} a_i X^i$
-  for some $m : \Z$, $n \geq 0$ and $a_i : R$.
+  for some $m : \Z$, $n \geq 0$ and $a_i : \A$.
   Every $a_i$ is not not either $0$ or invertible.
   Thus we can assume that either $f = 0$ or
   both $a_m$ and $a_{m+n}$ are invertible.
@@ -579,17 +579,17 @@ We now transfer this result to line bundles on $\bP^1$.
   Let $\mathcal{L}:\bP^1\to \Mod{R}$ be a line bundle on $\bP^1$.
   By pushout recursion, $\mathcal{L}$ is given by two line bundles $\mathcal L_0,\mathcal L_1:\A^1\to\Mod{R}$
   and a glueing function $g:(x:\A^1\setminus\{0\})\to \mathcal L_0(x)=\mathcal L_1(\frac{1}{x})$.
-  Since we are proving a double negation, we can assume identifications $p_0:(x:\A^1)\to \mathcal L_0=R^1$
-  and $p_1:(x:\A^1)\to \mathcal L_1=R^1$ by \Cref{line-bundle-A1-notnot-trivial}.
+  Since we are proving a double negation, we can assume identifications $p_0:(x:\A^1)\to \mathcal L_0=\A^1$
+  and $p_1:(x:\A^1)\to \mathcal L_1=\A^1$ by \Cref{line-bundle-A1-notnot-trivial}.
 
-  Now we can define $g':(x:\A^1\setminus\{0\})\to R^1=R^1$ by $g'(x)\colonequiv p_0^{-1}(x)\cdot g(x)\cdot p_1(\frac{1}{x})$.
-  By synthetic quasi-coherence, equivalently, $g'$ is an invertible element of $R[X]_X$
-  and therefore by \Cref{invertible-laurent-polynomials} given by $\alpha X^n$ for some $\alpha:R^\times$ and $n:\Z$.
+  Now we can define $g':(x:\A^1\setminus\{0\})\to \A^1=\A^1$ by $g'(x)\colonequiv p_0^{-1}(x)\cdot g(x)\cdot p_1(\frac{1}{x})$.
+  By synthetic quasi-coherence, equivalently, $g'$ is an invertible element of $\A[X]_X$
+  and therefore by \Cref{invertible-laurent-polynomials} given by $\alpha X^n$ for some $\alpha:\A^\times$ and $n:\Z$.
   We can assume $\alpha=1$, since this just amounts to concatenating
   our final equality with the automorphism of line bundles given by $\alpha^{-1}$ at all points.
 
   By explicit calculation, the tautological bundle $\mathcal O_{\bP^1}(-1)$ on $\bP^1$ is given by glueing trivial line bundles along
-  a glueing function $g_{-1}:(x:\A^1\setminus\{0\})\to R^1=R^1$ with $g_{-1}(x)\colonequiv \lambda\mapsto x\cdot \lambda$.
+  a glueing function $g_{-1}:(x:\A^1\setminus\{0\})\to \A^1=\A^1$ with $g_{-1}(x)\colonequiv \lambda\mapsto x\cdot \lambda$.
   Note that an arbitrary choice of sign is involved, made by choosing the direction of the glueing function.
   Sticking with the same choice, calculation shows $g_1(x)\colonequiv \lambda\mapsto \frac{1}{x}\cdot \lambda$
   is a glueing function for the dual of the tautological bundle $\mathcal O_{\bP^1}(1)$

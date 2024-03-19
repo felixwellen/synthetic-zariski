@@ -5,38 +5,38 @@ where $A$ is a finitely presented algebra.
 
 \begin{definition}%
   A type $X$ is \notion{(qc-)affine},
-  if there is a finitely presented $R$-algebra $A$, such that $X=\Spec A$.
+  if there is a finitely presented $\A$-algebra $A$, such that $X=\Spec A$.
 \end{definition}
 
 If $X$ is affine, it is possible to reconstruct the algebra directly.
 
 \begin{lemma}[using \axiomref{sqc}]%
   \label{algebra-from-affine-scheme}
-  Let $X$ be an affine scheme, then there is a natural equivalence $X=\Spec (R^X)$.
+  Let $X$ be an affine scheme, then there is a natural equivalence $X=\Spec (\A^X)$.
 \end{lemma}
 
 \begin{proof}
-  The natural map $X\to \Spec (R^X)$ is given by mapping $x:X$ to the
+  The natural map $X\to \Spec (\A^X)$ is given by mapping $x:X$ to the
   evaluation homomorphism at $x$. 
   There merely is an $A$ such that $X=\Spec A$.
-  Applying $\Spec$ to the canonical map $A\to R^{\Spec A}$,
+  Applying $\Spec$ to the canonical map $A\to \A^{\Spec A}$,
   yields an equivalence by \axiomref{sqc}.
   This is a (one sided) inverse to the map above.
-  So we have $X=\Spec (R^X)$.
+  So we have $X=\Spec (\A^X)$.
 \end{proof}
 
 \begin{proposition}%
   Let $X$ be a type.
-  The type of all finitely presented $R$-algebras $A$, such that $X=\Spec A$, is a proposition.
+  The type of all finitely presented $\A$-algebras $A$, such that $X=\Spec A$, is a proposition.
 \end{proposition}
 
-When we write ``$\Spec A$'' we implicitly assume $A$ is a finitely presented $R$-algebra.
+When we write ``$\Spec A$'' we implicitly assume $A$ is a finitely presented $\A$-algebra.
 Recall from \Cref{basic-open-subset}
 that the basic open subset $D(f) \subseteq \Spec A$
 is given by $D(f)(x)\colonequiv \inv(f(x))$.
 
 \begin{example}[using \axiomref{loc}, \axiomref{sqc}]
-  For $a_1, \dots, a_n : R$, we have
+  For $a_1, \dots, a_n : \A$, we have
   \[ D((X - a_1) \cdots (X - a_n)) = \A^1 \setminus \{ a_1, \dots, a_n \} \rlap{.}\]
   Indeed,
   for any $x : \A^1$,
@@ -74,8 +74,8 @@ and show in \Cref{qc-open-affine-open}, that the two notions agree on affine sch
   \[ D(f) =
      \sum_{x : X} D(f)(x) =
      \sum_{x : \Spec A} \inv(f(x)) =
-     \sum_{x : \Hom_{\Alg{R}}(A, R)} \inv(x(f)) =
-     \Hom_{\Alg{R}}(A[f^{-1}], R) =
+     \sum_{x : \Hom_{\Alg{R}}(A, \A)} \inv(x(f)) =
+     \Hom_{\Alg{R}}(A[f^{-1}], \A) =
      \Spec A[f^{-1}]
      \]
 \end{proof}
@@ -95,7 +95,7 @@ Affine-openness is transitive in the following sense:
   Now $D(hf)$ is an affine-open in $X$,
   that coincides with $U$: \\
   Let $x:X$, then $(hf)(x)$ is invertible, if and only if both $h(x)$ and $f(x)$ are invertible.
-  The latter means $x:D(f)$, so we can interpret $x$ as a homomorphism from $A_f$ to $R$.
+  The latter means $x:D(f)$, so we can interpret $x$ as a homomorphism from $A_f$ to $\A$.
   Then $x:D(g)$ means $x(g)$ is invertible, which is equivalent to $x(h)$ being invertible,
   since $x(f)^k$ is invertible anyway.
 \end{proof}
@@ -114,13 +114,13 @@ Affine-openness is transitive in the following sense:
 
 More generally,
 the Zariski-lattice consisting of the radicals
-of finitely generated ideals of a finitely presented $R$-algebra $A$,
+of finitely generated ideals of a finitely presented $\A$-algebra $A$,
 coincides with the lattice of open subtypes.
 This means, that internal to the Zariski-topos,
 it is not necessary to consider the full Zariski-lattice for a constructive treatment of schemes.
 
 \begin{lemma}[using \axiomref{sqc}]%
-  Let $A$ be a finitely presented $R$-algebra
+  Let $A$ be a finitely presented $\A$-algebra
   and let $f, g_1, \dots, g_n \in A$.
   Then we have $D(f) \subseteq D(g_1, \dots, g_n)$
   as subsets of $\Spec A$
@@ -135,7 +135,7 @@ it is not necessary to consider the full Zariski-lattice for a constructive trea
   $D(f) \cap V(g_1, \dots, g_n) = \varnothing$, that is,
   $\Spec((A/(g_1, \dots, g_n))[f^{-1}]) = \varnothing$.
   By (\axiomref{sqc})
-  this means that the finitely presented $R$-algebra $(A/(g_1, \dots, g_n))[f^{-1}]$
+  this means that the finitely presented $\A$-algebra $(A/(g_1, \dots, g_n))[f^{-1}]$
   is zero.
   And this is the case if and only if $f$ is nilpotent in $A/(g_1, \dots, g_n)$,
   that is, if $f \in \sqrt{(g_1, \dots, g_n)}$, as stated.
@@ -168,32 +168,32 @@ More generally we have:
 \end{lemma}
 
 \begin{proof}
-  The maps $f:X\to Z$, $g:Y\to Z$ are induced by $R$-algebra homomorphisms $f^*:A\to R$ and $g^*:B\to R$.
+  The maps $f:X\to Z$, $g:Y\to Z$ are induced by $\A$-algebra homomorphisms $f^*:A\to R$ and $g^*:B\to R$.
   Let
   \[ (h,k,p) : \Spec A \times_{\Spec C} \Spec B \]
   with $p:h\circ f^*=k\circ g^* $.
-  This defines a $R$-cocone on the diagram
+  This defines a $\A$-cocone on the diagram
   \[
     \begin{tikzcd}
       A & C\ar[r,"g^*"]\ar[l,"f^*",swap] & B
     \end{tikzcd}
   \]
-  Since $A\otimes_C B$ is a pushout in $R$-algebras,
-  there is a unique $R$-algebra homomorphism $A\otimes_C B \to R$ corresponding to $(h,k,p)$.
+  Since $A\otimes_C B$ is a pushout in $\A$-algebras,
+  there is a unique $\A$-algebra homomorphism $A\otimes_C B \to R$ corresponding to $(h,k,p)$.
 \end{proof}
 
 \subsection{Boundedness of functions to $\N$}
 
 While the axiom \axiomref{sqc}
 describes functions on an affine scheme
-with values in $R$,
+with values in $\A$,
 we can generalize it to functions taking values
-in another finitely presented $R$-algebra,
+in another finitely presented $\A$-algebra,
 as follows.
 
 \begin{lemma}[using \axiomref{sqc}]%
   \label{algebra-valued-functions-on-affine}
-  For finitely presented $R$-algebras $A$ and $B$,
+  For finitely presented $\A$-algebras $A$ and $B$,
   the function
   \begin{align*}
     A \otimes B &\xrightarrow{\sim} (\Spec A \to B) \\
@@ -208,9 +208,9 @@ as follows.
   and calculate as follows.
   \begin{alignat*}{8}
     A \otimes B
-    &=& (\Spec (A \otimes B) \to R)
-    &=& (\Spec A \times \Spec B \to R)
-    &=& (\Spec A \to (\Spec B \to R))
+    &=& (\Spec (A \otimes B) \to \A)
+    &=& (\Spec A \times \Spec B \to \A)
+    &=& (\Spec A \to (\Spec B \to \A))
     &=& (\Spec A \to B) \\
     c
     &\mapsto& (\chi \mapsto \chi(c))
@@ -219,15 +219,15 @@ as follows.
     &\mapsto& (\varphi \mapsto (\varphi \otimes B)(c))
   \end{alignat*}
   The last step is induced by the identification
-  $B = (\Spec B \to R),\, b \mapsto (\psi \mapsto \psi(b))$,
+  $B = (\Spec B \to \A),\, b \mapsto (\psi \mapsto \psi(b))$,
   and we use the fact that
   $\psi \circ (\varphi \otimes B) = \varphi \otimes \psi$.
 \end{proof}
 
 \begin{lemma}[using \axiomref{sqc}]%
   \label{eventually-vanishing-sequence-on-affine}
-  Let $A$ be a finitely presented $R$-algebra
-  and let $s : \Spec A \to (\N \to R)$
+  Let $A$ be a finitely presented $\A$-algebra
+  and let $s : \Spec A \to (\N \to \A)$
   be a family of sequences,
   each of which eventually vanishes:
   \[ \prod_{x : \Spec A} \propTrunc{\sum_{N : \N} \prod_{n \geq N} s(x)(n) = 0} \]
@@ -237,15 +237,15 @@ as follows.
 
 \begin{proof}
   The set of eventually vanishing sequences $\N \to R$
-  is in bijection with the set $R[X]$ of polynomials,
+  is in bijection with the set $\A[X]$ of polynomials,
   by taking the entries of a sequence as the coefficients of a polynomial.
   So the family of sequences $s$
-  is equivalently a family of polynomials $s : \Spec A \to R[X]$.
-  Now we apply \Cref{algebra-valued-functions-on-affine} with $B = R[X]$
+  is equivalently a family of polynomials $s : \Spec A \to \A[X]$.
+  Now we apply \Cref{algebra-valued-functions-on-affine} with $B = \A[X]$
   to see that such a family corresponds to a polynomial $p : A[X]$.
   Note that for a point $x : \Spec A$,
   the homomorphism
-  \[ x \otimes R[X] : A[X] = A \otimes R[X] \to R \otimes R[X] = R[X] \]
+  \[ x \otimes \A[X] : A[X] = A \otimes \A[X] \to R \otimes \A[X] = \A[X] \]
   simply applies the homomorphism $x$ to every coefficient of a polynomial,
   so we have $(s(x))_n = x(p_n)$.
   This concludes our argument,
@@ -256,7 +256,7 @@ as follows.
 
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}]%
   \label{boundedness}
-  Let $A$ be a finitely presented $R$-algebra.
+  Let $A$ be a finitely presented $\A$-algebra.
   Then every function $f : \Spec A \to \N$ is bounded:
   \[ \Pi_{f : \Spec A \to \N} \propTrunc{\Sigma_{N : \N} \Pi_{x : \Spec A} f(x) \le N}
      \rlap{.} \]
@@ -264,7 +264,7 @@ as follows.
 
 \begin{proof}
   Given a function $f : \Spec A \to \N$,
-  we construct the family $s : \Spec A \to (\N \to R)$
+  we construct the family $s : \Spec A \to (\N \to \A)$
   of eventually vanishing sequences
   given by
   \[
@@ -274,7 +274,7 @@ as follows.
       \,0 &\text{else} \rlap{.}
     \end{cases}
   \]
-  Since $0 \neq 1 : R$ by \axiomref{loc},
+  Since $0 \neq 1 : \A$ by \axiomref{loc},
   we in fact have $s(x)(n) = 0$ if and only if $n \geq f(x)$.
   Then the claim follows from \Cref{eventually-vanishing-sequence-on-affine}.
 \end{proof}
@@ -286,7 +286,7 @@ and \Cref{boundedness}.
 
 \begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{strengthened-boundedness}
-  Let $A$ be a finitely presented $R$-algebra.
+  Let $A$ be a finitely presented $\A$-algebra.
   Let $P : \Spec A \to (\N \to \Prop)$
   be a family of upwards closed, merely inhabited subsets of $\N$.
   Then the set

@@ -4,15 +4,15 @@ In our internal setting,
 a scheme is just a type satisfying a property.
 When we want to consider the structure sheaf as an object in its own right,
 we can represent it by the trivial bundle
-that assigns to every point $x : X$ the set $R$.
+that assigns to every point $x : X$ the set $\A$.
 Indeed, for an affine scheme $X = \Spec A$,
 taking the sections of this bundle over a basic open $D(f) \subseteq X$
-\[ \left(\prod_{x : D(f)} R\right) = (D(f) \to R) = A[f^{-1}] \]
+\[ \left(\prod_{x : D(f)} R\right) = (D(f) \to \A) = A[f^{-1}] \]
 yields the localizations of the ring $A$
 expected from the structure sheaf $\mathcal{O}_X$.
 More generally,
 instead of sheaves of abelian groups, $\mathcal{O}_X$-modules, etc.,
-we will consider bundles of abelian groups, $R$-modules, etc.,
+we will consider bundles of abelian groups, $\A$-modules, etc.,
 in the form of maps from $X$ to the respective type of algebraic structures.
 
 \subsection{Quasi-coherent bundles}
@@ -36,8 +36,8 @@ since the definition below uses the internal hom ``$\prod$''
       M(U)\colonequiv \prod_{x:U}M_x
       \rlap{.}
     \]
-  \item With pointwise structure, $U\to R$ is an $R$-algebra
-    and $M(U)$ is a $(U\to R)$-module.
+  \item With pointwise structure, $U\to R$ is an $\A$-algebra
+    and $M(U)$ is a $(U\to \A)$-module.
   \end{enumerate}
 \end{definition}
 
@@ -51,7 +51,7 @@ can be done pointwise:
   \[
     M(X)_f=\prod_{x:X}(M_x)_{f(x)}
   \]
-  of $(X\to R)$-modules.
+  of $(X\to \A)$-modules.
 \end{lemma}
 
 \begin{proof}
@@ -119,13 +119,13 @@ We will need the following algebraic observation:
 
 \begin{remark}%
   \label{localization-to-module-if-non-zero}
-  Let $M$ be an $R$-module and $A$ a finitely presented $R$-algebra,
-  then there is an $R$-linear map
+  Let $M$ be an $\A$-module and $A$ a finitely presented $\A$-algebra,
+  then there is an $\A$-linear map
   \[
     M\otimes A\to M^{\Spec A}
   \]
   induced by mapping $m\otimes f$ to $x\mapsto x(f)\cdot m$.
-  In particular, for any $f:R$, there is a
+  In particular, for any $f:\A$, there is a
   \[
     M_f\to M^{D(f)}
     \rlap{.}
@@ -136,7 +136,7 @@ We will need the following algebraic observation:
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{localization-to-restriction}                    
   Let $X$ be a scheme, $M:X\to\Mod{R}$, $U\subseteq X$ open and $f:A$.
-  Then there is an $R$-linear map
+  Then there is an $\A$-linear map
   \[
     M(U)_f \to M(D(f)) 
     \rlap{.}
@@ -155,30 +155,30 @@ We will need the following algebraic observation:
 
 A characterization of quasi coherent sheaves in the little Zariski-topos was found with \cite{ingo-thesis}[Theorem 8.3].
 This characterization is similar to our following definition of weak quasi-coherence,
-which will provide us with an abelian subcategory of the $R$-module bundles over a scheme,
+which will provide us with an abelian subcategory of the $\A$-module bundles over a scheme,
 where we can show that higher cohomology vanishes if the scheme is affine.
 
 \begin{definition}
   \label{weakly-quasi-coherent-module}
-  An $R$-module $M$ is \notion{weakly quasi-coherent},
-  if for all $f:R$, the canonical homomorphism
+  An $\A$-module $M$ is \notion{weakly quasi-coherent},
+  if for all $f:\A$, the canonical homomorphism
   \[
     M_f\to M^{D(f)}
   \]
   from \Cref{localization-to-module-if-non-zero} is an equivalence.
-  We denote the type of weakly quasi-coherent $R$-modules
+  We denote the type of weakly quasi-coherent $\A$-modules
   with $\Mod{R}_{wqc}$\index{$\Mod{R}_{wqc}$}.
 \end{definition}
 
 \begin{lemma}
   \label{kernel-wqc}
-  For any $R$-linear map $f:M\to N$ of weakly quasi-coherent modules $M$ and $N$,
+  For any $\A$-linear map $f:M\to N$ of weakly quasi-coherent modules $M$ and $N$,
   the kernel of $f$ is weakly quasi-coherent.
 \end{lemma}
 
 \begin{proof}
   Let $K\to M$ be the kernel of $f$.
-  For any $f:R$, the map $K^{D(f)}\to M^{D(f)}$ is the kernel of $M^{D(f)}\to N^{D(f)}$.
+  For any $f:\A$, the map $K^{D(f)}\to M^{D(f)}$ is the kernel of $M^{D(f)}\to N^{D(f)}$.
   The latter map is equal to $M_f\to N_f$ by weak quasi-coherence of $M$ and $N$
   and $K_f\to M_f$ is the kernel of $M_f\to N_f$.
   Let the vertical maps in
@@ -225,11 +225,11 @@ Let us look at an example.
 \begin{proposition}%
   \label{fp-algebra-bundle-is-quasi-coherent}
   Let $X$ be a scheme and $C:X\to \Alg{R}_{fp}$.
-  Then $C$, as a bundle of $R$-modules, is weakly quasi coherent.
+  Then $C$, as a bundle of $\A$-modules, is weakly quasi coherent.
 \end{proposition}
 
 \begin{proof}
-  Then for any $f:R$ and $x:X$, using \Cref{algebra-valued-functions-on-affine}, we have
+  Then for any $f:\A$ and $x:X$, using \Cref{algebra-valued-functions-on-affine}, we have
   \[
     (C_x)_f=C_x\otimes_R R_f=(\Spec R_f \to C_x)=(D(f)\to C_x)={C_x}^{D(f)}
     \rlap{.}
@@ -242,12 +242,12 @@ and \Cref{RN-non-wqc}.
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
   \label{weakly-quasi-coherent-pi}
-  Let $X=\Spec(A)$ be an affine scheme and $M_x$ a weakly quasi-coherent $R$-module for any $x:X$,
+  Let $X=\Spec(A)$ be an affine scheme and $M_x$ a weakly quasi-coherent $\A$-module for any $x:X$,
   then
   \[
     \prod_{x:X}M_x
   \]
-  is a weakly quasi-coherent $R$-module.
+  is a weakly quasi-coherent $\A$-module.
 \end{lemma}
 
 \begin{proof}
@@ -255,7 +255,7 @@ and \Cref{RN-non-wqc}.
   \[
     \left(\prod_{x:X}M_x\right)_r=\left(\prod_{x:X}M_x\right)^{D(r)}
   \]
-  for all $r:R$.
+  for all $r:\A$.
   By \Cref{module-bundle-localization-pointwise}, weak quasi-coherence
   and \Cref{weakly-quasi-coherent-open-localization}
   we know for all $f:A$:
@@ -266,7 +266,7 @@ and \Cref{RN-non-wqc}.
     =\left(\prod_{x:X}M_x\right)^{D(f)}
     \rlap{.}
   \]
-  So in particular, we can choose $f:A$ to be $r:R$ using the $R$-algebra structure.
+  So in particular, we can choose $f:A$ to be $r:\A$ using the $\A$-algebra structure.
 \end{proof}
 
 Quasi-coherent dependent modules turn out to have very good properties,
@@ -308,7 +308,7 @@ We will show below, that quasi coherence is preserved by the following construct
     \[
       \prod_{x:\fib_f(y)}M_{\pi_1(x)}
     \]
-    is a weakly quasi-coherent $R$-module.
+    is a weakly quasi-coherent $\A$-module.
     By \Cref{fiber-product-scheme},
     the type $\fib_f(y)$ is a scheme.
     So by \Cref{weakly-quasi-coherent-pi},
@@ -320,13 +320,13 @@ With a non-cyclic forward reference to a cohomological result,
 there is a short proof of the following:
 
 \begin{proposition}[using \axiomref{loc}, \axiomref{sqc}, \axiomref{Z-choice}]%
-  Let $f:M\to N$ be an $R$-linear map of weakly quasi-coherent $R$-modules $M$ and $N$,
+  Let $f:M\to N$ be an $\A$-linear map of weakly quasi-coherent $\A$-modules $M$ and $N$,
   then the cokernel $N/M$ is weakly quasi-coherent.
 \end{proposition}
 
 \begin{proof}
-  We will first show, that for an $R$-linear embedding $m:M\to N$
-  of weakly quasi-coherent $R$-modules $M$ and $N$,
+  We will first show, that for an $\A$-linear embedding $m:M\to N$
+  of weakly quasi-coherent $\A$-modules $M$ and $N$,
   the cokernel $N/M$ is weakly quasi-coherent.
   We need to show:
   \[
@@ -345,7 +345,7 @@ there is a short proof of the following:
   so the last term is 0 by \Cref{H1-wqc-module-affine-trivial}
   and $(N/M)^{D(f)}$ is the cokernel $N^{D(f)}/M^{D(f)}$.
 
-  Now we will show the statement for a general $R$-linear map $f:M\to N$.
+  Now we will show the statement for a general $\A$-linear map $f:M\to N$.
   By algebra, the cokernel of $f$ is the same as the cokernel of the induced map
   $M/K\to N$, where $K$ is the kernel of $f$.
   By \Cref{kernel-wqc}, $K$ is weakly quasi-coherent, so by the proof above,
@@ -355,11 +355,11 @@ there is a short proof of the following:
 
 \subsection{Finitely presented bundles}
 
-We now investigate the relationship between bundles of $R$-modules on $X = \Spec A$
+We now investigate the relationship between bundles of $\A$-modules on $X = \Spec A$
 and $A$-modules.
 
 \begin{proposition}
-  Let $A$ be a finitely presented $R$-algebra.
+  Let $A$ be a finitely presented $\A$-algebra.
   There is an adjunction
   \[ \begin{tikzcd}[row sep=tiny]
     M \ar[r, mapsto] & {(M \otimes x)}_{x : \Spec A} \\
@@ -368,7 +368,7 @@ and $A$-modules.
     \prod_{x : \Spec A} N_x & N \ar[l, mapsto]
   \end{tikzcd} \]
   between the category of $A$-modules
-  and the category of bundles of $R$-modules on $\Spec A$.
+  and the category of bundles of $\A$-modules on $\Spec A$.
 \end{proposition}
 
 For an $A$-module $M$,
@@ -380,7 +380,7 @@ the unit of the adjunction is:
 
 \begin{example}[using \axiomref{sqc}, \axiomref{loc}]
   It is not the case that
-  for every finitely presented $R$-algebra $A$
+  for every finitely presented $\A$-algebra $A$
   and every $A$-module $M$
   the map $\eta_M$ is injective.
 \end{example}
@@ -392,10 +392,10 @@ the unit of the adjunction is:
 \begin{theorem}%
   \label{fp-module}
   Let $X=\Spec(A)$ be affine and
-  let a bundle of finitely presented $R$-modules $M : X\to \fpMod{R}$ be given.
+  let a bundle of finitely presented $\A$-modules $M : X\to \fpMod{R}$ be given.
   Then the $A$-module
   \[ \tilde{M}\coloneqq\prod_{x:X}M_x \]
-  is finitely presented and for any $x:X$ the $R$-module $\tilde{M}\otimes_A R$ is $M_x$.
+  is finitely presented and for any $x:X$ the $\A$-module $\tilde{M}\otimes_A R$ is $M_x$.
   Under this correspondence, localizing $\tilde{M}$ at $f:A$ corresponds to restricting $M$ to $D(f)$.
 \end{theorem}
 
@@ -616,7 +616,7 @@ It is possible to construct a torsor from a \v{C}ech cocycle:
 
 \begin{example}
   If $X$ is a scheme, $U_1,\dots,U_n$ a cover by affine open subtypes
-  and $\mathcal F$ pointwise a weakly quasi coherent $R$-module,
+  and $\mathcal F$ pointwise a weakly quasi coherent $\A$-module,
   then $U_1,\dots,U_n$ is 1-acyclic for $\mathcal F$ by \Cref{H1-wqc-module-affine-trivial}.
 \end{example}
 
