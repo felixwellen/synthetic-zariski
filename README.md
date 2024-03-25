@@ -51,7 +51,7 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
   
 # Learning material
 There are some [recordings](https://www.youtube.com/playlist?list=PLrnCInSNK7UT_JnKwnderE8eIkWtoW_az) of talks from the last [workshop](https://www.felix-cherubini.de/sag-meeting-3.html) on synthetic algebraic geometry.
-And there is [hottest talk](https://www.youtube.com/watch?v=lp4kcmQ0ueY) on the foundations article.
+And there is a [hottest talk](https://www.youtube.com/watch?v=lp4kcmQ0ueY) on the foundations article.
 
 # Building the drafts
 
