@@ -1,0 +1,170 @@
+\paragraph{Extensional convergence }  
+\begin{definition}
+  Let $B_\infty$ be the Boolean algebra on countably many generators $(p_n)_{n:\mathbb N}$ 
+  over the equivalence $p_n\wedge p_m = 0 $ whenever $n \neq m$. 
+\end{definition} 
+\begin{definition}
+  We denote $\Noo$ be the spectrum of $B_\infty$. 
+\end{definition} 
+\begin{lemma}
+  $B_\infty$ is isomorphic with the Boolean algebra of 
+  finite/cofinite subsets of $\mathbb N$. 
+\end{lemma}
+\begin{proof}
+  To go from $B_\infty$ to subsets of $\mathbb N$, we send
+  the generators $p_n$ to the singleton $\{n\}$, which are clearly finite. 
+  We call the induced Boolean operation $f$. 
+
+  To go from finite/cofinite subsets of $\mathbb N$ to $B_\infty$,
+  a finite subset $I$ of $\mathbb N$ is sent to the element 
+  $\bigvee_{i \in I} p_i$, and a cofinite subset $J$ is sent to the element 
+  $\bigwedge_{i \in J^C} \neg p_i$.  
+  We call this function $g$ and we need to show that $g$ is a Boolean morphism. 
+  \begin{itemize}
+    \item By deMorgan's laws, $g$ preserves $\neg$. 
+    \item To see that $g$ respects $\vee$, we need to check three cases
+      \begin{itemize}
+        \item If both $I,J$ are finite, then 
+        \begin{equation} 
+          g(I \cup J) = \bigvee_{i\in I \cup J} p_i= \bigvee_{i\in I} p_i \vee \bigvee_{j\in J} p_j 
+        \end{equation}
+      \item If both $I,J$ are cofinite, we have
+        \begin{equation}
+          g(I) \vee g(J) = 
+          \bigwedge_{i \in I^C} \neg p_i \vee 
+          \bigwedge_{j \in J^C} \neg p_j 
+          = 
+%          \bigwedge_{i\in I^C} (\neg p_i \vee (
+%          \bigwedge_{j \in (J^C)} \neg p_j) 
+%          = 
+          \bigwedge_{i\in I^C} 
+          \bigwedge_{j \in J^C}(\neg p_i \vee  \neg p_j) 
+        \end{equation}
+        Now note that $\neg p_i \vee \neg p_j = \neg ( p_i \wedge p_j)$, which 
+        is $1$ if $i \neq j$ and $p_i$ if $i =j$. 
+        We can leave $1$ out of the meet, and we are left with the intersection of $I^C$ and $J^C$, so
+        \begin{equation}
+          g(I) \vee g(J) = 
+          \bigwedge_{i \in (I^C \cap J^C)} \neg p_i
+          = 
+          \bigwedge_{i \in (I \cup J)^C} \neg p_i 
+        \end{equation} 
+        as the union of $I$ and $J$ is also cofinite, this equals 
+          $ g( I \cup J)$. 
+        \item If $I$ is finite and $J$ cofinite, we have 
+        \begin{equation}
+        g(I) \vee g(J) = (\bigvee_{i\in I} p_i) \vee (\bigwedge_{j \in J^C} \neg p_j)
+        = \bigwedge_{j \in J^C} (\bigvee_{i \in I}( p_i \vee \neg p_j))
+        \end{equation}
+        If $i\neq j$, then $p_i\wedge p_j = 0$, hence $\neg p_j \geq p_i$ and $p_i \vee \neg p_j  = \neg p_j$
+        If $i = j$, then $p_i \vee \neg p_j = 1$.
+%        \begin{equation}
+%        g(I) \vee g(J) = 
+%        = \bigwedge_{j \in J^C} (\bigvee_{i \in I-J}( p_i \vee \neg p_j))
+%        \end{equation}
+%
+%        \item If $I$ is cofinite and $J$ is finite, we have that $I \cup J$ is cofinite.
+%        Thus 
+%        \begin{equation}
+%          g(I \cup J) = \bigwedge_{i \in (I \cup J)^C} \neg p_i
+%        \end{equation}
+%
+      \end{itemize}
+    \item The case for $\wedge$ is completely dual to the case for $\vee$. 
+  \end{itemize}
+We conclude that $g$ is a Boolean morphism. 
+Furthermore, $g$ and $f$ are clearly inverses, thus the Boolean algebras are isomorphic. 
+
+
+  We need to show that this operation defines a Boolean morphism. 
+
+
+
+\end{proof}
+  \begin{lemma}\label{lemBinftyNormalForm}
+  Any element of $B_\infty$ can be written as 
+  either $\bigvee_{i\in I} p_i$  or
+  as $\bigwedge_{j\in J} \neg p_j$ 
+  for finite $I,J\subseteq \mathbb N$. 
+\end{lemma}
+\begin{proof}
+  Remark that whenever $n \neq m$, we have that 
+  $\neg p_n \geq p_m$ as $p_m \wedge p_n = 0$. 
+\end{proof}
+There is canonical embedding $\mathbb N \hookrightarrow \Noo$, 
+wich sends $n$ to the unique function $\chi_{n}$ sending $p_n$ to $1$. 
+We denote $\infty \in \Noo$ for the function which is constantly $0$. 
+By \Cref{PropMarkov}, if an element is not $\infty$, 
+it comes from the embedding $\mathbb N \hookrightarrow \Noo$. 
+\begin{lemma}\label{LemmaOpensContainingInfty}
+  Let $U$ be an open subset of $\Noo$ containing $\infty$.
+  Then there merely exists an $N:\mathbb N$ such that whenever $n\geq N$, 
+  $\chi_n\in U$ as well. 
+\end{lemma}
+\begin{proof}
+  It is sufficient to prove the lemma for $U$ a basic open. 
+  Assume $b : B_\infty $ is such that 
+  $U = \{ \phi: B_\infty \to 2| \phi(b) = 1\}$.
+  Assume furthermore that $\infty \in U$.
+%  so $U$ contains the function sending every $p_i$ to $0$. 
+  by \Cref{lemBinftyNormalForm}, $b$ can have two forms.
+  If $b = \vee_{i\in I} p_i$, then as $\infty(b) = 0$, 
+  we must have $I = \emptyset$, and thus $b = 0$, 
+  which means $U$ is empty, contradicting $\infty\in U$. 
+  Therefore, 
+  $b$ must be of the form $\wedge_{j \in J} \neg p_j$. 
+  Note that for $N = \max J + 1$, whenever $n>J$, 
+  $\chi_n$  sends $b$ to $1$. 
+  Thus $\chi_n \in U$ as well, and we are done. 
+\end{proof}
+
+\begin{definition}
+  Let $\alpha$ be a sequence in $X$, we say that $\alpha$
+  is convergent iff there exists an extension. 
+  \begin{equation}\begin{tikzcd}
+    \mathbb N \arrow[r, "\alpha"] \arrow[d,hook]  & X \\
+    \Noo \arrow[ru,dashed]
+  \end{tikzcd}\end{equation}  
+\end{definition}  
+
+
+
+\begin{proposition}
+  A sequence is convergent iff it has a limit
+\end{proposition}
+\begin{proof}
+  Let $\alpha$ be convergent, with extension $\overline \alpha$.
+  we claim that $\overline \alpha(\infty)$ is a limit of $\alpha$.
+  Let $U \subseteq X$ be an open containing $x$. 
+  As $\overline\alpha^{-1}(U)$ is an open subset of $\Noo$ containing $\infty$,
+  \Cref{LemmaOpensContainingInfty} tells us there exists some $N$ such that $[N,\infty]\subseteq \overline \alpha^{-1}(U)$. 
+  Thus there exists an $N$ such that for $n\geq N$, we have $\alpha(n) \in U$, as required. 
+
+  Conversely, suppose $\alpha$ has limit $x$. 
+  Assume $X = Sp(B)$, and let $b\in B$. Then $b$ corresponds to a decidable subset $U\subseteq X$.
+  For any decidable subset $U \subseteq X$, we have 
+  $\alpha^{-1}(U)$ a decidable subset of $\mathbb N$. 
+  We claim that $\alpha^{-1}(U)$ is either finite or cofinite. 
+  As $U$ is decidable, we can decide wheter $x\in U$. If $x\in U$, $\alpha^{-1}(U)$ is cofinite, as 
+  $\alpha(n) \in U$ for all $n \geq N$ for some $N$. 
+  If $x\notin U$, we have $x\in U^C$, which is also decidable and therefore $\alpha^{-1}(U^C)$ is cofinite. 
+  As $\alpha^{-1}(U) ^ C = \alpha^{-1}(U^C)$, it follows that $\alpha^{-1}(U)$ is finite. 
+  Thus $\alpha^{-1}(U)$ is finite or cofinite for any decidable subset $U\subseteq X$. 
+  Finite and cofinite subsets of $\mathbb N$ correspond to elements of $B_\infty$. 
+  Therefore, $\alpha$ induces a map $B \to B_\infty$, which corresponds to a map 
+  $\overline \alpha: \Noo \to X$. 
+
+  We claim that $\overline \alpha$ extends $\alpha$. 
+  Denote $\iota$ for the map $\mathbb N \to \Noo$. 
+  We need to show that $\overline \alpha \circ \iota = \alpha$. 
+  First note that by definition, we have that $(\overline \alpha \circ \iota)^{-1}(U) = \alpha^{-1}(U)$ 
+  for any decidable $U\subseteq X$. 
+
+
+
+
+
+\end{proof}
+
+
+

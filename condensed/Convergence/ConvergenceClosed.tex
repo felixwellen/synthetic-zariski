@@ -1,0 +1,39 @@
+\paragraph{Topological convergence}
+In this section, $X$ is a Stone space. 
+\begin{definition}
+  A sequence in $X$ is a map $\mathbb N \to X$. 
+\end{definition} 
+\begin{definition}
+  Let $\alpha$ be a sequence in $X$. 
+  We say that $x$ is the limit of $\alpha$ iff 
+  for any open $U\subseteq X$ containing $x$, 
+  there merely is an $N:\mathbb N$ such that for $n \geq N$, we have
+  $x_n \in U$. 
+\end{definition}
+
+\paragraph{Closed spaces contain their limits}
+\begin{lemma}
+  Let $x:2^\mathbb N$ and $D\subseteq 2^\mathbb N$ be a decidable subset. 
+  Suppose that for each open $U\subseteq X$ with $U(x)$,
+  we merely have some $y_U \in D \cap U$. 
+  Then $x\in D$. 
+\end{lemma}
+\begin{proof}
+  Because $D$ is a subtype, $x\in D$ is a proposition, and we will use existence whenever we have mere existence.
+  Because $D$ is decidable, %there is a finite amount of information $D$ uses, 
+  there merely exists an $n:\mathbb N$ such that 
+  whenever $x =_n y$, we have $D(x) \leftrightarrow D(y)$. 
+  Consider the open $U_n$ given by $x =_n \cdot $.
+  By assumption, there merely is some $y\in D\cap U_n$. 
+  so $D(y)$ and $x =_n y$, hence $D(x)$.
+\end{proof}
+\begin{corollary}
+  Let $\iota :D\hookrightarrow 2^\mathbb N$ be the inclusion map of a decidable subset, 
+  let $\alpha$ be a sequence in $D$, and 
+  suppose that $\alpha\circ \iota$ has a limit $x$ in $2^\mathbb N$. 
+  Then $x\in D$. 
+\end{corollary}
+\begin{corollary}
+  Using (ii) from \Cref{propClosedAlternativeDefinitions} it follows that any 
+  closed subset of a Cantor space contains all of it's limit points. 
+\end{corollary}
