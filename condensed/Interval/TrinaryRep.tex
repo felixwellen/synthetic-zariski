@@ -1,0 +1,135 @@
+The goal of this section is to define the interval $[-2,2]_\mathbb R$ as a scheme. 
+We assume $\mathbb N, \mathbb Q$ have been defined in HoTT
+with linear propostional order relations $<,\leq, > ,\geq$ playing nicely together 
+and standard algebraic operations. 
+From these, we can define the subtype $\mathbb Q_{>0}=\sum_{q : \mathbb Q} (q>0)$, 
+and the absolute-value function $|\cdot|$ on $\mathbb Q$. 
+
+\begin{definition}
+  A pre-Cauchy sequence is a sequence of rational numbers $(q_n)_{n: \mathbb N}$ with $-2 \leq q_n \leq 2$ 
+  for all $n:\mathbb N$
+%  together with a term of type
+  such that for every $\epsilon: \mathbb Q_{>0}$, we have an $N_\epsilon:\mathbb N$, 
+  such that whenever $n,m \geq N_\epsilon$, we have 
+\begin{equation}
+%  \forall \epsilon : \mathbb Q_{>0} \Sigma N : \mathbb N \forall m,n : \mathbb N (m,n \geq N) \to 
+  | q_n - q_m | \leq \epsilon
+\end{equation} 
+\end{definition}
+
+\begin{definition}
+Given two pre-Cauchy sequences $p = (p_n)_{n\in\mathbb N}, q=(q_n)_{n\in\mathbb N}$, 
+we define the proposition $p \sim_C  q$ as 
+%for all $\epsilon : \mathbb Q_{>0}$ there exists an $N :\mathbb N$ such that whenever $n \geq N$, we have
+\begin{equation}
+  p \sim_C q : = \forall (\epsilon : \mathbb Q_{>0} )\exists ( N :\mathbb N) \forall (n : \mathbb N) ((n \geq N) \to 
+  (| p_n - q_n| \leq  \epsilon))
+\end{equation}
+\end{definition}
+Note that $\sim_C$ defines an equivalence relation on pre-Cauchy sequences. 
+\begin{definition}
+We define the type of Cauchy sequences as the type of pre-Cauchy sequences quotiented by $\sim_C$. 
+\end{definition}
+
+%\begin{definition}
+%  A binary sequence consists of an initial segment $I \subseteq \mathbb N$
+%  and a function $x:I \to 2$. 
+%If $I$ is (in)finite, we call the binary sequence (in)finite as well. 
+%\end{definition} 
+%
+%For $x$ a finite binary sequence and $y$ any binary sequence, 
+%we'll denote $(x,y)$ for their concatenation, 
+%and $\overline x$ for the infinite sequence repeating $x$. 
+%
+Denote $T = \{-1,0,1\}$. 
+\begin{lemma}
+  $T^\mathbb N$ is a scheme. 
+\end{lemma}
+\begin{proof}
+  Sketch: partition $2^\mathbb N$ as follows: 
+  For $\alpha: 2^\mathbb N$, we'll make a sequence $\beta: T^\mathbb N$.
+  consider for each $n$ the $n$'th block of 2 entries in $\alpha$
+  if both are $0$, $\beta(n) = 0$. 
+  If the first is $1$, $\beta(n) = -1$
+  If first is $0$ and the second is $1$, then $\beta(n) = 1$. 
+  This is a closed equivalence relation. 
+\end{proof} 
+
+Consider the relation $\sim_s$ on $T^{\mathbb N}$, 
+such that for any finite binary sequence $x$, we have 
+\begin{align}
+  (x,1,\overline 0) &\sim_t (x ,0, \overline 1) \\
+  (x,-1,\overline 0) &\sim_t (x ,0, \overline {-1})\\
+  (x,1,\overline {-1}) &\sim_t (x , \overline 0) \\
+  (x,-1,\overline {1}) &\sim_t (x , \overline 0) 
+\end{align} 
+\begin{lemma}
+$\sim_t$ induces a closed equivalence relation on $2^\mathbb N$. 
+\end{lemma}
+\begin{proof}
+  TODO
+\end{proof} 
+
+\begin{proposition}\label{propTernaryCauchy}
+  $T^\mathbb N/ \sim_t$ is isomorphic to the type of Cauchy sequences. 
+\end{proposition} 
+\begin{definition}%Construction might be better than definition here, but WIP so who cares. 
+  For $\alpha: T^\mathbb N$, define the rational sequence $tri(\alpha)$ by 
+  \begin{equation} (tri(\alpha))_n :  = \sum\limits_{0 \leq i \leq n} \frac{\alpha(i)} { 2^{i}} \end{equation}  
+  This sequence is pre-Cauchy with $N_\epsilon$ given by the first $n$ with $(\frac12)^n<\epsilon$. 
+\end{definition}  
+%
+%  Also, whenever $\alpha\sim_t \beta$, we have 
+%  $tri(\alpha) \sim_C tri(\beta)$. 
+%  Therefore $tri$ induces a function from $T^\mathbb N / \sim_t$ to Cauchy sequences. 
+\begin{definition}
+  Given a pre-Cauchy sequence $p$, 
+  we will define a $T$-sequence $\alpha  = c(p): T^\mathbb N$.
+  Consider any $i:\mathbb N$, and suppose $\alpha(j)$ has been defined for $0 \leq j<i$. 
+%
+  Let $\epsilon_i = (\frac12)^{i+1}$. %Placeholder value.
+  Define $N_i:= N_{\epsilon_i}$. %is such that for $n,m \geq N_i$, we have $|p_n - p_m| < \epsilon_i$. 
+%
+  Consider 
+  \begin{equation}
+    \widetilde p_i = p_N - \sum\limits_{0\leq j < i} \frac {\alpha(j)}{2^{j}}.
+  \end{equation}
+  As the order on $\mathbb Q$ is total, we can define 
+  \begin{equation}
+    \alpha(i) = \begin{cases}
+    \phantom{-} 1  \text{ if } \widetilde p_i \geq    (\frac12)^{i} \\
+    -1             \text{ if } \widetilde p_i \leq  - (\frac12)^{i} \\
+    \phantom{-} 0 \text{ otherwise } 
+    \end{cases} 
+  \end{equation}  
+\end{definition} 
+We shall now prove the following four things: 
+\begin{itemize}
+  \item 
+    $c(tri(\alpha)) \sim_t \alpha$ for any $\alpha: T^n$.
+  \item 
+    $tri(c(p)) \sim_C p$ for any pre-Caucy sequence $p$. 
+  \item 
+    Whenever $p \sim_C q$, we have $c(p)\sim_t c(q)$. 
+  \item 
+    Whenever $\alpha \sim_t \beta$, we have $tri(\alpha) \sim_C tri(\beta)$. 
+\end{itemize}
+It follows that $c$ and $tri$ are maps between Cauchy sequences and $T^\mathbb N /\sim_t$ 
+which are each other's inverse, proving Proposition \ref{propTernaryCauchy}
+\begin{lemma} $tri(c(p)) \sim_C p$ for any pre-Caucy sequence $p$. 
+\end{lemma} 
+
+
+
+\begin{proof}
+  Let $\epsilon>0$ be given, consider $n:\mathbb N$ such that
+  $(\frac12)^n < \epsilon$. 
+  We claim that for $m\geq N_n$, we have that $|p_m- tri(c(p))_m| < \epsilon$. 
+
+  By definition $p_{N_n} $  
+\end{proof} 
+
+
+
+
+

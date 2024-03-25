@@ -1,9 +1,10 @@
+\newpage
 \subsection{The interval}
 The goal of this section is to define the interval $[0,1]_\mathbb R$ as a scheme. 
 We assume $\mathbb N, \mathbb Q$ have been defined in HoTT
 with linear propostional order relations $<,\leq, > ,\geq$ playing nicely together 
 and standard algebraic operations. 
-From these, we can define the subtype $\mathbb Q_{>0}=\sigma _{q : \mathbb Q} (q>0)$, 
+From these, we can define the subtype $\mathbb Q_{>0}=\sum_{q : \mathbb Q} (q>0)$, 
 and the absolute-value function $|\cdot|$ on $\mathbb Q$. 
 
 \begin{definition}
@@ -45,38 +46,141 @@ We define the type of Cauchy sequences as the type of pre-Cauchy sequences quoti
 Consider the relation $\sim_s$ on $2^{\mathbb N}$, 
 such that for any finite binary sequence $x$, we have 
 $$(x,1,\overline 0) \sim_s (x ,0, \overline 1).$$
+\begin{lemma}
+TODO  $\sim_s$ is a closed equivalence relation. 
+\end{lemma}
+
+
+
 \begin{proposition}
   Cauchy sequences are in isomorphism with $2^\mathbb N / \sim_s$. 
 \end{proposition} 
-\begin{proof}
+\begin{definition}
   For $\alpha: 2^\mathbb N$, define the rational sequence $bin(\alpha)$ by 
-  \begin{equation} (bin (\alpha))_n :  = \sum\limits_{0 \leq i \leq n} \alpha(i) / 2^{i+1}\end{equation}  
+  \begin{equation} (bin (\alpha))_n :  = \sum\limits_{0 \leq i < n} \frac{\alpha(i)} { 2^{i+1}} \end{equation}  
   This sequence is pre-Cauchy and whenever $\alpha\sim_s \beta$, we have 
   $bin(\alpha) \sim_C bin(\beta)$. 
   Therefore $bin$ induces a function from $2^\mathbb N / \sim_s$ to Cauchy sequences. 
-  
-  \medskip 
-
+\end{definition}  
+\begin{definition}
   Conversely, assume we are given a pre-Cauchy sequence $p$. 
   We will define a binary sequence $\alpha  = c(p): 2^\mathbb N$.
   Consider any $i:\mathbb N$, and suppose $\alpha(j)$ has been defined for $0 \leq j<i$. 
 
-  Let $\epsilon = (\frac12)^{i^2}$. %Placeholder value.
-  Let $N$ be such that for $n,m \geq N$, we have $|p_n - p_m| < \epsilon$. 
-  Consider $\widetilde p_i = p_N - \sum\limits_{0\leq j < i} \frac {\alpha(j)}{2^j}$.
+  Let $\epsilon_i = (\frac12)^{i+1}$. %Placeholder value.
+  Let $N$ be such that for $n,m \geq N$, we have $|p_n - p_m| < \epsilon_i$. 
+  Consider $\widetilde p_i = p_N - \sum\limits_{0\leq j < i} \frac {\alpha(j)}{2^{j+1}}$.
   As the order on $\mathbb Q$ is total, we can define 
   \begin{equation}
     \alpha(i) = \begin{cases}
-    1 \text{ if } \widetilde p_i > ((\frac12)^{i} - \epsilon) \\
+    %1 \text{ if } \widetilde p_i > ((\frac12)^{i+1} + \epsilon_i) \\
+    1 \text{ if } \widetilde p_i > (\frac12)^{i} \\
     0 \text{ otherwise } 
     \end{cases} 
   \end{equation}  
   This is a binary sequence, hence $c$ defines a function from pre-Cauchy sequences to $2^\mathbb N$.
-  We claim that whenever $p \sim_C q$, we have $c(p) \sim_s c(q)$. 
+\end{definition} 
+\begin{lemma}
+  For $\alpha$ as above, for any $i\in \mathbb N$, there is an $N$
+  $|p_n-(bin(\alpha))_n| < (\frac{1}{2})^N$. 
+\end{lemma}
+\begin{proof}
+  For $n = 0$, we have that 
+\end{proof}  
 
-  Suppose that $c(p)(n) = 0$ and $c(p)(n) = 1$, we shall show that in this case, 
-  for $m > n$ we'll have $c(p)(m) =1 , c(p)(m) = 0$. 
 
-\end{proof}
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  We claim that $bin(c(p)) \sim_C p $ and $c(bin(\alpha)) \sim_s \alpha$. 
+
+
+
+
+  To show $bin(c(p)) \sim_C p$, we need to show that $|p_n - (bin(c(p)))_n|$ goes to $0$ for $n$ large. 
+  Let $\epsilon>0$ be given.
+  Let $N$ be such that $|p_n - p_m|< \epsilon/2$ for $n,m\geq N$. 
+  Let $\epsilon' = \epsilon_N$. 
+  Then we get an $N'$ such that whenever $n,m\geq N'$, we have 
+  $(p_n-p_m) < \epsilon_N$, 
+  let $N'' = max (N,N')$. 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+%  We claim that whenever $p \sim_C q$, we have $c(p) \sim_s c(q)$. 
+%
+%  Assume $p\sim_C q$, and denote $\alpha= c(p), \beta  = c(q)$ and suppose that 
+%  for $j<i$, $\alpha(j) = \beta(j)$, but $\alpha(i) = 0$ and $\beta(i) = 1$, 
+%  we shall show that in this case, for $k > i$ we'll have $\alpha(k) =1 , \beta(k) = 0$, 
+%  hence $\alpha \sim_s \beta$. 
+%
+%  As $\alpha(i) = 0$, we have that $\tilde p_i \leq (\frac12)^i + 2 \epsilon_i$. 
+%  Therefore, 
+%  But $p \sim_c q$
+%
 
 
