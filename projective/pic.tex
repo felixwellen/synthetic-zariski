@@ -53,7 +53,7 @@ The following result is standard.
 \end{proof}
 
 \begin{corollary}\label{Pic1}
-  We have $\prod_{L:\bP^1\rightarrow \KR}\Sigma_{p:\Z}\|L = O(p)\|$
+  We have $\prod_{L:\bP^1\rightarrow \KR}\Sigma_{p:\Z}\|L = \OO(p)\|$
 \end{corollary}
 
 \begin{proof}
@@ -65,16 +65,21 @@ We can then state the following strengthening.
 
 \begin{proposition}\label{Matthias}
   The map $\KR\times\Z\rightarrow (\bP^1\rightarrow \KR)$
-  which associates to $l_0,d$ the map $x\mapsto l_0\otimes O(d)(x)$ is an equivalence.
+  which associates to $l_0,d$ the map $x\mapsto l_0\otimes \OO(d)(x)$ is an equivalence.
 \end{proposition}
 
 \begin{proof}
   Corollary \ref{Pic1} shows that this map is essentially surjective.
-  We can then use  Corollary 8.8.2 in \cite{HoTT} to conclude using Proposition \ref{const}.
+  So we can conclude by showing that the map is also an embedding.
+  For $(l,d),(l',d'):\KR\times\Z$ let us first consider the case $d=d'$. 
+  Then we merely have $(l,d)=(\ast,d)$ and $(l',d')=(\ast,d)$,
+  so it is enough to note that the induced map on loop spaces based at $(\ast,d)$ is an equivalence by \Cref{const}.
+  Now let $d\neq d'$. To conclude we have to show $\OO(d'')$ is different from $x\mapsto R$ for $d''\neq 0$
+  which we know by TODO.
 \end{proof}
 
  It is a curious remark that $\KR\rightarrow \KR$ is also equivalent
- to $\KR\times \Hom(\Gm,\Gm) = \KR\times\Z$.
+ to $\KR\times \Hom_{\mathrm{Group}}(R^\times,R^\times) = \KR\times\Z$.
 
 \begin{corollary}\label{Matthias1}
   We have $\prod_{L:\bP^1\rightarrow \KR}\prod_{x:R}L([1:x]) = L([0:1])$.
