@@ -1,3 +1,23 @@
+The goal of this note is to show that $\Pic(\bP^n) = \Z$ in the setting of Synthetic Algebraic
+Geometry \cite{draft}. We actually present a strengthening of this result,
+which in particular states the equivalence
+$${\KR}^{\bP^1}\simeq \Z\times \KR$$
+%We will also present Matthias' strengthened version of this statement, which states that the
+%map $\Z\times \KR\rightarrow {\KR}^{\bP^1},~p,l\mapsto (x\mapsto l\times O(p)(x))$
+%is an equivalence.
+
+One application is that $\Aut(\bP^n)$ is $PGL_{n+1}$.
+
+For the case $n=1$,
+we follow the proof of Horrock's Lemma as presented in Lam's book on Serre's problem \cite{Lam}
+on projective modules\footnote{This argument is different from the one presented in Lombardi-Quitt\'e \cite{lombardi-quitte}; we instead give a constructive version of the proof of Nashier-Nichols \cite{Nashier}.}.
+For the general case, we don't follow the Quillen patching technique
+presented in the 1976 paper \cite{Quillen}, but instead present an argument which uses
+our description of ${\KR}^{\bP^1}$.
+We then explain how we can deduce that $\Aut(\bP^n)$ is $PGL_{n+1}$.
+
+ One point of this work is to show that all these results can be proven axiomatically in the
+ setting of univalent type theory with the 3 axioms described in \cite{draft}.
  Let $A$ be a commutative {\em connected} ring\footnote{If $e(1-e) = 0$ then $e=0$ or $e=1$.}.
 
 The following result is standard.
@@ -33,7 +53,7 @@ The following result is standard.
 \end{proof}
 
 \begin{corollary}\label{Pic1}
-  We have $\prod_{L:\bP^1\rightarrow \KR1}\Sigma_{p:\Z}\|L = O(p)\|$
+  We have $\prod_{L:\bP^1\rightarrow \KR}\Sigma_{p:\Z}\|L = O(p)\|$
 \end{corollary}
 
 \begin{proof}
@@ -44,7 +64,7 @@ it is characterised by an invertible Laurent polynomial on $R$, and the result f
 We can then state the following strengthening.
 
 \begin{proposition}\label{Matthias}
-  The map $\KR1\times\Z\rightarrow (\bP^1\rightarrow \KR1)$
+  The map $\KR\times\Z\rightarrow (\bP^1\rightarrow \KR)$
   which associates to $l_0,d$ the map $x\mapsto l_0\otimes O(d)(x)$ is an equivalence.
 \end{proposition}
 
@@ -53,11 +73,11 @@ We can then state the following strengthening.
   We can then use  Corollary 8.8.2 in \cite{HoTT} to conclude using Proposition \ref{const}.
 \end{proof}
 
- It is a curious remark that $\KR1\rightarrow \KR1$ is also equivalent
- to $\KR1\times \Hom(\Gm,\Gm) = \KR1\times\Z$.
+ It is a curious remark that $\KR\rightarrow \KR$ is also equivalent
+ to $\KR\times \Hom(\Gm,\Gm) = \KR\times\Z$.
 
 \begin{corollary}\label{Matthias1}
-  We have $\prod_{L:\bP^1\rightarrow \KR1}\prod_{x:R}L([1:x]) = L([0:1])$.
+  We have $\prod_{L:\bP^1\rightarrow \KR}\prod_{x:R}L([1:x]) = L([0:1])$.
 \end{corollary}
 
 \section{Line bundles on $\bP^n$}
@@ -65,11 +85,11 @@ We can then state the following strengthening.
 We can now reformulate Quillen argument for Theorem 2' \cite{Quillen} in our setting.
 
 \begin{proposition}\label{trivial}
-  If we have $V:\bP^n\rightarrow \KR1$ we have ${\prod_{s:R^n}V([1:s]) = V([0:1:0])}$.
+  If we have $V:\bP^n\rightarrow \KR$ we have ${\prod_{s:R^n}V([1:s]) = V([0:1:0])}$.
 \end{proposition}
 
 \begin{proof}
-  We define $L:\A^{n-1}\rightarrow {\KR1}^{\bP^1}$ by $L~s~[x_0:x_1] = V([x_0:x_1:x_0s])$.
+  We define $L:\A^{n-1}\rightarrow {\KR}^{\bP^1}$ by $L~s~[x_0:x_1] = V([x_0:x_1:x_0s])$.
   We apply Corollary \ref{Matthias1} and we get
   $$V([1:s]) = L~s~[1:r] = L~s~[0:1] = V([0:1:0]).$$
 \end{proof}
@@ -130,7 +150,7 @@ are nilpotent. The result $\Pic(\bP^n) = \Z$ will then follow from the following
 We can then strengthen this result, with the same reasoning as in Proposition \ref{Matthias}.
 
 \begin{theorem}\label{Matthias2}
-  The map $\KR1\times\Z\rightarrow (\bP^n\rightarrow \KR1)$
+  The map $\KR\times\Z\rightarrow (\bP^n\rightarrow \KR)$
   which associates to $l_0,d$ the map $x\mapsto l_0\otimes O(d)(x)$ is an equivalence.
 \end{theorem}
 
@@ -142,13 +162,13 @@ We deduce from this a characterisation of the maps $\bP^n\rightarrow\bP^m$.% usi
 \end{corollary}
 
 \begin{proof}
-Write $T_n(l)$ for $l^{n+1}\setminus\{0\}$. We have $\bP^n = \Sigma_{l:\KR1}T_n(l)$ and so
+Write $T_n(l)$ for $l^{n+1}\setminus\{0\}$. We have $\bP^n = \Sigma_{l:\KR}T_n(l)$ and so
 $$
-\bP^n\rightarrow\bP^m = \sum_{s:\bP^n\rightarrow \KR1}\prod_{x:\bP^n}T_m(s~x)
+\bP^n\rightarrow\bP^m = \sum_{s:\bP^n\rightarrow \KR}\prod_{x:\bP^n}T_m(s~x)
 $$
 Using Theorem \ref{Matthias2}, this is equal to
 $$
-\sum_{l_0:\KR1}\sum_{d:\Z}\prod_{l:\KR1}T_n(l)\rightarrow T_m(l_0\otimes l^{\otimes d})
+\sum_{l_0:\KR}\sum_{d:\Z}\prod_{l:\KR}T_n(l)\rightarrow T_m(l_0\otimes l^{\otimes d})
 $$
 and, as for Lemma \ref{hom}, this is the set of tuples of $m+1$ polynomials in $R[X_0,\dots,X_n]$ homogenenous
 of degree $d$, sending $x\neq 0$ to $p(x)\neq 0$, and quotiented by proportionality.
