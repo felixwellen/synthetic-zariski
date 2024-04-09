@@ -1,0 +1,52 @@
+We have defined our interval as a qoutient of Cantor space. 
+However, we have done so over an equivalence relation which we cannot compute. 
+Informally speaking, we'd have to look infinitely deep in two sequences to see whether
+they are equivalent, but we can only look finitely deep. 
+This restricts the functions we can properly define on the interval. 
+In this section, we mention two results which show this limitation. 
+\begin{lemma}
+  Any function from the interval to $2$ is constant. 
+\end{lemma}
+\begin{proof}
+  Consider a function $f: 2^\mathbb N \to 2$, 
+  such that whenever $x\sim y$, we have $f(x) = f(y)$. 
+  By the fan theorem, there merely exists an $n$ such that 
+  whenever $x =_n y$, then $f(x) = f(y)$. 
+  We claim that $n$ can taken to be $0$, 
+  so whenever $x =_0 y $, then $f(x) = f(y)$. 
+  We will use induction on $n$. If $n=0$, $n$ can taken to be $0$. 
+  Suppose that $n$ can taken to be $0$, we will show that 
+  $n+1$ can also taken to be $0$. 
+
+  Suppose that whenever $x =_{n+1} y$, we have $f(x) = f(y)$. 
+  Now let $a =_n b$, we need to show that $f(a) = f(b)$. 
+  If $a(n+1) = b(n+1)$, we are done. WLOG, 
+  assume that $a(n+1) = 0, b(n+1) = 1$. 
+  Now we know that 
+  $a|_{n+1} \cdot \overline 1 \sim b_{n+1} \cdot \overline 0$, 
+  and as $f$ respects $\sim$, we must therefore have 
+  $f(a|_{n+1} \cdot \overline 1)  = f( b_{n+1} \cdot \overline 0)$. 
+  And as $a|_{n+1} \cdot \overline 1 =_{n+1} a$, 
+  and 
+  $b|_{n+1} \cdot \overline o =_{n+1} b$, 
+  the induction hypothesis gives us that 
+  $f(a)  = f(b)$, as required. 
+
+  By induction it follows that whenever there is some $n$ such that 
+  $x=_n y$ implies $f(x) = f(y)$, we also have that 
+  $x =_0 y$, implies $f(x) = f(y)$. 
+  It follows that $f(x) = f(y)$ for any $x,y : 2^\mathbb N$. 
+  Therefore $f$ is constant. 
+\end{proof}
+
+\begin{lemma}
+  Any function from the interval to itself is continuous. 
+\end{lemma}
+\begin{proof}
+  Let $f: 2^\mathbb N \to 2^\mathbb N$ be such that whenever 
+  $x\sim y$, we have $f(x) \sim f(y)$. 
+  Furthermore there exists an $n:\mathbb N$ such that whenever 
+  $x =_n y$, we have $f(x) = f(y)$. 
+
+  Let $U \subseteq I$ be a closed subset of the interval. 
+\end{proof} 
