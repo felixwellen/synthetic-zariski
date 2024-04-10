@@ -1,0 +1,152 @@
+This section is a draft toward a more proper definition of stacks, using étale sheaves. The main result so far is étale descent for algebraic stacks.
+
+\subsection{Étale sheaves and algebraic stacks}
+
+The following definition is local. It is supposed to be equivalent to the one using unramifiable polynomial, although we lack a proof at the moment.
+
+\begin{definition}
+A type $X$ is an étale sheaf if is is $\propTrunc{\Spec(A)}$-local for all $A$ fppf and étale algebra.
+\end{definition}
+
+\begin{remark}
+We conjecture this is equivalent to being local against monic unramifiable polynomials having roots. With the given definition we do not have a proof that all schemes are étale sheaf, although this certainly should hold.
+\end{remark}
+
+\begin{definition}
+A map $f:X\to Y$ is étale surjective if for all $y:Y$ we have:
+\[ \mathrm{et}(\propTrunc{fib_f(y)})\]
+\end{definition}
+
+\begin{definition}
+An étale sheaf $X$ has an étale atlas if there merely is an affine scheme $\Spec(A)$ and a map:
+\[\Spec(A)\to X\]
+that is formally étale and étale-surjective.
+\end{definition}
+
+\begin{definition}
+An étale sheaf $X$ is an algebraic stack if:
+\begin{itemize}
+\item It has an étale atlas.
+\item Coinductively, its identity types are algebraic stacks.
+\end{itemize} 
+\end{definition}
+
+An algebraic $n$-stack is a $n$-type that is an algebraic stack. 
+
+\begin{remark}
+Note that an étale sheaf $X$ being algebraic stack could be defined without coinduction using:
+\[S_n(X): \mathrm{Prop}\]
+defined inductively on $n$ by:
+\[S_0(X) = \mathrm{hasEtaleAtlas}(X)\]
+\[S_{n+1}(X) = \forall(x,y:X).\ S_n(x=y)\]
+and asking:
+\[\forall(n:\N).\ S_n(X)\]
+\end{remark}
+
+
+\subsection{Descent for algebraic stacks}
+
+Next lemma directly implies that Zariski cover are étale atlases, by taking $A=R$. 
+
+\begin{lemma}\label{zariski-etale-atlas}
+If $A$ is fppf and étale and we are given $f_1,\cdots,f_n:A$ such that $(f_1,\cdots,f_n)=1$, we have that:
+\[A_{f_1}\times\cdots\times A_{f_n}\]
+is fppf and étale.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{proposition}\label{hasEtaleAtlasEtale}
+Let $X$ be an étale sheaf, then the property:
+\[\mathrm{hasEtaleAtlas}(X)\]
+is an étale sheaf.
+\end{proposition}
+
+\begin{proof}
+Assume $A$ an fppf étale algebra such that:
+\[\propTrunc{\Spec(A)} \to \mathrm{hasEtaleAtlas}(X)\]
+We just need to prove that:
+\[\mathrm{hasEtaleAtlas}(X)\]
+Then we have:
+\[\Spec(A) \to \mathrm{hasEtaleAtlas}(X)\]
+and by Zariski local choice there merely is a Zariski cover $\Spec(A') \to \Spec(A)$ with for all $x:\Spec(A')$ an étale atlas:
+\[f_x : \Spec(B_x)\to X\]
+Then the induced map:
+\[\sum_{x:\Spec(A')}\Spec(B_x)\to X\]
+is an étale atlas for $X$, indeed its fiber over $z:X$ is:
+\[\sum_{x:\Spec(A')}\sum_{y:\Spec(B_x)} f_x(y) = z\]
+which is a sigma type of formally étale and étale inhabited types by \cref{zariski-etale-atlas}.
+\end{proof}
+
+\begin{corollary}\label{isAlgebraicStackEtale}
+Let $X$ be an étale sheaf, then the property:
+\[\mathrm{isAlgStack}(X)\]
+is an étale sheaf.
+\end{corollary}
+
+\begin{proof}
+Having $X$ an étale sheaf asserts that all iterated identity types in $X$ have étale atlases, but all these iterated identity types are étale sheaves so we can conclude using \cref{hasEtaleAtlasEtale}
+\end{proof}
+
+Next corollary asserts étale descent for algebraic stacks.
+
+\begin{corollary}
+The type of algebraic stack is an étale sheaf.
+\end{corollary}
+
+\begin{proof}
+The type of étale sheaf is an étale sheaf, and an étale sheaf $X$ being an algebraic stack is an étale sheaf by \cref{isAlgebraicStackEtale}.
+\end{proof}
+
+\subsection{Algebraic stacks are stable by quotients}
+
+Next lemma intuitively means that we can quotient algebraic stack by étale relation in the étale topos and get algebraic stack.
+
+\begin{lemma}
+Let $X$ be a type such that:
+\begin{itemize}
+\item Identity types in $X$ are algebraic stacks.
+\item $X$ has an étale atlas.
+\end{itemize}
+Then $\mathrm{et}(X)$ is an algebraic stack.
+\end{lemma}
+
+\begin{proof}
+We have $X$ étale-sheaf separated by hypothesis and étale sheafification is lex so that:
+\[i:X\subset \mathrm{et}(X)\]
+We denote the assumed atlas of $X$ by: 
+\[f: \Spec(B)\to X\]
+\begin{itemize}
+\item We have that $\mathrm{et}(X)$ is an étale sheaf by definition.
+\item We have to prove that:
+\[\prod_{x:\mathrm{et}(X)} \mathrm{isFormallyEtale}(\fib_{i\circ f}(x))\]
+As affine schemes are étale sheaves, so is $\fib_{i\circ f}(x)$, and so it being formally étale is an étale sheaf. Therefore it is enough to prove:
+\[\prod_{x:X} \mathrm{isFormallyEtale}(\fib_{i\circ f}(i(x)))\]
+But since $i$ is an embedding, we have that:
+\[\fib_{i\circ f}(i(x)) = \fib_f(x)\]
+and the fiber of $f$ is assumed formally étale.
+\item We have to prove that:
+\[\prod_{x,y:\mathrm{et}(X)} \mathrm{isAlgStack}(x=_{\mathrm{et}(X)}y)\]
+but by \cref{hasEtaleAtlasEtale}, it is enough to prove that:
+\[\prod_{x,y:X} \mathrm{isAlgStack}(i(x)=_{\mathrm{et}(X)}i(y))\]
+But:
+\[(i(x)=_{\mathrm{et}(X)}i(y)) \simeq \mathrm{et}(x=_Xy) \simeq (x=_Xy)\]
+and $x=_Xy$ is assumed to be a algebraic stack.
+\end{itemize}
+\end{proof}
+
+Next corollary assume that schemes are étale sheaves, which we have not proven yet.
+
+\begin{corollary}
+Let $X$ be a scheme and let $\sim$ be an equivalence relation on $X$ such that:
+\begin{itemize}
+\item For all $x,y:X$, we have that $x\sim y$ is a scheme.
+\item For all $x:X$, the type:
+\[\sum_{y:X}x\sim y\]
+is formally étale.
+\end{itemize}
+Then $\mathrm{et}(X/\sim)$ is an algebraic set.
+\end{corollary}
+
