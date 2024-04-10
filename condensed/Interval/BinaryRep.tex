@@ -19,18 +19,25 @@ we define the proposition $p \sim_C  q$ as
   the type of Cauchy sequences modulo $\sim_C$.
 \end{definition}
 
-%\begin{definition}
-%  A Cauchy sequence in the interval is a Cauchy sequence $x$ such that 
-%  for any $n:\mathbb N$, we have $0\leq x_n \leq 1$. 
-% % 
-%  The interval of Cauchy reals is given by the type of Cauchy sequences in the interval 
-%  modulo $\sim_C$. 
-%\end{definition}  
+\begin{definition}
+  A Cauchy sequence in the interval is a Cauchy sequence $x$ such that 
+  for any $n:\mathbb N$, we have $0\leq x_n \leq 1$. 
+ % 
+  The interval of Cauchy reals is given by the type of Cauchy sequences in the interval 
+  modulo $\sim_C$. 
+\end{definition}  
+
+\begin{lemma}
+  For $p$ a Cauchy sequence, we have $p\leq 0 \vee p \geq 0 $. 
+\end{lemma}
+
 
 We want to show that the interval of Cauchy reals are a scheme. 
 Informally, to any binary sequence $\alpha : \mathbb N \to 2$, 
 we can associate a Cauchy sequence 
-\begin{equation}n\mapsto \sum\limits_{i = 0 }^n \frac {\alpha(i)}{2^{i+1}}\end{equation}
+\begin{equation}\label{eqnBinaryEncode}
+  n\mapsto \sum\limits_{i = 0 }^n \frac {\alpha(i)}{2^{i+1}}
+\end{equation}
 and we are going to give a closed relation on Cantor space such that 
 two binary sequences are equivalent iff they correspond to the same Cauchy reals. 
 %
@@ -72,9 +79,6 @@ To be precise, we define
 \bigg)
 \end{equation}
 \end{definition}
-%\begin{lemma}
-%  For every $n:\mathbb N$, $\text{near}_n$ is an equivalence relation. 
-%\end{lemma}
 \begin{remark}
 Remark that when $x,y$ are near, $m$ and $a$ as above are unique. 
 Thus $\text{near}_n(x,y)$ is a proposotion. 
@@ -113,22 +117,51 @@ but $010$ is not near to $100$.
    Let $n:\mathbb N$, we need to show that 
    $\text{near}_n(\alpha|_n , \gamma|_n)$. 
    Let $(a,m)$ witness that $\text{near}_n(\alpha|_n, \beta|_n)$.
+   and let $(b, k)$ witness that $\text{near}_n(\beta|_n, \gamma|_n)$
+   We will make a case distinction on whether one of $m,k$ is equal to $n$, or
+   both are strictly smaller than $n$. 
    \begin{itemize}
      \item 
-   If $m=n$, we have that $\alpha|_n = \beta|_n$, and therefore 
-   $\text{near}_n(\beta|_n, \gamma|_n) \leftrightarrow \text{near}_n(\alpha|_n, \gamma|_n)$.
-   \item 
-     If $m< n$, we have that $\alpha(m+1) \neq \beta(m+1)$, thus 
-     $\alpha|_k \neq \beta|_k$ for all $k>m$, 
-     but we still have $\text{near}_k(\alpha|_k, \beta|_k)$ for these $k$. 
-     Therefore, $\alpha = a \cdot 0 \cdot \overline 1$ and 
-  \end{itemize}
-   
+       If $m=n$, we have that $\alpha|_n = \beta|_n$, and therefore 
+       \begin{equation}
+         \text{near}_n(\beta|_n, \gamma|_n) \leftrightarrow \text{near}_n(\alpha|_n, \gamma|_n)
+       \end{equation} 
+       The above also holds if $k = n$.
+     \item 
+       If $m< n$, we have that $\alpha(m+1) \neq \beta(m+1)$, thus 
+       $\alpha|_l \neq \beta|_l$ for all $l>m$, 
+       but we still have $\text{near}_l(\alpha|_l, \beta|_l)$ for these $l$. 
+       Therefore $(\alpha, \beta)$ or $(\beta, \alpha)$ must be of the form
+       $(a \cdot 0 \cdot \overline 1, a \cdot 1 \cdot \overline 0)$. 
+       WLOG, we assume $\alpha = a \cdot 0 \cdot \overline 1$, and thus 
+       $\beta = a \cdot 1 \cdot \overline 0$ (if not, we could do bitflips). 
 
+       As $k<n$ also, by the same argument there is some $b$ such that one of 
+       $(\beta,\gamma), (\gamma, \beta)$
+       is equal to $(b\cdot 0 \cdot \overline 1, b \cdot 1 \cdot \overline 0)$. 
+       However, $\beta$ is also of the form $a \cdot 1 \cdot \overline 0$, and 
+       thus cannot also be of the form $b \cdot 0 \cdot \overline 1$. 
+       Therefore we must have 
+       $\beta = b\cdot 1 \cdot \overline 0$ and 
+       $\gamma= b\cdot 0 \cdot \overline 1$. 
 
+       But now $b \cdot 1 \cdot \overline 0 = a \cdot 1 \cdot \overline 0$, 
+       The lengths of $a,b$ cannot be unequal, and by decidablity of natural numbers, 
+       $a,b$ have the same length and it follows that $ a = b$. 
+       Therefore $ \alpha = \gamma$, so $\alpha \sim_t\gamma$.
+   \end{itemize}
 
+   We conclude that $\sim_t$ is a closed equivalence relation. 
 \end{proof}
 
-\begin{proposition}
+\begin{theorem}
   The interval of Cauchy reals is isomorphic to $2^\mathbb N / \sim_t$. 
-\end{proposition} 
+\end{theorem} 
+\begin{proof}
+  \Cref{eqnBinaryEncode} gives a function from Cantor space to Cauchy sequences in the interval. 
+  By a standard argument, this functions sends $\sim_t$ equivalent binary sequences to $\sim_C$ equivalent 
+  Cauchy sequences, and thus defines a morphism from $2^\mathbb N/\sim_t$ to the interval of Cauchy reals. 
+
+  For the other function, we will rely on Lemma \cref{TODO}
+\end{proof}
+
