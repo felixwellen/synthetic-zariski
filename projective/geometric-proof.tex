@@ -1,0 +1,67 @@
+A geometric property of $\bP^n$:
+
+\begin{lemma}\label{constant-functions-Pn-minus-points}
+  Let $p\neq q$ be points of $\bP^n$, then all functions
+  \begin{center}
+  \begin{enumerate}[(i)]
+  \item $\bP^n\setminus\{p,q\}\to \Z$
+  \item $\bP^n\setminus\{p,q\}\to R$
+  \end{enumerate}
+  \end{center}
+  are constant.
+\end{lemma}
+
+We proceed by extendending \Cref{Matthias} to subspaces of $\bP^n$ which can be constructed like $\bP^1$:
+
+\begin{lemma}\label{line-bundle-on-line}
+  Let $M\subseteq R^{n+1}$ be a submodule with $\|M=R^2\|$.
+  Then $\Gr(1,M)\subseteq \bP^n$ and the map
+  \begin{align*}
+    \Z\times \KR &\to (\Gr(1,M)\to \KR) &\\
+    (d,l_0) &\mapsto (L\mapsto L^{\otimes d}) &\text{ for $d\geq 0$} \\
+    (d,l_0) &\mapsto (L\mapsto \Hom_{\Mod{R}}(L^{\otimes d},R)) &\text{ for $d< 0$} 
+  \end{align*}
+  is an equivalence.
+\end{lemma}
+
+\begin{proof}
+  We prove a proposition, so we have an $R$-linear isomorphism $\phi:R^2\to M$ and for each $d:\Z$, we get a commutative triangle:
+  \begin{center}
+  \begin{tikzcd}
+    \Gr(1,M)\ar[rr,"\OO(d)"] && \KR \\
+    & \Gr(1,R^2)\ar[lu,"\phi"]\ar[ur,swap,"\OO(d)"] &
+  \end{tikzcd}
+\end{center}
+by restricting $\phi$ to each line in $\Gr(1,R^2)$.
+This shows that the map from \Cref{Matthias} and from the statement are equal as maps to $(V:\Mod{R})\times \|V=R^2\| \times (V\to\KR))$,
+which proves the claim.
+\end{proof}
+
+\begin{theorem}
+  The map
+  \begin{align*}
+    \Z\times \KR &\to (\bP^n\to \KR) \\
+    (d,l_0) &\mapsto (x\mapsto l_0\otimes \OO(d)(x))
+  \end{align*}
+  is an equivalence.
+\end{theorem}
+
+\begin{proof}
+  Let $L:\bP^n\to \KR$. First we determine the degree of $L$.
+  Let $p\neq q$ be points in $\bP^n$ and $M\subseteq R^{n+1}$ be the span of $p$ and $q$ as submodules of $R^{n+1}$.
+  Then $\|M=R^2\|$ and we can use the inverse $i$ of the map in \Cref{line-bundle-on-line} to define $d\colonequiv \pi_1(i(L_{|\Gr(1,M)}))$.
+  The integer $d$ is independent of the choice of $p$ and $q$:
+  If we let $p$ vary, we get a function of type $\bP^n\setminus\{q\}\to \Z$ which is constant by \Cref{constant-functions-Pn-minus-points}.
+  The same applies for $q$
+  and the two subsets $\bP^n\setminus\{p\}$ and $\bP^n\setminus\{q\}$ cover $\bP^n$.
+
+  In the following we consider only $L$ such that $d$ as constructed above is $0$.
+  This means that on each line $\Gr(1,M)$, $L$ will be constant.
+  So, again for $p\neq q$ points in $\bP^n$,
+  we have $P:(x:\bP^n\setminus\{p\})\to L(x)=L(p)$ and $Q:(y:\bP^n\setminus\{q\})\to L(y)=L(q)$.
+  The claim follows if we show that $L$ is constant on all of $\bP^n$.
+  We show a proposition, so we can assume $a:L(p)=R^1$ and $b:L(q)=R^1$ and get:
+  \[ \left((x:\bP^n\setminus\{p,q\})\mapsto a^{-1}(P_x)^{-1}Q_xb\right) : \bP^n\setminus\{p,q\} \to R^\times\]
+  which is constantly $\lambda$ by \Cref{constant-functions-Pn-minus-points}.
+  So $P$ and $Q$ can be corrected using $\lambda,a$ and $b$ to yield a global proof of constancy of $L$.
+\end{proof}
