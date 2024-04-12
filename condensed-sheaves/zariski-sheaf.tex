@@ -1,0 +1,97 @@
+We want to do two successive sheafifications, the Zariski one and the fppf one. We could (should?) also do them in one go. This section is about the Zariski sheafification, meaning we build a model of:
+
+\begin{itemize}
+\item Duality for $2$
+\item Affine schemes are projective.
+\item Dependent choice.
+\end{itemize}
+
+
+\subsection{Zariski sheaves}
+
+\begin{definition}
+The Zariski topology consists of finite sums:
+\[f_1 \inv + \cdots + f_n \inv\]
+where $f_1,\cdots,f_n:B$ such that:
+\[(f_1,\cdots,f_n) = 1\]
+\end{definition}
+
+\begin{definition}
+The disjoint topology consists of finite sums:
+\[f_1 \inv + \cdots + f_n \inv\]
+where $f_1,\cdots,f_n:B$ is a fundamental system of idempotent, i.e.
+\[f_1+\cdots+f_n = 1\]
+\[f_i^2 = f_i\]
+\[f_if_j = 0\]
+when $i\not=j$.
+\end{definition}
+
+\begin{lemma}
+A type $X$ is a Zariski sheaf if and only if it is a disjoint sheaf.
+\end{lemma}
+
+\begin{proof}
+The disjoint topology is included on the Zariski topology, so we just need to prove that:
+\[f_1 \inv \lor \cdots \lor f_n \inv\]
+is disjoint-contractible. So we need to prove the proposition assuming $f=0\lor f=1$ for finitely many $f:B$. This is straightforward.
+\end{proof}
+
+\begin{lemma}
+The Zariski topology is subcanonical.
+\end{lemma}
+
+\begin{proof}
+We will prove later the stronger result that the fppf topology is subcanonical.
+\end{proof}
+
+Next proposition is based on \cref{main-result-sheaves}, which has not be proven in details yet.
+
+\begin{proposition}
+The Zariski topos satisfy the following:
+\begin{itemize}
+\item For all c.p. boolean ring $C$, the map:
+\[C\to 2^{\Spec(C)}\]
+is an equivalence.
+\item For all c.p. boolean ring $C$, the type $\Spec(C)$ has choice.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+We apply \cref{main-result-sheaves}. 
+\begin{itemize}
+\item Any local boolean ring is $2$, so the generic ring in the Zariski topos is $2$, justifying the first item.
+\item We have disjoint-local choice for affine schemes, let us check that it implies actual choice. To do this it is enough to check that disjoint-cover are equivalence, i.e. that given a fundamental system $f_1,\cdots,f_n$ of idempotent in $2$ we have that:
+\[f_1=1 + \cdots + f_n=1\]
+is contractible. This is straightforward.
+\end{itemize}
+\end{proof}
+
+
+\subsection{A surprising property of the presheaf topos}
+
+We work in the presheaf topos, with generic boolean algebra $B$.
+
+\begin{lemma}
+If $0\not=_B1$, then for all $x:B$ we have that $x=0\lor x=1$.
+\end{lemma}
+
+\begin{proof}
+If $0\not=_B1$, for any $x:B$ we have that:
+\[(x=0+x=1) \simeq (x=0\lor x=1)\]
+but the left hand side is representable so it is a Zariski sheaf, and the right hand side is Zariski contractible, so that:
+\[x=0\lor x=1\]
+is contractible.
+\end{proof}
+
+\begin{remark}
+We can make a much more reasonable argument from duality alone. TODO
+\end{remark}
+
+\begin{remark}
+Actually we might even have $\neg\neg(0=1)$ in the presheaf topos, at least it seems to hold in the model.
+\end{remark}
+
+
+\subsection{Dependent choice from presheaves to Zariski sheaves}
+
+TODO
