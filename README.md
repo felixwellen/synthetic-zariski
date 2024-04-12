@@ -17,6 +17,7 @@ There are currently the following parts:
 - More general topologies, in particular fppf ([very early draft pdf](https://felix-cherubini.de/sheaves.pdf))
 - Calculations with (elliptic) curves and divisors ([very early draft pdf](https://felix-cherubini.de/elliptic.pdf))
 - Synthetic stone duality ([very early draft pdf](https://felix-cherubini.de/condensed.pdf))
+- Notes on a model for synthetic stone duality ([very early draft pdf](https://felix-cherubini.de/condensed-sheaves.pdf))
 - Finite schemes in SAG ([very early draft pdf](https://felix-cherubini.de/finite.pdf))
 - Random Facts, i.e. a collection of everything that still needs to find a good place ([very early draft pdf](https://felix-cherubini.de/random.pdf))
 - Collection of exercises ([pdf with exercise-ideas](https://felix-cherubini.de/exercises.pdf))
