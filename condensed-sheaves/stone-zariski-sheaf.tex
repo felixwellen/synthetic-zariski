@@ -1,4 +1,4 @@
-We want to do two successive sheafifications, the Zariski one and the fppf one. We could (should?) also do them in one go. This section is about the Zariski sheafification, meaning we build a model of:
+We want to do two successive sheafifications, the Zariski one and the fppf one. We could (should?) do them in one go. This section is about the Zariski sheafification, meaning we build a model of:
 
 \begin{itemize}
 \item Duality for $2$
@@ -67,31 +67,61 @@ is contractible. This is straightforward.
 \end{proof}
 
 
-\subsection{A surprising property of the presheaf topos}
+\subsection{Dependent choice from presheaves to Zariski sheaves}
 
-We work in the presheaf topos, with generic boolean algebra $B$.
-
-\begin{lemma}
-If $0\not=_B1$, then for all $x:B$ we have that $x=0\lor x=1$.
+\begin{lemma}\label{join-zariski-equiv}
+Assume given a type $X$ and $A_1,\cdots,A_n$ types such that for all $I\subset [1,n]$ with at least two elements, $X^{\prod_{i:I}A_i}$ is a proposition. Then the map:
+\[A_1+\cdots+A_n \to A_1\lor\cdots \lor A_n\]
+induces an equivalence:
+\[X^{A_1\lor\cdots\lor A_n} \to X^{A_1+\cdots+A_n}\]
 \end{lemma}
 
 \begin{proof}
-If $0\not=_B1$, for any $x:B$ we have that:
-\[(x=0+x=1) \simeq (x=0\lor x=1)\]
-but the left hand side is representable so it is a Zariski sheaf, and the right hand side is Zariski contractible, so that:
-\[x=0\lor x=1\]
-is contractible.
+Like Cech cohomology stuff, TODO
+\end{proof}
+
+\begin{lemma}\label{zariski-sum-local}
+Assume given $f_1,\cdots,f_n:\mathbb{B}$ a fundamental system of idempotents and $X$ a Zariski sheaf. Then $X$ is $(f_1=1+\cdots + f_n=1)$-local.
+\end{lemma}
+
+\begin{proof}
+For all $i\not=j$ we have that $f_i=1\land f_j = 1$ is equivalent to $0=1$ as $f_if_j=0$, and so is the conjunction of any two or more $f_i=1$. 
+
+But we have that $X^{0=1}$ is contractible when $X$ is a Zariski sheaf, as $0=1$ implies any Zariski sheaf contractible.
+
+So we can apply \cref{join-zariski-equiv} to conclude that since $X$ is $f_1=1\lor\cdots \lor f_n=1$-local it is indeed $(f_1=1+\cdots + f_n=1)$-local.
 \end{proof}
 
 \begin{remark}
-We can make a much more reasonable argument from duality alone. TODO
+Alternatively we can prove that given $f_1,\cdots,f_n:\mathbb{B}$ a fundamental system of idempotents, the map:
+\[f_1=1+\cdots + f_n=1 \to f_1=1\lor\cdots\lor f_n=1\]
+has Zariski contractible fibres, indeed its fibers are of the form:
+\[\top + 0=1 + \cdots + 0=1\]
+which is Zariski equivalent to $\top$ as $0=1$ is Zariski equivalent to $\bot$. From this we conclude that Zariski sheaves are $(f_1=1+\cdots + f_n=1)$-local
 \end{remark}
 
-\begin{remark}
-Actually we might even have $\neg\neg(0=1)$ in the presheaf topos, at least it seems to hold in the model.
-\end{remark}
+\begin{lemma}\label{zariski-stable-truncation}
+Assume given a Zariski sheaf $X$. Then $\propTrunc{X}$ is a Zariski sheaf.
+\end{lemma}
 
+\begin{proof}
+Assume $f_1,\cdots,f_n:\mathbb{B}$ a fundamental system of idempotent such that:
+\[f_1=1\lor\cdots\lor f_n=1 \to \propTrunc{X}\]
+We need to prove $\propTrunc{X}$. But we have the diagram:
+ \begin{center}
+    \begin{tikzcd}
+      f_1=1+\cdots+ f_n=1 \ar[r,dotted]\ar[d] & X\ar[d] \\
+      f_1=1\lor\cdots\lor f_n=1 \ar[r] & \propTrunc{X}
+    \end{tikzcd}
+  \end{center}
+  where the dotted arrow merely exists because $f_1=1\lor\cdots\lor f_n=1$ has choice. But by \cref{zariski-sum-local} we have that $X$ is $(f_1=1\lor\cdots\lor f_n=1)$-local so we merely find a point in $X$.
+\end{proof}
 
-\subsection{Dependent choice from presheaves to Zariski sheaves}
+\begin{proposition}
+Assume the presheaf topos satisfies dependent choice. Then the Zariski sheaf model satisfies dependent choice.
+\end{proposition}
 
-TODO
+\begin{proof}
+A map between Zariski sheaf being surjective in the Zariski and presheaf model means the same thing by \cref{zariski-stable-truncation}.
+\end{proof}
+
