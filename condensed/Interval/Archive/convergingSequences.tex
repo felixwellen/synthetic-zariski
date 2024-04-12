@@ -1,0 +1,49 @@
+For any rational $0\leq q \leq 1$, there is a (not necessarily unique) sequence $\alpha$ such that 
+
+\begin{equation}q = \sum_{i : \mathbb N} \frac{\alpha(i)}{2^{i+1}}\end{equation}
+
+One way to get such a sequence is by the following construction:
+\begin{equation}\alpha(n)  = \begin{cases}
+  1 \text{ if } q - \sum_{0\leq i < n} \frac{\alpha(i)}{2^{i+1}} > \frac 1 {2 ^ n + 1} \\
+0 \text{ otherwise } 
+\end{cases}
+\end{equation} 
+This construction defines a function $f: \mathbb Q \to 2^\mathbb N$. 
+\begin{definition}
+  A Cauchy sequence is a sequence of rational numbers $(q_n)_{n: \mathbb N}$ with $-1 \leq q_n \leq 2$ 
+  for all $n:\mathbb N$
+  such that for every $\epsilon: \mathbb Q_{>0}$, we have an $N:\mathbb N$, 
+  such that whenever $n,m \geq N$, we have 
+\begin{equation}
+  | q_n - q_m | \leq \epsilon
+\end{equation} 
+\end{definition}
+\begin{definition}
+  The type of Cauchy reals is the subtype of Cauchy sequences under the quotient of the following 
+  equivalence relation:
+\begin{equation}
+  p \sim_C q : = \forall (\epsilon : \mathbb Q_{>0} )\exists ( N :\mathbb N) \forall (n : \mathbb N) ((n \geq N) \to 
+  (| p_n - q_n| \leq  \epsilon))
+\end{equation}
+\end{definition}
+
+
+\begin{definition}
+  The interval is defined as the subtype of Cantor space under the quotient of the equivalence relation
+  $\sim_s$ such that for any finite binary sequence $x$, we have
+  \begin{equation}(x,1,\overline 0) \sim_s (x ,0, \overline 1)\end{equation}
+\end{definition} 
+
+
+
+\begin{proposition}
+  For $f$ as above, for any Cauchy sequence $p: \mathbb N \to \mathbb Q$ 
+  the map $f\circ p: \mathbb N \to 2^\mathbb N$ can be extended to a map 
+  $ext(p) : \Noo \to 2^\mathbb N$. 
+ % 
+  Furthermore, $ext(p)(\infty) \sim_s ext(q)(\infty)$ whenever $p \sim_C q$. 
+\end{proposition} 
+\begin{corollary}
+  $2^\mathbb N/\sim_s$ is the completion of the rational interval. 
+\end{corollary}
+

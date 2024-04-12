@@ -1,0 +1,122 @@
+We want to show that the interval of Cauchy reals is Compact Hausdorff. 
+Informally, to any binary sequence $\alpha : \mathbb N \to 2$, 
+we can associate a Cauchy sequence 
+\begin{equation}\label{eqnBinaryEncode}
+  n\mapsto \sum\limits_{i = 0 }^n \frac {\alpha(i)}{2^{i+1}}
+\end{equation}
+and we are going to give a closed relation on Cantor space such that 
+two binary sequences are equivalent iff they correspond to the same Cauchy reals. 
+%
+First, we'll need some notation.
+\begin{definition}
+Given a binary sequence $\alpha:\mathbb N \to 2$ and a natural number $n : \mathbb N$  
+we denote $\alpha|_n: \mathbb N_{\leq n} \to 2$ for the 
+restriction of $\alpha$ to a finite sequence of length $n$. 
+We denote $\overline 0, \overline 1$ for the binary sequences which are constantly $0$ and $1$ respectively. 
+We denote $0,1$ for the sequences of length $1$ hitting $0,1$ respectively. 
+If $x$ is a finite sequence and $y$ is any sequence, denote $x\cdot y$ for their concatenation. 
+\end{definition} 
+Now we'll give a definition for when two finite binary sequences of length $n$ correspond 
+to real numbers whose distance is $\leq (\frac12)^n$.
+Basically, we want for every finite sequence $z$ that 
+$(z \cdot 0 \cdot \overline 1)$ and  $(z \cdot 1 \cdot \overline 0)$ are equivalent. 
+
+\begin{definition}
+Now let $n:\mathbb N$ and $x,y:\mathbb N_{\leq n} \to 2$ be two sequences of length $n$. 
+We say $x,y$ are near if we have an $m:\mathbb N$ with $m\leq n$
+and some $a: \mathbb N_{\leq m} \to 2$, 
+such that one of $(a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n$
+is equal to $x$ and the other is equal to $y$. 
+We denote $\text{near}_n(x,y)$ if $x,y$ are near. 
+%
+To be precise, we define 
+\begin{equation}
+  \text{near}_n(x,y) = 
+\Sigma(m:\mathbb N) m \leq n \wedge 
+  \Sigma (a : Fin_m \to 2) 
+\bigg( \big( (x,y) = 
+((a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n)
+\big)
+\bigvee 
+\big(
+  (y,x) = 
+((a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n)
+\big)
+\bigg)
+\end{equation}
+\end{definition}
+\begin{remark}
+Remark that when $x,y$ are near, $m$ and $a$ as above are unique. 
+Thus $\text{near}_n(x,y)$ is a proposotion. 
+%
+Furthermore, to check whether $x,y$ are near, we need only make $n$ comparisons, 
+thus $\text{near}_n(x,y)$ is decidable. 
+%
+Note that in the above definition, we allow $m = n$ and therefore $x$ is near to itself for any finite sequence $x$. 
+Furthermore, we have defined nearness to be symmetric. 
+However, it is not a transtive relation. 
+After all, the sequence $010$ and $011$ are near and the sequence $011$ and $100$ are near, 
+but $010$ is not near to $100$. This corresponds to the fact that $\frac14$ and $\frac38$ are distance $\leq (\frac12)^3$
+apart, and so are $\frac38$ and $\frac12$, but $\frac14$ and $\frac12$ are not. 
+\end{remark}
+\begin{definition}
+  We define the following relation on Cantor space for $\alpha, \beta: 2^\mathbb N$.
+  \begin{equation}
+    \alpha \sim_t \beta = \forall (n : \mathbb N) 
+    \text{near}_n(\alpha|_n, \beta|_n)
+  \end{equation}
+\end{definition}
+\begin{lemma}
+  $\sim_t$ is a closed equivalence relation. 
+\end{lemma}
+\begin{proof}
+   Let $\alpha, \beta, \gamma : 2^\mathbb N$. 
+   As the dependent product of propositions is a proposition, $\alpha \sim_t\beta$ is a proposition. 
+   %
+   Furthermore, the closedness follows from decidability of $\text{near}_n(\alpha|_n, \beta|_n)$. 
+   One could define $\gamma(n) = 1$ iff $\text{near}_n(\alpha|_n, \beta|_n)$
+   
+   As nearness is reflexive and symmetric, so is $\sim_t$. 
+
+   Now suppose $\alpha \sim_t \beta$ and $\beta\sim_t \gamma$. 
+   We claim that $\alpha \sim_t \gamma$. 
+
+   Let $n:\mathbb N$, we need to show that 
+   $\text{near}_n(\alpha|_n , \gamma|_n)$. 
+   Let $(a,m)$ witness that $\text{near}_n(\alpha|_n, \beta|_n)$.
+   and let $(b, k)$ witness that $\text{near}_n(\beta|_n, \gamma|_n)$
+   We will make a case distinction on whether one of $m,k$ is equal to $n$, or
+   both are strictly smaller than $n$. 
+   \begin{itemize}
+     \item 
+       If $m=n$, we have that $\alpha|_n = \beta|_n$, and therefore 
+       \begin{equation}
+         \text{near}_n(\beta|_n, \gamma|_n) \leftrightarrow \text{near}_n(\alpha|_n, \gamma|_n)
+       \end{equation} 
+       The above also holds if $k = n$.
+     \item 
+       If $m< n$, we have that $\alpha(m+1) \neq \beta(m+1)$, thus 
+       $\alpha|_l \neq \beta|_l$ for all $l>m$, 
+       but we still have $\text{near}_l(\alpha|_l, \beta|_l)$ for these $l$. 
+       Therefore $(\alpha, \beta)$ or $(\beta, \alpha)$ must be of the form
+       $(a \cdot 0 \cdot \overline 1, a \cdot 1 \cdot \overline 0)$. 
+       WLOG, we assume $\alpha = a \cdot 0 \cdot \overline 1$, and thus 
+       $\beta = a \cdot 1 \cdot \overline 0$ (if not, we could do bitflips). 
+
+       As $k<n$ also, by the same argument there is some $b$ such that one of 
+       $(\beta,\gamma), (\gamma, \beta)$
+       is equal to $(b\cdot 0 \cdot \overline 1, b \cdot 1 \cdot \overline 0)$. 
+       However, $\beta$ is also of the form $a \cdot 1 \cdot \overline 0$, and 
+       thus cannot also be of the form $b \cdot 0 \cdot \overline 1$. 
+       Therefore we must have 
+       $\beta = b\cdot 1 \cdot \overline 0$ and 
+       $\gamma= b\cdot 0 \cdot \overline 1$. 
+
+       But now $b \cdot 1 \cdot \overline 0 = a \cdot 1 \cdot \overline 0$, 
+       The lengths of $a,b$ cannot be unequal, and by decidablity of natural numbers, 
+       $a,b$ have the same length and it follows that $ a = b$. 
+       Therefore $ \alpha = \gamma$, so $\alpha \sim_t\gamma$.
+   \end{itemize}
+
+   We conclude that $\sim_t$ is a closed equivalence relation. 
+\end{proof}

@@ -1,0 +1,80 @@
+\begin{lemma}
+  The map $b: 2^\mathbb N \to [0,1]$ is surjective. 
+\end{lemma}
+\begin{proof}
+  First, suppose we have a function 
+  $d:\Pi_{x:\mathbb R} \Pi_{q: \mathbb Q} (x \leq q + x \geq q)$
+  Then we could recursively define 
+  $$\alpha(n) = \begin{cases}
+    0 \text{ if } d(x - \sum\limits_{i<n} \frac{\alpha(i)}{2^{i+1}} , \frac{1}{2^{n+1}}) = inl(\cdot) \\
+    1 \text{ otherwise}
+  \end{cases}
+  $$
+%  Recall that inequality between rational numbers is decidable, therefore we can define
+%  $$\alpha(n) = \begin{cases}
+%    0 \text{ if } |x_n - \sum\limits_{i<n} \frac{\alpha(i)}{2^{i+1}}| \leq  \frac{1}{2^{n+1}} \\
+%    1 \text{ otherwise}
+%  \end{cases}
+%  $$
+  Note that 
+  $$\alpha(n) = \begin{cases}
+    0 \text{ if } d(x - b(\alpha)_{n-1} , \frac{1}{2^{n+1}}) = inl(\cdot) \\
+    1 \text{ otherwise}
+  \end{cases}
+  $$
+  We'll show by induction that $b(\alpha)_n \leq x$ for every $n:\mathbb N$. 
+  First $b(\alpha)_0 = 0 \leq x$. 
+  Assuming, $b(\alpha)_k \leq x$, for $b(\alpha)_{k+1}$, 
+  there are two cases:
+  \begin{itemize}
+    \item 
+     if $d(x -  b(\alpha)_k, \frac{1}{2^{n+1}}) = inl(\cdot)$, 
+     then $b(\alpha)_{k+1} = b(\alpha)_k$, which is $\leq x$ by induction hypothesis. 
+   \item 
+     Otherwise, $ x - b(\alpha)_k \geq (\frac12)^{k+1}$
+     So $x-b(\alpha)_k - (\frac12)^{k+1} \geq 0$, 
+     and $b(\alpha)_{k+1} = b(\alpha)_k + (\frac12)^{k+1}$. 
+     So $x-b(\alpha)_{k+1} \geq 0$, and $b(\alpha)_{k+1} \leq x$ as required. 
+ \end{itemize}
+ So by induction $b(\alpha)_n\leq x$ for every $n:\mathbb N$. 
+ Therefore, $|x-b(\alpha)_n| = x-b(\alpha)_n$. 
+  
+  We shall also show by induction that 
+  $ x- b(\alpha)_n \leq (\frac12)^{n+1} $
+  for every natural number $n:\mathbb N$. 
+%
+  For $n = 0$, this follows from the assumption that $x\leq 1$. 
+%
+  Suppose that $ x- b(\alpha)_k  \leq (\frac12)^{k+1} $. 
+  We make a case distinction on the form of $d(x-b(\alpha)_k, (\frac12)^{k+2})$.
+  \begin{itemize}
+    \item 
+      If $d(x-b(\alpha)_k , (\frac12)^{k+2}) = inl(\cdot)$, 
+      then $  x-b(\alpha)_k  \leq (\frac12)^{k+2}$, 
+      and $b(\alpha)_{k+1} = b(\alpha)_k$, 
+      and $x-b(\alpha)_{k+1}  \leq (\frac12)^{k+2}$ as well, 
+      as required. 
+    \item 
+      Otherwise, we must have
+      $ x- b(\alpha)_k  \geq (\frac12)^{k+2}$, 
+      and $b(\alpha)_{k+1} = b(\alpha)_k + (\frac12)^{k+1}$.
+      By induction hypothesis, we have 
+      $x-b(\alpha)_k \leq (\frac12)^{k+1}$. 
+      Thus \begin{equation}
+        x-b(\alpha)_{k+1} = x - b(\alpha)_k - (\frac12)^{k+1}
+        \leq (\frac12)^{k+1} - (\frac12)^{k+2} = (\frac12)^{k+2}
+      \end{equation}
+      as required. 
+  \end{itemize}
+  
+  By induction, we conclude that 
+  $ | b(\alpha)_n - x |  \leq (\frac12)^{n+1} $
+  for every $n:\mathbb N$. 
+  Therefore $b(\alpha)$ converges to $x$. 
+
+  We may conclude that $\Pi_{x:[0,1]} \Pi_{q: \mathbb Q} (x \leq q + x \geq q)$ implies that 
+  we can give for each $x: [0,1]$ a binary sequence $\alpha$ with $b(\alpha) = x$. 
+  As we have the propositional trunctation of the premise by \Cref{ComparisonLemma}, 
+  we may conclude that for each $x:[0,1]$ there merely exists $\alpha$ with $b(\alpha) = x$. 
+  Therefore $b$ is surjective. 
+\end{proof}

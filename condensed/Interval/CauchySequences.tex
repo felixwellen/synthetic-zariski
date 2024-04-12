@@ -1,0 +1,142 @@
+\subsection{The Cauchy reals}
+The goal of this section is to introduce the real numbers in a constructive setting, 
+following the definition given in \cite{Bishop} with some small adaptations. 
+We will later use this definition to show that the interval $[0,1]$ is compact Hausdorff in the sense 
+of \Cref{dfnCompactHausdorff}. 
+
+We will assume we are given natural and rational numbers, with decidable (in)equalities
+working as expected. 
+
+\begin{definition}
+  A \textbf{Cauchy sequence} is a sequence $x : \mathbb N \to \mathbb Q$ such that
+  for any $n,m:\mathbb N$, we have %$0\leq x_n \leq 1$ and 
+$|x_n-x_m| \leq (\frac12)^n + (\frac12)^m$. 
+\end{definition}
+\begin{remark}
+  If $x$ is a cauchy sequence and $q$ a rational number, the 
+  sequence $(x-q)_n = (x_n-q)$ is also Cauchy.
+\end{remark}
+
+Following \cite{Bishop}, we define inequality relations between Cauchy sequences and
+rational numbers. 
+\begin{definition}
+  For $x$ a Cauchy sequence and $q$ a rational number, we define 
+  \begin{itemize}
+%    \item $x> q = \Sigma(n:\mathbb N) x_n > q + {\frac12}^n$. %for some $n:\mathbb N$. 
+%    \item $x< q = \Sigma(n:\mathbb N) x_n < q - {\frac12}^n$. %for some $n:\mathbb N$. 
+    \item $x\leq  q = \Pi_{n:\mathbb N} x_n \leq q+(\frac12)^n$. 
+    \item $x\geq  q = \Pi_{n:\mathbb N} x_n \geq q-(\frac12)^n$. 
+  \end{itemize}
+\end{definition}
+%\begin{lemma}
+%  For $x$ Cauchy and $q$ rational, we have that 
+%  $x\leq q$ iff for each $n:\mathbb N$, we have a $N_n:\mathbb N$ with 
+%  $x_m> q-(\frac12)^n$ for all $m \geq N_n$. 
+%\end{lemma}
+\begin{lemma}\label{ComparisonLemma}
+  For $x$ a Cauchy sequence and $q$ a rational number, we have
+  $x \leq q \vee x \geq q$. 
+\end{lemma}
+\begin{proof}
+  For rational numbers, we have decidable inequalities, 
+  therefore $\geq 0 \vee q \leq 0$. 
+  It follows that 
+  $ \forall (n:\mathbb N) \forall (m:\mathbb N) q \geq -(\frac12)^n \vee q \leq (\frac12)^m$. 
+  Now by \Cref{TODO}, we may conclude 
+  $ (\forall (n:\mathbb N) q \geq -(\frac12)^n ) \vee (\forall (m:\mathbb N) q \leq (\frac12)^m)$
+  as required.
+\end{proof}
+
+
+%%%\begin{definition}
+%%%  A Cauchy sequence $x$ is \textbf{nonnegative} if $x_n \geq -(\frac12)^n$
+%%%  for every $n:\mathbb N$. 
+%%%  $x$ is \textbf{nonpositive} if $x_n \leq (\frac12)^n$
+%%%  for every $n:\mathbb N$. 
+%%%\end{definition} 
+%%%%\begin{lemma}
+%%%%  A Cauchy sequence is nonnegative iff there exists an $N$ such that $x_n \geq -(\frac12)^N$
+%%%%  for all $n\geq N$. 
+%%%%  A Cauchy sequence is nonpositive iff there exists an $N$ such that $x_n \leq (\frac12)^N$
+%%%%  for all $n\geq N$. 
+%%%%\end{lemma}
+%%%%\begin{proof}
+%%%%  Assume $x$ is nonnegative. Thus for every $n:\mathbb N$, we have $x_n\geq -(\frac12)^n \geq -(\frac12)^0$. 
+%%%%  Thus $N$ can taken to be $0$. 
+%%%%%
+%%%%  Conversely, as $x$ is Cauchy, we have
+%%%%  for all $m :\mathbb N$ that  
+%%%%%  \begin{equation}- (\frac12)^m -(\frac12)^n \leq    x_m-x_n \leq (\frac12)^m + (\frac12)^n \end{equation}
+%%%%  \begin{equation}- (\frac12)^m -(\frac12)^n \leq    x_n-x_m \leq (\frac12)^m + (\frac12)^n \end{equation}
+%%%%  If in addition there is an $N$ such that whenever $m\geq N$, we have 
+%%%%  $x_m \geq -(\frac12)^N$, so $-x_m \leq (\frac12)^N$, 
+%%%%  so $x_n -x_m \leq x_n - (\frac12)^N$. 
+%%%%  Therefore, 
+%%%%  \begin{equation}- (\frac12)^m -(\frac12)^n \leq    x_n-x_m \leq x_n-(\frac12)^N \end{equation}
+%%%%  Thus 
+%%%%  \begin{equation}- (\frac12)^m -(\frac12)^n  + (\frac12)^N \leq x_n \end{equation}
+%%%%  As $N \geq N$, we have in particular 
+%%%%  \begin{equation}- (\frac12)^N -(\frac12)^n  + (\frac12)^N \leq x_n \end{equation}
+%%%%  \begin{equation} - (\frac12)^n  \leq x_n \end{equation}
+%%%%  thus $x$ is nonnegative. 
+%%%%
+%%%%  The nonpositive case goes similar. 
+%%%%\end{proof}   
+%%% 
+%%%
+%%%\begin{lemma}
+%%%  A Caucy sequence is nonnegative or nonpositive. 
+%%%\end{lemma}
+
+%\begin{lemma}
+%  For any Cauchy sequence $p$, we have 
+%  $(\forall (n:\mathbb N) p_n \leq (\frac12)^n) \vee (\forall (n:\mathbb N) p_n \geq -(\frac12)^n)$. 
+%\end{lemma}
+%\begin{proof}
+%We 
+%\end{proof}
+
+\begin{definition}
+Given two Cauchy sequences $p = (p_n)_{n\in\mathbb N}, q=(q_n)_{n\in\mathbb N}$, 
+we define the proposition $p \sim_C  q$ as 
+\begin{equation}
+  p \sim_C q : = \forall (n,m : \mathbb N) ((| p_n - q_m| \leq  (\frac12)^n + (\frac12)^m))
+\end{equation}
+\end{definition}
+
+%\begin{remark}
+%  Note that $p\sim_C q$ is equivalent to 
+%\begin{equation}
+%  \forall (n : \mathbb N) | p_n - q_n| \leq  (\frac12)^{n-1}
+%\end{equation}
+%The equivalence doesn't hold, unless you cut off initial segments (which shouldn't matter). 
+%\end{remark} 
+
+\begin{definition}
+  The type of \textbf{Cauchy reals} is given by 
+  the type of Cauchy sequences modulo $\sim_C$.
+\end{definition}
+
+We claim that the inequality in \Cref{TODO} extends to a well-defined 
+inequality between Cauchy reals and rational numbers. 
+
+Furthermore, we claim that 
+$\Pi_{x:\mathbb R} \Pi_{q:\mathbb Q} x \leq q \vee x \geq q$. 
+
+%\begin{lemma}
+%  For any Cauchy real $r$ any Cauchy sequence $p$ representing $r$, 
+%  we have 
+%  \begin{equation}
+%    (\forall (n:\mathbb N) p_n \leq (\frac12)^n) \vee (\forall (n:\mathbb N) p_n \geq (\frac12)^n)
+%  \end{equation}
+%
+%\end{lemma}
+
+\begin{definition}
+  A Cauchy sequence in the interval is a Cauchy sequence $x$ such that 
+  for any $n:\mathbb N$, we have $0\leq x_n \leq 1$. 
+ % 
+  The interval of Cauchy reals is given by the type of Cauchy sequences in the interval 
+  modulo $\sim_C$. We denote it by $[0,1]$. 
+\end{definition}  
+

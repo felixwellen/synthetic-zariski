@@ -1,167 +1,93 @@
-
-\begin{definition}
-  A \textbf{Cauchy sequence} is a sequence $x : \mathbb N \to \mathbb Q$ such that
-  for any $n,m:\mathbb N$, we have %$0\leq x_n \leq 1$ and 
-$|x_n-x_m| \leq (\frac12)^n + (\frac12)^m$. 
-\end{definition}
-
-\begin{definition}
-Given two Cauchy sequences $p = (p_n)_{n\in\mathbb N}, q=(q_n)_{n\in\mathbb N}$, 
-we define the proposition $p \sim_C  q$ as 
-\begin{equation}
-  p \sim_C q : = \forall (\epsilon : \mathbb Q_{>0} )\exists ( N :\mathbb N) \forall (n : \mathbb N) ((n \geq N) \to 
-  (| p_n - q_n| \leq  \epsilon))
-\end{equation}
-\end{definition}
-
-\begin{definition}
-  The type of \textbf{Cauchy reals} is given by 
-  the type of Cauchy sequences modulo $\sim_C$.
-\end{definition}
-
-\begin{definition}
-  A Cauchy sequence in the interval is a Cauchy sequence $x$ such that 
-  for any $n:\mathbb N$, we have $0\leq x_n \leq 1$. 
- % 
-  The interval of Cauchy reals is given by the type of Cauchy sequences in the interval 
-  modulo $\sim_C$. 
-\end{definition}  
+\input{Interval/CauchySequences}
+\input{Interval/BinaryClosedEquivalence}
 
 \begin{lemma}
-  For $p$ a Cauchy sequence, we have $p\leq 0 \vee p \geq 0 $. 
+  $b$ sends $\sim_n$ equivalent binary sequences to $\sim_C$ equivalent Cauchy sequences. 
 \end{lemma}
+\begin{proof}
+  Let $\alpha, \beta$ be binary sequences.
+  We claim that $|b(\alpha)_n - b(\beta)_n| \leq (\frac12)^{n+1}$ 
+  whenever $\text{near}_n(\alpha, \beta)$. 
+  It will follow that if $\alpha\sim_n \beta$, then 
+  $b(\alpha)\sim_C b(\beta)$. 
 
+  Let $n:\mathbb N$ and assume $m:\mathbb N$ with $m\leq n$ and 
+  let $z$ be a sequence of length $m$ such that 
+  $\alpha|_n = z\cdot 1 \cdot \overline 0|_n$ and $\beta|_n = z \cdot 0 \cdot \overline q |_n$. 
+  then $b(\alpha)_n = \sum_{i\leq m} \frac{z(i)}{2^{i+1}} + (\frac12)^{m+2}$ and 
+  $b(\beta)_n = \sum_{i\leq m} \frac{z(i)}{2^{i+1}} + \sum\limits_{m+2 \leq i \leq n}(\frac12)^{i+1}$. 
+  Thus 
+  $b(\alpha)_n - b(\beta)_n = (\frac12)^{m+2} - \sum\limits_{m+2 \leq i \leq n}(\frac12)^{i+1} = 
+  (\frac12)^{n+1}$, 
+  which is smaller than required. 
+\end{proof}  
 
-We want to show that the interval of Cauchy reals are a scheme. 
-Informally, to any binary sequence $\alpha : \mathbb N \to 2$, 
-we can associate a Cauchy sequence 
-\begin{equation}\label{eqnBinaryEncode}
-  n\mapsto \sum\limits_{i = 0 }^n \frac {\alpha(i)}{2^{i+1}}
-\end{equation}
-and we are going to give a closed relation on Cantor space such that 
-two binary sequences are equivalent iff they correspond to the same Cauchy reals. 
-%
-First, we'll need some notation.
-\begin{definition}
-Given a binary sequence $\alpha:\mathbb N \to 2$ and a natural number $n : \mathbb N$  
-we denote $\alpha|_n: \mathbb N_{\leq n} \to 2$ for the 
-restriction of $\alpha$ to a finite sequence of length $n$. 
-We denote $\overline 0, \overline 1$ for the binary sequences which are constantly $0$ and $1$ respectively. 
-We denote $0,1$ for the sequences of length $1$ hitting $0,1$ respectively. 
-If $x$ is a finite sequence and $y$ is any sequence, denote $x\cdot y$ for their concatenation. 
-\end{definition} 
-Now we'll give a definition for when two finite binary sequences of length $n$ correspond 
-to real numbers whose distance is $\leq (\frac12)^n$.
-Basically, we want for every finite sequence $z$ that 
-$(z \cdot 0 \cdot \overline 1)$ and  $(z \cdot 1 \cdot \overline 0)$ are equivalent. 
+\begin{lemma}
+  Whenever $b(\alpha) \sim_C b(\beta)$, 
+  we have $\alpha \sim_n \beta$. 
+\end{lemma}
+\begin{proof}
+  Assume $b(\alpha) \sim_Cb (\beta)$. 
+  Let $n:\mathbb N$. 
+  We shall show that $\text{near}_n(\alpha , \beta)$. 
 
-\begin{definition}
-Now let $n:\mathbb N$ and $x,y:\mathbb N_{\leq n} \to 2$ be two sequences of length $n$. 
-We say $x,y$ are near if we have an $m:\mathbb N$ with $m\leq n$
-and some $a: \mathbb N_{\leq m} \to 2$, 
-such that one of $(a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n$
-is equal to $x$ and the other is equal to $y$. 
-We denote $\text{near}_n(x,y)$ if $x,y$ are near. 
-%
-To be precise, we define 
-\begin{equation}
-  \text{near}_n(x,y) = 
-\Sigma(m:\mathbb N) m \leq n \wedge 
-  \Sigma (a : Fin_m \to 2) 
-\bigg( \big( (x,y) = 
-((a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n)
-\big)
-\bigvee 
-\big(
-  (y,x) = 
-((a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n)
-\big)
-\bigg)
-\end{equation}
-\end{definition}
-\begin{remark}
-Remark that when $x,y$ are near, $m$ and $a$ as above are unique. 
-Thus $\text{near}_n(x,y)$ is a proposotion. 
-%
-Furthermore, to check whether $x,y$ are near, we need only make $n$ comparisons, 
-thus $\text{near}_n(x,y)$ is decidable. 
-%
-Note that in the above definition, we allow $m = n$ and therefore $x$ is near to itself for any finite sequence $x$. 
-Furthermore, we have defined nearness to be symmetric. 
-However, it is not a transtive relation. 
-After all, the sequence $010$ and $011$ are near and the sequence $011$ and $100$ are near, 
-but $010$ is not near to $100$. 
-\end{remark}
-\begin{definition}
-  We define the following relation on Cantor space for $\alpha, \beta: 2^\mathbb N$.
-  \begin{equation}
-    \alpha \sim_t \beta = \forall (n : \mathbb N) 
-    \text{near}_n(\alpha|_n, \beta|_n)
+  As we're only checking finitely many entries, 
+  we either have $\alpha|_n = \beta|_n$, 
+  or there exists a smallest $m\leq n$ with 
+  $\alpha(m) \neq \beta(m)$. 
+
+  If $\alpha|_n = \beta|_n$, we have $\text{near}_n(\alpha,\beta)$ and are done. 
+  WLOG assume $\alpha(m) = 1, \beta(m) = 0$ for $m$ minimal. 
+  We claim that for any $k\geq m$, we have 
+  $b(\alpha)_k - b(\beta)_k = (\frac12)^k$. 
+
+  Now note that 
+  \begin{equation} 
+    b(\alpha)_{k+1} - b(\beta)_{k+1} = 
+    b(\alpha)_{k} - b(\beta)_{k} + 
+    \frac{\alpha(k+1) - \beta(k+1)}{2^{k+2}}.
   \end{equation}
-\end{definition}
-\begin{lemma}
-  $\sim_t$ is a closed equivalence relation. 
-\end{lemma}
-\begin{proof}
-   Let $\alpha, \beta, \gamma : 2^\mathbb N$. 
-   As the dependent product of propositions is a proposition, $\alpha \sim_t\beta$ is a proposition. 
-   %
-   Furthermore, the closedness follows from decidability of $\text{near}_n(\alpha|_n, \beta|_n)$. 
-   One could define $\gamma(n) = 1$ iff $\text{near}_n(\alpha|_n, \beta|_n)$
-   
-   As nearness is reflexive and symmetric, so is $\sim_t$. 
 
-   Now suppose $\alpha \sim_t \beta$ and $\beta\sim_t \gamma$. 
-   We claim that $\alpha \sim_t \gamma$. 
 
-   Let $n:\mathbb N$, we need to show that 
-   $\text{near}_n(\alpha|_n , \gamma|_n)$. 
-   Let $(a,m)$ witness that $\text{near}_n(\alpha|_n, \beta|_n)$.
-   and let $(b, k)$ witness that $\text{near}_n(\beta|_n, \gamma|_n)$
-   We will make a case distinction on whether one of $m,k$ is equal to $n$, or
-   both are strictly smaller than $n$. 
-   \begin{itemize}
-     \item 
-       If $m=n$, we have that $\alpha|_n = \beta|_n$, and therefore 
-       \begin{equation}
-         \text{near}_n(\beta|_n, \gamma|_n) \leftrightarrow \text{near}_n(\alpha|_n, \gamma|_n)
-       \end{equation} 
-       The above also holds if $k = n$.
-     \item 
-       If $m< n$, we have that $\alpha(m+1) \neq \beta(m+1)$, thus 
-       $\alpha|_l \neq \beta|_l$ for all $l>m$, 
-       but we still have $\text{near}_l(\alpha|_l, \beta|_l)$ for these $l$. 
-       Therefore $(\alpha, \beta)$ or $(\beta, \alpha)$ must be of the form
-       $(a \cdot 0 \cdot \overline 1, a \cdot 1 \cdot \overline 0)$. 
-       WLOG, we assume $\alpha = a \cdot 0 \cdot \overline 1$, and thus 
-       $\beta = a \cdot 1 \cdot \overline 0$ (if not, we could do bitflips). 
 
-       As $k<n$ also, by the same argument there is some $b$ such that one of 
-       $(\beta,\gamma), (\gamma, \beta)$
-       is equal to $(b\cdot 0 \cdot \overline 1, b \cdot 1 \cdot \overline 0)$. 
-       However, $\beta$ is also of the form $a \cdot 1 \cdot \overline 0$, and 
-       thus cannot also be of the form $b \cdot 0 \cdot \overline 1$. 
-       Therefore we must have 
-       $\beta = b\cdot 1 \cdot \overline 0$ and 
-       $\gamma= b\cdot 0 \cdot \overline 1$. 
 
-       But now $b \cdot 1 \cdot \overline 0 = a \cdot 1 \cdot \overline 0$, 
-       The lengths of $a,b$ cannot be unequal, and by decidablity of natural numbers, 
-       $a,b$ have the same length and it follows that $ a = b$. 
-       Therefore $ \alpha = \gamma$, so $\alpha \sim_t\gamma$.
-   \end{itemize}
+  For $k>m$, we have that 
+  \begin{equation}
+  |b(\alpha)_k - b(\beta)_k |= 
+  |(\frac12)^{m+1} + \sum\limits_{i=m+1}^k \frac{ \alpha(i) -\beta(i)}{2^{i+1}}|. 
+  \end{equation}
+  Note that the right summand is always $\leq (\frac12)^{m+1}$. 
+  Therefore, we can leave out the absolute value function. 
+  As $b(\alpha) \sim_Cb(\beta)$, we have that 
+  \begin{equation}
+  (\frac12)^{m+1} + \sum\limits_{i=m+1}^k \frac{ \alpha(i) -\beta(i)}{2^{i+1}} \leq (\frac12)^{k-1}
+  \end{equation}
+  Note that $\alpha(i) -\beta(i) \in \{-1,0,1\}$ always. 
+  Also, 
 
-   We conclude that $\sim_t$ is a closed equivalence relation. 
+  Denote $z = \alpha|_{m-1} = \beta_{m-1}$. 
+  We will show that for $n\geq i>m$, we must have $\alpha(i) = 0, \beta(i) = 1$. 
+  Suppose $\alpha(i) \neq 0$. 
 \end{proof}
 
-\begin{theorem}
-  The interval of Cauchy reals is isomorphic to $2^\mathbb N / \sim_t$. 
-\end{theorem} 
-\begin{proof}
-  \Cref{eqnBinaryEncode} gives a function from Cantor space to Cauchy sequences in the interval. 
-  By a standard argument, this functions sends $\sim_t$ equivalent binary sequences to $\sim_C$ equivalent 
-  Cauchy sequences, and thus defines a morphism from $2^\mathbb N/\sim_t$ to the interval of Cauchy reals. 
-
-  For the other function, we will rely on Lemma \cref{TODO}
-\end{proof}
-
+%
+%
+%\begin{theorem}
+%  The interval of Cauchy reals is isomorphic to $2^\mathbb N / \sim_t$. 
+%\end{theorem} 
+%\begin{proof}
+%  Define $b: 2^\mathbb N \to [0,1]$ by composing the map in \Cref{eqnBinaryEncode} with the projection map 
+%  from Cauchy sequences in the interval to the interval in Cauchy reals. 
+%  We will show $b$ is surjective, 
+%  and such that $b(\alpha) = b(\beta)$ iff  $\alpha \sim_t \beta$. 
+%  \begin{itemize}
+%    \item For $b$ to be surjective, we need to show that for any Cauchy sequence $p$ in the interval, there 
+%      merely exists some binary sequence $\alpha$ such that $b(\alpha)\sim_C p$. 
+%
+%      We will inductively define $\alpha$. 
+%      Let $\alpha(i)$ be defined for $i<n$. 
+%      Consider the sequence $p'(j) = p(j) - \sum\limits_{i<n} \frac{\alpha(i)}{2^{i+1}}$. 
+%      As $p$ is a Cauchy sequence, so is $p'$. 
+%  \end{itemize}
+%\end{proof}
+%
