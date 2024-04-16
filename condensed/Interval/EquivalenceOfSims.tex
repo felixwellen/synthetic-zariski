@@ -1,0 +1,97 @@
+\begin{lemma}
+  $b$ sends $\sim_n$ equivalent binary sequences to $\sim_C$ equivalent Cauchy sequences. 
+\end{lemma}
+\begin{proof}
+  Let $\alpha, \beta$ be binary sequences.
+  We claim that $|b(\alpha)_n - b(\beta)_n| \leq (\frac12)^{n+1}$ 
+  whenever $\text{near}_n(\alpha, \beta)$. 
+  It will follow that if $\alpha\sim_n \beta$, then 
+  $b(\alpha)\sim_C b(\beta)$. 
+
+  Let $n:\mathbb N$ and assume $m:\mathbb N$ with $m\leq n$ and 
+  let $z$ be a sequence of length $m$ such that 
+  $\alpha|_n = z\cdot 1 \cdot \overline 0|_n$ and $\beta|_n = z \cdot 0 \cdot \overline q |_n$. 
+  then $b(\alpha)_n = \sum_{i\leq m} \frac{z(i)}{2^{i+1}} + (\frac12)^{m+2}$ and 
+  $b(\beta)_n = \sum_{i\leq m} \frac{z(i)}{2^{i+1}} + \sum\limits_{m+2 \leq i \leq n}(\frac12)^{i+1}$. 
+  Thus 
+  $b(\alpha)_n - b(\beta)_n = (\frac12)^{m+2} - \sum\limits_{m+2 \leq i \leq n}(\frac12)^{i+1} = 
+  (\frac12)^{n+1}$, 
+  which is smaller than required. 
+\end{proof}  
+
+\begin{lemma}
+  Whenever $b(\alpha) \sim_C b(\beta)$, 
+  we have $\alpha \sim_n \beta$. 
+\end{lemma}
+\begin{proof}
+  Assume $b(\alpha) \sim_Cb (\beta)$. 
+  Let $n:\mathbb N$. 
+  We shall show that $\text{near}_n(\alpha , \beta)$. 
+
+  As we're only checking finitely many entries, 
+  we either have $\alpha|_n = \beta|_n$, 
+  or there exists a smallest $m\leq n$ with 
+  $\alpha(m) \neq \beta(m)$. 
+
+  If $\alpha|_n = \beta|_n$, we have $\text{near}_n(\alpha,\beta)$ and are done. 
+  WLOG assume $\alpha(m) = 1, \beta(m) = 0$ for $m$ minimal. 
+
+  Now note that 
+  \begin{equation} 
+    b(\alpha)_{k+1} - b(\beta)_{k+1} = 
+    b(\alpha)_{k} - b(\beta)_{k} + 
+    \frac{\alpha(k+1) - \beta(k+1)}{2^{k+2}}.
+  \end{equation}
+
+  For $k>m$, we have that 
+  \begin{equation}
+  |b(\alpha)_k - b(\beta)_k |= 
+  |(\frac12)^{m+1} + \sum\limits_{i=m+1}^k \frac{ \alpha(i) -\beta(i)}{2^{i+1}}|. 
+  \end{equation}
+  Note that the right summand is always $\leq (\frac12)^{m+1}$. 
+  Therefore, we can leave out the absolute value function. 
+
+  We claim that for every $k\geq m+1$, we have $\alpha(k) = 0, \beta(k) = 1$. 
+  We will use induction. 
+  Suppose that for every $m <i<j$, we have $\alpha(i) = 0$, and $\beta(i) = 1$. 
+  Then 
+  \begin{equation}
+    b(\alpha)_{j-1} - b(\beta)_{j-1} = 
+    (\frac12)^{m+1} + 
+    \sum\limits_{i=m+1}^{j-1} \frac{ -1}{2^{i+1}} 
+    = (\frac12)^{j}
+  \end{equation}
+   
+  \begin{itemize}
+    \item 
+      we claim that $\alpha(j) = 0$ 
+      Suppose $\alpha(j) = 1$. 
+      Then $\alpha(j) -\beta(j) \geq 0$. 
+      And for $j + 2$, we have that 
+  \begin{align}
+    &b(\alpha)_{j+2} - b(\beta)_{j+2}
+    \\
+    =  
+    &(b(\alpha)_{j-1} - b(\beta)_{j-1}) + 
+    &\frac{\alpha(j)-\beta(j)}{2^{j+1}} +  
+    &\frac{\alpha(j+1) - \beta_(j+1)}{2^{j+2}}
+    +
+    &\frac{\alpha(j+2) - \beta_(j+2)}{2^{j+3}}
+    \\
+    \geq  
+      & (\frac12)^j + &0 
+    + &\frac{-1}{2^{j+2}} 
+    + &\frac{-1}{2^{j+3}} 
+    \\
+      > &(\frac12)^{j+1}
+  \end{align}
+  which contradicts $b(\alpha) \sim_Cb(\beta)$, 
+  which would require that $|b(\alpha)_{j+2} - b(\beta_{j+2} | \leq (\frac{12})^{j+2}+ (\frac12)^{j+2} = (\frac12)^{j+1}$. 
+  Therefore $\alpha(j) \neq 1$, and thus $\alpha(j) = 0$. 
+    \item 
+      We also claim that $\beta(i) = 1$. 
+      If $\beta(i) = 0$, we also have 
+      $\alpha(j) -\beta(j) \geq 0$, and the rest of the proof is similar as above. 
+  \end{itemize}
+\end{proof}
+

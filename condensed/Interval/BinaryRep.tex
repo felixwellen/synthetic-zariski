@@ -1,93 +1,22 @@
+%TODO: it's very ugly at the moment. 
 \input{Interval/CauchySequences}
 \input{Interval/BinaryClosedEquivalence}
+\input{Interval/EquivalenceOfSims}
+\input{Interval/Surjective}
 
-\begin{lemma}
-  $b$ sends $\sim_n$ equivalent binary sequences to $\sim_C$ equivalent Cauchy sequences. 
-\end{lemma}
+
+
+
+
+\begin{theorem}
+  The interval of Cauchy reals is isomorphic to $2^\mathbb N / \sim_t$. 
+\end{theorem} 
 \begin{proof}
-  Let $\alpha, \beta$ be binary sequences.
-  We claim that $|b(\alpha)_n - b(\beta)_n| \leq (\frac12)^{n+1}$ 
-  whenever $\text{near}_n(\alpha, \beta)$. 
-  It will follow that if $\alpha\sim_n \beta$, then 
-  $b(\alpha)\sim_C b(\beta)$. 
-
-  Let $n:\mathbb N$ and assume $m:\mathbb N$ with $m\leq n$ and 
-  let $z$ be a sequence of length $m$ such that 
-  $\alpha|_n = z\cdot 1 \cdot \overline 0|_n$ and $\beta|_n = z \cdot 0 \cdot \overline q |_n$. 
-  then $b(\alpha)_n = \sum_{i\leq m} \frac{z(i)}{2^{i+1}} + (\frac12)^{m+2}$ and 
-  $b(\beta)_n = \sum_{i\leq m} \frac{z(i)}{2^{i+1}} + \sum\limits_{m+2 \leq i \leq n}(\frac12)^{i+1}$. 
-  Thus 
-  $b(\alpha)_n - b(\beta)_n = (\frac12)^{m+2} - \sum\limits_{m+2 \leq i \leq n}(\frac12)^{i+1} = 
-  (\frac12)^{n+1}$, 
-  which is smaller than required. 
-\end{proof}  
-
-\begin{lemma}
-  Whenever $b(\alpha) \sim_C b(\beta)$, 
-  we have $\alpha \sim_n \beta$. 
-\end{lemma}
-\begin{proof}
-  Assume $b(\alpha) \sim_Cb (\beta)$. 
-  Let $n:\mathbb N$. 
-  We shall show that $\text{near}_n(\alpha , \beta)$. 
-
-  As we're only checking finitely many entries, 
-  we either have $\alpha|_n = \beta|_n$, 
-  or there exists a smallest $m\leq n$ with 
-  $\alpha(m) \neq \beta(m)$. 
-
-  If $\alpha|_n = \beta|_n$, we have $\text{near}_n(\alpha,\beta)$ and are done. 
-  WLOG assume $\alpha(m) = 1, \beta(m) = 0$ for $m$ minimal. 
-  We claim that for any $k\geq m$, we have 
-  $b(\alpha)_k - b(\beta)_k = (\frac12)^k$. 
-
-  Now note that 
-  \begin{equation} 
-    b(\alpha)_{k+1} - b(\beta)_{k+1} = 
-    b(\alpha)_{k} - b(\beta)_{k} + 
-    \frac{\alpha(k+1) - \beta(k+1)}{2^{k+2}}.
-  \end{equation}
-
-
-
-
-  For $k>m$, we have that 
-  \begin{equation}
-  |b(\alpha)_k - b(\beta)_k |= 
-  |(\frac12)^{m+1} + \sum\limits_{i=m+1}^k \frac{ \alpha(i) -\beta(i)}{2^{i+1}}|. 
-  \end{equation}
-  Note that the right summand is always $\leq (\frac12)^{m+1}$. 
-  Therefore, we can leave out the absolute value function. 
-  As $b(\alpha) \sim_Cb(\beta)$, we have that 
-  \begin{equation}
-  (\frac12)^{m+1} + \sum\limits_{i=m+1}^k \frac{ \alpha(i) -\beta(i)}{2^{i+1}} \leq (\frac12)^{k-1}
-  \end{equation}
-  Note that $\alpha(i) -\beta(i) \in \{-1,0,1\}$ always. 
-  Also, 
-
-  Denote $z = \alpha|_{m-1} = \beta_{m-1}$. 
-  We will show that for $n\geq i>m$, we must have $\alpha(i) = 0, \beta(i) = 1$. 
-  Suppose $\alpha(i) \neq 0$. 
+  This follows from the fact that $b:2^\mathbb N$ is such that $\alpha\sim_n \beta$ iff $b(\alpha)\sim_t b(\beta)$. 
+  and for every Cauchy real, there is a binary sequence being sent to it, so the composition of $b$ and the 
+  quotient from Caucy sequences to Cauchy real is a surjection. 
 \end{proof}
 
-%
-%
-%\begin{theorem}
-%  The interval of Cauchy reals is isomorphic to $2^\mathbb N / \sim_t$. 
-%\end{theorem} 
-%\begin{proof}
-%  Define $b: 2^\mathbb N \to [0,1]$ by composing the map in \Cref{eqnBinaryEncode} with the projection map 
-%  from Cauchy sequences in the interval to the interval in Cauchy reals. 
-%  We will show $b$ is surjective, 
-%  and such that $b(\alpha) = b(\beta)$ iff  $\alpha \sim_t \beta$. 
-%  \begin{itemize}
-%    \item For $b$ to be surjective, we need to show that for any Cauchy sequence $p$ in the interval, there 
-%      merely exists some binary sequence $\alpha$ such that $b(\alpha)\sim_C p$. 
-%
-%      We will inductively define $\alpha$. 
-%      Let $\alpha(i)$ be defined for $i<n$. 
-%      Consider the sequence $p'(j) = p(j) - \sum\limits_{i<n} \frac{\alpha(i)}{2^{i+1}}$. 
-%      As $p$ is a Cauchy sequence, so is $p'$. 
-%  \end{itemize}
-%\end{proof}
-%
+\begin{corollary}
+  The interval is compact Hausdorff. 
+\end{corollary}
