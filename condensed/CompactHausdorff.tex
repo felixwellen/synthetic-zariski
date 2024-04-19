@@ -1,61 +1,3 @@
-%
-%\begin{lemma}
-%Let $S$ be Stone and $C\subseteq S$. TFAE: 
-%\begin{itemize}
-%  \item $C$ is the complement of a closed subset. 
-%  \item $C$ is the countable union of decidable subsets. 
-%\end{itemize}
-%\end{lemma}
-%\begin{proof}
-%  We claim that for $(A_n)_{n:\mathbb N}$ a family of decidable subsets, 
-%  we have 
-%  $(\bigcap A_n)^C = \bigcup (A_n^C)$. 
-%  The claim then follows from the fact that a complement of a decidable subset is decidable, 
-%  together with \Cref{propClosedAlternativeDefinitions}.
-%  
-%  Clearly if $x \in \bigcup(A_n^C)$, then 
-%  there is an $n$ such that $x\in A_n^C$, 
-%  thus it is not the case that $x\in A_n$ for all $n:\mathbb N$. 
-%  Thus $x\in (\bigcap A_n)^C$. 
-%  Thus $\bigcup (A_n^C) \subseteq (\bigcap A_n)^C$. 
-%
-%  For the converse direction, we'll use Markov's principle. 
-%  Suppose that 
-%  $x\in (\bigcap A_n)^C$. 
-%  Consider the sequence $\alpha$ such that 
-%  $\alpha(i) = 1$ iff $i$ is the first index such that $x\notin A_i$. 
-%  As $A_n$ is decidable, this sequence is well-defined. 
-%  If $\alpha(i) = 0$ for all $i:\mathbb N$, then 
-%  $x\notin A_i$ for all $i:\mathbb N$, 
-%  hence $x\in (\bigcap A_n)$
-%
-%  As $x\in (\bigcap A_n)^C$, it is not the case that 
-%  $\alpha(i) = 0$ for all $i:\mathbb N$. 
-%
-%
-%  Then there exists an $n$ such that $x\notin A_n$, so $x\notin (\bigcap A_n)$. 
-%\end{proof}
-%
-%\begin{lemma}
-%  For $S$ stone and $C\subseteq S$, TFAE:
-%  \begin{itemize}
-%    \item $C^C$ is open. 
-%    \item $C$ is closed. 
-%  \end{itemize}
-%\end{lemma}
-%\begin{proof}
-%  Assume $x\in C$ for $C$ the complement of a countable union of decidable subsets. 
-%  so $x\in (\bigcup A_n)^C$. 
-%  Then for every $n:\mathbb N$, we have 
-%  $x\notin A_n$, thus $x\in A_n^C$. 
-%  Therefore $x \in \bigcap(A_n^C)$. 
-%
-%  Conversely, let $x\in \bigcap (A_n^C)$. 
-%  So for 
-%  By Markov's principle, there exists an $n$ with 
-%  $x\notin A_n^C$, so $x\in A_n$ for 
-%\end{proof}
-%  
 \begin{definition}
   Let $S$ be Stone, $C\subseteq S$. 
   Then $C$ is open if it is the countable union of decidable subsets. 
@@ -65,6 +7,9 @@
   $C$ is closed iff it's complement is open 
   and $C$ is open iff it's complement is closed. 
 \end{lemma}
+
+
+
 \begin{proof}
   This follows from the fact that the complement of a decidable subset is decidable and 
   \Cref{LemDecidableSubsetsDeMorgan}.
@@ -86,53 +31,57 @@
   So $S = \bigcup_{i:I_0} A_i$ for $I_0$ countable. 
 \end{proof}
 
-\begin{lemma}
-  For $S$ Stone, any collections of closed sets satisfying the finite intersection property 
-  has a merely inhabited intersection. 
-\end{lemma}
-\begin{proof}
-  Suppose that $a_i$ is a collection of points such that $a_i \wedge a_j \neq 0$ whenever $i\neq j$. 
-  We claim that $\bigwedge a_i \neq 0$. 
-  Suppose $\bigwedge a_i = 0$. 
-\end{proof}
+Note that the basic clopens are not the only clopens. 
+I.e. not every set that is both a countable intersection of decidable subsets and 
+a countable union of decidable subset is itself decidable. 
+In $B_\infty$, we can describe the even numbers both as the infinite meet of cofinite sets excluding odd numbers up to $n$
+and the join of finite sets including even numbers up to $n$. 
+But the even numbers do not themselves for an element of $B_\infty$.
+Thus the set of maps $B\to 2$ sending every $\chi_{2n}$ to $1$ is clopen but not decidable. 
+
+%
+%\begin{lemma}
+%  For $S$ Stone, any collections of closed sets satisfying the finite intersection property 
+%  has a merely inhabited intersection. 
+%\end{lemma}
+%\begin{proof}
+%  Suppose that $a_i$ is a collection of points such that $a_i \wedge a_j \neq 0$ whenever $i\neq j$. 
+%  We claim that $\bigwedge a_i \neq 0$. 
+%  Suppose $\bigwedge a_i = 0$. 
+%\end{proof}
 
 
 \begin{definition}
 We define a type $X$ to be compact Hausdorff iff 
-there is a surjection $e:S\to X$ for $S$ Stone. 
+$X$ is the quotient of a stone space $S$ by a closed equivalence relation. 
+%there is a surjection $e:S\to X$ for $S$ Stone. 
 %
-A subtype $C\subseteq X$ is closed respectively open iff it's pre-image under $e$ is. 
+A subtype $C\subseteq X$ is closed respectively open iff it's pre-image under the quotient map is. 
 \end{definition}
 
 \begin{lemma}
-  Let $X$ be a Compact Hausdorff type, 
-  and suppose that $(A_i)_{i:I}$ is a collection of opens in $X$ such that 
-  $X = \bigcup_{i:I} A_i$. 
-  There then exists a finite subset $I_0\subseteq I$ with 
-  $X = \bigcup_{i:I_0} A_i$. 
-\end{lemma} 
-\begin{proof}
+  In a compact Hausdorff, closed sets are closed under intersection. 
+\end{lemma}
 
-\end{proof}
+
+%\begin{lemma}
+%  Let $X$ be a Compact Hausdorff type, 
+%  and suppose that $(A_i)_{i:I}$ is a collection of opens in $X$ such that 
+%  $X = \bigcup_{i:I} A_i$. 
+%  There then exists a finite subset $I_0\subseteq I$ with 
+%  $X = \bigcup_{i:I_0} A_i$. 
+%\end{lemma} 
 
 \begin{lemma}
   In a Compact Hausdorff space, the complement of an open is closed, and the complement of a closed is open. 
 \end{lemma}
 \begin{proof}
-  Let $e : S \to X$ be a surjection from a Stone space, 
+  Let $e : S \to X$ be the quotient map of a Stone space by a closed equivalence relation. 
   and let $(A_n)_{n:\mathbb N}$ be a countable family of decidable subsets in $S$. 
 
   First, we claim that 
   $X - \bigcup_{n:\mathbb N} e(A_n)$
   is closed in $X$. 
-
-  Note that 
-  $
-  X - \bigcup_{n:\mathbb N} e(A_n) 
-  = 
-  e(S) - e(\bigcup_{n:\mathbb N} A_n)
-  $
-
 \end{proof}
 
 \begin{lemma}
