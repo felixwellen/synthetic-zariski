@@ -1,5 +1,5 @@
 
-\subsection{Reduced schemes}
+\subsection{Reduced schemes (obsolete?)}
 
 \rednote{What follows is a not completely satisfactory candidate definition of reduced schemes. Marc Nieper-Wißkirchen and Fabian Endres were involved in finding this notion.}
 
@@ -8,7 +8,7 @@ The analogue to the classical definition, that an affine scheme is reduced,
 if its algebra of functions is reduced, is expected to be useless in the synthetic setup.
 We start with a notion which is only suitable for affine schemes\footnote{An example where this fails for general schemes, is $V(X^2)\subseteq\bP^2$.}.
 
-\begin{definition}
+\begin{definition}\label{candidate-reduced}
   An affine scheme $X=\Spec A$ is \notion{reduced},
   if for all functions $f:A$, nilpotency implies $\neg\neg (f=0)$.
 \end{definition}
@@ -63,3 +63,260 @@ In fact, if there is one cover, any cover will be reduced.
 \begin{example}
   $V(X^2)\subseteq \bP^2$ is not reduced.
 \end{example}
+
+
+\subsection{Reduced types}
+
+For any type $X$, we write $\overline{X}$ for the formally étale replacement of $X$.
+
+\begin{definition}
+A type $X$ is reduced if for all $P:X\to \Prop$ we have that:
+\[(\forall(x:X).\ \overline{P(x)}) \to \overline{\forall(x:X).\ P(x)}\]
+\end{definition}
+
+\begin{lemma}\label{reduced-colimit}
+Reduced types are closed under finite colimits.
+\end{lemma}
+
+\begin{proof}
+Because the formally étale replacement commutes with finite limits.
+\end{proof}
+
+\begin{lemma}\label{reduced-sigma}
+Reduced types are closed under $\Sigma$-types.
+\end{lemma}
+
+\begin{proof}
+Given $X$ reduced and $(Y_x)_{x:X}$ a family of reduced type, we have that:
+\[\forall (z:(x:X)\times Y_x).\ \overline{P(z)} \]
+\[= \forall (x:X)(y:Y_x).\ \overline{P(x,y)} \]
+\[\to \forall (x:X).\ \overline{\forall (y:Y_x).\ P(x,y)} \]
+\[\to \overline{\forall (x:X)(y:Y_x).\ P(x,y)} \]
+\[= \overline{\forall (z:(x:X)\times Y_x).\ P(z)}\]
+\end{proof}
+
+\begin{lemma}\label{reduced-surjection}
+If we have a surjection $f:X\to Y$ and $X$ is reduced, then $Y$ is reduced.
+\end{lemma}
+
+\begin{proof}
+Assume given $P:Y\to\Prop$. We have that:
+\[\forall(y:Y).\ \overline{P(y)}\]
+\[= \forall(x:X).\ \overline{P(f(x))}\]
+\[\to \overline{\forall(x:X).\ P(f(x))}\]
+\[= \overline{\forall(y:Y).\ P(y)}\]
+\end{proof}
+
+\begin{lemma}\label{reduced-connected}
+Any connected type is reduced.
+\end{lemma}
+
+\begin{proof}
+Let $X$ be connected. Since we want to prove a proposition, we can assume $x:X$. Then we have a surjection:
+\[x:1\to X\]
+and $1$ is reduced so we conclude by \cref{reduced-surjection}.
+\end{proof}
+
+\begin{lemma}
+A type $X$ is reduced if and only if $\propTrunc{X}_0$ is reduced.
+\end{lemma}
+
+\begin{proof}
+If $X$ is reduced, so is $\propTrunc{X}_0$ by \cref{reduced-surjection}. Conversly if $\propTrunc{X}_0$ is reduced, we have that:
+\[X = \sum_{x:\propTrunc{X}_0} \sum_{y:X} [y] = x\]
+but $\sum_{y:X} [y] = x$ is connected, therefore it is reduced by \cref{reduced-connected}, so by \cref{reduced-sigma} we have that $X$ is reduced.
+\end{proof}
+
+\begin{remark}
+The stability results for being formally smooth and being reduced are very similar.
+\end{remark}
+
+\subsection{Reduced affine schemes}
+
+\begin{lemma}\label{reduced-basic-open}
+Assume $A$ an f.p. algebra such that for all $a:A$ nilpotent we have that $\overline{a=0}$. Then for any $f:A$ and $b:A_f$ nilpotent, we have that $\overline{b=0}$.
+\end{lemma}
+
+\begin{proof}
+We have that $b=\frac{c}{f^k}$ and there exists $n:\N$ such that $b^n=0$ in $A_f$, therefore there exists $k:\N$ such that $f^kc^n = 0$ in $A$. From this we know that $fc$ is nilpotent in $A$, therefore $\overline{fc=0}$ and this implies $\overline{b=0}$ as $fc=0$ implies $b=0$.
+\end{proof}
+
+\begin{lemma}\label{reduced-zariski-cover}
+Assume $A$ an f.p. algebra such that for all $a:A$ is nilpotent we have that $\overline{a=0}$. Then for any Zariski cover:
+\[\Spec(B)\to \Spec(A)\]
+by basic opens and any closed dense $Q\subset \Spec(B)$ we have $\overline{\forall (y:\Spec(B)).\ Q(y)}$.
+\end{lemma}
+
+\begin{proof}
+It is enough to prove the property when $B=A_f$ for $f:A$. Given a closed dense $Q\subset \Spec(A_f)$ we know that $Q$ is of the form $V(b_1,\cdots,b_n)$ for $b_1,\cdots,b_n$ nilpotent in $A_f$. Then by \cref{reduced-basic-open} we have that $\overline{b_i = 0}$ for all $i$, therefore:
+\[\overline{b_1=0\land\cdots\land b_n=0}\] 
+which means $\overline{Q=\Spec(A_f)}$.
+\end{proof}
+
+\begin{lemma}\label{ii-implies-i}
+Assume $A$ an f.p. algebra such that for all $a:A$, if $a$ is nilpotent then $\overline{a=0}$. Then $\Spec(A)$ is reduced.
+\end{lemma}
+
+\begin{proof}
+Assume:
+\[P:\Spec(A)\to \Prop\]
+such that:
+\[\forall(x:\Spec(A)).\ \overline{P(x)}\]
+This means that:
+\[\forall(x:\Spec(A)).\exists (Q:\mathrm{closed\ dense}).\ Q \to P(x) \]
+By Zariski local choice we get a Zariski cover by basic opens:
+\[f:\Spec(B) \to \Spec(A)\]
+and a family of closed dense propositions $Q:\Spec(B) \to \Prop$ such that:
+\[\forall (y:\Spec(B)).\ Q(y) \to P(f(y))\]
+By \cref{reduced-zariski-cover} we have that:
+\[\overline{\forall (y:\Spec(B)).\ Q(y)}\]
+so we have that:
+\[\overline{\forall (y:\Spec(B)).\ P(f(y))}\]
+which is equivalent to:
+\[\overline{\forall (x:\Spec(A)).\ P(x)}\]
+by the surjectivity of $f$.
+\end{proof}
+
+Next lemma is just generic business with modalities, and should probably be moved elsewhere.
+
+\begin{lemma}\label{surjectivity-for-formally-etale}
+Assume given $Y$ formally étale and $f:X\to Y$ formally étale-surjective, meaning that for all $y:Y$ we have:
+\[\overline{\propTrunc{\fib_f(y)}}\]
+Then the induced map:
+\[f' : \overline{X}\to Y\]
+is surjective.
+\end{lemma}
+
+\begin{proof}
+Assume $y:Y$, we want to prove:
+\[\exists(x:\overline{X}).\ f'(x) =_Y y\]
+but this type is a formally étale proposition as it is the truncation of a formally étale type.
+
+Therefore when proving it we can assume $x:\fib_f(y)$ as by hypothesis $\overline{\propTrunc{\fib_f(y)}}$, and $[x]$ gives a witness.
+\end{proof}
+
+Next proposition could be called the reduced duality.
+
+\begin{proposition}\label{duality-reduced-algebras}
+Let $A$ be an f.p. algebra such that $\Spec(A)$ is reduced. Then the map:
+\[\overline{A} \to \overline{R}^{\Spec(A)}\]
+is an equivalence.
+\end{proposition}
+
+\begin{proof}
+First we prove that the map is injective, and then surjective.
+\begin{itemize}
+
+\item In order to prove injectivity, it is enough to prove that for all $a:A$ such that:
+\[\forall (x:\Spec(A)).\ [a(x)] =_{\overline{R}} [0]\]
+we have that:
+\[[a] =_{\overline{A}} [0]\]
+But this just means that:
+\[\forall (x:\Spec(A)).\ \overline{a(x)=0}\]
+implies that:
+\[\overline{a=0}\]
+which is a clear consequence of $\Spec(A)$ being reduced.
+
+\item For surjectivity, by \cref{surjectivity-for-formally-etale} it is enough to prove that the map:
+\[A\to \overline{R}^{\Spec(A)}\]
+is formally-étale surjective. So it means than given a map $f: \Spec(A)\to \overline{R}$ we need to merely find a dotted lift in:
+ \begin{center}
+      \begin{tikzcd}
+        & R\ar[d] \\
+       \Spec(A) \ar[r]\ar[ru,dashed] & \overline{R}
+      \end{tikzcd}
+    \end{center}
+up to formally étale replacement. By Zariski local choice we get local lifts $g_i$ on a cover of by basic opens $(U_i)_{i:I}$. Consider $i,j:I$, then for all $x:U_i\cap U_j$ we have that $[g_i(x)] =_{\overline{R}} [g_j(x)]$ which means that $g_i-g_j$ is nilpotent in $U_i\cap U_j$. So by \cref{reduced-basic-open} we have that:
+\[\overline{g_i = g_j}\]
+when restricted to the basic open $U_i\cap U_j$. But there is finitely many such $i,j$, so when building the lift up to formally étale replacement we can assume $g_i = g_j$ for all $i,j$ and get a global lift.
+\end{itemize}
+\end{proof}
+
+\begin{remark}
+For $A$ f.p. we have that:
+\[\overline{\Spec(A)} = \Hom_{R}(A,\overline{R}) = \Hom_{\overline{R}}(\overline{A},\overline{R})\]
+where the first step relies crucially on $A$ being f.p. and formally étale being lex, and the second step working for any lex modality. (NOT CHECKED IN DETAILS)
+\end{remark}
+
+\begin{theorem}\label{reduced-affine}
+Let $A$ be an f.p. algebra. The following are equivalent:
+\begin{enumerate}[(i)]
+\item $\Spec(A)$ is reduced.
+\item For all $a:A$ nilpotent, we have that $\overline{a=0}$.
+\item For all $a:A$ nilpotent, there are $r_1,\cdots,r_n:R$ nilpotent and $a_1,\cdots,a_n:A$ such that:
+\[a = r_1a_1+\cdots+r_na_n\]
+\item The map:
+\[\overline{A}\to \overline{R}^{\Spec(A)}\]
+is an equivalence.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+It goes as follow:
+\begin{itemize}
+\item (iii) implies (ii). When proving:
+\[\overline{r_1a_1+\cdots+r_na_n = 0}\]
+we can assume $r_i=0$ for all $i$, as they are nilpotent.
+\item (ii) implies (iii). Assume $a:A$ such that $\overline{a=0}$, then there is an f.g. nilpotent ideal $I$ in $R$ such that:
+\[I=0 \to a=0\]
+then the image of $a$ under:
+\[A\to A^{I=0}\]
+is $0$, and since $A$ is strongly quasi-coherent we have that:
+\[A^{I=0} = A\otimes R/I = A/IA\]
+so $a\in IA$ and we can conclude.
+\item (ii) implies (i). By \cref{ii-implies-i}.
+\item (i) implies (iv). By \cref{duality-reduced-algebras}.
+\item (iv) implies (ii). Assume $a:A$ nilpotent, then for all $x:\Spec(A)$ we have $a(x)$ nilpotent so that:
+\[ [a(x)] =_{\overline{R}} [0]\]
+So the map:
+\[A \to \overline{R}^{\Spec(A)}\] 
+sends $a$ to $0$. By the assumed duality, we have that:
+\[ [a] =_{\overline{A}} [0]\]
+which precisely means:
+\[\overline{a=0}\]
+as being formally étale is a lex modality.
+\end{itemize}
+\end{proof}
+
+\begin{remark}
+We did not manage to prove that it is not equivalent to \cref{candidate-reduced}. Is it?
+\end{remark}
+
+\subsection{Examples}
+
+For affine schemes we always use criteria (ii) from \cref{reduced-affine}.
+
+\begin{lemma}
+For all $n:\N$, we have that $R^n$ is reduced.
+\end{lemma}
+
+\begin{proof}
+If $P:R[X_1,\cdots,X_n]$ is nilpotent then all its coefficients are nilpotent, therefore when proving $\overline{P=0}$ we can assume all the coefficients of $P$ are $0$.
+\end{proof}
+
+\begin{lemma}
+Open propositions are reduced.
+\end{lemma}
+
+\begin{proof}
+By \cref{reduced-basic-open} this holds for basic open proposition. We conclude by \cref{reduced-colimit} and \cref{reduced-surjection}.
+\end{proof}
+
+\begin{corollary}
+If $(U_i)_{i:I}$ is a Zariski cover of $X$, then $X$ is reduced if and only if $U_i$ is reduced for all $i:I$.
+\end{corollary}
+
+\begin{lemma}
+Closed dense propositions are reduced.
+\end{lemma}
+
+\begin{proof}
+Assume $I$ nilpotent f.g. ideal in $R$, and $s:R/I$ such that $s^n = 0$ in $R/I$. There we can get an $r:R$ such that $[r]=s$ in $R/I$ and $r^n \in I$. Then $r$ is nilpotent, so $\overline{r=0}$ and this implies $\overline{s=0}$.
+\end{proof}
+
+We expect that standard étale scheme are reduced. We have not proven it yet, but we have the following:
+
+\begin{remark}
+If standard étale schemes are reduced, then any smooth scheme is reduced.
+\end{remark}
+
