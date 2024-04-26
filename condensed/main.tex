@@ -10,21 +10,138 @@
 
 \maketitle
 
-\begin{abstract}
-In synthetic algebraic geometry (SAG) \cite{draft}, we study finitely presented algebras over a commutative ring. 
-In this work, we study countably presented Boolean algebras instead. 
-Where the finitely presented algebras over a commutative ring induce a Zariski topos, 
-%the opposite category of these 
-the countably presented Boolean algebras induce the topos of light condensed sets \cite{Scholze}. 
-\cite{draft} proposes an axiomatization of the Zariski topos in univalent homotopy type theory \cite{hott}. 
-In this work, we propose similar axioms, which we expect to be modelled by light condensed sets. 
-% Furthermore, spectra of countably presented Boolean algebras correspond to quotients of Cantor space
-% which is cool because reasons
-\end{abstract} 
-
+%\begin{abstract}
+%In synthetic algebraic geometry (SAG) \cite{draft}, we study finitely presented algebras over a commutative ring. 
+%In this work, we study countably presented Boolean algebras instead. 
+%Where the finitely presented algebras over a commutative ring induce a Zariski topos, 
+%%the opposite category of these 
+%the countably presented Boolean algebras induce the topos of light condensed sets \cite{Scholze}. 
+%\cite{draft} proposes an axiomatization of the Zariski topos in univalent homotopy type theory \cite{hott}. 
+%In this work, we propose similar axioms, which we expect to be modelled by light condensed sets. 
+%% Furthermore, spectra of countably presented Boolean algebras correspond to quotients of Cantor space
+%% which is cool because reasons
+%\end{abstract} 
+%
 \rednote{The following is a collection of notes on work in progress.}
-  
+\section{Boolean algebra}
+\begin{definition}
+  The language of Boolean algebras consists of
+  \begin{itemize}
+    \item Two symbols for constants $0,1$. 
+    \item Two binary function symbols $\wedge, \vee$.
+    \item One unary function symbol $\neg$. 
+  \end{itemize}
+\end{definition}
+\begin{definition}
+  The algebraic theory of Boolean algebras is as follows:
+  \begin{itemize}
+    \item We have axioms regarding order, sometimes called identity and absorption:
+    \begin{itemize}
+      \item $0 \wedge a = 0$. 
+      \item $1 \wedge a = a$. 
+      \item $0 \vee a = a$. 
+      \item $1 \vee a = 1$. 
+      \item $a \vee (a \wedge b) = a$
+      \item $a \wedge (a \vee b) = a$. 
+    \end{itemize}
+    \item We have axioms regarding negations:
+      \begin{itemize}
+        \item $a \vee \neg a = 1$. 
+        \item $a \wedge \neg a = 0$. 
+        \item $\neg 1 = 0$. 
+        \item $\neg \neg a = a$. 
+      \end{itemize}
+    \item We have axioms regarding commutativity and associativity:
+      \begin{itemize}
+        \item $a \vee b = b \vee a$. 
+        \item $a \wedge b = b \wedge a$. 
+        \item $(a \vee b) \vee c = a \vee (b \vee c)$. 
+        \item $(a \wedge b) \wedge c = a \wedge (b \wedge c)$. 
+      \end{itemize}
+    \item We have axioms regarding distributivity:
+      \begin{itemize}
+        \item $a \vee (b \wedge c) = ( a \vee b) \wedge (a \vee c)$. 
+        \item $a \wedge (b \vee c) = (a \wedge b) \vee ( a\wedge c)$. 
+      \end{itemize}
+  \end{itemize}
+\end{definition}
+\begin{remark}
+We often denote $a \leq b$ and  $b \geq a$. Both of these mean that $a\wedge b = a$ and $ a\vee b = b$. 
+Interpreting this notation as an order relation, we often think in the following terms:
+\begin{itemize}
+  \item $a\wedge b$ is the biggest element $c$ with $c \leq a$ and $c\leq b$.
+  \item $a\vee b$ is the smallest element $c$ with $c \geq a$ and $c \geq b$. 
+  \item $0$ is the smallest element. 
+  \item $1$ is the biggest element. 
+\end{itemize}
+\end{remark}
+\begin{definition}
+  Given any set of symbols $G$, the free Boolean algebra on $G$, denoted $\langle G \rangle$
+  is constructed as follows:
+  \begin{itemize}
+    \item We add $G$ as set of constants to the language of Boolean algebras. 
+    \item We consider the set of terms in this language. 
+    \item If there merely exists some finite sequence of 
+      equalities from the theory of Boolean algebras allowing us to rewrite one term to another, 
+      we consider the two terms to be equivalent. 
+    \item The free Boolean algebra is then the set of equivalence classes under this relation. 
+  \end{itemize}
+\end{definition}
+%\begin{remark}
+%  So for every element $x$ in the free Boolean algebra of $G$, there merely exists
+%  a finite subset $G_0\subseteq G$ such that we can express $x$ as Boolean combination of terms in $G_0$. 
+%\end{remark}
+%\begin{remark}
+%  The free Boolean algebra is a Boolean algebra. 
+%\end{remark}
+\begin{definition}
+  Let $G$ be a set of symbols. Consider $\Phi$ the set of terms in the language 
+  given by adding $G$ as constants to the language of Boolean algebras. 
+  Let $R \subseteq \Phi$. 
+  we construct the quotient $\langle G \rangle / R$ as follows:
+  \begin{itemize}
+    \item We start with $\Phi$. 
+    \item If there merely exists some finite sequence of 
+      equalities from the theory of Boolean algebras or the set of equalities given by $\{\phi = 0 | \phi \in R\}$ 
+      allowing us to rewrite one term to another, we consider the two terms to be equivalent. 
+    \item The $\langle G \rangle / R$ is then the set of equivalence classes under this relation. 
+  \end{itemize}
+\end{definition}
+\begin{definition}
+  If $G,R$ are countable in the above definition, we call $\langle G \rangle /R$ 
+  a \textbf{countably presented Boolean algebra}. 
+  We call $G$ the set of generators and $R$ the set of relations. 
+\end{definition}
+\begin{remark}
+  Countably presented Boolean algebras are Boolean algebras. 
+\end{remark}
+\begin{remark}
+  For every element $x$ of a countably presented Boolean algebra, 
+  there merely exists a finite subset of generators $G_0\subseteq G$ such that $x$ is expressable 
+  as a Boolean combination of terms from $G_0$. 
+\end{remark}
 
+\subsection{Examples of countably presented Boolean algebras}
+\begin{example}
+  \item $2$ is the Boolean algebra given by the empty set of generators and no relations. 
+    It's underlying set is $\{0,1\}$. 
+\end{example}
+\begin{example}
+
+\end{example}
+
+
+
+
+%\chapter{Axioms}
+%\chapter{Stone Spaces}
+%\chapter{Open and closed propositions}
+%
+
+
+
+\appendix
+\rednote{The following is not put in order}
 \section*{Introduction}
 \input{introduction.tex}
 %
@@ -32,12 +149,14 @@ In this work, we propose similar axioms, which we expect to be modelled by light
 \section{Omniscience principles}
 \input{Omniscience/UnionIntersectionComplement}
 
-
 \section{Topology}
 \input{topology.tex}
 \subsection{Compact Hausdorff}
 \input{Topology/CompactHausdorff}
 \input{IntersectionOfClosedIsClosedCmptHausdorff}
+
+\subsection{Open propositions}
+\input{OvertlyDiscrete/FactorizationFin}
 
 \section{Analysis}
 
