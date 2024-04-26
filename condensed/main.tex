@@ -63,18 +63,61 @@
         \item $a \vee (b \wedge c) = ( a \vee b) \wedge (a \vee c)$. 
         \item $a \wedge (b \vee c) = (a \wedge b) \vee ( a\wedge c)$. 
       \end{itemize}
+    \item We have axioms called deMorgan's laws:
+      \begin{itemize}
+        \item $\neg (a \vee b ) = (\neg a) \wedge (\neg b)$. 
+        \item $\neg (a \wedge b) = (\neg a) \vee (\neg b)$. 
+      \end{itemize}
+  \end{itemize}
+\end{definition}
+\begin{definition}
+  Some language we will use is as follows:
+  \begin{itemize}
+    \item A Boolean algebra is a set-theoretic model of the theory of Boolean algebras. 
+      It consists of a set $B$ and terms $0_B,1_B: B, \neg_B : B \to B, \vee_B, \wedge_B : B \times B \to B$ 
+      satisfying the theory of Boolean algebras. 
+      Sometimes we will leave out the subscript $(\cdot)_B$. 
+    \item A morphism of Boolean algebra is a function between such sets preserving the operations above. 
+      If $A,B$ are Boolean algebras, we write $A \to B$ for the type of such morphisms. 
+%    \item We denote $id_B$ for the identity morphism $B \to B$. 
+    \item If we have have two morphisms $f:A\to B , g : B \to A$ such that 
+      $f\circ g (b) = b, g \circ f (a) = a$ for all $a:A, b:B$, 
+      we say $A$ and $B$ are isomorphic and write $A \simeq B$. 
   \end{itemize}
 \end{definition}
 \begin{remark}
-We often denote $a \leq b$ and  $b \geq a$. Both of these mean that $a\wedge b = a$ and $ a\vee b = b$. 
-Interpreting this notation as an order relation, we often think in the following terms:
-\begin{itemize}
-  \item $a\wedge b$ is the biggest element $c$ with $c \leq a$ and $c\leq b$.
-  \item $a\vee b$ is the smallest element $c$ with $c \geq a$ and $c \geq b$. 
-  \item $0$ is the smallest element. 
-  \item $1$ is the biggest element. 
-\end{itemize}
+  We sometimes write $a \leq b$ and  $b \geq a$. Both of these mean that $a\wedge b = a$ and $ a\vee b = b$. 
+  Interpreting this notation as an order relation, we often think in the following terms:
+  \begin{itemize}
+    \item $a\wedge b$ is the biggest element $c$ with $c \leq a$ and $c\leq b$.
+    \item $a\vee b$ is the smallest element $c$ with $c \geq a$ and $c \geq b$. 
+    \item $0$ is the smallest element. 
+    \item $1$ is the biggest element. 
+  \end{itemize}
 \end{remark}
+\begin{remark}
+  For a family of expressions $x_i$ over a 
+  finite set of indices $I = \{i_0, \cdots, i_n\}$, we will sometimes denote 
+  \begin{itemize}
+    \item $\bigvee_{i:I} x_i = x_{i_0} \vee \cdots \vee x_{i_n}$. 
+    \item $\bigwedge_{i:I} x_i = x_{i_0} \wedge \cdots \wedge x_{i_n}$. 
+  \end{itemize}
+\end{remark}
+
+\begin{definition}
+  Let $\mathcal L$ be a language, 
+  let $\phi,\psi$ be terms in any language,
+  and suppose that for some index set $I$ we have 
+  for each $i:I$ two terms $a_i,b_i$ of same sort in $\mathcal L$. 
+  Let $E= (a_i = b_i)_{i:I}$. 
+
+  We say that $E$ allows us to rewrite $\phi$ to $\psi$ if there is a finite list of expressions 
+  $\phi = \phi_0 , \phi_1, \phi_2, \cdots, \phi_{n-1}, \phi_n = \psi$, 
+  such that each $\phi_{n+1}$ is given by taking $\phi_n$ and either changing one occurence of $a_i$ to  $b_i$, 
+  or one occurence of $b_i$ to $a_i$ for some $i:I$. 
+\end{definition}
+
+
 \begin{definition}
   Given any set of symbols $G$, the free Boolean algebra on $G$, denoted $\langle G \rangle$
   is constructed as follows:
@@ -102,14 +145,16 @@ Interpreting this notation as an order relation, we often think in the following
   \begin{itemize}
     \item We start with $\Phi$. 
     \item If there merely exists some finite sequence of 
-      equalities from the theory of Boolean algebras or the set of equalities given by $\{\phi = 0 | \phi \in R\}$ 
+      equalities from the theory of Boolean algebras or the set of equalities $\{r = 0 | r \in R\}$ 
       allowing us to rewrite one term to another, we consider the two terms to be equivalent. 
     \item The $\langle G \rangle / R$ is then the set of equivalence classes under this relation. 
   \end{itemize}
 \end{definition}
 \begin{definition}
-  If $G,R$ are countable in the above definition, we call $\langle G \rangle /R$ 
-  a \textbf{countably presented Boolean algebra}. 
+  A Boolean algebra is called \textbf{a countably presented Boolean algebra} iff there 
+  can begiven countable sets $G,R$ as in the above definitions so that $B \simeq \langle G\rangle / R$. 
+%  If $G,R$ are countable in the above definition, we call $\langle G \rangle /R$ 
+%  a \textbf{countably presented Boolean algebra}. 
   We call $G$ the set of generators and $R$ the set of relations. 
 \end{definition}
 \begin{remark}
@@ -120,13 +165,96 @@ Interpreting this notation as an order relation, we often think in the following
   there merely exists a finite subset of generators $G_0\subseteq G$ such that $x$ is expressable 
   as a Boolean combination of terms from $G_0$. 
 \end{remark}
+\begin{remark}
+  Let $B$ be a Boolean algebra, and let $\langle G \rangle / R$ be a countably presented Boolean algebra. 
+  To define a morphism $\langle G \rangle / R$, it is sufficient to define a function $f$ from $G$ 
+  to the underlying set of $B$ such that for every expression $\phi:R$, we have
+  $\phi[x/f(x)] = 0_B$. 
+\end{remark}
 
 \subsection{Examples of countably presented Boolean algebras}
 \begin{example}
-  \item $2$ is the Boolean algebra given by the empty set of generators and no relations. 
+  $2$ is the Boolean algebra given by the empty set of generators and no relations. 
     It's underlying set is $\{0,1\}$. 
 \end{example}
 \begin{example}
+  $C = \langle N \rangle $ is the Boolean algebra given by $\mathbb N$ as set of generators and no relations. 
+\end{example}
+\begin{example}
+  Denote $\mathbb N_{(co)fin}$ for the set of subsets of $\mathbb N$ which are finite or co-finite. 
+  Under the interpretation of $\wedge = \cap , \vee = \cup, 0 = \emptyset, 1 = \mathbb N$, and $\neg$ 
+  as the set-theoretic complemented (denoted $(\cdot)^C$). 
+
+  These operations are well-defined on $\mathbb N_{(co)fin}$ 
+  and they give the structure of a Boolean algebra (exercise for the reader if you don't believe me). 
+  We claim it is countably presented. 
+
+  Let $G = \{p_n| n:\mathbb N\} $ be a countably infinite set of generator symbols and let 
+  $R = \{ p_n \wedge p_m | n\neq m :\mathbb N \}$. 
+  We claim that $\langle G \rangle / R \simeq \mathbb N_{(co)fin}$. 
+
+\begin{proof}
+  We let $f:\langle G \rangle / R \to \mathbb N_{(co)fin}$, be the unique morphism of Boolean algebras 
+  satisfying $f(p_n) = \{n\}$ for all $n:\mathbb N$.
+  \rednote{More changes needed after here, not done yet, but proof was correct earlier}
+
+  To go from finite/cofinite subsets of $\mathbb N$ to $B_\infty$,
+  a finite subset $I$ of $\mathbb N$ is sent to the element 
+  $\bigvee_{i \in I} p_i$, and a cofinite subset $J$ is sent to the element 
+  $\bigwedge_{i \in J^C} \neg p_i$.  
+  We call this function $g$ and we need to show that $g$ is a Boolean morphism. 
+  \begin{itemize}
+    \item By deMorgan's laws, $g$ preserves $\neg$. 
+    \item To see that $g$ respects $\vee$, we need to check three cases
+      \begin{itemize}
+        \item If both $I,J$ are finite, then 
+        \begin{equation} 
+          g(I \cup J) = \bigvee_{i\in I \cup J} p_i= \bigvee_{i\in I} p_i \vee \bigvee_{j\in J} p_j 
+        \end{equation}
+      \item If both $I,J$ are cofinite, we have
+        \begin{equation}
+          g(I) \vee g(J) = 
+          \bigwedge_{i \in I^C} \neg p_i \vee 
+          \bigwedge_{j \in J^C} \neg p_j 
+          = 
+          \bigwedge_{i\in I^C} 
+          \bigwedge_{j \in J^C}(\neg p_i \vee  \neg p_j) 
+        \end{equation}
+        Now note that $\neg p_i \vee \neg p_j = \neg ( p_i \wedge p_j)$, which 
+        is $1$ if $i \neq j$ and $p_i$ if $i =j$. 
+        We can leave $1$ out of the meet, and we are left with the intersection of $I^C$ and $J^C$, so
+        \begin{equation}
+          g(I) \vee g(J) = 
+          \bigwedge_{i \in (I^C \cap J^C)} \neg p_i
+          = 
+          \bigwedge_{i \in (I \cup J)^C} \neg p_i 
+        \end{equation} 
+        as the union of $I$ and $J$ is also cofinite, this equals 
+          $ g( I \cup J)$. 
+        \item If $I$ is finite and $J$ cofinite, we have 
+        \begin{equation}
+        g(I) \vee g(J) = (\bigvee_{i\in I} p_i) \vee (\bigwedge_{j \in J^C} \neg p_j)
+        = \bigwedge_{j \in J^C} (\bigvee_{i \in I}( p_i \vee \neg p_j))
+        \end{equation}
+        If $i\neq j$, then $p_i\wedge p_j = 0$, hence $\neg p_j \geq p_i$ and $p_i \vee \neg p_j  = \neg p_j$
+        If $i = j$, then $p_i \vee \neg p_j = 1$.
+%        \begin{equation}
+%        g(I) \vee g(J) = 
+%        = \bigwedge_{j \in J^C} (\bigvee_{i \in I-J}( p_i \vee \neg p_j))
+%        \end{equation}
+%
+%        \item If $I$ is cofinite and $J$ is finite, we have that $I \cup J$ is cofinite.
+%        Thus 
+%        \begin{equation}
+%          g(I \cup J) = \bigwedge_{i \in (I \cup J)^C} \neg p_i
+%        \end{equation}
+%
+      \end{itemize}
+    \item The case for $\wedge$ is completely dual to the case for $\vee$. 
+  \end{itemize}
+We conclude that $g$ is a Boolean morphism. 
+Furthermore, $g$ and $f$ are clearly inverses, thus the Boolean algebras are isomorphic. 
+\end{proof}
 
 \end{example}
 
