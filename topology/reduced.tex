@@ -243,7 +243,7 @@ Let $A$ be an f.p. algebra. The following are equivalent:
 \begin{enumerate}[(i)]
 \item $\Spec(A)$ is reduced.
 \item For all $a:A$ nilpotent, we have that $\overline{a=0}$.
-\item For all $a:A$ nilpotent, there are $r_1,\cdots,r_n:R$ nilpotent and $a_1,\cdots,a_n:A$ such that:
+\item\label{reduced-affine-iii} For all $a:A$ nilpotent, there are $r_1,\cdots,r_n:R$ nilpotent and $a_1,\cdots,a_n:A$ such that:
 \[a = r_1a_1+\cdots+r_na_n\]
 \item The map:
 \[\overline{A}\to \overline{R}^{\Spec(A)}\]
@@ -312,6 +312,24 @@ Closed dense propositions are reduced.
 
 \begin{proof}
 Assume $I$ nilpotent f.g. ideal in $R$, and $s:R/I$ such that $s^n = 0$ in $R/I$. There we can get an $r:R$ such that $[r]=s$ in $R/I$ and $r^n \in I$. Then $r$ is nilpotent, so $\overline{r=0}$ and this implies $\overline{s=0}$.
+\end{proof}
+
+\begin{lemma}
+  The affine scheme $\Spec(R[X,Y]/(XY))$ is reduced.
+\end{lemma}
+
+\begin{proof}
+  We have $A\colonequiv R\cdot 1\oplus XR[X] \oplus YR[Y]=R[X,Y]/(XY)$ as $R$-modules,
+  where the multiplication in $A$ is given by multiplication of polynomials,
+  forgetting all coefficients of mixed monomials.
+  For a general nilpotent $\alpha+P+Q$ in $A$ with $\alpha: R$, $P:XR[X]$ and $Q:YR[Y]$:
+  \[
+  0=(\alpha+P+Q)^n=\sum_{k=0}^n {n \choose n-k} \alpha^{n-k} (P^k+Q^k)
+  \]
+  means that $\alpha$ is nilpotent.
+  But then all terms in the sum to the right are nilpotent, except $(P^n+Q^n)$.
+  But then $(P^n+Q^n)$ is nilpotent as well, which means that $P$ and $Q$ are nilpotent polynomials.
+  So we can conclude with \Cref{reduced-affine} \ref{reduced-affine-iii} .
 \end{proof}
 
 We expect that standard étale scheme are reduced. We have not proven it yet, but we have the following:

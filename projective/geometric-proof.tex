@@ -1,10 +1,12 @@
 A geometric property of $\bP^n$:
 
 \begin{lemma}\label{constant-functions-Pn-minus-points}
-  Let $p\neq q$ be points of $\bP^n$, then all functions
+  Let $n>1$ and $p\neq q$ be points of $\bP^n$, then all functions
   \begin{center}
   \begin{enumerate}[(i)]
+  \item $\bP^n\setminus\{p\}\to \Z$
   \item $\bP^n\setminus\{p,q\}\to \Z$
+  \item $\bP^n\setminus\{p\}\to R$
   \item $\bP^n\setminus\{p,q\}\to R$
   \end{enumerate}
   \end{center}
@@ -12,11 +14,15 @@ A geometric property of $\bP^n$:
 \end{lemma}
 
 \begin{proof}
+  We start with (iv).
   Let $f:\bP^n\setminus\{p,q\}\to R$.
   For the charts $U_0=\{[x_0:\dots:x_n]\mid x_0\neq 0\}$ and $U_1=\{[x_0:\dots:x_n]\mid x_0\neq 0\}$, we can assume $p\in U_0, p\notin U_1$ and $q\in U_1, q\notin U_0$.
   Then $f_{|U_0\setminus\{p\}}$ can be extended to $U_0$ by \Cref{ext} and an analogous extension exisits on $U_1$.
-    These extensions glue and we can apply \Cref{const} to see that $f$ is constant.
-    This carries over to functions $\bP^n\setminus\{p,q\}\to \mathrm{Bool}$ since $\mathrm{Bool}\subseteq R$ and thus also to any $\bP^n\setminus\{p,q\}\to \Z$.
+  These extensions glue with $f$ to a function $\widetilde{f}:\bP^n\to R$ which agrees with $f$ on $\bP^n\setminus\{p,q\}$.
+  By \Cref{const}, $\widetilde{f}$ is constant and therefore $f$ is constant.
+  This carries over to functions $\bP^n\setminus\{p,q\}\to \mathrm{Bool}$ since $\mathrm{Bool}\subseteq R$ and thus also to any $\bP^n\setminus\{p,q\}\to \Z$,
+  which shows (ii).
+  (i) and (iii) follow from (ii) and (iv).
 \end{proof}
 We proceed by extendending \Cref{Matthias} to subspaces of $\bP^n$ which can be constructed like $\bP^1$:
 
@@ -54,6 +60,7 @@ which proves the claim.
 \end{theorem}
 
 \begin{proof}
+  It is enough to show that the map is surjective, by the same reasoning as in the proof of \Cref{Matthias}.
   Let $L:\bP^n\to \KR$. First we determine the degree of $L$.
   Let $p\neq q$ be points in $\bP^n$ and $M\subseteq R^{n+1}$ be the span of $p$ and $q$ as submodules of $R^{n+1}$.
   Then $\|M=R^2\|$ and we can use the inverse $i$ of the map in \Cref{line-bundle-on-line} to define $d\colonequiv \pi_1(i(L_{|\Gr(1,M)}))$.
@@ -64,11 +71,15 @@ which proves the claim.
 
   In the following we consider only $L$ such that $d$ as constructed above is $0$.
   This means that on each line $\Gr(1,M)$, $L$ will be constant.
-  So, again for $p\neq q$ points in $\bP^n$,
-  we have $P:(x:\bP^n\setminus\{p\})\to L(x)=L(p)$ and $Q:(y:\bP^n\setminus\{q\})\to L(y)=L(q)$.
+  So for $p,x:\bP^n$,
+  and $x\neq p$ we can construct an equality $P_x:L(x)=L(p)$  by restricting $L$ to $\Gr(1,\langle x,p\rangle)$ and applying \Cref{line-bundle-on-line}.
+  So we have $P:(x:\bP^n\setminus\{p\})\to L(x)=L(p)$ and for $q\neq p$ we can construct
+  $Q:(y:\bP^n\setminus\{q\})\to L(y)=L(q)$ analogously.
+  
   The claim follows if we show that $L$ is constant on all of $\bP^n$.
-  We show a proposition, so we can assume $a:L(p)=R^1$ and $b:L(q)=R^1$ and get:
-  \[ \left((x:\bP^n\setminus\{p,q\})\mapsto a^{-1}(P_x)^{-1}Q_xb\right) : \bP^n\setminus\{p,q\} \to R^\times\]
+  Since, overall, we show the proposition that the map from the statement merely has a preimage,
+  we can assume $a:L(p)=R^1$ and $b:L(q)=R^1$ and get:
+  \[ \left((x:\bP^n\setminus\{p,q\})\mapsto a^{-1}P_x^{-1}Q_xb\right) : \bP^n\setminus\{p,q\} \to R^\times\]
   which is constantly $\lambda$ by \Cref{constant-functions-Pn-minus-points}.
   So $P$ and $Q$ can be corrected using $\lambda,a$ and $b$ to yield a global proof of constancy of $L$.
 \end{proof}
