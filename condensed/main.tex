@@ -23,7 +23,8 @@
 %\end{abstract} 
 %
 \rednote{The following is a collection of notes on work in progress.}
-\section{Boolean algebra}
+\section{Countably presented Boolean algebras}
+\subsection{Definitions}
 \begin{definition}
   The language of Boolean algebras consists of
   \begin{itemize}
@@ -133,13 +134,6 @@
     \item The free Boolean algebra is then the set of equivalence classes under this relation. 
   \end{itemize}
 \end{definition}
-%\begin{remark}
-%  So for every element $x$ in the free Boolean algebra of $G$, there merely exists
-%  a finite subset $G_0\subseteq G$ such that we can express $x$ as Boolean combination of terms in $G_0$. 
-%\end{remark}
-%\begin{remark}
-%  The free Boolean algebra is a Boolean algebra. 
-%\end{remark}
 \begin{definition}
   Let $G$ be a set of symbols. Consider $\Phi$ the set of terms in the language 
   given by adding $G$ as constants to the language of Boolean algebras. 
@@ -153,26 +147,79 @@
     \item The $\langle G \rangle / R$ is then the set of equivalence classes under this relation. 
   \end{itemize}
 \end{definition}
-\begin{definition}
-  A Boolean algebra is called \textbf{a countably presented Boolean algebra} iff there 
-  can begiven countable sets $G,R$ as in the above definitions so that $B \simeq \langle G\rangle / R$. 
-%  If $G,R$ are countable in the above definition, we call $\langle G \rangle /R$ 
-%  a \textbf{countably presented Boolean algebra}. 
-  We call $G$ the set of generators and $R$ the set of relations. 
-\end{definition}
 \begin{remark}
-  Countably presented Boolean algebras are Boolean algebras. 
-\end{remark}
-\begin{remark}
-  For every element $x$ of a countably presented Boolean algebra, 
-  there merely exists a finite subset of generators $G_0\subseteq G$ such that $x$ is expressable 
-  as a Boolean combination of terms from $G_0$. 
+  For $G,R$ as above, $\langle G \rangle / R$ is a Boolean algebra. 
 \end{remark}
 \begin{remark}\label{rmkMorphismsOutOfQuotient}
-  Let $B$ be a Boolean algebra, and let $\langle G \rangle / R$ be a countably presented Boolean algebra. 
-  To define a morphism $\langle G \rangle / R$, it is sufficient to define a function $f$ from $G$ 
+  Let $B$ be a Boolean algebra, and let $G,R$ be as above. 
+  To define a morphism $\langle G \rangle / R \to B$, it is sufficient to define a function $f$ from $G$ 
   to the underlying set of $B$ such that for every expression $\phi:R$, we have
   $\phi[x/f(x)] = 0_B$. 
+\end{remark}
+\begin{remark}
+  For every element $x$ of $\langle G\rangle /R$ as above,
+  there merely exists a finite subset of generators $G_0\subseteq G$ such that $x$ is expressable 
+  as a Boolean combination of symbols from $G_0$. 
+\end{remark}
+\begin{definition}
+  Let $B$ be a Boolean algebra. 
+  If there exist $G, R$ as above such that 
+  $B \simeq \langle G \rangle /R$, 
+  we call $G,R$ respectively generators and relations for $B$. 
+  %
+  If $G,R$ can taken to be finite, we call $B$ finitely presented. 
+  If $G,R$ can taken to be countable, we call $B$ countably presented. 
+\end{definition}
+\begin{remark}
+  There is a category of Boolean algebras, which has a subcategory of countably presented Boolean algebras, 
+  which has a subcategory of finitely presented Boolean algebras. 
+\end{remark}
+\begin{lemma}
+  Every countably presented Boolean algebra merely is a colimit of a diagram of shape $\mathbb N$ 
+  taking values in finitely presented Boolean algebras. 
+\end{lemma}
+\begin{proof}
+  Consider $\langle G \rangle /R$ a countable presentation of a Boolean algebra $B$. 
+  We will show there exists a diagram of shape $\mathbb N$ taking values in Boolean algebras 
+  with $\langle G\rangle / R$ as the colimit.
+  \paragraph{The diagram}
+  Now let $R_n$ be the first $n$ terms in $R$. 
+  Note that each of these finitely many terms uses only finitely many symbols from $G$.
+  Let $G_n$ be the finite set of terms used in $R_n$, unioned with the finite set of the first $n$ elements of $G$. 
+  Define for each $n\in\mathbb N$ the finitely presented Boolean algebra $B_n = G_n /R_n$. 
+  If $n\leq m$, then \Cref{rmkMorphismsOutOfQuotient} gives us a map $B_n \to B_m$ 
+  as $G_n \subseteq G_{n+1}$ and $R_n \subseteq R_{n+1}$. 
+  Thus $(B_n)_{n\in \mathbb N}$ gives us a diagram of shape $\mathbb N$
+  with values in finitely presented algebras. 
+
+  \paragraph{The colimit}
+  As $G_n\subseteq G$ and $R_n \subseteq R$, 
+  \Cref{rmkMorphismsOutOfQuotient} also gives us a map $B_n\to \langle G \rangle /R$. 
+  We claim the resulting cocone is a colimit. 
+
+  Suppose we have a cocone $C$ on the diagram $(B_n)_{n\in\mathbb N}$. 
+  We need to show that there exists a map $\langle G \rangle / R\to C$ and
+  we need to show this map is unique as map between cocones. 
+  \begin{itemize}
+    \item To show there exists a map $\langle G \rangle / R \to C$, 
+      we use remark \Cref{rmkMorphismsOutOfQuotient} again. 
+      Let $g\in G$ be the $n$'th element of $G$, 
+      note that $g\in G_n$, and consider the image of $g$ under the map $B_n \to C$. 
+      This procedure defines a function from $G$ to the underlying set of $C$. 
+      Let $\phi \in R$ be the $n$'th element of $R$, 
+      note that $\phi \in R_n$, and the map $B_n \to C$ must send $\phi$ to $0$. 
+      Thus the function from $G$ to the underlying set of $C$ also sends $\phi$ to $0$. 
+      This thus defines a map $\langle G \rangle / R \to C$. 
+    \item To show uniqueness, consider that any map of cocones must take the same values 
+      on all $g\in G_n$ for all $n\in\mathbb N$, but by \Cref{rmkMorphismsOutOfQuotient}
+      this uniquely defines a map. 
+  \end{itemize}
+\end{proof}
+\begin{remark}
+  Conversely, any colimit of a diagram of shape $\mathbb N$ of finite Boolean algebras 
+  is a countably presented Boolean algebra with 
+  as underlying sets of generators and relations the countable union of the finite sets of 
+  generators and relations, which are both countable. 
 \end{remark}
 
 \subsection{Examples of countably presented Boolean algebras}
@@ -180,6 +227,7 @@
   $2$ is the Boolean algebra given by the empty set of generators and no relations. 
     It's underlying set is $\{0,1\}$. 
 \end{example}
+
 \begin{example}
   $C = \langle N \rangle $ is the Boolean algebra given by $\mathbb N$ as set of generators and no relations. 
 \end{example}
@@ -208,7 +256,13 @@
 
   We need to show that $g$ is a Boolean morphism. 
   \begin{itemize}
-    \item By deMorgan's laws, $g$ preserves $\neg$. 
+    \item 
+      By deMorgan's laws, $g$ preserves $\neg$:
+      for $I$ finite we have
+      \begin{equation}
+      \neg g(I) = \neg (\bigvee_{i\in I} p_i) = \bigwedge_{i\in I} \neg p_i = g(I^C)
+      \end{equation}
+      And for $J$ cofinite, we apply similar reasoning. 
     \item To see that $g$ preserves $\vee$, we need to check three cases
       \begin{itemize}
         \item If both $I,J$ are finite, then 
@@ -245,53 +299,45 @@
         \end{equation}
         as $I\cup J$ must also be cofinite, this equals 
           $ g( I \cup J)$. 
-        \item If $I$ is finite and $J$ cofinite, we have 
-          \rednote{Check this again}
+        \item 
+          If $I$ is finite and $J$ cofinite, we have 
+          that $I\cup J$ is cofinite, hence 
           \begin{equation}
-            g(I) \vee g(J) 
-            = (\bigvee_{i\in I} p_i) \vee (\bigwedge_{j \in J^C} \neg p_j)
+            g(I\cup J) = \bigwedge_{k\in (I \cup J)^C} \neg p_k
+            = \bigwedge_{k \in (J^C -I)} \neg p_k
           \end{equation}
-
-
-
-%          \begin{equation}
-%            g(I) \vee g(J) = (\bigvee_{i\in I} p_i) \vee (\bigwedge_{j \in J^C} \neg p_j)
-%            = 
-%            \bigvee_{i\in I} (p_i \vee (\bigwedge_{j\in J^C} \neg p_j))
-%            = 
-%            \bigvee_{i\in I} \bigwedge_{j\in J^C}(p_i \vee \neg p_j)
-%            = 
-%            \bigwedge_{j \in J^C} (\bigvee_{i \in I}( p_i \vee \neg p_j))
-%          \end{equation}
-        \begin{equation}
-        g(I) \vee g(J) = (\bigvee_{i\in I} p_i) \vee (\bigwedge_{j \in J^C} \neg p_j)
-        = \bigwedge_{j \in J^C} (\bigvee_{i \in I}( p_i \vee \neg p_j))
-        \end{equation}
-        Now note that 
-        whenever $i\neq j$, we have 
-        \begin{equation}
-          p_i = (p_i \wedge \neg p_j) \vee (p_i \wedge p_j) = 
-          (p_i \wedge \neg p_j) \vee 0 = p_i \wedge \neg p_j
-        \end{equation}
-        Hence 
-        \begin{equation} 
-          (p_i \vee \neg p_j)  =
-            \begin{cases}
-              1 \text{ if } i = j \\
-              \neg p_j \text{ if } i \neq j
-            \end{cases}
-        \end{equation}
-        We again leave out the case that $i = j$ in the above meet and conclude that 
-        \begin{equation}
-        g(I) \vee g(J) 
-        = \bigwedge_{j \in J^C} (\bigvee_{i \in I-J^C}\neg p_j)
-        \end{equation}
-
-        Furthermore, as $I$ finite and $J$ cofinite, we have that $I \cup J$ is cofinite and hence 
-        \begin{equation}
-          g(I \cup J) = \bigwedge_{i \in (I \cup J)^C} \neg p_i
-        \end{equation}
-
+          Now note that 
+          whenever $i\neq k$, we have 
+          \begin{equation}
+            p_i = (p_i \wedge \neg p_k) \vee (p_i \wedge p_k) = 
+            (p_i \wedge \neg p_k) \vee 0 = p_i \wedge \neg p_k
+          \end{equation}
+          Hence by absorption
+          \begin{equation} 
+            (p_i \vee \neg p_k)  =
+              \begin{cases}
+                1 \text{ if } i = k \\
+                \neg p_k \text{ if } i \neq k
+              \end{cases}
+          \end{equation}
+          As for all $k\in J^C-I$ and all $i\in I$ we have $k\neq i$, we may thus write
+          \begin{equation}
+            \bigwedge_{k \in (J^C - I)} \neg p_k = 
+            \bigwedge_{k \in (J^C - I)} (\neg p_k \vee (\bigvee_{i\in I} p_i))
+          \end{equation}
+          But now we can use that adding $1$ in a meet does not change the meet, and see that 
+          \begin{equation}
+            \bigwedge_{k \in (J^C - I)} (\neg p_k \vee (\bigvee_{i\in I} p_i))
+            = 
+            \bigwedge_{j \in J^C} (\neg p_j \vee (\bigvee_{i\in I} p_i))
+          \end{equation}
+          And using distributivity rules, we can see that 
+          \begin{equation}
+            \bigwedge_{j \in J^C} (\neg p_j \vee (\bigvee_{i\in I} p_i))
+            = 
+            (\bigwedge_{j \in J^C} \neg p_k) \vee (\bigvee_{i\in I} p_i)
+          \end{equation}
+          From which we may conclude that $g(I\cup J) = g(I) \cup g(J)$. 
       \end{itemize}
     \item The case for $\wedge$ is completely dual to the case for $\vee$. 
   \end{itemize}
@@ -299,7 +345,30 @@ We conclude that $g$ is a Boolean morphism.
 Furthermore, $g$ and $f$ are each other's inverse, thus the Boolean algebras are isomorphic. 
 \end{proof}
 \end{example}
+\section{Axioms}
+\begin{definition}
+  For $B$ a countably presented Boolean algebra, we define $Sp(B)$ as the set of Boolean morphisms from $B$ to $2$. 
+\end{definition}
+\begin{axiomNum}[Stone duality]
+  For any countably presented Boolean algebra $B$, the evaluation map $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
+\end{axiomNum} 
+\begin{axiomNum}[Surjections are Formal Surjections]
+  A map $f:Sp(B')\to Sp(B)$ is surjective iff the corresponding map $B \to B'$ is injective.
+\end{axiomNum} 
+\begin{axiomNum}[Local choice]
+  Whenever $X$ Stone and $E\twoheadrightarrow X$ surjective, then there is some $Y$ Stone,
+    a surjection $Y \twoheadrightarrow X$ and a map $Y\to E$ such that the following diagram commutes:
+    \begin{equation}\begin{tikzcd}
+      E \arrow[d,""',two heads]\\
+      X & \arrow[l, "", two heads] Y\arrow[lu, ""']
+    \end{tikzcd}\end{equation}  
+\end{axiomNum} 
 
+\begin{axiomNum}[Dependent Choice]
+  Given a family of types $E_n$ and $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
+  for all $n$ and $x:E_n$ there exists $y:E_{n+1}$ with $p:R_n~x~y$ then given $x_0:E_0$ there exists
+  $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R_n~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
+\end{axiomNum}
 
 
 
