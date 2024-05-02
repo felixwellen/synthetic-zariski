@@ -134,21 +134,26 @@
     \item The free Boolean algebra is then the set of equivalence classes under this relation. 
   \end{itemize}
 \end{definition}
+\begin{remark}
+  The free Boolean algebra is a Boolean algebra. 
+\end{remark}
 \begin{definition}
-  Let $G$ be a set of symbols. Consider $\Phi$ the set of terms in the language 
-  given by adding $G$ as constants to the language of Boolean algebras. 
-  Let $R \subseteq \Phi$. 
-  we construct the quotient $\langle G \rangle / R$ as follows:
+%  Let $G$ be a set of symbols. Consider $\Phi$ the set of terms in the language 
+%  given by adding $G$ as constants to the language of Boolean algebras. 
+  Let $B$ be a Boolean algebra and let $R$ be a subset of the underlying set of $B$. 
+%  Let $R \subseteq \Phi$. 
+%  we construct the quotient $\langle G \rangle / R$ as follows:
+  we construct the quotient $B / R$ as follows:
   \begin{itemize}
-    \item We start with $\Phi$. 
+    \item We start with the underlying set of terms of $B$. % $\Phi$. 
     \item If there merely exists some finite sequence of 
       equalities from the theory of Boolean algebras or the set of equalities $\{r = 0 | r \in R\}$ 
       allowing us to rewrite one term to another, we consider the two terms to be equivalent. 
-    \item The $\langle G \rangle / R$ is then the set of equivalence classes under this relation. 
+    \item The $B / R$ is then the set of equivalence classes under this relation. 
   \end{itemize}
 \end{definition}
 \begin{remark}
-  For $G,R$ as above, $\langle G \rangle / R$ is a Boolean algebra. 
+  For $B,R$ as above, $B / R$ is a Boolean algebra. 
 \end{remark}
 \begin{remark}\label{rmkMorphismsOutOfQuotient}
   Let $B$ be a Boolean algebra, and let $G,R$ be as above. 
@@ -174,14 +179,30 @@
   There is a category of Boolean algebras, which has a subcategory of countably presented Boolean algebras, 
   which has a subcategory of finitely presented Boolean algebras. 
 \end{remark}
+\begin{definition}
+  Let $f:B\to C$ be a Boolean morphism. 
+  The set $\{x \in B| fx = 0\}$ is called the kernel of $f$ and denoted 
+  $Ker(f)$. 
+\end{definition}
+\begin{remark}
+  Let $f:B \to C$ be a Boolean morphism. 
+  The epi-mono factorization of $f$ exists and is given by  
+  $B \twoheadrightarrow B / Ker(f) \hookrightarrow C$.
+\end{remark}
+\subsection{Countably presented as colimit of finitely presented}
+\begin{definition}
+  A sequence in a category is a diagram of shape $\mathbb N$, 
+  where $\mathbb N$ carries the natural structure of a poset. 
+\end{definition}
 \begin{lemma}
-  Every countably presented Boolean algebra merely is a colimit of a diagram of shape $\mathbb N$ 
-  taking values in finitely presented Boolean algebras. 
+  For every countably presented Boolean algebra $B$
+  there merely exists a sequence of finitely presented Boolean algebras 
+  whose colimit in the category of Boolean algebras is $B$. 
 \end{lemma}
 \begin{proof}
   Consider $\langle G \rangle /R$ a countable presentation of a Boolean algebra $B$. 
-  We will show there exists a diagram of shape $\mathbb N$ taking values in Boolean algebras 
-  with $\langle G\rangle / R$ as the colimit.
+%  We will show there exists a diagram of shape $\mathbb N$ taking values in Boolean algebras 
+%  with $\langle G\rangle / R$ as the colimit.
   \paragraph{The diagram}
   Now let $R_n$ be the first $n$ terms in $R$. 
   Note that each of these finitely many terms uses only finitely many symbols from $G$.
@@ -210,28 +231,151 @@
       note that $\phi \in R_n$, and the map $B_n \to C$ must send $\phi$ to $0$. 
       Thus the function from $G$ to the underlying set of $C$ also sends $\phi$ to $0$. 
       This thus defines a map $\langle G \rangle / R \to C$. 
-    \item To show uniqueness, consider that any map of cocones must take the same values 
-      on all $g\in G_n$ for all $n\in\mathbb N$, but by \Cref{rmkMorphismsOutOfQuotient}
-      this uniquely defines a map. 
+    \item To show uniqueness, consider that any map of cocones $\langle G \rangle /R \to C$ 
+      must take the same values on all $g\in G_n$ for all $n\in\mathbb N$. 
+      Now all $g\in G$ occur in some $G_n$, so any map of cocones $\langle G \rangle /R \to C$ 
+      takes the same values for all $g\in G$. 
+      \Cref{rmkMorphismsOutOfQuotient} now tell us that these values uniquely determine the map. 
   \end{itemize}
 \end{proof}
 \begin{remark}
-  Conversely, any colimit of a diagram of shape $\mathbb N$ of finite Boolean algebras 
+  Conversely, any colimit of a sequence of finite Boolean algebras 
   is a countably presented Boolean algebra with 
   as underlying sets of generators and relations the countable union of the finite sets of 
   generators and relations, which are both countable. 
 \end{remark}
+\begin{lemma}\label{lemFinitelyPresentedBACompact}
+  For any finitely presented Boolean algebra $A$,
+  and any sequence $(B_n)_{n:\mathbb N}$ of Boolean algebras with colimit $B$
+  we have that the set $B^A$ is the colimit of the sequence of sets $(B_n^A)_{n:\mathbb N}$. 
+\end{lemma}  
+\begin{proof}
+  First note that $B^A$ forms a cocone on $(B_n^A)_{n:\mathbb N}$ 
+  because any map $A \to B_n$ induces a map $A \to B$. 
+  Let $C$ be a cocone on $(B_n^A)_{n:\mathbb N}$. 
+  We shall show there is an unique morphism of cocones $B^A \to C$. 
+  \begin{itemize}
+    \item For existence, let $f:B^A$. 
+      As $A$ is finitely presented, we write $A = \langle G \rangle / R$ with $G$ finite.
+      By \Cref{rmkMorphismsOutOfQuotient}, $f$ is uniquely determined by it's values on $g\in G$. 
+      As $G$ is finite, so is it's image $f(G)\subseteq B$. 
+      But any finite subset of $B$ already occurs in $B_n$ for some $n\in\mathbb N$. 
+      Consequently, the image of $f$ is already contained in some $B_n$. 
+      Thus there is some $f_n:(B_n^A)$ such that postcomposing 
+      $f_n$ with the inclusion $B_n \subseteq B$ gives back $f$. 
+      The image of $f_n$ under the map $(B_n^A) \to C$ is how we define the image of $f$. 
+      This is well-defined by the cocone conditions on $C$. 
+    \item 
+      For uniqueness, by function extensionality maps $B^A \to C$ are uniquely determined by their values on 
+      $f:B^A$. By the above, the value of $f$ is uniquely determined by it's value on $B_n$ for 
+      any $n$ with the image of $f$ in $B_n$. Thus there is at most one morphism of cocones $B^A \to C$. 
+  \end{itemize}
+\end{proof}
 
+For our next lemma on this presentation of sequences we need the axiom of dependent choice. 
+\begin{axiomNum}[Dependent choice]\label{axDependentChoice}
+  Given a family of types $(E_n)_{n:\mathbb N}$ and 
+  a relation 
+  $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
+%  $\Pi_{n:\mathbb N} \Pi_{x:E_n} \exists_{y:E_{n+1}} R_n x y$.
+  for all $n$ and $x:E_n$ there exists $y:E_{n+1}$ with $p:R_n~x~y$ 
+  then given $x_0:E_0$ there exists
+  $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R_n~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
+\end{axiomNum}
+\begin{lemma}[Using dependent choice]\label{lemDecompositionOfColimitMorphisms}
+  Let $B,C$ be countably presented Boolean algebras, 
+  and suppose we have a morphism $f:B\to C$.
+  There exists sequences of finitely presented Boolean algebras 
+  $(B_n)_{n:\mathbb N}, (C_n)_{n:\mathbb N}$ with colimits $B,C$ respectively
+  and compatible maps of Boolean algebras $f_n:B_n \to C_n$, 
+  such that $f$ is the induced morphism $B\to C$.
+\end{lemma}
+\rednote{Active here}
+\begin{proof}
+  Let $(B_n)_{n:\mathbb N}, (C_n)_{n:\mathbb N}$ be 
+  sequences of finitely presented Boolean algebras with colimits $B$ and $C$. 
+  We will take a subsequence of $(C_n)_{n:\mathbb N}$, using the axiom of dependent choice above. 
+
+  Our family of types $E_k$ as in \Cref{axDependentChoice} 
+  will be strictly increasing sequences $(n_i)_{i\leq k}$ of natural numbers together with a finite family of maps 
+  $(f_i: B_{i} \to C_{n_i})_{i\leq k}$ such that
+  for all $0\leq i<k$ the following diagram commutes:
+  \begin{equation}\label{eqnDecompositionOfColimitMorphisms}
+    \begin{tikzcd}
+      B_{i} \arrow[r] \arrow[d, "f_i"]& B_{{i+1}} \arrow[r] \arrow[d,"f_{i+1}"]& B \arrow[d,"f"] \\
+      C_{n_i} \arrow[r] & C_{n_{i+1}} \arrow[r] & C 
+    \end{tikzcd}
+  \end{equation}
+  Our relation $R_k$ will tell whether the second sequence extends the first one. 
+%
+  By \Cref{lemFinitelyPresentedBACompact} 
+  there exists some $n_0:\mathbb N$ 
+  such that $B_0 \to B \to C$ factors as 
+  \begin{equation}
+    \begin{tikzcd}
+      B_{0} \arrow[r] \arrow[d, "f_0"]& B \arrow[d,"f"] \\
+      C_{n_0} \arrow[r] & C 
+    \end{tikzcd}
+  \end{equation}
+  Because our goal is a proposition, we can untracate this existence to data. 
+  This data will form our $x_0:E_0$. %from \Cref{axDependentChoice}. 
+%
+  Now suppose we have $(f_i: B_{i} \to C_{n_i})_{i\leq k}$ for some $k\geq 0$ 
+  such that
+  for all $0\leq i<k$ the diagram of \Cref{eqnDecompositionOfColimitMorphisms} commutes.
+  We shall show that in this case there exists an $n_{k+1}, f_{k+1}$ 
+  making the same diagram commute for $i = k$. 
+  Consider $B_{{k}+1}\to B \to C$. By the same argument as for $B_0$, we have a factorization 
+  \begin{equation}
+    \begin{tikzcd}
+    B_{k+1} \arrow[r]  \arrow[d,"f'_{k+1}"]& B \arrow[d,"f"]\\
+    C_{n'_{k+1}} \arrow[r] & C
+    \end{tikzcd}
+  \end{equation}
+  Note that we may assume $n'_{k+1} > n_k$.
+  Note that it is not necessarily the case that 
+  $f'_{k+1}$ is compatibly with $f_k$, meaning the left square in the following diagram needn't commute 
+  However, both $f'_{k+1}, f_k$ induce the same map $B_{n_k} \to C$, 
+  so by \Cref{lemFinitelyPresentedBACompact} there exists an $n_{k+1}$ 
+  such that the outer square and right square in 
+  \rednote{missing square involving the new thing}
+  \begin{equation}
+    \begin{tikzcd}
+      B_{k} \arrow[r] \arrow[d, "f_k"]& B_{{k+1}} \arrow[rr] \arrow[d,"f'_{k+1}"]& & B \arrow[d,"f"] \\
+      C_{n_k} \arrow[r] & C_{n'_{k+1}} \arrow[r] & C_{n_{k+1}} \arrow[r] & C 
+    \end{tikzcd}
+  \end{equation}
+  do commute. 
+  Here we may also assume that $n_{k+1}>n_k$ 
+  and we take $f_{k+1}$ to be the resulting morphism $B_{k+1} \to C_{n_{k+1}}$. 
+
+  Now by dependent choice for this situation, we get a sequence $(f_i:B_i \to C_{n_i})$  for some 
+  strinctly increasing sequence $n_i$ of natural numbers. 
+  Note that any strictly increasing subsequence of a sequence still has the same colimit, 
+  thus $(C_{n_i})_{i:\mathbb N}$ converges to $C$ and $(B_i)_{i:\mathbb N}$ still converges to $B$. 
+  Thus our sequence $(f_i)_{i:\mathbb N}$ is as required. 
+  \rednote{I'm missing some nuance regarding the second extension} 
+
+\end{proof}
+\begin{lemma}
+  If $f:B \to C$ is a surjective/injective morphism of Boolean algebras, 
+  the maps $f_n$ from \Cref{lemDecompositionOfColimitMorphisms} can taken to 
+  be surjective/injective as well. 
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+\rednote{End of activity}
 \subsection{Examples of countably presented Boolean algebras}
 \begin{example}
   $2$ is the Boolean algebra given by the empty set of generators and no relations. 
     It's underlying set is $\{0,1\}$. 
 \end{example}
 
-\begin{example}
+\begin{example}\label{ExampleBAunderCantor}
   $C = \langle N \rangle $ is the Boolean algebra given by $\mathbb N$ as set of generators and no relations. 
 \end{example}
-\begin{example}
+\begin{example}\label{ExampleBAunderNinfty}
   Denote $\mathbb N_{(co)fin}$ for the set of subsets of $\mathbb N$ which are finite or co-finite. 
   Under the interpretation of $\wedge = \cap , \vee = \cup, 0 = \emptyset, 1 = \mathbb N$, and $\neg$ 
   as the set-theoretic complemented (denoted $(\cdot)^C$). 
@@ -352,6 +496,38 @@ Furthermore, $g$ and $f$ are each other's inverse, thus the Boolean algebras are
 \begin{axiomNum}[Stone duality]
   For any countably presented Boolean algebra $B$, the evaluation map $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
 \end{axiomNum} 
+\newcommand{\isSt}{\mathsf{isStone}}
+\begin{definition}
+  We define the predicate on types $\isSt$ by 
+  \begin{equation}
+    \isSt(X) := \sum\limits_{B : Boole} X = Sp(B)
+  \end{equation} 
+  A type $X$ is called \textit{Stone} if $\isSt(X)$ is inhabited.
+\end{definition}
+
+\begin{remark}
+  \rednote{Check references in other versions of HoTT, draft}
+Stone types will take over the role of affine scheme from \cite{draft}, 
+and we repeat some results here. 
+Analogously to Lemma 3.1.2 of \cite{draft}, 
+for $X$ Stone, Stone duality tells us that $X = Sp(2^X)$. 
+%
+Proposition 2.2.1 of \cite{draft} now says that 
+$Sp$ gives an equivalence 
+\begin{equation}
+   Hom_{\Boole} (A, B) = (Sp(B) \to Sp(A))
+\end{equation}
+Therefore $\isSt$ is a proposition.
+Equivalently, 
+%By Definition 4.6.1 %defines an embedding 
+%of \cite{hott}, 
+this means that 
+$Sp$ is an embedding from $\Boole$ to any universe of types.
+Its image, $\Stone$ also has a natural category structure.
+By the above and Lemma 9.4.5 of \cite{hott}, 
+the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Stone$.
+\end{remark}
+
 \begin{axiomNum}[Surjections are Formal Surjections]
   A map $f:Sp(B')\to Sp(B)$ is surjective iff the corresponding map $B \to B'$ is injective.
 \end{axiomNum} 
@@ -364,12 +540,31 @@ Furthermore, $g$ and $f$ are each other's inverse, thus the Boolean algebras are
     \end{tikzcd}\end{equation}  
 \end{axiomNum} 
 
-\begin{axiomNum}[Dependent Choice]
-  Given a family of types $E_n$ and $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
-  for all $n$ and $x:E_n$ there exists $y:E_{n+1}$ with $p:R_n~x~y$ then given $x_0:E_0$ there exists
-  $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R_n~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
-\end{axiomNum}
+\section{Stone spaces}
+\subsection{Examples of Stone types}
+\begin{example}
+  The dual to $C$ from \Cref{ExampleBAunderCantor} is called Cantor space 
+  and denoted $2^\mathbb N$. 
+  By \Cref{rmkMorphismsOutOfQuotient}, terms of $2^\mathbb N$ 
+  correspond to set-theoretic functions $\mathbb N \to 2$. 
+  We also call such functions binary sequences. 
+\end{example}
+\begin{example}
+  The dual to $\mathbb N_{(co)fin}$ from \Cref{ExampleBAunderNinfty} is called 
+  $\mathbb N_\infty$. By \Cref{rmkMorphismsOutOfQuotient}, terms of $\mathbb N_\infty$ 
+  correspond to functions $\alpha: \mathbb N \to 2$ such that $\alpha(n) \wedge \alpha(m) = 0$ 
+  whenever $n \neq m$. This means that $\alpha(n) = 1$ for at most one $n\in\mathbb N$. 
+  There is an embedding $\mathbb N \to \mathbb N_\infty$ sending $n$ to the unique sequence $\chi_n$
+  which sends $n$ to $1$. 
+  There is furthermore a term $\infty:\mathbb N_\infty$ which is the sequence which is constantly $0$. 
+\end{example}
 
+\subsection{Omniscience principles}
+
+\subsection{Topology}
+
+\subsection{Compact Hausdorff spaces}
+\subsection{Analysis}
 
 
 %\chapter{Axioms}

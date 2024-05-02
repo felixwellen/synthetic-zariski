@@ -1,113 +1,119 @@
-%%% \begin{definition}
-%%%   A sequence is a diagram of shape $\mathbb N_{\leq}$.
-%%% \end{definition} 
-%
-%x%\begin{lemma}
-%x%  $B$ is a countably presented Boolean algebra iff 
-%x%  it merely is the colimit of a sequence of finitely presented Boolean algebras.% $(B_n)_{n\in\mathbb N}$.
-%x%\end{lemma} 
-%x%%%Alternatively, we can define a countably presented Boolean algebra as an inductive limit of finite Boolean algebras
-%x%%%that are given by a sequence of finite sets and maps between then.
-%x%\begin{proof}
-%x%  First, assume a sequence of finitely presented Boolean algebras. 
-%x%  We need to show that the colimit is a countably presented Boolean algebra. 
-%x%  \begin{itemize}
-%x%    \item The set of generators for the colimit is the colimit of the sets of generators. 
-%x%    \item The set of relations for the colimit is the union of the sets of relations. 
-%x%      After all, any expression $f$ that becomes $0$ somewhere in the sequence will will be coprojected to $0$
-%x%      in the colimit. And as any equality that holds in the colimit uses finitely many elements, 
-%x%      it must already hold somewhere in the sequence. 
-%x%  \end{itemize}
-%x%  Note that both colimits over countably many finite sets are countable. 
-%x%  Hence the colimit is countably represented. 
-\begin{proof}
-  Consider $\langle G \rangle /R$ a countable presentation of a Boolean algebra $B$. 
-  We will show there exists a diagram of shape $\mathbb N$ taking values in Boolean algebras 
-  with $\langle G\rangle / R$ as the colimit.
-  \paragraph{The diagram}
-  Now let $R_n$ be the first $n$ terms in $R$. 
-  Note that each of these finitely many terms uses only finitely many symbols from $G$.
-  Let $G_n$ be the finite set of terms used in $R_n$, unioned with the finite set of the first $n$ elements of $G$. 
-  Define for each $n\in\mathbb N$ the finitely presented Boolean algebra $B_n = G_n /R_n$. 
-  If $n\leq m$, then \Cref{rmkMorphismsOutOfQuotient} gives us a map $B_n \to B_m$ 
-  as $G_n \subseteq G_{n+1}$ and $R_n \subseteq R_{n+1}$. 
-  Thus $(B_n)_{n\in \mathbb N}$ gives us a diagram of shape $\mathbb N$
-  with values in finitely presented algebras. 
-
-  \paragraph{The colimit}
-  As $G_n\subseteq G$ and $R_n \subseteq R$, 
-  \Cref{rmkMorphismsOutOfQuotient} also gives us a map $B_n\to \langle G \rangle /R$. 
-  We claim the resulting cocone is a colimit. 
-
-  Suppose we have a cocone $C$ on the diagram $(B_n)_{n\in\mathbb N}$. 
-  We need to show that there exists a map $\langle G \rangle / R\to C$ and
-  we need to show this map is unique as map between cocones. 
-  \begin{itemize}
-    \item To show there exists a map $\langle G \rangle / R \to C$, 
-      we use remark \Cref{rmkMorphismsOutOfQuotient} again. 
-      Let $g\in G$ be the $n$'th element of $G$, 
-      note that $g\in G_n$, and consider the image of $g$ under the map $B_n \to C$. 
-      This procedure defines a function from $G$ to the underlying set of $C$. 
-      Let $\phi \in R$ be the $n$'th element of $R$, 
-      note that $\phi \in R_n$, and the map $B_n \to C$ must send $\phi$ to $0$. 
-      Thus the function from $G$ to the underlying set of $C$ also sends $\phi$ to $0$. 
-      This thus defines a map $\langle G \rangle / R \to C$. 
-    \item To show uniqueness, consider that any map of cocones must take the same values 
-      on all $g\in G_n$ for all $n\in\mathbb N$, but by \Cref{rmkMorphismsOutOfQuotient}
-      this uniquely defines a map. 
-  \end{itemize}
-%  By \Cref{rmkMorphismsOutOfQuotient} a map $\langle G \rangle /R \to C$.
-%  By \Cref{rmkMorphismsOutOfQuotient} such maps are uniquely determined by their values on $G$. 
-%  to the underlying set of $C$. 
-%  Let $g\in G$ be the $n$'th element of $G$. 
-%  We 
-%
-%
-%
-%
-%  We let $G_n$ be given by the first $n$ generators. 
-%  Let $R_n$ be the relations involving these generators, 
-%  of which there are only finitely many. 
-%  We define $B_n = G_n/R_n$, which is a finitely presented Boolean algebra. 
-%  The embedding of the first $n$ generators into the first $m$ generators gives us 
-%  a map $B_n \to B_m$ whenever $n\leq m$. 
-%  Because these morphisms are compatible, this defines a sequence of Boolean algebras. 
-%  We claim the colimit of this sequence is $B$. 
-%
-%  Any element in $B$ can be expressed as Boolean combination of finitely many generators, 
-%  which must occur in some $B_n$, and thus in the colimit. 
-%  Whenever the images of two elements in the colimit are equal, they are already equal in some $B_m$, 
-%  hence it follows from a finite subset of the relations for $B$ that the elements are equal, 
-%  hence the elements are equal in $B$. Thus we have an embedding from $B$ into the colimit. 
-%
-%  Any element in the colimit already appears in some $B_n$, and hence is 
-%  a finite expression using generators from $B$, thus occurs in $B$ is as well. 
-%  Suppose two elements in the colimit correspond in this manner to the same element in $B$. 
-%  Then their equality follows from the relations of $B$. 
-%  By compactness in the meta-theory, their equality must follow from a finite subset of the relations from $B$, 
-%  hence there is some $B_m$ where both elements are equal, and they are equal in the colimit as well. 
-%  Thus the colimit embeds into $B$. 
-%
-%  We conclude that $B$ and the colimit are isomorphic Boolean algebras. 
-\end{proof} 
-
-
-
-
-
-
+%SeeMain%%%% \begin{definition}
+%SeeMain%%%%   A sequence is a diagram of shape $\mathbb N_{\leq}$.
+%SeeMain%%%% \end{definition} 
+%SeeMain%%
+%SeeMain%%x%\begin{lemma}
+%SeeMain%%x%  $B$ is a countably presented Boolean algebra iff 
+%SeeMain%%x%  it merely is the colimit of a sequence of finitely presented Boolean algebras.% $(B_n)_{n\in\mathbb N}$.
+%SeeMain%%x%\end{lemma} 
+%SeeMain%%x%%%Alternatively, we can define a countably presented Boolean algebra as an inductive limit of finite Boolean algebras
+%SeeMain%%x%%%that are given by a sequence of finite sets and maps between then.
+%SeeMain%%x%\begin{proof}
+%SeeMain%%x%  First, assume a sequence of finitely presented Boolean algebras. 
+%SeeMain%%x%  We need to show that the colimit is a countably presented Boolean algebra. 
+%SeeMain%%x%  \begin{itemize}
+%SeeMain%%x%    \item The set of generators for the colimit is the colimit of the sets of generators. 
+%SeeMain%%x%    \item The set of relations for the colimit is the union of the sets of relations. 
+%SeeMain%%x%      After all, any expression $f$ that becomes $0$ somewhere in the sequence will will be coprojected to $0$
+%SeeMain%%x%      in the colimit. And as any equality that holds in the colimit uses finitely many elements, 
+%SeeMain%%x%      it must already hold somewhere in the sequence. 
+%SeeMain%%x%  \end{itemize}
+%SeeMain%%x%  Note that both colimits over countably many finite sets are countable. 
+%SeeMain%%x%  Hence the colimit is countably represented. 
+%SeeMain%\begin{proof}
+%SeeMain%  Consider $\langle G \rangle /R$ a countable presentation of a Boolean algebra $B$. 
+%SeeMain%  We will show there exists a diagram of shape $\mathbb N$ taking values in Boolean algebras 
+%SeeMain%  with $\langle G\rangle / R$ as the colimit.
+%SeeMain%  \paragraph{The diagram}
+%SeeMain%  Now let $R_n$ be the first $n$ terms in $R$. 
+%SeeMain%  Note that each of these finitely many terms uses only finitely many symbols from $G$.
+%SeeMain%  Let $G_n$ be the finite set of terms used in $R_n$, unioned with the finite set of the first $n$ elements of $G$. 
+%SeeMain%  Define for each $n\in\mathbb N$ the finitely presented Boolean algebra $B_n = G_n /R_n$. 
+%SeeMain%  If $n\leq m$, then \Cref{rmkMorphismsOutOfQuotient} gives us a map $B_n \to B_m$ 
+%SeeMain%  as $G_n \subseteq G_{n+1}$ and $R_n \subseteq R_{n+1}$. 
+%SeeMain%  Thus $(B_n)_{n\in \mathbb N}$ gives us a diagram of shape $\mathbb N$
+%SeeMain%  with values in finitely presented algebras. 
+%SeeMain%
+%SeeMain%  \paragraph{The colimit}
+%SeeMain%  As $G_n\subseteq G$ and $R_n \subseteq R$, 
+%SeeMain%  \Cref{rmkMorphismsOutOfQuotient} also gives us a map $B_n\to \langle G \rangle /R$. 
+%SeeMain%  We claim the resulting cocone is a colimit. 
+%SeeMain%
+%SeeMain%  Suppose we have a cocone $C$ on the diagram $(B_n)_{n\in\mathbb N}$. 
+%SeeMain%  We need to show that there exists a map $\langle G \rangle / R\to C$ and
+%SeeMain%  we need to show this map is unique as map between cocones. 
+%SeeMain%  \begin{itemize}
+%SeeMain%    \item To show there exists a map $\langle G \rangle / R \to C$, 
+%SeeMain%      we use remark \Cref{rmkMorphismsOutOfQuotient} again. 
+%SeeMain%      Let $g\in G$ be the $n$'th element of $G$, 
+%SeeMain%      note that $g\in G_n$, and consider the image of $g$ under the map $B_n \to C$. 
+%SeeMain%      This procedure defines a function from $G$ to the underlying set of $C$. 
+%SeeMain%      Let $\phi \in R$ be the $n$'th element of $R$, 
+%SeeMain%      note that $\phi \in R_n$, and the map $B_n \to C$ must send $\phi$ to $0$. 
+%SeeMain%      Thus the function from $G$ to the underlying set of $C$ also sends $\phi$ to $0$. 
+%SeeMain%      This thus defines a map $\langle G \rangle / R \to C$. 
+%SeeMain%    \item To show uniqueness, consider that any map of cocones must take the same values 
+%SeeMain%      on all $g\in G_n$ for all $n\in\mathbb N$, but by \Cref{rmkMorphismsOutOfQuotient}
+%SeeMain%      this uniquely defines a map. 
+%SeeMain%  \end{itemize}
+%SeeMain%%  By \Cref{rmkMorphismsOutOfQuotient} a map $\langle G \rangle /R \to C$.
+%SeeMain%%  By \Cref{rmkMorphismsOutOfQuotient} such maps are uniquely determined by their values on $G$. 
+%SeeMain%%  to the underlying set of $C$. 
+%SeeMain%%  Let $g\in G$ be the $n$'th element of $G$. 
+%SeeMain%%  We 
+%SeeMain%%
+%SeeMain%%
+%SeeMain%%
+%SeeMain%%
+%SeeMain%%  We let $G_n$ be given by the first $n$ generators. 
+%SeeMain%%  Let $R_n$ be the relations involving these generators, 
+%SeeMain%%  of which there are only finitely many. 
+%SeeMain%%  We define $B_n = G_n/R_n$, which is a finitely presented Boolean algebra. 
+%SeeMain%%  The embedding of the first $n$ generators into the first $m$ generators gives us 
+%SeeMain%%  a map $B_n \to B_m$ whenever $n\leq m$. 
+%SeeMain%%  Because these morphisms are compatible, this defines a sequence of Boolean algebras. 
+%SeeMain%%  We claim the colimit of this sequence is $B$. 
+%SeeMain%%
+%SeeMain%%  Any element in $B$ can be expressed as Boolean combination of finitely many generators, 
+%SeeMain%%  which must occur in some $B_n$, and thus in the colimit. 
+%SeeMain%%  Whenever the images of two elements in the colimit are equal, they are already equal in some $B_m$, 
+%SeeMain%%  hence it follows from a finite subset of the relations for $B$ that the elements are equal, 
+%SeeMain%%  hence the elements are equal in $B$. Thus we have an embedding from $B$ into the colimit. 
+%SeeMain%%
+%SeeMain%%  Any element in the colimit already appears in some $B_n$, and hence is 
+%SeeMain%%  a finite expression using generators from $B$, thus occurs in $B$ is as well. 
+%SeeMain%%  Suppose two elements in the colimit correspond in this manner to the same element in $B$. 
+%SeeMain%%  Then their equality follows from the relations of $B$. 
+%SeeMain%%  By compactness in the meta-theory, their equality must follow from a finite subset of the relations from $B$, 
+%SeeMain%%  hence there is some $B_m$ where both elements are equal, and they are equal in the colimit as well. 
+%SeeMain%%  Thus the colimit embeds into $B$. 
+%SeeMain%%
+%SeeMain%%  We conclude that $B$ and the colimit are isomorphic Boolean algebras. 
+%SeeMain%\end{proof} 
+%SeeMain%
+%SeeMain%
+%SeeMain%
+%SeeMain%
+%SeeMain%
+%SeeMain%
 
 
 
 \begin{definition}
-  We call an object $K$ (countably) compact if for every sequence $A = colim A_n$, we have
-  $A^K = colim A_n^K$.
-  %compact means every filtered colimit, we only care about sequences. 
+  We call an object $K$ (countably) compact if for every sequence 
+  $(B_n)_{n:\mathbb N}$ with colimit $B$, we have
+  that the set $B^K$ is the colimit of the sequence of sets $(B_n^K)_{n:\mathbb N}$.
 \end{definition}
 
 \begin{lemma}
-  Finitely presented algebras are compact in the category of algebras. 
+  All finitely presented Boolean algebras are compact in the category of Boolean algebras. 
 \end{lemma}  
+\begin{proof}
+  Let $K$ be a finitely presented Boolean algebra, 
+  and let $(B_n)_{n:\mathbb N}$ be any sequence of Boolean algebras. 
+
+
+\end{proof}
 %% \begin{proof}
 %%   Note that a map $K \to A$ is uniquely determined by it's values on the generators
 %%   of which there are finitely many if $K$ is finitely presented. 
