@@ -29,8 +29,8 @@
   The language of Boolean algebras consists of
   \begin{itemize}
     \item Two symbols for constants $0,1$. 
-    \item Two binary function symbols $\wedge, \vee$.
-    \item One unary function symbol $\neg$. 
+    \item Two binary function symbols $\wedge, \vee$ called meet and join respectively. 
+    \item One unary function symbol $\neg$ called negation. 
   \end{itemize}
 \end{definition}
 \begin{definition}
@@ -137,6 +137,34 @@
 \begin{remark}
   The free Boolean algebra is a Boolean algebra. 
 \end{remark}
+\rednote{Rewriting rewriting}
+\begin{definition}
+  Let $B$ be a Boolean algebra, a subset $I\subseteq B$ is an ideal iff 
+  $0\in I$ and whenver $x,y \in I$ and $b\in B$, we have $x\vee y \in I$ and $x \wedge b \in B$. 
+
+  If $I$ is an ideal of $B$, then for $a,b:B$, we write $x\sim_I y$ iff 
+  $(a \wedge \neg b ) \vee ( \neg a \wedge b) \in I$. 
+\end{definition}
+\begin{lemma}
+  Let $B$ be a Boolean algebra, and let $I\subseteq B$ be an ideal. 
+  Then the relation $\sim_I$ is an equivalence relation. 
+\end{lemma}
+\begin{proof}
+  \begin{itemize}
+    \item To see $\sim_I$ is reflexive, note that 
+      $(x \wedge \neg x) \vee (\neg x \wedge x) = 0 \vee 0 = 0 \in I$. 
+    \item To see $\sim_I$ is symmetric, note that 
+      $ (a \wedge \neg b) \vee ( \neg a \wedge b) = 
+        (b \wedge \neg a) \vee ( \neg b \wedge a)$. 
+    \item To see $\sim_I$ is transitive, note that 
+      whenever $a \wedge \neg b \vee $
+  \end{itemize}
+\end{proof}
+\begin{remark}
+  Any kernerl is an ideal. 
+\end{remark}
+
+
 \begin{definition}
 %  Let $G$ be a set of symbols. Consider $\Phi$ the set of terms in the language 
 %  given by adding $G$ as constants to the language of Boolean algebras. 
@@ -155,11 +183,13 @@
 \begin{remark}
   For $B,R$ as above, $B / R$ is a Boolean algebra. 
 \end{remark}
+\rednote{end rewriting}
 \begin{remark}\label{rmkMorphismsOutOfQuotient}
   Let $B$ be a Boolean algebra, and let $G,R$ be as above. 
   To define a morphism $\langle G \rangle / R \to B$, it is sufficient to define a function $f$ from $G$ 
   to the underlying set of $B$ such that for every expression $\phi:R$, we have
-  $\phi[x/f(x)] = 0_B$. 
+  $\phi[x/f(x)] = 0_B$, 
+  where $\phi[x/f(x)]$ replaces every occurence of some $x\in G$ with $f(x)\in B$. 
 \end{remark}
 \begin{remark}
   For every element $x$ of $\langle G\rangle /R$ as above,
@@ -195,6 +225,10 @@
 \begin{example}
   $2$ is the Boolean algebra given by the empty set of generators and no relations. 
     It's underlying set is $\{0,1\}$. 
+\end{example}
+\begin{example}
+  The trivial Boolean algebra given by the empty set of generators and the relation $\{1\}$, 
+  It's underlying set is $\{0\}$ and we have $0=1$ in the trivial Boolean algebra. 
 \end{example}
 
 \begin{example}\label{ExampleBAunderCantor}
@@ -314,14 +348,12 @@ We conclude that $g$ is a Boolean morphism.
 Furthermore, $g$ and $f$ are each other's inverse, thus the Boolean algebras are isomorphic. 
 \end{proof}
 \end{example}
-\section{Axioms}
+\section{Stone spaces}
+\newcommand{\isSt}{\mathsf{isStone}}
+\subsection{Definitions}
 \begin{definition}
   For $B$ a countably presented Boolean algebra, we define $Sp(B)$ as the set of Boolean morphisms from $B$ to $2$. 
 \end{definition}
-\begin{axiomNum}[Stone duality]
-  For any countably presented Boolean algebra $B$, the evaluation map $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
-\end{axiomNum} 
-\newcommand{\isSt}{\mathsf{isStone}}
 \begin{definition}
   We define the predicate on types $\isSt$ by 
   \begin{equation}
@@ -329,6 +361,32 @@ Furthermore, $g$ and $f$ are each other's inverse, thus the Boolean algebras are
   \end{equation} 
   A type $X$ is called \textit{Stone} if $\isSt(X)$ is inhabited.
 \end{definition}
+\subsection{Examples of Stone types}
+\begin{example}\label{ExampleBAunderEmpty}
+  The dual to the trivial Boolean algebra from $\Cref{ExampleBAunderEmpty}$ is the empty set $\emptyset$, 
+  as $0\neq 1$ in $2$, but $0=1$ in the trivial Boolean algebra, there can be no functions preserving both $0$ and $1$ 
+  from the trivial Boolean algebra to $2$. 
+\end{example}
+\begin{example}
+  The dual to $C$ from \Cref{ExampleBAunderCantor} is called Cantor space 
+  and denoted $2^\mathbb N$. 
+  By \Cref{rmkMorphismsOutOfQuotient}, terms of $2^\mathbb N$ 
+  correspond to set-theoretic functions $\mathbb N \to 2$. 
+  We also call such functions binary sequences. 
+\end{example}
+\begin{example}
+  The dual to $\mathbb N_{(co)fin}$ from \Cref{ExampleBAunderNinfty} is called 
+  $\mathbb N_\infty$. By \Cref{rmkMorphismsOutOfQuotient}, terms of $\mathbb N_\infty$ 
+  correspond to functions $\alpha: \mathbb N \to 2$ such that $\alpha(n) \wedge \alpha(m) = 0$ 
+  whenever $n \neq m$. This means that $\alpha(n) = 1$ for at most one $n\in\mathbb N$. 
+  There is an embedding $\mathbb N \to \mathbb N_\infty$ sending $n$ to the unique sequence $\chi_n$
+  which sends $n$ to $1$. 
+  There is furthermore a term $\infty:\mathbb N_\infty$ which is the sequence which is constantly $0$. 
+\end{example}
+\subsection{Axioms}
+\begin{axiomNum}[Stone duality]
+  For any countably presented Boolean algebra $B$, the evaluation map $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
+\end{axiomNum} 
 
 \begin{remark}
   \rednote{Check references in other versions of HoTT, draft}
@@ -356,6 +414,7 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
 \begin{axiomNum}[Surjections are Formal Surjections]
   A map $f:Sp(B')\to Sp(B)$ is surjective iff the corresponding map $B \to B'$ is injective.
 \end{axiomNum} 
+
 \begin{axiomNum}[Local choice]
   Whenever $X$ Stone and $E\twoheadrightarrow X$ surjective, then there is some $Y$ Stone,
     a surjection $Y \twoheadrightarrow X$ and a map $Y\to E$ such that the following diagram commutes:
@@ -364,30 +423,60 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
       X & \arrow[l, "", two heads] Y\arrow[lu, ""']
     \end{tikzcd}\end{equation}  
 \end{axiomNum} 
-
-\section{Stone spaces}
-\subsection{Examples of Stone types}
-\begin{example}
-  The dual to $C$ from \Cref{ExampleBAunderCantor} is called Cantor space 
-  and denoted $2^\mathbb N$. 
-  By \Cref{rmkMorphismsOutOfQuotient}, terms of $2^\mathbb N$ 
-  correspond to set-theoretic functions $\mathbb N \to 2$. 
-  We also call such functions binary sequences. 
-\end{example}
-\begin{example}
-  The dual to $\mathbb N_{(co)fin}$ from \Cref{ExampleBAunderNinfty} is called 
-  $\mathbb N_\infty$. By \Cref{rmkMorphismsOutOfQuotient}, terms of $\mathbb N_\infty$ 
-  correspond to functions $\alpha: \mathbb N \to 2$ such that $\alpha(n) \wedge \alpha(m) = 0$ 
-  whenever $n \neq m$. This means that $\alpha(n) = 1$ for at most one $n\in\mathbb N$. 
-  There is an embedding $\mathbb N \to \mathbb N_\infty$ sending $n$ to the unique sequence $\chi_n$
-  which sends $n$ to $1$. 
-  There is furthermore a term $\infty:\mathbb N_\infty$ which is the sequence which is constantly $0$. 
-\end{example}
-
+\begin{axiomNum}[Dependent choice]\label{axDependentChoice}
+  Given a family of types $(E_n)_{n:\mathbb N}$ and 
+  a relation 
+  $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
+  for all $n$ and $x:E_n$ there exists $y:E_{n+1}$ with $p:R_n~x~y$ 
+  then given $x_0:E_0$ there exists
+  $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R_n~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
+\end{axiomNum}
 \subsection{Omniscience principles}
+\rednote{active}
+\begin{lemma}
+  A Boolean algebra $B / R$ 
+  is trivial iff there merely exists some $R_0\subseteq R$ finite with 
+  $1 = \bigvee_{r \in R_0} r$ in $B$.
+\end{lemma}
+\begin{proof}
+  First note that a Boolean algebra being trivial is a proposition and 
+  if we can write $1 = \bigvee_{r \in R_0} r$ in $B$, we have 
+  that in $B/R$, $1 = \bigvee_{r \in R_0} 0 = 0$. 
+
+  Conversely, if $1 = 0$ in $B /R$, we must have a finite sequence of relations from $R$ 
+  and the theory of Boolean algebras allowing us to rewrite $1$ to $0$. 
+\end{proof}
+
+\begin{theorem}[The negation of the weak limited principle of omniscience]
+
+\end{theorem}
+\begin{theorem}[The lesser limited principle of omniscience]
+\end{theorem}
+The following result is due to David W\"arn.
+\begin{theorem}[Markov's principle (uses Stone duality)]
+  For $\alpha:\mathbb N_\infty$, we have that whenever $\alpha\neq \infty$, 
+  there exists some $n:\mathbb N$ such that $\alpha = \chi_n$. 
+%  $\neg \forall_{n:\mathbb N} \alpha(n) = 0 \to \exists_{n:\mathbb N} \alpha(n) = 1$. 
+\end{theorem}
+\begin{proof}
+  Suppose $\alpha \neq \infty$, then it is not the case that $\alpha(n) = 0$ for all $n:\mathbb N$. 
+  We will show that $2/\{\alpha(n)|n\in\mathbb N\}$ is the trivial Boolean algebra. 
+  If it is, there exists a finite sequence $(\alpha(n_i) = 0 )_{i\leq k}$ rewriting $1$ to $0$. 
+
+
+
+
+  Note that for each $n\in\mathbb N$, we do have $\alpha(n) = 0 \vee \alpha(n) = 1$, 
+  and it cannot be the case that $\alpha(n_i) = 0$ for all $i\leq k$,
+  there must 
+
+
+  Suppose $x: 2 \to 2$ is such that $x(\alpha(n)) = 0$ for every $n:\mathbb N$. 
+  as $x(1) = 1\neq 0$, we must have for every $n:\mathbb N$ that $\alpha(n) \neq 1$
+  we have that $x(\alpha(n)) = 0$ for all $n:\mathbb N$. 
+\end{proof}
 
 \input{ProFinite}
-
 \subsection{Topology}
 
 \subsection{Compact Hausdorff spaces}
