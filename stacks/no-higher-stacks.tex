@@ -1,0 +1,60 @@
+In this section we show that algebraic $n$-stacks are actually algebraic $1$-stacks. This explains why people never talk of higher algebraic stacks...
+
+\begin{lemma}\label{covering-with-sets-total-space}
+Assume $Y$ a type with a surjective map:
+\[f:X\to Y\]
+where $X$ is a set and $\fib_f(y)$ is a set for all $y:Y$. Then $Y$ is a $1$-type.
+\end{lemma}
+
+\begin{proof}
+It is enough to prove that for all $y:Y$, we have that $\Omega^2(Y,y)$ is contractible. Indeed let $y:Y$, we can assume $x:X$ such that $f(x)=y$ by surjectivity. We have a fiber sequence:
+\[F\to X\to Y\]
+where $F$ and $X$ are sets, therefore we have a fiber sequence:
+\[\Omega^2(X,x) \to \Omega^2(Y,y) \to \Omega^1(F,x)\]
+so that we have a fiber sequence:
+\[1\to \Omega^2(Y,y)\to 1\]
+and $\Omega^2(Y,y)$ is indeed contractible.
+\end{proof}
+
+\begin{remark}
+In this situation, $Y$ is not necessarily a set, as seen with:
+\[1\to BG\]
+for $G$ a group.
+\end{remark}
+
+\begin{lemma}\label{n-stacks-affine-cover}
+Let $X$ be a algebraic $n$-stack, then there merely is a surjective affine (meaning its fibers are affine schemes) map:
+\[\Spec(A)\to X\]
+\end{lemma}
+
+\begin{proof}
+We proceed by induction, the case $n=-2$ is clear, assume its true for $n-1$ and let $X$ be an $n$-stack.
+
+We merely have an atlas:
+\[u:\Spec(A)\to X\]
+which is equivalent to the projection:
+\[\big(\sum_{x:X}\sum_{y:\Spec(A)} u(y)=x\big) \to X\]
+but by induction we know for all $y:\Spec(A)$ there are surjective affine maps:
+\[\Spec(B_y)\to u(y)=x\] 
+So by Zariski local choice there is a Zariski cover:
+\[j:\Spec(A')\to \Spec(A)\]
+with a surjective affine map:
+\[\sum_{x:X}\sum_{y:\Spec(A')} \Spec(B_{j(y)}) \to \sum_{x:X}\sum_{y:\Spec(A)} u(y)=x\]
+(as fibers of Zariski cover are affine schemes, and affine schemes are stable by dependent sums). The composite:
+\[\big(\sum_{x:X}\sum_{y:\Spec(A')} \Spec(B_y) \big) \to \Spec(A) \to X\]
+is affine and surjective, and its source is an affine scheme as it is a dependent sums of $\Spec(A)$ by affine schemes.
+\end{proof}
+
+\begin{corollary}
+Let $X$ be a algebraic $n$-stack, then $X$ is an algebraic $1$-stack.
+\end{corollary}
+
+\begin{proof}
+By \cref{covering-with-sets-total-space} and \cref{n-stacks-affine-cover}.
+\end{proof}
+
+\begin{remark}
+It is still open whether there are algebraic $\infty$-stack that are not algebraic $1$-stack. I would bet not, it would be somehow interesting if this is not provable. Perhaps it has something to do with hypercompleteness?
+\end{remark}
+
+
