@@ -107,6 +107,19 @@
       with the understanding that this equals $1$ if $I$ is empty. 
   \end{itemize}
 \end{remark}
+\begin{remark}
+  Boolean algebras are in bijective correspondence with Boolean rings, which 
+  are rings with the property that $x\cdot x = x$ for all $x$. 
+  The underlying set remains the same, and the translation is as follows:
+  \begin{itemize}
+    \item 
+      To go from such a ring to a Boolean algebra, we let 
+      $0 = 0, 1 =1 ,  a \vee b = a + b + ( a \cdot b), a\wedge b = a \cdot b, \neg a = a + 1$. 
+    \item 
+      and to go from a Boolean algebra to a Boolean ring, we let 
+      $0 = 0, 1 = 1, a + b = (a \wedge \neg  b) \vee ( \neg a \wedge b), a \cdot b = a\wedge b , -a = a$. 
+\end{itemize}
+\end{remark}
 
 \begin{definition}
   Let $\mathcal L$ be a language, 
@@ -156,8 +169,84 @@
     \item To see $\sim_I$ is symmetric, note that 
       $ (a \wedge \neg b) \vee ( \neg a \wedge b) = 
         (b \wedge \neg a) \vee ( \neg b \wedge a)$. 
-    \item To see $\sim_I$ is transitive, note that 
-      whenever $a \wedge \neg b \vee $
+    \item To see $\sim_I$ is transitive, that 
+      whenever 
+      $
+      (a \wedge \neg b) \vee (\neg a \wedge b), 
+      (b \wedge \neg c) \vee (\neg b \wedge c) \in I
+      $
+      for $I$ an ideal, we must have that for $x,y$ these two terms, 
+      we have that $(x \wedge \neg y)\vee (\neg x \wedge y)$ is also in $I$. 
+      For $x,y$ as above, 
+      note that $\neg y$ is given by 
+      $ 
+      \neg ((b \wedge \neg c) \vee (\neg b \wedge c) )
+      = 
+      (\neg (b \wedge \neg c) \wedge \neg (\neg b \wedge c) )
+      = 
+      (\neg b \vee \neg c) \wedge (b \vee \neg c) 
+      $
+      Thus $x\wedge \neg y$ is given by 
+      $
+      ((a \wedge \neg b) \vee (\neg a \wedge b))
+      \wedge
+      (
+      (\neg b \vee \neg c) \wedge (b \wedge \neg c) 
+      )
+      =
+      ((a \wedge \neg b) \wedge 
+      (\neg b \vee \neg c) \wedge (b \wedge \neg c) 
+      )
+      \vee
+      ((\neg a \wedge b) \wedge 
+      (\neg b \vee \neg c) \wedge (b \wedge \neg c) 
+      )
+      = 
+      $
+
+      
+
+
+
+
+      $x \wedge \neg y$ is given by 
+      $
+      ((a \wedge \neg b) \vee (\neg a \wedge b))
+      \wedge \neg (
+      (b \wedge \neg c) \vee (\neg b \wedge c) )
+      =
+      ((a \wedge \neg b) \vee (\neg a \wedge b))
+      \wedge 
+      (      \neg
+      (b \wedge \neg c) \wedge  \neg (\neg b \wedge c) )
+      = 
+      ((a \wedge \neg b) 
+      \wedge 
+      (      \neg
+      (b \wedge \neg c) \wedge  \neg (\neg b \wedge c) )
+      )
+      \vee 
+      ((\neg a \wedge b)
+      \wedge 
+      (      \neg
+      (b \wedge \neg c) \wedge  \neg (\neg b \wedge c) ))
+      $
+
+
+
+      $
+      ((a \wedge \neg b) \vee (\neg a \wedge b))
+      \vee 
+      ((b \wedge \neg c) \vee (\neg b \wedge c) )
+      =
+      ((a \wedge \neg b) \vee (\neg b \wedge c))
+      \vee
+      ((\neg a \wedge b) \vee (b \wedge \neg c))
+      = 
+      ((a \vee c) \wedge \neg b)
+      \vee 
+      ((\neg a \vee \neg c) \wedge b)
+      $
   \end{itemize}
 \end{proof}
 \begin{remark}
