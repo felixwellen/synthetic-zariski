@@ -1,0 +1,60 @@
+In this section we use fppf sheaves defined as types that are $\propTrunc{\Spec(R[X]/g)}$-local for all monic $g$.
+
+\subsection{Descent for affine schemes}
+
+\begin{lemma}\label{fp-fppf-local}
+Assume $A,B$ algebras and with $A$ fppf. Then $A\otimes B$ finitely presented implies that $B$ is finitely presented.
+\end{lemma}
+
+\begin{proof}
+This is Lombiardi-Quitté Theorem 6.8.
+\end{proof}
+
+\begin{lemma}\label{quasi-coherent-fppf}
+Let $B$ be an algebra which underlying type is an fppf-sheaf. Then for all $g$ monic we have that:
+\[B\otimes (R[X]/g) \simeq B^{\Spec(R[X]/g)}\]
+is an fppf sheaf.
+\end{lemma}
+
+\begin{proof}
+We have that $B\otimes(R[X]/g) = B^n$ with $n$ the degree of $g$, and fppf sheaves are closed under product.
+\end{proof}
+
+\begin{lemma}
+Let $B$ be an algebra which underlying type is an fppf-sheaf. Then $B$ being finitely presented is an fppf sheaf.
+\end{lemma}
+
+\begin{proof}
+Assume $g$ monic such that:
+\[\Spec(R[X]/g) \to (B \mathrm{is\ f.p.})\]
+Then we know that:
+\[B^{\Spec(R[X]/g)}\]
+is finitely presented and by \cref{quasi-coherent-fppf} and the fact that finitely presented implies strongly quasi-coherent, we have that:
+\[(R[X]/g)\otimes B = B^{\Spec(R[X]/g)}\]
+so we conclude by \cref{fp-fppf-local}.
+\end{proof}
+
+\begin{corollary}
+The type of finitely presented algebra is an fppf-sheaf.
+\end{corollary}
+
+\subsection{Local properties of affine schemes}
+
+This could be formulated better.
+
+\begin{definition}
+A class $P$ of morphism between f.p. algebra is said fppf-local if:
+\begin{itemize} 
+\item Given $A\to B$ an fppf morphism of algebra, we have that $f:A\to C$ is in $P$ if and only if the induced $C\to B\otimes_AC$ is in $P$.
+\item A morphism $A\to B$ is in $P$ if and only for all $x:\Spec(A)$ the morphism $R\to B\otimes_AR$ is in $P$.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}
+Let $P$ be an fppf-local property of morphism of f.p. algebra. Then for all $B$ f.p. algebra, the map $R\to B$ being in $P$ is an fppf sheaf.
+\end{lemma}
+
+\begin{proof}
+The second point implies that $A\to B^{\Spec(A)}$ is in $P$, but $B^{\Spec(A)} = B\otimes A$ and we conclude by the first point.
+\end{proof}
+
