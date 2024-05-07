@@ -121,18 +121,18 @@
 \end{itemize}
 \end{remark}
 
-\begin{definition}
-  Let $\mathcal L$ be a language, 
-  let $\phi,\psi$ be terms in any language,
-  and suppose that for some index set $I$ we have 
-  for each $i:I$ two terms $a_i,b_i$ of same sort in $\mathcal L$. 
-  Let $E= (a_i = b_i)_{i:I}$. 
-
-  We say that $E$ allows us to rewrite $\phi$ to $\psi$ if there is a finite list of expressions 
-  $\phi = \phi_0 , \phi_1, \phi_2, \cdots, \phi_{n-1}, \phi_n = \psi$, 
-  such that each $\phi_{n+1}$ is given by taking $\phi_n$ and either changing one occurence of $a_i$ to  $b_i$, 
-  or one occurence of $b_i$ to $a_i$ for some $i:I$. 
-\end{definition}
+%\begin{definition}
+%  Let $\mathcal L$ be a language, 
+%  let $\phi,\psi$ be terms in any language,
+%  and suppose that for some index set $I$ we have 
+%  for each $i:I$ two terms $a_i,b_i$ of same sort in $\mathcal L$. 
+%  Let $E= (a_i = b_i)_{i:I}$. 
+%
+%  We say that $E$ allows us to rewrite $\phi$ to $\psi$ if there is a finite list of expressions 
+%  $\phi = \phi_0 , \phi_1, \phi_2, \cdots, \phi_{n-1}, \phi_n = \psi$, 
+%  such that each $\phi_{n+1}$ is given by taking $\phi_n$ and either changing one occurence of $a_i$ to  $b_i$, 
+%  or one occurence of $b_i$ to $a_i$ for some $i:I$. 
+%\end{definition}
 
 
 \begin{definition}
@@ -150,13 +150,14 @@
 \begin{remark}
   The free Boolean algebra is a Boolean algebra. 
 \end{remark}
-\rednote{Rewriting rewriting}
 \begin{definition}
   Let $B$ be a Boolean algebra, a subset $I\subseteq B$ is an ideal iff 
   $0\in I$ and whenver $x,y \in I$ and $b\in B$, we have $x\vee y \in I$ and $x \wedge b \in B$. 
 
   If $I$ is an ideal of $B$, then for $a,b:B$, we write $x\sim_I y$ iff 
-  $(a \wedge \neg b ) \vee ( \neg a \wedge b) \in I$. 
+  $a - b  = 
+  (a \wedge \neg b ) \vee ( \neg a \wedge b) 
+  \in I$. 
 \end{definition}
 \begin{lemma}
   Let $B$ be a Boolean algebra, and let $I\subseteq B$ be an ideal. 
@@ -170,125 +171,65 @@
       $ (a \wedge \neg b) \vee ( \neg a \wedge b) = 
         (b \wedge \neg a) \vee ( \neg b \wedge a)$. 
     \item To see $\sim_I$ is transitive, that 
-      whenever 
-      $
-      (a \wedge \neg b) \vee (\neg a \wedge b), 
-      (b \wedge \neg c) \vee (\neg b \wedge c) \in I
-      $
-      for $I$ an ideal, we must have that for $x,y$ these two terms, 
-      we have that $(x \wedge \neg y)\vee (\neg x \wedge y)$ is also in $I$. 
-      For $x,y$ as above, 
-      note that $\neg y$ is given by 
-      $ 
-      \neg ((b \wedge \neg c) \vee (\neg b \wedge c) )
-      = 
-      (\neg (b \wedge \neg c) \wedge \neg (\neg b \wedge c) )
-      = 
-      (\neg b \vee \neg c) \wedge (b \vee \neg c) 
-      $
-      Thus $x\wedge \neg y$ is given by 
-      $
-      ((a \wedge \neg b) \vee (\neg a \wedge b))
-      \wedge
-      (
-      (\neg b \vee \neg c) \wedge (b \wedge \neg c) 
-      )
-      =
-      ((a \wedge \neg b) \wedge 
-      (\neg b \vee \neg c) \wedge (b \wedge \neg c) 
-      )
-      \vee
-      ((\neg a \wedge b) \wedge 
-      (\neg b \vee \neg c) \wedge (b \wedge \neg c) 
-      )
-      = 
-      $
-
-      
-
-
-
-
-      $x \wedge \neg y$ is given by 
-      $
-      ((a \wedge \neg b) \vee (\neg a \wedge b))
-      \wedge \neg (
-      (b \wedge \neg c) \vee (\neg b \wedge c) )
-      =
-      ((a \wedge \neg b) \vee (\neg a \wedge b))
-      \wedge 
-      (      \neg
-      (b \wedge \neg c) \wedge  \neg (\neg b \wedge c) )
-      = 
-      ((a \wedge \neg b) 
-      \wedge 
-      (      \neg
-      (b \wedge \neg c) \wedge  \neg (\neg b \wedge c) )
-      )
-      \vee 
-      ((\neg a \wedge b)
-      \wedge 
-      (      \neg
-      (b \wedge \neg c) \wedge  \neg (\neg b \wedge c) ))
-      $
-
-
-
-      $
-      ((a \wedge \neg b) \vee (\neg a \wedge b))
-      \vee 
-      ((b \wedge \neg c) \vee (\neg b \wedge c) )
-      =
-      ((a \wedge \neg b) \vee (\neg b \wedge c))
-      \vee
-      ((\neg a \wedge b) \vee (b \wedge \neg c))
-      = 
-      ((a \vee c) \wedge \neg b)
-      \vee 
-      ((\neg a \vee \neg c) \wedge b)
-      $
+      whenever $a,b \in I$, so is $ a + b$. 
+      Thus if $a -b , b -c \in I$, so is 
+      $(a -b) + (b-c) = a -c$.
   \end{itemize}
 \end{proof}
-\begin{remark}
-  Any kernerl is an ideal. 
-\end{remark}
-
-
-\begin{definition}
-%  Let $G$ be a set of symbols. Consider $\Phi$ the set of terms in the language 
-%  given by adding $G$ as constants to the language of Boolean algebras. 
-  Let $B$ be a Boolean algebra and let $R$ be a subset of the underlying set of $B$. 
-%  Let $R \subseteq \Phi$. 
-%  we construct the quotient $\langle G \rangle / R$ as follows:
-  we construct the quotient $B / R$ as follows:
+\begin{lemma}
+  Whenever $B$ is a Boolean algebra and $I\subseteq B$ an ideal, 
+  $B/I$ is a Boolean algebra. 
+\end{lemma}
+\begin{proof}
+  We need to show that the Boolean operations respect equivalence classes. 
   \begin{itemize}
-    \item We start with the underlying set of terms of $B$. % $\Phi$. 
-    \item If there merely exists some finite sequence of 
-      equalities from the theory of Boolean algebras or the set of equalities $\{r = 0 | r \in R\}$ 
-      allowing us to rewrite one term to another, we consider the two terms to be equivalent. 
-    \item The $B / R$ is then the set of equivalence classes under this relation. 
+    \item 
+      Suppose $a \sim_I b$. We shall show that $\neg a \sim_I \neg b$. 
+      Thus we need to show that 
+      $((\neg a) \wedge (\neg \neg b)) \vee ((\neg \neg a) \wedge \neg b) \in I$, 
+      this term is equal to 
+      $( a \wedge \neg b) \vee (b \wedge \neg a)$, which is in $I$ as $ a\sim_I b$. 
+    \item 
+      Suppose $ a\sim _I b $. We shall show that 
+      $a \wedge c \sim_I b \wedge c$. 
+      Note that by distributivity of $+$ and $\cdot$, we have 
+      $(a \cdot c) -( b \cdot c) = (a -b ) \cdot c = (a-b) \wedge c$. 
+      By assumption $a -b \in I$, and thus $(a-b) \wedge c \in I$ as well. 
+    \item Note that $a \vee b = \neg ( \neg a \wedge \neg b)$, by the above two properties, 
+      joins therefore respect equivalence relations. 
   \end{itemize}
-\end{definition}
+\end{proof}
+\begin{definition}
+  Let $B$ be a Boolean algebra, and let $R\subseteq B$. 
+  We denote $\langle R\rangle $ for the ideal generated by $R$, 
+  which is the set of expressions 
+  $\{(\bigvee_{r \in R_0} r) \wedge b| R_0\subseteq R \text{ finite}, b \in B\}$
+\end{definition} 
 \begin{remark}
-  For $B,R$ as above, $B / R$ is a Boolean algebra. 
+  For $R\subseteq B$ as above, $ \langle R \rangle$ is an ideal.
 \end{remark}
-\rednote{end rewriting}
+
 \begin{remark}\label{rmkMorphismsOutOfQuotient}
-  Let $B$ be a Boolean algebra, and let $G,R$ be as above. 
-  To define a morphism $\langle G \rangle / R \to B$, it is sufficient to define a function $f$ from $G$ 
-  to the underlying set of $B$ such that for every expression $\phi:R$, we have
-  $\phi[x/f(x)] = 0_B$, 
-  where $\phi[x/f(x)]$ replaces every occurence of some $x\in G$ with $f(x)\in B$. 
+  Let $B$ be a Boolean algebra. 
+  
+  Suppose $G$ is a set of symbols, to define a morphism 
+  $\langle G \rangle \to B$ it is sufficient to define 
+  a function from $G$ to the underlying set of $B$. 
+
+  Let $C$ be a Boolean algebra, and let $I\subseteq C$ be an ideal. 
+  To define a map $C / I \to B$, it is sufficient to define a map $f:C\to B$
+  with $f(i) = 0$ for all $i\in I$. 
+  If $I = \langle R\rangle $, it is sufficient that $f(r) = 0$ for all $r\in R$. 
 \end{remark}
-\begin{remark}
-  For every element $x$ of $\langle G\rangle /R$ as above,
-  there merely exists a finite subset of generators $G_0\subseteq G$ such that $x$ is expressable 
-  as a Boolean combination of symbols from $G_0$. 
-\end{remark}
+%\begin{remark}
+%  For every element $x$ of $\langle G\rangle /R$ as above,
+%  there merely exists a finite subset of generators $G_0\subseteq G$ such that $x$ is expressable 
+%  as a Boolean combination of symbols from $G_0$. 
+%\end{remark}
 \begin{definition}
   Let $B$ be a Boolean algebra. 
   If there exist $G, R$ as above such that 
-  $B \simeq \langle G \rangle /R$, 
+  $B \simeq \langle G \rangle /\langle R \rangle$, 
   we call $G,R$ respectively generators and relations for $B$. 
   %
   If $G,R$ can taken to be finite, we call $B$ finitely presented. 
@@ -304,11 +245,17 @@
   $Ker(f)$. 
 \end{definition}
 \begin{remark}
+  For any map of Boolean algebras $f$, the kernel of $f$ is an ideal. 
+  Furthermore, we have that $a\sim_{Ker(f)} b$ iff $f(a) = f(b)$. 
+\end{remark}
+\begin{remark}
   Let $f:B \to C$ be a Boolean morphism. 
   The epi-mono factorization of $f$ exists and is given by  
   $B \twoheadrightarrow B / Ker(f) \hookrightarrow C$.
 \end{remark}
 
+\subsection{Countably presented as colimit of finitely presented}
+\input{ProFinite}
 
 \subsection{Examples of countably presented Boolean algebras}
 \begin{example}
@@ -317,7 +264,7 @@
 \end{example}
 \begin{example}
   The trivial Boolean algebra given by the empty set of generators and the relation $\{1\}$, 
-  It's underlying set is $\{0\}$ and we have $0=1$ in the trivial Boolean algebra. 
+  It's underlying set contains only one element and we have $0=1$ in the trivial Boolean algebra. 
 \end{example}
 
 \begin{example}\label{ExampleBAunderCantor}
@@ -329,7 +276,7 @@
   as the set-theoretic complemented (denoted $(\cdot)^C$). 
 
   These operations are well-defined on $\mathbb N_{(co)fin}$ 
-  and they give the structure of a Boolean algebra (exercise for the reader if you don't believe me). 
+  and they give the structure of a Boolean algebra.
   We claim it is countably presented. 
 
   Let $G = \{p_n| n:\mathbb N\} $ be a countably infinite set of generator symbols and let 
@@ -522,19 +469,11 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
 \end{axiomNum}
 \subsection{Omniscience principles}
 \rednote{active}
-\begin{lemma}
+\begin{remark}\label{rmkTrivialBA}
   A Boolean algebra $B / R$ 
   is trivial iff there merely exists some $R_0\subseteq R$ finite with 
   $1 = \bigvee_{r \in R_0} r$ in $B$.
-\end{lemma}
-\begin{proof}
-  First note that a Boolean algebra being trivial is a proposition and 
-  if we can write $1 = \bigvee_{r \in R_0} r$ in $B$, we have 
-  that in $B/R$, $1 = \bigvee_{r \in R_0} 0 = 0$. 
-
-  Conversely, if $1 = 0$ in $B /R$, we must have a finite sequence of relations from $R$ 
-  and the theory of Boolean algebras allowing us to rewrite $1$ to $0$. 
-\end{proof}
+\end{remark}
 
 \begin{theorem}[The negation of the weak limited principle of omniscience]
 
@@ -545,27 +484,25 @@ The following result is due to David W\"arn.
 \begin{theorem}[Markov's principle (uses Stone duality)]
   For $\alpha:\mathbb N_\infty$, we have that whenever $\alpha\neq \infty$, 
   there exists some $n:\mathbb N$ such that $\alpha = \chi_n$. 
-%  $\neg \forall_{n:\mathbb N} \alpha(n) = 0 \to \exists_{n:\mathbb N} \alpha(n) = 1$. 
 \end{theorem}
 \begin{proof}
-  Suppose $\alpha \neq \infty$, then it is not the case that $\alpha(n) = 0$ for all $n:\mathbb N$. 
+  Suppose $\alpha \neq \infty$.%, then it is not the case that $\alpha(n) = 0$ for all $n:\mathbb N$. 
   We will show that $2/\{\alpha(n)|n\in\mathbb N\}$ is the trivial Boolean algebra. 
-  If it is, there exists a finite sequence $(\alpha(n_i) = 0 )_{i\leq k}$ rewriting $1$ to $0$. 
+  Then by \Cref{rmkTrivialBA}, it follows there merely is a finite subset $N_0\subseteq \mathbb N$ 
+  such that $\bigvee_{i:N_0}\alpha(i) =1$.
+  For this finite set $N_0$, we can decide whether every $\alpha(i) =0$, 
+  or there is some $i\in N_0$ such that $\alpha(i) =1$. 
+  As the join of these $\alpha(i)$ is $1$, we must have that there is some $i\in N_0$ with $\alpha(i) = 1$. 
+  %
 
-
-
-
-  Note that for each $n\in\mathbb N$, we do have $\alpha(n) = 0 \vee \alpha(n) = 1$, 
-  and it cannot be the case that $\alpha(n_i) = 0$ for all $i\leq k$,
-  there must 
-
-
+  To show that $2/\{\alpha(n)|n\in\mathbb N\}$ is trivial, we will show it has an empty spectrum. 
   Suppose $x: 2 \to 2$ is such that $x(\alpha(n)) = 0$ for every $n:\mathbb N$. 
-  as $x(1) = 1\neq 0$, we must have for every $n:\mathbb N$ that $\alpha(n) \neq 1$
-  we have that $x(\alpha(n)) = 0$ for all $n:\mathbb N$. 
+  as $x(1) = 1\neq 0$, we must have for every $n:\mathbb N$ that $\alpha(n) \neq 1$. 
+  Thus for every $n:\mathbb N$, we have $\alpha(n) = 0$, contradicting our assumption that $\alpha \neq \infty$. 
+  Thus any such $x$ cannot exist and $Sp(2/\{\alpha(n)|n\in\mathbb N\}) = \emptyset$. 
+  Thus $2/\{\alpha(n) | n \in \Noo \} = 2^\emptyset$, which is the trivial Boolean algebra. 
 \end{proof}
 
-\input{ProFinite}
 \subsection{Topology}
 
 \subsection{Compact Hausdorff spaces}
