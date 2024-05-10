@@ -239,6 +239,9 @@
   There is a category of Boolean algebras, which has a subcategory of countably presented Boolean algebras, 
   which has a subcategory of finitely presented Boolean algebras. 
 \end{remark}
+\begin{remark}
+  All categories above have pushouts.
+\end{remark}
 \begin{definition}
   Let $f:B\to C$ be a Boolean morphism. 
   The set $\{x \in B| fx = 0\}$ is called the kernel of $f$ and denoted 
@@ -476,8 +479,12 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
 \end{remark}
 
 \begin{theorem}[The negation of the weak limited principle of omniscience]
-
+  It is not the case that for all $\alpha:\Noo$, we can decide whether $\alpha=\infty$.
 \end{theorem}
+\begin{proof}
+  Suppose we 
+\end{proof}
+
 \begin{theorem}[The lesser limited principle of omniscience]
 \end{theorem}
 The following result is due to David W\"arn.
@@ -491,8 +498,9 @@ The following result is due to David W\"arn.
   Then by \Cref{rmkTrivialBA}, it follows there merely is a finite subset $N_0\subseteq \mathbb N$ 
   such that $\bigvee_{i:N_0}\alpha(i) =1$.
   For this finite set $N_0$, we can decide whether every $\alpha(i) =0$, 
-  or there is some $i\in N_0$ such that $\alpha(i) =1$. 
-  As the join of these $\alpha(i)$ is $1$, we must have that there is some $i\in N_0$ with $\alpha(i) = 1$. 
+  or there is some $i\in N_0$ such that $\alpha(i) =1$.
+  As the join of these $\alpha(i)$ is $1$, we must have that there is some $n\in N_0$ with $\alpha(n) = 1$. 
+  As $\alpha(j)=1$ for at most one $j$, we conclude that $\alpha = \chi_n$. 
   %
 
   To show that $2/\{\alpha(n)|n\in\mathbb N\}$ is trivial, we will show it has an empty spectrum. 
@@ -504,6 +512,46 @@ The following result is due to David W\"arn.
 \end{proof}
 
 \subsection{Topology}
+\begin{definition}
+  Let $P$ be a proposition. 
+  \begin{itemize}
+    \item $P$ is decidable if $P + \neg P$
+    \item $P$ is open if there merely exists some $\alpha:\Noo$ such that $P \leftrightarrow \alpha \neq \infty$. 
+    \item $P$ is closed if there merely exists some $\alpha:\Noo$ such that $P \leftrightarrow \alpha = \infty$. 
+  \end{itemize}
+\end{definition}
+\begin{definition}
+  For $S$ a set and $D\subseteq S$ an arbitrary subset, we call $D$ decidable/open/closed 
+  iff for every $x:S$, $D(x)$ is decidable/open/closed. 
+\end{definition}
+
+\begin{lemma}
+  Let $D\subseteq Sp(B)$. TFAE
+  \begin{enumerate}[(i)]
+    \item $D$ is decidable. 
+    \item There merely exists some $b\in B$ such that $D = \{\alpha:Sp(B) | \alpha(b) = 1\}$. 
+    \item There merely is a finite subset $G_0$ of the generators of $B$ such that 
+      whenever $\alpha,\beta:Sp(B)$ are such that 
+      $\alpha(g) = \beta(g)$ for all $g:G_0$ and $D(\alpha)$, we also have $D(\beta)$. 
+    \item $D$ is both open and closed. 
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \begin{itemize}
+    \item $(i) \to (ii)$.
+      First, remark that decidable subsets $D$ give terms $f_D:2^{Sp(B)}$, by sending 
+      $f(\alpha) = 1$ if $D(\alpha)$ and $f(\alpha) = 0$ if $\neg D(\alpha)$. 
+      Stone duality then gives that this term corresponds to evaluation at some $b:B$. 
+      Therefore $D(\alpha) \iff f(\alpha) = 1 \iff  \alpha(b) = 1$, as required. 
+    \item $(ii) \to (1)$
+      To decide $D(\alpha)$ is the same as to evaluate whether $\alpha(b) = 1$, which is decidable. 
+    \item $(ii) \to (iii)$. If there exists a $b:B$ such that $D$ is the indicator of $b$ in the above way, 
+      then we need only consider the generators occuring in a finite expression of $b$. 
+    \item $(iii) \to (i)$. Because being decidable is a proposition, we can untruncate our assumption. 
+      Suppose $D$ only depends on $n$ generators, then we need to only check the values 
+  \end{itemize}
+\end{proof}
+\rednote{End of activity}
 
 \subsection{Compact Hausdorff spaces}
 \subsection{Analysis}
