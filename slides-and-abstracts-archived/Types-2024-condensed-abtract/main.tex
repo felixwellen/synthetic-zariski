@@ -160,12 +160,14 @@ Felix Cherubini %\inst{1}
 %similar to the axiomatization of Zariski (higher) topos in synthetic algebraic geometry 
 %\cite{draft}. 
 We propose a variation of the axiomatization of Zariski (higher) topos in synthetic algebraic geometry \cite{draft}
-to an axiomatization of (separable) Stone spaces, with Stone duality, within a univalent homotopy type theory.  
+to an axiomatization of (separable) Stone spaces, with Stone duality, within a univalent type theory.  
 The roles of affine schemes and schemes are taken over by Stone spaces and compact Hausdorff spaces respectively. 
 In the theory, we can show that any map between compact Hausdorff spaces is continuous, hence the negation of WLPO holds. 
 However, we can show that LLPO and Markov's principle do hold. 
-We hypothesize that internal results on light condensed sets \cite{Dagur,Scholze,Condensed} can be shown using this theory. 
-Furthermore, this work can be seen as refinement of the work in \cite{XuE13}
+We conjecture that internal results on light condensed sets \cite{Dagur,Scholze,Condensed} can be shown using univalent
+type theory extended by these axioms.
+Furthermore, this work can be seen as a variation of the work in \cite{XuE13}. We also expect to build a constructive
+sheaf model of these axioms, similar to the constructive model of synthetic algebraic geometry presented in \cite{draft}.
 
 \medskip
 
@@ -244,9 +246,9 @@ Analogously to synthetic algebraic geometry, we need an axiom of local choice.
 
 We define a type to be compact Haussdorf if it is the quotient of a Stone type by a closed equivalence relation. 
 We denote $\CHaus$ for the the type of compact Hausdorff types. 
-A motivating example for compact Haussdorf types is the interval, which can be given as a quotient of Cantor space. 
+A motivating example for compact Haussdorf types is the unit interval, which can be given as a quotient of Cantor space. 
 To show that such an interval is isomorphic to the standard Cauchy interval, 
-we need LLPO and an axiom of depenedent choice. 
+we need LLPO and an axiom of depnedent choice. 
 \begin{axiom}[Dependent Choice]
 %  Given a family of types $E_n$ and $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
 %  for all $n$ and $x:E_n$ there exists $y:E_n$ with $p:R~x~y$ then given $x_0:E_0$ there exists
@@ -256,14 +258,26 @@ we need LLPO and an axiom of depenedent choice.
 \end{axiom}
 
 
+It is important that these two last axioms are stated for {\em arbitrary} types and not types that are only
+homotopy sets. One application should be a proof of $H^n(S,\ints) = 0$ for $n>0$, for $S$ Stone,
+that we have checked for $n = 1$ (similar to the proof of $H^1(X,R) = 0$ for $X$ affine in the setting of \cite{draft}).
+For this, we use the general definition of cohomology group in Homotopy Type Theory \cite{hott}, which refers to
+types that are not necessarily homotopy sets.
+We also expect to have for $X:\CHaus$ that $H^n(X,\ints)$ coincide with singular cohomology.
+
+ Finally, we checked that all axioms suggested recently by R. Barton and J. Commelin \cite{bc24} follows from our axioms.
+
+
 
 %
 %We are working on the proof that these axioms can be verified in the interpretation of HoTT in the topos of light condensed sets. We have checked that the results of lectures 2 and 3 of \cite{Scholze} follow from these axioms. 
 %In particular, we can prove that $\ints[\Noo]$ is projective in the category of Abelian groups. 
 %
-We are working on the proof that these axioms can be verified in a model of HoTT, 
-similar to the model presented in \cite{draft}.
-We are also checking which results of \cite{Scholze} can be shown from these axioms. 
+%We are working on the proof that these axioms can be verified in a model of HoTT, 
+%similar to the model presented in \cite{draft}.
+%We are also checking which results of \cite{Scholze} can be shown from these axioms.
+
+
 
 
 
