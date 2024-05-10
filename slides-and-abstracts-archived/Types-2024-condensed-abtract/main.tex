@@ -53,6 +53,7 @@
 
 \newcommand{\Boole}{\mathsf{Boole}}
 \newcommand{\Stone}{\mathsf{Stone}}
+\newcommand{\CHaus}{\mathsf{CHaus}}
 \newcommand{\Noo}{\N_{\infty}}
 \newcommand{\Closed}{\mathsf{Closed}}
 \newcommand{\ints}{\mathbb{Z}}
@@ -163,7 +164,7 @@ to an axiomatization of (separable) Stone spaces, with Stone duality, within a u
 The roles of affine schemes and schemes are taken over by Stone spaces and compact Hausdorff spaces respectively. 
 In the theory, we can show that any map between compact Hausdorff spaces is continuous, hence the negation of WLPO holds. 
 However, we can show that LLPO and Markov's principle do hold. 
-We hypothesize that internal results on light condensed sets \cite{Scholze,TODO} can be shown using this theory. 
+We hypothesize that internal results on light condensed sets \cite{Dagur,Scholze,Condensed} can be shown using this theory. 
 Furthermore, this work can be seen as refinement of the work in \cite{XuE13}
 
 \medskip
@@ -192,7 +193,7 @@ Two motivating examples of elements of $\Boole$ are as follows:
   For any 
   $B:\Boole$, 
   %countably presented Boolean algebra, 
-  there is an isomorphism $B \simeq 2^{Sp(B)}$
+  the evaluation map $B \to 2^{Sp(B)}$ is an isomorphism. 
 \end{axiom}
 It follows from Stone duality that being Stone is a proposition and $Sp$ defines an embedding from $\Boole$ 
 to any universe $\mathcal U$. We denote its image $\Stone$. 
@@ -208,7 +209,7 @@ Stone duality gives that $Sp$ induces a dual equivalence between them.
 %So maps $Sp(B')\to Sp(B)$ correspond to maps $B \to B'$. 
 
 \begin{axiom}[Surjections are Formal Surjections]
-  A continuous map $Sp(B')\to Sp(B)$ is surjective iff the corresponding Boolean map $B \to B'$ is injective.
+  A map $Sp(B')\to Sp(B)$ is surjective iff the corresponding Boolean map $B \to B'$ is injective.
 \end{axiom} 
 %Note that in the category of Boolean algebras, a map is injective iff it is mono. 
 %Hence the above axiom can also be stated as surjections being exactly epimorphisms. 
@@ -223,15 +224,16 @@ Stone duality gives that $Sp$ induces a dual equivalence between them.
 Using this axiom, we can show that if $B$ is nontrivial, $Sp(B)$ is merely inhabited.
 %
 %
-Furthermore, note that the sum of the maps
-$\Noo \to \Noo$
-sending $n$ to $2n,2n+1$ respectively
-is surjective but has no section. 
-This implies that $\Noo$ is not projective and LLPO holds. 
-However, the negation of WLPO follows from Axiom 1.  
+Note that the sum of the maps $\Noo \to \Noo$ sending $n$ to $2n,2n+1$ respectively has no section. 
+However, we can use the above axiom to show that it is surjective. 
+This implies that $\Noo$ is not projective and that LLPO holds. 
+However, we can also show the negation of WLPO from Axiom 1.  
 
+\medskip
+
+Analogously to synthetic algebraic geometry, we need an axiom of local choice. 
 \begin{axiom}[Local choice]
-  Given $X$ Stone, $E,F$ arbitrary types, a map $E \to F$ and $E\twoheadrightarrow F$ surjective, 
+  Given $X$ Stone, $E,F$ arbitrary types, a map $X \to F$ and $E\twoheadrightarrow F$ surjective, 
   there is some $Y$ Stone,
     a surjection $Y \twoheadrightarrow X$ and a map $Y\to E$ such that the following diagram commutes:
     \begin{equation*}\begin{tikzcd}
@@ -240,17 +242,30 @@ However, the negation of WLPO follows from Axiom 1.
     \end{tikzcd}\end{equation*}  
 \end{axiom} 
 
+We define a type to be compact Haussdorf if it is the quotient of a Stone type by a closed equivalence relation. 
+We denote $\CHaus$ for the the type of compact Hausdorff types. 
+A motivating example for compact Haussdorf types is the interval, which can be given as a quotient of Cantor space. 
+To show that such an interval is isomorphic to the standard Cauchy interval, 
+we need LLPO and an axiom of depenedent choice. 
 \begin{axiom}[Dependent Choice]
-  Given a family of types $E_n$ and $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
-  for all $n$ and $x:E_n$ there exists $y:E_n$ with $p:R~x~y$ then given $x_0:E_0$ there exists
-  $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
+%  Given a family of types $E_n$ and $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
+%  for all $n$ and $x:E_n$ there exists $y:E_n$ with $p:R~x~y$ then given $x_0:E_0$ there exists
+%  $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
+  Given a sequence of arbitrary types $(X_n)_{n:\mathbb N}$ and surjections $X_n \twoheadrightarrow X_{n-1}$, 
+  all the limit projection maps $X \to X_n$ are surjective. 
 \end{axiom}
+
+
+
 %
 %We are working on the proof that these axioms can be verified in the interpretation of HoTT in the topos of light condensed sets. We have checked that the results of lectures 2 and 3 of \cite{Scholze} follow from these axioms. 
 %In particular, we can prove that $\ints[\Noo]$ is projective in the category of Abelian groups. 
 %
-We are working on the proof that these axioms can be verified in a model of HoTT, similar
-to the model presented in \cite{draft}.
+We are working on the proof that these axioms can be verified in a model of HoTT, 
+similar to the model presented in \cite{draft}.
+We are also checking which results of \cite{Scholze} can be shown from these axioms. 
+
+
 
 \printbibliography
 
