@@ -387,6 +387,11 @@ We conclude that $g$ is a Boolean morphism.
 Furthermore, $g$ and $f$ are each other's inverse, thus the Boolean algebras are isomorphic. 
 \end{proof}
 \end{example}
+\begin{remark}
+  We will denote $B_\infty$ for $\langle G \rangle/ \langle R\rangle $ as above, 
+  and by the above result, we have that any $b:B_\infty$ can be written 
+  either as $\bigvee_{i\in I_0} p_i$ or as $\bigwedge_{i\in I_0} \neg p_i$ for some finite $I_0\subseteq \mathbb N$. 
+\end{remark}
 \section{Stone spaces}
 \newcommand{\isSt}{\mathsf{isStone}}
 \subsection{Definitions}
@@ -428,7 +433,6 @@ Furthermore, $g$ and $f$ are each other's inverse, thus the Boolean algebras are
 \end{axiomNum} 
 
 \begin{remark}
-  \rednote{Check references in other versions of HoTT, draft}
 Stone types will take over the role of affine scheme from \cite{draft}, 
 and we repeat some results here. 
 Analogously to Lemma 3.1.2 of \cite{draft}, 
@@ -453,6 +457,18 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
 \begin{axiomNum}[Surjections are Formal Surjections]
   A map $f:Sp(B')\to Sp(B)$ is surjective iff the corresponding map $B \to B'$ is injective.
 \end{axiomNum} 
+
+\rednote{quick note I forgot so write here but it must go somewhere else}
+\begin{axiomNum}[double negation to merely]
+  For $S:\Stone$, we have that $\neg \neg S \to || S ||$
+\end{axiomNum}
+\begin{proof}
+  Let $B:\Boole$ and suppose $\neg \neg Sp(B)$, then we have $0\neq 1$ in $B$. 
+  Let $f:2 \to B$, note that if $f(0) = f(1)$ then $0=1$ in $B$, thus bottom, thus $0=1$ in $2$. 
+  Hence by case distinction on $2$ we can show$f$ we have that $f x = f y$ implies $ x= y$. Thus 
+  $f$ is injective thus the map $Sp(B) \to Sp(2) = 1$ is surjective, thus $Sp(B)$ is merely inhabited. 
+\end{proof}
+\rednote{end activity}
 
 \begin{axiomNum}[Local choice]
   Whenever $X$ Stone and $E\twoheadrightarrow X$ surjective, then there is some $Y$ Stone,
@@ -482,11 +498,24 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
   It is not the case that for all $\alpha:\Noo$, we can decide whether $\alpha=\infty$.
 \end{theorem}
 \begin{proof}
-  Suppose we 
+  Suppose we could decide whether $\alpha = \infty$ for every $\alpha:\Noo$. We then have a term of type 
+  $\Pi_{\alpha:\Noo} (\alpha \neq \infty) + (\alpha = \infty)$. 
+  Using case distinction, we can define a map $f:\Noo \to 2$ such that 
+  \begin{equation}
+    f(\alpha) = \begin{cases} 0 \text{ if } \alpha \neq  \infty
+    \\ 1 \text{ if } \alpha = \infty \end{cases} 
+  \end{equation}
+  By Stone duality, there must be some $b:B_\infty$ with 
+  $f(\alpha) = 1 \iff \alpha(b) = 1$.
+  $b$ is expressable using only finitely many generators $(p_n)_{n\leq N}$. 
+  This means that $f$ can determine whether a sequence is constantly $0$ based on it's first $N$ entries. 
+  In particular the value of $f$ on $\infty:\Noo$ and $\chi_{N+1}:\Noo$ must be equal, 
+  as these sequences are equal on $(p_n)_{n\leq N}$ and thus on $b$. 
+  However, $f(\infty) = 1$ and $f(\chi_N) = 0$. 
+  We thus have a contradiction, and conclude we cannot decide whether $\alpha = \infty$ for general $\alpha:\Noo$. 
 \end{proof}
 
-\begin{theorem}[The lesser limited principle of omniscience]
-\end{theorem}
+
 The following result is due to David W\"arn.
 \begin{theorem}[Markov's principle (uses Stone duality)]
   For $\alpha:\mathbb N_\infty$, we have that whenever $\alpha\neq \infty$, 
@@ -510,6 +539,35 @@ The following result is due to David W\"arn.
   Thus any such $x$ cannot exist and $Sp(2/\{\alpha(n)|n\in\mathbb N\}) = \emptyset$. 
   Thus $2/\{\alpha(n) | n \in \Noo \} = 2^\emptyset$, which is the trivial Boolean algebra. 
 \end{proof}
+
+\begin{theorem}[The lesser limited principle of omniscience]
+  For $\alpha:\mathbb N_\infty$, 
+  we have that 
+  $\forall_{k:\mathbb N} \alpha(2k) = 0  \vee \forall_{k:\mathbb N} \alpha(2k+1) = 0$ 
+\end{theorem}
+\begin{proof}
+  We first will define a map $f:B_\infty \to B_\infty \times B_\infty$. 
+  Because of \Cref{rmkMorphismsOutOfQuotient}, it is sufficient to define $f$ on $(p_n)_{n:\mathbb N}$ with 
+  $f(p_n) \wedge f(p_m) = (0,0)$ for $n\neq m$. 
+  To define $f(p_n)$, we use a case distinction on whether $n$ is odd or even. 
+  \begin{equation}
+    f(p_n) =\begin{cases}
+      (p_k,0) \text{ if } n = 2k\\
+      (0,p_k) \text{ if } n = 2k+1\\
+    \end{cases}
+  \end{equation}
+  By making a case distinction on $n,m$ being odd or even, 
+  we can indeed see that $f(p_n) \wedge f(p_m) = (0,0)$ when $n\neq m$. 
+  Furthermore, we claim that $f$ is injective. 
+  Suppose that $f(x) = f(y)$, we make a case distinction on whether $x,y$ correspond 
+  to finite or cofinite subsets of $\mathbb N$. 
+  \begin{itemize}
+    \item Let $x,y$ both correspond to finite subsets of $\mathbb N$. Write 
+      $x = \bigvee_{i\in I} p_i, y = \bigvee_{j\in J} p_j$ for $I,J\subseteq \mathbb N$ finite. 
+  \end{itemize}
+
+\end{proof}
+
 
 \subsection{Topology}
 \begin{definition}
@@ -556,6 +614,8 @@ The following result is due to David W\"arn.
 \subsection{Compact Hausdorff spaces}
 \subsection{Analysis}
 
+\section{Directed Univalence}
+\input{DirectedUnivalence}
 
 %\chapter{Axioms}
 %\chapter{Stone Spaces}
