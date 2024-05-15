@@ -1,0 +1,191 @@
+\subsection{Subquotient systems}
+
+\begin{definition}
+A subquotient pre-system consists of $X$ a type and $U$ a class of propositions.
+\end{definition}
+
+\begin{definition}
+For $(X,U)$ a subquotient pre-system, we define:
+\[Sub_{X,U} = \sum_{Y:\Type} \exists (P : X\to U).\ Y = \Sigma_XP\]
+\[SubQ_{X,U} = \sum_{Y:\Type} \exists (P : X\to U)(R: \Sigma_XP\to \Sigma_XP\to U\ \mathrm{equivalence\ relation}).\ Y = (\Sigma_XP)/R\]
+\end{definition}
+
+\begin{definition}
+We say a class of types $T$ has local choice if for all $X\in T$ and $P:X\to\Type$ such that:
+\[\prod_{x:X}\propTrunc{P(x)}\]
+there merely exists $Y\in T$ and a surjection:
+\[f:Y\to X\]
+such that:
+\[\prod_{y:Y}P(f(y))\]
+\end{definition}
+
+\begin{proposition}\label{lex-sub-pro}
+Assume $(X,U)$ a Subquotient pre-system such that:
+\begin{itemize}
+\item Identity types in $X$ are in $U$.
+\item $U$ is closed by $\sum$ and $\top$.
+\item $\propTrunc{X}$ and $X\times X = X$.
+\item $Sub_{X,U}$ has local choice.
+\end{itemize}
+Then we $SubQ_{X,U}$ has the following:
+\begin{itemize}
+\item Stability under finite limits.
+\item Stability by quotient by equivalence relation with value in $U$.
+\item Local choice.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+\begin{itemize}
+\item First we check that $SubQ_{X,U}$ has local choice. Since we assume that $Sub_{X.U}$ has local choice and that any type in $SubQ_{X,U}$ is covered by a type in $Sub_{X,U}$ by definition, it is enough to check that $Sub_{X,U}\subset SubQ_{X,U}$ to conclude. But given $S = \Sigma_XP$ in $Sub_{X,U}$ we have that:
+\[\Sigma_XP = (\Sigma_XP)/L\]
+where:
+\[L((x,_),(y,_))= (x=_Xy)\]
+and since $x=_Xy$ is assumed to be in $U$ we conclude.
+
+\item Stability by quotient by equivalence relation with value in $U$ is clear.
+
+\item Now we want to check stability under finite limits.
+
+First we check that $U\subset SubQ_{X,U}$. Indeed assume $P\in U$, then with $L$ the trivial relation we have:
+\[(X\times P) / L = \propTrunc{X\times P} = P\]
+as $\propTrunc{X} = 1$ so that since $\top\in U$ we conclude $P\in SubQ_{X,U}$.
+
+This means that $SubQ_{X,U}$ is stable by identity type, and that $1\in SubQ_{X,U}$.
+
+All that is left is to check stability under $\Sigma$. Assume $S: SubQ_{X,U}$ and $T:S\to SubQ_{X,U}$. Through the fact that $S$ is covered by a type in $Sub_{X,U}$ and local choice for $Sub_{X,U}$ we merely get $S':Sub_{X,U}$, say $S'=\Sigma_XP$ and a surjective map:
+\[f:S'\to S\]
+such that for all $x:\sum_XP$ we have:
+\[T(f(x)) = (\Sigma_XP_x)/R_x\]
+so we get a surjective map:
+\[\sum_{x:X}\sum_{P(x)}(\Sigma_X P_x)/R_x  \to \sum_ST\]
+Then the identity types in $\sum_ST$ are in $U$ as $U$ is stable by $\Sigma$, so it is enough to check that:
+\[\sum_{x:X}\sum_{P(x)}(\Sigma_X P_x)/R_x\]
+is in $SubQ_{X,U}$ to conclude, as we can then apply the previous bullet-point. But this type is equivalent to:
+\[\left(\sum_{(x,x'):X\times X}\Sigma_{P(x)}P_x(x')\right)/ L\]
+where:
+\[L((x,x'),(y,y')) =\sum_{x=y} R_y(x',y') \]
+which is in $SubQ_{X,U}$ as $U$ is stable by $\Sigma$, $x=y$ in in $U$ and $X\times X = X$.
+\end{itemize}
+\end{proof}
+
+\begin{proposition}\label{coproducts-sub-quo}
+Assume $(X,U)$ a subquotient pre-system such that $\bot\in U$ and $X+X = X$. Then $SubQ_{X,U}$ is stable by finite coproducts.
+\end{proposition}
+
+\begin{proof}
+We have that:
+\[\bot = (X\times \bot) / L\]
+where $L$ is the unique such equivalence relation. Since $\bot\in U$ we conclude that $\bot\in SubQ_{X,U}$.
+
+Given $S$ and $S'$ in $SubQ_{X,U}$, say:
+\[S = (\sigma_XP)/R\]
+\[S' = (\sigma_XP')/R'\]
+Then we have that:
+\[S+S' = \left(\sum_{X+X}[P,P']\right) L\]
+where:
+\[[P,P'](l(x)) = P(x)\]
+\[[P,P'](r(x)) = P'(x)\]
+and:
+\[L(l(x),l(y)) = R(x,y)\]
+\[L(l(x),r(y)) = \bot\]
+\[L(r(x),l(y)) = \bot\]
+\[L(r(x),r(y)) = R'(x,y)\]
+Since $\bot\in U$ and $X+X=X$ we conclude that $S+S'$ is in $SubQ_{X,U}$.
+\end{proof}
+
+\begin{proposition}\label{prop-sub-quo}
+Assume $(X,U)$ a subquotient pre-system such that $\top\in U$ and for all $S\in Sub_{X,U}$ we have that $\propTrunc{S}\in U$. Then any proposition in $SubQ_{X,U}$ is in $U$. 
+\end{proposition}
+
+\begin{proof}
+If we have a proposition $S$ in $SubQ_{X,U}$, say:
+\[S = (\Sigma_XP)/R\]
+then:
+\[S = \propTrunc{S} = \propTrunc{\Sigma_XP}\]
+and we can conclude.
+\end{proof}
+
+\begin{definition}
+A subquotient system is a subquotient pre-system obeying the hypothesis of \cref{lex-sub-pro}, \cref{coproducts-sub-quo} and \cref{prop-sub-quo}.
+\end{definition}
+
+We just pack all this up in one theorem:
+
+\begin{theorem}\label{stabitity-sub-quo}
+Let $(X,U)$ be a subquotient system, then $SubQ_{X,U}$ has the following:
+\begin{itemize}
+\item Stability under finite limits.
+\item Stability under finite coproducts.
+\item Stability under quotient by equivalence relations.
+\item Local choice.
+\end{itemize}
+\end{theorem}
+
+We have two main examples in mind.
+
+\begin{example}
+The subquotient pre-system $St = (2^\N,\mathrm{Closed})$ is a quotient system. We have that $Sub_{St}$ is the type of stone spaces, and $CHaus = SubQ_{St}$ the type of compact Haussdorf spaces.
+
+Closed propositions are stable by $\Sigma$. TODO 
+
+We also need that for any stone space $S$ we have that $\propTrunc{S}$ is a closed proposition. TODO
+\end{example}
+
+\begin{example}
+The subquotient pre-system $Od = (\N,\mathrm{Open})$ is a quotient system. We have that $ODisc = SubQ_{Od}$ the type of so-called overtly discrete types.
+
+A key observation is that open propositions are stable by countable disjunctions.
+
+This means open propositions are stable by $\sum$ because we can assume:
+\[P = \Sigma_{n:\N} A(n)\]
+with $A(n)$ decidable and:
+\[Q:P \to \mathrm{Open}\]
+Then we have that:
+\[\Sigma_PQ = \exists(n:\N).\ \Sigma_{A(n)} Q(n)\]
+which is open as $\Sigma_{A(n)} Q(n)$ is open for all $n$, as $A(n)$ is decidable.
+
+Types in $Sub_{Od}$ even have full choice because both $\N$ and decidable propositions have full choice.
+\end{example}
+
+So both $ODisc$ and $CHaus$ enjoys the conclusion of \cref{stabitity-sub-quo}.
+
+
+\subsection{Tychonov}
+
+\begin{proposition}\label{tychonov}
+Assume $(X,U)$ and $(Y,C)$ two subquotient system such that:
+\begin{itemize}
+\item $X\to Y$ is in $SubQ_{Y,C}$.
+\item If $P\in U$ and $Q:P\to C$ then $\prod_{p:P}Q(p) \in C$.
+\item If $Q:X\to C$ then $\prod_{x:X}Q(x) \in C$.
+\end{itemize}
+Then we have the following:
+\begin{itemize}
+\item If $S:SubQ_{X,U}$ and $T:S\to SubQ_{Y,C}$, then:
+\[\prod_{s:S}T(s) \in SubQ_{Y,C}\]
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{definition}
+Two subquotient systems $A,B$ are called dual if both $(A,B)$ and $(B,A)$ satisfy the hypothesis of \cref{tychonov}.
+\end{definition}
+
+\begin{example}
+We have that $St = (2^\N,\mathrm{Closed})$ and $Od = (\N,\mathrm{Open})$ are dual quotient systems.
+
+TODO
+\end{example}
+
+When applying \cref{tychonov} to $ODisc$ and $CHaus$ we get Tychonov theorem and its dual.
+
+
+\subsection{Factorisation}
+
+
+\subsection{Scott continuity}
+
