@@ -1,0 +1,391 @@
+\documentclass{beamer}
+
+\usepackage[english]{babel} % Juiste afbreekregels en dergelijke!
+\usepackage{parskip} % Alinea's beginnen links uitgelijnd en er staat een lege regel tussen alinea's.
+\usepackage{amsmath, amssymb, textcomp,amsthm} % Wiskundige symbolen e.d.
+\usepackage{color, colortbl} % Kleuren
+\usepackage{enumerate} % Voor opsommingen
+\usepackage{hyperref} % Voor het weergeven van hyper\textsl{}links die klikbaar zijn
+\usepackage{mathrsfs}
+
+\usepackage{makecell}
+
+\usepackage{graphicx}
+\usepackage{caption}
+
+\usepackage{mathrsfs}
+
+\usepackage{tikz-cd}
+\usepackage{tikz}
+
+\usetikzlibrary{shapes,patterns,positioning}
+
+\usepackage{pgfplots}
+
+\usepackage{ifthen}
+\usepackage{calc}
+
+\usetheme{Frankfurt}
+% \setbeamercolor{structure}{fg = red}
+% \useinnertheme{rectangles}
+% \useoutertheme{smoothbars}
+
+\definecolor{red}{rgb}{0.59,0.00,0.12}
+\setbeamercolor{structure}{fg=red}
+
+
+\setbeamertemplate{mini frames}[box]
+\newcommand{\alertline}{%
+ \usebeamercolor[fg]{normal text}%
+ \only{\usebeamercolor[fg]{alerted text}}
+ \usebeamercolor[fg]{normal text}
+ }
+\newcommand{\Type}{\mathcal U}
+\newcommand{\Prop}{\mathrm{Prop}}
+\newcommand{\Open}{\mathrm{Open}}
+\newcommand{\Susp}{\mathrm{Susp}}
+\newcommand{\propTrunc}[1]{\lVert #1 \rVert}
+\newcommand{\Um}{\mathrm{Um}}
+\newcommand{\Boole}{\mathsf{Boole}}
+\newcommand{\Stone}{\mathsf{Stone}}
+\newcommand{\Noo}{\N_{\infty}}
+\newcommand{\Closed}{\mathsf{Closed}}
+\newcommand{\isSt}{\mathsf{isStone}}
+\newtheorem{remark}{Remark}
+\begin{document}
+
+\title{Synthetic Stone Duality}
+\date{May 14, 2024}
+\author{
+Felix Cherubini, Thierry Coquand, Freek Geerligs, Hugo Moeneclaey}
+\maketitle
+\begin{frame}{Table of contents}
+\tableofcontents
+\end{frame}
+
+
+  \section{Stone spaces}% (as affine schemes)}
+\begin{frame}{Countably presented Boolean algebras}
+%  \begin{definition}
+%    A ring is Boolean if $x^2 = x$ for all $x$. 
+%  \end{definition}
+%  \begin{remark}
+%    Boolean algebras are in 1-1 correspondence with Boolean rings. 
+%  \end{remark}
+%  \pause
+  \begin{definition}
+    A Boolean algebra is countably presented if it is the quotient of 
+    a freely generated Boolean algebra on countably many generators
+    by countably many relations. 
+  \end{definition}
+  \pause
+  \begin{definition}
+    $\Boole$ is the type of countably presented Boolean algebras. 
+  \end{definition}
+  \pause
+  \begin{lemma}
+    A Boolean algebra is countably presented iff 
+    it is a sequential colimit of finite Boolean algebras. 
+%
+%    Countably presented Boolean algebras are colimits of sequences of 
+%    finitely presented Boolean algebras. 
+  \end{lemma}
+\end{frame}
+
+\begin{frame}{Stone spaces}
+  \begin{example}
+    If we have no generators and no relations, we get $2:\Boole$.
+  \end{example}
+  \pause
+\begin{definition}
+  For $B:\Boole$, we define $Sp(B)$ as the set of Boolean morphisms from $B$ to $2$. 
+\end{definition}
+\pause
+\begin{definition}
+  Define a predicate on types as follows:
+  \begin{equation*}
+    \isSt(X) := \sum\limits_{B : Boole} X = Sp(B)
+  \end{equation*} 
+  If $\isSt(X)$ is inhabited, the type $X$ is called Stone.
+\end{definition}
+\end{frame}
+
+\begin{frame}{Examples}
+  \begin{exampleblock}{Cantor space}
+    \begin{itemize}
+      \item 
+    If we have $\mathbb N$ generators and no relations, we get $C : \Boole$.
+    \pause
+  \item 
+    Boolean maps $C \to 2$ correspond with \pause binary sequences $2^\mathbb N$.
+    \end{itemize}
+  \end{exampleblock}
+  \pause
+  \begin{exampleblock}{$\mathbb N_\infty$}
+    \begin{itemize}
+      \item 
+    If we have generators $(p_n)|_{n:\mathbb N}$ and relations $p_n \wedge p_m = 0$ for 
+    $n \neq m$, we get $B_\infty:\Boole$. 
+    \item 
+    \pause
+    Boolean maps $B_\infty \to 2$ correspond with \pause 
+    binary sequences which are $1$ at most once.
+    \pause
+    We call $Sp(B_\infty) = \mathbb N_\infty$. 
+    \end{itemize}
+  \end{exampleblock}
+  \pause
+  \begin{block}{Remark}
+    \begin{itemize}
+      \item 
+    There is a map $\mathbb N \to \mathbb N_\infty$ sending $n$ to the sequence which is $1$ at $n$ and $0$ everywhere else. 
+    \pause
+      \item 
+    There is a term $\infty:\mathbb N_\infty$ corresponding to the $\overline 0$ sequence. 
+    \end{itemize}
+  \end{block}`
+\end{frame}
+
+\section{Axiom system}
+\begin{frame}{Stone duality}
+  \begin{block}{Axiom 1 : Stone duality}
+    For $B:\Boole$, the evaluation map $B \to 2^{Sp(B)}$ is an isomorphism. 
+  \end{block}
+  \pause
+  \begin{corollary}
+    $\isSt$ is a proposition and 
+    $Sp$ is an embedding $\Boole \hookrightarrow \Type$. 
+  \end{corollary}
+  \pause
+  \begin{definition}
+    $\Stone$ is the image of $Sp$. 
+  \end{definition}
+  \pause
+  \begin{remark}
+    Both $\Stone$ and $\Boole$ have a natural category structure and $Sp$
+    is a dual equivalence between these categories. 
+  \end{remark}
+\end{frame}
+\begin{frame}{Surjections are formal surjections}
+  \begin{remark}
+    Both $\Stone$ and $\Boole$ have a natural category structure and $Sp$
+    is a dual equivalence between these categories. 
+  \end{remark}
+  \pause
+  \begin{block}{Axiom 2: Surjections are formal surjections}
+    A map of Stone spaces is surjective iff the corresponding map of Boolean algebras is injective. 
+  \end{block}
+  \pause
+  \begin{block}{Equivalent to Axiom 2}
+    For $S:\Stone$, we have $\neg \neg S \to || S||$. 
+  \end{block}
+\end{frame}
+\begin{frame}[fragile]{Local choice}
+  %Motivation:Analogy to SAG
+  %Maybe should just mention them very quickly in talk.
+  \begin{block}{Axiom 3: Local choice}
+  Given $S$ Stone, $E,F$ arbitrary types, a map $S \to F$ and 
+  $E\twoheadrightarrow F$ surjective, 
+  \uncover<2->{
+  there is some $T$ Stone,
+a surjection $T \twoheadrightarrow S$ and a map $T\to E$ such that the following diagram commutes}
+   \begin{equation*}\begin{tikzcd}
+      \only<2->{
+      T \arrow [d, two heads,dashed] \arrow [r,dashed]
+      } 
+    & E \arrow[d,""',two heads]\\
+      S \arrow[r] & F
+    \end{tikzcd}\end{equation*}  
+  \end{block}
+\end{frame}
+\begin{frame}{Dependent choice}
+\begin{block}{Axiom 4: Dependent choice}
+  Given a family of types $(E_n)_{n:\mathbb N}$ and 
+  a relation 
+  $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
+  for all $n$ and $x:E_n$ there exists $y:E_{n+1}$ with $p:R_n~x~y$ 
+  \pause
+  then given $x_0:E_0$ there exists
+  $u:\Pi_{n:\mathbb N}E_n$ and 
+  $v:\Pi_{n:\mathbb N}R_n~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
+\end{block}
+\end{frame}
+\section{Omniscience principles}
+\begin{frame}{Omniscience principles} 
+  \begin{block}{The negation of WLPO}
+    It is \textbf{not} the case that for any $\alpha:\mathbb N_\infty$ we can decide 
+    $$\alpha = \infty \vee \alpha \neq \infty$$
+  \end{block}
+  \pause
+  \begin{block}{Markov's principle (observed by David W\"arn)}
+    If $\alpha: \mathbb N_\infty$ and $\alpha \neq \infty$, then there is an $n:\mathbb N$ such that $\alpha(n) = 1$. 
+  \end{block}
+  \pause
+  \begin{block}{LLPO}
+    For $\alpha:\mathbb N_\infty$, we have 
+    %that the sequence corresponding to
+    $\alpha(2k+1) = 0 $ for all $k:\mathbb N$ or 
+    $\alpha(2k) = 0$ for all $k:\mathbb N$.
+%    $0$ on all odd numbers or on all even numbers. 
+%    $$ 
+%    \forall (k:\mathbb N) \alpha(2k+1) = 0 \vee
+%    \forall (k:\mathbb N) \alpha(2k) = 0
+%    $$
+  \end{block}
+\end{frame}
+
+
+\section{Compact Hausdorff spaces} % (as schemes)
+\begin{frame}{Topology}
+  \begin{definition}
+%    A proposition $P$ is closed iff there merely exists some $\alpha:\mathbb N _\infty$ with
+%    $$P \leftrightarrow \alpha = \infty$$ 
+%  \end{definition}
+%  \begin{definition}
+%    A proposition $P$ is open iff there merely exists some $\alpha:\mathbb N _\infty$ with
+%    $$P \leftrightarrow \alpha \neq \infty$$ 
+%  \end{definition}
+%  \begin{remark}
+    Let $P$ be a proposition. If there merely exists some 
+    $\alpha:\only<-2,4->{2^\mathbb N} \only<3>{\mathbb N_\infty}$ with 
+    \begin{itemize}
+      \item $P\leftrightarrow \forall n\alpha(n) = 0$, then $P$ is closed. 
+        \pause
+      \item $P\leftrightarrow \exists n\alpha(n) = 1$, then $P$ is open. 
+        \pause
+        \pause
+    \end{itemize}
+\end{definition}
+  \pause
+   \begin{definition}
+     A subset $A\subseteq S$ is open/closed iff $A (x)$ is open/closed for all $x:S$. 
+   \end{definition}
+   \pause
+%  \begin{remark}
+%    Open/closed propopositions are \alert<4->{countable} disjunctions/conjunctions of decidable propositions. 
+%%    Closed propositions are countable conjunctions of decidable propositions, 
+%%    and open propositions countable disjunctions
+%  \end{remark}
+%  \pause 
+%  \pause
+  \begin{lemma}[using local choice]
+    A subset of a Stone space is closed iff 
+    it is a \alert<7->{countable} intersection of decidable subsets.
+  \end{lemma}
+\end{frame}
+
+
+\begin{frame}{Compact Hausdorff spaces}
+  \begin{definition}
+    A type is compact Hausdorff iff it is the quotient of a 
+    Stone space by a closed equivalence relation. 
+  \end{definition}
+  \pause
+  \begin{lemma}
+    Let $X = S / \sim $ be compact Hausdorff and $A\subseteq X$. TFAE
+    \begin{itemize}
+      \item $A$ is closed. 
+      \item the preimage of $A$ in $X$ is closed. 
+    \end{itemize}
+\end{lemma}
+\pause
+  \begin{corollary}
+    Any map between compact Hausdorff types is 
+    continuous in the sense that the inverse of an open is open. 
+%    such that the 
+%    inverse image of a closed subset is closed. 
+  \end{corollary}
+\end{frame} 
+\begin{frame}{Example: the interval}
+  \begin{lemma}
+    The unit interval is a compact Hausdorff type. 
+  \end{lemma}
+  \pause
+  \begin{proof}
+    Using LLPO and dependent choice, 
+    \pause 
+    there is a standard construction 
+    to show that the function $2^\mathbb N \to [0,1]_\mathbb R$ given by 
+    $$\alpha\mapsto \sum\limits_{i:\mathbb N} \frac{\alpha(i)}{2^{i+1}}$$
+    is surjective.
+    \pause
+    This function will respect the equivalence relation on $2^\mathbb N$ given by \pause
+    $\alpha \sim \beta$ if for each $n:\mathbb N$, 
+    there is some finite binary sequence $x$ such that 
+    $\alpha|_n, \beta|_n$ are both of the form 
+    $(x \cdot 0 \cdot \overline 1)|_n$ or $(x \cdot 1 \cdot \overline 0)|_n$.
+  \end{proof}
+%  %Time permitting:
+%  \begin{proof}[Proof sketch]
+%    The relation states that 
+%    $\alpha \sim \beta$ if for each $n:\mathbb N$, 
+%    there is some finite binary sequence $x$ such that 
+%    $\alpha|_n, \beta|_n$ are both of the form 
+%    $(x \cdot 0 \cdot \overline 1)|_n$ or $(x \cdot 1 \cdot \overline 0)|_n$.
+%  \end{proof}
+\end{frame}
+
+\section{Related work}
+\begin{frame}{Light condensed sets}
+    Clausen \& Scholze have a lecture series on light condensed sets. 
+    \pause
+    We expect to prove all \textit{internal} results from this series from the axioms we presented. 
+    \pause
+    \begin{lemma}
+      $H^1(S,\mathbb Z) = 0$ for $S$ Stone.
+    \end{lemma}
+    \pause
+    We hope to extend this result to 
+      $H^n(S,\mathbb Z) = 0$ for $S$ Stone and $n>1$.
+      \pause
+      \\
+      We also expect to show that $H^n(X,\mathbb Z)$ corresponds to the singular cohomology for $X$ Compact Hausdorff.
+\end{frame}
+\begin{frame}{Other related work}
+  \begin{itemize}
+    \item 
+      Barton \& Commelin have derived a set form of ``directed univalence" from some axioms. \pause
+      These axioms hold for condensed sets. \pause
+      We expect to validate their axioms in the axiom system presented above. 
+      \pause
+    \item 
+    Coquand, H\"ofer \& Moeneclaey are working on a 
+    constructive model of the axioms presented above, 
+    based on the model for synthetic algebraic geometry. 
+\end{itemize}
+\end{frame}
+
+%\section{Future work}
+%\begin{frame}{Future work}
+%  \begin{itemize}
+%    \item Clausen \& Scholze have a lecture series on light condensed. 
+%      \pause
+%    We expect to prove results from this series from the axioms we presented. 
+%      \pause
+%    \item In particular, we can show that 
+%      \pause
+%    \item 
+%      Barton \& Commelin are working on a condensed type theory. \pause
+%      We expect to validate their axioms with our axioms. 
+%  \end{itemize}
+%\end{frame}
+
+
+%\begin{frame}
+%
+%%\section{Definition of CHaus, all functions continuous, classifier for closed subsets of Stone spaces}
+%%\section{Omniscience principles}
+%%\section{Future goals}
+%\begin{itemize}
+%  \item Functional analyuysis
+%  \item Commelin Barton CHaus and ODisc
+%  \item Cohomology groups
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%Abstract: We present an axiomatization for the (higher) topos of light condensed sets in dependent type theory with univalence, similar to the axiomatization of the (higher) Zariski topos in synthetic algebraic geometry. Stone spaces correspond to affine schemes, and compact Hausdorff spaces correspond to schemes. We can show that all maps between compact Hausdorff spaces are continuous, hence the negation of the weak principle of omniscience holds. We can prove the limited principle of omniscience and Markov's principle. We expect to be able to prove from these axioms that the higher cohomology over Z of any Stone spaces is trivial and that the cohomology over Z of any compact Hausdorff spaces is the same as the singular cohomology.
+%
+%\end{frame}
+
+\end{document}
