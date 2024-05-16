@@ -534,7 +534,7 @@ The following result is due to David W\"arn.
 
   To show that $2/\{\alpha(n)|n\in\mathbb N\}$ is trivial, we will show it has an empty spectrum. 
   Suppose $x: 2 \to 2$ is such that $x(\alpha(n)) = 0$ for every $n:\mathbb N$. 
-  as $x(1) = 1\neq 0$, we must have for every $n:\mathbb N$ that $\alpha(n) \neq 1$. 
+  As $x(1) = 1\neq 0$, we must have for every $n:\mathbb N$ that $\alpha(n) \neq 1$. 
   Thus for every $n:\mathbb N$, we have $\alpha(n) = 0$, contradicting our assumption that $\alpha \neq \infty$. 
   Thus any such $x$ cannot exist and $Sp(2/\{\alpha(n)|n\in\mathbb N\}) = \emptyset$. 
   Thus $2/\{\alpha(n) | n \in \Noo \} = 2^\emptyset$, which is the trivial Boolean algebra. 
@@ -560,40 +560,45 @@ The following result is due to David W\"arn.
   \end{equation}
   By making a case distinction on $n,m$ being odd or even, 
   we can indeed see that $f(p_n) \wedge f(p_m) = (0,0)$ when $n\neq m$. 
-  \rednote{Active here, not done}
   We will show that $f$ is injective. 
   If it is, then as surjections are formal surjections, $f$ corresponds to a surjection $s:\Noo + \Noo \to \Noo$.
   This means that for every $\alpha:\Noo$ there merely is some $x:\Noo + \Noo$ such that $s(x) = \alpha$. 
   Now we want to show that \Cref{eqnLLPO} holds for $\alpha$. 
   As we need to show a propositional truncation, we can assume $x$ is given and make a case distinction whether 
   it is of the form $inl(\beta)$ or $inr(\beta)$ for some $\beta:\Noo$. 
-  If $x = inl(\beta)$, then  
-
-
-
-%  Suppose that $f(x) = 0$. We will show that $x = 0$. 
-%  We make a case distinction on whether $x$ corresponds
-%  to a finite or cofinite subsets of $\mathbb N$. 
-%  We'll denote $E,O\subseteq \mathbb N$ for the even and odd numbers.
-%  \begin{itemize}
-%    \item Let $x$ correspond to a finite subset of $\mathbb N$. Write 
-%      $x = \bigvee_{i\in I_0} p_i$ for $I_0\subseteq \mathbb N$ finite. 
-%      Then $f(x) = (\bigvee_{i\in I_0 \cap E } p_{\frac i2} , \bigvee_{i\in I_0 \cap O } p_{\frac {i-1}2} ) = (0,0)$
-%
-%      But now as $p_i\neq 0$ for all $i\in\mathbb N$, we must have $I_0 \cap E = \emptyset = I_0 \cap O$. 
-%      Thus $I_0= \emptyset$, and $x = 0$. 
-%    \item Let $x$ correspond to a cofinite subset of $\mathbb N$. Write 
-%      $x = \bigwedge_{j\in J} \neg p_j$ for $J$ cofinite. 
-%      We will derive a contradiction, showing that $x=0$ after all. 
-%      Then $f(x) = (\bigwedge_{j\in J \cap E } \neg p_j , \bigwedge_{j\in J \cap O } \neg p_j )$. 
-%      As $f(x) = (0,0)$, we have that 
-%      $\bigwedge_{j\in J \cap E } \neg p_j =0$ and
-%      $\bigwedge_{j\in J \cap O } \neg p_j  = 0$.
-%      Thus both $J\cap E$ and $J\cap O$ must be $\mathbb N$. 
-%  \end{itemize}
-
+  If $x = inl(\beta)$, then for any $k:\mathbb N$, we have that 
+  $s(x) (p_{2k+1}) = x(f(p_{2k+1})) = inl(\beta) (0,p_k)  = \beta(0) = 0$. 
+  And if $x=inr(\beta)$, by similar argument it follows that for all $k:\mathbb N$
+  we must have $s(x)(p_{2k}) = 0$. 
+  Thus if we can show that $f$ is injective, we have \Cref{eqnLLPO}.
+  
+  To see that $f$ is injective, it is sufficient to show that whenever $f(x) = 0$, we must have $x = 0$. 
+  Suppose $f(x) = 0$. %We make a case distinction on whether $x$ is finite or cofinite. 
+  We make a case distinction on whether $x$ corresponds
+  to a finite or cofinite subsets of $\mathbb N$. 
+  We'll denote $E,O\subseteq \mathbb N$ for the even and odd numbers.
+  \begin{itemize}
+    \item Let $x$ correspond to a finite subset of $\mathbb N$. Write 
+      $x = \bigvee_{i\in I_0} p_i$ for $I_0\subseteq \mathbb N$ finite. 
+      Then $f(x) = (\bigvee_{i\in I_0 \cap E } p_{\frac i2} , \bigvee_{i\in I_0 \cap O } p_{\frac {i-1}2} ) = (0,0)$
+      But now as $p_j\neq 0$ for all $j\in\mathbb N$, we must have $I_0 \cap E = \emptyset = I_0 \cap O$. 
+      Thus $I_0= \emptyset$, and $x = 0$. 
+    \item Let $x$ correspond to a cofinite subset of $\mathbb N$. Write 
+      $x = \bigwedge_{j\in J} \neg p_j$ for $J$ finite. 
+      We will derive a contradiction, from which we can conclude that $x=0$ after all. 
+      Then $f(x) = (\bigwedge_{j\in J \cap E } \neg p_j , \bigwedge_{j\in J \cap O } \neg p_j )$. 
+      As $f(x) = (0,0)$, we have that 
+      $\bigwedge_{j\in J \cap E } \neg p_j =0$ and
+      $\bigwedge_{j\in J \cap O } \neg p_j  = 0$.
+      However, any finite meet of negations will correspond to a cofinite set,
+      in particular not to the empty set, giving a contradiction. 
+      So $x = 0$. 
+  \end{itemize}
+  Therefore whenever $f(x) = 0$, we have $x = 0$, thus $f$ is injective, $s$ is surjective 
+  and by the above reasoning for any $\alpha:\Noo$ we have \Cref{eqnLLPO}. 
 \end{proof}
 
+\rednote{TODO: consequences of LLPO, Markov that we work with (negation of quantifiers, splitting of independent universal quantiiers)}
 
 \subsection{Topology}
 \begin{definition}
