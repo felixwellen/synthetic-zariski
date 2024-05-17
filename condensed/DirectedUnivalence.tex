@@ -156,7 +156,7 @@ So both $ODisc$ and $CHaus$ enjoys the conclusion of \cref{stabitity-sub-quo}.
 \begin{proposition}\label{tychonov}
 Assume $(X,U)$ and $(Y,C)$ two subquotient system such that:
 \begin{itemize}
-\item $X\to Y$ is in $SubQ_{Y,C}$.
+\item $S\to Y$ is in $SubQ_{Y,C}$ for all $S:Sub_{X,U}$.
 \item If $P\in U$ and $Q:P\to C$ then $\prod_{p:P}Q(p) \in C$.
 \item If $Q:X\to C$ then $\prod_{x:X}Q(x) \in C$.
 \end{itemize}
@@ -168,7 +168,36 @@ Then we have the following:
 \end{proposition}
 
 \begin{proof}
-TODO
+Note that for $S':Sub_{X,U}$ and $Q:S'\to C$ we have that:
+\[\prod_{S'}Q\]
+is in $C$.
+
+Now we use local choice to get $S':Sub_{X,U}$ with a surjective map:
+\[f:S'\to S\]
+such that for all $s:S'$ we have:
+\[T(f(s)) = (\Sigma_YU_s)/R_s\]
+
+Then the map:
+\[\prod_ST \to \prod_{s:S'}(\Sigma_YU_s)/R_s\]
+is an embedding, its fiber over $\alpha$ is:
+\[\prod_{s,t:S'} \prod_{f(s) =_S f(t)} \alpha(s) = \alpha(t)\]
+which is in $C$ by the hypothesis. Therefore it is enough to prove that:
+\[\prod_{s:S'}(\Sigma_YP_s)/R_s\]
+is in $SubQ_{Y,C}$. 
+
+But this type is the quotient of:
+\[\prod_{s:S'}(\Sigma_YP_s)\]
+by:
+\[L(\alpha,\beta) = \prod_{s:S'} R_s(\alpha(s),\beta(s))\]
+which is in $C$, therefore it is enough to to prove that:
+\[\prod_{s:S'}(\Sigma_YP_s)\]
+is in $SubQ_{Y,C}$.
+
+But this type is equivalent to:
+\[\sum_{f:S'\to Y} \prod_{s:S'}P_s(f(s))\]
+Since $\prod_{s:S'}P_s(f(s))$ is in $C$, it is enough to prove that:
+\[S'\to Y\]
+is in $SubQ_{Y,C}$. But this is one of the hypothesis.
 \end{proof}
 
 \begin{definition}
@@ -178,13 +207,30 @@ Two subquotient systems $A,B$ are called dual if both $(A,B)$ and $(B,A)$ satisf
 \begin{example}
 We have that $St = (2^\N,\mathrm{Closed})$ and $Od = (\N,\mathrm{Open})$ are dual quotient systems.
 
-TODO
+\begin{itemize}
+\item We need that if $P$ open and $Q:P\to \mathrm{Closed}$, then $\Sigma_PQ$ is closed. Assume $Q=\Sigma_{n:\N}A(n)$ with $A(n)$ decidable, since open propositions have choice we can assume for $n:\N$ such that $A(n)$ that $Q(n) = \forall_{k:\N} B_n(k)$ with $B_n(k)$ decidable. Then:
+\[\Sigma_PQ = \prod_{n,k:\N} \prod_{A(n)} B_n(k) \]
+which is indeed closed.
+
+It is clear that closed propositions are closed by countable products.
+
+$\Sigma_\N P\to 2^\N$ is compact Hausdorff? Yes indeed, it is even Stone because it is equivalent to:
+\[\prod_{k,n:\N} 2^{P(n)}\]
+and $2^{P(n)}$ is Stone as $P(n)$ is open, indeed:
+\[(\Sigma_\N A)\to 2\] 
+for $A$ decidable is a countable product of Stone space, as $2^A$ is Stone for $A$ decidable.
+
+\item First we check that given $S$ Stone, we have that:
+\[S\to \N\]
+is overtly discrete. Indeed identity types in $S\to \N$ are closed and there is a surjection from fundamental systems of idempotent in $2^S$ to $S\to \N$, so it is enough to prove that the type fundamental systems of idempotent in a c.p. algebra is overtly discrete. To have this it is enough to prove that countably presented algebra are overtly discrete. TODO
+\end{itemize}
 \end{example}
 
 When applying \cref{tychonov} to $ODisc$ and $CHaus$ we get Tychonov theorem and its dual.
 
 
 \subsection{Factorisation}
+
 
 
 \subsection{Scott continuity}
