@@ -539,8 +539,72 @@ The following result is due to David W\"arn.
   Thus any such $x$ cannot exist and $Sp(2/\{\alpha(n)|n\in\mathbb N\}) = \emptyset$. 
   Thus $2/\{\alpha(n) | n \in \Noo \} = 2^\emptyset$, which is the trivial Boolean algebra. 
 \end{proof}
+\begin{corollary}\label{LemDecidableSubsetsDeMorgan}
+  For $(A_n)$ a family of decidable subsets, we have
+    $
+    (\bigcup_{n:\mathbb N} A_n)^C
+    =
+    \bigcap_{n:\mathbb N} (A_n^C)
+    $ 
+    and 
+    $
+    \bigcup_{n:\mathbb N} (A_n^C)
+    =  
+    (\bigcap_{n:\mathbb N} A_n)^C
+    $
+\end{corollary}
+\begin{proof}
+\begin{itemize}
+  \item 
+    Let 
+    $x\notin \bigcup_{n:\mathbb N} A_n$. 
+    Then for every $n:\mathbb N$, we cannot have $x\in A_n$
+    and thus $x\in A_n^C$ by decidability of $A_n$. 
+    Thus $x\in \bigcap_{n:\mathbb N} (A_n^C)$. 
+    Therefore
+    $$
+    (\bigcup_{n:\mathbb N} A_n)^C
+    \subseteq 
+    \bigcap_{n:\mathbb N} (A_n^C).
+    $$ 
+  \item 
+    Suppose that for every $n:\mathbb N$, we have $x\notin A_n$. 
+    There does not exist an $n:\mathbb N$ with $x\in A_n$. Thus
+    $$
+    \bigcap_{n:\mathbb N} (A_n^C)
+    \subseteq 
+    (\bigcup_{n:\mathbb N} A_n)^C
+    $$ 
+  \item 
+    Suppose there exists some $n$ with $x\in A_n^C$. Then 
+    it cannot be the case that $x\in A_m$ for all $m:\mathbb N$.
+    Thus
+    $$
+    \bigcup_{n:\mathbb N} (A_n^C)
+    \subseteq 
+    (\bigcap_{n:\mathbb N} A_n)^C
+    $$ 
+  \item 
+    Suppose that $x\in (\bigcap_{n:\mathbb N} A_n)^C$. 
+    Then define the binary sequence $\alpha$ by $\alpha(i) =1$ iff $i$ is the first index such that 
+    $x\notin A_i$. This is well-defined as $A_n$ is decidable for all $n:\mathbb N$. 
+    If $\alpha(i) = 0$ for all $i$, then $x\in A_i$ for all $i$. 
+%    and it is the case that $x\in A_n$ for all $n:\mathbb N$. 
+    Thus under our assumption $x\in (\bigcap_{n:\mathbb N} A_n)^C$, 
+    we cannot have that $\alpha(i) = 0$ always. 
+    By Markov, there then exists an $i$ such that $\alpha(i) = 1$. 
+    Thus $x\notin A_i$ for some $i$. We conclude that. 
+    $$
+    (\bigcap_{n:\mathbb N} A_n)^C
+    \subseteq
+    \bigcup_{n:\mathbb N} (A_n^C)
+    $$ 
+\end{itemize}
+\end{proof} 
+Note that we only needed decidability for the first and last bullet point, 
+and only the last bullet point used countability (and of course Markov's principle). 
 
-\begin{theorem}[The lesser limited principle of omniscience]
+\begin{theorem}[The lesser limited principle of omniscience (LLPO)]
   For $\alpha:\mathbb N_\infty$, 
   we have that 
   \begin{equation}\label{eqnLLPO}
@@ -598,9 +662,61 @@ The following result is due to David W\"arn.
   and by the above reasoning for any $\alpha:\Noo$ we have \Cref{eqnLLPO}. 
 \end{proof}
 
-\rednote{TODO: consequences of LLPO, Markov that we work with (negation of quantifiers, splitting of independent universal quantiiers)}
+\begin{corollary}\label{corAlternativeLLPO}
+  LLPO is equivalent to the following statement:
+  Let $(\phi_n)_{n:\mathbb N}, (\psi_m)_{m:\mathbb N}$ be families of decidable propositions indexed over $\mathbb N$.
+  We then have 
+  \begin{equation}
+    (\forall_{n:\mathbb N} \forall_{m:\mathbb N} (\phi_n \vee \psi_m) )
+    \leftrightarrow
+    ((\forall_{n:\mathbb N} \phi_n) \vee (\forall_{m:\mathbb N} \psi_m) )
+  \end{equation}
+\end{corollary}
+\begin{proof}
+  Note that the implication from right to left in the above equation always holds
+  
 
+  \rednote{While \cite{ReverseMathsBishop} does mention LLPO, it doesn't mention this specific equivalence, 
+  and there should be a reference for this result}
+  Assume LLPO
+  Assume that for every $n,m:\mathbb N$ we have $\phi_n \vee \psi_m$. 
+  We will define a binary sequence $\beta$ and show that $\beta(n)$ is $1$ at most once. 
+  First we define a binary sequence $\alpha$
+  such that $\alpha(2n) = 0$ iff $\phi_n$ holds and $\alpha(2m+1) = 0$ iff $\psi_m$ holds. 
+  We let $\beta(k) = 1$ iff $k$ is minimal with $\alpha(k) = 1$. 
+  By this minimality, we clearly have that $\beta$ is $1$ at most once and thus defines a term of $\Noo$. 
+  By LLPO, we have that 
+  $\forall_{k:\mathbb N} \beta(2k+1) = 0\vee \forall_{k:\mathbb N} \beta(2k+1) = 0$. 
+  As we're proving a proposition, we can unpack this truncation, and make a case distinction on
+  $\forall_{k:\mathbb N} \beta(2k+1) = 0 + \forall_{k:\mathbb N} \beta(2k+1) = 0$. 
+
+  Assume that $\forall_{k:\mathbb N} \beta(2k+1) = 0$. 
+  Let now $m:\mathbb N$. We claim that $\psi_m$ will hold. 
+  Suppose $\neg \psi_m$, then $\alpha(2m+1) = 1$. However, as $\beta(2m+1) = 0$, there 
+  $k = 2m+1$ is not minimal such that $\alpha(k)  = 1$.
+  There is thus some  some $l\leq 2k+1$ with $\alpha(l) = 1$. 
+  As $\beta(2k+1) = 0$ for all $k$, we have that $l$ must be even. 
+  Therefore $\alpha(2n) = 1$ for some $n:\mathbb N$, meaning that $\neg \phi_n$. 
+  But now $\neg \phi_n \wedge \neg \psi_m$, which contradicts 
+  $(\forall_{n:\mathbb N} \forall_{m:\mathbb N} (\phi_n \vee \psi_m) )$. 
+  We thus have that $\neg \psi_m$ is false. As $\psi_m$ is decidable, we conclude $\psi_m$. 
+  Thus for all $m:\mathbb N$, we have $\psi_m$. Thus 
+  $((\forall_{n:\mathbb N} \phi_n) \vee (\forall_{m:\mathbb N} \psi_m) )$ 
+  as required. 
+
+  The other case is symmetric. We conclude that 
+  \begin{equation}
+    (\forall_{n:\mathbb N} \forall_{m:\mathbb N} (\phi_n \vee \psi_m) )
+    \to
+    ((\forall_{n:\mathbb N} \phi_n) \vee (\forall_{m:\mathbb N} \psi_m) )
+  \end{equation}
+
+  Conversely, assume the above equation holds. 
+  Given any sequence $\alpha:\Noo$, because it is $1$ at most once, we have that 
+  $\alpha(n) = 0 \vee \alpha(n+1) = 0$ for all $n:\mathbb N$. Applying the above equation then gives LLPO for $\alpha$. 
+\end{proof}
 \subsection{Topology}
+\rednote{Active}
 \begin{definition}
   Let $P$ be a proposition. 
   \begin{itemize}
@@ -609,6 +725,72 @@ The following result is due to David W\"arn.
     \item $P$ is closed if there merely exists some $\alpha:\Noo$ such that $P \leftrightarrow \alpha = \infty$. 
   \end{itemize}
 \end{definition}
+
+\begin{remark}
+  Let us state some alternative definitions of open and closed:
+  \begin{itemize}
+    \item 
+      By Markov, $P$ being open iff there merely exists some $\alpha:\Noo$ such that 
+      $P\leftrightarrow \exists_{n:\mathbb N} \alpha(n) = 1$. 
+    \item 
+      $P$ is open iff there merely exists some $\alpha:2^\mathbb N$ such that $P\leftrightarrow \exists n \alpha(n) = 1$.
+    \item 
+      $P$ is closed iff there merely exists some $\alpha:2^\mathbb N$ such that $P\leftrightarrow \forall n \alpha(n) = 0$.
+\end{itemize}
+\end{remark}
+
+\begin{lemma}\label{lemOpenClosedDisjunctionConjunction}
+  Open propositions are closed under countable disjunctions and finite conjunctions. 
+  Closed propositions are closed under countable conjunctions and finite disjunctions. 
+\end{lemma}
+\begin{proof}
+  \begin{itemize}
+    \item Let $P,Q$ be closed. We will show $P\vee Q$ closed as well. 
+      Assume $P\leftrightarrow \alpha = \infty, Q \leftrightarrow \beta = \infty$. 
+      Now $P\vee Q \leftrightarrow ((\forall_{n:\mathbb N} \alpha(n) = 0) \vee (\forall_{n:\mathbb N} \beta(n) = 0))$
+      By \Cref{corAlternativeLLPO}, we have that 
+      $P\vee Q \leftrightarrow \forall_{n:\mathbb N}  \forall_{m:\mathbb N}  (\alpha(n) = 0 \vee \beta(m) = 0)$
+      For $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective, this in turn is equivalent to 
+      $\forall_{k:\mathbb N}  (\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s_k)) = 0)$. 
+      Define $\gamma(k) = 0$ iff $(\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s_k)) = 0)$. 
+      As this is decidable, $\gamma$ is well-defined as binary sequence, and 
+      $P\vee Q \leftrightarrow \forall_{k:\mathbb N} \gamma(k) = 0$, thus $P\vee Q$ is closed. 
+    \item Let $P_n$ be a countable family of closed propositions. We will show that 
+      $\forall_{n:\mathbb N} P_n$ is countable as well. 
+      \rednote{Active here}
+  \end{itemize}
+  
+\end{proof}
+
+\begin{remark}\label{rmkOpenClosedNegation}
+  The negation of an open proposition is a closed proposition.
+  Furthermore, both open and closed propositions are double negation stable by Markov, 
+  meaning that for $P$ open or closed, we have $\neg \neg P \to P$.
+\end{remark}
+
+\begin{lemma}
+  For $P$ open and $Q$ closed or $P$ closed and $Q$ open, we have that $(P\to Q) \leftrightarrow (\neg P \vee Q)$. 
+\end{lemma}
+\begin{proof}
+  Without losing generality, assume $P$ open and $Q$ closed. 
+  The left direction is well-known. 
+  What is also well-known is 
+  $(P \to Q) \to \neg \neg (\neg P \vee Q)$.
+  By \Cref{rmkOpenClosedNegation}, $\neg P$ is closed. 
+  By \Cref{lemOpenClosedDisjunctionConjunction}, it follows that $\neg P \vee Q$ is closed. 
+  By \Cref{rmkOpenClosedNegation} it follows that $\neg \neg (\neg P \vee Q) \to (\neg P \vee Q)$. 
+  Thus $(P \to Q) \to (\neg P \vee Q)$ as required. 
+\end{proof}
+ 
+
+
+\begin{lemma}
+  Equality in $B:\Boole$ is open and equality in $X:\Stone$ is closed. 
+\end{lemma}
+\begin{proof}
+\end{proof}
+
+
 \begin{definition}
   For $S$ a set and $D\subseteq S$ an arbitrary subset, we call $D$ decidable/open/closed 
   iff for every $x:S$, $D(x)$ is decidable/open/closed. 
@@ -640,6 +822,20 @@ The following result is due to David W\"arn.
       Suppose $D$ only depends on $n$ generators, then we need to only check the values 
   \end{itemize}
 \end{proof}
+\begin{lemma}
+  Let $A\subseteq S$ be a subset of a Stone space. TFAE
+  \begin{itemize}
+    \item $A$ is closed. 
+    \item There merely is a countable set set of decidable subsets $D_n\subseteq S$ with 
+      $A = \bigcap_{n:\mathbb N} D_n$. 
+    \item $\neg A$ is open. 
+%    \item There merely is a countable set set of decidable subsets $E_n\subseteq S$ with 
+%      $\neg A = \bigcup_{n:\mathbb N} D_n$. 
+  \end{itemize}
+\end{lemma}
+
+
+
 \rednote{End of activity}
 
 \subsection{Compact Hausdorff spaces}
