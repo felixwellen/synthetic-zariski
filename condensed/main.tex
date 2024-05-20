@@ -239,8 +239,8 @@
   There is a category of Boolean algebras, which has a subcategory of countably presented Boolean algebras, 
   which has a subcategory of finitely presented Boolean algebras. 
 \end{remark}
-\begin{remark}
-  All categories above have pushouts.
+\begin{remark}\label{rmkBoolePushouts}
+  All categories above have pushouts. 
 \end{remark}
 \begin{definition}
   Let $f:B\to C$ be a Boolean morphism. 
@@ -454,21 +454,26 @@ By the above and Lemma 9.4.5 of \cite{hott},
 the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Stone$.
 \end{remark}
 
-\begin{axiomNum}[Surjections are Formal Surjections]
+\begin{axiomNum}[Surjections are formal Surjections]
   A map $f:Sp(B')\to Sp(B)$ is surjective iff the corresponding map $B \to B'$ is injective.
 \end{axiomNum} 
 
-\rednote{quick note I forgot so write here but it must go somewhere else}
-\begin{axiomNum}[double negation to merely]
-  For $S:\Stone$, we have that $\neg \neg S \to || S ||$
-\end{axiomNum}
+\begin{lemma}\label{LemSurjectionsFormalToCompleteness}
+ For $S:\Stone$, we have that $\neg \neg S \to || S ||$
+\end{lemma}
 \begin{proof}
-  Let $B:\Boole$ and suppose $\neg \neg Sp(B)$, then we have $0\neq 1$ in $B$. 
-  Let $f:2 \to B$, note that if $f(0) = f(1)$ then $0=1$ in $B$, thus bottom, thus $0=1$ in $2$. 
-  Hence by case distinction on $2$ we can show$f$ we have that $f x = f y$ implies $ x= y$. Thus 
+  First, assume that surjections are formal surjections. 
+  Let $B:\Boole$ and suppose $\neg \neg Sp(B)$. 
+  %Note that if $0=1$ in $B$, then $Sp(B) =\emptyset$, meaning $\neg Sp(B)$. 
+  %Therefore, we have $0\neq 1$ in $B$. 
+  We will show that the map $f:2\to B$ is injective. 
+  Let $f:2 \to B$, note that if $f(0) = f(1)$ then $0=1$ in $B$, 
+  If $0=1$ in $B$, there are no maps $B\to 2$ preserving $0$ and $1$, thus $\neg Sp(B)$. 
+  This is a contradiction with $\neg \neg Sp(B)$. Thus we may conclude that $f(0)\neq f(1)$. 
+  Hence by case distinction on $2$ we can show $f$ we have that $f x = f y$ implies $ x= y$. Thus 
   $f$ is injective thus the map $Sp(B) \to Sp(2) = 1$ is surjective, thus $Sp(B)$ is merely inhabited. 
-\end{proof}
-\rednote{end activity}
+\end{proof} 
+Actually, we will see in \Cref{CorDoubleNegToAx2} that the converse is also true. 
 
 \begin{axiomNum}[Local choice]
   Whenever $X$ Stone and $E\twoheadrightarrow X$ surjective, then there is some $Y$ Stone,
@@ -487,7 +492,6 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
   $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R_n~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
 \end{axiomNum}
 \subsection{Omniscience principles}
-\rednote{active}
 \begin{remark}\label{rmkTrivialBA}
   A Boolean algebra $B / R$ 
   is trivial iff there merely exists some $R_0\subseteq R$ finite with 
@@ -661,6 +665,30 @@ and only the last bullet point used countability (and of course Markov's princip
   Therefore whenever $f(x) = 0$, we have $x = 0$, thus $f$ is injective, $s$ is surjective 
   and by the above reasoning for any $\alpha:\Noo$ we have \Cref{eqnLLPO}. 
 \end{proof}
+\begin{remark}
+  The above function $f$ does not have a retraction. 
+\begin{proof}
+  Suppose it does, call the retraction $r:B_\infty \times B_\infty \to B_\infty$. 
+  Consider $r(0,1)$. 
+  As $r(0,1):B_\infty$, we merely have an representative in $\langle (p_k)_{k:\mathbb N}\rangle$ 
+  expressing $r(0,1)$. This expression contains at most finitely many $p_k$. 
+  Let $N$ be such that $r(0,1)$ does not contatin $p_k$ for $k \geq N$. 
+
+  As maps of Boolean algebras are order-preserving, we have that 
+  $r(0,1) \geq r(0,p_l) = p_{2l+1}$ for any $l:\mathbb N$. 
+  So $r(0,1) \geq p_{k}$ for some $k \geq N$. 
+
+  $r(0,1)$ cannot be finite, if it were, we'd have that  
+  $r(0,1) = \bigvee_{i\in I_0} p_i$ with $k\notin I_0$, 
+  but then $r(0,1) \wedge p_k = 0\neq p_k$ and $r(0,1) \not \geq p_k$.
+  Thus $r(0,1)$ is cofinite. 
+  By similar reasoning $r(1,0)$ is cofinite. 
+  But now $r(0,1) \wedge r(1,0)$ is cofinite, but this should equal $r((1,0)\wedge (0,1)) = r(0,0) = 0$. 
+  As $0$ is finite and $r(0,1)$ is cofinite, we have a contradiction. 
+
+  Thus there does not exist a retraction of $f$. 
+\end{proof}
+\end{remark} 
 
 \begin{corollary}\label{corAlternativeLLPO}
   LLPO is equivalent to the following statement:
@@ -739,9 +767,15 @@ and only the last bullet point used countability (and of course Markov's princip
 \end{itemize}
 \end{remark}
 
+\begin{remark}\label{rmkOpenClosedNegation}
+  The negation of an open proposition is a closed proposition.
+  Furthermore, both open and closed propositions are double negation stable by Markov, 
+  meaning that for $P$ open or closed, we have $\neg \neg P \to P$.
+\end{remark}
+
 \begin{lemma}\label{lemOpenClosedDisjunctionConjunction}
-  Open propositions are closed under countable disjunctions and finite conjunctions. 
-  Closed propositions are closed under countable conjunctions and finite disjunctions. 
+  Closed propositions are closed under countable $\Pi$-types and countable conjunctions.
+  Open propositions are closed under countable $\Sigma$-types and finite conjunctions. 
 \end{lemma}
 \begin{proof}
   \begin{itemize}
@@ -755,18 +789,36 @@ and only the last bullet point used countability (and of course Markov's princip
       Define $\gamma(k) = 0$ iff $(\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s_k)) = 0)$. 
       As this is decidable, $\gamma$ is well-defined as binary sequence, and 
       $P\vee Q \leftrightarrow \forall_{k:\mathbb N} \gamma(k) = 0$, thus $P\vee Q$ is closed. 
-    \item Let $P_n$ be a countable family of closed propositions. We will show that 
-      $\forall_{n:\mathbb N} P_n$ is countable as well. 
-      \rednote{Active here}
-  \end{itemize}
-  
+    \item Let $(P_n)_{n:\mathbb N}$ be a countable family of closed propositions. We will show that 
+      $\forall_{n:\mathbb N} P_n$ is closed as well. 
+      By \rednote{countable choice}, we have a function which for each $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
+      such that $P_n \leftrightarrow \alpha_n =\infty$. 
+      Thus $(\forall_{n:\mathbb N} P_n )\leftrightarrow (\forall_{n:\mathbb N}(\alpha_n = \infty))$. 
+      Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
+      $\beta(k) = \alpha_{\pi_0s(k)}(\pi_1 s(k))$. 
+      Note that $\beta = \infty$ iff for every $n:\mathbb N$, and every $m:\mathbb N$, we have $\alpha_n(m) = 0$, 
+      which happens iff $\alpha_n = \infty$. 
+      We conclude that $\forall_{n:\mathbb N} P_n \leftrightarrow \beta = \infty$.
+      Thus closed propositions are closed under countable conjunctions. 
+    \item 
+      Note that $\neg (P \vee Q) \leftrightarrow \neg P \wedge \neg Q$. 
+      If $P,Q$ are open, then $\neg P, \neg Q$ are closed, and their conjunction is closed by the above. 
+      Thus $\neg (P\vee Q)$ is closed, hence $P\vee Q$ is open. 
+    \item Let $(P_n)_{n:\mathbb N}$ be a countable family of open propositions. 
+      We will show that $\exists_{n:\mathbb N}$ is open as well. 
+      By \rednote{countable choice}, we have a function which for each $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
+      such that $P_n \leftrightarrow \alpha_n \neq \infty$. 
+      Thus $(\exists{n:\mathbb N} P_n) \leftrightarrow (\exists{n:\mathbb N}\alpha_n \neq \infty)$. 
+      Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
+      $\beta(k) = \alpha_{\pi_0s(k)}(\pi_1 s(k))$. 
+      Then let $\gamma(k) = 1$ iff $k$ is minimal with $\beta(k) = 1$. 
+      Note that $\beta \neq \infty$ iff there is some $n:\mathbb N$, and some $m:\mathbb N$, with $\alpha_n(m) = 1$, 
+      which happens iff $\alpha_n \neq \infty$. 
+      We conclude that $\exists{n:\mathbb N} P_n \leftrightarrow \gamma \neq \infty$.
+      Thus open propositions are closed under countable disjunctions. 
+  \end{itemize}   
 \end{proof}
 
-\begin{remark}\label{rmkOpenClosedNegation}
-  The negation of an open proposition is a closed proposition.
-  Furthermore, both open and closed propositions are double negation stable by Markov, 
-  meaning that for $P$ open or closed, we have $\neg \neg P \to P$.
-\end{remark}
 
 \begin{lemma}
   For $P$ open and $Q$ closed or $P$ closed and $Q$ open, we have that $(P\to Q) \leftrightarrow (\neg P \vee Q)$. 
@@ -788,6 +840,27 @@ and only the last bullet point used countability (and of course Markov's princip
   Equality in $B:\Boole$ is open and equality in $X:\Stone$ is closed. 
 \end{lemma}
 \begin{proof}
+  Let $B:\Boole$, and let $a,b:B$. We will show that $a=b$ is closed. 
+  Recall that $B = \langle G \rangle / \langle R \rangle$. 
+  And that $(a=b):= (a-b \in \langle R \rangle)$, 
+  where $\langle R \rangle$ is the set of expressions of the form
+  $(\bigvee_{r\in R_0} r) \wedge b$ for $R_0\subseteq R$ finite and $b:\langle G \rangle$ 
+  arbitrary. 
+  In particular, note that $\langle R \rangle$ is countable. 
+  Let $(r_n)_{n:\mathbb N}$ enumerate $ \langle R \rangle $
+  Also note that equality in $\langle G \rangle$ is decidable. 
+  Thus we can define a sequence $\alpha:\Noo$ with $\alpha(k) = 1$ iff $k$ is minimal with $a -b = r_n$. 
+  Now $\alpha \neq \infty $ iff $a = b$. Thus $a=b$ is an open proposition. 
+
+  Let $X:\Stone$ and let $x,y:X$. 
+  Let $X= Sp(B)$ for $B = \langle G \rangle / \langle R \rangle $. 
+  Note that $x=y$ iff $x(g) = y(g)$ for all generators $g:G$. 
+  As $G$ is countable, we can enumerate it's elements as $(g_n)_{n:\mathbb N}$. 
+  As equality in $B$ decidable, we can define a sequence $\alpha:\Noo$ 
+  with $\alpha(k) = 1$ iff $k$ is minimal with $x(g_k) \neq y(g_k)$. 
+  Now $\alpha(k) = 0$ for all $k$ iff for all $k$ we have $x(g_k) = y(g_k)$ and thus $x(g) = y(g)$ for all generators $g$ 
+  and thus $ x= y$. 
+  Thus $(x=y) \leftrightarrow \alpha= \infty$ and $ x=y$ is closed. 
 \end{proof}
 
 
@@ -834,6 +907,41 @@ and only the last bullet point used countability (and of course Markov's princip
   \end{itemize}
 \end{lemma}
 
+\begin{corollary}\label{CorDoubleNegToAx2}
+  If we have for $S:\Stone$ that $\neg \neg S \to ||S||$, 
+  we can conclude that surjections are formal surjections. 
+\end{corollary}
+\begin{proof}
+  \rednote{All the unkonw references are lemmas that still need to be done (or at least linked) without using ax2}
+  Now assume that for $S:\Stone$, we have $\neg \neg S \to ||S||$. 
+  Let $f:B \to B'$ be injective, and let 
+  $g:S' \to S$ correspond to $f$. 
+  To show that $g$ is surjective, we need to show that for any $x:S$, we have $||\sum\limits_{y:S'} g y = x||$. 
+  By our assumption, we can prove this by showing that 
+  \begin{equation}
+    g^{-1}\{x\} := \sum\limits_{y:S'} g y = x
+  \end{equation} is Stone and non-empty. 
+    First note that $\sum\limits_{y:S'} g y = x$ is the pullback of $g$ and the map $1 \to S$ given by $x$.
+      By duality and \Cref{rmkBoolePushouts} the pullback of Stone spaces is a Stone space. 
+   
+
+      By \Cref{lemPointsAreClosed} and \Cref{lemClosedIntersectionOfDecidable}, 
+      $\{x\}$ is a countable intersection of decidable sets $\bigcap_{n:\mathbb N} D_n$. 
+      We have that 
+      \begin{equation}
+        g^{-1}\{x\} = g^{-1}(\bigcap_{n:\mathbb N} D_n) = 
+        \bigcap_{n:\mathbb N} g^{-1}(D_n)
+      \end{equation} 
+      Let $n:\mathbb N$. By Stone duality, the decidable subset $D_n$ corresponds to some $b_n:B$. 
+      As $x\in D_n$, we have that $b_n \neq 0$. 
+      As $f$ is injective, we have that $f(b_n) \neq 0$. 
+      Therefore the corresponding decidable subset, which is $g^{-1}(D_n)$ is not empty. 
+
+      Note that $D_n$ is a closed subset of a Stone space, hence Stone by \Cref{LemClosedSubsetOfStoneIsStone}, 
+      and by the same argument as above $g^{-1}(D_n)$ is Stone. By our assumption $g^{-1}(D_n)$ is thus merely inhabited. 
+      Now by \Cref{lemCompactnessCountableIntersection}, this gives that 
+      $\bigcap_{n:\mathbb N} g^{-1}(D_n)$ is merely inhabited, as required. 
+\end{proof}
 
 
 \rednote{End of activity}
