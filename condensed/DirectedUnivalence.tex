@@ -231,7 +231,93 @@ When applying \cref{tychonov} to $ODisc$ and $CHaus$ we get Tychonov theorem and
 
 \subsection{Factorisation}
 
+TODO reread
 
+\begin{definition}
+Dual subquotient systems $(X,C)$ and $(Y,U)$ such that:
+\begin{itemize}
+\item Given $S:Sub_{X,U}$ any map:
+\[S\to \N\]
+merely factors through a finite type.
+\item Given $P\in C$ and $Q\in U$ we have that:
+\[(P\to Q) \to (\neg P \lor Q)\]
+\end{itemize}
+are called factorial dual subquotient system.
+\end{definition}
+
+\begin{proposition}\label{factorisation-subquotient}
+Assume given factorial dual subquotient systems $(X,C)$ and $(Y,U)$. such that
+such that:
+\begin{itemize}
+\item Given $S:Sub_{X,U}$ any map:
+\[S\to \N\]
+merely factors through a finite type.
+\item Given $P\in C$ and $Q\in U$ we have that:
+\[(P\to Q) \to (\neg P \lor Q)\]
+\end{itemize}
+Then for $S:SubQ_{X,C}$ and $T:SubQ_{Y,U}$, any map:
+\[S\to T\]
+merely factors through a finite type.
+\end{proposition}
+
+\begin{proof}
+\begin{itemize}
+\item First we show the factorisation of any map:
+\[S\to T\]
+for $S:Sub_{X,C}$ and $T:Sub_{Y,U}$. Indeed we then have say:
+\[T = \Sigma_YQ\]
+so the map:
+\[S\to \Sigma_YQ\]
+induce a factorisation:
+\[S\to \mathrm{Fin}(n) \to Y\]
+So we have a factorisation:
+\[S\to \Sigma_{\mathrm{Fin}(n)} Q \to T\]
+Then for any $k:\mathrm{Fin}(n)$ we define:
+\[S_k \subset S\]
+\[s\in S_k := (f(s) = k)\]
+which is decidable and therefore in $C$, so that $\propTrunc{S_k}$ is in $C$. We have that:
+\[\propTrunc{S_k} \to Q(k)\]
+therefore we have
+\[(\neg S_k) \lor Q(k)\]
+Now we just need to remove the $k$ such that $\neg S_k$ to get a factorisation:
+\[S\to \mathrm{Fin}(l) \to \Sigma_{\mathrm{Fin}(n)}Q\]
+\item We show how to factor any map:
+\[S\to \mathrm{Fin}(n)/R\]
+where $S:SubQ_{X,U}$ and $R$ in an equivalence relation in $U$. We do this by induction on $n$, if $n=0,1$ it is clear. Using local choice we get:
+\begin{center}
+\begin{tikzcd}
+S'\ar[d,"p"]\ar[r,"f"] & \mathrm{Fin}(n)\ar[d] \\
+S\ar[r,"g"] & \mathrm{Fin}(n)/R
+\end{tikzcd}
+\end{center}
+Then for all $k:\mathrm{Fin}(n)$ we define:
+\[S'_k \subset S'\]
+\[s'\in S'_k := (f(s) = k)\]
+which is a decidable cover of $S'$. Then we use:
+\[S_k = p(S'_k)\]
+which is a cover of $S$ such that:
+\[(S_k\subset S_l) \to R(k,l)\]
+since $g$ restricted to an $S_k$ has value $[k]$. But since $\propTrunc{S_k\cap S_l}$ is in $C$, this means that:
+\[\neg(S_k\subset S_l) \lor R(k,l)\]
+If all $S_k$ are disjoint we can conclude by factoring through $\mathrm{Fin}(n)$, otherwise we have $R(k,l)$ for some $k\not=l$ and we have that $\mathrm{Fin}(n)/R$ is equivalent to $\mathrm{Fin}(n-1)/R$, we conclude by induction on $n$.
+\item  Now we show how to factor any map:
+\[S\to T\]
+for $S:SubQ_{X,C}$ and $T:SubQ_{Y,U}$, say we have that:
+\[T = (\Sigma_YQ)/R\]
+A first remark is that using local choice we have:
+\begin{center}
+\begin{tikzcd}
+S'\ar[d]\ar[r] & \Sigma_YQ\ar[d] \\
+S\ar[r] & (\Sigma_YQ)/R
+\end{tikzcd}
+\end{center}
+and by factoring the top map using the first point, we can conclude using the last point.
+\end{itemize}
+\end{proof}
+
+\begin{definition}
+Dual subquotient systems $(X,C)$ and $(Y,U)$ obeying the hypothesis of \cref{factorisation-subquotient} are called factorial.
+\end{definition}
 
 \subsection{Scott continuity}
 
