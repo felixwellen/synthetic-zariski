@@ -63,7 +63,11 @@ For each draft, a build command may be found at the start of ```main.tex```.
 
 To put one of the drafts on the arxiv, we have to
 
-- copy everything into one (temporary) folder: all tex-files, zariski.cls, zariski.sty from util and main.bbl.
+- make a temporary folder, e.g. ```synthetic-zariski/projective/tmp``` and run
+  ```
+  .../util/zar-rebase.sh ../../util/
+  ```
+  to put all needed files in ```tmp```.
 - change the paths in zariski.cls and main.tex
 - possibly change formulation from "This is a draft [...]"
 - test by running latexmk
