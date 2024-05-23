@@ -257,9 +257,6 @@
   $B \twoheadrightarrow B / Ker(f) \hookrightarrow C$.
 \end{remark}
 
-\subsection{Countably presented as colimit of finitely presented}
-\input{ProFinite}
-
 \subsection{Examples of countably presented Boolean algebras}
 \begin{example}
   $2$ is the Boolean algebra given by the empty set of generators and no relations. 
@@ -491,7 +488,21 @@ Actually, we will see in \Cref{CorDoubleNegToAx2} that the converse is also true
   then given $x_0:E_0$ there exists
   $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R_n~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
 \end{axiomNum}
-\subsection{Omniscience principles}
+\begin{corollary}
+  In particular, the non-dependent version of the above axiom gives 
+  us countable choice:
+  For any predicate on natural numbers $P$, we have 
+  \begin{equation}
+    \forall_{n:\mathbb N} ||P(n) ||
+    \leftrightarrow 
+    || \forall_{n:\mathbb N} P(n) ||
+  \end{equation}
+\end{corollary}
+
+\section{Countably presented algebras as sequential colimits}
+\input{ProFinite}
+
+\section{Omniscience principles}
 \begin{remark}\label{rmkTrivialBA}
   A Boolean algebra $B / R$ 
   is trivial iff there merely exists some $R_0\subseteq R$ finite with 
@@ -670,9 +681,10 @@ and only the last bullet point used countability (and of course Markov's princip
 \begin{proof}
   Suppose it does, call the retraction $r:B_\infty \times B_\infty \to B_\infty$. 
   Consider $r(0,1)$. 
-  As $r(0,1):B_\infty$, we merely have an representative in $\langle (p_k)_{k:\mathbb N}\rangle$ 
-  expressing $r(0,1)$. This expression contains at most finitely many $p_k$. 
-  Let $N$ be such that $r(0,1)$ does not contatin $p_k$ for $k \geq N$. 
+  As $r(0,1):B_\infty$, we merely have an expression in 
+  $\langle (p_k)_{k:\mathbb N}\rangle$ 
+  representing $r(0,1)$. This expression contains at most finitely many $p_k$. 
+  Let $N$ be such that $r(0,1)$ does not contain $p_k$ for $k \geq N$. 
 
   As maps of Boolean algebras are order-preserving, we have that 
   $r(0,1) \geq r(0,p_l) = p_{2l+1}$ for any $l:\mathbb N$. 
@@ -683,8 +695,9 @@ and only the last bullet point used countability (and of course Markov's princip
   but then $r(0,1) \wedge p_k = 0\neq p_k$ and $r(0,1) \not \geq p_k$.
   Thus $r(0,1)$ is cofinite. 
   By similar reasoning $r(1,0)$ is cofinite. 
-  But now $r(0,1) \wedge r(1,0)$ is cofinite, but this should equal $r((1,0)\wedge (0,1)) = r(0,0) = 0$. 
-  As $0$ is finite and $r(0,1)$ is cofinite, we have a contradiction. 
+  But now $r(0,1) \wedge r(1,0)$ is cofinite, 
+  but this should equal $r((1,0)\wedge (0,1)) = r(0,0) = 0$. 
+  As $0$ is finite, we have a contradiction. 
 
   Thus there does not exist a retraction of $f$. 
 \end{proof}
@@ -743,8 +756,9 @@ and only the last bullet point used countability (and of course Markov's princip
   Given any sequence $\alpha:\Noo$, because it is $1$ at most once, we have that 
   $\alpha(n) = 0 \vee \alpha(n+1) = 0$ for all $n:\mathbb N$. Applying the above equation then gives LLPO for $\alpha$. 
 \end{proof}
-\subsection{Topology}
-\rednote{Active}
+
+\section{Topology}
+\subsection{Topology on propositions}
 \begin{definition}
   Let $P$ be a proposition. 
   \begin{itemize}
@@ -774,45 +788,59 @@ and only the last bullet point used countability (and of course Markov's princip
 \end{remark}
 
 \begin{lemma}\label{lemOpenClosedDisjunctionConjunction}
-  Closed propositions are closed under countable $\Pi$-types and countable conjunctions.
-  Open propositions are closed under countable $\Sigma$-types and finite conjunctions. 
+  Closed propositions are closed under countable conjunctions %$\Pi$-types 
+  and finite disjunctions.
+  Open propositions are closed under countable disjunctions %$\Sigma$-types 
+  and finite conjunctions. 
 \end{lemma}
 \begin{proof}
   \begin{itemize}
     \item Let $P,Q$ be closed. We will show $P\vee Q$ closed as well. 
       Assume $P\leftrightarrow \alpha = \infty, Q \leftrightarrow \beta = \infty$. 
-      Now $P\vee Q \leftrightarrow ((\forall_{n:\mathbb N} \alpha(n) = 0) \vee (\forall_{n:\mathbb N} \beta(n) = 0))$
+      Now $P\vee Q \leftrightarrow 
+      ((\forall_{n:\mathbb N} \alpha(n) = 0) 
+      \vee (\forall_{n:\mathbb N} \beta(n) = 0))$
       By \Cref{corAlternativeLLPO}, we have that 
-      $P\vee Q \leftrightarrow \forall_{n:\mathbb N}  \forall_{m:\mathbb N}  (\alpha(n) = 0 \vee \beta(m) = 0)$
-      For $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective, this in turn is equivalent to 
+      $P\vee Q \leftrightarrow 
+      \forall_{n:\mathbb N}  \forall_{m:\mathbb N}  (\alpha(n) = 0 \vee \beta(m) = 0)$
+      For $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective, 
+      this in turn is equivalent to 
       $\forall_{k:\mathbb N}  (\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s_k)) = 0)$. 
       Define $\gamma(k) = 0$ iff $(\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s_k)) = 0)$. 
       As this is decidable, $\gamma$ is well-defined as binary sequence, and 
       $P\vee Q \leftrightarrow \forall_{k:\mathbb N} \gamma(k) = 0$, thus $P\vee Q$ is closed. 
-    \item Let $(P_n)_{n:\mathbb N}$ be a countable family of closed propositions. We will show that 
+    \item Let $(P_n)_{n:\mathbb N}$ be a countable family of closed propositions. 
+      We will show that 
       $\forall_{n:\mathbb N} P_n$ is closed as well. 
-      By \rednote{countable choice}, we have a function which for each $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
+      By countable choice, we have a function which for each 
+      $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
       such that $P_n \leftrightarrow \alpha_n =\infty$. 
-      Thus $(\forall_{n:\mathbb N} P_n )\leftrightarrow (\forall_{n:\mathbb N}(\alpha_n = \infty))$. 
+      Thus $(\forall_{n:\mathbb N} P_n )\leftrightarrow 
+      (\forall_{n:\mathbb N}(\alpha_n = \infty))$. 
       Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
       $\beta(k) = \alpha_{\pi_0s(k)}(\pi_1 s(k))$. 
-      Note that $\beta = \infty$ iff for every $n:\mathbb N$, and every $m:\mathbb N$, we have $\alpha_n(m) = 0$, 
+      Note that $\beta = \infty$ iff for every $n:\mathbb N$, 
+      and every $m:\mathbb N$, we have $\alpha_n(m) = 0$, 
       which happens iff $\alpha_n = \infty$. 
       We conclude that $\forall_{n:\mathbb N} P_n \leftrightarrow \beta = \infty$.
       Thus closed propositions are closed under countable conjunctions. 
     \item 
       Note that $\neg (P \vee Q) \leftrightarrow \neg P \wedge \neg Q$. 
-      If $P,Q$ are open, then $\neg P, \neg Q$ are closed, and their conjunction is closed by the above. 
+      If $P,Q$ are open, then $\neg P, \neg Q$ are closed, 
+      and their conjunction is closed by the above. 
       Thus $\neg (P\vee Q)$ is closed, hence $P\vee Q$ is open. 
     \item Let $(P_n)_{n:\mathbb N}$ be a countable family of open propositions. 
       We will show that $\exists_{n:\mathbb N}$ is open as well. 
-      By \rednote{countable choice}, we have a function which for each $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
+      By countable choice, we have a function which for each 
+      $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
       such that $P_n \leftrightarrow \alpha_n \neq \infty$. 
-      Thus $(\exists{n:\mathbb N} P_n) \leftrightarrow (\exists{n:\mathbb N}\alpha_n \neq \infty)$. 
+      Thus $(\exists{n:\mathbb N} P_n) \leftrightarrow 
+      (\exists{n:\mathbb N}\alpha_n \neq \infty)$. 
       Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
       $\beta(k) = \alpha_{\pi_0s(k)}(\pi_1 s(k))$. 
       Then let $\gamma(k) = 1$ iff $k$ is minimal with $\beta(k) = 1$. 
-      Note that $\beta \neq \infty$ iff there is some $n:\mathbb N$, and some $m:\mathbb N$, with $\alpha_n(m) = 1$, 
+      Note that $\beta \neq \infty$ iff there is some $n:\mathbb N$, 
+      and some $m:\mathbb N$, with $\alpha_n(m) = 1$, 
       which happens iff $\alpha_n \neq \infty$. 
       We conclude that $\exists{n:\mathbb N} P_n \leftrightarrow \gamma \neq \infty$.
       Thus open propositions are closed under countable disjunctions. 
@@ -820,7 +848,7 @@ and only the last bullet point used countability (and of course Markov's princip
 \end{proof}
 
 
-\begin{lemma}
+\begin{lemma}\label{OpenClosedImplication}
   For $P$ open and $Q$ closed or $P$ closed and $Q$ open, we have that $(P\to Q) \leftrightarrow (\neg P \vee Q)$. 
 \end{lemma}
 \begin{proof}
@@ -862,8 +890,22 @@ and only the last bullet point used countability (and of course Markov's princip
   and thus $ x= y$. 
   Thus $(x=y) \leftrightarrow \alpha= \infty$ and $ x=y$ is closed. 
 \end{proof}
+\begin{corollary}\label{LemInhabitedOfStoneIsClosed}
+  Let $B$ be a Boolean algebra.
+  Recall from \Cref{LemSurjectionsFormalToCompleteness} that $0=1 \to \neg Sp(B)$. 
+  Also by Stone duality, we had that $\neg Sp(B)$ implies that 
+  $B = 2^{Sp(B)} = 2^\bot= 1$, so $0=1$ in $B$. 
+  We conclude that $0=1 \leftrightarrow \neg Sp(B)$. 
+  As $0=1$ is open, so is $\neg Sp(B)$. 
+  Thus $\neg \neg Sp(B)$ is closed, and by \Cref{LemSurjectionsFormalToCompleteness} 
+  so is $||Sp(B)||$. 
+  Thus for Stone types, being inhabited is a closed proposition. 
+\end{corollary}
 
 
+
+
+\subsection{The topology of Stone spaces}
 \begin{definition}
   For $S$ a set and $D\subseteq S$ an arbitrary subset, we call $D$ decidable/open/closed 
   iff for every $x:S$, $D(x)$ is decidable/open/closed. 
@@ -884,15 +926,38 @@ and only the last bullet point used countability (and of course Markov's princip
   \begin{itemize}
     \item $(i) \to (ii)$.
       First, remark that decidable subsets $D$ give terms $f_D:2^{Sp(B)}$, by sending 
-      $f(\alpha) = 1$ if $D(\alpha)$ and $f(\alpha) = 0$ if $\neg D(\alpha)$. 
+      $f(x) = 1$ if $D(x)$ and $f(x) = 0$ if $\neg D(x)$. 
       Stone duality then gives that this term corresponds to evaluation at some $b:B$. 
-      Therefore $D(\alpha) \iff f(\alpha) = 1 \iff  \alpha(b) = 1$, as required. 
-    \item $(ii) \to (1)$
-      To decide $D(\alpha)$ is the same as to evaluate whether $\alpha(b) = 1$, which is decidable. 
-    \item $(ii) \to (iii)$. If there exists a $b:B$ such that $D$ is the indicator of $b$ in the above way, 
-      then we need only consider the generators occuring in a finite expression of $b$. 
-    \item $(iii) \to (i)$. Because being decidable is a proposition, we can untruncate our assumption. 
-      Suppose $D$ only depends on $n$ generators, then we need to only check the values 
+      Therefore $D(x) \iff f(x) = 1 \iff  x(b) = 1$, as required. 
+    \item $(i) \to (iv)$. 
+      Follows from the fact that decidable propositions are 
+      both open and closed. 
+      Let $p$ be decidable. 
+      To see $p$ is closed, consider the sequence $\alpha:\Noo$ given by 
+      $\alpha(n) = 0$ iff $p$. Now $\alpha =\infty $ iff $p$ as well. 
+      To see $p$ is open, consider the sequence $\alpha:\Noo$ given by 
+      $\alpha(0) = 1$ iff $p$ and $\alpha(n) = 0$ for $n>0$. 
+      Then $\alpha\neq \infty$ iff $p$ holds. 
+    \item $(ii) \to (i)$
+      Let $D$ be as in $(ii)$. 
+      For $y:Sp(B)$, we have that 
+      $D(y)$ iff $y(b) = 1$, which is decidable, 
+      as $x = 0 \vee x = 1$ for all $x:2$. 
+    \item $(ii) \to (iii)$. 
+      Suppose there exists a $b:B$ such that $D(x)$ iff $x(b) = 1$. 
+      As $b$ is expressable using only finitely many generators $G_0$
+      we need to only evaluate $x(g)$ for all $g:G_0$ to 
+      calculate $x(b)$. 
+      In particular, if $x(g) = y(g)$ for all $g:G_0$, then 
+      $x(b) = 1 \leftrightarrow y(b) = 1$. 
+      Hence $D(x) \leftrightarrow D(y)$. 
+    \item $(iv) \to (i)$. 
+      Suppose $D\subseteq S$ is both open and closed. 
+      Note that $D(x) \to D(x)$. 
+      Here $D(x)$ is both open and closed. 
+      By \Cref{OpenClosedImplication}, we thus get 
+      $D(x) \vee \neg D(x)$. Thus $D$ is decidable. 
+    \item $(iii) \to (i)$  \rednote{TODO}
   \end{itemize}
 \end{proof}
 \begin{lemma}
