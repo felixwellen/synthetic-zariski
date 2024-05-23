@@ -1,0 +1,50 @@
+Here we start studying the shape modality.
+
+\subsection{The shape of the circle is the circle}
+
+We need $H^1(\mathbb{I},\Z) = 0$ for this to work.
+
+\begin{proposition}
+We have that:
+\[\shape (\R/\Z) = B\Z\]
+\end{proposition}
+
+\begin{proof}
+The fibers of the map:
+\[\R\to \R/\Z\]
+are $\Z$-torsors, as for any group quotient. This means we have a fiber sequence:
+\[\R \to \R/\Z \to B\Z\]
+We check the second map is $\shape$-localisation. We have that $B\Z$ is $\shape$-local by \cref{delooping-overtly-discrete-local}. Since $B\Z$ is connected we just need to prove that $\R$ is $\shape$-contractible to conclude. But $0:\R$ and for any $x:\R$ there is $f:\mathbb{I}\to\R$ such that $f(0)=0$ and $f(1)=x$ so we can conclude.
+\end{proof}
+
+\subsection{Finite homotopical CW complex}
+
+\begin{lemma}\label{finite-homotopy-groups-countably-presented}
+Let $X$ be a finite homotopical CW complex, then for any $x:X$ and any $n$ we have that $\pi_n(X,x)$ is a countably presented abelian group.
+\end{lemma}
+
+\begin{proof}
+TODO maybe find a reference?
+\end{proof}
+
+\begin{proposition}
+Let $X$ be a finite homotopical CW complex, then $X$ is $\shape$-local.
+\end{proposition}
+
+\begin{proof}
+We decompose $X$ as its Postnikov tower:
+\[\propTrunc{X}_{n+1}\to \propTrunc{X}_n\to\cdots \to \propTrunc{X}_0\]
+First we show by induction on $n$ then $\propTrunc{X}_n$ is $\shape$-local:
+\begin{itemize}
+\item We have that $\propTrunc{X}_0$ is a finite set so it is $\shape$-local.
+\item Assuming $\propTrunc{X}_n$ is $\shape$-local, it is enough to prove that the fibers of the map:
+\[\propTrunc{X}_{n+1}\to \propTrunc{X}_n\]
+are $\shape$-local. But they merely are of the form $B_n\pi_n(X,x)$ for some $x:X$, but $\pi_n(X,x)$ is overtly discrete by \cref{finite-homotopy-groups-countably-presented} so that $B_n\pi_n(X,x)$ is $\shape$-local by \cref{delooping-overtly-discrete-local}.
+\end{itemize}
+Therefore the limit of the Postnikov tower is $\shape$-local as a limit of $\shape$-local group, and as a finite homotopical CW complex $X$ is the limit of its Postnikov tower (why TODO, maybe optimistic?).
+\end{proof}
+
+\begin{remark}
+By Anel / Barton "Choice axioms and Postnikov completeness" we know that Postnikov completion and hypercompletion agree in our setting because we have countable choice. Do we have hypercompleteness?
+\end{remark}
+
