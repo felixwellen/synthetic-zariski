@@ -20,25 +20,30 @@
 %%  setting of univalent type theory with the 3 axioms described in \cite{draft}.
 %%  ALREADY IN THE INTRODUCTION
 
- The following result also holds for a general \emph{connected}\footnote{If $e(1-e) = 0$ then $e=0$ or $e=1$.} ring,
- without assuming a finite presentation. 
+% The following result also holds for a general \emph{connected}\footnote{If $e(1-e) = 0$ then $e=0$ or $e=1$.} ring,
+% without assuming a finite presentation. 
 
  \begin{lemma}\label{stand}
-   Let $A$ be a connected, finitely presented $R$-algebra, then
+   Let $A$ be a \emph{connected}\footnote{If $e(1-e) = 0$ then $e=0$ or $e=1$.} ring, then
    an invertible element of $A[X,1/X]$ can be written $X^N\Sigma a_nX^n$ with $N$ in $\Z$
    and $a_0$ unit and $a_n$ nilpotent if $n\neq 0$.
  \end{lemma}
 
  \begin{proof}
-   Let $P:A[X,1/X]$ be invertible, with inverse $Q:A[X,1/X]$, and $P=\sum_ia_iX^i$ and $Q=\sum_ib_iX^i$.
-   By duality we can view the coefficients as functions $a_i,b_i:\Spec(A)\to R$.
-   For all $x:\Spec(A)$, we get an invertible $P_x:R[X,1/X]$ by evaluating the coefficients of $P$ at $x$.
-   Then $P_x\cdot Q_x=1$ and in particular $1=\sum_{i+j=0}a_ib_j$, so by locality of $R$, we have $i$ such that $a_i$ is invertible.
-   Without loss of generality, we assume $i=0$ and want to show $\neg\neg (a_j=0)$ for $j\neq 0$.
-   Since we prove a negated proposition, we can assume that we have $l,k$ minimal with $a_l$ and $b_k$ invertible.
-   Then we must have $k+l=0$ because we would have $0=a_lb_k$ otherwise.
-   $k$ was minimal, so it is $0$ and $l$ is $0$ as well.
-   The same reasoning applies for a maximal choice of $k$.
+   Let $P = \sum_i a_iX^i:A[X,1/X]$ be invertible.
+   The result is clear if $A$ is an integral domain. Let $B(A)$ is the constructible spectrum of $A$
+   with the two generating maps $D(a)$ and $V(a)$ for $a$ in $A$ \cite{LQ}. The argument for an integral
+   domain, looking at $D(a)$ as $a\neq 0$ and $V(a)$ as $a =0$, shows that we have $\sup_i D(a_i) = 1$
+   and $D(a_ia_j) = 0$ for $i\neq j$. Since $A$ is connected, this implies that exactly one $a_i$ is a unit,
+   and all the other coefficient are nilpotent.
+   %% By duality we can view the coefficients as functions $a_i,b_i:\Spec(A)\to R$.
+   %% For all $x:\Spec(A)$, we get an invertible $P_x:R[X,1/X]$ by evaluating the coefficients of $P$ at $x$.
+   %% Then $P_x\cdot Q_x=1$ and in particular $1=\sum_{i+j=0}a_ib_j$, so by locality of $R$, we have $i$ such that $a_i$ is invertible.
+   %% Without loss of generality, we assume $i=0$ and want to show $\neg\neg (a_j=0)$ for $j\neq 0$.
+   %% Since we prove a negated proposition, we can assume that we have $l,k$ minimal with $a_l$ and $b_k$ invertible.
+   %% Then we must have $k+l=0$ because we would have $0=a_lb_k$ otherwise.
+   %% $k$ was minimal, so it is $0$ and $l$ is $0$ as well.
+   %% The same reasoning applies for a maximal choice of $k$.
  \end{proof}
  
  Using this Lemma we deduce the following.

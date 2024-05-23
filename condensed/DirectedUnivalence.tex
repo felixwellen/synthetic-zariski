@@ -1,3 +1,4 @@
+% !TEX encoding = UTF-8 Unicode
 \subsection{Subquotient systems}
 
 \begin{definition}
@@ -231,7 +232,99 @@ When applying \cref{tychonov} to $ODisc$ and $CHaus$ we get Tychonov theorem and
 
 \subsection{Factorisation}
 
+\begin{proposition}\label{factorisation-subquotient}
+Assume given dual subquotient systems $(X,C)$ and $(Y,U)$. such that
+such that:
+\begin{itemize}
+\item Given $S:Sub_{X,U}$ any map:
+\[S\to \N\]
+merely factors through a finite type.
+\item Given $P\in C$ and $Q\in U$ we have that:
+\[(P\to Q) \to (\neg P \lor Q)\]
+\end{itemize}
+Then for $S:SubQ_{X,C}$ and $T:SubQ_{Y,U}$, any map:
+\[S\to T\]
+merely factors through a finite type.
+\end{proposition}
 
+\begin{proof}
+We proceed in three steps:
+\begin{enumerate}[(i)]
+\item First we show the factorisation of any map:
+\[S\to T\]
+for $S:Sub_{X,C}$ and $T:Sub_{Y,U}$. Indeed we then we merely have $Q:Y\to U$ such that:
+\[T = \Sigma_YQ\]
+so the map:
+\[S\to \Sigma_YQ\]
+induces a map:
+\[S\to Y\]
+which we factor as:
+\[S\to \mathrm{Fin}(n) \to Y\]
+This gives a factorisation of the starting map as follows:
+\[S\to \Sigma_{\mathrm{Fin}(n)} Q \to T\]
+Then for any $k:\mathrm{Fin}(n)$ we define:
+\[S_k \subset S\]
+\[s\in S_k := (f(s) = k)\]
+which is decidable and therefore in $C$, so that $\propTrunc{S_k}$ is in $C$. We have that:
+\[\propTrunc{S_k} \to Q(k)\]
+therefore we have
+\[\neg S_k \lor Q(k)\]
+Now we just need to remove the $k$ such that $\neg S_k$ to get a factorisation:
+\[S\to \mathrm{Fin}(l) \to \Sigma_{\mathrm{Fin}(n)}Q\]
+\item We show how to factor any map:
+\[S\to \mathrm{Fin}(n)/R\]
+where $S:SubQ_{X,U}$ and $R$ in an equivalence relation in $U$. We do this by induction on $n$, if $n=0,1$ it is clear. Using local choice we get:
+\begin{center}
+\begin{tikzcd}
+S'\ar[d,"p"]\ar[r,"f"] & \mathrm{Fin}(n)\ar[d] \\
+S\ar[r,"g"] & \mathrm{Fin}(n)/R
+\end{tikzcd}
+\end{center}
+Then for all $k:\mathrm{Fin}(n)$ we define:
+\[S'_k \subset S'\]
+\[s'\in S'_k := (f(s) = k)\]
+which is a decidable cover of $S'$. Then we use:
+\[S_k = p(S'_k)\]
+which is a cover of $S$ such that:
+\[(S_k\cap S_l) \to R(k,l)\]
+since $g$ restricted to an $S_i$ has value $[i]$. But since $\propTrunc{S_k\cap S_l}$ is in $C$, this means that:
+\[\neg(S_k\cap S_l) \lor R(k,l)\]
+If for all $k\not=l$ we have $\neg(S_k\cap S_l)$ then we can conclude by factoring through $\mathrm{Fin}(n)$, otherwise we have $R(k,l)$ for some $k\not=l$ and we have that $\mathrm{Fin}(n)/R$ is equivalent to $\mathrm{Fin}(n-1)/R$ where we have removed $l$. We conclude by induction on $n$.
+\item  Now we show how to factor any map:
+\[S\to T\]
+for $S:SubQ_{X,C}$ and $T:SubQ_{Y,U}$. There is $Q:Y\to U$ and $R$ an $U$-valued equivalence relation on $\Sigma_YQ$ such that:
+\[T = (\Sigma_YQ)/R\]
+Using local choice we have that:
+\begin{center}
+\begin{tikzcd}
+S'\ar[d]\ar[r] & \Sigma_YQ\ar[d] \\
+S\ar[r] & (\Sigma_YQ)/R
+\end{tikzcd}
+\end{center}
+and by factoring the top map using (i), we can get a factorisation:
+\[S\to \mathrm{Fin}(n)/R\to (\Sigma_YQ)/R\]
+and we conclude using (ii).
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+Dual subquotient systems $(X,C)$ and $(Y,U)$ obeying the hypothesis of \cref{factorisation-subquotient} are called factorial.
+\end{definition}
+
+\begin{remark}
+We have that $St = (2^\N,\mathrm{Closed})$ and $Od = (\N,\mathrm{Open})$ are factorial. We need to check the following:
+\begin{itemize}
+\item Given a stone space $S$, any map $S\to\N$ merely factors through $\N$. This is known.
+\item Given $P$ closed and $Q$ open, we have that:
+\[(P\to Q) = \neg P \lor Q\]
+We just note that as $\neg P \lor Q$ is open it is $\neg\neg$-stable, and the rest is just intuitionistic logic.
+\end{itemize}
+From this we know that for $S$ compact Hausdorff and $T$ overtly discrete, any map:
+\[S\to T\]
+merely factors through a finite type. 
+\end{remark}
 
 \subsection{Scott continuity}
+
+
 
