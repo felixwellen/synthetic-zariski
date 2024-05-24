@@ -5,15 +5,17 @@ Due to a *bug* in the mailinglist-service of chalmers, it does not work to just 
 This is a latex documentation of our understanding of the synthetic theory of the Zariski-Topos
 and related ideas. The drafts below are currently built hourly -
 if you want to make sure you are viewing the latest built, CTRL+F5 should clear all caches in most browsers.
-There are currently the following parts:
+There are currently the following preprints:
 - Foundations ([latest pdf](https://felix-cherubini.de/iag.pdf), [arxiv](https://arxiv.org/abs/2307.00073))
+- Automorphisms of and line bundles on projective space ([latest pdf](https://felix-cherubini.de/projective.pdf), [arxiv](https://arxiv.org/abs/2405.13916), [talk](https://www.youtube.com/watch?v=SS-47RKmnVc))
+
+And the following drafts and notes:
 - Čech-Cohomology ([early draft pdf](https://felix-cherubini.de/cech.pdf))
-- Differential Geometry/étale maps ([early draft pdf](https://felix-cherubini.de/diffgeo.pdf))
+- Differential Geometry/étale maps ([draft pdf](https://felix-cherubini.de/diffgeo.pdf))
 - Proper Schemes ([early draft pdf](https://felix-cherubini.de/proper.pdf))
 - Topology of Synthetic Schemes ([early draft pdf](https://felix-cherubini.de/topology.pdf))
 - $\mathbb A^1$-homotopy theory ([early draft pdf](https://felix-cherubini.de/A1-homotopy.pdf))
 - Algebraic spaces and stacks ([very early draft pdf](https://felix-cherubini.de/stacks.pdf))
-- Automorphisms of and line bundles on projective space ([very early draft pdf](https://felix-cherubini.de/projective.pdf))
 - More general topologies, in particular fppf ([very early draft pdf](https://felix-cherubini.de/sheaves.pdf))
 - Calculations with (elliptic) curves and divisors ([very early draft pdf](https://felix-cherubini.de/elliptic.pdf))
 - Synthetic stone duality ([very early draft pdf](https://felix-cherubini.de/condensed.pdf))
