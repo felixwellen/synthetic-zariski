@@ -1,8 +1,28 @@
 Here we start studying the shape modality.
 
-\subsection{The shape of the circle is the circle}
+\subsection{Deloopings of overtly discrete abelian groups are local}
 
-We need $H^1(\mathbb{I},\Z) = 0$ for this to work.
+\begin{lemma}\label{delooping-overtly-discrete-local}
+For all $A$ overtly discrete abelian group and any $k:\N$, we have that:
+\[B_kA\]
+is $\shape$-local.
+\end{lemma}
+
+\begin{proof}
+We proceed by induction on $n$. 
+\begin{itemize}
+\item For $k=0$ we use $H^0(\mathbb{I},A) = A$, for which is is enough to know that maps in $\mathbb{I}\to 2$ are constant. 
+\item For $k=n+1$, by induction hypothesis we know that $B_{n+1}A$ is $\shape$-separated, and we merely have a lift by \cref{vanishing-cohomology-interval}.
+\end{itemize}
+\end{proof}
+
+\begin{corollary}
+Let $f:X\to Y$ be a shape equivalence and $A$ be an overtly discrete abelian group. Then for all $k$ we have:
+\[f^* : H^k(Y,A) \simeq H^k(X,A)\]
+\end{corollary}
+
+
+\subsection{The shape of the circle is the circle}
 
 \begin{proposition}
 We have that:
@@ -17,7 +37,15 @@ are $\Z$-torsors, as for any group quotient. This means we have a fiber sequence
 We check the second map is $\shape$-localisation. We have that $B\Z$ is $\shape$-local by \cref{delooping-overtly-discrete-local}. Since $B\Z$ is connected we just need to prove that $\R$ is $\shape$-contractible to conclude. But $0:\R$ and for any $x:\R$ there is $f:\mathbb{I}\to\R$ such that $f(0)=0$ and $f(1)=x$ so we can conclude.
 \end{proof}
 
-\subsection{Finite homotopical CW complex}
+
+\subsection{Cellular cohomology for topological CW complex}
+
+TODO
+
+
+\subsection{Finite homotopical CW complex are the shape of topological CW complexes}
+
+WIP TODO???
 
 \begin{lemma}\label{finite-homotopy-groups-countably-presented}
 Let $X$ be a finite homotopical CW complex, then for any $x:X$ and any $n$ we have that $\pi_n(X,x)$ is a countably presented abelian group.
@@ -33,7 +61,7 @@ Let $X$ be a finite homotopical CW complex, then $X$ is $\shape$-local.
 
 \begin{proof}
 We decompose $X$ as its Postnikov tower:
-\[\propTrunc{X}_{n+1}\to \propTrunc{X}_n\to\cdots \to \propTrunc{X}_0\]
+\[\cdots\to \propTrunc{X}_{n+1}\to \propTrunc{X}_n\to\cdots \to \propTrunc{X}_0\]
 First we show by induction on $n$ then $\propTrunc{X}_n$ is $\shape$-local:
 \begin{itemize}
 \item We have that $\propTrunc{X}_0$ is a finite set so it is $\shape$-local.
@@ -41,7 +69,7 @@ First we show by induction on $n$ then $\propTrunc{X}_n$ is $\shape$-local:
 \[\propTrunc{X}_{n+1}\to \propTrunc{X}_n\]
 are $\shape$-local. But they merely are of the form $B_n\pi_n(X,x)$ for some $x:X$, but $\pi_n(X,x)$ is overtly discrete by \cref{finite-homotopy-groups-countably-presented} so that $B_n\pi_n(X,x)$ is $\shape$-local by \cref{delooping-overtly-discrete-local}.
 \end{itemize}
-Therefore the limit of the Postnikov tower is $\shape$-local as a limit of $\shape$-local group, and as a finite homotopical CW complex $X$ is the limit of its Postnikov tower (why TODO, maybe optimistic?).
+Therefore the limit of the Postnikov tower is $\shape$-local as a limit of $\shape$-local group, and we can conclude as a finite homotopical CW complex $X$ is the limit of its Postnikov tower (why TODO, maybe optimistic?).
 \end{proof}
 
 \begin{remark}

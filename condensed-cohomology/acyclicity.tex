@@ -1,0 +1,190 @@
+\subsection{Stone spaces are acyclic}
+
+We should prove for $S$ stone and $A$ an overtly discrete abelian group, for all $n>0$ we have:
+\[H^n(S,A) = 0\]
+
+\begin{lemma}\label{vanishing-1-cohomology-stone}
+Let $S$ be Stone and $A_x$ an overtly discrete abelian group depending on $x:S$. Then:
+\[H^1(S,A) = 0\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+We (T \& H) follow David's proof in SAG to go from $1$ to all $n$.
+
+\begin{lemma}\label{eilenberg-exponentials-auxiliary}
+Assume for all $S$ Stone and $A$ overtly discrete abelian group we have that:
+\[H^k(S,A) = 0\] 
+for all $0<k<n$. Then:
+\begin{itemize}
+\item For all $S$ Stone and $A$ overtly discrete abelian group, for all $k<n$ the map:
+\[K(A^S,k) \to K(A,k)^S\]
+is an equivalence.
+\item For all $S$ Stone and $A$ overtly discrete abelian group, the map:
+\[K(A^S,n) \to K(A,n)^S\]
+is an embedding.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+We proceed by induction on $n$. If $n=0$ this is clear as we always have that $K(A^S,0) = K(A,0)^S$.
+
+Assume it holds for $n$, then:
+\begin{itemize} 
+\item We need to prove that the embedding:
+\[K(A^S,n) \to K(A,n)^S\]
+is an equivalence. If $n=0$ it is immediate and otherwise by $H^n(S,A)=0$ we know that $K(A,n)^S$ is connected, so the embedding is surjective and therefore an equivalence. 
+\item We need to prove that the map:
+\[K(A^S,n+1) \to K(A,n+1)^S\]
+is an embedding, since the source is connected it is enough to prove that:
+\[\Omega K(A^S,n+1) \to \Omega (K(A,n+1)^S)\]
+is an equivalence but this is the previous bullet-point.
+\end{itemize}
+\end{proof}
+
+\begin{theorem}\label{vanishing-cohomology-stone}
+Let $S$ be Stone and $A_x$ an overtly discrete abelian group depending on $x:S$. Then for all $n>0$ we have that:
+\[H^n(S,A) = 0\]
+\end{theorem}
+
+\begin{proof}
+We proceed by induction on $k$. For $k=1$ it is \cref{vanishing-1-cohomology-stone}.
+
+Assume it hold for for all $0<k<n$ we want to prove it for $n$. Assume:
+\[\alpha : \prod_{x:S} K(A_x,k+1)\]
+By local choice we have a surjective map:
+\[f:\sum_{x:S}T_x\to S\]
+with $T_x$ Stone such that we merely have:
+\[\prod_{x:S} T_x\to (\alpha(x) = *)\]
+This means that the image of $\alpha$ under the diagonal map:
+\[\prod_{x:S} K(A_x,k+1) \to \prod_{x:S} K(A_x,k+1)^{T_x}\]
+merely is zero.
+
+By \cref{eilenberg-exponentials-auxiliary} it means that for all $0<k<n$ the image of $\alpha$ by the map:
+\[\prod_{x:S} K(A_x,k+1) \to \prod_{x:S} K(A_x^{T_x},k+1)\]
+merely is $0$, which means that the map:
+\[H^{k+1}(S,A) \to H^{k+1}(S,A^T)\]
+is $0$. 
+
+Then we consider the exact sequence depending on $x:S$:
+\[0\to A_x\to A_x^{T_x}\to L_x\to 0\]
+which through the long exact sequence and the cancellation we just proved gives a short exact sequence:
+\[0 \to H^{n-1}(S,A^T) \to H^{n-1}(S,L)\to H^n(S,A)\to 0\]
+from which we conclude the theorem holds for $n$.
+\end{proof}
+
+\begin{corollary}\label{eilenberg-exponentials}
+For all $S$ Stone, $A$ overtly discrete abelian group  and $n$ we have that the map:
+\[K(A^S,k) \to K(A,k)^S\]
+is an equivalence.
+\end{corollary}
+
+\begin{proof}
+From \cref{eilenberg-exponentials-auxiliary} and \cref{vanishing-cohomology-stone}.
+\end{proof}
+
+The main point of the next corollary is to show \v{C}ech cohomology agree with the usual cohomology:
+
+\begin{lemma}\label{inductive-definition-cohomology}
+Assume a surjective map:
+\[f:S\to X\]
+such that $S$ is Stone and for all $x:S$ the fiber $T_x$ of $f$ over $x$ is Stone.  
+
+Given $A$ an overtly discrete abelian group depending on $S$ we have that for all $n\geq 1$:
+\[H^{n-1}(X,A^T) \to H^{n-1}(X,L)\to H^n(X,A)\to 0\]
+where $L = A^T/A$.
+\end{lemma}
+
+\begin{proof}
+Using the long exact sequence associated to:
+\[0\to A\to A^T\to L\to 0\]
+by \cref{vanishing-cohomology-stone} it is enough to prove that for all $n$ we have:
+\[H^n(X,A^T) = H^n{S,A}\]
+But by \cref{eilenberg-exponentials} we have that:
+\[\prod_{x:X}K(A_x^{T_x},n) = \prod_{x:S}K(A_x,n)\]
+\end{proof}
+
+
+\subsection{\v{C}ech cohomology}
+
+\begin{definition}
+Assume given a surjective map:
+\[f:S\to X\]
+with $S$ is Stone for all $x:X$ the fiber $T_x$ of $f$ over $x$ is Stone, as well as $A_x$ a family of overtly discrete abelian groups depending on $x:X$.
+
+Then we define the \v{C}ech complex by:
+\[\prod_{x:X}A_x^{T_x} \to \prod_{x:X}A_x^{T_x\times T_x} \to \cdots\]
+with the maps define as one expect.
+
+Then the \v{C}ech cohomology:
+\[\check{H}^k(X,A)\]
+is defined as the $k$-th homology group of the \v{C}ech complex.
+\end{definition}
+
+\begin{lemma}
+Natural transformation between Cech and usual cohomology
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+Assume given a surjective map:
+\[f:S\to X\]
+with $S$ is Stone for all $x:X$ the fiber $T_x$ of $f$ over $x$ is Stone.
+
+If we are given a short exact sequence of overtly discrete abelian group:
+\[0\to A_x\to B_x\to C_x\to 0\]
+depending on $x:X$, there is a long exact sequence of \v{C}ech cohomology groups:
+\[\check{H}^0(X,A) \to\check{H}^0(X,B) \to\check{H}^0(X,C) \to\check{H}^1(X,A) \to\check{H}^1(X,B) \to\check{H}^1(X,C) \to\cdots \]
+\end{lemma}
+
+\begin{proof}
+We just use the fact that all elements $S$, $S\times_XS$,$\cdots$ in the \v{C}ech complex are Stone space, so a short exact sequence of modules induce a short exact of \v{C}ech complexes by \cref{vanishing-cohomology-stone}.
+\end{proof}
+
+\begin{lemma}\label{inductive-definition-cech-cohomology}
+Assume given a surjective map:
+\[f:S\to X\]
+with $S$ is Stone for all $x:X$ the fiber $T_x$ of $f$ over $x$ is Stone, as well as $A_x$ a family of overtly discrete abelian groups depending on $x:X$.
+
+For all $n\geq 1$:
+\[\check{H}^{n-1}(X,A^T) \to \check{H}^{n-1}(X,L)\to \check{H}^n(X,A)\to 0\]
+\end{lemma}
+
+\begin{proof}
+It is enough to prove $\check{H}^n(X,A^T) = 0$ for all $n\geq 1$. TODO
+\end{proof}
+
+\begin{theorem}
+Assume given a surjective map:
+\[f:S\to X\]
+with $S$ is Stone for all $x:X$ the fiber $T_x$ of $f$ over $x$ is Stone, as well as $A_x$ a family of overtly discrete abelian groups depending on $x:X$.
+
+Then we have that the canonical map gives:
+\[H^n(X,A) = \check{H}^n(X,A)\]
+\end{theorem}
+
+\begin{proof}
+We proceed by induction on $n$. For $n=0$ we need to prove that maps:
+\[\alpha:\prod_{s:S}A_{f(s)}\]
+such that whenever $f(s)=f(t)$ we have that $\alpha(s) = \alpha(t)$ correspond to:
+\[\prod_{x:X}A_x\]
+This is immediate.
+
+For the inductive step we use \cref{inductive-definition-cohomology} and \cref{inductive-definition-cech-cohomology}.
+\end{proof}
+
+\subsection{The unit interval is acyclic}
+
+\begin{proposition}\label{vanishing-cohomology-interval}
+For all $A$ overtly discrete and all $k$ we have that:
+\[H^k(\mathbb{I},A) = 0\]
+\end{proposition}
+
+\begin{proof}
+TODO
+\end{proof}
