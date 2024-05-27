@@ -1,25 +1,31 @@
-Here we start studying the shape modality.
+Here we start studying the shape modality $\shape$, which is defined as the localisation at $\mathbb{I}$.
 
 \subsection{Deloopings of overtly discrete abelian groups are local}
 
 \begin{lemma}\label{delooping-overtly-discrete-local}
-For all $A$ overtly discrete abelian group and any $k:\N$, we have that:
-\[B_kA\]
+For all $A$ overtly discrete abelian group and any $n:\N$, we have that:
+\[B_nA\]
 is $\shape$-local.
 \end{lemma}
 
 \begin{proof}
 We proceed by induction on $n$. 
 \begin{itemize}
-\item For $k=0$ we use $H^0(\mathbb{I},A) = A$, for which is is enough to know that maps in $\mathbb{I}\to 2$ are constant. 
-\item For $k=n+1$, by induction hypothesis we know that $B_{n+1}A$ is $\shape$-separated, and we merely have a lift by \cref{vanishing-cohomology-interval}.
+\item For $n=0$ we have $A = A^\mathbb{I}$, which holds as maps in $\mathbb{I}\to A$ factor through a finite type and maps in $\mathbb{I}\to 2$ are constant. 
+\item For $n+1$, by induction hypothesis we know that $B_{n+1}A$ is $\shape$-separated, and we merely have a lift by \cref{vanishing-cohomology-interval}.
 \end{itemize}
 \end{proof}
 
-\begin{corollary}
-Let $f:X\to Y$ be a shape equivalence and $A$ be an overtly discrete abelian group. Then for all $k$ we have:
-\[f^* : H^k(Y,A) \simeq H^k(X,A)\]
+%\begin{corollary}\label{cohomology-shape}
+%Let $f:X\to Y$ be a shape equivalence and $A$ be an overtly discrete abelian group. Then for all $k$ we have:
+%\[f^* : H^k(Y,A) \simeq H^k(X,A)\]
+%\end{corollary}
+
+\begin{corollary}\label{cohomology-shape}
+Let $X$ be a type and $A$ be an overtly discrete abelian group. Then for all $k$ we have:
+\[H^k(X,A) \simeq H^k(\shape X,A)\]
 \end{corollary}
+
 
 
 \subsection{The shape of the circle is the circle}
@@ -32,31 +38,24 @@ We have that:
 \begin{proof}
 The fibers of the map:
 \[\R\to \R/\Z\]
-are $\Z$-torsors, as for any group quotient. This means we have a fiber sequence:
+are $\Z$-torsors, as is the case for any group quotient. This means that we have a fiber sequence:
 \[\R \to \R/\Z \to B\Z\]
-We check the second map is $\shape$-localisation. We have that $B\Z$ is $\shape$-local by \cref{delooping-overtly-discrete-local}. Since $B\Z$ is connected we just need to prove that $\R$ is $\shape$-contractible to conclude. But $0:\R$ and for any $x:\R$ there is $f:\mathbb{I}\to\R$ such that $f(0)=0$ and $f(1)=x$ so we can conclude.
+We check that the second map is $\shape$-localisation. We have that $B\Z$ is $\shape$-local by \cref{delooping-overtly-discrete-local}. Since $B\Z$ is connected we just need to prove that $\R$ is $\shape$-contractible to conclude. But $0:\R$ and for any $x:\R$ there is $f:\mathbb{I}\to\R$ such that $f(0)=0$ and $f(1)=x$ so we can conclude.
 \end{proof}
 
 
-\subsection{Cellular cohomology for topological CW complex}
-
-TODO
-
-
-\subsection{Finite homotopical CW complex are the shape of topological CW complexes}
-
-WIP TODO???
+\subsection{Finite homotopical cell complex are local}
 
 \begin{lemma}\label{finite-homotopy-groups-countably-presented}
-Let $X$ be a finite homotopical CW complex, then for any $x:X$ and any $n$ we have that $\pi_n(X,x)$ is a countably presented abelian group.
+Let $X$ be a finite homotopical cell complex, then for any $x:X$ and any $n$ we have that $\pi_n(X,x)$ is a countably presented abelian group.
 \end{lemma}
 
 \begin{proof}
 TODO maybe find a reference?
 \end{proof}
 
-\begin{proposition}
-Let $X$ be a finite homotopical CW complex, then $X$ is $\shape$-local.
+\begin{proposition}\label{homotopical-complex-local}
+Let $X$ be a finite homotopical cell complex, then $X$ is $\shape$-local.
 \end{proposition}
 
 \begin{proof}
@@ -75,4 +74,105 @@ Therefore the limit of the Postnikov tower is $\shape$-local as a limit of $\sha
 \begin{remark}
 By Anel / Barton "Choice axioms and Postnikov completeness" we know that Postnikov completion and hypercompletion agree in our setting because we have countable choice. Do we have hypercompleteness?
 \end{remark}
+
+
+
+\subsection{Cellular cohomology for finite topological cell complex}
+
+\begin{definition}
+An $n$-dimensional topological cell complex is defined inductively as a type $X$ such that:
+\begin{itemize} 
+\item If $n=0$ then $X$ is a finite type.
+\item For $n+1$, we ask that there merely exists $X_n$ an $n$-dimensional topological cell complex and a pushout square:
+\begin{center}
+\begin{tikzcd}
+X_n \ar[r] & X\\
+\mathbb{S}^n\times \mathrm{Fin}(k)\ar[r]\ar[u] & \mathbb{D}^n\times \mathrm{Fin}(k)\ar[u]\\
+\end{tikzcd}
+\end{center}
+\end{itemize}
+A finite topological cell complex is a type that is an $n$-dimensional topological cell complex for some $n$.
+\end{definition}
+
+By contrast we call the usual HoTT cell complexes homotopical.
+
+\begin{lemma}\label{shape-spheres-disks}
+For all $n$ we have that:
+\[\shape \mathbb{D}^n = 1\]
+\[\shape \mathbb{S}^n = S^n\]
+\end{lemma}
+
+\begin{proof}
+For any $x:\mathbb{D}^n$ we have a map $f:\mathbb{I}\to\mathbb{D}^n$ such that $f(0)=0$ and $f(1)=x$ se we have that $\shape\mathbb{D}^n = 1$.
+
+For $S^n$ we proceed inductively:
+\[\mathbb{S}^{-1} = S^{-1} = 0\]
+which is $\shape$-local. 
+
+Otherwise assume $\shape \mathbb{S}^n = S^n$. We have a pushout diagram:
+\begin{center}
+\begin{tikzcd}
+\mathbb{D}^n\ar[r] & \mathbb{S}^{n+1} \\
+\mathbb{S}^{n} \ar[u]\ar[r] &\mathbb{D}^n\ar[u]\\
+\end{tikzcd}
+\end{center}
+which is $\shape$-equivalent to the pushout square:
+\begin{center}
+\begin{tikzcd}
+1\ar[r] & S^{n+1} \\
+S^n \ar[u]\ar[r] &1\ar[u]\\
+\end{tikzcd}
+\end{center}
+so that we have:
+\[\shape \mathbb{S}^{n+1} = \shape S^{n+1}\]
+but $S^{n+1}$ is $\shape$-local by \cref{homotopical-complex-local}.
+\end{proof}
+
+\begin{lemma}\label{adding-one-cell-shape}
+Let $X$ be a type such that $\shape X$ is a finite homotopical $n$-dimensional cell complex. Assume given a pushout square:
+\begin{center}
+\begin{tikzcd}
+X\ar[r] & Y \\
+\mathbb{S}^n\times \mathrm{Fin}(k)\ar[u]\ar[r] & \mathbb{D}^n\times \mathrm{Fin}(k)\ar[u]\\
+\end{tikzcd}
+\end{center}
+Then we have a pushout square:
+\begin{center}
+\begin{tikzcd}
+\shape X \ar[r] & \shape Y \\
+S^n\times \mathrm{Fin}(k)\ar[u]\ar[r] & \mathrm{Fin}(k)\ar[u]\\
+\end{tikzcd}
+\end{center}
+\end{lemma}
+
+\begin{proof}
+By general reasoning on modalities and \cref{shape-spheres-disks} we have that:
+\[\shape Y = \shape\left(\shape X \coprod_{S^n\times \mathrm{Fin}(k)} \mathrm{Fin}(k)\right)\]
+but since:
+\[\shape X \coprod_{S^n\times \mathrm{Fin}(k)} \mathrm{Fin}(k)\]
+is a finite homotopical cell complex by hypothesis, is is $\shape$-local by \cref{homotopical-complex-local} and we can conclude.
+\end{proof}
+
+\begin{lemma}\label{celullar-topological-cohomology}
+Let $X$ be a finite topological cell complex, then $\shape X$ is a finite homotopical cell complex. Moreover we can compute a presentation for $\shape X$ from a presentation for $X$ simply by localising.
+\end{lemma}
+
+\begin{proof}
+We apply \cref{adding-one-cell-shape} repeatedly.
+\end{proof}
+
+\begin{remark}
+Given a finite topological cell complex, defining the corresponding finite homotopical cell complex is not obvious, as we need to show the result is independent from the chosen presentation. Using $\shape$ allows to bypass this issue.
+\end{remark}
+
+\begin{corollary}
+Assume given $X$ a finite topological cell complex and $A$ an overtly discrete abelian group. Then:
+\[H^n(X,A)\]
+can be computed using the cellular cohomology of the finite homotopical complex $\shape X$.
+\end{corollary}
+
+\begin{proof}
+Just recall that by \cref{cohomology-shape} we have that $H^n(X,A) = H^n(\shape X,A)$ and conclude by \cref{celullar-topological-cohomology}.
+\end{proof}
+
 
