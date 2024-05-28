@@ -473,13 +473,15 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
 Actually, we will see in \Cref{CorDoubleNegToAx2} that the converse is also true. 
 
 \begin{axiomNum}[Local choice]
-  Whenever $X$ Stone and $E\twoheadrightarrow X$ surjective, then there is some $Y$ Stone,
-    a surjection $Y \twoheadrightarrow X$ and a map $Y\to E$ such that the following diagram commutes:
+  Whenever $S$ Stone and $E\twoheadrightarrow S$ surjective, then there is some $T$ Stone,
+    a surjection $T \twoheadrightarrow S$ and a map $T\to E$ 
+    such that the following diagram commutes:
     \begin{equation}\begin{tikzcd}
       E \arrow[d,""',two heads]\\
-      X & \arrow[l, "", two heads] Y\arrow[lu, ""']
+      S & \arrow[l, "", two heads] T\arrow[lu, ""']
     \end{tikzcd}\end{equation}  
 \end{axiomNum} 
+
 \begin{axiomNum}[Dependent choice]\label{axDependentChoice}
   Given a family of types $(E_n)_{n:\mathbb N}$ and 
   a relation 
@@ -782,7 +784,7 @@ and only the last bullet point used countability (and of course Markov's princip
 \end{remark}
 
 \begin{remark}\label{rmkOpenClosedNegation}
-  The negation of an open proposition is a closed proposition.
+  The negation of an open proposition is a closed proposition and vice versa. 
   Furthermore, both open and closed propositions are double negation stable by Markov, 
   meaning that for $P$ open or closed, we have $\neg \neg P \to P$.
 \end{remark}
@@ -796,6 +798,13 @@ and only the last bullet point used countability (and of course Markov's princip
 \begin{proof}
   \begin{itemize}
     \item Let $P,Q$ be closed. We will show $P\vee Q$ closed as well. 
+%      Let $\alpha,\beta:2^\mathbb N$ be such that 
+%      $P\leftrightarrow \forall_{n:\mathbb N} \alpha(n) = 0$ and 
+%      $Q\leftrightarrow \forall_{n:\mathbb N} \beta(n) = 0$. 
+%      Let $\gamma:2^\mathbb N$ be such that $\gamma(n) = 0$ iff 
+%      we have that $\alpha|_k = \infty|_k$ or $\beta|_k = \infty|_k$. 
+      % I think you'll still need some choice to infer from \gamma(n) = 0 for all n that 
+      % \alpha(n) = 0 for all n or \beta(n) = 0 for all n
       Assume $P\leftrightarrow \alpha = \infty, Q \leftrightarrow \beta = \infty$. 
       Now $P\vee Q \leftrightarrow 
       ((\forall_{n:\mathbb N} \alpha(n) = 0) 
@@ -805,10 +814,13 @@ and only the last bullet point used countability (and of course Markov's princip
       \forall_{n:\mathbb N}  \forall_{m:\mathbb N}  (\alpha(n) = 0 \vee \beta(m) = 0)$
       For $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective, 
       this in turn is equivalent to 
-      $\forall_{k:\mathbb N}  (\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s_k)) = 0)$. 
-      Define $\gamma(k) = 0$ iff $(\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s_k)) = 0)$. 
-      As this is decidable, $\gamma$ is well-defined as binary sequence, and 
-      $P\vee Q \leftrightarrow \forall_{k:\mathbb N} \gamma(k) = 0$, thus $P\vee Q$ is closed. 
+      $\forall_{k:\mathbb N}  (\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s(k))) = 0)$. 
+      We define a sequence $\gamma:2^\mathbb N$ where 
+      $\gamma(k) = 0$ iff $(\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s(k))) = 0)$. 
+      As this is decidable, $\gamma$ is well-defined.
+      Also
+      $P\vee Q \leftrightarrow \forall_{k:\mathbb N} \gamma(k) = 0$, 
+      thus $P\vee Q$ is closed. 
     \item Let $(P_n)_{n:\mathbb N}$ be a countable family of closed propositions. 
       We will show that 
       $\forall_{n:\mathbb N} P_n$ is closed as well. 
@@ -818,7 +830,7 @@ and only the last bullet point used countability (and of course Markov's princip
       Thus $(\forall_{n:\mathbb N} P_n )\leftrightarrow 
       (\forall_{n:\mathbb N}(\alpha_n = \infty))$. 
       Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
-      $\beta(k) = \alpha_{\pi_0s(k)}(\pi_1 s(k))$. 
+      $\beta(k) = \alpha_{\pi_0(s(k))}(\pi_1 (s(k)))$. 
       Note that $\beta = \infty$ iff for every $n:\mathbb N$, 
       and every $m:\mathbb N$, we have $\alpha_n(m) = 0$, 
       which happens iff $\alpha_n = \infty$. 
@@ -833,18 +845,19 @@ and only the last bullet point used countability (and of course Markov's princip
       We will show that $P\wedge Q$ is open as well. 
       Consider $\gamma:2^\mathbb N$ given by 
       $\gamma(l) = 1$ iff there exist some $k,k'\leq l$ with 
-      $\alpha(k) = \beta(k') = 1$. 
+      $\alpha(k) = \beta(k') = 1$. As we only need to check finitely many combinations 
+      of $k,k'$, this is a decidable property and $\gamma$ is well-defined. 
       Clearly we have $(\exists_{l:\mathbb N} \gamma(l) = 1) \leftrightarrow (P \wedge Q)$. 
       Thus $P\wedge Q$ is open. 
     \item Let $(P_n)_{n:\mathbb N}$ be a countable family of open propositions. 
-      We will show that $\exists_{n:\mathbb N}$ is open as well. 
+      We will show that $\exists_{n:\mathbb N}P_n$ is open as well. 
       By countable choice, we have a function which for each 
       $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
       such that $P_n \leftrightarrow \alpha_n \neq \infty$. 
       Thus $(\exists{n:\mathbb N} P_n) \leftrightarrow 
       (\exists{n:\mathbb N}\alpha_n \neq \infty)$. 
       Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
-      $\beta(k) = \alpha_{\pi_0s(k)}(\pi_1 s(k))$. 
+      $\beta(k) = \alpha_{\pi_0(s(k))}(\pi_1 (s(k)))$. 
       Then let $\gamma(k) = 1$ iff $k$ is minimal with $\beta(k) = 1$. 
       Note that $\beta \neq \infty$ iff there is some $n:\mathbb N$, 
       and some $m:\mathbb N$, with $\alpha_n(m) = 1$, 
@@ -868,10 +881,14 @@ and only the last bullet point used countability (and of course Markov's princip
   By \Cref{rmkOpenClosedNegation} it follows that $\neg \neg (\neg P \vee Q) \to (\neg P \vee Q)$. 
   Thus $(P \to Q) \to (\neg P \vee Q)$ as required. 
 \end{proof}
- 
+\begin{corollary}\label{OpenAndClosedMeansDecidable}
+  Let $P$ be both open and closed. 
+  Then by the above, $(P\to P)\leftrightarrow (\neg P \vee P)$. 
+  As $P\to P$ is true, so is $\neg P \vee P$. Thus $P$ is decidable. 
+  Thus any proposition that is both open and closed is decidable. 
+\end{corollary}
 
-
-\begin{lemma}
+\begin{lemma}\label{EqualityBooleStoneClosedOpen}
   Equality in $B:\Boole$ is open and equality in $X:\Stone$ is closed. 
 \end{lemma}
 \begin{proof}
@@ -884,7 +901,8 @@ and only the last bullet point used countability (and of course Markov's princip
   In particular, note that $\langle R \rangle$ is countable. 
   Let $(r_n)_{n:\mathbb N}$ enumerate $ \langle R \rangle $
   Also note that equality in $\langle G \rangle$ is decidable. 
-  Thus we can define a sequence $\alpha:\Noo$ with $\alpha(k) = 1$ iff $k$ is minimal with $a -b = r_n$. 
+  Thus we can define a sequence $\alpha:\Noo$ with $\alpha(k) = 1$ 
+  iff $k$ is minimal with $a -b = r_n$. 
   Now $\alpha \neq \infty $ iff $a = b$. Thus $a=b$ is an open proposition. 
 
   Let $X:\Stone$ and let $x,y:X$. 
@@ -909,113 +927,7 @@ and only the last bullet point used countability (and of course Markov's princip
   Thus for Stone types, being inhabited is a closed proposition. 
 \end{corollary}
 
-
-
-
-\subsection{The topology of Stone spaces}
-\begin{definition}
-  For $S$ a set and $D\subseteq S$ an arbitrary subset, we call $D$ decidable/open/closed 
-  iff for every $x:S$, $D(x)$ is decidable/open/closed. 
-\end{definition}
-
-\begin{lemma}
-  Let $D\subseteq Sp(B)$. TFAE
-  \begin{enumerate}[(i)]
-    \item $D$ is decidable. 
-    \item There merely exists some $b\in B$ such that $D = \{\alpha:Sp(B) | \alpha(b) = 1\}$. 
-    \item There merely is a finite subset $G_0$ of the generators of $B$ such that 
-      whenever $\alpha,\beta:Sp(B)$ are such that 
-      $\alpha(g) = \beta(g)$ for all $g:G_0$ and $D(\alpha)$, we also have $D(\beta)$. 
-    \item $D$ is both open and closed. 
-  \end{enumerate}
-\end{lemma}
-\begin{proof}
-  \begin{itemize}
-    \item $(i) \to (ii)$.
-      First, remark that decidable subsets $D$ give terms $f_D:2^{Sp(B)}$, by sending 
-      $f(x) = 1$ if $D(x)$ and $f(x) = 0$ if $\neg D(x)$. 
-      Stone duality then gives that this term corresponds to evaluation at some $b:B$. 
-      Therefore $D(x) \iff f(x) = 1 \iff  x(b) = 1$, as required. 
-    \item $(i) \to (iv)$. 
-      Follows from the fact that decidable propositions are 
-      both open and closed. 
-      Let $p$ be decidable. 
-      To see $p$ is closed, consider the sequence $\alpha:\Noo$ given by 
-      $\alpha(n) = 0$ iff $p$. Now $\alpha =\infty $ iff $p$ as well. 
-      To see $p$ is open, consider the sequence $\alpha:\Noo$ given by 
-      $\alpha(0) = 1$ iff $p$ and $\alpha(n) = 0$ for $n>0$. 
-      Then $\alpha\neq \infty$ iff $p$ holds. 
-    \item $(ii) \to (i)$
-      Let $D$ be as in $(ii)$. 
-      For $y:Sp(B)$, we have that 
-      $D(y)$ iff $y(b) = 1$, which is decidable, 
-      as $x = 0 \vee x = 1$ for all $x:2$. 
-    \item $(ii) \to (iii)$. 
-      Suppose there exists a $b:B$ such that $D(x)$ iff $x(b) = 1$. 
-      As $b$ is expressable using only finitely many generators $G_0$
-      we need to only evaluate $x(g)$ for all $g:G_0$ to 
-      calculate $x(b)$. 
-      In particular, if $x(g) = y(g)$ for all $g:G_0$, then 
-      $x(b) = 1 \leftrightarrow y(b) = 1$. 
-      Hence $D(x) \leftrightarrow D(y)$. 
-    \item $(iv) \to (i)$. 
-      Suppose $D\subseteq S$ is both open and closed. 
-      Note that $D(x) \to D(x)$. 
-      Here $D(x)$ is both open and closed. 
-      By \Cref{OpenClosedImplication}, we thus get 
-      $D(x) \vee \neg D(x)$. Thus $D$ is decidable. 
-    \item $(iii) \to (i)$  \rednote{TODO}
-  \end{itemize}
-\end{proof}
-\begin{lemma}
-  Let $A\subseteq S$ be a subset of a Stone space. TFAE
-  \begin{itemize}
-    \item $A$ is closed. 
-    \item There merely is a countable set set of decidable subsets $D_n\subseteq S$ with 
-      $A = \bigcap_{n:\mathbb N} D_n$. 
-    \item $\neg A$ is open. 
-%    \item There merely is a countable set set of decidable subsets $E_n\subseteq S$ with 
-%      $\neg A = \bigcup_{n:\mathbb N} D_n$. 
-  \end{itemize}
-\end{lemma}
-
-\begin{corollary}\label{CorDoubleNegToAx2}
-  If we have for $S:\Stone$ that $\neg \neg S \to ||S||$, 
-  we can conclude that surjections are formal surjections. 
-\end{corollary}
-\begin{proof}
-  \rednote{All the unkonw references are lemmas that still need to be done (or at least linked) without using ax2}
-  Now assume that for $S:\Stone$, we have $\neg \neg S \to ||S||$. 
-  Let $f:B \to B'$ be injective, and let 
-  $g:S' \to S$ correspond to $f$. 
-  To show that $g$ is surjective, we need to show that for any $x:S$, we have $||\sum\limits_{y:S'} g y = x||$. 
-  By our assumption, we can prove this by showing that 
-  \begin{equation}
-    g^{-1}\{x\} := \sum\limits_{y:S'} g y = x
-  \end{equation} is Stone and non-empty. 
-    First note that $\sum\limits_{y:S'} g y = x$ is the pullback of $g$ and the map $1 \to S$ given by $x$.
-      By duality and \Cref{rmkBoolePushouts} the pullback of Stone spaces is a Stone space. 
-   
-
-      By \Cref{lemPointsAreClosed} and \Cref{lemClosedIntersectionOfDecidable}, 
-      $\{x\}$ is a countable intersection of decidable sets $\bigcap_{n:\mathbb N} D_n$. 
-      We have that 
-      \begin{equation}
-        g^{-1}\{x\} = g^{-1}(\bigcap_{n:\mathbb N} D_n) = 
-        \bigcap_{n:\mathbb N} g^{-1}(D_n)
-      \end{equation} 
-      Let $n:\mathbb N$. By Stone duality, the decidable subset $D_n$ corresponds to some $b_n:B$. 
-      As $x\in D_n$, we have that $b_n \neq 0$. 
-      As $f$ is injective, we have that $f(b_n) \neq 0$. 
-      Therefore the corresponding decidable subset, which is $g^{-1}(D_n)$ is not empty. 
-
-      Note that $D_n$ is a closed subset of a Stone space, hence Stone by \Cref{LemClosedSubsetOfStoneIsStone}, 
-      and by the same argument as above $g^{-1}(D_n)$ is Stone. By our assumption $g^{-1}(D_n)$ is thus merely inhabited. 
-      Now by \Cref{lemCompactnessCountableIntersection}, this gives that 
-      $\bigcap_{n:\mathbb N} g^{-1}(D_n)$ is merely inhabited, as required. 
-\end{proof}
-
-
+\input{StoneTopology}
 \rednote{End of activity}
 
 \subsection{Compact Hausdorff spaces}

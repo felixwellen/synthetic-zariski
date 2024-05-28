@@ -1,0 +1,142 @@
+\subsection{The topology of Stone spaces}
+\rednote{Active section}
+\begin{definition}
+  For $S$ a set and $D\subseteq S$ an arbitrary subset, we call $D$ decidable/open/closed 
+  iff for every $x:S$, $D(x)$ is decidable/open/closed. 
+\end{definition}
+\begin{remark}
+  \begin{itemize}
+    \item   \Cref{rmkOpenClosedNegation} implies that the complement of an 
+  open subset is closed and vice versa. 
+  \item 
+    \Cref{OpenAndClosedMeansDecidable} implies that a subset which is both open 
+    and closed is decidable. 
+  \item 
+    As propositions are subsets of $\top = Sp(2)$, 
+    we have that open/closed/decidable subsets of $\top$
+    are open/closed/decidable propositions. 
+  \item By \Cref{EqualityBooleStoneClosedOpen}, singletons in 
+    Boolean algebras are open and singletons in Stone spaces are closed. 
+\end{itemize}
+\end{remark}
+\begin{lemma}
+  Let $S$ Stone. 
+  Then a subset $D\subseteq S$ is closed iff there merely is some $T$ Stone 
+  and map $f:T\to S$ with image $D$. 
+\end{lemma}
+\begin{proof}
+  Suppose $D\subseteq S$ is closed. 
+
+
+
+  Let $f:T\to S$ be a map between Stone spaces. 
+  We will show that $f(T)$ is closed. 
+  For $x:S$, we have that $x\in f(T)$ iff there exists some $y:T$ 
+  with $f(y) = x$. 
+  So $(f(T))(x) \leftrightarrow || \sigma_{y:T} f(y) = x||$. 
+  Note that $\sum_{y:T} f(y) = x$ is the pullback as follows:
+  \begin{equation}
+    \begin{tikzcd}
+      \sum_{y:T} f(y) = x\arrow[rd,"\lrcorner"{pos=0.125},phantom] & 1 \arrow[d,"x"] \\
+      T \arrow[r,"f"]  S
+    \end{tikzcd}
+  \end{equation}
+  As any pullback of Stone spaces is Stone, it follows that 
+  $\sum_{y:T} f(y) = x$ is Stone, and by \Cref{LemInhabitedOfStoneIsClosed}, 
+  so is $||\sum_{y:T} f(y) = x||$. Thus $f(T)(x)$ is a closed proposition and $f(T)$ closed. 
+  We conclude that the image of a map of Stone spaces is closed. 
+\end{proof}
+
+\begin{lemma}
+  Let $D\subseteq Sp(B)$. 
+  Then $D$ is decidable iff there merely exist some $b\in B$ such that 
+  $D = \{x:Sp(B) | x(b) = 1\}$. 
+\end{lemma}
+\begin{proof}
+  Let $D\subseteq Sp(B)$ be decidable. 
+  Define $f_D:2^{Sp(B)}$ by $f_D(x) = 1$ if $D(x)$ and $f_D(x) = 0$ if $\neg D(x)$.
+  Stone duality then gives there is some $b_D:B$ with 
+  $f_D(x) = 1 \leftrightarrow x(b_D) = 1$. 
+  Thus $D(x) \leftrightarrow f_D(x) = 1 \leftrightarrow x(b_D) = 1$ as requried. 
+
+  For the converse, suppose $D  = \{x : Sp(B) | x(b) = 1\}$ then 
+  whenever $y:Sp(B)$, we have $D(y)$ iff $y(b) = 1$, which is decidable
+  as for any $c:2$ we have $c = 0 \vee c = 1$. 
+  Thus $D$ is decidable. 
+\end{proof}
+
+\begin{lemma}
+  Let $A\subseteq S$ be a subset of a Stone space. TFAE
+  \begin{itemize}
+    \item $A$ is closed. 
+    \item There merely is a countable set set of decidable subsets $D_n\subseteq S$ with 
+      $A = \bigcap_{n:\mathbb N} D_n$. 
+%    \item $\neg A$ is open. 
+%    \item There merely is a countable set set of decidable subsets $E_n\subseteq S$ with 
+%      $\neg A = \bigcup_{n:\mathbb N} D_n$. 
+  \end{itemize}
+\end{lemma}
+\begin{proof}
+  Suppose $A$ is closed. So for each $x: S$ there merely exists some 
+  $\alpha:2^\mathbb N$ with $A x \leftrightarrow (\forall_{n:\mathbb N}\alpha(n) = 0$. 
+  Let $E$ be a dependent family of types over $X$ given by
+  $E x  = \sum\limits_{\alpha:2^\mathbb N} 
+  (A x \leftrightarrow \forall_{n:\mathbb N} \alpha(n) = 0)$
+  The projection map $\sum\limits_{x: S} E x \to S$ is surjective by our assumption, 
+  thus local choice gives us some Stone space $T$ and arrows as follows:
+  \begin{equation}\begin{tikzcd}
+    \sum\limits_{x:S}E x \arrow[d,""',two heads]\\
+    S & \arrow[l, "", two heads,"s"] T\arrow[lu, ""']
+  \end{tikzcd}\end{equation}  
+  The map $T\to \sum\limits_{x:S} E x $ induces a map $\gamma_{(\cdot)}:T \to 2^\mathbb N$, 
+  such that for all $t:T$ we have 
+  \begin{equation}
+    (\forall_{n:\mathbb N} \gamma_t(n)  = 0 )\leftrightarrow E ( s (t))
+  \end{equation}
+  Now for $T = Sp(B)$, under Stone duality the map $\gamma_{(\cdot )}$ 
+  corresponds with a map $\langle C \rangle \to B$, 
+  which gives a map $\mathbb N \to B$. 
+
+
+
+\end{proof}
+
+
+
+
+\begin{corollary}\label{CorDoubleNegToAx2}
+  If we have for $S:\Stone$ that $\neg \neg S \to ||S||$, 
+  we can conclude that surjections are formal surjections. 
+\end{corollary}
+\begin{proof}
+  \rednote{All the unkonw references are lemmas that still need to be done (or at least linked) without using ax2}
+  Now assume that for $S:\Stone$, we have $\neg \neg S \to ||S||$. 
+  Let $f:B \to B'$ be injective, and let 
+  $g:S' \to S$ correspond to $f$. 
+  To show that $g$ is surjective, we need to show that for any $x:S$, we have $||\sum\limits_{y:S'} g y = x||$. 
+  By our assumption, we can prove this by showing that 
+  \begin{equation}
+    g^{-1}\{x\} := \sum\limits_{y:S'} g y = x
+  \end{equation} is Stone and non-empty. 
+    First note that $\sum\limits_{y:S'} g y = x$ is the pullback of $g$ and the map $1 \to S$ given by $x$.
+      By duality and \Cref{rmkBoolePushouts} the pullback of Stone spaces is a Stone space. 
+   
+
+      By \Cref{lemPointsAreClosed} and \Cref{lemClosedIntersectionOfDecidable}, 
+      $\{x\}$ is a countable intersection of decidable sets $\bigcap_{n:\mathbb N} D_n$. 
+      We have that 
+      \begin{equation}
+        g^{-1}\{x\} = g^{-1}(\bigcap_{n:\mathbb N} D_n) = 
+        \bigcap_{n:\mathbb N} g^{-1}(D_n)
+      \end{equation} 
+      Let $n:\mathbb N$. By Stone duality, the decidable subset $D_n$ corresponds to some $b_n:B$. 
+      As $x\in D_n$, we have that $b_n \neq 0$. 
+      As $f$ is injective, we have that $f(b_n) \neq 0$. 
+      Therefore the corresponding decidable subset, which is $g^{-1}(D_n)$ is not empty. 
+
+      Note that $D_n$ is a closed subset of a Stone space, hence Stone by \Cref{LemClosedSubsetOfStoneIsStone}, 
+      and by the same argument as above $g^{-1}(D_n)$ is Stone. By our assumption $g^{-1}(D_n)$ is thus merely inhabited. 
+      Now by \Cref{lemCompactnessCountableIntersection}, this gives that 
+      $\bigcap_{n:\mathbb N} g^{-1}(D_n)$ is merely inhabited, as required. 
+\end{proof}
+
