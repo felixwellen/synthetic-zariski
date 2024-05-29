@@ -19,33 +19,65 @@
     Boolean algebras are open and singletons in Stone spaces are closed. 
 \end{itemize}
 \end{remark}
+
 \begin{lemma}
-  Let $S$ Stone. 
-  Then a subset $D\subseteq S$ is closed iff there merely is some $T$ Stone 
-  and map $f:T\to S$ with image $D$. 
+  Let $A$ be a countable set and let $P:A \to Open$
+  be an open subset of $A$. 
+  If $||\sum_{a:A} P a||$, then $\sum_{a:A} P a$ is a countable set. 
 \end{lemma}
 \begin{proof}
-  Suppose $D\subseteq S$ is closed. 
-
-
-
-  Let $f:T\to S$ be a map between Stone spaces. 
-  We will show that $f(T)$ is closed. 
-  For $x:S$, we have that $x\in f(T)$ iff there exists some $y:T$ 
-  with $f(y) = x$. 
-  So $(f(T))(x) \leftrightarrow || \sigma_{y:T} f(y) = x||$. 
-  Note that $\sum_{y:T} f(y) = x$ is the pullback as follows:
+  Being countable is a proposition, so we may untruncate our assumptions:
+  \begin{itemize}
+    \item 
+      Because we have $||\sum_{a:A} P a||$, we assume we have  some $x:A$ with $P x$. 
+    \item 
+      Because $A$ is countable, we may assume we have some 
+      enumeration of elements from $A$ given as $(a_n)_{n:\mathbb N}$.
+  \end{itemize}
+  Furthermore, by countable choice, $P$ gives us 
+  for each $a:A$ a specific $\alpha_a:2^\mathbb N$ 
+  such that 
   \begin{equation}
-    \begin{tikzcd}
-      \sum_{y:T} f(y) = x\arrow[rd,"\lrcorner"{pos=0.125},phantom] & 1 \arrow[d,"x"] \\
-      T \arrow[r,"f"]  S
-    \end{tikzcd}
+    P a \leftrightarrow \exists_{m:\mathbb N} \alpha_a(m) = 1.
   \end{equation}
-  As any pullback of Stone spaces is Stone, it follows that 
-  $\sum_{y:T} f(y) = x$ is Stone, and by \Cref{LemInhabitedOfStoneIsClosed}, 
-  so is $||\sum_{y:T} f(y) = x||$. Thus $f(T)(x)$ is a closed proposition and $f(T)$ closed. 
-  We conclude that the image of a map of Stone spaces is closed. 
+  Using this data, we will 
+  construct a surjection $s:\mathbb N \times \mathbb N \to \sum_{a:A} P a$. 
+  Define 
+  \begin{equation}
+    s(m,n) = 
+    \begin{cases}
+      x \text{ if } \alpha_{a_n}(m) = 0 \\
+      a_n \text{ if } \alpha_{a_n}(m) = 1
+    \end{cases}
+  \end{equation}
+  To see that $s$ is surjective, we need to show that for each $a:A$ with $P a$ there 
+  merely exists some $(m,n):\mathbb N \times \mathbb N$ 
+  with $s(m,n) = a$. 
+  \begin{itemize}
+    \item 
+  Because $(a_n)_{n:\mathbb N}$ formed an enumeration, we have that 
+  there merely is some $n$ with $a = a_n$. 
+  We can use this $n$ as we're proving a proposition. 
+    \item 
+  As $P a$ there merely is some $m$ with $\alpha_{a_n}(m) = 1$. 
+  This $m$ can also be used as we're proving a proposition. 
+  \end{itemize}
+  Now by the above choice $s(m,n) = a_n = a$, 
+  thus for each $a:A$ with $P a$, there exists some $(m,n)$ with 
+  $s(m,n) = a$. Thus $s$ is surjective. 
+
+  As $\mathbb N \times \mathbb N \simeq \mathbb N$, we conclude that 
+  $\sum_{a:A} P a$ is countable. 
 \end{proof}
+\begin{corollary}
+  As countably presented Boolean algebras are countable  
+  and equality in a countably presented Boolean algebra is open, 
+  the kernel of a map between countably presented Boolean algebras is countable. 
+\end{corollary}
+
+
+
+
 
 \begin{lemma}
   Let $D\subseteq Sp(B)$. 
@@ -65,18 +97,92 @@
   Thus $D$ is decidable. 
 \end{proof}
 
+
+\begin{lemma}
+  Let $f:S \to T$ be a map of Stone spaces. 
+  Then the image $f(S) \subseteq T$ is a countable 
+  intersection of decidable subsets. 
+\end{lemma}
+\begin{proof}
+  Let $f:Sp(B) \to Sp(B')$
+  correspond to $u:B'\to B$. 
+  We know that $u$ factors through it's kernel as 
+  $B' \twoheadrightarrow B'/Ker(u) \hookrightarrow B$. 
+  
+  As equality in $B$ is open, and $B'$ is countable, we can enumerate all 
+  $e:B'$ with $u(e) = 1_B$. Let $(e_n)_{n:\mathbb N}$ be this enumeration. 
+  Let $E_n\subseteq Sp(B')$ be the corresponding decidable subsets. 
+  We will show that $f(S) = \bigcap_{n:\mathbb N} E_n$. 
+
+  \rednote{Active here} 
+
+
+\end{proof}
+
+
+
+
+\begin{lemma}
+  Let $S$ Stone. 
+  Then a subset $D\subseteq S$ is closed iff there merely is some $T$ Stone 
+  and map $f:T\to S$ with image $D$. 
+\end{lemma}
+\begin{proof}
+  Let $f:T\to S$ be a map between Stone spaces. 
+  We will show that $f(T)$ is closed. 
+  For $x:S$, we have that $x\in f(T)$ iff there exists some $y:T$ 
+  with $f(y) = x$. 
+  So 
+  \begin{equation}
+    (f(T))(x) \leftrightarrow || \sum_{y:T} f(y) = x||
+  \end{equation}
+  Note that $\sum_{y:T} f(y) = x$ is a pullback as follows:
+  \begin{equation}
+    \begin{tikzcd}
+      \sum_{y:T} f(y) = x\arrow[rd,"\lrcorner"{pos=0.125},phantom] \arrow[r] \arrow[d]
+      & 1 \arrow[d,"x"] \\
+      T \arrow[r,"f"']  & S
+    \end{tikzcd}
+  \end{equation}
+  As any pullback of Stone spaces is Stone, it follows that 
+  $\sum_{y:T} f(y) = x$ is Stone, and by \Cref{LemInhabitedOfStoneIsClosed}, 
+  so is $||\sum_{y:T} f(y) = x||$. Thus $f(T)(x)$ is a closed proposition and $f(T)$ closed. 
+  We conclude that the image of a map of Stone spaces is closed. 
+
+  For the converse, consider any $D\subseteq Sp(B)$ closed. 
+  We will find a countably generated ideal $\langle R \rangle \subseteq B$ such that 
+  the quotient map $B \to B /\langle R \rangle$ induces a map 
+  $Sp(B/\langle R \rangle) \to Sp(B)$ whose image is $D$. 
+  \rednote{TODO}
+\end{proof}
+
+
+
 \begin{lemma}
   Let $A\subseteq S$ be a subset of a Stone space. TFAE
   \begin{itemize}
     \item $A$ is closed. 
     \item There merely is a countable set set of decidable subsets $D_n\subseteq S$ with 
       $A = \bigcap_{n:\mathbb N} D_n$. 
-%    \item $\neg A$ is open. 
-%    \item There merely is a countable set set of decidable subsets $E_n\subseteq S$ with 
-%      $\neg A = \bigcup_{n:\mathbb N} D_n$. 
   \end{itemize}
 \end{lemma}
 \begin{proof}
+  We will first show that $\bigcap_{n:\mathbb N} D_n$ is closed for $(D_n)_{n:\mathbb N}$ 
+  a family of decidable subsets of $S$. 
+  As $D_n$ is decidable, we can define for each $x:S$ a function 
+  $\alpha_x:2^\mathbb N$ by 
+  \begin{equation}
+    \alpha_x(n) = 
+    \begin{cases} 
+      0 \text { if } D_n(x)\\
+      1 \text { if } \neg D_n(x)
+    \end{cases}
+  \end{equation} 
+  Now $x\in \bigcap_{n:\mathbb N} D_n $ iff $\alpha_x(n) = 0$ for all $n:\mathbb N$. 
+  Thus $\bigcap_{n:\mathbb N} D_n$ is closed. 
+  \medskip
+
+  For the converse, 
   Suppose $A$ is closed. So for each $x: S$ there merely exists some 
   $\alpha:2^\mathbb N$ with $A x \leftrightarrow (\forall_{n:\mathbb N}\alpha(n) = 0$. 
   Let $E$ be a dependent family of types over $X$ given by
@@ -91,7 +197,7 @@
   The map $T\to \sum\limits_{x:S} E x $ induces a map $\gamma_{(\cdot)}:T \to 2^\mathbb N$, 
   such that for all $t:T$ we have 
   \begin{equation}
-    (\forall_{n:\mathbb N} \gamma_t(n)  = 0 )\leftrightarrow E ( s (t))
+    (\forall_{n:\mathbb N} \gamma_t(n)  = 0 )\leftrightarrow A ( s (t))
   \end{equation}
   Now for $T = Sp(B)$, under Stone duality the map $\gamma_{(\cdot )}$ 
   corresponds with a map $\langle C \rangle \to B$, 
