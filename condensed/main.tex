@@ -933,10 +933,145 @@ and only the last bullet point used countability (and of course Markov's princip
   so is $||Sp(B)||$. 
   Thus for Stone types, being inhabited is a closed proposition. 
 \end{corollary}
+\rednote{Active from here on}
+\begin{lemma}
+  Let $A$ be a countable set and let $P:A \to Open$
+  be an open subset of $A$. 
+  If $||\sum_{a:A} P a||$, then $\sum_{a:A} P a$ is a countable set. 
+\end{lemma}
+\begin{proof}
+  Being countable is a proposition, so we may untruncate our assumptions:
+  \begin{itemize}
+    \item 
+      Because we have $||\sum_{a:A} P a||$, we assume we have  some $x:A$ with $P x$. 
+    \item 
+      Because $A$ is countable, we may assume we have some 
+      enumeration of elements from $A$ given as $(a_n)_{n:\mathbb N}$.
+  \end{itemize}
+  Furthermore, by countable choice, $P$ gives us 
+  for each $a:A$ a specific $\alpha_a:2^\mathbb N$ 
+  such that 
+  \begin{equation}
+    P a \leftrightarrow \exists_{m:\mathbb N} \alpha_a(m) = 1.
+  \end{equation}
+  Using this data, we will 
+  construct a surjection $s:\mathbb N \times \mathbb N \to \sum_{a:A} P a$. 
+  Define 
+  \begin{equation}
+    s(m,n) = 
+    \begin{cases}
+      x \text{ if } \alpha_{a_n}(m) = 0 \\
+      a_n \text{ if } \alpha_{a_n}(m) = 1
+    \end{cases}
+  \end{equation}
+  To see that $s$ is surjective, we need to show that for each $a:A$ with $P a$ there 
+  merely exists some $(m,n):\mathbb N \times \mathbb N$ 
+  with $s(m,n) = a$. 
+  \begin{itemize}
+    \item 
+  Because $(a_n)_{n:\mathbb N}$ formed an enumeration, we have that 
+  there merely is some $n$ with $a = a_n$. 
+  We can use this $n$ as we're proving a proposition. 
+    \item 
+  As $P a$ there merely is some $m$ with $\alpha_{a_n}(m) = 1$. 
+  This $m$ can also be used as we're proving a proposition. 
+  \end{itemize}
+  Now by the above choice $s(m,n) = a_n = a$, 
+  thus for each $a:A$ with $P a$, there exists some $(m,n)$ with 
+  $s(m,n) = a$. Thus $s$ is surjective. 
 
-\input{StoneTopology}
+  As $\mathbb N \times \mathbb N \simeq \mathbb N$, we conclude that 
+  $\sum_{a:A} P a$ is countable. 
+\end{proof}
+\subsection{Closed subspaces of Stone spaces}
+%\input{StoneTopology}
+\begin{definition}
+  For $S$ a set and $D\subseteq S$ an arbitrary subset, we call $D$ decidable/open/closed 
+  iff for every $x:S$, $D(x)$ is decidable/open/closed. 
+\end{definition}
+\begin{remark}
+  Let us restate some results from the previous section in this light. 
+  \begin{itemize}
+    \item   \Cref{rmkOpenClosedNegation} implies that the complement of an 
+  open subset is closed and vice versa. 
+  \item 
+    \Cref{OpenAndClosedMeansDecidable} implies that a subset which is both open 
+    and closed is decidable. 
+  \item 
+    As propositions are subsets of $\top = Sp(2)$, 
+    we have that open/closed/decidable subsets of $\top$
+    are open/closed/decidable propositions. 
+  \item By \Cref{EqualityBooleStoneClosedOpen}, singletons in 
+    Boolean algebras are open and singletons in Stone spaces are closed. 
+\end{itemize}
+\end{remark}
+\begin{theorem}
+  Let $A\subseteq Sp(B)$ be a subset of a Stone space. TFAE:
+  \begin{enumerate}[(i)]
+    \item We have some $(D_n)_{n:\mathbb N}$ countable family 
+      of decidable subsets of $Sp(B)$ with $A = \bigcap_{n:\mathbb N} D_n$. 
+    \item We have a Stone space $T$ and some map $T\to Sp(B)$ 
+      whose image is $A$. 
+    \item For each $x:Sp(B)$, we have a specific sequence $\alpha_x:2^\mathbb N$ such that 
+      $A x \leftrightarrow \forall_{n:\mathbb N} \alpha_x(n) = 0$. 
+  \end{enumerate}
+\end{theorem}
+Before we start the proof, note that the above three statements carry data.
+\begin{proof}
+  \begin{itemize}
+    \item We will show that $(i)$ implies $(ii)$.
+      Let $(D_n)_{n:\mathbb N}$ be a countable family of decidable subsets of $Sp(B)$. 
+      By Stone duality, decidable subsets of $Sp(B)$ correspond to elements of $B$. 
+      Thus we get a countable family $(d_n)_{n:\mathbb N}$ of elements of $B$ such that 
+      such that $D_n = \{x:Sp(B)| x(d_n) = 1\}$. 
+      Consider the countably presented boolean algebra 
+      $C = B/\langle (\neg d_n)_{n:\mathbb N}\rangle$.
+      The quotient map provides an epi $B\twoheadrightarrow C$, which 
+      corresponds to a mono $Sp(C) \hookrightarrow Sp(B)$. 
+      We claim that the image of this map is exactly $\bigcap_{n:\mathbb N} D_n$. 
+      Note that $x$ is in the image of this map iff for all $n:\mathbb N$, we have 
+      $x(\neg d_n) = 0$. Note $x(\neg d_n) = 0$ iff $x (d_n) = 1$ iff $x\in D_n$. 
+      Thus $x$ is in the image of the map iff for all $n$ we have $x\in D_n$,
+      as required. 
+      We conclude that the intersection of a countable family of decidable subsets 
+      is the image of some Stone space. 
+    \item We will show that $(ii)$ implies $(iii)$.
+    Let $f:T\to S$ be a map between Stone spaces. 
+    We will show that $f(T)$ is closed. 
+    For $x:S$, we have that $x\in f(T)$ iff there exists some $y:T$ 
+    with $f(y) = x$. 
+    So 
+    \begin{equation}
+      (f(T))(x) \leftrightarrow || \sum_{y:T} f(y) = x||
+    \end{equation}
+    Note that $\sum_{y:T} f(y) = x$ is a pullback as follows:
+    \begin{equation}
+      \begin{tikzcd}
+        \sum_{y:T} f(y) = x\arrow[rd,"\lrcorner"{pos=0.125},phantom] \arrow[r] \arrow[d]
+        & 1 \arrow[d,"x"] \\
+        T \arrow[r,"f"']  & S
+      \end{tikzcd}
+    \end{equation}
+    As any pullback of Stone spaces is Stone, it follows that 
+    $\sum_{y:T} f(y) = x$ is Stone.
+%    , and by \Cref{LemInhabitedOfStoneIsClosed}, 
+%    so is $||\sum_{y:T} f(y) = x||$. 
+    Recall now that the proof of \Cref{LemInhabitedOfStoneIsClosed} 
+    gives a specific sequence $\alpha_x$ witnessing that $||\sum_{y:T} f(y) = x||$ is closed. 
+
+    Thus $f(T)(x)$ is a closed proposition and $f(T)$ closed. 
+    We conclude that the image of a map of Stone spaces is closed, 
+    and given the Stone spaces we can construct the witness sequences. 
+  \item We will show that $(iii)$ implies $(i)$. 
+    Let $\alpha_x$ be as in $(iii)$. Define 
+    $D_n(x) \leftrightarrow (\alpha_n(x) = 0)$. 
+    Note that $D_n$ is well-defined as $\alpha_n(x):2$ and for all $b:2$ we have
+    $(b=0)+ (b=1)$. Now $x \in \bigcap_{n:\mathbb N} D_n$ iff
+    $\alpha_x(n) = 0$ for all $n:\mathbb N$, 
+    which happens iff $A x$. Thus $A = \bigcap_{n:\mathbb N} D_n$. 
+  \end{itemize} 
+\end{proof} 
 \rednote{End of activity}
-
 \subsection{Compact Hausdorff spaces}
 \subsection{Analysis}
 

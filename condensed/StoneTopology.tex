@@ -20,6 +20,58 @@
 \end{itemize}
 \end{remark}
 
+%%I moved a lot of stuff around, the following is true, but unnecessary
+%% (I thought we needed to add merely in the big circular theorem but we don't. 
+%%    \item We will show that $(ii)$ implies $(i)$.
+%%      Let $f:Sp(B) \to Sp(B')$
+%%      correspond to $u:B'\to B$. 
+%%      We know that $u$ factors through it's kernel as 
+%%      $B' \twoheadrightarrow B'/Ker(u) \hookrightarrow B$. 
+%%      
+%%      As equality in $B$ is open, and $B'$ is countable, we can enumerate all 
+%%      $e:B'$ with $u(e) = 1_B$. Let $(e_n)_{n:\mathbb N}$ be this enumeration. 
+%%      Let $E_n\subseteq Sp(B')$ be the corresponding decidable subsets. 
+%%
+%%      We will show that $f(Sp(B)) = \bigcap_{n:\mathbb N} E_n$. 
+%%
+%%      Let $x\in \bigcap_{n:\mathbb N} E_n\subseteq Sp(B') $. 
+%%      Then $x(e) = 1_2$ whenever $u(e) = 1_B$. 
+%%      In particular, whenever $b:B'$ is such that $u(b) = 0_B$, 
+%%      we have $u(1-b) = 1_B$ thus $x(1-b) = 1_2$ and hence $x(b) = 1_B$. 
+%%      Therefore for all $b:Ker(u)$ we have $x(b) = 0_B$. 
+%%      By remark \Cref{rmkMorphismsOutOfQuotient}, 
+%%      $x:B'\to 2$ defines a morphism $y:B'/Ker(u) \to 2$, 
+%%      such that the left triangle in \Cref{eqnDecidableIntersectionExtension} commutes.
+%%      Furthermore, as $B'/Ker(u) \hookrightarrow B$ is injective, 
+%%      as formal surjections are surjective, 
+%%      there is a surjection $Sp(B) \twoheadrightarrow Sp(B'/Ker(u))$. 
+%%      Hence there merely is some $z:B\to 2$ making the right triangle in 
+%%      \Cref{eqnDecidableIntersectionExtension} commute. 
+%%      But now $z\circ u = x$ and hence $f(z) = x$. 
+%%      We conclude that there merely is some $z:Sp(B)$ such that $fz = x$. 
+%%      Thus $x\in f(Sp(B))$. 
+%%    % https://q.uiver.app/#q=WzAsNCxbMCwxLCJCJyJdLFsxLDAsIjIiXSxbMSwxLCJCJy9LZXIodSkiXSxbMiwxLCJCIl0sWzAsMSwieCJdLFswLDIsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMSwieSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFszLDEsInoiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+%%      \begin{equation}\label{eqnDecidableIntersectionExtension}\begin{tikzcd}
+%%        & 2 \\
+%%        {B'} & {B'/Ker(u)} & B
+%%        \arrow["x", from=2-1, to=1-2]
+%%        \arrow[two heads, from=2-1, to=2-2]
+%%        \arrow["y"', dotted, from=2-2, to=1-2]
+%%        \arrow[hook, from=2-2, to=2-3]
+%%        \arrow["z"', dashed, from=2-3, to=1-2]
+%%      \end{tikzcd}\end{equation}
+%%
+%%      Conversely, whenever $x\in f(Sp(B))$, there is some 
+%%      $z:B\to 2$ with $z\circ u = x$. 
+%%      Thus for all $e:B'$ with $u(e) = 1_B$, we have 
+%%      $x(e) = z\circ u ( e) = z (1_B) = 1_2$. 
+%%      Hence $x\in E$ for $E$ the decidable set corresponding to $e$. 
+%%      Thus for every $n:\mathbb N$ we have $x\in E_n$. 
+%%      Thus $x\in \bigcap_{n:\mathbb N} E_n$. 
+%%
+%%      Therefore $f(Sp(B)) = \bigcap_{n:\mathbb N} E_n$, 
+%%      and thus the image of a map between Stone spaces is a countable intersection 
+%%      of decidable subsets. 
 \begin{lemma}
   Let $A$ be a countable set and let $P:A \to Open$
   be an open subset of $A$. 
@@ -69,180 +121,231 @@
   As $\mathbb N \times \mathbb N \simeq \mathbb N$, we conclude that 
   $\sum_{a:A} P a$ is countable. 
 \end{proof}
-\begin{corollary}
-  As countably presented Boolean algebras are countable  
-  and equality in a countably presented Boolean algebra is open, 
-  the kernel of a map between countably presented Boolean algebras is countable. 
-\end{corollary}
+%\begin{corollary}
+%  As countably presented Boolean algebras are countable  
+%  and equality in a countably presented Boolean algebra is open, 
+%  the kernel of a map between countably presented Boolean algebras is countable. 
+%\end{corollary}
 
 
+%\begin{lemma}\label{lemDecidableEv}
+%  Let $D\subseteq Sp(B)$. 
+%  Then $D$ is decidable iff we have a $b\in B$ such that 
+%  $D = \{x:Sp(B) | x(b) = 1\}$. 
+%\end{lemma}
+%\begin{proof}
+%  Let $D\subseteq Sp(B)$ be decidable. 
+%  Define $f_D:2^{Sp(B)}$ by $f_D(x) = 1$ if $D(x)$ and $f_D(x) = 0$ if $\neg D(x)$.
+%  Stone duality then gives there is some $b_D:B$ with 
+%  $f_D(x) = 1 \leftrightarrow x(b_D) = 1$. 
+%  Thus $D(x) \leftrightarrow f_D(x) = 1 \leftrightarrow x(b_D) = 1$ as requried. 
+%
+%  For the converse, suppose $D  = \{x : Sp(B) | x(b) = 1\}$ then 
+%  whenever $y:Sp(B)$, we have $D(y)$ iff $y(b) = 1$, which is decidable
+%  as for any $c:2$ we have $c = 0 \vee c = 1$. 
+%  Thus $D$ is decidable. 
+%\end{proof}
+%If $b,D$ are as in the above lemma, we say $D$ corresponds to $b$. 
+%
+%\begin{lemma}
+%  Let $f:S \to T$ be a map of Stone spaces. 
+%  Then the image $f(S) \subseteq T$ is a countable 
+%  intersection of decidable subsets. 
+%\end{lemma}
+%\begin{proof}
+%  Let $f:Sp(B) \to Sp(B')$
+%  correspond to $u:B'\to B$. 
+%  We know that $u$ factors through it's kernel as 
+%  $B' \twoheadrightarrow B'/Ker(u) \hookrightarrow B$. 
+%  
+%  As equality in $B$ is open, and $B'$ is countable, we can enumerate all 
+%  $e:B'$ with $u(e) = 1_B$. Let $(e_n)_{n:\mathbb N}$ be this enumeration. 
+%  Let $E_n\subseteq Sp(B')$ be the corresponding decidable subsets. 
+%
+%  We will show that $f(Sp(B)) = \bigcap_{n:\mathbb N} E_n$. 
+%
+%  Let $x\in \bigcap_{n:\mathbb N} E_n\subseteq Sp(B') $. 
+%  Then $x(e) = 1_2$ whenever $u(e) = 1_B$. 
+%  In particular, whenever $b:B'$ is such that $u(b) = 0_B$, 
+%  we have $u(1-b) = 1_B$ thus $x(1-b) = 1_2$ and hence $x(b) = 1_B$. 
+%  Therefore for all $b:Ker(u)$ we have $x(b) = 0_B$. 
+%  By remark \Cref{rmkMorphismsOutOfQuotient}, 
+%  $x:B'\to 2$ defines a morphism $y:B'/Ker(u) \to 2$, 
+%  such that the left triangle in \Cref{eqnDecidableIntersectionExtension} commutes.
+%  Furthermore, as $B'/Ker(u) \hookrightarrow B$ is injective, 
+%  as formal surjections are surjective, 
+%  there is a surjection $Sp(B) \twoheadrightarrow Sp(B'/Ker(u))$. 
+%  Hence there merely is some $z:B\to 2$ making the right triangle in 
+%  \Cref{eqnDecidableIntersectionExtension} commute. 
+%  But now $z\circ u = x$ and hence $f(z) = x$. 
+%  We conclude that there merely is some $z:Sp(B)$ such that $fz = x$. 
+%  Thus $x\in f(Sp(B))$. 
+%% https://q.uiver.app/#q=WzAsNCxbMCwxLCJCJyJdLFsxLDAsIjIiXSxbMSwxLCJCJy9LZXIodSkiXSxbMiwxLCJCIl0sWzAsMSwieCJdLFswLDIsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMSwieSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dLFszLDEsInoiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+%  \begin{equation}\label{eqnDecidableIntersectionExtension}\begin{tikzcd}
+%    & 2 \\
+%    {B'} & {B'/Ker(u)} & B
+%    \arrow["x", from=2-1, to=1-2]
+%    \arrow[two heads, from=2-1, to=2-2]
+%    \arrow["y"', dotted, from=2-2, to=1-2]
+%    \arrow[hook, from=2-2, to=2-3]
+%    \arrow["z"', dashed, from=2-3, to=1-2]
+%  \end{tikzcd}\end{equation}
+%
+%  Conversely, whenever $x\in f(Sp(B))$, there is some 
+%  $z:B\to 2$ with $z\circ u = x$. 
+%  Thus for all $e:B'$ with $u(e) = 1_B$, we have 
+%  $x(e) = z\circ u ( e) = z (1_B) = 1_2$. 
+%  Hence $x\in E$ for $E$ the decidable set corresponding to $e$. 
+%  Thus for every $n:\mathbb N$ we have $x\in E_n$. 
+%  Thus $x\in \bigcap_{n:\mathbb N} E_n$. 
+%
+%  Therefore $f(Sp(B)) = \bigcap_{n:\mathbb N} E_n$, 
+%  and thus the image of a map between Stone spaces is a countable intersection 
+%  of decidable subsets. 
+%\end{proof}
 
-
-
-\begin{lemma}
-  Let $D\subseteq Sp(B)$. 
-  Then $D$ is decidable iff there merely exist some $b\in B$ such that 
-  $D = \{x:Sp(B) | x(b) = 1\}$. 
-\end{lemma}
-\begin{proof}
-  Let $D\subseteq Sp(B)$ be decidable. 
-  Define $f_D:2^{Sp(B)}$ by $f_D(x) = 1$ if $D(x)$ and $f_D(x) = 0$ if $\neg D(x)$.
-  Stone duality then gives there is some $b_D:B$ with 
-  $f_D(x) = 1 \leftrightarrow x(b_D) = 1$. 
-  Thus $D(x) \leftrightarrow f_D(x) = 1 \leftrightarrow x(b_D) = 1$ as requried. 
-
-  For the converse, suppose $D  = \{x : Sp(B) | x(b) = 1\}$ then 
-  whenever $y:Sp(B)$, we have $D(y)$ iff $y(b) = 1$, which is decidable
-  as for any $c:2$ we have $c = 0 \vee c = 1$. 
-  Thus $D$ is decidable. 
-\end{proof}
-
-
-\begin{lemma}
-  Let $f:S \to T$ be a map of Stone spaces. 
-  Then the image $f(S) \subseteq T$ is a countable 
-  intersection of decidable subsets. 
-\end{lemma}
-\begin{proof}
-  Let $f:Sp(B) \to Sp(B')$
-  correspond to $u:B'\to B$. 
-  We know that $u$ factors through it's kernel as 
-  $B' \twoheadrightarrow B'/Ker(u) \hookrightarrow B$. 
-  
-  As equality in $B$ is open, and $B'$ is countable, we can enumerate all 
-  $e:B'$ with $u(e) = 1_B$. Let $(e_n)_{n:\mathbb N}$ be this enumeration. 
-  Let $E_n\subseteq Sp(B')$ be the corresponding decidable subsets. 
-  We will show that $f(S) = \bigcap_{n:\mathbb N} E_n$. 
-
-  \rednote{Active here} 
-
-
-\end{proof}
-
-
-
-
-\begin{lemma}
-  Let $S$ Stone. 
-  Then a subset $D\subseteq S$ is closed iff there merely is some $T$ Stone 
-  and map $f:T\to S$ with image $D$. 
-\end{lemma}
-\begin{proof}
-  Let $f:T\to S$ be a map between Stone spaces. 
-  We will show that $f(T)$ is closed. 
-  For $x:S$, we have that $x\in f(T)$ iff there exists some $y:T$ 
-  with $f(y) = x$. 
-  So 
-  \begin{equation}
-    (f(T))(x) \leftrightarrow || \sum_{y:T} f(y) = x||
-  \end{equation}
-  Note that $\sum_{y:T} f(y) = x$ is a pullback as follows:
-  \begin{equation}
-    \begin{tikzcd}
-      \sum_{y:T} f(y) = x\arrow[rd,"\lrcorner"{pos=0.125},phantom] \arrow[r] \arrow[d]
-      & 1 \arrow[d,"x"] \\
-      T \arrow[r,"f"']  & S
-    \end{tikzcd}
-  \end{equation}
-  As any pullback of Stone spaces is Stone, it follows that 
-  $\sum_{y:T} f(y) = x$ is Stone, and by \Cref{LemInhabitedOfStoneIsClosed}, 
-  so is $||\sum_{y:T} f(y) = x||$. Thus $f(T)(x)$ is a closed proposition and $f(T)$ closed. 
-  We conclude that the image of a map of Stone spaces is closed. 
-
-  For the converse, consider any $D\subseteq Sp(B)$ closed. 
-  We will find a countably generated ideal $\langle R \rangle \subseteq B$ such that 
-  the quotient map $B \to B /\langle R \rangle$ induces a map 
-  $Sp(B/\langle R \rangle) \to Sp(B)$ whose image is $D$. 
-  \rednote{TODO}
-\end{proof}
-
-
-
-\begin{lemma}
-  Let $A\subseteq S$ be a subset of a Stone space. TFAE
-  \begin{itemize}
+\begin{theorem}
+  Let $A\subseteq Sp(B)$ be a subset of a Stone space. TFAE:
+  \begin{enumerate}[(i)]
+    \item There merely exists some $(D_n)_{n:\mathbb N}$ countable family 
+      of decidable subsets of $Sp(B)$ with $A = \bigcap_{n:\mathbb N} D_n$. 
+    \item There merely exists some Stone space $T$ and some map $T\to Sp(B)$ 
+      whose image is $A$. 
     \item $A$ is closed. 
-    \item There merely is a countable set set of decidable subsets $D_n\subseteq S$ with 
-      $A = \bigcap_{n:\mathbb N} D_n$. 
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \begin{itemize}
+    \item To see that $(i) \to (ii)$, consider \Cref{LemdecidableEv}
   \end{itemize}
-\end{lemma}
-\begin{proof}
-  We will first show that $\bigcap_{n:\mathbb N} D_n$ is closed for $(D_n)_{n:\mathbb N}$ 
-  a family of decidable subsets of $S$. 
-  As $D_n$ is decidable, we can define for each $x:S$ a function 
-  $\alpha_x:2^\mathbb N$ by 
-  \begin{equation}
-    \alpha_x(n) = 
-    \begin{cases} 
-      0 \text { if } D_n(x)\\
-      1 \text { if } \neg D_n(x)
-    \end{cases}
-  \end{equation} 
-  Now $x\in \bigcap_{n:\mathbb N} D_n $ iff $\alpha_x(n) = 0$ for all $n:\mathbb N$. 
-  Thus $\bigcap_{n:\mathbb N} D_n$ is closed. 
-  \medskip
-
-  For the converse, 
-  Suppose $A$ is closed. So for each $x: S$ there merely exists some 
-  $\alpha:2^\mathbb N$ with $A x \leftrightarrow (\forall_{n:\mathbb N}\alpha(n) = 0$. 
-  Let $E$ be a dependent family of types over $X$ given by
-  $E x  = \sum\limits_{\alpha:2^\mathbb N} 
-  (A x \leftrightarrow \forall_{n:\mathbb N} \alpha(n) = 0)$
-  The projection map $\sum\limits_{x: S} E x \to S$ is surjective by our assumption, 
-  thus local choice gives us some Stone space $T$ and arrows as follows:
-  \begin{equation}\begin{tikzcd}
-    \sum\limits_{x:S}E x \arrow[d,""',two heads]\\
-    S & \arrow[l, "", two heads,"s"] T\arrow[lu, ""']
-  \end{tikzcd}\end{equation}  
-  The map $T\to \sum\limits_{x:S} E x $ induces a map $\gamma_{(\cdot)}:T \to 2^\mathbb N$, 
-  such that for all $t:T$ we have 
-  \begin{equation}
-    (\forall_{n:\mathbb N} \gamma_t(n)  = 0 )\leftrightarrow A ( s (t))
-  \end{equation}
-  Now for $T = Sp(B)$, under Stone duality the map $\gamma_{(\cdot )}$ 
-  corresponds with a map $\langle C \rangle \to B$, 
-  which gives a map $\mathbb N \to B$. 
-
-
-
-\end{proof}
+\end{proof} 
 
 
 
 
-\begin{corollary}\label{CorDoubleNegToAx2}
-  If we have for $S:\Stone$ that $\neg \neg S \to ||S||$, 
-  we can conclude that surjections are formal surjections. 
-\end{corollary}
-\begin{proof}
-  \rednote{All the unkonw references are lemmas that still need to be done (or at least linked) without using ax2}
-  Now assume that for $S:\Stone$, we have $\neg \neg S \to ||S||$. 
-  Let $f:B \to B'$ be injective, and let 
-  $g:S' \to S$ correspond to $f$. 
-  To show that $g$ is surjective, we need to show that for any $x:S$, we have $||\sum\limits_{y:S'} g y = x||$. 
-  By our assumption, we can prove this by showing that 
-  \begin{equation}
-    g^{-1}\{x\} := \sum\limits_{y:S'} g y = x
-  \end{equation} is Stone and non-empty. 
-    First note that $\sum\limits_{y:S'} g y = x$ is the pullback of $g$ and the map $1 \to S$ given by $x$.
-      By duality and \Cref{rmkBoolePushouts} the pullback of Stone spaces is a Stone space. 
-   
-
-      By \Cref{lemPointsAreClosed} and \Cref{lemClosedIntersectionOfDecidable}, 
-      $\{x\}$ is a countable intersection of decidable sets $\bigcap_{n:\mathbb N} D_n$. 
-      We have that 
-      \begin{equation}
-        g^{-1}\{x\} = g^{-1}(\bigcap_{n:\mathbb N} D_n) = 
-        \bigcap_{n:\mathbb N} g^{-1}(D_n)
-      \end{equation} 
-      Let $n:\mathbb N$. By Stone duality, the decidable subset $D_n$ corresponds to some $b_n:B$. 
-      As $x\in D_n$, we have that $b_n \neq 0$. 
-      As $f$ is injective, we have that $f(b_n) \neq 0$. 
-      Therefore the corresponding decidable subset, which is $g^{-1}(D_n)$ is not empty. 
-
-      Note that $D_n$ is a closed subset of a Stone space, hence Stone by \Cref{LemClosedSubsetOfStoneIsStone}, 
-      and by the same argument as above $g^{-1}(D_n)$ is Stone. By our assumption $g^{-1}(D_n)$ is thus merely inhabited. 
-      Now by \Cref{lemCompactnessCountableIntersection}, this gives that 
-      $\bigcap_{n:\mathbb N} g^{-1}(D_n)$ is merely inhabited, as required. 
-\end{proof}
-
+%
+%
+%\begin{lemma}
+%  Let $S$ Stone. 
+%  Then a subset $D\subseteq S$ is closed iff there merely is some $T$ Stone 
+%  and map $f:T\to S$ with image $D$. 
+%\end{lemma}
+%\begin{proof}
+%  Let $f:T\to S$ be a map between Stone spaces. 
+%  We will show that $f(T)$ is closed. 
+%  For $x:S$, we have that $x\in f(T)$ iff there exists some $y:T$ 
+%  with $f(y) = x$. 
+%  So 
+%  \begin{equation}
+%    (f(T))(x) \leftrightarrow || \sum_{y:T} f(y) = x||
+%  \end{equation}
+%  Note that $\sum_{y:T} f(y) = x$ is a pullback as follows:
+%  \begin{equation}
+%    \begin{tikzcd}
+%      \sum_{y:T} f(y) = x\arrow[rd,"\lrcorner"{pos=0.125},phantom] \arrow[r] \arrow[d]
+%      & 1 \arrow[d,"x"] \\
+%      T \arrow[r,"f"']  & S
+%    \end{tikzcd}
+%  \end{equation}
+%  As any pullback of Stone spaces is Stone, it follows that 
+%  $\sum_{y:T} f(y) = x$ is Stone, and by \Cref{LemInhabitedOfStoneIsClosed}, 
+%  so is $||\sum_{y:T} f(y) = x||$. Thus $f(T)(x)$ is a closed proposition and $f(T)$ closed. 
+%  We conclude that the image of a map of Stone spaces is closed. 
+%
+%  For the converse, consider any $D\subseteq Sp(B)$ closed. 
+%  We will find a countably generated ideal $\langle R \rangle \subseteq B$ such that 
+%  the quotient map $B \to B /\langle R \rangle$ induces a map 
+%  $Sp(B/\langle R \rangle) \to Sp(B)$ whose image is $D$. 
+%  \rednote{TODO}
+%\end{proof}
+%
+%
+%
+%\begin{lemma}
+%  Let $A\subseteq S$ be a subset of a Stone space. TFAE
+%  \begin{itemize}
+%    \item $A$ is closed. 
+%    \item There merely is a countable set set of decidable subsets $D_n\subseteq S$ with 
+%      $A = \bigcap_{n:\mathbb N} D_n$. 
+%  \end{itemize}
+%\end{lemma}
+%\begin{proof}
+%  We will first show that $\bigcap_{n:\mathbb N} D_n$ is closed for $(D_n)_{n:\mathbb N}$ 
+%  a family of decidable subsets of $S$. 
+%  As $D_n$ is decidable, we can define for each $x:S$ a function 
+%  $\alpha_x:2^\mathbb N$ by 
+%  \begin{equation}
+%    \alpha_x(n) = 
+%    \begin{cases} 
+%      0 \text { if } D_n(x)\\
+%      1 \text { if } \neg D_n(x)
+%    \end{cases}
+%  \end{equation} 
+%  Now $x\in \bigcap_{n:\mathbb N} D_n $ iff $\alpha_x(n) = 0$ for all $n:\mathbb N$. 
+%  Thus $\bigcap_{n:\mathbb N} D_n$ is closed. 
+%  \medskip
+%
+%  For the converse, 
+%  Suppose $A$ is closed. So for each $x: S$ there merely exists some 
+%  $\alpha:2^\mathbb N$ with $A x \leftrightarrow (\forall_{n:\mathbb N}\alpha(n) = 0$. 
+%  Let $E$ be a dependent family of types over $X$ given by
+%  $E x  = \sum\limits_{\alpha:2^\mathbb N} 
+%  (A x \leftrightarrow \forall_{n:\mathbb N} \alpha(n) = 0)$
+%  The projection map $\sum\limits_{x: S} E x \to S$ is surjective by our assumption, 
+%  thus local choice gives us some Stone space $T$ and arrows as follows:
+%  \begin{equation}\begin{tikzcd}
+%    \sum\limits_{x:S}E x \arrow[d,""',two heads]\\
+%    S & \arrow[l, "", two heads,"s"] T\arrow[lu, ""']
+%  \end{tikzcd}\end{equation}  
+%  The map $T\to \sum\limits_{x:S} E x $ induces a map $\gamma_{(\cdot)}:T \to 2^\mathbb N$, 
+%  such that for all $t:T$ we have 
+%  \begin{equation}
+%    (\forall_{n:\mathbb N} \gamma_t(n)  = 0 )\leftrightarrow A ( s (t))
+%  \end{equation}
+%  Now for $T = Sp(B)$, under Stone duality the map $\gamma_{(\cdot )}$ 
+%  corresponds with a map $\langle C \rangle \to B$, 
+%  which gives a map $\mathbb N \to B$. 
+%
+%
+%
+%\end{proof}
+%
+%
+%
+%
+%\begin{corollary}\label{CorDoubleNegToAx2}
+%  If we have for $S:\Stone$ that $\neg \neg S \to ||S||$, 
+%  we can conclude that surjections are formal surjections. 
+%\end{corollary}
+%\begin{proof}
+%  \rednote{All the unkonw references are lemmas that still need to be done (or at least linked) without using ax2}
+%  Now assume that for $S:\Stone$, we have $\neg \neg S \to ||S||$. 
+%  Let $f:B \to B'$ be injective, and let 
+%  $g:S' \to S$ correspond to $f$. 
+%  To show that $g$ is surjective, we need to show that for any $x:S$, we have $||\sum\limits_{y:S'} g y = x||$. 
+%  By our assumption, we can prove this by showing that 
+%  \begin{equation}
+%    g^{-1}\{x\} := \sum\limits_{y:S'} g y = x
+%  \end{equation} is Stone and non-empty. 
+%    First note that $\sum\limits_{y:S'} g y = x$ is the pullback of $g$ and the map $1 \to S$ given by $x$.
+%      By duality and \Cref{rmkBoolePushouts} the pullback of Stone spaces is a Stone space. 
+%   
+%
+%      By \Cref{lemPointsAreClosed} and \Cref{lemClosedIntersectionOfDecidable}, 
+%      $\{x\}$ is a countable intersection of decidable sets $\bigcap_{n:\mathbb N} D_n$. 
+%      We have that 
+%      \begin{equation}
+%        g^{-1}\{x\} = g^{-1}(\bigcap_{n:\mathbb N} D_n) = 
+%        \bigcap_{n:\mathbb N} g^{-1}(D_n)
+%      \end{equation} 
+%      Let $n:\mathbb N$. By Stone duality, the decidable subset $D_n$ corresponds to some $b_n:B$. 
+%      As $x\in D_n$, we have that $b_n \neq 0$. 
+%      As $f$ is injective, we have that $f(b_n) \neq 0$. 
+%      Therefore the corresponding decidable subset, which is $g^{-1}(D_n)$ is not empty. 
+%
+%      Note that $D_n$ is a closed subset of a Stone space, hence Stone by \Cref{LemClosedSubsetOfStoneIsStone}, 
+%      and by the same argument as above $g^{-1}(D_n)$ is Stone. By our assumption $g^{-1}(D_n)$ is thus merely inhabited. 
+%      Now by \Cref{lemCompactnessCountableIntersection}, this gives that 
+%      $\bigcap_{n:\mathbb N} g^{-1}(D_n)$ is merely inhabited, as required. 
+%\end{proof}
+%
