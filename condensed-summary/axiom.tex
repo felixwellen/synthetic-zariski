@@ -1,0 +1,43 @@
+\newcommand{\isSt}{\mathsf{isStone}}
+
+\begin{definition}
+  For $B$ a countably presented Boolean algebra, we define $Sp(B)$ as the set of Boolean morphisms from $B$ to $2$. 
+\end{definition}
+
+\begin{definition}
+  Given a type $X$, we say that it is Stone if there exists a countably presented boolean algebra $B$ such that:
+  \[X = Sp(B)\]
+\end{definition}
+
+\begin{axiomNum}[Stone duality]
+  For any countably presented Boolean algebra $B$, the evaluation map $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
+\end{axiomNum} 
+
+\begin{axiomNum}[Surjections are formal Surjections]
+  A map $f:Sp(B')\to Sp(B)$ is surjective if and only if the corresponding map $B \to B'$ is injective.
+\end{axiomNum} 
+
+\begin{axiomNum}[Local choice]
+  Whenever $S$ Stone and $E\twoheadrightarrow S$ surjective, then there exists some $T$ Stone,
+    a surjection $T \twoheadrightarrow S$ and a map $T\to E$ 
+    such that the following diagram commutes:
+    \begin{equation}\begin{tikzcd}
+      E \arrow[d,""',two heads]\\
+      S & \arrow[l, "", two heads] T\arrow[lu, ""']
+    \end{tikzcd}\end{equation}  
+\end{axiomNum} 
+
+\begin{axiomNum}[Dependent choice]\label{axDependentChoice}
+  Given a sequence of surjections:
+  \begin{center}
+	\begin{tikzcd}
+	X_0 & X_1\arrow[l,""',two heads] & X_2 \arrow[l,""',two heads]  & \arrow[l,""',two heads] \cdots
+	\end{tikzcd}
+  \end{center}
+  we have an induced surjection:
+  \begin{center}
+	\begin{tikzcd}
+	X_0 & \arrow[l,""',two heads]  \mathrm{lim}_k X_k
+	\end{tikzcd}
+  \end{center}
+\end{axiomNum}
