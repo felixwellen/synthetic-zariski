@@ -1,5 +1,5 @@
 We want to show that the interval of Cauchy reals is Compact Hausdorff. 
-Informally, to any binary sequence $\alpha : \mathbb N \to 2$, 
+Informally, to any binary sequence $\alpha : \N \to 2$, 
 we can associate a Cauchy sequence 
 \begin{equation}\label{eqnBinaryEncode}
   n\mapsto \sum\limits_{i = 0 }^n \frac {\alpha(i)}{2^{i+1}}
@@ -9,8 +9,8 @@ two binary sequences are equivalent iff they correspond to the same Cauchy reals
 %
 First, we'll need some notation.
 \begin{definition}
-Given a binary sequence $\alpha:\mathbb N \to 2$ and a natural number $n : \mathbb N$  
-we denote $\alpha|_n: \mathbb N_{\leq n} \to 2$ for the 
+Given a binary sequence $\alpha:\N \to 2$ and a natural number $n : \N$  
+we denote $\alpha|_n: \N_{\leq n} \to 2$ for the 
 restriction of $\alpha$ to a finite sequence of length $n$. 
 We denote $\overline 0, \overline 1$ for the binary sequences which are constantly $0$ and $1$ respectively. 
 We denote $0,1$ for the sequences of length $1$ hitting $0,1$ respectively. 
@@ -22,9 +22,9 @@ Basically, we want for every finite sequence $z$ that
 $(z \cdot 0 \cdot \overline 1)$ and  $(z \cdot 1 \cdot \overline 0)$ are equivalent. 
 
 \begin{definition}
-Now let $n:\mathbb N$ and $x,y:\mathbb N_{\leq n} \to 2$ be two sequences of length $n$. 
-We say $x,y$ are near if we have an $m:\mathbb N$ with $m\leq n$
-and some $a: \mathbb N_{\leq m} \to 2$, 
+Now let $n:\N$ and $x,y:\N_{\leq n} \to 2$ be two sequences of length $n$. 
+We say $x,y$ are near if we have an $m:\N$ with $m\leq n$
+and some $a: \N_{\leq m} \to 2$, 
 such that one of $(a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n$
 is equal to $x$ and the other is equal to $y$. 
 We denote $\text{near}_n(x,y)$ if $x,y$ are near. 
@@ -32,7 +32,7 @@ We denote $\text{near}_n(x,y)$ if $x,y$ are near.
 To be precise, we define 
 \begin{equation}
   \text{near}_n(x,y) = 
-\Sigma(m:\mathbb N) m \leq n \wedge 
+\Sigma(m:\N) m \leq n \wedge 
   \Sigma (a : Fin_m \to 2) 
 \bigg( \big( (x,y) = 
 ((a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n)
@@ -60,9 +60,9 @@ but $010$ is not near to $100$. This corresponds to the fact that $\frac14$ and 
 apart, and so are $\frac38$ and $\frac12$, but $\frac14$ and $\frac12$ are not. 
 \end{remark}
 \begin{definition}
-  We define the following relation on Cantor space for $\alpha, \beta: 2^\mathbb N$.
+  We define the following relation on Cantor space for $\alpha, \beta: 2^\N$.
   \begin{equation}
-    \alpha \sim_t \beta = \forall (n : \mathbb N) 
+    \alpha \sim_t \beta = \forall (n : \N) 
     \text{near}_n(\alpha|_n, \beta|_n)
   \end{equation}
 \end{definition}
@@ -70,7 +70,7 @@ apart, and so are $\frac38$ and $\frac12$, but $\frac14$ and $\frac12$ are not.
   $\sim_t$ is a closed equivalence relation. 
 \end{lemma}
 \begin{proof}
-   Let $\alpha, \beta, \gamma : 2^\mathbb N$. 
+   Let $\alpha, \beta, \gamma : 2^\N$. 
    As the dependent product of propositions is a proposition, $\alpha \sim_t\beta$ is a proposition. 
    %
    Furthermore, the closedness follows from decidability of $\text{near}_n(\alpha|_n, \beta|_n)$. 
@@ -81,7 +81,7 @@ apart, and so are $\frac38$ and $\frac12$, but $\frac14$ and $\frac12$ are not.
    Now suppose $\alpha \sim_t \beta$ and $\beta\sim_t \gamma$. 
    We claim that $\alpha \sim_t \gamma$. 
 
-   Let $n:\mathbb N$, we need to show that 
+   Let $n:\N$, we need to show that 
    $\text{near}_n(\alpha|_n , \gamma|_n)$. 
    Let $(a,m)$ witness that $\text{near}_n(\alpha|_n, \beta|_n)$.
    and let $(b, k)$ witness that $\text{near}_n(\beta|_n, \gamma|_n)$

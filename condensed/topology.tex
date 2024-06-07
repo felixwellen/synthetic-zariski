@@ -14,11 +14,11 @@
   \begin{itemize}
     \item 
       By Markov, $P$ being open iff there merely exists some $\alpha:\Noo$ such that 
-      $P\leftrightarrow \exists_{n:\mathbb N} \alpha(n) = 1$. 
+      $P\leftrightarrow \exists_{n:\N} \alpha(n) = 1$. 
     \item 
-      $P$ is open iff there merely exists some $\alpha:2^\mathbb N$ such that $P\leftrightarrow \exists n \alpha(n) = 1$.
+      $P$ is open iff there merely exists some $\alpha:2^\N$ such that $P\leftrightarrow \exists n \alpha(n) = 1$.
     \item 
-      $P$ is closed iff there merely exists some $\alpha:2^\mathbb N$ such that $P\leftrightarrow \forall n \alpha(n) = 0$.
+      $P$ is closed iff there merely exists some $\alpha:2^\N$ such that $P\leftrightarrow \forall n \alpha(n) = 0$.
 \end{itemize}
 \end{remark}
 
@@ -37,71 +37,71 @@
 \begin{proof}
   \begin{itemize}
     \item Let $P,Q$ be closed. We will show $P\vee Q$ closed as well. 
-%      Let $\alpha,\beta:2^\mathbb N$ be such that 
-%      $P\leftrightarrow \forall_{n:\mathbb N} \alpha(n) = 0$ and 
-%      $Q\leftrightarrow \forall_{n:\mathbb N} \beta(n) = 0$. 
-%      Let $\gamma:2^\mathbb N$ be such that $\gamma(n) = 0$ iff 
+%      Let $\alpha,\beta:2^\N$ be such that 
+%      $P\leftrightarrow \forall_{n:\N} \alpha(n) = 0$ and 
+%      $Q\leftrightarrow \forall_{n:\N} \beta(n) = 0$. 
+%      Let $\gamma:2^\N$ be such that $\gamma(n) = 0$ iff 
 %      we have that $\alpha|_k = \infty|_k$ or $\beta|_k = \infty|_k$. 
       % I think you'll still need some choice to infer from \gamma(n) = 0 for all n that 
       % \alpha(n) = 0 for all n or \beta(n) = 0 for all n
       Assume $P\leftrightarrow \alpha = \infty, Q \leftrightarrow \beta = \infty$. 
       Now $P\vee Q \leftrightarrow 
-      ((\forall_{n:\mathbb N} \alpha(n) = 0) 
-      \vee (\forall_{n:\mathbb N} \beta(n) = 0))$
+      ((\forall_{n:\N} \alpha(n) = 0) 
+      \vee (\forall_{n:\N} \beta(n) = 0))$
       By \Cref{corAlternativeLLPO}, we have that 
       $P\vee Q \leftrightarrow 
-      \forall_{n:\mathbb N}  \forall_{m:\mathbb N}  (\alpha(n) = 0 \vee \beta(m) = 0)$
-      For $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective, 
+      \forall_{n:\N}  \forall_{m:\N}  (\alpha(n) = 0 \vee \beta(m) = 0)$
+      For $s:\N \to \N \times \N$ surjective, 
       this in turn is equivalent to 
-      $\forall_{k:\mathbb N}  (\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s(k))) = 0)$. 
-      We define a sequence $\gamma:2^\mathbb N$ where 
+      $\forall_{k:\N}  (\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s(k))) = 0)$. 
+      We define a sequence $\gamma:2^\N$ where 
       $\gamma(k) = 0$ iff $(\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s(k))) = 0)$. 
       As this is decidable, $\gamma$ is well-defined.
       Also
-      $P\vee Q \leftrightarrow \forall_{k:\mathbb N} \gamma(k) = 0$, 
+      $P\vee Q \leftrightarrow \forall_{k:\N} \gamma(k) = 0$, 
       thus $P\vee Q$ is closed. 
-    \item Let $(P_n)_{n:\mathbb N}$ be a countable family of closed propositions. 
+    \item Let $(P_n)_{n:\N}$ be a countable family of closed propositions. 
       We will show that 
-      $\forall_{n:\mathbb N} P_n$ is closed as well. 
+      $\forall_{n:\N} P_n$ is closed as well. 
       By countable choice, we have a function which for each 
-      $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
+      $n:\N$ gives some $\alpha_n:\Noo$ 
       such that $P_n \leftrightarrow \alpha_n =\infty$. 
-      Thus $(\forall_{n:\mathbb N} P_n )\leftrightarrow 
-      (\forall_{n:\mathbb N}(\alpha_n = \infty))$. 
-      Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
+      Thus $(\forall_{n:\N} P_n )\leftrightarrow 
+      (\forall_{n:\N}(\alpha_n = \infty))$. 
+      Let $s:\N \to \N \times \N$ surjective and let 
       $\beta(k) = \alpha_{\pi_0(s(k))}(\pi_1 (s(k)))$. 
-      Note that $\beta = \infty$ iff for every $n:\mathbb N$, 
-      and every $m:\mathbb N$, we have $\alpha_n(m) = 0$, 
+      Note that $\beta = \infty$ iff for every $n:\N$, 
+      and every $m:\N$, we have $\alpha_n(m) = 0$, 
       which happens iff $\alpha_n = \infty$. 
-      We conclude that $\forall_{n:\mathbb N} P_n \leftrightarrow \beta = \infty$.
+      We conclude that $\forall_{n:\N} P_n \leftrightarrow \beta = \infty$.
       Thus closed propositions are closed under countable conjunctions. 
     \item 
-      Let $P,Q$ be open. Let $\alpha,\beta:2^\mathbb N$ be such that 
+      Let $P,Q$ be open. Let $\alpha,\beta:2^\N$ be such that 
       $
-      P\leftrightarrow \exists_{k:\mathbb N}  \alpha(k) = 1, 
-      Q\leftrightarrow \exists_{k:\mathbb N}  \beta(k) = 1
+      P\leftrightarrow \exists_{k:\N}  \alpha(k) = 1, 
+      Q\leftrightarrow \exists_{k:\N}  \beta(k) = 1
       $. 
       We will show that $P\wedge Q$ is open as well. 
-      Consider $\gamma:2^\mathbb N$ given by 
+      Consider $\gamma:2^\N$ given by 
       $\gamma(l) = 1$ iff there exist some $k,k'\leq l$ with 
       $\alpha(k) = \beta(k') = 1$. As we only need to check finitely many combinations 
       of $k,k'$, this is a decidable property and $\gamma$ is well-defined. 
-      Clearly we have $(\exists_{l:\mathbb N} \gamma(l) = 1) \leftrightarrow (P \wedge Q)$. 
+      Clearly we have $(\exists_{l:\N} \gamma(l) = 1) \leftrightarrow (P \wedge Q)$. 
       Thus $P\wedge Q$ is open. 
-    \item Let $(P_n)_{n:\mathbb N}$ be a countable family of open propositions. 
-      We will show that $\exists_{n:\mathbb N}P_n$ is open as well. 
+    \item Let $(P_n)_{n:\N}$ be a countable family of open propositions. 
+      We will show that $\exists_{n:\N}P_n$ is open as well. 
       By countable choice, we have a function which for each 
-      $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
+      $n:\N$ gives some $\alpha_n:\Noo$ 
       such that $P_n \leftrightarrow \alpha_n \neq \infty$. 
-      Thus $(\exists{n:\mathbb N} P_n) \leftrightarrow 
-      (\exists{n:\mathbb N}\alpha_n \neq \infty)$. 
-      Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
+      Thus $(\exists{n:\N} P_n) \leftrightarrow 
+      (\exists{n:\N}\alpha_n \neq \infty)$. 
+      Let $s:\N \to \N \times \N$ surjective and let 
       $\beta(k) = \alpha_{\pi_0(s(k))}(\pi_1 (s(k)))$. 
       Then let $\gamma(k) = 1$ iff $k$ is minimal with $\beta(k) = 1$. 
-      Note that $\beta \neq \infty$ iff there is some $n:\mathbb N$, 
-      and some $m:\mathbb N$, with $\alpha_n(m) = 1$, 
+      Note that $\beta \neq \infty$ iff there is some $n:\N$, 
+      and some $m:\N$, with $\alpha_n(m) = 1$, 
       which happens iff $\alpha_n \neq \infty$. 
-      We conclude that $\exists{n:\mathbb N} P_n \leftrightarrow \gamma \neq \infty$.
+      We conclude that $\exists{n:\N} P_n \leftrightarrow \gamma \neq \infty$.
       Thus open propositions are closed under countable disjunctions. 
   \end{itemize}   
 \end{proof}
@@ -138,7 +138,7 @@
   $(\bigvee_{r\in R_0} r) \wedge b$ for $R_0\subseteq R$ finite and $b:\langle G \rangle$ 
   arbitrary. 
   In particular, note that $\langle R \rangle$ is countable. 
-  Let $(r_n)_{n:\mathbb N}$ enumerate $ \langle R \rangle $
+  Let $(r_n)_{n:\N}$ enumerate $ \langle R \rangle $
   Also note that equality in $\langle G \rangle$ is decidable. 
   Thus we can define a sequence $\alpha:\Noo$ with $\alpha(k) = 1$ 
   iff $k$ is minimal with $a -b = r_n$. 
@@ -147,7 +147,7 @@
   Let $X:\Stone$ and let $x,y:X$. 
   Let $X= Sp(B)$ for $B = \langle G \rangle / \langle R \rangle $. 
   Note that $x=y$ iff $x(g) = y(g)$ for all generators $g:G$. 
-  As $G$ is countable, we can enumerate it's elements as $(g_n)_{n:\mathbb N}$. 
+  As $G$ is countable, we can enumerate it's elements as $(g_n)_{n:\N}$. 
   As equality in $B$ decidable, we can define a sequence $\alpha:\Noo$ 
   with $\alpha(k) = 1$ iff $k$ is minimal with $x(g_k) \neq y(g_k)$. 
   Now $\alpha(k) = 0$ for all $k$ iff for all $k$ we have $x(g_k) = y(g_k)$ and thus $x(g) = y(g)$ for all generators $g$ 
@@ -178,16 +178,16 @@
       Because we have $||\sum_{a:A} P a||$, we assume we have  some $x:A$ with $P x$. 
     \item 
       Because $A$ is countable, we may assume we have some 
-      enumeration of elements from $A$ given as $(a_n)_{n:\mathbb N}$.
+      enumeration of elements from $A$ given as $(a_n)_{n:\N}$.
   \end{itemize}
   Furthermore, by countable choice, $P$ gives us 
-  for each $a:A$ a specific $\alpha_a:2^\mathbb N$ 
+  for each $a:A$ a specific $\alpha_a:2^\N$ 
   such that 
   \begin{equation}
-    P a \leftrightarrow \exists_{m:\mathbb N} \alpha_a(m) = 1.
+    P a \leftrightarrow \exists_{m:\N} \alpha_a(m) = 1.
   \end{equation}
   Using this data, we will 
-  construct a surjection $s:\mathbb N \times \mathbb N \to \sum_{a:A} P a$. 
+  construct a surjection $s:\N \times \N \to \sum_{a:A} P a$. 
   Define 
   \begin{equation}
     s(m,n) = 
@@ -197,11 +197,11 @@
     \end{cases}
   \end{equation}
   To see that $s$ is surjective, we need to show that for each $a:A$ with $P a$ there 
-  merely exists some $(m,n):\mathbb N \times \mathbb N$ 
+  merely exists some $(m,n):\N \times \N$ 
   with $s(m,n) = a$. 
   \begin{itemize}
     \item 
-  Because $(a_n)_{n:\mathbb N}$ formed an enumeration, we have that 
+  Because $(a_n)_{n:\N}$ formed an enumeration, we have that 
   there merely is some $n$ with $a = a_n$. 
   We can use this $n$ as we're proving a proposition. 
     \item 
@@ -212,7 +212,7 @@
   thus for each $a:A$ with $P a$, there exists some $(m,n)$ with 
   $s(m,n) = a$. Thus $s$ is surjective. 
 
-  As $\mathbb N \times \mathbb N \simeq \mathbb N$, we conclude that 
+  As $\N \times \N \simeq \N$, we conclude that 
   $\sum_{a:A} P a$ is countable. 
 \end{proof}
 \subsection{Closed subspaces of Stone spaces}
@@ -240,28 +240,28 @@
 \begin{theorem}
   Let $A\subseteq Sp(B)$ be a subset of a Stone space. TFAE:
   \begin{enumerate}[(i)]
-    \item We have some $(D_n)_{n:\mathbb N}$ countable family 
-      of decidable subsets of $Sp(B)$ with $A = \bigcap_{n:\mathbb N} D_n$. 
+    \item We have some $(D_n)_{n:\N}$ countable family 
+      of decidable subsets of $Sp(B)$ with $A = \bigcap_{n:\N} D_n$. 
     \item We have a Stone space $T$ and some map $T\to Sp(B)$ 
       whose image is $A$. 
-    \item For each $x:Sp(B)$, we have a specific sequence $\alpha_x:2^\mathbb N$ such that 
-      $A x \leftrightarrow \forall_{n:\mathbb N} \alpha_x(n) = 0$. 
+    \item For each $x:Sp(B)$, we have a specific sequence $\alpha_x:2^\N$ such that 
+      $A x \leftrightarrow \forall_{n:\N} \alpha_x(n) = 0$. 
   \end{enumerate}
 \end{theorem}
 Before we start the proof, note that the above three statements carry data.
 \begin{proof}
   \begin{itemize}
     \item We will show that $(i)$ implies $(ii)$.
-      Let $(D_n)_{n:\mathbb N}$ be a countable family of decidable subsets of $Sp(B)$. 
+      Let $(D_n)_{n:\N}$ be a countable family of decidable subsets of $Sp(B)$. 
       By Stone duality, decidable subsets of $Sp(B)$ correspond to elements of $B$. 
-      Thus we get a countable family $(d_n)_{n:\mathbb N}$ of elements of $B$ such that 
+      Thus we get a countable family $(d_n)_{n:\N}$ of elements of $B$ such that 
       such that $D_n = \{x:Sp(B)| x(d_n) = 1\}$. 
       Consider the countably presented boolean algebra 
-      $C = B/\langle (\neg d_n)_{n:\mathbb N}\rangle$.
+      $C = B/\langle (\neg d_n)_{n:\N}\rangle$.
       The quotient map provides an epi $B\twoheadrightarrow C$, which 
       corresponds to a mono $Sp(C) \hookrightarrow Sp(B)$. 
-      We claim that the image of this map is exactly $\bigcap_{n:\mathbb N} D_n$. 
-      Note that $x$ is in the image of this map iff for all $n:\mathbb N$, we have 
+      We claim that the image of this map is exactly $\bigcap_{n:\N} D_n$. 
+      Note that $x$ is in the image of this map iff for all $n:\N$, we have 
       $x(\neg d_n) = 0$. Note $x(\neg d_n) = 0$ iff $x (d_n) = 1$ iff $x\in D_n$. 
       Thus $x$ is in the image of the map iff for all $n$ we have $x\in D_n$,
       as required. 
@@ -298,9 +298,9 @@ Before we start the proof, note that the above three statements carry data.
     Let $\alpha_x$ be as in $(iii)$. Define 
     $D_n(x) \leftrightarrow (\alpha_n(x) = 0)$. 
     Note that $D_n$ is well-defined as $\alpha_n(x):2$ and for all $b:2$ we have
-    $(b=0)+ (b=1)$. Now $x \in \bigcap_{n:\mathbb N} D_n$ iff
-    $\alpha_x(n) = 0$ for all $n:\mathbb N$, 
-    which happens iff $A x$. Thus $A = \bigcap_{n:\mathbb N} D_n$. 
+    $(b=0)+ (b=1)$. Now $x \in \bigcap_{n:\N} D_n$ iff
+    $\alpha_x(n) = 0$ for all $n:\N$, 
+    which happens iff $A x$. Thus $A = \bigcap_{n:\N} D_n$. 
   \end{itemize} 
 \end{proof} 
 
