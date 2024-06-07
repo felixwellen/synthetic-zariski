@@ -1,0 +1,111 @@
+\subsection{Definitions}
+\begin{definition}
+  For $B$ a countably presented Boolean algebra, we define $Sp(B)$ as the set of Boolean morphisms from $B$ to $2$. 
+\end{definition}
+\begin{definition}
+  We define the predicate on types $\isSt$ by 
+  \begin{equation}
+    \isSt(X) := \sum\limits_{B : Boole} X = Sp(B)
+  \end{equation} 
+  A type $X$ is called \textit{Stone} if $\isSt(X)$ is inhabited.
+\end{definition}
+\subsection{Examples of Stone types}
+\begin{example}\label{ExampleBAunderEmpty}
+  The dual to the trivial Boolean algebra from \Cref{ExampleBAunderEmpty} is the empty set 
+  $\emptyset$, 
+  as $0\neq 1$ in $2$, but $0=1$ in the trivial Boolean algebra, 
+  there can be no functions preserving both $0$ and $1$ 
+  from the trivial Boolean algebra to $2$. 
+\end{example}
+\begin{example}
+  The dual to $C$ from \Cref{ExampleBAunderCantor} is called Cantor space 
+  and denoted $2^\mathbb N$. 
+  By \Cref{rmkMorphismsOutOfQuotient}, terms of $2^\mathbb N$ 
+  correspond to set-theoretic functions $\mathbb N \to 2$. 
+  We also call such functions binary sequences. 
+\end{example}
+\begin{example}
+  The dual to $\mathbb N_{(co)fin}$ from \Cref{ExampleBAunderNinfty} is called 
+  $\mathbb N_\infty$. By \Cref{rmkMorphismsOutOfQuotient}, terms of $\mathbb N_\infty$ 
+  correspond to functions $\alpha: \mathbb N \to 2$ such that $\alpha(n) \wedge \alpha(m) = 0$ 
+  whenever $n \neq m$. This means that $\alpha(n) = 1$ for at most one $n\in\mathbb N$. 
+  There is an embedding $\mathbb N \to \mathbb N_\infty$ sending $n$ to the unique sequence $\chi_n$
+  which sends $n$ to $1$. 
+  There is furthermore a term $\infty:\mathbb N_\infty$ which is the sequence which is constantly $0$. 
+\end{example}
+\subsection{Axioms}
+\begin{axiomNum}[Stone duality]
+  For any countably presented Boolean algebra $B$, the evaluation map $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
+\end{axiomNum} 
+
+\begin{remark}
+Stone types will take over the role of affine scheme from \cite{draft}, 
+and we repeat some results here. 
+Analogously to Lemma 3.1.2 of \cite{draft}, 
+for $X$ Stone, Stone duality tells us that $X = Sp(2^X)$. 
+%
+Proposition 2.2.1 of \cite{draft} now says that 
+$Sp$ gives an equivalence 
+\begin{equation}
+   Hom_{\Boole} (A, B) = (Sp(B) \to Sp(A))
+\end{equation}
+Therefore $\isSt$ is a proposition.
+Equivalently, 
+%By Definition 4.6.1 %defines an embedding 
+%of \cite{hott}, 
+this means that 
+$Sp$ is an embedding from $\Boole$ to any universe of types.
+Its image, $\Stone$ also has a natural category structure.
+By the above and Lemma 9.4.5 of \cite{hott}, 
+the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Stone$.
+\end{remark}
+
+\begin{axiomNum}[Surjections are formal Surjections]
+  A map $f:Sp(B')\to Sp(B)$ is surjective iff the corresponding map $B \to B'$ is injective.
+\end{axiomNum} 
+
+\begin{lemma}\label{LemSurjectionsFormalToCompleteness}
+ For $S:\Stone$, we have that $\neg \neg S \to || S ||$
+\end{lemma}
+\begin{proof}
+  First, assume that surjections are formal surjections. 
+  Let $B:\Boole$ and suppose $\neg \neg Sp(B)$. 
+  %Note that if $0=1$ in $B$, then $Sp(B) =\emptyset$, meaning $\neg Sp(B)$. 
+  %Therefore, we have $0\neq 1$ in $B$. 
+  We will show that the map $f:2\to B$ is injective. 
+  Let $f:2 \to B$, note that if $f(0) = f(1)$ then $0=1$ in $B$, 
+  If $0=1$ in $B$, there are no maps $B\to 2$ preserving $0$ and $1$, thus $\neg Sp(B)$. 
+  This is a contradiction with $\neg \neg Sp(B)$. Thus we may conclude that $f(0)\neq f(1)$. 
+  Hence by case distinction on $2$ we can show $f$ we have that $f x = f y$ implies $ x= y$. Thus 
+  $f$ is injective thus the map $Sp(B) \to Sp(2) = 1$ is surjective, thus $Sp(B)$ is merely inhabited. 
+\end{proof} 
+Actually, we will see in \Cref{CorDoubleNegToAx2} that the converse is also true. 
+
+\begin{axiomNum}[Local choice]
+  Whenever $S$ Stone and $E\twoheadrightarrow S$ surjective, then there is some $T$ Stone,
+    a surjection $T \twoheadrightarrow S$ and a map $T\to E$ 
+    such that the following diagram commutes:
+    \begin{equation}\begin{tikzcd}
+      E \arrow[d,""',two heads]\\
+      S & \arrow[l, "", two heads] T\arrow[lu, ""']
+    \end{tikzcd}\end{equation}  
+\end{axiomNum} 
+
+\begin{axiomNum}[Dependent choice]\label{axDependentChoice}
+  Given a family of types $(E_n)_{n:\mathbb N}$ and 
+  a relation 
+  $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
+  for all $n$ and $x:E_n$ there exists $y:E_{n+1}$ with $p:R_n~x~y$ 
+  then given $x_0:E_0$ there exists
+  $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R_n~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
+\end{axiomNum}
+\begin{corollary}
+  In particular, the non-dependent version of the above axiom gives 
+  us countable choice:
+  For any predicate on natural numbers $P$, we have 
+  \begin{equation}
+    \forall_{n:\mathbb N} ||P(n) ||
+    \leftrightarrow 
+    || \forall_{n:\mathbb N} P(n) ||
+  \end{equation}
+\end{corollary}
