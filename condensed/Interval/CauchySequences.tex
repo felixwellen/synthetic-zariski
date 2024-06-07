@@ -8,8 +8,8 @@ We will assume we are given natural and rational numbers, with decidable (in)equ
 working as expected. 
 
 \begin{definition}
-  A \textbf{Cauchy sequence} is a sequence $x : \mathbb N \to \mathbb Q$ such that
-  for any $n,m:\mathbb N$, we have %$0\leq x_n \leq 1$ and 
+  A \textbf{Cauchy sequence} is a sequence $x : \N \to \mathbb Q$ such that
+  for any $n,m:\N$, we have %$0\leq x_n \leq 1$ and 
 $|x_n-x_m| \leq (\frac12)^n + (\frac12)^m$. 
 \end{definition}
 \begin{remark}
@@ -22,15 +22,15 @@ rational numbers.
 \begin{definition}
   For $x$ a Cauchy sequence and $q$ a rational number, we define 
   \begin{itemize}
-%    \item $x> q = \Sigma(n:\mathbb N) x_n > q + {\frac12}^n$. %for some $n:\mathbb N$. 
-%    \item $x< q = \Sigma(n:\mathbb N) x_n < q - {\frac12}^n$. %for some $n:\mathbb N$. 
-    \item $x\leq  q = \Pi_{n:\mathbb N} x_n \leq q+(\frac12)^n$. 
-    \item $x\geq  q = \Pi_{n:\mathbb N} x_n \geq q-(\frac12)^n$. 
+%    \item $x> q = \Sigma(n:\N) x_n > q + {\frac12}^n$. %for some $n:\N$. 
+%    \item $x< q = \Sigma(n:\N) x_n < q - {\frac12}^n$. %for some $n:\N$. 
+    \item $x\leq  q = \Pi_{n:\N} x_n \leq q+(\frac12)^n$. 
+    \item $x\geq  q = \Pi_{n:\N} x_n \geq q-(\frac12)^n$. 
   \end{itemize}
 \end{definition}
 %\begin{lemma}
 %  For $x$ Cauchy and $q$ rational, we have that 
-%  $x\leq q$ iff for each $n:\mathbb N$, we have a $N_n:\mathbb N$ with 
+%  $x\leq q$ iff for each $n:\N$, we have a $N_n:\N$ with 
 %  $x_m> q-(\frac12)^n$ for all $m \geq N_n$. 
 %\end{lemma}
 \begin{lemma}\label{ComparisonLemma}
@@ -41,18 +41,18 @@ rational numbers.
   For rational numbers, we have decidable inequalities, 
   therefore $\geq 0 \vee q \leq 0$. 
   It follows that 
-  $ \forall (n:\mathbb N) \forall (m:\mathbb N) q \geq -(\frac12)^n \vee q \leq (\frac12)^m$. 
+  $ \forall (n:\N) \forall (m:\N) q \geq -(\frac12)^n \vee q \leq (\frac12)^m$. 
   Now by \Cref{TODO}, we may conclude 
-  $ (\forall (n:\mathbb N) q \geq -(\frac12)^n ) \vee (\forall (m:\mathbb N) q \leq (\frac12)^m)$
+  $ (\forall (n:\N) q \geq -(\frac12)^n ) \vee (\forall (m:\N) q \leq (\frac12)^m)$
   as required.
 \end{proof}
 
 
 %%%\begin{definition}
 %%%  A Cauchy sequence $x$ is \textbf{nonnegative} if $x_n \geq -(\frac12)^n$
-%%%  for every $n:\mathbb N$. 
+%%%  for every $n:\N$. 
 %%%  $x$ is \textbf{nonpositive} if $x_n \leq (\frac12)^n$
-%%%  for every $n:\mathbb N$. 
+%%%  for every $n:\N$. 
 %%%\end{definition} 
 %%%%\begin{lemma}
 %%%%  A Cauchy sequence is nonnegative iff there exists an $N$ such that $x_n \geq -(\frac12)^N$
@@ -61,11 +61,11 @@ rational numbers.
 %%%%  for all $n\geq N$. 
 %%%%\end{lemma}
 %%%%\begin{proof}
-%%%%  Assume $x$ is nonnegative. Thus for every $n:\mathbb N$, we have $x_n\geq -(\frac12)^n \geq -(\frac12)^0$. 
+%%%%  Assume $x$ is nonnegative. Thus for every $n:\N$, we have $x_n\geq -(\frac12)^n \geq -(\frac12)^0$. 
 %%%%  Thus $N$ can taken to be $0$. 
 %%%%%
 %%%%  Conversely, as $x$ is Cauchy, we have
-%%%%  for all $m :\mathbb N$ that  
+%%%%  for all $m :\N$ that  
 %%%%%  \begin{equation}- (\frac12)^m -(\frac12)^n \leq    x_m-x_n \leq (\frac12)^m + (\frac12)^n \end{equation}
 %%%%  \begin{equation}- (\frac12)^m -(\frac12)^n \leq    x_n-x_m \leq (\frac12)^m + (\frac12)^n \end{equation}
 %%%%  If in addition there is an $N$ such that whenever $m\geq N$, we have 
@@ -90,24 +90,24 @@ rational numbers.
 
 %\begin{lemma}
 %  For any Cauchy sequence $p$, we have 
-%  $(\forall (n:\mathbb N) p_n \leq (\frac12)^n) \vee (\forall (n:\mathbb N) p_n \geq -(\frac12)^n)$. 
+%  $(\forall (n:\N) p_n \leq (\frac12)^n) \vee (\forall (n:\N) p_n \geq -(\frac12)^n)$. 
 %\end{lemma}
 %\begin{proof}
 %We 
 %\end{proof}
 
 \begin{definition}
-Given two Cauchy sequences $p = (p_n)_{n\in\mathbb N}, q=(q_n)_{n\in\mathbb N}$, 
+Given two Cauchy sequences $p = (p_n)_{n\in\N}, q=(q_n)_{n\in\N}$, 
 we define the proposition $p \sim_C  q$ as 
 \begin{equation}
-  p \sim_C q : = \forall (n,m : \mathbb N) ((| p_n - q_m| \leq  (\frac12)^n + (\frac12)^m))
+  p \sim_C q : = \forall (n,m : \N) ((| p_n - q_m| \leq  (\frac12)^n + (\frac12)^m))
 \end{equation}
 \end{definition}
 
 %\begin{remark}
 %  Note that $p\sim_C q$ is equivalent to 
 %\begin{equation}
-%  \forall (n : \mathbb N) | p_n - q_n| \leq  (\frac12)^{n-1}
+%  \forall (n : \N) | p_n - q_n| \leq  (\frac12)^{n-1}
 %\end{equation}
 %The equivalence doesn't hold, unless you cut off initial segments (which shouldn't matter). 
 %\end{remark} 
@@ -127,14 +127,14 @@ $\Pi_{x:\mathbb R} \Pi_{q:\mathbb Q} x \leq q \vee x \geq q$.
 %  For any Cauchy real $r$ any Cauchy sequence $p$ representing $r$, 
 %  we have 
 %  \begin{equation}
-%    (\forall (n:\mathbb N) p_n \leq (\frac12)^n) \vee (\forall (n:\mathbb N) p_n \geq (\frac12)^n)
+%    (\forall (n:\N) p_n \leq (\frac12)^n) \vee (\forall (n:\N) p_n \geq (\frac12)^n)
 %  \end{equation}
 %
 %\end{lemma}
 
 \begin{definition}
   A Cauchy sequence in the interval is a Cauchy sequence $x$ such that 
-  for any $n:\mathbb N$, we have $0\leq x_n \leq 1$. 
+  for any $n:\N$, we have $0\leq x_n \leq 1$. 
  % 
   The interval of Cauchy reals is given by the type of Cauchy sequences in the interval 
   modulo $\sim_C$. We denote it by $[0,1]$. 

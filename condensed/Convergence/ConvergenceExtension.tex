@@ -1,6 +1,6 @@
 \paragraph{Extensional convergence }  
 \begin{definition}
-  Let $B_\infty$ be the Boolean algebra on countably many generators $(p_n)_{n:\mathbb N}$ 
+  Let $B_\infty$ be the Boolean algebra on countably many generators $(p_n)_{n:\N}$ 
   over the equivalence $p_n\wedge p_m = 0 $ whenever $n \neq m$. 
 \end{definition} 
 \begin{definition}
@@ -8,15 +8,15 @@
 \end{definition} 
 \begin{lemma}
   $B_\infty$ is isomorphic with the Boolean algebra of 
-  finite/cofinite subsets of $\mathbb N$. 
+  finite/cofinite subsets of $\N$. 
 \end{lemma}
 \begin{proof}
-  To go from $B_\infty$ to subsets of $\mathbb N$, we send
+  To go from $B_\infty$ to subsets of $\N$, we send
   the generators $p_n$ to the singleton $\{n\}$, which are clearly finite. 
   We call the induced Boolean operation $f$. 
 
-  To go from finite/cofinite subsets of $\mathbb N$ to $B_\infty$,
-  a finite subset $I$ of $\mathbb N$ is sent to the element 
+  To go from finite/cofinite subsets of $\N$ to $B_\infty$,
+  a finite subset $I$ of $\N$ is sent to the element 
   $\bigvee_{i \in I} p_i$, and a cofinite subset $J$ is sent to the element 
   $\bigwedge_{i \in J^C} \neg p_i$.  
   We call this function $g$ and we need to show that $g$ is a Boolean morphism. 
@@ -77,20 +77,20 @@ Furthermore, $g$ and $f$ are clearly inverses, thus the Boolean algebras are iso
   Any element of $B_\infty$ can be written as 
   either $\bigvee_{i\in I} p_i$  or
   as $\bigwedge_{j\in J} \neg p_j$ 
-  for finite $I,J\subseteq \mathbb N$. 
+  for finite $I,J\subseteq \N$. 
 \end{lemma}
 \begin{proof}
   Remark that whenever $n \neq m$, we have that 
   $\neg p_n \geq p_m$ as $p_m \wedge p_n = 0$. 
 \end{proof}
-There is canonical embedding $\mathbb N \hookrightarrow \Noo$, 
+There is canonical embedding $\N \hookrightarrow \Noo$, 
 wich sends $n$ to the unique function $\chi_{n}$ sending $p_n$ to $1$. 
 We denote $\infty \in \Noo$ for the function which is constantly $0$. 
 By \Cref{PropMarkov}, if an element is not $\infty$, 
-it comes from the embedding $\mathbb N \hookrightarrow \Noo$. 
+it comes from the embedding $\N \hookrightarrow \Noo$. 
 \begin{lemma}\label{LemmaOpensContainingInfty}
   Let $U$ be an open subset of $\Noo$ containing $\infty$.
-  Then there merely exists an $N:\mathbb N$ such that whenever $n\geq N$, 
+  Then there merely exists an $N:\N$ such that whenever $n\geq N$, 
   $\chi_n\in U$ as well. 
 \end{lemma}
 \begin{proof}
@@ -114,7 +114,7 @@ it comes from the embedding $\mathbb N \hookrightarrow \Noo$.
   Let $\alpha$ be a sequence in $X$, we say that $\alpha$
   is convergent iff there exists an extension. 
   \begin{equation}\begin{tikzcd}
-    \mathbb N \arrow[r, "\alpha"] \arrow[d,hook]  & X \\
+    \N \arrow[r, "\alpha"] \arrow[d,hook]  & X \\
     \Noo \arrow[ru,dashed]
   \end{tikzcd}\end{equation}  
 \end{definition}  
@@ -135,19 +135,19 @@ it comes from the embedding $\mathbb N \hookrightarrow \Noo$.
   Conversely, suppose $\alpha$ has limit $x$. 
   Assume $X = Sp(B)$, and let $b\in B$. Then $b$ corresponds to a decidable subset $U\subseteq X$.
   For any decidable subset $U \subseteq X$, we have 
-  $\alpha^{-1}(U)$ a decidable subset of $\mathbb N$. 
+  $\alpha^{-1}(U)$ a decidable subset of $\N$. 
   We claim that $\alpha^{-1}(U)$ is either finite or cofinite. 
   As $U$ is decidable, we can decide wheter $x\in U$. If $x\in U$, $\alpha^{-1}(U)$ is cofinite, as 
   $\alpha(n) \in U$ for all $n \geq N$ for some $N$. 
   If $x\notin U$, we have $x\in U^C$, which is also decidable and therefore $\alpha^{-1}(U^C)$ is cofinite. 
   As $\alpha^{-1}(U) ^ C = \alpha^{-1}(U^C)$, it follows that $\alpha^{-1}(U)$ is finite. 
   Thus $\alpha^{-1}(U)$ is finite or cofinite for any decidable subset $U\subseteq X$. 
-  Finite and cofinite subsets of $\mathbb N$ correspond to elements of $B_\infty$. 
+  Finite and cofinite subsets of $\N$ correspond to elements of $B_\infty$. 
   Therefore, $\alpha$ induces a map $B \to B_\infty$, which corresponds to a map 
   $\overline \alpha: \Noo \to X$. 
 
   We claim that $\overline \alpha$ extends $\alpha$. 
-  Denote $\iota$ for the map $\mathbb N \to \Noo$. 
+  Denote $\iota$ for the map $\N \to \Noo$. 
   We need to show that $\overline \alpha \circ \iota = \alpha$. 
   By definition, we have that $(\overline \alpha \circ \iota)^{-1}(U) = \alpha^{-1}(U)$ 
   for any decidable $U\subseteq X$. 

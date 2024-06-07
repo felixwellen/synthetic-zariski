@@ -1,0 +1,343 @@
+\subsection{Countably Presented Boolean Algebras: Definitions}
+\label{A-cp-boolean-algebras}
+\begin{definition}
+  The language of Boolean algebras consists of
+  \begin{itemize}
+    \item Two symbols for constants $0,1$. 
+    \item Two binary function symbols $\wedge, \vee$ called meet and join respectively. 
+    \item One unary function symbol $\neg$ called negation. 
+  \end{itemize}
+\end{definition}
+\begin{definition}
+  The algebraic theory of Boolean algebras is as follows:
+  \begin{itemize}
+    \item We have axioms regarding order, sometimes called identity and absorption:
+    \begin{itemize}
+      \item $0 \wedge a = 0$. 
+      \item $1 \wedge a = a$. 
+      \item $0 \vee a = a$. 
+      \item $1 \vee a = 1$. 
+      \item $a \vee (a \wedge b) = a$
+      \item $a \wedge (a \vee b) = a$. 
+    \end{itemize}
+    \item We have axioms regarding negations:
+      \begin{itemize}
+        \item $a \vee \neg a = 1$. 
+        \item $a \wedge \neg a = 0$. 
+        \item $\neg 1 = 0$. 
+        \item $\neg \neg a = a$. 
+      \end{itemize}
+    \item We have axioms regarding commutativity and associativity:
+      \begin{itemize}
+        \item $a \vee b = b \vee a$. 
+        \item $a \wedge b = b \wedge a$. 
+        \item $(a \vee b) \vee c = a \vee (b \vee c)$. 
+        \item $(a \wedge b) \wedge c = a \wedge (b \wedge c)$. 
+      \end{itemize}
+    \item We have axioms regarding distributivity:
+      \begin{itemize}
+        \item $a \vee (b \wedge c) = ( a \vee b) \wedge (a \vee c)$. 
+        \item $a \wedge (b \vee c) = (a \wedge b) \vee ( a\wedge c)$. 
+      \end{itemize}
+    \item We have axioms called deMorgan's laws:
+      \begin{itemize}
+        \item $\neg (a \vee b ) = (\neg a) \wedge (\neg b)$. 
+        \item $\neg (a \wedge b) = (\neg a) \vee (\neg b)$. 
+      \end{itemize}
+  \end{itemize}
+\end{definition}
+\begin{definition}
+  Some language we will use is as follows:
+  \begin{itemize}
+    \item A Boolean algebra is a set-theoretic model of the theory of Boolean algebras. 
+      It consists of a set $B$ and terms $0_B,1_B: B, \neg_B : B \to B, \vee_B, \wedge_B : B \times B \to B$ 
+      satisfying the theory of Boolean algebras. 
+      Sometimes we will leave out the subscript $(\cdot)_B$. 
+    \item A morphism of Boolean algebra is a function between such sets preserving the operations above. 
+      If $A,B$ are Boolean algebras, we write $A \to B$ for the type of such morphisms. 
+%    \item We denote $id_B$ for the identity morphism $B \to B$. 
+    \item If we have have two morphisms $f:A\to B , g : B \to A$ such that 
+      $f\circ g (b) = b, g \circ f (a) = a$ for all $a:A, b:B$, 
+      we say $A$ and $B$ are isomorphic and write $A \simeq B$. 
+  \end{itemize}
+\end{definition}
+\begin{remark}
+  We sometimes write $a \leq b$ and  $b \geq a$. Both of these mean that 
+  $a\wedge b = a$, or equivalently $ a\vee b = b$. 
+  Interpreting this notation as an order relation, we often think in the following terms:
+  \begin{itemize}
+    \item $a\wedge b$ is the biggest element $c$ with $c \leq a$ and $c\leq b$.
+    \item $a\vee b$ is the smallest element $c$ with $c \geq a$ and $c \geq b$. 
+    \item $0$ is the smallest element. 
+    \item $1$ is the biggest element. 
+  \end{itemize}
+\end{remark}
+\begin{remark}
+  For a family of expressions $x_i$ over a 
+  finite set of indices $I = \{i_0, \cdots, i_n\}$, we will sometimes denote 
+  \begin{itemize}
+    \item $\bigvee_{i:I} x_i = x_{i_0} \vee \cdots \vee x_{i_n}$,
+      with the understanding that this equals $0$ if $I$ is empty. 
+    \item $\bigwedge_{i:I} x_i = x_{i_0} \wedge \cdots \wedge x_{i_n}$,
+      with the understanding that this equals $1$ if $I$ is empty. 
+  \end{itemize}
+\end{remark}
+\begin{remark}
+  Boolean algebras are in bijective correspondence with Boolean rings, which 
+  are rings with the property that $x\cdot x = x$ for all $x$. 
+  The underlying set remains the same, and the translation is as follows:
+  \begin{itemize}
+    \item 
+      To go from such a ring to a Boolean algebra, we let 
+      $0 = 0, 1 =1 ,  a \vee b = a + b + ( a \cdot b), a\wedge b = a \cdot b, \neg a = a + 1$. 
+    \item 
+      and to go from a Boolean algebra to a Boolean ring, we let 
+      $0 = 0, 1 = 1, a + b = (a \wedge \neg  b) \vee ( \neg a \wedge b), a \cdot b = a\wedge b , -a = a$. 
+\end{itemize}
+\end{remark}
+
+%\begin{definition}
+%  Let $\mathcal L$ be a language, 
+%  let $\phi,\psi$ be terms in any language,
+%  and suppose that for some index set $I$ we have 
+%  for each $i:I$ two terms $a_i,b_i$ of same sort in $\mathcal L$. 
+%  Let $E= (a_i = b_i)_{i:I}$. 
+%
+%  We say that $E$ allows us to rewrite $\phi$ to $\psi$ if there is a finite list of expressions 
+%  $\phi = \phi_0 , \phi_1, \phi_2, \cdots, \phi_{n-1}, \phi_n = \psi$, 
+%  such that each $\phi_{n+1}$ is given by taking $\phi_n$ and either changing one occurence of $a_i$ to  $b_i$, 
+%  or one occurence of $b_i$ to $a_i$ for some $i:I$. 
+%\end{definition}
+
+
+\begin{definition}
+  Given any set of symbols $G$, the free Boolean algebra on $G$, denoted $\langle G \rangle$
+  is constructed as follows:
+  \begin{itemize}
+    \item We add $G$ as set of constants to the language of Boolean algebras. 
+    \item We consider the set of terms in this language. 
+    \item If there merely exists some finite sequence of 
+      equalities from the theory of Boolean algebras allowing us to rewrite one term to another, 
+      we consider the two terms to be equivalent. 
+    \item The free Boolean algebra is then the set of equivalence classes under this relation. 
+  \end{itemize}
+\end{definition}
+\begin{remark}
+  The free Boolean algebra is a Boolean algebra. 
+\end{remark}
+\begin{definition}
+  Let $B$ be a Boolean algebra, a subset $I\subseteq B$ is an ideal iff 
+  $0\in I$ and whenver $x,y \in I$ and $b\in B$, we have $x\vee y \in I$ and $x \wedge b \in B$. 
+
+  If $I$ is an ideal of $B$, then for $a,b:B$, we write $x\sim_I y$ iff 
+  $a - b  = 
+  (a \wedge \neg b ) \vee ( \neg a \wedge b) 
+  \in I$. 
+\end{definition}
+\begin{lemma}
+  Let $B$ be a Boolean algebra, and let $I\subseteq B$ be an ideal. 
+  Then the relation $\sim_I$ is an equivalence relation. 
+\end{lemma}
+\begin{proof}
+  \begin{itemize}
+    \item To see $\sim_I$ is reflexive, note that 
+      $(x \wedge \neg x) \vee (\neg x \wedge x) = 0 \vee 0 = 0 \in I$. 
+    \item To see $\sim_I$ is symmetric, note that 
+      $ (a \wedge \neg b) \vee ( \neg a \wedge b) = 
+        (b \wedge \neg a) \vee ( \neg b \wedge a)$. 
+    \item To see $\sim_I$ is transitive, that 
+      whenever $a,b \in I$, so is $ a + b$. 
+      Thus if $a -b , b -c \in I$, so is 
+      $(a -b) + (b-c) = a -c$.
+  \end{itemize}
+\end{proof}
+\begin{lemma}
+  Whenever $B$ is a Boolean algebra and $I\subseteq B$ an ideal, 
+  $B/I$ is a Boolean algebra. 
+\end{lemma}
+\begin{proof}
+  We need to show that the Boolean operations respect equivalence classes. 
+  \begin{itemize}
+    \item 
+      Suppose $a \sim_I b$. We shall show that $\neg a \sim_I \neg b$. 
+      Thus we need to show that 
+      $((\neg a) \wedge (\neg \neg b)) \vee ((\neg \neg a) \wedge \neg b) \in I$, 
+      this term is equal to 
+      $( a \wedge \neg b) \vee (b \wedge \neg a)$, which is in $I$ as $ a\sim_I b$. 
+    \item 
+      Suppose $ a\sim _I b $. We shall show that 
+      $a \wedge c \sim_I b \wedge c$. 
+      Note that by distributivity of $+$ and $\cdot$, we have 
+      $(a \cdot c) -( b \cdot c) = (a -b ) \cdot c = (a-b) \wedge c$. 
+      By assumption $a -b \in I$, and thus $(a-b) \wedge c \in I$ as well. 
+    \item Note that $a \vee b = \neg ( \neg a \wedge \neg b)$, by the above two properties, 
+      joins therefore respect equivalence relations. 
+  \end{itemize}
+\end{proof}
+\begin{definition}
+  Let $B$ be a Boolean algebra, and let $R\subseteq B$. 
+  We denote $\langle R\rangle $ for the ideal generated by $R$, 
+  which is the set of expressions 
+  $\{(\bigvee_{r \in R_0} r) \wedge b| R_0\subseteq R \text{ finite}, b \in B\}$
+\end{definition} 
+\begin{remark}
+  For $R\subseteq B$ as above, $ \langle R \rangle$ is an ideal.
+\end{remark}
+
+\begin{remark}\label{rmkMorphismsOutOfQuotient}
+  Let $B$ be a Boolean algebra. 
+  
+  Suppose $G$ is a set of symbols, to define a morphism 
+  $\langle G \rangle \to B$ it is sufficient to define 
+  a function from $G$ to the underlying set of $B$. 
+
+  Let $C$ be a Boolean algebra, and let $I\subseteq C$ be an ideal. 
+  To define a map $C / I \to B$, it is sufficient to define a map $f:C\to B$
+  with $f(i) = 0$ for all $i\in I$. 
+  If $I = \langle R\rangle $, it is sufficient that $f(r) = 0$ for all $r\in R$. 
+\end{remark}
+%\begin{remark}
+%  For every element $x$ of $\langle G\rangle /R$ as above,
+%  there merely exists a finite subset of generators $G_0\subseteq G$ such that $x$ is expressable 
+%  as a Boolean combination of symbols from $G_0$. 
+%\end{remark}
+\begin{definition}
+  A type $X$ is countable if there merely exists a surjection 
+  $\N \twoheadrightarrow X$. 
+\end{definition}
+
+\begin{definition}
+  Let $B$ be a Boolean algebra. 
+  If there exist $G, R$ as above such that 
+  $B \simeq \langle G \rangle /\langle R \rangle$, 
+  we call $G,R$ respectively generators and relations for $B$. 
+  %
+  If $G,R$ can taken to be finite, we call $B$ finitely presented. 
+  If $G,R$ can taken to be countable, we call $B$ countably presented. 
+\end{definition}
+\begin{remark}
+  There is a category of Boolean algebras, which has a subcategory of countably presented Boolean algebras, 
+  which has a subcategory of finitely presented Boolean algebras. 
+\end{remark}
+\begin{remark}\label{rmkBoolePushouts}
+  All categories above have pushouts. 
+\end{remark}
+\begin{definition}
+  Let $f:B\to C$ be a Boolean morphism. 
+  The set $\{x \in B| fx = 0\}$ is called the kernel of $f$ and denoted 
+  $Ker(f)$. 
+\end{definition}
+\begin{remark}
+  For any map of Boolean algebras $f$, the kernel of $f$ is an ideal. 
+  Furthermore, we have that $a\sim_{Ker(f)} b$ iff $f(a) = f(b)$. 
+\end{remark}
+\begin{remark}
+  Let $f:B \to C$ be a Boolean morphism. 
+  The epi-mono factorization of $f$ exists and is given by  
+  $B \twoheadrightarrow B / Ker(f) \hookrightarrow C$.
+\end{remark}
+
+\begin{remark}\label{N-co-fin-cp}
+  The algebra of co-finite subsets of $\N$, which we defined as $\N_{(co)fin}$ in \Cref{ExampleBAunderNinfty} is
+  countably presented.
+\end{remark}
+\begin{proof}
+  We let $f:\langle G \rangle / R \to \N_{(co)fin}$, be the unique morphism of Boolean algebras 
+  satisfying $f(p_n) = \{n\}$ for all $n:\N$. As $\{n\} \cap \{m\} = \emptyset$ whenever $n\neq m$, 
+  \Cref{rmkMorphismsOutOfQuotient} indeed tells us this is sufficient to define $f$. 
+
+  Now we define $g:\N_{(co)fin} \to \langle G \rangle / R$. 
+  On a finite subset $I$, we define $g(I) = \bigvee_{i\in I} p_i$, 
+  and on a cofinite subset $J$, we define $g(J) = \bigwedge _{i \in J^C} \neg p_i$. 
+  Note that in these cases we indeed have $I,J^C$ are finite, so these are well-defined elements. 
+
+  We need to show that $g$ is a Boolean morphism. 
+  \begin{itemize}
+    \item 
+      By deMorgan's laws, $g$ preserves $\neg$:
+      for $I$ finite we have
+      \begin{equation}
+      \neg g(I) = \neg (\bigvee_{i\in I} p_i) = \bigwedge_{i\in I} \neg p_i = g(I^C)
+      \end{equation}
+      And for $J$ cofinite, we apply similar reasoning. 
+    \item To see that $g$ preserves $\vee$, we need to check three cases
+      \begin{itemize}
+        \item If both $I,J$ are finite, then 
+        \begin{equation} 
+          g(I \cup J) = \bigvee_{i\in I \cup J} p_i= \bigvee_{i\in I} p_i \vee \bigvee_{j\in J} p_j 
+          = g(I) \vee g(J)
+        \end{equation}
+        and we're done. 
+      \item If both $I,J$ are cofinite, we have
+        \begin{equation}
+          g(I) \vee g(J) = 
+          \bigwedge_{i \in I^C} \neg p_i \vee 
+          \bigwedge_{j \in J^C} \neg p_j 
+          = 
+          \bigwedge_{i\in I^C} 
+          \bigwedge_{j \in J^C}(\neg p_i \vee  \neg p_j) 
+        \end{equation}
+        Now note that in $\langle G \rangle / R$, we have 
+        \begin{equation}
+          \neg p_i \vee \neg p_j = \neg ( p_i \wedge p_j) = 
+          \begin{cases}
+            p_i \text{ if } i = j\\
+            1 \text{ if } i \neq j  
+          \end{cases}
+        \end{equation}
+        Therefore, we can leave out the case that $i\neq j$ in the calculation of the above meet, and
+        \begin{equation}
+          \bigwedge_{i\in I^C} 
+          \bigwedge_{j \in J^C}(\neg p_i \vee  \neg p_j)  
+          = 
+          \bigwedge_{i \in (I^C \cap J^C)} \neg p_i
+          = 
+          \bigwedge_{i \in (I \cup J)^C} \neg p_i 
+        \end{equation}
+        as $I\cup J$ must also be cofinite, this equals 
+          $ g( I \cup J)$. 
+        \item 
+          If $I$ is finite and $J$ cofinite, we have 
+          that $I\cup J$ is cofinite, hence 
+          \begin{equation}
+            g(I\cup J) = \bigwedge_{k\in (I \cup J)^C} \neg p_k
+            = \bigwedge_{k \in (J^C -I)} \neg p_k
+          \end{equation}
+          Now note that 
+          whenever $i\neq k$, we have 
+          \begin{equation}
+            p_i = (p_i \wedge \neg p_k) \vee (p_i \wedge p_k) = 
+            (p_i \wedge \neg p_k) \vee 0 = p_i \wedge \neg p_k
+          \end{equation}
+          Hence by absorption
+          \begin{equation} 
+            (p_i \vee \neg p_k)  =
+              \begin{cases}
+                1 \text{ if } i = k \\
+                \neg p_k \text{ if } i \neq k
+              \end{cases}
+          \end{equation}
+          As for all $k\in J^C-I$ and all $i\in I$ we have $k\neq i$, we may thus write
+          \begin{equation}
+            \bigwedge_{k \in (J^C - I)} \neg p_k = 
+            \bigwedge_{k \in (J^C - I)} (\neg p_k \vee (\bigvee_{i\in I} p_i))
+          \end{equation}
+          But now we can use that adding $1$ in a meet does not change the meet, and see that 
+          \begin{equation}
+            \bigwedge_{k \in (J^C - I)} (\neg p_k \vee (\bigvee_{i\in I} p_i))
+            = 
+            \bigwedge_{j \in J^C} (\neg p_j \vee (\bigvee_{i\in I} p_i))
+          \end{equation}
+          And using distributivity rules, we can see that 
+          \begin{equation}
+            \bigwedge_{j \in J^C} (\neg p_j \vee (\bigvee_{i\in I} p_i))
+            = 
+            (\bigwedge_{j \in J^C} \neg p_k) \vee (\bigvee_{i\in I} p_i)
+          \end{equation}
+          From which we may conclude that $g(I\cup J) = g(I) \cup g(J)$. 
+      \end{itemize}
+    \item The case for $\wedge$ is completely dual to the case for $\vee$. 
+  \end{itemize}
+We conclude that $g$ is a Boolean morphism. 
+Furthermore, $g$ and $f$ are each other's inverse, thus the Boolean algebras are isomorphic. 
+\end{proof}
