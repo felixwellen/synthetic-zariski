@@ -1,0 +1,254 @@
+\begin{remark}\label{rmkTrivialBA}
+  A Boolean algebra $B / R$ 
+  is trivial iff there merely exists some $R_0\subseteq R$ finite with 
+  $1 = \bigvee_{r \in R_0} r$ in $B$.
+\end{remark}
+
+\begin{theorem}[The negation of the weak limited principle of omniscience]
+  It is not the case that for all $\alpha:\Noo$, we can decide whether $\alpha=\infty$.
+\end{theorem}
+\begin{proof}
+  Suppose we could decide whether $\alpha = \infty$ for every $\alpha:\Noo$. We then have a term of type 
+  $\Pi_{\alpha:\Noo} (\alpha \neq \infty) + (\alpha = \infty)$. 
+  Using case distinction, we can define a map $f:\Noo \to 2$ such that 
+  \begin{equation}
+    f(\alpha) = \begin{cases} 0 \text{ if } \alpha \neq  \infty
+    \\ 1 \text{ if } \alpha = \infty \end{cases} 
+  \end{equation}
+  By Stone duality, there must be some $b:B_\infty$ with 
+  $f(\alpha) = 1 \iff \alpha(b) = 1$.
+  $b$ is expressable using only finitely many generators $(p_n)_{n\leq N}$. 
+  This means that $f$ can determine whether a sequence is constantly $0$ based on it's first $N$ entries. 
+  In particular the value of $f$ on $\infty:\Noo$ and $\chi_{N+1}:\Noo$ must be equal, 
+  as these sequences are equal on $(p_n)_{n\leq N}$ and thus on $b$. 
+  However, $f(\infty) = 1$ and $f(\chi_N) = 0$. 
+  We thus have a contradiction, and conclude we cannot decide whether $\alpha = \infty$ for general $\alpha:\Noo$. 
+\end{proof}
+
+
+The following result is due to David W\"arn.
+\begin{theorem}[Markov's principle (uses Stone duality)]
+  For $\alpha:\mathbb N_\infty$, we have that whenever $\alpha\neq \infty$, 
+  there exists some $n:\mathbb N$ such that $\alpha = \chi_n$. 
+\end{theorem}
+\begin{proof}
+  Suppose $\alpha \neq \infty$.%, then it is not the case that $\alpha(n) = 0$ for all $n:\mathbb N$. 
+  We will show that $2/\{\alpha(n)|n\in\mathbb N\}$ is the trivial Boolean algebra. 
+  Then by \Cref{rmkTrivialBA}, it follows there merely is a finite subset $N_0\subseteq \mathbb N$ 
+  such that $\bigvee_{i:N_0}\alpha(i) =1$.
+  For this finite set $N_0$, we can decide whether every $\alpha(i) =0$, 
+  or there is some $i\in N_0$ such that $\alpha(i) =1$.
+  As the join of these $\alpha(i)$ is $1$, we must have that there is some $n\in N_0$ with $\alpha(n) = 1$. 
+  As $\alpha(j)=1$ for at most one $j$, we conclude that $\alpha = \chi_n$. 
+  %
+
+  To show that $2/\{\alpha(n)|n\in\mathbb N\}$ is trivial, we will show it has an empty spectrum. 
+  Suppose $x: 2 \to 2$ is such that $x(\alpha(n)) = 0$ for every $n:\mathbb N$. 
+  As $x(1) = 1\neq 0$, we must have for every $n:\mathbb N$ that $\alpha(n) \neq 1$. 
+  Thus for every $n:\mathbb N$, we have $\alpha(n) = 0$, contradicting our assumption that $\alpha \neq \infty$. 
+  Thus any such $x$ cannot exist and $Sp(2/\{\alpha(n)|n\in\mathbb N\}) = \emptyset$. 
+  Thus $2/\{\alpha(n) | n \in \Noo \} = 2^\emptyset$, which is the trivial Boolean algebra. 
+\end{proof}
+\begin{corollary}\label{LemDecidableSubsetsDeMorgan}
+  For $(A_n)$ a family of decidable subsets, we have
+    $
+    (\bigcup_{n:\mathbb N} A_n)^C
+    =
+    \bigcap_{n:\mathbb N} (A_n^C)
+    $ 
+    and 
+    $
+    \bigcup_{n:\mathbb N} (A_n^C)
+    =  
+    (\bigcap_{n:\mathbb N} A_n)^C
+    $
+\end{corollary}
+\begin{proof}
+\begin{itemize}
+  \item 
+    Let 
+    $x\notin \bigcup_{n:\mathbb N} A_n$. 
+    Then for every $n:\mathbb N$, we cannot have $x\in A_n$
+    and thus $x\in A_n^C$ by decidability of $A_n$. 
+    Thus $x\in \bigcap_{n:\mathbb N} (A_n^C)$. 
+    Therefore
+    $$
+    (\bigcup_{n:\mathbb N} A_n)^C
+    \subseteq 
+    \bigcap_{n:\mathbb N} (A_n^C).
+    $$ 
+  \item 
+    Suppose that for every $n:\mathbb N$, we have $x\notin A_n$. 
+    There does not exist an $n:\mathbb N$ with $x\in A_n$. Thus
+    $$
+    \bigcap_{n:\mathbb N} (A_n^C)
+    \subseteq 
+    (\bigcup_{n:\mathbb N} A_n)^C
+    $$ 
+  \item 
+    Suppose there exists some $n$ with $x\in A_n^C$. Then 
+    it cannot be the case that $x\in A_m$ for all $m:\mathbb N$.
+    Thus
+    $$
+    \bigcup_{n:\mathbb N} (A_n^C)
+    \subseteq 
+    (\bigcap_{n:\mathbb N} A_n)^C
+    $$ 
+  \item 
+    Suppose that $x\in (\bigcap_{n:\mathbb N} A_n)^C$. 
+    Then define the binary sequence $\alpha$ by $\alpha(i) =1$ iff $i$ is the first index such that 
+    $x\notin A_i$. This is well-defined as $A_n$ is decidable for all $n:\mathbb N$. 
+    If $\alpha(i) = 0$ for all $i$, then $x\in A_i$ for all $i$. 
+%    and it is the case that $x\in A_n$ for all $n:\mathbb N$. 
+    Thus under our assumption $x\in (\bigcap_{n:\mathbb N} A_n)^C$, 
+    we cannot have that $\alpha(i) = 0$ always. 
+    By Markov, there then exists an $i$ such that $\alpha(i) = 1$. 
+    Thus $x\notin A_i$ for some $i$. We conclude that. 
+    $$
+    (\bigcap_{n:\mathbb N} A_n)^C
+    \subseteq
+    \bigcup_{n:\mathbb N} (A_n^C)
+    $$ 
+\end{itemize}
+\end{proof} 
+Note that we only needed decidability for the first and last bullet point, 
+and only the last bullet point used countability (and of course Markov's principle). 
+
+\begin{theorem}[The lesser limited principle of omniscience (LLPO)]
+  For $\alpha:\mathbb N_\infty$, 
+  we have that 
+  \begin{equation}\label{eqnLLPO}
+    \forall_{k:\mathbb N} \alpha(2k) = 0  \vee \forall_{k:\mathbb N} \alpha(2k+1) = 0
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  We first will define a map $f:B_\infty \to B_\infty \times B_\infty$. 
+  Because of \Cref{rmkMorphismsOutOfQuotient}, it is sufficient to define $f$ on $(p_n)_{n:\mathbb N}$ with 
+  $f(p_n) \wedge f(p_m) = (0,0)$ for $n\neq m$. 
+  To define $f(p_n)$, we use a case distinction on whether $n$ is odd or even. 
+  \begin{equation}
+    f(p_n) =\begin{cases}
+      (p_k,0) \text{ if } n = 2k\\
+      (0,p_k) \text{ if } n = 2k+1\\
+    \end{cases}
+  \end{equation}
+  By making a case distinction on $n,m$ being odd or even, 
+  we can indeed see that $f(p_n) \wedge f(p_m) = (0,0)$ when $n\neq m$. 
+  We will show that $f$ is injective. 
+  If it is, then as surjections are formal surjections, $f$ corresponds to a surjection $s:\Noo + \Noo \to \Noo$.
+  This means that for every $\alpha:\Noo$ there merely is some $x:\Noo + \Noo$ such that $s(x) = \alpha$. 
+  Now we want to show that \Cref{eqnLLPO} holds for $\alpha$. 
+  As we need to show a propositional truncation, we can assume $x$ is given and make a case distinction whether 
+  it is of the form $inl(\beta)$ or $inr(\beta)$ for some $\beta:\Noo$. 
+  If $x = inl(\beta)$, then for any $k:\mathbb N$, we have that 
+  $s(x) (p_{2k+1}) = x(f(p_{2k+1})) = inl(\beta) (0,p_k)  = \beta(0) = 0$. 
+  And if $x=inr(\beta)$, by similar argument it follows that for all $k:\mathbb N$
+  we must have $s(x)(p_{2k}) = 0$. 
+  Thus if we can show that $f$ is injective, we have \Cref{eqnLLPO}.
+  
+  To see that $f$ is injective, it is sufficient to show that whenever $f(x) = 0$, we must have $x = 0$. 
+  Suppose $f(x) = 0$. %We make a case distinction on whether $x$ is finite or cofinite. 
+  We make a case distinction on whether $x$ corresponds
+  to a finite or cofinite subsets of $\mathbb N$. 
+  We'll denote $E,O\subseteq \mathbb N$ for the even and odd numbers.
+  \begin{itemize}
+    \item Let $x$ correspond to a finite subset of $\mathbb N$. Write 
+      $x = \bigvee_{i\in I_0} p_i$ for $I_0\subseteq \mathbb N$ finite. 
+      Then $f(x) = (\bigvee_{i\in I_0 \cap E } p_{\frac i2} , \bigvee_{i\in I_0 \cap O } p_{\frac {i-1}2} ) = (0,0)$
+      But now as $p_j\neq 0$ for all $j\in\mathbb N$, we must have $I_0 \cap E = \emptyset = I_0 \cap O$. 
+      Thus $I_0= \emptyset$, and $x = 0$. 
+    \item Let $x$ correspond to a cofinite subset of $\mathbb N$. Write 
+      $x = \bigwedge_{j\in J} \neg p_j$ for $J$ finite. 
+      We will derive a contradiction, from which we can conclude that $x=0$ after all. 
+      Then $f(x) = (\bigwedge_{j\in J \cap E } \neg p_j , \bigwedge_{j\in J \cap O } \neg p_j )$. 
+      As $f(x) = (0,0)$, we have that 
+      $\bigwedge_{j\in J \cap E } \neg p_j =0$ and
+      $\bigwedge_{j\in J \cap O } \neg p_j  = 0$.
+      However, any finite meet of negations will correspond to a cofinite set,
+      in particular not to the empty set, giving a contradiction. 
+      So $x = 0$. 
+  \end{itemize}
+  Therefore whenever $f(x) = 0$, we have $x = 0$, thus $f$ is injective, $s$ is surjective 
+  and by the above reasoning for any $\alpha:\Noo$ we have \Cref{eqnLLPO}. 
+\end{proof}
+\begin{remark}
+  The above function $f$ does not have a retraction. 
+\begin{proof}
+  Suppose it does, call the retraction $r:B_\infty \times B_\infty \to B_\infty$. 
+  Consider $r(0,1)$. 
+  As $r(0,1):B_\infty$, we merely have an expression in 
+  $\langle (p_k)_{k:\mathbb N}\rangle$ 
+  representing $r(0,1)$. This expression contains at most finitely many $p_k$. 
+  Let $N$ be such that $r(0,1)$ does not contain $p_k$ for $k \geq N$. 
+
+  As maps of Boolean algebras are order-preserving, we have that 
+  $r(0,1) \geq r(0,p_l) = p_{2l+1}$ for any $l:\mathbb N$. 
+  So $r(0,1) \geq p_{k}$ for some $k \geq N$. 
+
+  $r(0,1)$ cannot be finite, if it were, we'd have that  
+  $r(0,1) = \bigvee_{i\in I_0} p_i$ with $k\notin I_0$, 
+  but then $r(0,1) \wedge p_k = 0\neq p_k$ and $r(0,1) \not \geq p_k$.
+  Thus $r(0,1)$ is cofinite. 
+  By similar reasoning $r(1,0)$ is cofinite. 
+  But now $r(0,1) \wedge r(1,0)$ is cofinite, 
+  but this should equal $r((1,0)\wedge (0,1)) = r(0,0) = 0$. 
+  As $0$ is finite, we have a contradiction. 
+
+  Thus there does not exist a retraction of $f$. 
+\end{proof}
+\end{remark} 
+
+\begin{corollary}\label{corAlternativeLLPO}
+  LLPO is equivalent to the following statement:
+  Let $(\phi_n)_{n:\mathbb N}, (\psi_m)_{m:\mathbb N}$ be families of decidable propositions indexed over $\mathbb N$.
+  We then have 
+  \begin{equation}
+    (\forall_{n:\mathbb N} \forall_{m:\mathbb N} (\phi_n \vee \psi_m) )
+    \leftrightarrow
+    ((\forall_{n:\mathbb N} \phi_n) \vee (\forall_{m:\mathbb N} \psi_m) )
+  \end{equation}
+\end{corollary}
+\begin{proof}
+  Note that the implication from right to left in the above equation always holds
+  
+
+  \rednote{While \cite{ReverseMathsBishop} does mention LLPO, it doesn't mention this specific equivalence, 
+  and there should be a reference for this result}
+  Assume LLPO
+  Assume that for every $n,m:\mathbb N$ we have $\phi_n \vee \psi_m$. 
+  We will define a binary sequence $\beta$ and show that $\beta(n)$ is $1$ at most once. 
+  First we define a binary sequence $\alpha$
+  such that $\alpha(2n) = 0$ iff $\phi_n$ holds and $\alpha(2m+1) = 0$ iff $\psi_m$ holds. 
+  We let $\beta(k) = 1$ iff $k$ is minimal with $\alpha(k) = 1$. 
+  By this minimality, we clearly have that $\beta$ is $1$ at most once and thus defines a term of $\Noo$. 
+  By LLPO, we have that 
+  $\forall_{k:\mathbb N} \beta(2k+1) = 0\vee \forall_{k:\mathbb N} \beta(2k+1) = 0$. 
+  As we're proving a proposition, we can unpack this truncation, and make a case distinction on
+  $\forall_{k:\mathbb N} \beta(2k+1) = 0 + \forall_{k:\mathbb N} \beta(2k+1) = 0$. 
+
+  Assume that $\forall_{k:\mathbb N} \beta(2k+1) = 0$. 
+  Let now $m:\mathbb N$. We claim that $\psi_m$ will hold. 
+  Suppose $\neg \psi_m$, then $\alpha(2m+1) = 1$. However, as $\beta(2m+1) = 0$, there 
+  $k = 2m+1$ is not minimal such that $\alpha(k)  = 1$.
+  There is thus some  some $l\leq 2k+1$ with $\alpha(l) = 1$. 
+  As $\beta(2k+1) = 0$ for all $k$, we have that $l$ must be even. 
+  Therefore $\alpha(2n) = 1$ for some $n:\mathbb N$, meaning that $\neg \phi_n$. 
+  But now $\neg \phi_n \wedge \neg \psi_m$, which contradicts 
+  $(\forall_{n:\mathbb N} \forall_{m:\mathbb N} (\phi_n \vee \psi_m) )$. 
+  We thus have that $\neg \psi_m$ is false. As $\psi_m$ is decidable, we conclude $\psi_m$. 
+  Thus for all $m:\mathbb N$, we have $\psi_m$. Thus 
+  $((\forall_{n:\mathbb N} \phi_n) \vee (\forall_{m:\mathbb N} \psi_m) )$ 
+  as required. 
+
+  The other case is symmetric. We conclude that 
+  \begin{equation}
+    (\forall_{n:\mathbb N} \forall_{m:\mathbb N} (\phi_n \vee \psi_m) )
+    \to
+    ((\forall_{n:\mathbb N} \phi_n) \vee (\forall_{m:\mathbb N} \psi_m) )
+  \end{equation}
+
+  Conversely, assume the above equation holds. 
+  Given any sequence $\alpha:\Noo$, because it is $1$ at most once, we have that 
+  $\alpha(n) = 0 \vee \alpha(n+1) = 0$ for all $n:\mathbb N$. Applying the above equation then gives LLPO for $\alpha$. 
+\end{proof}
+

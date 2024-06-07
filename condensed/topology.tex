@@ -1,3 +1,311 @@
+\subsection{New}
+\subsection{Topology on propositions}
+\begin{definition}
+  Let $P$ be a proposition. 
+  \begin{itemize}
+    \item $P$ is decidable if $P + \neg P$
+    \item $P$ is open if there merely exists some $\alpha:\Noo$ such that $P \leftrightarrow \alpha \neq \infty$. 
+    \item $P$ is closed if there merely exists some $\alpha:\Noo$ such that $P \leftrightarrow \alpha = \infty$. 
+  \end{itemize}
+\end{definition}
+
+\begin{remark}
+  Let us state some alternative definitions of open and closed:
+  \begin{itemize}
+    \item 
+      By Markov, $P$ being open iff there merely exists some $\alpha:\Noo$ such that 
+      $P\leftrightarrow \exists_{n:\mathbb N} \alpha(n) = 1$. 
+    \item 
+      $P$ is open iff there merely exists some $\alpha:2^\mathbb N$ such that $P\leftrightarrow \exists n \alpha(n) = 1$.
+    \item 
+      $P$ is closed iff there merely exists some $\alpha:2^\mathbb N$ such that $P\leftrightarrow \forall n \alpha(n) = 0$.
+\end{itemize}
+\end{remark}
+
+\begin{remark}\label{rmkOpenClosedNegation}
+  The negation of an open proposition is a closed proposition and vice versa. 
+  Furthermore, both open and closed propositions are double negation stable by Markov, 
+  meaning that for $P$ open or closed, we have $\neg \neg P \to P$.
+\end{remark}
+
+\begin{lemma}\label{lemOpenClosedDisjunctionConjunction}
+  Closed propositions are closed under countable conjunctions %$\Pi$-types 
+  and finite disjunctions.
+  Open propositions are closed under countable disjunctions %$\Sigma$-types 
+  and finite conjunctions. 
+\end{lemma}
+\begin{proof}
+  \begin{itemize}
+    \item Let $P,Q$ be closed. We will show $P\vee Q$ closed as well. 
+%      Let $\alpha,\beta:2^\mathbb N$ be such that 
+%      $P\leftrightarrow \forall_{n:\mathbb N} \alpha(n) = 0$ and 
+%      $Q\leftrightarrow \forall_{n:\mathbb N} \beta(n) = 0$. 
+%      Let $\gamma:2^\mathbb N$ be such that $\gamma(n) = 0$ iff 
+%      we have that $\alpha|_k = \infty|_k$ or $\beta|_k = \infty|_k$. 
+      % I think you'll still need some choice to infer from \gamma(n) = 0 for all n that 
+      % \alpha(n) = 0 for all n or \beta(n) = 0 for all n
+      Assume $P\leftrightarrow \alpha = \infty, Q \leftrightarrow \beta = \infty$. 
+      Now $P\vee Q \leftrightarrow 
+      ((\forall_{n:\mathbb N} \alpha(n) = 0) 
+      \vee (\forall_{n:\mathbb N} \beta(n) = 0))$
+      By \Cref{corAlternativeLLPO}, we have that 
+      $P\vee Q \leftrightarrow 
+      \forall_{n:\mathbb N}  \forall_{m:\mathbb N}  (\alpha(n) = 0 \vee \beta(m) = 0)$
+      For $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective, 
+      this in turn is equivalent to 
+      $\forall_{k:\mathbb N}  (\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s(k))) = 0)$. 
+      We define a sequence $\gamma:2^\mathbb N$ where 
+      $\gamma(k) = 0$ iff $(\alpha(\pi_0(s(k))) = 0 \vee \beta(\pi_1(s(k))) = 0)$. 
+      As this is decidable, $\gamma$ is well-defined.
+      Also
+      $P\vee Q \leftrightarrow \forall_{k:\mathbb N} \gamma(k) = 0$, 
+      thus $P\vee Q$ is closed. 
+    \item Let $(P_n)_{n:\mathbb N}$ be a countable family of closed propositions. 
+      We will show that 
+      $\forall_{n:\mathbb N} P_n$ is closed as well. 
+      By countable choice, we have a function which for each 
+      $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
+      such that $P_n \leftrightarrow \alpha_n =\infty$. 
+      Thus $(\forall_{n:\mathbb N} P_n )\leftrightarrow 
+      (\forall_{n:\mathbb N}(\alpha_n = \infty))$. 
+      Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
+      $\beta(k) = \alpha_{\pi_0(s(k))}(\pi_1 (s(k)))$. 
+      Note that $\beta = \infty$ iff for every $n:\mathbb N$, 
+      and every $m:\mathbb N$, we have $\alpha_n(m) = 0$, 
+      which happens iff $\alpha_n = \infty$. 
+      We conclude that $\forall_{n:\mathbb N} P_n \leftrightarrow \beta = \infty$.
+      Thus closed propositions are closed under countable conjunctions. 
+    \item 
+      Let $P,Q$ be open. Let $\alpha,\beta:2^\mathbb N$ be such that 
+      $
+      P\leftrightarrow \exists_{k:\mathbb N}  \alpha(k) = 1, 
+      Q\leftrightarrow \exists_{k:\mathbb N}  \beta(k) = 1
+      $. 
+      We will show that $P\wedge Q$ is open as well. 
+      Consider $\gamma:2^\mathbb N$ given by 
+      $\gamma(l) = 1$ iff there exist some $k,k'\leq l$ with 
+      $\alpha(k) = \beta(k') = 1$. As we only need to check finitely many combinations 
+      of $k,k'$, this is a decidable property and $\gamma$ is well-defined. 
+      Clearly we have $(\exists_{l:\mathbb N} \gamma(l) = 1) \leftrightarrow (P \wedge Q)$. 
+      Thus $P\wedge Q$ is open. 
+    \item Let $(P_n)_{n:\mathbb N}$ be a countable family of open propositions. 
+      We will show that $\exists_{n:\mathbb N}P_n$ is open as well. 
+      By countable choice, we have a function which for each 
+      $n:\mathbb N$ gives some $\alpha_n:\Noo$ 
+      such that $P_n \leftrightarrow \alpha_n \neq \infty$. 
+      Thus $(\exists{n:\mathbb N} P_n) \leftrightarrow 
+      (\exists{n:\mathbb N}\alpha_n \neq \infty)$. 
+      Let $s:\mathbb N \to \mathbb N \times \mathbb N$ surjective and let 
+      $\beta(k) = \alpha_{\pi_0(s(k))}(\pi_1 (s(k)))$. 
+      Then let $\gamma(k) = 1$ iff $k$ is minimal with $\beta(k) = 1$. 
+      Note that $\beta \neq \infty$ iff there is some $n:\mathbb N$, 
+      and some $m:\mathbb N$, with $\alpha_n(m) = 1$, 
+      which happens iff $\alpha_n \neq \infty$. 
+      We conclude that $\exists{n:\mathbb N} P_n \leftrightarrow \gamma \neq \infty$.
+      Thus open propositions are closed under countable disjunctions. 
+  \end{itemize}   
+\end{proof}
+
+
+\begin{lemma}\label{OpenClosedImplication}
+  For $P$ open and $Q$ closed or $P$ closed and $Q$ open, we have that $(P\to Q) \leftrightarrow (\neg P \vee Q)$. 
+\end{lemma}
+\begin{proof}
+  Without losing generality, assume $P$ open and $Q$ closed. 
+  The left direction is well-known. 
+  What is also well-known is 
+  $(P \to Q) \to \neg \neg (\neg P \vee Q)$.
+  By \Cref{rmkOpenClosedNegation}, $\neg P$ is closed. 
+  By \Cref{lemOpenClosedDisjunctionConjunction}, it follows that $\neg P \vee Q$ is closed. 
+  By \Cref{rmkOpenClosedNegation} it follows that $\neg \neg (\neg P \vee Q) \to (\neg P \vee Q)$. 
+  Thus $(P \to Q) \to (\neg P \vee Q)$ as required. 
+\end{proof}
+\begin{corollary}\label{OpenAndClosedMeansDecidable}
+  Let $P$ be both open and closed. 
+  Then by the above, $(P\to P)\leftrightarrow (\neg P \vee P)$. 
+  As $P\to P$ is true, so is $\neg P \vee P$. Thus $P$ is decidable. 
+  Thus any proposition that is both open and closed is decidable. 
+\end{corollary}
+
+\begin{lemma}\label{EqualityBooleStoneClosedOpen}
+  Equality in $B:\Boole$ is open and equality in $X:\Stone$ is closed. 
+\end{lemma}
+\begin{proof}
+  Let $B:\Boole$, and let $a,b:B$. We will show that $a=b$ is closed. 
+  Recall that $B = \langle G \rangle / \langle R \rangle$. 
+  And that $(a=b):= (a-b \in \langle R \rangle)$, 
+  where $\langle R \rangle$ is the set of expressions of the form
+  $(\bigvee_{r\in R_0} r) \wedge b$ for $R_0\subseteq R$ finite and $b:\langle G \rangle$ 
+  arbitrary. 
+  In particular, note that $\langle R \rangle$ is countable. 
+  Let $(r_n)_{n:\mathbb N}$ enumerate $ \langle R \rangle $
+  Also note that equality in $\langle G \rangle$ is decidable. 
+  Thus we can define a sequence $\alpha:\Noo$ with $\alpha(k) = 1$ 
+  iff $k$ is minimal with $a -b = r_n$. 
+  Now $\alpha \neq \infty $ iff $a = b$. Thus $a=b$ is an open proposition. 
+
+  Let $X:\Stone$ and let $x,y:X$. 
+  Let $X= Sp(B)$ for $B = \langle G \rangle / \langle R \rangle $. 
+  Note that $x=y$ iff $x(g) = y(g)$ for all generators $g:G$. 
+  As $G$ is countable, we can enumerate it's elements as $(g_n)_{n:\mathbb N}$. 
+  As equality in $B$ decidable, we can define a sequence $\alpha:\Noo$ 
+  with $\alpha(k) = 1$ iff $k$ is minimal with $x(g_k) \neq y(g_k)$. 
+  Now $\alpha(k) = 0$ for all $k$ iff for all $k$ we have $x(g_k) = y(g_k)$ and thus $x(g) = y(g)$ for all generators $g$ 
+  and thus $ x= y$. 
+  Thus $(x=y) \leftrightarrow \alpha= \infty$ and $ x=y$ is closed. 
+\end{proof}
+\begin{corollary}\label{LemInhabitedOfStoneIsClosed}
+  Let $B$ be a Boolean algebra.
+  Recall from \Cref{LemSurjectionsFormalToCompleteness} that $0=1 \to \neg Sp(B)$. 
+  Also by Stone duality, we had that $\neg Sp(B)$ implies that 
+  $B = 2^{Sp(B)} = 2^\bot= 1$, so $0=1$ in $B$. 
+  We conclude that $0=1 \leftrightarrow \neg Sp(B)$. 
+  As $0=1$ is open, so is $\neg Sp(B)$. 
+  Thus $\neg \neg Sp(B)$ is closed, and by \Cref{LemSurjectionsFormalToCompleteness} 
+  so is $||Sp(B)||$. 
+  Thus for Stone types, being inhabited is a closed proposition. 
+\end{corollary}
+\rednote{Active from here on}
+\begin{lemma}
+  Let $A$ be a countable set and let $P:A \to Open$
+  be an open subset of $A$. 
+  If $||\sum_{a:A} P a||$, then $\sum_{a:A} P a$ is a countable set. 
+\end{lemma}
+\begin{proof}
+  Being countable is a proposition, so we may untruncate our assumptions:
+  \begin{itemize}
+    \item 
+      Because we have $||\sum_{a:A} P a||$, we assume we have  some $x:A$ with $P x$. 
+    \item 
+      Because $A$ is countable, we may assume we have some 
+      enumeration of elements from $A$ given as $(a_n)_{n:\mathbb N}$.
+  \end{itemize}
+  Furthermore, by countable choice, $P$ gives us 
+  for each $a:A$ a specific $\alpha_a:2^\mathbb N$ 
+  such that 
+  \begin{equation}
+    P a \leftrightarrow \exists_{m:\mathbb N} \alpha_a(m) = 1.
+  \end{equation}
+  Using this data, we will 
+  construct a surjection $s:\mathbb N \times \mathbb N \to \sum_{a:A} P a$. 
+  Define 
+  \begin{equation}
+    s(m,n) = 
+    \begin{cases}
+      x \text{ if } \alpha_{a_n}(m) = 0 \\
+      a_n \text{ if } \alpha_{a_n}(m) = 1
+    \end{cases}
+  \end{equation}
+  To see that $s$ is surjective, we need to show that for each $a:A$ with $P a$ there 
+  merely exists some $(m,n):\mathbb N \times \mathbb N$ 
+  with $s(m,n) = a$. 
+  \begin{itemize}
+    \item 
+  Because $(a_n)_{n:\mathbb N}$ formed an enumeration, we have that 
+  there merely is some $n$ with $a = a_n$. 
+  We can use this $n$ as we're proving a proposition. 
+    \item 
+  As $P a$ there merely is some $m$ with $\alpha_{a_n}(m) = 1$. 
+  This $m$ can also be used as we're proving a proposition. 
+  \end{itemize}
+  Now by the above choice $s(m,n) = a_n = a$, 
+  thus for each $a:A$ with $P a$, there exists some $(m,n)$ with 
+  $s(m,n) = a$. Thus $s$ is surjective. 
+
+  As $\mathbb N \times \mathbb N \simeq \mathbb N$, we conclude that 
+  $\sum_{a:A} P a$ is countable. 
+\end{proof}
+\subsection{Closed subspaces of Stone spaces}
+%\input{StoneTopology}
+\begin{definition}
+  For $S$ a set and $D\subseteq S$ an arbitrary subset, we call $D$ decidable/open/closed 
+  iff for every $x:S$, $D(x)$ is decidable/open/closed. 
+\end{definition}
+\begin{remark}
+  Let us restate some results from the previous section in this light. 
+  \begin{itemize}
+    \item   \Cref{rmkOpenClosedNegation} implies that the complement of an 
+  open subset is closed and vice versa. 
+  \item 
+    \Cref{OpenAndClosedMeansDecidable} implies that a subset which is both open 
+    and closed is decidable. 
+  \item 
+    As propositions are subsets of $\top = Sp(2)$, 
+    we have that open/closed/decidable subsets of $\top$
+    are open/closed/decidable propositions. 
+  \item By \Cref{EqualityBooleStoneClosedOpen}, singletons in 
+    Boolean algebras are open and singletons in Stone spaces are closed. 
+\end{itemize}
+\end{remark}
+\begin{theorem}
+  Let $A\subseteq Sp(B)$ be a subset of a Stone space. TFAE:
+  \begin{enumerate}[(i)]
+    \item We have some $(D_n)_{n:\mathbb N}$ countable family 
+      of decidable subsets of $Sp(B)$ with $A = \bigcap_{n:\mathbb N} D_n$. 
+    \item We have a Stone space $T$ and some map $T\to Sp(B)$ 
+      whose image is $A$. 
+    \item For each $x:Sp(B)$, we have a specific sequence $\alpha_x:2^\mathbb N$ such that 
+      $A x \leftrightarrow \forall_{n:\mathbb N} \alpha_x(n) = 0$. 
+  \end{enumerate}
+\end{theorem}
+Before we start the proof, note that the above three statements carry data.
+\begin{proof}
+  \begin{itemize}
+    \item We will show that $(i)$ implies $(ii)$.
+      Let $(D_n)_{n:\mathbb N}$ be a countable family of decidable subsets of $Sp(B)$. 
+      By Stone duality, decidable subsets of $Sp(B)$ correspond to elements of $B$. 
+      Thus we get a countable family $(d_n)_{n:\mathbb N}$ of elements of $B$ such that 
+      such that $D_n = \{x:Sp(B)| x(d_n) = 1\}$. 
+      Consider the countably presented boolean algebra 
+      $C = B/\langle (\neg d_n)_{n:\mathbb N}\rangle$.
+      The quotient map provides an epi $B\twoheadrightarrow C$, which 
+      corresponds to a mono $Sp(C) \hookrightarrow Sp(B)$. 
+      We claim that the image of this map is exactly $\bigcap_{n:\mathbb N} D_n$. 
+      Note that $x$ is in the image of this map iff for all $n:\mathbb N$, we have 
+      $x(\neg d_n) = 0$. Note $x(\neg d_n) = 0$ iff $x (d_n) = 1$ iff $x\in D_n$. 
+      Thus $x$ is in the image of the map iff for all $n$ we have $x\in D_n$,
+      as required. 
+      We conclude that the intersection of a countable family of decidable subsets 
+      is the image of some Stone space. 
+    \item We will show that $(ii)$ implies $(iii)$.
+    Let $f:T\to S$ be a map between Stone spaces. 
+    We will show that $f(T)$ is closed. 
+    For $x:S$, we have that $x\in f(T)$ iff there exists some $y:T$ 
+    with $f(y) = x$. 
+    So 
+    \begin{equation}
+      (f(T))(x) \leftrightarrow || \sum_{y:T} f(y) = x||
+    \end{equation}
+    Note that $\sum_{y:T} f(y) = x$ is a pullback as follows:
+    \begin{equation}
+      \begin{tikzcd}
+        \sum_{y:T} f(y) = x\arrow[rd,"\lrcorner"{pos=0.125},phantom] \arrow[r] \arrow[d]
+        & 1 \arrow[d,"x"] \\
+        T \arrow[r,"f"']  & S
+      \end{tikzcd}
+    \end{equation}
+    As any pullback of Stone spaces is Stone, it follows that 
+    $\sum_{y:T} f(y) = x$ is Stone.
+%    , and by \Cref{LemInhabitedOfStoneIsClosed}, 
+%    so is $||\sum_{y:T} f(y) = x||$. 
+    Recall now that the proof of \Cref{LemInhabitedOfStoneIsClosed} 
+    gives a specific sequence $\alpha_x$ witnessing that $||\sum_{y:T} f(y) = x||$ is closed. 
+
+    Thus $f(T)(x)$ is a closed proposition and $f(T)$ closed. 
+    We conclude that the image of a map of Stone spaces is closed, 
+    and given the Stone spaces we can construct the witness sequences. 
+  \item We will show that $(iii)$ implies $(i)$. 
+    Let $\alpha_x$ be as in $(iii)$. Define 
+    $D_n(x) \leftrightarrow (\alpha_n(x) = 0)$. 
+    Note that $D_n$ is well-defined as $\alpha_n(x):2$ and for all $b:2$ we have
+    $(b=0)+ (b=1)$. Now $x \in \bigcap_{n:\mathbb N} D_n$ iff
+    $\alpha_x(n) = 0$ for all $n:\mathbb N$, 
+    which happens iff $A x$. Thus $A = \bigcap_{n:\mathbb N} D_n$. 
+  \end{itemize} 
+\end{proof} 
+
+\subsection{Old}
+
 \begin{definition}
   The image of a map $f:X\to Y$ between types is given by
   \[

@@ -266,3 +266,218 @@ about $\ints[\Noo]$ cannot be made internal.
    $\ints[\Noo]$ is {\em not} projective in the category of Abelian Groups.
 \end{theorem}
 
+
+
+\subsection{Countably presented algebras as sequential colimits}
+
+\begin{definition}
+  A sequence in a category is a diagram of shape $\mathbb N$, 
+  where $\mathbb N$ carries the natural structure of a poset. 
+\end{definition}
+\begin{lemma}\label{lemProFinitePresentation}
+  For every countably presented Boolean algebra $B$
+  there merely exists a sequence of finitely presented Boolean algebras 
+  whose colimit in the category of Boolean algebras is $B$. 
+\end{lemma}
+\begin{proof}
+  Consider $\langle G \rangle \langle\langle R \rangle\rangle$ a countable presentation of a Boolean algebra $B$. 
+  We will show there exists a diagram of shape $\mathbb N$ taking values in Boolean algebras 
+  with $\langle G\rangle / R$ as the colimit.
+  \paragraph{The diagram}
+  Let $R_n$ be the first $n$ terms in $R$. 
+  Note that each of these finitely many terms uses only finitely many symbols from $G$.
+  Let $G_n$ be the finite set of terms used in $R_n$, unioned with the finite set of the first $n$ elements of $G$. 
+  Define for each $n\in\mathbb N$ the finitely presented Boolean algebra $B_n = \langle G_n \rangle  \langle R_n \rangle$. 
+  If $n\leq m$, then \Cref{rmkMorphismsOutOfQuotient} gives us a map $B_n \to B_m$ 
+  as $G_n \subseteq G_{n+1}$ and $R_n \subseteq R_{n+1}$. 
+  Thus $(B_n)_{n\in \mathbb N}$ gives us a diagram of shape $\mathbb N$
+  with values in finitely presented algebras. 
+
+  \paragraph{The colimit}
+  As $G_n\subseteq G$ and $R_n \subseteq R$, 
+  \Cref{rmkMorphismsOutOfQuotient} also gives us a map $B_n\to \langle G \rangle \langle R \rangle$. 
+  We claim the resulting cocone is a colimit. 
+
+  Suppose we have a cocone $C$ on the diagram $(B_n)_{n\in\mathbb N}$. 
+  We need to show that there exists a map $\langle G \rangle / R\to C$ and
+  we need to show this map is unique as map between cocones. 
+  \begin{itemize}
+    \item To show there exists a map $\langle G \rangle / R \to C$, 
+      we use remark \Cref{rmkMorphismsOutOfQuotient} again. 
+      Let $g\in G$ be the $n$'th element of $G$, 
+      note that $g\in G_n$, and consider the image of $g$ under the map $B_n \to C$. 
+      This procedure defines a function from $G$ to the underlying set of $C$. 
+      Let $\phi \in R$ be the $n$'th element of $R$, 
+      note that $\phi \in R_n$, and the map $B_n \to C$ must send $\phi$ to $0$. 
+      Thus the function from $G$ to the underlying set of $C$ also sends $\phi$ to $0$. 
+      This thus defines a map $\langle G \rangle / R \to C$. 
+    \item To show uniqueness, consider that any map of cocones $\langle G \rangle / \langle R \rangle \to C$ 
+      must take the same values on all $g\in G_n$ for all $n\in\mathbb N$. 
+      Now all $g\in G$ occur in some $G_n$, so any map of cocones $\langle G \rangle /  \langle R \rangle \to C$ 
+      takes the same values for all $g\in G$. 
+      \Cref{rmkMorphismsOutOfQuotient} now tell us that these values uniquely determine the map. 
+  \end{itemize}
+\end{proof}
+\begin{remark}
+  Conversely, any colimit of a sequence of finite Boolean algebras 
+  is a countably presented Boolean algebra with 
+  as underlying sets of generators and relations the countable union of the finite sets of 
+  generators and relations, which are both countable. 
+\end{remark}
+\begin{lemma}\label{lemFinitelyPresentedBACompact}
+  For any finitely presented Boolean algebra $A$,
+  and any sequence $(B_n)_{n:\mathbb N}$ of Boolean algebras with colimit $B$
+  we have that the set $B^A$ is the colimit of the sequence of sets $(B_n^A)_{n:\mathbb N}$. 
+\end{lemma}  
+\begin{proof}
+  First note that $B^A$ forms a cocone on $(B_n^A)_{n:\mathbb N}$ 
+  because any map $A \to B_n$ induces a map $A \to B$. 
+  Let $C$ be a cocone on $(B_n^A)_{n:\mathbb N}$. 
+  We shall show there is an unique morphism of cocones $B^A \to C$. 
+  \begin{itemize}
+    \item For existence, let $f:B^A$. 
+      As $A$ is finitely presented, we write $A = \langle G \rangle / \langle R \rangle$ with $G$ finite.
+      By \Cref{rmkMorphismsOutOfQuotient}, $f$ is uniquely determined by it's values on $g\in G$. 
+      As $G$ is finite, so is it's image $f(G)\subseteq B$. 
+      But any finite subset of $B$ already occurs in $B_n$ for some $n\in\mathbb N$. 
+      Consequently, the image of $f$ is already contained in some $B_n$. 
+      Thus there is some $f_n:(B_n^A)$ such that postcomposing 
+      $f_n$ with the map $B_n \to B$ gives back $f$. 
+      The image of $f_n$ under the map $(B_n^A) \to C$ is how we define the image of $f$. 
+      This is well-defined by the cocone conditions on $C$. 
+    \item 
+      For uniqueness, by function extensionality maps $B^A \to C$ are uniquely determined by their values on 
+      $f:B^A$. By the above, the value of $f$ is uniquely determined by it's value on $B_n$ for 
+      any $n$ with the image of $f$ in $B_n$. Thus there is at most one morphism of cocones $B^A \to C$. 
+  \end{itemize}
+\end{proof}
+\begin{remark}\label{rmkEqualityColimit}
+  In the above proof, we used that any element $b\in B$ already occurs in some $B_n$. 
+  However, please note that it is not necessarily the case that it occurs uniquely in $B_n$, 
+  there might be multiple elements in $B_n$ which can all be sent to $b$ in the end. 
+
+  In case our sequence comes from the construction in \Cref{lemProFinitePresentation}, 
+  we can see that whenever there are two elements in 
+  $B_n$ corresponding to $b\in B$, they will become equal in $B_m$ for some $m\geq n$. 
+  The reason is that if $b \sim_{\langle R \rangle} c$, there is a finite subset $R_0 \subseteq R$ such that 
+  $b\sim_{\langle R_0 \rangle} c$, which will occur in some $R_m$. 
+
+  One could wonder whether this property holds for general colimits of sequences. 
+  In general, if we assume $B$ is the colimit of an arbitrary sequence $(B_n)_{n:\mathbb N}$, 
+  and there exist some $B_n$ with two elements corresponding to the same element in $B$, 
+  Theorem 7.4 from \cite{SequentialColimitHoTT} says that there merely exists some $m\geq n$
+  such that they are already equal in $B_m$. 
+\end{remark}
+
+%For our next lemma on this presentation of sequences we need the axiom of dependent choice. 
+%\begin{axiomNum}[Dependent choice]\label{axDependentChoice}
+%  Given a family of types $(E_n)_{n:\mathbb N}$ and 
+%  a relation 
+%  $R_n:E_n\rightarrow E_{n+1}\rightarrow {\mathcal U}$ such that
+%  for all $n$ and $x:E_n$ there exists $y:E_{n+1}$ with $p:R_n~x~y$ 
+%  then given $x_0:E_0$ there exists
+%  $u:\Pi_{n:\N}E_n$ and $v:\Pi_{n:\N}R_n~(u~n)~(u~(n+1))$ and $u~0 = x_0$.
+%\end{axiomNum}
+\begin{lemma}[Using dependent choice]\label{lemDecompositionOfColimitMorphisms}
+  Let $B,C$ be countably presented Boolean algebras, 
+  and suppose we have a morphism $f:B\to C$.
+  There exists sequences of finitely presented Boolean algebras 
+  $(B_n)_{n:\mathbb N}, (C_n)_{n:\mathbb N}$ with colimits $B,C$ respectively
+  and compatible maps of Boolean algebras $f_n:B_n \to C_n$, 
+  such that $f$ is the induced morphism $B\to C$.
+\end{lemma}
+\begin{proof}
+  Let $(B_n)_{n:\mathbb N}, (C_n)_{n:\mathbb N}$ be 
+  sequences of finitely presented Boolean algebras with colimits $B$ and $C$. 
+  We will take a subsequence of $(C_n)_{n:\mathbb N}$, using the axiom of dependent choice above. 
+
+  Our family of types $E_k$ as in \Cref{axDependentChoice} 
+  will be strictly increasing sequences $(n_i)_{i\leq k}$ of natural numbers together with a finite family of maps 
+  $(f_i: B_{i} \to C_{n_i})_{i\leq k}$ such that
+  for all $0\leq i<k$ the following diagram commutes:
+  \begin{equation}\label{eqnDecompositionOfColimitMorphisms}
+    \begin{tikzcd}
+      B_{i} \arrow[r] \arrow[d, "f_i"]& B_{{i+1}} \arrow[r] \arrow[d,"f_{i+1}"]& B \arrow[d,"f"] \\
+      C_{n_i} \arrow[r] & C_{n_{i+1}} \arrow[r] & C 
+    \end{tikzcd}
+  \end{equation}
+  Our relation $R_k$ will tell whether the second sequence extends the first one. 
+%
+  By \Cref{lemFinitelyPresentedBACompact} 
+  there exists some $n_0:\mathbb N$ 
+  such that $B_0 \to B \to C$ factors as 
+  \begin{equation}
+    \begin{tikzcd}
+      B_{0} \arrow[r] \arrow[d, "f_0"]& B \arrow[d,"f"] \\
+      C_{n_0} \arrow[r] & C 
+    \end{tikzcd}
+  \end{equation}
+  Because our goal is a proposition, we can untracate this existence to data. 
+  This data will form our $x_0:E_0$. %from \Cref{axDependentChoice}. 
+%
+  Now suppose we have $(f_i: B_{i} \to C_{n_i})_{i\leq k}$ for some $k\geq 0$ 
+  such that
+  for all $0\leq i<k$ the diagram of \Cref{eqnDecompositionOfColimitMorphisms} commutes.
+  We shall show that in this case there exists an $n_{k+1}, f_{k+1}$ 
+  making the same diagram commute for $i = k$. 
+  Consider $B_{{k}+1}\to B \to C$. By the same argument as for $B_0$, we have a factorization 
+  \begin{equation}
+    \begin{tikzcd}
+    B_{k+1} \arrow[r]  \arrow[d,"f'_{k+1}"]& B \arrow[d,"f"]\\
+    C_{n'_{k+1}} \arrow[r] & C
+    \end{tikzcd}
+  \end{equation}
+  Note that we may assume $n'_{k+1} > n_k$.
+  Note that it is not necessarily the case that 
+  $f'_{k+1}$ is compatibly with $f_k$, meaning the left square in the following diagram needn't commute:
+  \begin{equation}
+    \begin{tikzcd}
+      B_{k} \arrow[r] \arrow[d, "f_k"]& B_{{k+1}}  \arrow[r] \arrow[d,"f'_{k+1}"] & B \arrow[d,"f"] \\
+      C_{n_k} \arrow[r] & C_{n'_{k+1}} \arrow[r]  & C 
+    \end{tikzcd}
+  \end{equation}
+  However, both $f'_{k+1}, f_k$ induce the same map $B_{k} \to C$. 
+  Recall by \Cref{rmkMorphismsOutOfQuotient} this map is induced by it's value on finitely many elements. 
+  By \Cref{rmkEqualityColimit}, it follows there is an $n_{k+1} \geq {n'_{k+1}}$ 
+  such that for $f_{k+1}$ the composition of $f'_{k+1}:B_{k+1} \to C_{n'_{k+1}}$ and 
+  the map $C_{n'_{k+1}} \to C_{n_{k+1}}$, the following diagram does commute:
+  \begin{equation}
+    \begin{tikzcd}
+      B_{k} \arrow[d,"f_k"]\arrow[r] & B_{{k+1}} \arrow[rd, "f_{k+1}"] \arrow[rr] & & B \arrow[d,"f"] \\
+      C_{n_k} \arrow[r] & C_{n'_{k+1}} \arrow[r] & C_{n_{k+1}} \arrow[r] & C 
+    \end{tikzcd}
+  \end{equation}
+  Now by dependent choice for the above $x_0, R_n, E_n$, we get a sequence $(f_i:B_i \to C_{n_i})$  for some 
+  strictly increasing sequence $n_i$ of natural numbers. 
+  Note that for such a sequence $(n_i)_{i:\mathbb N}$, 
+  $(C_{n_i})_{i:\mathbb N}$ converges to $C$. Also $(B_i)_{i:\mathbb N}$ still converges to $B$. 
+  Futhermore, by construction the map that sequence $f_i$ induces from $B \to C$ shares all values with $f$
+  and thus is equal to $f$. 
+  Thus our sequence $f_i$ is as required. 
+\end{proof}
+\begin{remark}\label{rmkEpiMonoFactorizationCommutes}
+  For $f,(f_i)_{i:\mathbb N}$ as above, whenever $f_n(x) = 0$, we have $f_{n+1}(x \circ \iota_{n,n+1}) = 0$
+  for $\iota_{n,n+1}$ the map $A_n \to A_{n+1}$. 
+  By \Cref{rmkMorphismsOutOfQuotient}, $\iota_{n,n+1}$ induces a map $A_n/Ker(f_n)\to A_{n+1}/Ker(f_{n+1})$. 
+  This induced map is such that the following diagram commutes:
+  \begin{equation}\begin{tikzcd}
+    A_n \arrow[d, two heads] \arrow[r, "\iota_{n,n+1}"] & A_{n+1} \arrow[d,two heads]\\
+    A_n /Ker(f_n) \arrow[d,hook] \arrow[r] & A_{n+1} /Ker(f_{n+1}) \arrow[d,hook] \\
+    B_n \arrow[r] & B_{n+1}
+  \end{tikzcd}\end{equation}  
+  As the induced maps be epi's / mono's  is epi /mono, the colimit of the sequence 
+  $A_n / Ker(f_n)$ will fit into an epi-mono factorization of $f$ and thus be iso to $A/Ker(f)$. 
+  Thus the epi-mono factorization of the colimit is the colimit of the epi-mono factorizations. 
+\end{remark}
+\begin{remark}\label{rmkIsoEpiMonoMapColimit}
+  Whenever $f:B \to C$ is an iso, any sequence with $B$ as colimit, also has $C$ as colimit. 
+  Thus any iso can be represented this way as sequence of iso's. 
+  Conversely, any sequence of isomorphisms induces an isomorphism of their colimits. 
+
+  It follows from \Cref{rmkEpiMonoFactorizationCommutes} that when $f$ is epi/mono, 
+  we can say that $f$ can be induced by a sequence 
+  $(f_i)_{i\in \mathbb N}$ with all $f_i$ epi/mono. 
+\end{remark}
+
+
+
