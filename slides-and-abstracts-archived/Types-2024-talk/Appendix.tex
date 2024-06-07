@@ -1,0 +1,84 @@
+
+\begin{frame}{Markov's principle}
+  \begin{corollary}
+    For $S:\Stone$, we have $S = Sp(2^S)$,
+    $\isSt$ is a proposition.
+  \end{corollary}
+  \pause
+  \begin{block}{Markov's principle (observed by David W\"arn)}
+    For $\alpha:2^\mathbb N$, we have 
+    \vspace{-0.2cm}
+    $$\neg (\forall_{n:\mathbb N} \alpha(n) = 0) \to 
+    \exists_{n:\mathbb N} \alpha(n) = 1
+    $$
+  \end{block}
+  \begin{proof}
+    Suppose $\neg(\forall_{n:\mathbb N}\alpha(n) = 0)$. 
+    \pause 
+    Consider $B = 2/\{\alpha(n)=0|n:\mathbb N\}$. \\
+    \pause 
+    We can show that $Sp(B) = \emptyset$. \pause
+    By Stone duality, $1=0$ in $B$. 
+    \\\pause 
+    There exists some finite $N\subseteq \mathbb N$
+    with $1\in \{\alpha(n)|n:\mathbb N\}$. 
+    \pause \\
+    Hence there is some $n:\mathbb N$ with $\alpha(n) = 1$. 
+  \end{proof}
+\end{frame}
+
+
+\begin{frame}{LLPO}
+%  \begin{block}{Axiom 2: Surjections are formal surjections}
+%    A $Sp(B) \to Sp(C)$ is surjective iff 
+%    $C\to B$ is injective. 
+%%    the corresponding map of Boolean algebras is injective. 
+%  \end{block}
+  \begin{exampleblock}{$\mathbb N_\infty$}
+    If we have generators $(p_n)_{n:\mathbb N}$ 
+    and relations $p_n \wedge p_m = 0$ for 
+    $n \neq m$, we get $B_\infty:\Boole$.
+    We call $Sp(B_\infty) = \mathbb N_\infty$. 
+  \end{exampleblock}
+  \begin{block}{LLPO}
+    For $\alpha:\mathbb N_\infty$, 
+    we have 
+%    %that the sequence corresponding to
+    $\forall_{k:\mathbb N} \alpha(2k+1) = 0 $ or 
+    $\forall_{k:\mathbb N} \alpha(2k) = 0$.
+    %for all $k:\mathbb N$.
+%%    $0$ on all odd numbers or on all even numbers. 
+%    \vspace{-0.2cm}
+%    $$ 
+%    \forall (k:\mathbb N) \alpha(2k+1) = 0 \vee
+%    \forall (k:\mathbb N) \alpha(2k) = 0
+%    $$
+  \end{block}
+  \pause 
+  \begin{proof}
+    Define a map $f:B_\infty \to B_\infty \times B_\infty $ by 
+    \pause 
+    \vspace{-0.2cm}
+    $$
+      f(p_n) = \begin{cases}
+        (p_k,0) \text{ if } n = 2k \\
+        (0,p_k) \text{ if } n = 2k+1
+      \end{cases}
+    $$
+    \vspace{-0.5 cm}
+    \\
+    \pause
+    We can show that $f$ is injective. 
+    \pause \\
+    Thus $f$ corresponds to a surjection 
+    $s:\mathbb N_\infty +\mathbb N_\infty \to \mathbb N_\infty$. \\
+    \pause 
+%    For any $k:\mathbb N$, we have $s(inl(\beta))(2k+1) = s(inr(\gamma))(2k) = 0$. 
+    If $\alpha=s(inl(\beta))$, then $\alpha(2k+1) = 0$. \\
+    \pause
+    If $\alpha=s(inr(\beta))$, then $\alpha(2k) = 0$. 
+%    Now $s(inl(\beta))(2k+1) = 0$ for all $k:\mathbb N$ and 
+%    Now $s(inr(\beta))(2k) = 0$ for all $k:\mathbb N$. 
+%    As $s$ is surjective, LLPO holds for all $\alpha:\mathbb N_\infty$. 
+  \end{proof}
+\end{frame}
