@@ -4,11 +4,16 @@ Based on Barton-Commelin axioms. Going toward:
 A type is overtly discrete if it merely is a sequential colimit of finite type.
 \end{definition}
 
-\begin{definition}
-A proposition is open if it is overtly discrete.
-\end{definition}
+We write $\ODisc$ for the type of overtly discrete sets.
 
-Open propositions are precisely countable disjunction of decidable propositions.
+\begin{proposition}
+  If $E:\ODisc$ and $e_0,e_1:E$ then $e_0=_E e_1$ is open. If $P$ is a proposition, then $P:\ODisc$
+  iff $P:\Open$.
+\end{proposition}
+
+\begin{proposition}
+  If $B$ is a Boolean algebra, we have $B:\Boole$ iff $B:\ODisc$.
+\end{proposition}
 
 \begin{theorem}
 Given $X,Y:\mathrm{ODisc}$, the fiber of the map:
@@ -19,3 +24,11 @@ over $(X,Y)$ is:
 \end{theorem}
 
 Intuitively this means that the type of open propositions is a directed interval for overtly discrete types.
+
+In particular, any map $\Open\rightarrow\Open$ is monotone.
+
+\begin{theorem}[Tychonoff]
+  If $E:\ODisc$ and $X:E\rightarrow\CHaus$ then $\Pi_EX:\CHaus$. If $X:\CHaus$ and $E:X\rightarrow\ODisc$ then
+  $\Pi_XE:\ODisc.$ In particular if $E:X\rightarrow\Open$ then $\Pi_XE:\Open$.
+\end{theorem}
+
