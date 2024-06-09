@@ -1,3 +1,7 @@
+A proposition is {\em open} iff it is of the form $\exists_n a_n$ with $a_n$ decidable.
+It is {\em closed} if it is of the form $\forall_n a_n$ with $a_n$ decidable.
+We write $\Open$ (resp. $\Closed$) the set of open (resp. closed) propositions.
+
 
 \begin{theorem}[The negation of the weak limited principle of omniscience]
    It is not the case that for all $\alpha:\N\to 2$ we can decide whether $\forall (n:\N).\ \alpha(n)=0$.
@@ -8,16 +12,36 @@
    \[\neg(\forall (n:\N).\ \alpha(n)=0) \to \exists (n:\N).\ \alpha(n)=1\]
 \end{theorem}
 
+This can be rephrased as: the negation of a closed proposition is open. It is direct that the negation
+of an open proposition is closed.
+
+It follows that both open and closed propositions are not not stable. (They are not decidable in general.)
+
 \begin{definition}
 Let $\Noo$ be the type of sequence:
 \[\alpha:\N\to 2\]
-where $\alpha$ has value $1$ at most one.
+where $\alpha$ has value $1$ at most one. We have $\Noo:\Stone$.
 \end{definition}
 
 \begin{theorem}[The lesser limited principle of omniscience (LLPO)]
-  For $\alpha:\mathbb N_\infty$, 
+  For $\alpha:\mathbb \Noo$, 
   we have that 
   \begin{equation}\label{eqnLLPO}
     \left(\forall (k:\mathbb N).\ \alpha(2k) = 0 \right) \vee \left(\forall (k:\mathbb N).\ \alpha(2k+1) = 0\right)
   \end{equation}
 \end{theorem}
+
+This can be rephrased as the fact that the map $\Noo+\Noo\rightarrow \Noo$ sending $\inl(\alpha)$ to $\lambda_k \alpha(2k)$
+and $\inr(\alpha)$ to $\lambda_k \alpha(2k+1)$ is {\em surjective}.
+
+\medskip
+
+Since this map has no section, this shows that $\Noo$ is {\em not} projective.
+(David W\"arn has noticed that $\mathbb{Z}[\Noo]$ is {\em not} internally projective in the category of
+Abelian groups.)
+
+\medskip
+
+ Yet another formulation of LLPO is that the disjunction of two closed propositions is closed.
+
+ 
