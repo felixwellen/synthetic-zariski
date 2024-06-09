@@ -1,4 +1,32 @@
-
+\section{Proofs of omniscience principles}
+\begin{frame}{The negation of WLPO}
+  \begin{block}{Axiom 1 : Stone duality}
+    For $B:\Boole$, the evaluation map $B \to 2^{Sp(B)}$ is an isomorphism. 
+  \end{block}
+%  \begin{exampleblock}{Cantor space}
+%    Boolean maps $C \to 2$ correspond with binary sequences $2^\mathbb N$.
+%  \end{exampleblock}
+  \pause
+  \begin{block}{The negation of WLPO}
+    It is \textbf{not} the case that for any $\alpha:2^\mathbb N$ we can decide 
+    \vspace{-0.2cm}
+    $$\forall_{n:\mathbb N} \alpha (n) = 0 \vee \neg \forall_{n:\mathbb N} \alpha (n) = 0 $$
+  \end{block}
+  \pause
+  \begin{proof}
+    If so, we have an indicator map $b:2^\mathbb N \to 2$. 
+%    \pause \\
+%    By Stone duality, we have some $b\in C$ such that 
+    \vspace{-0.2cm}
+    $$(\forall_{n:\mathbb N} \alpha(n) = 0 )\leftrightarrow b(\alpha) = 0$$
+    \vspace{-0.8cm}
+    \\
+    \pause 
+    By Stone duality, $b$ corresponds to is a finite Boolean expression, \pause \\
+    so by only looking at $\alpha(n)$ for finitely many $n:\mathbb N$, \pause \\
+    we can decide whether $\alpha(n) = 0$ for all $n:\mathbb N$.
+  \end{proof}
+\end{frame}
 \begin{frame}{Markov's principle}
   \begin{corollary}
     For $S:\Stone$, we have $S = Sp(2^S)$,
@@ -81,4 +109,33 @@
 %    Now $s(inr(\beta))(2k) = 0$ for all $k:\mathbb N$. 
 %    As $s$ is surjective, LLPO holds for all $\alpha:\mathbb N_\infty$. 
   \end{proof}
+\end{frame}
+
+\section{Unit interval as Compact Hausdorff space}
+\begin{frame}{Example: the interval}
+  \begin{lemma}
+    The unit interval is a compact Hausdorff type. 
+  \end{lemma}
+  \begin{block}{The closed equivalence relation}
+  For $\alpha,\beta:2^\mathbb N$, 
+  \pause denote 
+      $\alpha \sim_n \beta$ iff 
+      \pause 
+      there is some $m:\mathbb N$ and some 
+      initial segment $x:2^m$ such that 
+      \pause
+      \vspace{-0.2cm}
+      $$
+      (\alpha|_n,\beta|_n)= 
+      ( 
+        (x \cdot 0 \cdot \overline 1)|_n , 
+        (x \cdot 1 \cdot \overline 0)|_n
+        ) 
+      $$
+      \vspace{-0.4cm}
+      or the other way around. 
+      \pause 
+      Define 
+      $$\alpha\sim\beta := \forall_{n:\mathbb N} (\alpha \sim_n \beta)$$
+    \end{block}
 \end{frame}
