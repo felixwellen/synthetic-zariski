@@ -1,3 +1,121 @@
+\section{Topological spaces}
+\begin{frame}{Cohomology}%Light condensed sets.}
+%  We expect to be able to show that $[0,1]$ is acyclic. 
+  \pause 
+    \begin{lemma}
+      $H^1(S,\mathbb Z) = 0$ for $S$ Stone.
+    \end{lemma}
+    \pause 
+    We hope to extend this result to 
+      $H^n(S,\mathbb Z) = 0$ for $S$ Stone and $n>1$.
+      \pause
+      \\
+      We also expect to show that $H^n(X,\mathbb Z)$ corresponds to the singular cohomology 
+      for $X$ a finite CW-complex.\\
+\end{frame}
+%\section{Unit interval as Compact Hausdorff space}
+\begin{frame}{Compact Hausdorff spaces}
+  \begin{definition}
+    A type is compact Hausdorff iff it is the quotient of a 
+    Stone space by a closed equivalence relation. 
+  \end{definition}
+  \pause
+  \begin{lemma}
+    Let $X = S / \sim $ be compact Hausdorff and $A\subseteq X$. TFAE
+    \begin{itemize}
+      \item $A$ is closed. 
+      \item the preimage of $A$ in $X$ is closed. 
+    \end{itemize}
+\end{lemma}
+\pause
+  \begin{corollary}
+    Any map between compact Hausdorff types is 
+    continuous in the sense that the 
+    %inverse of an open is open. 
+%    such that the 
+    inverse image of a closed subset is closed. 
+  \end{corollary}
+\end{frame}
+
+
+\begin{frame}{Example: the interval}
+  \begin{lemma}
+    The unit interval is a compact Hausdorff type. 
+  \end{lemma}
+  \begin{block}{The closed equivalence relation}
+  For $\alpha,\beta:2^\mathbb N$, 
+  \pause denote 
+      $\alpha \sim_n \beta$ iff 
+      \pause 
+      there is some $m:\mathbb N$ and some 
+      initial segment $x:2^m$ such that 
+      \pause
+      \vspace{-0.2cm}
+      $$
+      (\alpha|_n,\beta|_n)= 
+      ( 
+        (x \cdot 0 \cdot \overline 1)|_n , 
+        (x \cdot 1 \cdot \overline 0)|_n
+        ) 
+      $$
+      \vspace{-0.4cm}
+      or the other way around. 
+      \pause 
+      Define 
+      $$\alpha\sim\beta := \forall_{n:\mathbb N} (\alpha \sim_n \beta)$$
+    \end{block}
+\end{frame}
+
+\begin{frame}{Anticlassical results on $[0,1]$}
+%  \begin{lemma}
+%    The unit interval is a compact Hausdorff type. 
+%  \end{lemma}
+  \begin{lemma}[using LLPO and dependent choice]
+%    The unit interval as above is in bijection with the unit interval of Cauchy reals. 
+    The unit interval is a compact Hausdorff type. 
+  \end{lemma}
+  \pause 
+    \begin{corollary}
+      Any map $[0,1] \to [0,1]$ is continuous. 
+    \end{corollary}
+    \pause 
+    \begin{corollary}
+      Any map $[0,1] \to 2$ is constant.
+    \end{corollary}
+    \pause 
+    \begin{lemma}
+      $[0,1]$ is acyclic. 
+    \end{lemma}
+%%  \pause
+%%  \begin{proof}
+%%    Using LLPO and dependent choice, 
+%%    \pause 
+%%    there is a standard construction 
+%%    to show that the function $2^\mathbb N \to [0,1]_\mathbb R$ given by 
+%%    $$\alpha\mapsto \sum\limits_{i:\mathbb N} \frac{\alpha(i)}{2^{i+1}}$$
+%%    is surjective.
+%%    \pause
+%%    This function will respect the equivalence relation on $2^\mathbb N$ given by \pause
+%%    $\alpha \sim \beta$ if for each $n:\mathbb N$, 
+%%    there is some finite binary sequence $x$ such that 
+%%    $\alpha|_n, \beta|_n$ are both of the form 
+%%    $(x \cdot 0 \cdot \overline 1)|_n$ or $(x \cdot 1 \cdot \overline 0)|_n$.
+%%  \end{proof}
+%  %Time permitting:
+    \pause
+  \begin{proof}%[Proof sketch]
+    Consider the relation on $2^\mathbb N$ with
+    $\alpha \sim \beta$ if for each $n:\mathbb N$, 
+    there is some finite binary sequence $x$ such that 
+    $\alpha|_n, \beta|_n$ are both of the form 
+    $(x \cdot 0 \cdot \overline 1)|_n$ or $(x \cdot 1 \cdot \overline 0)|_n$.
+  \end{proof}
+\end{frame}
+
+
+
+
+
 \section{Proofs of omniscience principles}
 \begin{frame}{The negation of WLPO}
   \begin{block}{Axiom 1 : Stone duality}
@@ -111,31 +229,3 @@
   \end{proof}
 \end{frame}
 
-\section{Unit interval as Compact Hausdorff space}
-\begin{frame}{Example: the interval}
-  \begin{lemma}
-    The unit interval is a compact Hausdorff type. 
-  \end{lemma}
-  \begin{block}{The closed equivalence relation}
-  For $\alpha,\beta:2^\mathbb N$, 
-  \pause denote 
-      $\alpha \sim_n \beta$ iff 
-      \pause 
-      there is some $m:\mathbb N$ and some 
-      initial segment $x:2^m$ such that 
-      \pause
-      \vspace{-0.2cm}
-      $$
-      (\alpha|_n,\beta|_n)= 
-      ( 
-        (x \cdot 0 \cdot \overline 1)|_n , 
-        (x \cdot 1 \cdot \overline 0)|_n
-        ) 
-      $$
-      \vspace{-0.4cm}
-      or the other way around. 
-      \pause 
-      Define 
-      $$\alpha\sim\beta := \forall_{n:\mathbb N} (\alpha \sim_n \beta)$$
-    \end{block}
-\end{frame}

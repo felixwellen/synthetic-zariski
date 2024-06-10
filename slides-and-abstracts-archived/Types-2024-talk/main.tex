@@ -70,7 +70,7 @@ Felix Cherubini, Thierry Coquand, Freek Geerligs, Hugo Moeneclaey}
       (WIP by Coquand, H\"ofer \& Moeneclaey)
       \pause
     \item 
-      This model will validate non-constructive principles like countable choice and LLPO. 
+      This model will validate non-constructive principles like LLPO. 
   \end{itemize}
 \end{frame}
 \begin{frame}{Table of contents}
@@ -321,10 +321,10 @@ a surjection $T \twoheadrightarrow S$ and a map $T\to E$ such that the following
 %  \end{lemma}
 %\end{frame}
 %
-\begin{frame}{Closed propositions}
+\begin{frame}{\only<-5>{Closed}\only<6->{Open} propositions}
 \begin{definition}
   A proposition is \only<-5>{closed}\only<6->{open} if it is a countable 
-  \only<-5>{conjunction}\only<6->{disjunction} of decidable propositions. 
+  \only<-5>{conjunction}\only<6->{\textbf{disjunction}} of decidable propositions. 
 \end{definition}
 \pause 
 \begin{block}{
@@ -332,12 +332,12 @@ a surjection $T \twoheadrightarrow S$ and a map $T\to E$ such that the following
   propositions are expressable internally}
   A proposition $P$ is \only<-5>{closed}\only<6->{open}
   iff \pause there exists some $\alpha:2^\mathbb N$ with 
-  $P\leftrightarrow \only<-5>{\forall_{n:\mathbb N}}\only<6->{\exists_{n:\mathbb N}}\alpha(n) = 0$.
+  $P\leftrightarrow \only<-5>{\forall_{n:\mathbb N}}\only<6->{{\exists}_{n:\mathbb N}}\alpha(n) = 0$.
 \end{block}
 \pause
 \begin{definition}
   A subset $A\subseteq S$ is 
-  \only<-5>{closed} \only<6->{open}
+  \only<-5>{closed}\only<6->{open}
   iff $x\in A$ is 
   \only<-5>{closed}\only<6->{open}
   for all $x:S$. 
@@ -347,100 +347,24 @@ a surjection $T \twoheadrightarrow S$ and a map $T\to E$ such that the following
   A subset of a Stone space is 
   \only<-5>{closed} \only<6->{open}
   iff 
-  it is a countable \only<-5>{intersection}\only<6->{union} of decidable subsets.
+  it is a countable \only<-5>{intersection}\only<6->{\textbf{union}} of decidable subsets.
 \end{lemma}
 \end{frame}
 
-\begin{frame}{Compact Hausdorff spaces}
-  \begin{definition}
-    A type is compact Hausdorff iff it is the quotient of a 
-    Stone space by a closed equivalence relation. 
-  \end{definition}
-  \pause
-  \begin{lemma}
-    Let $X = S / \sim $ be compact Hausdorff and $A\subseteq X$. TFAE
-    \begin{itemize}
-      \item $A$ is closed. 
-      \item the preimage of $A$ in $X$ is closed. 
-    \end{itemize}
-\end{lemma}
-\pause
-  \begin{corollary}
-    Any map between compact Hausdorff types is 
-    continuous in the sense that the 
-    %inverse of an open is open. 
-%    such that the 
-    inverse image of a closed subset is closed. 
-  \end{corollary}
-\end{frame} 
-
-\begin{frame}{Anticlassical results on $[0,1]$}
-%  \begin{lemma}
-%    The unit interval is a compact Hausdorff type. 
-%  \end{lemma}
-  \begin{lemma}[using LLPO and dependent choice]
-%    The unit interval as above is in bijection with the unit interval of Cauchy reals. 
-    The unit interval is a compact Hausdorff type. 
-  \end{lemma}
-  \pause 
-    \begin{corollary}
-      Any map $[0,1] \to [0,1]$ is continuous. 
-    \end{corollary}
-    \pause 
-    \begin{corollary}
-      Any map $[0,1] \to 2$ is constant.
-    \end{corollary}
-
-%%  \pause
-%%  \begin{proof}
-%%    Using LLPO and dependent choice, 
-%%    \pause 
-%%    there is a standard construction 
-%%    to show that the function $2^\mathbb N \to [0,1]_\mathbb R$ given by 
-%%    $$\alpha\mapsto \sum\limits_{i:\mathbb N} \frac{\alpha(i)}{2^{i+1}}$$
-%%    is surjective.
-%%    \pause
-%%    This function will respect the equivalence relation on $2^\mathbb N$ given by \pause
-%%    $\alpha \sim \beta$ if for each $n:\mathbb N$, 
-%%    there is some finite binary sequence $x$ such that 
-%%    $\alpha|_n, \beta|_n$ are both of the form 
-%%    $(x \cdot 0 \cdot \overline 1)|_n$ or $(x \cdot 1 \cdot \overline 0)|_n$.
-%%  \end{proof}
-%  %Time permitting:
-%  \begin{proof}[Proof sketch]
-%    The relation states that 
-%    $\alpha \sim \beta$ if for each $n:\mathbb N$, 
-%    there is some finite binary sequence $x$ such that 
-%    $\alpha|_n, \beta|_n$ are both of the form 
-%    $(x \cdot 0 \cdot \overline 1)|_n$ or $(x \cdot 1 \cdot \overline 0)|_n$.
-%  \end{proof}
-\end{frame}
 
 \section{Related work}
-\begin{frame}{Light condensed sets.}
-  We expect to be able to show that $[0,1]$ is acyclic. 
-  \pause 
-    \begin{lemma}
-      $H^1(S,\mathbb Z) = 0$ for $S$ Stone.
-    \end{lemma}
-    \pause 
-    We hope to extend this result to 
-      $H^n(S,\mathbb Z) = 0$ for $S$ Stone and $n>1$.
-      \pause
-      \\
-      We also expect to show that $H^n(X,\mathbb Z)$ corresponds to the singular cohomology 
-      for $X$ a finite CW-complex.\\
-  \pause 
+\begin{frame}{Related work}
+  \begin{itemize}
+    \item 
     Clausen \& Scholze have a lecture series on light condensed sets, which include compact Hausdorff spaces. \\
     \pause
-    We expect to prove all \textit{internal} results from this series from the axioms we presented. 
-\end{frame}
-\begin{frame}{Other related work}
-  \begin{itemize}
+    We expect to prove all \textit{internal} 
+    results from this series from the axioms we presented. 
+  \pause 
     \item 
       Barton \& Commelin have derived a form of ``directed univalence" from some axioms. \pause
       These axioms hold for light condensed sets. \pause
-      We expect to validate their axioms in the axiom system presented above. 
+      We expect to validate their axioms in our axiom system. 
       \pause
     \item 
     Coquand, H\"ofer \& Moeneclaey are working on a 
