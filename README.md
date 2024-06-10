@@ -19,6 +19,7 @@ And the following drafts and notes:
 - More general topologies, in particular fppf ([very early draft pdf](https://felix-cherubini.de/sheaves.pdf))
 - Calculations with (elliptic) curves and divisors ([very early draft pdf](https://felix-cherubini.de/elliptic.pdf))
 - Synthetic stone duality ([very early draft pdf](https://felix-cherubini.de/condensed.pdf), [summary](https://felix-cherubini.de/condensed-summary.pdf))
+- Cohomology and homotopy theory in synthetic stone duality ([very early draft pdf](https://felix-cherubini.de/condensed-cohomology.pdf))
 - Notes on a model for synthetic stone duality ([very early draft pdf](https://felix-cherubini.de/condensed-sheaves.pdf))
 - Finite schemes in SAG ([very early draft pdf](https://felix-cherubini.de/finite.pdf))
 - Random Facts, i.e. a collection of everything that still needs to find a good place ([very early draft pdf](https://felix-cherubini.de/random.pdf))
