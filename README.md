@@ -26,7 +26,7 @@ And the following drafts and notes:
 - Collection of exercises ([pdf with exercise-ideas](https://felix-cherubini.de/exercises.pdf))
 
 There is a related [formalization project](https://github.com/felixwellen/synthetic-geometry).
-
+[Here](CURRENT_WORK_OVERVIEW.md) is an overview of the current ongoing work in SAG and related areas.
 
 # Questions
 
