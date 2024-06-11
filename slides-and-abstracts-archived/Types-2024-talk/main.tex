@@ -88,7 +88,8 @@ Felix Cherubini, Thierry Coquand, Freek Geerligs, Hugo Moeneclaey}
 %  \pause
   \begin{definition}
     A Boolean algebra is countably presented if it is a \uncover<3->{quotient of a}
-    \pause freely generated Boolean algebra on countably many generators
+    \pause 
+    freely generated Boolean algebra on countably many generators 
   \uncover<3->{by countably many relations.}
   \end{definition}
   \pause 
@@ -149,7 +150,7 @@ Felix Cherubini, Thierry Coquand, Freek Geerligs, Hugo Moeneclaey}
       \item 
     If we have generators $(p_n)_{n:\mathbb N}$ \pause 
     and relations $p_n \wedge p_m = 0$ for 
-    $n \neq m$,\pause  we get $B_\infty:\Boole$. 
+    $n \neq m$, \pause   we get $B_\infty:\Boole$. 
     \item 
     \pause
     Boolean maps $B_\infty \to 2$ correspond to \pause 
@@ -355,22 +356,25 @@ a surjection $T \twoheadrightarrow S$ and a map $T\to E$ such that the following
 \begin{frame}{Topology on propositions}
   %{\only<-3>{Closed}\only<4->{Open} propositions} 
   \begin{definition}
-  A proposition is \only<-3>{closed}\only<4->{open} if it is a countable 
-  \only<-3>{conjunction}\only<4->{{disjunction}} of decidable propositions. 
+  A proposition is \only<-4>{closed}\only<5->{open} if it is a countable 
+  \only<-4>{conjunction}\only<5->{{disjunction}} of decidable propositions. 
+  \pause Denote \only<-4>{$Closed$}\only<5->{$Open$} for  
+  \only<-4>{closed}\only<5->{open} 
+  proposotions. 
 \end{definition}
 \pause 
 \begin{block}{
-  \only<-3>{Closed} \only<4->{Open}
+  \only<-4>{Closed} \only<5->{Open}
   propositions are expressable internally}
-  A proposition $P$ is \only<-3>{closed}\only<4->{open}
+  A proposition $P$ is \only<-4>{closed}\only<5->{open}
   iff \pause there exists some $\alpha:2^\mathbb N$ with 
-  $P\leftrightarrow \only<-3>{\forall_{n:\mathbb N}}\only<4->{{\exists}_{n:\mathbb N}}\alpha(n) = 0$.
+  $P\leftrightarrow \only<-4>{\forall_{n:\mathbb N}}\only<5->{{\exists}_{n:\mathbb N}}\alpha(n) = 0$.
 \end{block}
 \pause
 \pause
 \begin{corollary}[Of Markov's principle]
-  The negation of an open proposition is closed 
-  and vice versa. 
+  The negation of a closed proposition is open
+  \pause (and vice versa). 
 \end{corollary}
 \pause 
 \begin{corollary}
@@ -378,7 +382,7 @@ a surjection $T \twoheadrightarrow S$ and a map $T\to E$ such that the following
 \end{corollary}
 %Here you can also talk about Markov and open vs closed. 
 \end{frame}
-\begin{frame}{Topology on types}
+\begin{frame}[fragile]{Topology on types}
 \begin{definition}
   A subset $A\subseteq S$ is 
   \only<-1>{closed}\only<2->{open}
@@ -393,12 +397,23 @@ a surjection $T \twoheadrightarrow S$ and a map $T\to E$ such that the following
   All functions are continuous with respect to this topology.
 \end{corollary}
 \pause 
+$$
+\begin{tikzcd} 
+  \only<6->{f^{-1}(A) \arrow[r] \arrow[d, hook] \arrow[rd,"\lrcorner"{pos=0.125}, phantom]}
+  &   
+  A \arrow[d,hook] \arrow[r] \arrow[rd,"\lrcorner"{pos=0.125}, phantom] & 1 \arrow[d]\\
+  \only<5->{T \arrow[r, "f"] } & S \arrow[r] & Open
+\end{tikzcd}
+$$
+\pause 
+\pause 
+\pause 
 %Here you can talk about why the next result matters. 
 \begin{lemma}[using local choice]
   A subset of a Stone space is 
-  \only<-4>{closed}\only<5->{open}
+  \only<-7>{closed}\only<8->{open}
   iff 
-  it is a countable \only<-4>{intersection}\only<5->{{union}} of decidable subsets.
+  it is a countable \only<-7>{intersection}\only<8->{{union}} of decidable subsets.
 \end{lemma}
 \end{frame}
 
@@ -460,6 +475,10 @@ a surjection $T \twoheadrightarrow S$ and a map $T\to E$ such that the following
 \section{Related work}
 \begin{frame}{Related work}
   \begin{itemize}
+    \item There's literature 
+      Cantor space, $\mathbb N_\infty$, 
+      and synthetic stuff. %Escardo \& Xu worked on a model of Cantor space. 
+    \pause 
     \item 
     Clausen \& Scholze have a lecture series on light condensed sets, which include compact Hausdorff spaces. \\
     \pause
@@ -475,6 +494,8 @@ a surjection $T \twoheadrightarrow S$ and a map $T\to E$ such that the following
     Coquand, H\"ofer \& Moeneclaey are working on a 
     constructive model of the axioms presented above, 
     based on the model for synthetic algebraic geometry. 
+    \pause 
+  \item \url{https://github.com/felixwellen/synthetic-zariski/}
 \end{itemize}
 \end{frame}
 
