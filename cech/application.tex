@@ -3,6 +3,44 @@ Following \cite{Hartshorne}[Theorem 5.1, Chapter III] we can apply \v{C}ech coho
 the cohomology of Serre's twisting sheaves $\mathcal O(d)$ on the projective space $\bP^n$ in \emph{synthetic} algebraic geometry.
 We use the twisting sheaves as defined in \cite{draft}[6.3] and studied in \cite{sag-projective}.
 
+Since our notion of exact sequence of coefficients is stronger than the external notion of exactness on stalks, our result for the existence long exact cohomlogy sequences is too \emph{weak}.
+This problem appears in the proof below and is fixed by using the following strengthened result on long exact sequences:
+
+\begin{lemma}
+  Let $X$ be a separated scheme with open affine cover $\{U\}=(U_1,\dots,U_n)$,
+  $A,B:X\to \Mod{R}_{fp}$ and $m_x:A_x\to B_x, x:X$ such that
+  \[
+    m(U_i)\colonequiv (s:A(U_i)) \mapsto (x\mapsto m_x(s_x))
+  \]
+  is a monomorphism for all $i$.
+  Let $C_x$ be the cokernel of $m_x$, then there is a long exact sequence of cohomology groups:
+  \begin{center}
+    \begin{tikzcd}
+      & \dots\ar[r]& H^{n-1}(X,C)\ar[dll]\\
+      H^n(X,A)\ar[r] & H^n(X,B)\ar[r] & H^n(X,C)\ar[lld] \\
+      H^{n+1}(X,A)\ar[r] & H^{n+1}(X,B)\ar[r] & \dots
+    \end{tikzcd}
+  \end{center}
+\end{lemma}
+
+\begin{proof}
+  Let $U=\Spec A$ be an open subset of $X$.
+  The sequence
+  \begin{center}
+     \begin{tikzcd}
+       0\ar[r] & A(U)\ar[r,"m(u)"] & B(U)\ar[r] & C(U)\ar[r] & 0
+     \end{tikzcd}
+   \end{center}
+   is exact: This follows if $C(U)$ is already the cokernel of $m(U)$.
+   To check the universal property, it is enough to consider finitely presented $A$-modules,
+   since the image of a map from a finitely presented module is finitely presented.
+   By \cite{draft}[Proposition 7.2.1], an arbitrary finitely presented $A$-module is of the form $(x:U)\to M_x$.
+   But this means we can use the universal property of each $C_x$ to construct a solution pointwise.
+
+   We apply this to each $U_i$ and construct the long exact sequence of \v{C}ech-cohomology groups with the same argument as in the proof of \Cref{cech-les}.
+   By the comparison \Cref{cech-EM-cohomology} between \v{C}ech and Eilenberg-MacLane cohomology, we get the result.
+\end{proof}
+
 \begin{definition}
   The ring $R[X_0,\dots,X_n]$ as well as its localizations by monomials are graded rings,
   where the degree $d:\Z$ elements are homogenous rational functions of degree $d$.
