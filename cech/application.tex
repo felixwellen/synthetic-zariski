@@ -8,6 +8,7 @@ This problem appears in the proof below and is fixed by using the following stre
 \footnote{The following lemma and its proof where improved during a discussion with Thierry Coquand}:
 
 \begin{lemma}
+  \label{local-les}
   Let $X$ be a separated scheme with open affine cover $\{U\}=(U_1,\dots,U_n)$,
   $M,N:X\to \Mod{R}_{wqc}$ and $m_x:M_x\to N_x, x:X$ such that
   \[
@@ -120,7 +121,52 @@ This problem appears in the proof below and is fixed by using the following stre
     where the right hand side is zero whenever there is $i$ such that $l_i+m_i\geq 0$.
     
     TODO: Finish, say why it is a perfect pairing and maybe what that means
-  \item To prove this, we consider the sum over all $d:\Z$ of the \v{C}ech complex we used above, is a complex of graded $R[X_0,\dots,X_n]$-modules:
+  \item We will induct on the dimension $n$.
+    For $n=2$, we need to show $H^1(\bP^2,\mathcal O(d))=0$ for all $d:\Z$.
+
+    \dots
+
+    Now let $n>2$ and $x:\bP^n$, with $x=[x_0:\cdots:x_n]$.
+    We reduce to the case of a lower dimension, by using the following sequence, relating line bundles on $\bP^n$ to a line bundle on the hyperplane $x_0=0$ which is a $\bP^{n-1}$:
+    \begin{center}
+      \begin{tikzcd}
+        \mathcal O(-1)_x=R\langle x\rangle\ar[r,"m_x"] & R\ar[r,"c_x"] & R^{x_0=0} \\
+        v=\lambda(x_0,\dots,x_n)^T\ar[r,mapsto] & \lambda x_0\ar[r,mapsto] & \mathrm{const} (\lambda x_0)
+      \end{tikzcd}
+    \end{center}
+    The map $m_x$ is well defined and $c_x$ is the cokernel of $m_x$, since we have $R^{x_0=0}=R^{\Spec R/(x_0)}=R/(x_0)$ by duality.
+    This cokernel is preserved under tensoring with $\mathcal O(d)_x$ which gives the exact sequence
+    \begin{center}
+      \begin{tikzcd}
+        \mathcal O(d-1)_x\ar[r,"m_x"] & \mathcal O(d)\ar[r,"c_x"] & {\mathcal O(d)}^{x_0=0}\ar[r] & 0
+      \end{tikzcd}
+    \end{center}
+    
+    $m_x$ is not a monomorphism for all $x:\bP^n$, but it does satisfy the condition of \Cref{local-les} for the cover $U_i\colonequiv (x_i\neq 0)$:
+    The induced map $m(U_i)$ is the monomorphism
+    \begin{center}
+      \begin{tikzcd}
+        \left(R[X_0,\dots,X_n]_{X_i}\right)_{d-1}\ar[r,"m(U_i)"] & \left(R[X_0,\dots,X_n]_{X_i}\right)_{d} \\
+        P\ar[r,mapsto,shorten >= 4ex, shorten <= 5ex] & X_0\cdot P
+      \end{tikzcd}
+    \end{center}
+    So by \Cref{local-les} we have the following long exact sequence:
+    \begin{center}
+      \begin{tikzcd}
+        & \dots\ar[r]& H^{l-1}(\bP^{n},\mathcal O(d)^{x_0=0})\ar[dll]\\
+        H^l(\bP^n,\mathcal O(d-1))\ar[r] & H^l(\bP^n,\mathcal O(d))\ar[r] & H^l(\bP^n,\mathcal O(d)^{x_0=0})\ar[lld] \\
+        H^{l+1}(\bP^n,\mathcal O(d-1))\ar[r] &  \dots &
+      \end{tikzcd}
+    \end{center}
+    The subscheme $(x_0=0)\subseteq \bP^n$ is isomorphic to $\bP^{n-1}$.
+    Let $\varphi:\bP^{n-1}\to \bP^n$ be a corresponding embedding, then, using \Cref{cohomologically-trivial-fibers} we have
+    \[
+      H^{l}(\bP^n,\mathcal O(d)^{x_0=0})=H^l(\bP^n,\varphi_\ast\mathcal O(d))=H^l(\bP^{n-1},\mathcal O(d))
+    \]
+    where the right hand side is 0 by induction hypothesis, if $l\in\{1,\dots,n-2\}$.
+    
+    
+    To prove this, we consider the sum over all $d:\Z$ of the \v{C}ech complex we used above, is a complex of graded $R[X_0,\dots,X_n]$-modules:
   \[
     \prod_{i_0}R[X_0,\dots,X_n]_{X_{i_0}} \to \prod_{i_0,i_1} R[X_0,\dots,X_n]_{X_{i_0} X_{i_1}} \to \dots \to R[X_0,\dots,X_n]_{X_0\dots X_n}
     \rlap{.}
