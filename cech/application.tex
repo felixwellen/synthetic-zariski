@@ -4,40 +4,58 @@ the cohomology of Serre's twisting sheaves $\mathcal O(d)$ on the projective spa
 We use the twisting sheaves as defined in \cite{draft}[6.3] and studied in \cite{sag-projective}.
 
 Since our notion of exact sequence of coefficients is stronger than the external notion of exactness on stalks, our result for the existence long exact cohomlogy sequences is too \emph{weak}.
-This problem appears in the proof below and is fixed by using the following strengthened result on long exact sequences:
+This problem appears in the proof below and is fixed by using the following strengthened result on long exact sequences
+\footnote{The following lemma and its proof where improved during a discussion with Thierry Coquand}:
 
 \begin{lemma}
   Let $X$ be a separated scheme with open affine cover $\{U\}=(U_1,\dots,U_n)$,
-  $A,B:X\to \Mod{R}_{fp}$ and $m_x:A_x\to B_x, x:X$ such that
+  $M,N:X\to \Mod{R}_{wqc}$ and $m_x:M_x\to N_x, x:X$ such that
   \[
-    m(U_i)\colonequiv (s:A(U_i)) \mapsto (x\mapsto m_x(s_x))
+    m(U_i)\colonequiv (s:M(U_i)) \mapsto (x\mapsto m_x(s_x))
   \]
   is a monomorphism for all $i$.
   Let $C_x$ be the cokernel of $m_x$, then there is a long exact sequence of cohomology groups:
   \begin{center}
     \begin{tikzcd}
       & \dots\ar[r]& H^{n-1}(X,C)\ar[dll]\\
-      H^n(X,A)\ar[r] & H^n(X,B)\ar[r] & H^n(X,C)\ar[lld] \\
-      H^{n+1}(X,A)\ar[r] & H^{n+1}(X,B)\ar[r] & \dots
+      H^n(X,M)\ar[r] & H^n(X,N)\ar[r] & H^n(X,C)\ar[lld] \\
+      H^{n+1}(X,M)\ar[r] & H^{n+1}(X,N)\ar[r] & \dots
     \end{tikzcd}
   \end{center}
 \end{lemma}
 
 \begin{proof}
-  Let $U=\Spec A$ be an open subset of $X$.
-  The sequence
+  Let $U_i=\Spec A_i$.
+  To see that the sequence
   \begin{center}
      \begin{tikzcd}
-       0\ar[r] & A(U)\ar[r,"m(u)"] & B(U)\ar[r] & C(U)\ar[r] & 0
+       0\ar[r] & M(U)\ar[r,"m(u)"] & N(U)\ar[r] & C(U)\ar[r] & 0
      \end{tikzcd}
    \end{center}
-   is exact: This follows if $C(U)$ is already the cokernel of $m(U)$.
-   To check the universal property, it is enough to consider finitely presented $A$-modules,
-   since the image of a map from a finitely presented module is finitely presented.
-   By \cite{draft}[Proposition 7.2.1], an arbitrary finitely presented $A$-module is of the form $(x:U)\to M_x$.
-   But this means we can use the universal property of each $C_x$ to construct a solution pointwise.
+   is exact, let $I_x$ be the image of $m_x$, $i_x:M_x\to I_x$ the canonical map, $K_x$ the kernel of $i_x$ and consider the diagram:
+  \begin{center}
+    \begin{tikzcd}
+      & K_x\ar[d,hook] & & & \\
+               & M_x\ar[r,"m_x"]\ar[d,two heads,"i_x"] & N_x\ar[r,two heads]\ar[d,equal] & C_x\ar[r]\ar[d,equal] & 0 \\
+       0\ar[r] & I_x\ar[r,hook] & N_x\ar[r,two heads] & C_x\ar[r] & 0 \\
+     \end{tikzcd}
+   \end{center}
+   -- as the image of a map of wqc-modules, $I_x$ is wqc again and we have $H^1(U_i,I)=0$ and analogously $H^1(U_i,K)=0$ by \Cref{affine-vanishing}.
+   So the $i_x$ assemble to an isomorphisms by applying $\prod_{U_i}$ and all sequences are short exact using \Cref{EM-les}:
+  \begin{center}
+    \begin{tikzcd}
+      & K(U_i)\ar[d,hook] & & & \\
+               & M(U_i)\ar[r,"m_x"]\ar[d,"\simeq"] & N(U_i)\ar[r,two heads]\ar[d,equal] & C(U_i)\ar[r]\ar[d,equal] & 0 \\
+               0\ar[r] & I(U_i)\ar[r,hook]\ar[d] & N(U_i)\ar[r,two heads] & C(U_i)\ar[r] & H^1(U_i,I)=0 \\
+               & H^1(U_i,K)=0 & & & 
+     \end{tikzcd}
+   \end{center}   
 
-   We apply this to each $U_i$ and construct the long exact sequence of \v{C}ech-cohomology groups with the same argument as in the proof of \Cref{cech-les}.
+   We have the same exactness result also for basic open subsets $D(f)\subseteq U_i$,
+   since for wqc-modules $L:U_i\to \Mod{R}_{wqc}$ we have $L_{\vert D(f)}=A_i[1/f]\otimes_A L(U_i)$.
+   In particular, since $X$ is separated, we have the short exact sequence above also for all intersections $U_{i_0,\dots,i_k}$, $k\geq 0$.
+   
+   So we can construct the long exact sequence of \v{C}ech-cohomology groups with the same argument as in the proof of \Cref{cech-les}.
    By the comparison \Cref{cech-EM-cohomology} between \v{C}ech and Eilenberg-MacLane cohomology, we get the result.
 \end{proof}
 
