@@ -5,7 +5,7 @@ We use the twisting sheaves as defined in \cite{draft}[6.3] and studied in \cite
 
 Since our notion of exact sequence of coefficients is stronger than the external notion of exactness on stalks, our result for the existence long exact cohomlogy sequences is too \emph{weak}.
 This problem appears in the proof below and is fixed by using the following strengthened result on long exact sequences
-\footnote{The following lemma and its proof where improved during a discussion with Thierry Coquand}:
+\footnote{The following lemma and its proof were improved during a discussion with Thierry Coquand}:
 
 \begin{lemma}
   \label{local-les}
@@ -161,27 +161,35 @@ This problem appears in the proof below and is fixed by using the following stre
       H^{l}(\bP^n,\mathcal O(d)^{x_0=0})=H^l(\bP^n,\varphi_\ast\mathcal O(d))=H^l(\bP^{n-1},\mathcal O(d))
     \]
     where the right hand side is 0 by induction hypothesis, if $l\in\{1,\dots,n-2\}$.
+    This shows that the above map $H^l(\bP^n,\mathcal O(d-1))\to H^l(\bP^n,\mathcal O(d))$ is injective, whenever $l\in\{2,\dots,n-1\}$.
+    This map is also injective in the case $l=1$, since we can compute that
+    \begin{center}
+      \begin{tikzcd}
+        H^0(\bP^n,\mathcal O(d))\ar[r]\ar[d,equal] & H^0(\bP^{n-1},\mathcal O(d)^{x_0=0})\ar[d,equal] \\
+        R[X_0,\dots,X_n]_d\ar[r,"X_0=0"] & R[X_1,\dots,X_n]_d 
+      \end{tikzcd}
+    \end{center}
+    is surjective.
+
+    The remainder of the argument will turn out more concise, if we reason with the direct sum  $\mathcal F\colonequiv \bigoplus_{d:\Z}\mathcal O(d)$.
+    This bundle of graded $R[X_0,\dots,X_n]$-modules is wqc by \cite{draft}[Proposition 7.1.9] and by \Cref{cech-commute-direct-sum},
+    we have $\bigoplus_{d:\Z}\check{H}^l(\bP^n,\mathcal O(d))=\check{H}^l(\bP^n,\mathcal F)$.
+    So it is enough to show $\check{H}^l(\bP^n,\mathcal F)=0$ to finish the proof.
+
+    By what we have established so far, we have an injective map
+    \[
+      \check{H}^l(\bP^n,\bigoplus_{d:\Z}\mathcal O(d-1))\to \check{H}^l(\bP^n,\bigoplus_{d:\Z}\mathcal O(d))
+    \]
+    of graded $R[X_0,\dots,X_n]$ which is given by multiplication with $X_0$.
+    We will now show that $\check{H}^l(\bP^n,\mathcal F)_{X_0}$ is trivial, which mean that for all $m:\check{H}^l(\bP^n,\mathcal F)$ there is an $m:\N$ such that $X_0^m\cdot m=0$. By injectivity of multiplication with $X_0$, this means $m=0$.
     
-    
-    To prove this, we consider the sum over all $d:\Z$ of the \v{C}ech complex we used above, is a complex of graded $R[X_0,\dots,X_n]$-modules:
+    To prove the claim $\check{H}^l(\bP^n,\mathcal F)_{X_0}=0$, we consider the \v{C}eck complex of $\mathcal F$:
   \[
     \prod_{i_0}R[X_0,\dots,X_n]_{X_{i_0}} \to \prod_{i_0,i_1} R[X_0,\dots,X_n]_{X_{i_0} X_{i_1}} \to \dots \to R[X_0,\dots,X_n]_{X_0\dots X_n}
     \rlap{.}
   \]
-  This is also the \v{C}ech complex of the wqc-module\footnote{Which is wqc by \cite{draft}[Proposition 7.1.9]} bundle $\bigoplus_{d:\Z}\mathcal O(d)$ on $\bP^n$.
   Localizing the complex at $X_0$ yields the \v{C}ech complex of $\bigoplus_{d:\Z}\mathcal O(d)_{\vert D(X_0)}$, which is exact at all terms except the first by \Cref{affine-vanishing}.
-  Since localization is exact, we have $H^i(\bP^n,\bigoplus_{d:\Z}\mathcal O(d))_{X_0}=0$ for all $i>0$.
-  We will finish this proof by showing that multiplication with $X_0$ is an isomorphism on $H^i(\bP^n,\bigoplus_{d:\Z}\mathcal O(d))_{X_0}=0$ for $i\in \{1,\dots,n-1\}$.
-
-  Let us use the following abbreviations: $\mathcal F\colonequiv \bigoplus_{d:\Z}\mathcal O(d)$ and $S\colonequiv R[X_0,\dots,X_n]$.
-  Let $S(k)$ denote the graded $S$-module with grading shifted by $k$.
-  There is an exact sequence of graded $S$-modules:
-  \begin{center}
-    \begin{tikzcd}
-      0\ar[r] & S(-1)\ar[r,"\cdot X_0"] & S\ar[r] & S/(X_0)\ar[r] & 0
-    \end{tikzcd}
-  \end{center}
-  TODO: Finish
+  Since localization is exact, we have $H^i(\bP^n,\bigoplus_{d:\Z}\mathcal O(d))_{X_0}=0$ for all $i>0$ as claimed.
   
   \end{enumerate}
 \end{proof}
