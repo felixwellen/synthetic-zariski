@@ -1,0 +1,97 @@
+We work in a presheaf topos on a $\sigma$-complete boolean algebra.
+
+\begin{definition}
+A type $X$ is a sheaf if for all $e_1,\cdots,e_n:B$ a fundamental system of idempotent in $B$, we have that $X$ is $(e_1=1\lor\cdots\lor e_n=1)$-local.
+\end{definition}
+
+We will study the topos of such sheaves.
+
+\subsection{Limited principle of omniscience}
+
+\begin{lemma}
+The boolean algebra $B$ is a sheaf.
+\end{lemma}
+
+\begin{proof}
+Assume given $e_1,\cdots,e_n$ a fundamental system of idempotents. Giving a map:
+\[\phi:e_1=1\lor\cdots\lor e_n=1 \to B\]
+is equivalent to giving a map:
+\[\psi : e_1=1+\cdots + e_n=1 \to B\]
+as if $e_j = 1$ and $e_k=1$ for $k\not= l$, since $e_je_k=0$ we have that $0=_B1$ and $B=1$ so that $\psi$ agrees on both proofs. But then this is equivalent to:
+\[B^{e_1=1}\times\cdots B^{e_n=1}\]
+which by assumption in the presheaf model is equivalent to:
+\[B_{e_1}\times\cdots B_{e_n}\]
+which in turn is equivalent to $B$ using algebra (TODO check).
+\end{proof}
+
+This means we can interpret $B$ as itself in the sheaf topos.
+
+\begin{lemma}\label{B-is-2-sigma-complete}
+In the sheaf topos, we have that $B=2$.
+\end{lemma}
+
+\begin{proof}
+First we prove that the interpretation of $0\not=_B1$ holds in the sheaf topos. The interpretation of $0=_B1$ is itself, and assuming $0=_B1$, the empty idempotent system implies that any sheaf is contractible and we can conclude.
+
+Now we prove the interpretation of:
+\[\forall(e:B).\ e=1 \lor e=0\]
+in the sheaf topos. But we conclude by considering the fundamental system of idempotent $e,1-e$.
+\end{proof}
+
+MISTAKE Next lemma is probably wrong.
+
+\begin{lemma}\label{N-sheaf-sigma-complete}
+The type $\N$ is a sheaf.
+\end{lemma}
+
+\begin{proof}
+TODO it would be enough to have that the interpretation of $\N$ is the sheafification of $\N$.
+\end{proof}
+
+\begin{theorem}[LPO]
+In the sheaf topos, we have that $2$ is $\sigma$-complete.
+\end{theorem}
+
+\begin{proof}
+By \cref{B-is-2} we know it is enough to show that $B$ is $\sigma$-complete in the sheaf topos. We write $\hat{\N}$ for the interpretation of $\N$ in the presheaf topos, and $\iota:\N\to\hat{\N}$ the canonical map.
+
+We define $\hat{\lor} : (\hat{\N} \to B) \to B$ by $\hat{\lor}(\phi) = \lor(\phi\circ \iota)$.
+
+Given $\phi : \hat{N}\to B$, it is clear that $\hat{\lor}(\phi)$ is smaller than any bound of $\phi$, we need to check that for all $n:\hat{\N}$ we have that:
+\[\phi(n) \leq \lor(\phi\circ \iota)\]
+TODO
+\end{proof}
+
+\subsection{Dependent choice}
+
+\begin{lemma}
+Let $X$ be a sheaf, then for any system of idempotent $e_1,\cdots, e_n$ we have that $X$ is $(e_1=1+\cdots+e_n=1)$-local.
+\end{lemma}
+
+\begin{proof}
+Giving a map:
+\[\phi:e_1=1+\cdots+e_n=1 \to X\] 
+is equivalent to giving a map:
+\[\psi:e_1=1\lor\cdots\lor e_n=1 \to X\]
+as if we have $j\not=l$ such that $e_j=1$ and $e_k=1$, the fact that $e_je_k=0$ implies $0=1$ so that $X$ is contractible and $\phi$ agrees on both. 
+\end{proof}
+
+This is a shorter but less general proof of \cref{zariski-sum-local}.
+
+\begin{lemma}\label{prop-trunc-sheaf-sigma-complete}
+Let $X$ be a sheaf, then $\propTrunc{X}$ is a sheaf. 
+\end{lemma}
+
+\begin{proof}
+Assuming that for any $e:B$ we have that $e=1$ has choice, we just reason as in \cref{zariski-stable-truncation}.
+\end{proof}
+
+This means that when interpreting something in the sheaf topos, we just interpret propositional truncation as itself.
+
+\begin{theorem}
+Dependent choice holds in the sheaf topos.
+\end{theorem}
+
+\begin{proof}
+It just depends on $\N$ and $\propTrunc{\_}$, so by \cref{N-sheaf-sigma-complete} and \cref{prop-trunc-sheaf-sigma-complete} we can conclude.
+\end{proof}
