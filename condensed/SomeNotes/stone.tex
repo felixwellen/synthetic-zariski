@@ -1,0 +1,186 @@
+%alg\documentclass[12pt,a4paper]{amsart}
+\documentclass[10pt,a4paper]{article}
+%\ifx\pdfpageheight\undefined\PassOptionsToPackage{dvips}{graphicx}\else%
+%\PassOptionsToPackage{pdftex}{graphicx}
+%\PassOptionsToPackage{pdftex}{color}
+%\fi
+
+%\usepackage{diagrams}
+
+\usepackage{color}
+\newcommand\coloremph[2][red]{\textcolor{#1}{\emph{#2}}}
+
+\newcommand\greenemph[2][green]{\textcolor{#1}{\emph{#2}}}
+\newcommand{\EMP}[1]{\emph{\textcolor{red}{#1}}}
+
+%\usepackage[all]{xy}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{latexsym}
+\usepackage{amssymb,amstext,amsmath,amsthm}
+\usepackage{epsf}
+\usepackage{epsfig}
+% \usepackage{isolatin1}
+\usepackage{a4wide}
+\usepackage{verbatim}
+\usepackage{proof}
+\usepackage{latexsym}
+%\usepackage{mytheorems}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+
+\usepackage{float}
+\floatstyle{boxed}
+\restylefloat{figure}
+
+
+%%%%%%%%%
+\def\oge{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\langle\!\langle\,$}}
+\def\feg{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\,\rangle\!\rangle$}}
+
+%%%%%%%%%
+
+
+\newcommand\myfrac[2]{
+ \begin{array}{c}
+ #1 \\
+ \hline \hline 
+ #2
+\end{array}}
+
+\newcommand\HH{\mathrm{H}}
+\newcommand\cHH{\check{\mathrm{H}}}
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\ints}{\mathbb{Z}}
+
+\newcommand{\ODisc}{\mathsf{ODisc}}
+\newcommand{\Stone}{\mathsf{Stone}}
+\newcommand{\Boole}{\mathsf{Boole}}
+\newcommand{\CHaus}{\mathsf{CHaus}}
+\newcommand{\Open}{\mathsf{Open}}
+\newcommand{\refl}{\mathsf{refl}}
+\newcommand{\Noo}{\nats_{\infty}}
+\newcommand{\Ab}{\mathsf{AbGrp}}
+\newcommand{\ras}{\twoheadrightarrow}
+\newcommand\norm[1]{\left\lVert #1 \right\rVert}
+
+
+
+\begin{document}
+
+\title{A characterisation of Stone spaces}
+
+\author{}
+\date{}
+\maketitle
+
+%\rightfooter{}
+
+\section*{Introduction}
+
+We show that if $X:\CHaus$ then $X$ is Stone iff $X$ is totally disconnected, i.e. the intersection of
+decidable subsets containing a given element $x:X$ is the singleton $\{x\}$.
+
+\section{Decidable subsets}
+
+\begin{lemma}\label{stcomp}
+  If $S:\Stone$ and $U$ an open subset of $S$ then $\forall_{x:S}U(x)$ is an open proposition.
+\end{lemma}
+
+\begin{proof}
+  By local choice, we can assume that $U$ is a countable union of $e_n$ decidable subsets of $S$.
+  The proposition $\forall_{x:S}U(x)$ is then $\exists_m e_0\vee\dots\vee e_m = 1$ in $2^S$, which is
+  an open proposition by countable choice.
+\end{proof}
+
+
+\begin{proposition}\label{chb}
+  If $X:\CHaus$ then $2^X:\Boole$.
+\end{proposition}
+
+\begin{proof}
+  We have $S:\Stone$ and a surjection $p:S\rightarrow X$. We can then see $2^X$ as an open subalgebra
+  of $2^S:\Boole$ by the condition $\forall_{y:e}\forall_{z:1-e}p(y)\neq p(z)$, which is open by
+  Lemma \ref{stcomp}.
+\end{proof}
+
+\begin{corollary}\label{count}
+  If $X:\CHaus$ there is a countable enumeration of all elements of $2^X$.
+\end{corollary}
+
+\section{Connected component}
+
+Let $X$ be in $\CHaus$. For $x$ in $X$ we let $Q_x$ be the countable intersectionthen from
+(using Corollary \ref{count}) of all decidable subsets of $X$ containing $x$. This
+is a closed subset of $X$.
+
+\begin{lemma}\label{sep}
+  If $Q_x\subseteq U$ with $U$ open, then there exists $e$ decidable subset of $X$
+  such that $x\epsilon e$ and $e\subseteq U$.
+\end{lemma}
+
+\begin{proof}
+  This follows from compactness of $X$: we have $\cap_{x\epsilon e_n}e_n\cap (X-U) = \emptyset$
+  and hence then exists $e$ in $2^X$ such that $x\epsilon e$ and $e\cap (X-U) = \emptyset$.
+\end{proof}
+
+\begin{lemma}\label{conn}
+  $Q_x$ is the connected component of $x$.
+\end{lemma}
+
+\begin{proof}
+  It is enough to show that $Q_x$ is connected. Let $Q_x = A\cup B$ with $A$ and $B$ closed/open
+  disjoint subsets of $Q_x$. Then $A$ and $B$ are disjoint closed subsets of $X$ and hence, since $X:\CHaus$,
+  there exists disjoint open $U$ and $V$ such that $A\subseteq U$ and $B\subseteq V$.
+  We have $x$ in $A$ or $x$ in $B$. Let say that $x$ is in $A$ and we show that $B = \emptyset$.
+
+  By Lemma \ref{sep}, we have $e$ in $2^X$ such that $x\epsilon e$ and $e\subseteq U\cup V$.
+  Then $e'= e\cap U = e\cap (X-V)$ is both closed and open, hence decidable, and $e'\cap B = \emptyset$
+  and $B\subseteq Q_x\subseteq e'$, hence $B = \emptyset$.
+\end{proof}
+
+\begin{theorem}\label{char}
+  We have $\forall_x Q_x = \{x\}$ iff $X:\Stone$.
+\end{theorem}
+
+\begin{proof}
+  The map $X\rightarrow Hom(2^X,2)$ is always surjective by compactness.
+  If $\forall_x Q_x = \{x\}$ this map is also injective, and the result follows then from
+  Proposition \ref{chb}.
+\end{proof}
+
+The following application was noticed by Martin Escardo. We know by local choice
+that if $S:\Stone$ and $F:S\rightarrow\Stone$ then $\Sigma_SF:\CHaus$.
+We use Theorem \ref{char} to refine this to $\Sigma_SF:\Stone$.
+
+\begin{lemma}
+  If $Q$ is connected and $S:\Stone$ and $f:Q\rightarrow S$ then $f$ is constant.
+\end{lemma}
+
+\begin{proof}
+  For $x$ and $y$ in $Q$ we show $f(x)=f(y)$. Since $f(x) = f(y)$ is a closed proposition
+  we show that $f(x)\neq f(y)$ is contradictory. If $f(x)\neq f(y)$ there exists $e$ decidable
+  subset of $S$ such that $f(x)$ in $e$ and $f(y)$ in $S-e$. But then $f^{-1}(e)$ is a decidable
+  subset of $Q$ containing $x$ and not $y$, and this contradicts $Q$ being connected.
+\end{proof}
+
+\begin{corollary}
+  Stone spaces are closed by dependent sum types.
+\end{corollary}
+
+\begin{proof}
+  We assume $S:\Stone$ and $F:S\rightarrow \Stone$. We know that $X = \Sigma_SF$ is in $\CHaus$
+  and we show $X:\Stone$ using Theorem \ref{char}. We take $a:S$ and $b:F(a)$ and show that the
+  connected component $Q_x$ of $x = (a,b)$ is a singleton. Using the previous Lemma for
+  $\pi_1:X\rightarrow S$ we have $Q_x$ subset of $\{a\}\times F(a)$. Since $F(a)$ is Stone this
+  is a singleton.
+\end{proof}
+
+
+\end{document}     
+                                                                                  
