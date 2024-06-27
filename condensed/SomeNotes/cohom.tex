@@ -57,6 +57,7 @@
 \newcommand\cHH{\check{\mathrm{H}}}
 \newcommand{\nats}{\mathbb{N}}
 \newcommand{\ints}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
 
 \newcommand{\ODisc}{\mathsf{ODisc}}
 \newcommand{\Stone}{\mathsf{Stone}}
@@ -95,7 +96,7 @@ and consider the cochain complex
 \Pi_{x:X}M_x^{S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x\times S_x}\rightarrow \dots
 \]
 and we show that for a large class of such family, the $n$th cohomology group of this cochain complex is
-$\HH^n(X,M)$.
+$\HH^n(X,M)$. 
 
 \medskip
 
@@ -105,7 +106,8 @@ we have that the $n$th cohomology group of the cochain complex
 \[
 \Pi_{x:X}M_x^{S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x\times S_x}\rightarrow \dots
 \]
-is $\HH^n(X,M)$.
+is $\HH^n(X,M)$. The $n$th cohomology group of this cochain complex is exactly $\cHH^n(X,M)$, and so we
+prove $\HH^n(X,M) = \cHH^n(X,M)$.
 
 
 \section{Lemma about Stone spaces}
@@ -268,6 +270,34 @@ Using the associated long exact sequence it follows that we have
 Since this inductive relation also holds for the cochain cohomology, the result follows.
  \end{proof}
  
+ \section{Some Examples}
+
+ We deduce from this for instance that $\HH^n([0,1],\ints) = 0$ for $n>0$
+ and that $\HH^1(\reals/\ints, \ints) = \ints$
+ and $\HH^n(\reals/\ints, \ints) = 0$  for $n>1$.
+
+ \section{Application to separated schemes}
+
+ The same reasoning works for {\em separated} schemes. Let $X$ be a separated scheme and $M_x$ a family
+ of w.q.c. abelian groups over $X$. We can find $S$ affine with a surjection $S\ras X$. Since
+ $X$ is separated, each fiber $S_x$ is affine.
+We associate the
+cochain complex $C(X,M,S)$
+\[
+\Pi_{x:X}M_x^{S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x\times S_x}\rightarrow \dots
+\]
+for $M:X\rightarrow\Ab$. We define $\cHH^n(X,M)$ to be the $n$th cohomology group of this cochain complex
+and we are going to show that it does not depend on the choice of $S\ras X$ and that
+$\cHH^n(X,M) = \HH^n(X,M)$ for $n>0$. For this we show exactly like in the previous section that we have
+\[
+\HH^n(X,M) = \HH^{n-1}(X,\Delta(M,F)).
+\]
+Since we also have
+\[
+\cHH^n(X,M) = \cHH^{n-1}(X,\Delta(M,F)).
+\]
+and that we can show $\HH^1(X,M) = \cHH^1(X,M)$ like in the previous section (or like in Foundations),
+we deduce $cHH^n(X,M) = \HH^n(X,M)$ for $n>0$.
 
 
 
