@@ -1,0 +1,145 @@
+%alg\documentclass[12pt,a4paper]{amsart}
+\documentclass[10pt,a4paper]{article}
+%\ifx\pdfpageheight\undefined\PassOptionsToPackage{dvips}{graphicx}\else%
+%\PassOptionsToPackage{pdftex}{graphicx}
+%\PassOptionsToPackage{pdftex}{color}
+%\fi
+
+%\usepackage{diagrams}
+
+\usepackage{color}
+\newcommand\coloremph[2][red]{\textcolor{#1}{\emph{#2}}}
+
+\newcommand\greenemph[2][green]{\textcolor{#1}{\emph{#2}}}
+\newcommand{\EMP}[1]{\emph{\textcolor{red}{#1}}}
+
+%\usepackage[all]{xy}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{latexsym}
+\usepackage{amssymb,amstext,amsmath,amsthm}
+\usepackage{epsf}
+\usepackage{epsfig}
+% \usepackage{isolatin1}
+\usepackage{a4wide}
+\usepackage{verbatim}
+\usepackage{proof}
+\usepackage{latexsym}
+%\usepackage{mytheorems}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+
+\usepackage{float}
+\floatstyle{boxed}
+\restylefloat{figure}
+
+
+%%%%%%%%%
+\def\oge{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\langle\!\langle\,$}}
+\def\feg{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\,\rangle\!\rangle$}}
+
+%%%%%%%%%
+
+
+\newcommand\myfrac[2]{
+ \begin{array}{c}
+ #1 \\
+ \hline \hline 
+ #2
+\end{array}}
+
+
+\newcommand{\nats}{\mathbb{N}}
+
+\newcommand{\ODisc}{\mathsf{ODisc}}
+\newcommand{\Open}{\mathsf{Open}}
+\newcommand{\refl}{\mathsf{refl}}
+\newcommand{\Noo}{\nats_{\infty}}
+\newcommand\norm[1]{\left\lVert #1 \right\rVert}
+
+
+
+\begin{document}
+
+\title{Directed Univalence}
+
+\author{}
+\date{}
+\maketitle
+
+%\rightfooter{}
+
+\section*{Introduction}
+
+Following the argument of Barton and Commelin, we prove directed univalence from
+our 4 axioms of Synthetic Stone Duality.
+
+We define $\ODisc$ to be the type of sets that are sequential colimit of finite sets.
+If $E$ in $\ODisc$ then $\norm{E}$ is in $\Open$, the type of {\em open} propositions, i.e.
+propositions of the form $\exists_{n:\nats}\alpha n = 0$ for some binary sequence $\alpha$.
+The propositions $\perp$ and $\top$ are open. 
+
+\section{One direction}
+
+Given two types $A$ and $B$ and $f:A\rightarrow B$ we define $X~p$ a family of types
+over $\Open$ by
+$$
+X~p ~=~\Sigma_{b:B} (\Sigma_{a:A}f~a =_B b)^{\neg p}
+$$
+We have then $X~\top = B$ and $X~\perp = A$.
+
+Given $a:A$ we define a section $s_a:\Pi_{p:\Open}X~p$ by
+$s_a~p = (f~a,u)$ with $u~x = (a,\refl)$.
+
+\section{The other direction}
+
+Conversely, given a family $X:\Open\rightarrow\ODisc$, we define
+$X~\perp~\rightarrow~ X~\top$ as follows.
+
+We can view $\Noo$ to be the type of non increasing binary sequences.
+We define $\alpha_n$ to be the sequence $\alpha_n~m = m<n$ and
+$\alpha_{\infty}$ to be the constant sequence $1$.
+We have a surjection $\Noo\rightarrow \Open$ defined by $\alpha\mapsto [\alpha] = \exists_n~\alpha~n = 0$.
+Also, if $\alpha:\Noo$ we can consider the closed subset $[\alpha,\alpha_{\infty}]$ of $\Noo$.
+
+We define $S:\Noo\rightarrow \Noo$ by $(S~\alpha)~0 = 1$ and $(S~\alpha)~(n+1) = \alpha~n$.
+We have $S~\alpha_{\infty} = \alpha_{\infty}$ and $S~\alpha_n = \alpha_{n+1}$.
+
+\medskip
+
+We assume give $x_0 : X~\perp$.
+
+We want to define from this an element in $X~\top$.
+
+\medskip
+
+
+We define $Z:\Noo\rightarrow \ODisc$ by $Z~\alpha = X~[\alpha]$.
+
+We have $Z~\alpha_n = X~\top$ and $Z~\alpha_{\infty} = X~\perp$.
+
+We consider the proposition $G~\alpha$ expressing that there exists
+a section $s:\Pi_{u:[\alpha,\alpha_{\infty}]}Z~u$ such that $s~\alpha_{\infty} = x_0$.
+
+This is an open proposition, since $[\alpha,\alpha_{\infty}]$ is Stone and $Z~u$ in $\ODisc$,
+and $G~\alpha_{\infty}$ holds. Hence $G~\alpha_n$ holds
+for $n$ big enough.
+
+Also if we have two sections $s$ and $s'$ such that  $s~\alpha_{\infty} =  s'~\alpha_{\infty} = x_0$
+then $s~\alpha_n = s'~\alpha_n$ for $n$ big enough.
+
+So given any section $s$ such that $s~\alpha_{\infty} = x_0$ we have that $s~(S~\alpha_n) = s~\alpha_n$
+for $n$ big enough, i.e. $u~n = s~\alpha_n$ is eventually constant, and, this constant value in $X~\top$
+is independent of the section $s$.
+
+In this way, we define a unique element of $X~\top$ from $x_0$, and this provides the map $X~\perp\rightarrow X~\top$.
+
+\section{The two maps are inverses}
+
+\end{document}     
+                                                                                  
