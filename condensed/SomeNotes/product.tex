@@ -1,0 +1,154 @@
+%alg\documentclass[12pt,a4paper]{amsart}
+\documentclass[10pt,a4paper]{article}
+%\ifx\pdfpageheight\undefined\PassOptionsToPackage{dvips}{graphicx}\else%
+%\PassOptionsToPackage{pdftex}{graphicx}
+%\PassOptionsToPackage{pdftex}{color}
+%\fi
+
+%\usepackage{diagrams}
+
+\usepackage{color}
+\newcommand\coloremph[2][red]{\textcolor{#1}{\emph{#2}}}
+
+\newcommand\greenemph[2][green]{\textcolor{#1}{\emph{#2}}}
+\newcommand{\EMP}[1]{\emph{\textcolor{red}{#1}}}
+
+%\usepackage[all]{xy}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{latexsym}
+\usepackage{amssymb,amstext,amsmath,amsthm}
+\usepackage{epsf}
+\usepackage{epsfig}
+% \usepackage{isolatin1}
+\usepackage{a4wide}
+\usepackage{verbatim}
+\usepackage{proof}
+\usepackage{latexsym}
+%\usepackage{mytheorems}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+
+\usepackage{float}
+\floatstyle{boxed}
+\restylefloat{figure}
+
+
+%%%%%%%%%
+\def\oge{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\langle\!\langle\,$}}
+\def\feg{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\,\rangle\!\rangle$}}
+
+%%%%%%%%%
+
+
+\newcommand\myfrac[2]{
+ \begin{array}{c}
+ #1 \\
+ \hline \hline 
+ #2
+\end{array}}
+
+
+\newcommand{\nats}{\mathbb{N}}
+
+\newcommand{\ODisc}{\mathsf{ODisc}}
+\newcommand{\Stone}{\mathsf{Stone}}
+\newcommand{\CHaus}{\mathsf{CHaus}}
+\newcommand{\Open}{\mathsf{Open}}
+\newcommand{\refl}{\mathsf{refl}}
+\newcommand{\Noo}{\nats_{\infty}}
+\newcommand\norm[1]{\left\lVert #1 \right\rVert}
+
+
+
+\begin{document}
+
+\title{Tychonoff}
+
+\author{}
+\date{}
+\maketitle
+
+%\rightfooter{}
+
+\section*{Introduction}
+
+The goal of this note is to show that if $S:\Stone$ and $E:\Stone\rightarrow\ODisc$
+then $\Pi_SE:\ODisc$.
+
+We define $\ODisc$ to be the type of sets that are sequential colimit of finite sets.
+
+\section{A proof}
+
+\begin{lemma}
+  If we have a surjective map $p:S'\rightarrow S$ and $\Pi_{y:S'}E~(p~y)$ is in $\ODisc$
+  then $\Pi_SE$ is in $\ODisc$.
+\end{lemma}
+
+\begin{proof}
+  We have an injection $i:\Pi_SE\rightarrow \Pi_{y:S'}E~(p~y)$ defined by $i~s = s\circ p$.
+  Furthermore the image is the open subset $\lambda_t\forall_{y_0~y_1}p~y_0=p~y_1\rightarrow t~y_0 = t~y_1$.
+\end{proof}
+
+\medskip
+
+For all $x:S$ we can write $E~x = \varinjlim ~E~n~x$ with $E~n~x$ finite set and we have
+$i_n~x : E~n~x\rightarrow E~x$. Using the Lemma and by local choice, we can assume that $E~n~x$ is actually
+given as a function of $x$.
+
+The image $I_n~x$ of $i_n~x$ is an open subset of $E~x$. If $s:\Pi_SE$, we also have
+$$
+\forall_{x:S}\exists_n I_n~x~(s~x)
+$$
+and hence, since $S$ is Stone
+$$
+\exists_n\forall_{x:S} I_n~x~(s~x)
+$$
+It follows from this that we have $\Pi_SE = \varinjlim \Pi_S(E~n)$.
+
+\medskip
+
+We are thus reduced to show that if $E~x$ is a family of {\em finite} sets, then $\Pi_SE$ is in $\ODisc$.
+
+Since $S$ is Stone, we have $e_0,\dots,e_m$ partition of $S$ in clopen subsets, where $E~x = N_l$ on $e_l$.
+Then $\Pi_SE$ is $N_0^{e_0}\times \dots \times N_m^{e_m}$ which is in $\ODisc.$
+
+\medskip
+
+Note that essentially the same argument works for $E:X\rightarrow \ODisc$ and $X:\CHaus$, showing 
+$\Pi_XE:\ODisc$.
+
+\section{Dual version}
+
+Conversely, if $E:\ODisc$ and $X:E\rightarrow \CHaus$ then we show that $\Pi_EX:\CHaus$.
+
+%For this, we write $E = \varinjlim  E_n$ with $E_n$ finite, with $\psi_n:E_n\rightarrow E$ and we have
+%$\Pi_EX = \varprojlim  \Pi_{E_n}X\circ\psi_n$.
+
+We first show this in the case where $E = \nats$. In this case, using countable choice, we can find
+surjective $S_n\rightarrow X_n$ with $S_n:\Stone$ and with a countable presentation of $B_n = 2^{S_n}$.
+We then define the countale presentation which is a disjoint union of all these presentations, which
+presents a Boolean algebra $B$. It can be checked that $Sp(B) = \Pi_n S_n$, which shows $\Pi_n S_n:\Stone$.
+Using countable choice again, the canonical map $\Pi_n S_n\rightarrow \Pi_n X_n$ is surjective, and
+hence $\Pi_n X_n:\CHaus.$
+
+Next, we show that is $p$ is open proposition and $X:\CHaus$ then $X^p:\CHaus$. For this, we write
+$p = \Sigma_n \alpha(n) = 0$  with $\alpha:\Noo$. We then have $X^p = \Pi_n X^{\alpha(n) = 0}$
+and this is in $\CHaus$ by the first step.
+
+We then cover the case where $E$ is an open subset of $\nats$. We have $X:E\rightarrow\CHaus$.
+By countable choice, we have $E(n) = \Sigma_m\alpha_n(m) = 1$
+with $\alpha_n :\Noo$. We can then define $Y(n,m) = 1$ if $\alpha_n(m) = 0$ and $Y(n,m) = X_n$ if $\alpha_n(m) = 1$.
+We have $\Pi_E X = \Pi_{n,m}Y(n,m)$ which is in $\CHaus$ by the first step.
+
+Finally if $E$ is a quotient $F/R$ of an open subset $F$ of $\nats$ by an open equivalence relation
+then we have $p:P\rightarrow E$ and $\Pi_EX$ is a closed subset of $\Pi_F X\circ p$, which is in $\CHaus$ by
+the previous step.
+
+\end{document}     
+                                                                                  
