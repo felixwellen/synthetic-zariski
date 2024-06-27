@@ -1,0 +1,276 @@
+%alg\documentclass[12pt,a4paper]{amsart}
+\documentclass[10pt,a4paper]{article}
+%\ifx\pdfpageheight\undefined\PassOptionsToPackage{dvips}{graphicx}\else%
+%\PassOptionsToPackage{pdftex}{graphicx}
+%\PassOptionsToPackage{pdftex}{color}
+%\fi
+
+%\usepackage{diagrams}
+
+\usepackage{color}
+\newcommand\coloremph[2][red]{\textcolor{#1}{\emph{#2}}}
+
+\newcommand\greenemph[2][green]{\textcolor{#1}{\emph{#2}}}
+\newcommand{\EMP}[1]{\emph{\textcolor{red}{#1}}}
+
+%\usepackage[all]{xy}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{latexsym}
+\usepackage{amssymb,amstext,amsmath,amsthm}
+\usepackage{epsf}
+\usepackage{epsfig}
+% \usepackage{isolatin1}
+\usepackage{a4wide}
+\usepackage{verbatim}
+\usepackage{proof}
+\usepackage{latexsym}
+%\usepackage{mytheorems}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+
+\usepackage{float}
+\floatstyle{boxed}
+\restylefloat{figure}
+
+
+%%%%%%%%%
+\def\oge{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\langle\!\langle\,$}}
+\def\feg{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\,\rangle\!\rangle$}}
+
+%%%%%%%%%
+
+
+\newcommand\myfrac[2]{
+ \begin{array}{c}
+ #1 \\
+ \hline \hline 
+ #2
+\end{array}}
+
+\newcommand\HH{\mathrm{H}}
+\newcommand\cHH{\check{\mathrm{H}}}
+\newcommand{\nats}{\mathbb{N}}
+\newcommand{\ints}{\mathbb{Z}}
+
+\newcommand{\ODisc}{\mathsf{ODisc}}
+\newcommand{\Stone}{\mathsf{Stone}}
+\newcommand{\Aff}{\mathsf{Aff}}
+\newcommand{\Scheme}{\mathsf{Scheme}}
+\newcommand{\CHaus}{\mathsf{CHaus}}
+\newcommand{\Open}{\mathsf{Open}}
+\newcommand{\refl}{\mathsf{refl}}
+\newcommand{\Noo}{\nats_{\infty}}
+\newcommand{\Ab}{\mathsf{AbGrp}}
+\newcommand{\ras}{\twoheadrightarrow}
+\newcommand\norm[1]{\left\lVert #1 \right\rVert}
+
+
+
+\begin{document}
+
+\title{Cohomology}
+
+\author{}
+\date{}
+\maketitle
+
+%\rightfooter{}
+
+\section*{Introduction}
+
+If $X:\CHaus$ and $S\ras X$ with $S:\Stone$, we define $S_x$ the fiber of this map at $x:X$. We can then define the cochain complex
+\[
+\Pi_{x:X}\ints^{S_x}\rightarrow \Pi_{x:X}\ints^{S_x\times S_x}\rightarrow \Pi_{x:X}\ints^{S_x\times S_x\times S_x}\rightarrow \dots
+\]
+and the main result of this note is that the $n$th cohomology group of this cochain complex is
+$\HH^n(X,\ints)$. Actually we can replace $\ints$ by a family of abelian groups $M_x$ over $X$
+and consider the cochain complex
+\[
+\Pi_{x:X}M_x^{S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x\times S_x}\rightarrow \dots
+\]
+and we show that for a large class of such family, the $n$th cohomology group of this cochain complex is
+$\HH^n(X,M)$.
+
+\medskip
+
+It is interesting furthermore that essentially the same argument shows that if $X$ is a {\em separated}
+scheme, and $S\ras X$ with $S$ an {\em affine} scheme, such that all fibers $S_x$ are {\em affine}
+we have that the $n$th cohomology group of the cochain complex
+\[
+\Pi_{x:X}M_x^{S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x\times S_x}\rightarrow \dots
+\]
+is $\HH^n(X,M)$.
+
+
+\section{Lemma about Stone spaces}
+
+Using the characterisation of Stone spaces as compact Hausdorff spaces that are totally disconnected one shows
+that $\Sigma_SF:\Stone$ if $S:\Stone$ and $F:S\rightarrow\Stone$, i.e. Stone spaces are closed by sum types.
+
+From this follows the following result.
+
+\begin{proposition}
+  If we write $S = \varprojlim S_n$ with $S_n$ finite, with $p_n^m : S_m\rightarrow S_n$ for $n\leqslant m$
+  and $p_n:S\rightarrow S_n$, 
+  then we can find $F_n(x),~x:S_n$ family of finite sets $p_n^m:F_m(u)\rightarrow F_n(p_n^m(u))$
+  and $p_n:F(x)\rightarrow F(p_n(x))$,
+  such that $F(x) = \varprojlim F_n(p_n(x))$ for $x:S$.
+\end{proposition}
+
+\section{First result}
+
+We show first that $\HH^1(S,M) = 0$ if $M$ is an abelian group in $\ODisc$ and $S:\Stone$.
+
+Let $\chi$ be an element of $K(M,1)^S$, we want to show $\norm{\chi = *}$. We have $\Pi_{x:S}\norm{\chi(x) = *}$.
+By local choice, we have $p:S'\ras S$ such that $\norm{\chi\circ p = *}$.
+
+Since we want to prove a proposition, we can assume $\Pi_{y:S'}\chi(p(y)) = *$.
+Let $S_x$ be the fiber at $x:S$ of $p$. For $y_0,y_1:S_x$ we have $\chi(p(y_0))) = *$ and $\chi(p(y_1)) = *$
+and hence we have $v_x(y_0,y_1):M$. The map $v:\Pi_{x:X}M^{S_x\times S_x}$ is a cocycle, and we want to show
+that it is a coboundary. For this we use the fact that $S'\ras S$ can be written as a sequential
+limit of surjective maps $F'_n\ras F_n$ between {\em finite} sets.
+
+ Since $M:\ODisc$ we have $M^{S'}\rightarrow M^{S'\times_S S'}\rightarrow\dots$ sequential limit of
+ $M^{F'_n}\rightarrow M^{F'_n\times_{F_n} F'_n}\rightarrow\dots$. Since all these cochain complex are exact, so is
+ the limit. It follows that $v$ is a coboundary, i.e. we can find $u:\Pi_{x:S}M^{S_x}$ such that
+ $v_x(y_0,y_1) = u_x(y_1)-u_x(y_0)$.
+ From this, we show $\chi = *$.
+
+ \begin{corollary}\label{Stone1}
+   If $0\rightarrow L\rightarrow M\rightarrow N\rightarrow 0$ is exact, with $L:\ODisc$ then
+   so is $0\rightarrow L^S\rightarrow M^S\rightarrow N^S\rightarrow 0$ for any $S:\Stone$.
+ \end{corollary}
+ 
+
+
+\section{Refinement}
+
+We can generalise the previous argument to the case where we have a family $M_x$ of abelian groups
+for $x:S$. What we need that is that, if $F_x:\Stone$ for $x:S$ such that $\Pi_{x:S}\norm{F_x}$
+then the cochain complex
+\[
+\Pi_{x:S}M_x^{F_x}\rightarrow \Pi_{x:S}M_x^{F_x\times F_x}\rightarrow \Pi_{x:S}M_x^{F_x\times F_x\times F_x}\rightarrow \dots
+\]
+is exact. Let us call $C(M,F)$ this context.
+
+Let us write $E(M)$ this property of a function $M:S\rightarrow\Ab$. We have just seen that $E(M)$ implies
+$\HH^1(S,M) = 0$.
+It may be that $E(M)$ always holds if $M~x:\ODisc$ but I have not been able to show this. Instead, we give
+closure properties showing that $E(M)$ holds for several families $M$.
+
+We now write $G(M)$ the property that we have $E(M^H)$ for any $H:S\rightarrow\Stone$ such that
+$\Pi_{x:S}\norm{H~x}$.
+
+\begin{lemma}\label{Stone2}
+  If $G(M)$ then we have $\HH^1(S,M^H)$  for any $H:S\rightarrow\Stone$ such that
+$\Pi_{x:S}\norm{H~x}$.
+\end{lemma}
+
+
+Using that $\Stone$ is closed by sum types, we have that $G(M)$ holds if $M$ is the constant family $\lambda_x \ints$.
+%(and more generally a constant family determined by an abelian group in $\ODisc$)
+This means that the cochain complex $C(M,F)$ is exact and so is the cochain complex $C(M^H,F)$. Let $\Delta(M,H)$ be
+determined by the exact sequence $0\rightarrow M_x\rightarrow M_x^{H_x}\rightarrow \Delta(M,H)_x\rightarrow 0$.
+
+\begin{lemma}
+  If we have $G(M)$ then we have $G(\Delta(M,H))$.
+\end{lemma}
+
+\begin{proof}
+  Let $G:S\rightarrow \Stone$ with $\Pi_{x:S}\norm{Gx}$. By corollary \ref{Stone1}, we have a short exact sequence
+  \[
+  0\rightarrow M_x^{G_x\times F_x^k}\rightarrow M_x^{H_x\times G_x\times F_x^k}\rightarrow \Delta(M,H)_x^{G_x\times F_x^k}\rightarrow 0
+  \]
+  and then using Proposition \ref{Stone2}, we have
+  \[
+  0\rightarrow \Pi_S M^{G\times F^k}\rightarrow \Pi_S M^{H\times G\times F^k}\rightarrow \Pi_S \Delta(M,H)^{G\times F^k}\rightarrow 0
+  \]
+  and the result follows from the fact that we have $E(M^G)$ and $E(M^{G\times H}).$
+\end{proof}
+
+
+
+\section{Generalisation}
+
+We show now by induction on $n$ the following result.
+
+\begin{theorem}\label{Stone}
+  If we have $G(M)$ then $\HH^n(S,M) = 0$ for $n>0$.
+\end{theorem}
+
+We have seen that this result holds for $n=1$.
+
+We now assume that it holds for $0<k<n$, with $n>1$ and we show that it holds for $n$.
+
+Let $\chi:\Pi_{x:S}K(M_x,n)$ represent a cohomology class. We want to show
+$\norm{\chi = *}$ which is a proposition.
+By local choice, we have $p:S'\ras S$ with $\norm{\chi\circ p = *}$.
+We write $F_x$ the fiber of $p$ at $x:S$. We have that the image of $\chi(x)$
+under the diagonal map $K(M_x,n)\rightarrow K(M_x,n)^{F_x}$ is $*$. The diagonal
+map can be factorized as
+$K(M_x,n)\rightarrow K(M_x^{F_x},n)\rightarrow K(M_x,n)^{F_x}$. But the
+map $ K(M_x^{F_x},n)\rightarrow K(M_x,n)^{F_x}$ is an embedding since
+$\HH^{k}(F_x,M_x) = 0$ for $0<k<n$ by induction. It follows that the $\chi(x)$
+is already mapped to $*$ in $K(M_x^{F_x},n)$.
+
+So $\chi$ maps to $0$ in $\HH^n(S,M_x^{F_x})$. Since $F_x$ is inhabited,
+the diagonal map $M_x\rightarrow M_x^{F_x}$ is an embedding and we have a
+short exact sequence
+\[
+0\rightarrow M_x\rightarrow M_x^{F_x}\rightarrow \Delta(M,F)_x\rightarrow 0
+\]
+We get as part of the associated long exact sequence
+\[
+\HH^{n-1}(S,\Delta(M,F)) \rightarrow \HH^n(S,M)\rightarrow \HH^n(S,M^F)
+\]
+Since we have $G(M)$ we also have $G(\Delta(M,F))$ and we have
+by induction $\HH^{n-1}(S,\Delta(M,F)) = 0$. Hence $\chi = 0$ in $\HH^n(S,M)$.
+
+\section{Application to compact Hausdorff spaces}
+
+Let $X$ be in $\CHaus$. We can find $S:X\rightarrow\Stone$ such that $\Pi_{x:X}\norm{S_x}$, so that  the projection map
+$p:\Sigma_XS\rightarrow X$ is surjective, and we associate the
+cochain complex $C(X,M,S)$
+\[
+\Pi_{x:X}M_x^{S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x}\rightarrow \Pi_{x:X}M_x^{S_x\times S_x\times S_x}\rightarrow \dots
+\]
+for $M:X\rightarrow\Ab$.
+
+\begin{theorem}
+  If $G(M\circ p)$ then $\HH^n(X,M)$ for $n>0$ is the cohomology of the cochain complex $C(X,M,S)$.
+\end{theorem}
+
+ In particular, this holds if $M$ is the constant family $\lambda_x \ints$.
+
+ \begin{proof}
+   We have $S:\Stone$ and $p:S\ras X$. We write $F_x$ the fiber of $p$ at $x:X$.
+   Using Theorem \ref{Stone}, we show that this holds for $n=1$, since we can associate
+   to any $\chi:K(M,1)^X$ a cocycle in $\Pi_XS^{F_x^2}$, having $\norm{\chi = *}$ iff this
+   cocycle is a coboundary, and we can associate in an inverse way an element in $K(M,1)^X$ from any
+   cocycle in $\Pi_XS^{F_x^2}$.
+   
+   We use next the short exact sequence
+\[
+0\rightarrow M_x\rightarrow M_x^{F_x}\rightarrow \Delta(M,F)_x\rightarrow 0
+\]
+and the fact that we have $K(M_x,n)^{F_x} = K(M_x^{F_x},n)$
+and $\HH^n(X,M^F) = 0$ for $n>0$ by Theorem \ref{Stone}.
+Using the associated long exact sequence it follows that we have
+\[
+\HH^n(X,M) = \HH^{n-1}(X,\Delta(M,F)).
+\]
+Since this inductive relation also holds for the cochain cohomology, the result follows.
+ \end{proof}
+ 
+
+
+
+
+\end{document}     
+                                                                                  
