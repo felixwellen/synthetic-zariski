@@ -1,14 +1,22 @@
 In this section we should present a model of the following:
 
 \begin{itemize}
-\item There is a boolean ring $B$.
-\item The boolean ring $B$ is $\sigma$-complete, i.e. it has countable sups and infs.
+\item There is a boolean algebra $B$.
+\item The boolean ring $B$ is $\sigma$-complete, i.e. it has countable sup (see below for precise definition).
 \item For all $e:B$ we have that the canonical map:
 \[B_e \to B^{e=1}\]
 is an equivalence.
-\item For all $e:B$ we have that $e=1$ has choice. (TODO necessary???)
+\item For all $e:B$ we have that $e=1$ has choice.
 \item Dependent choice.
 \end{itemize}
 
-It is the presheaf topos on a $\sigma$-complete boolean algebra.
+It is defined as a presheaf topos on a $\sigma$-complete boolean algebra.
+
+\begin{definition}
+A boolean algebra is $\sigma$-complete if there exists:
+\[\lor : (\N\to B) \to B\]
+such that:
+\[\forall (\alpha:\N\to B)(n:\N).\ \alpha(n)\leq \lor\alpha\]
+\[\forall (e:B)(\alpha:\N\to B).\ \big((\forall(n:\N). \alpha(n)\leq e) \to \lor \alpha \leq e\big)\]
+\end{definition}
 

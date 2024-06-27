@@ -69,8 +69,35 @@ is contractible. This is straightforward.
 
 \subsection{Dependent choice from presheaves to Zariski sheaves}
 
+\begin{lemma}\label{join-zariski-equiv-binary}
+Assume given a type $X$ and $P,Q$ propositions such that $X^{P\land Q}$ is contractible. Then the map:
+\[P+Q \to P\lor Q\]
+induces an equivalence:
+\[X^{P\lor Q} \to X^{P+Q}\]
+\end{lemma}
+
+\begin{proof}
+We have a pushout square:
+\begin{center}
+\begin{tikzcd}
+P\land Q & P\\
+Q & P\lor Q\\
+\end{tikzcd}
+\end{center}
+so we have a pullback square:
+\begin{center}
+\begin{tikzcd}
+X^{P\lor Q} & X^P\\
+X^Q & X^{P\lor Q}\\
+\end{tikzcd}
+\end{center}
+so we see that $X^{P \lor Q} = X^P\times X^Q$ is a canonical way and we can conclude.
+\end{proof}
+
+I am not too sure about next lemma:
+
 \begin{lemma}\label{join-zariski-equiv}
-Assume given a type $X$ and $A_1,\cdots,A_n$ types such that for all $I\subset [1,n]$ with at least two elements, $X^{\prod_{i:I}A_i}$ is a proposition. Then the map:
+Assume given a type $X$ and $A_1,\cdots,A_n$ types such that for all $I\subset [1,n]$ with at least two elements, $X^{\prod_{i:I}A_i}$ is contractible. Then the map:
 \[A_1+\cdots+A_n \to A_1\lor\cdots \lor A_n\]
 induces an equivalence:
 \[X^{A_1\lor\cdots\lor A_n} \to X^{A_1+\cdots+A_n}\]
