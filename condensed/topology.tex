@@ -106,25 +106,29 @@
 \end{proof}
 
 
-\begin{lemma}\label{OpenClosedImplication}
-  For $P$ open and $Q$ closed or $P$ closed and $Q$ open, we have that $(P\to Q) \leftrightarrow (\neg P \vee Q)$. 
-\end{lemma}
-\begin{proof}
-  Without losing generality, assume $P$ open and $Q$ closed. 
-  The left direction is well-known. 
-  What is also well-known is 
-  $(P \to Q) \to \neg \neg (\neg P \vee Q)$.
-  By \Cref{rmkOpenClosedNegation}, $\neg P$ is closed. 
-  By \Cref{lemOpenClosedDisjunctionConjunction}, it follows that $\neg P \vee Q$ is closed. 
-  By \Cref{rmkOpenClosedNegation} it follows that $\neg \neg (\neg P \vee Q) \to (\neg P \vee Q)$. 
-  Thus $(P \to Q) \to (\neg P \vee Q)$ as required. 
-\end{proof}
+%\begin{lemma}\label{OpenClosedImplication}
+%  For $P$ open and $Q$ closed or $P$ closed and $Q$ open, we have that $(P\to Q) \leftrightarrow (\neg P \vee Q)$. 
+%\end{lemma}
+%\begin{proof}
+%  Without losing generality, assume $P$ open and $Q$ closed. 
+%  The left direction is well-known. 
+%  What is also well-known is 
+%  $(P \to Q) \to \neg \neg (\neg P \vee Q)$.
+%  By \Cref{rmkOpenClosedNegation}, $\neg P$ is closed. 
+%  By \Cref{lemOpenClosedDisjunctionConjunction}, it follows that $\neg P \vee Q$ is closed. 
+%  By \Cref{rmkOpenClosedNegation} it follows that $\neg \neg (\neg P \vee Q) \to (\neg P \vee Q)$. 
+%  Thus $(P \to Q) \to (\neg P \vee Q)$ as required. 
+%\end{proof}
+\rednote{Changes here}
 \begin{corollary}\label{OpenAndClosedMeansDecidable}
   Let $P$ be both open and closed. 
-  Then by the above, $(P\to P)\leftrightarrow (\neg P \vee P)$. 
-  As $P\to P$ is true, so is $\neg P \vee P$. Thus $P$ is decidable. 
-  Thus any proposition that is both open and closed is decidable. 
-\end{corollary}
+  Then $P$ is decidable. 
+\end{corollary} 
+\begin{proof}
+  As $P$ is open and closed, by \Cref{lemOpenClosedDisjunctionConjunction},  so is $P\vee \neg P$. 
+  Therefore, by \Cref{rmkOpenClosedNegation}, we have that $\neg \neg (P\vee \neg P) \to (P\vee \neg P)$. 
+  As $\neg \neg (P\vee \neg P)$ is provable, we conclude $P\vee \neg P$, thus $P$ is decidable. 
+\end{proof}
 
 \begin{lemma}\label{EqualityBooleStoneClosedOpen}
   Equality in $B:\Boole$ is open and equality in $X:\Stone$ is closed. 
@@ -153,6 +157,25 @@
   and thus $ x= y$. 
   Thus $(x=y) \leftrightarrow \alpha= \infty$ and $ x=y$ is closed. 
 \end{proof}
+
+\rednote{Active 
+This is a Hausdorff-like property and can be put somewhere else. 
+It was asked by Bas Spitters at TYPES}
+\begin{lemma}
+  If $X$ is a type with equality either open or closed, and we are given $x,y,z:X$ with $x \neq y$, we have 
+  $x\neq z \vee y \neq z$. 
+\end{lemma}
+\begin{proof}
+  By assumption $x\neq z$ and $ y \neq z$ are both closed propositions. 
+  By \Cref{lemOpenClosedDisjunctionConjunction}, so is $x \neq z \vee y \neq z$. 
+  By \Cref{rmkOpenClosedNegation}, it is thus sufficient to show 
+  $(\neg \neg (x \neq z \vee y \neq z))$.
+  Note that if $x\neq y$, we can show that $\neg ( x = z \wedge y = z)$. 
+  This in turn implies $\neg \neg ( x \neq  z \vee y \neq  z)$, as required. 
+\end{proof}
+
+
+
 \begin{corollary}\label{LemInhabitedOfStoneIsClosed}
   Let $B$ be a Boolean algebra.
   Recall from \Cref{LemSurjectionsFormalToCompleteness} that $0=1 \to \neg Sp(B)$. 
