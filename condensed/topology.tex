@@ -8,6 +8,8 @@
   \end{itemize}
 \end{definition}
 
+
+
 \begin{remark}
   Let us state some alternative definitions of open and closed:
   \begin{itemize}
@@ -21,11 +23,24 @@
 \end{itemize}
 \end{remark}
 
+\rednote{I want to know what is data and what really only merely exists. I'll mark it in red.}
+\begin{definition}
+  Let $P$ be a proposition. 
+  \begin{itemize}
+    \item $P$ is strongly open   if it comes equiped with some  $\alpha:2^\mathbb N$ such that $P \leftrightarrow \forall_{n:\mathbb N} \alpha n = 0 $. 
+    \item $P$ is strongly closed if it comes equiped with some  $\alpha:2^\mathbb N$ such that 
+      $P \leftrightarrow \exists_{n:\mathbb N} \alpha n = 1$. 
+  \end{itemize}
+\end{definition}
+
 \begin{remark}\label{rmkOpenClosedNegation}
   The negation of an open proposition is a closed proposition and vice versa. 
   Furthermore, both open and closed propositions are double negation stable by Markov, 
   meaning that for $P$ open or closed, we have $\neg \neg P \to P$.
+\rednote{Also holds for the strong versions}
 \end{remark}
+
+
 
 \begin{lemma}\label{lemOpenClosedDisjunctionConjunction}
   Closed propositions are closed under countable conjunctions %$\Pi$-types 
@@ -43,8 +58,9 @@
 %      we have that $\alpha|_k = \infty|_k$ or $\beta|_k = \infty|_k$. 
       % I think you'll still need some choice to infer from \gamma(n) = 0 for all n that 
       % \alpha(n) = 0 for all n or \beta(n) = 0 for all n
-      Assume $P\leftrightarrow \alpha = \infty, Q \leftrightarrow \beta = \infty$. 
-      Now $P\vee Q \leftrightarrow 
+      Assume $\alpha,\beta$ witness that $P,Q$ respectively are closed. 
+      %$P\leftrightarrow \alpha = \infty, Q \leftrightarrow \beta = \infty$. 
+      So $P\vee Q \leftrightarrow 
       ((\forall_{n:\N} \alpha(n) = 0) 
       \vee (\forall_{n:\N} \beta(n) = 0))$
       By \Cref{corAlternativeLLPO}, we have that 
@@ -59,6 +75,7 @@
       Also
       $P\vee Q \leftrightarrow \forall_{k:\N} \gamma(k) = 0$, 
       thus $P\vee Q$ is closed. 
+\rednote{Also holds for the strong versions}
     \item Let $(P_n)_{n:\N}$ be a countable family of closed propositions. 
       We will show that 
       $\forall_{n:\N} P_n$ is closed as well. 
@@ -74,6 +91,7 @@
       which happens iff $\alpha_n = \infty$. 
       We conclude that $\forall_{n:\N} P_n \leftrightarrow \beta = \infty$.
       Thus closed propositions are closed under countable conjunctions. 
+\rednote{Also holds for the strong versions, wouldn't need countable choice.}
     \item 
       Let $P,Q$ be open. Let $\alpha,\beta:2^\N$ be such that 
       $
@@ -87,6 +105,7 @@
       of $k,k'$, this is a decidable property and $\gamma$ is well-defined. 
       Clearly we have $(\exists_{l:\N} \gamma(l) = 1) \leftrightarrow (P \wedge Q)$. 
       Thus $P\wedge Q$ is open. 
+\rednote{Also holds for the strong versions}
     \item Let $(P_n)_{n:\N}$ be a countable family of open propositions. 
       We will show that $\exists_{n:\N}P_n$ is open as well. 
       By countable choice, we have a function which for each 
@@ -102,6 +121,7 @@
       which happens iff $\alpha_n \neq \infty$. 
       We conclude that $\exists{n:\N} P_n \leftrightarrow \gamma \neq \infty$.
       Thus open propositions are closed under countable disjunctions. 
+\rednote{Also holds for the strong versions}
   \end{itemize}   
 \end{proof}
 
@@ -128,10 +148,15 @@
   As $P$ is open and closed, by \Cref{lemOpenClosedDisjunctionConjunction},  so is $P\vee \neg P$. 
   Therefore, by \Cref{rmkOpenClosedNegation}, we have that $\neg \neg (P\vee \neg P) \to (P\vee \neg P)$. 
   As $\neg \neg (P\vee \neg P)$ is provable, we conclude $P\vee \neg P$, thus $P$ is decidable. 
+\rednote{Also holds for the strong versions}
 \end{proof}
 
+
+\rednote{The results on equality might go somewhere else, before compact Hausdorff}
 \begin{lemma}\label{EqualityBooleStoneClosedOpen}
   Equality in $B:\Boole$ is open and equality in $X:\Stone$ is closed. 
+\rednote{Also holds for the strong versions}
+\rednote{Should be seperated into two lemmas}
 \end{lemma}
 \begin{proof}
   Let $B:\Boole$, and let $a,b:B$. We will show that $a=b$ is closed. 
@@ -158,35 +183,37 @@
   Thus $(x=y) \leftrightarrow \alpha= \infty$ and $ x=y$ is closed. 
 \end{proof}
 
-\rednote{Active 
-This is a Hausdorff-like property and can be put somewhere else. 
-It was asked by Bas Spitters at TYPES}
-\begin{lemma}
+The following question was asked by Bas Spitters at TYPES
+\begin{lemma}[Apartness]
   If $X$ is a type with equality either open or closed, and we are given $x,y,z:X$ with $x \neq y$, we have 
-  $x\neq z \vee y \neq z$. 
+  $x\neq z \vee y \neq z$.  
 \end{lemma}
 \begin{proof}
   By assumption $x\neq z$ and $ y \neq z$ are both closed propositions. 
   By \Cref{lemOpenClosedDisjunctionConjunction}, so is $x \neq z \vee y \neq z$. 
   By \Cref{rmkOpenClosedNegation}, it is thus sufficient to show 
   $(\neg \neg (x \neq z \vee y \neq z))$.
-  Note that if $x\neq y$, we can show that $\neg ( x = z \wedge y = z)$. 
+  Note that as $x\neq y$, we can show that $\neg ( x = z \wedge y = z)$. 
   This in turn implies $\neg \neg ( x \neq  z \vee y \neq  z)$, as required. 
 \end{proof}
 
+\begin{lemma}\label{LemInhabitedOfStoneIsClosed}
+  If $S$ is Stone, then $||S||$ is a \rednote{strongly} closed proposition. 
+\end{lemma} 
+\begin{proof}
+  By \Cref{LemSurjectionsFormalToCompleteness}, it is sufficient to show that 
+  $\neg \neg S$ is closed. We will show that $\neg S$ is open. 
+  Assume $S= Sp(B)$. We will show that $\neg S$ iff $0=1$ in $B$. 
+  By \Cref{EqualityBooleStoneClosedOpen}, $0=1$ is an open proposition, thus $\neg \neg S$ is closed. 
+  \begin{itemize}
+    \item If $0=1$ in $B$, there is no map $B\to 2$ preserving $0,1$, thus $\neg Sp(B)$. 
+    \item If $\neg Sp(B)$, then $B=2^{Sp(B)}=2^\emptyset$, which is a set with only one element. Thus $0=1$ in $B$. 
+  \end{itemize}
+\end{proof}
+In fact, the statement of the above lemma is equivalent to 
+$\neg \neg S \to ||S||$, which is in turn equivalent to Axiom 2. 
 
 
-\begin{corollary}\label{LemInhabitedOfStoneIsClosed}
-  Let $B$ be a Boolean algebra.
-  Recall from \Cref{LemSurjectionsFormalToCompleteness} that $0=1 \to \neg Sp(B)$. 
-  Also by Stone duality, we had that $\neg Sp(B)$ implies that 
-  $B = 2^{Sp(B)} = 2^\bot= 1$, so $0=1$ in $B$. 
-  We conclude that $0=1 \leftrightarrow \neg Sp(B)$. 
-  As $0=1$ is open, so is $\neg Sp(B)$. 
-  Thus $\neg \neg Sp(B)$ is closed, and by \Cref{LemSurjectionsFormalToCompleteness} 
-  so is $||Sp(B)||$. 
-  Thus for Stone types, being inhabited is a closed proposition. 
-\end{corollary}
 \rednote{Active from here on}
 \begin{lemma}
   Let $A$ be a countable set and let $P:A \to Open$
@@ -237,12 +264,25 @@ It was asked by Bas Spitters at TYPES}
   As $\N \times \N \simeq \N$, we conclude that 
   $\sum_{a:A} P a$ is countable. 
 \end{proof}
+
 \subsection{Closed subspaces of Stone spaces}
 %\input{StoneTopology}
 \begin{definition}
   For $S$ a set and $D\subseteq S$ an arbitrary subset, we call $D$ decidable/open/closed 
   iff for every $x:S$, $D(x)$ is decidable/open/closed. 
 \end{definition}
+\rednote{Here I'm also interested in the data}
+\begin{definition}
+  Let $S$ be a set and $D\subseteq S$ be a subset. 
+  \begin{itemize}
+    \item We call $D$ strongly closed if we have a function 
+  $\alpha_{\cdot}S\to 2^\mathbb N$ such that $ D(x) \leftrightarrow \forall_{n:\mathbb N} \alpha_x n = 0$. 
+    \item We call $D$ strongly open if we have a function 
+  $\alpha_{\cdot}S\to 2^\mathbb N$ such that $ D(x) \leftrightarrow \exists_{n:\mathbb N} \alpha_x n = 1$. 
+  \end{itemize} 
+\end{definition}
+
+
 \begin{remark}
   Let us restate some results from the previous section in this light. 
   \begin{itemize}
@@ -257,20 +297,21 @@ It was asked by Bas Spitters at TYPES}
     are open/closed/decidable propositions. 
   \item By \Cref{EqualityBooleStoneClosedOpen}, singletons in 
     Boolean algebras are open and singletons in Stone spaces are closed. 
+    \rednote{All of these are still true for the stronger versions of open and closed. }
 \end{itemize}
 \end{remark}
-\begin{theorem}
+\begin{theorem}\label{StrongVersionOfEquivalencesOfClosedSubsetsOfStone}
   Let $A\subseteq Sp(B)$ be a subset of a Stone space. TFAE:
   \begin{enumerate}[(i)]
     \item We have some $(D_n)_{n:\N}$ countable family 
       of decidable subsets of $Sp(B)$ with $A = \bigcap_{n:\N} D_n$. 
     \item We have a Stone space $T$ and some map $T\to Sp(B)$ 
       whose image is $A$. 
-    \item For each $x:Sp(B)$, we have a specific sequence $\alpha_x:2^\N$ such that 
-      $A x \leftrightarrow \forall_{n:\N} \alpha_x(n) = 0$. 
+%    \item For each $x:Sp(B)$, we have a specific sequence $\alpha_x:2^\N$ such that 
+%      $A x \leftrightarrow \forall_{n:\N} \alpha_x(n) = 0$. 
+    \item $A$ is strongly closed. 
   \end{enumerate}
 \end{theorem}
-Before we start the proof, note that the above three statements carry data.
 \begin{proof}
   \begin{itemize}
     \item We will show that $(i)$ implies $(ii)$.
@@ -317,7 +358,7 @@ Before we start the proof, note that the above three statements carry data.
     We conclude that the image of a map of Stone spaces is closed, 
     and given the Stone spaces we can construct the witness sequences. 
   \item We will show that $(iii)$ implies $(i)$. 
-    Let $\alpha_x$ be as in $(iii)$. Define 
+    Let $\alpha_{\cdot}$ witness that $A$ is strongly closed. Define 
     $D_n(x) \leftrightarrow (\alpha_n(x) = 0)$. 
     Note that $D_n$ is well-defined as $\alpha_n(x):2$ and for all $b:2$ we have
     $(b=0)+ (b=1)$. Now $x \in \bigcap_{n:\N} D_n$ iff
@@ -325,4 +366,28 @@ Before we start the proof, note that the above three statements carry data.
     which happens iff $A x$. Thus $A = \bigcap_{n:\N} D_n$. 
   \end{itemize} 
 \end{proof} 
+\begin{corollary}
+  Let $A\subseteq Sp(B)$ be a subset of a Stone space. TFAE:
+  \begin{enumerate}[(i)]
+    \item There merely exists a countably family $(D_n)_{n:\N}$
+      of decidable subsets of $Sp(B)$ with $A = \bigcap_{n:\N} D_n$. 
+    \item There merely exists some Stone space $T$ and some map $T\to Sp(B)$ 
+      whose image is $A$. 
+%    \item For each $x:Sp(B)$, we merely have a sequence $\alpha:2^\N$ such that 
+%      $A x \leftrightarrow \forall_{n:\N} \alpha(n) = 0$. 
+    \item $A$ is closed. 
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  \begin{itemize}
+    \item $(i) \leftrightarrow (ii)$ follows from propositionally truncating the equivalence from 
+      \Cref{StrongVersionOfEquivalencesOfClosedSubsetsOfStone}.
+    \item To show that $A$ is closed, we need to show that $A x $ is closed for all $x$, which is a proposition, 
+      hence we could untruncate any assumptions and thus by \Cref{StrongVersionOfEquivalencesOfClosedSubsetsOfStone}, 
+      any of $(i),(ii)$ imply $(iii)$. 
+    \item Assume $A$ is closed. TODO
+  \end{itemize}
+\end{proof}
+
+
 
