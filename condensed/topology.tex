@@ -1,3 +1,4 @@
+\rednote{I was messing with the sections in this tex file (3 subsections last I checked). }
 \subsection{Topology on propositions}
 \begin{definition}
   Let $P$ be a proposition. 
@@ -155,7 +156,10 @@
 \rednote{The results on equality might go somewhere else, before compact Hausdorff}
 \begin{lemma}\label{EqualityBooleStoneClosedOpen}
   Equality in $B:\Boole$ is open and equality in $X:\Stone$ is closed. 
-\rednote{Also holds for the strong versions}
+\rednote{
+Whether this holds for the strong versions depends on whether 
+countably presented gives $G,R$ as data or merely gives it.
+}
 \rednote{Should be seperated into two lemmas}
 \end{lemma}
 \begin{proof}
@@ -198,7 +202,8 @@ The following question was asked by Bas Spitters at TYPES
 \end{proof}
 
 \begin{lemma}\label{LemInhabitedOfStoneIsClosed}
-  If $S$ is Stone, then $||S||$ is a \rednote{strongly} closed proposition. 
+  If $S$ is Stone, then $||S||$ is a closed proposition. 
+  \rednote{It is as closed as equality in Boolean algebras is open}
 \end{lemma} 
 \begin{proof}
   By \Cref{LemSurjectionsFormalToCompleteness}, it is sufficient to show that 
@@ -276,9 +281,9 @@ $\neg \neg S \to ||S||$, which is in turn equivalent to Axiom 2.
   Let $S$ be a set and $D\subseteq S$ be a subset. 
   \begin{itemize}
     \item We call $D$ strongly closed if we have a function 
-  $\alpha_{\cdot}S\to 2^\mathbb N$ such that $ D(x) \leftrightarrow \forall_{n:\mathbb N} \alpha_x n = 0$. 
+  $\alpha_{\cdot}:S\to 2^\mathbb N$ such that $ D(x) \leftrightarrow \forall_{n:\mathbb N} \alpha_x n = 0$. 
     \item We call $D$ strongly open if we have a function 
-  $\alpha_{\cdot}S\to 2^\mathbb N$ such that $ D(x) \leftrightarrow \exists_{n:\mathbb N} \alpha_x n = 1$. 
+  $\alpha_{\cdot}:S\to 2^\mathbb N$ such that $ D(x) \leftrightarrow \exists_{n:\mathbb N} \alpha_x n = 1$. 
   \end{itemize} 
 \end{definition}
 
@@ -297,7 +302,7 @@ $\neg \neg S \to ||S||$, which is in turn equivalent to Axiom 2.
     are open/closed/decidable propositions. 
   \item By \Cref{EqualityBooleStoneClosedOpen}, singletons in 
     Boolean algebras are open and singletons in Stone spaces are closed. 
-    \rednote{All of these are still true for the stronger versions of open and closed. }
+    \rednote{Whether the last of these holds for strong versions depends on the definition of countably presented. }
 \end{itemize}
 \end{remark}
 \begin{theorem}\label{StrongVersionOfEquivalencesOfClosedSubsetsOfStone}
@@ -359,34 +364,44 @@ $\neg \neg S \to ||S||$, which is in turn equivalent to Axiom 2.
     and given the Stone spaces we can construct the witness sequences. 
   \item We will show that $(iii)$ implies $(i)$. 
     Let $\alpha_{\cdot}$ witness that $A$ is strongly closed. Define 
-    $D_n(x) \leftrightarrow (\alpha_n(x) = 0)$. 
-    Note that $D_n$ is well-defined as $\alpha_n(x):2$ and for all $b:2$ we have
+    $D_n(x) \leftrightarrow (\alpha_x(n) = 0)$. 
+    Note that $D_n$ is well-defined as $\alpha_x(n):2$ and for all $b:2$ we have
     $(b=0)+ (b=1)$. Now $x \in \bigcap_{n:\N} D_n$ iff
     $\alpha_x(n) = 0$ for all $n:\N$, 
     which happens iff $A x$. Thus $A = \bigcap_{n:\N} D_n$. 
-  \end{itemize} 
+\end{itemize} 
 \end{proof} 
 \begin{corollary}
-  Let $A\subseteq Sp(B)$ be a subset of a Stone space. TFAE:
-  \begin{enumerate}[(i)]
-    \item There merely exists a countably family $(D_n)_{n:\N}$
-      of decidable subsets of $Sp(B)$ with $A = \bigcap_{n:\N} D_n$. 
-    \item There merely exists some Stone space $T$ and some map $T\to Sp(B)$ 
-      whose image is $A$. 
-%    \item For each $x:Sp(B)$, we merely have a sequence $\alpha:2^\N$ such that 
-%      $A x \leftrightarrow \forall_{n:\N} \alpha(n) = 0$. 
-    \item $A$ is closed. 
-  \end{enumerate}
+  Let $A\subseteq S$ be a subset of a Stone space. Then 
+    $A$ is closed iff 
+    $A$ is merely strongly closed. 
 \end{corollary}
 \begin{proof}
-  \begin{itemize}
-    \item $(i) \leftrightarrow (ii)$ follows from propositionally truncating the equivalence from 
-      \Cref{StrongVersionOfEquivalencesOfClosedSubsetsOfStone}.
-    \item To show that $A$ is closed, we need to show that $A x $ is closed for all $x$, which is a proposition, 
-      hence we could untruncate any assumptions and thus by \Cref{StrongVersionOfEquivalencesOfClosedSubsetsOfStone}, 
-      any of $(i),(ii)$ imply $(iii)$. 
-    \item Assume $A$ is closed. TODO
-  \end{itemize}
+  Clearly $A$ is closed as soon at it is merely strongly closed. 
+  For the converse, suppose $A$ is closed. 
+  So $A(s)$ is a closed proposition for every $s:S$. 
+  Thus $A$ corresponds to a map $a:S\to \Closed$. 
+%
+  Note that there is a surjection $2^\mathbb N \twoheadrightarrow \Closed$ sending 
+  $\alpha \mapsto \forall_{n:\mathbb N} \alpha n = 0. $
+  Now local choice gives us that there merely exists $T, e, \beta_\cdot$ as follows:
+  \begin{equation}
+    \begin{tikzcd}
+      T \arrow[r,"\beta_\cdot"] \arrow[d, two heads,"e"] & 2^\mathbb N 
+      \arrow[d,two heads, "\forall_{n:\mathbb N} (\cdot)n = 0"] \\
+      S \arrow[r,"a"] & \Closed
+    \end{tikzcd} 
+  \end{equation} 
+%  Now local choice gives us a cover $e:T \twoheadrightarrow S$ with a map $\beta_\cdot : T\to 2^\mathbb N$ such that 
+%  $\forall_{n:\mathbb N} \beta_t(n) = 0 \leftrightarrow A(e(t))$. 
+  Given such $T,\beta_\cdot $ and $e$, we have that 
+  $\beta_\cdot$ induces a strongly closed subset $B\subseteq T$ by 
+  $B(t) \leftrightarrow \forall_{n:\mathbb N} \beta_n(t) = 0$, which by 
+  \Cref{StrongVersionOfEquivalencesOfClosedSubsetsOfStone} is the image of a Stone space. 
+  Note that as the above diagram commutes, the image of $B$ under $e$ is $A$.
+  Thus $A$ is the image of a Stone space, and strongly closed. 
+  As $T,\beta_\cdot, e$ are only merely given, we conclude that $A$ is merely strongly closed. 
+  Thus closed subsets of a Stone space are merely strongly closed. 
 \end{proof}
 
 

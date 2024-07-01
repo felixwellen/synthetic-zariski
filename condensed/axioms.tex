@@ -53,9 +53,34 @@ Actually, we will see in \Cref{CorDoubleNegToAx2} that the converse is also true
     such that the following diagram commutes:
     \begin{equation}\begin{tikzcd}
       E \arrow[d,""',two heads]\\
-      S & \arrow[l, "", two heads] T\arrow[lu, ""']
+      S & \arrow[l, "", two heads, dashed] T\arrow[lu, ""',dashed ]
     \end{tikzcd}\end{equation}  
 \end{axiomNum} 
+
+\rednote{activity on this lemma}
+\begin{lemma}
+  Local choice is equivalent to the statement that whenever 
+  we have a surjection  between arbitrary types $e:E \twoheadrightarrow F$  and  
+  a map $f:S\to F$, there exists a cover $T\twoheadrightarrow S$ and an arrow $T\to E$ making the following diagram commute:
+    \begin{equation}\begin{tikzcd}
+      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+      S  \arrow[r, "f"] & F
+    \end{tikzcd}\end{equation}  
+\end{lemma}
+\begin{proof}
+  First, note that surjections are stable under pullback.
+  Whenever $s:S$, we there merely exists some $b:E$ with $e(b) = f(s)$. 
+  This induces an element $(s,b):S\times_F E$. 
+  Thus the projection $S\times_F E \to S$ is surjective, and 
+  the above axiom provides us with a $T$ as required. 
+    \begin{equation}\begin{tikzcd}
+     & S \times_F E \arrow[r] \arrow[d,two heads] &  E \arrow[d,""',two heads, "e"]\\
+       T \arrow[r, two heads ,dashed ] \arrow[ru,dashed]& 
+       S  \arrow[r, "f"] & F
+    \end{tikzcd}\end{equation}  
+    
+    Conversely, by considering $f=id$ we can see the statement of the lemma implies local choice. 
+\end{proof}
 
 \begin{axiomNum}[Dependent choice]\label{axDependentChoice}
   Given a family of types $(E_n)_{n:\N}$ and 
