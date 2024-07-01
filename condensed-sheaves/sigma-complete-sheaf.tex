@@ -3,39 +3,83 @@ We work in a presheaf topos on a $\sigma$-complete boolean algebra.
 
 \subsection{Sheaves}
 
+Since $B$ is $\sigma$-complete, we can define fundamental systems of idempotents indexed by $\N$. We say that a type $I$ is countable if it is finite or merely equal to $\N$.
+
 \begin{definition}
-A type $X$ is a sheaf if for all fundamental system of idempotent $e_1,\cdots,e_n:B$ in $B$, we have that $X$ is $(e_1=1\lor\cdots\lor e_n=1)$-local.
+A type $X$ is a sheaf if for all $I$ countable and $(e_i)_{i:I}$ fundamental system of idempotent in $B$, we have that $X$ is $(\exists (i:I). e_i=1)$-local.
 \end{definition}
 
-\begin{lemma}\label{sigma-complete-sheaf-simpler-aux}
-A type $X$ is a sheaf if and only if $0=_B1$ implies $X$ contractible and for all $e:B$ we have that $X$ is $(e=0\lor e=1)$-local.
+\begin{lemma}\label{countable-cover-cech}
+Assume $X$ a type and $I$ countable with $(P_i)_{i:I}$ a sequence of proposition such that for all $i\not=j$ in $I$ we have that $P_i\land P_j$ implies $X$ contractible. Then the canonical map:
+\[X^{\exists(i:I). P_i} \to X^{\Sigma(i:I).P_i}  \]
+is an equivalence.
 \end{lemma}
 
 \begin{proof}
-Consider $e_1,\cdots,e_n$ a fundamental system of idempotents. If $n=0$ then $0=_B1$ and $X$ is contractible. 
+We have that:
+\[ \Sigma(i:\N). P_i = \mathrm{colim}_n \Sigma(i\leq n). P_i\]
+\[ \exists(i:\N). P_i = \mathrm{colim}_n \exists(i\leq n). P_i\]
+so it is enough to prove the proposition for finite sets. If $I$ is empty it is clear, let us prove it for $I=\mathrm{Fin}(n+1)$. We have to prove that the canonical map: 
+\[X^{\exists(i:\mathrm{Fin}(n+1)). P_i}\to X^{\Sigma(i : \mathrm{Fin}(n+1)). P_i}\]
+is an equivalence. We have that:
+\[\exists(i: \mathrm{Fin}(n+1)). P_i = \exists(i:\mathrm{Fin}(n)). P_i \lor P_{n}\]
+By induction it is enough to prove that the map:
+\[X^{\exists(i:\mathrm{Fin}(n+1)). P_i} \to X^{\exists(i:\mathrm{Fin}(n)).P_i + P_{n}}\]
+is an equivalence. But we have the pushout square:
+\begin{center}
+\begin{tikzcd}
+\exists(i:\mathrm{Fin}(n)).P_i  \land P_{n}\ar[d]\ar[r]& P_{n}\ar[d]\\
+\exists(i:\mathrm{Fin}(n)).P_i \ar[r] & \exists(i:\mathrm{Fin}(n+1)).P_i  \\
+\end{tikzcd}
+\end{center}
+so we have the pullback square:
+\begin{center}
+\begin{tikzcd}
+X^{\exists(i:\mathrm{Fin}(n+1)).P_i} \ar[r]\ar[d]& X^{P_{n}}\ar[d]\\
+X^{\exists(i\mathrm{Fin}(n)).P_i} \ar[r] & X^{\exists(i\mathrm{Fin}(n)).P_i  \land P_{n}}\\
+\end{tikzcd}
+\end{center}
+and $\exists(i:\mathrm{Fin}(n)).P_i  \land P_{n}$ implies $X$ contractible by hypothesis, so that $X^{\exists(i\mathrm{Fin}(n)).P_i  \land P_{n}}$ is contractible and the map:
+\[X^{\exists(i:\mathrm{Fin}(n+1)). P_i} \to X^{\exists(i:\mathrm{Fin}(n)).P_i + P_{n}}\]
+is an equivalence.
+\end{proof}
 
-Otherwise we proceed by induction on $n$. If $n=1$ it is clear. If $n\geq 2$ we want to check that the localisation of $e_1=1\lor\cdots\lor e_n=1$ at $e=0\lor e=1$ is contractible. We know it is a proposition so it is enough to check that it is inhabited. But we have that:
-\[(e_1=1\lor e_1=0) \to (e_1=1\lor\cdots\lor e_n=1)\]
-as if $e_1=1$ it is clear, and if $e_1=0$ then $e_2,\cdots,e_n$ is a fundamental system of idempotent and we conclude by induction.
+\begin{lemma}\label{sigma-complete-sheaf-simpler-aux}
+Given a type $X$ such that $0=1$ implies $X$ contractible, for all $I$ countable and $(e_i)_{i:I}$ fundamental system of idempotents in $B$ we have that the canonical map:
+\[X^{\exists(i:I). e_i=1} \to X^{\Sigma(i:I). e_i=1}  \]
+is an equivalence.
+\end{lemma}
 
-The converse is immediate.
+\begin{proof}
+We just apply \cref{countable-cover-cech}.
+\end{proof}
+
+\begin{lemma}\label{sigma-complete-sheaf-simpler-aux-2}
+Given a set $X$ such that $0=1$ implies $X$ contractible, for all proposition $P$ the canonical map:
+\[X^{P\lor (0=1)} \to X^P\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+As in \cref{sigma-complete-sheaf-simpler-aux} we have that the map:
+\[X^{P\lor(0=1)}\to X^{P+(0=1)}\]
+is an equivalence so it is enough to prove that the map:
+\[X^{P+ (0=1)} \to X^P\]
+is an equivalence, but this is the case as $X^{0=1}$ is contractible.
 \end{proof}
 
 \begin{lemma}\label{sigma-complete-sheaf-simpler}
-Given a type $X$ such that $0=_B1$, the following are equivalent:
+Given a type $X$, the following are equivalent:
 \begin{enumerate}[(i)]
 \item $X$ is a sheaf.
-\item For all $e:B$, we have that $X$ is $(e=0\lor e=1)$-local.
-\item For all $e:B$, we have that $X$ is$(e=0 + e=1)$-local.
+\item We have that $0=1$ implies $X$ contractible and for all $(e_i)_{i:\N}$ fundamental system of idempotent in $B$ we have that $X$ is $(\Sigma(i:\N). e_i=1)$-local.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-We have that (i) $\Leftrightarrow$ (ii) by \cref{sigma-complete-sheaf-simpler-aux}.
+We prove (i) implies (ii). If $0=1$ then any sheaf is contractible by considering the empty system of idempotent, and then we conclude by \cref{sigma-complete-sheaf-simpler-aux}.
 
-To prove (ii) $\Leftrightarrow$ (iii), it is enough to check that for all $e:B$ the canonical map:
-\[X^{e=0\lor e=1} \to X^{e=0+ e=1}\]
-is an equivalence. From \cref{join-zariski-equiv-binary} we just need to prove that $X^{e=0\land e=1}$ is contractible, but $0=1$ implies $X$ contractible by hypothesis so we can conclude.
+We prove (ii) implies (i). Assume given $I$ countable and $(e_i)_{i:I}$ a fundamental system of idempotent in $B$. If $I$ is empty then $0=1$ and $X$ is contractible so it is a sheaf. If $I$ is infinite, by \cref{sigma-complete-sheaf-simpler-aux} we know that $X$ is $(\exists(i:I). e_i=1)$-local. If $I$ is finite non-empty we extend $(e_i)_{i:I}$ to $\N$ by adding $0$. Then $X$ is $(\exists(i:I).e_i=1) \lor (0=1)$-local and we can conclude by \cref{sigma-complete-sheaf-simpler-aux-2}.
 \end{proof}
 
 We will study the topos of such sheaves.
@@ -50,16 +94,16 @@ Let $X$ be a sheaf, then $\propTrunc{X}$ is a sheaf.
 \begin{proof}
 We use \cref{sigma-complete-sheaf-simpler}. If $0=1$ implies $X$ contractible, then it implies $\propTrunc{X}$ is contractible.
 
-Given $e:B$ we check that $\propTrunc{X}$ is $(e=0 + e=1)$-local. It is clear that $\propTrunc{X}$ is $(e=0+e=1)$-separated because it is a proposition. Given a map:
-\[(e=0+e=1) \to \propTrunc{X}\]
-we can merely fill the a diagram:
+Given $(e_i)_{i:\N}$ fundamental system of idempotent in $B$, we check that $\propTrunc{X}$ is $(\sum_{i:\N} e_i=1)$-local. Since $\propTrunc{X}$ is a proposition we just need to prove $\propTrunc{X}$ assuming that:
+\[\left(\sum_{i:\N} e_i=1\right) \to \propTrunc{X}\]
+But we can merely fill the diagram:
 \begin{center}
 \begin{tikzcd}
-e=0+e=1\ar[d]\ar[r]\ar[rd,dotted] & \propTrunc{X}\\
+\sum_{i:\N} e_i=1\ar[d]\ar[r]\ar[rd,dotted] & \propTrunc{X}\\
 1\ar[dotted,r] & X\ar[u]\\
 \end{tikzcd}
 \end{center}
-where the dotted diagonal arrow comes from $(e=0+e=1)$ having choice and the dotted down arrow comes from $X$ being a sheaf.
+where the dotted diagonal arrow comes from $\sum_{i:\N} e_i=1$ having choice (by DC plus representable having choice) and the dotted down arrow comes from $X$ being a sheaf.
 \end{proof}
 
 This means that the propositional truncation can be interpreted as itself in the sheaf topos.
@@ -71,100 +115,141 @@ The boolean algebra $B$ is a sheaf.
 \end{lemma}
 
 \begin{proof}
-We use \cref{sigma-complete-sheaf-simpler}. It is clear that if $0=_B1$ then $B$ is contractible.
+We use \cref{sigma-complete-sheaf-simpler}. It is clear that if $0=1$ then $B$ is contractible.
 
-Assume $e:B$, we check that the map:
-\[B\to B^{e=0+e=1}\]
+Given $(e_i)_{i:\N}$ fundamental system of idempotent in $B$, we check that the canonical map:
+\[B\to B^{\sum_{i:\N} e_i=1}\]
 is an equivalence. This map is equivalent to the map:
-\[B\to B^{1-e=1}\times B^{e=1}\]
+\[B\to \prod_{i:\N} B^{e_i=1}\]
 which by the assumed duality is equivalent to the map:
-\[B\to B_{1-e}\times B_e\]
-We can check this is an equivalence by direct algebraic computations.
+\[B\to \prod_{i:\N} B_{e_i}\]
+\[b \mapsto (b\land e_i)_{i:\N}\]
+We can check that:
+\[\prod_{i:\N} B_{e_i}\to B\]
+\[(x_i)_{i:\N}\mapsto \lor_{i:\N} x_i\]
+is inverse to this map using $a\land(\lor_{i:\N} b_i) = \lor_{i:\N} (a\land b_i)$ which is true as:
+\[a\land(\lor_{i:\N} b_i)\leq\lor_{i:\N} (a\land b_i) \]
+if and only if:
+\[\lor_{i:\N} b_i\leq\neg a\lor (\lor_{i:\N} (a\land b_i)) \]
+which holds.
 \end{proof}
 
 This means that we can define $\hat{B}$ in the sheaf topos simply as $B$ with this proof that it is a sheaf.
 
 \begin{lemma}\label{bot-sheaf-sigma-complete}
-We have that $\hat{\bot}$ is equivalent to $0=_B1$.
+We have that $\hat{\bot}$ is equivalent to $0=1$.
 \end{lemma}
 
 \begin{proof}
 It is clear that $\hat{\bot}$ is a proposition and that:
-\[0=_B1 \to \hat{\bot}\]
-as $0=_B1$ implies all sheaves contractible. On the other hand since $B$ is a sheaf we have that $0=_B 1$ us a sheaf, so to prove that:
-\[\hat{\bot}\to 0=_B1\]
+\[0=1 \to \hat{\bot}\]
+as $0=1$ implies all sheaves contractible by considering the empty system of idempotent. On the other hand since $B$ is a sheaf we have that $0=_B 1$ is a sheaf, so to prove that:
+\[\hat{\bot}\to 0=1\]
 it is enough to prove that:
-\[\bot\to 0=_B1\]
+\[\bot\to 0=1\]
 \end{proof}
 
-So we can interpret $\bot$ as $0=_B1$. We have a similar result for $\hat{\N}$, indeed:
+So we can interpret $\bot$ as $0=1$. We have a similar result for $\hat\N$, indeed:
 
 \begin{lemma}\label{N-sheafification-sigma-complete}
-We have that $\hat{\N}$ is equivalent to the sheafification of $\N$,
+We have that $\hat\N$ is equivalent to the sheafification of $\N$,
 \end{lemma}
 
 \begin{proof}
 We just check by direct computation. Omitted, holds for any lex modality.
 \end{proof}
 
-It should be noted that $\hat{N}$ and the sheafification of $\N$ do not compute the same. Nevertheless when proving the interpretation of a formula we can assume $\hat{\N}$ is the sheafification of $\N$, as long as the formula does not depend on the computation rules for $\N$.
+It should be noted that $\hat\N$ and the sheafification of $\N$ do not compute the same. Nevertheless when proving the interpretation of a formula we can assume $\hat\N$ is the sheafification of $\N$, as long as the formula does not depend on the computation rules for $\N$.
 
 
-\subsection{Weak limited principle of omniscience}
+\subsection{Limited principle of omniscience}
 
 \begin{lemma}\label{B-is-2-sigma-complete}
-The interpretation of $B=2$ in the sheaf topos holds.
+In the sheaf topos, we have that $B=2$.
 \end{lemma}
 
 \begin{proof}
 First we prove the interpretation of:
 \[0\not=_B1\] 
-in the sheaf topos. This is true as $0=_B1$ is interpreted as itself, and $\bot$ as $0=_B1$ by \cref{bot-sheaf-sigma-complete}.
+in the sheaf topos. This is true as $0=1$ is interpreted as itself, and $\bot$ as $0=1$ by \cref{bot-sheaf-sigma-complete}.
 
-It is clear that the interpretation of:
+The interpretation of:
 \[\forall(e:B).\ e=1 \lor e=0\]
-holds in the sheaf topos.
+holds in the sheaf topos by considering the fundamental system of idempotents $e,1-e$.
 
-These two properties imply $B=2$. 
+These two properties imply $B=2$.
 \end{proof}
 
-The proof of the next theorem is more verbose than needed. The key point is that by \cref{N-sheafification-sigma-complete} we have that $\hat{\N}$ is equivalent to the sheafification of $\N$. 
+The proof of the next theorem is more verbose than needed. The key point is that by \cref{N-sheafification-sigma-complete} we have that $\hat\N$ is equivalent to the sheafification of $\N$. 
 
-\begin{theorem}
+\begin{lemma}\label{2-sigma-complete-sheaf}
 In the sheaf topos, we have that $2$ is $\sigma$-complete.
-\end{theorem}
+\end{lemma}
 
 \begin{proof}
 By \cref{B-is-2-sigma-complete} we know it is enough to show that $B$ is $\sigma$-complete in the sheaf topos. 
 
-By \cref{N-sheafification-sigma-complete}, we can assume $\hat{\N}$ the interpretation of $\N$ in the sheaf topos is the sheafification of $\N$.
+By \cref{N-sheafification-sigma-complete}, we can assume $\hat\N$ the interpretation of $\N$ in the sheaf topos is the sheafification of $\N$.
 \begin{itemize}
 \item We need to define an inhabitant of:
-\[(\hat{\N} \to B) \to B\]
+\[(\hat\N \to B) \to B\]
 but this type is actually equivalent to:
 \[(\N\to B) \to B\]
 so we can just use $B$ being $\sigma$-complete.
 \item We need to prove that:
-\[\forall (\alpha:\hat{\N}\to B)(n:\hat{\N}).\ \phi(n)\leq \hat{\lor}\alpha\]
+\[\forall (\alpha:\hat\N\to B)(n:\hat\N).\ \phi(n)\leq \hat{\lor}\alpha\]
 but this type is actually equivalent to:
 \[\forall (\alpha:\N\to B)(n:\N).\ \phi(n)\leq \lor\alpha\]
 as $B$ and inequalites in $B$ are sheaves.
 \item Similarly we need to prove:
-\[\forall (e:B)(\alpha:\hat{\N}\to B).\ \big((\forall(n:\hat{\N}). \alpha(n)\leq e) \to \hat{\lor} \alpha \leq e\big)\]
+\[\forall (e:B)(\alpha:\hat\N\to B).\ \big((\forall(n:\hat\N). \alpha(n)\leq e) \to \hat{\lor} \alpha \leq e\big)\]
 but this type is equivalent to:
 \[\forall (e:B)(\alpha:\N\to B).\ \big((\forall(n:\N). \alpha(n)\leq e) \to \lor \alpha \leq e\big)\]
 as inequalities in $B$ are sheaves.
 \end{itemize}
 \end{proof}
 
-\begin{corollary}[WLPO]
-In the sheaf model, given $\alpha:\N\to 2$ we have that:
-\[\forall(n:\N).\ \alpha_n=0\]
-is decidable.
-\end{corollary}
+We write $\iota: \N\to \hat\N$ the sheafification of $\N$.
+
+\begin{lemma}\label{sup-gives-exists}
+In the sheaf topos, given $(e_i)_{i:\N}$ a sequence of booleans we have that:
+\[(\lor_{i:\N}e_i) = 1 \to \exists(i:\N).\ e_i=1\]
+\end{lemma}
 
 \begin{proof}
-We have that $\lor \alpha = 0$ if and only $\forall(n:\N).\ \alpha_n = 0$, and $\lor \alpha = 0$ is decidable.
+It is enough to prove this for $(e_i)$ in $\N_\infty$, i.e. assuming that if $k\not=l$ then $e_ke_l = 0$. By 
+\cref{B-is-2-sigma-complete} we can replace $2$ by $B$, after interpretation we have to prove that given:
+\[e:\hat\N\to B\] 
+such that:
+\begin{itemize}
+\item For all $k,l:\hat\N$ if $k=l\to 0=1$ then $e_ke_l=0$.
+\item $(\hat{\lor}_{i:\hat\N} e_i) = 1$.
+\end{itemize}
+then we have that:
+\[\exists(i:\hat\N). e_i=1\]
+Now we notice that $\hat\N$ is the sheafification of $\N$ and that:
+\begin{itemize} 
+\item The type:
+\[\forall(k,l:\hat\N).\ (k=l\to 0=1)\to e_ke_l=0\]
+is equivalent to:
+\[\forall(k,l:\N).\ (k=l\to 0=1)\to e_{\iota(k)}e_{\iota(l)}=0\]
+which implies:
+\[\forall(k,l:\N).\ k\not=l\to e_{\iota(k)}e_{\iota(l)}=0\]
+\item $\hat{\lor}_{i:\hat\N} e_i$ is defined as $\lor_{i:\N} e_{\iota(i)}$.
+\item We have that:
+\[\exists (i:\hat\N). e_i=1\]
+is the sheafification of $\exists(i:\N).e_{\iota(i)} = 1$, which is a straightforward consequence of both types being sheaves that are propositions.
+\end{itemize}
+So it is enough to prove that given $(e_i)_{i:\N}$ a fundamental system of idempotents in $B$ we have the sheafification of $\exists(i:\N).e_i = 1$. This is immediate by the definition of a sheaf..
+\end{proof}
+
+\begin{theorem}[LPO]
+In the sheaf topos, given $(e_i)_{i:\N}$ a sequence of booleans we have that:
+\[\forall(i:\N).\ e_i=0 \lor \exists(i:\N).\ e_i=1\]
+\end{theorem}
+
+\begin{proof}
+By \cref{2-sigma-complete-sheaf} we have a boolean $\lor_{i:\N}e_i$. If $(\lor_{i:\N}e_i) = 0$ then $\forall(i:\N).\ e_i=0$, if $(\lor_{i:\N}e_i) = 1$ we conclude by \cref{sup-gives-exists}.
 \end{proof}
 
 
@@ -175,7 +260,7 @@ Dependent choice holds in the sheaf topos.
 \end{theorem}
 
 \begin{proof}
-Recall that by \cref{prop-trunc-sheaf-sigma-complete} the propositional truncation can be interpreted as itself, and by \cref{N-sheafification-sigma-complete} we have that $\N$ can be interpreted as the sheafification on $\N$.
+Recall that by \cref{prop-trunc-sheaf-sigma-complete} the propositional truncation can be interpreted as itself, and by \cref{N-sheafification-sigma-complete} we have that $\N$ can be interpreted as the sheafification of $\N$.
 
 Then we see that the interpretation of dependent choice in the sheaf topos is equivalent to dependent choice for sheaves in the presheaf topos. We omit the details.
 \end{proof}
