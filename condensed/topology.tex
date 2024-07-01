@@ -1,4 +1,4 @@
-\rednote{I was messing with the sections in this tex file (3 subsections last I checked). }
+\rednote{I was messing with the sections in this tex file (2 subsections last I checked). }
 \subsection{Topology on propositions}
 \begin{definition}
   Let $P$ be a proposition. 
@@ -371,11 +371,10 @@ $\neg \neg S \to ||S||$, which is in turn equivalent to Axiom 2.
     which happens iff $A x$. Thus $A = \bigcap_{n:\N} D_n$. 
 \end{itemize} 
 \end{proof} 
-\begin{corollary}
+\begin{lemma}
   Let $A\subseteq S$ be a subset of a Stone space. Then 
-    $A$ is closed iff 
-    $A$ is merely strongly closed. 
-\end{corollary}
+    $A$ is closed iff $A$ is merely strongly closed. 
+\end{lemma}
 \begin{proof}
   Clearly $A$ is closed as soon at it is merely strongly closed. 
   For the converse, suppose $A$ is closed. 
@@ -404,5 +403,20 @@ $\neg \neg S \to ||S||$, which is in turn equivalent to Axiom 2.
   Thus closed subsets of a Stone space are merely strongly closed. 
 \end{proof}
 
-
-
+\begin{corollary}
+  For $S$ Stone and $A\subseteq S$ closed, $\exists_{x:S} A(x)$ is a closed proposition. 
+\end{corollary}
+\begin{proof}
+  By \Cref{StrongVersionOfEquivalencesOfClosedSubsetsOfStone}, $A$ is the image of a map of Stone spaces $T\to S$.
+  Now $A$ is inhabited iff $T$ is, and by \Cref{LemInhabitedOfStoneIsClosed}, $||T||$ is closed. 
+\end{proof} 
+The following is a characterization of compactness used in Definition 2.5 of \cite{SyntheticTopology}.
+\begin{corollary}
+  For $S$ Stone and $U\subseteq S$ open, $\forall_{x:S} U$ is an open proposition. 
+\end{corollary}
+\begin{proof}
+  As $U$ is open, we have $\neg \neg U = U$. 
+  Therefore $(\forall_{x:S} U(x)) \leftrightarrow (\neg \exists_{x:S} \neg U(x))$. 
+  As $\neg U(x)$ is closed, by the above, so is $\exists_{x:S} \neg U(x)$. 
+  Thus $\forall_{x:S} U(x)$ is the negation of a closed proposition, hence open. 
+\end{proof}
