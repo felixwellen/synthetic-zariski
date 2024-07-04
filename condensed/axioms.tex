@@ -117,29 +117,40 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
 \end{corollary}
 
 
-\begin{lemma}
+\begin{lemma}\label{SpectrumEmptyIff01Equal}
   For $B:\Boole$, we have $0=_B1$ iff $\neg Sp(B)$.
 \end{lemma}
 \begin{proof}
   Note that whenever $0=1$ in $B$, there is no map $B\to 2$ respecting both $0$ and $1$ as $0\neq 1$ in $2$. 
   Thus $\neg Sp(B)$ whenever $0=1$ in $B$. 
-  
+  % 
   Conversely, if $\neg Sp(B)$, then $Sp(B) = \emptyset$, which is also the spectrum of the trivial Boolean algebra. 
-  Therefore $B$ is the trivial Boolean algebra, and $0=1$. 
+  As $Sp$ is an embedding, $B$ is equivalent to the trivial Boolean algebra, and $0=_B1$. 
 \end{proof}
 
 Now we can present an equivalent formulation to axiom 2. 
 \begin{lemma}
   TFAE:
   \begin{enumerate}[(i)]
-    \item For any Stone space $S$, we have $\neg \neg S \leftrightarrow ||S||$. 
-    \item For $A,B:\Boole$, a map $f:A\to B$ is injective iff the corresponding map $Sp(B) \to Sp(A)$ is surjective. 
+    \item For any Stone space $S$, we have $\neg \neg S \leftrightarrow ||S||$ (Propositional logic is complete).
+    \item For $A,B:\Boole$, a map $f:A\to B$ is injective iff the corresponding map $Sp(B) \to Sp(A)$ is surjective
+      (Formal surjections are surjections). 
   \end{enumerate}
 \end{lemma} 
 \begin{proof}
-\item \paragraph{1 implies 2}
+\item \paragraph{Surjections always correspond to injections}
+  We first show that whenever $f:A\to B$ is such that the induced map $\tilde f:Sp(B)\to Sp(A)$ is surjective, 
+  $f$ is injective. Suppose $\tilde f $ is surjective. 
+  Let $a:A$ be such that $f(a)= 0$. 
+  By surjectivity of $\tilde f$, for every $x:A\to 2$, there is a $y:B\to 2$ with $y\circ f = x$. 
+  Consequentely $x(a) = y(0) = 0$. So $x(a) = 0$ for every $x:Sp(A)$. 
+  Thus $Sp(A) = Sp(A/\{a\})$, and as $Sp$ is an embedding, $A \simeq A/\{a\}$, and $a = 0$ in $A$. 
+  So whenever $f(a) = 0$, we have $a=0$ and $f$ is injective. 
+
+
+\item \paragraph{If propositional logic is complete, injections correspond to surjections}
   Suppose that for all Stone spaces $S$ we have $\neg \neg S\leftrightarrow ||S||$. 
-  Let $f:B\to B'$ be injective. We shall show that the induced map $\tilde f: Sp(B) \to Sp(A)$ is surjective. 
+  Let $f:A\to B$ be injective. We shall show that the induced map $\tilde f: Sp(B) \to Sp(A)$ is surjective. 
   Let $x:Sp(A)$
 %  We shall show that for any $x:Sp(A)$ there merely exists some $y:Sp(B)$ with $ \tilde f (y) = x$. 
   Note that we have the following pullback square in the category of Stone spaces:
@@ -152,31 +163,39 @@ Now we can present an equivalent formulation to axiom 2.
   our assumption tells us we can show its double negation. 
   Consider the dual to the above square in the category of countably presented Boolean algebras:
   \begin{equation}\begin{tikzcd}
-    A \arrow[d,"x"'] \arrow[r,hook,"f"] \arrow[rd,phantom,"\lrcorner"{pos=0.125}] & B\arrow[d]\\
+    A \arrow[d,"x"'] \arrow[r,hook,"f"] \arrow[rd,phantom,"\ulcorner"{pos=0.125}] & B\arrow[d]\\
     2 \arrow[r] & P
   \end{tikzcd}\end{equation}  
-  Where $Sp(P) = \sum\limits_{y:Sp(B)} \tilde f y = x$. 
+  Where $Sp(P) \simeq  (\sum\limits_{y:Sp(B)} \tilde f y = x)$. 
+  We are thus left by showing that $\neg \neg Sp(P)$. By \Cref{SpectrumEmptyIff01Equal}, 
+  we can do this by showing that $0\neq_P 1$. 
   \begin{itemize}
     \item 
   Recall from \Cref{BoolePushouts} that the generators of $P$ are those of $B$ and $2$, and as $2$ has no generators, 
   the generators of $P$ are those of $B$. 
     \item 
-  Furthermore, relations from $P$ come from relations from $B$ and $2$, and those of the form $f(a) - x(a)$ for $a:A$.
-    Recall that $2$ has no relations. Also, 
-    note that $x(a)= 0 \vee x(a) = 1$ for all $a:A$, as $x(a):2$. 
-  And whenever $f(a) - 0 = 0$, by injectivity of $f$, we have $a=0$. 
-  Similarly, whenever $f(a) - 1 = 0$, we have $a=1$. 
-  Therefore, $f(a) -x(a) = 0 $ for all $a:A$. 
+  Furthermore, relations from $P$ come from relations from $B$ and $2$, 
+  and those of the form $f(a) - x(a)$ for $a:A$.
+  Recall that $2$ has no relations. Also, 
+  note that $x(a)= 0 \vee x(a) = 1$ for all $a:A$, as $x(a):2$. 
+  If $x(a)=0$, then $f(a)-x(a)=f(a)$. 
+  If $x(a)=1$, then $f(a)-x(a) = f(a)-1= \neg f(a)$
+  Now $f(a)=0$ iff $\neg f(a) = 1$. 
+  So the generators of the form $f(a)-x(a)$ for $a:A$ are of the form $f(a)$ those $a:A$ with $x(a) = 1$. 
+
   \end{itemize} 
-Therefore, the generators of $P$ are those of $B$, and the relations of $P$ can be taken the same as those of $B$. 
-Thus $P$ is isomorphic to $B$. By duality, $Sp(B) \simeq \sum\limits_{y:Sp(B)} \tilde f y = x $. 
-Now whenever $\neg Sp(B)$, we have that $0=1$ in $B$. But then, as $f$ is injective, $0=1$ in $A$ as well. 
-But as we assumed $x:Sp(A)$, we get a contradiction. 
-We conclude that $\neg \neg Sp(B)$, hence $\neg \neg \sum\limits_{y:Sp(B)} \tilde f y = x $, as required. 
-We conclude that for every $x:Sp(A)$, we have $||\sum\limits_{y:Sp(B)} \tilde f y = x ||$, hence $\tilde f$ is surjective. 
+  Thus $P = B/\{f(a)|x(a)=0\}$. 
+  This means that two elements $b,b':B$ become equal in $P$ iff 
+  $b-b' \leq \bigvee_{a:A_0} f(a)$ for some finite $A_0 \subseteq \{f(a)| x(a) = 0\}$. 
+  For such $A_0$, we have that $x(\bigvee_{a:A_0} a ) = 0$ as well. 
+  Thus $b-b' \leq  f(a')$ for some $a'$ with $x(a') =0$. 
 
+  Thus $0=_P 1$ iff $1 = 1 -0 = f(a)$ for some $a:A$ with $x(a) = 0$. 
+  As $f$ is injective, $f(1) = 1$ iff $a=1$, in which case $x(a) = 1$. 
+  But as $0\neq_2 1$, this is a contradiction. 
+  Therefore $0\neq_P 1$, as required. 
 
-\item\paragraph{2 implies 1}
+\paragraph{Assuming surjections are formal surjections, propositional logic is complete}
 %\begin{lemma}\label{LemSurjectionsFormalToCompleteness}
 % For $S:\Stone$, we have that $\neg \neg S \to || S ||$
 %\end{lemma}
