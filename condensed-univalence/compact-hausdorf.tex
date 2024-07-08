@@ -1,0 +1,96 @@
+Recall that Stone spaces are defined as spectrum of c.p. boolean algebra, or equivalently as limits of finite types.
+
+\begin{lemma}
+A proposition is a Stone space if and only if it is closed.
+\end{lemma}
+
+\begin{proof}
+The key point is that the propositional truncation of a stone space is a closed proposition.
+\end{proof}
+
+\begin{theorem}
+We have the following:
+\begin{enumerate}[(i)]
+\item Stone spaces are stable under identity type and and sigma type.
+\item Stone spaces are stable under sequential limit.
+\item Stone spaces have local choice.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+All of this is known.
+\end{proof}
+
+\begin{definition}
+A compact Hausdorf space is a quotient of a Stone space by an equivalence relation valued in closed propositions.
+\end{definition}
+
+\begin{lemma}\label{sequential-limit-hausdorf}
+Assume given a tower $(C_k)_{k:\N}$ of compact Hausdorf spaces. Then there exists a tower $(S_k)_{k:\N}$ of Stone spaces with maps:
+
+\begin{center}
+\begin{tikzcd}
+\cdots \ar[r]& S_1\ar[r]\ar[d] & S_0 \ar[d]\\
+\cdots \ar[r] & C_1\ar[r] & C_0 \\
+\end{tikzcd}
+\end{center}
+
+such that the map:
+\[S_0\to C_0\]
+is surjective and for all $n:\N$ the induced map:
+\[S_{n+1} \to C_{n+1}\times_{C_n} S_n\]
+is surjective.
+
+This implies that the induced map:
+\[\lim_kS_k \to \lim_k C_k\]
+is surjective.
+\end{lemma}
+
+\begin{proof}
+By definition of a Compact Hausdorf type, we can merely find a Stone space $S_0$ with a surjection:
+\[S_0\to C_0\]
+Using dependent choice, it is enough to show that we can merely extend such a tower $(S_k)_{k\leq n}$ to $(S_k)_{k\leq n+1}$.
+
+We choose a Stone space $T$ and a surjection:
+\[T \to C_{n+1} \]
+Then we define $S_{n+1}$ by the following pullback square:
+\begin{center}
+\begin{tikzcd}
+S_{n+1}\ar[d]\ar[r] & C_{n+1}\times_{C_n} S_n\ar[r]  \ar[d]& S_n\ar[d]\\
+T \ar[r] & C_{n+1}\ar[r]  & C_n
+\end{tikzcd}
+\end{center}
+And we see the map:
+\[S_{n+1} \to C_{n+1}\times_{C_n} S_n\] 
+surjective as it is a pullback of the map:
+\[T\to C_{n+1}\]
+
+The fact that this implies the surjective map:
+\[\lim_kS_k \to \lim_k C_k\]
+is a simple application of dependent choice.
+\end{proof}
+
+\begin{theorem}
+We have the following:
+\begin{enumerate}[(i)]
+\item Compact Hausdorf spaces are stable under identity type and and sigma type.
+\item Compact Hausdorf spaces are stable under quotient by equivalence relation with value in compact Hausdorf spaces.
+\item Compact Hausdorf spaces are stable under sequential limits.
+\item Compact Hausdorf space have local choice.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We proceed as follows:
+\begin{enumerate}[(i)]
+\item For identity types this is because closed propositions are compact Hausdorf.
+
+For sigma types, TODO closed proposition and Stone stable by Sigma + local choice.
+
+\item Clear from the definition.
+
+\item We use \cref{sequential-limit-hausdorf} and the fact that closed proposition are stable under sequential limits.
+
+\item From the fact that Stone spaces have local choice.
+\end{enumerate}
+\end{proof}
