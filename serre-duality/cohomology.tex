@@ -1,0 +1,92 @@
+
+We use the synthetic algebro-geometric notions of \cite{draft}
+and recollect some results of \cite{cech-draft}.
+This entails that we use a pullback $f_\ast$ and push-forward $f^\ast$ which arguably deviates somewhat from the usual notion and is more of a pointwise nature.
+
+\begin{definition}
+  \begin{enumerate}[(a)]
+  \item Let $A,B:X\to \Mod{R}$.
+    For subsets $U\subseteq X$, we write $A(U)\colonequiv (x:U)\to A_x$.
+    Similarly, if for each $x:X$ we have a morphisms $f_x:A_x\to B_x$,
+    we write $f:A\to B$ and $m_U\colonequiv (s:A(U))\mapsto ((x:U)\mapsto f_x(s(x)))$.
+  \item Let $A,B,C:X\to \Mod{R}$.
+    If for all $x:X$ we have a sequence
+    \begin{center}
+      \begin{tikzcd}
+        A_x\ar[r,"m_x"] & B_x\ar[r,"e_x"] & C_x
+      \end{tikzcd}
+    \end{center}
+    we write $A\to B\to C$ and call this datum a sequence.
+    The sequence is called \notion{(pointwise) exact}
+    if for all $x:X$ the sequence above is exact.
+    The sequence is called \notion{locally exact},
+    if $e$ is surjective and there is an open affine cover such that $m_U$ is injective.
+  \end{enumerate}
+\end{definition}
+
+Note that pointwise exactness is a strictly stronger requirement than local exactness.
+
+\begin{theorem}
+  \begin{enumerate}[(a)]
+  \item Let $A,B,C:X\to \AbGroup$ and 
+    \[
+    0\to A\to B\to C\to 0
+    \]
+    be a (pointwise) exact sequence, then there is a long exact sequence of cohomology groups:
+    \begin{center}
+      \begin{tikzcd}
+        & \dots\ar[r]& H^{n-1}(X,C)\ar[dll]\\
+        H^n(X,A)\ar[r] & H^n(X,B)\ar[r] & H^n(X,C)\ar[lld] \\
+        H^{n+1}(X,A)\ar[r] & H^{n+1}(X,B)\ar[r] & \dots        
+      \end{tikzcd}
+    \end{center}
+  \item Let $A,B,C:X\to \Mod{R}_{\mathrm{wqc}}$ and
+    \[
+    0\to A\to B\to C\to 0
+    \]
+    be a locally exact sequence,
+    then there is an induced long exact sequence like above.
+  \end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+  Let $X$ be a separated scheme with open affine cover $\{U\}$ and $M:X\to \Mod{R}_{\mathrm{wqc}}$ a bundle of weakly quasi-coherent $R$-modules.
+  The natural isomorphism $H^0(X,M) \cong \check{H}^0(\{U\},M)$ extends to an isomorphism of $\partial$-functors,
+  i.e.\ it extends to a natural isomorphism
+  \[ H^k(X,M) \cong \check{H}^k(\{U\},M)\text{, for all $k\geq 0$,}
+  \]
+  compatible with long exact cohomology sequences.
+\end{theorem}
+
+There is also the helpful lemma:
+
+
+\begin{lemma}
+  \label{cohomologically-trivial-fibers}
+  Let $f:Y\to X$ and $A:Y\to\AbGroup$ be such that $H^l(\fib_f(x),\pi_1^\ast A)=0$ for all $0<l\leq n$,
+  then
+  \[
+  H^n(Y,A)=H^n(X,f_\ast A)
+  \rlap{.}
+  \]
+  In particular, if $i:C\to \bP^n$ is closed and $M:\bP^n\to\Mod{R}_{wqc}$, then $H^n(C,i_\ast M)=H^n(\bP^n,M)$.
+\end{lemma}
+
+With these results, the proof of the following carries over\footnote{A full proof in the synthetic setting is given in \cite{cech-draft}.}
+from \cite[Chapter III]{Hartshorne}:
+
+\begin{theorem}
+  \begin{enumerate}[(i)]
+  \item For all $n:\N$, $d:\Z$, there are isomorphisms $R[X_0,\dots,X_n]_d\to H^0(\bP^n,\mathcal O(d))$ of $R$-modules, inducing an isomorphism $R[X_0,\dots,X_n]\to \bigoplus_{d:\Z} H^0(\bP^n,\mathcal O(d))$ of graded $R[X_0,\dots,X_n]$-modules.
+  \item $H^n(\bP^n,\mathcal O(-n-1))=R$ is free of rank 1 and $H^n(\bP^n,\mathcal O(d))=0$ for $d>-n-1$.
+  \item The canonical map given by tensoring
+    \[
+      H^0(\bP^n,\mathcal O(d)) \times H^n(\bP^n,\mathcal O(-d-n-1))\to R
+    \]
+    is a perfect pairing of finite free $R$-modules for all $d:\Z$.
+  \item $H^i(\bP^n,\mathcal O(d))=0$ for $i\in\{1,\dots,n-1\}$ and all $d:\Z$.
+  \end{enumerate}
+\end{theorem}
+
+
+Following \cite[Chapter 19]{vakil}.
