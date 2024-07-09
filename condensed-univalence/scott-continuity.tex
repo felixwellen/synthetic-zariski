@@ -1,0 +1,131 @@
+\begin{lemma}\label{factorisation-stone-finite}
+For any tower of Stone space $(S_k)_{k:\N}$ and $l:\N$, we have that:
+\[\left(\mathrm{lim}_kS_k\to \mathrm{Fin}(l)\right) \simeq \mathrm{colim}_k (S_k\to \mathrm{Fin}(l))\]
+\end{lemma}
+
+\begin{proof}
+We have that:
+\[\left(\mathrm{lim}_kS_k\to \mathrm{Fin}(l)\right) \]
+\[\simeq \Hom(2^l, \mathrm{colim}_k 2^{S_k})\]
+\[\simeq \mathrm{colim}_k \Hom(2^l, 2^{S_k}) \]
+\[\simeq \mathrm{colim}_k (S_k\to \mathrm{Fin}(l))\]
+Where the third line comes from the fact that $2^l$ is finitely presented.
+\end{proof}
+
+\begin{lemma}\label{stonification-sequential-limits}
+For any tower of compact Hausdorff space $(C_k)_{k:\N}$ and $l:\N$, we have that:
+\[\Spec(2^{\mathrm{lim}_k C_k}) = \mathrm{lim}_k\Spec(2^{C_k})\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+Assume $C$ a compact Hasudorff space and $S$ a stone space. Then:
+\[(C\to S) \simeq (\Spec(2^C) \to S)\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{factorisation-compact-hausdorff-finite}
+For any tower of compact Hausdorff $(C_k)_{k:\N}$ and $l:\N$, we have that:
+\[\left(\mathrm{lim}_kC_k\to \mathrm{Fin}(l)\right) \simeq \mathrm{colim}_k (C_k\to \mathrm{Fin}(l))\]
+\end{lemma}
+
+\begin{proof}
+By \cref{factorisation-stone-finite} and \cref{stonification-sequential-limits}.
+\end{proof}
+
+\begin{lemma}\label{compact-hausforff-countable-cover}
+Assume given $C$ a compact Hausdorff space and a sequence of open subset of $C$ named:
+\[U_0\subset U_1 \subset \cdots\]
+If:
+\[\forall(x:C).\exists(i:\N). x\in U_i\]
+then:
+\[\exists(i:\N). \forall(x:C).x\in U_i\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{overtly-discrete-union-open}
+Assume $(I_i)_{i:\N}$ a tower of overtly discrete types. Then for any $i:\N$ we have that $\mathrm{Im}(I_i)$ is open in $\mathrm{colim}_i I_i$. 
+\end{lemma}
+
+\begin{proof}
+For $y:\mathrm{colim}_iI_i$, we have that $y\in \mathrm{Im}(I_i)$ is:
+\[\exists(x:I_i). x=_{\mathrm{colim}_iI_i}y\]
+which is the propositional truncation of an overtly discrete type and therefore overtly discrete.
+\end{proof}
+
+\begin{lemma}\label{factorisation-compact-hausdorff-cover}
+Assume given $C,C'$ compact Hausdorff spaces, $(I_i)_{i:\N}$ a tower of overtly discrete types and a commutative diagram:
+\begin{center}
+\begin{tikzcd}
+C' \ar[d,"p"]\ar[r,"g"]& I_k\ar[d]\\
+C \ar[r,"f"]& \mathrm{colim}_k I_k\\
+\end{tikzcd}
+\end{center}
+where $p$ is surjective, then there merely exists $k:\N$ such that $f$ factors through $I_k$.
+\end{lemma}
+
+\begin{proof}
+We have that:
+\[\forall(x,y:C). p(x)=p(y) \to \exists(k:\N) g(x)=_{I_k}g(y)\]
+so that by \cref{compact-hausforff-countable-cover} we have that:
+\[\exists(k:\N). \forall(x,y:C). p(x)=p(y) \to g(x)=_{I_k}g(y)\]
+and then the map $g:C'\to I_k$ gives a factorisation of $f$ through $I_k$.
+\end{proof}
+
+\begin{lemma}\label{scott-continuity-right}
+Let $C$ be a compact Hausdorff space and $(I_i)_{i:\N}$ a tower of overtly discrete types. Thew we have that:
+\[(C\to \mathrm{colim}_i I_i) \simeq \mathrm{colim}_i (C\to I_i)\]
+\end{lemma}
+
+\begin{proof}
+Let us check that the canonical map:
+\[\mathrm{colim}_i (C\to I_i) \to (C\to \mathrm{colim}_i I_i) \]
+is an equivalence. 
+
+First we check that it is injective. Given $f,g:C\to I_i$ such that:
+\[\forall(x:C).  f(x) =_{\mathrm{colim}_iI_i} g(x)\]
+Then we have that:
+\[\forall(x:C).  \exists(j:\N). f(x) =_{I_j} g(x)\]
+so that by \cref{compact-hausforff-countable-cover} we have that:
+\[\exists(j:\N). \forall(x:C). f(x) =_{I_j} g(x)\]
+which precisely means that $f=g$ in $\mathrm{colim}_i (C\to I_i)$.
+
+Now we check that it is injective. Given a map:
+\[f:C\to \mathrm{colim}_i I_i\]
+we know that:
+\[\forall(x:C). \exists(i:\N). f(x)\in \mathrm{I_i}\]
+but $f(x)\in \mathrm{I_i}$ is open by \cref{overtly-discrete-union-open} so that by \cref{compact-hausforff-countable-covert} we have that:
+\[\exists(i:\N). \forall(x:C).  f(x)\in \mathrm{I_i}\]
+which precisely mean that $f$ factors through $\mathrm{Im}(I_k)$ for some $k$.
+
+Now we want to factor it through $I_l$ for some $l$, to do this we start by using local choice to get:
+\begin{center}
+\begin{tikzcd}
+C' \ar[r]\ar[d]& I_k\ar[d]\\
+C \ar[r]& \mathrm{I_k}\\
+\end{tikzcd}
+\end{center}
+and then we conclude using \cref{factorisation-compact-hausdorff-cover}.
+\end{proof}
+
+\begin{theorem}[Scott Continuity]
+Assume given $(C_k)_{k:\N}$ a tower of compact Hausdorff spaces and $(I_i)_{i:\N}$ a tower of overtly discrete types. Then:
+\[\left( \mathrm{lim}_k C_k \to \mathrm{colim}_i I_i\right) \simeq \mathrm{colim}_{k,i} (C_k\to I_i)\]
+\end{theorem}
+
+\begin{proof}
+By \cref{scott-continuity-right} we just have to prove that for any overtly discrete $I$ we have that:
+\[(\mathrm{lim}_kC_k\to I) \simeq \mathrm{colim}_k(C_k\to I)\]
+so it is enough to prove that for all towers of finite type we have that:
+\[(\mathrm{lim}_kC_k\to \mathrm{colim}_i\mathrm{Fin}(n_i)) \simeq \mathrm{colim}_k(C_k\to \mathrm{colim}_i\mathrm{Fin}(n_i))\]
+but we can see that by using \cref{scott-continuity-right} and \cref{factorisation-compact-hausdorff-finite}.
+\end{proof}
