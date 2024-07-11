@@ -13,9 +13,17 @@ and quasi-separated schemes.
   Let~$X$ be a scheme. Let global functions~$f_1,\ldots,f_n : X \to R$ be given
   such that all the open subschemes~$D(f_i)$ are affine and such that~$X =
   D(f_1) \cup \ldots \cup D(f_n)$. Then the canonical map~$X \to \Spec(R^X)$ is
-  an open immersion. If furthermore the functions~$f_i$ generate the unit ideal
+  an open embedding. If furthermore the functions~$f_i$ generate the unit ideal
   in the ring~$R^X$, this map is bijective.
 \end{lemma}
+\ignore{
+  Felix: I removed the part below from the proof and replaced it with a ref to foundations.
+         (I think the proof has enough details now)
+  This follows from the fact~$R^{D(f_i)} = (R^X)[f_i^{-1}]$,
+  whose classical proof (as for instance reproduced
+  in~\cite{liu}[Proposition~2.3.12]) just uses a bit of homological algebra and
+  carries over to our setting verbatim.
+}
 
 \begin{proof}
   The classical proof, for instance as collected in the Stacks
@@ -28,19 +36,13 @@ and quasi-separated schemes.
   open~$D(f_i)$. Because~$D(f_i)$ is affine by assumption, we only need to
   verify that~$g(p) = g(q)$ for all~$g \in R^{D(f_i)}$ in order to conclude
   that~$p = q$.
-
   This follows from the fact~$R^{D(f_i)} = (R^X)[f_i^{-1}]$,
   which is \cite{draft}[Lemma 7.1.8] using weak quasi coherence of the structure sheaf.
-\ignore{
-  This follows from the fact~$R^{D(f_i)} = (R^X)[f_i^{-1}]$,
-  whose classical proof (as for instance reproduced
-  in~\cite{liu}[Proposition~2.3.12]) just uses a bit of homological algebra and
-  carries over to our setting verbatim.
-}
-  One can check that the image of the canonical map is~$D_{X'}(f_1) \cup \cdots
+  Using this fact again and that the $D(f_i)$ are affine,
+  one can check that the image of the canonical map is~$D_{X'}(f_1) \cup \cdots
   \cup D_{X'}(f_n)$, where~$D_{X'}(f_i)$ refers to the standard open of~$X'
-  \vcentcolon= \Spec(R^X)$ associated to~$f_i : R^X$. From this observation the
-  remaining claims follows.
+  \colonequiv \Spec(R^X)$ associated to~$f_i : R^X$. From this observation the
+  remaining claims follow.
 \end{proof}
 
 \rednote{Decide on notation for constant bundle}
