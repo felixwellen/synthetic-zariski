@@ -1,0 +1,114 @@
+\subsection{Principles of omniscience}
+In constructive mathematics, we do not have general access to the law of excluded middle (LEM).
+There are some principles that are weaker than LEM, which can be used to describe 
+the proof-theoretic strength of a logical system, called principles of omniscience.
+In this section, we will show that two of them (Markov's principle and LLPO) hold, 
+and one (WLPO) fails in our system.
+
+\begin{theorem}[The negation of the weak lesser principle of omniscience ($\neg$WLPO)]
+  It is not the case that the statement %There is no method which given $\alpha:2^\mathbb N$ decides whether 
+  $\forall_{n:\mathbb N} \alpha(n) = 0$ is decidable for general $\alpha:2^\mathbb N$. 
+\end{theorem}
+\begin{proof}
+  Such a decission method would give a function $f:2^\mathbb N \to 2$ such that 
+  $f(\alpha) = 0$ iff $\forall_{n:\mathbb N} \alpha (n)= 0$. 
+  By Stone duality, there must be some $c:C$ with 
+  $f(\alpha) = 0 \iff \alpha(c) = 0$. 
+  $c$ is expressable using only finitely many generators $(p_n)_{n\leq N}$. 
+  Now consider $\beta,\gamma:\langle C \rangle \to 2$ given by $\beta(p_n) = 0$ for all $n:\mathbb N$ and
+  $\gamma(p_n) = 0$ iff $n\leq N$. 
+  Note that these functions are equal on $(p_n)_{n\leq N}$, therefore, $\beta(c) = \gamma(c)$. 
+  However, $f(\beta) = 0$ and $f(\gamma) = 1$.
+  We thus have a contradiction, thus a decission method as required doesn't exist. 
+\end{proof}
+
+The following result is due to David W\"arn:
+\begin{theorem}[Markov's principle (MP)]
+  For $\alpha:\Noo$, we have that 
+  \begin{equation}
+    (\neg (\forall_{n:\mathbb N} \alpha (n)= 0)) \to \Sigma_{n:\mathbb N} \alpha (n)= 1
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  Assume $\neg (\forall_{n:\mathbb N} \alpha (n)= 0)$.
+%  Suppose $\alpha \neq \infty$.%, then it is not the case that $\alpha(n) = 0$ for all $n:\N$. 
+  It is sufficient to show that $2/\{\alpha(n)|n\in\N\}$ is the trivial Boolean algebra. 
+  It will then follow that there is a finite subset $N_0\subseteq \N$ 
+  with $\bigvee_{i:N_0} \alpha(i) = 1$.
+  As $\alpha(i) \in \{0,1\}$ and $\alpha(i) = 1$ for at most one $i$, it then follows that 
+  there exists an unique $n\in\mathbb N$ with $\alpha(n) = 1$. 
+
+  To show that $2/\{\alpha(n)|n\in\N\}$ is trivial, we will show it has an empty spectrum. 
+  Suppose $x: 2 \to 2$ is such that $x(\alpha(n)) = 0$ for every $n:\N$. 
+  As $x(1) = 1\neq_2 0$, we must have for every $n:\N$ that $\alpha(n) \neq 1$. 
+  But then $\alpha(n) = 0$, contradicting our assumption. 
+  We get a contradicition and there thus there are no terms of the spectrum of $2/\{\alpha(n)|n\in\N\}$ as required. 
+\end{proof}
+\begin{corollary}
+  For $\alpha:2^\mathbb N$, we have that 
+  \begin{equation}
+    (\neg (\forall_{n:\mathbb N} \alpha (n)= 0)) \to \Sigma_{n:\mathbb N} \alpha (n)= 1
+  \end{equation}
+\end{corollary}
+\begin{proof}
+  Given $\alpha:2^\mathbb N$, consider the sequence $\alpha':\Noo$ satisfying $\alpha'(n) = 1$ iff 
+  $n$ is minimal with $\alpha(n) = 1$. Then apply the above theorem.
+\end{proof}
+
+\begin{theorem}[The lesser limited principle of omniscience (LLPO)]
+  For $\alpha:\N_\infty$, 
+  we have that 
+  \begin{equation}\label{eqnLLPO}
+    \forall_{k:\N} \alpha(2k) = 0  \vee \forall_{k:\N} \alpha(2k+1) = 0
+  \end{equation}
+\end{theorem}
+\begin{proof}
+%
+%  We first will define a map $f:B_\infty \to B_\infty \times B_\infty$. 
+%  Because of \Cref{rmkMorphismsOutOfQuotient}, it is sufficient to define $f$ on $(p_n)_{n:\N}$ with 
+%  $f(p_n) \wedge f(p_m) = (0,0)$ for $n\neq m$. 
+%  To define $f(p_n)$, we use a case distinction on whether $n$ is odd or even. 
+  Define $f:B_\infty \to B_\infty \times B_\infty$ as follows:
+  \begin{equation}
+    f(p_n) =\begin{cases}
+      (p_k,0) \text{ if } n = 2k\\
+      (0,p_k) \text{ if } n = 2k+1\\
+    \end{cases}
+  \end{equation}
+  By making a case distinction on $n,m$ being odd or even, 
+  we can see that 
+  $f(p_n) \wedge f(p_m) = (0,0)$ when $n\neq m$, thus $f$ is well-defined. 
+  We also claim it is injective.
+  Now let $x:B_\infty$ with $f(x) = 0$. 
+  We denote $E,O\subseteq \N$ for the even and odd numbers, 
+  and we make a case distincition based on \Cref{BinftyTermsWriting}.
+  \begin{itemize}
+    \item Suppose 
+      $x = \bigvee_{i\in I_0} p_i$. 
+      Then 
+      $$f(x) = (\bigvee_{i\in I_0 \cap E } p_{\frac i2} , \bigvee_{i\in I_0 \cap O } p_{\frac {i-1}2} ) = (0,0)$$
+      But now as $p_j\neq 0$ for all $j\in\N$, we must have $I_0 \cap E = \emptyset = I_0 \cap O$. 
+      Thus $I_0= \emptyset$, and $x = 0$. 
+    \item Suppose 
+%      Let $x$ correspond to a cofinite subset of $\N$. Write 
+      $x = \bigwedge_{j\in J} \neg p_j$. % for $J$ finite. 
+      We will derive a contradiction. %, from which we can conclude that $x=0$ after all. 
+      Note that   
+      $$f(x) = (\bigwedge_{j\in J \cap E } \neg p_j , \bigwedge_{j\in J \cap O } \neg p_j )$$
+      As $f(x) = (0,0)$, we have that 
+      $\bigwedge_{j\in J \cap E } \neg p_j =0$ and
+      $\bigwedge_{j\in J \cap O } \neg p_j  = 0$.
+      However, any finite meet of negations will correspond to a cofinite set,
+      in particular not to the empty set, giving a contradiction. 
+  \end{itemize}
+  In both cases, we conclude $x=0$, thus $f$ is injective. 
+  By \Cref{FormalSurjectionsAreSurjections}, $f$ corresponds to a surjection 
+  $s:\Noo + \Noo \to \Noo$.
+  Now let $\alpha : \Noo$, 
+  let $x:\Noo + \Noo$ be such that $s x = \alpha$. 
+  If $x = inl(\beta)$, 
+  for any $k:\N$, we have that 
+  $$\alpha (p_{2k+1}) = s(x) (p_{2k+1}) = x(f(p_{2k+1})) = inl(\beta) (0,p_k)  = \beta(0) = 0.$$
+  Similarly, if $x = inr(\beta)$, we have $\alpha(p_{2k}) = 0$ for all $k:\N$. 
+  Thus $\Cref{eqnLLPO}$ holds for $\alpha$ as required. 
+\end{proof}

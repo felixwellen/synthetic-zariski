@@ -1,0 +1,119 @@
+\begin{lemma}\label{N-co-fin-cp}
+  The Boolean algebra of co-finite subsets of $\N$, 
+  is equivalent to $B_\infty$. 
+\end{lemma}
+\begin{proof}
+%  We let $f:\langle G \rangle / R \to \N_{(co)fin}$, be the unique morphism of Boolean algebras 
+%  satisfying $f(p_n) = \{n\}$ for all $n:\N$. As $\{n\} \cap \{m\} = \emptyset$ whenever $n\neq m$, 
+%  \Cref{rmkMorphismsOutOfQuotient} indeed tells us this is sufficient to define $f$. 
+%
+%  Now we define $g:\N_{(co)fin} \to \langle G \rangle / R$. 
+%  On a finite subset $I$, we define $g(I) = \bigvee_{i\in I} p_i$, 
+%  and on a cofinite subset $J$, we define $g(J) = \bigwedge _{i \in J^C} \neg p_i$. 
+%  Note that in these cases we indeed have $I,J^C$ are finite, so these are well-defined elements. 
+%
+%  We need to show that $g$ is a Boolean morphism. 
+
+  Define $f:B_\infty \to \N_{(co)fin}$ be induced by sending $p_n$ to $\{n\}$. 
+  Note that whenever $n\neq m$, we have 
+  $f(p_n)\wedge f(p_m) = \{n\} \cap \{m\} = \emptyset$, 
+  thus $f$ respects the relations of $B_\infty$ and is well-defined.
+
+  Define $g:N_{(co)fin)} \to B_\infty$ as follows:
+  \begin{itemize}
+    \item On a finite subset $I$, we define $g(I) = \bigvee_{i\in I} p_i$, 
+    \item and on a cofinite subset $J$, we define $g(J) = \bigwedge _{i \in J^C} \neg p_i$. 
+  \end{itemize}
+  Note that in these cases we indeed have $I,J^C$ are finite, so these are well-defined elements. 
+  We must show that $g$ is a Boolean morphism. 
+
+  \begin{itemize}
+    \item 
+      By deMorgan's laws, $g$ preserves $\neg$:
+      for $I$ finite we have
+      \begin{equation}
+      \neg g(I) = \neg (\bigvee_{i\in I} p_i) = \bigwedge_{i\in I} \neg p_i = g(I^C)
+      \end{equation}
+      And for $J$ cofinite, we apply similar reasoning. 
+    \item To see that $g$ preserves $\vee$, we need to check three cases
+      \begin{itemize}
+        \item If both $I,J$ are finite, then 
+        \begin{equation} 
+          g(I \cup J) = \bigvee_{i\in I \cup J} p_i= \bigvee_{i\in I} p_i \vee \bigvee_{j\in J} p_j 
+          = g(I) \vee g(J)
+        \end{equation}
+        and we're done. 
+      \item If both $I,J$ are cofinite, we have
+        \begin{equation}
+          g(I) \vee g(J) = 
+          \bigwedge_{i \in I^C} \neg p_i \vee 
+          \bigwedge_{j \in J^C} \neg p_j 
+          = 
+          \bigwedge_{i\in I^C} 
+          \bigwedge_{j \in J^C}(\neg p_i \vee  \neg p_j) 
+        \end{equation}
+        Now note that in $\langle G \rangle / R$, we have 
+        \begin{equation}
+          \neg p_i \vee \neg p_j = \neg ( p_i \wedge p_j) = 
+          \begin{cases}
+            p_i \text{ if } i = j\\
+            1 \text{ if } i \neq j  
+          \end{cases}
+        \end{equation}
+        Therefore, we can leave out the case that $i\neq j$ in the calculation of the above meet, and
+        \begin{equation}
+          \bigwedge_{i\in I^C} 
+          \bigwedge_{j \in J^C}(\neg p_i \vee  \neg p_j)  
+          = 
+          \bigwedge_{i \in (I^C \cap J^C)} \neg p_i
+          = 
+          \bigwedge_{i \in (I \cup J)^C} \neg p_i 
+        \end{equation}
+        as $I\cup J$ must also be cofinite, this equals 
+          $ g( I \cup J)$. 
+        \item 
+          If $I$ is finite and $J$ cofinite, we have 
+          that $I\cup J$ is cofinite, hence 
+          \begin{equation}
+            g(I\cup J) = \bigwedge_{k\in (I \cup J)^C} \neg p_k
+            = \bigwedge_{k \in (J^C -I)} \neg p_k
+          \end{equation}
+          Now note that 
+          whenever $i\neq k$, we have 
+          \begin{equation}
+            p_i = (p_i \wedge \neg p_k) \vee (p_i \wedge p_k) = 
+            (p_i \wedge \neg p_k) \vee 0 = p_i \wedge \neg p_k
+          \end{equation}
+          Hence by absorption
+          \begin{equation} 
+            (p_i \vee \neg p_k)  =
+              \begin{cases}
+                1 \text{ if } i = k \\
+                \neg p_k \text{ if } i \neq k
+              \end{cases}
+          \end{equation}
+          As for all $k\in J^C-I$ and all $i\in I$ we have $k\neq i$, we may thus write
+          \begin{equation}
+            \bigwedge_{k \in (J^C - I)} \neg p_k = 
+            \bigwedge_{k \in (J^C - I)} (\neg p_k \vee (\bigvee_{i\in I} p_i))
+          \end{equation}
+          But now we can use that adding $1$ in a meet does not change the meet, and see that 
+          \begin{equation}
+            \bigwedge_{k \in (J^C - I)} (\neg p_k \vee (\bigvee_{i\in I} p_i))
+            = 
+            \bigwedge_{j \in J^C} (\neg p_j \vee (\bigvee_{i\in I} p_i))
+          \end{equation}
+          And using distributivity rules, we can see that 
+          \begin{equation}
+            \bigwedge_{j \in J^C} (\neg p_j \vee (\bigvee_{i\in I} p_i))
+            = 
+            (\bigwedge_{j \in J^C} \neg p_k) \vee (\bigvee_{i\in I} p_i)
+          \end{equation}
+          From which we may conclude that $g(I\cup J) = g(I) \cup g(J)$. 
+      \end{itemize}
+    \item The case for $\wedge$ is completely dual to the case for $\vee$. 
+  \end{itemize}
+We conclude that $g$ is a Boolean morphism. 
+Furthermore, it is easy to see that $g$ and $f$ are each other's inverse, 
+thus the Boolean algebras are isomorphic. 
+\end{proof}
