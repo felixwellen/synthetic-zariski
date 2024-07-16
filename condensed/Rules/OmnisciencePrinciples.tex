@@ -23,7 +23,7 @@ and one (WLPO) fails in our system.
 \end{proof}
 
 The following result is due to David W\"arn:
-\begin{theorem}[Markov's principle (MP)]
+\begin{theorem}[Markov's principle (MP)]\label{MarkovPrincipleThm}
   For $\alpha:\Noo$, we have that 
   \begin{equation}
     (\neg (\forall_{n:\mathbb N} \alpha (n)= 0)) \to \Sigma_{n:\mathbb N} \alpha (n)= 1
@@ -55,7 +55,7 @@ The following result is due to David W\"arn:
   $n$ is minimal with $\alpha(n) = 1$. Then apply the above theorem.
 \end{proof}
 
-\begin{theorem}[The lesser limited principle of omniscience (LLPO)]
+\begin{theorem}[The lesser limited principle of omniscience (LLPO)]\label{LLPOThm}
   For $\alpha:\N_\infty$, 
   we have that 
   \begin{equation}\label{eqnLLPO}
@@ -99,7 +99,8 @@ The following result is due to David W\"arn:
       $\bigwedge_{j\in J \cap E } \neg p_j =0$ and
       $\bigwedge_{j\in J \cap O } \neg p_j  = 0$.
       However, any finite meet of negations will correspond to a cofinite set,
-      in particular not to the empty set, giving a contradiction. 
+      in particular it will not correspond to the empty set, and thus not be $0$.
+      Thus $f(x)\neq 0$, contradicting the assumption that $f(x) = 0$, hence $x=0$ ex falso. 
   \end{itemize}
   In both cases, we conclude $x=0$, thus $f$ is injective. 
   By \Cref{FormalSurjectionsAreSurjections}, $f$ corresponds to a surjection 
@@ -111,4 +112,77 @@ The following result is due to David W\"arn:
   $$\alpha (p_{2k+1}) = s(x) (p_{2k+1}) = x(f(p_{2k+1})) = inl(\beta) (0,p_k)  = \beta(0) = 0.$$
   Similarly, if $x = inr(\beta)$, we have $\alpha(p_{2k}) = 0$ for all $k:\N$. 
   Thus $\Cref{eqnLLPO}$ holds for $\alpha$ as required. 
+\end{proof}
+
+The use of \Cref{FormalSurjectionsAreSurjections}, and hence of propositional completeness, 
+was not trivial in the above proof, as the following lemma shows:
+\begin{lemma}
+  The above function $f$ does not have a retraction. 
+\end{lemma}
+\begin{proof}
+  Suppose $r:B_\infty \times B_\infty \to B_\infty$ is a retraction of $f$. 
+  Note that $r(0,1):B_\infty$ is expressable using only finitely many generators $(p_n)_{n\leq N}$
+  Note that $r(0,1) \geq r(0,p_k) = p_{2k+1}$ for all $k:\N$. 
+  As a consequence, $r(0,1)$ cannot be of the form $\bigvee_{i\in I_0} p_i$, and by \Cref{BinftyTermsWriting}, 
+  $r(0,1)$ corresponds to a cofinite subset of $\N$. % = \bigwedge_{i:I_0} \neg p_i$, where $i\leq N$ for $i\in I_0$. 
+  By similar reasoning so does $r(1,0)$.% corresponds to a cofinite subset of $\N$. 
+  But the intersection of cofinite subsets is cofinite, while 
+  $$r(0,1) \wedge r(1,0) = r( (1,0) \wedge (0,1)) = r(0,0) = 0$$
+  which gives a contradiction. Thus no retraction exists. 
+\end{proof}
+
+We finish with an euivalent formulation of LLPO:
+\begin{lemma}\label{corAlternativeLLPO}
+  Let $(\phi_n)_{n:\N}, (\psi_m)_{m:\N}$ be families of decidable propositions indexed over $\N$.
+  We then have 
+  \begin{equation}
+    (\forall_{n:\N} \forall_{m:\N} (\phi_n \vee \psi_m) )
+    \leftrightarrow
+    ((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )
+  \end{equation}
+\end{lemma}
+Note that the above statement implies LLPO as 
+$\alpha(2n) =0 \vee \alpha(2m+1) =0$ for all $n,m:\mathbb N$ if $\alpha:\Noo$. 
+\begin{proof}
+  Note that the implication from right to left in the above equation always holds.
+%  \rednote{While \cite{ReverseMathsBishop} does mention LLPO, it doesn't mention this specific equivalence, 
+%  and there should be a reference for this result}
+  Assume $\forall_{n:\mathbb N} \forall_{m:\mathbb N} (\phi_n \vee \psi_m)$. 
+  Consider the sequence $\alpha:2^\mathbb N$ where $\alpha(2n) = 0$ iff $\phi_n$ and 
+  $\alpha(2m+1) = 0$ iff $\psi_m$. 
+  Let $\\beta:\Noo$ be such that $\beta(i) = 1$ iff $i$ is minimal with $\alpha(i) = 1$
+%
+%  Assume that for every $n,m:\N$ we have $\phi_n \vee \psi_m$. 
+%  We will define a binary sequence $\beta$ and show that $\beta(n)$ is $1$ at most once. 
+%  First we define a binary sequence $\alpha$
+%  such that $\alpha(2n) = 0$ iff $\phi_n$ holds and $\alpha(2m+1) = 0$ iff $\psi_m$ holds. 
+%  We let $\beta(k) = 1$ iff $k$ is minimal with $\alpha(k) = 1$. 
+%  By this minimality, we clearly have that $\beta$ is $1$ at most once and thus defines a term of $\Noo$. 
+  By LLPO, we have that 
+  $\forall_{k:\N} \beta(2k+1) = 0\vee \forall_{k:\N} \beta(2k+1) = 0$. 
+%  As we're proving a proposition, we can unpack this truncation, and make a case distinction on
+%  $\forall_{k:\N} \beta(2k+1) = 0 + \forall_{k:\N} \beta(2k+1) = 0$. 
+  WLOG assume that 
+  $\forall_{k:\N} \beta(2k+1) = 0$. We will show $\forall_{m:\mathbb N} \psi_m$. 
+  Let $m:\N$
+%  Let now $m:\N$. We claim that $\psi_m$ will hold. 
+  Suppose $\neg \psi_m$, then $\alpha(2m+1) = 1$. 
+  As $\beta(2m+1) = 0$, there is some $l<2m+1$ with $\alpha(l) = 1$. 
+%  $k = 2m+1$ is not minimal such that $\alpha(k)  = 1$.
+%  There is thus some  some $l\leq 2k+1$ with $\alpha(l) = 1$. 
+  As $\beta(2k+1) = 0$ for all $k$, we have that $l$ must be even. 
+  So $\alpha(2n) = 1$ for $n = \frac{l}2$, meaning that $\neg \phi_n$. 
+  But now $\neg \phi_n \wedge \neg \psi_m$, which contradicts 
+  $(\forall_{n:\N} \forall_{m:\N} (\phi_n \vee \psi_m) )$. 
+  We get a contradiction, and as $\psi_m$ is decidable, we conclude $\psi_m$. 
+  Thus for all $m:\N$, we have $\psi_m$. Thus 
+  $((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )$ 
+  as required. 
+%
+  We conclude that 
+  \begin{equation}
+    (\forall_{n:\N} \forall_{m:\N} (\phi_n \vee \psi_m) )
+    \to
+    ((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )
+  \end{equation}
 \end{proof}
