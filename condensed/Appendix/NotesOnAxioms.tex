@@ -1,0 +1,106 @@
+In \Cref{Axioms}, we have chosen to present propositional completeness as an axiom. 
+However, assuming Stone duality, we could have made some other choices, 
+and left propositional completeness as a theorem. 
+What's more, assuming the axiom of Dependent choice,
+the axiom is equivalent to LLPO. 
+In this section, we will show these equivalences. 
+\rednote{At time of writing, not all the references were cleaned up, and some might change or split, 
+so I need to come back here later after all.}
+
+\begin{theorem}\label{AlternativesToAxiom2}
+  Assuming Stone duality, the following are equivalent:
+  \begin{enumerate}[(i)]
+    \item For $S$ Stone, we have $\neg \neg S \to ||S||$. 
+    \item For $S$ Stone, we have that $||S||$ is closed. 
+    \item A map $f:A \to B$ in $\Boole$ is injective iff the map $(\cdot) \circ f : Sp(B) \to Sp(A)$ is surjective. 
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  We assume that $S= Sp(B)$. 
+  Note the proof of \Cref{SpectrumEmptyIff01Equal} only uses Stone duality. 
+  The proof of \Cref{EqualityIsOpen} only relies on the definition of $\Boole$.
+  Hence $\neg S$ is equivalent to $0=_B 1$, which is open. 
+  Hence $\neg \neg S$ is a closed proposition. It is also equivalent to $\neg \neg ||S||$. 
+  Therefore $(i) \to (ii)$. 
+  Furthermore, \Cref{rmkOpenClosedNegation}
+  only used \Cref{MarkovPrinciple}, 
+  which followed from Stone duality as well. 
+  Hence if $||S||$ is closed, we have $\neg \neg ||S|| \leftrightarrow ||S||$, thus $(ii) \to (i)$. 
+  $(i)\to (iii)$ is \Cref{FormalSurjectionsAreSurjections}. 
+  By the above discussion, we also have that $\neg \neg S$ iff $0\neq_B 1$. 
+  Note that $0\neq_B 1$ iff the map $2\to B$ is injective. 
+  Furthermore, $||S||$ iff the map $S \to \top $ is surjective. 
+  Hence $(iii) \to (i)$. 
+\end{proof} 
+
+\begin{lemma}\label{LLPOAndDCToCompleteness}
+Assuming dependent choice, Stone duality, and that closed propositions are closed under disjunctions, 
+we can show propositional completeness. 
+\end{lemma}
+\begin{proof}
+  Let $B:\Boole$ satisfy $0\neq_B 1$. We will show there merely exists a map $B\to 2$. 
+  Let $G$ be the set of generators of $B$. 
+  We will use dependent choice on the the following $E_n,R_n$:
+  \begin{itemize}
+    \item 
+  Let $E_n$ be the type consisting of 
+  \begin{itemize}
+    \item A map from the first $n$ generators of $B$ to $2$, denoted $x_n:G_n \to 2$. 
+    \item A proposition denoting that $0\neq_{B_n} 1$ for $B_n$ given by:
+      \begin{equation}
+        B_n := B/\big( \{g|g\in G_n, x_n(g) = 0\} \cup \{ \neg g| g\in G_n, x_n(g) = 1\}\big).
+      \end{equation}
+  \end{itemize}
+  \item 
+    And let $R_n:E_n \to E_{n+1} \to \mathcal U$ denote the relation that $x_{n+1}$ extends $x_n$. 
+  \end{itemize} 
+  Note that $E_0$ is inhabited as $0\neq_B 1$. Assume $E_n$.
+%  Now assume $x_n:G_n\to 2$ witnesses $E_n$. 
+  As $0\neq_{B_n}1$, for all $g:B_n$, we can show 
+%  we have $$\neg ((g =1)  \wedge ((\neg g) = 1)).$$
+% % 
+%%  Now suppose that $E_n$ is inhabited,  and let $x_n:G_n \to 2$. 
+%%  Note that in $B_n$, we have $0\neq 1$ and thus $$\neg ((g =1)  \wedge ((\neg g) = 1))$$
+%%  for all $g:B_n$.
+%  Therefore, we have 
+  $$\neg \neg (( g\neq 1) \vee ((\neg g) \neq 1)).$$
+  By \Cref{EqualityIsOpen}, and \Cref{rmkOpenClosedNegation}, 
+  (which could be shown using Stone Duality)
+  and the assumption that 
+  closed statements are closed under disjunction, we have that the above statement is equivalent to 
+  $(g \neq 1) \vee ((\neg g) \neq 1)$. 
+  This holds in particular for $g$ the $n+1$'th generator of $B$. 
+  Therefore, we have that $0\neq 1$ in $B_n/\{g\}$ or in $B_n/\{\neg g\}$. 
+  Thus we can extend $x_n$ by letting $x_{n+1}(g) = 0$ or $x_{n+1}(g) = 1$ respectively. 
+  
+  By dependent choice, we get a map $x:G\to 2$. 
+  We claim that for this map $x$, we have $0\neq 1$ in 
+  \begin{equation}
+    B' := B/\big( \{g|g\in G, x(g) = 0\} \cup \{ \neg g| g\in G, x(g) = 1\}\big).
+  \end{equation}
+  Note that $B'$ is the colimit of the sequence $B_n$ with projection maps $B_n \to B_{n+1}$. 
+  Thus if $0=1$ in $B'$, $0=1$ in some $B_n$, which doesn't happen by assumption. 
+  Therefore we have $0\neq 1$ in $B'$. 
+  Furthermore, note that $B'$ is equivalent to a Boolean algebra with no generators, 
+  as any generator in $B$ is sent to either $0$ or $1$ by the relations in $B'$. 
+%
+  But now any Boolean algebra with no generators and $0\neq 1$ is isomorphic to $2$. 
+  Therefore $B'\simeq 2$, and the projection map $B\to B'$ gives a map $B \to 2$. 
+  
+\end{proof}
+
+\begin{corollary}
+Assuming dependent choice and Stone duality, TFAE:
+\begin{enumerate}[(i)]
+  \item For $S$ Stone, we have $\neg \neg S \to ||S||$. 
+  \item LLPO.
+  \item The disjunction of two closed propositions is closed. 
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+  $(i) \to (ii)$ is \Cref{LLPO}, $(ii) \to (iii)$ is \Cref{ClosedDisjunction}, 
+  and $(iii) \to (i)$ is the \Cref{LLPOAndDCToCompleteness}
+\end{proof}
+\rednote{
+  @Hugo, you mentioned that axiom 2 was independent from the other axioms. 
+This might be a good place to reference to that proof}

@@ -1,0 +1,101 @@
+In this section, we will define the types of open and closed propositions. 
+These will allow us to define a (synthetic) topology  \cite{SyntheticTopologyLesnik} on any type.
+We will later study this topology on Stone types in particular, 
+but in this section we will study the type theoretic logic of these propositions.
+It is not uncommon \cite{TODO} to define open and closed as countable dis/conjunctions of decidable propositions. 
+As we have $2^\N$, this definition can be made internally. 
+\begin{definition}
+  We define the types $\Open, \Closed$ of open and closed propositions as follows:
+  \begin{itemize}
+    \item 
+    A proposition $P$ is open iff there merely exists some $\alpha:2^\N$ such that 
+      $P \leftrightarrow \exists_{n:\mathbb N} \alpha(n) = 0$. 
+    \item 
+    A proposition $P$ is closed iff there merely exists some $\alpha:2^\N$ such that 
+      $P \leftrightarrow \forall_{n:\mathbb N} \alpha(n) = 0$. 
+  \end{itemize}
+\end{definition}
+
+\begin{remark}\label{rmkOpenClosedNegation}
+  The negation of an open proposition is a closed proposition, 
+  and by Markov's principle, vice versa. 
+%  By Markov's Principle, the negation of a closed proposition is an open proposition.
+  Also, by Markov we have $\neg \neg P \to P$ whenever $P$ is open or closed. 
+\end{remark}
+\begin{lemma}\label{ClosedOpenCountableConDisjunction}
+  Closed/Open propositions are closed under countable con-/disjunctions respectively.  
+\end{lemma}
+\begin{proof}
+  Let $(P_n)_{n:\N}$ be a countable family of closed propositions. 
+  By countable choice, for each 
+  $n:\N$ we have an $\alpha_n:2^\N $ 
+  such that $P_n \leftrightarrow \forall_{m:\N} \alpha_n(m)  =0$. 
+  Consider a surjection $s:\N \to \N \times \N$.
+  Let 
+  $$\beta(k) = \alpha_{\pi_0(s(k))}(\pi_1 (s(k))).$$
+  Note that $\forall_{k:\N} \beta(k) = 0$ iff 
+  $\forall_{m,n:\N}\alpha_m(n) = 0$, which happens iff $\forall_{n:\N} P_n$. 
+  Hence the countable conjunction of closed propositions is closed. 
+  By a replacing the universal with existential quantifiers, 
+  one can show that the countable disjunction of open propositions is open. 
+\end{proof} 
+\begin{corollary}
+  If a proposition is both open and closed, it is decidable. 
+\end{corollary}
+\begin{proof}
+  If $P$ is open and closed, $P\vee \neg P$ is open, hence
+  equivalent to $\neg \neg (P \vee \neg P)$, which is provable. 
+\end{proof}
+
+\begin{lemma}\label{ClosedDisjunction} 
+  Closed/Open propositions are closed under finite dis-/conjunctions respectively. 
+\end{lemma}
+\begin{proof}
+  We shall show that 
+  $(\forall_{n:\N} \alpha(n) = 0 )\vee (\forall_{n:\N} \beta(n) = 0 )$ is closed for any $\alpha,\beta:2^\N$.
+  By \Cref{corAlternativeLLPO}, the statement is equivalent to 
+  $ \forall_{n:\N}  \forall_{m:\N}  (\alpha(n) = 0 \vee \beta(m) = 0)$, 
+  which is a countable conjunction of decidable propositions, 
+  hence closed by \Cref{ClosedOpenCountableConDisjunction}.
+\end{proof}
+\begin{lemma}\label{OpenConjunction}
+  Open propositions are closed under finite conjunctions. 
+\end{lemma}
+\begin{proof}
+  We need to show that for any $\alpha,\beta:2^\N$, the following proposition is open:
+  \begin{equation}\label{eqnConjunctionOpen}
+    (\exists_{n:\N} \alpha(n) = 0 )\vee (\exists_{n:\N} \beta(n) = 0 )
+  \end{equation}
+  Consider $\gamma:2^\N$ given by 
+  $\gamma(l) = 1$ iff there exist some $k,k'\leq l$ with 
+  $\alpha(k) = \beta(k') = 0$. 
+  As we only need to check finitely many combinations 
+  of $k,k'$, this is a decidable property for each $l:\N$ and $\gamma$ is well-defined. 
+  Clearly, $\gamma$ witnessed that the proposition in \Cref{eqnConjunctionOpen} is open.
+\end{proof}
+
+\begin{lemma}
+  Closed propositions are closed under $\Pi$-types. 
+\end{lemma}
+\rednote{TODO}
+
+\begin{lemma}[$\Open$ forms a dominance]
+  Open propositions are closed under $\Sigma$-types. 
+\end{lemma}
+\begin{proof}
+  First note that for $D$ a decidable proposition, and $X:D \to \Open$,
+  by case splitting on $D$, we can see 
+  $\Sigma_{d:D} X(d)$ is open.
+%
+  Then note that for $P$ an open proposition, 
+  there exists a sequence $A_n$ of decidable propositions $A_n$ with 
+  $P = \Sigma_{n:\N} A_n $.
+%
+  So for $Y : P \to Open $, the $\Sigma_P Y$ is given by 
+  $\Sigma_{n:\N} (\Sigma_{a:A_n} Y(n,a))$. 
+  which is a countable sum of open propositions. 
+  As $\Sigma_P Y$ is a proposition, it is 
+  a countable disjunction of open propositions, 
+  hence open by \Cref{ClosedOpenCountableConDisjunction}.
+\end{proof}
+
