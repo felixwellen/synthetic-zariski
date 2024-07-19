@@ -1,28 +1,40 @@
-\subsection{Synthetic topology}
-\rednote{TODO}
+\subsection{Types as spaces}
+The subobject $\Open$ of the type of propositions induces a topology on every type. 
+This is the viewpoint taken in synthetic topology \cite{SyntheticTopologyLesnik}. 
+%Defining a topology in this way has some benefits, which we summarize in this section. 
+
+\begin{definition}
+  Let $T$ be a type, and let $A\subseteq T$ be a subtype. 
+  We call $A\subseteq T$ open or closed iff $A(t)$ is open or closed respectively for all $t:T$.
+\end{definition}
+
+\begin{remark}
+  It follows immediately that any the pre-image of any map of types sends 
+  open subtypes to open subtypes, hence is continuous. 
+  This is only relevant for a space if the topology we defined above matches the topology one would expect. 
+  In \Cref{StoneClosedSubsets}, we shall see that it resembles the standard topology of Stone spaces.
+  In \Cref{IntervalClosedSubsets}, we shall see that it is the standard topology for the unit interval. 
+\end{remark}
 
 \begin{lemma}[transitivity of openness]
-  If $T$ is a type, $V\subseteq T$ is open and 
-  $W\subseteq V$ is open, then the composite $W\subseteq V\subseteq T$ is also open.
+  Let $T$ be a type, let $V\subseteq T$ open and let $W\subseteq V$ open. 
+  Then the composite $W\subseteq V\subseteq T$ is open as well. 
 \end{lemma}
 \begin{proof}
-  According to \cite{SyntheticTopologyLesnik, p41}, 
-  it is sufficient to check the condition for $T$ the type of propositions $\top$.
-  An open subset of the type of propositions is classified by a map $\top \to \Open$, 
-  and thus corresponds to an open proposition $P$. 
-  An open subobject of $P$ is classified by a map $X:P\to \Open$, 
-  and the proposition this classifies is given by $\Sigma_{p:P}X(p)$, 
-  which is open by \Cref{OpenDependentSums}.
+  Denote $W'\subseteq T$ for the composite. 
+  Note that $W'(t) = \Sigma_{v:V(t)} W(v)$. 
+  As open propositions are closed under dependent sums (\Cref{OpenDependentSums}), 
+  $W'(t)$ is an open proposition, as required. 
 \end{proof}
 
 \begin{remark}
   As the true proposition is open and openness is transitive, 
-  $\Open$ can be called a dominance, see Proposition 2.25 of \cite{SyntheticTopologyLesnik}
+  $\Open$ can be called a dominance according to Proposition 2.25 of \cite{SyntheticTopologyLesnik}
 \end{remark}
 
-\begin{remark}
-  Phao's principle is a special case of directed univalence. 
-\end{remark}
-\begin{proof}
-  \rednote{TODO}
-\end{proof}
+%\begin{remark}
+%  Phao's principle is a special case of directed univalence. 
+%\end{remark}
+%\begin{proof}
+%  \rednote{TODO}
+%\end{proof}

@@ -6,19 +6,24 @@
   Let $G,R$ be the generators and relations of $B$. 
   Let $a,b$ be represented by $x,y$ in the free Boolean algebra on $G$. 
   Now let $R_n$ denote the first $n$ elements of $R$. 
-  Note that $a=b$ iff there exists some $n:\N$ with 
-  $x-y \leq \bigvee_{r\in R_n} r$. 
+  Note that $a=b$ iff there exists some $n:\N$ with $x-y \leq \bigvee_{r\in R_n} r$. 
   Furthermore, inequality is decidable in the free Boolean algebra, hence
   $a=b$ is a countable disjunction of decidable propositions, hence open. 
 \end{proof}
-
-
-\begin{corollary}\label{StoneEqualityClosed}
-  Whenever $S:\Stone$, and $s,t:S$, the proposition $s=t$ is closed. 
+\begin{corollary}\label{TruncationStoneClosed}
+  Whenever $S:\Stone$, $||S||$ is closed. 
 \end{corollary}
 \begin{proof}
-  Suppose $S= Sp(B)$ and let $G,R$ be the generators and relations of $B$. 
-  Note that $x=y$ iff $x(g) =_2 y(g)$ for all $g:G$. 
+  By \Cref{SpectrumEmptyIff01Equal}, $\neg S$ is equivalent to $0=_B 1$, which is open by the above. 
+  Hence $\neg \neg S$ is a closed proposition, and by propositional completeness, so is $||S||$. 
+\end{proof}
+
+\begin{lemma}\label{StoneEqualityClosed}
+  Whenever $S:\Stone$, and $s,t:S$, the proposition $s=t$ is closed. 
+\end{lemma}
+\begin{proof}
+  Suppose $S= Sp(B)$ and let $G$ be the generators of $B$. 
+  Note that $s=t$ iff $s(g) =_2 t(g)$ for all $g:G$. 
   As $G$ is countable, and equality in $2$ is decidable, 
   $x=y$ is a countable conjunction of decidable propositions, hence closed. 
 \end{proof}

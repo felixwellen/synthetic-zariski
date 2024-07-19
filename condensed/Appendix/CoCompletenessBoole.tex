@@ -30,6 +30,49 @@
   and therefore equal $e$. Thus $e$ is the unique extension $P\to X$. 
   Thus $P$ the above square is indeed a pushout. 
 \end{proof}
+
+For some proofs in this paper, 
+\rednote{(right now the counter's at two)}
+we'd like a very concrete description of the fiber of a map of Stone spaces. 
+The following construction turns out to be particularly useful. 
+\begin{lemma}\label{FiberConstruction}
+  Let $A,B:\Boole$, let $G$ be an explicit countable set of generators for $A$, and let 
+  and maps $f:A \to B, x:A\to 2$. 
+  Then we can construct a countable set $R\subseteq B$ such that 
+  the pushout of $f$ and $x$ is given by $B/R$. 
+\end{lemma}  
+\begin{proof}
+We consider the following pullback in the category of Stone spaces:
+  \begin{equation}\begin{tikzcd}
+    \sum\limits_{y:Sp(B)} y\circ f = x \arrow[d] \arrow[r] \arrow["\lrcorner"{pos=0.125}, phantom, dr] 
+    & \top \arrow[d,"x"]\\
+    Sp(B) \arrow[r,"(\cdot) \circ f"] & Sp(A)
+  \end{tikzcd}  \end{equation}
+Dual to this square, we have the following pushout in the category of Boolean algebras,
+where $Sp(P) \simeq  (\sum\limits_{y:Sp(B)} y \circ f = x)$:
+  \begin{equation}\begin{tikzcd}
+    A \arrow[d,"x"'] \arrow[r,hook,"f"] \arrow[rd,phantom,"\ulcorner"{pos=0.125}] & B\arrow[d]\\
+    2 \arrow[r] & P
+  \end{tikzcd}\end{equation} 
+  Following \Cref{BoolePushouts}, 
+  the pushout $P$ is given by $B/R$ with $R$ the relations $f(a) -x(a)$ 
+  where $a$ ranges over the generators of $A$.
+  Note that $x(a) \in \{0,1\}$. 
+  If $x(a)=0$, then $f(a)-x(a) = f(a)$, 
+  and if $x(a) = 1$, then $f(a) -x(a) = \neg f(a) = f(\neg a)$. 
+  So we can define the subset $G'\subseteq A$ given by 
+  \begin{equation}
+    G' = \{a | a\in G_A, x(a) = 0\} \cup \{\neg a | a \in G_A, x(a) = 1\}
+  \end{equation} 
+  $G'$ is in bijection with $G$, hence countable. 
+  Furthermore, $x(g) = 0$ for all $g\in G_A'$. 
+  And $R = f(G')$.
+\end{proof}
+
+
+
+
+
 %\begin{lemma}\label{BooleCoEqualizers}
 %  Countably presented Boolean algebras are closed under coequalizers.
 %\end{lemma}
@@ -53,3 +96,4 @@
 %%%  By \Cref{BooleCoEqualizers}, 
 %%  it follows that $\Boole$ contains all finite colimits. 
 %%\end{proof}
+

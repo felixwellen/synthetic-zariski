@@ -54,39 +54,19 @@ This theorem is actually equivalent to completeness of propositional logic, whic
 
 \begin{proof}
   Assume $f$ injective and let $x:Sp(A)$.
-  By \Cref{StoneClosedUnderPullback}, we have the following pullback square in the category of Stone spaces:
-%  In particular, $\sum\limits_{y:Sp(B)} y\circ f = x$ is Stone:
-  \begin{equation}\begin{tikzcd}
-    \sum\limits_{y:Sp(B)} y\circ f = x \arrow[d] \arrow[r] \arrow["\lrcorner"{pos=0.125}, phantom, dr] 
-    & \top \arrow[d,"x"]\\
-    Sp(B) \arrow[r,"(\cdot) \circ f"] & Sp(A)
-  \end{tikzcd}  \end{equation}
-  By propositional completeness and \Cref{SpectrumEmptyIff01Equal},
-  to show that a Stone space is merely inhabited, it is sufficient to show that $0\neq 1$ in the underlying Boolean algebra. 
-  Consider therefore the dual to the above square in the category of countably presented Boolean algebras,
-  where $Sp(P) \simeq  (\sum\limits_{y:Sp(B)} y \circ f = x)$:
-  \begin{equation}\begin{tikzcd}
-    A \arrow[d,"x"'] \arrow[r,hook,"f"] \arrow[rd,phantom,"\ulcorner"{pos=0.125}] & B\arrow[d]\\
-    2 \arrow[r] & P
-  \end{tikzcd}\end{equation} 
-  Following \Cref{BoolePushouts}, the pushout $P$ is given by $B/R$ with $R$ the relations $f(a) -x(a)$ 
-  where $a$ ranges over the generators of $A$.
-  Note that $x(a) \in \{0,1\}$. 
-  If $x(a)=0$, then $f(a)-x(a) = f(a)$, 
-  and if $x(a) = 1$, then $f(a) -x(a) = \neg f(a) = f(\neg a)$. 
-  So $R$ contains elements of the form $f(b)$ where $b$ ranges over some countable $B\subseteq A$, 
-  such that $x(b) = 0$ for $b\in B$. 
-  
-  We shall show that $0\neq_P 1$. 
-  Note that $0=_P 1$ iff 
-  $1 = \bigvee_{r \in R_0} r$ for some $R_0\subseteq R$ finite. 
-  By the above, this means that 
-  $$1= \bigvee_{b\in B_0} f(b) = f(\bigvee_{b\in B_0} b)$$ 
-  for some $B_0\subseteq B$ finite. 
-  As $f$ is injective, we must have $\bigvee_{b\in B_0} b  = 1$. 
+  By \Cref{FiberConstruction}, we have that $\sum\limits_{y:Sp(B)} y\circ f = Sp(B/R) $
+  for $R=f(G)$ for some countable $G\subseteq A$ with $x(g) = 0$ for all $g\in G$. 
+  By propositional completeness and \Cref{SpectrumEmptyIff01Equal}, 
+  it's sufficient to show that $0\neq_{B/R}1$. 
+  Note that $0=_{B/R} 1$ iff 
+  $1 = \bigvee R_0$ for some $R_0\subseteq R$ finite. 
+  But then $$1 = \bigvee f(G_0) = f(\bigvee  G_0)$$ for some $G_0\subseteq G$ finite. 
+  And as $f$ is injective, $\bigvee G_0 = 1$. 
   However, 
-  $$x(\bigvee_{b\in B_0} B ) = \bigvee_{b \in B_0} x(b) = \bigvee_{b\in B_0} 0 = 0$$
-  And as $x(1) = 1 \neq_2 0$, we get a contradiction. Therefore $0\neq_P 1$ as required. 
+  $$
+  x(\bigvee G_0) = 
+  x(\bigvee_{g\in G_0} g ) = \bigvee_{g \in G_0} x(g) = \bigvee_{g\in G_0} 0 = 0$$
+  And as $x(1) = 1 \neq_2 0$, we get a contradiction. Therefore $0\neq_{B/R} 1$ as required. 
 \end{proof}  
 The converse to the above theorem is true as well, regardless of propositional completeness:
 \begin{lemma}
