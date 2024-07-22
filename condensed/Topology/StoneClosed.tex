@@ -1,9 +1,9 @@
-\subsection{The topology on a Stone space}
-\begin{theorem}\label{StrongVersionOfEquivalencesOfClosedSubsetsOfStone}
+\subsection{The topology on Stone spaces}
+\begin{theorem}\label{StoneClosedSubsets}
   Let $A\subseteq S$ be a subset of a Stone space. TFAE:
   \begin{enumerate}[(i)]
     \item There exists a map $\alpha_{(\cdot)}:S \to 2^\N$ such that 
-      $A s \leftrightarrow \forall_{n:\N} \alpha_s(n) = 0$.
+      $A (x) \leftrightarrow \forall_{n:\N} \alpha_x(n) = 0$ for any $x:S$. 
     \item There exists some countable family 
       $D_n,~{n:\N}$ 
       of decidable subsets of $S$ with $A = \bigcap_{n:\N} D_n$. 
@@ -17,29 +17,67 @@
   \item[$(i)\leftrightarrow (ii)$.] 
     $D_n$ and $\alpha_{(\cdot)}$ can be defined from each other by 
 %    Define the decidable subsets of $S$ 
-     by $D_n(s) \leftrightarrow (\alpha_s(n) = 0)$. Then observe that %$A=\bigcap_{n:\N} D_n$ as 
+     $D_n(x) \leftrightarrow (\alpha_x(n) = 0)$. Then observe that %$A=\bigcap_{n:\N} D_n$ as 
      \begin{equation}
-      (\bigcap_{n:\N} D_n) (s) \leftrightarrow 
-      \forall_{n:\mathbb N} (\alpha_s(n) = 0) 
+      (\bigcap_{n:\N} D_n) (x) \leftrightarrow 
+      \forall_{n:\mathbb N} (\alpha_x(n) = 0) 
 %      \leftrightarrow A s. 
      \end{equation}
    \item[$(ii) \to (iii)$.]
       Let $S=Sp(B)$. 
       By Stone duality, we have $d_n,~n:\N$ terms of $B$ such that $D_n = \{x:S| x(d_n) = 1\}$. 
       Let $C = B/\langle (\neg d_n)_{n:\N}\rangle$.
-      By \Cref{FormalSurjectionsAreSurjections}, the quotient map $B \twoheadrightarrow C$
-      corresponds to a injection $\iota:Sp(C) \hookrightarrow  S$. 
-%      For $s:S$, $s$ lies in the image of this map iff $s(\neg d_n) = 0$, 
-      and for any $n:\N$, we have 
-      \begin{equation}
-        x\in \iota(Sp(C)) \leftrightarrow x(\neg d_n) = 0 \leftrightarrow x(d_n) = 1 \leftrightarrow x\in D_n
-      \end{equation}
-      Thus the image of $\iota$ is given by $\bigcap_{n:\N} D_n$. 
-%   \item[$(iii) \to (i)$.]
-%     Let $\iota:T\hookrightarrow S$ be a injective map of Stone spaces with image $A$. 
-%     Then $A(s) \leftrightarrow$
+      Then the map $Sp(C) \to S$ is as desired because
+      $$Sp(C) = \{x:S| \forall_{n:\N} x(\neg d_n) =0\}  = \bigcap_{n:\N} D_n.$$
+%      By \Cref{SurjectionsAreFormalSurjections}, t
+%      The quotient map $B \twoheadrightarrow C$
+%      corresponds to a map $\iota:Sp(C) \hookrightarrow  S$. 
+%      For $s:S$, $s$ lies in the image of this map iff 
+%      for all $n:\N$ we have  $s(\neg d_n) = 0$, 
+%      \begin{equation}
+%        x\in \iota(Sp(C)) \leftrightarrow x(\neg d_n) = 0 \leftrightarrow x(d_n) = 1 \leftrightarrow x\in D_n
+%      \end{equation}
+%      Thus the image of $\iota$ is given by $\bigcap_{n:\N} D_n$. 
+   \item[$(iii) \to (i)$.] 
+     \rednote{TODO 
+       The order of untracating is important in this proof, 
+     and I struggle a bit with stressing this in a way this is clear (and concise). 
+    Check with fresh eyes later. }
+      Let $f:T\to S$ be a map between Stone spaces. 
+      Assume $S = Sp(A), T = Sp (B)$. 
+%      For this proof, we work with explicit presentations for $A,B$. 
 %
-%  \item[$(iii) \leftrightarrow (iv)$.]
+      Let $G$ be a countable set of generators of $A$. 
+      Assume also we have countable sets of generators and relations for $B$. 
+%
+      Following \Cref{FiberConstruction}, using $G$, for each $x:S$, we can construct 
+      a countable set $I_x\subseteq B$ such that $$Sp(B/I_x) = (\Sigma_{y:T} f(y) = x) .$$
+      As we saw in \Cref{BooleEqualityOpen} and \Cref{TruncationStoneClosed}, 
+      this type being inhabited is a countable conjunction 
+      of decidable propositions on the relations for $B/I_x$. 
+      As these relations are explicit, we can construct the sequence $\alpha_x$ as required. 
+
+%
+%      Recall that the propositional truncation of a Stone is closed, as it is the negation of $0=1$ in the underlying 
+%      Boolean algebra, which is open as it f
+%
+%
+%      the core idea of the proof was that the closed proposition corresponds to checking equality in the underlying BA, 
+%      which was closed as 
+%
+%
+%
+%
+%      Note that $x$ in the image of $f$ iff $0\neq_{B/I_x} 1$. 
+%      At this point, we have generators and relations of $B/I_x$ as data.
+%      Hence using the proof of \Cref{BooleEqualityOpen}, we can construct a sequence 
+%      $\alpha_x:2^\N$ such that $0 =_{B/I_x}1\leftrightarrow \exists_{n:\N} \alpha_x(n) = 0$. 
+%      And for $\beta_x(n) = 1-\alpha_x(n)$, we conclude that 
+%      \begin{equation}
+%        x\in f(T) \leftrightarrow \forall_{n:\N} \beta_x(n) = 0
+%      \end{equation}
+%      Note that we did not use any choice axioms in the proof of this implication,
+%      as we untruncated our assumptions before we specified $x$. 
    \item [$(i) \to (iv)$.] By definition.
    \item[$(iv) \to (iii)$.]
      As $A$ is closed, it induces a map $a:S\to \Closed$. 
@@ -54,25 +92,8 @@
          S \arrow[r,"a"] & \Closed
        \end{tikzcd} 
      \end{equation} 
-     Define $B(t) \leftrightarrow \forall_{n:\mathbb N} \beta_t(n) = 0$. 
+     Define $B(x) \leftrightarrow \forall_{n:\mathbb N} \beta_x(n) = 0$. 
      As $(i) \to (iii)$ by the above, $B$ is the image of some Stone space. 
      Furthermore, note that $A$ is the image of $B$, thus $A$ is the image of some Stone space. 
-   \item[$(iii) \to (i)$.] 
-      Let $f:T\to S$ be a map between Stone spaces. 
-      Let $A,B$ be the underlying Boolean algebras of $S,T$ respectively. 
-      Let $G_A,G_B$ and $R_A,R_B$ be the countable sets of generators and relations of $A,B$.
-      It is important to note that we can consider these countable sets before we consider any $s:S$. 
-      \rednote{TODO can someone give feedback on this last sentence, I'm not sure it's clear}
-
-      Following \Cref{FiberConstruction}, for each $s:S$, we can construct 
-      a countable set $I\subseteq B$ such that $Sp(B/I) = \Sigma_{t:T} f(y) = t $.
-      Now note that $s$ in the image of $f$ iff $0\neq_{B/I} 1$. 
-      At this point, we have constructed the the generators and relations of $B/I$, 
-      hence using the proof of \Cref{BooleEqualityOpen}, we can construct a sequence 
-      $\alpha_s:2^\N$ such that $0 =_{B/I}1\leftrightarrow \exists_{n:\N} \alpha_s(n) = 0$. 
-      And for $\beta_s(n) = 1-\alpha_s(n)$, we conclude that 
-      \begin{equation}
-        s\in f(T) \leftrightarrow \forall_{n:\N} \beta_s(n) = 0
-      \end{equation}
 \end{itemize} 
 \end{proof} 

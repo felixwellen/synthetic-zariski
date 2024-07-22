@@ -75,38 +75,45 @@ The following result is due to David W\"arn:
       (0,p_k) \text{ if } n = 2k+1\\
     \end{cases}
   \end{equation}
-  By making a case distinction on $n,m$ being odd or even, 
-  we can see that 
-  $f(p_n) \wedge f(p_m) = (0,0)$ when $n\neq m$, thus $f$ is well-defined. 
-  We also claim it is injective.
-  Now let $x:B_\infty$ with $f(x) = 0$. 
-  We denote $E,O\subseteq \N$ for the even and odd numbers, 
-  and we make a case distincition based on \Cref{BinftyTermsWriting}.
+  To see that $f$ is well-defined, we can make a case distinction on the parity of $m,n$. 
+%  By making a case distinction on $n,m$ being odd or even, 
+%  we can see that 
+%  $f(p_n) \wedge f(p_m) = (0,0)$ when $n\neq m$, thus $f$ is well-defined. 
+  We claim $f$ is injective. Assume $f(x) = 0$, 
+  to see that $x=0$, we make a case distinction on whether $x$ corresponds to a finite or a cofinite set 
+  (\Cref{BinftyTermsWriting}).
+%
+%  We also claim it is injective.
+%  Now let $x:B_\infty$ with $f(x) = 0$. 
+  We denote $E,O\subseteq \N$ for the even and odd numbers respectively. 
+%  and we make a case distincition based on \Cref{BinftyTermsWriting}.
   \begin{itemize}
     \item Suppose 
       $x = \bigvee_{i\in I_0} p_i$. 
       Then 
       $$f(x) = (\bigvee_{i\in I_0 \cap E } p_{\frac i2} , \bigvee_{i\in I_0 \cap O } p_{\frac {i-1}2} ) = (0,0)$$
-      But now as $p_j\neq 0$ for all $j\in\N$, we must have $I_0 \cap E = \emptyset = I_0 \cap O$. 
+      As $p_j\neq 0$ for all $j\in\N$, we must have $I_0 \cap E = \emptyset = I_0 \cap O$. 
       Thus $I_0= \emptyset$, and $x = 0$. 
     \item Suppose 
 %      Let $x$ correspond to a cofinite subset of $\N$. Write 
       $x = \bigwedge_{j\in J} \neg p_j$. % for $J$ finite. 
       We will derive a contradiction. %, from which we can conclude that $x=0$ after all. 
       Note that   
-      $$f(x) = (\bigwedge_{j\in J \cap E } \neg p_j , \bigwedge_{j\in J \cap O } \neg p_j )$$
-      As $f(x) = (0,0)$, we have that 
-      $\bigwedge_{j\in J \cap E } \neg p_j =0$ and
-      $\bigwedge_{j\in J \cap O } \neg p_j  = 0$.
-      However, any finite meet of negations will correspond to a cofinite set,
-      in particular it will not correspond to the empty set, and thus not be $0$.
-      Thus $f(x)\neq 0$, contradicting the assumption that $f(x) = 0$, hence $x=0$ ex falso. 
+      $$f(x) = (\bigwedge_{j\in J \cap E } \neg p_j , \bigwedge_{j\in J \cap O } \neg p_j ) = (0,0)$$
+%      As $f(x) = (0,0)$, we have that 
+%      $\bigwedge_{j\in J \cap E } \neg p_j =0$ and
+%      $\bigwedge_{j\in J \cap O } \neg p_j  = 0$.
+      However, any finite meet of negations corresponds to a cofinite set, hence is nonzero. 
+      We get a contradiction and conclude $x=0$. 
+%      However, any finite meet of negations will correspond to a cofinite set,
+%      in particular it will not correspond to the empty set, and thus not be $0$.
+%      Thus $f(x)\neq 0$, contradicting the assumption that $f(x) = 0$, hence $x=0$ ex falso. 
   \end{itemize}
-  In both cases, we conclude $x=0$, thus $f$ is injective. 
+%  In both cases, we conclude $x=0$, thus $f$ is injective. 
   By \Cref{FormalSurjectionsAreSurjections}, $f$ corresponds to a surjection 
   $s:\Noo + \Noo \to \Noo$.
-  Now let $\alpha : \Noo$, 
-  let $x:\Noo + \Noo$ be such that $s x = \alpha$. 
+  Thus for $\alpha : \Noo$, 
+  there exists some $x:\Noo + \Noo$ such that $s x = \alpha$. 
   If $x = inl(\beta)$, 
   for any $k:\N$, we have that 
   $$\alpha (p_{2k+1}) = s(x) (p_{2k+1}) = x(f(p_{2k+1})) = inl(\beta) (0,p_k)  = \beta(0) = 0.$$

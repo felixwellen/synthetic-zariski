@@ -1,4 +1,4 @@
-\subsection{Examples of open and closed propositions}
+\subsection{Equality in $\Boole$ and $\Stone$}
 \begin{lemma}\label{BooleEqualityOpen}
   Whenever $B:\Boole$, $a,b:B$ the proposition $a=_Bb$ is open. 
 \end{lemma}
@@ -25,6 +25,25 @@
   Suppose $S= Sp(B)$ and let $G$ be the generators of $B$. 
   Note that $s=t$ iff $s(g) =_2 t(g)$ for all $g:G$. 
   As $G$ is countable, and equality in $2$ is decidable, 
-  $x=y$ is a countable conjunction of decidable propositions, hence closed. 
+  $s=t$ is a countable conjunction of decidable propositions, hence 
+  closed. 
 \end{proof}
-
+%
+The following question was asked by Bas Spitters at TYPES 2024:
+\begin{corollary}
+  For $S:\Stone$ and $x,y,z:S$ 
+  \begin{equation}\label{Apartness}
+  x \neq y \to (x\neq z \vee y \neq z)
+  \end{equation}
+\end{corollary}
+\begin{proof}
+  As $x\neq y$, we can show that $\neg ( x = z \wedge y = z)$. 
+  This in turn implies $\neg \neg ( x \neq  z \vee y \neq  z)$. 
+  As, $x\neq z$ and $y \neq z$ are both open propositions, by \Cref{OpenCountableDisjunction} so is their disjunction. 
+  By \Cref{rmkOpenClosedNegation}, that disjunction is double negation stable and \Cref{Apartness} follows. 
+\end{proof}
+\begin{remark}
+  If \Cref{Apartness} holds in a type, we say that it's inequality is an apartness relation. 
+  By a similar proof as above, it can be shown that in our setting inequality is an apartness relation 
+  as soon as equality is open or closed. 
+\end{remark}
