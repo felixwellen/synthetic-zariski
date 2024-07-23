@@ -68,11 +68,10 @@ For each draft, a build command may be found at the start of ```main.tex```.
 To put one of the drafts on the arxiv, we have to
 
 - make sure there is a good abstract for the draft
-- make a temporary folder, e.g. ```synthetic-zariski/projective/tmp``` and run
+- make a temporary folder, e.g. ```synthetic-zariski/projective/tmp``` copy all tex-files there and run
   ```
-  .../util/zar-rebase.sh ../../util/
+  ../../util/zar-rebase.sh ../../util/
   ```
-  to put all needed files in ```tmp```.
 - run ```latexmk -pdf -pvc main.tex``` to produce the ```main.bbl``` and check if the draft builds. 
 - put all the files into a ```.tar.gz```, so everything can be uploaded in one step, e.g.
   ```
