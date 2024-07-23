@@ -1,0 +1,89 @@
+\subsection{Compact Hausdorff types}
+\begin{definition}
+  A type $X$ is called compact Hausdorff iff there exists some $S:\Stone$ and some 
+  equivalence relation $\sim:S \times S \to \Closed$ such that $X \simeq S / \sim$. 
+  We denote $\CHaus$ for the type of compact Hausdorff types. 
+\end{definition} 
+
+\begin{lemma}
+Let $A\subseteq X$ be a subtype of a compact Hausdorff space. 
+Let $S, \sim$ be any presentation of $X$. 
+Then $A$ is closed iff it is the image of a closed subtype of $S$ under the quotient map. 
+\end{lemma}
+\begin{proof}
+  If $A$ is closed, then it's pre-image under any map is also closed. 
+  In particular for $q:S\to X$ the quotient map, $q^{-1}(A)$ is closed. 
+  As $q$ is surjective, we have $q(q^{-1}(A)) = A$, hence 
+  hence $A$ is the image of a closed subtype of $S$. 
+  Conversely, let $B\subseteq S$ be closed. 
+%  Then for any $s:S$, the subtype $\{t:S| B(s) \wedge s \sim t\} \subseteq S$ is closed. 
+%  Hence by 
+  Define $A\subseteq S$ by 
+  $$A(s) := \exists_{s:S} (B(t) \wedge s \sim t).$$
+  As $B, \sim$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
+  we have that $A$  is closed. 
+  Also $A$ respects $\sim$, hence induces a map $A': X\to \Closed$.
+  Furthermore, $A(q(s))$ iff $q(s)$ is in the image of $B$. 
+  Therefore $A'(x)$ iff $x$ is in the image of $B$. 
+%
+%
+%  For $q$ the quotient map $S \to X$, we have $A(s) \leftrightarrow (q(s) \in q(B))$. 
+%  Thus for every $s:S$, we have $A'(q(s)) \leftrightarrow (q(s) \in q(B))$, hence for 
+%  every $x:X$, we have $A'(x)\leftrightarrow (x \in q(B))$. 
+%  We conclude that $q(B)$ is closed. 
+\end{proof}
+\begin{corollary}
+  For $X:\CHaus$ a subtype $A\subseteq X$ is closed iff it is the image of 
+  a map $T\to X$ for some $T:\Stone$. 
+\end{corollary}
+\begin{proof}
+  Directly from the above and \Cref{StoneClosedSubsets}.
+\end{proof}
+
+\begin{corollary}\label{InhabitedClosedSubSpaceClosed}
+  For $X:\CHaus$ and $A\subseteq X$ closed, we have 
+  $\exists_{x:X} A(x)$ is closed. 
+\end{corollary}
+\begin{proof}
+  Let $A$ be the image of a map map $T\to X$ for $T:\Stone$. 
+  Then $\exists_{x:X} A(x) \leftrightarrow ||T||$, which is closed by \Cref{TruncationStoneClosed}
+\end{proof}
+
+
+\begin{corollary}\label{ClosedDependentSums}
+  Closed propositions are closed under dependent sums. 
+\end{corollary}
+\begin{proof}
+  Let $P:\Closed$ and $X:P \to \Closed$. 
+  Then $\Sigma_{p:P} X(p) \leftrightarrow \exists_{p:P} X(p)$, 
+  as $P$ is Stone by \Cref{PropositionsClosedIffStone}, it is also compact Hausdorff.
+  \Cref{InhabitedClosedSubSpaceClosed} gives that $\Sigma_{p:P} X(p)$ is closed. 
+\end{proof}
+\begin{remark}
+  Analogously to \Cref{OpenTransitive} and \Cref{OpenDominance}, it follows that 
+  closedness is transitive and $\Closed$ forms a dominance. 
+\end{remark}
+\begin{corollary}
+  For $U\subseteq X$ an open subset of a compact Hausdorff space, we have 
+  $\forall_{x:X} U(x)$ open. 
+\end{corollary}
+\begin{proof}
+%  Using \Cref{rmkOpenClosedNegation}, we can see that for $U$ open, 
+%  $\forall_{x:X} U(x) \leftrightarrow \neg (\exists_{x:X} \neg U(x))$, 
+%  which is the negation of a closed proposition, hence open. 
+%
+  As $U$ is open, $\neg U$ is closed. 
+  Hence $\exists_{x:X} \neg U(x)$ is closed. 
+  Therefore, $\neg (\exists_{x:X} \neg U(x))$ is open. 
+  Furthermore, it is equivalent to $\forall_{x:X} \neg \neg U(x)$, 
+  which is equivalent to $\forall_{x:X} U(x)$ by \Cref{rmkOpenClosedNegation}.
+\end{proof}
+%
+%\begin{lemma}
+%  For $X:\CHaus$, we have that $2^X:\Boole$. 
+%\end{lemma}
+%\begin{proof}
+%  For any presentation, the quotient map $q:S \twoheadrightarrow X$ induces an 
+%  injection of Boolean algebras $2^X \hookrightarrow 2^S$. 
+%  We claim that the image of this map is an open subalgebra of $2^S$. 
+%\end{proof}
