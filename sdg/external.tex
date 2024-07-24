@@ -1,0 +1,47 @@
+{
+\newcommand{\cat}[1]{\mathcal{#1}}
+\newcommand{\theory}[1]{\mathbf{#1}}
+\newcommand{\Psh}{\mathop{PSh}}
+\newcommand{\Set}{\mathsf{Set}}
+
+\subsection{On Endomorphism Theories}
+
+\begin{definition}
+Let \(\cat T\) be a category with finite products.
+For an object \(R:\cat T\) let \(\theory E_R\) denote the full subcategory on all powers \(R^n\) of \(R\), where \(n:\N\) is a natural number.
+This defines a single-sorted algebraic theory, the \emph{endomorphism theory} of \(R\).
+As usual, we identify the objects of \(\theory E_R\) with natural numbers.
+\end{definition}
+% An \emph{\(\theory E_R\)-algebra} in a category \(\cat D\) with finite products is a functor \(\theory E_R \to \cat D\) which preserves finite products/powers.
+
+% \begin{example}
+%   Each object \(X:\cat T\) defines a \(\theory E_R\)-algebra \(C(X)\) in the category of sets by setting \(C(X)(n)\colonequiv\cat T(X,R^n)\), and with postcomposition action on morphisms \(R^n\to R^m\).
+% \end{example}
+
+Now suppose \(\theory T\) is any algebraic theory (for example, the theory of rings) and let \(\cat A\) be any full subcategory of the category of \(\theory T\)-algebras (think of finitely presented algebras).
+We write \(\cat L\) for the opposite category of \(\cat A\) and \(\ell A\) for the formal dual of a \(\theory T\)-algebra \(A\) in \(\cat A\).
+Moreover, we suppose \(\cat L\) is equipped with a Grothendieck topology (for example, the Zariski topology).
+Then let \(\cat T\) be the sheaf topos over \(\cat L\), denote the Yoneda embedding \(\cat L\to\cat T\) by \(Y\) and the sheafification functor \(\Psh(\cat L)\to\cat T\) by \(s\).
+Finally, we write \(F_\theory T(n)\) for the free \(\theory T\)-algebra on \(n\) generators and then consider the \emph{generic \(\theory T\)-algebra} \(R\colonequiv sY\ell(F_{\theory T}(1))\) in \(\cat T\).
+
+\begin{proposition}
+  The endomorphism theory of \(R\) is equivalent to the algebraic theory \(\theory T\).
+\end{proposition}
+\begin{proof}
+  For two natural numbers \(n,m:\N\) we calculate:
+  \begin{align*}
+    \theory E_R(n,m)
+    &= \cat T(R^n,R^m)\\
+    &= \cat T(sY\ell(F_{\theory T}(n)),sY\ell(F_{\theory T}(m)))\\
+    &= \Psh(\cat L)(Y\ell(F_{\theory T}(n)),Y\ell(F_{\theory T}(m)))\\
+    &= \cat L(\ell(F_{\theory T}(n)),\ell(F_{\theory T}(m)))\\
+    & = \cat A(F_{\theory T}(m),F_{\theory T}(n))\\
+    & = \Alg{\theory T}(F_{\theory T}(m),F_{\theory T}(n))\\
+    & = \Alg{\theory T}(\theory T(m,\_),\theory T(n,\_))\\
+    & = [\theory T,\Set](\theory T(m,\_),\theory T(n,\_))\\
+    & = \theory T(n,m)
+  \end{align*}
+Here, we used the fact that the free \(\theory T\)-algebra on \(n\) generators is given by the representable functor \(\theory T(n,\_)\).
+The last equality is just the Yoneda embedding for copresheaves.
+\end{proof}
+}
