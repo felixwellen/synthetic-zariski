@@ -1,0 +1,127 @@
+\section{Countability}\label{CountabilityDiscussion}
+In the system presented in this paper, 
+one of the fundamental building blocks are countably presented Boolean algebras. 
+There are several definitions of countable, which are not necissarily constructively equivalent. 
+
+\begin{definition}
+  A type $T$ is enumerable iff there exists a surjection $\N \to 1 + T$. 
+\end{definition}
+\begin{definition}
+  A type $T$ is strongly countable if
+  $T$ is merely isomorphic to $\N$ or if 
+  there exists some $k:\N$ with $T \simeq Fin_k$.% or $T\simeq \N$. 
+\end{definition}
+\begin{definition}
+  A type $T$ is subcountable iff it is merely isomorphic to a decidable subset of $\N$. 
+\end{definition}
+
+\begin{lemma}
+  Every strongly countable type is subcountable. 
+\end{lemma}
+\begin{proof}
+  Note that $Fin_k$ and $\N$ are both isomorphic to a decidable subset of $\N$. 
+\end{proof}
+\begin{lemma}
+  Every subcountable type is enumerable. 
+\end{lemma}
+\begin{proof}
+  For $A\subseteq \N$ decidable, define $f:\N \to 1 + \Sigma_{n:\N} A(n)$ by 
+  $$
+  f(n) = 
+  \begin{cases}
+    inl(*) \text{ if } \neg A(n)\\
+    inr(n) \text{ if } A(n)
+  \end{cases}
+  $$
+\end{proof} 
+
+
+%\begin{lemma}\label{OpenSubsetNAreSubCountable}
+%  Any open subset of $\N$ is subcountable. 
+%\end{lemma} 
+%\begin{proof}
+%  Let $A:\N \to \Open$. 
+%  By countable choice, there exists a map $\alpha_{(\cdot)}:\N \to 2^\N$ such that 
+%  $\exists_{m:\N} \alpha_n(m) = 0 \leftrightarrow A (n)$. 
+%  Define $B\subseteq \N \times \N$ by 
+%  $B(m,n) = (\alpha_{n}(m) = 0)$. 
+%  Note that $A(n) \leftrightarrow || \Sigma_{m:\N } B(m,n) ||$
+%\end{proof}
+
+\begin{lemma}\label{OpenSubsetEnumerableAreEnumerable}
+  Any open subset of an enumerable type is enumerable. 
+\end{lemma}
+\begin{proof}
+  Let $A$ be enumerable and let $P:A \to Open$.
+  We will show that $\Sigma_{a:A} P a$ is enumerable. 
+  Let $s:\N \to 1 + A$ surjective. 
+  Define $s':\N \to Open$ by 
+  $$
+  s'(n) = 
+  \begin{cases}
+    \bot \text { if } s(n) = inl(*)\\
+    P(a) \text { if } s(n) = inr(a)
+  \end{cases}
+  $$ 
+  By countable choice, we get a map 
+  $\alpha_{(\cdot)}: \N \to 2^\N$  such that 
+  $(\exists_{m:\N} \alpha_n(m) = 0) \leftrightarrow s'(n)$. 
+  Note that $\alpha_n(m) = 1$ iff 
+  $s'(n)$ which happens iff $s(n) = inr(a_n)$ for some $a_n:A$ with $P(a_n)$. 
+  Therefore, we can define 
+  $z:\N \times \N \to 1 + \Sigma_{a:A} P a$ by 
+  \begin{equation}
+    z(m,n) = 
+    \begin{cases}
+      inl(*) \text{ if } \alpha_{n}(m) = 0 \\
+      a_n  \text{ if } \alpha_{n}(m) = 1 \text{ and $a_n$ as above}
+    \end{cases}
+  \end{equation}
+  Note that if $a:A$ satisfies $P(a)$, there is some $n:\N$ with $s(n) = inr(a)$. 
+  And as $P(a)$, there exists some $m:\N$ with $\alpha_n(m) = 1$. 
+  Hence $z(m,n) = a$. 
+  Thus $z$ is surjective. 
+  As $\N \times \N \simeq \N$, we conclude that 
+  $\sum_{a:A} P a$ is enumerable. 
+\end{proof}
+
+
+\begin{lemma}\label{OpenSubsetOfNNotDecidable}
+  It is not the case that for every $P:\N \to \Open$, 
+  $||\Sigma_{n:\N} P(n)||$ is decidable.
+  % The subset being decidable could be interpreted as 
+  %    that P(n) is decidable for all $n:\N$,
+  % or that \Sigma_{n:\N} P(n) + \neg \Sigma_{n:\N} P(n) 
+  % or that || \Sigma_{n:\N} P(n) || + \neg ||\Sigma_{n:\N} P(n) ||
+\end{lemma}
+\begin{proof}
+  For $p$ any open proposition and $P(n) = p$ constantly, we have 
+  $||\Sigma_{n:\N} P(n)||\leftrightarrow p$. 
+  As not every open proposition is decidable (\Cref{rmkOpenClosedNegation}), 
+  not every $||\Sigma_{n:\N} P(n)||$ is decidable. 
+\end{proof}
+
+\begin{lemma}\label{StronglyCountableTruncationDecidable}
+  For every strongly countable type $A$, $||A||$ is decidable. 
+\end{lemma}
+\begin{proof}
+  For a proposition, being decidable is a proposition. 
+  Hence we may untruncate the definition of strongly open. 
+  If $A \simeq \N$ or $A\simeq Fin_k$ for $k\neq 0$, we have $||A||$. 
+  If $A \simeq Fin_0$, then $\neg ||A||$. 
+\end{proof}
+
+\begin{corollary}
+  Not every enumerable type is strongly countable.
+\end{corollary}
+\begin{proof}
+  If every enumerable type is strongly countable, 
+  by \Cref{OpenSubsetEnumerableAreEnumerable}, every open subset of open subsets of $\N$ is strongly countable. 
+  By \Cref{StronglyCountableTruncationDecidable}, the truncation of the corresponding type is decidable, which 
+  contradicts\Cref{OpenSubsetOfNNotDecidable}.
+\end{proof}
+
+\begin{remark}
+  Every enumerably represented Boolean algebra has an enumerable underlying set. 
+  and every enumerable Boolean algebra is enumerably represented. 
+\end{remark}
