@@ -12,7 +12,7 @@ open import Cubical.Data.Maybe
 open import Cubical.Data.Bool renaming (true to 𝟙  ; false to 𝟘 ; Bool to 𝟚)
 open import Cubical.Algebra.CommAlgebra.FreeCommAlgebra.Base
 open import Cubical.Relation.Nullary
-open import Cubical.Data.Empty renaming (elim to ⊥-elim)
+open import Cubical.Data.Empty renaming (rec to ⊥-elim)
 
 
 
@@ -51,6 +51,10 @@ enumeration' A = Σ (ℕ → (Maybe A)) isSurjection
 subtypeUniqueOnFirstElt : {A : Type ℓ} → (P : A → Type ℓ') → ( (a : A) → isProp (P a)) → ( x y : Σ A P) → (fst x  ≡ fst y) → x ≡ y
 subtypeUniqueOnFirstElt {A} P isprop (x1 , x2) (y1 , y2) p = Σ≡Prop isprop p 
 
+mapMaybe : {A : Type ℓ } → {B : Type ℓ'} → (f : A → B)  → Unit ⊎ A → Unit ⊎ B
+mapMaybe f (inl tt) = inl tt
+mapMaybe f (inr x) = inr (f x) 
+
 
 
 enumeration-Iso : {A : Type ℓ} → { B : Type ℓ' } → (Iso A B ) → enumeration A → enumeration B 
@@ -81,6 +85,21 @@ fromCountingToEnumeration : {A : Type ℓ } → counting A → enumeration A
 fromCountingToEnumeration ( f , isoAD ) = enumeration-Iso (invIso isoAD) enumerateD where 
   D : Type 
   D = (Σ ℕ ( λ n → f n ≡ 𝟙 ))
+  
+  coolhelper : (b : 𝟚) → Unit ⊎ ( b ≡ 𝟙 )
+  coolhelper 𝟘 = inl tt
+  coolhelper 𝟙 = inr refl 
+
+  g : ℕ → Unit ⊎ D
+  g n = mapMaybe (n ,_) (coolhelper (f n)) 
+
+  coolhelperisreallycool : (b : 𝟚 ) → (p : b ≡ 𝟙) → coolhelper b ≡ inr (p)
+  coolhelperisreallycool 𝟘 p = ⊥-elim (false≢true p)
+  coolhelperisreallycool 𝟙 p = cong inr (isSetBool _ _ _ _)
+
+  gisreallycool : (x : D) →  g (fst x) ≡  inr x
+  gisreallycool (n , p) = cong (mapMaybe (n ,_)) (coolhelperisreallycool (f n) p) 
+
 --  DhasUniqueFirstElt : ( x y : D) → fst x ≡ fst y → x ≡ y
 --  DhasUniqueFirstElt (n , a) (m , b) p = Σ≡Prop (λ (n : ℕ) → isSetBool (f n) 𝟙) p 
 --
@@ -100,13 +119,14 @@ fromCountingToEnumeration ( f , isoAD ) = enumeration-Iso (invIso isoAD) enumera
 --                | false = inl tt
 
 --  if (f n) then inr (n , {!refl {_}  {_} {f n} !}) else inl tt -- little confused about way it says refl i1 
+--
   
-  boolhelperreturnsallproofs : (b : 𝟚 ) → ( p : b ≡ 𝟙) → boolhelper b ≡ (inr (𝟙 , p))
-  boolhelperreturnsallproofs 𝟘 p = ⊥-elim (false≢true p)
-  boolhelperreturnsallproofs 𝟙 p = cong inr (Σ≡Prop (isSetBool 𝟙) p) 
-
-  helper-D-surjective : (n : ℕ ) → ( p : f n ≡ 𝟙 ) → (helper' n ≡ inr (n , p))
-  helper-D-surjective n p = {! (boolhelperreturnsallproofs (f n)  p ) !} --again confused as to why but it works
+--  boolhelperreturnsallproofs : (b : 𝟚 ) → ( p : b ≡ 𝟙) → boolhelper b ≡ (inr (𝟙 , p))
+--  boolhelperreturnsallproofs 𝟘 p = ⊥-elim (false≢true p)
+--  boolhelperreturnsallproofs 𝟙 p = cong inr (Σ≡Prop (isSetBool 𝟙) p) 
+--
+--  helper-D-surjective : (n : ℕ ) → ( p : f n ≡ 𝟙 ) → (helper' n ≡ inr (n , p))
+--  helper-D-surjective n p = {! (boolhelperreturnsallproofs (f n)  p ) !} --again confused as to why but it works
 
 ---  onlyonePossible : (b : 𝟚 ) → (p : b ≡ 𝟙 ) → (x : (b ≡ 𝟘 ) ⊎ (b ≡ 𝟙 )) → x ≡ inr p
 ---  onlyonePossible 𝟘 p (_) = ⊥-elim (false≢true p) 
@@ -114,16 +134,25 @@ fromCountingToEnumeration ( f , isoAD ) = enumeration-Iso (invIso isoAD) enumera
 ---  onlyonePossible 𝟙 p (inr x) = cong inr (isSet2 𝟙 𝟙 x p) 
 ---  helperNice : (g : ℕ → 𝟚 ) → (n : ℕ ) → (p : g n ≡ 𝟙 ) → (helper g n (all-elements-of-𝟚 (g n) )) ≡  inr ( n , p)
 ---  helperNice g n p = {!    !} -- (onlyonePossible (g n) p (all-elements-of-𝟚 (g n))) )!}
-
   eD : ℕ → Unit ⊎ D
   eD zero = inl tt
-  eD (suc n) = helper' n  
+  eD (suc n) = g n  
   eD-sec : Unit ⊎ D → ℕ 
   eD-sec (inl tt) = zero
   eD-sec (inr (n , p)) = suc n 
   sect-eD : section eD eD-sec
   sect-eD (inl tt) i =  inl tt 
-  sect-eD (inr (n , fn=1)) = helper-D-surjective n fn=1 -- {!isSet-2 ?inr (n , fn=1) !}
+  sect-eD (inr x) = gisreallycool x  -- {!isSet-2 ?inr (n , fn=1) !}
+
+--  eD : ℕ → Unit ⊎ D
+--  eD zero = inl tt
+--  eD (suc n) = helper' n  
+--  eD-sec : Unit ⊎ D → ℕ 
+--  eD-sec (inl tt) = zero
+--  eD-sec (inr (n , p)) = suc n 
+--  sect-eD : section eD eD-sec
+--  sect-eD (inl tt) i =  inl tt 
+--  sect-eD (inr (n , fn=1)) = helper-D-surjective n fn=1 -- {!isSet-2 ?inr (n , fn=1) !}
 
   enumerateD : enumeration D
   enumerateD = eD , λ { b → ∣ eD-sec b , sect-eD b ∣₁ } 
