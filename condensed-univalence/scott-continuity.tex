@@ -50,25 +50,6 @@ For any tower of compact Hausdorff $(C_k)_{k:\N}$ and $l:\N$, we have that:
 By \cref{factorisation-stone-finite} and \cref{stonification-sequential-limits}.
 \end{proof}
 
-\begin{lemma}\label{compact-hausforff-countable-cover}
-Assume given $C$ a compact Hausdorff space and a sequence of open subset of $C$ named:
-\[U_0\subset U_1 \subset \cdots\]
-If:
-\[\forall(x:C).\exists(i:\N). x\in U_i\]
-then:
-\[\exists(i:\N). \forall(x:C).x\in U_i\]
-\end{lemma}
-
-\begin{proof}
-By local choice we have a surjective map:
-\[ f: S \to C\]
-such that:
-\[\forall(x:S).\sigma (i:\N). f(x)\in U_i\]
-By boundedness there is $k:\N$ such that:
-\[\forall(x:S). f(x)\in U_k\]
-and then we conclude by surjectivity.
-\end{proof}
-
 \begin{lemma}\label{overtly-discrete-union-open}
 Assume $(I_i)_{i:\N}$ a tower of overtly discrete types. Then for any $i:\N$ we have that $\mathrm{Im}(I_i)$ is open in $\mathrm{colim}_i I_i$. 
 \end{lemma}
@@ -79,70 +60,71 @@ For $y:\mathrm{colim}_iI_i$, we have that $y\in \mathrm{Im}(I_i)$ is:
 which is the propositional truncation of an overtly discrete type and therefore overtly discrete.
 \end{proof}
 
-\begin{lemma}\label{factorisation-compact-hausdorff-cover}
-Assume given $C,C'$ compact Hausdorff spaces, $(I_i)_{i:\N}$ a tower of overtly discrete types and a commutative diagram:
-\begin{center}
-\begin{tikzcd}
-C' \ar[d,"p"]\ar[r,"g"]& I_k\ar[d]\\
-C \ar[r,"f"]& \mathrm{colim}_k I_k\\
-\end{tikzcd}
-\end{center}
-where $p$ is surjective, then there merely exists $k:\N$ such that $f$ factors through $I_k$.
+
+\begin{lemma}\label{factorisation-image-true-factorisation}
+Assume given $C$ compact Hausdorff and for each $x:C$ a tower:
+\[I_0(x)\to I_1(x)\to \cdots\]
+of overtly discrete types. Given:
+\[f:\prod_{x:S}\mathrm{colim}_i I_i(x)\]
+such that there exists $i:\N$ such that $f$ factors through $\mathrm{Im}(I_i)$. Then there exists $j:\N$ such that $f$ factors through $I_j$.
 \end{lemma}
 
 \begin{proof}
-We have that:
-\[\forall(x,y:C). p(x)=p(y) \to \exists(k:\N) g(x)=_{I_k}g(y)\]
-so that by \cref{compact-hausforff-countable-cover} we have that:
-\[\exists(k:\N). \forall(x,y:C). p(x)=p(y) \to g(x)=_{I_k}g(y)\]
-and then the map $g:C'\to I_k$ gives a factorisation of $f$ through $I_k$.
+By local choice there exists a surjective map:
+\[p:S\to C\]
+with:
+\[g:\prod_{x:S} I_i(p(x))\]
+such that:
+\[\forall(x:S). g(x) =_{\mathrm{colim}_i I_i(x)} f(p(x))\]
+Then we have that:
+\[\forall(x,y:S). p(x)=p(y) \to g(x) =_{\mathrm{colim}_i I_i(x)} g(y)\]
+so that:
+\[\forall(x,y:S). p(x)=p(y) \to \exists(i:\N). g(x) =_{\mathrm{colim}_i I_i(x)} g(y)\]
+Since $\Sigma(x,y:S). p(x)=p(y)$ is compact Hausdorff we can apply \cref{compact-hausforff-countable-cover} to get a $j:\N$ such that:
+\[\forall(x,y:S). p(x)=p(y) \to g(x) =_{I_j(x)} g(y)\]
+which gives a factorisation of $f$ through $I_j$.
 \end{proof}
 
 \begin{lemma}\label{scott-continuity-right}
-Let $C$ be a compact Hausdorff space and $(I_i)_{i:\N}$ a tower of overtly discrete types. Thew we have that:
-\[(C\to \mathrm{colim}_i I_i) \simeq \mathrm{colim}_i (C\to I_i)\]
+Assume given $C$ ompact Hausdorff and for each $x:C$ a tower:
+\[I_0(x)\to I_1(x)\to \cdots\]
+of overtly discrete types. Then we have that:
+\[\prod_{x:C} \mathrm{colim}_{i} I_i(x) = \mathrm{colim}_{i} \prod_{x:C} I_i(x)\]
 \end{lemma}
 
 \begin{proof}
 Let us check that the canonical map:
-\[\mathrm{colim}_i (C\to I_i) \to (C\to \mathrm{colim}_i I_i) \]
+\[\mathrm{colim}_i \prod_{x:C} I_i(x) \to \prod_{x:C} \mathrm{colim}_i I_i(x) \]
 is an equivalence. 
 
-First we check that it is injective. Given $f,g:C\to I_i$ such that:
-\[\forall(x:C).  f(x) =_{\mathrm{colim}_iI_i} g(x)\]
+First we check that it is injective. Given $f,g:\prod_{x:C} I_i(x)$ such that:
+\[\forall(x:C).  f(x) =_{\mathrm{colim}_iI_i(x)} g(x)\]
 Then we have that:
 \[\forall(x:C).  \exists(j:\N). f(x) =_{I_j} g(x)\]
 so that by \cref{compact-hausforff-countable-cover} we have that:
 \[\exists(j:\N). \forall(x:C). f(x) =_{I_j} g(x)\]
-which precisely means that $f=g$ in $\mathrm{colim}_i (C\to I_i)$.
+which precisely means that $f=g$ in $\mathrm{colim}_i \prod_{x:C} I_i(x)$.
 
-Now we check that it is injective. Given a map:
-\[f:C\to \mathrm{colim}_i I_i\]
+Now we check that it is surjective. Given a map:
+\[f: \prod_{x:C} \mathrm{colim}_i I_i(x)\]
 we know that:
-\[\forall(x:C). \exists(i:\N). f(x)\in \mathrm{I_i}\]
-but $f(x)\in \mathrm{I_i}$ is open by \cref{overtly-discrete-union-open} so that by \cref{compact-hausforff-countable-covert} we have that:
-\[\exists(i:\N). \forall(x:C).  f(x)\in \mathrm{I_i}\]
-which precisely mean that $f$ factors through $\mathrm{Im}(I_k)$ for some $k$.
-
-Now we want to factor it through $I_l$ for some $l$, to do this we start by using local choice to get:
-\begin{center}
-\begin{tikzcd}
-C' \ar[r]\ar[d]& I_k\ar[d]\\
-C \ar[r]& \mathrm{I_k}\\
-\end{tikzcd}
-\end{center}
-and then we conclude using \cref{factorisation-compact-hausdorff-cover}.
+\[\forall(x:C). \exists(i:\N). f(x)\in \mathrm{Im}(I_i(x))\]
+but $f(x)\in \mathrm{Im}(I_i(x))$ is open by \cref{overtly-discrete-union-open} so that by \cref{compact-hausforff-countable-cover} we have that:
+\[\exists(i:\N). \forall(x:C).  f(x)\in \mathrm{Im}(I_i(x))\]
+which precisely mean that $f$ factors through $\mathrm{Im}(I_i)$ for some $i$. We conclude by \cref{factorisation-image-true-factorisation}.
 \end{proof}
 
-\begin{theorem}[Scott Continuity]
+\begin{theorem}[Scott Continuity]\label{scott-continuity}
 Assume given $(C_k)_{k:\N}$ a tower of compact Hausdorff spaces and $(I_i)_{i:\N}$ a tower of overtly discrete types. Then:
 \[\left( \mathrm{lim}_k C_k \to \mathrm{colim}_i I_i\right) \simeq \mathrm{colim}_{k,i} (C_k\to I_i)\]
 \end{theorem}
 
 \begin{proof}
-By \cref{scott-continuity-right} we just have to prove that for any overtly discrete $I$ we have that:
+By the non-dependent version of \cref{scott-continuity-right} we just have to prove that for any overtly discrete $I$ we have that:
 \[(\mathrm{lim}_kC_k\to I) \simeq \mathrm{colim}_k(C_k\to I)\]
 so it is enough to prove that for all towers of finite type we have that:
 \[(\mathrm{lim}_kC_k\to \mathrm{colim}_i\mathrm{Fin}(n_i)) \simeq \mathrm{colim}_k(C_k\to \mathrm{colim}_i\mathrm{Fin}(n_i))\]
 but we can see that by using \cref{scott-continuity-right} and \cref{factorisation-compact-hausdorff-finite}.
 \end{proof}
+
+

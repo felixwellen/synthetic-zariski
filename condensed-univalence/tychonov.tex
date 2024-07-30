@@ -1,0 +1,113 @@
+\begin{theorem}[Tychonov]
+Assume given $I$ an overtly discrete type and $C_i$ compact Hausdorff spaces depending on $i:I$. Then:
+\[\prod_{i:I}C_i\]
+is compact Hausdorff.
+\end{theorem}
+
+\begin{proof}
+We can assume $I = \mathrm{colim}_{k:\N} F_k$ with $F_k$ a finite type. Then:
+\[\prod_{i:I}C_i = \prod_{i:\mathrm{colim}_{k:\N} F_k} C_i\]
+\[= \lim_{k:\N} C_i^{F_k}\]
+and we can conclude using that compact Hausdorff spaces are stable under sequential limits and finite products.
+\end{proof}
+
+\begin{lemma}\label{closed-to-open-is-open}
+If $P,U$ are propositions with $P$ closed and $U$ open, then:
+\[P\to U\]
+implies:
+\[\neg P \lor U\]
+In particular $P\to U$ is open.
+\end{lemma}
+
+\begin{proof}
+We have that $\neg P\lor U$ is open and therefore $\neg\neg$-stable, from which we can conclude by intuitionistic logic.
+\end{proof}
+
+\begin{lemma}\label{tychonov-dual-proposition}
+Assume $C$ closed and $U_p$ an open proposition depending on $p:P$. Then:
+\[\prod_{p:P}U_p\]
+is open.
+\end{lemma}
+
+\begin{proof}
+By \cref{closed-to-open-is-open} it is enough to show that there merely exists $V$ open such that:
+\[\forall (p:P). U_p = V\]
+TODO
+\end{proof}
+
+\begin{lemma}\label{tychonov-dual-auxiliary}
+Assume $p:C\to D$ a surjective map with $C$ and $D$ compact Hausdorff. Given $E_x$ overtly discrete depending on $x:D$, if:
+\[\prod_{x:C}E_{p(x)}\]
+is overtly discrete then so is:
+\[\prod_{x:D}E(x)\]
+\end{lemma}
+
+\begin{proof}
+Since the map is surjective we have an embedding:
+\[\prod_{x:D}E(x)\subset \prod_{x:C}E_{p(x)}\]
+But the fiber over $g:\prod_{x:C}E_{p(x)}$ is:
+\[\forall (x,y:C). p(x)=p(y) \to g(x)=g(y)\]
+which is open by \cref{tychonov-dual-proposition} and \cref{compact-hausdorff-compact}.
+\end{proof}
+
+\begin{theorem}[Tychonov's dual]\label{tychonov-dual}
+Assume given $C$ compact Hausdorff and $I_x$ overtly discrete depending on $x:C$. Then:
+\[\prod_{x:C}I(x)\]
+is overtly discrete.
+\end{theorem}
+
+\begin{proof}
+By local choice and \cref{tychonov-dual-auxiliary} we can assume that $C$ is Stone and that we have towers of finite types $(\mathrm{Fin}(l_{k,x}))_{k:\N}$ depending on $x:C$. We write $C=S$. Then using \cref{scott-continuity-right} and the fact that overtly discrete types are stable under sequential colimits, it is enough to prove that for $S$ Stone and $l_x:\N$ depending on $x:S$ we have that:
+\[\prod_{x:S}\mathrm{Fin}(l_{x})\]
+is overtly discrete. 
+
+Using boundedness, the fact that:
+\[S_k = \Sigma(x:S). l_x = k\] 
+is Stone and that overtly discrete types are stable under finite products, we just have to prove that for any $l:\N$ and $S$ Stone we have that:
+\[S\to \mathrm{Fin}(l)\]
+is overtly discrete. We can conclude using that \cref{factorisation-compact-hausdorff-finite} and that Stone are limits of finite types.
+\end{proof}
+
+\begin{remark}
+Is there a dependent version? It is clear that the dependent version for $S$ Stone is enough and propositions is enough by looking at the proof of \cref{tychonov-dual}.
+\end{remark}
+
+\begin{theorem}[Factorisation]
+Let $C$ be compact Hausdorff and $I$ be overtly discrete. Then any map:
+\[C\to I\]
+merely factors through a finite type.
+\end{theorem}
+
+\begin{proof}
+If $C$ is Stone the factorisation is a direct consequence of \cref{scott-continuity}. Using a surjective map $S\to C$ with $S$ Stone, we merely get a commutative square:
+\begin{center}
+\begin{tikzcd}
+C\ar[r] & I\\
+S \ar[u]\ar[r]& \mathrm{Fin}(n)\ar[u]\\
+\end{tikzcd}
+\end{center}
+From this we get a factorisation of the map from $C$ to $I$ through $\mathrm{Fin}(n)$ quotiented by the open equivalence relation of having equal image in $I$.
+
+So we just need to merely factor any map:
+\[C\to \mathrm{Fin}(n)/R\] 
+through a finite type, where $R$ is an open relation. We proceed by induction on $n$, if $n=0,1$ it is clear. Assume $n>1$ and that it holds for $n-1$. By local choice we get:
+
+\begin{center}
+\begin{tikzcd}
+S\ar[r,"f"]\ar[d,swap,"p"] & \mathrm{Fin}(n)\ar[d]\\
+C \ar[r]& \mathrm{Fin}(n)/R\\
+\end{tikzcd}
+\end{center}
+
+For all $k:\mathrm{Fin}(n)$, let us define:
+\[S_k = f^{-1}(k)\]
+\[C_k = p(S_k)\]
+As $S_k$ is decidable, we have that $C_k$ is closed
+
+This give a cover of $C$ such that for all $k,l$:
+\[C_k\cap C_l \to R(k,l)\]
+but $C_k\cap C_l$ is compact closed in $C$ so it is compact Hausdorff, therefore $\propTrunc{C_k\cap C_l}$ is closed. So using \cref{closed-to-open-is-open} we have that:
+\[\neg(C_k\cap C_l) \lor R(k,l)\]
+Assuming for all $k\not=l$ we have $\neg(C_k\cap C_l)$ then we can factor the map through $\mathrm{Fin}(n)$, otherwise there exists $k\not=l$ such that $R(k,l)$ and $\mathrm{Fin}(n)/R$ is equivalent to $\mathrm{Fin}(n-1)/R$ by removing $l$ and we conclude by induction.
+\end{proof}
+
