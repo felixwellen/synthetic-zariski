@@ -12,13 +12,61 @@ We have that:
 Where the third line comes from the fact that $2^l$ is finitely presented.
 \end{proof}
 
+We need to introduce a bit of notations:
+
+Given a tower: 
+\[X_0 \to X_1\to X_2\to \cdots \]
+we write $i_l$ for the map $X_l\to\mathrm{colim_k}X_k$.
+
+Given a tower: 
+\[Y_0 \leftarrow Y_1\leftarrow Y_2 \leftarrow \cdots\]
+we write $\pi_k$ the map $\lim_k Y_k\to Y_l$ and for $l\leq m$ we write $j_{m,l}$ the induced map $Y_m\to Y_l$.
+
+\begin{lemma}\label{sequential-limits-decidable}
+Assume given $(S_k)_{k:\N}$ a tower of Stone spaces and $l:\N$ with $P:S_l\to 2$ such that:
+\[\forall (x:\mathrm{lim}_kS_k).\ P(\pi_l(x))\]
+Then we have that:
+\[\exists(m:\N).\ \forall(y:S_m).\ P(j_{m,l}(y))\]
+\end{lemma}
+
+\begin{proof}
+The hypothesis means that the element corresponding to $P$ in $2^{S_l}$ is equal to $1$ in $\mathrm{colim}_k2^{S_k}$, which neabs there exists $m$ such that it is equal to $1$ in $2^{S_m}$ which is what we want.
+\end{proof}
+
 \begin{lemma}\label{stonification-sequential-limits}
-For any tower of compact Hausdorff space $(C_k)_{k:\N}$ and $l:\N$, we have that:
+For any tower of compact Hausdorff space $(C_k)_{k:\N}$, we have that:
 \[\Spec(2^{\mathrm{lim}_k C_k}) = \mathrm{lim}_k\Spec(2^{C_k})\]
 \end{lemma}
 
 \begin{proof}
-TODO
+Reason as in \cref{sequential-limit-Hausdorff} to find a pointwise surjective map of towers:
+\begin{center}
+\begin{tikzcd}
+S_0\ar[d] & S_1\ar[d]\ar[l] & \cdots\ar[l]\\
+C_0 & C_1\ar[l] & \cdots\ar[l]\\
+\end{tikzcd}
+\end{center}
+where the $S_k$ are Stone, so that $C_k = S_k/R_k$ for some closed equivalence relation $R_k$. Then we want to show that the map:
+\[\mathrm{colim}_k (C_k \to 2) \to (\mathrm{lim}_kC_k \to 2)\]
+is an equivalence, or equivalently that the map:
+\[\mathrm{colim}_k \{ f:S_k \to 2\ |\ f\ \mathrm{respects}\ R_k \}\to \{ g:\mathrm{lim}_kS_k \to 2\ |\ g\ \mathrm{respects}\ \forall k. R_k\}\]
+is an equivalence. This in turn is equivalent to proving:
+\[ \{ f : \mathrm{colim}_k (S_k \to 2)\ |\ \mathrm{colim}_k (f\ \mathrm{respects}\ R_k)\} \to \{ g:\mathrm{lim}_kS_k \to 2\ |\ g\ \mathrm{respects}\ \forall k. R_k\}\]
+is an equivalence, where for $f:S_l\to 2$
+\[\mathrm{colim}_k (i_l(f)\ \mathrm{respects}\ R_k)\]
+means that there exists $m\geq l$ such that $f\circ j_{m,l}$ respects $R_m$.
+
+But since by \cref{factorisation-stone-finite} we already know that the map:
+\[\mathrm{colim}_k (S_k \to 2) \to (\mathrm{lim}_kS_k \to 2)\]
+is an equivalence we just need to prove that the side conditions are equivalent.
+
+Given $f:S_l\to 2$, if there exists $m\geq l$ such that $f\circ j_{m,l}$ respects $R_m$ it is clear that $f\circ \pi_l$ respects $\forall k. R_k$.
+
+Conversely assume $f:S_l\to 2$ such that $f\circ \pi_l$ respects $\forall k. R_k$, this means that:
+\[\forall x,y:\mathrm{lim}_k S_k. (\forall k. R_k(x_k,y_k) )\to f(\pi_l(x))=f(\pi_l(y))\]
+This means that:
+\[\forall (z : \mathrm{lim}_k \Sigma(x,y:S_k).\ R_k(x,y)).\ f(\pi_l(\pi_1(z)))=f(\pi_l(\pi_2(z)))\]
+and then we just apply \cref{sequential-limits-decidable} to conclude.
 \end{proof}
 
 \begin{lemma}
@@ -126,5 +174,13 @@ so it is enough to prove that for all towers of finite type we have that:
 \[(\mathrm{lim}_kC_k\to \mathrm{colim}_i\mathrm{Fin}(n_i)) \simeq \mathrm{colim}_k(C_k\to \mathrm{colim}_i\mathrm{Fin}(n_i))\]
 but we can see that by using \cref{scott-continuity-right} and \cref{factorisation-compact-hausdorff-finite}.
 \end{proof}
+
+\begin{remark}
+A consequence of Scott continuity is that given a family $(S_k)_{k:\N}$ and $I$ overtly discrete, for any map:
+\[f: \left(\prod_{k:\N} S_k\right) \to I\]
+there merely exists $n:\N$ such that $f$ factors through:
+\[\prod_{k:\mathrm{Fin}(n)} S_k\]
+which justifies the name.
+\end{remark}
 
 
