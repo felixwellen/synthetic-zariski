@@ -1,18 +1,22 @@
+{- In this agda file, we consider two definitions of countability. 
+-- One definition, which we call enumerable, says there exists a surjection ℕ → 1 + A. (This is used for example in Davorin Lesnik's PhD thesis). 
+-- Another definition, which we call countable, says A is merely isomorphic to some decidable subtype of ℕ.
+-}
+
 {-# OPTIONS --cubical #-}
-open import Cubical.Foundations.Prelude --hiding (_∧_;_∨_)
+open import Cubical.Foundations.Prelude
 open import Cubical.Foundations.Isomorphism
+open import Cubical.Foundations.Function
 open import Cubical.Functions.Surjection 
-open import Cubical.HITs.PropositionalTruncation renaming (map to truncMap)
+open import Cubical.HITs.PropositionalTruncation as PT
 open import Cubical.Data.Nat
 open import Cubical.Data.Sum
 open import Cubical.Data.Unit
 open import Cubical.Data.Sigma
---open import Cubical.Data.Nat.Properties --equality in Nat
---open import Cubical.Data.Maybe
 open import Cubical.Data.Bool renaming (true to 𝟙  ; false to 𝟘 ; Bool to 𝟚)
---open import Cubical.Algebra.CommAlgebra.FreeCommAlgebra.Base
---open import Cubical.Relation.Nullary
-open import Cubical.Data.Empty renaming (rec to ⊥-elim)
+open import Cubical.Data.Empty as ⊥ 
+
+module Enumerable where
 
 private 
   variable 
@@ -20,72 +24,69 @@ private
 
 enumeration : Type ℓ → Type _
 enumeration A = Σ (ℕ → (Unit ⊎ A)) isSurjection
--- Note that Unit ⊎ A ≡ Maybe A by Maybe≡SumUnit 
+
+shiftToSurjective : {A : Type ℓ} → (f : ℕ → Unit ⊎ A) → ( ( a : A) → ∥ Σ[ n ∈ ℕ ] f n ≡ inr (a) ∥₁  ) → enumeration A
+shiftToSurjective {A = A} f fsurj = f' , f'surj where
+  f' : ℕ → Unit ⊎ A
+  f' zero = inl tt
+  f' (suc n) = f n 
+  f'surj : (x : Unit ⊎ A) → ∥ Σ ℕ (λ z → f' z ≡ x) ∥₁ 
+  f'surj (inl tt) = ∣ zero , refl ∣₁
+  f'surj (inr a) = PT.rec PT.isPropPropTrunc (λ { (n , fn≡a) → ∣ suc n , fn≡a ∣₁ }) (fsurj a) 
+
+⊥-enum : enumeration ⊥ 
+⊥-enum = shiftToSurjective (λ { n → inl tt }) λ { a → ⊥.rec a } 
+
+ℕsurjectionToEnumeration : {A : Type ℓ} → (f : ℕ → A) → (isSurjection f) → enumeration A
+ℕsurjectionToEnumeration f fsurj = shiftToSurjective ( inr ∘ f ) (λ  a → PT.rec isPropPropTrunc (λ { (n , fn≡a) → ∣ n , cong inr fn≡a ∣₁ }) (fsurj a) ) 
 
 enumℕ : enumeration ℕ 
-enumℕ = eN , esurj where 
-  eN : ℕ → Unit ⊎ ℕ 
-  eN zero = inl tt
-  eN (suc n) = inr n 
-  esec : (x : Unit ⊎ ℕ ) → Σ ℕ (λ n → eN n ≡ x)
-  esec (inl tt) = zero , refl
-  esec (inr n) = suc n , refl 
-  esurj : (x : Unit ⊎ ℕ) → ∥ Σ ℕ (λ z → eN z ≡ x) ∥₁ 
-  esurj x = ∣ esec x ∣₁ 
+enumℕ = ℕsurjectionToEnumeration (λ n → n) λ { b → ∣ b , refl ∣₁ } 
 
-mapMaybe : {A : Type ℓ } → {B : Type ℓ'} → (f : A → B)  → Unit ⊎ A → Unit ⊎ B
-mapMaybe f (inl tt) = inl tt
-mapMaybe f (inr x) = inr (f x) 
+liftUnit⊎ : {A : Type ℓ } → {B : Type ℓ'} → (f : A → B)  → Unit ⊎ A → Unit ⊎ B
+liftUnit⊎ f (inl tt) = inl tt
+liftUnit⊎ f (inr x) = inr (f x) 
 
 enumeration-Iso : {A : Type ℓ} → { B : Type ℓ' } → (Iso A B ) → enumeration A → enumeration B 
-enumeration-Iso {ℓ} {ℓ'} {A} {B} isom (eA , is-surj-eA) = surj  where
+enumeration-Iso {ℓ} {ℓ'} {A} {B} isom enumA = surj  where
   isom' : Iso (Unit ⊎ A) (Unit ⊎ B)
   isom' = ⊎Iso idIso isom
   isom'-surj : isSurjection (Iso.fun(isom'))
   isom'-surj = isEquiv→isSurjection (isoToIsEquiv isom')
   surj : Σ ((x : ℕ) → Unit ⊎ B) (λ z → (x : Unit ⊎ B) → ∥ Σ ℕ (λ z₁ → z z₁ ≡ x) ∥₁) 
-  surj = compSurjection (eA , is-surj-eA) (Iso.fun isom' , isom'-surj) 
+  surj = compSurjection enumA (Iso.fun isom' , isom'-surj) 
 
-counting : Type ℓ → Type ℓ
-counting A =  Σ (ℕ → 𝟚 ) (\( f ) → Iso A (Σ ℕ (λ n → f n ≡ 𝟙) ))
+-- A ``count" of a type is an explicit isomorphism with a decidable subset of ℕ 
+count : Type ℓ → Type ℓ 
+count A =  Σ[ f ∈ (ℕ → 𝟚) ]  Iso A (Σ[ n ∈ ℕ ]  f n ≡ 𝟙 )
 
-fromCountingToEnumeration : {A : Type ℓ } → counting A → enumeration A
-fromCountingToEnumeration ( f , isoAD ) = enumeration-Iso (invIso isoAD) enumerateD where 
+fromCountToEnumeration : {A : Type ℓ } → count A → enumeration A
+fromCountToEnumeration ( f , isoAD ) = enumeration-Iso (invIso isoAD) enumerateD where 
   D : Type 
-  D = (Σ ℕ ( λ n → f n ≡ 𝟙 ))
+  D = Σ[ n ∈ ℕ ] f n ≡ 𝟙 
   
   boolhelper : (b : 𝟚) → Unit ⊎ ( b ≡ 𝟙 )
   boolhelper 𝟘 = inl tt
   boolhelper 𝟙 = inr refl 
 
+  boolhelperReturnsAllPossibleProofs : (b : 𝟚 ) → (p : b ≡ 𝟙) → boolhelper b ≡ inr (p)
+  boolhelperReturnsAllPossibleProofs 𝟘 p = ⊥.rec (false≢true p)
+  boolhelperReturnsAllPossibleProofs 𝟙 p = cong inr (isSetBool _ _ _ _)
+
   g : ℕ → Unit ⊎ D
-  g n = mapMaybe (n ,_) (boolhelper (f n)) 
+  g n = liftUnit⊎ (n ,_) (boolhelper (f n)) 
 
-  boolhelperreturnsallPossibleProofs : (b : 𝟚 ) → (p : b ≡ 𝟙) → boolhelper b ≡ inr (p)
-  boolhelperreturnsallPossibleProofs 𝟘 p = ⊥-elim (false≢true p)
-  boolhelperreturnsallPossibleProofs 𝟙 p = cong inr (isSetBool _ _ _ _)
-
-  gHitsD : (x : D) →  g (fst x) ≡  inr x
-  gHitsD  (n , p) = cong (mapMaybe (n ,_)) (boolhelperreturnsallPossibleProofs (f n) p) 
+  gHitsD : (x : D) →  g (fst x) ≡ inr x
+  gHitsD  (n , fn≡1) = cong (liftUnit⊎ (n ,_)) (boolhelperReturnsAllPossibleProofs (f n) fn≡1) 
   
-  eD : ℕ → Unit ⊎ D
-  eD zero = inl tt
-  eD (suc n) = g n  
-  eD-sec : Unit ⊎ D → ℕ 
-  eD-sec (inl tt) = zero
-  eD-sec (inr (n , p)) = suc n 
-  sect-eD : section eD eD-sec
-  sect-eD (inl tt) i =  inl tt 
-  sect-eD (inr x) = gHitsD x  
-
-  enumerateD : enumeration D
-  enumerateD = eD , λ { b → ∣ eD-sec b , sect-eD b ∣₁ } 
+  enumerateD :  enumeration  D
+  enumerateD = shiftToSurjective g (λ d → ∣ fst d , gHitsD d ∣₁)
 
 isEnumerable : Type ℓ  → Type ℓ
 isEnumerable A = ∥ enumeration A ∥₁
 
 isCountable : Type ℓ → Type _
-isCountable A = ∥ counting A ∥₁ 
+isCountable A = ∥ count A ∥₁ 
 
 countable→enumerable : {A : Type ℓ} → isCountable A → isEnumerable A
-countable→enumerable  = truncMap fromCountingToEnumeration 
+countable→enumerable  = PT.map fromCountToEnumeration 
