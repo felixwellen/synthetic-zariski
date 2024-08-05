@@ -1,22 +1,61 @@
-We finally prove directed univalence, following Thierry's notes. We start by the easier case of Phoa principle.
+By Barton and Commelin, the theorems given above implies the following:
 
-\begin{lemma}\label{monotony-open}
-Assume given $P:\mathrm{Open}\to\mathrm{Open}$. For all $p,q:\mathrm{Open}$ if $p\to q$ then $P(p)\to P(q)$.
+\begin{theorem}
+The map:
+\[\psi: \left(\Sigma(X,Y:\mathrm{ODisc}). X\to Y\right)  \to (\mathrm{Open}\to\mathrm{Open})\]
+\[\psi(X,Y,f) = p\mapsto \Sigma_{y:Y} (\Sigma_{x:X} f(x)=y)^{\neg p}\]
+is an equivalence.
+\end{theorem}
+
+TODO write down a proof
+
+We give the easier case of Phoa's principle.
+
+\begin{lemma}\label{open-in-N-infty}
+Let $U\subset \N_\infty$ be an open. If $\infty\in U$ then there exists $n:\N$ such that $n\in U$.
 \end{lemma}
 
 \begin{proof}
-We define $Q:\mathrm{Open}\to\mathrm{Open}$ by:
-\[Q(r) = P(q)\land(r\lor P(p))\]
-Then it is enough to prove that:
-\[Q(\bot)\to Q(\top)\]
 TODO
 \end{proof}
 
-\begin{lemma}[Phoa principle]
-Assume given $P:\mathrm{Open}\to\mathrm{Open}$. Then for all $p:\mathrm{Open}$ we have that:
-\[P(p) \leftrightarrow P(\top)\land(P(\bot)\lor p)\]
+\begin{lemma}\label{monotony-open-endpoint}
+Assume given $P:\mathrm{Open}\to\mathrm{Open}$. Then $P(\bot)\to P(\top)$.
 \end{lemma}
 
 \begin{proof}
-TODO
+For $\alpha:\N_\infty$ let us define:
+\[[\alpha] = \Sigma(n:\N).\ \alpha(n)=1\]
+Then we define:
+\[U:\N_\infty\to\mathrm{Open}\]
+\[U(\alpha) = P([\alpha])\]
+Let is assume $P(\bot)$, then $\infty\in U$ so by \cref{open-in-N-infty} there exists $n:\N$ with $n\in U$, which means $P(\top)$.
+\end{proof}
+
+\begin{lemma}\label{monotony-open}
+Assume given $P:\mathrm{Open}\to\mathrm{Open}$. For all $p:\mathrm{Open}$ if $p\to q$ then $P(p)\to P(q)$.
+\end{lemma}
+
+\begin{proof}
+Let us assume $P(p)$, then since $P(q)$ is open it is $\neg\neg$-stable so we can use excluded middle on $p$ and $q$. Then we just need to apply \cref{monotony-open-endpoint}.
+\end{proof}
+
+\begin{lemma}[Phoa's principle]
+Assume given $P:\mathrm{Open}\to\mathrm{Open}$. Then for all $p:\mathrm{Open}$ we have that:
+\[P(p) = P(\top)\land(P(\bot)\lor p)\]
+\end{lemma}
+
+\begin{proof}
+First we prove:
+\[P(p) \to P(\top)\land(P(\bot)\lor p)\]
+\begin{itemize}
+\item By \cref{monotony-open} we have that $P(p)$ implies $P(\top)$.
+\item By \cref{closed-to-open-is-open} we have that $P(\bot)\lor p$ is equivalent to $\neg p \to P(\bot)$. So we need to prove $P(\bot)$ assuming $P(p)$ and $\neg p$, which is clear as $\neg p$ means $p=\bot$. 
+\end{itemize}
+Now we prove:
+\[P(\top)\land(P(\bot)\lor p) \to P(p)\]
+\begin{itemize}
+\item Assume $P(\top)$ and $P(\bot)$, we conclude $P(p)$ by \cref{monotony-open}.
+\item Assume $P(\top)$ and $p$, we conclude $P(p)$ as $p$ means $p=\top$.
+\end{itemize}
 \end{proof}
