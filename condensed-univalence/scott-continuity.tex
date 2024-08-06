@@ -12,22 +12,81 @@ We have that:
 Where the third line comes from the fact that $2^l$ is finitely presented.
 \end{proof}
 
+We need to introduce a bit of notations:
+
+Given a tower: 
+\[X_0 \to X_1\to X_2\to \cdots \]
+we write $i_l$ for the map $X_l\to\mathrm{colim_k}X_k$.
+
+Given a tower: 
+\[Y_0 \leftarrow Y_1\leftarrow Y_2 \leftarrow \cdots\]
+we write $\pi_k$ the map $\lim_k Y_k\to Y_l$ and for $l\leq m$ we write $j_{m,l}$ the induced map $Y_m\to Y_l$.
+
+\begin{lemma}\label{sequential-limits-decidable}
+Assume given $(S_k)_{k:\N}$ a tower of Stone spaces and $l:\N$ with $P:S_l\to 2$ such that:
+\[\forall (x:\mathrm{lim}_kS_k).\ P(\pi_l(x))\]
+Then we have that:
+\[\exists(m:\N).\ \forall(y:S_m).\ P(j_{m,l}(y))\]
+\end{lemma}
+
+\begin{proof}
+The hypothesis means that the element corresponding to $P$ in $2^{S_l}$ is equal to $1$ in $\mathrm{colim}_k2^{S_k}$, which neabs there exists $m$ such that it is equal to $1$ in $2^{S_m}$ which is what we want.
+\end{proof}
+
 \begin{lemma}\label{stonification-sequential-limits}
-For any tower of compact Hausdorff space $(C_k)_{k:\N}$ and $l:\N$, we have that:
+For any tower of compact Hausdorff space $(C_k)_{k:\N}$, we have that:
 \[\Spec(2^{\mathrm{lim}_k C_k}) = \mathrm{lim}_k\Spec(2^{C_k})\]
 \end{lemma}
 
 \begin{proof}
-TODO
+Reason as in \cref{sequential-limit-Hausdorff} to find a pointwise surjective map of towers:
+\begin{center}
+\begin{tikzcd}
+S_0\ar[d] & S_1\ar[d]\ar[l] & \cdots\ar[l]\\
+C_0 & C_1\ar[l] & \cdots\ar[l]\\
+\end{tikzcd}
+\end{center}
+where the $S_k$ are Stone, so that $C_k = S_k/R_k$ for some closed equivalence relation $R_k$. Then we want to show that the map:
+\[\mathrm{colim}_k (C_k \to 2) \to (\mathrm{lim}_kC_k \to 2)\]
+is an equivalence, or equivalently that the map:
+\[\mathrm{colim}_k \{ f:S_k \to 2\ |\ f\ \mathrm{respects}\ R_k \}\to \{ g:\mathrm{lim}_kS_k \to 2\ |\ g\ \mathrm{respects}\ \forall k. R_k\}\]
+is an equivalence. This in turn is equivalent to proving:
+\[ \{ f : \mathrm{colim}_k (S_k \to 2)\ |\ \mathrm{colim}_k (f\ \mathrm{respects}\ R_k)\} \to \{ g:\mathrm{lim}_kS_k \to 2\ |\ g\ \mathrm{respects}\ \forall k. R_k\}\]
+is an equivalence, where for $f:S_l\to 2$
+\[\mathrm{colim}_k (i_l(f)\ \mathrm{respects}\ R_k)\]
+means that there exists $m\geq l$ such that $f\circ j_{m,l}$ respects $R_m$.
+
+But since by \cref{factorisation-stone-finite} we already know that the map:
+\[\mathrm{colim}_k (S_k \to 2) \to (\mathrm{lim}_kS_k \to 2)\]
+is an equivalence we just need to prove that the side conditions are equivalent.
+
+Given $f:S_l\to 2$, if there exists $m\geq l$ such that $f\circ j_{m,l}$ respects $R_m$ it is clear that $f\circ \pi_l$ respects $\forall k. R_k$.
+
+Conversely assume $f:S_l\to 2$ such that $f\circ \pi_l$ respects $\forall k. R_k$, this means that:
+\[\forall x,y:\mathrm{lim}_k S_k. (\forall k. R_k(x_k,y_k) )\to f(\pi_l(x))=f(\pi_l(y))\]
+This means that:
+\[\forall (z : \mathrm{lim}_k \Sigma(x,y:S_k).\ R_k(x,y)).\ f(\pi_l(\pi_1(z)))=f(\pi_l(\pi_2(z)))\]
+and then we just apply \cref{sequential-limits-decidable} to conclude.
 \end{proof}
 
 \begin{lemma}
-Assume $C$ a compact Hasudorff space and $S$ a stone space. Then:
-\[(C\to S) \simeq (\Spec(2^C) \to S)\]
+Assume $C$ a compact Hausdorff space and $S$ a stone space. Then the map:
+\[C\to \Spec(2^C)\]
+induces an equivalence:
+\[(\Spec(2^C) \to S) \simeq(C\to S) \]
 \end{lemma}
 
 \begin{proof}
-TODO
+First we prove that the map:
+\[C\to \Spec(2^C)\]
+is surjective. Assume $C$ is the quotient of $S$ Stone, then $2^C$ is a subalgebra of $2^S$ and both are c.p., therefore we by completeness we have an induced surjective map:
+\[\Spec(2^S) = S\to C\to \Spec(2^C)\]
+so the map:
+\[C\to \Spec(2^C)\]
+is surjective and the map:
+\[(\Spec(2^C) \to S) \to (C\to S) \]
+is injective as $S$ is a set. It is surjective as any map $C\to S$ induces a map:
+\[\Spec(2^C) \to \Spec(2^S) = S\]
 \end{proof}
 
 \begin{lemma}\label{factorisation-compact-hausdorff-finite}
@@ -37,19 +96,6 @@ For any tower of compact Hausdorff $(C_k)_{k:\N}$ and $l:\N$, we have that:
 
 \begin{proof}
 By \cref{factorisation-stone-finite} and \cref{stonification-sequential-limits}.
-\end{proof}
-
-\begin{lemma}\label{compact-hausforff-countable-cover}
-Assume given $C$ a compact Hausdorff space and a sequence of open subset of $C$ named:
-\[U_0\subset U_1 \subset \cdots\]
-If:
-\[\forall(x:C).\exists(i:\N). x\in U_i\]
-then:
-\[\exists(i:\N). \forall(x:C).x\in U_i\]
-\end{lemma}
-
-\begin{proof}
-TODO
 \end{proof}
 
 \begin{lemma}\label{overtly-discrete-union-open}
@@ -62,70 +108,79 @@ For $y:\mathrm{colim}_iI_i$, we have that $y\in \mathrm{Im}(I_i)$ is:
 which is the propositional truncation of an overtly discrete type and therefore overtly discrete.
 \end{proof}
 
-\begin{lemma}\label{factorisation-compact-hausdorff-cover}
-Assume given $C,C'$ compact Hausdorff spaces, $(I_i)_{i:\N}$ a tower of overtly discrete types and a commutative diagram:
-\begin{center}
-\begin{tikzcd}
-C' \ar[d,"p"]\ar[r,"g"]& I_k\ar[d]\\
-C \ar[r,"f"]& \mathrm{colim}_k I_k\\
-\end{tikzcd}
-\end{center}
-where $p$ is surjective, then there merely exists $k:\N$ such that $f$ factors through $I_k$.
+
+\begin{lemma}\label{factorisation-image-true-factorisation}
+Assume given $C$ compact Hausdorff and for each $x:C$ a tower:
+\[I_0(x)\to I_1(x)\to \cdots\]
+of overtly discrete types. Given:
+\[f:\prod_{x:S}\mathrm{colim}_i I_i(x)\]
+such that there exists $i:\N$ such that $f$ factors through $\mathrm{Im}(I_i)$. Then there exists $j:\N$ such that $f$ factors through $I_j$.
 \end{lemma}
 
 \begin{proof}
-We have that:
-\[\forall(x,y:C). p(x)=p(y) \to \exists(k:\N) g(x)=_{I_k}g(y)\]
-so that by \cref{compact-hausforff-countable-cover} we have that:
-\[\exists(k:\N). \forall(x,y:C). p(x)=p(y) \to g(x)=_{I_k}g(y)\]
-and then the map $g:C'\to I_k$ gives a factorisation of $f$ through $I_k$.
+By local choice there exists a surjective map:
+\[p:S\to C\]
+with:
+\[g:\prod_{x:S} I_i(p(x))\]
+such that:
+\[\forall(x:S). g(x) =_{\mathrm{colim}_i I_i(x)} f(p(x))\]
+Then we have that:
+\[\forall(x,y:S). p(x)=p(y) \to g(x) =_{\mathrm{colim}_i I_i(x)} g(y)\]
+so that:
+\[\forall(x,y:S). p(x)=p(y) \to \exists(i:\N). g(x) =_{\mathrm{colim}_i I_i(x)} g(y)\]
+Since $\Sigma(x,y:S). p(x)=p(y)$ is compact Hausdorff we can apply \cref{compact-hausforff-countable-cover} to get a $j:\N$ such that:
+\[\forall(x,y:S). p(x)=p(y) \to g(x) =_{I_j(x)} g(y)\]
+which gives a factorisation of $f$ through $I_j$.
 \end{proof}
 
 \begin{lemma}\label{scott-continuity-right}
-Let $C$ be a compact Hausdorff space and $(I_i)_{i:\N}$ a tower of overtly discrete types. Thew we have that:
-\[(C\to \mathrm{colim}_i I_i) \simeq \mathrm{colim}_i (C\to I_i)\]
+Assume given $C$ ompact Hausdorff and for each $x:C$ a tower:
+\[I_0(x)\to I_1(x)\to \cdots\]
+of overtly discrete types. Then we have that:
+\[\prod_{x:C} \mathrm{colim}_{i} I_i(x) = \mathrm{colim}_{i} \prod_{x:C} I_i(x)\]
 \end{lemma}
 
 \begin{proof}
 Let us check that the canonical map:
-\[\mathrm{colim}_i (C\to I_i) \to (C\to \mathrm{colim}_i I_i) \]
+\[\mathrm{colim}_i \prod_{x:C} I_i(x) \to \prod_{x:C} \mathrm{colim}_i I_i(x) \]
 is an equivalence. 
 
-First we check that it is injective. Given $f,g:C\to I_i$ such that:
-\[\forall(x:C).  f(x) =_{\mathrm{colim}_iI_i} g(x)\]
+First we check that it is injective. Given $f,g:\prod_{x:C} I_i(x)$ such that:
+\[\forall(x:C).  f(x) =_{\mathrm{colim}_iI_i(x)} g(x)\]
 Then we have that:
 \[\forall(x:C).  \exists(j:\N). f(x) =_{I_j} g(x)\]
 so that by \cref{compact-hausforff-countable-cover} we have that:
 \[\exists(j:\N). \forall(x:C). f(x) =_{I_j} g(x)\]
-which precisely means that $f=g$ in $\mathrm{colim}_i (C\to I_i)$.
+which precisely means that $f=g$ in $\mathrm{colim}_i \prod_{x:C} I_i(x)$.
 
-Now we check that it is injective. Given a map:
-\[f:C\to \mathrm{colim}_i I_i\]
+Now we check that it is surjective. Given a map:
+\[f: \prod_{x:C} \mathrm{colim}_i I_i(x)\]
 we know that:
-\[\forall(x:C). \exists(i:\N). f(x)\in \mathrm{I_i}\]
-but $f(x)\in \mathrm{I_i}$ is open by \cref{overtly-discrete-union-open} so that by \cref{compact-hausforff-countable-covert} we have that:
-\[\exists(i:\N). \forall(x:C).  f(x)\in \mathrm{I_i}\]
-which precisely mean that $f$ factors through $\mathrm{Im}(I_k)$ for some $k$.
-
-Now we want to factor it through $I_l$ for some $l$, to do this we start by using local choice to get:
-\begin{center}
-\begin{tikzcd}
-C' \ar[r]\ar[d]& I_k\ar[d]\\
-C \ar[r]& \mathrm{I_k}\\
-\end{tikzcd}
-\end{center}
-and then we conclude using \cref{factorisation-compact-hausdorff-cover}.
+\[\forall(x:C). \exists(i:\N). f(x)\in \mathrm{Im}(I_i(x))\]
+but $f(x)\in \mathrm{Im}(I_i(x))$ is open by \cref{overtly-discrete-union-open} so that by \cref{compact-hausforff-countable-cover} we have that:
+\[\exists(i:\N). \forall(x:C).  f(x)\in \mathrm{Im}(I_i(x))\]
+which precisely mean that $f$ factors through $\mathrm{Im}(I_i)$ for some $i$. We conclude by \cref{factorisation-image-true-factorisation}.
 \end{proof}
 
-\begin{theorem}[Scott Continuity]
+\begin{theorem}[Scott Continuity]\label{scott-continuity}
 Assume given $(C_k)_{k:\N}$ a tower of compact Hausdorff spaces and $(I_i)_{i:\N}$ a tower of overtly discrete types. Then:
 \[\left( \mathrm{lim}_k C_k \to \mathrm{colim}_i I_i\right) \simeq \mathrm{colim}_{k,i} (C_k\to I_i)\]
 \end{theorem}
 
 \begin{proof}
-By \cref{scott-continuity-right} we just have to prove that for any overtly discrete $I$ we have that:
+By the non-dependent version of \cref{scott-continuity-right} we just have to prove that for any overtly discrete $I$ we have that:
 \[(\mathrm{lim}_kC_k\to I) \simeq \mathrm{colim}_k(C_k\to I)\]
 so it is enough to prove that for all towers of finite type we have that:
 \[(\mathrm{lim}_kC_k\to \mathrm{colim}_i\mathrm{Fin}(n_i)) \simeq \mathrm{colim}_k(C_k\to \mathrm{colim}_i\mathrm{Fin}(n_i))\]
 but we can see that by using \cref{scott-continuity-right} and \cref{factorisation-compact-hausdorff-finite}.
 \end{proof}
+
+\begin{remark}
+A consequence of Scott continuity is that given a family $(S_k)_{k:\N}$ and $I$ overtly discrete, for any map:
+\[f: \left(\prod_{k:\N} S_k\right) \to I\]
+there merely exists $n:\N$ such that $f$ factors through:
+\[\prod_{k:\mathrm{Fin}(n)} S_k\]
+which justifies the name.
+\end{remark}
+
+

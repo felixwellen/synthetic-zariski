@@ -1,0 +1,38 @@
+\begin{theorem}[Factorisation]
+Let $C$ be compact Hausdorff and $I$ be overtly discrete. Then any map:
+\[C\to I\]
+merely factors through a finite type.
+\end{theorem}
+
+\begin{proof}
+If $C$ is Stone the factorisation is a direct consequence of \cref{scott-continuity}. Using a surjective map $S\to C$ with $S$ Stone, we merely get a commutative square:
+\begin{center}
+\begin{tikzcd}
+C\ar[r] & I\\
+S \ar[u]\ar[r]& \mathrm{Fin}(n)\ar[u]\\
+\end{tikzcd}
+\end{center}
+From this we get a factorisation of the map from $C$ to $I$ through $\mathrm{Fin}(n)$ quotiented by the open equivalence relation of having equal image in $I$.
+
+So we just need to merely factor any map:
+\[C\to \mathrm{Fin}(n)/R\] 
+through a finite type, where $R$ is an open relation. We proceed by induction on $n$, if $n=0,1$ it is clear. Assume $n>1$ and that it holds for $n-1$. By local choice we get:
+
+\begin{center}
+\begin{tikzcd}
+S\ar[r,"f"]\ar[d,swap,"p"] & \mathrm{Fin}(n)\ar[d]\\
+C \ar[r]& \mathrm{Fin}(n)/R\\
+\end{tikzcd}
+\end{center}
+
+For all $k:\mathrm{Fin}(n)$, let us define:
+\[S_k = f^{-1}(k)\]
+\[C_k = p(S_k)\]
+As $S_k$ is decidable, we have that $C_k$ is closed
+
+This give a cover of $C$ such that for all $k,l$:
+\[C_k\cap C_l \to R(k,l)\]
+but $C_k\cap C_l$ is compact closed in $C$ so it is compact Hausdorff, therefore $\propTrunc{C_k\cap C_l}$ is closed. So using \cref{closed-to-open-is-open} we have that:
+\[\neg(C_k\cap C_l) \lor R(k,l)\]
+Assuming for all $k\not=l$ we have $\neg(C_k\cap C_l)$ then we can factor the map through $\mathrm{Fin}(n)$, otherwise there exists $k\not=l$ such that $R(k,l)$ and $\mathrm{Fin}(n)/R$ is equivalent to $\mathrm{Fin}(n-1)/R$ by removing $l$ and we conclude by induction.
+\end{proof}

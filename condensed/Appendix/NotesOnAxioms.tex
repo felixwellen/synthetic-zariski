@@ -1,3 +1,4 @@
+\subsection{Alternatives to propositional completeness}
 In \Cref{Axioms}, we have chosen to present propositional completeness as an axiom. 
 However, assuming Stone duality, we could have made some other choices, 
 and left propositional completeness as a theorem. 
@@ -99,3 +100,44 @@ Assuming dependent choice and Stone duality, TFAE:
 \rednote{
   @Hugo, you mentioned that axiom 2 was independent from the other axioms. 
 This might be a good place to reference to that proof}
+
+
+\subsection{The formulation of local choice}
+
+\begin{lemma}
+  TFAE:
+  \begin{itemize}
+\item  Whenever $S$ Stone and $E\twoheadrightarrow S$ surjective, then there is some $T$ Stone,
+    a surjection $T \twoheadrightarrow S$ and a map $T\to E$ 
+    such that the following diagram commutes:
+    \begin{equation}\begin{tikzcd}
+      & E \arrow[d,""',two heads]\\
+      T \arrow[ru,dashed]  \arrow[r,two heads, dashed ] &S %& \arrow[l, "", two heads, dashed] T\arrow[lu, ""',dashed ]
+    \end{tikzcd}\end{equation}  
+\item
+  Whenever we have $S:\Stone$, $E,F$ arbitrary types, a map $f:S \to F$ and a 
+  surjection $e:E \twoheadrightarrow F$, 
+  there exists a Stone space $T$, a cover $T\twoheadrightarrow S$ and an arrow $T\to E$ making the following diagram commute:
+    \begin{equation}\begin{tikzcd}
+      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+      S  \arrow[r, "f"] & F
+    \end{tikzcd}\end{equation}  
+\end{itemize} 
+\end{lemma}
+\begin{proof}
+  By considering $f=id$ we can see that the second statement implies the first. 
+
+  For the converse, let $S,E,F,e,f$ be as in the second statement. 
+  As $e$ is surjective, whenever $s:S$, we there merely exists some $b:E$ with $e(b) = f(s)$. 
+  This induces an element $(s,b):S\times_F E$. 
+  Thus the projection $S\times_F E \to S$ is surjective, and 
+  the first axiom provides us with a $T$ as required. 
+    \begin{equation}\begin{tikzcd}
+     & S \times_F E \arrow[r] \arrow[d,two heads] &  E \arrow[d,""',two heads, "e"]\\
+       T \arrow[r, two heads ,dashed ] \arrow[ru,dashed]& 
+       S  \arrow[r, "f"] & F
+    \end{tikzcd}\end{equation}  
+    
+\end{proof}
+
+\subsection{Scott continuity implies Stone duality}

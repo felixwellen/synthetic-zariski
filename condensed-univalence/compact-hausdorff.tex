@@ -85,7 +85,13 @@ We proceed as follows:
 \begin{enumerate}[(i)]
 \item For identity types this is because closed propositions are compact Hausdorff.
 
-For sigma types, TODO closed proposition and Stone stable by Sigma + local choice.
+For sigma types, assume given $C$ compact Hasudorff and $D_x$ a family of compact Hausdorff spaces depending on $x:C$. We know that closed propositions are closed under sigma types therefore identity types in $\sum_{x:C}D_x$ are closed. Using local choice for Stone spaces we find we find $T$ Stone with a surejctive map:
+\[f:S\to C\]
+and for all $x:S$ a Stone space $T_x$ with a surjective map:
+\[g_x:T_x\to D_{f(x)}\]
+these combines to give a surjective map:
+\[\sum_{x:S}T_x \to \sum_{y:C}D_y\]
+and we conclude using that Stone spaces are stable under sigma.
 
 \item Clear from the definition.
 
@@ -94,3 +100,35 @@ For sigma types, TODO closed proposition and Stone stable by Sigma + local choic
 \item From the fact that Stone spaces have local choice.
 \end{enumerate}
 \end{proof}
+
+Calling them Hausdorff is reasonable as they have closed diagonal by definition. We give two reasons why calling them compact is reasonable:
+
+\begin{lemma}\label{compact-hausdorff-compact}
+Assume given $C$ compact Hausdorff and $U\subset C$ an open subtype. Then $U=C$ is open.
+\end{lemma}
+
+\begin{proof}
+We show that $\neg(U=C)$ is closed. To do this it is enough to show that:
+\[\neg(U=C) \leftrightarrow \exists (x:C).\neg U_x\]
+but we know that $\exists (x:C).\neg U_x$ is closed and therefore $\neg\neg$-stable, we have that $U_x$ is $\neg\neg$-stable as well and we can conclude from that.
+\end{proof}
+
+\begin{lemma}\label{compact-hausforff-countable-cover}
+Assume given $C$ a compact Hausdorff space and a sequence of open subset of $C$ named:
+\[U_0\subset U_1 \subset \cdots\]
+If:
+\[\forall(x:C).\exists(i:\N). x\in U_i\]
+then:
+\[\exists(i:\N). \forall(x:C).x\in U_i\]
+\end{lemma}
+
+\begin{proof}
+By local choice we have a surjective map:
+\[ f: S \to C\]
+such that:
+\[\forall(x:S).\Sigma (i:\N). f(x)\in U_i\]
+By boundedness there is $k:\N$ such that:
+\[\forall(x:S). f(x)\in U_k\]
+and then we conclude by surjectivity.
+\end{proof}
+
