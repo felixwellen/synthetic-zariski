@@ -1,5 +1,5 @@
 \begin{definition}
-A type is countable if it is merely a decidable subset of $\N$.
+A type $X$ is countable if there merely exists a decidable subset of $\N$ equal to $X$.
 \end{definition}
 
 \begin{definition}
@@ -27,7 +27,7 @@ Then we define:
 \[L(x,y) = \exists_{k:\mathrm{Fin}(n)} \alpha(x,y,k) = 1\]
 We have that $X_n$ is a finite type as it is a decidable quotient of a decidable subset of a finite type. Moreover:
 \[\mathrm{colim}_n X_n = X\]
-as sequential colimit commutes with quotients by equivalence relations.
+as sequential colimits commute with quotients by equivalence relations.
 \item (ii) implies (i). Indeed consider a sequential colimit of:
 \[f_k : \mathrm{Fin}(l_k) \to \mathrm{Fin}(l_{k+1})\]
 Then:
@@ -62,7 +62,11 @@ is equal to $f$.
 \end{lemma}
 
 \begin{proof}
-TODO
+We can assume $J = \mathrm{colim}_jG_j$. Then for all $k:\N$ the map:
+\[F_k\to \mathrm{colim}_iF_i \to \mathrm{colim}_jG_j\]
+merely factors through $G_{l}$ for some arbitrary large $l$. Using dependent choice we merely have a sequence $(l_k)_{k:\N}$ (that we can assume strictly increasing) such that for all $k:\N$ we have that:
+\[F_k\to \mathrm{colim}_iF_i \to \mathrm{colim}_jG_j\]
+factors through $G_{l_k}$. This gives what we want.
 \end{proof}
 
 \begin{lemma}\label{colimit-quarter-diagonal}
@@ -89,37 +93,36 @@ and:
 \[A_{i,j}\to A_{i,i}\to A_{i+1,i+1}\]
 are equal, which is straightforward.
 
-For the equalities from commutations of the squares there is nothing to check as $\mathrm{colim}_iA_{i,i}$ is a set.
+Checking that this definition respects commutation of squares is vacuous as $\mathrm{colim}_iA_{i,i}$ is a set.
 
 Now this map is clearly left inverse to the canonical map:
 \[ \mathrm{colim}_iA_{i,i}\to\mathrm{colim}_{i,j} A_{i,j} \]
-we just need to check that it is right inverse to conclude. Given $x:A_{i,j}$ we need to check that it is equal to its image in $A_{\max(i,j),\max(i,j)}$ in $\mathrm{colim}_{i,j} A_{i,j}$, which holds by definition of colimits. Since $\mathrm{colim}_{i,j} A_{i,j}$ is a set there is nothing else to check.
+we just need to check that it is right inverse to conclude. Given $x:A_{i,j}$ we need to check that it is equal to its image in $A_{\max(i,j),\max(i,j)}$ in $\mathrm{colim}_{i,j} A_{i,j}$, which holds by definition of colimits. Since $\mathrm{colim}_{i,j} A_{i,j}$ is a set (as a sequential colimit of sequential colimits of sets), there is nothing else to check.
 \end{proof}
 
 \begin{remark}
-We conjecture the previous lemma holds even when the $A_{i,j}$ are not sets. The proof is bound to be more involved though.
+We conjecture the previous lemma holds even when the $A_{i,j}$ are not sets.
 \end{remark}
 
 \begin{theorem}
 We have the following:
 \begin{enumerate}[(i)]
-\item Overtly dicrete types are stable under identity type and and sigma type.
-\item Overly discrete types are stable under quotient by equivalence relation with value in overtly discrete types.
+\item Overtly dicrete types are stable under identity types and and sigma types.
+\item Overly discrete types are stable under quotients by equivalence relation with value in overtly discrete types.
 \item Overtly discrete type are stable under sequential colimits.
 \item Overtly discrete types have local choice.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-We proceed as follows:
 \begin{enumerate}[(i)]
 \item For stability under identity types, we use that sequential colimits commutes with identity types. 
 
-For stability under sigma, sequential colimits commutes with sigma so that by (iii) it is enough to show that overtly discrete types are stable under finite coproduct. But sequential colimits commutes with finite coproduct.
+For stability under sigma types, sequential colimits commutes with sigma so that by (iii) it is enough to show that overtly discrete types are stable under finite coproduct. But sequential colimits commute with finite coproducts.
 
 \item Clear from the alternative description in \cref{overtly-discrete-colimit-finite}.
 
-\item Assume given a tower of sequential colimits of finite types. By using dependent choice with \cref{presentation-maps-overtly-discrete} repeatedly, we get a quarter plane for finite types:
+\item Assume given a tower of sequential colimits of finite types. By using dependent choice with \cref{presentation-maps-overtly-discrete} repeatedly, we get a quarter plane of finite types:
 \begin{center}
 \begin{tikzcd}
 F_{0,0}\ar[d]\ar[r] & F_{0,1}\ar[d]\ar[r] & \cdots \\
@@ -129,7 +132,7 @@ F_{1,0}\ar[d]\ar[r] & F_{1,1}\ar[d]\ar[r] & \cdots \\
 \end{center}
 which colimit is the colimit of the assumed tower. Then we just use \cref{colimit-quarter-diagonal} to conclude that this colimit is overtly discrete.
 
-\item By \cref{overtly-discrete-colimit-finite}, we even have a cover of any overtly discrete type by a countable type, which is an overtly discrete type that has choice.
+\item By \cref{overtly-discrete-colimit-finite}, we have a cover of any overtly discrete type by a countable type, which is an overtly discrete type that has choice.
 \end{enumerate}
 \end{proof}
 

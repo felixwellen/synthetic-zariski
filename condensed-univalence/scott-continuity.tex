@@ -20,7 +20,7 @@ we write $i_l$ for the map $X_l\to\mathrm{colim_k}X_k$.
 
 Given a tower: 
 \[Y_0 \leftarrow Y_1\leftarrow Y_2 \leftarrow \cdots\]
-we write $\pi_k$ the map $\lim_k Y_k\to Y_l$ and for $l\leq m$ we write $j_{m,l}$ the induced map $Y_m\to Y_l$.
+we write $\pi_l$ the map $\lim_k Y_k\to Y_l$ and for $m\geq l$ we write $j_{m,l}$ the induced map $Y_m\to Y_l$.
 
 \begin{lemma}\label{sequential-limits-decidable}
 Assume given $(S_k)_{k:\N}$ a tower of Stone spaces and $l:\N$ with $P:S_l\to 2$ such that:
@@ -30,16 +30,16 @@ Then we have that:
 \end{lemma}
 
 \begin{proof}
-The hypothesis means that the element corresponding to $P$ in $2^{S_l}$ is equal to $1$ in $\mathrm{colim}_k2^{S_k}$, which neabs there exists $m$ such that it is equal to $1$ in $2^{S_m}$ which is what we want.
+The hypothesis means that the element corresponding to $P$ in $2^{S_l}$ is equal to $1$ in $\mathrm{colim}_k2^{S_k}$. So there exists $m$ such that it is equal to $1$ in $2^{S_m}$ which is what we want.
 \end{proof}
 
 \begin{lemma}\label{stonification-sequential-limits}
-For any tower of compact Hausdorff space $(C_k)_{k:\N}$, we have that:
+For any tower of compact Hausdorff spaces $(C_k)_{k:\N}$, we have that:
 \[\Spec(2^{\mathrm{lim}_k C_k}) = \mathrm{lim}_k\Spec(2^{C_k})\]
 \end{lemma}
 
 \begin{proof}
-Reason as in \cref{sequential-limit-Hausdorff} to find a pointwise surjective map of towers:
+By \cref{sequential-limit-Hausdorff} we have a pointwise surjective map of towers:
 \begin{center}
 \begin{tikzcd}
 S_0\ar[d] & S_1\ar[d]\ar[l] & \cdots\ar[l]\\
@@ -64,13 +64,13 @@ Given $f:S_l\to 2$, if there exists $m\geq l$ such that $f\circ j_{m,l}$ respect
 
 Conversely assume $f:S_l\to 2$ such that $f\circ \pi_l$ respects $\forall k. R_k$, this means that:
 \[\forall x,y:\mathrm{lim}_k S_k. (\forall k. R_k(x_k,y_k) )\to f(\pi_l(x))=f(\pi_l(y))\]
-This means that:
+So we have that:
 \[\forall (z : \mathrm{lim}_k \Sigma(x,y:S_k).\ R_k(x,y)).\ f(\pi_l(\pi_1(z)))=f(\pi_l(\pi_2(z)))\]
 and then we just apply \cref{sequential-limits-decidable} to conclude.
 \end{proof}
 
 \begin{lemma}
-Assume $C$ a compact Hausdorff space and $S$ a stone space. Then the map:
+Assume $C$ compact Hausdorff and $S$ Stone. Then the map:
 \[C\to \Spec(2^C)\]
 induces an equivalence:
 \[(\Spec(2^C) \to S) \simeq(C\to S) \]
@@ -85,8 +85,14 @@ so the map:
 \[C\to \Spec(2^C)\]
 is surjective and the map:
 \[(\Spec(2^C) \to S) \to (C\to S) \]
-is injective as $S$ is a set. It is surjective as any map $C\to S$ induces a map:
-\[\Spec(2^C) \to \Spec(2^S) = S\]
+is injective as $S$ is a set. It is surjective as any map $C\to S$ induces a commutative square:
+\begin{center}
+\begin{tikzcd}
+C\ar[d]\ar[r] & S\ar[d]\\
+\Spec(2^C)\ar[r] & \Spec(2^S)
+\end{tikzcd}
+\end{center}
+where the right map is an equivalence.
 \end{proof}
 
 \begin{lemma}\label{factorisation-compact-hausdorff-finite}
@@ -105,16 +111,15 @@ Assume $(I_i)_{i:\N}$ a tower of overtly discrete types. Then for any $i:\N$ we 
 \begin{proof}
 For $y:\mathrm{colim}_iI_i$, we have that $y\in \mathrm{Im}(I_i)$ is:
 \[\exists(x:I_i). x=_{\mathrm{colim}_iI_i}y\]
-which is the propositional truncation of an overtly discrete type and therefore overtly discrete.
+which is the propositional truncation of an overtly discrete type and therefore open.
 \end{proof}
-
 
 \begin{lemma}\label{factorisation-image-true-factorisation}
 Assume given $C$ compact Hausdorff and for each $x:C$ a tower:
 \[I_0(x)\to I_1(x)\to \cdots\]
 of overtly discrete types. Given:
 \[f:\prod_{x:S}\mathrm{colim}_i I_i(x)\]
-such that there exists $i:\N$ such that $f$ factors through $\mathrm{Im}(I_i)$. Then there exists $j:\N$ such that $f$ factors through $I_j$.
+such that there exists $i:\N$ such that $f$ factors through $\mathrm{Im}(I_i)$. Then there exists $j\geq i$ such that $f$ factors through $I_j$.
 \end{lemma}
 
 \begin{proof}
@@ -127,7 +132,7 @@ such that:
 Then we have that:
 \[\forall(x,y:S). p(x)=p(y) \to g(x) =_{\mathrm{colim}_i I_i(x)} g(y)\]
 so that:
-\[\forall(x,y:S). p(x)=p(y) \to \exists(i:\N). g(x) =_{\mathrm{colim}_i I_i(x)} g(y)\]
+\[\forall(x,y:S). p(x)=p(y) \to \exists(i:\N). g(x) =_{I_i(x)} g(y)\]
 Since $\Sigma(x,y:S). p(x)=p(y)$ is compact Hausdorff we can apply \cref{compact-hausforff-countable-cover} to get a $j:\N$ such that:
 \[\forall(x,y:S). p(x)=p(y) \to g(x) =_{I_j(x)} g(y)\]
 which gives a factorisation of $f$ through $I_j$.
@@ -148,9 +153,9 @@ is an equivalence.
 First we check that it is injective. Given $f,g:\prod_{x:C} I_i(x)$ such that:
 \[\forall(x:C).  f(x) =_{\mathrm{colim}_iI_i(x)} g(x)\]
 Then we have that:
-\[\forall(x:C).  \exists(j:\N). f(x) =_{I_j} g(x)\]
+\[\forall(x:C).  \exists(i:\N). f(x) =_{I_i(x)} g(x)\]
 so that by \cref{compact-hausforff-countable-cover} we have that:
-\[\exists(j:\N). \forall(x:C). f(x) =_{I_j} g(x)\]
+\[\exists(j:\N). \forall(x:C). f(x) =_{I_j(x)} g(x)\]
 which precisely means that $f=g$ in $\mathrm{colim}_i \prod_{x:C} I_i(x)$.
 
 Now we check that it is surjective. Given a map:
