@@ -1,20 +1,12 @@
+Recall that we defined $B_\infty$ as the quotient of the freely generated algebra 
+over $p_n,~n\in\N$ by the relations $\{p_n \wedge p_m | n\neq m\}$. 
+
 \begin{lemma}\label{N-co-fin-cp}
-  The Boolean algebra of co-finite subsets of $\N$, 
+  The Boolean algebra of co-finite subsets of $\N$
   is equivalent to $B_\infty$. 
 \end{lemma}
 \begin{proof}
-%  We let $f:\langle G \rangle / R \to \N_{(co)fin}$, be the unique morphism of Boolean algebras 
-%  satisfying $f(p_n) = \{n\}$ for all $n:\N$. As $\{n\} \cap \{m\} = \emptyset$ whenever $n\neq m$, 
-%  \Cref{rmkMorphismsOutOfQuotient} indeed tells us this is sufficient to define $f$. 
-%
-%  Now we define $g:\N_{(co)fin} \to \langle G \rangle / R$. 
-%  On a finite subset $I$, we define $g(I) = \bigvee_{i\in I} p_i$, 
-%  and on a cofinite subset $J$, we define $g(J) = \bigwedge _{i \in J^C} \neg p_i$. 
-%  Note that in these cases we indeed have $I,J^C$ are finite, so these are well-defined elements. 
-%
-%  We need to show that $g$ is a Boolean morphism. 
-
-  Define $f:B_\infty \to \N_{(co)fin}$ be induced by sending $p_n$ to $\{n\}$. 
+  Let $f:B_\infty \to \N_{(co)fin}$ be induced by sending $p_n$ to $\{n\}$. 
   Note that whenever $n\neq m$, we have 
   $f(p_n)\wedge f(p_m) = \{n\} \cap \{m\} = \emptyset$, 
   thus $f$ respects the relations of $B_\infty$ and is well-defined.
@@ -22,7 +14,7 @@
   Define $g:N_{(co)fin)} \to B_\infty$ as follows:
   \begin{itemize}
     \item On a finite subset $I$, we define $g(I) = \bigvee_{i\in I} p_i$, 
-    \item and on a cofinite subset $J$, we define $g(J) = \bigwedge _{i \in J^C} \neg p_i$. 
+    \item On a cofinite subset $J$, we define $g(J) = \bigwedge _{i \in J^C} \neg p_i$. 
   \end{itemize}
   Note that in these cases we indeed have $I,J^C$ are finite, so these are well-defined elements. 
   We must show that $g$ is a Boolean morphism. 
@@ -52,11 +44,11 @@
           \bigwedge_{i\in I^C} 
           \bigwedge_{j \in J^C}(\neg p_i \vee  \neg p_j) 
         \end{equation}
-        Now note that in $\langle G \rangle / R$, we have 
+        Now note that in $B_\infty$, we have 
         \begin{equation}
           \neg p_i \vee \neg p_j = \neg ( p_i \wedge p_j) = 
           \begin{cases}
-            p_i \text{ if } i = j\\
+            \neg p_i \text{ if } i = j\\
             1 \text{ if } i \neq j  
           \end{cases}
         \end{equation}
@@ -93,14 +85,18 @@
               \end{cases}
           \end{equation}
           As for all $k\in J^C-I$ and all $i\in I$ we have $k\neq i$, we may thus write
-          \begin{equation}
+          \begin{equation}\label{eqnCofiniteHelper1}
             \bigwedge_{k \in (J^C - I)} \neg p_k = 
             \bigwedge_{k \in (J^C - I)} (\neg p_k \vee (\bigvee_{i\in I} p_i))
           \end{equation}
-          But now we can use that adding $1$ in a meet does not change the meet, and see that 
+          We now note that 
+          \begin{equation}\label{eqnCofiniteHelper2}
+            1=\bigwedge_{i\in I} 1 = \bigwedge_{i\in I} (\neg p_i \vee (\bigvee_{i\in I} p_i)).
+          \end{equation}
+          Taking the meet of the expressions in \Cref{eqnCofiniteHelper1} and \Cref{eqnCofiniteHelper2}, 
+          we see that 
           \begin{equation}
-            \bigwedge_{k \in (J^C - I)} (\neg p_k \vee (\bigvee_{i\in I} p_i))
-            = 
+            \bigwedge_{k \in (J^C - I)} \neg p_k = 
             \bigwedge_{j \in J^C} (\neg p_j \vee (\bigvee_{i\in I} p_i))
           \end{equation}
           And using distributivity rules, we can see that 
@@ -117,3 +113,81 @@ We conclude that $g$ is a Boolean morphism.
 Furthermore, it is easy to see that $g$ and $f$ are each other's inverse, 
 thus the Boolean algebras are isomorphic. 
 \end{proof}
+\begin{remark}\label{AppendixCofiniteOrFinite}
+  As a consequence of the above proof, any $b:B_\infty$ corresponds either to 
+  \begin{itemize}
+    \item a finite set $I$, in which case $b = \bigvee_{i\in I} p_i$. 
+    \item a cofinite set $J$, in which case $b = \bigwedge_{j\in J^C} \neg p_j$. 
+  \end{itemize}
+  We will call $b$ finite/cofinite respectively. 
+\end{remark}
+\begin{remark}
+Recall that $\Noo$ is defined as the spectrum of $B_\infty$. 
+If $\alpha:\Noo$ satisfies $\alpha(p_n) = 1$, then $\alpha(p_m) = 0$ for all $n\neq m$. 
+Therefore, for each $n:\N$, there is an unique map $\chi_n$ with $\chi_n(p_n) = 1$. 
+There is also the point $\chi_\infty : \Noo$ which is unique 
+with the property that $ \chi_\infty(p_n) = 0$ for all $n:\N$. 
+\end{remark}
+\rednote{Active WIP}
+\begin{lemma}
+  A decidable subset $D: \Noo \to 2$ corresponds to a cofinite $d:B_\infty$ iff $\chi_\infty\in D$. 
+\end{lemma}
+\begin{proof}
+  Let $D:\Noo \to 2$ correspond to $d:B_\infty$.
+  Then $\chi_\infty\in D$ iff $\chi_\infty(d) = 1$. 
+%
+  By \Cref{AppendixCofiniteOrFinite}, $d$ can have two forms.
+  By definition of $\chi_\infty$, we have that 
+  $\chi_\infty(\bigvee_{i\in I} p_i) = 0$ and 
+  $\chi_\infty(\bigwedge_{j\in J^C} \neg p_j) = 1$. 
+  Thus $\chi_\infty(d) = 1$ iff $d$ is cofinite. 
+\end{proof}
+\begin{lemma}
+  If $d:B_\infty$ is of the form $\bigvee_{i\in I} p_i$,
+  it corresponds to the decidable set 
+  $D = \{\chi_i | i \in I\} \subseteq \Noo$.
+\end{lemma}
+\begin{proof}
+  Clearly whenever $i\in I$, we have $\chi_i(\bigvee_{i\in I} p_i) = 1$. 
+  Now suppose $f:B_\infty \to 2$ is such that $f(\bigvee_{i\in I} p_i) = 1$. 
+  Then $\bigvee_{i\in I}(f(p_i)) = 1$, hence it is not the case that $f(p_i) = 0$ for all $i\in I$. 
+  Now as $I$ is finite and $f(p_i) = 0 \vee f(p_i) = 1$ for all $i\in I$, 
+  there must exist some (necessarily unique) $i\in I$ with $f(p_i) = 1$. Hence $f = \chi_i$. 
+  Thus $f(d) = 1$ iff there is some $i\in I$ with $f = \chi_i$. 
+\end{proof}
+\begin{lemma}
+  If $d:B_\infty$ is of the form $\bigwedge_{j\in J^C} \neg p_j$,
+  it corresponds to the decidable set 
+  $D = \neg \{\chi_j | j \in J^C\} \subseteq \Noo$.
+\end{lemma}
+\begin{proof}
+  Clearly whenever $j\in J^C$, we have 
+  $\chi_j(\bigwedge_{j\in J^C} \neg p_j) = 0$, so $\chi_j \notin D$. 
+
+\end{proof}
+
+
+%
+%\begin{lemma}
+%  For all decidable subsets $D:\Noo\to 2$,
+%  with $D$ non-empty, there exists some $n:\N$ with $\chi_n \in D$. 
+%\end{lemma}
+%\begin{proof}
+%  We make a case distinction based on \Cref{AppendixCofiniteOrFinite}. 
+%  \begin{itemize}
+%    \item 
+%      If $D$ corresponds to a finite $d:B_\infty$, but is non-empty, then 
+%      $d=\bigvee_{i\in I} p_i$ for $I\subseteq \N$ finite and non-empty. 
+%      If $I$ is finite (as in \Cref{dfnFinite}) and non-empty, 
+%      $I\simeq Fin_k$ for some $k\neq 0$. 
+%      In particular, there is a map $1 \to I$,
+%      hence a term $i:I$. 
+%      Then $\chi_i(d) = 1$, hence $\chi_i \in D$. 
+%    \item 
+%      If $D$ corresponds to some cofinite $d:B_\infty$, we have 
+%      $d = \bigvee_{i\in I} \neg p_i$ for some $I\subseteq \N$ finite. 
+%      Then there is some 
+%\end{proof}
+%
+
+

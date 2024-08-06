@@ -253,41 +253,43 @@ module BooleanAlgebraStr (A : BooleanRing ℓ)  where
   ¬1 = x≡-x {x = 𝟙}
 
 
---data freeBA (G : Type ℓ) : Type ℓ where
---  generator : G → freeBA G
---  _∧_ : freeBA G → freeBA G → freeBA G
---  _∨_ : freeBA G → freeBA G → freeBA G
---  ¬_  : freeBA G → freeBA G
---  𝟙 : freeBA G
---  𝟘 : freeBA G
---  assoc∨ : {x y z : freeBA G} →  (x ∨ ( y ∨ z ) ≡ ( x ∨ y ) ∨ z )
---  assoc∧ : {x y z : freeBA G} →  (x ∧ ( y ∧ z ) ≡ ( x ∧ y ) ∧ z )
---  com∨ : {x y : freeBA G} →  (x ∨  y ) ≡ (y ∨ x)
---  com∧ : {x y : freeBA G} →  (x ∧  y ) ≡ (y ∧ x)
---  distrA : {x y z : freeBA G} → ( x ∧ ( y ∨ z)) ≡ (x ∧ y) ∨ (x ∧ z)
---  distrB : {x y z : freeBA G} → ( x ∨ ( y ∧ z)) ≡ (x ∨ y) ∧ (x ∨ z)
---  0∨ : {x : freeBA G} → x ∨ 𝟘 ≡ x
---  0∧ : {x : freeBA G} → x ∧ 𝟘 ≡ 𝟘
---  1∨ : {x : freeBA G} → x ∨ 𝟙 ≡ 𝟙 
---  1∧ : {x : freeBA G} → x ∧ 𝟙 ≡ x
---  ∨idem   : {x : freeBA G} → x ∧ x ≡ x
---  ∧idem   : {x : freeBA G} → x ∧ x ≡ x
---  absorpA : {x y : freeBA G} →  x ∧ (x ∨ y )  ≡ x
---  absorpB : {x y : freeBA G} →  x ∨ (x ∧ y )  ≡ x
---  ¬∧ : {x : freeBA G} → (x ∧ (¬ x)) ≡ 𝟘
---  ¬∨ : {x : freeBA G} → (x ∨ (¬ x)) ≡ 𝟙
---  ¬¬ : {x : freeBA G} → ¬ ¬ x ≡ x
---  ¬0 : ¬ 𝟘 ≡ 𝟙
---  ¬1 : ¬ 𝟙 ≡ 𝟘
---
---_+_ : {G : Type ℓ} → (freeBA G) → (freeBA G ) → (freeBA G) 
---b + c = (b ∧ (¬ c)) ∨ ( (¬ b) ∧ c)
---
+data freeBA (G : Type ℓ) : Type ℓ where
+  generator : G → freeBA G
+  _∧_ : freeBA G → freeBA G → freeBA G
+  _∨_ : freeBA G → freeBA G → freeBA G
+  ¬_  : freeBA G → freeBA G
+  𝟙 : freeBA G
+  𝟘 : freeBA G
+  assoc∨ : {x y z : freeBA G} →  (x ∨ ( y ∨ z ) ≡ ( x ∨ y ) ∨ z )
+  assoc∧ : {x y z : freeBA G} →  (x ∧ ( y ∧ z ) ≡ ( x ∧ y ) ∧ z )
+  com∨ : {x y : freeBA G} →  (x ∨  y ) ≡ (y ∨ x)
+  com∧ : {x y : freeBA G} →  (x ∧  y ) ≡ (y ∧ x)
+  distrA : {x y z : freeBA G} → ( x ∧ ( y ∨ z)) ≡ (x ∧ y) ∨ (x ∧ z)
+  distrB : {x y z : freeBA G} → ( x ∨ ( y ∧ z)) ≡ (x ∨ y) ∧ (x ∨ z)
+  0∨ : {x : freeBA G} → x ∨ 𝟘 ≡ x
+  0∧ : {x : freeBA G} → x ∧ 𝟘 ≡ 𝟘
+  1∨ : {x : freeBA G} → x ∨ 𝟙 ≡ 𝟙 
+  1∧ : {x : freeBA G} → x ∧ 𝟙 ≡ x
+  ∨idem   : {x : freeBA G} → x ∧ x ≡ x
+  ∧idem   : {x : freeBA G} → x ∧ x ≡ x
+  absorpA : {x y : freeBA G} →  x ∧ (x ∨ y )  ≡ x
+  absorpB : {x y : freeBA G} →  x ∨ (x ∧ y )  ≡ x
+  ¬∧ : {x : freeBA G} → (x ∧ (¬ x)) ≡ 𝟘
+  ¬∨ : {x : freeBA G} → (x ∨ (¬ x)) ≡ 𝟙
+  ¬¬ : {x : freeBA G} → ¬ ¬ x ≡ x
+  ¬0 : ¬ 𝟘 ≡ 𝟙
+  ¬1 : ¬ 𝟙 ≡ 𝟘
 
+_+_ : {G : Type ℓ} → (freeBA G) → (freeBA G ) → (freeBA G) 
+b + c = (b ∧ (¬ c)) ∨ ( (¬ b) ∧ c)
 
+_·_ : {G : Type ℓ} → (freeBA G) → (freeBA G ) → (freeBA G) 
+_·_ = _∧_
 
+-_ : {G : Type ℓ} → (freeBA G) → (freeBA G ) 
+-_ = \x → x
 
-
+freeBAisBooleanRing : {G : Type ℓ} → 
 
 
 --freeBAareRing : {G : Type ℓ} → IsRing {ℓ} {freeBA G} 𝟘 𝟙 _+_ _∧_ (λ x → x)
@@ -304,4 +306,3 @@ module BooleanAlgebraStr (A : BooleanRing ℓ)  where
 --freeBAareBA : {G : Type ℓ} →  IsBooleanAlgebra {_} {_} {freeBA G} (λ _ _ → freeBA G) _∨_ _∧_ ¬_ 𝟙 𝟘 -- I'm not sure what the first explicit argument is supposed to be
 
 
-----record IsBooleanAlgebra (∨ ∧ : Op₂ A) (¬ : Op₁ A) (⊤ ⊥ : A) : Set (a ⊔ ℓ)
