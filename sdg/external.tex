@@ -3,45 +3,62 @@
 \newcommand{\theory}[1]{\mathbf{#1}}
 \newcommand{\Psh}{\mathop{PSh}}
 \newcommand{\Set}{\mathsf{Set}}
+\newcommand{\TT}{\theory{T}}
+\newcommand{\EE}{\theory{E}}
+\newcommand{\Com}{\theory{Com}}
 
-\subsection{On Endomorphism Theories}
+\subsection{Endomorphism Theories}
 
-\begin{definition}
-Let \(\cat T\) be a category with finite products.
-For an object \(R:\cat T\) let \(\theory E_R\) denote the full subcategory on all powers \(R^n\) of \(R\), where \(n:\N\) is a natural number.
-This defines a single-sorted algebraic theory, the \emph{endomorphism theory} of \(R\).
-As usual, we identify the objects of \(\theory E_R\) with natural numbers.
-\end{definition}
-% An \emph{\(\theory E_R\)-algebra} in a category \(\cat D\) with finite products is a functor \(\theory E_R \to \cat D\) which preserves finite products/powers.
+% \begin{remark}
+%   Given an object \(R\) of a category \(\cat C\) with specified finite powers, theory morphisms \(\TT\to\EE_R\) are in bijection with \(\TT\)-algebra structures on \(R\).
+% \end{remark}
 
-% \begin{example}
-%   Each object \(X:\cat T\) defines a \(\theory E_R\)-algebra \(C(X)\) in the category of sets by setting \(C(X)(n)\colonequiv\cat T(X,R^n)\), and with postcomposition action on morphisms \(R^n\to R^m\).
-% \end{example}
-
-Now suppose \(\theory T\) is any algebraic theory (for example, the theory of rings) and let \(\cat A\) be any full subcategory of the category of \(\theory T\)-algebras (think of finitely presented algebras).
-We write \(\cat L\) for the opposite category of \(\cat A\) and \(\ell A\) for the formal dual of a \(\theory T\)-algebra \(A\) in \(\cat A\).
+Suppose \(\TT\) is any algebraic theory (for example, the theory of rings) and let \(\cat A\) be any full subcategory of the category of \(\TT\)-algebras in the category of sets (think of finitely presented algebras).
+We write \(\cat L\) for the opposite category of \(\cat A\) and \(\ell A\) for the formal dual of a \(\TT\)-algebra \(A\) in \(\cat A\).
 Moreover, we suppose \(\cat L\) is equipped with a Grothendieck topology (for example, the Zariski topology).
 Then let \(\cat T\) be the sheaf topos over \(\cat L\), denote the Yoneda embedding \(\cat L\to\cat T\) by \(Y\) and the sheafification functor \(\Psh(\cat L)\to\cat T\) by \(s\).
-Finally, we write \(F_\theory T(n)\) for the free \(\theory T\)-algebra on \(n\) generators and then consider the \emph{generic \(\theory T\)-algebra} \(R\colonequiv sY\ell(F_{\theory T}(1))\) in \(\cat T\).
+Finally, we write \(F_\TT(n)\) for the free \(\TT\)-algebra on \(n\) generators and then consider the \emph{generic \(\TT\)-algebra} \(R\colonequiv sY\ell(F_{\TT}(1))\) in \(\cat T\).
 
 \begin{proposition}
-  The endomorphism theory of \(R\) is equivalent to the algebraic theory \(\theory T\).
+  The endomorphism theory of \(R\) is equivalent to the algebraic theory \(\TT\).
 \end{proposition}
 \begin{proof}
   For two natural numbers \(n,m:\N\) we calculate:
   \begin{align*}
-    \theory E_R(n,m)
+    \EE_R(n,m)
     &= \cat T(R^n,R^m)\\
-    &= \cat T(sY\ell(F_{\theory T}(n)),sY\ell(F_{\theory T}(m)))\\
-    &= \Psh(\cat L)(Y\ell(F_{\theory T}(n)),Y\ell(F_{\theory T}(m)))\\
-    &= \cat L(\ell(F_{\theory T}(n)),\ell(F_{\theory T}(m)))\\
-    & = \cat A(F_{\theory T}(m),F_{\theory T}(n))\\
-    & = \Alg{\theory T}(F_{\theory T}(m),F_{\theory T}(n))\\
-    & = \Alg{\theory T}(\theory T(m,\_),\theory T(n,\_))\\
-    & = [\theory T,\Set](\theory T(m,\_),\theory T(n,\_))\\
-    & = \theory T(n,m)
+    &= \cat T(sY\ell(F_{\TT}(n)),sY\ell(F_{\TT}(m)))\\
+    &= \Psh(\cat L)(Y\ell(F_{\TT}(n)),Y\ell(F_{\TT}(m)))\\
+    &= \cat L(\ell(F_{\TT}(n)),\ell(F_{\TT}(m)))\\
+    & = \cat A(F_{\TT}(m),F_{\TT}(n))\\
+    & = \Alg{\TT}(F_{\TT}(m),F_{\TT}(n))\\
+    & = \Alg{\TT}(\TT(m,\_),\TT(n,\_))\\
+    & = [\TT,\Set](\TT(m,\_),\TT(n,\_))\\
+    & = \TT(n,m)
   \end{align*}
-Here, we used the fact that the free \(\theory T\)-algebra on \(n\) generators is given by the representable functor \(\theory T(n,\_)\).
+Here, we used the fact that the free \(\TT\)-algebra on \(n\) generators is given by the representable functor \(\TT(n,\_)\).
 The last equality is just the Yoneda embedding for copresheaves.
 \end{proof}
+
+
+\subsection{Fermat Algebras}
+
+\begin{definition}
+  A \emph{Fermat ring (object)} is a commutative ring object whose endomorphism theory is a Fermat theory.
+\end{definition}
+
+\begin{example}
+  The structure sheaf in the small Zariski topos of a scheme is a Fermat ring?
+\end{example}
+
+\begin{example}
+  The affine line in the big Zariski topos is a Fermat ring?
+\end{example}
+
+\begin{example}
+  The real line in the Dubuc topos is a Fermat ring?
+\end{example}
+
+
+
 }
