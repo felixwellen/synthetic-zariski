@@ -32,7 +32,6 @@ private
   variable 
    ℓ ℓ' : Level
 
-
 record IsBooleanRing {B : Type ℓ}
               (𝟘 𝟙 : B) (_+_ _·_ : B → B → B) (-_ : B → B) : Type ℓ where
 
@@ -41,7 +40,6 @@ record IsBooleanRing {B : Type ℓ}
     ·IsIdempotent : (x : B) → x · x ≡ x
 
   open IsCommRing isCommRing public
-
 
 record BooleanStr (A : Type ℓ) : Type (ℓ-suc ℓ) where
   field
@@ -117,6 +115,7 @@ module BooleanAlgebraStr (A : BooleanRing ℓ)  where
     ((x · y) + (x · z)) + ((x · x) · (y · z))
       ≡⟨  solve! (BooleanRingToCommRing A) ⟩
     (((x · y) + (x · z)) + ((x · y) · (x · z))) ∎
+
   distrB : ( x ∨ ( y ∧ z)) ≡ (x ∨ y) ∧ (x ∨ z)
   distrB {x = x} {y = y} { z = z} = 
     ((x + (y · z)) + (x · (y · z))) 
@@ -139,25 +138,67 @@ module BooleanAlgebraStr (A : BooleanRing ℓ)  where
        ((x · a) + (x · a))
          ≡⟨ cong (λ y → (x · a) + (y · a)) (sym (·IsIdempotent x)) ⟩ 
        ((x · a) + ((x · x) · a)) ∎
+
   0∨IdR : x ∨ 𝟘 ≡ x
   0∨IdR = solve! (BooleanRingToCommRing A)
+
   0∨IdL : 𝟘 ∨ x ≡ x
   0∨IdL = solve! (BooleanRingToCommRing A)
-  0∧IdR : x ∧ 𝟘 ≡ 𝟘
-  0∧IdR = RingTheory.0RightAnnihilates (CommRing→Ring (BooleanRingToCommRing A)) _
-  0∧IdL : 𝟘 ∧ x ≡ 𝟘
-  0∧IdL = RingTheory.0LeftAnnihilates (CommRing→Ring (BooleanRingToCommRing A)) _ 
+
+  0∧RightAnnihilates : x ∧ 𝟘 ≡ 𝟘
+  0∧RightAnnihilates = RingTheory.0RightAnnihilates (CommRing→Ring (BooleanRingToCommRing A)) _
+
+  0∧LeftAnnihilates : 𝟘 ∧ x ≡ 𝟘
+  0∧LeftAnnihilates = RingTheory.0LeftAnnihilates (CommRing→Ring (BooleanRingToCommRing A)) _ 
+
   1∨RightAbsorbs : x ∨ 𝟙 ≡ 𝟙 
-  1∨RightAbsorbs = {! !} 
---  1∧ : x ∧ 𝟙 ≡ x
---  absorpA : x ∧ (x ∨ y )  ≡ x
---  absorpB : x ∨ (x ∧ y )  ≡ x
---  assoc∨ : (x ∨ ( y ∨ z ) ≡ ( x ∨ y ) ∨ z )
---  assoc∨ = {! !} 
+  1∨RightAbsorbs {x = x} = 
+    ((x + 𝟙) + (x · 𝟙)) 
+      ≡⟨ solve! (BooleanRingToCommRing A) ⟩ 
+    (𝟙 + (x + x))
+      ≡⟨ cong (λ y → 𝟙 + y) x≡-x ⟩ 
+    (𝟙 + 𝟘)
+      ≡⟨ +IdR 𝟙 ⟩ 
+    𝟙 ∎
+  
+  1∨LeftAbsorbs : 𝟙 ∨ x ≡ 𝟙 
+  1∨LeftAbsorbs {x = x} = ∨Com ∙ 1∨RightAbsorbs
+
+  1∧IdR : x ∧ 𝟙 ≡ x
+  1∧IdR = ·IdR _  
+
+  1∧IdL : 𝟙 ∧ x ≡ x
+  1∧IdL = ·IdL _  
+
+  absorpA : x ∧ (x ∨ y )  ≡ x
+  absorpA {x = x} {y = y} = 
+    (x · ((x + y) + (x · y))) 
+      ≡⟨ solve! (BooleanRingToCommRing A) ⟩ 
+    ((x · x) + ((x · y) + ((x · x) · y))) 
+      ≡⟨ cong (λ z → z + ((x · y) + (z · y))) (·IsIdempotent x) ⟩ 
+    (x + ((x · y) + (x · y))) 
+      ≡⟨ cong (_+_ x) x≡-x ⟩ 
+    (x + 𝟘) 
+      ≡⟨ +IdR x ⟩ 
+    x ∎ 
+
+  absorpB : x ∨ (x ∧ y )  ≡ x
+  absorpB {x = x} { y = y}  = 
+    ((x + (x · y)) + (x · (x · y))) 
+      ≡⟨ solve! (BooleanRingToCommRing A)  ⟩ 
+    (x + ((x · y) + (x · x) · y)) 
+      ≡⟨ cong (λ z → x + ((x · y) + (z · y))) (·IsIdempotent x) ⟩ 
+    (x + ((x · y) + (x · y))) 
+      ≡⟨ cong (_+_ x) x≡-x ⟩ 
+    (x + 𝟘) 
+      ≡⟨ +IdR x ⟩ 
+    x ∎ 
+
+  assoc∨ : (x ∨ ( y ∨ z ) ≡ ( x ∨ y ) ∨ z )
+  assoc∨ =  solve! (BooleanRingToCommRing A)  
+
   ∨idem   : x ∨ x ≡ x
   ∨idem { x = x } = 
-    (x ∨ x) 
-      ≡⟨ refl ⟩ 
     (x + x) + (x · x)
       ≡⟨ cong (λ y → y + (x · x)) x≡-x ⟩ 
     𝟘  + (x · x) 
@@ -165,13 +206,51 @@ module BooleanAlgebraStr (A : BooleanRing ℓ)  where
     (x · x) 
       ≡⟨ ·IsIdempotent x ⟩ 
     x ∎ 
-  ∧idem   : x ∧ x ≡ x
-  ∧idem   = ·IsIdempotent _ 
---  ¬∧ : (x ∧ (¬ x)) ≡ 𝟘
---  ¬∨ : (x ∨ (¬ x)) ≡ 𝟙
---  ¬¬ : ¬ ¬ x ≡ x
---  ¬0 : ¬ 𝟘 ≡ 𝟙
---  ¬1 : ¬ 𝟙 ≡ 𝟘
+
+  ∧idem : x ∧ x ≡ x
+  ∧idem = ·IsIdempotent _ 
+
+  ¬Cancels∧Right : (x ∧ (¬ x)) ≡ 𝟘
+  ¬Cancels∧Right {x = x} = 
+    (x · (𝟙 + x)) 
+      ≡⟨ solve! (BooleanRingToCommRing A) ⟩ 
+    (x + (x · x)) 
+      ≡⟨ cong (λ y → x + y) (·IsIdempotent x) ⟩ 
+    (x + x)
+      ≡⟨ x≡-x ⟩ 
+    𝟘 ∎ 
+  
+  ¬Cancels∧Left : ((¬ x) ∧ x) ≡ 𝟘
+  ¬Cancels∧Left = ∧Com ∙ ¬Cancels∧Right
+
+  ¬Completes∨Right : (x ∨ (¬ x)) ≡ 𝟙
+  ¬Completes∨Right {x = x} = 
+    ((x + (¬ x)) + (x ∧ (¬ x))) 
+      ≡⟨ cong (λ z → (x + (¬ x)) + z) ¬Cancels∧Right ⟩ 
+    (x + (¬ x) + 𝟘)
+      ≡⟨ solve! (BooleanRingToCommRing A) ⟩ 
+    (x ∨ 𝟙)
+      ≡⟨ 1∨RightAbsorbs ⟩ 
+    𝟙 ∎
+  
+  ¬Completes∨Left : ((¬ x) ∨ x) ≡ 𝟙
+  ¬Completes∨Left = ∨Com ∙ ¬Completes∨Right 
+
+  ¬¬ : ¬ ¬ x ≡ x
+  ¬¬ {x = x} = 
+    (𝟙 + (𝟙 + x)) 
+      ≡⟨ +Assoc 𝟙 𝟙 x ⟩ 
+    ((𝟙 + 𝟙) + x) 
+      ≡⟨ cong (λ y → y + x) ( x≡-x {x = 𝟙}) ⟩ 
+    (𝟘 + x) 
+      ≡⟨ +IdL x ⟩ 
+    x ∎ 
+
+  ¬0 : ¬ 𝟘 ≡ 𝟙
+  ¬0 = +IdR 𝟙
+
+  ¬1 : ¬ 𝟙 ≡ 𝟘
+  ¬1 = x≡-x {x = 𝟙}
 
 
 --data freeBA (G : Type ℓ) : Type ℓ where
