@@ -1,71 +1,64 @@
+\subsection{Tychonov}
+
 \begin{theorem}[Tychonov]
-Assume given $I$ an overtly discrete type and $C_i$ compact Hausdorff spaces depending on $i:I$. Then:
+Assume given $I$ overtly discrete and $C_i$ compact Hausdorff depending on $i:I$. Then:
 \[\prod_{i:I}C_i\]
 is compact Hausdorff.
 \end{theorem}
 
 \begin{proof}
-We can assume $I = \mathrm{colim}_{k:\N} F_k$ with $F_k$ a finite type. Then:
-\[\prod_{i:I}C_i = \prod_{i:\mathrm{colim}_{k:\N} F_k} C_i\]
-\[= \lim_{k:\N} C_i^{F_k}\]
+We can assume $I = \mathrm{colim}_{k:\N}\mathrm{Fin}(l_k)$. Then:
+\[\prod_{i:I}C_i = \prod_{i:\mathrm{colim}_{k:\N}\mathrm{Fin}(l_k)} C_i = \lim_{k:\N} C_i^{l_k}\]
 and we can conclude using that compact Hausdorff spaces are stable under sequential limits and finite products.
 \end{proof}
 
-\begin{lemma}\label{closed-to-open-is-open}
-If $P,U$ are propositions with $P$ closed and $U$ open, then:
-\[P\to U\]
-implies:
-\[\neg P \lor U\]
-In particular $P\to U$ is open.
-\end{lemma}
-
-\begin{proof}
-We have that $\neg P\lor U$ is open and therefore $\neg\neg$-stable, from which we can conclude by intuitionistic logic.
-\end{proof}
-
-\begin{lemma}\label{tychonov-dual-proposition}
-Assume $C$ closed and $U_p$ an open proposition depending on $p:P$. Then:
-\[\prod_{p:P}U_p\]
-is open.
-\end{lemma}
-
-\begin{proof}
-By \cref{closed-to-open-is-open} it is enough to show that there merely exists $V$ open such that:
-\[\forall (p:P). U_p = V\]
-But since $P$ is a proposition we have that $\forall(p:P). U_p$ satisfies this, and it is open by \cref{compact-hausdorff-compact}.
-\end{proof}
+\subsection{Tychonov's dual}
 
 \begin{lemma}\label{tychonov-dual-auxiliary}
-Assume $p:C\to D$ a surjective map with $C$ and $D$ compact Hausdorff. Given $E_x$ overtly discrete depending on $x:D$, if:
-\[\prod_{x:C}E_{p(x)}\]
+Assume $p:C\to D$ a surjective map with $C$ and $D$ compact Hausdorff. Given $I_x$ overtly discrete depending on $x:D$, if:
+\[\prod_{x:C}I_{p(x)}\]
 is overtly discrete then so is:
-\[\prod_{x:D}E(x)\]
+\[\prod_{x:D}I_x\]
 \end{lemma}
 
 \begin{proof}
 Since the map is surjective we have an embedding:
-\[\prod_{x:D}E(x)\subset \prod_{x:C}E_{p(x)}\]
-But the fiber over $g:\prod_{x:C}E_{p(x)}$ is:
+\[\prod_{x:D}I_x\subset \prod_{x:C}I_{p(x)}\]
+But the fiber over $g:\prod_{x:C}I_{p(x)}$ is:
 \[\forall (x,y:C). p(x)=p(y) \to g(x)=g(y)\]
-which is open by \cref{tychonov-dual-proposition} and \cref{compact-hausdorff-compact}.
+which is open by \cref{compact-hausdorff-compact}.
 \end{proof}
 
 \begin{theorem}[Tychonov's dual]\label{tychonov-dual}
 Assume given $C$ compact Hausdorff and $I_x$ overtly discrete depending on $x:C$. Then:
-\[\prod_{x:C}I(x)\]
+\[\prod_{x:C}I_x\]
 is overtly discrete.
 \end{theorem}
 
 \begin{proof}
-By local choice and \cref{tychonov-dual-auxiliary} we can assume that $C$ is Stone and that we have towers of finite types $(\mathrm{Fin}(l_{k,x}))_{k:\N}$ depending on $x:C$. We write $C=S$. Then using \cref{scott-continuity-right} and the fact that overtly discrete types are stable under sequential colimits, it is enough to prove that for $S$ Stone and $l_x:\N$ depending on $x:S$ we have that:
+By local choice and \cref{tychonov-dual-auxiliary} we can assume that $C$ is Stone (so we denote $C$ by $S$) and that we have towers of finite types $(\mathrm{Fin}(l_{k,x}))_{k:\N}$ such that for all $x:S$ we have that:
+\[I_x = \mathrm{colim}_k\mathrm{Fin}(l_{k,x})\] 
+Then using \cref{scott-continuity-right} and the fact that overtly discrete types are stable under sequential colimits, it is enough to prove that for $S$ Stone and $l_x:\N$ depending on $x:S$ we have that:
 \[\prod_{x:S}\mathrm{Fin}(l_{x})\]
 is overtly discrete. 
 
 Using boundedness, the fact that:
-\[S_k = \Sigma(x:S). l_x = k\] 
+\[S_k = \left(\Sigma_{x:S} l_x = k\right)\] 
 is Stone and that overtly discrete types are stable under finite products, we just have to prove that for any $l:\N$ and $S$ Stone we have that:
 \[S\to \mathrm{Fin}(l)\]
-is overtly discrete. We can conclude using that \cref{factorisation-compact-hausdorff-finite} and that Stone are limits of finite types.
+is overtly discrete. We can conclude using that \cref{factorisation-stone-finite} and that Stone are limits of finite types.
+\end{proof}
+
+\subsection{Factorisation}
+
+\begin{theorem}[Factorisation]
+Let $C$ be compact Hausdorff and $I$ be overtly discrete. Then any map:
+\[C\to I\]
+merely factors through a finite type.
+\end{theorem}
+
+\begin{proof}
+This is a direct consequence of \cref{scott-continuity} and $I$ being a sequential colimit of finite types.
 \end{proof}
 
 
