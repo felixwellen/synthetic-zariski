@@ -97,3 +97,63 @@
      Furthermore, note that $A$ is the image of $B$, thus $A$ is the image of some Stone space. 
 \end{itemize} 
 \end{proof} 
+\rednote{Ordering from here on out is WIP}
+
+
+\begin{corollary}\label{InhabitedClosedSubSpaceClosed}
+  For $S:\Stone$ and $A\subseteq S$ closed, we have 
+  $\exists_{x:X} A(x)$ is closed. 
+\end{corollary}
+\begin{proof}
+  Let $A$ be the image of a map map $T\to S$ for $T:\Stone$. 
+  Then $\exists_{x:S} A(x) \leftrightarrow ||T||$, which is closed by \Cref{TruncationStoneClosed}
+\end{proof}
+
+\begin{corollary}\label{ClosedDependentSums}
+  Closed propositions are closed under dependent sums. 
+\end{corollary}
+\begin{proof}
+  Let $P:\Closed$ and $Q:P \to \Closed$. 
+  Then $\Sigma_{p:P} Q(p) \leftrightarrow \exists_{p:P} Q(p)$.
+  As $P$ is Stone by \Cref{PropositionsClosedIffStone}, 
+%  As $P$ is Stone by \Cref{PropositionsClosedIffStone}, it is also compact Hausdorff, thus
+  \Cref{InhabitedClosedSubSpaceClosed} gives that $\Sigma_{p:P} Q(p)$ is closed. 
+\end{proof}
+\begin{remark}
+  Analogously to \Cref{OpenTransitive} and \Cref{OpenDominance}, it follows that 
+  closedness is transitive and $\Closed$ forms a dominance. 
+\end{remark}
+
+
+\begin{lemma}\label{StoneSeperated}
+  If $S:\Stone $, and $F,G:S \to \Closed$ be such that $F\cap G = \emptyset$. 
+  Then there exists a decidable subset $D:S \to 2$ such $F\subseteq D, G \subseteq \neg D$. 
+\end{lemma}
+\begin{proof}
+  Assume $S = Sp(B)$. 
+  By the above theorem, there exists sequences $f_n,g_n:B,~n:\N$ such that 
+  $x\in F$ iff $x(f_n) = 1$ for all $n:\N$ and 
+  $y\in G$ iff $y(g_m) = 1$ for all $m:\N$. 
+%
+  Denote $R\subseteq B$ for $\{\neg f_n|n:\N\} \cup\{\neg g_n|n:\N\}$. 
+  Note that any inhabitant $Sp(B/R)$ gives a map $x:B\to 2$ such that
+  $x(g_n)= x(f_n) = 1$ for all $n:\N$, hence $x\in F \cap G$. 
+  As $F\cap G = \emptyset $, it follows that $Sp(B/R)$ is empty.
+%
+  Thus there exists finite sets $I,J\subseteq \N $ such that 
+  $$1 =_B ((\bigvee_{i\in I} \neg f_i) \vee (\bigvee_{j\in J} \neg g_j)).$$
+%
+  Let $y\in G$. Then $y(\neg g_j) = 0$ for all $j \in J$. 
+  Hence 
+  $$
+  1 = y(1) 
+  = 
+  y(\bigvee_{i\in I} \neg f_i) = y (\neg (\bigwedge_{i\in I} f_i))
+  $$
+  Thus $y(\bigwedge_{i\in I} f_i) = 0$. 
+  Note that if $x\in F$, we have $x(f_i) = 1$ for all $i\in I$, hence 
+  $x(\bigwedge_{i\in I} f_i) = 1$. 
+  Thus for $D$ corresponding to $\bigwedge_{i\in I} f_i$, we have that 
+  $F\subseteq D, G\subseteq \neg D$ as required. 
+\end{proof} 
+
