@@ -127,44 +127,59 @@ If $\alpha:\Noo$ satisfies $\alpha(p_n) = 1$, then $\alpha(p_m) = 0$ for all $n\
 Therefore, for each $n:\N$, there is an unique map $\chi_n$ with $\chi_n(p_n) = 1$. 
 There is also the point $\chi_\infty : \Noo$ which is unique 
 with the property that $ \chi_\infty(p_n) = 0$ for all $n:\N$. 
+We will call decidable subsets of $\Noo$ finite/cofinite iff their corresponding elements of $B_\infty$ are. 
 \end{remark}
 \rednote{Active WIP}
-\begin{lemma}
-  A decidable subset $D: \Noo \to 2$ corresponds to a cofinite $d:B_\infty$ iff $\chi_\infty\in D$. 
+\begin{lemma}\label{FiniteDecidableSubsetsCharacterization}
+  Finite decidable subsets of $\Noo$ are of the form 
+%  If $d:B_\infty$ is of the form $\bigvee_{i\in I} p_i$,
+%  it corresponds to the decidable set 
+  $\{\chi_i | i \in I\}$ for some finite $I\subseteq \N$. 
 \end{lemma}
 \begin{proof}
-  Let $D:\Noo \to 2$ correspond to $d:B_\infty$.
-  Then $\chi_\infty\in D$ iff $\chi_\infty(d) = 1$. 
+  Let $d= \bigvee_{i\in I} p_i$. 
+  Clearly whenever $i\in I$, we have $\chi_i(d) = 1$. 
 %
-  By \Cref{AppendixCofiniteOrFinite}, $d$ can have two forms.
-  By definition of $\chi_\infty$, we have that 
-  $\chi_\infty(\bigvee_{i\in I} p_i) = 0$ and 
-  $\chi_\infty(\bigwedge_{j\in J^C} \neg p_j) = 1$. 
-  Thus $\chi_\infty(d) = 1$ iff $d$ is cofinite. 
-\end{proof}
-\begin{lemma}
-  If $d:B_\infty$ is of the form $\bigvee_{i\in I} p_i$,
-  it corresponds to the decidable set 
-  $D = \{\chi_i | i \in I\} \subseteq \Noo$.
-\end{lemma}
-\begin{proof}
-  Clearly whenever $i\in I$, we have $\chi_i(\bigvee_{i\in I} p_i) = 1$. 
-  Now suppose $f:B_\infty \to 2$ is such that $f(\bigvee_{i\in I} p_i) = 1$. 
+  Now suppose $f:B_\infty \to 2$ is such that $f(d) = 1$. 
   Then $\bigvee_{i\in I}(f(p_i)) = 1$, hence it is not the case that $f(p_i) = 0$ for all $i\in I$. 
   Now as $I$ is finite and $f(p_i) = 0 \vee f(p_i) = 1$ for all $i\in I$, 
   there must exist some (necessarily unique) $i\in I$ with $f(p_i) = 1$. Hence $f = \chi_i$. 
+%
   Thus $f(d) = 1$ iff there is some $i\in I$ with $f = \chi_i$. 
 \end{proof}
-\begin{lemma}
-  If $d:B_\infty$ is of the form $\bigwedge_{j\in J^C} \neg p_j$,
-  it corresponds to the decidable set 
-  $D = \neg \{\chi_j | j \in J^C\} \subseteq \Noo$.
-\end{lemma}
+\begin{corollary}\label{CoFiniteDecidableSubsetsCharacterization}
+  Cofinite decidable subsets of $\Noo$ are of the form
+%  If $d:B_\infty$ is of the form $\bigwedge_{j\in J^C} \neg p_j$,
+%  it corresponds to the decidable set 
+  $\neg \{\chi_i | i \in I\}$ for $J\subseteq\N$ finite. 
+\end{corollary}
 \begin{proof}
-  Clearly whenever $j\in J^C$, we have 
-  $\chi_j(\bigwedge_{j\in J^C} \neg p_j) = 0$, so $\chi_j \notin D$. 
-
+  Let $D$ be a cofinite decidable subset. Then $\neg D$ is a finite decidable subset, 
+  By the above lemma it follows that $\neg D = \{\chi_i | i\in I\}$. 
+  As $\neg \neg D = D$, the result follows. 
 \end{proof}
+\begin{corollary}
+ Any a decidable subset $D\subseteq\Noo$ is cofinite iff $\chi_\infty\in D$. 
+\end{corollary}
+\begin{proof}
+  This follows from the observation that $\chi_\infty \in \neg \{\chi_j | j \in J^i\}$, 
+  the observation that all decidable subsets are either finite or cofinite, 
+  and the characterization of finite a cofinite decidable subsets in 
+  \Cref{FiniteDecidableSubsetsCharacterization} and 
+  \Cref{CoFiniteDecidableSubsetsCharacterization}.
+\end{proof}
+\begin{corollary}
+  If $U\subseteq \Noo$ is open and $\chi_\infty \in U$, there exists some $n\in \N$ such that 
+  $\{\chi_k | k\geq n\} \subseteq U$. 
+\end{corollary}
+\begin{proof}
+  If $U$ is open, by \Cref{StoneOpenSubsets}, it is a countable union of decidable subsets. 
+  One of these must contain $\chi_\infty$, hence be cofinite and 
+  of the form $\neg \{ \chi_i | i \in I\}$ for some finite $I\subseteq \N$.
+  As $I$ is finite, there is some $n:\N $ with $n>i$ for all $i\in I$. 
+  For all $k\geq n$, we have that $k\notin I$, hence $\chi_k \in \neg \{\chi_i | i \in I\}\subseteq U$ as required. 
+\end{proof}
+
 
 
 %
