@@ -289,7 +289,10 @@ _·_ = _∧_
 -_ : {G : Type ℓ} → (freeBA G) → (freeBA G ) 
 -_ = \x → x
 
-freeBAisBooleanRing : {G : Type ℓ} → 
+
+
+
+--freeBAisBooleanRing : {G : Type ℓ} → 
 
 
 --freeBAareRing : {G : Type ℓ} → IsRing {ℓ} {freeBA G} 𝟘 𝟙 _+_ _∧_ (λ x → x)
