@@ -15,22 +15,22 @@ Then $A$ is closed iff it is the image of a closed subtype of $S$ under the quot
   In particular for $q:S\to X$ the quotient map, $q^{-1}(A)$ is closed. 
   As $q$ is surjective, we have $q(q^{-1}(A)) = A$,
   hence $A$ is the image of a closed subtype of $S$. 
+  
   Conversely, let $B\subseteq S$ be closed. 
 %  Then for any $s:S$, the subtype $\{t:S| B(s) \wedge s \sim t\} \subseteq S$ is closed. 
 %  Hence by 
-  Define $A\subseteq S$ by 
-  $$A(s) := \exists_{s:S} (B(t) \wedge s \sim t).$$
-  As $B, \sim$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
-  we have that $A$  is closed. 
-  Also $A$ respects $\sim$, hence induces a map $A': X\to \Closed$.
-  Furthermore, $A(q(s))$ iff $q(s)$ is in the image of $B$. 
-  Therefore $A'(x)$ iff $x$ is in the image of $B$. 
-\end{proof}
+  Then any $t:X$ belongs to the image of $B$ iff we have that:
+  $$ \exists_{s:S} B(s)\land q(s) = t$$
+ and by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
+  we have that this is closed. 
+  \end{proof}
+
 \begin{remark}\label{InhabitedClosedSubSpaceClosedCHaus}
-  Let $X:\Chaus$.
-  From \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed iff it is the image of a map 
-  $T\to X$ for some $T:\Stone$. 
-  If $A$ is closed, from $\Cref{InhabitedClosedSubSpaceClosed}$, it follows that $\exists_{x:X} A(x)$ is closed as well. 
+  Let $X:\Chaus$. We have that a subset of $X$ is closed if and only if it is the image of a Stone space. Indeed \Cref{CompactHausdorffClosed} gives the direct proof, and the converse follows from \Cref{InhabitedClosedSubSpaceClosed}
+  
+  Moreover if $A$ is closed in $X$, considering $q:S\to X$ surjective with $S$ Stone we have that:
+  $$ \exists_{s:S}A(q(s)) = \exists_{x:X}A(x)$$
+  so that from \Cref{InhabitedClosedSubSpaceClosed} we have that $\exists_{x:X} A(x)$ is closed. 
 \end{remark}
 %\begin{corollary}
 %  For $X:\CHaus$ a subtype $A\subseteq X$ is closed iff it is the image of 
@@ -110,7 +110,7 @@ but by \Cref{OpenSubsetEnumerableAreEnumerable}, it will be enumerable.
   Denote $q:S \twoheadrightarrow X$ for the quotient map. 
   This induces an injection of Boolean algebras $2^X \hookrightarrow 2^S$.
   Note that $a:S\to 2$ lies in $2^X$ iff for all $s,t:S$, we have $a(s) = a(t)$ whenever $s\sim t$.
-  Note that $a(s) = a(t)$ is decidable and $s\sim t$ is open, hence 
+  Note that $a(s) = a(t)$ is decidable and $s\sim t$ is closed, hence 
   $(s\sim t) \to (a(s) = a(t))$ is open (\Cref{ImplicationOpenClosed})
   By \Cref{AllOpenSubspaceOpen}, we conclude that 
   $\forall_{s:S} \forall_{t:S} ((s\sim t) \to (a(s) = a(t)))$ is open. 
@@ -159,16 +159,7 @@ Let $X:\Chaus, x:X$ and $A,B:X \to \Closed$ be disjoint and such that $Q_x = A \
 Then one of $A,B$ is empty. 
 \end{lemma} 
 \begin{proof}
-  By \Cref{CHausSeperationOfClosedByOpens}, there exist disjoint $U,V:X\to \Open$ with 
-  $A\subseteq U, B\subseteq V$. 
-  Hence  $Q_x \subseteq U\cup V$ and by \Cref{ConnectedComponentSubOpenHasDecidableInbetween}, 
-  there is some $E:X \to 2$ with $Q_x \subseteq E\subseteq U \cup V$. 
-  Assume $x\in A$.
-  Note $E' := E \cap U = E \cap ( \neg V)$. Thus $E'$ is both open and closed, hence decidable. 
-  As $x\in A\subseteq U$ and $x\in Q_x \subseteq U$, we have $x\in E'$. 
-  By definition of the connected component, $Q_x \subseteq E'$. 
-  Hence $Q_x \cap B \subseteq  E' \cap B  = \emptyset$. 
-  As $B\subseteq Q_x$, it follows that $B$ is empty. 
+TODO
 \end{proof}
 
 %\begin{theorem}

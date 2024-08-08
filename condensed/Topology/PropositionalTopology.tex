@@ -84,7 +84,7 @@ Such a definition is universe-independent, and can be made internally.
   $\alpha(k) = \beta(k') = 0$. 
   As we only need to check finitely many combinations 
   of $k,k'$, this is a decidable property for each $l:\N$ and $\gamma$ is well-defined. 
-  Clearly, $\gamma$ witnesses that the proposition in \Cref{eqnConjunctionOpen} is open.
+  Then $\exists_{k:\N}\gamma(k)=0$ if and only if \Cref{eqnConjunctionOpen} holds.
 \end{proof}
 
 \begin{lemma}\label{OpenDependentSums}
@@ -97,20 +97,19 @@ Such a definition is universe-independent, and can be made internally.
 %
   Then note that for $P$ an open proposition, 
   there exists a sequence of decidable propositions $A_n$ with 
-  $P = \Sigma_{n:\N} A_n $.
+  $P = \exists_{n:\N} A_n $.
 %
   So for $Y : P \to Open $, the dependent sum $\Sigma_P Y$ is given by 
-  $\Sigma_{n:\N} (\Sigma_{a:A_n} Y(n,a))$. 
-  which is a countable sum of open propositions. 
-  As $\Sigma_P Y$ is a proposition, it is 
-  a countable disjunction of open propositions, 
+  $\exists_{n:\N} (\Sigma_{a:A_n} Y(n,a))$. 
+  which is a countable a countable disjunction of open propositions, 
   hence open by \Cref{OpenCountableDisjunction}.
 \end{proof}
+
 We will see the same holds for closed propositions in \Cref{ClosedDependentSums}.
 
 \begin{remark}\label{ImplicationOpenClosed}
   If $P$ is open, $P \to \bot$ is only open if $P$ is decidable, which is not in general the case. 
   Thus $\Open$ is not closed under dependent products. Neither is $\Closed$. 
-  However, as $(P\to Q)  \to \neg \neg (\neg P \vee Q)$. 
-  If $P$ is open and $Q$ is closed, their implication is closed, and the other way around. 
+  However, as $(P\to Q)  \to \neg \neg (\neg P \vee Q)$,
+  we have that if $P$ is open and $Q$ is closed, then $P\to Q$ is closed, and similarly $Q\to P$ is open.
 \end{remark}
