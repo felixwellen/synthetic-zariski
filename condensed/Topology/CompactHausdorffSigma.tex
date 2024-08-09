@@ -1,0 +1,44 @@
+\subsection{Compact Hausdorff spaces are stable under dependent sums}
+
+\begin{lemma}
+A type $X$ is Stone iff it is merely a closed in $2^\N$.
+\end{lemma}
+
+\begin{proof}
+Any countably presented boolean algebra $B$ is enumerable, which gives a surjective morphism:
+$$ \langle\N\rangle\to B$$
+so that by \Cref{DualCompleteness} we merely have a closed embedding:
+$$ Sp(B)\to 2^\N$$
+\end{proof}
+
+\begin{lemma}\label{SigmaStoneCompactHausdorff}
+Assume given $S:\Stone$ and $T:X\to \Stone$. Then $\Sigma_{x:S}T(x)$ is Compact Hausdorff.
+\end{lemma}
+
+\begin{proof}
+By \Cref{ClosedDependentSums} we have that identity type in $\Sigma_{x:S}T(x)$ are closed.
+
+We know that for any $x:S$ we have that $\exists_{C:2^\N\to \Closed} T_x = \Sigma_{y:2^\N}C(y)$. Using local choice we get $S':\Stone$ with a surjective map:
+$$q:S'\to S$$
+and:
+$$ C : S'\to 2^\N\to\Closed$$
+such that for all $x:S'$ we have $T(q(x)) = \Sigma_{y:2^\N}C(x,y)$. This gives a surjective map:
+$$ \Sigma_{x:S'}\Sigma_{y:2^\N} C(x,y)\to \Sigma_{x:S}T(x)$$
+The source is Stone by \Cref{StoneClosedUnderPullback} and \Cref{ClosedInStoneIsStone} so we can conclude.
+\end{proof}
+
+\begin{lemma}
+Assume given $C:\CHaus$ and $D:X\to \CHaus$. Then $\Sigma_{x:C}D(x)$ is Compact Hausdorff.
+\end{lemma}
+
+\begin{proof}
+By \Cref{ClosedDependentSums} we have that identity type in $\Sigma_{x:C}D(x)$ are closed.
+
+We know that for any $x:C$ we have that $\exists_{T:\Stone} T\twoheadrightarrow C(x)$. Using a surjective map:
+$$ S\to C$$
+with $S:\Stone$ and local choice we get $S':\Stone$ with a surjective map:
+$$q:S'\to C$$
+such that for all $x:S'$ we have $T(x):\Stone$ and a surjective map $T(x)\to D(q(x))$. This gives a surjective map:
+$$ \Sigma_{x:S'}T(x)\to \Sigma_{x:C}D(x)$$
+By \Cref{SigmaStoneCompactHausdorff} we have a surjective map from a Stone space to the source so we can conclude.
+\end{proof}
