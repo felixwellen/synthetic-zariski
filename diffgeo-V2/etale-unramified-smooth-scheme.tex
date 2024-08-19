@@ -1,0 +1,83 @@
+\subsection{Tangent spaces}
+
+TODO
+
+
+\subsection{Formally unramified schemes}
+
+\begin{lemma}
+Let $X$ be an affine scheme, the following are equivalent:
+\begin{enumerate}[(i)]
+\item $X$ is formally unramified.
+\item Identity types in $X$ are decidable.
+\item For all $x:X$, we have that $T_x(X)=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+Let $X$ with $(U_i)_{i:I}$ a finite open cover of $X$. Then $X$ is formally unramified if and only if all the $U_i$ are formally unramified.
+\end{lemma}
+
+\begin{corollary}
+Let $X$ be a scheme, the following are equivalent:
+\begin{enumerate}[(i)]
+\item $X$ is formally unramified.
+\item Identity types in $X$ are open.
+\item For all $x:X$, we have that $T_x(X)=0$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+TODO
+\end{proof}
+
+Now we generalise this to maps between schemes.
+
+\begin{lemma}
+\label{kernel-is-tangent-of-fibers}
+For any map $f:X\to Y$ and $x:X$, we have that:
+\[
+\mathrm{Ker}(df_x) = T_{(x,\refl_{f(x)})}(\mathrm{fib}_f(f(x)))
+\]
+\end{lemma}
+\begin{proof}
+This holds because:
+\[
+(\mathrm{fib}_f(f(x)),(x,\refl_{f(x)}))
+\]
+is the pullback of:
+\[
+(X,x) \to (Y,f(y)) \leftarrow (1,*)
+\]
+in pointed types, applied using $(\mathbb{D}(1),0)$.
+\end{proof}
+
+\begin{proposition}
+A map between schemes is unramified if and only if its differentials are injective. 
+\end{proposition}
+\begin{proof}
+The map $df_x$ is injective if and only if its kernel is $0$. By \cref{kernel-is-tangent-of-fibers}, this means that $df_x$ is injective for all $x:X$ if and only if:
+\[
+\prod_{x:X}T_{(x,\refl_{f(x)})}(\mathrm{fib}_f(f(x)))=0
+\]
+On the other hand having fibers with trivial tangent space is equivalent to:
+\[
+\prod_{y:Y}\prod_{x:X}\prod_{p:f(x)=y} T_{(x,p)}(\mathrm{fib}_f(y)) = 0
+\]
+Both are equivalent by path elimination on $p$.
+\end{proof}
+
+
+\subsection{Formally smooth schemes}
+
+
+
+
+\subsection{Formally étale schemes}
+
+
+
