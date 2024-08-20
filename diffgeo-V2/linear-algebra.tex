@@ -1,0 +1,256 @@
+
+\subsection{Modules}
+
+\begin{definition}
+Given $M$ a finitely presented $R$-module, we define an f.p. algebra structure on $R\oplus M$ by:
+\[(r,m)(r',m') = (rr',rm'+r'm)\]
+we denote by $\D(V)$ the affine scheme:
+\[\Spec(R\oplus M)\]
+\end{definition}
+
+We write $\D(1)$ for $\D(R)$ so that:
+\[\D(1) = \Spec(R[X]/(X^2)) = \{\epsilon:R\ |\ \epsilon^2=0\}\]
+
+\begin{lemma}\label{equivalence-module-infinitesimal}
+Let $M$, $N$ be finitely presented modules. Then linear maps $M \to N$ correspond to
+pointed maps $\D(N) \to_\pt \D(M)$. Explicitly, a linear map $g : M \to N$
+corresponds to the pointed map $f \mapsto m \mapsto f(g(m))$.
+\end{lemma}
+
+\begin{proof}
+Pointed maps $\D(N) \to_\pt \D(M)$ correspond to 
+$R$-algebra maps $R \oplus M \to R \oplus N$ lifting the
+projection $R \oplus M \to R$, and hence to derivations
+$R \oplus M \to N$, where the $R \oplus M$-module structure on $M$ is obtained by
+restricting scalars along the projection $R \oplus M \to R$.
+The Leibniz rule amounts to $dr = 0$ for $r : R$, so we obtain all $R$-linear 
+maps $M \to N$ in this way.
+\end{proof}
+
+\begin{lemma}
+Any finitely copresented module is projective.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{neighborhood-tangent-correspondence-smooth}
+A linear map between finitely copresented module:
+\[f:M\to N\]
+is surjective if and only if the corresponding pointed map:
+\[\D(M^\star) \to \D(N^\star)\]
+merely has a section preserving $0$.
+\end{lemma}
+
+\begin{proof}
+We know that \cref{equivalence-module-infinitesimal} we know that:
+\[\D(M^\star) \to \D(N^\star)\]
+merely having a section preserving $0$ is equivalent to:
+\[M\to N\]
+merely having a section. But since any finitely copresented module is projective, this is equivalent to $f$ being surjective.
+\end{proof}
+
+
+\subsection{Tangent spaces}
+
+\begin{definition}
+Let $X$ be a type and let $x:X$, then we define the tangent space $T_x(X)$ of $X$ at $x$ by:
+\[\{t:\D(1)\to X\ |\ t(0)=x\}\]
+\end{definition}
+
+\begin{lemma}
+Tangent spaces are $R$-modules.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{definition}
+Given $f:X\to Y$ and $x:X$ we have a map of $R$-modules:
+\[df_x : T_x(X)\to T_{f(x)}(Y)\]
+induced by post-composition.
+\end{definition}
+
+\begin{lemma}
+\label{kernel-is-tangent-of-fibers}
+For any map $f:X\to Y$ and $x:X$, we have that:
+\[
+\mathrm{Ker}(df_x) = T_{(x,\refl_{f(x)})}(\mathrm{fib}_f(f(x)))
+\]
+\end{lemma}
+
+\begin{proof}
+This holds because:
+\[
+(\mathrm{fib}_f(f(x)),(x,\refl_{f(x)}))
+\]
+is the pullback of:
+\[
+(X,x) \to (Y,f(y)) \leftarrow (1,*)
+\]
+in pointed types, applied using $(\mathbb{D}(1),0)$.
+\end{proof}
+
+\begin{lemma}
+Let $X$ be a scheme with $x : X$. Then $T_x(X)$ is finitely
+co-presented.
+\end{lemma}
+
+\begin{proof}
+If $X$ is a general scheme, we reduce to the affine case by picking an affine patch.
+The affine case follows from the fact that pointed exponentiation with $\D(1)$
+preserves pullback squares.
+\end{proof}
+
+
+
+\subsection{Infinitesimal neighborhood}
+
+\begin{definition}
+Let $X$ be a set with $x:X$. The first order neighborhood $N_1(x)$ is defined as the set of $y:X$ such that the exists a f.g. ideal $I$ such that $I^{2}=0$ and:
+\[I=0 \to x=y\]
+\end{definition}
+
+\begin{lemma}\label{duality-infinitesimal-tangent}
+Let $X$ be a scheme with $x:X$, then:
+\[N_1(x) = \D(T_x(X)^\star)\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+
+
+\subsection{Standard formally étale and formally smooth schemes}
+
+\begin{definition}
+An algebra is called standard étale if it is merely of the form:
+\[(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\]
+where $\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n))$ divides $G$ in $R[X_1,\cdots,X_n]/P_1,\cdots,P_n$.
+\end{definition}
+
+\begin{definition}
+A scheme is called standard étale if it is merely of the form $\Spec(A)$ for $A$ a standard étale algebra.
+\end{definition}
+
+\begin{lemma}\label{standard-etale-are-etale}
+Standard étale schemes are étale.
+\end{lemma}
+
+\begin{proof}
+Assume given a standard étale algebra:
+\[(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\]
+and write:
+\[P:R^n\to R^m\]
+for the map induced by $P_1,\cdots,P_m$.
+
+Assume given $\epsilon:R$ such that $\epsilon^2=0$, we need to prove that there is a unique dotted lifting in:
+  \begin{center}
+      \begin{tikzcd}
+       R/\epsilon & (R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\ar[l,swap,"x"]\ar[dotted,ld] \\
+       R\ar[u]&
+      \end{tikzcd}
+    \end{center}
+This means that for all $x:R^n$ such that $P(x)=0$ mod $\epsilon$ and $G(x)$ invertible modulo $\epsilon$ (or equivalently $G(x)$ invertible), there exists a unique $y:R^n$ such that:
+\begin{itemize} 
+\item We have $x=y$ mod $\epsilon$.
+\item We have $P(y)=0$.
+\item We have $G(y)\not=0$ (this is implied by $x=y$ mod $\epsilon$ and $G(x)\not=0$).
+\end{itemize}
+
+First we prove existence. For any $b:R^n$ we compute:
+\[P(x+\epsilon b) = P(x) + \epsilon\ dP_x(b)\]
+We have that $P(x)=0$ mod $\epsilon$, say $P(x) = \epsilon a$. Then since $G(x)\not=0$ and $\mathrm{det}(dP)$ divides $G$, we have that $dP_x$ is invertible. Then taking $b = -(dP_x)^{-1}(a)$ gives a lift $y=x+\epsilon b$ such that $P(y) = 0$.
+
+Now we check unicity. Assume $y,y'$ two such lifts, then $y=y'$ mod $\epsilon$ and we have:
+\[P(y) = P(y') + dP_{y'}(y-y')\]
+and $P(y)=0$ and $P(y')=0$ so that:
+\[dP_{y'}(y-y') = 0\]
+But $G(y')\not=0$ so $dP_{y'}$ is invertible and we can conclude that $y=y'$.
+\end{proof}
+
+\begin{remark}
+We will see later that any formally étale scheme has a finite open cover by locally standard étale. 
+\end{remark}
+
+\begin{definition}
+A standard smooth scheme is an affine scheme of the form:
+\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big)\]
+where $G$ divides the determinant of:
+\[\left( \frac{\partial P_i}{\partial X_j}\right)_{1\leq i,j\leq n}\]
+in:
+\[R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\]
+\end{definition}
+
+\begin{lemma}\label{standard-smooth-is-smooth}
+Any standard smooth scheme is formally smooth.
+\end{lemma}
+
+\begin{proof}
+The fibers of the map:
+\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big) \to \Spec(R[Y_1,\cdots Y_{k}])\]
+are standard étale, so the map is étale by \cref{standard-etale-are-etale}. Since:
+\[\Spec(R[Y_1,\cdots Y_{k}]) = \A^k\]
+is smooth by \cref{An-is-smooth}, we can conclude using \cref{smooth-sigma-closed}.
+\end{proof}
+
+\begin{remark}
+We will see later that any formally smooth scheme has a finite open cover by standard smooth scheme. 
+\end{remark}
+
+
+\subsection{Rank of matrices}
+
+\begin{definition}
+A matrix is said of rank $n$ if it has an invertible $n$-minor, and all its $n+1$-minor have determinant $0$.
+\end{definition}
+
+Beware that having a rank is a property of matrices, and there is not rank function defined on all matrices.
+
+\begin{lemma}\label{rank-bloc-matrix}
+Assume given a matrix $M$ of rank $n$ decomposed into blocks:
+\[M = \begin{pmatrix}
+P & Q  \\
+R & S \\
+\end{pmatrix}\]
+Such that $P$ is square of size $n$ and invertible. Then we have:
+\[S = RP^{-1}Q\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{definition}
+Two matrices $M,N$ are said equivalent if there are invertible matrices $P,Q$ such that $M = PNQ$.
+\end{definition}
+
+It is clear that equivalent matrices have the same rank.
+
+\begin{lemma}\label{rank-equivalent-definitions}
+Assume given a matrix:
+\[M : R^m\to R^k\]
+Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item $M$ has rank $n$.
+\item The kernel of $M$ is equivalent to $R^{m-n}$.
+\item The image of $M$ is equivalent to $R^n$.
+\item $M$ is equivalent to the bloc matrix:
+\[\begin{pmatrix}
+I_n & (0)  \\
+(0) & (0) \\
+\end{pmatrix}\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+
+
+
+
