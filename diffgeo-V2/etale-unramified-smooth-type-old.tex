@@ -1,0 +1,434 @@
+\subsection{Formally étale types}
+
+\begin{definition}
+A closed proposition is dense if it is merely of the form:
+\[r_1=0\land\cdots\land r_n=0\]
+for $r_1,\cdots,r_n:R$ nilpotent.
+\end{definition}
+
+\begin{definition}
+A type $X$ is formally étale if for all closed dense proposition $P$ the map:
+\[X\to X^P\]
+is an equivalence.
+\end{definition}
+
+\begin{definition}
+A map is said formally étale if its fibers are formally étale.
+\end{definition}
+
+\begin{remark}
+The map $X\to X^P$ being an equivalence is equivalent to having a unique dotted lift in:
+\begin{center}
+\begin{tikzcd}
+P\ar[r]\ar[d] & X\\
+1\ar[ru,dotted]& \\
+\end{tikzcd}
+\end{center}
+for any map $P\to X$.
+\end{remark}
+
+This means that formally étale types are modal types for a lex modality, from which a lot can be concluded \cite{TODO modalities in HoTT}.
+
+\begin{proposition}
+We have the following stability results:
+\begin{itemize}
+\item If $X$ is any type and for all $x:X$ we have a formally étale type $Y_x$, then:
+\[\prod_{x:X}Y_x\]
+is formally étale. 
+\item  If $X$ is formally étale and for all $x:X$ we have a formally étale type $Y_x$, then:
+\[\sum_{x:X}Y_x\]
+is formally étale. 
+\item If $X$ is formally étale then for all $x,y : X$ the type $x=y$ is formally étale.
+\item The type of formally étale types is formally étale.
+\end{itemize}
+\end{proposition}
+
+This can be characterised in many alternative way. We need an algebraic lemma:
+
+\begin{lemma}
+\label{decomposition-nilpotent}
+For $A$ an algebra and $N$ a nilpotent ideal in $A$, the map:
+\[A
+\to A/N
+\] 
+can be factored as maps of the form:
+\[
+B\to B/(b)
+\]
+where $b:B$ is such that $b^2=0$.
+\end{lemma}
+
+\begin{lemma}\label{equivalence-etale}
+Let $X$ be a type, the following are equvialent:
+\begin{enumerate}[(i)]
+\item The type $X$ if formally étale.
+\item For all $A$ an f.p. alegbra and $N$ a f.g. nilpotent ideal in $A$, the map:
+\[X^{\Spec(A)}\to X^{\Spec(A/N)}\]
+is an equvialence. 
+\item For all $\epsilon:R$ such that $\epsilon^2=0$, the map:
+\[X\to X^{\epsilon=0}\]
+is an equivalence.
+\item For all $A$ an f.p. alegbra and $a:A$ such that $a^2=0$, the map:
+\[X^{\Spec(A)}\to X^{\Spec(A/(a))}\]
+is an equivalence.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) implies (iii) because $\epsilon=0$ is closed dense when $\epsilon^2=0$.
+
+(iii) implies (iv) as the fiber of $\Spec(A/(a)) \to \Spec(A)$ over $x$ is $a(x)=0$ and we have $a(x)^2=0$.
+
+(iv) implies (ii) because of \cref{decomposition-nilpotent}.
+
+(ii) implies (i) as closed dense proposition are of the form $\Spec(R/N)$ for $N$ a nilpotent ideal.
+\end{proof}
+
+
+\subsection{Formally unramified types}
+
+We define the separation modality \cite{TODO separated modalities} associated to the formally étale one.
+
+\begin{definition}
+A type $X$ is formally étale if for all closed dense proposition $P$ the map:
+\[X\to X^P\]
+is an embedding.
+\end{definition}
+
+\begin{definition}
+A map is formally unramified if its fibers are formally unramified.
+\end{definition}
+
+\begin{remark}
+A type $X$ is formally unramified if and only if for any $x,y:X$ the type $x=y$ is formally étale.
+\end{remark}
+
+We can use \cref{equivalence-etale} to get many equivalent characterisation of formally unramified types. Now we give the relevant stability results:
+
+\begin{proposition}
+We have the following stability results:
+\begin{itemize}
+\item If $X$ is any type and for all $x:X$ we have a formally unramified type $Y_x$, then:
+\[\prod_{x:X}Y_x\]
+is formally unramified. 
+\item  If $X$ is formally unramified and for all $x:X$ we have a formally unramified type $Y_x$, then:
+\[\sum_{x:X}Y_x\]
+is formally unramified.
+\end{itemize}
+\end{proposition}
+
+
+\subsection{Formally smooth types}
+
+\begin{definition}
+A type $X$ is formally smooth if for all closed dense proposition $P$ the map:
+\[X\to X^P\]
+is an surjective.
+\end{definition}
+
+\begin{definition}
+A map is formally smooth if its fibers are formally smooth.
+\end{definition}
+
+\begin{remark}
+The map $X\to X^P$ being surjective is equivalent to merely having a dotted lift in:
+\begin{center}
+\begin{tikzcd}
+P\ar[r]\ar[d] & X\\
+1\ar[ru,dotted]& \\
+\end{tikzcd}
+\end{center}
+for any map $P\to X$.
+\end{remark}
+
+\begin{remark}
+A type is formally étale if and only if it is formally smooth and formally unramified.
+\end{remark}
+
+\begin{remark}
+Being formally smooth is not a modality, as we will see it is not stable under identity types.
+\end{remark}
+
+\begin{lemma}\label{equivalence-smooth}
+Let $X$ be a type, the following are equvialent:
+\begin{enumerate}[(i)]
+\item The type $X$ is formally smooth.
+\item For all $\epsilon:R$ such that $\epsilon^2=0$, the map:
+\[X\to X^{\epsilon=0}\]
+is surjective.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) implies (ii) because $\epsilon=0$ is closed dense when $\epsilon^2=0$.
+
+Conversely any map $P\to 1$ for $P$ dense closed can be decomposed as:
+\[P_n \to P_{n-1}\to \cdots \to P_1\to 1\]
+where:
+\begin{itemize}
+\item For all $k$ we have that $P_k$ is a closed proposition so it has choice \cref{TODO}.
+\item For all $k$ the map:
+\[i_k : P_{k+1}\to P_{k}\]
+is of the form:
+\[\Spec(A/a)\to \Spec(A)\]
+where $a^2=0$.
+\end{itemize}
+Then we have that for all $k$ and $x:P_{k}$ the map:
+\[X\to X^{\mathrm{fib}_{i_k}(x)}\]
+is surjective and $P_{k}$ has choice so the map:
+\[X^{P_{k}} \to \prod_{x:P_{k}}X^{\mathrm{fib}_{i_k}(x)} = X^{P_{k+1}}\]
+is surjective. We conclude that the map:
+\[X\to X^P\]
+is surjective.
+\end{proof}
+
+\begin{remark}
+Since $\Spec(A)$ does not necessarily have choice, there is no direct analogue to \cref{equivalence-etale}. Nevertheless it is possible to show that for $X$ a smooth scheme, $A$ f.p. and $N$ a f.g. nilpotent ideal in $A$ we have that:
+\[X^{\Spec(A)} \to X^{\Spec(A/N)}\]
+surjective. This rely on the vanishing of cohomology on any affine scheme
+\end{remark}
+
+We present stability results for smooth types:
+
+\begin{lemma}
+If $X$ is a type satifying choice and for all $x:X$ we have a formally smooth type $Y_x$, then:
+\[\prod_{x:X}Y_x\]
+is formally smooth.
+\end{lemma}
+
+\begin{lemma}
+\label{smooth-sigma-closed}
+If $X$ is a formally smooth type and for all $x:X$ we have a formally smooth type $Y_x$, then:
+\[\sum_{x:X}Y_x\]
+is formally smooth.
+\end{lemma}
+
+\begin{proposition}
+\label{smoothSurjective}
+The image of a formally smooth type by any map is formally smooth.
+\end{proposition}
+
+\begin{proof}
+We assume $X$ formally smooth and $p:X\to Y$ surjective. Then for any $P$ closed dense and any diagram:
+ \begin{center}
+      \begin{tikzcd}
+      P \ar[rd,dotted]\ar[d]\ar[r]& Y\\
+      1 \ar[r,dotted,swap,"x"]& X\ar[u,swap,"p"]
+      \end{tikzcd}
+    \end{center} 
+    by choice for closed propositions we merely get the dotted diagonal, and since $X$ is formally smooth we get the dotted $x$, and then $p(x)$ gives a lift.
+\end{proof}
+
+
+
+\subsection{Examples of formally étale types}
+
+Next proposition implies that open propositions are formally étale.
+
+\begin{proposition}\label{not-not-stable-prop-etale}
+  Any $\neg\neg$-stable proposition is formally étale.
+\end{proposition}
+
+\begin{proof}
+  Assume $U$ $\neg\neg$-stable and $P$ closed dense such that $P\to U$, then we have $\neg\neg P$ therefore we have $\neg\neg U$ and we conclude $U$, so that $U^P\to U$ and we can conclude.
+\end{proof}
+
+\begin{proposition}\label{bool-is-etale}
+  The type $\Bool$ is formally étale.
+\end{proposition}
+
+\begin{proof}
+The identity types in $\Bool$ are decidable so $\Bool$ is formally unramified. Consider $\epsilon:R$ such that $\epsilon^2=0$ and a map:
+\[\epsilon=0 \to \Bool\]
+we want to merely factor it through $1$.
+
+ Since $\Bool\subseteq R$, by duality the map gives $f:R/(\epsilon)$ such that $f^2=f$. Since $R/(\epsilon)$ is local we conclude that $f = 1$ or $f=0$ and so the map has constant value $0:\Bool$ or $1:\Bool$.
+\end{proof}
+
+\begin{corollary}\label{finite-are-etale}
+Formally étale types are stable by finite sums, so that finite types are formally étale.
+\end{corollary}
+
+\begin{proposition}
+The type $\N$ is formally étale.
+\end{proposition}
+
+\begin{proof}
+Identity types in $\N$ are decidable so $\N$ is formally unramified, we want to show it is formally smooth. Assume given a map:
+\[P\to \N\]
+for $P$ a closed dense proposition, we want to show it merely factors through $1$. By boundedness the map merely factors through a finite type, which is formally étale by \cref{finite-are-etale} so we conclude.
+\end{proof}
+
+Now we give an algebraic example:
+
+\begin{proposition}
+Let $g$ be a polynomial in $R[X]$ such that for all $x:R$ we have that $g(x)=0$ implies $g'(x)\not=0$. Then:
+\[\Spec(R[X]/g)\]
+is formally étale.
+\end{proposition}
+
+\begin{proof}
+Assume given $\epsilon:R$ such that $\epsilon^2=0$, we try to prove there is a unique dotted lift to any:
+    \begin{center}
+      \begin{tikzcd}
+       R/\epsilon & R[X]/g\ar[l]\ar[dotted,ld] \\
+       R\ar[u]&
+      \end{tikzcd}
+    \end{center}
+We proceed in two steps:
+\begin{itemize}
+\item We prove there merely is a lift. We can assume $x:R$ such that $g(x)=0$ module $\epsilon$, say $g(x)=b\epsilon$. For all $y:R$ we have:
+\[g(x+y\epsilon) = g(x)+ y g'(x) \epsilon\]
+Since $\not\not(g(x)=0)$, we have that $g'(x)\not=0$ so it is invertible. Then: 
+\[y=-\frac{b}{g'(x)}\]
+gives a lift.
+\item We prove there is at most one lift. Assume $x,y:R$ two lifts, then $g(x)=g(y)=0$ and $x=y$ modulo $\epsilon$. Then:
+\[0 = g(x) = g(y + (x - y)) = g(y) + g'(y) (x-y) = g'(y) (x- y)\]
+Since $g'(y)$ is invertible, we have that $x=y$.
+\end{itemize}
+\end{proof}
+
+We can generalise the previous example:
+
+\begin{definition}
+An algebra is called standard étale if it is merely of the form:
+\[(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\]
+where $\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n))$ divides $G$ in $R[X_1,\cdots,X_n]/P_1,\cdots,P_n$.
+\end{definition}
+
+\begin{definition}
+A scheme is called standard étale if it is merely of the form $\Spec(A)$ for $A$ a standard étale algebra.
+\end{definition}
+
+\begin{lemma}\label{standard-etale-are-etale}
+Standard étale schemes are étale.
+\end{lemma}
+
+\begin{proof}
+Assume given a standard étale algebra:
+\[(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\]
+and write:
+\[P:R^n\to R^m\]
+for the map induced by $P_1,\cdots,P_m$.
+
+Assume given $\epsilon:R$ such that $\epsilon^2=0$, we need to prove that there is a unique dotted lifting in:
+  \begin{center}
+      \begin{tikzcd}
+       R/\epsilon & (R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\ar[l,swap,"x"]\ar[dotted,ld] \\
+       R\ar[u]&
+      \end{tikzcd}
+    \end{center}
+This means that for all $x:R^n$ such that $P(x)=0$ mod $\epsilon$ and $G(x)$ invertible modulo $\epsilon$ (or equivalently $G(x)$ invertible), there exists a unique $y:R^n$ such that:
+\begin{itemize} 
+\item We have $x=y$ mod $\epsilon$.
+\item We have $P(y)=0$.
+\item We have $G(y)\not=0$ (this is implied by $x=y$ mod $\epsilon$ and $G(x)\not=0$).
+\end{itemize}
+
+First we prove existence. For any $b:R^n$ we compute:
+\[P(x+\epsilon b) = P(x) + \epsilon\ dP_x(b)\]
+We have that $P(x)=0$ mod $\epsilon$, say $P(x) = \epsilon a$. Then since $G(x)\not=0$ and $\mathrm{det}(dP)$ divides $G$, we have that $dP_x$ is invertible. Then taking $b = -(dP_x)^{-1}(a)$ gives a lift $y=x+\epsilon b$ such that $P(y) = 0$.
+
+Now we check unicity. Assume $y,y'$ two such lifts, then $y=y'$ mod $\epsilon$ and we have:
+\[P(y) = P(y') + dP_{y'}(y-y')\]
+and $P(y)=0$ and $P(y')=0$ so that:
+\[dP_{y'}(y-y') = 0\]
+But $G(y')\not=0$ so $dP_{y'}$ is invertible and we can conclude that $y=y'$.
+\end{proof}
+
+\begin{remark}
+We will see later that any formally étale scheme has a finite open cover by locally standard étale. 
+\end{remark}
+
+
+\subsection{Examples of formally unramified types}
+
+\begin{remark}
+Formally étale types are formally unramified.
+\end{remark}
+
+\begin{remark}\label{prop-are-unramified}
+Any proposition is formally unramified.
+\end{remark}
+
+\begin{remark}
+In some sense this covers all the examples. Indeed given any lex modality, an type is separated if and only if it is a subtype of a modal types, so a type is formally unramified if and only if it is a subtype of a formally étale type. 
+\end{remark}
+
+
+\subsection{Examples of formally smooth types}
+
+\begin{lemma}\label{An-is-smooth}
+The scheme $\A^n$ is smooth for any $n$.
+\end{lemma}
+
+\begin{proof}
+We need to prove that there merely exists a dotted lift in any:
+ \begin{center}
+      \begin{tikzcd}
+        R/N & R[X_1,\cdots,X_n]\ar[l]\ar[ld,dashed] \\
+        R \ar[u]& 
+      \end{tikzcd}
+    \end{center}
+    It is enough to choose a lift for each $X_i$.
+\end{proof}
+
+\begin{lemma}
+The scheme $\D(1)$ is not smooth.
+\end{lemma}
+
+\begin{proof}
+If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$.
+Indeed we would merely have a dotted lift in:
+ \begin{center}
+      \begin{tikzcd}
+        R/(\epsilon^2)& R[X]/(X^2)\ar[l,"\epsilon"]\ar[ld,dashed] \\
+        R \ar[u]& 
+      \end{tikzcd}
+    \end{center}
+    that is, an $r:R$ such that $(\epsilon+r\epsilon^2)^2=0$. Then $\epsilon^2=0$.
+\end{proof}
+
+\begin{lemma}
+The scheme $\Spec(R[X,Y]/(XY))$ is not smooth.
+\end{lemma}
+
+\begin{proof}
+If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$.
+Indeed we would merely have a dotted lift in:
+ \begin{center}
+      \begin{tikzcd}
+        R/(\epsilon^2) & R[X,Y]/(XY)\ar[l]\ar[ld,dashed] \\
+        R\ar[u] & 
+      \end{tikzcd}
+    \end{center}
+    where the top map sends both $X$ and $Y$ to $\epsilon$. Then we have $r,r':R$ such that $(\epsilon+r\epsilon^2)(\epsilon+r'\epsilon^2)=0$ so that $\epsilon^2=0$. %This can't be done.
+\end{proof}
+
+\begin{definition}
+A standard smooth scheme is an affine scheme of the form:
+\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big)\]
+where $G$ divides the determinant of:
+\[\left( \frac{\partial P_i}{\partial X_j}\right)_{1\leq i,j\leq n}\]
+in:
+\[R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\]
+\end{definition}
+
+\begin{lemma}\label{standard-smooth-is-smooth}
+Any standard smooth scheme is formally smooth.
+\end{lemma}
+
+\begin{proof}
+The fibers of the map:
+\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big) \to \Spec(R[Y_1,\cdots Y_{k}])\]
+are standard étale, so the map is étale by \cref{standard-etale-are-etale}. Since:
+\[\Spec(R[Y_1,\cdots Y_{k}]) = \A^k\]
+is smooth by \cref{An-is-smooth}, we can conclude using \cref{smooth-sigma-closed}.
+\end{proof}
+
+\begin{remark}
+We will see later that any formally smooth scheme has a finite open cover by standard smooth scheme. 
+\end{remark}
+
+
+
