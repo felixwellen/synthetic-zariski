@@ -1,105 +1,4 @@
-
-
-
-\subsection{Formally unramified schemes}
-
-\begin{lemma}\label{unramified-affine-characterisation}
-Let $X$ be an affine scheme, the following are equivalent:
-\begin{enumerate}[(i)]
-\item $X$ is formally unramified.
-\item Identity types in $X$ are decidable.
-\item For all $x:X$, we have that $T_x(X)=0$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-(i) implies (ii). By \cref{closed-and-etale-decidable}.
-
-(ii) implies (i). Because decidable implies formally étale.
-
-(ii) implies (iii). Assume given $x:X$ with $t:T_x(X)$, then for all $\epsilon:\D(1)$ we have $\neg\neg(\epsilon = 0)$ so that we have $\neg\neg t(\epsilon) = t(0)$ which implies $t(\epsilon) = t(0)$ since equality is assumed decidable. Therefore $t = 0$ in $T_x(X)$.
-
-(iii) implies (ii). Indeed given $\epsilon:R$ such that $\epsilon^2=0$, assume $x,y:X$ such that $\epsilon=0 \to x=y$. Then $x\in N_1(y)$ and by \cref{duality-infinitesimal-tangent} and $T_y(X)=0$ we conclude $x=y$.
-\end{proof}
-
-\begin{lemma}
-Let $X$ with $(U_i)_{i:I}$ a finite open cover of $X$. Then $X$ is formally unramified if and only if all the $U_i$ are formally unramified.
-\end{lemma}
-
-\begin{proof}
-Any subtype of a formally unramified type is formally unramified by \cref{prop-are-unramified}.
-
-Conversely, assume $X$ with such a cover, for all $x,y:X$ we there exists $i:I$ such that $x\in U_i$ and then:
-\[x=_Xy \leftrightarrow \sum_{y\in U_i} x=_{U_i}y \]
-which in formally étale because open propositions are formally étale by \cref{not-not-stable-prop-etale}.
-\end{proof}
-
-\begin{corollary}
-Let $X$ be a scheme, the following are equivalent:
-\begin{enumerate}[(i)]
-\item $X$ is formally unramified.
-\item Identity types in $X$ are open.
-\item For all $x:X$, we have that $T_x(X)=0$.
-\end{enumerate}
-\end{corollary}
-
-\begin{proof}
-TODO
-\end{proof}
-
-
-\subsection{Formally unramified maps schemes}
-
-Now we generalise this to maps between schemes.
-
-\begin{proposition}
-A map between schemes is unramified if and only if its differentials are injective. 
-\end{proposition}
-
-\begin{proof}
-The map $df_x$ is injective if and only if its kernel is $0$. By \cref{kernel-is-tangent-of-fibers}, this means that $df_x$ is injective for all $x:X$ if and only if:
-\[
-\prod_{x:X}T_{(x,\refl_{f(x)})}(\mathrm{fib}_f(f(x)))=0
-\]
-On the other hand having fibers with trivial tangent space is equivalent to:
-\[
-\prod_{y:Y}\prod_{x:X}\prod_{p:f(x)=y} T_{(x,p)}(\mathrm{fib}_f(y)) = 0
-\]
-Both are equivalent by path elimination on $p$.
-\end{proof}
-
-
-\subsection{Smooth maps are submersions}
-
-Here we do not find an equivalence, but just an implication. This might be possible to correct.
-
-\begin{proposition}\label{smooth-sets-map}
-Let $f:X\to Y$ be a map between sets. Assume that $X$ is formally smooth and that for all $x:X$, the induced map:
-\[N_1(f) : N_1(x)\to N_1(f(x))\]
-merely has a section sending $f(x)$ to $x$. Then $f$ is formally smooth.
-\end{proposition}
-
-\begin{proof}
-Assume given $\epsilon:R$ such that $\epsilon^2=0$ and try to merely find a lift in:
- \begin{center}
-      \begin{tikzcd}
-        \epsilon=0\ar[r,"\phi"]\ar[d] & X\ar[d,"f"] \\
-       1 \ar[r,"y"]\ar[ru,dashed] & Y
-      \end{tikzcd}
-    \end{center}
-    Since $X$ is formally smooth we merely have an $x:X$ such that:
-\[\prod_{p:\epsilon=0} \phi(p)=x\]
-and therefore:
-\[ \epsilon=0 \to y=f(x)\]
-This means that we can factor the square:
- \begin{center}
-      \begin{tikzcd}
-        \epsilon=0\ar[r,"\phi"]\ar[d] & N_1(x) \ar[d]\ar[r]& X\ar[d,"f"] \\
-       1 \ar[r,"y"]\ar[ru,dashed] & N_1(f(x)) \ar[r]&Y
-      \end{tikzcd}
-    \end{center}
-    where we can find a lift because the middle arrow has a section sending $f(x)$ to $x$.
-\end{proof}
+\subsection{Smooth and étale maps between schemes}
 
 Note that it is immediate from the definition of smoothness that smooth maps induce surjections on tangent spaces. We have a converse when the domain is smooth.
 
@@ -114,19 +13,44 @@ is surjective.
 \end{corollary}
 
 \begin{proof}
-It is straightforward to prove that (i) implies (ii), even without any assumption on $X$ and $Y$, by considering the diagram:
+(i) implies (ii). Assume given a map $v:\D(1)\to Y$ such that $v(0)=f(x)$, then for all $t:\D(1)$ we have a map:
+\[t=0 \to \fib_f(v(t))\]
+so since the $f$ is smooth we merely have $w_t:\fib_f(v(t))$ such that $t=0$ implies $w_t=0$. We conclude using choice over $\D(1)$.
+
+(ii) implies (i). Assume given $y:Y$ and $\epsilon:R$ such that $\epsilon^2=0$ and try to merely find a dotted lift in:
  \begin{center}
       \begin{tikzcd}
-        1\ar[r]\ar[d] & X\ar[d,"f"] \\
-       \mathbb{D}(1) \ar[r] \ar[r]&Y
+        \epsilon=0\ar[r,"\phi"]\ar[d] & \fib_f(y)\\
+       1 \ar[ru,dashed] & \\
       \end{tikzcd}
     \end{center}
-To prove that (ii) implies (i) we use \cref{smooth-sets-map} with \cref{neighborhood-tangent-correspondence-smooth}.
+    Since $X$ is formally smooth we merely have an $x:X$ such that:
+\[\prod_{p:\epsilon=0} \phi(p)=x\]
+and therefore:
+\[ \epsilon=0 \to y=f(x)\]
+which means that $y\in N_1(f(x))$. We use \cref{neighborhood-tangent-correspondence-smooth} to get that the map $N_1(x)\to N_1(f(x))$ merely has a section $s$ sending $f(x)$ to $x$.
+
+Then $s(y):\fib_f(y)$ such that for all $p:\epsilon=0$ we have that:
+\[\phi(p) = x = s(f(x)) = s(y)\]
+\end{proof}
+
+\begin{corollary}\label{etale-schemes-iff-local-iso}
+Let $f:X\to Y$ be a map between schemes. Assume $X$ is smooth. Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item The map $f$ is étale. 
+\item For all $x:X$, the induced map:
+\[df : T_x(X)\to T_{f(x)}(Y)\]
+is an iso.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+We apply \cref{unramified-map-characterisation} and \cref{smooth-schemes-iff-submersion}.
 \end{proof}
 
 
 
-\subsection{Smooth schemes are free tangent spaces}
+\subsection{Smooth schemes have free tangent spaces}
 
 
 \begin{lemma}\label{smooth-implies-smooth-tangent}
@@ -151,11 +75,11 @@ But we know that there exists a unique:
 such that:
 \[\psi(0,t) = v(t)\]
 \[\psi(t,0) = v'(t)\]
-used for example to define $(v+w)(t) = \psi(t,t)$.
+used for example to define $(v+w)(t) = \psi(t,t)$ in \cref{tangent-spaces-are-modules}.
 
-Then the fact that $X$ is smooth and that:
+Then the fact that $X$ is smooth and that the fibers of:
 \[\mathbb{D}(2) \to\mathbb{D}(1) \times \mathbb{D}(1) \]
-is a closed dense embedding means that there merely exists a lift of $\psi$ to $\mathbb{D}(1) \times \mathbb{D}(1)$, which gives us the $\phi$ we wanted.
+are closed dense embedding with $\mathbb{D}(1) \times \mathbb{D}(1)$ having choice means that there merely exists a lift of $\psi$ to $\mathbb{D}(1) \times \mathbb{D}(1)$, which gives us the $\phi$ we wanted.
 \end{proof}
 
 \begin{lemma}\label{smooth-kernel-decidable}
@@ -165,7 +89,7 @@ which has a formally smooth kernel. Then we can decide whether $M=0$.
 \end{lemma}
 
 \begin{proof}
-Since $M=0$ is closed, it is enough to prove that it is $\neg\neg$-stable to conclude that it is decidable. Assume $\neg\neg(M=0)$, then for any $x:R^m$ we have a dotted lift in:
+Since $M=0$ is closed, it is enough to prove that it is $\neg\neg$-stable to conclude that it is decidable by \cref{not-not-stable-prop-etale} and \cref{closed-and-etale-decidable}. Assume $\neg\neg(M=0)$, then for any $x:R^m$ we have a dotted lift in:
  \begin{center}
       \begin{tikzcd}
         M=0\ar[d] \ar[r,"\_\mapsto x"] & K \\
@@ -210,13 +134,80 @@ Let $X$ be a smooth scheme. Then for any $x:X$ we have that $T_x(X)$ is finite f
 By \cref{smooth-implies-smooth-tangent} we have that $T_x(X)$ is formally smooth, so that we can conclude by \cref{smooth-corpresented-implies-free}.
 \end{proof}
 
-The dimension of $T_x(X)$ is called the dimension of $X$ at $x$.
+The dimension of $T_x(X)$ is called the dimension of $X$ at $x$. By boundedness any smooth scheme is a finite sum of smooth scheme of a fixed dimension.
 
 
-\subsection{Smooth schemes are locally standard}
+\subsection{Standard étale and standard smooth schemes}
+
+\begin{definition}
+A standard smooth scheme of dimension $k$ is an affine scheme of the form:
+\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big)\]
+where $G$ divides the determinant of:
+\[\left( \frac{\partial P_i}{\partial X_j}\right)_{1\leq i,j\leq n}\]
+in:
+\[R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\]
+\end{definition}
+
+\begin{definition}
+A standard smooth scheme of dimension $0$ is called a standard étale scheme.
+\end{definition}
+
+\begin{lemma}\label{standard-etale-are-etale}
+Standard étale schemes are étale.
+\end{lemma}
+
+\begin{proof}
+Assume given a standard étale algebra:
+\[(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\]
+and write:
+\[P:R^n\to R^m\]
+for the map induced by $P_1,\cdots,P_m$.
+
+Assume given $\epsilon:R$ such that $\epsilon^2=0$, we need to prove that there is a unique dotted lifting in:
+  \begin{center}
+      \begin{tikzcd}
+       R/\epsilon & (R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\ar[l,swap,"x"]\ar[dotted,ld] \\
+       R\ar[u]&
+      \end{tikzcd}
+    \end{center}
+This means that for all $x:R^n$ such that $P(x)=0$ mod $\epsilon$ and $G(x)$ invertible modulo $\epsilon$ (or equivalently $G(x)$ invertible), there exists a unique $y:R^n$ such that:
+\begin{itemize} 
+\item We have $x=y$ mod $\epsilon$.
+\item We have $P(y)=0$.
+\item We have $G(y)\not=0$ (this is implied by $x=y$ mod $\epsilon$ and $G(x)\not=0$).
+\end{itemize}
+
+First we prove existence. For any $b:R^n$ we compute:
+\[P(x+\epsilon b) = P(x) + \epsilon\ dP_x(b)\]
+We have that $P(x)=0$ mod $\epsilon$, say $P(x) = \epsilon a$. Then since $G(x)\not=0$ and $\mathrm{det}(dP)$ divides $G$, we have that $dP_x$ is invertible. Then taking $b = -(dP_x)^{-1}(a)$ gives a lift $y=x+\epsilon b$ such that $P(y) = 0$.
+
+Now we check unicity. Assume $y,y'$ two such lifts, then $y=y'$ mod $\epsilon$ and we have:
+\[P(y) = P(y') + dP_{y'}(y-y')\]
+and $P(y)=0$ and $P(y')=0$ so that:
+\[dP_{y'}(y-y') = 0\]
+But $G(y')\not=0$ so $dP_{y'}$ is invertible and we can conclude that $y=y'$.
+\end{proof}
+
+\begin{lemma}\label{standard-smooth-is-smooth}
+Any standard smooth scheme of dimension $k$ is formally smooth of dimension $k$.
+\end{lemma}
+
+\begin{proof}
+The fibers of the map:
+\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big) \to \Spec(R[Y_1,\cdots Y_{k}])\]
+are standard étale, so the map is étale by \cref{standard-etale-are-etale}. Since:
+\[\Spec(R[Y_1,\cdots Y_{k}]) = \A^k\]
+is smooth by \cref{An-is-smooth}, we can conclude it is smooth using \cref{smooth-sigma-closed}. 
+
+For the dimension we use \cref{An-dimension-n} and \cref{etale-schemes-iff-local-iso}.
+\end{proof}
+
+
+
+\subsection{Smooth schemes are locally standard smooth}
 
 \begin{proposition}\label{smooth-are-locally-standard}
-A scheme is smooth if and only if it has a finite open cover by standard smooth schemes.
+A scheme is smooth of dimension $k$ if and only if it has a finite open cover by standard smooth schemes of dimension $k$.
 \end{proposition}
 
 \begin{proof}
@@ -277,30 +268,10 @@ so it is of the form $D(G_1,\cdots,G_n)$, and we have an open cover of our schem
     and we conclude that $F$ divides $G^N$ in $R[X_1,\cdots,X_n,Y_1,\cdots,Y_k]/P_1,\cdots,P_n$. So by replacing $G$ by $G^N$, we get standard smooth pieces.
 \end{proof}
 
-
-\subsection{Formally étale schemes}
-
 \begin{corollary}
 A scheme is formally étale if and only if it has a cover by standard étale schemes.
 \end{corollary}
 
 \begin{proof}
-TODO
+By \cref{unramified-scheme-characterisation} we know that a scheme is formally étale if and only if it is smooth of dimension $0$. Then we just apply \cref{smooth-are-locally-standard}.
 \end{proof}
-
-\begin{corollary}
-Let $f:X\to Y$ be a map between schemes. Assume $X$ is smooth. Then the following are equivalent:
-\begin{enumerate}[(i)]
-\item The map $f$ is étale. 
-\item For all $x:X$, the induced map:
-\[df : T_x(X)\to T_{f(x)}(Y)\]
-is an iso.
-\end{enumerate}
-\end{corollary}
-
-\begin{proof}
-TODO
-\end{proof}
-
-
-

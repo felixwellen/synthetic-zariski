@@ -1,0 +1,58 @@
+
+\begin{lemma}\label{unramified-affine-characterisation}
+Let $X$ be an affine scheme, the following are equivalent:
+\begin{enumerate}[(i)]
+\item $X$ is formally unramified.
+\item Identity types in $X$ are decidable.
+\item For all $x:X$, we have that $T_x(X)=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) implies (ii). By \cref{closed-and-etale-decidable}.
+
+(ii) implies (i). Because decidable implies formally étale.
+
+(ii) implies (iii). Assume given $x:X$ with $t:T_x(X)$, then for all $\epsilon:\D(1)$ we have $\neg\neg(\epsilon = 0)$ so that we have $\neg\neg t(\epsilon) = t(0)$ which implies $t(\epsilon) = t(0)$ since equality is assumed decidable. Therefore $t = 0$ in $T_x(X)$.
+
+(iii) implies (ii). Indeed given $\epsilon:R$ such that $\epsilon^2=0$, assume $x,y:X$ such that $\epsilon=0 \to x=y$. Then $x\in N_1(y)$ and by \cref{duality-infinitesimal-tangent} and $T_y(X)=0$ we conclude $x=y$.
+\end{proof}
+
+\begin{corollary}\label{unramified-scheme-characterisation}
+Let $X$ be a scheme, the following are equivalent:
+\begin{enumerate}[(i)]
+\item $X$ is formally unramified.
+\item Identity types in $X$ are open.
+\item For all $x:X$, we have that $T_x(X)=0$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Assume $(U_i)_{i:I}$ a finite cover of $X$ by affine schemes. By \cref{etale-zariski-local} we have that $X$ is formally unramified if and only $U_i$ is formally unramified for all $i:I$.
+
+(ii) implies (i). By \cref{not-not-stable-prop-etale}.
+
+(i) implies (iii). Indeed for all $x:X$ there exists $i:I$ such that $x\in U_i$ and then $T_x(X) = T_x(U_i)$ and $T_x(U_i) = 0$ by \cref{unramified-affine-characterisation}.
+
+(iii) implies (ii). Assume $x,y:X$, then:
+\[x=_Xy \leftrightarrow \Sigma_{y\in U_i} x=_{U_i} y\]
+By \cref{unramified-affine-characterisation} we have that identity types in $U_i$ is decidable, so $x=_Xy$ is open.
+\end{proof}
+
+Now we generalise this to maps between schemes.
+
+\begin{proposition}\label{unramified-map-characterisation}
+A map between schemes is unramified if and only if its differentials are injective. 
+\end{proposition}
+
+\begin{proof}
+The map $df_x$ is injective if and only if its kernel is $0$. By \cref{kernel-is-tangent-of-fibers}, this means that $df_x$ is injective for all $x:X$ if and only if:
+\[
+\prod_{x:X}T_{(x,\refl_{f(x)})}(\mathrm{fib}_f(f(x)))=0
+\]
+On the other hand having fibers with trivial tangent space is equivalent to:
+\[
+\prod_{y:Y}\prod_{x:X}\prod_{p:f(x)=y} T_{(x,p)}(\mathrm{fib}_f(y)) = 0
+\]
+Both are equivalent by path elimination on $p$.
+\end{proof}
