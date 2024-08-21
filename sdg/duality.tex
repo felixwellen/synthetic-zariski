@@ -1,0 +1,75 @@
+{
+\newcommand{\cat}[1]{\mathcal{#1}}
+\newcommand{\theory}[1]{\mathbf{#1}}
+\newcommand{\Psh}{\mathop{PSh}}
+\newcommand{\Set}{\mathsf{Set}}
+\newcommand{\TT}{\theory{T}}
+\newcommand{\EE}{\theory{E}}
+\newcommand{\Com}{\theory{Com}}
+\newcommand{\diffquot}[2]{\frac{\Delta{#1}}{\Delta{#2}}}
+
+\begin{definition}
+  Let \(\TT\) be an extension of the theory of commutative rings with base ring \(R\).
+  The \emph{\(\TT\)-spectrum} of a finitely presented \(\TT\)-algebra \(A\) is the set of \(\TT\)-algebra homomorphisms from \(A\) to \(T\).
+  \[\Spec_\TT(A) \colonequiv \Alg{\TT}(A,R)\]
+\end{definition}
+
+\begin{remark}
+  More generally, given an arbitrary \(\TT\)-algebra \(A\) we can consider the \emph{slice theory} \(\TT_{A/}\) and define the spectrum of a \(\TT_{A/}\)-algebra.
+  Note that \(\TT \equiv \TT_{R/}\).
+  If \(\TT\) was a Fermat theory, the slice theory \(\TT_{A/}\) is a Fermat theory as well by \cite[Proposition 1.5']{DK84}.
+\end{remark}
+
+Since every \(\TT\)-algebra morphism \(\varphi : A \to A'\) is a \(\TT\)-algebra morphism \emph{under} the base ring \(R\), meaning it commutes with the unique maps from \(R\) to \(A\) and \(A'\),  it is in particular a homomorphism of \(R\)-algebras between the underlying rings.
+Therefore, the \(\TT\)-spectrum of a \(\TT\)-algebra is a subset of its \(R\)-spectrum.
+
+\begin{definition}
+  A \emph{Fermat ring (object)} is a commutative ring object whose endomorphism theory is a Fermat theory.
+\end{definition}
+
+\begin{example}
+  \begin{enumerate}
+    \item
+      The structure sheaf in the small Zariski topos of a scheme is a Fermat ring?
+    \item
+      The affine line in the big Zariski topos is a Fermat ring?
+    \item
+      The real line in the Dubuc topos is a Fermat ring?
+  \end{enumerate}
+\end{example}
+
+
+We postulate the existence of a commutative ring \(R\) which satisfies the following axioms:
+\begin{description}
+  \item[\textbf{(Locality)}]
+    The ring \(R\) is local.
+  % \item[\textbf{(Differentiability)}]
+  %   The ring \(R\) is a Fermat ring.
+  %   We write \(\TT\) for its endomorphism theory.
+  \item[\textbf{(Duality)}]
+    For any finitely presented \(\TT\)-algebra \(A\), the canonical homomorphism
+    \[A \to R^{\Spec_\TT(A)}, \quad a \mapsto (\varphi \mapsto \varphi(a))\]
+    is an isomorphism of \(\TT\)-algebras.
+\end{description}
+
+Duality and locality allows us to prove a weak Nullstellensatz.
+
+\begin{lemma}
+  Let \(A\) be a finitely presented \(\EE_R\)-algebra.
+  Then \(\Spec_{\EE_R}(A)=\emptyset\) if and only if \(A=0\).
+\end{lemma}
+\begin{proof}
+  Like in synthetic algebraic geometry.
+  The if direction uses locality of \(R\).
+\end{proof}
+
+As a consequence, we obtain that \(R\) is a field in the following sense.
+
+\begin{lemma}
+  If an element \(r:R\) does not vanish it is invertible.
+\end{lemma}
+\begin{proof}
+  Using the previous lemma and lemma ?? on quotients of algebras over Fermat theories, the proof of the corresponding statement from synthetic algebraic geometry carries over.
+\end{proof}
+
+}
