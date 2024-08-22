@@ -131,36 +131,97 @@ Namely, for \(f:\EE_X(n)\) and \(a_1,\dots,a_n:A\) we have to set
 which is well-defined as \(\sim\) is a congruence relation, is compatible with projections and composition, and determines \(\interpret{f}_{\quotient{A}{\sim}}\) uniquely.
 
 
-\begin{definition}
-  An equivalence relation \(R\) on (the carrier of) an \(\EE_X\)-algebra \(A\) is called a \emph{congruence} if it is compatible with the interpretation function of \(A\) in the following sense:
-  for every natural number \(n\), every operation \(f:\EE_X(n)\) and all \(a_1,\dots,a_n,b_1,\dots,b_n : A\) we have an implication
-  \[
-    R(a_1,b_1) \times \dots\times R(a_n,b_n) \to R(\interpret{f}(a_1,\dots,a_n),\interpret{f}(b_1,\dots,b_n)).
-  \]
-\end{definition}
-
-\begin{lemma}
-  Let \(R\) be an equivalence relation on the carrier of an \(\EE_X\)-algebra \(A\) and suppose that \(A/R\) is the set quotient of \(A\) by \(R\) with quotient map \([-]:A \to A/R\).
-  If \(R\) is a congruence relation, there is a unique \(\EE_X\)-algebra structure on \(A/R\) such that \([-]\) becomes a morphism of \(\EE_X\)-algebras.
-\end{lemma}
-\begin{proof}
-  Since \(R\) is a congruence relation, we are allowed to define
-  \[
-    \interpret{f}_{A/R}([a_1],\dots,[a_n]) \colonequiv [\interpret{f}_A(a_1,\dots,a_n)]
-  \]
-  for \(f:\EE_X(n)\).
-  Obviously, \(\interpret{-}_{A/R}\) is compatible with projections and composition.
-  Moreover, the quotient map \([-]\) becomes a morphism of \(\EE_X\)-algebras and this requirement already determines the \(\EE_X\)-algebra structure on \(A/R\) uniquely.
-\end{proof}
-
 \subsection{Ringed Endomorphism Theories}
 
-We now assume that the generic object of the endomorphism theory in consideration carries an additional ring structure.
-From now on, let us write \(R\) for this ring.
+We will now assume that our base object \(X\equiv R\) carries the structure of a ring.%
+\footnote{As usual, we assume all rings to be commutative.}
+\begin{lemma}
+  Every \(\EE_R\)-algebra carries the structure of an \(R\)-algebra in a canonical fashion and every homomorphism of \(\EE_R\)-algebras is a homomorphism of \(R\)-algebras with respect to this structure.
+\end{lemma}
+\begin{proof}
+  Let \(A\) be an \(\EE_R\)-algebra.
+  We obtain the structure of a ring on \(A\) by interpreting the ring operations \(0,1:1\to R\), \(- : R\to R\) and \(+,\cdot : R^2\to R\) using the interpretation function of \(A\).
+  Note that since it is a function, it preserves equalities, and thus \(A\) satisfies the ring axioms because \(R\) does.
+  In particular, every homomorphism of \(\EE_R\)-algebras preserves this canonical ring structure.
+  Note that since \(R = (1\to R)= F(0)\) is the \emph{initial} \(\EE_R\)-algebra, every \(\EE_R\)-algebra \(A\) admits a unique homomorphism of \(\EE_R\)-algebras \(R\to A\), giving it the structure of an \(\R\)-algebra.
+  By initiality, every morphism of \(\EE_R\)-algebras commutes with this unique morphism from \(R\), making it a homomorphism of \(\R\)-algebras.
+\end{proof}
+
+Recall that a congruence relation on a ring \(A\) is an equivalence relation which is compatible with the ring operations \(-\), \(+\), \(\cdot\) in an obvious manner.
+It is easy to see that each such congruence relation gives rise to an ideal \(I_\sim\colonequiv \{a:A\mid a\sim 0\}\) of \(A\) and that, conversely, every ideal \(I\) determines a congruence relation \(\sim_I\) on \(A\) by setting \(a\sim_I b\colonequiv a-b\in I\).
+Moreover, these constructions are mutually inverse to each other.
+
+Now suppose that \(A\) is an \(\EE_R\)-algebra.
+Every congruence relation on \(A\) with respect to the \(\EE_R\)-algebra structure is in particular a congruence relation with respect to the underlying ring structure and thus determines an ideal.
+However, it may no longer be the case that every ideal gives rise to an \(\EE_R\)-congruence relation, as the following example shows.
+
+\begin{example}
+  \rednote{Missing.}
+\end{example}
+
+We will show in proposition ?? that the correspondence between ideals and congruence relations for \(\EE_R\)-algebras can be restored by restricting to rings \(R\) which are \emph{Fermat-Hadamard rings} in the sense of \cref{def:hadamard-quotient} below.
+To make this definition more readable, let us introduce some notational conventions.
+Recall that we denoted the projection operations \(R^n\to R\) by \(X_1,\dots, X_n\).
+By suppressing the composition symbol \(\circ\), we may write every \(n\)-ary operation \(f:\EE_X(n)\) as
+\[
+  f = f\circ\id_{X^n} = f \circ (X_1,\dots,X_n) = f(X_1,\dots,X_n),
+\]
+allowing us to treat the projection operations as variables.
+We will also use different variable names like \(X,Y,Z_1,\dots,Z_n\).
+Moreover, the ring operations will be written in infix notation as usual.
+Lastly, we will make use of vector notation for variables, for example, we have \(f = f(\vec X)\).
+
+
+\begin{definition}
+  \label{def:hadamard-quotient}
+  Given an \((n+1)\)-ary operation \(f:\EE_R(n+1)\), a \emph{Hadamard quotient} of \(f\) is an \((n+2)\)-ary operation \(g : \EE_R(n+2)\) which satisfies
+  \[
+    f(X,\vec Z) - f(Y,\vec Z) = (X-Y)\cdot g(X,Y,\vec Z) \qquad \text{(in \(\EE_R(n+2)\))},
+  \]
+  where we denote the projection operations in \(\EE_R(n+2)\) by \(X,Y,Z_1,\dots,Z_n\).
+  The ring \(R\) is said to be a \emph{Fermat-Hadamard ring} if each \((n+1)\)-ary operation \(f:\EE_R(n+1)\) admits a unique Hadamard quotient.
+\end{definition}
+
+\begin{example}
+  \rednote{Assuming SAG duality, the affine line is a Fermat-Hadamard ring.}
+\end{example}
+
+\begin{example}
+  \rednote{Assuming Kock-Lawvere ... ?}
+\end{example}
+
+\begin{proposition}
+  Let \(R\) be a ring.
+  The following are equivalent:
+
+  \begin{enumerate}
+    \item
+      For every ideal \(I\) of every \(\EE_R\)-algebra \(A\), the equivalence relation \(\sim_I\) is a congruence relation.
+    \item
+      For every ideal \(I\) of every finitely generated free \(\EE_R\)-algebra, the equivalence relation \(\sim_I\) is a congruence relation.
+    \item
+      The ring \(R\) is a Fermat-Hadamard ring.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  The first implication is trivial.
+  Thus, suppose that the second proposition holds and let \(f:\EE_R(n+1)\) be an arbitrary operation.
+  Consider the ideal \(I\) generated by \(X-Y\) in the free algebra \(F(n+2)\) on \(n+2\) generators \(X,Y,Z_1,\dots,Z_n\).
+  To construct a Hadamard quotient of \(f\) it is enough to show that \(f(X,\vec Z)-f(Y,\vec Z)\) lies in the ideal \(I\), i.e.~that \(f(X,\vec Z)\sim_I f(Y,\vec Z)\) holds.
+  By definition of the \(\EE_X\)-algebra structure on \(F(n+2)\) we have
+  \[
+    f(X,\vec Z) = f \circ (X,\vec Z) = \interpret{f}_{F(n+2)}(X,\vec Z)
+  \]
+  and similarly for \(f(Y,\vec Z)\).
+  Therefore, since \(\sim_I\) is a congruence by assumption, it suffices to show that \(X\sim_I Y\) and \(Z_1 \sim_I Z_1\), \dots, \(Z_n\sim_I Z_n\), which is clearly the case.
+  \rednote{Does uniqueness also hold?}
+  \rednote{\(3\Rightarrow 1\) is in Dubuc-Kock}
+\end{proof}
+
+
 
 TODO:
 \begin{enumerate}
-  \item Quotients by Ideals (needs Fermat property).
   \item Localization?
 \end{enumerate}
 
