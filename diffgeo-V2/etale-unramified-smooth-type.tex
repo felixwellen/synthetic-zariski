@@ -13,14 +13,13 @@ is an equivalence (resp. an embedding, surjective).
 \end{definition}
 
 \begin{remark}
-The map $X\to X^P$ being an equivalence (resp. an embedding, surjective) is equivalent to having a unique (resp. at most one, merely one) dotted lift in:
+The map $X\to X^P$ being an equivalence (resp. an embedding, surjective) if and only if for any map $P\to X$ we have a unique (resp. at most one, merely one) dotted lift in:
 \begin{center}
 \begin{tikzcd}
 P\ar[r]\ar[d] & X\\
 1\ar[ru,dotted]& \\
 \end{tikzcd}
 \end{center}
-for any map $P\to X$.
 \end{remark}
 
 \begin{definition}
@@ -32,13 +31,15 @@ A type (or map) is formally étale if and only if it is formally unramified and 
 \end{remark}
 
 \begin{lemma}
-A type $X$ is formally étale (resp. formally unramified, formally smooth) if for all $\epsilon:R$ such that $\epsilon^2=0$, the map:
+A type $X$ is formally étale (resp. formally unramified, formally smooth) if and only if for all $\epsilon:R$ such that $\epsilon^2=0$, the map:
 \[X\to X^{\epsilon=0}\]
 is an equivalence (resp. an embedding, surjective).
 \end{lemma}
 
 \begin{proof}
-Assume $P=\Spec(R/N)$ a closed dense proposition. Then the map $R\to R/N$ with $N$ f.g. nilpotent can be decomposed as:
+The direct direction is obvious as $\epsilon=0$ is closed dense when $\epsilon^2=0$.
+
+For the converse, assume $P=\Spec(R/N)$ a closed dense proposition. Then the map $R\to R/N$ with $N$ f.g. nilpotent ideal can be decomposed as:
 \[R\to A_1\to \cdots A_n = R/N\]
 where $A_k$ is a quotient of $R$ by a f.g. nilpotent ideal and:
 \[A_k\to A_{k+1}\]
@@ -48,7 +49,7 @@ for some $a:A$ with $a^2=0$.
 
 We write $P_k = \Spec(A_k)$ and:
 \[i_k:P_{k+1}\to P_k\] 
-so that $\mathrm{fib}_{i_k}(x)$ is $a(x)=0$ with $a(x)^2=0$.
+so that $\mathrm{fib}_{i_k}(x)$ is $a(x)=0$ where $a(x)^2=0$ holds.
 
 Then by hypothesis we have that for all $k$ and $x:P_{k}$ the map:
 \[X\to X^{\mathrm{fib}_{i_k}(x)}\]
@@ -128,7 +129,11 @@ A closed and formally étale proposition is decidable.
 \end{lemma} 
 
 \begin{proof}
-TODO
+Given a formally étale closed proposition $P$, let us prove it is $\neg\neg$-stable. Indeed if $\neg\neg P$ then $P$ is closed dense so that $P\to P$ implies $P$ since $P$ is formally étale. 
+
+Let $I$ be the f.g. ideal in $R$ such that:
+\[P\leftrightarrow I=0\]
+We have that $I^2=0$ implies $\neg\neg (I=0)$ which implies $I=0$. But then we have that $I=I^2$, so that by Nakayama there exists $e:R$ such that $eI = 0$ and $1-e\in I$. If $e$ is invertible then $I=0$, if $1-e$ in invertible then $I=R$.
 \end{proof}
 
 \begin{proposition}\label{bool-is-etale}
@@ -147,6 +152,7 @@ we want to merely factor it through $1$.
 This means that formally étale (resp. formally unramified, formally smooth) types are stable by finite sums. In particular finite types are formally étale.
 \end{remark}
 
+%Not used anywhere, maybe remove TODO?
 \begin{proposition}
 The type $\N$ is formally étale.
 \end{proposition}
@@ -186,7 +192,7 @@ For any $P$ closed dense and any diagram:
 \end{proof}
 
 
-\subsection{Being formally étale, formally unramified and formally smooth is local}
+\subsection{Being formally étale, unramified or smooth is Zariski local}
 
 \begin{lemma}\label{etale-zariski-local}
 Let $X$ with $(U_i)_{i:I}$ a finite open cover of $X$. Then $X$ is formally étale (resp. formally unramified, formally smooth) if and only if all the $U_i$ are formally étale (resp. formally unramified, formally smooth).
