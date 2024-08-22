@@ -1,5 +1,7 @@
+\subsection{Preliminaries}
+
 In this section, we introduce the type of countably presented Boolean algebras $\Boole$ and of Stone spaces $\Stone$. 
-Both of these types carry a natural categorical structure. 
+Both of these types carry a natural category structure. 
 In later sections, we will axiomatize an anti-equivalence between these categories, 
 which is classically valid and called Stone duality. 
 
@@ -13,9 +15,14 @@ which is classically valid and called Stone duality.
   countable sets $I,J$, 
   a set of generators $g_i,~{i\in I}$ and a set $f_j,~{j\in J}$ of Boolean expressions over these generators 
   such that $B$ is equivalent to the quotient of the free Boolean algebra over the generators by the relations
-  $f_j=0$. 
+  $f_j=0$. We denote this algebra by $2[I]/(f_j)_{j:J}$.
 \end{definition} 
-We will call the set $\{f_j|j\in J\}$ as above a set of relations. 
+
+\begin{remark}
+By countable in the previous definition we mean sets that are merely equal to a decidable in $\N$. Note that any countably presented algebra is also merely of the form $2[\N]\rangle / (r_n)_{n:\N}$, if we add dummy variables that we equate to $0$, and dummy relations that equate $0$ to itself.
+\end{remark}
+
+We will call the family $(f_j)_{j\in J}$ as above a set of relations. 
 If $I,J$ are finite, we call $B$ a finitely presented Boolean algebra. 
 Once we have postulated the axiom of dependent choice, 
 in \Cref{secBooleAsColimits}
@@ -54,32 +61,28 @@ We can therefore use it to define points of objects in the category dual to that
 \begin{example}
   \label{boolean-algebra-examples}
   \begin{enumerate}[(i)]
-    \item There is only one Boolean map $2\to 2$, thus $Sp(2)$ is the singleton type $\top$. 
-%      $2$ is the Boolean algebra given by the empty set of generators and no relations. 
-%    It's underlying set is $\{0,1\}$. 
+  \item There is only one Boolean map $2\to 2$, thus $Sp(2)$ is the singleton type $\top$. 
   \item   The trivial Boolean algebra is given by the empty set of generators and the relation $\{1\}$.
     We have $0=1$ in the trivial Boolean algebra. 
     As there cannot be a map from the trivial Boolean algebra into $2$ preserving both $0,1$, 
     the corresponding Stone space is the empty type $\bot$, 
   \item\label{ExampleBAunderCantor}   
-    $C$ is the Boolean algebra given by a countably infinite set of generators $p_n, ~n\in\mathbb N$ and no relations. 
+    We denote by $C$ the Boolean algebra $2[\N]$ given by $\N$ as a set of generators and no relations. We write $p_n$ for the generator corresponding to $n$.
     A morphism $C\to 2$ corresponds to a function $\mathbb N\to 2$, which is a binary sequence. 
-    The Stone space of these binary sequences is denoted $2^{\N}$ and called \notion{Cantor space}.
+    The Stone space $Sp(C)$ of these binary sequences is denoted $2^{\N}$ and called \notion{Cantor space}.
   \item\label{ExampleBAunderNinfty}
-    Denote $B_\infty$ for the quotient of $C$ by the relations $p_n\wedge p_m$ for $n\neq m$. 
+    We denote by $B_\infty$ the quotient of $C$ by the relations $p_m\wedge p_n$ for $m\neq n$. 
     A morphism $B_\infty\to 2$ corresponds to a function $\mathbb N \to 2$ that hits $1$ at most once. 
-    The corresponding Stone space is denoted $\N_\infty$. 
+    The corresponding Stone space is denoted by $\N_\infty$. 
   \end{enumerate}
 \end{example}
 
 \begin{remark}\label{BinftyTermsWriting}
-%  We will denote $B_\infty$ for $\langle G \rangle/ \langle R\rangle $ as above, 
   In \Cref{N-co-fin-cp}, we will show that $B_\infty$ is equivalent to the Boolean algebra on 
   subsets of $\N$ which are finite or co-finite. 
-  Under this equivalence, the generators $p_n$ are sent to singletons $\{n\}$. 
+  Under this equivalence, the generator $p_n$ is sent to the singleton $\{n\}$. 
   Because of this, we have that any $b:B_\infty$ can be written 
   either as $\bigvee_{i\in I_0} p_i$ or as $\bigwedge_{i\in I_0} \neg p_i$ for some finite $I_0\subseteq \N$. 
-  We will see that $b$ corresponds to a finite or co-finite set respectively. 
 \end{remark}
 
 

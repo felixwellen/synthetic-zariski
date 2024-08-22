@@ -1,21 +1,137 @@
-\subsection{Stone spaces are acyclic}
+\subsection{First cohomology vanish for Stone spaces}
 
-We should prove for $S$ stone and $A$ an overtly discrete abelian group, for all $n>0$ we have:
-\[H^n(S,A) = 0\]
+First some result on \v{C}ech sequences and cohomology. It works in plain HoTT and is certainly not new.
 
-\begin{lemma}\label{vanishing-1-cohomology-stone}
-Let $S$ be Stone and $A_x$ an overtly discrete abelian group depending on $x:S$. Then:
-\[H^1(x:S,A_x) = 0\]
+\begin{lemma}\label{cocyle-being-coboundary}
+Assume given sets $S,S'$ with a surjection:
+\[S'\to S\]
+and write $T(x)$ its fiber over $X:S$.
+
+Assume given $A:S\to \mathrm{Ab}$ with:
+\[\phi:\prod_{x:S}BA(x)\]
+and:
+\[\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}\]
+If the beginning of the \v{C}ech sequence:
+\[\prod_{x:S}A(x)^{T(x)} \to \prod_{x:S}A(x)^{T(x)^2}  \to \prod_{x:S}A(x)^{T(x)^3} \]
+is exact then $\phi=*$.
 \end{lemma}
 
 \begin{proof}
-TODO
+See \cref{cech-sequence-definition} for the definition of the maps in the sequence.
+
+We define:
+\[g : \prod_{x:S}T(x)^2\to A(x)\]
+by having $g_x(y,z)$ the the element $\alpha_x(y)^{-1}\cdot\alpha_x(z)$. It is easy to check that it is a cocycle in the given sequence, so that by exactness there is $f:\prod_{x:S}T(x)\to A(x)$ such that for all $x:S$ and $y,z:T(x)$ we have that:
+\[g_x(y,z)=f_x(y)\cdot f_x(z)^{-1}\]
+Then we define:
+\[\alpha' : \prod_{x:S}(\phi(x)=*)^{T(x)}\]
+\[\alpha'_x(y) = \alpha_x(y)\cdot f_x(y)\]
+so that for all $x:S$ and $y,z:T(x)$ we have that:
+\[\alpha'_x(z)^{-1}\cdot\alpha'_x(y) = f_x(z)^{-1}\alpha_x(z)^{-1}\alpha_x(y)\cdot f_x(y) = \mathrm{refl}\]
+so that:
+\[\alpha'_x(y)=\alpha'_x(z)\]
+and this means that $\alpha'$ factors through $S$, giving a proof of $\phi=*$.
 \end{proof}
 
+We prove the \v{C}ech sequence of a map to a finite type is exact:
+
+\begin{lemma}\label{vanishing-cech-finite-types}
+Assume $F$ finite type with a type $X$ and a surjective map $q:X\to F$. We write $I(x)$ the fibers of $q$ over $x:F$. 
+
+Assume given $A:F\to \mathrm{Ab}$, then the \v{C}ech sequence:
+\[\prod_{x:F}A(x)^{I(x)} \to \prod_{x:F}A(x)^{I(x)^2}  \to \prod_{x:F}A(x)^{I(x)^3} \]
+is exact.
+\end{lemma}
+
+\begin{proof}
+Since $F$ is finite and exactness is stable under finite products, we can assume $F=1$, then $A$ is just an abelian group and $I$ an inhabited type, say with $0:I$. Then we are considering the sequence:
+\[A^I \to A^{I^2} \to A^{I^3}\]
+with the maps:
+\[(a_i)_{i:I} \mapsto (a_i-a_j)_{i,j:I}\]
+\[(a_{i,j})_{i,j:I} \mapsto (a_{i,j}+a_{j,k}-a_{i,k})_{i,j,k:I}\]
+Assume $(a_{i,j})_{i,j:I}$ such that for all $i,j,k:I$ we have that $a_{i,j}+a_{j,k}=a_{i,k}$. 
+
+First we have that $a_{i,i}+a_{i,i}=a_{i,i}$ so that $a_{i,i}=0$. Then $a_{i,j}+a_{j,i} = a_{i,i}$ gives that $a_{i,j} = -a_{j,i}$. Now we consider $(a_{i,0})_{i:I}$, which is sends to $(a_{i,0}-a_{j,0})_{i,j:I} = (a_{i,j})_{i,j:I}$. So the sequence is indeed exact.
+\end{proof}
+
+We want to prove that the vanishing of the \v{C}ech sequence of Stone spaces with overtly discrete coefficients is stable under sequential limit. It will rely heavily on Scott continuity. We need an auxiliary definition:
+
+\begin{definition}
+Assume given $S = \lim_kS_k$ sequential limits of Stone and $A:S\to \mathrm{Ab}_\ODisc$. Then we define:
+\[A_k: S_k\to \mathrm{Ab}_{\ODisc}\]
+\[A_k(x) = \prod_{y:S,y|_k=x} A(y)\]
+By the dual to Tychonov, we have that $A_k(x)$ is overtly discrete. 
+
+Moreover we for all $k:\N$ and $x:S_{k+1}$ we have a map:
+\[A_k(x|_k) \to A_{k+1}(x)\]
+\end{definition}
+
+The two references in the proof are to variants of Scott continuity, in the directed univalence draft.
+
+\begin{lemma}\label{vanishing-cech-stable-sequential-limits}
+Assume given $S=\lim_kS_k$ and $S'=\lim_kS'_k$ limits of Stone spaces, and a surjective map of towers:
+\begin{center}
+\begin{tikzcd}
+S_0' \ar[d] & S_1'\ar[l]\ar[d] & S_2'\ar[d]\ar[l]& \cdots\ar[l] \\
+S_0 & S_1\ar[l] & S_2 \ar[l]& \cdots\ar[l] \\
+\end{tikzcd}
+\end{center}
+
+We denote the fibers of the induced map $S'\to S$ over $x:S$ by $T(x)$ and the fibers of the map $S_k'\to S_k$ over $x:S_k$ by $T_k(x)$.
+
+Assume given $A:S\to\mathrm{Ab}_\ODisc$ such that for all $k:\N$ the \v{C}ech sequence:
+\[\prod_{x:S_k}A_k(x)^{T_k(x)} \to \prod_{x:S_k}A_k(x)^{T_k(x)^2}  \to \prod_{x:S_k}A_k(x)^{T_k(x)^3} \]
+is exact. Then the \v{C}ech sequence:
+\[\prod_{x:S}A(x)^{T(x)} \to \prod_{x:S}A(x)^{T(x)^2}  \to \prod_{x:S}A(x)^{T(x)^3} \]
+is exact.
+\end{lemma}
+
+\begin{proof}
+We prove that for any $l:\N$ we have that:
+\[\mathrm{colim}_k \left(\prod_{x:S_k}A_k(x)^{T_k(x)^l}\right)  = \prod_{x:S}A(x)^{T(x)^l} \]
+We conclude from this and exactness being stable under sequential colimit. We omit the verification that this is compatible with maps. 
+
+We have that:
+\[\prod_{x:S_k}A_k(x)^{T_k(x)^l} = \prod_{x:S_k}\prod_{y:S,y|_k=x} A(y)^{T_k(x)^l} = \prod_{y:S} A(y)^{T_k(y|_k)^l}\]
+and by \cref{scott-continuity-right} we have that:
+\[\mathrm{colim}_k\left(\prod_{y:S} A(y)^{T_k(y|_k)^l}\right) = \prod_{y:S} \mathrm{colim}_k\left( A(y)^{T_k(y|_k)^l} \right)\]
+but by \cref{scott-continuity} we have that:
+\[\mathrm{colim}_k\left( A(y)^{T_k(y|_k)^l} \right) = A(y)^{\lim_k T_k(y|_k)^l}\]
+and we can see by commutation of limits that:
+\[\lim_k T_k(y|_k)^l = T(y)^l\]
+\end{proof}
+
+Now we just have to assemble the pieces.
+
+\begin{lemma}\label{vanishing-1-cohomology-stone}
+Let $S$ be Stone and $A: S\to \mathrm{Ab}_\ODisc$. Then:
+\[H^1(S,A) = 0\]
+\end{lemma}
+
+\begin{proof}
+Assume given:
+\[\phi:\prod_{s:S}BA(x)\]
+we have that:
+\[\prod_{x:S}\propTrunc{\phi(x)=*}\]
+so that by local choice there merely exists $S'$ Stone and a surjective map:
+\[q:S'\to S\]
+with fibers denoted $T(x)$ and:
+\[\alpha:\prod_{x:S'}(\phi(x)=*)^{T(x)}\]
+In order to conclude by applying \cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence:
+\[\prod_{x:S}A(x)^{T(x)} \to \prod_{x:S}A(x)^{T(x)^2}  \to \prod_{x:S}A(x)^{T(x)^3} \]
+is exact.
+
+By \cref{TODO} we know that any surjective map between Stone spaces is a sequential limit of surjective maps between finite types. So by applying \cref{vanishing-cech-stable-sequential-limits} we see it is enough to prove the exactness of the exact sequence for maps between finite types, and this is \cref{vanishing-cech-finite-types}.
+\end{proof}
+
+\subsection{Stone spaces are acyclic}
+
+We extend the previous section to the following: for all $S$ Stone,$A:S\to\mathrm{Ab}_\ODisc$ and $n>0$ we have that:
+\[H^n(S,A) = 0\]
 We (Thierry \& Hugo) follow David's proof in SAG to go from $1$ to all $n$.
 
 \begin{lemma}\label{eilenberg-exponentials-auxiliary}
-Assume for all $S$ Stone and $A$ overtly discrete abelian group we have that:
+Assume for all $S$ Stone and $A:\mathrm{Ab}_\ODisc$ we have that:
 \[H^k(S,A) = 0\] 
 for all $0<k<n$. Then:
 \begin{itemize}
@@ -45,7 +161,7 @@ is an equivalence but this is the previous bullet-point.
 \end{proof}
 
 \begin{theorem}\label{vanishing-cohomology-stone}
-Let $S$ be Stone and $A_x$ an overtly discrete abelian group depending on $x:S$. Then for all $n>0$ we have that:
+Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that:
 \[H^n(S,A) = 0\]
 \end{theorem}
 
@@ -76,7 +192,7 @@ where $\alpha$ is send to $0$ in $H^n(x:S,A_x^{T_x})$. By induction we have $H^{
 \end{proof}
 
 \begin{corollary}\label{eilenberg-exponentials}
-For all $S$ Stone, $A$ overtly discrete abelian group  and $n$ we have that the map:
+For all $S$ Stone, $A:\mathrm{Ab}_\ODisc$ and $n$ we have that the map:
 \[K(A^S,n) \to K(A,n)^S\]
 is an equivalence.
 \end{corollary}
@@ -99,10 +215,10 @@ Next lemma show that cohomology interact well with \v{C}ech cover. It will be us
 \begin{lemma}\label{inductive-definition-cohomology}
 Assume given $X$ a type with a \v{C}ech cover:
 \[f:S\to X\]
-as well as $A_x$ an overtly discrete abelian group depending on $x:X$.
+as well as $A:X\to \mathrm{Ab}_\ODisc$.
 
 For all $n\geq 1$ we have an exact sequence:
-\[H^{n-1}(x:X,A_x^{S_x}) \to H^{n-1}(x:X,L_x)\to H^n(x:X,A_x)\to 0\]
+\[H^{n-1}(X,x\mapsto A_x^{S_x}) \to H^{n-1}(X,L)\to H^n(X,A)\to 0\]
 natural in $A$, where $L_x = A_x^{S_x}/A_x$.
 \end{lemma}
 
@@ -115,10 +231,10 @@ But by \cref{eilenberg-exponentials} we have that:
 \[\prod_{x:X}K(A_x^{S_x},n) = \prod_{x:S}K(A_x,n)\]
 \end{proof}
 
-\begin{definition}
+\begin{definition}\label{cech-sequence-definition}
 Assume given a \v{C}ech cover
 \[f:S\to X\]
-and $A_x$ an overtly discrete abelian group depending on $x:X$.
+and $A:X\to\mathrm{Ab}_\ODisc$.
 
 Then we define the \v{C}ech complex by:
 \[\prod_{x:X}A_x^{S_x} \to \prod_{x:X}A_x^{S_x\times S_x} \to \cdots\]
@@ -135,7 +251,7 @@ Assume given a \v{C}ech cover:
 If we are given a short exact sequence of overtly discrete abelian group:
 \[0\to A_x\to B_x\to C_x\to 0\]
 depending on $x:X$, there is a long exact sequence of \v{C}ech cohomology groups:
-\[\check{H}^0(x:X,A_x) \to\check{H}^0(x:X,B_x) \to\check{H}^0(x:X,C_x) \to\check{H}^1(x:X,A_x) \to\check{H}^1(x:X,B_x) \to\check{H}^1(x:X,C_x) \to\cdots \]
+\[\check{H}^0(X,A) \to\check{H}^0(X,B) \to\check{H}^0(X,C) \to\check{H}^1(X,A) \to\check{H}^1(X,B) \to\check{H}^1(X,C) \to\cdots \]
 Moreover this long exact sequence is natural in the short exact sequence.
 \end{lemma}
 
@@ -146,15 +262,15 @@ We just use the fact that all elements $\sum_{x:X} T_x^{k+1}$ in the \v{C}ech co
 \begin{lemma}\label{inductive-definition-cech-cohomology}
 Assume given a \v{C}ech cover:
 \[f:S\to X\]
-and $A_x$ an overtly discrete abelian group depending on $x:X$.
+and $A:X\to\mathrm{Ab}_\ODisc$.
 
 For all $n\geq 1$ we have an exact sequence:
-\[\check{H}^{n-1}(x:X,A_x^{S_x}) \to \check{H}^{n-1}(x:X,L_x)\to \check{H}^n(x:X,A_x)\to 0\]
-natural in $A$ where $L_x=A_x^{T_x}/A_x$.
+\[\check{H}^{n-1}(X,x\mapsto A_x^{S_x}) \to \check{H}^{n-1}(X,L)\to \check{H}^n(X,A)\to 0\]
+natural in $A$ where $L_x=A_x^{S_x}/A_x$.
 \end{lemma}
 
 \begin{proof}
-It is enough to prove $\check{H}^n(x:X,A_x^{S_x}) = 0$ for all $n\geq 1$. Indeed assume given:
+It is enough to prove $\check{H}^n(X,x\mapsto A_x^{S_x}) = 0$ for all $n\geq 1$. Indeed assume given:
 \[\alpha : \prod_{x:X} S_x^{n+1}\to S_x\to A_x\]
 such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $u_0,\cdots, u_{n+1},v:S_x$ we have that:
 \[\sum_{i=0}^{n+1}(-1)^i\alpha(x,u_0,\cdots,  \hat{u_i},\cdots ,u_{n+1},v) = 0\]
@@ -169,10 +285,10 @@ and then:
 \begin{theorem}
 Assume given a \v{C}ech cover:
 \[f:S\to X\]
-and $A_x$ an overtly discrete abelian group depending on $x:X$.
+and $A:X\to\mathrm{Ab}_\ODisc$.
 
 Then we have a natural isomorphism:
-\[H^n(x:X,A_x) = \check{H}^n(x:X,A_x)\]
+\[H^n(X,A) = \check{H}^n(X,A)\]
 \end{theorem}
 
 \begin{proof}

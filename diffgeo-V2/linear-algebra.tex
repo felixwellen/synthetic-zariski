@@ -1,0 +1,247 @@
+
+\subsection{Modules and infinitesimal disks}
+
+\begin{definition}
+Given $M$ a finitely presented $R$-module, we define an f.p. algebra structure on $R\oplus M$ by:
+\[(r,m)(r',m') = (rr',rm'+r'm)\]
+we define:
+\[\D(M) = \Spec(R\oplus M)\]
+It is pointed by the first projection which we denote $0$. 
+\end{definition}
+
+We write $\D(1)$ for $\D(R)$ so that:
+\[\D(1) = \Spec(R[X]/(X^2)) = \{\epsilon:R\ |\ \epsilon^2=0\}\]
+
+\begin{definition}
+Assume given $M$ a f.p. module and $A$ an f.p. algebra with $x:\Spec(A)$. An $M$-derivation at $x$ is a morphism of modules:
+\[d:A\to M\]
+such that for all $a,b:A$ we have that:
+\[d(ab) = a(x)d(b) + b(x)d(a)\]
+\end{definition}
+
+\begin{lemma}\label{tangent-are-derivation}
+Assume given $M$ a f.p. module and $A$ an f.p. algebra with $x:\Spec(A)$. Pointed maps:
+\[\D(M)\to_\pt (\Spec(A),x)\] 
+corresponds to $M$-derivation at $x$.
+\end{lemma}
+
+\begin{proof}
+Such a pointed map correpond to an algebra map:
+\[f : A\to R\oplus M\]
+where the composite with the first projection is $a$. This means that:
+\[f(a) = (a(x),d(x))\]
+for some module map $d:A\to M$. We can immediately see that $f$ being a map of algebra is equivalent to $d$ being a derivation.
+\end{proof}
+
+\begin{lemma}\label{equivalence-module-infinitesimal}
+Let $M$, $N$ be finitely presented modules. Then linear maps $M \to N$ correspond to
+pointed maps $\D(N) \to_\pt \D(M)$. 
+%Explicitly, a linear map $g : M \to N$ corresponds to the pointed map $f \mapsto m \mapsto f(g(m))$.
+\end{lemma}
+
+\begin{proof}
+By \cref{tangent-are-derivation} such a pointed map correspond to an $N$-derivations at $0:\D(M)$.
+
+Such a derivation is a morphism of modules:
+\[R\oplus M\to N\]
+such that for all $(r,m),(r',m'):R\oplus M$ we have that:
+\[d(rr',rm'+r'm) = rd(r',m')+r'd(r,m)\]
+This is equivalent to $d(r,0) = 0$ for all $r : R$, so we obtain all $R$-linear 
+maps $M \to N$ in this way.
+\end{proof}
+
+\begin{lemma}
+Any finitely copresented module is projective.
+\end{lemma}
+
+\begin{proof}
+\rednote{TODO, unsure how it connects to $N_1(x) = \D(T_x(X)^\star)$.}
+\end{proof}
+
+\begin{lemma}\label{neighborhood-tangent-correspondence-smooth}
+A linear map between finitely copresented module:
+\[f:M\to N\]
+is surjective if and only if the corresponding pointed map:
+\[\D(M^\star) \to \D(N^\star)\]
+merely has a section preserving $0$.
+\end{lemma}
+
+\begin{proof}
+By \cref{equivalence-module-infinitesimal} we know that:
+\[\D(M^\star) \to \D(N^\star)\]
+merely having a section preserving $0$ is equivalent to:
+\[f:M\to N\]
+merely having a section. But since any finitely copresented module is projective, this is equivalent to $f$ being surjective.
+\end{proof}
+
+
+\subsection{Tangent spaces}
+
+\begin{definition}
+Let $X$ be a type and let $x:X$, then we define the tangent space $T_x(X)$ of $X$ at $x$ by:
+\[\{t:\D(1)\to X\ |\ t(0)=x\}\]
+\end{definition}
+
+\begin{definition}
+Given $f:X\to Y$ and $x:X$ we have a map:
+\[df_x : T_x(X)\to T_{f(x)}(Y)\]
+induced by post-composition.
+\end{definition}
+
+\begin{lemma}\label{An-dimension-n}
+For all $x:R^n$ we have $T_x(R^n) = R^n$.
+\end{lemma}
+
+\begin{proof}
+Since $R^n$ is homogeneous we can assume $x=0$. By \cref{tangent-are-derivation} we know that $T_0(R^n)$ correspond to linear map:
+\[R[X_1,\cdots,X_n] \to R\]
+such that for all $P,Q$ we have:
+\[d(PQ) = P(0)dQ + Q(0)dP\]
+which is equivalent to $d(1) = 0$ and $d(X_iX_j) = 0$, so such a map us detemined by its image on the $X_i$ so it is equivalent to an element of $R^n$.
+\end{proof}
+
+\begin{lemma}\label{from-D1-to-D2}
+Given $X$ a scheme with $x:X$ and $v,w:T_x(X)$, there exists a unique:
+\[\psi_{v,w} : \D(2)\to_\pt X\]
+such that for all $\epsilon:\D(1)$ we have that:
+\[\psi_{v,w}(\epsilon,0) = v(\epsilon)\]
+\[\psi_{v,w}(0,\epsilon) = w(\epsilon)\]
+\end{lemma}
+
+\begin{proof}
+We can assume $X$ is affine. Then $\D(2)\to_\pt X$ is equivalent to the type of $R^2$-derivation at $x$, but giving an $M\oplus N$ derivation is equivalent to giving an $M$-derivation and an $N$-derivation. Checking the equalities is a routine computation.
+\end{proof}
+
+\begin{lemma}
+For any scheme $X$ and $x:X$, we have that $T_x(X)$ is a module.
+\end{lemma}
+
+\begin{proof}
+We define scalar multiplication by sending $v$ to $t\mapsto v(rt)$.
+
+Then to define addition of $v,w:T_x(X)$, we have define:
+\[(v+w)(\epsilon) = \psi_{v,w}(\epsilon,\epsilon)\]
+where $\psi_{v,w}$ is defined in \cref{from-D1-to-D2}.
+
+We omit the checking that this is a module structure.
+\end{proof}
+
+\begin{lemma}
+For $f:X\to Y$ a map between schemes, for all $x:X$ the map $df_x$ is a map of $R$-module.
+\end{lemma}
+
+\begin{proof}
+Commutation with scalar multiplication is immediate.
+
+Commutation comes by applying uniqueness in \cref{from-D1-to-D2} to show:
+\[f\circ \psi_{v,w} = \psi_{f\circ v,f\circ w}\]
+\end{proof}
+
+\begin{lemma}
+\label{kernel-is-tangent-of-fibers}
+For any map $f:X\to Y$ and $x:X$, we have that:
+\[
+\mathrm{Ker}(df_x) = T_{(x,\refl_{f(x)})}(\mathrm{fib}_f(f(x)))
+\]
+\end{lemma}
+
+\begin{proof}
+This holds because:
+\[
+(\mathrm{fib}_f(f(x)),(x,\refl_{f(x)}))
+\]
+is the pullback of:
+\[
+(X,x) \to (Y,f(y)) \leftarrow (1,*)
+\]
+in pointed types, applied using $(\mathbb{D}(1),0)$.
+\end{proof}
+
+\begin{lemma}
+Let $X$ be a scheme with $x : X$. Then $T_x(X)$ is a finitely
+co-presented $R$-module.
+\end{lemma}
+
+\begin{proof}
+We cab assume $X$ affine. Then $X$ is the kernel of a map:
+\[P:R^m\to R^n\]
+so that for all $x:X$, by applying \cref{kernel-is-tangent-of-fibers} we know that we have $T_x(X)$ is the kernel of:
+\[dP_x : T_x(R^m)\to T_0(R^n)\]
+and we conclude by \cref{An-dimension-n}.
+\end{proof}
+
+
+\subsection{Infinitesimal neighborhood}
+
+\begin{definition}
+Let $X$ be a set with $x:X$. The first order neighborhood $N_1(x)$ is defined as the set of $y:X$ such that the exists a f.g. ideal $I$ such that $I^{2}=0$ and:
+\[I=0 \to x=y\]
+\end{definition}
+
+\begin{lemma}\label{duality-infinitesimal-tangent}
+Let $X$ be a scheme with $x:X$, then:
+\[N_1(x) = \D(T_x(X)^\star)\]
+\end{lemma}
+
+\begin{proof}
+\rednote{TODO}
+\end{proof}
+
+
+\subsection{Rank of matrices}
+
+\begin{definition}
+A matrix is said of rank $n$ if it has an invertible $n$-minor, and all its $n+1$-minor have determinant $0$.
+\end{definition}
+
+Having a rank is a property of matrices, and there is not rank function defined on all matrices.
+
+\begin{lemma}\label{rank-bloc-matrix}
+Assume given a matrix $M$ of rank $n$ decomposed into blocks:
+\[M = \begin{pmatrix}
+P & Q  \\
+R & S \\
+\end{pmatrix}\]
+Such that $P$ is square of size $n$ and invertible. Then we have:
+\[S = RP^{-1}Q\]
+\end{lemma}
+
+\begin{proof}
+By columns manipulation the matrix is equivalent to:
+\[M = \begin{pmatrix}
+P & 0  \\
+0 & S - RP^{-1}Q \\
+\end{pmatrix}\]
+but equivalent matrices have the same rank so $S=RP^{-1}Q$.
+\end{proof}
+
+\begin{definition}
+Two matrices $M,N$ are said equivalent if there are invertible matrices $P,Q$ such that $M = PNQ$.
+\end{definition}
+
+It is clear that equivalent matrices have the same rank.
+
+\begin{lemma}\label{rank-equivalent-definitions}
+Assume given a matrix:
+\[M : R^m\to R^k\]
+Then the following are equivalent:
+\begin{enumerate}[(i)]
+\item $M$ has rank $n$.
+\item The kernel of $M$ is equivalent to $R^{m-n}$.
+\item The image of $M$ is equivalent to $R^n$.
+\item $M$ is equivalent to the bloc matrix:
+\[\begin{pmatrix}
+I_n & (0)  \\
+(0) & (0) \\
+\end{pmatrix}\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\rednote{TODO, only (ii) implies (i) actually needed.}
+\end{proof}
+
+
+
+
+

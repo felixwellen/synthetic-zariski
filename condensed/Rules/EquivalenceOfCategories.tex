@@ -7,19 +7,14 @@ Analogously to Lemma 3.1.2 of \cite{draft},
 for $X$ Stone, Stone duality tells us that $X = Sp(2^X)$. 
 %
 Proposition 2.2.1 of \cite{draft} now says that 
-$Sp$ gives an equivalence 
+$Sp$ gives a natural equivalence 
 \begin{equation}
    Hom_{\Boole} (A, B) = (Sp(B) \to Sp(A))
 \end{equation}
-Therefore $\isSt$ is a proposition.
-Equivalently, 
-%By Definition 4.6.1 %defines an embedding 
-%of \cite{hott}, 
-this means that 
-$Sp$ is an embedding from $\Boole$ to any universe of types.
+Therefore $Sp$ is an embedding from $\Boole$ to any universe of types, and $\isSt$ is a proposition.
+
 Its image, $\Stone$ also has a natural category structure.
-By the above and Lemma 9.4.5 of \cite{hott}, 
-the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Stone$.
+By the above and Lemma 9.4.5 of \cite{hott}, the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Stone$.
 \end{remark}
 
 \begin{lemma}\label{SpectrumEmptyIff01Equal}
@@ -48,6 +43,7 @@ the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Sto
 We conclude this section on the anti-equivalence of Stone and $\Boole$ by a relating surjections to injections. 
 This theorem is actually equivalent to completeness of propositional logic, which we'll discuss in 
 \Cref{NotesOnAxioms}. 
+
 \begin{theorem}\label{FormalSurjectionsAreSurjections}
   Let $f:A\to B$ be a map of countably presented Boolean algebras. 
   If $f$ is injective, then the corresponding map $(\cdot) \circ f : Sp(B) \to Sp(A)$ is surjective. 
@@ -55,19 +51,19 @@ This theorem is actually equivalent to completeness of propositional logic, whic
 
 \begin{proof}
   Assume $f$ injective and let $x:Sp(A)$.
-  By \Cref{FiberConstruction}, we have that $\sum\limits_{y:Sp(B)} y\circ f = Sp(B/R) $
+  By \Cref{FiberConstruction}, we have that $\left(\sum\limits_{y:Sp(B)} y\circ f = x \right) = Sp(B/R) $
   for $R=f(G)$ for some countable $G\subseteq A$ with $x(g) = 0$ for all $g\in G$. 
   By propositional completeness and \Cref{SpectrumEmptyIff01Equal}, 
   it's sufficient to show that $0\neq_{B/R}1$. 
   Note that $0=_{B/R} 1$ iff 
-  $1 = \bigvee R_0$ for some $R_0\subseteq R$ finite. 
+  $1 =_B \bigvee R_0$ for some $R_0\subseteq R$ finite. 
   But then $$1 = \bigvee f(G_0) = f(\bigvee  G_0)$$ for some $G_0\subseteq G$ finite. 
   And as $f$ is injective, $\bigvee G_0 = 1$. 
   However, 
   $$
   x(\bigvee G_0) = 
   x(\bigvee_{g\in G_0} g ) = \bigvee_{g \in G_0} x(g) = \bigvee_{g\in G_0} 0 = 0$$
-  And as $x(1) = 1 \neq_2 0$, we get a contradiction. Therefore $0\neq_{B/R} 1$ as required. 
+  And as $x(1) = 1$, we get a contradiction. Therefore $0\neq_{B/R} 1$ as required. 
 \end{proof}  
 The converse to the above theorem is true as well, regardless of propositional completeness:
 \begin{lemma}\label{SurjectionsAreFormalSurjections}

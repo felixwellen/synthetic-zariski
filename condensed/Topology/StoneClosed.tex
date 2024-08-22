@@ -7,7 +7,8 @@
     \item There exists some countable family 
       $D_n,~{n:\N}$ 
       of decidable subsets of $S$ with $A = \bigcap_{n:\N} D_n$. 
-    \item There exists a Stone space $T$ and some map $T\to S$ whose image is $A$. 
+    \item There exists a Stone space $T$ and some embedding $T\to S$ which image is $A$
+    \item There exists a Stone space $T$ and some map $T\to S$ which image is $A$. 
     \item $A$ is closed.
   \end{enumerate}
 \end{theorem}
@@ -26,7 +27,7 @@
    \item[$(ii) \to (iii)$.]
       Let $S=Sp(B)$. 
       By Stone duality, we have $d_n,~n:\N$ terms of $B$ such that $D_n = \{x:S| x(d_n) = 1\}$. 
-      Let $C = B/\langle (\neg d_n)_{n:\N}\rangle$.
+      Let $C = B/(\neg d_n)_{n:\N}$.
       Then the map $Sp(C) \to S$ is as desired because
       $$Sp(C) = \{x:S| \forall_{n:\N} x(\neg d_n) =0\}  = \bigcap_{n:\N} D_n.$$
 %      By \Cref{SurjectionsAreFormalSurjections}, t
@@ -38,7 +39,8 @@
 %        x\in \iota(Sp(C)) \leftrightarrow x(\neg d_n) = 0 \leftrightarrow x(d_n) = 1 \leftrightarrow x\in D_n
 %      \end{equation}
 %      Thus the image of $\iota$ is given by $\bigcap_{n:\N} D_n$. 
-   \item[$(iii) \to (i)$.] 
+   \item[$(iii) \to (iv)$] Immediate.
+   \item[$(iv) \to (i)$.] 
      \rednote{TODO 
        The order of untracating is important in this proof, 
      and I struggle a bit with stressing this in a way this is clear (and concise). 
@@ -52,11 +54,9 @@
 %
       Following \Cref{FiberConstruction}, using $G$, for each $x:S$, we can construct 
       a countable set $I_x\subseteq B$ such that $$Sp(B/I_x) = (\Sigma_{y:T} f(y) = x) .$$
-      As we saw in \Cref{BooleEqualityOpen} and \Cref{TruncationStoneClosed}, 
-      this type being inhabited is a countable conjunction 
-      of decidable propositions on the relations for $B/I_x$. 
-      As these relations are explicit, we can construct the sequence $\alpha_x$ as required. 
-
+      By \Cref{ExplicitTruncationStoneClosed}, we can construct a sequence 
+      $\alpha_x$ such that this type is inhabited iff $\forall_{n:\N} \alpha_x(n) = 0$,
+      as required. 
 %
 %      Recall that the propositional truncation of a Stone is closed, as it is the negation of $0=1$ in the underlying 
 %      Boolean algebra, which is open as it f
@@ -78,8 +78,8 @@
 %      \end{equation}
 %      Note that we did not use any choice axioms in the proof of this implication,
 %      as we untruncated our assumptions before we specified $x$. 
-   \item [$(i) \to (iv)$.] By definition.
-   \item[$(iv) \to (iii)$.]
+   \item [$(i) \to (v)$.] By definition.
+   \item[$(v) \to (iv)$.]
      As $A$ is closed, it induces a map $a:S\to \Closed$. 
      We can cover the closed propositions with Cantor space
      by sending 
@@ -99,14 +99,16 @@
 \end{proof} 
 \rednote{Ordering from here on out is WIP}
 
+\begin{remark}\label{ClosedInStoneIsStone}
+Using condition $(iii)$, the previous result implies that closed subtype of Stone spaces are Stone.
+\end{remark}
 
 \begin{corollary}\label{InhabitedClosedSubSpaceClosed}
   For $S:\Stone$ and $A\subseteq S$ closed, we have 
-  $\exists_{x:X} A(x)$ is closed. 
+  $\exists_{x:S} A(x)$ is closed. 
 \end{corollary}
 \begin{proof}
-  Let $A$ be the image of a map map $T\to S$ for $T:\Stone$. 
-  Then $\exists_{x:S} A(x) \leftrightarrow ||T||$, which is closed by \Cref{TruncationStoneClosed}
+  By \Cref{ClosedInStoneIsStone} we have that $\Sigma_{x:S}A(x)$ is Stone, so its truncation is closed by \Cref{TruncationStoneClosed}.
 \end{proof}
 
 \begin{corollary}\label{ClosedDependentSums}
@@ -124,6 +126,28 @@
   closedness is transitive and $\Closed$ forms a dominance. 
 \end{remark}
 
+We can get a dual to completeness.
+
+\begin{lemma}\label{DualCompleteness}
+Let $A$ and $B$ be c.p. boolean algebra with a map:
+\[i:Sp(A)\to Sp(B)\] 
+The following are equivalent:
+\begin{enumerate}[(i)]
+\item The induced map $B\to A$ is surjective.
+\item The map $i$ is an embedding.
+\item The map $i$ is a closed embedding.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{itemize}
+\item[$(i)\to (ii)$] Immediate.
+\item[$(ii)\to (iii)$] By \Cref{StoneEqualityClosed} the fibers of $i$ are closed in $Sp(A)$, so by \Cref{ClosedInStoneIsStone} they are Stone, so they are closed by \Cref{PropositionsClosedIffStone}.
+\item[$(iii)\to (i)$] By we have that $Sp(A) = \cap_{n:\N}D_n$ for $D_n$ decidable in $Sp(B)$. Assuming $D_n$ correponds to $b_n:B$ though duality, we then have that $A=B/ (b_n)_{n:\N}$ and the induced map is the quotient map:
+$$B\to B/(b_n)_{n:\N}$$
+which is surjective.
+\end{itemize}
+\end{proof}
 
 \begin{lemma}\label{StoneSeperated}
   If $S:\Stone $, and $F,G:S \to \Closed$ be such that $F\cap G = \emptyset$. 
@@ -157,3 +181,17 @@
   $F\subseteq D, G\subseteq \neg D$ as required. 
 \end{proof} 
 
+\begin{corollary}\label{StoneOpenSubsets}
+  Let $A\subseteq S$ be a subset of a Stone space, then 
+  $A$ is open iff there exists some countable family $D_n,~n:\N$ of decidable subsets of $S$ with 
+  $A = \bigcup_{n:\N} D_n$. 
+\end{corollary}
+\begin{proof}
+  By \Cref{rmkOpenClosedNegation}, $A$ is open iff $\neg A$ is closed and $A = \neg \neg A$. 
+  By \Cref{StoneClosedSubsets}, $\neg A$ is closed iff 
+  $\neg A = \bigcap_{n\in \N} E_n$ for some countably family $E_n,~n:\N$. 
+  Thus $\neg \neg A = \neg (\bigcap_{n\in \N} E_n)$. 
+  As a concequence of Markov's principle (\Cref{MarkovPrinciple}), we have that 
+  $\neg (\bigcap_{n\in \N} E_n)= \bigcup_{n\in \N} \neg E_n$. 
+  Thus $D_n := \neg E_n$ is as required. 
+\end{proof}

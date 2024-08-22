@@ -15,22 +15,22 @@ Then $A$ is closed iff it is the image of a closed subtype of $S$ under the quot
   In particular for $q:S\to X$ the quotient map, $q^{-1}(A)$ is closed. 
   As $q$ is surjective, we have $q(q^{-1}(A)) = A$,
   hence $A$ is the image of a closed subtype of $S$. 
+  
   Conversely, let $B\subseteq S$ be closed. 
 %  Then for any $s:S$, the subtype $\{t:S| B(s) \wedge s \sim t\} \subseteq S$ is closed. 
 %  Hence by 
-  Define $A\subseteq S$ by 
-  $$A(s) := \exists_{s:S} (B(t) \wedge s \sim t).$$
-  As $B, \sim$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
-  we have that $A$  is closed. 
-  Also $A$ respects $\sim$, hence induces a map $A': X\to \Closed$.
-  Furthermore, $A(q(s))$ iff $q(s)$ is in the image of $B$. 
-  Therefore $A'(x)$ iff $x$ is in the image of $B$. 
-\end{proof}
+  Then any $t:X$ belongs to the image of $B$ iff we have that:
+  $$ \exists_{s:S} B(s)\land q(s) = t$$
+ and by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
+  we have that this is closed. 
+  \end{proof}
+
 \begin{remark}\label{InhabitedClosedSubSpaceClosedCHaus}
-  Let $X:\Chaus$.
-  From \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed iff it is the image of a map 
-  $T\to X$ for some $T:\Stone$. 
-  If $A$ is closed, from $\Cref{InhabitedClosedSubSpaceClosed}$, it follows that $\exists_{x:X} A(x)$ is closed as well. 
+  Let $X:\Chaus$. We have that a subset of $X$ is closed if and only if it is the image of a Stone space. Indeed \Cref{CompactHausdorffClosed} gives the direct proof, and the converse follows from \Cref{InhabitedClosedSubSpaceClosed}
+  
+  Moreover if $A$ is closed in $X$, considering $q:S\to X$ surjective with $S$ Stone we have that:
+  $$ \exists_{s:S}A(q(s)) = \exists_{x:X}A(x)$$
+  so that from \Cref{InhabitedClosedSubSpaceClosed} we have that $\exists_{x:X} A(x)$ is closed. 
 \end{remark}
 %\begin{corollary}
 %  For $X:\CHaus$ a subtype $A\subseteq X$ is closed iff it is the image of 
@@ -46,9 +46,6 @@ Then $A$ is closed iff it is the image of a closed subtype of $S$ under the quot
   subsets, but only two decidable subsets. 
   In \Cref{ConnectedComponent}, we shall actually see that whenever every singleton of a compact Hausdorff space $X$
   can be written as countable intersection of decidable subsets, $X$ is Stone. 
-  \rednote{Actually, we'll see that $Sp(2^X)$ and $X$ are bijective sets, 
-    which only implies that $X$ is Stone if $2^X:\Boole$, but this depends on our definition of countable, 
-see \Cref{CountabilityDiscussion}}
 \end{remark}
 
 
@@ -98,92 +95,3 @@ see \Cref{CountabilityDiscussion}}
   Similarly, $B\subseteq \neg  q (D) \cap \neg A:= V$. 
   By definition, $U,V$ are as required. 
 \end{proof}
-
-\subsection{When compact Hausdorff spaces are Stone}\label{ConnectedComponent}
-\begin{lemma}
-  Let $X:\Chaus$ be presented by $S/\sim$. 
-  Then $2^X$ is an open sub-Boolean algebra of $2^S$. 
-\end{lemma}
-Note that we do not claim $2^X$ is countable presented, 
-but by \Cref{OpenSubsetEnumerableAreEnumerable}, it will be enumerable. 
-\begin{proof}
-  Denote $q:S \twoheadrightarrow X$ for the quotient map. 
-  This induces an injection of Boolean algebras $2^X \hookrightarrow 2^S$.
-  Note that $a:S\to 2$ lies in $2^X$ iff for all $s,t:S$, we have $a(s) = a(t)$ whenever $s\sim t$.
-  Note that $a(s) = a(t)$ is decidable and $s\sim t$ is open, hence 
-  $(s\sim t) \to (a(s) = a(t))$ is open (\Cref{ImplicationOpenClosed})
-  By \Cref{AllOpenSubspaceOpen}, we conclude that 
-  $\forall_{s:S} \forall_{t:S} ((s\sim t) \to (a(s) = a(t)))$ is open. 
-  Hence $2^S$ is an open subobject of $2^X$. 
-\end{proof}
-
-\begin{definition}
-  Let $X:\Chaus$ and $x:X$. 
-  We define the connected component of $x$ (denoted $Q_x$)
-  as the intersection of all decidable subsets of $X$ containing $x$. 
-\end{definition}
-
-\begin{corollary}
-  For $X:\Chaus$ and $x:X$, there is a surjection from $\N$ to the decidable subsets of $X$ containing $x$. 
-  % connected component $Q_x$ is a countable intersection of decidable subsets of $X$. 
-\end{corollary}
-\begin{proof}
-  By the above, %there are enumarably many decidable subsets of $X$. 
-  there is an enumeration $s: \N \to (1 + (X \to 2))$ of all decidable subsets of $X$. 
-  Define $B_{(\cdot)}:\N \to (X \to 2)$ by 
-  $$B_n = \begin{cases}
-    X \text { if } s(n) = inl(*) \\
-    A \text { if } s(n) = inr(A) \text { and } A(x) \\
-    X \text { if } s(n) = inr(A) \text { and } \neg A(x)
-  \end{cases}
-  $$
-  Clearly, $B_{(\cdot)}$ hits all decidable subsets of $X$ containing $x$. 
-\end{proof}
-
-\begin{lemma}\label{ConnectedComponentSubOpenHasDecidableInbetween}
-  Let $X:\Chaus, x:X$ and suppose $U\subseteq X$ is open with $Q_x\subseteq U$. 
-  Then we have some decidable $E\subseteq X$ with $E(x)$ and $E\subseteq U$. 
-\end{lemma}
-\begin{proof}
-  By the above, we have $Q_x = \bigcap_{n:\N}B_n$ with $x\in B_n$. 
-  If $Q_x \subseteq U$, we have that 
-  $$Q_x\cap \neg U = \bigcap_{n:\N} (E_n \cap \neg U)$$ is empty. 
-  By \Cref{CHausFiniteIntersectionProperty} there is some $N:\N$ with 
-  $$(\bigcap_{n\leq N} E_n )\cap \neg U  = \bigcap_{n\leq N} (E_n \cap \neg U) = \emptyset.$$
-  Therefore $\bigcap_{n\leq N} E_n \subseteq U$, furthermore a finite intersection of decidable subsets is decidable. 
-  As $x\in E_n$ for all $n:\N$, $x\in \bigcap_{n\leq N} E_n$ as well and we're done. 
-\end{proof}
-
-\begin{lemma}
-Let $X:\Chaus, x:X$ and $A,B:X \to \Closed$ be disjoint and such that $Q_x = A \cup B$. 
-Then one of $A,B$ is empty. 
-\end{lemma} 
-\begin{proof}
-  By \Cref{CHausSeperationOfClosedByOpens}, there exist disjoint $U,V:X\to \Open$ with 
-  $A\subseteq U, B\subseteq V$. 
-  Hence  $Q_x \subseteq U\cup V$ and by \Cref{ConnectedComponentSubOpenHasDecidableInbetween}, 
-  there is some $E:X \to 2$ with $Q_x \subseteq E\subseteq U \cup V$. 
-  Assume $x\in A$.
-  Note $E' := E \cap U = E \cap ( \neg V)$. Thus $E'$ is both open and closed, hence decidable. 
-  As $x\in A\subseteq U$ and $x\in Q_x \subseteq U$, we have $x\in E'$. 
-  By definition of the connected component, $Q_x \subseteq E'$. 
-  Hence $Q_x \cap B \subseteq  E' \cap B  = \emptyset$. 
-  As $B\subseteq Q_x$, it follows that $B$ is empty. 
-\end{proof}
-
-%\begin{theorem}
-%  Let $X:\CHaus$, then $X \simeq Sp(2^X)$ if for all $x:X$, we have $\{x\} = Q_x$. 
-%\end{theorem}
-%  Note that $\{x\}$ is closed. 
-%  By \Cref{StoneClosedSubsets}, if $X$ is Stone, $\{x\}$ must be a countable intersection of
-%  decidable subsets, hence $\{x\} = Q_x$. 
-%  \rednote{Thus if $2^X:\Boole$ always, the if above becomes an iff.}
-%\begin{proof}
-%%  We claim that the map $X \to Sp(2^X)$ is surjective. 
-%  We claim that $(2^X \to 2) \to X$ is a presentation of $X$. 
-%
-%
-%  Furthermore, if $\{x\} = Q_x$ for all $x:X$, it is also injective. 
-%  Let $f:2^X \to 2$ be a Boolean map.
-%  Then 
-%\end{proof}
