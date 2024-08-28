@@ -123,9 +123,9 @@ We will need the following algebraic observation:
     M\otimes A\to M^{\Spec A}
   \]
   induced by mapping $m\otimes f$ to $x\mapsto x(f)\cdot m$.
-  In particular, for any $f:R$, there is a
+  In particular, for any $r:R$, there is a
   \[
-    M_f\to M^{D(f)}
+    M_r\to M^{D(r)}
     \rlap{.}
   \]
   The map $M\otimes A\to M^{\Spec A}$ is natural in $M$.
@@ -159,9 +159,9 @@ where we can show that higher cohomology vanishes if the scheme is affine.
 \begin{definition}
   \label{weakly-quasi-coherent-module}
   An $R$-module $M$ is \notion{weakly quasi-coherent},
-  if for all $f:R$, the canonical homomorphism
+  if for all $r:R$, the canonical homomorphism
   \[
-    M_f\to M^{D(f)}
+    M_r\to M^{D(r)}
   \]
   from \Cref{localization-to-module-if-non-zero} is an equivalence.
   We denote the type of weakly quasi-coherent $R$-modules
@@ -245,26 +245,19 @@ and \Cref{RN-non-wqc}.
   \[
     \prod_{x:X}M_x
   \]
-  is a weakly quasi-coherent $R$-module.
+  is an $A$-module, which is weakly quasi-coherent as an $R$-module.
 \end{lemma}
 
 \begin{proof}
-  We need to show:
+  Using \Cref{weakly-quasi-coherent-open-localization} for the function constantly some $r:R$
+  we can compute:
   \[
-    \left(\prod_{x:X}M_x\right)_r=\left(\prod_{x:X}M_x\right)^{D(r)}
-  \]
-  for all $r:R$.
-  By \Cref{module-bundle-localization-pointwise}, weak quasi-coherence
-  and \Cref{weakly-quasi-coherent-open-localization}
-  we know for all $f:A$:
-  \[
-    \left(\prod_{x:X}M_x\right)_f
-    =\prod_{x:X}\left(M_x\right)_{f(x)}
-    =\prod_{x:X}\left(M_x\right)^{D(f)}
-    =\left(\prod_{x:X}M_x\right)^{D(f)}
+    \left(\prod_{x:X}M_x\right)_r
+    =\prod_{x:X}\left(M_x\right)^{D(\_\mapsto r)}
+    =\prod_{x:X}\left(M_x\right)^{D(r)}
+    =\left(\prod_{x:X}M_x\right)^{D(r)}
     \rlap{.}
   \]
-  So in particular, we can choose $f:A$ to be $r:R$ using the $R$-algebra structure.
 \end{proof}
 
 Quasi-coherent dependent modules turn out to have very good properties,
@@ -355,6 +348,8 @@ there is a short proof of the following:
 
 We now investigate the relationship between bundles of $R$-modules on $X = \Spec A$
 and $A$-modules.
+A point $x:\Spec(A)$ turns $R$ into an $A$-algebra, we will denote the tensor product of this $A$-module and an $A$-module $M$
+with $M\otimes x$\index{$M\otimes x$}.
 
 \begin{proposition}
   Let $A$ be a finitely presented $R$-algebra.
@@ -393,7 +388,7 @@ the unit of the adjunction is:
   let a bundle of finitely presented $R$-modules $M : X\to \fpMod{R}$ be given.
   Then the $A$-module
   \[ \tilde{M}\coloneqq\prod_{x:X}M_x \]
-  is finitely presented and for any $x:X$ the $R$-module $\tilde{M}\otimes_A R$ is $M_x$.
+  is finitely presented and for any $x:X$ the $R$-module $\tilde{M}\otimes x$ is $M_x$.
   Under this correspondence, localizing $\tilde{M}$ at $f:A$ corresponds to restricting $M$ to $D(f)$.
 \end{theorem}
 
