@@ -20,17 +20,13 @@ There are a couple of equivalent definitions of finite schemes, which we will in
   \begin{enumerate}[(i)]
   \item $X$ is a finite scheme.
   \item $A$ is a finitely presented $R$-module.
-  \item WIP: There are finitely presented $R$-algebras $B$ with a surjective homomorphism $B\to A$, $A$ is a finitely presented $R$-module and $B$ is finite free as an $R$-module.
   \item $X$ is projective.
   \item $X$ is compact.
   \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-  (i) $\Leftrightarrow$ (iii): By constructive reading of Tag 0564 in the Stacks Project (TODO: turn into reference).
-  For generators $e_i$ of $A$, $B$ is defined as $R[X_1,\dots,X_n]/(P_1,\dots,P_n)$ where $P_i$ are monic polynomials such that $P_i(e_i)=0$ in $A$.
-  
-  (ii) $\Rightarrow$ (iv): \rednote{The 'same proof' without the 'finite free' assumption should work.}
+  (ii) $\Rightarrow$ (iii): \rednote{The 'same proof' without the 'finite free' assumption should work.}
   Let $A$ be finite free for now.
   We consider the projective space $\mathbb PA^\star$ associated with the R-linear dual of $A$.
   This is $\bP^{n-1}$ after choosing a basis of $A$.
@@ -39,9 +35,9 @@ There are a couple of equivalent definitions of finite schemes, which we will in
   $C([\varphi])$ implies $\varphi(1) \ne 0$ because otherwise $\varphi(x)^2 = 0$ for all $x : A$ and then $\varphi$ is not-not zero (projective space contains only non-zero vectors).
   So $x \mapsto \varphi(x) / \varphi(1)$ determines a point of Spec A for $[\varphi] : \bP A^\star$ such that $C([\varphi])$ holds (and one can go in the reverse direction, and verify that the two maps are inverse to each other).
 
-  (iv) $\Rightarrow$ (v): Projective schemes are compact by \cite[Theorem 3.0.7]{proper-draft}. 
+  (iii) $\Rightarrow$ (iv): Projective schemes are compact by \cite[Theorem 3.0.7]{proper-draft}. 
   
-  (v) $\Rightarrow$ (i): (TODO: copy from \#6)
+  (iv) $\Rightarrow$ (i): (TODO: copy from \#6)
 \end{proof}
 
 \begin{lemma}
@@ -52,6 +48,46 @@ There are a couple of equivalent definitions of finite schemes, which we will in
   Compact types and affine types are both closed under dependent sums (\cite[Lemma 2.0.3]{proper-draft}), so by the characterization in \Cref{finite-scheme-characterization},
   finite schemes are closed under dependent sums.
   Finite schemes are affine, so their identity types are closed propositions, which are finite schemes.
+\end{proof}
+
+It turns out that all finite schemes are closed subsets of a more simple type of finite schemes, which are essentially zeros of monic polynomials:
+
+\begin{definition}
+  A \notion{standard finite scheme} is an affine scheme $\Spec R[X_1,\dots,X_n]/(P_1,\dots,P_n)$, such that each $P_i$ is a monic polynomial in $X_i$ with coefficients in $R$.
+\end{definition}
+
+\begin{lemma}
+  For any finite scheme $X$ there merely is a standard finite scheme $Y$ and an inclusion of $X$ into $Y$ as a closed subset.
+\end{lemma}
+
+\begin{proof}
+  Let $X=\Spec A$.
+By constructive reading of Tag 0564 in the Stacks Project (TODO: turn into reference).
+For generators $e_i$ of $A$, $B$ is defined as $R[X_1,\dots,X_n]/(P_1,\dots,P_n)$ where $P_i$ are monic polynomials such that $P_i(e_i)=0$ in $A$.
+
+  So we have a surjective homomorphism $B\to A$, $A$ is a finitely presented $R$-module and $B$ is finite free as an $R$-module.
+  
+\end{proof}
+
+\begin{lemma}
+  \label{std-finite-scheme-not-not-finite-type}
+  Let $X$ be a standard finite scheme. Then
+  \[
+    \neg\neg(\exists n:\N. X=\{1,\dots,n\})
+    \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  Use $\Spec R[X_1,\dots,X_n]/(P_1,\dots,P_n)=\bigotimes_{i}R[X_i]/(P_i)$ and \cite{draft}[Lemma 2.2.4].
+\end{proof}
+
+\begin{theorem}
+  Let $X$ be a connected finite scheme, then for all $x,y:X$ we have $\neg\neg (x=y)$.
+\end{theorem}
+
+\begin{proof}
+  By \Cref{std-finite-scheme-not-not-finite-type}.
 \end{proof}
 
 It is possible to prove that finite schemes are compact without using the compactness of $\bP^n$:
