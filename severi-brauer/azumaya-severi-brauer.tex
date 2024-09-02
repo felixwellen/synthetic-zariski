@@ -1,0 +1,106 @@
+From now on we assume a lex modality $T$ such that:
+\begin{itemize}
+\item Schemes are modal.
+\item Let $M$ be a module that is a modal, then $M$ being finite free is modal.
+\end{itemize}
+We call $T$-modal types sheaves and we write $\propTrunc{X}_T$ the modal replacement of the propositional truncation of $X$.
+
+In \cref{fppf-sheaves} we will construct such a modality.
+
+We fix a natural number $n$ throughout.
+
+
+\subsection{The type $\AZ_n$ of Azumaya algebras}
+
+\begin{definition}
+An Azumaya algebra of rank $n$ is a (non-commutative, unital) $R$-algebra $A$ such that its underlying type is a sheaf and:
+\[\propTrunc{A=M_{n+1}(R)}_T\]
+\end{definition}
+
+We write $\AZ_n$ the type of Azumaya algebra of rank $n$.
+
+\begin{lemma}\label{azumayas-are-finite-free}
+For all $A:\AZ_n$ we have that $A$ is finite free as a module.
+\end{lemma}
+
+\begin{proof}
+By hypothesis $A$ being finite free is modal so that $\propTrunc{A=M_{n+1}(R)}_T$ implies $A$ finite free.
+\end{proof}
+
+\begin{definition}
+Let $V$ be a free $R$-module, we define $\Gr_k(V)$ the $k$-Grassmannian of $V$ as the type of $k$-dimensional subspace of $V$.
+\end{definition}
+
+\begin{lemma}\label{grassmanians-are-schemes}
+Let $V$ be a free $R$-module, then $\Gr_k(V)$ is a scheme.
+\end{lemma}
+
+\begin{proof}
+Assume $V=R^n$. The type of $k$-dimensional subspace of $R^n$ is the type of matrices in $R^{n\times k}$ of rank $k$ quotiented by the natural action of $\GL_k$. We cover $\Gr_k(R^n)$ according to which $k\times k$-minor is non-zero, which is a well-defined finite open cover since it is invariant under the $\GL_k$-action. 
+
+Let us show any piece is affine. Indeed consider say the piece of matrices of the form:
+\[\begin{pmatrix}
+P & N
+\end{pmatrix}\]
+where $P$ is invertible of size $k\times k$. Any orbit in this piece has a unique element of the form:
+\[\begin{pmatrix}
+I_k & N'
+\end{pmatrix}\]
+where $I_k$ is the identity matrix, so this piece is equivalent to $R^{(n-k)k}$.
+\end{proof}
+
+\begin{lemma}\label{being-ideal-in-azumaya-closed}
+For all $A:\AZ_n$ and $I:\Gr_{n+1}(A)$, we have that $I$ being a right ideal in $A$ is a closed proposition.
+\end{lemma}
+
+\begin{proof}
+By \cref{azumayas-are-finite-free} we have that $A$ is finite free as a module. Consider $a_0,\cdots,a_n$ a basis of $I$ and extend it to a basis of $A$ using $b_1,\cdots,b_l$. 
+
+For any $m:A$, we have that $m\in I$ is a closed as it says that the $b_1,\cdots,b_l$ coordinates of $m$ are zero. 
+
+Then $I$ is an ideal if and only if for any $m$ in the chosen basis of $A$ and any $a$ in the chosen basis of $I$ we have that $ea\in I$, which is a closed proposition.
+\end{proof}
+
+\begin{lemma}\label{severi-brauer-are-schemes}
+For all $A:\AZ_n$ we have that:
+\[\RI(A) := \{I:\Gr_{n+1}(A)\ |\ I\ \mathrm{is\ a\ right\ ideal}\}\]
+is a scheme.
+\end{lemma}
+
+\begin{proof}
+By \cref{azumayas-are-finite-free} we have that $A$ is finite free as a module, so that by \cref{grassmanians-are-schemes} we have that $\Gr_{n+1}(A)$ is a scheme, and then by \cref{being-ideal-in-azumaya-closed} we have that $\RI(A)$ is closed in a scheme, so it is a scheme.
+\end{proof}
+
+
+\subsection{The type $\SB_n$ of Severi-Brauer varieties}
+
+\begin{definition}
+A type $X$ is called a Severi-Brauer variety of dimension $n$ if $X$ is a sheaf and:
+\[\propTrunc{X=\bP^n}_T\]
+\end{definition}
+
+We write $\SB_n$ the type of Severi-Brauer varieties of dimension $n$.
+
+\begin{lemma}\label{right-ideal-of-matrices-are-projective}
+The map:
+\[\bP^n \to \RI(M_{n+1}(R))\]
+sending $X:R^{n+1}$ to:
+\[\{M:M_n(R)\ |\ \forall A,B:R^{n+1}.\ A^t X\cdot B^tM = B^tX\cdot A^tM\}\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+If $A$ is an Azumaya algebra, then $\RI(A)$ is a Severi-Brauer variety.
+\end{lemma}
+
+\begin{proof}
+By \cref{severi-brauer-are-schemes} and the assumption that schemes are sheaves, we have that $\RI(A)$ is a sheaf. Then when to prove:
+\[\propTrunc{A=M_{n+1}(R)} \to \propTrunc{\RI(A)=\bP^n}\]
+it is enough to prove:
+\[\RI(M_{n+1}(R)) = \bP^n\]
+which is \cref{right-ideal-of-matrices-are-projective}.
+\end{proof}
