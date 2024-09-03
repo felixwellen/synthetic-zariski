@@ -82,15 +82,32 @@ A type $X$ is called a Severi-Brauer variety of dimension $n$ if $X$ is a sheaf 
 We write $\SB_n$ the type of Severi-Brauer varieties of dimension $n$.
 
 \begin{lemma}\label{right-ideal-of-matrices-are-projective}
-The map:
-\[\bP^n \to \RI(M_{n+1}(R))\]
-sending $X:R^{n+1}$ to:
-\[\{M:M_n(R)\ |\ \forall A,B:R^{n+1}.\ A^t X\cdot B^tM = B^tX\cdot A^tM\}\]
-is an equivalence.
+Consider the map:
+\[\delta:\bP^n \to \RI(M_{n+1}(R))\]
+sending $(x_0:\cdots:x_n):\bP^n$ to:
+\[\{M:M_n(R)\ |\ \forall i,j.\ x_i\cdot M_j = x_j\cdot M_i\}\]
+where $M_i$ is the $i$-th line of $M$. Then $\delta$ is an equivalence.
 \end{lemma}
 
 \begin{proof}
-TODO
+Write $X=(x_0:\cdots:x_n)$. First we check $\delta$ is well defined. It is clear that for all $\lambda\not=0$ we have that:
+\[\delta(\lambda X) = \delta(X)\]
+and that $\delta(X)$ is a right ideal. To check the dimension assume $x_i\not=0$. Then $M\in\delta(X)$ if and only if for all $i$ we have that $M_i = \frac{x_i}{x_j} M_j$, which means giving $M\in\delta(X)$ is equivalent to giving $M_j\in R^{n+1}$, so $\delta(X)$ is free of dimension $n+1$.
+
+Next we check injectivity. Assume given $(x_0:\cdots:x_n)$ and $(y_0:\cdots:y_n)$ in $\bP^n$ such that for all $M:M_n(R)$ we have:
+\[(\forall i,j.\ x_i\cdot M_j = x_j\cdot M_i) \leftrightarrow (\forall i,j.\ y_i\cdot M_j = y_j\cdot M_i)\]
+In particular considering the matrix $N$ such that $N_j = (y_j,\cdots,y_j)$ we get that:
+\[\forall i,j. x_iy_j=x_iy_j\] 
+so that:
+\[(x_0:\cdots:x_n) = (y_0:\cdots:y_n)\]
+
+Finally we check surjectivity. Assume $I:\RI(M_{n+1}(R))$, we have $M\in I$ such that $M\not=0$, assume say $M_{0,0}\not=0$. Then for all $k$ we have that:
+\[ME_{0,k}\in I\]
+meaning that we have $N^k\in I$ where:
+\[N^k_{i,k} = M_{i,0}\]
+and when when $j\not=k$
+\[N^k_{i,j} = 0\]
+Then since $M_{0,0}\not=0$ the matrices $N^0,\cdots,N^k$ are linearly independent and since $I$ has dimension $n+1$, it is precisely the ideal spanned by the $N^k$. But this ideal is $\delta$ of $(M_{0,0}:\cdots:M_{n,0})$.
 \end{proof}
 
 \begin{lemma}

@@ -1,3 +1,68 @@
 \label{fppf-sheaves}
 
+\subsection{Generalities}
+
+\begin{definition}
+A type $X$ is called an fppf sheaf if for all $g:R[X]$ monic we have that $X$ is $\propTrunc{\Spec(R[X]/g)}$-local.
+\end{definition}
+
+This means that being an fppf sheaf is a lex modality, as it is localisation at a family of propositions.
+
+
+
+\subsection{Decent for affine schemes and finitely presented algebras}
+
+\begin{lemma}\label{fppf-subcanonical}
+The type $R$ is an fppf sheaf. In other words, the fppf topology is subcanonical.
+\end{lemma}
+
+\begin{proof}
+Let $g:R[X]$ be monic and write $S=\Spec(R[X]/g)$. We have a coequaliser in sets:
+\[S\times S\rightrightarrows S \to \propTrunc{S}\]
+So since $R$ is a set we have an equaliser diagram:
+\[R^\propTrunc{S} \to R^S\rightrightarrows R^{S\times S}\]
+so that it is enough to prove that $R$ is the equaliser of:
+\[R[X]/g \rightrightarrows R[X]/g \otimes R[X]/g\]
+to conclude. But since $g$ is monic we merely have:
+\[R[X]/g \simeq R^n\]
+and it is clear that $R$ is the equaliser of:
+\[R^n \rightrightarrows R^n\otimes R^n\]
+\end{proof}
+
+\begin{lemma}
+TODO descent affine schemes
+\end{lemma}
+
+
+\subsection{Schemes are fppf sheaves}
+
+\begin{proposition}
+Any scheme is an fppf sheaf.
+\end{proposition}
+
+\begin{proof}
 TODO
+\end{proof}
+
+
+\subsection{Descent for finite free modules}
+
+\begin{lemma}\label{descent-fp-fcop}
+Any finitely presented (resp. finitely copresented) module is an fppf sheaf.
+
+The type of finitely presented (resp. finitely copresented) modules is an fppf sheaf.
+\end{lemma}
+
+\begin{proof}
+For the first part we just use \cref{fppf-subcanonical} and the fact that $M=M^{\star\star}$ for $M$ finitely presented of finitely copresented.
+
+TODO
+\end{proof}
+
+\begin{proposition}
+Let $M$ be a module that is an fppf sheaf, then $M$ being finite free is an fppf-sheaf.
+\end{proposition}
+
+\begin{proof}
+Since $R$ is local being finite free is equivalent to being finitely presented and finitely copresented \cite{TODO}. But both are fppf sheaves by \cref{descent-fp-fcop} so we can conclude.
+\end{proof}

@@ -7,7 +7,7 @@ A type $A$ is $T$-connected if:
 
 The key intuition for the next lemma is that both $A$ and $B$ are deloopings of the same group in the topos of sheaves.
 
-\begin{lemma}
+\begin{lemma}\label{deloopings-equivalence}
 Assume $A,B$ pointed $T$-connected sheaves. Then any pointed map $f:A\to_\pt B$ inducing an equivalence:
 \[\Omega f : \Omega A \simeq \Omega B\]
 is itself an equivalence.
@@ -22,11 +22,11 @@ Now we prove it is surjective, indeed for any $x:B$ we have that $\fib_f(x)$ is 
 \end{proof}
 
 
-\subsection{$\Aut(M_{n+1}(R)) = \PGL_{n+1}(R)$}
+\subsection{$\Aut(M_{n+1}(R)) = \Aut(\bP^n) = \PGL_{n+1}(R)$}
 
-\begin{proposition}
+\begin{proposition}\label{Aut-MnR-PGL}
 The map:
-\[\PGL_{n+1}(R)\to\Aut(M_{n+1}(R))\]
+\[\alpha:\PGL_{n+1}(R)\to\Aut(M_{n+1}(R))\]
 \[P\mapsto PMP^{-1}\]
 is an equivalence.
 \end{proposition}
@@ -35,18 +35,19 @@ is an equivalence.
 TODO
 \end{proof}
 
-
-\subsection{The Severi-Brauer construction is an equivalence}
-
-\begin{lemma}
-Assume given $A,B:\AZ_n$ with $\epsilon:A\simeq B$. Then:
-\[\mathrm{ap}_\RI(\epsilon) : \RI(A) \simeq \RI(B)\]
-sends $I$ to $\epsilon(I)$.
-\end{lemma}
+\begin{proposition}\label{Aut-Pn-PGL}
+The map:
+\[\beta:\PGL_{n+1}(R)\to\Aut(\bP^n)\]
+\[X\mapsto PX\]
+is an equivalence.
+\end{proposition}
 
 \begin{proof}
-TODO
+\cite{TODO}
 \end{proof}
+
+
+\subsection{The Severi-Brauer construction is an equivalence}
 
 \begin{proposition}\label{right-ideal-is-equivalence}
 The map:
@@ -55,5 +56,31 @@ is an equivalence.
 \end{proposition}
 
 \begin{proof}
-TODO
+By \cref{deloopings-equivalence} it is enough to prove that the top map in the triangle:
+\begin{center}
+\begin{tikzcd}
+\Aut(M_n(R))\ar[rr,"\Omega\RI"] & & \Aut(\bP^n) \\
+& \PGL_{n+1}(R)\ar[ru,swap,"\alpha"]\ar[lu,"\beta"] & \\
+\end{tikzcd}
+\end{center}
+is an equivalence. But since the two other maps in the triangle are equivalences by \cref{Aut-MnR-PGL} and \cref{Aut-Pn-PGL}, it is enough to prove that the triangle commutes. To do this we need to check that for all $P:\PGL_{n+1}(R)$ we have that:
+\[\delta^{-1}\circ \mathrm{ap}_\RI(\alpha(P))\circ\delta = \beta(P)\]
+in $\Aut(\bP^n)$, with $\delta$ defined in \cref{right-ideal-of-matrices-are-projective}. So we need to prove the following square commutes:
+\begin{center}
+\begin{tikzcd}
+\RI(M_{n+1}(R))\ar[rr,"I\mapsto PIP^{-1}"]&& \RI(M_{n+1}(R)) \\
+\bP^n\ar[u,"\delta"]\ar[rr,swap,"X\mapsto PX"]&& \bP^n\ar[u,swap,"\delta"] 
+\end{tikzcd}
+\end{center}
+where $\mathrm{ap}_\RI$ was computed using path induction.
+
+We can check that:
+\[\delta(Y) = \{M:M_n(R)\ |\ \forall A,B:R^{n+1}.\ A^tX\cdot B^tM = B^tX\cdot A^tM\}\]
+To check that:
+\[P\delta(X)P^-{1} = \delta(PX)\]
+we just need to check an inclusion as both are free module of the same dimension. Assume $M\in\delta(X)$, to check that $PMP^{-1}\in\delta(PX)$ we need to check that for all $A,B:R^{n+1}$ we have that:
+\[A^tPX\cdot B^tPMP^{-1} = B^tX\cdot A^tPMP^{-1}\]
+but since $M\in\delta(X)$ we have that:
+\[(P^tA)X\cdot (P^tB)^tM = (P^tB)^tX\cdot (P^tA)^tM\]
+which gives us what we want.
 \end{proof}
