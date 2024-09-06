@@ -6,117 +6,114 @@ we can associate a Cauchy sequence
 \end{equation}
 and we are going to give a closed relation on Cantor space such that 
 two binary sequences are equivalent iff they correspond to the same Cauchy reals. 
-%
-First, we'll need some notation.
+\begin{example}
+  Let $n:\N$, we denote $C_n = 2[n]$ for the free Boolean algebra on $n$ generators 
+  and no relations. 
+  Note that $Sp(C_n) = 2^n$ corresponds to the space of finite binary sequences. 
+\end{example}
+Now we introduce some notation:
 \begin{definition}
-Given a binary sequence $\alpha:\N \to 2$ and a natural number $n : \N$  
-we denote $\alpha|_n: \N_{\leq n} \to 2$ for the 
-restriction of $\alpha$ to a finite sequence of length $n$. 
-We denote $\overline 0, \overline 1$ for the binary sequences which are constantly $0$ and $1$ respectively. 
-We denote $0,1$ for the sequences of length $1$ hitting $0,1$ respectively. 
-If $x$ is a finite sequence and $y$ is any sequence, denote $x\cdot y$ for their concatenation. 
+  \item Given an infinite binary sequence $\alpha:2^\N$ and a natural number $n : \N$  
+    we denote $\alpha|_n: 2^n$ for the 
+    restriction of $\alpha$ to a finite sequence of length $n$. 
+  \item We denote $\overline 0, \overline 1$ 
+    for the binary sequences which are constantly $0$ and $1$ respectively. 
+  \item We denote $0,1$ for the sequences of length $1$ hitting $0,1$ respectively. 
+  \item If $x$ is a finite sequence and $y$ is any sequence, 
+    denote $x\cdot y$ for their concatenation. 
 \end{definition} 
 Now we'll give a definition for when two finite binary sequences of length $n$ correspond 
 to real numbers whose distance is $\leq (\frac12)^n$.
-Basically, we want for every finite sequence $z$ that 
-$(z \cdot 0 \cdot \overline 1)$ and  $(z \cdot 1 \cdot \overline 0)$ are equivalent. 
+Informally, we want for every finite sequence $s$ that 
+$(s \cdot 0 \cdot \overline 1)$ and  $(s \cdot 1 \cdot \overline 0)$ are equivalent. 
 
 \begin{definition}
-Now let $n:\N$ and $x,y:\N_{\leq n} \to 2$ be two sequences of length $n$. 
-We say $x,y$ are near if we have an $m:\N$ with $m\leq n$
-and some $a: \N_{\leq m} \to 2$, 
-such that one of $(a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n$
-is equal to $x$ and the other is equal to $y$. 
-We denote $\text{near}_n(x,y)$ if $x,y$ are near. 
-%
-To be precise, we define 
-\begin{equation}
-  \text{near}_n(x,y) = 
-\Sigma(m:\N) m \leq n \wedge 
-  \Sigma (a : Fin_m \to 2) 
-\bigg( \big( (x,y) = 
-((a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n)
-\big)
-\bigvee 
-\big(
-  (y,x) = 
-((a \cdot 0 \cdot \overline 1)|_n,  ( a \cdot 1 \cdot \overline 0)|_n)
-\big)
-\bigg)
-\end{equation}
+  Let $n:\N$ and let $s,t : 2^n$. 
+  We say $s,t$ are $n$-near, and write $s\sim_n t$ if 
+  there merely exists some $m:\N$ with $m$ and some $u:2^m$, such that 
+ \begin{equation}\label{EqnNearness}
+   \big(
+     (s = (u\cdot 0\cdot \overline 1)|_n) \vee (s = (u \cdot 1 \cdot \overline 0) |_n)
+   \big)
+    \wedge 
+   \big(
+     (t = (u\cdot 0\cdot \overline 1)|_n) \vee (t = (u \cdot 1 \cdot \overline 0) |_n)
+   \big)
+  \end{equation} 
 \end{definition}
-\begin{remark}
-Remark that when $x,y$ are near, $m$ and $a$ as above are unique. 
-Thus $\text{near}_n(x,y)$ is a proposotion. 
-%
-Furthermore, to check whether $x,y$ are near, we need only make $n$ comparisons, 
-thus $\text{near}_n(x,y)$ is decidable. 
-%
-Note that in the above definition, we allow $m = n$ and therefore $x$ is near to itself for any finite sequence $x$. 
-Furthermore, we have defined nearness to be symmetric. 
-However, it is not a transtive relation. 
-After all, the sequence $010$ and $011$ are near and the sequence $011$ and $100$ are near, 
-but $010$ is not near to $100$. This corresponds to the fact that $\frac14$ and $\frac38$ are distance $\leq (\frac12)^3$
-apart, and so are $\frac38$ and $\frac12$, but $\frac14$ and $\frac12$ are not. 
+\begin{remark}\label{nearnessProperties}
+\item As we're dealing with finite sequences, $s\sim_n t$ is decidable. 
+\item Given any $s:2^n$, using $m=n, u = s$ above, we can show that $s\sim_n s$. 
+  So $n$-nearness is reflexive. 
+\item \Cref{EqnNearness} is symmetric in $s$ and $t$. Hence $n$-nearness is symmetric.
+\item Note that $0\cdot 0\sim_2 0\cdot 1 \sim_2 1\cdot 0 \sim_2 1\cdot 1$, 
+  but $0\cdot 0\nsim_2 1\cdot 1$. %is not $2$-near to $1\cdot 1$. 
+  Thus $n$-nearness is not in general transitive. 
 \end{remark}
 \begin{definition}
-  We define the following relation on Cantor space for $\alpha, \beta: 2^\N$.
-  \begin{equation}
-    \alpha \sim_t \beta = \forall (n : \N) 
-    \text{near}_n(\alpha|_n, \beta|_n)
-  \end{equation}
+  Let $\alpha, \beta: 2^\N$, we define $a\sim_I\beta$ as 
+  $\forall_{n:\N} (\alpha|_n \sim_n \beta|_n)$. 
 \end{definition}
-\begin{lemma}
-  $\sim_t$ is a closed equivalence relation. 
+\begin{lemma}\label{IntervalFiberSizeAtMost2}
+  Whenever $\alpha,\beta,\gamma:2^\N$, are such that 
+  $\alpha\sim_I \beta, \beta\sim_I \gamma$, 
+  at least two of $\alpha,\beta,\gamma$ are equal. 
 \end{lemma}
 \begin{proof}
-   Let $\alpha, \beta, \gamma : 2^\N$. 
-   As the dependent product of propositions is a proposition, $\alpha \sim_t\beta$ is a proposition. 
-   %
-   Furthermore, the closedness follows from decidability of $\text{near}_n(\alpha|_n, \beta|_n)$. 
-   One could define $\gamma(n) = 1$ iff $\text{near}_n(\alpha|_n, \beta|_n)$
-   
-   As nearness is reflexive and symmetric, so is $\sim_t$. 
+  We will show that $\beta = \gamma \vee \alpha = \gamma \vee \alpha = \beta$. 
+  By \Cref{StoneEqualityClosed} and \Cref{ClosedFiniteDisjunction}, this is a closed proposition. 
+  By \Cref{rmkOpenClosedNegation}, we can instead show the double negation. 
+  To this end, assume that none of $\alpha,\beta,\gamma$ are equal. 
+  By \Cref{MarkovPrinciple}, there exist indices $i,j,k\in \N$ with 
+  \begin{equation}
+    \beta(i) \neq \gamma(i), \alpha(j) \neq \gamma(j), \alpha(k) \neq \beta(k)
+  \end{equation}
+  Let $n:=\max(i,j,k) + 2$. 
+  As $\alpha\sim_I \beta$, we have $\alpha|_n\sim_n\beta|_n$. 
+  By assumption $\alpha|_n \neq \beta|_n$, so WLOG we may assume that 
+  we have some $m: \N, u:2^m$ with 
+  \begin{equation}
+    \alpha|_n = (u\cdot 0 \cdot \overline 1) |_n , \beta|_n = (u \cdot 1 \cdot \overline 0)|_n.
+  \end{equation}
+  As $\alpha(k) \neq \beta(k) $ and $n\geq k+2$, 
+  it follows in particular that $m\leq n-2$ and hence 
+  $\beta(n-1) = 0$.% and $\beta(m) = 1$. 
 
-   Now suppose $\alpha \sim_t \beta$ and $\beta\sim_t \gamma$. 
-   We claim that $\alpha \sim_t \gamma$. 
+  As also $\beta\sim_I \gamma$, we have $\beta|_n \sim_n \gamma|_n$.
+  So there exists some $m':\N, u':2^m$ with 
+ \begin{equation}\label{EqnNearness}
+   \big(
+     (\beta|_{n} = (u'\cdot 0\cdot \overline 1)|_n) \vee (\beta|_{n} = (u' \cdot 1 \cdot \overline 0) |_n)
+   \big)
+    \wedge 
+   \big(
+     (\gamma|_{n} = (u'\cdot 0\cdot \overline 1)|_n) \vee (\gamma|_{n} = (u' \cdot 1 \cdot \overline 0) |_n)
+   \big).
+  \end{equation} 
+  Similarly as above, we have that $m'\leq n-2$, and as $\beta(n-1) = 0$, it follows that 
+  $\beta|_{n} = (u' \cdot 1 \cdot \overline 0) |_n$. 
+  Now as $\beta(i)\neq \gamma(i)$ for $i<n$, we have that $\beta|_n \neq \gamma|_n$, hence 
+  $\gamma|_{n} = (u'\cdot 0\cdot \overline 1)|_n$. 
+  Now we have $m,m'\leq n-2$ and $u:2^m, u':2^{m'}$ such that 
+  \begin{equation}
+    (u\cdot 1 \cdot \overline 0)|_n = \beta|_n = (u'\cdot 1 \cdot \overline 0)|_n
+  \end{equation}
+  Note that $\beta(m') = 1$. 
+  But also $\beta(i) = 0$ for $m<i<n$
+  Therefore $m'\leq m$. 
+  By similar reasoning, $m\leq m'$. We conclude $m=m'$. 
+  As a consequence, $u = u'$, but then 
+  $\gamma|_n = \alpha|_n$, contradicting that $\alpha(j)\neq \gamma(j) $ for $j<n$. 
+  Hence we arrive at a contradiction, as required. 
+\end{proof}
 
-   Let $n:\N$, we need to show that 
-   $\text{near}_n(\alpha|_n , \gamma|_n)$. 
-   Let $(a,m)$ witness that $\text{near}_n(\alpha|_n, \beta|_n)$.
-   and let $(b, k)$ witness that $\text{near}_n(\beta|_n, \gamma|_n)$
-   We will make a case distinction on whether one of $m,k$ is equal to $n$, or
-   both are strictly smaller than $n$. 
-   \begin{itemize}
-     \item 
-       If $m=n$, we have that $\alpha|_n = \beta|_n$, and therefore 
-       \begin{equation}
-         \text{near}_n(\beta|_n, \gamma|_n) \leftrightarrow \text{near}_n(\alpha|_n, \gamma|_n)
-       \end{equation} 
-       The above also holds if $k = n$.
-     \item 
-       If $m< n$, we have that $\alpha(m+1) \neq \beta(m+1)$, thus 
-       $\alpha|_l \neq \beta|_l$ for all $l>m$, 
-       but we still have $\text{near}_l(\alpha|_l, \beta|_l)$ for these $l$. 
-       Therefore $(\alpha, \beta)$ or $(\beta, \alpha)$ must be of the form
-       $(a \cdot 0 \cdot \overline 1, a \cdot 1 \cdot \overline 0)$. 
-       WLOG, we assume $\alpha = a \cdot 0 \cdot \overline 1$, and thus 
-       $\beta = a \cdot 1 \cdot \overline 0$ (if not, we could do bitflips). 
 
-       As $k<n$ also, by the same argument there is some $b$ such that one of 
-       $(\beta,\gamma), (\gamma, \beta)$
-       is equal to $(b\cdot 0 \cdot \overline 1, b \cdot 1 \cdot \overline 0)$. 
-       However, $\beta$ is also of the form $a \cdot 1 \cdot \overline 0$, and 
-       thus cannot also be of the form $b \cdot 0 \cdot \overline 1$. 
-       Therefore we must have 
-       $\beta = b\cdot 1 \cdot \overline 0$ and 
-       $\gamma= b\cdot 0 \cdot \overline 1$. 
-
-       But now $b \cdot 1 \cdot \overline 0 = a \cdot 1 \cdot \overline 0$, 
-       The lengths of $a,b$ cannot be unequal, and by decidablity of natural numbers, 
-       $a,b$ have the same length and it follows that $ a = b$. 
-       Therefore $ \alpha = \gamma$, so $\alpha \sim_t\gamma$.
-   \end{itemize}
-
-   We conclude that $\sim_t$ is a closed equivalence relation. 
+\begin{corollary}
+  $\sim_I$ is a closed equivalence relation on $2^\N$. 
+\end{corollary}
+\begin{proof}
+  By \Cref{nearnessProperties}, $\sim_I$ is a countable conjunction of decidable propositions. 
+  Also by \Cref{nearnessProperties}, $\sim_n$ is reflexive and symmetric for all $n:\N$, thus
+  $\sim_I$ is reflexive and symmetric as well. 
+  Finally $\sim_I$ is transitive as a consequence of \Cref{IntervalFiberSizeAtMost2}.
 \end{proof}
