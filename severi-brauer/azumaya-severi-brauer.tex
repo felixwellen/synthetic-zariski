@@ -1,11 +1,11 @@
 From now on we assume a lex modality $T$ such that:
 \begin{itemize}
 \item Schemes are modal.
-\item Let $M$ be a module that is modal, then $M$ being finite free is modal.
+\item The type of finite free modules is modal.
 \end{itemize}
-We call $T$-modal types sheaves and we write $\propTrunc{X}_T$ the modal replacement of the propositional truncation of $X$.
+We call $T$-modal types sheaves and we write $\propTrunc{X}_T$ the sheafification of the propositional truncation of $X$.
 
-In \cref{fppf-sheaves} we will construct such a modality.
+In \cref{fppf-sheaves} we constructed such a modality (\cref{scheme-is-fppf-sheaf} and \cref{descent-finite-free}).
 
 We fix a natural number $n$ throughout.
 
@@ -32,13 +32,13 @@ Let $V$ be a free $R$-module, we define $\Gr_k(V)$ the $k$-Grassmannian of $V$ a
 \end{definition}
 
 \begin{lemma}\label{grassmanians-are-schemes}
-Let $V$ be a free $R$-module, then $\Gr_k(V)$ is a scheme.
+Let $V$ be a finite free module, then $\Gr_k(V)$ is a scheme.
 \end{lemma}
 
 \begin{proof}
-Assume $V=R^n$. The type of $k$-dimensional subspaces of $R^n$ is the type of matrices in $R^{n\times k}$ of rank $k$ quotiented by the natural action of $\GL_k$. We cover $\Gr_k(R^n)$ according to which $k\times k$-minor is non-zero, which is a well-defined finite open cover since it is invariant under the $\GL_k$-action. 
+We can assume $V=R^n$. The type of $k$-dimensional subspaces of $R^n$ is the type of $n\times k$ matrices of rank $k$ quotiented by the natural action of $\GL_k$. For all $k\times k$ minor, we consider the open proposition stating this minor is non-zero, which well defined as it is invariant under the $\GL_k$-action. This gives a finite open cover of $\Gr_k(R^n)$.
 
-Let us show any piece is affine. Indeed consider say the piece of matrices of the form:
+Let us show any piece is affine. For example consider the piece of matrices of the form:
 \[\begin{pmatrix}
 P & N
 \end{pmatrix}\]
@@ -56,15 +56,15 @@ For all $A:\AZ_n$ and $I:\Gr_{n+1}(A)$, we have that $I$ being a right ideal in 
 \begin{proof}
 By \cref{azumayas-are-finite-free} we have that $A$ is finite free as a module. Consider $a_0,\cdots,a_n$ a basis of $I$ and extend it to a basis of $A$ using $b_1,\cdots,b_l$. 
 
-For any $m:A$, we have that $m\in I$ is a closed as it says that the $b_1,\cdots,b_l$ coordinates of $m$ are zero. 
+For any $a:A$, we have that $a\in I$ is a closed as it says that the $b_1,\cdots,b_l$ coordinates of $a$ are zero. 
 
-Then $I$ is an ideal if and only if for any $m$ in the chosen basis of $A$ and any $a$ in the chosen basis of $I$ we have that $ea\in I$, which is a closed proposition.
+Then $I$ is an ideal if and only if for any $a$ in the chosen basis of $A$ and any $i$ in the chosen basis of $I$ we have that $ai\in I$, which is a closed proposition.
 \end{proof}
 
 \begin{lemma}\label{severi-brauer-are-schemes}
-For all $A:\AZ_n$ we have that:
+For all $A:\AZ_n$ we define:
 \[\RI(A) := \{I:\Gr_{n+1}(A)\ |\ I\ \mathrm{is\ a\ right\ ideal}\}\]
-is a scheme.
+Then $\RI(A)$ is a scheme.
 \end{lemma}
 
 \begin{proof}
@@ -92,7 +92,7 @@ where $M_i$ is the $i$-th line of $M$. Then $\delta$ is an equivalence.
 \begin{proof}
 Write $X=(x_0:\cdots:x_n)$. First we check $\delta$ is well defined. It is clear that for all $\lambda\not=0$ we have that:
 \[\delta(\lambda X) = \delta(X)\]
-and that $\delta(X)$ is a right ideal. To check the dimension assume $x_i\not=0$. Then $M\in\delta(X)$ if and only if for all $i$ we have that $M_i = \frac{x_i}{x_j} M_j$, which means giving $M\in\delta(X)$ is equivalent to giving $M_j\in R^{n+1}$, so $\delta(X)$ is free of dimension $n+1$.
+and that $\delta(X)$ is a right ideal. To check the dimension assume $x_k\not=0$. Then $M\in\delta(X)$ if and only if for all $i$ we have that $M_i = \frac{x_i}{x_k} M_k$, which means giving $M\in\delta(X)$ is equivalent to giving $M_k$ in R^{n+1}$, so $\delta(X)$ is free of dimension $n+1$.
 
 Next we check injectivity. Assume given $(x_0:\cdots:x_n)$ and $(y_0:\cdots:y_n)$ in $\bP^n$ such that for all $M:M_n(R)$ we have:
 \[(\forall i,j.\ x_i\cdot M_j = x_j\cdot M_i) \leftrightarrow (\forall i,j.\ y_i\cdot M_j = y_j\cdot M_i)\]
@@ -101,13 +101,13 @@ In particular considering the matrix $N$ such that $N_j = (y_j,\cdots,y_j)$ we g
 so that:
 \[(x_0:\cdots:x_n) = (y_0:\cdots:y_n)\]
 
-Finally we check surjectivity. Assume $I:\RI(M_{n+1}(R))$, we have $M\in I$ such that $M\not=0$, assume say $M_{0,0}\not=0$. Then for all $k$ we have that:
+Finally we check surjectivity. Assume $I:\RI(M_{n+1}(R))$, since $\propTrunc{I=R^{n+1}}$ we have $M\in I$ such that $M\not=0$, for example assume $M_{0,0}\not=0$. Then for all $k$ we have that:
 \[ME_{0,k}\in I\]
 meaning that we have $N^k\in I$ where:
 \[N^k_{i,k} = M_{i,0}\]
 and when when $j\not=k$
 \[N^k_{i,j} = 0\]
-Then since $M_{0,0}\not=0$ the matrices $N^0,\cdots,N^k$ are linearly independent and since $I$ has dimension $n+1$, it is precisely the ideal spanned by the $N^k$. But this ideal is $\delta$ of $(M_{0,0}:\cdots:M_{n,0})$.
+Then since $M_{0,0}\not=0$ the matrices $N^k$ are linearly independent and since $I$ has dimension $n+1$, it is precisely the ideal spanned by the $N^k$. But this ideal is $\delta(M_{0,0}:\cdots:M_{n,0})$.
 \end{proof}
 
 \begin{lemma}
@@ -115,8 +115,8 @@ If $A$ is an Azumaya algebra, then $\RI(A)$ is a Severi-Brauer variety.
 \end{lemma}
 
 \begin{proof}
-By \cref{severi-brauer-are-schemes} and the assumption that schemes are sheaves, we have that $\RI(A)$ is a sheaf. Then when to prove:
-\[\propTrunc{A=M_{n+1}(R)} \to \propTrunc{\RI(A)=\bP^n}\]
+By \cref{severi-brauer-are-schemes} and the assumption that schemes are sheaves, we have that $\RI(A)$ is a sheaf. Then to prove:
+\[\propTrunc{A=M_{n+1}(R)}_T \to \propTrunc{\RI(A)=\bP^n}_T\]
 it is enough to prove:
 \[\RI(M_{n+1}(R)) = \bP^n\]
 which is \cref{right-ideal-of-matrices-are-projective}.

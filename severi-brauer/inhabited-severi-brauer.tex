@@ -2,15 +2,15 @@
 
 \begin{lemma}\label{azumaya-with-right-ideal}
 Assume $A:\AZ_n$ with $I:\RI(A)$, then:
-\[A = \mathrm{End}_R(I)\]
+\[A = \mathrm{End}_R(I)^{op}\]
 \end{lemma}
 
 \begin{proof}
 Since $I$ is an ideal, there is a canonical map of algebra:
 \[A \to\mathrm{End}_R(I)^{op}\]
-Since both algebras are sheaves (indeed $\propTrunc{I=R^{n+1}}$ implies $I$ is a sheaf), this map being an equivalence is a sheaf so when proving it we can assume $A=M_{n+1}(R)$.
+Since both algebras are sheaves (indeed $\propTrunc{I=R^{n+1}}$ implies $I$ is a sheaf), this map being an equivalence is a sheaf so we can assume $A=M_{n+1}(R)$.
 
-By \cref{right-ideal-of-matrices-are-projective} we can assume $X=(x_0:\cdots:x_n):\bP^n$ such that $I=\delta(X)$. There is a $k$ such that $x_k\not=0$, so we can assume $x_i=1$, then the we have an isomorphism:
+By \cref{right-ideal-of-matrices-are-projective} we can assume $X=(x_0:\cdots:x_n):\bP^n$ such that $I=\delta(X)$. There is a $k$ such that $x_k\not=0$, so we can assume $x_k=1$, then we have an isomorphism:
 \[\theta:R^{n+1}\to I\]
 sending $Y:R^{n+1}$ to the matrix $M$ with its $i$-th line $M_i=x_iY$. Then for all $M:M_n(R)$ we have a commutative square:
 \begin{center}
@@ -21,7 +21,7 @@ R^{n+1}\ar[u,"\theta"]\ar[rr,swap,"X\mapsto M^tX"] && R^{n+1}\ar[u,swap,"\theta"
 \end{center}
 meaning the natural map:
 \[ M_{n+1}(R)\to \mathrm{End}_R(I)^{op}\]
-send $M$ to $\delta^{-1}\circ M\circ\delta$, so it is an equivalence.
+sends $M$ to $\delta^{-1}\circ M\circ\delta$, so it is an equivalence.
 \end{proof}
 
 
@@ -33,10 +33,10 @@ Assume $X:\SB_n$, then:
 \end{theorem}
 
 \begin{proof}
-By \cref{right-ideal-is-equivalence} we can assume $X=\RI(A)$ for some $A:\AZ_n$. Then assuming $I:\RI(A)$ by \cref{azumaya-with-right-ideal} we have that:
-\[A=\mathrm{End}_R(I)\]
-so that since since merely have $I=R^{n+1}$, we merely have:
-\[A = M_{n+1}(R)\]
-so that applying \cref{right-ideal-of-matrices-are-projective} we merely conclude:
+By \cref{right-ideal-is-equivalence} we can assume $X=\RI(A)$ for some $A:\AZ_n$. Then can assume $I:\RI(A)$, so that by \cref{azumaya-with-right-ideal} we have that:
+\[A=\mathrm{End}_R(I)^{op}\]
+Since we merely have that $I=R^{n+1}$, we merely have:
+\[A = M_{n+1}(R)^{op} = M_{n+1}(R)\]
+Applying \cref{right-ideal-of-matrices-are-projective} we merely conclude:
 \[X=\RI(A)=\RI(M_{n+1}(R)) = \bP^n\]
 \end{proof}
