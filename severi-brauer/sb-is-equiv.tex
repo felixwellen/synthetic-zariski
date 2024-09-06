@@ -24,15 +24,56 @@ Now we prove it is surjective, indeed for any $x:B$ we have that $\fib_f(x)$ is 
 
 \subsection{$\Aut(M_{n+1}(R)) = \Aut(\bP^n) = \PGL_{n+1}(R)$}
 
+\begin{lemma}\label{finite-projective-free}
+Let $M$ be a finite projective module, then $M$ is finite free.
+\end{lemma}
+
+\begin{proof}
+\cite{TODO}, crucially relies on $R$ being local.
+\end{proof}
+
+\begin{lemma}\label{fundamental-system-matrices}
+Assume $e_{i,j}:M_{n+1}(R)$ for $0\leq i,j\leq n$ such that:
+\[e_{i,j}e_{k,l} = \delta_{j,k}e_{i,l}\]
+\[e_{0,0}+\cdots+e_{n,n}=1\]
+Then there exists $P:GL_{n+1}(R)$ such that:
+\[e_{i,j} = PE_{i,j}P^{-1}\]
+\end{lemma}
+
+\begin{proof}
+We define $e_i = e_{i,i}$, then $e_0+\cdots+e_n = 1$, for all $i$ we have $e_i^2=e_i$ and for all $i\not=j$ we have that $e_ie_j=0$. From this we get:
+\[R^{n+1} = V_0\oplus\cdots\oplus V_n\]
+where:
+\[V_i = \{x\ |\ e_i(x)=x\}\]
+and:
+\[e_{i,j}:V_j\simeq V_i\]
+
+As a direct summand of a free module we have that $V_0$ is projective, and since $V_0 = e_{0}(R^{n+1})$ we have that $V_0$ is finitely generated, so by \cref{finite-projective-free} it is finite free and from $V_0^{n+1}=R^{n+1}$ we get that $V_0$, and therefore all the $V_i$, are free of rank one.
+
+Then we choose $v_0$ generating $V_0$ and define $v_i = e_{i,0}(v_0)$ so that $v_i$ generates $V_i$ because $e_{i,0}:V_0\simeq V_i$ and we get a basis $v_0,\cdots,v_n$ of $R^{n+1}$.
+
+Let $u_0,\cdots,u_n$ be the canonical basis of $R^{n+1}$ and define $P:GL_{n+1}(R)$ by sending $u_i$ to $v_i$. Then for all $v_k$ we have that:
+\[e_{i,j}v_k = PE_{i,j}P^{-1}v_k\]
+so we can conclude.
+\end{proof}
+
 \begin{proposition}\label{Aut-MnR-PGL}
 The map:
 \[\alpha:\PGL_{n+1}(R)\to\Aut(M_{n+1}(R))\]
-\[P\mapsto PMP^{-1}\]
+\[P\mapsto (M\mapsto PMP^{-1})\]
 is an equivalence.
 \end{proposition}
 
 \begin{proof}
-TODO
+It is clearly a group morphism. 
+
+For injectivity we just need to check that if for all $M:M_{n+1}(R)$ we have $PM=MP$ then there exists $\lambda\not=0$ such that $P=\lambda I_{n+1}$. This is a well-known linear algebra exercise.
+
+For surjectivity consider $e_{i,j}=\sigma(E_{i,j})$, we can apply \cref{fundamental-system-matrices} to get $P:GL_{n+1}(R)$ such that:
+\[\sigma(E_{i,j}) = PE_{i,j}P^{-1}\]
+from which we conclude that for all $M:M_{n+1}(R)$ we have that:
+\[\sigma(M) = PMP^{-1}\]
+as desired.
 \end{proof}
 
 \begin{proposition}\label{Aut-Pn-PGL}

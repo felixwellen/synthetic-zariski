@@ -6,7 +6,22 @@ Assume $A:\AZ_n$ with $I:\RI(A)$, then:
 \end{lemma}
 
 \begin{proof}
-TODO
+Since $I$ is an ideal, there is a canonical map of algebra:
+\[A \to\mathrm{End}_R(I)^{op}\]
+Since both algebras are sheaves (indeed $\propTrunc{I=R^{n+1}}$ implies $I$ is a sheaf), this map being an equivalence is a sheaf so when proving it we can assume $A=M_{n+1}(R)$.
+
+By \cref{right-ideal-of-matrices-are-projective} we can assume $X=(x_0:\cdots:x_n):\bP^n$ such that $I=\delta(X)$. There is a $k$ such that $x_k\not=0$, so we can assume $x_i=1$, then the we have an isomorphism:
+\[\theta:R^{n+1}\to I\]
+sending $Y:R^{n+1}$ to the matrix $M$ with its $i$-th line $M_i=x_iY$. Then for all $M:M_n(R)$ we have a commutative square:
+\begin{center}
+\begin{tikzcd}
+I\ar[rr,"N\mapsto NM"] && I \\
+R^{n+1}\ar[u,"\theta"]\ar[rr,swap,"X\mapsto M^tX"] && R^{n+1}\ar[u,swap,"\theta"]\\
+\end{tikzcd}
+\end{center}
+meaning the natural map:
+\[ M_{n+1}(R)\to \mathrm{End}_R(I)^{op}\]
+send $M$ to $\delta^{-1}\circ M\circ\delta$, so it is an equivalence.
 \end{proof}
 
 

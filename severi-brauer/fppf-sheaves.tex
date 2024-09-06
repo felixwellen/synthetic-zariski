@@ -1,16 +1,12 @@
 \label{fppf-sheaves}
 
-\subsection{Generalities}
+\subsection{Affine schemes are fppf sheaves}
 
 \begin{definition}
 A type $X$ is called an fppf sheaf if for all $g:R[X]$ monic we have that $X$ is $\propTrunc{\Spec(R[X]/g)}$-local.
 \end{definition}
 
 This means that being an fppf sheaf is a lex modality, as it is localisation at a family of propositions.
-
-
-
-\subsection{Decent for affine schemes and finitely presented algebras}
 
 \begin{lemma}\label{fppf-subcanonical}
 The type $R$ is an fppf sheaf. In other words, the fppf topology is subcanonical.
@@ -20,7 +16,7 @@ The type $R$ is an fppf sheaf. In other words, the fppf topology is subcanonical
 Let $g:R[X]$ be monic and write $S=\Spec(R[X]/g)$. We have a coequaliser in sets:
 \[S\times S\rightrightarrows S \to \propTrunc{S}\]
 So since $R$ is a set we have an equaliser diagram:
-\[R^\propTrunc{S} \to R^S\rightrightarrows R^{S\times S}\]
+\[R^{\propTrunc{S}} \to R^S\rightrightarrows R^{S\times S}\]
 so that it is enough to prove that $R$ is the equaliser of:
 \[R[X]/g \rightrightarrows R[X]/g \otimes R[X]/g\]
 to conclude. But since $g$ is monic we merely have:
@@ -29,23 +25,108 @@ and it is clear that $R$ is the equaliser of:
 \[R^n \rightrightarrows R^n\otimes R^n\]
 \end{proof}
 
-\begin{lemma}
-TODO descent affine schemes
-\end{lemma}
 
 
 \subsection{Schemes are fppf sheaves}
+
+\begin{lemma}\label{scheme-are-sheaf-from-affine}
+Assume given a proposition $P$ such that:
+\begin{itemize}
+\item The type $R$ is $P$-local.
+\item Any open proposition is $P$-local.
+\item The type of open propositions is $P$-local.
+\end{itemize}
+Then any scheme is $P$-local.
+\end{lemma}
+
+\begin{proof}
+Since $R$ is $P$-local we see that all affine schemes are $P$-local through stability under dependent products and identity types.
+
+We check that for all scheme $X$, any map:
+\[f:P\to X\]
+merely factors through $1$. Take $(U_i)_{i:I}$ a finite cover of $X$ by affine scheme. Then for any $i:I$ we have that $f^{-1}(U_i)$ is an in $P$, so since the type of open is $P$-local, we merely have an open proposition $V_i$ such that for all $x:P$, we have:
+\[(x\in f^{-1}(U_i) )\leftrightarrow V_i\]
+Since the $f^{-1}(U_i)$ cover $P$, we have that:
+\[P\to \lor_{i:I} V_i\]
+But open propositions are assumed to be $P$-local, so we have that:
+\[ \lor_{i:I} V_i\]
+Assume $k:I$ such that $V_k$ holds. Then $f^{-1}(U_k) = P$ and the map $f$ factors through the affine scheme $U_k$. Since affine schemes are $P$-local, we merely have a lift for $f$.
+
+Now we conclude that any scheme is $P$-local by proving that its identity types are $P$-local. Indeed they are schemes, so the previous point implies they are $P$-local.
+\end{proof}
+
+\begin{lemma}\label{roots-monic-proper}
+For any monic $g:R[X]$, we have that $\Spec(R[X]/g)$ is projective. In particular it is compact, meaning that for any open $U$ in $\Spec(R[X]/g)$ the proposition:
+\[\prod_{x:\Spec(R[X]/g)}U(x)\]
+is open.
+\end{lemma}
+
+\begin{proof}
+Assume that:
+\[g=X^n+a_{n-1}X^{n-1}+\cdots+a_0\]
+Then we consider the homogeneous polynomial:
+\[f(X,Y) = X^n + a_{n-1}X^{n-1}Y+\cdots+a_0Y^n\]
+We prove that:
+\[\sum_{[x,y]:\bP^1}f(x,y) = 0\]
+is equivalent to $\Spec(R[X]/g)$. Indeed for any $x,y:R$ such that $f(x,y)=0$, we have that $x\not=0$ implies $y\not=0$, so that $(x,y)\not=0$ implies $y\not=0$. Then:
+\[\sum_{[x,y]:\bP^1}f(x,y) = 0\]
+is equivalent to:
+\[\sum_{x:R} f(x,1)=0\]
+which is the type of roots of $g$. 
+
+Now we conclude using the fact that 
+\[\sum_{[x,y]:\bP^1}f(x,y) = 0\]
+is closed in the compact scheme $\bP^1$, so that it is compact.
+\end{proof}
 
 \begin{proposition}
 Any scheme is an fppf sheaf.
 \end{proposition}
 
 \begin{proof}
-TODO
+Assume given $g:R[X]$ monic, we can apply \cref{scheme-are-sheaf-from-affine} because:
+\begin{itemize}
+\item The type $R$ is an fppf sheaf by \cref{fppf-subcanonical}.
+\item Any open proposition $U$ is an fppf sheaf because if:
+\[\propTrunc{\Spec(R[X]/g)}\to U\]
+then since $\neg\neg\Spec(R[X]/g)$ we have $\neg\neg U$, which implies $U$.
+\item Since open propositions are fppf-sheaf it is enough that any map:
+\[\propTrunc{\Spec(R[X]/g)}\to \mathrm{Open}\]
+merely factors through $1$. But given a constant open $U$ in $\Spec(R[X]/g)$, for any $x:\Spec(R[X]/g)$ we have that:
+\[x\in U \leftrightarrow \prod_{y:\Spec(R[X]/g)} y\in U)\]
+The right hand side is open by \cref{roots-monic-proper}, giving the required lift. 
+\end{itemize}
 \end{proof}
 
 
 \subsection{Descent for finite free modules}
+
+\begin{lemma}\label{fp-equivalent-pointwise}
+If we have $M_x$ a finitely presented $R$-module depending on $x:\Spec(A)$, then $\prod_{x:\Spec(A)}M_x$ is a finitely presented $A$-module.
+\end{lemma}
+
+\begin{proof}
+\cite{TODO}
+\end{proof}
+
+\begin{lemma}\label{descent-sqc-fppf}
+Let $M$ be a module that is an fppf sheaf such that $\propTrunc{M\ \mathrm{is\ f.p.}}_{fppf}$, then for any monic $g$ we have that:
+\[R[X]/g\otimes M \simeq M^{\Spec(R[X]/g)}\]
+\end{lemma}
+
+\begin{proof}
+We have that $R[X]/g\otimes M$ is merely equal to $M^n$ where $n$ is the degree of $g$, therefore it is an fppf sheaf. As $M^{\Spec(R[X]/g)}$ is an fppf sheaf as well, the canonical map:
+\[R[X]/g\otimes M \to M^{\Spec(R[X]/g)}\]
+being an equivalence is an fppf sheaf, and we can assume $M$ finitely presented when proving. In this case it is true because f.p. modules are strongly quasi-coherent \cite{TODO}.
+\end{proof}
+
+\begin{lemma}\label{fp-stable-fppf-tensor}
+Let $A$ be a fppf algebra and let $M$ be an $R$-module. Then if $A\otimes M$ is f.p. as an $A$-module if and only if $M$ is f.p. as an $R$-module.
+\end{lemma}
+
+\begin{proof}
+Lombardi-Quitté VIII.6.7.
+\end{proof}
 
 \begin{lemma}\label{descent-fp-fcop}
 Any finitely presented (resp. finitely copresented) module is an fppf sheaf.
@@ -56,7 +137,11 @@ The type of finitely presented (resp. finitely copresented) modules is an fppf s
 \begin{proof}
 For the first part we just use \cref{fppf-subcanonical} and the fact that $M=M^{\star\star}$ for $M$ finitely presented of finitely copresented.
 
-TODO
+The types of finitely presented and finitely copresented modules are equivalent so it is enough to prove the result for finitely presented modules. Since any finitely presented module is an fppf sheaf it is enough to prove that being finitely presented is an fppf sheaf. Assume $M$ a module that is an fppf sheaf, and $g$ monic with $A=R[X]/g$ such that:
+\[\Spec(A)\to M\ \mathrm{is\ f.p.}\]
+Then by \cref{fp-equivalent-pointwise} we have that $M^{\Spec(A)}$ is an f.p. $A$-module. By \cref{descent-sqc-fppf} we have that:
+\[A\otimes M \simeq M^{\Spec(A)}\]
+so that $A\otimes M$ is an f.p. $A$-module and we conclude using \cref{fp-stable-fppf-tensor}.
 \end{proof}
 
 \begin{proposition}
@@ -66,3 +151,4 @@ Let $M$ be a module that is an fppf sheaf, then $M$ being finite free is an fppf
 \begin{proof}
 Since $R$ is local being finite free is equivalent to being finitely presented and finitely copresented \cite{TODO}. But both are fppf sheaves by \cref{descent-fp-fcop} so we can conclude.
 \end{proof}
+
