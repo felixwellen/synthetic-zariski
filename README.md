@@ -35,14 +35,17 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Is every étale scheme a sub-quotient of a finite set?
 - If $A$ is an étale $R$-algebra (finitely presented and the spectrum is étale),
   is it impossible to have an injective algebra map $R[X] \to A$?
-- Is the proposition "X is affine" not-not-stable, for X a scheme?
-  (Then deformations ($D(1) \to \mathrm{Sch}$) of affine schemes would stay affine.)
 - Can every bundle (on $Sp A$) of strongly quasicoherent $R$-modules be recovered
   from its $A$-module of global sections?
 - Can we compute some interesting étale/fppf cohomology groups?
 - Is the intergral closure of $R$ in a finitely presented $R$-algebra $A$ finitely presented?
 
 # Answered Questions
+- Is the proposition "X is affine" not-not-stable, for X a scheme?
+  (Then deformations ($D(1) \to \mathrm{Sch}$) of affine schemes would stay affine.)
+
+  *No*: Let $X$ be an open proposition, then up to $\neg\neg$ it is $1$ or $\empty$, which are both affine, but we know that not all open propositions are affine.
+  
 - Is $\mathrm{Spec} A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
 
   *Yes*: By the discussion in [#5](../../issues/5) and [#6](../../issues/6), $\mathrm{Spec} A$ is even projective, whenever $A$ is finitely generated as an $R$-module.
