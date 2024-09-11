@@ -44,7 +44,7 @@ There is a related [formalization project](https://github.com/felixwellen/synthe
 - Is the proposition "X is affine" not-not-stable, for X a scheme?
   (Then deformations ($D(1) \to \mathrm{Sch}$) of affine schemes would stay affine.)
 
-  *No*: Let $X$ be an open proposition, then up to $\neg\neg$ it is $1$ or $\empty$, which are both affine, but we know that not all open propositions are affine.
+  *No*: Let $X$ be an open proposition, then up to $\neg\neg$ it is $1$ or $\emptyset$, which are both affine, but we know that not all open propositions are affine.
   
 - Is $\mathrm{Spec} A$ quasi-complete ("compact") for $A$ a finite $R$-algebra (fin gen as $R$-module)?
 
