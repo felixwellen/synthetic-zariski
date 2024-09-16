@@ -144,3 +144,79 @@ like the following commutativity with direct sums.
 \begin{proof}
   This follows from commutativity of direct sums with kernels, images and quotients.
 \end{proof}
+
+There is the slight variant of \v{C}ech-Cohomology, where only ordered tuples of indices appear, which is sometimes helpful for computations.
+The resulting cohomology groups are the same, which can be shown on the level of \emph{abelian groups indexed over finite sets of indices},
+following \cite{soergel-sheaf-cohomology}[1.4].
+The notation introduced below will not be used in the rest of the article.
+
+\begin{definition}
+  Let $E$ be a type, $\mathrm{Fin}(E)\colonequiv \{A\subseteq E \mid \exists \phi:\mathrm{Fin}(n)\to E.\mathrm{im}(\phi)=A \}$
+  and $M$ be a functor from $\mathrm{Fin}(E)$ with ``$\subseteq$'' to abelian groups. We write $M(e_0,\dots,e_q)\colonequiv M(\{e_0,\dots,e_q\})$.
+  For $q\in \Z$, let
+  \[
+    C^qM\colonequiv \prod_{e_0,\dots,e_q:E^{q+1}}M(e_0,\dots,e_q)
+  \]
+  be the \emph{unordered \v{C}ech-complex} for $M$, with a differential defined as above.
+  Let $C^q_{\mathrm{alt}}M$ be the subcomplex of \emph{alternating} cochains, i.e.\ elements $s:C^qM$ such that
+  for all $0\leq i<q$, we have $s(e_0,\dots,e_i,e_{i+1},\dots,e_q)=-s(e_0,\dots,e_{i+1},e_i,\dots,e_q)$ and $s(e_0,\dots,e_i,e_{i+1},\dots,e_q)=0$
+  whenever $e_i=e_{i+1}$.
+
+  For $q\in \Z$, let
+  \[
+    C^q_<M\colonequiv \prod_{e_0<\dots <e_q:E^{q+1}}M(e_0,\dots,e_q)
+  \]
+  be the \emph{ordered \v{C}ech-complex} for $M$, with a differential defined as above and
+  $C^q_{\times}M$ be the kernel of the restriction map $C^qM\to C^q_<M$.
+\end{definition}
+
+\begin{lemma}
+  \label{ordered-cech-equivalence}
+  Let $M$ be as in the definition above, for the sequence:
+  \begin{center}
+    \begin{tikzcd}
+      C^\bullet_{\mathrm{alt}} M\ar[r,"f"] & C^\bullet M\ar[r,"g"] & C^\bullet_<M
+    \end{tikzcd}
+  \end{center}
+  \begin{enumerate}[(i)]
+  \item The three complexes are isomorphic in non-positive degrees.
+  \item\label{iso-complexes} $g\circ f$ is an isomorphims of complexes.
+  \item\label{skyscraper-group-exact} If there is $e:E$ such that $M(A)\to M(A\cup \{e\})$ is an isomorphism for all $A:\mathrm{Fin}(E)$,
+    then the three complexes are exact.
+  \item\label{finite-ordered-cech} If $E$ is finite, then $f$ and $g$ induce isomorhisms on cohomology.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}[(i)]
+  \item Clear.
+  \item Clear.
+  \item We start by showing that $C^\bullet M$ is exact.
+    Let $q\geq -1$, for $s:C^q M$ we define $\delta:C^{q+1}M\to C^q M$ by
+    \[
+      (\delta s)(e_0,\dots,e_q)\colonequiv M(A\subseteq A\cup\{e\})^{-1} s(e,e_0,\dots,e_q)
+    \]
+    then one can compute $\delta d+d\delta=\mathrm{id}$, so $C^\bullet M$ is exact.
+    Since $\delta$ preserves alternating cochains, this also proves that $C_{\mathrm{alt}}^\bullet M$ is exact.
+    By \ref{iso-complexes}, $C_{\mathrm{alt}}^\bullet M\cong C_<^\bullet M$, so $C_<^\bullet M$ is exact as well.
+  \item It is enough to show that $C_\times^\bullet M$ is exact.
+    For $N:\AbGroup$ and $F:\mathrm{Fin}(E)$, a functor $\mathrm{Fin}(E)\to \AbGroup$ is given by $N_F(B)\colonequiv N^{B\subseteq F}$.
+    By case distinction on $F=\emptyset$ and using \ref{skyscraper-group-exact}, we see that $C_\times^\bullet N_F$ is exact.
+    We have an exact sequence of functors $\mathrm{Fin}(E)$:
+    \[
+      M\to \prod_{A:\mathrm{Fin}(E)}(M(A))_A\to \mathrm{cok}
+    \]
+    By applying $C_\times^\bullet$ to this sequence and commuting $\prod$ with $C_\times^\bullet$,
+    we get a sequence
+    \[
+      C_\times^\bullet M\to \prod_{A:\mathrm{Fin}(E)}C_\times^\bullet (M(A))_A\to C_\times^\bullet \mathrm{cok}
+    \]
+    which is still exact by finiteness of $\mathrm{Fin}(E)$.
+    By applying the long exact cohomology sequence, we get $H^n(C_\times^\bullet \mathrm{cok})\cong H^{n+1}(C_\times^\bullet M)$.
+    If we also apply this for $M=\mathrm{cok}$, this is enough to conclude.
+  \end{enumerate}
+\end{proof}
+
+\Cref{ordered-cech-equivalence}\ref{finite-ordered-cech} could be strengthened for non-finite index sets $E$
+such that the first cohomology on $\mathrm{Fin}(E)$ with some coefficients which could be extracted from the proof vanishes.
+For clarity of the statement and for a lack of application, this generalization was omitted.
