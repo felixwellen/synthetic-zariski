@@ -1,19 +1,22 @@
 
 \subsection{Modules and infinitesimal disks}
 
-\begin{definition}
-Given $M$ a finitely presented $R$-module, we define an f.p.\ algebra structure on $R\oplus M$ by:
+For any $R$-module $M$, there is an $R$-algebra structure on $R\oplus M$ with multiplication given by
 \[(r,m)(r',m') = (rr',rm'+r'm)\]
-we define:
-\[\D(M) = \Spec(R\oplus M)\]
-It is pointed by the first projection which we denote $0$. 
+This is called a \emph{square zero extension} of $R$, since every elements of the form $(0,m)$ suqares to zero.
+This special property allows us to lift a finite presentation of the $R$-module $M$ to a finite presentation of the $R$-algebra $R\oplus M$.
+
+\begin{definition}
+Given $M$ a finitely presented $R$-module, we define an f.p.\ algebra structure on $R\oplus M$ as above and set:
+\[\D(M)\colonequiv \Spec(R\oplus M)\]
+This is a pointed scheme by the first projection which we denote $0$. 
 \end{definition}
 
 We write $\D(1)$ for $\D(R)$ so that:
 \[\D(1) = \Spec(R[X]/(X^2)) = \{\epsilon:R\ |\ \epsilon^2=0\}\]
 
 \begin{definition}
-Assume given $M$ a f.p.\ module and $A$ an f.p.\ algebra with $x:\Spec(A)$. An $M$-derivation at $x$ is a morphism of modules:
+Assume given $M$ a f.p.\ $R$-module and $A$ an f.p.\ $R$-algebra with $x:\Spec(A)$. An $M$-derivation at $x$ is a morphism of $R$-modules:
 \[d:A\to M\]
 such that for all $a,b:A$ we have that:
 \[d(ab) = a(x)d(b) + b(x)d(a)\]
@@ -26,11 +29,11 @@ corresponds to $M$-derivation at $x$.
 \end{lemma}
 
 \begin{proof}
-Such a pointed map correpond to an algebra map:
+Such a pointed map correponds to an algebra map:
 \[f : A\to R\oplus M\]
-where the composite with the first projection is $a$. This means that:
-\[f(a) = (a(x),d(x))\]
-for some module map $d:A\to M$. We can immediately see that $f$ being a map of algebra is equivalent to $d$ being a derivation.
+where the composite with the first projection is $x$. This means that, for some module map $d:A\to M$ we have:
+\[f(a) = (a(x),d(a))\]
+We can immediately see that $f$ being a map of $R$-algebras is equivalent to $d$ being an $M$-derivation at $x$.
 \end{proof}
 
 \begin{lemma}\label{equivalence-module-infinitesimal}
@@ -40,10 +43,10 @@ pointed maps $\D(N) \to_\pt \D(M)$.
 \end{lemma}
 
 \begin{proof}
-By \cref{tangent-are-derivation} such a pointed map correspond to an $N$-derivations at $0:\D(M)$.
+By \cref{tangent-are-derivation} such a pointed map corresponds to an $N$-derivation at $0:\D(M)$.
 
 Such a derivation is a morphism of modules:
-\[R\oplus M\to N\]
+\[d:R\oplus M\to N\]
 such that for all $(r,m),(r',m'):R\oplus M$ we have that:
 \[d(rr',rm'+r'm) = rd(r',m')+r'd(r,m)\]
 This is equivalent to $d(r,0) = 0$ for all $r : R$, so we obtain all $R$-linear 
