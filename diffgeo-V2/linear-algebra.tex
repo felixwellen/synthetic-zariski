@@ -150,27 +150,28 @@ and we conclude by \cref{An-dimension-n}.
 \end{proof}
 
 \begin{corollary}
-  Let $X$ be a scheme, then the tangent bundle $X^{\mathbb{D}(1)}$ is a scheme as well.
+  Let $X$ be a scheme, then the tangent bundle $X^{\mathbb{D}(1)}$ is a scheme.
 \end{corollary}
 
 \begin{proof}
-  Finitely co-presented modules are schemes, since they are the common zeros of linear functions on $R^n$.
-  So by the lemma, all tangent spaces $T_x(X)$ are schemes and
-  \[
-    X^{\mathbb{D}(1)}=\sum_{x:X}T_x(X)
-  \]
-  is a dependent sum of schemes and therefore a scheme.
+  We give two independent arguments:
+  \begin{enumerate}[(i)]
+  \item Finitely co-presented modules are schemes, since they are the common zeros of linear functions on $R^n$.
+    So by the lemma, all tangent spaces $T_x(X)$ are schemes and
+    \[
+      X^{\mathbb{D}(1)}=\sum_{x:X}T_x(X)
+    \]
+    is a dependent sum of schemes and therefore a scheme.
+  \item If $X=\bigcup_i U_i$ with open affine $U_1,\dots,U_n$ then $X^{\mathbb{D}(1)}=\bigcup_i U_i^{\mathbb{D}(1)}$ by double negation stability of opens.
+    So it is enough to show that for affine $X=\Spec R[X_1,\dots,X_n]/(f_1,\dots,f_l)$ the tangent bundle $X^{\mathbb{D}(1)}$ is a scheme again.
+    But this is an affine scheme by direct computation:
+    \begin{align*}
+      X^{\mathbb{D}(1)}&=\Hom_{\Alg{R}}(R[X_1,\dots,X_n]/(f_1,\dots,f_l), R\oplus \epsilon R) \\
+                       &= \{(y_1,\dots,y_n):R\oplus \epsilon R \mid \forall_i. f_i(y_1,\dots,y_n)=0\} \\
+                       &= \{(x_1,\dots,x_n,d_1,\dots,d_n):R^{2n} \mid \forall_i. f_i(x_1,\dots,x_n)=0\text{ and } \sum_j d_j\frac{\partial f_i}{\partial X_j}(x_1,\dots,x_n) =0\} \\
+    \end{align*}
+  \end{enumerate}
 \end{proof}
-
-The construction is local and one can show by direct computation, that there is the following explicit descrition:
-
-\begin{remark}
-  For affine $X=\Spec R[X_1,\dots,X_n]/(f_1,\dots,f_l)$, the tangentbundle is given by
-  \[
-    X^{\mathbb{D}(1)}=\Spec R[X_1,\dots,X_n,D_1,\dots,D_n]/(f_1,\dots,f_l,(g_{ij})_{ij})
-  \]
-  where the $g_{ij}=f_i(D_1,\dots,D_n)\cdot f_j(D_1,\dots,D_n)$.
-\end{remark}
 
 \subsection{Infinitesimal neighbourhoods}
 
