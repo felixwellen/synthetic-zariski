@@ -25,7 +25,7 @@ such that for all $a,b:A$ we have that:
 \end{definition}
 
 \begin{lemma}\label{tangent-are-derivation}
-Assume given $M$ a f.p.\ module and $A$ an f.p.\ algebra with $x:\Spec(A)$. Pointed maps:
+Assume given $M$ an f.p.\ module and $A$ an f.p.\ algebra with $x:\Spec(A)$. Pointed maps:
 \[\D(M)\to_\pt (\Spec(A),x)\] 
 corresponds to $M$-derivation at $x$.
 \end{lemma}
@@ -131,7 +131,7 @@ This holds because:
 \]
 is the pullback of:
 \[
-(X,x) \to (Y,f(y)) \leftarrow (1,*)
+(X,x) \to (Y,f(x)) \leftarrow (1,*)
 \]
 in pointed types, applied using $(\mathbb{D}(1),0)$.
 \end{proof}
@@ -150,6 +150,7 @@ and we conclude by \cref{An-dimension-n}.
 \end{proof}
 
 \begin{corollary}
+  \label{tangent-bundle-scheme}
   Let $X$ be a scheme, then the tangent bundle $X^{\mathbb{D}(1)}$ is a scheme.
 \end{corollary}
 
@@ -168,7 +169,7 @@ and we conclude by \cref{An-dimension-n}.
     \begin{align*}
       Y^{\mathbb{D}(1)}&=\Hom_{\Alg{R}}(R[X_1,\dots,X_n]/(f_1,\dots,f_l), R\oplus \epsilon R) \\
                        &= \{(y_1,\dots,y_n):R\oplus \epsilon R \mid \forall_i. f_i(y_1,\dots,y_n)=0\} \\
-                       &= \{(x_1,\dots,x_n,d_1,\dots,d_n):R^{2n} \mid \forall_i. f_i(x_1,\dots,x_n)=0\text{ and } \sum_j d_j\frac{\partial f_i}{\partial X_j}(x_1,\dots,x_n) =0\} \\
+                       &= \{(x_1,\dots,x_n,d_1,\dots,d_n):R^{2n} \mid \forall_i. f_i(x_1,\dots,x_n)=0\text{ and } \sum_j d_j\frac{\partial f_i}{\partial X_j}(x_1,\dots,x_n) =0\} 
     \end{align*}
   \end{enumerate}
 \end{proof}
@@ -176,7 +177,7 @@ and we conclude by \cref{An-dimension-n}.
 \subsection{Infinitesimal neighbourhoods}
 
 \begin{definition}
-Let $X$ be a set with $x:X$. The first order neighborhood $N_1(x)$ is defined as the set of $y:X$ such that the exists a f.g. ideal $I$ such that $I^{2}=0$ and:
+Let $X$ be a set with $x:X$. The first order neighborhood $N_1(x)$ is defined as the set of $y:X$ such that there exists an f.g.\ ideal $I\subseteq R$ with $I^{2}=0$ and:
 \[I=0 \to x=y\]
 \end{definition}
 
@@ -203,11 +204,11 @@ This means $X$ is a closed subscheme $C\subset R^n$. Then by \cref{first-order-s
 \end{proof}
 
 \begin{definition}
-A pointed scheme $(X,*)$ is called an infinitesimal disk if for all $x:X$ we have $x\in N_1(*)$.
+A pointed scheme $(X,*)$ is called a \notion{first order (infinitesimal) disk} if for all $x:X$ we have $x\in N_1(*)$.
 \end{definition}
 
 \begin{lemma}\label{disk-are-infinitesimal}
-A pointed scheme $(X,*)$ is an infinitesimal disk if and only if there exists a finitely presented module $M$ such that:
+A pointed scheme $(X,*)$ is a first order disk if and only if there exists a finitely presented module $M$ such that:
 \[(X,*) = (\D(M),0)\]
 \end{lemma}
 
@@ -216,14 +217,15 @@ First we check that for all $M$ finitely presented and $y:\D(M)$ we have that $y
 \[d(m_i)d(m_j) = 0\]
 This means that $I = (d(m_1),\cdots,d(m_n))$ has square $0$ and $I=0$ implies $y=0$ so that $y\in N_1(0)$.
 
-For the converse we assume $X$ an infinitesimal disk, by \cref{first-order-schemes} we have that $X$ is affine and pointed, up to translation we can assume $X\subset R^n$ closed pointed by $0$. Since $X$ is infinitesimal we have that $X\subset N_1(0)$ and by \cref{first-order-square-zero} we have $N_1(0) = \D(R^n)$.
+For the converse we assume $X$ a first order disk, by \cref{first-order-schemes} we have that $X$ is affine and pointed, up to translation we can assume $X\subset R^n$ closed pointed by $0$. Since $X$ is a first order disk we have that $X\subset N_1(0)$ and by \cref{first-order-square-zero} we have $N_1(0) = \D(R^n)$.
 
-This means there is a f.g. ideal in $R\oplus R^n$ such that $X=\Spec(R\oplus R^n / J)$. But $0\in X$ means that if $(x,y)\in J$ then $x=0$, so that $J$ correspond uniquely to a f.g. sub-module $K$ of $R^n$ and:
+This means there is an f.g.\ ideal $J$ in $R\oplus R^n$ such that $X=\Spec(R\oplus R^n / J)$.
+But $0\in X$ corresponds to the first projection from $R\oplus R^n$ -- meaning if $(x,y)\in J$ then $x=0$, so that $J$ corresponds uniquely to an f.g.\ sub-module $K$ of $R^n$ and:
 \[X = \Spec(R\oplus (R^n/K)) = \D(R^n/K)\] 
 \end{proof}
 
 \begin{lemma}\label{equivalence-modules-disks}
-The functor from finitely copresented modules to infinitesimal disks:
+The functor from finitely copresented modules to first order disks:
 \[M\mapsto \D(M^\star)\]
 is an equivalence, with inverse:
 \[(X,x)\mapsto T_x(X)\]
@@ -241,9 +243,9 @@ Let $X$ be a scheme with $x:X$, then we have:
 \end{lemma}
 
 \begin{proof}
-By \cref{first-order-schemes} we have that $(N_1(x),x)$ is an infinitesimal disk. By \cref{equivalence-modules-disks} it is enough to check that $T_x(N_1(x)) = T_0(\D(T_x(X)^\star))$. 
+By \cref{first-order-schemes} we have that $(N_1(x),x)$ is a first order disk. By \cref{equivalence-modules-disks} it is enough to check that $T_x(N_1(x)) = T_0(\D(T_x(X)^\star))$. 
 
-It is immediate that any map $f:\D(1)\to X$ uniquely factors thorough $N_1(f(0))$ so that $T_x(N_1(x)) = T_x(X)$, and we have that $T_0(\D(T_x(X)^\star)) = T_x(X)$ by \cref{equivalence-modules-disks}.
+It is immediate that any map $f:\D(1)\to X$ uniquely factors through $N_1(f(0))$ so that $T_x(N_1(x)) = T_x(X)$, and we have that $T_0(\D(T_x(X)^\star)) = T_x(X)$ by \cref{equivalence-modules-disks}.
 \end{proof}
 
 
@@ -266,14 +268,15 @@ Any finitely copresented module is projective.
 \begin{proof}
 We consider $M,N$ finitely copresented with a surjective map:
 \[f:M\to N\]
-By \cref{duality-infinitesimal-tangent} and \cref{tangent-copresented-modules} we now that $\D(M^*) = N_1(0)$ in $M$, so that we have a commutative diagram:
+By \cref{duality-infinitesimal-tangent} and \cref{tangent-copresented-modules} we know that $\D(M^*) = N_1(0)$ in $M$, so that we have a commutative diagram:
 \begin{center}
 \begin{tikzcd}
 \D(M^\star)\ar[r]\ar[d] & M\ar[d,"f"]\\
 \D(N^\star)\ar[r,"i"] & N\\
 \end{tikzcd}
 \end{center}
-Since $\D(N^*)$ has choice and the $f$ is surjective there is $g:\D(N^\star)\to M$ such that $f\circ g = i$. Up to translation we can assume $g(0) = 0$. Then we can factors $g$ through $\D(M^\star)$ as $N_1$ is functorial. This gives us a pointed section of the map:
+Since $\D(N^*)$ has choice and $f$ is surjective there is $g:\D(N^\star)\to M$ such that $f\circ g = i$. Up to translation we can assume $g(0) = 0$.
+Then we can factor $g$ through $\D(M^\star)$ as $N_1$ is functorial. This gives us a pointed section of the map:
 \[\D(M^\star) \to \D(N^\star)\]
 which by \cref{equivalence-module-infinitesimal} gives a linear section of $f$. (TODO should we check functoriality?)
 \end{proof}
