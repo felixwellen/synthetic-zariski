@@ -11,7 +11,7 @@ There are currently the following preprints:
 
 And the following drafts and notes:
 - Čech-Cohomology ([early draft pdf](https://felix-cherubini.de/cech.pdf))
-- Differential Geometry/étale maps ([draft pdf](https://felix-cherubini.de/diffgeo.pdf))
+- Differential Geometry/étale maps ([full draft pdf](https://felix-cherubini.de/diffgeo.pdf), [article draft pdf](https://felix-cherubini.de/diffgeo-V2.pdf))
 - Proper Schemes ([early draft pdf](https://felix-cherubini.de/proper.pdf))
 - Topology of Synthetic Schemes ([early draft pdf](https://felix-cherubini.de/topology.pdf))
 - $\mathbb A^1$-homotopy theory ([early draft pdf](https://felix-cherubini.de/A1-homotopy.pdf))
