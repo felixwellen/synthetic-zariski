@@ -1,0 +1,34 @@
+\rednote{WIP}
+\begin{lemma}
+  Let $S:\Stone$ be represented as limit of a sequence of finite Stone spaces $S_n$. 
+  Let $P:S \to \Closed$. 
+  Then there merely exists a function $P_{\cdot} : \Pi_{n:\N} S_n \to 2$
+  such that $P(s) \leftrightarrow \forall_{n:\N} P_n(s|_n)$. 
+\end{lemma}  
+\begin{proof}
+  Assume $S=Sp(B)$, and $S_n = Sp(B_n)$. 
+  Note that by Stone duality, $B$ is the colimit of the sequence $B_n$
+  we denote $\iota_n:B_n\to B$ for the colimit inclusion maps.
+  
+  By \Cref{StoneClosedSubsets}, there merely exists some sequence $D_n:S\to 2$
+  such that $P(s) \leftrightarrow \forall_{n:\N} D_n(s)$. 
+  WLOG, we may assume $D_0 = \top$ and $D_{n+1}\subseteq D_n$ for all $n:\N$. 
+  
+  By Stone duality, each $D_n$ corresponds to some $b_n:B$. 
+  Now each $b_n:B$ already occurs in some $B_{m}$.
+  By countable choice, we can find a sequence of natural numbers $(m_n)_{n:\N}$, 
+  and elements $b_{m_n}:B_{m_n}$ such that $\iota_{m_n}(b_{m_n}) = b_n$. 
+  Then each $b_{m_n}:B_{m_n}$ corresponds to a decidable set 
+  $D_{m_n}:S_{m_n} \to 2$. 
+  WLOG we may assume that $(m_n)_{n:\N}$ is a strictly increasing sequence with $m_0 = 0$. 
+  Then we can define a function $f:\N \to \N$ such that 
+  for all $k:\N$, we have $m_{f(k)} \leq k \leq m_{f(k)+1}$. 
+  % f 0       = 0, 
+  % f (n + 1) | k  < f(n) + 1 = f(n)
+  %           | k >= f(n) + 1 = f(n) + 1 
+
+  Now define $P_k(s) = D_{m_{f(k)}}$.
+  \rednote{Needs to be rewritten clearly}
+
+  
+\end{proof}

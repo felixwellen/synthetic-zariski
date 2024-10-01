@@ -1,4 +1,6 @@
 \subsection{Compact Hausdorff types}
+
+
 \begin{definition}
   A type $X$ is called compact Hausdorff iff there exists some $S:\Stone$ and some 
   equivalence relation $\sim:S \times S \to \Closed$ such that $X \simeq S / \sim$. 
@@ -15,22 +17,22 @@ Then $A$ is closed iff it is the image of a closed subtype of $S$ under the quot
   In particular for $q:S\to X$ the quotient map, $q^{-1}(A)$ is closed. 
   As $q$ is surjective, we have $q(q^{-1}(A)) = A$,
   hence $A$ is the image of a closed subtype of $S$. 
-  
   Conversely, let $B\subseteq S$ be closed. 
 %  Then for any $s:S$, the subtype $\{t:S| B(s) \wedge s \sim t\} \subseteq S$ is closed. 
 %  Hence by 
-  Then any $t:X$ belongs to the image of $B$ iff we have that:
-  $$ \exists_{s:S} B(s)\land q(s) = t$$
- and by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
-  we have that this is closed. 
-  \end{proof}
-
+  Define $A\subseteq S$ by 
+  $$A(s) := \exists_{s:S} (B(t) \wedge s \sim t).$$
+  As $B, \sim$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
+  we have that $A$  is closed. 
+  Also $A$ respects $\sim$, hence induces a map $A': X\to \Closed$.
+  Furthermore, $A(q(s))$ iff $q(s)$ is in the image of $B$. 
+  Therefore $A'(x)$ iff $x$ is in the image of $B$. 
+\end{proof}
 \begin{remark}\label{InhabitedClosedSubSpaceClosedCHaus}
-  Let $X:\Chaus$. We have that a subset of $X$ is closed if and only if it is the image of a Stone space. Indeed \Cref{CompactHausdorffClosed} gives the direct proof, and the converse follows from \Cref{InhabitedClosedSubSpaceClosed}
-  
-  Moreover if $A$ is closed in $X$, considering $q:S\to X$ surjective with $S$ Stone we have that:
-  $$ \exists_{s:S}A(q(s)) = \exists_{x:X}A(x)$$
-  so that from \Cref{InhabitedClosedSubSpaceClosed} we have that $\exists_{x:X} A(x)$ is closed. 
+  Let $X:\Chaus$.
+  From \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed iff it is the image of a map 
+  $T\to X$ for some $T:\Stone$. 
+  If $A$ is closed, from $\Cref{InhabitedClosedSubSpaceClosed}$, it follows that $\exists_{x:X} A(x)$ is closed as well. 
 \end{remark}
 %\begin{corollary}
 %  For $X:\CHaus$ a subtype $A\subseteq X$ is closed iff it is the image of 
@@ -46,6 +48,9 @@ Then $A$ is closed iff it is the image of a closed subtype of $S$ under the quot
   subsets, but only two decidable subsets. 
   In \Cref{ConnectedComponent}, we shall actually see that whenever every singleton of a compact Hausdorff space $X$
   can be written as countable intersection of decidable subsets, $X$ is Stone. 
+  \rednote{Actually, we'll see that $Sp(2^X)$ and $X$ are bijective sets, 
+    which only implies that $X$ is Stone if $2^X:\Boole$, but this depends on our definition of countable, 
+see \Cref{CountabilityDiscussion}}
 \end{remark}
 
 
@@ -95,3 +100,4 @@ Then $A$ is closed iff it is the image of a closed subtype of $S$ under the quot
   Similarly, $B\subseteq \neg  q (D) \cap \neg A:= V$. 
   By definition, $U,V$ are as required. 
 \end{proof}
+
