@@ -1,34 +1,128 @@
 \rednote{WIP}
-\begin{lemma}
-  Let $S:\Stone$ be represented as limit of a sequence of finite Stone spaces $S_n$. 
-  Let $P:S \to \Closed$. 
-  Then there merely exists a function $P_{\cdot} : \Pi_{n:\N} S_n \to 2$
-  such that $P(s) \leftrightarrow \forall_{n:\N} P_n(s|_n)$. 
-\end{lemma}  
+
+In this section, we will work with countably presented Boolean algebras $B$ 
+as colimit of some sequence of finitely presented (and hence finite) Boolean algebras $B_n$. 
+If $n\leq m$, we'll denote $i^m_n:B_n\to B_m$ and $\iota_n:B_n\to B$ for the maps in this sequence. 
+
+For $S=Sp(B)$, we have that $S$ is the limit of the induced sequence $S_n = Sp(B_n)$. 
+For $n\leq m$, we will denote the restriction maps sometimes as $ \cdot |^m_n : S_m \to S_n$ and $\cdot|_n :S\to S_n$, 
+and sometimes as $\pi_m^n:S_m \to S_n, \pi_n : S\to S_n$. 
+
+\begin{lemma}\label{DecidableSubsetOfStoneApproximation}
+  Let $D:S\to 2$ be a decidable subset. 
+  Then there exists a sequence $D_n:S_n \to 2$ such that for all $s:S$, we have 
+  $D(s) \leftrightarrow \forall_{n:\N} D_n(s|_n)$. 
+  Furthermore, this sequence is such that for $m\leq n$, and $s':S_n$, we have $D_n(s')\to D_m(s'|_m)$.
+\end{lemma}
 \begin{proof}
-  Assume $S=Sp(B)$, and $S_n = Sp(B_n)$. 
-  Note that by Stone duality, $B$ is the colimit of the sequence $B_n$
-  we denote $\iota_n:B_n\to B$ for the colimit inclusion maps.
-  
-  By \Cref{StoneClosedSubsets}, there merely exists some sequence $D_n:S\to 2$
-  such that $P(s) \leftrightarrow \forall_{n:\N} D_n(s)$. 
-  WLOG, we may assume $D_0 = \top$ and $D_{n+1}\subseteq D_n$ for all $n:\N$. 
-  
-  By Stone duality, each $D_n$ corresponds to some $b_n:B$. 
-  Now each $b_n:B$ already occurs in some $B_{m}$.
-  By countable choice, we can find a sequence of natural numbers $(m_n)_{n:\N}$, 
-  and elements $b_{m_n}:B_{m_n}$ such that $\iota_{m_n}(b_{m_n}) = b_n$. 
-  Then each $b_{m_n}:B_{m_n}$ corresponds to a decidable set 
-  $D_{m_n}:S_{m_n} \to 2$. 
-  WLOG we may assume that $(m_n)_{n:\N}$ is a strictly increasing sequence with $m_0 = 0$. 
-  Then we can define a function $f:\N \to \N$ such that 
-  for all $k:\N$, we have $m_{f(k)} \leq k \leq m_{f(k)+1}$. 
-  % f 0       = 0, 
-  % f (n + 1) | k  < f(n) + 1 = f(n)
-  %           | k >= f(n) + 1 = f(n) + 1 
+  By Stone duality, there is a $b:B$ with $D(s) \leftrightarrow s(b) = 1$. 
+  As $B$ is the colimit of the sequence $B_n$, there merely exists some $m:\N, b':B_m$ with 
+  $\iota_m(b') = b$. 
+  Note that $s|_m (b') = s(\iota_m(b'))$ for all $s:S$. 
+  Define $D' :S_m \to 2 $ by $D'(s')\leftrightarrow s'(b') = 1$. 
+  For $n:\N$, define $D_n:S_n \to 2$ by 
+  \begin{equation}
+    D_n = \begin{cases}
+      S_n \text{ if } n < m \\
+      D'\circ \pi_n^m \text { if } n\geq m
+    \end{cases}
+  \end{equation}
+  Then $\forall_{n:\N} D_n(s_n)$ iff $D'(s|_m)$ which happens iff $s|_m(b') = 1$, 
+  which happens iff $s(\iota_m(b')) = s(b) = 1$, which happens iff $D(s)$.
+  Also clearly for $m\leq n$ and $s':S_n$, we have that $D_n(s')\to D_m(s'|_m)$. 
+  Hence the sequence $D_n$ is as required. 
+\end{proof} 
+\begin{corollary}
+  For $P:S\to \Closed$ a closed subset, there exists a sequence
+  of decidable subsets $P_k:S_k \to 2$ such that $P(s) \leftrightarrow \forall_{k:\N} P_k(s|_k)$. 
+\end{corollary}
+\begin{proof}
+  By \Cref{StoneClosedSubsets}, we merely have some sequence of decidable subsets $D^n:S\to 2$ 
+  with 
+  \begin{equation}
+    P(s) \leftrightarrow \forall_{n:\N} D^n(s)
+  \end{equation}
+  By applying countable choice to the \Cref{DecidableSubsetOfStoneApproximation}, there exists for each $n$ a sequence 
+  $D^n_k: S_k\to 2$ such that for each $s:S$, we have 
+  \begin{equation}
+    D^n(s) \leftrightarrow \forall_{k:\N}D^n_k(s|_k).
+  \end{equation}
+  Furthermore, $D^n_k$ is decreasing in $k$, by which we mean that if 
+  for $k\leq l$ and $s'\in S_l$, we have 
+  \begin{equation}D^n_l(s')\to D^n_k(s'|_k).\end{equation}
+  %
+%  WLOG may assume that $D^{n+1} \subseteq D^n$, in which case we can also assume that 
+%  $D^n_k$ is decreasing in $n$, so 
+%  \begin{equation}D^{n+1}_k\subseteq D^{n}_k\subseteq S_k\end{equation}
+  %
+  Now define decidable subsets $P_k:S_k \to 2$ as follows: 
+  \begin{equation}
+    P_k = \bigcap_{n\leq k} D^n_k
+  \end{equation}
+  We claim that $P(s) \leftrightarrow \forall_{k:\N} P_k(s|_k)$. 
+  \begin{itemize}
+    \item Assuming $P(s)$, we have for each $n:\N$ that $D^n(s)$, and hence for all $k:\N$ that 
+      $D^n_k(s|_k)$, in particular if $n\leq k$. Hence $P_k(s|_k)$ as required.
+    \item Assuming that $\forall_{k:\N} P_k(s|_k)$, 
+      we have for each $k:\N$ and each $n\leq k$ that $D^n_k(s|_k)$. 
+      To show $P(s)$, it is sufficient to show that for any $m,l:\N$, we have $D^m_l(s|_l)$.
+      \begin{itemize}
+        \item If $m < l$, this is obvious. 
+        \item If $l\leq m$, we can use that $D^m_m(s|_m)$
+          and that $D^n_k$ is decreasing in $k$, to conclude 
+          $D^m_l(s|_l)$.
+      \end{itemize} 
+  \end{itemize}
+  So $P_n:S_n\to 2$ is as required. 
 
-  Now define $P_k(s) = D_{m_{f(k)}}$.
-  \rednote{Needs to be rewritten clearly}
-
-  
 \end{proof}
+
+%
+%
+%
+%\begin{lemma}
+%  Let $S:\Stone$ be represented as limit of a sequence of finite Stone spaces $S_n$. 
+%  Let $P:S \to \Closed$. 
+%  Then there merely exists a function $P_{\cdot} : \Pi_{n:\N} S_n \to 2$
+%  such that $P(s) \leftrightarrow \forall_{n:\N} P_n(s|_n)$. 
+%\end{lemma}  
+%\begin{proof}
+%%  
+%  By \Cref{StoneClosedSubsets}, there merely exists some sequence $D_n:S\to 2$
+%  such that $P(s) \leftrightarrow \forall_{n:\N} D_n(s)$. 
+%  WLOG we may assume $D_0 = \top$ and $D_{n+1}\subseteq D_n$ for all $n:\N$. 
+%%  
+%  By Stone duality, each $D_n$ corresponds to some $b_n:B$. 
+%  Now each $b_n:B$ already occurs in some $B_{m}$.
+%  By countable choice, we can find a sequence of natural numbers $(m_n)_{n:\N}$, 
+%  and elements $b_{m_n}:B_{m_n}$ such that $i_{m_n}(b_{m_n}) = b_n$. 
+%%
+%%
+%%
+%%  Then each $b_{m_n}:B_{m_n}$ corresponds to a decidable set 
+%%  $D_{m_n}:S_{m_n} \to 2$. 
+%  We may assume that $(m_n)_{n:\N}$ is a strictly increasing sequence with $m_0 = 0$. 
+%  In this case, there exists a function $f:\N \to \N$ such that 
+%  for all $k:\N$, we have $m_{f(k)} \leq k \leq m_{f(k)+1}$. 
+%  % f 0       = 0, 
+%  % f (n + 1) | k  < f(n) + 1 = f(n)
+%  %           | k >= f(n) + 1 = f(n) + 1 
+%  Then we define 
+%  \begin{equation} 
+%    P_k = e_k(b_{m_{f(k)}}).
+%  \end{equation}
+%  We claim that for any $s:S$, we have $P(s) \leftrightarrow \forall_{n:\N} P_n(s|_n)$. 
+%  \begin{itemize}
+%    \item If $P(s)$, then for any $n:\N$, we have $D_n(s)$, meaning that $s(b_n) = 1$, 
+%      now
+%
+%    \item Suppose that for all $k:\N$, we have $P_k(s|_k)$.
+%    To show that $P(s)$, we will show that for all $n:\N$ we have $D_n(s)$. 
+%    Let $n:\N$, then $D_n(s)$ iff $s(b_n) = 1$, which is the case as soon as there is some $m:\N$ with 
+%    $s|_m (b') = 1$ for some $b'$ with $\iota_a$
+%%    As $P_k(s|_k)$, we have $s|_k ( b_{m_{f(k)}} ) = 1$ , hence $s (b_n) = 1$
+%          
+%  \end{itemize}
+%
+%  
+%\end{proof}
