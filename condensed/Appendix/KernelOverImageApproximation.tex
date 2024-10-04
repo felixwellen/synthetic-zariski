@@ -1,0 +1,81 @@
+\begin{lemma}
+  \rednote{Countability and Boolean doesn't matter once you have the representations, 
+  to get the representations with $v_n\circ u_n = 0$, you might need countable choice.}
+  Let $A,B,C$ be countably presented Boolean algebras, represented by sequences $(A_n)_{n:\N}, (B_n)_{n:\N},(C_n)_{n:\N}$. 
+  Let $u,v,(u_n)_{n:\N},(v_n)_{n:\N}$ be as in the following diagram of Boolean algebras:
+  \begin{equation}
+    \begin{tikzcd}
+      A_\infty \arrow[r,"u_\infty"] & B_\infty  \arrow[r,"v_\infty"] & C_\infty
+      \\
+      A_n \arrow[u,"i_n^\infty"] \arrow[r,"u_n"] & B_n \arrow[u,"j_n^\infty"] \arrow[r,"v_n"] & C_n \arrow[u,"k^\infty_n"]
+      \\
+      A_m \arrow[u,"i_m^n"] \arrow[r,"u_m"] & B_m \arrow[u,"j_m^n"] \arrow[r,"v_m"] & C_m \arrow[u,"k_m^n"]
+    \end{tikzcd} 
+  \end{equation} 
+  Furthermore, assume that $v\circ u = 0$ and $v_n \circ u_n = 0$ for all $n:\N$.
+  Then $Ker(v)/Im(u)$ is the colimit of the sequence $Ker(v_n)/Im(u_n)$. 
+\end{lemma}
+\begin{proof}
+  First, we will note what the maps in this sequence are, which by some abuse of notation also gives
+  the cocone maps. 
+\paragraph{If $n\leq m$, there are maps $Ker(v_n)/Im(u_n)\to Ker(v_m) / Im(u_m)$.}
+Let $x,y\in B_n, a \in A_n$ be such that $x - y  = u_n(a)$, 
+then $j_n^m(x) - j_n^m(y) = j_n^m(u_n(a)) = u_m(i_n^m(a))$.
+Thus whenever $x,y\in B_n$ are such that $x \sim_{Im(u_n)} y$, we have that 
+$j_n^m(x) \sim_{Im(u_m)} j_n^m(y)$. 
+%
+%
+Furthermore, if $x\in Ker(v_n)$, then $v_n(x) = 0$, thus 
+\begin{equation}
+  v_m(j_n^m(x)) = k_n^m(v_n(x)) = k_n^m(0) = 0
+\end{equation} 
+and hence $j_n^m(x) \in Ker(v_m)$. 
+Thus $j_n^m$ induces a map $\iota_n^m:Ker(v_n)/Im(u_n) \to Ker(v_m)/Im(u_m)$, 
+with $\iota^n_m([x]) = [j_n^m(x)]$ for $x\in Ker(v_n)$. 
+
+\paragraph{These maps are compatible (in particular, the maps $j_n^\infty$ form a cocone).}. 
+If $k\leq n \leq m$, we have that $j_n^m \circ j_k^n = j_k^m$.
+We thus have that $\iota_n^m \circ \iota_k^n = \iota_k^m$.
+
+\paragraph{Given any cocone $\kappa_n : Ker(v_n)/Im(u_n)\to K$, 
+  there exists an extension $\kappa_\infty(v_\infty)/Im(u_\infty)\to K$}
+      If $\kappa_n$ forms a cocone, this means that for $n\leq m$ we have 
+      $\kappa_m = \kappa_n \circ \iota_m^n$.
+
+      We shall give a map $\kappa_\infty:Ker(v_\infty)/Im(u_\infty) \to K$ satisfying 
+      $\kappa_\infty \circ \iota_n^\infty= \kappa_n$ for all $n:\N$.
+      We're going to define a map $k:Ker(v_\infty) \to K$.
+%%
+      Let $x\in Ker(v_\infty)$. Then $x\in B_\infty$ and $v\infty(x) = 0$. 
+      As $B_\infty$ is the colimit of the sequence $B_n$, 
+      there is some $n:\N$ and some $x':B_n$ with $v_n(x') = 0$. 
+      We'd like to define $k(x) = \kappa_n([x'])$. We need to check this definition doesn't depend on $n$. 
+      \begin{itemize}
+        \item \textbf{$k$ is well-defined} 
+      Assume $n\leq m$ are such that we have $x':B_n, x'':B_m$ with $v_n(x') = 0, v_m(x'') = 0$ 
+      and $j_n(x') = j_m(x'') = x$. 
+      Then there exists some $l\geq m\geq n$ with 
+      $j_n^l (x') = j_m^l(x'')$, hence 
+      $$\iota_n^l[x'] = \iota_m^l[x'']$$ and thus 
+      $$\kappa_l(\iota_n^l[x']) = \kappa_l(\iota_m^l[x''])$$
+      But now $\kappa_l\circ \iota_n^l = \kappa_n$ and $\kappa_l\circ \iota_m^l = \kappa_m$, hence 
+      $$\kappa_n([x']) = \kappa_m([x''])$$
+      Thus $k$ is well-defined. 
+      \item \textbf{$k$ respects $Im(u)$}
+        Let $x,y:B$ and let $a:A$ be such that are such that $x-y = u(a)$ and $v(x) = v(y) = 0$.
+        Then there is some $n:\N$, and some $x',y':B_n, a':A_n$ with $x'-y'= u_n(a'), v_n(x') = v_n(y') = 0$ 
+        and $j_n(x') = x, j_n(y') = y, i_n(a') = a$. 
+        Hence $[x'] = [y']$, hence $\kappa_n([x']) = \kappa_n([y'])$.
+        Thus $k(x) = k(y)$. 
+      \end{itemize}
+      We conclude that $k$ induces a map $\kappa_\infty:Ker(v)/Im(u) \to K$. 
+    \paragraph{$\kappa$ is colimiting}
+    Let $\kappa_n$ be as above, and suppose that 
+    $\lambda \circ \iota_n^\infty = \kappa_n$. 
+    Then for all $n:\N$, $x':B_n$ such that $j_n(x) = x$, we have 
+    $$\lambda ([x]) = \lambda \circ \iota_n([x']) = \kappa_n([x']) = k(x)$$
+    As such $n,x'$ always exist, it follows that 
+    $\lambda([x]) = k(x)$, hence $\lambda[x] = \kappa[x]$, so $\lambda = \kappa$ as required. 
+\end{proof} 
+
+
