@@ -1,8 +1,9 @@
 We want to show that the interval of Cauchy reals is Compact Hausdorff. 
 Informally, to any binary sequence $\alpha : \N \to 2$, 
 we can associate a Cauchy sequence 
+$cs(\alpha)$, given by 
 \begin{equation}\label{eqnBinaryEncode}
-  n\mapsto \sum\limits_{i = 0 }^n \frac {\alpha(i)}{2^{i+1}}
+  (cs(\alpha))_n = \sum\limits_{i = 0 }^n \frac {\alpha(i)}{2^{i+1}}
 \end{equation}
 and we are going to give a closed relation on Cantor space such that 
 two binary sequences are equivalent iff they correspond to the same Cauchy reals. 
@@ -81,7 +82,7 @@ $(s \cdot 0 \cdot \overline 1)$ and  $(s \cdot 1 \cdot \overline 0)$ are equival
 
   As also $\beta\sim_I \gamma$, we have $\beta|_n \sim_n \gamma|_n$.
   So there exists some $m':\N, u':2^m$ with 
- \begin{equation}\label{EqnNearness}
+ \begin{equation} %\label{EqnNearness}
    \big(
      (\beta|_{n} = (u'\cdot 0\cdot \overline 1)|_n) \vee (\beta|_{n} = (u' \cdot 1 \cdot \overline 0) |_n)
    \big)
@@ -92,14 +93,14 @@ $(s \cdot 0 \cdot \overline 1)$ and  $(s \cdot 1 \cdot \overline 0)$ are equival
   \end{equation} 
   Similarly as above, we have that $m'\leq n-2$, and as $\beta(n-1) = 0$, it follows that 
   $\beta|_{n} = (u' \cdot 1 \cdot \overline 0) |_n$. 
-  Now as $\beta(i)\neq \gamma(i)$ for $i<n$, we have that $\beta|_n \neq \gamma|_n$, hence 
+  Now as $\beta(i)\neq \gamma(i)$ with $i<n$, we have that $\beta|_n \neq \gamma|_n$, hence 
   $\gamma|_{n} = (u'\cdot 0\cdot \overline 1)|_n$. 
   Now we have $m,m'\leq n-2$ and $u:2^m, u':2^{m'}$ such that 
   \begin{equation}
     (u\cdot 1 \cdot \overline 0)|_n = \beta|_n = (u'\cdot 1 \cdot \overline 0)|_n
   \end{equation}
   Note that $\beta(m') = 1$. 
-  But also $\beta(i) = 0$ for $m<i<n$
+  But also $\beta(l) = 0$ for all $l$ with $m<l<n$
   Therefore $m'\leq m$. 
   By similar reasoning, $m\leq m'$. We conclude $m=m'$. 
   As a consequence, $u = u'$, but then 
@@ -117,3 +118,6 @@ $(s \cdot 0 \cdot \overline 1)$ and  $(s \cdot 1 \cdot \overline 0)$ are equival
   $\sim_I$ is reflexive and symmetric as well. 
   Finally $\sim_I$ is transitive as a consequence of \Cref{IntervalFiberSizeAtMost2}.
 \end{proof}
+\begin{definition}
+  We define $I:\Chaus$ as $I= 2^\N/\sim_I$. 
+\end{definition}
