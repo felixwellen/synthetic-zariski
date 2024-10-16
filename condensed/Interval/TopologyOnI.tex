@@ -19,8 +19,46 @@ In this section, we will show that the topology on $I$ as one would expect.
   We claim without proof that
   this map induces an equivalence from $I$ to the interval of Cauchy reals. 
 \end{remark}
-
 \begin{lemma}
+  For each $n:\N$, $cs_n$ is injective. 
+\end{lemma}  
+\begin{proof}
+  \rednote{This is just copied from below, suggesting a more general lemma}
+  Assume $cs_n(s) = cs_n(t)$. As equality of finite sequences is decidable, 
+  we are satisfied if we assume $s\neq t$ and find a contradiction. 
+  We may without loss of generality assume there is some $m<n$ and some $u:2^m$ such that 
+  \begin{equation}
+    (s|_{m+1} = u \cdot ) \wedge ( t|_{m+1} = u \cdot 1) . 
+  \end{equation}
+  Then 
+  WLOG, we assume that $s(m) = 1, t(m) = 0$. 
+  We thus have that 
+  \begin{align}
+    cs_n(s) &= 
+    cs_m(u) + \frac1{2^{m+1}} + \sum\limits_{i = m+1}^{n-1} \frac{s(i)}{2^{i+1}}\\
+    cs_n(t) &= 
+    cs_m(u) + 0  + \sum\limits_{i = m+1}^{n-1} \frac{t(i)}{2^{i+1}}
+  \end{align}
+  And thus 
+  \begin{align}
+    cs_n(s)-cs_n(t) = \frac{1}{2^{m+1}} + \sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}
+  \end{align}
+  Note that as $s(i),t(i) \in \{0,1\}$, we must have that $s(i) -t(i) \in \{-1,0,1\}$. 
+  Therefore 
+  $$\sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}$$
+  is minimal iff $s(i) -t(i) = -1$ for all $m<i<n$. 
+  In that case, we have that 
+  $$
+  \frac{1}{2^{m+1}}-
+  \sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}= 
+  \frac{1}{2^{m+1}}-
+  \sum\limits_{i = m+1}^{n-1} \frac{1}{2^{i+1}}= 
+  \frac{1}{2^n}
+  $$
+  which is non-zero, contradicting $cs_n(s) = cs_n(t)$. 
+\end{proof}
+
+\begin{lemma}\label{alternativeSimByCauchyDistance}
   Let $n:\N$ and let $s,t:2^n$. Then 
   \begin{equation}
     s\sim_n t \leftrightarrow |cs_n(s) - cs_n(t)| \leq \frac{1}{2^{n}}.
@@ -107,18 +145,153 @@ we define inequality on $I$ as follows:
 
 \begin{lemma}\label{SqueezeLemma}
   For any $n:\N$ and $a,b,c:2^n$, we have that whenever 
-  $cs_n(a) \leq cs_n(b)+\frac{1}{2^n} \leq cs_n(c)$ and $a\sim_n c$, we have 
+  $cs_n(a) \leq cs_n(b)\pm\frac{1}{2^n} \leq cs_n(c)$ and $a\sim_n c$, we have 
   $a = b \vee b = c$. 
 \end{lemma}
 \begin{proof}
-TODO
+  Assume 
 \end{proof}
+\newpage
+
+\begin{lemma}
+  Suppose $n:\N$ and $a,b:2^n$. 
+  Then if $cs_n(a) > cs_n(b)$, 
+  we have that $cs_n(a) \geq  cs_n(b) +\frac{1}{2^n}.$
+\end{lemma}
+
+
 
 \begin{lemma}
   $\leq_I$ respects $\sim_I$. 
 \end{lemma}
 \begin{proof}
-  TODO
+
+  CLAIM 1: 
+  Whenever $a\sim_n b$, we have that 
+  \begin{equation} 
+    cs_n(a) = cs_n(b) - \frac{1}{2^n}
+    \vee
+    cs_n(a) = cs_n(b) 
+    \vee
+    cs_n(a) = cs_n(b) + \frac{1}{2^n}
+  \end{equation}
+  
+  CLAIM 2: 
+  whenever $a,b:2^n$ and $cs_n(a) > cs_n(b)$, the minimum distance is $\frac{1}{2^n}$. 
+  So $cs_n(a) \geq cs_n(b) + \frac{1}{2^n} $. 
+
+  CLAIM 3: 
+  $cs_n$ is injective for any $n:\N$. 
+
+  Assume $\alpha\leq_I \gamma$ and $\alpha\sim_I\beta$. 
+  So 
+  $\forall_{n:\N} (cs(\alpha)_n \leq_\mathbb Q cs(\gamma)_n)+\frac{1}{2^n}$. 
+  and $\forall_{n:\N}(\alpha|_n\sim_n\beta|_n)$. 
+
+  We need to show that 
+  $\forall_{n:\N} (cs(\beta)_n \leq_\mathbb Q cs(\gamma)_n+ \frac{1}{2^n} ) $. 
+
+  This is closed, so we can show the double negation instead. 
+  By Markov, the negation is that there is some 
+  $N$ with 
+  $$cs(\beta)_N >_\mathbb Q cs(\gamma)_N + \frac{1}{2^N}.$$
+  
+  We are given that 
+  $cs(\gamma)_N + \frac{1}{2^n}\geq cs(\alpha)|_N $. 
+  Thus $$cs(\beta)_N > cs(\gamma)_N + \frac{1}{2^N} \geq cs(\alpha)_N$$
+  By Claim 1 and as $\alpha|_N\sim_N\beta|_N$, we must have that  
+  $cs(\beta)_N = cs(\alpha)_N +\frac{1}{2^N} $. 
+%  \begin{itemize}
+%    \item 
+%      If $cs(\beta)|_N = cs(\alpha)_N$, we have $\alpha|_N = \beta|_N$ by claim 3. 
+%      Hence as $cs(\alpha)_N \leq_Q cs(\gamma)_N$, we also have 
+%      $cs(\beta)_N \leq_Q cs(\gamma)_N$, contradicting our assumption and we're done. 
+%    \item 
+%      If $cs(\beta)|_N = cs(\alpha)_N + \frac{1}{2^N}$, we have that 
+  Therefore 
+      $$
+      cs(\alpha)_N+\frac{1}{2^N} \geq cs(\gamma)_N + \frac{1}{2^N} \geq cs(\alpha)_N
+      $$
+      So $$cs(\alpha)_N \geq cs(\gamma)_N\geq cs(\alpha)_N -\frac{1}{2^N}.$$
+      As a consequence of claim 2, we have that 
+      $cs(\alpha)_N = cs(\gamma)_N \vee cs(\alpha)_N -\frac{1}{2^N} = \gamma_N$. 
+      \begin{itemize}
+        \item If $cs(\alpha)_N = cs(\gamma)_N$, we have that 
+          $\alpha|_N = \gamma|_N$, and hence $cs(\beta)_N = cs(\gamma)_N + \frac{1}{2^N}$, 
+          contradicting our assumption. 
+        \item 
+          If $cs(\alpha)_N -\frac{1}{2^N} = cs(\gamma)_N$, we still need that 
+          $cs(\alpha)_n \leq cs(\gamma)_n + \frac{1}{2^n}$ for all $n\geq N$. 
+          But I now claim this can only happen if
+          \rednote{TODO, combine this with minimality thing in the other lemma}
+          $cs(\gamma)_n = cs(\alpha)_n + \frac{1}{2^n}$ for all $n\geq N$. 
+          But in this case, we can still deduce that 
+          $\alpha\sim_I \gamma$, but then $\alpha = \gamma \vee \beta = \gamma \vee \alpha = \beta$, 
+          contradicting our assumption. 
+      \end{itemize}
+%\end{itemize} 
+
+
+
+  %  In this case, we have 
+  %  $cs(\gamma)_N +\frac{1}{2^N} \geq cs(\alpha)_N > cs(\gamma)_N$. 
+  %  In particular $\gamma|_N \sim_N \alpha|_N$. 
+  %  $cs(\alpha)_N > cs(\gamma)_N$. 
+
+
+    
+  \newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %  Assume $\alpha\leq_I \beta$ and $\alpha\sim_I\gamma$. 
 %  We need to show that $\gamma\leq_I\beta$ as well, so for each $n:\N$, we need to show that 
 %  $cs(\gamma)_n \leq cs(\beta)_n + \frac{1}{2^n}$. 
@@ -218,19 +391,20 @@ TODO
   To show that $[p(a\cdot \overline 0) , p(a \cdot \overline 1)\subseteq p(D)$, 
   Suppose
   $p(a\cdot \overline 0) \leq p(x) \leq p(a \cdot \overline 1)$. 
-  We claim that 
-  $x|_n = a \vee x \sim_I a \cdot \overline 0 \vee x \sim_I a \cdot \overline 1$. 
-  As this is a disjunction of closed propositions, by \Cref{ClosedDisjunction} it's closed, and by 
+  We will show that 
+  $$x|_n = a \vee x \sim_I a \cdot \overline 0 \vee x \sim_I a \cdot \overline 1.$$
+  As this is a disjunction of closed propositions, by \Cref{ClosedFiniteDisjunction} it's closed, and by 
   \Cref{rmkOpenClosedNegation}, we can instead show the double negation. 
   So suppose that none of the disjoints hold. 
   As $x|_n \neq a$, there is some minimal $m$ with $x(m) \neq a(m)$. 
-  WLOG assume that $x(m) = 1, a(m) = 0$. 
+  We assume that $x(m) = 1, a(m) = 0$, the other case goes similarly. 
   Then for all $k:\N$, we have 
   $cs(x)_k \geq cs(a \cdot \overline 1)|_k$. 
   As also 
   $p(a\cdot \overline 1)\geq p(x)$, we have 
-  $cs(a \cdot \overline 1)|_k + \frac{1}{2^k} \geq cs(x)_k \geq cs(a\cdot \overline 1)_k$, 
-  but then by \Cref{SqueezeLemma}, we must have $x|_k = (a\cdot \overline 1)|_k$. 
+  $$cs(a \cdot \overline 1)|_k + \frac{1}{2^k} \geq cs(x)_k \geq cs(a\cdot \overline 1)_k,$$
+  From which it follows that $|cs(a\cdot\overline 1)_k - cs(x)_k|\leq \frac{1}{2^k}$. 
+  Hence $(a\cdot \overline 1)|_k \sim_k x|_k$ by \Cref{alternativeSimByCauchyDistance}. 
   Hence $x\sim_I (a\cdot\overline 1)$, contradicting our assumption as required. 
 \end{proof}
 
