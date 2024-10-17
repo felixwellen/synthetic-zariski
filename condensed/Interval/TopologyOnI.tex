@@ -11,59 +11,111 @@ In this section, we will show that the topology on $I$ as one would expect.
     cs(\alpha)_n = cs_n(\alpha|_n)
   \end{equation}
 \end{definition}
-\begin{remark}
-  One can check that for each $\alpha:2^\N$, 
-  $cs(\alpha)$ is a Cauchy sequence. 
-  Thus $cs$ gives a map from Cantor space to the Cauchy reals. 
-%  In \Cref{AppendixCauchyEquivalenceProof}, we show that 
-  We claim without proof that
-  this map induces an equivalence from $I$ to the interval of Cauchy reals. 
-\end{remark}
-\begin{lemma}
-  For each $n:\N$, $cs_n$ is injective. 
-\end{lemma}  
-\begin{proof}
-  \rednote{This is just copied from below, suggesting a more general lemma}
-  Assume $cs_n(s) = cs_n(t)$. As equality of finite sequences is decidable, 
-  we are satisfied if we assume $s\neq t$ and find a contradiction. 
-  We may without loss of generality assume there is some $m<n$ and some $u:2^m$ such that 
+\begin{remark}\label{rmkPropertiesCSn}
+  Observe that for each $n:\N$, and $a:2^n$
   \begin{equation}
-    (s|_{m+1} = u \cdot ) \wedge ( t|_{m+1} = u \cdot 1) . 
+    cs_n(a) = \frac{1}{2^n} \sum_{i=1}^{n} a(i) \cdot 2^{n-i}
   \end{equation}
-  Then 
-  WLOG, we assume that $s(m) = 1, t(m) = 0$. 
-  We thus have that 
+  the reader might recognize this as the binary encoding of the first $2^n-1$ natural numbers divided by $2^n$. 
+  As a consequence $cs_n$ gives a bijection between $2^n$ and it's image, the set 
+  $\{\frac{k}{2^n}|0\leq k \leq 2^{n-1}\}\subseteq \mathbb Q$.
+%  of rational numbers of the form  
+%  $\frac{k}{2^n}$ for $0\leq k \leq 2^n-1$. 
+  This observation has some corollaries: 
+  \begin{itemize}
+    \item In particular, each $cs_n$ is injective. 
+    \item Furthermore, whenever $a\neq b:2^n$, we must have that 
+      \begin{equation} 
+        |cs_n(a)-cs_n(b)|\geq \frac{1}{2^n}.
+      \end{equation}
+    \item It is known that the union $\bigcup_{n:\N} \{\frac{k}{2^n}|0\leq k \leq 2^{n-1}\}$ 
+      lies dense in the interval of Cauchy reals $[0,1]$. 
+      It follows that $cs$ induces a surjection from Cantor space to $[0,1]$. %the interval of Cauchy reals. 
+      We claim without proof it in fact induces an equivalence between $I$ and $[0,1]$.
+%      between $I$ and the interval of Cauchy reals. 
+  \end{itemize}
+  Finally, let us repeat a well-known identity on such sums, which we'll make some use of 
+  \begin{equation}
+   \sum\limits_{i = m+1}^{n-1} \frac{1}{2^{i+1}} = \frac{1}{2^{m+1}} - \frac{1}{2^n}
+  \end{equation}
+\end{remark}
+\begin{lemma}\label{CauchyApproxLemma}
+  Let $n:\N$ and  $s,t:2^n$. Assume there is some $ m \leq n$ with $cs_m(s|_m) = cs_m(t|_m) + \frac{1}{2^m}$, and 
+  at the same time $|cs_n(s) -cs_n(t) |\leq \frac{1}{2^n}$. 
+  Then there is some $k< m$ and some $u:2^k$ such that 
+  \begin{equation}
+    (s = u \cdot 1 \cdot \overline 0|_n)
+    \wedge 
+    (t = u \cdot 0 \cdot \overline 1|_n)
+  \end{equation}
+\end{lemma}
+\begin{proof}
+  By injectivity of $cs_m$, we have that $s|_m \neq t|_m$. 
+  Then there must be some smallest number $k<m$ such that 
+  $s(k) \neq t(k)$. As $k$ is minimal, we have $s|_k = t|_k = : u$. 
+%  WLOG, we assume that $s(m) = 1, t(m) = 0$. 
+  It follows for all $k<l\leq n$ that 
+%  We thus have for all $k<l\leq n$ that 
+%  \begin{align}
+%    cs_l(s|_l) &= 
+%    cs_k(u|_k) + \sum\limits_{i = k}^{l-1} \frac{s(i)}{2^{i+1}}\\
+%    cs_l(t|_l) &= 
+%    cs_k(u|_k) + \sum\limits_{i = k}^{l-1} \frac{t(i)}{2^{i+1}}
+%  \end{align}
+%  And thus 
   \begin{align}
-    cs_n(s) &= 
-    cs_m(u) + \frac1{2^{m+1}} + \sum\limits_{i = m+1}^{n-1} \frac{s(i)}{2^{i+1}}\\
-    cs_n(t) &= 
-    cs_m(u) + 0  + \sum\limits_{i = m+1}^{n-1} \frac{t(i)}{2^{i+1}}
+    cs_l(s|_l)-cs_l(t|_l) 
+    = \sum\limits_{i = k}^{l-1} \frac{s(i)-t(i)}{2^{i+1}}
+%    =\frac{s(k)-t(k)}{2^{k+1}} + \sum\limits_{i = k+1}^{l-1} \frac{s(i)-t(i)}{2^{i+1}}
   \end{align}
-  And thus 
-  \begin{align}
-    cs_n(s)-cs_n(t) = \frac{1}{2^{m+1}} + \sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}
-  \end{align}
-  Note that as $s(i),t(i) \in \{0,1\}$, we must have that $s(i) -t(i) \in \{-1,0,1\}$. 
-  Therefore 
-  $$\sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}$$
-  is minimal iff $s(i) -t(i) = -1$ for all $m<i<n$. 
-  In that case, we have that 
-  $$
-  \frac{1}{2^{m+1}}-
-  \sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}= 
-  \frac{1}{2^{m+1}}-
-  \sum\limits_{i = m+1}^{n-1} \frac{1}{2^{i+1}}= 
-  \frac{1}{2^n}
-  $$
-  which is non-zero, contradicting $cs_n(s) = cs_n(t)$. 
+  Note that as $s(i),t(i) \in \{0,1\}$, we must have %that $s(i) -t(i) \in \{-1,0,1\}$. 
+  $|s(i)-t(i)| \leq 1$. 
+  Hence for any $k'<l$, we have 
+  \begin{equation}
+    |\sum\limits_{i = k'}^{l-1} \frac{s(i)-t(i)}{2^{i+1}}|
+    \leq 
+    \sum\limits_{i = k'}^{l-1} \frac{1}{2^{i+1}}
+    = 
+    \frac{1}{2^{k'}} - \frac{1}{2^{l}}
+  \end{equation}
+  Note that 
+  \begin{equation}
+    cs_m(s|_m) -cs_m(t|_m) 
+    =
+    \frac{s(k)-t(k)}{2^{k+1}} + \sum\limits_{i = k+1}^{m-1} \frac{s(i)-t(i)}{2^{i+1}}
+    \leq 
+    \frac{s(k)-t(k)}{2^{k+1}} + (\frac{1}{2^{k+1}} - \frac{1}{2^{m}})
+  \end{equation}
+  As this should equal $\frac{1}{2^m}$, we must have that $s(k)-t(k) \neq -1$. 
+  As $s(k) \neq t(k)$ it follows that $s(k) = 1, t(k) = 0$.
+  But now 
+  \begin{equation}
+    cs_n(s) -cs_n(t) 
+    =
+    \frac{1}{2^{k+1}} + \sum\limits_{i = k+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}
+    \geq 
+    \frac{1}{2^{k+1}} - (\frac{1}{2^{k+1}} - \frac{1}{2^m} )
+    =
+    \frac{1}{2^{m}}
+  \end{equation}
+  And as $cs_n(s)-cs_n(t) \leq \frac{1}{2^m}$ as well, we get that 
+  $cs_n(s)-cs_n(t) = \frac{1}{2^m}$. 
+  Note that this lower bound is only reached if $s(i)-t(i) = -1$ for all $k<i<n$. 
+  Hence for those $i$, we have $s(i) = 0, t(i) = 1$. 
+  Thus 
+  \begin{equation}
+    s = (u \cdot 1\cdot \overline 0) |_n \wedge 
+    t = (u \cdot 0\cdot \overline 1) |_n.
+  \end{equation}
 \end{proof}
 
-\begin{lemma}\label{alternativeSimByCauchyDistance}
+ 
+\begin{corollary}\label{alternativeSimByCauchyDistance}
   Let $n:\N$ and let $s,t:2^n$. Then 
   \begin{equation}
     s\sim_n t \leftrightarrow |cs_n(s) - cs_n(t)| \leq \frac{1}{2^{n}}.
   \end{equation} 
-\end{lemma}
+\end{corollary}
 
 \begin{proof}
   \item  
@@ -93,36 +145,8 @@ In this section, we will show that the topology on $I$ as one would expect.
   If $s\neq t$, there must be some smallest number $m<n$ such that 
   $s(m) \neq t(m)$. As $m$ is minimal, we have $s|_m = t|_m = : u$. 
   WLOG, we assume that $s(m) = 1, t(m) = 0$. 
-  We thus have that 
-  \begin{align}
-    cs_n(s) &= 
-    cs_m(u) + \frac1{2^{m+1}} + \sum\limits_{i = m+1}^{n-1} \frac{s(i)}{2^{i+1}}\\
-    cs_n(t) &= 
-    cs_m(u) + 0  + \sum\limits_{i = m+1}^{n-1} \frac{t(i)}{2^{i+1}}
-  \end{align}
-  And thus 
-  \begin{align}
-    cs_n(s)-cs_n(t) = \frac{1}{2^{m+1}} + \sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}
-  \end{align}
-  Note that as $s(i),t(i) \in \{0,1\}$, we must have that $s(i) -t(i) \in \{-1,0,1\}$. 
-  Therefore 
-  $$\sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}$$
-  is minimal iff $s(i) -t(i) = -1$ for all $m<i<n$. 
-  In that case, we have that 
-  $$
-  \frac{1}{2^{m+1}}-
-  \sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}= 
-  \frac{1}{2^{m+1}}-
-  \sum\limits_{i = m+1}^{n-1} \frac{1}{2^{i+1}}= 
-  \frac{1}{2^n}
-  $$
-  Now if $s(i) -t(i) > -1$ for any $m<i<n$, we have that
-    $$
-    \frac{1}{2^{m+1}} + \sum\limits_{i = m+1}^{n-1} \frac{s(i)-t(i)}{2^{i+1}}> \frac{1}{2^n},$$
-  contradicting our assumption that 
-  $|cs_n(s) - cs_n(t)| \leq \frac{1}{2^n}$. 
-  We conclude that $s(i) -t(i) = -1$ for all $m<i<n$, hence for those $i$, we have that 
-  $s(i) = 0, t(i) = 1$. Hence 
+  Then $cs_m(s|_{m+1})  = cs_{m+1}(t|_{m+1}) + \frac{1}{2^{m+1}}$
+  and by \Cref{CauchyApproxLemma} it follows that 
   \begin{equation}
     s = (u \cdot 1\cdot \overline 0) |_n \wedge 
     t = (u \cdot 0\cdot \overline 1) |_n.
@@ -131,7 +155,7 @@ In this section, we will show that the topology on $I$ as one would expect.
 \end{proof}
 
 
-Inspired by Definition 2.7 and 2.10 \Cite{Bishop}, 
+Inspired by Definitions 2.7 and 2.10 \Cite{Bishop}, 
 we define inequality on $I$ as follows:
 \begin{definition}
   Let $\alpha,\beta:2^\N$. 
@@ -143,168 +167,78 @@ we define inequality on $I$ as follows:
 \end{align}
 \end{definition}
 
-\begin{lemma}\label{SqueezeLemma}
-  For any $n:\N$ and $a,b,c:2^n$, we have that whenever 
-  $cs_n(a) \leq cs_n(b)\pm\frac{1}{2^n} \leq cs_n(c)$ and $a\sim_n c$, we have 
-  $a = b \vee b = c$. 
-\end{lemma}
-\begin{proof}
-  Assume 
-\end{proof}
-\newpage
+%\begin{lemma}\label{SqueezeLemma}
+%  For any $n:\N$ and $a,b,c:2^n$, we have that whenever 
+%  $cs_n(a) \leq cs_n(b)\pm\frac{1}{2^n} \leq cs_n(c)$ and $a\sim_n c$, we have 
+%  $a = b \vee b = c$. 
+%\end{lemma}
+%\begin{proof}
+%  Assume 
+%\end{proof}
+%\newpage
 
 \begin{lemma}
-  Suppose $n:\N$ and $a,b:2^n$. 
-  Then if $cs_n(a) > cs_n(b)$, 
-  we have that $cs_n(a) \geq  cs_n(b) +\frac{1}{2^n}.$
-\end{lemma}
-
-
-
-\begin{lemma}
-  $\leq_I$ respects $\sim_I$. 
+  $\leq_I$ repsects $\sim_I$. 
 \end{lemma}
 \begin{proof}
+  We will show that whenever $\alpha\leq_I \gamma$ and $\alpha\sim_I\beta$, we have $\beta\leq_I\gamma$. 
+  The other proof obligation goes similarly. 
+%  The proof is similar to $\alpha'\leq_I\gamma'$ and $\gamma'\sim_I\beta'$, we have $\alpha'\leq_I\beta'$.
 
-  CLAIM 1: 
-  Whenever $a\sim_n b$, we have that 
-  \begin{equation} 
-    cs_n(a) = cs_n(b) - \frac{1}{2^n}
-    \vee
-    cs_n(a) = cs_n(b) 
-    \vee
-    cs_n(a) = cs_n(b) + \frac{1}{2^n}
-  \end{equation}
-  
-  CLAIM 2: 
-  whenever $a,b:2^n$ and $cs_n(a) > cs_n(b)$, the minimum distance is $\frac{1}{2^n}$. 
-  So $cs_n(a) \geq cs_n(b) + \frac{1}{2^n} $. 
 
-  CLAIM 3: 
-  $cs_n$ is injective for any $n:\N$. 
-
-  Assume $\alpha\leq_I \gamma$ and $\alpha\sim_I\beta$. 
-  So 
-  $\forall_{n:\N} (cs(\alpha)_n \leq_\mathbb Q cs(\gamma)_n)+\frac{1}{2^n}$. 
-  and $\forall_{n:\N}(\alpha|_n\sim_n\beta|_n)$. 
-
-  We need to show that 
-  $\forall_{n:\N} (cs(\beta)_n \leq_\mathbb Q cs(\gamma)_n+ \frac{1}{2^n} ) $. 
-
-  This is closed, so we can show the double negation instead. 
+  As $\beta\leq_I\gamma$ is closed, by \Cref{rmkOpenClosedNegation} we will show it's double negation instead. 
   By Markov, the negation is that there is some 
-  $N$ with 
-  $$cs(\beta)_N >_\mathbb Q cs(\gamma)_N + \frac{1}{2^N}.$$
-  
-  We are given that 
-  $cs(\gamma)_N + \frac{1}{2^n}\geq cs(\alpha)|_N $. 
-  Thus $$cs(\beta)_N > cs(\gamma)_N + \frac{1}{2^N} \geq cs(\alpha)_N$$
-  By Claim 1 and as $\alpha|_N\sim_N\beta|_N$, we must have that  
-  $cs(\beta)_N = cs(\alpha)_N +\frac{1}{2^N} $. 
-%  \begin{itemize}
-%    \item 
-%      If $cs(\beta)|_N = cs(\alpha)_N$, we have $\alpha|_N = \beta|_N$ by claim 3. 
-%      Hence as $cs(\alpha)_N \leq_Q cs(\gamma)_N$, we also have 
-%      $cs(\beta)_N \leq_Q cs(\gamma)_N$, contradicting our assumption and we're done. 
-%    \item 
-%      If $cs(\beta)|_N = cs(\alpha)_N + \frac{1}{2^N}$, we have that 
-  Therefore 
-      $$
-      cs(\alpha)_N+\frac{1}{2^N} \geq cs(\gamma)_N + \frac{1}{2^N} \geq cs(\alpha)_N
-      $$
-      So $$cs(\alpha)_N \geq cs(\gamma)_N\geq cs(\alpha)_N -\frac{1}{2^N}.$$
-      As a consequence of claim 2, we have that 
-      $cs(\alpha)_N = cs(\gamma)_N \vee cs(\alpha)_N -\frac{1}{2^N} = \gamma_N$. 
-      \begin{itemize}
-        \item If $cs(\alpha)_N = cs(\gamma)_N$, we have that 
-          $\alpha|_N = \gamma|_N$, and hence $cs(\beta)_N = cs(\gamma)_N + \frac{1}{2^N}$, 
-          contradicting our assumption. 
-        \item 
-          If $cs(\alpha)_N -\frac{1}{2^N} = cs(\gamma)_N$, we still need that 
-          $cs(\alpha)_n \leq cs(\gamma)_n + \frac{1}{2^n}$ for all $n\geq N$. 
-          But I now claim this can only happen if
-          \rednote{TODO, combine this with minimality thing in the other lemma}
-          $cs(\gamma)_n = cs(\alpha)_n + \frac{1}{2^n}$ for all $n\geq N$. 
-          But in this case, we can still deduce that 
-          $\alpha\sim_I \gamma$, but then $\alpha = \gamma \vee \beta = \gamma \vee \alpha = \beta$, 
-          contradicting our assumption. 
-      \end{itemize}
-%\end{itemize} 
-
-
-
-  %  In this case, we have 
-  %  $cs(\gamma)_N +\frac{1}{2^N} \geq cs(\alpha)_N > cs(\gamma)_N$. 
-  %  In particular $\gamma|_N \sim_N \alpha|_N$. 
-  %  $cs(\alpha)_N > cs(\gamma)_N$. 
-
-
-    
-  \newpage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%  Assume $\alpha\leq_I \beta$ and $\alpha\sim_I\gamma$. 
-%  We need to show that $\gamma\leq_I\beta$ as well, so for each $n:\N$, we need to show that 
-%  $cs(\gamma)_n \leq cs(\beta)_n + \frac{1}{2^n}$. 
-%  As inequality in $\mathbb Q$ is decidable, we can proceed with a proof by contradiction. 
-%  Suppose $cs(\gamma)_n > cs(\beta)_n + \frac{1}{2^n} \geq cs(\alpha)_n$. 
-%  Then by the above Lemma, we get 
-%  $\beta|_n =\gamma|_n \vee \beta|_n = \alpha|_n$. 
-%  In both cases, we get $|\beta|_n - \gamma|_n|\leq \frac{1}{2^n}$, contradicting our assumption. 
-%  Thus $cs(\gamma)_n \leq cs(\beta)_n + \frac1{2^n}$. 
-%
-%  Assume now $\alpha\leq_I\beta$ and $\beta\sim_I\gamma$. 
-%  We need to show that $\alpha \leq_I\gamma$ as well. 
+  $N:\N$ with 
+  $cs(\beta)_N > cs(\gamma)_N + \frac{1}{2^N}.$
+  As $\alpha\leq_I\gamma$, we have 
+  $cs(\gamma)_N + \frac{1}{2^N}\geq cs(\alpha)_N $. 
+  Thus $cs(\beta)_N > cs(\alpha)_N$
+  Yet from $\alpha\sim_I\beta$, using \Cref{alternativeSimByCauchyDistance} and \Cref{CauchyApproxLemma}, 
+  for $n\geq N$ we get 
+%  Yet as $\alpha\sim_I\beta$, from \Cref{alternativeSimByCauchyDistance}
+%  we have $cs(\beta)_n \leq cs(\alpha)_n + \frac{1}{2^n}$ for all $n:\N$. 
+%  Therefore, by \Cref{CauchyApproxLemma}, for $n\geq N$, we may conclude that 
+  $cs(\beta)_n = cs(\alpha)_n + \frac{1}{2^n}$.
+  It follows that 
+  $$
+  cs(\alpha)_N+\frac{1}{2^N} > cs(\gamma)_N + \frac{1}{2^N} \geq cs(\alpha)_N
+  $$
+  From \Cref{rmkPropertiesCSn}, we must have
+  $cs(\gamma)_N  + \frac{1}{2^N} = cs(\alpha)_N$, otherwise the distance 
+  between $cs(\gamma)_N$ and $cs(\alpha)_N$ 
+  would be smaller than $\frac{1}{2^N}$.
+  As $cs(\alpha)_n \leq cs(\gamma)_n + \frac{1}{2^n}$ for all $n\geq N$, 
+  \Cref{CauchyApproxLemma} gives that 
+  $\alpha\sim_I\gamma$. But also $\beta\sim_I\gamma$. 
+  But now $\alpha,\beta,\gamma$ are all distinct yet related by $\sim_I$, contradicting 
+  \Cref{IntervalFiberSizeAtMost2}. 
 \end{proof}
+%\begin{lemma}
+%  Whenever $\alpha\leq_I\gamma$ and $\beta\sim_I\gamma$, we have 
+%  $\alpha\leq_I\beta$. 
+%\end{lemma}
+%\begin{proof}
+%  As $\alpha\leq_I\beta$ is closed, we will show it's double negation instead. 
+%  By Markov, the negation is that there is some $N:\N$ with 
+%  $cs(\alpha)_N > cs(\beta)_N + \frac{1}{2^N}$. 
+%  As $\alpha\leq_I\gamma$, 
+%  we still have 
+%  $cs(\gamma)_N + \frac{1}{2^N} \geq cs(\alpha)_N$. 
+%  It follows that $cs(\gamma)_N > cs(\beta)_N$. 
+%  As $\beta\sim_I\gamma$, it follows from \Cref{alternativeSimByCauchyDistance} 
+%  and \Cref{CauchyApproxLemma} that 
+%  $cs(\gamma)_n = cs(\beta)_n + \frac{1}{2^n}$ for $n\geq N$. 
+%  But then we can conclude 
+%  $$
+%  cs(\gamma)_N + \frac{1}{2^N} \geq cs(\alpha)_N > cs(\gamma)_N
+%  $$
+%  and again we have $cs(\alpha)_N = cs(\gamma)_N + \frac{1}{2^N}$. 
+%  and as $\alpha\leq_I\gamma$, we again have that $\alpha\sim_I \gamma$, and by same
+%\end{proof}
+
+
+
+
 \begin{lemma}
   $<_I$ respects $\sim_I$. 
 \end{lemma} 
