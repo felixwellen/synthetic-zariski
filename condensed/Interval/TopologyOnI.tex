@@ -1,5 +1,4 @@
-In this section, we will show that the topology on $I$ as one would expect. 
-
+\subsection{Order on the interval}
 \begin{definition}
   For $n:\N$ we define 
   $cs_n:2^n \to \mathbb Q$ by 
@@ -162,17 +161,6 @@ we define inequality on $I$ as follows:
 %    \\\rednote{Can become n\pm1, \leq ,<, +\frac1{2^n+2} }
 \end{align}
 \end{definition}
-
-%\begin{lemma}\label{SqueezeLemma}
-%  For any $n:\N$ and $a,b,c:2^n$, we have that whenever 
-%  $cs_n(a) \leq cs_n(b)\pm\frac{1}{2^n} \leq cs_n(c)$ and $a\sim_n c$, we have 
-%  $a = b \vee b = c$. 
-%\end{lemma}
-%\begin{proof}
-%  Assume 
-%\end{proof}
-%\newpage
-
 \begin{lemma}
   $\leq_I$ respects $\sim_I$. 
 \end{lemma}
@@ -209,60 +197,50 @@ we define inequality on $I$ as follows:
   But now $\alpha,\beta,\gamma$ are all distinct yet related by $\sim_I$, contradicting 
   \Cref{IntervalFiberSizeAtMost2}. 
 \end{proof}
-%\begin{lemma}
-%  Whenever $\alpha\leq_I\gamma$ and $\beta\sim_I\gamma$, we have 
-%  $\alpha\leq_I\beta$. 
-%\end{lemma}
-%\begin{proof}
-%  As $\alpha\leq_I\beta$ is closed, we will show it's double negation instead. 
-%  By Markov, the negation is that there is some $N:\N$ with 
-%  $cs(\alpha)_N > cs(\beta)_N + \frac{1}{2^N}$. 
-%  As $\alpha\leq_I\gamma$, 
-%  we still have 
-%  $cs(\gamma)_N + \frac{1}{2^N} \geq cs(\alpha)_N$. 
-%  It follows that $cs(\gamma)_N > cs(\beta)_N$. 
-%  As $\beta\sim_I\gamma$, it follows from \Cref{alternativeSimByCauchyDistance} 
-%  and \Cref{CauchyApproxLemma} that 
-%  $cs(\gamma)_n = cs(\beta)_n + \frac{1}{2^n}$ for $n\geq N$. 
-%  But then we can conclude 
-%  $$
-%  cs(\gamma)_N + \frac{1}{2^N} \geq cs(\alpha)_N > cs(\gamma)_N
-%  $$
-%  and again we have $cs(\alpha)_N = cs(\gamma)_N + \frac{1}{2^N}$. 
-%  and as $\alpha\leq_I\gamma$, we again have that $\alpha\sim_I \gamma$, and by same
-%\end{proof}
 
-
-
-
-\begin{lemma}
-  $<_I$ respects $\sim_I$. 
-\end{lemma} 
-\begin{proof}
-  TODO
-\end{proof}
 \begin{remark}
-  By the above, $\leq_I, <_I$ induce relations $\leq,<$ on $I$.
-  As inequality in $\mathbb Q$ is decidable, $\leq, <$ are closed and open respectively. 
+  By \Cref{MarkovPrinciple}, we have that $\neg (\alpha \leq \beta) \leftrightarrow (\beta <_I \alpha)$. 
+  It follows immediately that $<_I$ also respects $I$. 
+  Therefore, $\leq_I, <_I$ induce relations $\leq,<$ on $I$.
+  As the order in $\mathbb Q$ is decidable, $\leq, <$ are closed and open respectively. 
+\end{remark} 
+
+
 %
-  We can use these inequalities to define the standard open and closed intervals. 
+%\begin{itemize}
+%  \item As a consequence of \Cref{alternativeSimByCauchyDistance}, we have for any $x,y:I$ that 
+%    $x\leq y \wedge y \leq x \to x = y$. 
+%  \item TODO $x\leq y \wedge x \neq y \to x < y$. 
+%  \item TODO $x\leq y \vee y \leq x$. 
+%\end{itemize}
+%
+
+
+\subsection{The topology of the interval}
+
+
+\begin{definition}
   Let $a,b:I$. 
   Following standard notation, we denote
   \begin{equation}
     [a,b]:= \Sigma_{x:I} (a\leq x \wedge x \leq b),
   \end{equation}
-  which is closed by \Cref{ClosedCountableConjunction}, 
   we call subsets of $I$ of this form closed intervals. 
 %
   We also denote 
-  \begin{equation}
-    (a,b) := \Sigma_{x:I} (a < x \wedge x < b),
-  \end{equation}
-  which is open by \Cref{OpenFiniteConjunction}.
-  we call subsets of $I$ of this form open intervals. 
+  \begin{align}
+    (-\infty,a) &:= \Sigma_{x:I} (x < a)   \\
+    (a,\infty) &:= \Sigma_{x:I} (a < x)  \\
+    (a,b) &:= \Sigma_{x:I} (a < x \wedge x < b),
+  \end{align}
+  We call subsets of $I$ of these forms open intervals. 
+\end{definition}
+\begin{remark}
+  Note that closed intervals and open intervals are closed and open respectively. 
 \end{remark}
 
-\begin{lemma}
+
+\begin{lemma}\label{IntervalQuotientMapIntersectionCommute}
   Let $D_n:2^\N \to 2$ be a sequence of decidable subsets with $D_{n+1}\subseteq D_n$.
   For $p$ the quotient map $2^\N \to I$, we have that 
   $p(\bigcap_{n:\N} D_n) = p(\bigcap_{n:\N} D_n)$
@@ -285,79 +263,87 @@ we define inequality on $I$ as follows:
 \end{proof}
 
 
-\begin{lemma}
+\begin{lemma}\label{ImageDecidableClosedInterval}
   For $p:2^\N \to I$ the quotient map and $D\subseteq 2^\N$ decidable, we have $p(D)$ a finite union of closed intervals. 
 \end{lemma}
 \begin{proof}
-  We will show the above if there exists some $n:\N, u:2^n$ such that $D(x) \leftrightarrow x|_n = a$.
+  We will show the above if there exists some $n:\N, u:2^n$ such that $D(\alpha) \leftrightarrow \alpha|_n = u$.
   This is sufficient, as any decidable subset of $2^\N$ can be written as finite union of such decidable subsets. 
-  We claim that $p(D) = [p(a\cdot \overline 0) , p(a \cdot \overline 1)$. 
+  We claim that $p(D) = [p(u\cdot \overline 0) , p(u \cdot \overline 1)]$. 
 \item 
-  We will first show that $p(D) \subseteq [p(a\cdot \overline 0) , p(a \cdot \overline 1)$. 
-  Let $x\in D$. 
-  Then $x|_n = a$ and hence for $m\leq n$ we have 
+  We will first show that $p(D) \subseteq [p(u\cdot \overline 0) , p(u \cdot \overline 1)$. 
+  Suppose $D(\alpha)$. Then 
+  Then $\alpha|_n = u$ and hence 
+%  for $m\leq n$ we have 
+%  \begin{equation}
+%    cs(\alpha)_m = cs_m(u|_m) = cs(u\cdot \overline 0)_m= cs(u\cdot \overline 1)_m
+%  \end{equation}
+%  For $m>n$, we have that 
+%  \begin{align}
+%    cs(u\cdot \overline 1)_m =
+%    cs_n(u) +\sum_{i = n} ^{m-1} \frac{1}{2^{i+1}}
+%    \\
+%    cs(\alpha)_m =
+%    cs_n(u) +\sum_{i = n} ^{m-1} \frac{\alpha(i)}{2^{i+1}}
+%    \\
+%    cs(u\cdot \overline 0)_m = 
+%    cs_n(u) +\sum_{i = n} ^{m-1} \frac{0}{2^{i+1}}
+%  \end{align} 
+%  Hence for all $m:\N$, we have 
   \begin{equation}
-    cs(x)_m = cs_m(a|_m) = cs(a\cdot \overline 0)_m= cs(a\cdot \overline 1)_m
+    cs(u\cdot \overline 1)_m \geq 
+    cs(\alpha)_m \geq 
+    cs(u\cdot\overline 0)_m
   \end{equation}
-  For $m>n$, we have that 
-  \begin{align}
-    cs(a\cdot \overline 1)_m =
-    cs_n(a) +\sum_{i = n} ^{m-1} \frac{1}{2^{i+1}}
-    \\
-    cs(x)_m =
-    cs_n(a) +\sum_{i = n} ^{m-1} \frac{x(i)}{2^{i+1}}
-    \\
-    cs(a\cdot \overline 0)_m = 
-    cs_n(a) +\sum_{i = n} ^{m-1} \frac{0}{2^{i+1}}
-  \end{align} 
-  Hence for all $m:\N$, we have 
-  \begin{equation}
-    cs(a\cdot \overline 1)_m \geq 
-    cs(x)_m \geq 
-    cs(a\cdot\overline 0)_m
-  \end{equation}
- which implies that $p(a\cdot \overline 1) \geq_I p(x) \geq_I p(a\cdot\overline 0)$, as required. 
+ which implies that $p(u\cdot \overline 1) \geq_I p(\alpha) \geq_I p(u\cdot\overline 0)$, as required. 
 \item 
-  To show that $[p(a\cdot \overline 0) , p(a \cdot \overline 1)\subseteq p(D)$, 
+  To show that $[p(u\cdot \overline 0) , p(u \cdot \overline 1)]\subseteq p(D)$, 
   Suppose
-  $p(a\cdot \overline 0) \leq p(x) \leq p(a \cdot \overline 1)$. 
-  We will show that 
-  $$x|_n = a \vee x \sim_I a \cdot \overline 0 \vee x \sim_I a \cdot \overline 1.$$
+  $(u\cdot \overline 0) \leq_I \alpha \leq_I (u \cdot \overline 1)$. 
+  It is sufficient to show that 
+  $$(\alpha|_n = u )\vee (\alpha \sim_I u \cdot \overline 0 )\vee (\alpha \sim_I u \cdot \overline 1).$$
   As this is a disjunction of closed propositions, by \Cref{ClosedFiniteDisjunction} it's closed, and by 
   \Cref{rmkOpenClosedNegation}, we can instead show the double negation. 
   So suppose that none of the disjoints hold. 
-  As $x|_n \neq a$, there is some minimal $m$ with $x(m) \neq a(m)$. 
-  We assume that $x(m) = 1, a(m) = 0$, the other case goes similarly. 
+  As $\alpha|_n \neq u$, there is some minimal $m$ with $\alpha(m) \neq u(m)$. 
+  We assume that $\alpha(m) = 1, u(m) = 0$, the other case goes similarly. 
   Then for all $k:\N$, we have 
-  $cs(x)_k \geq cs(a \cdot \overline 1)|_k$. 
+  $cs(\alpha)_k \geq cs(u \cdot \overline 1)|_k$. 
   As also 
-  $p(a\cdot \overline 1)\geq p(x)$, we have 
-  $$cs(a \cdot \overline 1)|_k + \frac{1}{2^k} \geq cs(x)_k \geq cs(a\cdot \overline 1)_k,$$
+  $(u\cdot \overline 1)\geq_I \alpha$, we have 
+  $$cs(u \cdot \overline 1)|_k + \frac{1}{2^k} \geq cs(\alpha)_k \geq cs(u\cdot \overline 1)_k,$$
   From which it follows that $|cs(a\cdot\overline 1)_k - cs(x)_k|\leq \frac{1}{2^k}$. 
-  Hence $(a\cdot \overline 1)|_k \sim_k x|_k$ by \Cref{alternativeSimByCauchyDistance}. 
+  Hence $(u\cdot \overline 1)|_k \sim_k \alpha|_k$ by \Cref{alternativeSimByCauchyDistance}. 
   Hence $x\sim_I (a\cdot\overline 1)$, contradicting our assumption as required. 
 \end{proof}
-
+\begin{lemma}
+  A finite intersection of open intervals is a
+  a finite union of open intervals. 
+\end{lemma}
+\begin{proof}
+  It suffices to show that the intersection of two open intervals is    
+\end{proof}
+%
 \begin{lemma}
   Every open $U\subseteq I$ can be written as countable union of open intervals.
 \end{lemma} 
 \begin{proof}
-  TODO
-%  Let $U\subseteq I$ open, then $U^C\subseteq I$ is closed. 
-%  By \Cref{StoneClosedSubsets} and \Cref{CompactHausdorffClosed}, we have that 
-%  there is some sequence $D_n\subseteq 2^\N$ with $p^{-1}(U^C) = \bigcap_{n:\N} D_n$. 
-%  As the quotient map $p$ is surjective, we have that $U^C = p(p^{-1}(U^C))$. 
-%  By the above, it follows that $\neg U = \bigcap_{n:\N} p(D_n)$. 
-%  By \Cref{TODO}, it follows that 
-%  $\neg U$ is a countable intersection of finite unions of closed intervals. 
-%  Thus $\neg\neg U$ is a countable union of finite intersections of complements of closed intervals. 
-%  As complements of closed intervals are finite unions of open intervals (TODO), 
-%  and finite intersections of such things are still finite unions of open intervals, 
-%  it follows that $\neg\neg U$ is a countable union of open intervals. 
-%  By \Cref{rmkOpenClosedNegation}, $\neg \neg U = U$ and we're done. 
-%  \rednote{Lotta handwaving here, definitely not finished} 
+  Let $U\subseteq I$ open, then $\neg U$ is closed and $U = \neg \neg U$ by \Cref{rmkOpenClosedNegation}. 
+  By \Cref{StoneClosedSubsets}, \Cref{CompactHausdorffClosed} and \Cref{IntervalQuotientMapIntersectionCommute}, 
+  we have that there is some sequence $D_n\subseteq 2^\N$ with 
+  $\neg U = \bigcap_{n:\N} p(D_n)$. Thus $U = \neg \bigcap_{n:\N} p(D_n)$. 
+  By \Cref{ClosedMarkov}, it follows that $U = \bigcup_{n:\N} \neg p(D_n)$. 
 \end{proof}
-
+%
+%%  $\neg U$ is a countable intersection of finite unions of closed intervals. 
+%%  Thus $\neg\neg U$ is a countable union of finite intersections of complements of closed intervals. 
+%%  As complements of closed intervals are finite unions of open intervals (TODO), 
+%%  and finite intersections of such things are still finite unions of open intervals, 
+%%  it follows that $\neg\neg U$ is a countable union of open intervals. 
+%%  By \Cref{rmkOpenClosedNegation}, $\neg \neg U = U$ and we're done. 
+%%  \rednote{Lotta handwaving here, definitely not finished} 
+%\end{proof}
+%
 
 \begin{remark}
   It follows that the topology of $I$ is generated by open intervals, 

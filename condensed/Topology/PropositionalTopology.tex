@@ -91,6 +91,33 @@ Such a definition is universe-independent, and can be made internally.
   Then $\exists_{k:\N}\gamma(k)=0$ if and only if \Cref{eqnConjunctionOpen} holds.
 \end{proof}
 
+\rednote{Next lemma is new, Markov for closed/open propositions}
+\begin{lemma}\label{ClosedMarkov}
+  For $(P_n)_{n:\N}$ a sequence of closed propositions, we have 
+  $\neg \forall_{n:\N} P_n \leftrightarrow  \exists_{n:\N} \neg P_n$. 
+\end{lemma}
+\begin{proof}
+  It is always the case that $\exists_{n:\N}\neg P_n \to \neg \forall_{n:\N} P_n$. 
+  For the converse direction,
+  note that $\neg \exists_{n:\N} \neg P_n(x) \to \forall_{n:\N} \neg \neg P_n(x).$
+  By \Cref{rmkOpenClosedNegation}, $\neg \neg  P_n(x)\leftrightarrow P_n(x)$ for all $n:\N$. 
+  It follows that 
+  $\neg \forall_{n:\N} P_n(x)\to 
+  \neg \neg \exists_{n:\N} \neg P_n(x).$
+  As $\exists_{n:\N}\neg P_n(x)$ is a countable disjunction of open propositions, 
+  it is open by \Cref{OpenCountableDisjunction} and thus equivalent to 
+  $\neg \neg \exists_{n:\N} \neg P_n(x)$ by \Cref{rmkOpenClosedNegation}.
+  We conclude that $\neg \forall_{n:\N} P_n \to \exists_{n:\N} P_n$ as required. 
+\end{proof} 
+
+
+
+
+
+
+
+
+
 \begin{lemma}\label{OpenDependentSums}
   Open propositions are closed under dependent sums.
 \end{lemma}
