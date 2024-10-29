@@ -83,6 +83,23 @@ see \Cref{CountabilityDiscussion}}
   $$\emptyset = Sp(B/\{ \neg c_n| n \leq N\})  \simeq \bigcap_{n\leq N} C_n .$$
 \end{proof}
 
+
+\rednote{new}
+\begin{corollary}\label{ChausMapsPreserveIntersectionOfClosed}
+  Let $X,Y:\CHaus$ and $f:Y \to X$. 
+  Suppose $(G_n)_{n:\N}$ is a decreasing sequence of closed subsets of $Y$. 
+  Then $f(\bigcap_{n:\N} G_n) = \bigcap_{n:\N}(f(G_n))$. 
+\end{corollary}
+\begin{proof}
+  It is always the case that $f(\bigcap_{n:\N} G_n) \subseteq \bigcap_{n:\N} (f(G_n))$. 
+  For the converse direction, suppose that $x \in f(G_n)$ for all $n:\N$. 
+  Define $F: Y \to \Closed$ by $F(y) := \left(f(y) = x\right)$. 
+  $F$ defines a closed subset, furthermore, $F\cap G_n \neq \emptyset$ for all $n:\N$. 
+  Thus $\bigcap_{n:\N}(F\cap G_n) \neq \emptyset$ by \Cref{CHausFiniteIntersectionProperty}. 
+  By \Cref{InhabitedClosedSubSpaceClosedCHaus} and \Cref{rmkOpenClosedNegation}, there merely exists some 
+  $y$ in $\bigcap_{n:\N} (F\cap G_n)$. Thus $x\in f(\bigcap_{n:\N} G_n)$ as required. 
+\end{proof}
+
 \begin{lemma}\label{CHausSeperationOfClosedByOpens}
   Let $X:\CHaus$, and let $A,B:X\to \Closed$ be disjoint. 
   Then there exist $U,V:X\to \Open$ disjoint with $A\subseteq U, B\subseteq V$, 
