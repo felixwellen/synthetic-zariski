@@ -205,15 +205,44 @@ we define inequality on $I$ as follows:
   As the order in $\mathbb Q$ is decidable, $\leq, <$ are closed and open respectively. 
 \end{remark} 
 
+\begin{lemma}\label{IntervalOrderLeqOrGeq}
+  For any $x,y:I$, we have $x\leq y \vee y \leq x$. 
+\end{lemma}
+\begin{proof}
+  Note that $x\leq y \vee y \leq x$ is the disjunction of two closed propositions, hence by 
+  \Cref{ClosedFiniteDisjunction} and \Cref{rmkOpenClosedNegation} we can show it's double negation instead. 
+  By the above remark, the negation implies that $x>y$ and $y<x$. We will show this is a contradiction. 
+  Let $\alpha,\beta:2^\N$ correspond to $x,y$ and assume $n,m:\N$ with 
+  $cs(\alpha)_n < cs(\beta)_n-\frac{1}{2^n}$ and 
+  $cs(\beta)_m < cs(\alpha)_m-\frac{1}{2^m}$. 
+  WLOG assume $n<m$. In this case for $\gamma$ any of $\alpha,\beta$, we have
+  $$0\leq cs(\gamma)_m - cs(\gamma)_n = \sum_{i = n}^{m-1} \frac{\gamma(i)}{2^{i+1}}\leq \frac{1}{2^n}-\frac{1}{2^m}$$
+  While at the same time, we have 
+  \begin{align}
+    cs(\beta)_m - cs(\beta)_n &\leq cs(\alpha)_m -\frac{1}{2^m} - cs (\beta)_n \\
+                              & = (cs(\alpha)_m-cs(\alpha)_n)  +      (cs(\alpha)_n -cs(\beta)_n) - \frac{1}{2^m}\\
+                              & \leq (\frac{1}{2^n} - \frac{1}{2^m}) -\frac{1}{2^n}               - \frac{1}{2^m}\\
+                              &<0
+  \end{align}
+  giving a contradiction as required. 
+\end{proof}
 
-%
+\begin{remark}\label{rmkMapOutOfLeqGeq}
+  From \Cref{alternativeSimByCauchyDistance} we have $((x\leq y) \wedge (y \leq x )) \leftrightarrow (x = y)$. 
+  So in order to define a map $(x \leq y) \vee (y \leq x) \to P$, we need to define a map 
+  $f:x\leq y \to P$ and a map $g:y \leq x \to P$ such that $f|_{x = y} = g|_{x=y}$. 
+\end{remark}
+
+
+%\rednote{TODO}
+%For any $x,y:I$ we have 
 %\begin{itemize}
-%  \item As a consequence of \Cref{alternativeSimByCauchyDistance}, we have for any $x,y:I$ that 
-%    $x\leq y \wedge y \leq x \to x = y$. 
-%  \item TODO $x\leq y \wedge x \neq y \to x < y$. 
+%%  \item As a consequence of \Cref{alternativeSimByCauchyDistance}, we have for any $x,y:I$ that 
+%%    $x\leq y \wedge y \leq x \to x = y$. 
+%%  \item TODO $x\leq y \wedge x \neq y \to x < y$. 
 %  \item TODO $x\leq y \vee y \leq x$. 
 %\end{itemize}
-%
+
 
 
 \subsection{The topology of the interval}
@@ -231,6 +260,7 @@ we define inequality on $I$ as follows:
   \begin{align}
     (-\infty,a) &:= \Sigma_{x:I} (x < a)   \\
     (a,\infty) &:= \Sigma_{x:I} (a < x)  \\
+    (-\infty,\infty) &:= I  \\
     (a,b) &:= \Sigma_{x:I} (a < x \wedge x < b),
   \end{align}
   We call subsets of $I$ of these forms open intervals. 
@@ -312,16 +342,64 @@ we define inequality on $I$ as follows:
   As also 
   $(u\cdot \overline 1)\geq_I \alpha$, we have 
   $$cs(u \cdot \overline 1)|_k + \frac{1}{2^k} \geq cs(\alpha)_k \geq cs(u\cdot \overline 1)_k,$$
-  From which it follows that $|cs(a\cdot\overline 1)_k - cs(x)_k|\leq \frac{1}{2^k}$. 
+  From which it follows that $|cs(u\cdot\overline 1)_k - cs(\alpha)_k|\leq \frac{1}{2^k}$. 
   Hence $(u\cdot \overline 1)|_k \sim_k \alpha|_k$ by \Cref{alternativeSimByCauchyDistance}. 
   Hence $x\sim_I (a\cdot\overline 1)$, contradicting our assumption as required. 
 \end{proof}
-\begin{lemma}
-  A finite intersection of open intervals is a
+
+\begin{lemma}\label{complementClosedIntervalOpenIntervals}
+  The complement of a finite union of closed intervals is 
   a finite union of open intervals. 
 \end{lemma}
 \begin{proof}
-  It suffices to show that the intersection of two open intervals is    
+  We'll use induction on the amount of closed intervals. 
+  The empty union of closed intervals is empty, and hence it's complement is $I$, which is open. 
+  Let $(C_i)_{i<k}$ be a finite set of closed intervals with $\neg (\bigcup_{i<k}C_i)$ 
+  a finite union of open intervals $\bigcup_{j<l} O_i$. 
+  Suppose $C_{k}$ is closed. We need to show that 
+  $\neg (\bigcup_{i\leq k} C_i)$ is also a finite union of open intervals. 
+  First note that in general, 
+  $(\neg (A \vee B ))\leftrightarrow (\neg A \wedge \neg B)$
+  hence 
+  $$
+  \neg (\bigcup_{i\leq k} C_i)
+  = 
+  \neg ((\bigcup_{i<k} C_i) \cup C_k) 
+  =
+  (\neg (\bigcup_{i<k} C_i) )\cap (\neg C_k) 
+  $$
+  And by the induction hypothesis and distributivity, this equals 
+  $$
+  (\bigcup_{j<l} O_i) ) \cap (\neg C_k) 
+  =
+  \bigcup_{j<l} (O_i \cap (\neg C_k) )
+  $$
+  So we need to show that the intersection of an open interval and the negation of a closed interval is a 
+  finite union of open intervals. We assume or open intervals are of the form $(a,b)$ for $a,b:I$. 
+  The other cases are very similar. 
+  So let $a,b,c,d:I$ and consider 
+  $U = (a,b) \cap (\neg [c,d])$. 
+  Then 
+  \begin{align} 
+    U(x) &= \Sigma_{x:I}  
+  (a < x \wedge x < b) \wedge ( x < c \vee d < x)\\
+  &= \Sigma_{x:I}
+  (a < x \wedge x < b \wedge x < c ) \vee ( d < x \vee a<x \wedge x < b)\\
+  &= 
+  \Sigma_{x:I}
+  (a < x \wedge x < b \wedge x < c ) 
+  \cup 
+  \Sigma_{x:I}
+  ( d < x \vee a<x \wedge x < b)
+  \end{align} 
+  We will show that 
+  $U' = \Sigma_{x:I}(a < x \wedge x < b \wedge x < c ) $ is an open interval. 
+  By a similar argument, the other part will be as well, meaning that $U$ is the union of two open intervals. 
+  Consider that $b\leq c \vee c \leq b$. 
+  If $b \leq c$, $(x<b \wedge x< c) \leftrightarrow x<b$ and $U' = (a,b)$
+  If $c \leq b$, $(x<b \wedge x< c) \leftrightarrow x<c$ and $U' = (a,c)$
+  If $b=c$, these open intervals agree, hence from \Cref{rmkMapOutOfLeqGeq} we can conclude that $U'$ is an open interval. 
+  We conclude that $U$ is the union of two open intervals as required. 
 \end{proof}
 %
 \begin{lemma}
@@ -330,9 +408,12 @@ we define inequality on $I$ as follows:
 \begin{proof}
   Let $U\subseteq I$ open, then $\neg U$ is closed and $U = \neg \neg U$ by \Cref{rmkOpenClosedNegation}. 
   By \Cref{StoneClosedSubsets}, \Cref{CompactHausdorffClosed} and \Cref{IntervalQuotientMapIntersectionCommute}, 
-  we have that there is some sequence $D_n\subseteq 2^\N$ with 
-  $\neg U = \bigcap_{n:\N} p(D_n)$. Thus $U = \neg \bigcap_{n:\N} p(D_n)$. 
+  we have that there is some sequence $D_n\subseteq 2^\N$ with $\neg U = \bigcap_{n:\N} p(D_n)$. 
+  Thus $U = \neg \bigcap_{n:\N} p(D_n)$. 
   By \Cref{ClosedMarkov}, it follows that $U = \bigcup_{n:\N} \neg p(D_n)$. 
+  By \Cref{ImageDecidableClosedInterval}, each $p(D_n)$ is a finite union of closed intervals, 
+  and by \Cref{complementClosedIntervalOpenIntervals} it follows that each $\neg p(D_n)$ is a finite union of open intervals. 
+  We conclude that $U$ is a countable union of open intervals as required. 
 \end{proof}
 %
 %%  $\neg U$ is a countable intersection of finite unions of closed intervals. 
