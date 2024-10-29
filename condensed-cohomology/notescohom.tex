@@ -1,0 +1,315 @@
+%alg\documentclass[12pt,a4paper]{amsart}
+\documentclass[10pt,a4paper]{article}
+%\ifx\pdfpageheight\undefined\PassOptionsToPackage{dvips}{graphicx}\else%
+%\PassOptionsToPackage{pdftex}{graphicx}
+%\PassOptionsToPackage{pdftex}{color}
+%\fi
+
+%\usepackage{diagrams}
+
+\usepackage{color}
+\newcommand\coloremph[2][red]{\textcolor{#1}{\emph{#2}}}
+
+\newcommand\greenemph[2][green]{\textcolor{#1}{\emph{#2}}}
+\newcommand{\EMP}[1]{\emph{\textcolor{red}{#1}}}
+
+%\usepackage[all]{xy}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{latexsym}
+\usepackage{amssymb,amstext,amsmath,amsthm}
+\usepackage{epsf}
+\usepackage{epsfig}
+% \usepackage{isolatin1}
+\usepackage{a4wide}
+\usepackage{verbatim}
+\usepackage{proof}
+\usepackage{latexsym}
+%\usepackage{mytheorems}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newcommand{\ras}{\twoheadrightarrow}
+
+\usepackage{float}
+\floatstyle{boxed}
+\restylefloat{figure}
+
+
+%%%%%%%%%
+\def\oge{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\langle\!\langle\,$}}
+\def\feg{\leavevmode\raise
+.3ex\hbox{$\scriptscriptstyle\,\rangle\!\rangle$}}
+
+%%%%%%%%%
+
+
+\newcommand\myfrac[2]{
+ \begin{array}{c}
+ #1 \\
+ \hline \hline 
+ #2
+\end{array}}
+
+
+\newcommand{\nats}{\mathbb{N}}
+
+\newcommand{\Fin}[1]{T(#1)}
+
+\newcommand{\ODisc}{\mathsf{ODisc}}
+\newcommand{\Stone}{\mathsf{Stone}}
+\newcommand{\CHaus}{\mathsf{CHaus}}
+\newcommand{\Open}{\mathsf{Open}}
+\newcommand{\Closed}{\mathsf{Closed}}
+\newcommand{\AbG}{\mathsf{Ab}}
+\newcommand{\OAbG}{\mathsf{Ab_{ODisc}}}
+\newcommand{\refl}{\mathsf{refl}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Noo}{\nats_{\infty}}
+\newcommand\norm[1]{\left\lVert #1 \right\rVert}
+\newcommand\cHH{\check{H}}%\newcommand\cHH{\check{\mathrm{H}}}
+\newcommand\HH{\mathrm{H}}
+
+
+\begin{document}
+
+\title{Cohomology of Stone spaces}
+
+\author{}
+\date{}
+\maketitle
+
+%\rightfooter{}
+
+\section*{Introduction}
+
+We define $\ODisc$ to be the type of sets that are sequential colimit of finite sets.
+
+The goal of this note is to show a main Lemma for showing that $H^1(S,M) = 0$ if
+$S:\Stone$ and $M:S\ra \OAbG$, where $\OAbG$ is the type of abelian groups in $\ODisc$.
+
+ By finite set, we mean a finite set with a given strict linear ordering.
+
+\section{Lemma about Stone spaces}
+
+Using the characterisation of Stone spaces as compact Hausdorff spaces that are totally disconnected one shows
+that $\Sigma_SF:\Stone$ if $S:\Stone$ and $F:S\ra\Stone$, i.e. Stone spaces are closed by sum types.
+
+From this follows the following result.
+
+\begin{proposition}\label{sumStone}
+  If we write $S = \varprojlim S_n$, with $\pi_n^m : S_m\ra S_n$ for $n\leqslant m$
+  and $\pi_n:S\ra S_n$, with $S_n$ finite,
+  then we can find $F_n(u),~u:S_n$ family of finite sets with $\pi_n^m:F_m(u)\ra F_n(\pi_n^m(u))$
+  and $\pi_n:F(x)\ra F_n(\pi_n(x))$,
+  such that $F(x) = \varprojlim F_n(\pi_n(x))$ for $x:S$.
+\end{proposition}
+
+\begin{corollary}\label{corStone}
+  We can find an inverse system $G_n(x),~x:S$ of finite sets, with $\pi_n^m(x) : G_m(x)\ra G_n(x)$
+  with $F(x) = \varprojlim G_n(x)$ for $x:S$. If we have $\Pi_S\norm{F}$ we have $\Pi_SG_n$ for all $n$.
+\end{corollary}
+
+\begin{proof}
+  We take $G_n(x) = F_n(\pi_n(x))$.
+\end{proof}
+
+\section{\v{C}ech Cohomology}
+
+Let $X$ be a type and $F_x$ a family of type over $X$ and $M:X\rightarrow \AbG$. We consider the cochain
+complex
+$$
+C(X,F,M) ~=~ \Pi_XM^F\ra \Pi_XM^{F\times F}\ra \Pi_XM^{F\times F\times F}\ra\dots
+$$
+with $dv_x(a_0,\dots,a_n) = \Sigma (-1)^iv_x(a_0,\dots,\hat{a_i},\dots,a_n)$.
+We define $\cHH^n(X,F,M)$ to be the nth cohomology group of this cochain complex. The two following Lemmas
+have a direct proof.
+
+\begin{lemma}\label{cech1}
+  If we have an element in $\Pi_XF$ then $\cHH^n(X,F,M) = 0$ for $n>0$.
+\end{lemma}
+
+\begin{lemma}\label{cech2}
+  We have $\cHH^n(X,F,M^F) = 0$ for $n>0$.
+\end{lemma}
+
+\section{Product and direct sequential limit}
+
+Let us define $j^n:\Pi_SE_n\ra \Pi_SE$ by $j^n~u~x = i^n~(u~x)$ and
+$j^n_m :\Pi_SE_n\ra \Pi_SE_m$ by $j^n_m~u~x = i^n_m~(u~x)$ for $m\geqslant n$.
+
+\begin{proposition}
+   $\Pi_SE = \varinjlim \Pi_S(E_n)$. 
+\end{proposition}
+
+\begin{proof}
+The image $I_n~x$ of $i_n~x$ is an open subset of $E~x$. If $s:\Pi_SE$, we also have
+$$
+\forall_{x:S}\exists_n I_n~x~(s~x)
+$$
+and hence, since $S$ is Stone, we have $n$ such that $\forall_{x:S} I_n~x~(s~x)$.
+
+By local choice, there is a surjective map $p:S'\ras S$ with $S'$ Stone and $t:\Pi_{y:S'}E_n~(p~y)$
+such that $s~(p~y) = i^n~(p~y)~(t~y)$. We then have
+$$\forall_{y_0~y_1}p~y_0=p~y_1\ra \exists_{m\geqslant n} i^n_m~(p~y_0)~(t~y_0) = i^n_m~(p~y_1)~(t~y_1)$$
+and so we can find $m\geqslant n$ such that
+$$\forall_{y_0~y_1}p~y_0=p~y_1\ra i^n_m~(p~y_0)~(t~y_0) = i^n_m~(p~y_1)~(t~y_1)$$
+We can then define $u:\Pi_{x:S}E_m~x$ by $u~x = i^n_m~x~(t~y)$ for $p~y = x$ and we have $s~x = i^m~(u~x)$
+for all $x:S$.
+
+Let us define $j^n:\Pi_SE_n\ra \Pi_SE$ by $j^n~u~x = i^n~(u~x)$ and
+$j^n_m :\Pi_SE_n\ra \Pi_SE_m$ by $j^n_m~u~x = i^n_m~(u~x)$ for $m\geqslant n$.
+We have just proved that for all
+$s:\Pi_SE$ there exists $m$ and $u:\Pi_SE_m$ such that $j^m~u = s$.
+Furthermore, if we have $j^n~u_0 = j^n~u_1$ then we have, for all $x:S$
+some $m\geqslant n$ such that $i^n_m~(u_0~x) = i^n_m~(u_1~x)$. Since this equality is an open proposition
+there exists $m\geqslant n$ such that  $i^n_m~(u_0~x) = i^n_m~(u_1~x)$ for all $x:S$ that is
+$j^n_m~u_0 = j^n_m~u_1$.
+\end{proof}
+
+\begin{corollary}\label{cor1}
+  If $S:\Stone$ with $S = \varprojlim S_n$ and $S_n$ finite, and $E:\ODisc$
+  then  $E^S = \varinjlim E^{S_n}$.
+\end{corollary}
+
+\begin{lemma}\label{exlim}
+  If we have $C = \varinjlim C_n$, an inverse limit of cochain complex
+  and each $C_n$ is exact then $C$ is exact.
+  %% If we have 3 direct systems $A_n,i^n_m$ and $B_n,j^n_m$ and $C_n,k^n_m$ of abelian groups
+  %% of direct limits $A,i^n$ and $B,j^n$ and $C,k^n$ and $u:A\ra B$ and $v:B\ra C$
+  %% and $u_n:A_n\ra B_n$ and $v_n:B_n\ra C_n$ with $u_m\circ i^n_m = j^n_m\circ u_n$
+  %% and  $v_m\circ j^n_m = k^n_m\circ v_n$, and each $A_n\ra B_n\ra C_n$ is exact
+  %% then $A\ra B\ra C$ is exact.
+\end{lemma}
+
+Let $\OAbG$ be the type of abelian group in $\ODisc$.
+
+\begin{theorem}\label{main}
+If $S:\Stone$ and $F:S\ra\Stone$ such that $\Pi_S\norm{F}$
+and $M:S\ra\ODisc$ then the complex $C(S,F,M)$ is exact.
+\end{theorem}
+
+\begin{proof}
+ We write $S = \varprojlim S_n$ and $\pi_n:S \ra S_n$.  
+ Using Corollary \ref{corStone}, we can write $F(x) = \varprojlim G_n(x)$ with $G_n(x)$ finite
+ set and $\Pi_SG_n$. Using Corollary \ref{cor1} and Lemma \ref{exlim}, it is enough
+ to show that each $C(S,G_n,M)$ is exact.
+ We have an element in $\Pi_SG_n$ and the exactness of the sequence results from Lemma \ref{cech1}.
+\end{proof}
+
+\section{Application to cohomology over a Stone space}
+
+\begin{theorem}\label{cohom1}
+  $H^1(S,M) = 0$ if $S:\Stone$ and $M:S\ra\OAbG$.
+\end{theorem}
+
+\begin{proof}
+  Let $\chi$ be an element of $\Pi_SK(M,n)$. We show that $\chi$ is merely $*$.
+
+  By local choice, we have
+  a surjective map $\Sigma_SF\ras S$ with $F:S\ra\Stone$ such that we merely have
+  $\Pi_{x:S}(T_x\ra \chi(x) = *)$.
+
+%  Let $\chi$ be an element of $\Pi_SK(M,1)$, we want to show $\norm{\chi = *}$. We have $\Pi_{x:S}\norm{\chi(x) = *}$.
+%By local choice, we have $p:S'\ras S$ such that $\norm{\chi\circ p = *}$.
+
+Since we want to prove a proposition, we can assume that we have $\alpha$ in   $\Pi_{x:S}(T_x\ra \chi(x) = *)$.
+For $y_0,y_1:F_x$ we have $\alpha_x(y_0)$ and $\alpha_x(y_1)$ in $\chi(x)=*$.
+Hence we have
+$$v_x(y_0,y_1) = \alpha(y_0)^{-1}\cdot \alpha(y_1):* = *$$
+and $*=*$ is $M_x$.
+The map $v:\Pi_{S}M^{F\times F}$ is a cocycle, and it 
+follows from Theorem \ref{main} that it is a coboundary. 
+Hence, we can find $u:\Pi_{S}M^{F}$ such that $v_x(y_0,y_1) = u_x(y_1)-u_x(y_0)$.
+From this, we show $\chi = *$: we define $\beta(x) = \alpha_x(y)\cdot u_x(y)$ for $y$ in $F_x$ and we
+have $\beta(x):\chi(x) = *$ for $x:S$.
+\end{proof}
+
+Another way to formulate this is that the pointed groupoid $\Pi_SK(M,1)$ is connected, and yet another formulation
+is that the canonical map $K(\Pi_SM,1)\ra\Pi_SK(M,1)$ is an equivalence.
+
+\begin{theorem}\label{cohom2}
+  For $n>0$, the canonical map $K(\Pi_SM,n)\ra\Pi_SK(M,n)$ is an equivalence.
+  In particular we have $H^n(S,M) = 0$ for $n>0$
+\end{theorem}
+
+\begin{proof}
+  We have proved this for $n=1$ and we show this by induction, assuming $n>1$ and that this holds for $n-1$.
+
+  By induction, the canonical map  $K(\Pi_SM,n)\ra\Pi_SK(M,n)$ is an embedding, and it is enough to show
+  that $\Pi_SK(M,n)$ is connected.
+
+  Let $\chi$ be an element of $\Pi_SK(M,n)$. We show that $\chi$ is merely $*$.
+
+  By local choice, we have
+  a surjective map $\Sigma_SF\ras S$ with $F:S\ra\Stone$ such that we merely have
+  $\Pi_{x:S}(T_x\ra \chi(x) = *)$. This means that the image of $\chi$
+  under the diagonal map
+  $$
+  \Pi_SK(M,n)\ra\Pi_SK(M,n)^F
+  $$
+  merely is $*$. Since $K(M_x^{F_x},n)\ra K(M_x,n)^{F_x}$ is an embedding by induction,
+  we get that the image of $\chi$ by the map
+  $$
+  \Pi_SK(M,n)\ra\Pi_SK(M^F,n)
+  $$
+  merely is $*$.
+
+  If we now consider the exact sequence in $\OAbG$
+  $$0\ra M_x\ra M_x^{T_x}\ra L_x\ra 0$$
+  we have the associated fibration sequence
+  $$\Pi_SK(L,n-1)\ra \Pi_SK(M,n)\ra \Pi_SK(M^F,n)$$
+  and we can conclude since, by induction, $\Pi_SK(L,n-1)$ is connected.
+\end{proof}
+
+\section{Cohomology of a compact Hausdorff space}
+
+Let $X$ be in $\CHaus$. We can then find $F:X\rightarrow\Stone$ such that $\Sigma_XF:\Stone$
+and the projection map $\Sigma_XF\ras X$ is surjective. The goal of this section is to define
+a natural isomorphism $\cHH^n(X,F,M) \equiv H^n(X,M)$ if $M:X\ra \OAbG$. This is direct for $n = 0$, since both
+groups are $\Pi_XM$. 
+
+The general case follows by induction from the two next Lemmas.
+We introduce the short exact sequence $0\ra M_x\ra M_x^{F_x}\ra L_x\ra 0$.
+
+\begin{lemma}
+ $H^n(X,M^F) = 0$ for $n>0$ and we have an exact sequence $H^{n-1}(X,M^F)\ra H^{n-1}(X,L)\ra H^n(X,M)\ra 0$ for $n>0$.
+\end{lemma}
+
+\begin{proof}
+  The first claim follows from the fact that $\Pi_XK(M^F,n) = \Pi_XK(M,n)^F = \Pi_{\Sigma_XF}K(M\circ\pi_1,n)$
+  is $(n-1)$ connected using Theorem \ref{cohom2} and the fact that $\Sigma_XF:\Stone$. The second claim
+  follows then from the long exact sequence associated to the short exact sequence
+  $0\ra M_x\ra M_x^{F_x}\ra L_x\ra 0$.
+\end{proof}
+
+
+\begin{lemma}
+  $\cHH^n(X,F,M^F) = 0$ for $n>0$ and we have an exact sequence
+  $\cHH^{n-1}(X,F,M^F)\ra\cHH^{n-1}(X,F,L)\ra \cHH^n(X,F,M)\ra 0$ for $n>0$.
+\end{lemma}
+
+\begin{proof}
+  The first claim is Lemma \ref{cech2}. The second claim follows then from the long
+  exact sequence associated to the short sequence $C(X,F,M) \ra C(X,F,M^F)\ra C(X,F,L)$ which
+  is exact using Theorem \ref{cohom1}.
+\end{proof}
+
+
+
+
+\end{document}     
+                                                                                  
+
+
+
+
+
+
+
+
+
+
+
