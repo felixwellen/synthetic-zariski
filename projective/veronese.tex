@@ -1,0 +1,34 @@
+For given $d>0$, we introduce the Veronese map $V: \bP^n\rightarrow \bP^N$ with $N = \binom{n+d}{n}-1$.
+We write an element of $\bP^N$ as a sequence of elements $z_{i_0,\dots,i_n}$ in $R$, not all $0$,
+indexed by $i_0,\dots,i_n$ such that $d = i_0+\dots+i_n$
+It is defined by $V(x0:\dots:x_n)$ to be the elements $z_{i_0,\dots,i_n} = x_0^{i_0}\dots x_n^{i_n}$. It is well-defined
+since we have $x_i^d\neq 0$ for some $i$.
+
+\begin{proposition}\label{veronese}
+  $V$ is a bijection between $\bP^n$ and the closed subset $V(n,d)$ of $\bP^N$ determined by the quadratic
+  equations $z_Iz_J = z_Kz_L$ for $I+J=K+L$.
+\end{proposition}
+
+\begin{proof}
+  We have $\bP^N$ covered by the open $U_0,\dots,U_n$ with $U_l$ set of $z_I$ with $z_I\neq 0$
+  for some $I = i_0,\dots,i_n$ with $i_l>0$. On $U_l$ we define the map $g_l(z_I) = (x_0:\dots:x_n)$
+  with $x_l = z_I$ and $x_k = z_{J_k}$ with $J_k = j_0,\dots,j_n$ and $j_l = i_l-1$ and $j_k = i_k+1$
+  and $j_p = i_p$ for $p\neq l,k$. Using the quadratic relations, we see that the map $g_l$
+  are compatible and define an inverse of the Veronese map.
+\end{proof}
+
+\begin{corollary}\label{affine}
+  Let $q(x_0,\dots,x_n)$ be a homogeneous polynomial of degree $d$ (which might be $0$). Then $S_q$ the subset
+  of $\bP^n$ of $(x_0:\dots:x_n)$ such that $q(x_0,\dots,x_n)\neq 0$
+  defines an {\em affine} subset of $\bP^n$.
+\end{corollary}
+
+\begin{proof}
+  To simplify the notation, we present the argument in the case $n=1$ and $d=2$, but the same can be done
+  in general. We have $q = ax_0^2 + bx_0x_1+cx_1^2$. The Veronese embedding is $(x_0:x_1)\mapsto (x_0^2:x_0x_1:x_2^2)$
+  and the subset $q\neq 0$ of $\bP^1$ is in bijection with the subset $ay_0+by_1+cy_2\neq 0, y_0y_2 = y_1^2$ of $\bP^2$.
+  This subset is itself in bijection with the {\em affine} subset $ay_0+by_1+cy_2 = 1, ~y_0y_2=y_1^2$ of $R^3$.
+\end{proof}
+
+Note that a further corollary of this result is that the ring $R^{S_q}$ which is $R[X_0,\dpts,X_n][1/q]_0$ is
+a {\em finitely presented} $R$-algebra.
