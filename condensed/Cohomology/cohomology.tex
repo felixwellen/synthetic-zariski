@@ -1,15 +1,188 @@
-In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\I,\Z)=0$. We work on the first cohomology group with coefficient in $\Z$ as it is sufficient for the proof of Brouwer theorem, but the results could be extended to $H^n(X,A)$ for $A$ a family of overtly discrete abelian groups indexed by $X$.
+In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\mathbb{I},\Z)=0$. We work on the first cohomology group with coefficient in $\Z$ as it is sufficient for the proof of Brouwer theorem, but the results could be extended to $H^n(X,A)$ for $A$ any family of overtly discrete abelian groups indexed by $X$.
 
-\subsection{Preliminary}
+\subsection{Needed results}
 
-\begin{definition}
-Given a map $T\to S$ and $M:S\to \mathrm{Ab}$, then we define $C(S,T)$ as the chain complex:
-\[\prod_{x:S}\Z^{T_x} \to \prod_{x:S}\Z^{T_x^2}\to \prod_{x:S}\Z^{T_x^3}\]
-with TODO
-\end{definition}
+\rednote{Should probably be moved elsewhere}
 
-\subsection{Cohomology of Stone spaces}
+\begin{lemma}\label{finite-approximation-surjection-stone}
+Given $S:\Stone$ and $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$, there exists a sequence of finite types $(S_k)_{k:\N}$
+%\begin{equation}
+%\begin{tikzcd}
+%S_0 & S_1 \ar[l,"p_0"]& S_2\ar[l,"p_1"] & \cdots\ar[l]\\
+%\end{tikzcd}
+%\end{equation}
+such that: 
+\[\mathrm{lim}_kS_k = S\] 
+and for each $k:\N$ we have a family of finite types $T_k(x)$ for $x:S_k$ such that $\prod_{x:S_k}\propTrunc{T_k(x)}$ with maps:
+\[T_{k+1}(x) \to T_k(p_k(x))\]
+such that:
+\[\mathrm{lim}_k(\sum_{x:S_k}T_k(x)) = \sum_{x:S}T(x)\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{scott-continuity}
+Consider $(S_k)_{k:\N}$ a sequence of finite types, then the canonical map:
+\[\mathrm{colim}_k(\Z^{S_k}) \to \Z^{\mathrm{lim}_kS_k}\] 
+is an equivalence
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
 
 \subsection{\v{C}ech cohomology}
 
+\begin{definition}
+Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define $\check{C}(S,T,A)$ as the chain complex:
+\begin{equation}
+\begin{tikzcd}
+     \prod_{x:S}A_x^{T_x} \ar[r,"d_0"] & \prod_{x:S}A_x^{T_x^2}\ar[r,"d_1"] &  \prod_{x:S}A_x^{T_x^3}\\
+\end{tikzcd}
+\end{equation}
+with the usual boundary maps:
+\[d_0(\alpha)_x(u,v) = \alpha_x(v)-\alpha_x(u)\]
+\[d_1(\beta)_x(u,v,w) = \beta_x(v,w) - \beta_x(u,w) + \beta_x(u,w)\]
+\end{definition}
+
+\begin{definition}
+Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define its \v{C}ech cohomology groups by:
+\[\check{H}^0(S,T,A) = \mathrm{ker}(d_0)\]
+\[\check{H}^1(S,T,A) = \mathrm{ker}(d_1)/\mathrm{im}(d_0)\]
+\end{definition}
+
+This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{H}^1(S,T,A) = 0$. Now we give three very general lemmas about \v{C}ech complexes.
+
+\begin{lemma}\label{section-exact-cech-complex}
+Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$ such that $\prod_{x:S}T_x$, then we have that $\check{C}(S,T,A)$ is exact.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{canonical-exact-cech-complex}
+Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we have that $\check{C}(S,T,\lambda x.A_x^{T_x})$ is exact.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{exact-cech-complex-vanishing-cohomology}
+Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, assume that $\check{C}(S,T,A)$ is exact. Then given:
+\[\alpha:\prod_{x:S}BA_x\]
+with
+\[\beta: \prod_{x:S} (\alpha(x) = *)^{T_x}\]
+we can conclude that:
+\[\alpha = *\]
+\end{lemma}
+
+\begin{proof}
+We define:
+\[g : \prod_{x:S} A_x^{T_x^2}\]
+\[g_x(u,v) = \beta_x(u)^{-1}\cdot\beta_x(v)\] 
+It is a cocycle in the \v{C}ech complex, so that by exactness there is $f:\prod_{x:S}A_x^{T_x}$ such that for all $x:S$ and $u,v:T_x$ we have that:
+\[g_x(u,v)=f_x(v)\cdot f_x(u)^{-1}\]
+Then we define:
+\[\beta' : \prod_{x:S}(\alpha(x)=*)^{T_x}\]
+\[\beta'_x(u) = \beta_x(u)\cdot f_x(u)\]
+so that for all $x:S$ and $u,v:T(x)$ we have that:
+\[\beta'_x(v)^{-1}\cdot\beta'_x(u) = f_x(v)^{-1}\cdot\alpha_x(v)^{-1}\cdot\alpha_x(u)\cdot f_x(u) = \mathrm{refl}\]
+so that:
+\[\beta'_x(u)=\beta'_x(v)\]
+and this means that $\beta'$ factors through $S$, giving a proof of $\alpha = *$.
+\end{proof}
+
+
+\subsection{Cohomology of Stone spaces}
+
+\begin{lemma}\label{cech-complex-vanishing-stone}
+Given $S:\Stone$ with $T:S\to\Stone$, if $\prod_{x:S}\propTrunc{T_x}$ then we have that $\check{C}(S,T,\Z)$ is exact.
+\end{lemma}
+
+\begin{proof}
+We apply \cref{finite-approximation-surjection-stone} to get $S_k$ and $T_k$ finite. Then by \cref{scott-continuity} we have that:
+\[\mathrm{colim}_k \check{C}(S)k,T_k,\Z) = \check{C}(S,T,\Z)\]
+and each of the $\check{C}(S_k,T_k,\Z)$ is exact by \cref{section-exact-cech-complex} so we can conclude a sequential colimit of exact sequence is exact.
+\end{proof}
+
+\begin{lemma}\label{eilenberg-stone-vanish}
+Given $S:\Stone$, we have that $H^1(S,\Z) = 0$. 
+\end{lemma}
+
+\begin{proof}
+Assume given a map $\alpha:S\to B\Z$. We use local choice to get $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T_x}$ and:
+\[\beta:\prod_{x:S}(\alpha(x)=*)^{T_x}\]
+and then apply \cref{exact-cech-complex-vanishing-cohomology} and \cref{cech-complex-vanishing-stone} to conclude.
+\end{proof}
+
+\begin{corollary}\label{stone-commute-delooping}
+For any $S:\Stone$ the canonical map:
+\[B(\Z^S) \to B\Z^S\]
+is an equivalence.
+\end{corollary}
+
+
+\subsection{\v{C}ech cohomology of compact Hausdorff spaces}
+
+\begin{definition}
+A \v{C}ech cover consists of $X:\CHaus$ and $S:X\to\Stone$ such that $\prod_{x:X}\propTrunc{S_x}$ and $\sum_{x:X}S_x:\Stone$.
+\end{definition}
+
+By definition any compact Hausdorff type has a \v{C}ech cover.
+
+\begin{lemma}\label{cech-eilenberg-0-agree}
+Given a \v{C}ech cover $(X,S)$, we have that:
+\[H^0(X,\Z) = \check{H}^0(X,S,\Z)\]
+\end{lemma}
+
+\begin{proof}
+By definition an element in $\check{H}^0(X,S,\Z)$ is a map:
+\[f:\sum_{x:X}S_x\to \Z\]
+such that for all $u,v:S_x$ we have $f(u)=f(v)$, which is equivalent to a map:
+\[\sum_{x:X}\propTrunc{S_x}\to \Z\]
+since the $S_x$ are merely inhabited and $\Z$ is a set.
+\end{proof}
+
+\begin{lemma}\label{eilenberg-exact}
+Given a \v{C}ech cover $(X,S)$ we have an exact sequence:
+\[H^0(X,\lambda x.\Z^{S(x)}) \to H^0(X,\lambda x.\Z^{S(x)}/\Z) \to H^1(X,\Z)\to 0\]
+\end{lemma}
+
+\begin{proof}
+We use the long exact cohomology sequence associated to:
+\[0 \to \Z \to \Z^{S_x} \to \Z^{S_x}/\Z\to 0\]
+so that we just need $H^1(X,\lambda x.\Z^{S_x}) = 0$ to conclude. But by \cref{stone-commute-delooping} we have that:
+\[H^1(X,\lambda x.\Z^{S_x}) = H^1(\sum_{x:X}S_x,\Z)\]
+which vanishes by \cref{eilenberg-stone-vanish}.
+\end{proof}
+
+\begin{lemma}\label{cech-exact}
+Given a \v{C}ech cover $(X,S)$ we have an exact sequence:
+\[\check{H}^0(X,\lambda x.\Z^{S(x)}) \to \check{H}^0(X,\lambda x.\Z^{S_x}/\Z) \to \check{H}^1(X,\Z)\to 0\]
+\end{lemma}
+
+\begin{proof}
+By \cref{eilenberg-stone-vanish} we have an exact sequence of complexes:
+\[0 \to \check{C}(X,S,\Z) \to \check{C}(X,S,\lambda x.\Z^{S_x}) \to \check{C}(X,S,\lambda x.\Z^{S_x}/\Z)\]
+But since $\check{H}^1(X,\lambda x.\Z^{S(x)}) = 0$ by \cref{canonical-exact-cech-complex}, we conclude using the associated long exact sequence.
+\end{proof}
+
+\begin{theorem}
+Given a \v{C}ech cover $(X,S)$, we have that:
+\[H^0(X,\Z) = \check{H}^1(X,S,\Z)\]
+\end{theorem}
+
+\begin{proof}
+We apply \cref{cech-eilenberg-0-agree}, \cref{eilenberg-exact} and \cref{cech-exact}.
+\end{proof}
+
+
 \subsection{Cohomology of the interval}
+
+TODO
+
