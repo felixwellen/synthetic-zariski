@@ -57,11 +57,18 @@ Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define its \v{C}
 This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{H}^1(S,T,A) = 0$. Now we give three very general lemmas about \v{C}ech complexes.
 
 \begin{lemma}\label{section-exact-cech-complex}
-Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$ such that $\prod_{x:S}T_x$, then we have that $\check{C}(S,T,A)$ is exact.
+Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$ with $t:\prod_{x:S}T_x$, then we have that $\check{C}(S,T,A)$ is exact.
 \end{lemma}
 
 \begin{proof}
-TODO
+Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^2}$ such that for all $x:S$ and $u,v,w:T_x$ we have that:
+\[\beta_x(u,v)+\beta_x(v,w) = \beta_x(u,w)\]
+Define:
+\[\alpha:\prod_{x:S}A_x^{T_x}\]
+\[\alpha_x(u) = \beta_x(t_x,u)\]
+Then for all $x:S$ and $u,v:T_x$ we have that:
+\[\alpha_x(v)-\alpha_x(u) = \beta_x(t_x,v) - \beta_x(t_x,u) = \beta_x(u,t_x)+\beta_x(t_x,v) = \beta_x(u,v)\]
+so that $\beta$ is a coboundary.
 \end{proof}
 
 \begin{lemma}\label{canonical-exact-cech-complex}
@@ -69,7 +76,14 @@ Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we have that $\chec
 \end{lemma}
 
 \begin{proof}
-TODO
+Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^3}$ such that for all $x:S$ and $u,v,w,t:T_x$ we have that:
+\[\beta_x(u,v,t)+\beta_x(v,w,t) = \beta_x(u,w,t)\]
+Define:
+\[\alpha:\prod_{x:S}A_x^{T_x^2}\]
+\[\alpha_x(u,t) = \beta_x(t,u,t)\]
+Then for all $x:S$ and $u,v,t:T_x$ we have that:
+\[\alpha_x(v,t)-\alpha_x(u,t) = \beta_x(t,v,t) - \beta_x(t,u,t) = \beta_x(u,t,t)+\beta_x(t,v,t) = \beta_x(u,v,t)\]
+so that $\beta$ is a coboundary.
 \end{proof}
 
 \begin{lemma}\label{exact-cech-complex-vanishing-cohomology}
@@ -172,9 +186,9 @@ By \cref{eilenberg-stone-vanish} we have an exact sequence of complexes:
 But since $\check{H}^1(X,\lambda x.\Z^{S(x)}) = 0$ by \cref{canonical-exact-cech-complex}, we conclude using the associated long exact sequence.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{cech-eilenberg-1-agree}
 Given a \v{C}ech cover $(X,S)$, we have that:
-\[H^0(X,\Z) = \check{H}^1(X,S,\Z)\]
+\[H^1(X,\Z) = \check{H}^1(X,S,\Z)\]
 \end{theorem}
 
 \begin{proof}
@@ -184,5 +198,76 @@ We apply \cref{cech-eilenberg-0-agree}, \cref{eilenberg-exact} and \cref{cech-ex
 
 \subsection{Cohomology of the interval}
 
-TODO
+Recall that we denote $C_n=2^n$ with a binary relation $\sim_n$ on $C_n$ such that for all $x,y:2^\N$ we have that:
+\[\left(\forall(n:\N).\ x|_n\sim_n y|_n\right) \leftrightarrow x=_\mathbb{I}y\]
 
+\begin{lemma}\label{description-Cn-simn}
+We have that $(C_n,\sim_n)$ is equivalent to $\mathrm{Fin}(2^n)$ with $\lambda x,y. |x-y|\leq 1$.
+\end{lemma}
+
+\begin{proof}
+By \cref{alternativeSimByCauchyDistance}.
+\end{proof}
+
+We write:
+\[C_n^{\sim2} = \sum_{x,y:C_n}x\sim_n y\]
+\[C_n^{\sim3}  =  \sum_{x,y,z:C_n}x\sim_n y \land y\sim_n z\land x\sim_n z\]
+
+\begin{lemma}\label{Cn-exact-sequence}
+For any $n:\N$ we have an exact sequence:
+\[0\to \Z\to \Z^{C_n} \to \Z^{C_n^{\sim2}} \to \Z^{C_n^{\sim3}}\]
+with the obvious boundary maps.
+\end{lemma}
+
+\begin{proof}
+It is clear that the map $\Z\to \Z^{C_n}$ is injective as $C_n$ is non-empty, so the sequence is exact at $\Z$.
+
+Assume a cocycle $\alpha:\Z^{C_n}$, meaning that for all $u,v:C_n$, if $u\sim_nv$ then $\alpha(u)=\alpha(v)$. Then by \cref{description-Cn-simn} we see that $\alpha$ is constant, so the sequence is exact at $\Z^{C_n}$.
+
+Assume a cocycle $\beta:\Z^{C_n^{\sim3}}$, meaning that for all $u,v,w:C_n$ such that $u\sim_nv$, $v\sim_nw$ and $u\sim_nw$ we have that:
+\[\beta(u,v)+\beta(v,w) = \beta(u,w)\]
+which is equivalent to asking $\beta(u,u)=0$ and $\beta(u,v) = -\beta(v,u)$.
+
+Using \cref{description-Cn-simn} we can define: 
+\[\alpha(n) = \beta(0,1)+\cdots+\beta(n-1,n)\]
+Then for all $(m,n)$ such that $|m-n|\leq 1$ we have that:
+\begin{itemize} 
+\item If $m=n$ and then $\beta(m,m) = 0 = \alpha(m)-\alpha(m)$.
+\item If $m+1=n$ then $\beta(m,m+1) = \alpha(m+1)-\alpha(m)$
+\item If $m=n+1$ then $\beta(n+1,n) = - \beta(n,n+1) = -\alpha(n+1)+\alpha(n)$.
+\end{itemize}
+So $\beta$ is indeed a coboundary and the sequence is exact at $\Z^{C_n^{\sim2}}$.
+\end{proof}
+
+\begin{proposition}
+We have that:
+\[H^0(\mathbb{I},\Z) = \Z\]
+\[H^1(\mathbb{I},\Z) = 0\]
+\end{proposition}
+
+\begin{proof}
+Consider the \v{C}ech cover of $\mathbb{I}$ by: 
+\[T_x = \sum_{y:2^\N} x=_\mathbb{I} [y]\]
+Then we have that:
+\[\mathrm{lim}_nC_n^{\sim l} = \sum_{x:\mathbb{I}} T_x^l\]
+
+By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we know that:
+\[ 0\to \Z\to \mathrm{colim}_n \left(\Z^{C_n}\right) \to \mathrm{colim}_n \left(\Z^{C_n^{\sim2}}\right)\to \mathrm{colim}_n \left(\Z^{C_n^{\sim3}}\right)\]
+is exact, but by \cref{scott-continuity} this sequence is equivalent to:
+\[ 0\to \Z\to \prod_{x:\mathbb{I}}\Z^{T_x} \to  \prod_{x:\mathbb{I}}\Z^{T_x^2} \to  \prod_{x:\mathbb{I}}\Z^{T_x^3}\]
+So it being exact implies that:
+\[\check{H}^0(\mathbb{I},T,\Z) = \Z\]
+\[\check{H}^1(\mathbb{I},T,\Z) = 0\]
+We conclude by \cref{cech-eilenberg-0-agree} and \cref{cech-eilenberg-1-agree}.
+\end{proof}
+
+
+\subsection{Shape of the circle}
+
+We write ? for the modality localising at $\mathbb{I}$.
+
+\begin{lemma}
+We have that $B\Z$ is $\mathbb{I}$-local.
+\end{lemma}
+
+TODO I'm not sure what we need.
