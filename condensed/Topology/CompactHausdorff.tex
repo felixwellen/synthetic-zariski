@@ -67,7 +67,7 @@ see \Cref{CountabilityDiscussion}}
 \end{proof}
 
 \begin{lemma}\label{CHausFiniteIntersectionProperty}
-  Whenever $X:\Chaus$ and $C_n:S\to \Closed$ closed subsets with $\bigcap_{n:\N} C_n =\emptyset$, there is some $N:\N$ 
+  Whenever $X:\Chaus$ and $C_n:X\to \Closed$ closed subsets with $\bigcap_{n:\N} C_n =\emptyset$, there is some $N:\N$ 
   with $\bigcap_{n\leq N} C_n  = \emptyset$. 
 \end{lemma}
 \begin{proof}
@@ -98,6 +98,29 @@ see \Cref{CountabilityDiscussion}}
   Thus $\bigcap_{n:\N}(F\cap G_n) \neq \emptyset$ by \Cref{CHausFiniteIntersectionProperty}. 
   By \Cref{InhabitedClosedSubSpaceClosedCHaus} and \Cref{rmkOpenClosedNegation}, there merely exists some 
   $y$ in $\bigcap_{n:\N} (F\cap G_n)$. Thus $x\in f(\bigcap_{n:\N} G_n)$ as required. 
+\end{proof}
+\begin{corollary}\label{CompactHausdorffTopology}
+Let $A\subseteq X$ be a subtype of a compact Hausdorff space. 
+Let $p:S\to X$ be any presentation of $X$ with $S:\Stone$. Then:
+\begin{itemize}
+  \item $A$ is closed iff it can be written as $\bigcap_{n:\N} p(D_n)$
+for some sequence $D_n\subseteq S$ decidable. 
+  \item $A$ is open iff it can be written as $\bigcup_{n:\N} \neg p(D_n)$
+for some sequence $D_n\subseteq S$ decidable.
+\end{itemize}  
+\end{corollary}
+\begin{proof}
+  The characterization of closed sets follows from characterization (ii) in \Cref{StoneClosedSubsets}, 
+  \Cref{CompactHausdorffClosed} 
+  and \Cref{ChausMapsPreserveIntersectionOfClosed}. 
+  The characterization of open sets then follows from \Cref{rmkOpenClosedNegation} and \Cref{ClosedMarkov}.
+\end{proof}
+\begin{corollary}
+  Any $X:\Chaus$ is second countable (has a topological basis which is countable). 
+\end{corollary}
+\begin{proof}
+  By \Cref{CompactHausdorffTopology}, a basis is given by decidable subsets of some $S:\Stone$. 
+  By Stone duality, such a basis forms a countably presented Boolean algebra, which is countable. 
 \end{proof}
 
 \begin{lemma}\label{CHausSeperationOfClosedByOpens}
