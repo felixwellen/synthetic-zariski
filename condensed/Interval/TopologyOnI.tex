@@ -44,7 +44,8 @@
   \end{equation}
 \end{lemma}
 \begin{proof}
-  By injectivity of $cs_m$, we have that $s|_m \neq t|_m$. 
+%  By injectivity of $cs_m$, 
+  By assumption, we have that $s|_m \neq t|_m$. 
   Then there must be some smallest number $k<m$ such that 
   $s(k) \neq t(k)$. As $k$ is minimal, we have $s|_k = t|_k = : u$. 
 %  WLOG, we assume that $s(m) = 1, t(m) = 0$. 
@@ -170,7 +171,7 @@ we define inequality on $I$ as follows:
 %  The proof is similar to $\alpha'\leq_I\gamma'$ and $\gamma'\sim_I\beta'$, we have $\alpha'\leq_I\beta'$.
 
 
-  As $\beta\leq_I\gamma$ is closed, so by \Cref{rmkOpenClosedNegation} it is double negation stable. 
+  As $\beta\leq_I\gamma$ is closed, by \Cref{rmkOpenClosedNegation} it is double negation stable. 
   By \Cref{MarkovPrinciple}, the negation is that there is some 
   $N:\N$ with 
   $cs(\beta)_N > cs(\gamma)_N + \frac{1}{2^N}.$
@@ -234,13 +235,37 @@ we define inequality on $I$ as follows:
 \end{remark}
 
 
+\rednote{These properties are nice but not necessary:}
+\begin{corollary}
+  We have the following inequalities for $x,y:I$:
+  \begin{enumerate}
+    \item $(x\leq y \wedge x \neq y) \leftrightarrow (x < y)$.
+    \item $(x\neq y) \leftrightarrow (x < y + x > y)$. 
+    \item $(\exists_{y:I}(x\leq y \wedge y \leq z ))\leftrightarrow (x \leq z)$. 
+    \item $(\exists_{y:I}(x<y \wedge y < z ))\leftrightarrow (x < z)$. 
+  \end{enumerate}
+\end{corollary} 
+\begin{proof}
+  \begin{enumerate}
+    \item As a consequence of $((x\leq y) \wedge (y \leq x )) \leftrightarrow (x = y)$, 
+        if $x\leq y \wedge x \neq y$, we have $\neg (y \leq x)$, hence $x<y$. 
+        As a consequence of the same, if $x<y$ we must have $x\leq y$, ans $y\leq x $ is impossible. 
+        It's immediate that $x<y$ implies $x\neq y$. 
+    \item Follows directly from the previous item and \Cref{IntervalOrderLeqOrGeq}
+    \item 
+  \end{enumerate}
+\end{proof}
+
+
+\begin{lemma}
+  Whenever $x,y:I$ satisfy $x<y$, there is some $z:I$ with  $x<z \wedge z< y$. 
+\end{lemma} 
+
+%
 %\rednote{TODO}
 %For any $x,y:I$ we have 
 %\begin{itemize}
-%%  \item As a consequence of \Cref{alternativeSimByCauchyDistance}, we have for any $x,y:I$ that 
-%%    $x\leq y \wedge y \leq x \to x = y$. 
-%%  \item TODO $x\leq y \wedge x \neq y \to x < y$. 
-%  \item TODO $x\leq y \vee y \leq x$. 
+%  \item TODO $x\leq y \wedge x \neq y \to x < y$. 
 %\end{itemize}
 
 
@@ -410,7 +435,7 @@ we define inequality on $I$ as follows:
 %  By \Cref{StoneClosedSubsets}, \Cref{CompactHausdorffClosed} and \Cref{ChausMapsPreserveIntersectionOfClosed}
   %\Cref{IntervalQuotientMapIntersectionCommute}, 
   By \Cref{CompactHausdorffTopology}
-  there is some sequence $D_n\subseteq 2^\N$ 
+  there is some sequence of decidable subsets $D_n\subseteq 2^\N$ 
 %  with $\neg U = \bigcap_{n:\N} p(D_n)$. 
 %  Thus $U = \neg \bigcap_{n:\N} p(D_n)$. 
 %  By \Cref{ClosedMarkov}, it follows that 
