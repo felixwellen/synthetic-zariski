@@ -54,7 +54,7 @@ Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define its \v{C}
 \[\check{H}^1(S,T,A) = \mathrm{ker}(d_1)/\mathrm{im}(d_0)\]
 \end{definition}
 
-This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{H}^1(S,T,A) = 0$. Now we give three very general lemmas about \v{C}ech complexes.
+This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{C}(S,T,A)$ is exact. Now we give three very general lemmas about \v{C}ech complexes.
 
 \begin{lemma}\label{section-exact-cech-complex}
 Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$ with $t:\prod_{x:S}T_x$, then we have that $\check{C}(S,T,A)$ is exact.
@@ -105,7 +105,7 @@ Then we define:
 \[\beta' : \prod_{x:S}(\alpha(x)=*)^{T_x}\]
 \[\beta'_x(u) = \beta_x(u)\cdot f_x(u)\]
 so that for all $x:S$ and $u,v:T(x)$ we have that:
-\[\beta'_x(v)^{-1}\cdot\beta'_x(u) = f_x(v)^{-1}\cdot\alpha_x(v)^{-1}\cdot\alpha_x(u)\cdot f_x(u) = \mathrm{refl}\]
+\[\beta'_x(v)^{-1}\cdot\beta'_x(u) = f_x(v)^{-1}\cdot\beta_x(v)^{-1}\cdot\beta_x(u)\cdot f_x(u) = \mathrm{refl}\]
 so that:
 \[\beta'_x(u)=\beta'_x(v)\]
 and this means that $\beta'$ factors through $S$, giving a proof of $\alpha = *$.
@@ -120,8 +120,8 @@ Given $S:\Stone$ with $T:S\to\Stone$, if $\prod_{x:S}\propTrunc{T_x}$ then we ha
 
 \begin{proof}
 We apply \cref{finite-approximation-surjection-stone} to get $S_k$ and $T_k$ finite. Then by \cref{scott-continuity} we have that:
-\[\mathrm{colim}_k \check{C}(S)k,T_k,\Z) = \check{C}(S,T,\Z)\]
-and each of the $\check{C}(S_k,T_k,\Z)$ is exact by \cref{section-exact-cech-complex} so we can conclude a sequential colimit of exact sequence is exact.
+\[\mathrm{colim}_k \check{C}(S_k,T_k,\Z) = \check{C}(S,T,\Z)\]
+and each of the $\check{C}(S_k,T_k,\Z)$ is exact by \cref{section-exact-cech-complex} so we can conclude since a sequential colimit of exact sequence is exact.
 \end{proof}
 
 \begin{lemma}\label{eilenberg-stone-vanish}
@@ -131,7 +131,7 @@ Given $S:\Stone$, we have that $H^1(S,\Z) = 0$.
 \begin{proof}
 Assume given a map $\alpha:S\to B\Z$. We use local choice to get $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T_x}$ and:
 \[\beta:\prod_{x:S}(\alpha(x)=*)^{T_x}\]
-and then apply \cref{exact-cech-complex-vanishing-cohomology} and \cref{cech-complex-vanishing-stone} to conclude.
+and then apply \cref{cech-complex-vanishing-stone} and \cref{exact-cech-complex-vanishing-cohomology} to conclude.
 \end{proof}
 
 \begin{corollary}\label{stone-commute-delooping}
@@ -156,34 +156,34 @@ Given a \v{C}ech cover $(X,S)$, we have that:
 
 \begin{proof}
 By definition an element in $\check{H}^0(X,S,\Z)$ is a map:
-\[f:\sum_{x:X}S_x\to \Z\]
+\[f:\prod_{x:X}\Z^{S_x}\]
 such that for all $u,v:S_x$ we have $f(u)=f(v)$, which is equivalent to a map:
-\[\sum_{x:X}\propTrunc{S_x}\to \Z\]
-since the $S_x$ are merely inhabited and $\Z$ is a set.
+\[\prod_{x:X}\Z^\propTrunc{S_x}\]
+since $\Z$ is set, and since the $S_x$ are merely inhabited this is the same as $\Z^X$.
 \end{proof}
 
 \begin{lemma}\label{eilenberg-exact}
 Given a \v{C}ech cover $(X,S)$ we have an exact sequence:
-\[H^0(X,\lambda x.\Z^{S(x)}) \to H^0(X,\lambda x.\Z^{S(x)}/\Z) \to H^1(X,\Z)\to 0\]
+\[H^0(X,\lambda x.\Z^{S_x}) \to H^0(X,\lambda x.\Z^{S_x}/\Z) \to H^1(X,\Z)\to 0\]
 \end{lemma}
 
 \begin{proof}
 We use the long exact cohomology sequence associated to:
 \[0 \to \Z \to \Z^{S_x} \to \Z^{S_x}/\Z\to 0\]
 so that we just need $H^1(X,\lambda x.\Z^{S_x}) = 0$ to conclude. But by \cref{stone-commute-delooping} we have that:
-\[H^1(X,\lambda x.\Z^{S_x}) = H^1(\sum_{x:X}S_x,\Z)\]
+\[H^1(X,\lambda x.\Z^{S_x}) = H^1\left(\sum_{x:X}S_x,\Z\right)\]
 which vanishes by \cref{eilenberg-stone-vanish}.
 \end{proof}
 
 \begin{lemma}\label{cech-exact}
 Given a \v{C}ech cover $(X,S)$ we have an exact sequence:
-\[\check{H}^0(X,\lambda x.\Z^{S(x)}) \to \check{H}^0(X,\lambda x.\Z^{S_x}/\Z) \to \check{H}^1(X,\Z)\to 0\]
+\[\check{H}^0(X,\lambda x.\Z^{S_x}) \to \check{H}^0(X,\lambda x.\Z^{S_x}/\Z) \to \check{H}^1(X,\Z)\to 0\]
 \end{lemma}
 
 \begin{proof}
 By \cref{eilenberg-stone-vanish} we have an exact sequence of complexes:
 \[0 \to \check{C}(X,S,\Z) \to \check{C}(X,S,\lambda x.\Z^{S_x}) \to \check{C}(X,S,\lambda x.\Z^{S_x}/\Z)\]
-But since $\check{H}^1(X,\lambda x.\Z^{S(x)}) = 0$ by \cref{canonical-exact-cech-complex}, we conclude using the associated long exact sequence.
+But since $\check{H}^1(X,\lambda x.\Z^{S_x}) = 0$ by \cref{canonical-exact-cech-complex}, we conclude using the associated long exact sequence.
 \end{proof}
 
 \begin{theorem}\label{cech-eilenberg-1-agree}
@@ -195,6 +195,8 @@ Given a \v{C}ech cover $(X,S)$, we have that:
 We apply \cref{cech-eilenberg-0-agree}, \cref{eilenberg-exact} and \cref{cech-exact}.
 \end{proof}
 
+In particular this means that the \v{C}ech cohomology $\check{H}^1(X,S,\Z)$ do not depend on $S$.
+
 
 \subsection{Cohomology of the interval}
 
@@ -202,7 +204,7 @@ Recall that we denote $C_n=2^n$ with a binary relation $\sim_n$ on $C_n$ such th
 \[\left(\forall(n:\N).\ x|_n\sim_n y|_n\right) \leftrightarrow x=_\mathbb{I}y\]
 
 \begin{lemma}\label{description-Cn-simn}
-We have that $(C_n,\sim_n)$ is equivalent to $\mathrm{Fin}(2^n)$ with $\lambda x,y. |x-y|\leq 1$.
+We have that $(C_n,\sim_n)$ is equivalent to $(\mathrm{Fin}(2^n),\lambda x,y.\ |x-y|\leq 1)$.
 \end{lemma}
 
 \begin{proof}
@@ -220,11 +222,11 @@ with the obvious boundary maps.
 \end{lemma}
 
 \begin{proof}
-It is clear that the map $\Z\to \Z^{C_n}$ is injective as $C_n$ is non-empty, so the sequence is exact at $\Z$.
+It is clear that the map $\Z\to \Z^{C_n}$ is injective as $C_n$ is inhabited, so the sequence is exact at $\Z$.
 
 Assume a cocycle $\alpha:\Z^{C_n}$, meaning that for all $u,v:C_n$, if $u\sim_nv$ then $\alpha(u)=\alpha(v)$. Then by \cref{description-Cn-simn} we see that $\alpha$ is constant, so the sequence is exact at $\Z^{C_n}$.
 
-Assume a cocycle $\beta:\Z^{C_n^{\sim3}}$, meaning that for all $u,v,w:C_n$ such that $u\sim_nv$, $v\sim_nw$ and $u\sim_nw$ we have that:
+Assume a cocycle $\beta:\Z^{C_n^{\sim2}}$, meaning that for all $u,v,w:C_n$ such that $u\sim_nv$, $v\sim_nw$ and $u\sim_nw$ we have that:
 \[\beta(u,v)+\beta(v,w) = \beta(u,w)\]
 which is equivalent to asking $\beta(u,u)=0$ and $\beta(u,v) = -\beta(v,u)$.
 
@@ -246,9 +248,9 @@ We have that:
 \end{proposition}
 
 \begin{proof}
-Consider the \v{C}ech cover of $\mathbb{I}$ by: 
-\[T_x = \sum_{y:2^\N} x=_\mathbb{I} [y]\]
-Then we have that:
+Consider the canonical surjective map $p:2^\N\to\mathbb{I}$ and the associated \v{C}ech cover of $\mathbb{I}$ by: 
+\[T_x = \sum_{y:2^\N} x=_\mathbb{I} p(y)\]
+Then for $l=2,3$ we have that:
 \[\mathrm{lim}_nC_n^{\sim l} = \sum_{x:\mathbb{I}} T_x^l\]
 
 By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we know that:
