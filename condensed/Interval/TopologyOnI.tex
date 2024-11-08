@@ -199,7 +199,7 @@ we define inequality on $I$ as follows:
   \Cref{IntervalFiberSizeAtMost2}. 
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{NegationOfGeq}
   By \Cref{MarkovPrinciple}, we have that $\neg (\alpha \leq \beta) \leftrightarrow (\beta <_I \alpha)$. 
   It follows immediately that $<_I$ also respects $I$. 
   Therefore, $\leq_I, <_I$ induce relations $\leq,<$ on $I$.
@@ -233,29 +233,20 @@ we define inequality on $I$ as follows:
   So in order to define a map $(x \leq y) \vee (y \leq x) \to P$, we need to define a map 
   $f:x\leq y \to P$ and a map $g:y \leq x \to P$ such that $f|_{x = y} = g|_{x=y}$. 
 \end{remark}
-
-
-\rednote{These properties are nice but not necessary:}
+\rednote{These properties are nice but not necessary and paused WIP:}
 \begin{corollary}
-  We have the following inequalities for $x,y:I$:
-  \begin{enumerate}
-    \item $(x\leq y \wedge x \neq y) \leftrightarrow (x < y)$.
-    \item $(x\neq y) \leftrightarrow (x < y + x > y)$. 
-    \item $(\exists_{y:I}(x\leq y \wedge y \leq z ))\leftrightarrow (x \leq z)$. 
-    \item $(\exists_{y:I}(x<y \wedge y < z ))\leftrightarrow (x < z)$. 
-  \end{enumerate}
+    For $x,y:I$ we have $(x\leq y \wedge x \neq y) \leftrightarrow (x < y)$. 
+    Also $(x\neq y) \leftrightarrow (x < y + x > y)$. 
 \end{corollary} 
 \begin{proof}
-  \begin{enumerate}
-    \item As a consequence of $((x\leq y) \wedge (y \leq x )) \leftrightarrow (x = y)$, 
-        if $x\leq y \wedge x \neq y$, we have $\neg (y \leq x)$, hence $x<y$. 
-        As a consequence of the same, if $x<y$ we must have $x\leq y$, ans $y\leq x $ is impossible. 
-        It's immediate that $x<y$ implies $x\neq y$. 
-    \item Follows directly from the previous item and \Cref{IntervalOrderLeqOrGeq}
-    \item 
-  \end{enumerate}
+    By $(x<y)\leftrightarrow \neg (y\leq x)$
+    It's also immediate from the definitions that $x<y$ implies $x\neq y$. 
+    As $((x\leq y) \wedge (y \leq x )) \leftrightarrow (x = y)$, 
+    if $x\leq y \wedge x \neq y$, we have $\neg (y \leq x)$, hence $x<y$. 
 \end{proof}
 
+%    \item $(\exists_{y:I}(x\leq y \wedge y \leq z ))\leftrightarrow (x \leq z)$. 
+%    \item $(\exists_{y:I}(x<y \wedge y < z ))\leftrightarrow (x < z)$. 
 
 \begin{lemma}
   Whenever $x,y:I$ satisfy $x<y$, there is some $z:I$ with  $x<z \wedge z< y$. 

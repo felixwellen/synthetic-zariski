@@ -1,0 +1,183 @@
+\input{OvertlyDiscrete/ColimitRepresentation.tex}
+\subsection{Overtly discrete types}
+\begin{definition}
+  We define a type $E$ to be Overtly Discrete iff it is the colimit of an $\N$-indexed sequence of finite sets. 
+\end{definition} 
+\begin{lemma}
+  Every countably presented Boolean algebra is overtly discrete.
+\end{lemma}
+\begin{proof}
+  \rednote{See other file}
+\end{proof}
+%\begin{lemma}
+%  Let $A,B$ be overtly discrete, and let $f:A\to B$ injective. 
+%  Then there exists sequences of finite sets $(A_n)_{n:\N}, (B_n)_{n:\N}$ with colimits $A,B$ respectively, 
+%  and maps $f:A_n \to B_n$ such that the following diagram commutes for any $n\leq m$:
+%  \begin{equation}
+%    \begin{tikzcd}
+%      A_n \arrow[d,"\iota_m^n"] \arrow[r,"f_n"] & B_n \arrow[d,"\kappa_m^n"] \\
+%      A_m \arrow[d,"\iota_\infty^m"] \arrow[r,"f_m"] & B_m \arrow[d,"\kappa_\infty^m"] \\
+%      A \arrow[r,"f"] & B
+%    \end{tikzcd}
+%  \end{equation}
+%\end{lemma} 
+ 
+\begin{lemma}\label{colimitCompact}
+  For any finite set $A$, 
+  and any overtly discrete type $B$ as colimit of the sequence $(B_n)_{n:\N}$, 
+  we $B^A$ is the colimit of the sequence of sets $(B_n^A)_{n:\N}$. 
+\end{lemma}  
+\begin{proof}
+  First note that $B^A$ forms a cocone on $(B_n^A)_{n:\N}$ 
+  because any map $A \to B_n$ induces a map $A \to B$. 
+  Let $C$ be a cocone on $(B_n^A)_{n:\N}$. 
+  We shall show there is an unique morphism of cocones $B^A \to C$. 
+  Denote $\iota_n:B_n \to B, F_n:B_n^A\to C$ for the cocone maps. 
+  \begin{itemize}
+    \item 
+      If $f:A\to B$, we have that $f(A)$ is a finite subset of $B$, and thus occurs already in some $B_n$. 
+      This induces a map $f'_n:A\to B_n$ with $\iota_n\circ f' = f$. 
+      As $C$ is a cocone, we have that $F_n(f'_n)$ does not depend on $n:\N$. 
+      Thus $(F_n)_{n:\N}$ induces a map $B^A\to C$. 
+    \item 
+      For uniqueness, by function extensionality maps $B^A \to C$ are uniquely determined by their values on 
+      $f:B^A$. By the above, the value of $f$ is uniquely determined by it's value on $B_n$ for 
+      any $n$ with the image of $f$ in $B_n$. Thus there is at most one morphism of cocones $B^A \to C$. 
+  \end{itemize}
+\end{proof}
+\begin{remark}\label{rmkEqualityColimit}
+  In the above proof, we used that any element $b\in B$ already occurs in some $B_n$. 
+  However, please note that it is not necessarily the case that it occurs uniquely in $B_n$, 
+  there might be multiple elements in $B_n$ which can all be sent to $b$ in the end. 
+
+  In general, if we assume $B$ is the colimit of an arbitrary sequence $(B_n)_{n:\N}$, 
+  and there exist some $B_n$ with two elements corresponding to the same element in $B$, 
+  Theorem 7.4 from \cite{SequentialColimitHoTT} says that there merely exists some $m\geq n$
+  such that these elements become equal in $B_m$. 
+%  In general, if we have a sequence $(B_n)_{n:\N}$ with colimit $B$ and 
+%  inclusion maps $\iota_n:B_n\to B$ and $\iota_n^m:B_n \to B_m$ for $n\leq m$, 
+%  and there exist some $b,c:B_n$ with $\iota_n(b) = \iota_n(c)$, 
+%  Theorem 7.4 from \cite{SequentialColimitHoTT} says that there merely exists some $m\geq n$
+%  with $\iota_n^m(b) = \iota_n^m(c)$. 
+\end{remark}
+\begin{lemma}\label{lemDecompositionOfColimitMorphisms}
+  Let $B,C$ be overtly discrete, 
+  and let $f:B\to C$.
+  There exists sequences of finite sets 
+  $(B_n)_{n:\N}, (C_n)_{n:\N}$ with colimits $B,C$ respectively
+  and compatible maps $f_n:B_n \to C_n$, 
+  such that $f$ is the induced morphism $B\to C$.
+\end{lemma}
+\begin{proof}
+  Let $(B_n)_{n:\N}, (C_n)_{n:\N}$ be 
+  sequences of finite sets with colimits $B$ and $C$. 
+  We will construct a subsequence of $(C_n)_{n:\N}$, using \Cref{axDependentChoice}
+
+  For $k:\N$, let $E_k$ consist of 
+  strictly increasing sequences $(n_i)_{i<k}$ of natural numbers together with a finite family of maps 
+  $(f_i: B_{i} \to C_{n_i})_{i<k}$ such that
+  for all $0<i<k$ the following diagram commutes:
+  \begin{equation}\label{eqnDecompositionOfColimitMorphisms}
+    \begin{tikzcd}
+      B_{i-1} \arrow[r] \arrow[d, "f_{i-1}"]& B_{{i}} \arrow[r] \arrow[d,"f_{i}"]& B \arrow[d,"f"] \\
+      C_{n_{i-1}} \arrow[r] & C_{n_{i}} \arrow[r] & C 
+    \end{tikzcd}
+  \end{equation}
+  For $e:E_k, e':E_{k+1}$, we let 
+  $R_k(e,e')$ denote  whether the underlying sequence of $e'$ extends that of $e$. 
+  The empty sequence inhabits $E_0$. We will show that if $e:E_k$, there exists some $e':E_{k+1}$ with 
+  $R_k(e,e')$. Then \Cref{axDependentChoice} will give the required sequence $(f_i:B_i\to C_{n_i})$.
+%%
+%  By \Cref{colimitCompact} 
+%  there exists some $n_0:\N$ 
+%  such that $B_0 \to B \to C$ factors as 
+%  \begin{equation}
+%    \begin{tikzcd}
+%      B_{0} \arrow[r] \arrow[d, "f_0"]& B \arrow[d,"f"] \\
+%      C_{n_0} \arrow[r] & C 
+%    \end{tikzcd}
+%  \end{equation}
+%  Because our goal is a proposition, we can untruncate this existence to data. 
+%  This data will form our $x_0:E_0$. %from \Cref{axDependentChoice}. 
+%%
+
+  Suppose we have $(f_i: B_{i} \to C_{n_i})_{i<k}$ for some $k\geq 0$ 
+  such that for all $0<i<k$ the diagram of \Cref{eqnDecompositionOfColimitMorphisms} commutes.
+  We shall show that in this case there exist $n_{k}:\N, f_{k}:B_k \to C_{n_k}$ 
+  making the same diagram commute for $i = k$. 
+  Consider the map $f\circ \iota_k: B_{k}\to C$. 
+  As $B_k$ is finite, \Cref{colimitCompact} gives some $n_k':\N $ such that %, f_k':B_k \to C_{n_k'}$ such that 
+  it factors over some $C_{n_k'}$.
+%  \begin{equation}
+%    \begin{tikzcd}
+%    B_{k} \arrow[r,"\iota_k"]  \arrow[d,"f'_{k}"]& B \arrow[d,"f"]\\
+%    C_{n'_{k}} \arrow[r, "\kappa_{n'_k}"'] & C
+%    \end{tikzcd}
+%  \end{equation}
+  We may assume $n'_{k+1} > n_k$.
+  Note that it is not necessarily the case that 
+  $f'_{k+1}$ is compatible with $f_k$, meaning the left square in the following diagram needn't commute:
+  \begin{equation}
+    \begin{tikzcd}
+      B_{k-1} \arrow[r] \arrow[d, "f_{k-1}"]& B_{{k}}  \arrow[r] \arrow[d,"f'_{k}"] & B \arrow[d,"f"] \\
+      C_{n_{k-1}} \arrow[r] & C_{n'_{k}} \arrow[r]  & C 
+    \end{tikzcd}
+  \end{equation}
+  However, both $f'_{k}, f_{k-1}$ induce the same map $B_{k-1} \to C$. 
+%  Recall by \Cref{rmkMorphismsOutOfQuotient} this map is induced by it's value on finitely many elements. 
+  As $B_{k-1}$ is finite, from \Cref{rmkEqualityColimit} it follows there is some $n_{k} \geq {n'_{k}}$ 
+  such that they become equal in $C_{n_k}$, and we have $f_k:B_k \to C_{n_k}$ such that the following does commute, 
+  and we're done:
+%  such that for $f_{k}$ the composition of $f'_{k+1}:B_{k+1} \to C_{n'_{k+1}}$ and 
+%  the map $C_{n'_{k+1}} \to C_{n_{k+1}}$, the following diagram does commute:
+  \begin{equation}
+    \begin{tikzcd}
+      B_{k-1} \arrow[d,"f_{k-1}"]\arrow[r] & B_{{k}} \arrow[rd, "f_{k}"] \arrow[rr] & & B \arrow[d,"f"] \\
+      C_{n_{k-1}} \arrow[r] & C_{n'_{k}} \arrow[r] & C_{n_{k}} \arrow[r] & C 
+    \end{tikzcd}
+  \end{equation}
+%  Now by dependent choice for the above $x_0, R_n, E_n$, we get a sequence $(f_i:B_i \to C_{n_i})$  for some 
+%  strictly increasing sequence $n_i$ of natural numbers. 
+%  Note that for such a sequence $(n_i)_{i:\N}$, 
+%  $(C_{n_i})_{i:\N}$ converges to $C$. Also $(B_i)_{i:\N}$ still converges to $B$. 
+%  Furthermore, by construction the map that sequence $f_i$ induces from $B \to C$ shares all values with $f$
+%  and thus is equal to $f$. 
+%  Thus our sequence $f_i$ is as required. 
+\end{proof}
+\begin{remark}
+  For the above lemma, it is clear that if $f$ is injective, so are all the $f_n$. 
+\end{remark}
+\begin{remark}
+  Let $B:\Boole$. 
+  Recall that $B$ can be seen as the colimit of $(B_n)_{n:\N}$ with $B_n$ finite Boolean algebras. 
+  Now in the category of Boolean algebras, we have $(B\to 2) \simeq lim(B_n\to 2)$.
+  As $B_n\to 2$ is finite whenever $B_n$ is, it follows that Stone spaces are limits of $\N$-indexed diagrams of finite sets. 
+\end{remark}
+
+
+%\begin{remark}\label{rmkEpiMonoFactorizationCommutes}
+%  For $f,(f_i)_{i:\N}$ as above, whenever $f_n(x) = 0$, we have $f_{n+1}(x \circ \iota_{n,n+1}) = 0$
+%  for $\iota_{n,n+1}$ the map $A_n \to A_{n+1}$. 
+%  By \Cref{rmkMorphismsOutOfQuotient}, $\iota_{n,n+1}$ induces a map $A_n/Ker(f_n)\to A_{n+1}/Ker(f_{n+1})$. 
+%  This induced map is such that the following diagram commutes:
+%  \begin{equation}\begin{tikzcd}
+%    A_n \arrow[d, two heads] \arrow[r, "\iota_{n,n+1}"] & A_{n+1} \arrow[d,two heads]\\
+%    A_n /Ker(f_n) \arrow[d,hook] \arrow[r] & A_{n+1} /Ker(f_{n+1}) \arrow[d,hook] \\
+%    B_n \arrow[r] & B_{n+1}
+%  \end{tikzcd}\end{equation}  
+%  As the induced maps be epi's / mono's  is epi /mono, the colimit of the sequence 
+%  $A_n / Ker(f_n)$ will fit into an epi-mono factorization of $f$ and thus be iso to $A/Ker(f)$. 
+%  Thus the epi-mono factorization of the colimit is the colimit of the epi-mono factorizations. 
+%\end{remark}
+%\begin{remark}\label{rmkIsoEpiMonoMapColimit}
+%  Whenever $f:B \to C$ is an iso, any sequence with $B$ as colimit, also has $C$ as colimit. 
+%  Thus any iso can be represented this way as sequence of iso's. 
+%  Conversely, any sequence of isomorphisms induces an isomorphism of their colimits. 
+%
+%  It follows from \Cref{rmkEpiMonoFactorizationCommutes} that when $f$ is epi/mono, 
+%  we can say that $f$ can be induced by a sequence 
+%  $(f_i)_{i\in \N}$ with all $f_i$ epi/mono. 
+%\end{remark}
+%
+%
+%
