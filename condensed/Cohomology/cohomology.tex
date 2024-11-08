@@ -16,7 +16,7 @@ such that:
 and for each $k:\N$ we have a family of finite types $T_k(x)$ for $x:S_k$ such that $\prod_{x:S_k}\propTrunc{T_k(x)}$ with maps:
 \[T_{k+1}(x) \to T_k(p_k(x))\]
 such that:
-\[\mathrm{lim}_k(\sum_{x:S_k}T_k(x)) = \sum_{x:S}T(x)\]
+\[\mathrm{lim}_k\left(\sum_{x:S_k}T_k(x)\right) = \sum_{x:S}T(x)\]
 \end{lemma}
 
 \begin{proof}
@@ -235,13 +235,13 @@ Using \cref{description-Cn-simn} we can define:
 Then for all $(m,n)$ such that $|m-n|\leq 1$ we have that:
 \begin{itemize} 
 \item If $m=n$ and then $\beta(m,m) = 0 = \alpha(m)-\alpha(m)$.
-\item If $m+1=n$ then $\beta(m,m+1) = \alpha(m+1)-\alpha(m)$
+\item If $m+1=n$ then $\beta(m,m+1) = \alpha(m+1)-\alpha(m)$.
 \item If $m=n+1$ then $\beta(n+1,n) = - \beta(n,n+1) = -\alpha(n+1)+\alpha(n)$.
 \end{itemize}
 So $\beta$ is indeed a coboundary and the sequence is exact at $\Z^{C_n^{\sim2}}$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{cohomology-I}
 We have that:
 \[H^0(\mathbb{I},\Z) = \Z\]
 \[H^1(\mathbb{I},\Z) = 0\]
@@ -263,13 +263,72 @@ So it being exact implies that:
 We conclude by \cref{cech-eilenberg-0-agree} and \cref{cech-eilenberg-1-agree}.
 \end{proof}
 
+\begin{remark}
+We could carry a similar computation for $\mathbb{S}^1$, by approximating it with $2^n$ with $0^n\sim_n1^n$ added. We would find $H^1(\mathbb{S}^1,\Z)=\Z$.
+\end{remark}
 
-\subsection{Shape of the circle}
 
-We write ? for the modality localising at $\mathbb{I}$.
+\subsection{There is no retraction to the boundary inclusion in the disk}
 
-\begin{lemma}
+Here we consider the modality defined by localising at $\mathbb{I}$ \cite{paper on modality in HoTT}, denoted by $L_\mathbb{I}$. We say $X$ is $\mathbb{I}$-local if $L_\mathbb{I}(X) = X$ and that it is $\mathbb{I}$-contractible if $L_\mathbb{I}(X)=1$.
+
+In this section we define $\mathbb{S}^1$ as $\R/\Z$ (TODO reference for why this is good).
+
+\begin{lemma}\label{BZ-I-local}
 We have that $B\Z$ is $\mathbb{I}$-local.
 \end{lemma}
 
-TODO I'm not sure what we need.
+\begin{proof}
+By \cref{cohomology-I}, from $H^0(\mathbb{I},\Z)=\Z$ we get that the map $\Z\to \Z^\mathbb{I}$ is an equivalence, so $\Z$ is $\mathbb{I}$-local and therefore any identity type in $B\Z$ is $\mathbb{I}$-local. So there is at most one factorisation of any map $\mathbb{I}\to B\Z$ through $1$. From $H^1(\mathbb{I},\Z)=0$ we get that there merely exists such a factorisation.
+\end{proof}
+
+\begin{lemma}\label{continuously-path-connected-contractible}
+Assume $X$ a pointed type such that for all $x:X$ we have $f:\mathbb{I}\to X$ such that $f(0)=*$ and $f(1)=x$. Then $X$ is $\mathbb{I}$-contractible.
+\end{lemma}
+
+\begin{proof}
+%First we prove that the map:
+%\[\eta_X:X\to L_\mathbb{I}(X)\] 
+%is surjective. Indeed its fiber are $\mathbb{I}$-contractible, but for any type $F$ we have a map:
+%\[L_\mathbb{I}(F) \to L_\mathbb{F}(\propTrunc{F}) = \propTrunc{F}\] 
+For all $x:X$ we get a map:
+\[f:\mathbb{I}\to X\to L_\mathbb{I}(X)\]
+such that $f(0) = [*]$ and $f(1)=[x]$. Since $L_\mathbb{I}(X)$ is $\mathbb{I}$-local this means that:
+\[\prod_{x:X}[*]=[x]\]
+We conclude:
+\[\prod_{x:L_\mathbb{I}(X)}[*]=x\]
+by applying the elimination principle for the modality.
+\end{proof}
+
+\begin{corollary}\label{R-I-contractible}
+We have that $\R$ and $\mathbb{D}^1$ are $\mathbb{I}$-contractible.
+\end{corollary}
+
+\begin{proposition}\label{shape-S1-is-BZ}
+We have that $L_\mathbb{I}(\mathbb{S}^1) = B\Z$.
+\end{proposition}
+
+\begin{proof}
+As for any group quotient, the fibers of the map:
+\[\R\to\R/\Z\]
+are $\Z$-torsor, se we have an induced pullback square:
+\begin{center}
+\begin{tikzcd}
+\R\ar[r]\ar[d] & 1\ar[d] \\
+\mathbb{S}^1\ar[r] & B\Z\\
+\end{tikzcd}
+\end{center}
+Now we check that the bottom map is an $\mathbb{I}$-localisation. Since $B\Z$ is $\mathbb{I}$-local by \cref{BZ-I-local} it is enough to check that its fibers are $\mathbb{I}$-contractible. Since $B\Z$ is connected it is enough to check $\R$ is $\mathbb{I}$-contractible, but this is \cref{R-I-contractible}.
+\end{proof}
+
+\begin{remark}
+By \cref{BZ-I-local} and \cref{shape-S1-is-BZ} we have that $H^1(\mathbb{S}^1,\Z) = H^1(B\Z,\Z) = \Z$.
+\end{remark}
+
+\begin{proposition}
+The map $\mathbb{S}^1\to \mathbb{D}^1$ has no retraction.
+\end{proposition}
+
+\begin{proof}
+Otherwise by \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction of $B\Z\to 1$, so $B\Z$ would be contractible.
+\end{proof}
