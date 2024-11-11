@@ -141,11 +141,10 @@ The dimension of $T_x(X)$ is called the dimension of $X$ at $x$. By boundedness 
 
 \begin{definition}
 A standard smooth scheme of dimension $k$ is an affine scheme of the form:
-\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big)\]
-where $G$ divides the determinant of:
+\[\Spec\big(R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\big)\]
+where the determinant of:
 \[\left( \frac{\partial P_i}{\partial X_j}\right)_{1\leq i,j\leq n}\]
-in:
-\[R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\]
+is invertible.
 \end{definition}
 
 \begin{definition}
@@ -158,7 +157,7 @@ Standard étale schemes are étale.
 
 \begin{proof}
 Assume given a standard étale algebra:
-\[(R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\]
+\[R[X_1,\cdots,X_n]/P_1,\cdots,P_n\]
 and write:
 \[P:R^n\to R^m\]
 for the map induced by $P_1,\cdots,P_m$.
@@ -166,26 +165,25 @@ for the map induced by $P_1,\cdots,P_m$.
 Assume given $\epsilon:R$ such that $\epsilon^2=0$, we need to prove that there is a unique dotted lifting in:
   \begin{center}
       \begin{tikzcd}
-       R/\epsilon & (R[X_1,\cdots,X_n]/P_1,\cdots,P_n)_G\ar[l,swap,"x"]\ar[dotted,ld] \\
+       R/\epsilon & R[X_1,\cdots,X_n]/P_1,\cdots,P_n\ar[l,swap,"x"]\ar[dotted,ld] \\
        R\ar[u]&
       \end{tikzcd}
     \end{center}
-This means that for all $x:R^n$ such that $P(x)=0$ mod $\epsilon$ and $G(x)$ invertible modulo $\epsilon$ (or equivalently $G(x)$ invertible), there exists a unique $y:R^n$ such that:
+This means that for all $x:R^n$ such that $P(x)=0$ mod $\epsilon$, there exists a unique $y:R^n$ such that:
 \begin{itemize} 
 \item We have $x=y$ mod $\epsilon$.
 \item We have $P(y)=0$.
-\item We have $G(y)\not=0$ (this is implied by $x=y$ mod $\epsilon$ and $G(x)\not=0$).
 \end{itemize}
 
 First we prove existence. For any $b:R^n$ we compute:
 \[P(x+\epsilon b) = P(x) + \epsilon\ dP_x(b)\]
-We have that $P(x)=0$ mod $\epsilon$, say $P(x) = \epsilon a$. Then since $G(x)\not=0$ and $\mathrm{det}(dP)$ divides $G$, we have that $dP_x$ is invertible. Then taking $b = -(dP_x)^{-1}(a)$ gives a lift $y=x+\epsilon b$ such that $P(y) = 0$.
+We have that $P(x)=0$ mod $\epsilon$, say $P(x) = \epsilon a$. Since $\neg\neg(P(x) = 0)$, we have that $dP_x$ is invertible. Then taking $b = -(dP_x)^{-1}(a)$ gives a lift $y=x+\epsilon b$ such that $P(y) = 0$.
 
 Now we check unicity. Assume $y,y'$ two such lifts, then $y=y'$ mod $\epsilon$ and we have:
 \[P(y) = P(y') + dP_{y'}(y-y')\]
 and $P(y)=0$ and $P(y')=0$ so that:
 \[dP_{y'}(y-y') = 0\]
-But $G(y')\not=0$ so $dP_{y'}$ is invertible and we can conclude that $y=y'$.
+But $dP_{y'}$ is invertible and we can conclude that $y=y'$.
 \end{proof}
 
 \begin{lemma}\label{standard-smooth-is-smooth}
@@ -194,7 +192,7 @@ Any standard smooth scheme of dimension $k$ is formally smooth of dimension $k$.
 
 \begin{proof}
 The fibers of the map:
-\[\Spec\big((R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G\big) \to \Spec(R[Y_1,\cdots Y_{k}])\]
+\[\Spec\big(R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\big) \to \Spec(R[Y_1,\cdots Y_{k}])\]
 are standard étale, so the map is étale by \cref{standard-etale-are-etale}. Since:
 \[\Spec(R[Y_1,\cdots Y_{k}]) = \A^k\]
 is smooth by \cref{An-is-smooth}, we can conclude it is smooth using \cref{smooth-sigma-closed}. 
@@ -256,16 +254,10 @@ so it is of the form $D(G_1,\cdots,G_n)$, and we have an open cover of our schem
     \[\Spec((R[X_1,\cdots,X_n,Y_1,\cdots,Y_k]/P_1,\cdots,P_n)_G)\]
     Where $P_i(x)=0$ for all $i$ and $G(x)\not=0$ implies:
     \[\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n)_x)\not=0\]
-    
-    We write:
-    \[F(x)=\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n)_x)\]
-    Then for all $x:\Spec(R[X_1,\cdots,X_n,Y_1,\cdots,Y_k]/P_1,\cdots,P_n)$ we have that:
-    \[(G(x)\not=0) \to (F(x)\not=0)\]
-    so that there exists $n$ such that:
-    \[F(x) | G(x)^n\]
-    and using boundedness we get $N$ such that for all $x:\Spec(R[X_1,\cdots,X_n,Y_1,\cdots,Y_k]/P_1,\cdots,P_n)$ we have:
-    \[F(x) | G(x)^N\]
-    and we conclude that $F$ divides $G^N$ in $R[X_1,\cdots,X_n,Y_1,\cdots,Y_k]/P_1,\cdots,P_n$. So by replacing $G$ by $G^N$, we get standard smooth pieces.
+ 
+ Then such a piece is equivalent to $\Spec\big(R[X_1,\cdots,X_n,X_{n+1},Y_1,\cdots,Y_k] / P_1,\cdots,P_n,GX_{n+1}-1\big)$ which is standard smooth as:
+ \[\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n,GX_{n+1}-1)) = \mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n) \cdot G\]
+ which is invertible.
 \end{proof}
 
 \begin{corollary}
@@ -275,3 +267,7 @@ A scheme is formally étale if and only if it has a cover by standard étale sch
 \begin{proof}
 By \cref{unramified-scheme-characterisation} we know that a scheme is formally étale if and only if it is smooth of dimension $0$. Then we just apply \cref{smooth-are-locally-standard}.
 \end{proof}
+
+\begin{remark}
+An affine scheme with a cover by standard étale schemes is itself standard étale. TODO
+\end{remark}
