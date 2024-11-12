@@ -10,5 +10,5 @@ I put a question mark behind a name, where I was not sure if the person is actua
 | Synthetic Stone Duality/Synthetic Condensed Mathematics | Freek, [Thierry](https://www.cse.chalmers.se/~coquand/), Felix, Hugo, Jonas |
 | (Algebraic/DM) stacks                                   | Hugo, Tim, Felix                   |
 | Synthetic Riemann-Roch/Serre-Duality                    | Hugo, Felix, Fabian, [Marc](https://www.uni-augsburg.de/de/fakultaet/mntf/math/prof/alg/arbeitsgruppe/nieper-wisskirchen/)? |
-| Synthetic Riemann-Roch                                  | [Xuanrui](https://www.xuanruiqi.com/)    |
+| étale cohomology                                        | [Xuanrui](https://www.xuanruiqi.com/)    |
 | étale propositions are open                             | Evan                               |
