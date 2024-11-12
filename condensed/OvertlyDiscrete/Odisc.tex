@@ -1,56 +1,98 @@
-\input{OvertlyDiscrete/ColimitRepresentation.tex}
-\subsection{Overtly discrete types}
+%\input{OvertlyDiscrete/ColimitRepresentation.tex}
 \begin{definition}
-  We define a type $E$ to be Overtly Discrete iff it is the colimit of an $\N$-indexed sequence of finite sets. 
+  We call a type overtly discrete iff it can be described as 
+  the colimit of an $(\N,\leq)$-indexed sequence of finite sets. 
 \end{definition} 
+\begin{remark}
+  If we denote an overtly discrete type by $B$, we will denote the objects of the underlying sequence as 
+  $B_n,~n:\N$, and for $n\leq m$, we denote the maps $B_n \to B_m$ with 
+  Greek letters with lower index $n$ and upper index $m$. 
+  So for example $\iota_n^m:B_n \to B_m$. 
+  The maps $B_n \to B$ will in this case be denoted $\iota_n$. 
+  If convenient, given a sequence $B_n$, we will denote $B_\infty$ for the colimit $B$.
+\end{remark}
 \begin{lemma}
   Every countably presented Boolean algebra is overtly discrete.
 \end{lemma}
 \begin{proof}
-  \rednote{See other file}
+  Consider a countably presented Boolean algebra of the form $B = 2[\N]/(r_n)_{n:\N}$. 
+%  We will show there exists a diagram of shape $\N$ taking values in Boolean algebras 
+%  with $B$ as colimit.
+%  \paragraph{The diagram}
+  For each $n:\N$, let $G_n$ be the union of $\{g_i|{i\leq n}\}$ and 
+  the finite set of terms occurring in $(r_i)_{i\leq n}$. 
+  Denote $B_n = 2[G_n]/(r_i)_{i\leq n}$, and note that each $B_n$ is a finite Boolean algebra, 
+  and we have maps $B_n \to B_{n+1}$.
+%  The inclusion $G_n \hookrightarrow G_{n+1}$ induces maps $B_n \to B_{n+1}$.
+  Hence $B_n,~n:\N$ is an $(\N,\leq)$-indexed sequence of finite sets. 
+  We claim that $B$ is the colimit of this sequence. 
+%
+%  \paragraph{The colimit}
+%  As $G_n\subseteq G$ and $R_n \subseteq R$, 
+%  \Cref{rmkMorphismsOutOfQuotient} also gives us a map $B_n\to \langle G \rangle \langle R \rangle$. 
+%  We claim the resulting cocone is a colimit. 
+%
+%  Suppose we have a cocone $C$ on the diagram $(B_n)_{n\in\N}$. 
+%  We need to show that there exists a map $\langle G \rangle / R\to C$ and
+%  we need to show this map is unique as map between cocones. 
+%  \begin{itemize}
+%    \item To show there exists a map $\langle G \rangle / R \to C$, 
+%      we use remark \Cref{rmkMorphismsOutOfQuotient} again. 
+%      Let $g\in G$ be the $n$'th element of $G$, 
+%      note that $g\in G_n$, and consider the image of $g$ under the map $B_n \to C$. 
+%      This procedure defines a function from $G$ to the underlying set of $C$. 
+%      Let $\phi \in R$ be the $n$'th element of $R$, 
+%      note that $\phi \in R_n$, and the map $B_n \to C$ must send $\phi$ to $0$. 
+%      Thus the function from $G$ to the underlying set of $C$ also sends $\phi$ to $0$. 
+%      This thus defines a map $\langle G \rangle / R \to C$. 
+%    \item To show uniqueness, consider that any map of cocones $\langle G \rangle / \langle R \rangle \to C$ 
+%      must take the same values on all $g\in G_n$ for all $n\in\N$. 
+%      Now all $g\in G$ occur in some $G_n$, so any map of cocones $\langle G \rangle /  \langle R \rangle \to C$ 
+%      takes the same values for all $g\in G$. 
+%      \Cref{rmkMorphismsOutOfQuotient} now tell us that these values uniquely determine the map. 
+%  \end{itemize}
 \end{proof}
-%\begin{lemma}
-%  Let $A,B$ be overtly discrete, and let $f:A\to B$ injective. 
-%  Then there exists sequences of finite sets $(A_n)_{n:\N}, (B_n)_{n:\N}$ with colimits $A,B$ respectively, 
-%  and maps $f:A_n \to B_n$ such that the following diagram commutes for any $n\leq m$:
-%  \begin{equation}
-%    \begin{tikzcd}
-%      A_n \arrow[d,"\iota_m^n"] \arrow[r,"f_n"] & B_n \arrow[d,"\kappa_m^n"] \\
-%      A_m \arrow[d,"\iota_\infty^m"] \arrow[r,"f_m"] & B_m \arrow[d,"\kappa_\infty^m"] \\
-%      A \arrow[r,"f"] & B
-%    \end{tikzcd}
-%  \end{equation}
-%\end{lemma} 
  
 \begin{lemma}\label{colimitCompact}
-  For any finite set $A$, 
-  and any overtly discrete type $B$ as colimit of the sequence $(B_n)_{n:\N}$, 
-  we $B^A$ is the colimit of the sequence of sets $(B_n^A)_{n:\N}$. 
+  For any finite set $A$ and $(\N,\leq)$-indexed sequence of finite sets $B_n$ with colimit $B$, 
+  the colimit of $B_n^A$ is $B^A$. 
+%  and any overtly discrete type $B$ as colimit of the sequence $(B_n)_{n:\N}$, 
+%  $(colim(B_n))^A \simeq colim (B_n^A)$
+%  $B^A$ is the colimit of the sequence of sets $(B_n^A)_{n:\N}$. 
 \end{lemma}  
 \begin{proof}
-  First note that $B^A$ forms a cocone on $(B_n^A)_{n:\N}$ 
-  because any map $A \to B_n$ induces a map $A \to B$. 
-  Let $C$ be a cocone on $(B_n^A)_{n:\N}$. 
-  We shall show there is an unique morphism of cocones $B^A \to C$. 
-  Denote $\iota_n:B_n \to B, F_n:B_n^A\to C$ for the cocone maps. 
-  \begin{itemize}
-    \item 
-      If $f:A\to B$, we have that $f(A)$ is a finite subset of $B$, and thus occurs already in some $B_n$. 
-      This induces a map $f'_n:A\to B_n$ with $\iota_n\circ f' = f$. 
-      As $C$ is a cocone, we have that $F_n(f'_n)$ does not depend on $n:\N$. 
-      Thus $(F_n)_{n:\N}$ induces a map $B^A\to C$. 
-    \item 
-      For uniqueness, by function extensionality maps $B^A \to C$ are uniquely determined by their values on 
-      $f:B^A$. By the above, the value of $f$ is uniquely determined by it's value on $B_n$ for 
-      any $n$ with the image of $f$ in $B_n$. Thus there is at most one morphism of cocones $B^A \to C$. 
-  \end{itemize}
+%  First note that $B^A$ forms a cocone on $(B_n^A)_{n:\N}$ 
+  Any map $A \to B_n$ induces a map $A \to B$, hence $B^A$ is a cocone on $(B_n^A)_{n:\N}$.
+  Let $C$ form a cocone on $(B_n^A)_{n:\N}$. %with maps $F_n:B_n^A \to C$.
+  For any $f:A \to B$, the finite image $f(A)$ must already occur in some $B_n$, 
+  thus there is some $f':A\to B_n$ with $\iota_n\circ f' = f$.% occurs as some map $A\to B_n$, 
+  As $C$ is a cocone, $f'$ corresponds to some $c$ in $C$, and this term does not depend on $n$. 
+  Also any map $B^A \to C$ respecting the cocone conditions must send $f$ to $c$, 
+  hence $B^A$ is indeed the colimit. 
+%
+%
+%
+%%  We shall show there is an unique morphism of cocones $B^A \to C$. 
+%%  Denote $\iota_n:B_n \to B, F_n:B_n^A\to C$ for the cocone maps. 
+%  \begin{itemize}
+%    \item 
+%      If $f:A\to B$, we have that $f(A)$ is a finite subset of $B$, and thus occurs already in some $B_n$. 
+%      This induces a map $f'_n:A\to B_n$ with $\iota_n\circ f'_n = f$. 
+%      As $C$ is a cocone, we have that $F_n(f'_n)$ does not depend on $n:\N$. 
+%%      Thus $(F_n)_{n:\N}$ induces a map 
+%      Thus we get a map $B^A\to C$. 
+%    \item 
+%      For uniqueness, by function extensionality maps $B^A \to C$ are uniquely determined by their values on 
+%      $f:B^A$. By the above, the value of $f$ is uniquely determined by it's value on $B_n$ for 
+%      any $n$ with the image of $f$ in $B_n$. Thus there is at most one morphism of cocones $B^A \to C$. 
+%  \end{itemize}
 \end{proof}
 \begin{remark}\label{rmkEqualityColimit}
   In the above proof, we used that any element $b\in B$ already occurs in some $B_n$. 
-  However, please note that it is not necessarily the case that it occurs uniquely in $B_n$, 
-  there might be multiple elements in $B_n$ which can all be sent to $b$ in the end. 
-
-  In general, if we assume $B$ is the colimit of an arbitrary sequence $(B_n)_{n:\N}$, 
+  However, please note that it is not necessarily the case that it occurs uniquely in $B_n$.
+%  there might be multiple elements in $B_n$ which can all be sent to $b$ in the end. 
+%
+  In general, if we assume $B$ is overtly discrete %is the colimit of any sequence $(B_n)_{n:\N}$, 
   and there exist some $B_n$ with two elements corresponding to the same element in $B$, 
   Theorem 7.4 from \cite{SequentialColimitHoTT} says that there merely exists some $m\geq n$
   such that these elements become equal in $B_m$. 
@@ -63,7 +105,7 @@
 \begin{lemma}\label{lemDecompositionOfColimitMorphisms}
   Let $B,C$ be overtly discrete, 
   and let $f:B\to C$.
-  There exists sequences of finite sets 
+  There exists $(\N,\leq)$-indexed sequences of finite sets 
   $(B_n)_{n:\N}, (C_n)_{n:\N}$ with colimits $B,C$ respectively
   and compatible maps $f_n:B_n \to C_n$, 
   such that $f$ is the induced morphism $B\to C$.
@@ -71,20 +113,21 @@
 \begin{proof}
   Let $(B_n)_{n:\N}, (C_n)_{n:\N}$ be 
   sequences of finite sets with colimits $B$ and $C$. 
-  We will construct a subsequence of $(C_n)_{n:\N}$, using \Cref{axDependentChoice}
-
+  We will construct a subsequence of $(C_n)_{n:\N}$, using \Cref{axDependentChoice}.
+%
   For $k:\N$, let $E_k$ consist of 
   strictly increasing sequences $(n_i)_{i<k}$ of natural numbers together with a finite family of maps 
   $(f_i: B_{i} \to C_{n_i})_{i<k}$ such that
   for all $0<i<k$ the following diagram commutes:
   \begin{equation}\label{eqnDecompositionOfColimitMorphisms}
     \begin{tikzcd}
-      B_{i-1} \arrow[r] \arrow[d, "f_{i-1}"]& B_{{i}} \arrow[r] \arrow[d,"f_{i}"]& B \arrow[d,"f"] \\
-      C_{n_{i-1}} \arrow[r] & C_{n_{i}} \arrow[r] & C 
+      B_{i-1} \arrow[r,"\iota_{i-1}^i"] \arrow[d, "f_{i-1}"]& B_{{i}} \arrow[r, "\iota_i"] 
+      \arrow[d,"f_{i}"]& B \arrow[d,"f"] \\
+      C_{n_{i-1}} \arrow[r,"\kappa_{i-1}^i"] & C_{n_{i}} \arrow[r,"\kappa_i"] & C 
     \end{tikzcd}
   \end{equation}
   For $e:E_k, e':E_{k+1}$, we let 
-  $R_k(e,e')$ denote  whether the underlying sequence of $e'$ extends that of $e$. 
+  $R_k(e,e')$ denote  whether the underlying sequences of $e'$ extends that of $e$. 
   The empty sequence inhabits $E_0$. We will show that if $e:E_k$, there exists some $e':E_{k+1}$ with 
   $R_k(e,e')$. Then \Cref{axDependentChoice} will give the required sequence $(f_i:B_i\to C_{n_i})$.
 %%
@@ -116,13 +159,14 @@
 %  \end{equation}
   We may assume $n'_{k+1} > n_k$.
   Note that it is not necessarily the case that 
-  $f'_{k+1}$ is compatible with $f_k$, meaning the left square in the following diagram needn't commute:
-  \begin{equation}
-    \begin{tikzcd}
-      B_{k-1} \arrow[r] \arrow[d, "f_{k-1}"]& B_{{k}}  \arrow[r] \arrow[d,"f'_{k}"] & B \arrow[d,"f"] \\
-      C_{n_{k-1}} \arrow[r] & C_{n'_{k}} \arrow[r]  & C 
-    \end{tikzcd}
-  \end{equation}
+  $f'_{k} \circ \iota_{k-1}^k = \kappa_{n_{k-1}}^{n'_k}\circ f_{k-1}$. 
+%  $f'_{k+1}$ is compatible with $f_k$, meaning the left square in the following diagram needn't commute:
+%  \begin{equation}
+%    \begin{tikzcd}
+%      B_{k-1} \arrow[r] \arrow[d, "f_{k-1}"]& B_{{k}}  \arrow[r] \arrow[d,"f'_{k}"] & B \arrow[d,"f"] \\
+%      C_{n_{k-1}} \arrow[r] & C_{n'_{k}} \arrow[r]  & C 
+%    \end{tikzcd}
+%  \end{equation}
   However, both $f'_{k}, f_{k-1}$ induce the same map $B_{k-1} \to C$. 
 %  Recall by \Cref{rmkMorphismsOutOfQuotient} this map is induced by it's value on finitely many elements. 
   As $B_{k-1}$ is finite, from \Cref{rmkEqualityColimit} it follows there is some $n_{k} \geq {n'_{k}}$ 
@@ -144,17 +188,170 @@
 %  and thus is equal to $f$. 
 %  Thus our sequence $f_i$ is as required. 
 \end{proof}
-\begin{remark}
-  For the above lemma, it is clear that if $f$ is injective, so are all the $f_n$. 
-\end{remark}
-\begin{remark}
-  Let $B:\Boole$. 
-  Recall that $B$ can be seen as the colimit of $(B_n)_{n:\N}$ with $B_n$ finite Boolean algebras. 
-  Now in the category of Boolean algebras, we have $(B\to 2) \simeq lim(B_n\to 2)$.
-  As $B_n\to 2$ is finite whenever $B_n$ is, it follows that Stone spaces are limits of $\N$-indexed diagrams of finite sets. 
-\end{remark}
+
+\begin{lemma}\label{lemDecompositionOfEpiMonoFactorization}
+  Let $f:A_\infty\to B_\infty$ be a map between overtly discrete types, and suppose we have $f_n:A_n\to B_n$ such that 
+  the following diagram commutes:
+  \begin{equation}
+    \begin{tikzcd}
+      A_n \arrow[d,"f_n"]\arrow[r, "\iota_n^m"]  & A_m \arrow[d,"f_m"] \arrow[r,"\iota_m^\infty"]  & A_\infty \arrow[d,"f"] 
+      \\
+      B_n \arrow[r, "\kappa_n^m"'] & B_m \arrow[r,"\kappa_m^\infty"'] & B_\infty
+    \end{tikzcd}
+  \end{equation}
+  Then $f(A)$ is the colimit of $f_n(A_n)$, 
+  and the maps $A\twoheadrightarrow f(A)$ and $f(A) \hookrightarrow B$ 
+  are induced by the maps $A_n\twoheadrightarrow f_n(A_n)$ and $f_n(A_n) \hookrightarrow B_n$ respectively. 
+\end{lemma}
+\begin{proof}
+  For $n\leq m$, we have that $\kappa_n^m(f_n(A_n)) = f_m(\iota_n^m(A_n))\subseteq f_m(A_m)$, 
+  hence we can take the corestriction of the map $f_n(A_n) \to B_m$ to $f_m(A_m)$ to get 
+  maps $\lambda_n^m :f_n(A_n) \to f_m(A_m)$ making the following diagram commute:
+  % https://q.uiver.app/#q=WzAsOSxbMSwwLCJBX20iXSxbMiwwLCJBX1xcaW5mdHkiXSxbMSwyLCJCX20iXSxbMiwyLCJCX1xcaW5mdHkiXSxbMiwxLCJmKEEpIl0sWzEsMSwiZl9tKEFfbSkiXSxbMCwwLCJBX24iXSxbMCwyLCJCX24iXSxbMCwxLCJmX24oQV9uKSJdLFswLDFdLFsyLDNdLFsxLDQsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDMsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsNSwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzUsMiwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNywyLCJcXGthcHBhX25ebSIsMl0sWzYsMCwiXFxpb3RhX25ebSJdLFs2LDgsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs4LDcsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzgsNSwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsNCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV1d
+  \begin{equation}\label{eqnEpiMonoFactorizationDecomposition}
+    \begin{tikzcd}
+    {A_n} & {A_m} & {A_\infty} \\
+    {f_n(A_n)} & {f_m(A_m)} & {f(A_\infty)} \\
+    {B_n} & {B_m} & {B_\infty}
+    \arrow["{\iota_n^m}", from=1-1, to=1-2]
+    \arrow[two heads, from=1-1, to=2-1,"e_n"]
+    \arrow[from=1-2, to=1-3,"\iota_m^\infty"]
+    \arrow[two heads, from=1-2, to=2-2,"e_m"]
+    \arrow[two heads, from=1-3, to=2-3,"e"]
+    \arrow[dashed, from=2-1, to=2-2, "\lambda_n^m"]
+    \arrow[hook, from=2-1, to=3-1, "i_n"]
+    \arrow[dashed, from=2-2, to=2-3, "\lambda_m^\infty"]
+    \arrow[hook, from=2-2, to=3-2,"i_m"]
+    \arrow[hook, from=2-3, to=3-3,"i_\infty"]
+    \arrow["{\kappa_n^m}"', from=3-1, to=3-2]
+    \arrow[from=3-2, to=3-3,"\kappa_m^\infty"']
+  \end{tikzcd}
+\end{equation}
+  To see that $f(A_\infty)$ is colimiting, note that whenever $b$ occurs in $f(A_\infty)$ as 
+  $f(a)$ for some $a:A_\infty$, there is some $n:\N$ and $a':A_n$ with $\iota_n(a') = a$ and 
+  $\kappa_n(e_n(a')) = \kappa_n(f_n(a')) = b$, so there is a unique extension from $f(A_\infty)$ into any other cocone. 
+\end{proof}
+\begin{corollary}
+  In \Cref{lemDecompositionOfColimitMorphisms}, when $f$ is injective or surjective, 
+  we can choose presentations such that each $f_n$ is also injective or surjective respectively. 
+\end{corollary}
+\begin{proof}
+  Using \Cref{lemDecompositionOfColimitMorphisms} and \Cref{lemDecompositionOfEpiMonoFactorization}, 
+  we get a factorization as in \Cref{eqnEpiMonoFactorizationDecomposition}. 
+  If $f$ is injective, then $e$ is an isomorphism. 
+  Hence $A$ is the colimit of $f_n(A_n)$, and we can take $f_n' = i_n$.
+  Similarly, if $f$ is surjective $i$ is an isomorphism and we consider $B$ as colimit of $f_n(A_n)$ and 
+  take $f_n' = e_n$.
+\end{proof}
 
 
+
+%
+%\begin{lemma}
+%  Let $A,B,C$ be overtly discrete, represented by sequences $(A_n)_{n:\N}, (B_n)_{n:\N},(C_n)_{n:\N}$. 
+%  Let $u,v,(u_n)_{n:\N},(v_n)_{n:\N}$ be as in the following diagram of Boolean algebras:
+%  \begin{equation}
+%    \begin{tikzcd}
+%      A_\infty \arrow[r,"u_\infty"] & B_\infty  \arrow[r,"v_\infty"] & C_\infty
+%      \\
+%      A_n \arrow[u,"i_n^\infty"] \arrow[r,"u_n"] & B_n \arrow[u,"j_n^\infty"] \arrow[r,"v_n"] & C_n \arrow[u,"k^\infty_n"]
+%      \\
+%      A_m \arrow[u,"i_m^n"] \arrow[r,"u_m"] & B_m \arrow[u,"j_m^n"] \arrow[r,"v_m"] & C_m \arrow[u,"k_m^n"]
+%    \end{tikzcd} 
+%  \end{equation} 
+%  Furthermore, assume that $v\circ u = 0$ and $v_n \circ u_n = 0$ for all $n:\N$.
+%  Then $Ker(v)/Im(u)$ is the colimit of the sequence $Ker(v_n)/Im(u_n)$. 
+%\end{lemma}
+%\begin{proof}
+%  First, we will note what the maps in this sequence are, which by some abuse of notation also gives
+%  the cocone maps. 
+%\paragraph{If $n\leq m$, there are maps $Ker(v_n)/Im(u_n)\to Ker(v_m) / Im(u_m)$.}
+%Let $x,y\in B_n, a \in A_n$ be such that $x - y  = u_n(a)$, 
+%then $j_n^m(x) - j_n^m(y) = j_n^m(u_n(a)) = u_m(i_n^m(a))$.
+%Thus whenever $x,y\in B_n$ are such that $x \sim_{Im(u_n)} y$, we have that 
+%$j_n^m(x) \sim_{Im(u_m)} j_n^m(y)$. 
+%
+%%
+%Furthermore, if $x\in Ker(v_n)$, then $v_n(x) = 0$, thus 
+%\begin{equation}
+%  v_m(j_n^m(x)) = k_n^m(v_n(x)) = k_n^m(0) = 0
+%\end{equation} 
+%and hence $j_n^m(x) \in Ker(v_m)$. 
+%Thus $j_n^m$ induces a map $\iota_n^m:Ker(v_n)/Im(u_n) \to Ker(v_m)/Im(u_m)$, 
+%with $\iota^n_m([x]) = [j_n^m(x)]$ for $x\in Ker(v_n)$. 
+%
+%\paragraph{These maps are compatible (in particular, the maps $j_n^\infty$ form a cocone).}. 
+%If $k\leq n \leq m$, we have that $j_n^m \circ j_k^n = j_k^m$.
+%We thus have that $\iota_n^m \circ \iota_k^n = \iota_k^m$.
+%
+%\paragraph{Given any cocone $\kappa_n : Ker(v_n)/Im(u_n)\to K$, 
+%  there exists an extension $\kappa_\infty(v_\infty)/Im(u_\infty)\to K$}
+%      If $\kappa_n$ forms a cocone, this means that for $n\leq m$ we have 
+%      $\kappa_m = \kappa_n \circ \iota_m^n$.
+%
+%      We shall give a map $\kappa_\infty:Ker(v_\infty)/Im(u_\infty) \to K$ satisfying 
+%      $\kappa_\infty \circ \iota_n^\infty= \kappa_n$ for all $n:\N$.
+%      We're going to define a map $k:Ker(v_\infty) \to K$.
+%%%
+%      Let $x\in Ker(v_\infty)$. Then $x\in B_\infty$ and $v\infty(x) = 0$. 
+%      As $B_\infty$ is the colimit of the sequence $B_n$, 
+%      there is some $n:\N$ and some $x':B_n$ with $v_n(x') = 0$. 
+%      We'd like to define $k(x) = \kappa_n([x'])$. We need to check this definition doesn't depend on $n$. 
+%      \begin{itemize}
+%        \item \textbf{$k$ is well-defined} 
+%      Assume $n\leq m$ are such that we have $x':B_n, x'':B_m$ with $v_n(x') = 0, v_m(x'') = 0$ 
+%      and $j_n(x') = j_m(x'') = x$. 
+%      Then there exists some $l\geq m\geq n$ with 
+%      $j_n^l (x') = j_m^l(x'')$, hence 
+%      $$\iota_n^l[x'] = \iota_m^l[x'']$$ and thus 
+%      $$\kappa_l(\iota_n^l[x']) = \kappa_l(\iota_m^l[x''])$$
+%      But now $\kappa_l\circ \iota_n^l = \kappa_n$ and $\kappa_l\circ \iota_m^l = \kappa_m$, hence 
+%      $$\kappa_n([x']) = \kappa_m([x''])$$
+%      Thus $k$ is well-defined. 
+%      \item \textbf{$k$ respects $Im(u)$}
+%        Let $x,y:B$ and let $a:A$ be such that are such that $x-y = u(a)$ and $v(x) = v(y) = 0$.
+%        Then there is some $n:\N$, and some $x',y':B_n, a':A_n$ with $x'-y'= u_n(a'), v_n(x') = v_n(y') = 0$ 
+%        and $j_n(x') = x, j_n(y') = y, i_n(a') = a$. 
+%        Hence $[x'] = [y']$, hence $\kappa_n([x']) = \kappa_n([y'])$.
+%        Thus $k(x) = k(y)$. 
+%      \end{itemize}
+%      We conclude that $k$ induces a map $\kappa_\infty:Ker(v)/Im(u) \to K$. 
+%    \paragraph{$\kappa$ is colimiting}
+%    Let $\kappa_n$ be as above, and suppose that 
+%    $\lambda \circ \iota_n^\infty = \kappa_n$. 
+%    Then for all $n:\N$, $x':B_n$ such that $j_n(x) = x$, we have 
+%    $$\lambda ([x]) = \lambda \circ \iota_n([x']) = \kappa_n([x']) = k(x)$$
+%    As such $n,x'$ always exist, it follows that 
+%    $\lambda([x]) = k(x)$, hence $\lambda[x] = \kappa[x]$, so $\lambda = \kappa$ as required. 
+%\end{proof} 
+%
+%
+%
+%
+
+
+
+
+
+
+
+%%\begin{remark}
+%%  For any overtly discrete type $B$, we can choose a presentation of the underlying sequence 
+%%  $B_n' = \iota_n(B_n)$ such that $B$ is the colimit of $B_n'$, and the inclusion maps $\iota'_n$ are injective. 
+%%  Applying the above lemma to some $B$ of this form, we see that if $f$ is injective, so are all the $f_n$. 
+%%%  
+%%%
+%%%  For the above lemma, if $f$ is injective, so are all the $f_n$. This isn't clear at all. Consider 
+%%%  the sequence of $\{x,y\} \to \{x\} \to \{x,y\} \to \{x \} \to \cdots$ with colimit $\{x\}$. 
+%%\end{remark}
+%\begin{remark}
+%  Let $B:\Boole$. 
+%  Recall that $B$ can be seen as the colimit of $(B_n)_{n:\N}$ with $B_n$ finite Boolean algebras. 
+%  Now in the category of Boolean algebras, we have $(B\to 2) \simeq lim(B_n\to 2)$.
+%  As $B_n\to 2$ is finite whenever $B_n$ is, it follows that Stone spaces are limits of $\N$-indexed diagrams of finite sets. 
+%\end{remark}
+%
+%
 %\begin{remark}\label{rmkEpiMonoFactorizationCommutes}
 %  For $f,(f_i)_{i:\N}$ as above, whenever $f_n(x) = 0$, we have $f_{n+1}(x \circ \iota_{n,n+1}) = 0$
 %  for $\iota_{n,n+1}$ the map $A_n \to A_{n+1}$. 
