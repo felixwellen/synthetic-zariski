@@ -57,6 +57,8 @@ This implies $d(r,0) = 0$ for all $r : R$, so we obtain a section to the injecti
 
 \subsection{Tangent spaces}
 
+\rednote{TODO add reference to David Jaz Myers' Orbifold.}
+
 \begin{definition}
 Let $X$ be a type and let $x:X$, then we define the tangent space $T_x(X)$ of $X$ at $x$ by:
 \[\{t:\D(1)\to X\ |\ t(0)=x\}\]
@@ -136,7 +138,7 @@ is the pullback of:
 in pointed types, applied using $(\mathbb{D}(1),0)$.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{tangent-finite-copresented}
 Let $X$ be a scheme with $x : X$. Then $T_x(X)$ is a finitely
 co-presented $R$-module.
 \end{lemma}
@@ -386,10 +388,10 @@ merely having a section. But since any finitely copresented module is projective
 \subsection{Rank of matrices}
 
 \begin{definition}
-A matrix is said of rank $n$ if it has an invertible $n$-minor, and all its $n+1$-minor have determinant $0$.
+A matrix is said to have rank $\leq n$ all its $n+1$-minors are zero. It is said to have rank $n$ if it has rank $\leq n$ and does not have rank $\leq n-1$.
 \end{definition}
 
-Having a rank is a property of matrices, as there is no rank function defined on all matrices.
+Having a rank is a property of matrices, as a rank function defined on all matrices would allow to e.g. decide if an $r:R$ is invertible.
 
 \begin{lemma}\label{rank-bloc-matrix}
 Assume given a matrix $M$ of rank $n$ decomposed into blocks:
@@ -410,7 +412,7 @@ P & 0  \\
 but equivalent matrices have the same rank so $S=RP^{-1}Q$.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{rank-equivalent-definitions}
 If a linear map:
 \[M:R^m \to R^n\]
 has kernel $R^k$, then it has rank $m-k$.
