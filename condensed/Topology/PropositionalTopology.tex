@@ -60,8 +60,14 @@ Such a definition is universe-independent, and can be made internally.
   If a proposition is both open and closed, it is decidable. 
 \end{corollary}
 \begin{proof}
-  If $P$ is open and closed, $P\vee \neg P$ is open, hence
-  equivalent to $\neg \neg (P \vee \neg P)$, which is provable. 
+  If $P$ is open and closed, by \Cref{rmkOpenClosedNegation}, $\neg P$ is open.
+  By \Cref{OpenCountableDisjunction}, it follows $P\vee \neg P$ is open, 
+  hence 
+  equivalent to $\neg \neg (P \vee \neg P)$ by \Cref{rmkOpenClosedNegation}.
+  As the latter proposition is provable, we may conclude $P$ is decidable. 
+%  
+%  If $P$ is open and closed, $P\vee \neg P$ is open, hence
+%  equivalent to $\neg \neg (P \vee \neg P)$, which is provable. 
 \end{proof}
 
 \begin{lemma}\label{ClosedFiniteDisjunction} 
@@ -106,8 +112,8 @@ Such a definition is universe-independent, and can be made internally.
   \neg \neg \exists_{n:\N} \neg P_n(x).$
   As $\exists_{n:\N}\neg P_n(x)$ is a countable disjunction of open propositions, 
   it is open by \Cref{OpenCountableDisjunction} and thus equivalent to 
-  $\exists_{n:\N} \neg P_n(x)$ by \Cref{rmkOpenClosedNegation}.
-  We conclude that $\neg \forall_{n:\N} P_n \to \exists_{n:\N} P_n$ as required. 
+  $\neg\neg\exists_{n:\N} \neg P_n(x)$ by \Cref{rmkOpenClosedNegation}.
+  We conclude that $\neg \forall_{n:\N} P_n \to \exists_{n:\N} \neg P_n$ as required. 
 \end{proof} 
 
 
@@ -131,8 +137,8 @@ Such a definition is universe-independent, and can be made internally.
   $P = \exists_{n:\N} A_n $.
 %
   So for $Y : P \to Open $, the dependent sum $\Sigma_P Y$ is given by 
-  $\exists_{n:\N} (\Sigma_{a:A_n} Y(n,a))$. 
-  which is a countable a countable disjunction of open propositions, 
+  $\exists_{n:\N} (\Sigma_{a:A_n} Y(n,a))$,
+  which is a countable disjunction of open propositions, 
   hence open by \Cref{OpenCountableDisjunction}.
 \end{proof}
 
