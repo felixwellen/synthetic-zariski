@@ -1,0 +1,20 @@
+Assume given a statement in type theory where we have a lex modality $L$. The precise details can be found in \rednote{TODO Kevin Quirin PhD Lawvere-Tierney sheafification in Homotopy Type Theory}. The idea is to give a translation from sequent to sequent. We just give a summary of the translation of any type $A$ as the sheaf $[A]_L$.
+
+\begin{eqnarray}
+{[\mathrm{Type}]_L} &=& \sum_{X:\mathrm{Type}} X\ \mathrm{is\ modal}\\
+{[\prod_{x:A}B(x)]_L} &=& \prod_{x:[A]_L}[B]_L(x)\\
+{[\sum_{x:A}B(x)]_L} &=& \sum_{x:[A]_L}[B]_L(x)\\
+{[x=_Ay]_L} &=& [x]_L=_{[A]_L}[y]_L\\
+{[\propTrunc{A}]_L} &=& L\propTrunc{[A]_L}
+\end{eqnarray}
+
+This means we mostly leave things untouched expect we assume type variables to be modal, and use the modal replacement on the propositional truncation. Then for any inductive type $\mathbb{I}$ (without type parameter) we have that:
+
+\begin{eqnarray}
+{[\mathbb{I}]_L} &\simeq& L(\mathbb{I})\\
+\end{eqnarray}
+
+Note that we do not use equality and just an equivalence, for computational reasons.
+
+TODO check with Thierry.
+
