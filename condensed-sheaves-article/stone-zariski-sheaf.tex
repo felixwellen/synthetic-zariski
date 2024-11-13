@@ -1,0 +1,85 @@
+\begin{definition}\label{zariski-characterisation}
+A type $X$ is a Zariski sheaf if and only if:
+\begin{itemize}
+\item If $0=_\mathbb{B}1$ then $X$ is contractible.
+\item For all $b:\mathbb{B}$ we have that the map:
+\[X\to X^{b=0}\times X^{b=1}\]
+is an equivalence.
+\end{itemize}
+\end{definition}
+
+We can check there is a corresponding lex modality called Zariski stackification. 
+
+%\begin{definition}
+%A type $X$ is called a Zariski stack if and only for all  $f_1,\cdots,f_n:\mathbb{B}$ such that:
+%\[(f_1,\cdots,f_n) = 1\]
+%we have that $X$ is $f_1 \inv \lor \cdots \lor f_n \inv$-local.
+%\end{definition}
+
+We denote this modality by $L_{Zar}$, and we denote the corresponding translation by $[\_]_{Zar}$.
+
+\begin{lemma}\label{zariski-subcanonical}
+The type $\mathbb{B}$ is a Zariski stack.
+\end{lemma}
+
+\begin{proof}
+It is clear that $0=_\mathbb{B}1$ implies $\mathbb{B}$ contractible.
+
+Then we need to check that for all $b:\mathbb{B}$ we have that the map:
+\[\mathbb{B} \to \mathbb{B}^{b=0}\times\mathbb{B}^{b=1}\]
+is an equivalence, but by duality it is equivalent to the map:
+\[\mathbb{B} \to \mathbb{B}_{1-b}\times\mathbb{B}_b\]
+which is clearly an equivalence.
+\end{proof}
+
+\begin{lemma}\label{bot-zariski}
+We have that $L_{Zar}(\bot)$ is $0=_\mathbb{B}1$.
+\end{lemma}
+
+\begin{proof}
+By \cref{zariski-subcanonical} we know that $0=_\mathbb{B}1$ is a Zariski stack. It is clear that the fibers of $\bot\to 0=_\mathbb{B}1$ are Zariski contractible as assuming $0=_\mathbb{B}1$ any Zariski stack is contractible.
+\end{proof}
+
+\begin{lemma}\label{bool-zariski}
+We have that $L_{Zar}(\mathbb{2})$ is $\mathbb{B}$.
+\end{lemma}
+
+\begin{proof}
+By \cref{zariski-subcanonical} we know that $\mathbb{B}$ is a Zariski stack. The fibers of the map $\mathbb{2}\to\mathbb{B}$ are Zariski contractible as they are of the form $b=0+b=1$ for some $b:\mathbb{B}$.
+\end{proof}
+
+\begin{lemma}\label{truncation-zariski}
+Let $X$ be a Zariski stack, then $\propTrunc{X}$ is a Zariski stack.
+\end{lemma}
+
+\begin{proof}
+If $0=_\mathbb{B}1$ then $X$ is contractible so $\propTrunc{X}$ is contractible as well. For all $b:\mathbb{B}$ we have an equivalence:
+\[X\to X^{b=0}\times X^{b=1}\]
+but since $b=c$ has choice we have that $\propTrunc{X}^{b=c} = \propTrunc{X^{b=c}}$ so that we get:
+\[\propTrunc{X}\to \propTrunc{X}^{b=0}\times \propTrunc{X}^{b=1}\]
+\end{proof}
+
+\begin{lemma}\label{zariski-cp-iff-cp}
+Assume $C$ be a boolean algebra that is a Zariski sheaf, if $C$ is c.p. in the Zariski topos then it is a c.p. $\mathbb{B}$-algebra.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{theorem}
+We have that the Zariski interpretation of the following hold:
+\begin{itemize}
+\item For all c.p. $C$, we have that the map $C\to \mathbb{2}^{\Sp(C)}$ is an equivalence.
+\item For all c.p. $C$, we have that $\Sp(C)$ has choice.
+\item Dependent choice.
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+By \cref{bool-zariski} we just need to prove the first two results replacing $\mathbb{2}$ by $\mathbb{B}$. Using \cref{zariski-cp-iff-cp} the first point is clear, using \cref{truncation-zariski} we have the second one.
+
+For dependent choice this comes from the fact that being surjective in the Zariski and presheaf model means the same thing by \cref{truncation-zariski}.
+\end{proof}
+
+
