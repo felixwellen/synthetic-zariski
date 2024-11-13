@@ -52,7 +52,23 @@
 %      \Cref{rmkMorphismsOutOfQuotient} now tell us that these values uniquely determine the map. 
 %  \end{itemize}
 \end{proof}
- 
+
+\begin{lemma}
+  Overtly discrete types are closed under $\Sigma$. 
+\end{lemma}
+\begin{proof}
+  Let $B$ be overtly discrete and $X:B \to \mathcal U$ be a $B$-indexed family of overtly discrete types. 
+  By applying countable choice, we get for every $n:\N$ some $k_n:\N$ such that $B_n \simeq Fin(k_n)$ and for every $b:B_n$ 
+  a sequence of finite sets $X(b)_m$ whose colimit is $X(b)$. 
+  Now we the sequential colimit commutes with the finite sum, 
+  hence $colim_m(\Sigma_{b:Fin(k_n)} X(b)_m) \simeq \Sigma_{b:Fin(k_n)} (colim_m (X(b)_m)) = \Sigma_{b:B_n} X(b)$
+%  By Theorem 5.1 of \cite{SequentialColimitHoTT}, we have that the colimit commutes with $\Sigma$, meaning that 
+%  $\Sigma_{b:B} X(b)$ is the colimit of the sequence $\Sigma_{b:B_n}(X(b)_m)$. 
+  %Not sure that theorem applies here
+\end{proof}
+
+
+\subsection{Maps of overtly discrete types}
 \begin{lemma}\label{colimitCompact}
   For any finite set $A$ and $(\N,\leq)$-indexed sequence of finite sets $B_n$ with colimit $B$, 
   the colimit of $B_n^A$ is $B^A$. 
@@ -231,7 +247,7 @@
   $f(a)$ for some $a:A_\infty$, there is some $n:\N$ and $a':A_n$ with $\iota_n(a') = a$ and 
   $\kappa_n(e_n(a')) = \kappa_n(f_n(a')) = b$, so there is a unique extension from $f(A_\infty)$ into any other cocone. 
 \end{proof}
-\begin{corollary}
+\begin{corollary}\label{decompositionInjectionSurjectionOfOdisc}
   In \Cref{lemDecompositionOfColimitMorphisms}, when $f$ is injective or surjective, 
   we can choose presentations such that each $f_n$ is also injective or surjective respectively. 
 \end{corollary}
@@ -243,8 +259,34 @@
   Similarly, if $f$ is surjective $i$ is an isomorphism and we consider $B$ as colimit of $f_n(A_n)$ and 
   take $f_n' = e_n$.
 \end{proof}
-
-
+\subsection{Stone spaces as profinite sets}
+In this subsection we consider types dual to Overtly discrete types. 
+These will be limits of $(\N,\geq)$-indexed sequences of finite sets. 
+Such types form the category of profinite sets, and the Stone spaces fall into this category. 
+This is the perspective taken in condensed mathematics \cite{Condensed, Dagur, Scholze}.
+\begin{remark}\label{StoneDualToOdisc}
+  In general, for $B$ a colimit of a diagram $B_n$ and $A$ any type, 
+  we have that $A^B$ is the limit of the diagram $A^{B_n}$.
+  Specifically, for $B:\Boole$ seen as overtly discrete type, we can see $2^B$ as limit of the diagram $2^{B_n}$, 
+  which is a limit of an $(\N,\geq)$-indexed sequence of finite sets. 
+  By Stone duality, it follows that any Stone space is such a limit. 
+\end{remark}
+\begin{corollary}
+  Whenever $g:S\to T$ is a map of Stone spaces, 
+  there are $(\N,\geq)$-indexed sequences of finite Stone spaces $S_n,T_n$ 
+  and maps $g_n:S_n \to T_n$ such that $S,T$ are the limits of $S_n,T_n$ respectively, and 
+  $g$ is induced by $g_n$. 
+  Moreover, whenever $g$ is surjective, we can choose $S_n,T_n,g_n$ such that each $g_n$ is surjective as well. 
+\end{corollary}
+\begin{proof}
+  By \Cref{FormalSurjectionsAreSurjections}, 
+  $g$ corresponds to an injective map $f:2^T \to 2^S$ of Boolean algebras, 
+  which by \Cref{decompositionInjectionSurjectionOfOdisc}
+  can be decomposed into maps $f_n:(2^T)_n \to (2^S)_n$ which are all injective, 
+  and by the duality described in \Cref{StoneDualToOdisc}, correspond to maps of finite Stone types
+  $g_n : T_n \to S_n$ with $T_n,S_n$ $(\N,\geq)$-indexed sequences with limits $T,S$, and $g_N$ inducing $g:T\to S$.
+  As all $f_n$ were injective, by \Cref{FormalSurjectionsAreSurjections}, all $g_n$ are surjective as required. 
+\end{proof}
 
 %
 %\begin{lemma}

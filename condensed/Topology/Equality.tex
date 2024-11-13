@@ -1,16 +1,49 @@
 \subsection{Equality in $\Boole$ and $\Stone$}
-\begin{lemma}\label{BooleEqualityOpen}
-  Whenever $B:\Boole$, $a,b:B$ the proposition $a=_Bb$ is open. 
+\begin{lemma}
+  Whenever $P$ is a proposition and overtly discrete, $P$ is open. 
 \end{lemma}
 \begin{proof}
-  Let $G,R$ be the generators and relations of $B$. 
-  Let $a,b$ be represented by $x,y$ in the free Boolean algebra on $G$. 
-  Now let $R_n$ denote the first $n$ elements of $R$. 
-  Note that $a=b$ iff there exists some $n:\N$ with $x-y \leq \bigvee_{r\in R_n} r$. 
-  Furthermore, inequality is decidable in the free Boolean algebra, hence
-  $a=b$ is a countable disjunction of decidable propositions, hence open. 
+  If $P$ is overtly discrete, then $P\leftrightarrow \exists_{n:\N} P_n$. 
+  As every $P_n$ is finite, there is some $k_n:\N$ with $P_n \simeq Fin(k_n)$. 
+  Hence we have $P_n \leftrightarrow (k_n \neq 0)$, and as equality of natural numbers is decidable, so is $P_n$. 
+  Hence $P$ is a countable disjunction of decidable propositions, hence open. 
+\end{proof}
+\begin{lemma}
+  Whenever $P$ is a an open proposition, it is overtly discrete.
+\end{lemma}
+\begin{proof}
+  Suppose $P\leftrightarrow \exists_{n:\N} \alpha_n = 1$. 
+  Let $P_n = \exists_{k\leq n} (\alpha_k = 1)$, which is a decidable proposition, hence a finite set. 
+  Then the colimit of $P_n$ is $P$. 
+\end{proof} 
+\begin{corollary}
+  A proposition is open iff it is overtly discrete. 
+\end{corollary}
+\begin{proof}
+  Immediate by the above two lemmas. 
 \end{proof}
 
+\begin{lemma}
+  Whenever $B$ is overtly discrete and $a,b:B$, the proposition $a=_B b$ is open. 
+\end{lemma}
+\begin{proof}
+  For $a,b:B$ there is some $n:\N$ with $a',b':B_n$ and $\iota_n(a') = a,\iota_n(b') = b$.
+  By \Cref{rmkEqualityColimit}, we have that $a=_B b$ iff 
+  there is some $m\geq n$ with $\iota_n^m (a') = \iota_n^m(b')$. 
+  As equality in finite sets is decidable, this is a countable disjunction of decidable propositions, hence open. 
+\end{proof}
+
+%\begin{lemma}\label{BooleEqualityOpen}
+%  Whenever $B:\Boole$, $a,b:B$ the proposition $a=_Bb$ is open. 
+%\end{lemma}
+%\begin{proof}
+%  Let $G,R$ be the generators and relations of $B$. 
+%  Let $a,b$ be represented by $x,y$ in the free Boolean algebra on $G$. 
+%  Now let $R_n$ denote the first $n$ elements of $R$. 
+%  Note that $a=b$ iff there exists some $n:\N$ with $x-y \leq \bigvee_{r\in R_n} r$. 
+%  Furthermore, inequality is decidable in the free Boolean algebra, hence
+%  $a=b$ is a countable disjunction of decidable propositions, hence open. 
+%\end{proof}
 
 \begin{corollary}\label{TruncationStoneClosed}
   Whenever $S:\Stone$, $||S||$ is closed. 
