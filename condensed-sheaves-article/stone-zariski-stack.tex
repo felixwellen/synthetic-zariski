@@ -1,5 +1,18 @@
+Here we work in the presheaf topos, meaning we work in HoTT plus the following:
+
+\begin{itemize}
+\item There is a boolean algebra $\mathbb{B}$.
+\item For all c.p. boolean $\mathbb{B}$-algebra $C$, the map:
+\[C \to \mathbb{B}^{\Spec_\mathbb{B}(C)}\]
+is an equivalence.
+\item For all c.p. boolean $\mathbb{B}$-algebra $C$, $\Spec_\mathbb{B}(C)$ has choice.
+\item Dependent choice.
+\end{itemize}
+
+First we define Zariski stacks.
+
 \begin{definition}\label{zariski-characterisation}
-A type $X$ is a Zariski sheaf if and only if:
+A type $X$ is a Zariski stack if and only if:
 \begin{itemize}
 \item If $0=_\mathbb{B}1$ then $X$ is contractible.
 \item For all $b:\mathbb{B}$ we have that the map:
@@ -10,6 +23,10 @@ is an equivalence.
 
 We can check there is a corresponding lex modality called Zariski stackification. 
 
+\begin{remark}
+Why is it called Zariski, why is it a lex modality? \rednote{TODO}
+\end{remark}
+
 %\begin{definition}
 %A type $X$ is called a Zariski stack if and only for all  $f_1,\cdots,f_n:\mathbb{B}$ such that:
 %\[(f_1,\cdots,f_n) = 1\]
@@ -19,7 +36,7 @@ We can check there is a corresponding lex modality called Zariski stackification
 We denote this modality by $L_{Zar}$, and we denote the corresponding translation by $[\_]_{Zar}$.
 
 \begin{lemma}\label{zariski-subcanonical}
-The type $\mathbb{B}$ is a Zariski stack.
+The type $\mathbb{B}$ is a Zariski stack. Any c.p. boolean $\mathbb{B}$-algebra is a Zariski sheaf.
 \end{lemma}
 
 \begin{proof}
@@ -30,6 +47,8 @@ Then we need to check that for all $b:\mathbb{B}$ we have that the map:
 is an equivalence, but by duality it is equivalent to the map:
 \[\mathbb{B} \to \mathbb{B}_{1-b}\times\mathbb{B}_b\]
 which is clearly an equivalence.
+
+We extend to any $\mathbb{B}$-algebra by duality.
 \end{proof}
 
 \begin{lemma}\label{bot-zariski}
@@ -41,11 +60,11 @@ By \cref{zariski-subcanonical} we know that $0=_\mathbb{B}1$ is a Zariski stack.
 \end{proof}
 
 \begin{lemma}\label{bool-zariski}
-We have that $L_{Zar}(\mathbb{2})$ is $\mathbb{B}$.
+We have that $L_{Zar}({2})$ is $\mathbb{B}$.
 \end{lemma}
 
 \begin{proof}
-By \cref{zariski-subcanonical} we know that $\mathbb{B}$ is a Zariski stack. The fibers of the map $\mathbb{2}\to\mathbb{B}$ are Zariski contractible as they are of the form $b=0+b=1$ for some $b:\mathbb{B}$.
+By \cref{zariski-subcanonical} we know that $\mathbb{B}$ is a Zariski stack. The fibers of the map ${2}\to\mathbb{B}$ are Zariski contractible as they are of the form $b=0+b=1$ for some $b:\mathbb{B}$.
 \end{proof}
 
 \begin{lemma}\label{truncation-zariski}
@@ -60,24 +79,24 @@ but since $b=c$ has choice we have that $\propTrunc{X}^{b=c} = \propTrunc{X^{b=c
 \end{proof}
 
 \begin{lemma}\label{zariski-cp-iff-cp}
-Assume $C$ be a boolean algebra that is a Zariski sheaf, if $C$ is c.p. in the Zariski topos then it is a c.p. $\mathbb{B}$-algebra.
+Assume $C$ be a boolean algebra that is a Zariski stack, if $C$ is c.p. in the Zariski topos then it is a c.p. $\mathbb{B}$-algebra.
 \end{lemma}
 
 \begin{proof}
-TODO
+\rednote{TODO}
 \end{proof}
 
 \begin{theorem}
 We have that the Zariski interpretation of the following hold:
 \begin{itemize}
-\item For all c.p. $C$, we have that the map $C\to \mathbb{2}^{\Sp(C)}$ is an equivalence.
+\item For all c.p. $C$, we have that the map $C\to {2}^{\Sp(C)}$ is an equivalence.
 \item For all c.p. $C$, we have that $\Sp(C)$ has choice.
 \item Dependent choice.
 \end{itemize}
 \end{theorem}
 
 \begin{proof}
-By \cref{bool-zariski} we just need to prove the first two results replacing $\mathbb{2}$ by $\mathbb{B}$. Using \cref{zariski-cp-iff-cp} the first point is clear, using \cref{truncation-zariski} we have the second one.
+By \cref{bool-zariski} we just need to prove the first two results replacing ${2}$ by $\mathbb{B}$. Using \cref{zariski-cp-iff-cp} the first point is clear, using \cref{truncation-zariski} we have the second one.
 
 For dependent choice this comes from the fact that being surjective in the Zariski and presheaf model means the same thing by \cref{truncation-zariski}.
 \end{proof}
