@@ -1,10 +1,10 @@
-We write $\Boole_{\neg\neg}$ the type of $B:\Boole$ such that $\neg\neg\Spec(B)$. We work in the Zariski topos, so we assume the following:
+We write $\Boole_{\neg\neg}$ the type of $B:\Boole$ such that $\neg\neg\Spec(B)$. We work in the Zariski topos, so that by \cref{zariski-sheaf-axioms} we can assume the following:
 
-\begin{itemize}
+\begin{enumerate}[(i)]
 \item For all $B:\Boole$, the map $B\to {2}^{\Spec(B)}$ is an equivalence.
-\item For all $B:\Boole$, $\Spec(B)$ has choice.
+\item For all $B:\Boole$, the type $\Spec(B)$ has choice.
 \item Dependent choice.
-\end{itemize}
+\end{enumerate}
 
 \begin{definition}
 A type $X$ is an fppf sheaf for all $B:\Boole_{\neg\neg}$, we have that the map:
@@ -40,6 +40,14 @@ But since $a\otimes b\leq c\otimes d$ if and only if $a=0$ or $b=0$ or $a\leq c\
 We extend to any $\Boole$ by duality.
 \end{proof}
 
+\begin{lemma}\label{nat-sheaf}
+The type $\N$ is an fppf sheaf.
+\end{lemma}
+
+\begin{proof}
+\rednote{TODO, not too clear that it is needed actually???}
+\end{proof}
+
 \begin{lemma}\label{proposition-fppf-sheaf}
 Let $P$ be a proposition, then $L_{fppf}(P)$ is equivalent to:
 \[\propTrunc{\sum_{B:\Boole_{\neg\neg}} \Spec(B)\to P}\]
@@ -48,18 +56,19 @@ Let $P$ be a proposition, then $L_{fppf}(P)$ is equivalent to:
 \begin{proof}
 First we check that: 
 \[\propTrunc{\sum_{B:\Boole_{\neg\neg}}\Spec(B)\to P}\]
-is an fppf sheaf. Given $B:\Boole_{\neg\neg}$ such that:
-\[\Spec(B)\to \propTrunc{\sum_{C:\Boole_{\neg\neg}}\Spec(B)\to P}\]
-by choice for $\Spec(B)$ we merely get $C:\Spec(B)\to \Boole_{\neg\neg}$ such that:
-\[\prod_{x:\Spec(B)}\Spec(C(x))\to P\]
+is an fppf sheaf. Given $C:\Boole_{\neg\neg}$ such that:
+\[\Spec(C)\to \propTrunc{\sum_{B:\Boole_{\neg\neg}}\Spec(B)\to P}\]
+by choice for $\Spec(C)$ we merely get $B:\Spec(C)\to \Boole_{\neg\neg}$ such that:
+\[\prod_{x:\Spec(C)}\Spec(B(x))\to P\]
 but we have that:
-\[\sum_{x:\Spec(B)}\Spec(C(x)):\Boole_{\neg\neg}\]
+\[\sum_{x:\Spec(C)}\Spec(B(x)):\Boole_{\neg\neg}\]
 so we can conclude that:
 \[\propTrunc{\sum_{B:\Boole_{\neg\neg}}\Spec(B)\to P}\]
 
 Moreover, it is clear that the fibers of the map:
 \[P\to \propTrunc{\sum_{B:\Boole_{\neg\neg}}\Spec(B)\to P}\] 
-are fppf-contractible.
+are fppf-contractible as:
+\[\propTrunc{\sum_{B:\Boole_{\neg\neg}}\Spec(B)\to P}\to L_{fppf}(P)\]
 \end{proof}
 
 \begin{definition}
@@ -72,7 +81,7 @@ Assume given $B:\Boole$ and with $i:\Spec(B)\to Y$ and an fppf surjective map $f
 \begin{center}
 \begin{tikzcd}
 \Spec(C)\ar[d]\ar[r] & X\ar[d,"f"]\\
-\Spec(B)\ar[r,"i"] & Y
+\Spec(B)\ar[r,swap,"i"] & Y
 \end{tikzcd}
 \end{center}
 where the left map has non-empty fibers.
@@ -82,17 +91,17 @@ where the left map has non-empty fibers.
 We have:
 \[\prod_{x:\Spec(B)} L_{fppf}(\propTrunc{\mathrm{fib}_f(i(x))})\]
 so by \cref{proposition-fppf-sheaf} we have that:
-\[\prod_{x:\Spec(B)} \propTrunc{\sum_{C:\Boole_{\neg\neg}} \Spec(C)\to \propTrunc{\mathrm{fib}_f(i(x))}})\]
-so by choice for $\Spec(B)$ and $\Spec(C)$ we merely have $C:\Spec(B)\to \Boole_{\neg\neg}$ such that:
-\[\prod_{x:\Spec(B)} \Spec(C(x))\to \mathrm{fib}_f(i(x)))\]
+\[\prod_{x:\Spec(B)} \propTrunc{\sum_{D:\Boole_{\neg\neg}} \Spec(D)\to \propTrunc{\mathrm{fib}_f(i(x))}})\]
+so by choice for $\Spec(B)$ and $\Spec(D)$ we merely have $D:\Spec(B)\to \Boole_{\neg\neg}$ such that:
+\[\prod_{x:\Spec(B)} \Spec(D(x))\to \mathrm{fib}_f(i(x))\]
 which gives what we want by defining:
-\[\Spec(C) = \sum_{x:\Spec(B)}\Spec(C(x))\]
+\[\Spec(C) = \sum_{x:\Spec(B)}\Spec(D(x))\]
 \end{proof}
 
 \begin{lemma}\label{colimit-fppf}
 Assume given a tower:
 \[B_0\to B_1\to \cdots\]
-in $\Boole_{\neg\neg}$. Then $\mathrm{colim}_i B_i : \Boole_{\neg\neg}$.
+in $\Boole_{\neg\neg}$. Then $\mathrm{colim}_i B_i$ is in $\Boole_{\neg\neg}$.
 \end{lemma}
 
 \begin{proof}
@@ -100,9 +109,9 @@ By duality we have $\neg\neg\Spec(B)$ if only if $0\not=_B1$, and if $0=_{\mathr
 \end{proof}
 
 \begin{lemma}\label{dependent-choice-fppf}
-Assume given a tower of fppf sheaves:
+Assume given a tower types:
 \[\cdots \to X_2\to X_1 \to X_0 \]
-where the maps are fppf surjective. Assuming dependent choice in the Zariski topos, we are able to show that the map:
+where the maps are fppf surjective. The map:
 \[\mathrm{lim}_i X_i\to X_0\]
 is fppf surjective.
 \end{lemma}
@@ -128,7 +137,7 @@ But $\Boole_{\neg\neg}$ is stable under sequential colimit by \cref{colimit-fppf
 
 \begin{theorem}
 The interpretation of the following statement holds in the fppf topos:
-\begin{itemize}
+\begin{enumerate}[(i)]
 \item For all $B:\Boole$, if $\neg\neg\Spec(B)$ then $\propTrunc{\Spec(B)}$.
 \item For all $B:\Boole$, the map $B\to {2}^{\Spec(B)}$ is an equivalence.
 \item For all $B:\Boole$, given $\Spec(B)\to Y$ and a surjective map $X\to Y$, there merely exists $C:\Boole$ with a commutative diagram:
@@ -140,18 +149,16 @@ The interpretation of the following statement holds in the fppf topos:
 \end{center}
 such that the left map is surjective.
 \item Dependent choice.
-\end{itemize}
+\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-By \cref{fppf-subcanonical} we see that the interpretation of $B$ being in $\Boole$ in the fppf topos is just the fppf sheafification of $B$ being in $\Boole$. So we can assume $B:\Boole$.
-
-For the first point, by \cref{bot-sheaf} we can assume $\neg\neg\Spec(B)$ to prove $L_{fppf}(\propTrunc{\Spec(B)})$ which is immediate.
-
-For the second point, by \cref{fppf-subcanonical} we have that $B\to {2}^{\Spec(B)}$ being equivalence is not changed by the interpretation.
-
-For the third point, we just apply \cref{fppf-local-choice}, using that the interpretation of a map being surjective is the map being fppf-surjective.
-
-For the fourth point we just apply \cref{dependent-choice-fppf}.
+By \cref{fppf-subcanonical} and \cref{nat-sheaf} we see that the interpretation of $B$ being in $\Boole$ in the fppf topos is just the fppf sheafification of $B$ being in $\Boole$. So we can assume $B:\Boole$.
+\begin{enumerate}[(i)]
+\item By \cref{bot-sheaf} we can assume $\neg\neg\Spec(B)$ to prove $L_{fppf}(\propTrunc{\Spec(B)})$ which is immediate.
+\item By \cref{fppf-subcanonical} we have that $B\to {2}^{\Spec(B)}$ being equivalence is not changed by the interpretation.
+\item By \cref{fppf-local-choice}, using that the interpretation of a map being surjective is the map being fppf-surjective.
+\item By \cref{dependent-choice-fppf}.
+\end{enumerate}
 \end{proof}
 

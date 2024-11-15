@@ -1,15 +1,12 @@
-We write $\Boole$ for the type of c.p. algebras, and $\Boole_{\mathbb{B}}$ the type of c.p. boolean $\mathbb{B}$-algebras. We work in the presheaf topos, meaning we work in HoTT plus the following:
+We write $\Boole$ for the type of c.p. algebras, and $\Boole_{\mathbb{B}}$ the type of c.p. boolean $\mathbb{B}$-algebras. We work in the presheaf topos, so by \cref{TODO} we can work in HoTT where we assume a boolean algebra $\mathbb{B}$ such that:
 
-\begin{itemize}
-\item There is a boolean algebra $\mathbb{B}$.
+\begin{enumerate}[(i)]
 \item For all $C:\Boole_\mathbb{B}$, the map:
 \[C \to \mathbb{B}^{\Spec_\mathbb{B}(C)}\]
 is an equivalence.
 \item For all $C:\Boole_\mathbb{B}$, the type $\Spec_\mathbb{B}(C)$ has choice.
 \item Dependent choice.
-\end{itemize}
-
-First we define Zariski sheaves.
+\end{enumerate}
 
 \begin{definition}\label{zariski-characterisation}
 A type $X$ is a Zariski sheaf if and only if:
@@ -21,12 +18,12 @@ is an equivalence.
 \end{itemize}
 \end{definition}
 
-We can check there is a corresponding lex modality called Zariski sheafification. 
+We can check there is a corresponding lex modality called Zariski sheafification. We denote this modality by $L_{Zar}$, and we denote the corresponding translation by $[\_]_{Zar}$.
 
 \begin{remark}
 We have that $X$ is a Zariski sheaf if and only if for all $b_1,\cdots,b_n:\mathbb{B}$ such that $(b_1,\cdots,b_n)=1$ we have that the map:
 \[X\to X^{b_1=1\lor\cdots\lor b_n=1}\]
-is an equivalence, which proves that being a Zariski sheaf is a lex modality, and makes the name Zariski sheaf reasonable.
+is an equivalence, which proves that being a Zariski sheaf is a lex modality. This makes the name Zariski sheaf reasonable.
 \end{remark}
 
 %\begin{definition}
@@ -34,8 +31,6 @@ is an equivalence, which proves that being a Zariski sheaf is a lex modality, an
 %\[(f_1,\cdots,f_n) = 1\]
 %we have that $X$ is $f_1 \inv \lor \cdots \lor f_n \inv$-local.
 %\end{definition}
-
-We denote this modality by $L_{Zar}$, and we denote the corresponding translation by $[\_]_{Zar}$.
 
 \begin{lemma}\label{zariski-subcanonical}
 The type $\mathbb{B}$ is a Zariski sheaf. Any $C:\Boole_\mathbb{B}$ is a Zariski sheaf.
@@ -48,9 +43,9 @@ Then we need to check that for all $b:\mathbb{B}$ we have that the map:
 \[\mathbb{B} \to \mathbb{B}^{b=0}\times\mathbb{B}^{b=1}\]
 is an equivalence, but by duality it is equivalent to the map:
 \[\mathbb{B} \to \mathbb{B}_{1-b}\times\mathbb{B}_b\]
-which is clearly an equivalence.
+being an equivalence, which is clear.
 
-We extend to any $\mathbb{B}$-algebra by duality.
+We extend to $\Boole_{\mathbb{B}}$ by duality.
 \end{proof}
 
 \begin{lemma}\label{bot-zariski}
@@ -76,31 +71,34 @@ Let $X$ be a Zariski sheaf, then $\propTrunc{X}$ is a Zariski sheaf.
 \begin{proof}
 If $0=_\mathbb{B}1$ then $X$ is contractible so $\propTrunc{X}$ is contractible as well. For all $b:\mathbb{B}$ we have an equivalence:
 \[X\to X^{b=0}\times X^{b=1}\]
-but since $b=c$ has choice we have that $\propTrunc{X}^{b=c} = \propTrunc{X^{b=c}}$ so that we get:
+so that:
+\[\propTrunc{X}\to \propTrunc{X^{b=0}\times X^{b=1}}\]
+is an equivalence, but since $b=0$ and $b=1$ have choice this means that:
 \[\propTrunc{X}\to \propTrunc{X}^{b=0}\times \propTrunc{X}^{b=1}\]
+is an equivalence.
 \end{proof}
 
 \begin{lemma}\label{zariski-cp-iff-cp}
-Assume $C$ be a boolean algebra that is a Zariski sheaf, if we have the interpretation of $C:\Boole$ in the Zariski topos then $C:\Boole_\mathbb{B}$
+Assume $C$ be a boolean algebra that is a Zariski sheaf, if we have the interpretation of $C:\Boole$ in the Zariski topos then $C:\Boole_\mathbb{B}$.
 \end{lemma}
 
 \begin{proof}
 \rednote{TODO}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{zariski-sheaf-axioms}
 We have that the Zariski interpretation of the following hold:
-\begin{itemize}
+\begin{enumerate}[(i)]
 \item For all $C:\Boole$, the map $C\to {2}^{\Spec(C)}$ is an equivalence.
 \item For all $C:\Boole$, the type $\Spec(C)$ has choice.
 \item Dependent choice.
-\end{itemize}
+\end{enumerate}
 \end{theorem}
 
 \begin{proof}
 By \cref{bool-zariski} we just need to prove the first two results replacing ${2}$ by $\mathbb{B}$. Using \cref{zariski-cp-iff-cp} the first point is clear, using \cref{truncation-zariski} we have the second one.
 
-For dependent choice this comes from the fact that being surjective in the Zariski and presheaf model means the same thing by \cref{truncation-zariski}.
+By \cref{truncation-zariski} being surjective is not changed by the interpretation, and a limit of sheaf is a sheaf, so that dependent choice is not changed by the interpretation.
 \end{proof}
 
 
