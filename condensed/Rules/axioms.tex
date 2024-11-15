@@ -1,23 +1,26 @@
-In this section, we will introduce the basic rules we'll use in this paper. 
-We will first state our axioms, and then draw out some first consequences.
-Most notably, 
-we will see that Markov's principle (\Cref{MarkovPrinciple}) and the 
-lesser limited principle of omniscience (\Cref{LLPO}) can be shown. 
-%There are equivalent axiom systems we could have stated instead, which we discuss in \Cref{NotesOnAxioms}.
+%In this section, we will introduce the basic rules we'll use in this paper. 
+%We will first state our axioms, and then draw out some first consequences.
+%Most notably, 
+%we will see that Markov's principle (\Cref{MarkovPrinciple}) and the 
+%lesser limited principle of omniscience (\Cref{LLPO}) can be shown. 
+%%There are equivalent axiom systems we could have stated instead, which we discuss in \Cref{NotesOnAxioms}.
 \subsection{Axioms}\label{Axioms}
-In this section, we will state our axioms. 
-In \Cref{NotesOnAxioms}, we will discuss alternative versions of our axiom system. 
+%In this section, we will state our axioms. 
+%In \Cref{NotesOnAxioms}, we will discuss alternative versions of our axiom system. 
 \begin{axiomNum}[Stone duality]
-  For any countably presented Boolean algebra $B$, the evaluation map $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
+  For any countably presented Boolean algebra $B$, 
+  the evaluation map $B\rightarrow  2^{Sp(B)}$ is an isomorphism.
 \end{axiomNum} 
 
-\begin{axiomNum}[Propositional completeness]
-  For $S:\Stone$, we have that $\neg \neg S \leftrightarrow || S ||$
-\end{axiomNum}
+%\begin{axiomNum}[Propositional completeness]
+%  For $S:\Stone$, we have that $\neg \neg S \leftrightarrow || S ||$
+%\end{axiomNum}
 
-%\begin{axiomNum}[Surjections are formal Surjections]
+\begin{axiomNum}[Surjections are formal surjections]\label{SurjectionsAreFormalSurjections}
+  For $g:B\to C$ a map in $\Boole$, $g$ is injective iff 
+  $(-)\circ g: Sp(C) \to Sp(B)$ is surjective. 
 %  A map $f:Sp(B')\to Sp(B)$ is surjective iff the corresponding map $B \to B'$ is injective.
-%\end{axiomNum} 
+\end{axiomNum} 
 %
 %\begin{lemma}\label{LemSurjectionsFormalToCompleteness}
 % For $S:\Stone$, we have that $\neg \neg S \to || S ||$
@@ -48,7 +51,8 @@ In \Cref{NotesOnAxioms}, we will discuss alternative versions of our axiom syste
 \begin{axiomNum}[Local choice]
   Whenever we have $S:\Stone$, $E,F$ arbitrary types, a map $f:S \to F$ and a 
   surjection $e:E \twoheadrightarrow F$, 
-  there exists a Stone space $T$, a surjective map $T\twoheadrightarrow S$ and an arrow $T\to E$ making the following diagram commute:
+  there exists a Stone space $T$, a surjective map 
+  $T\twoheadrightarrow S$ and an arrow $T\to E$ making the following diagram commute:
     \begin{equation}\begin{tikzcd}
       T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
       S  \arrow[r, "f"] & F
