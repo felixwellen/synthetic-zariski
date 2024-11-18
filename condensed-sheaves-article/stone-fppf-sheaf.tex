@@ -40,12 +40,26 @@ But since $a\otimes b\leq c\otimes d$ if and only if $a=0$ or $b=0$ or $a\leq c\
 We extend to any $\Boole$ by duality.
 \end{proof}
 
+\begin{lemma}\label{stone-boundedness}
+Assume $B:\Boole$ with a map $f:\Spec(B)\to\N$, then there merely exists $k:\N$ such that $f$ factors through $\mathrm{Fin}(k)$.
+\end{lemma}
+
+\begin{proof}
+We define $f_n:\Spec(B)\to {2}$ by $f_n(x) = 0$ if and only if $f(x)\not=n$. Then:
+\[\Spec(C/(f_1,f_2\cdots)) \simeq \sum_{x:\Spec(b)}\forall (n:\N). f(x)\not=n \simeq \bot\]
+so that by duality $(f_1,f_2,\cdots) = 1$ and there exists $k$ such that $(f_1,\cdots,f_k)=1$ allowing to factor $f$ through $\mathrm{Fin}(k)$.
+\end{proof}
+
 \begin{lemma}\label{nat-sheaf}
 The type $\N$ is an fppf sheaf.
 \end{lemma}
 
 \begin{proof}
-\rednote{TODO, not too clear that it is needed actually???}
+By \cref{bot-sheaf} we know that identity types in $\N$ are fppf sheaves, so we just need to show that for all $B:\Boole_{\neg\neg}$, the map:
+\[\N\to \N^{\propTrunc{\Spec(B)}}\]
+is surjective. Since by \cref{stone-boundedness} any map $\Spec(B)\to \N$ merely factors through some $\mathrm{Fin}(k)$. We we just need to show the map:
+\[\mathrm{Fin}(k)\to \mathrm{Fin}(k)^{\propTrunc{\Spec(B)}}\]
+is surjective, which comes from \cref{fppf-subcanonical}.
 \end{proof}
 
 \begin{lemma}\label{proposition-fppf-sheaf}
