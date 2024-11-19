@@ -1,12 +1,11 @@
-\subsection{Equality in $\Boole$ and $\Stone$}
+\subsection{$\Open$ and $\ODisc$} %Open propositions are Overtly discrete and Stone propositions.}
 \begin{lemma}
   Whenever $P$ is a proposition and overtly discrete, $P$ is open. 
 \end{lemma}
 \begin{proof}
   If $P$ is overtly discrete, then $P\leftrightarrow \exists_{n:\N} P_n$. 
-  As every $P_n$ is finite, there is some $k_n:\N$ with $P_n \simeq Fin(k_n)$. 
-  Hence we have $P_n \leftrightarrow (k_n \neq 0)$, and as equality of natural numbers is decidable, so is $P_n$. 
-  Hence $P$ is a countable disjunction of decidable propositions, hence open. 
+  As every $P_n$ is finite, it is decidable. 
+  Hence $P$ is a countable disjunction of decidable propositions, hence open.% by \Cref{OpenCountableDisjunction}. 
 \end{proof}
 \begin{lemma}
   Whenever $P$ is a an open proposition, it is overtly discrete.
@@ -16,13 +15,36 @@
   Let $P_n = \exists_{k\leq n} (\alpha_k = 1)$, which is a decidable proposition, hence a finite set. 
   Then the colimit of $P_n$ is $P$. 
 \end{proof} 
-\begin{corollary}
-  A proposition is open iff it is overtly discrete. 
+\begin{corollary}\label{PropOpenIffOdisc}
+  A proposition is open iff it is overtly discrete.
 \end{corollary}
 \begin{proof}
   Immediate by the above two lemmas. 
 \end{proof}
+\begin{corollary}\label{OpenDependentSums}
+  Open propositions are closed under dependent sums. 
+\end{corollary}
+\begin{proof}
+  Immediate from \Cref{OdiscSigma} and \Cref{PropOpenIffOdisc}.
+\end{proof}
+\begin{remark}
+  Note that the sequential colimit commutes with the propositional truncation, thus for $B:\ODisc$, we have 
+  $||B||:\ODisc$. 
+\end{remark}
+%\begin{corollary}
+%  Open propositions are closed under countable disjunctions. 
+%\end{corollary}
+%\begin{proof}
+%  Clearly $\N:\ODisc$, and for $P:\N \to \Open$, and by the above 
+%  $||\Sigma_{n:\N} P_n||:\ODisc$. 
+%\end{proof} 
 
+%\begin{corollary}\label{OpenFiniteConjunction}
+%  Open propositions are closed under finite conjunctions. 
+%\end{corollary}
+%\begin{proof}
+%  A conjunction of propositions is a product, which is a dependent sum. 
+%\end{proof}
 \begin{lemma}
   Whenever $B$ is overtly discrete and $a,b:B$, the proposition $a=_B b$ is open. 
 \end{lemma}
@@ -31,8 +53,9 @@
   By \Cref{rmkEqualityColimit}, we have that $a=_B b$ iff 
   there is some $m\geq n$ with $\iota_n^m (a') = \iota_n^m(b')$. 
   As equality in finite sets is decidable, this is a countable disjunction of decidable propositions, hence open. 
+%  \rednote{That reference can also be a direct cite}.
 \end{proof}
-
+\subsection{$\Closed$ and $\Stone$}
 %\begin{lemma}\label{BooleEqualityOpen}
 %  Whenever $B:\Boole$, $a,b:B$ the proposition $a=_Bb$ is open. 
 %\end{lemma}
@@ -50,15 +73,14 @@
 \end{corollary}
 \begin{proof}
   By \Cref{SpectrumEmptyIff01Equal}, $\neg S$ is equivalent to $0=_B 1$, which is open by the above. 
-  Hence $\neg \neg S$ is a closed proposition, and by propositional completeness, so is $||S||$. 
+  Hence $\neg \neg S$ is a closed proposition, and by \Cref{LemSurjectionsFormalToCompleteness}, so is $||S||$. 
 \end{proof}
-
-\begin{remark}\label{ExplicitTruncationStoneClosed}
-  \rednote{New check later}
-  The above lemma and corollary actually show that if we have an explicit 
-  presentation of a Stone space as $S = Sp(2[G] / R)$, 
-  we can construct an explicit sequence $\alpha:2^\N$ such that $||S|| \leftrightarrow \forall_{n:\N} \alpha(n) = 0$. 
-\end{remark}
+%\begin{remark}\label{ExplicitTruncationStoneClosed}
+%  \rednote{New check later}
+%  The above lemma and corollary actually show that if we have an explicit 
+%  presentation of a Stone space as $S = Sp(2[G] / R)$, 
+%  we can construct an explicit sequence $\alpha:2^\N$ such that $||S|| \leftrightarrow \forall_{n:\N} \alpha(n) = 0$. 
+%\end{remark}
 
 
 \begin{corollary}\label{PropositionsClosedIffStone}
@@ -66,11 +88,7 @@
 \end{corollary}
 \begin{proof}
   By the above, if $S$ is both a Stone space and a proposition, it is closed. 
-  Conversely, note that 
-  $$
-  (\forall_{n:\N} \alpha(n) = 0 )\leftrightarrow Sp(2/\{\alpha(n)| n:\N\}).
-  $$
-  The latter is a proposition, as there is at most one Boolean map $2/\{\alpha(n)|n:\N\} \to 2$.
+  By \Cref{ClosedPropAsSpectrum}, any closed proposition is Stone. 
 \end{proof}
 
 \begin{lemma}\label{StoneEqualityClosed}

@@ -17,6 +17,13 @@ Its image, $\Stone$ also has a natural category structure.
 By the above and Lemma 9.4.5 of \cite{hott}, the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Stone$.
 \end{remark}
 
+\begin{remark}\label{StoneClosedUnderPullback}
+%  By \Cref {SpIsAntiEquivalence} and the fact that that countably presented Boolean algebras form a 
+%  finitely cocomplete category (\Cref{CoCompletenessBoole}), the category of Stone spaces is complete. 
+  By \Cref {SpIsAntiEquivalence} and the fact that that countably presented Boolean algebras are closed under pushouts, 
+  the category of Stone spaces is closed under pullbacks. 
+\end{remark}
+
 \begin{lemma}\label{SpectrumEmptyIff01Equal}
   For $B:\Boole$, we have $0=_B1$ iff $\neg Sp(B)$.
 \end{lemma}
@@ -26,18 +33,25 @@ By the above and Lemma 9.4.5 of \cite{hott}, the map $Sp$ defines a dual equival
   $Sp(B)$ equals $\bot$, the spectrum of the trivial Boolean algebra. 
   As $Sp$ is an embedding, $B$ is equivalent to the trivial Boolean algebra, hence $0=_B1$. 
 \end{proof}
+\begin{corollary}\label{LemSurjectionsFormalToCompleteness}
+ For $S:\Stone$, we have that $\neg \neg S \to || S ||$
+\end{corollary}
+\begin{proof}
+  Let $B:\Boole$ and suppose $\neg \neg Sp(B)$. 
+  Let $f:2 \to B$. If $f(0) = f(1)$ then $0=1$ in $B$, thus $\neg Sp(B)$, 
+  contradicting our assumption. Hence $f(0)\neq f(1)$. 
+  Hence by case distinction on $2$ we can show that $f$ is injective. 
+%  $f x = f y$ implies $ x= y$. 
+%  Thus $f$ is injective and 
+  By \Cref{SurjectionsAreFormalSurjections} the map $Sp(B) \to Sp(2)$ is surjective, 
+  thus $Sp(B)$ is merely inhabited. 
+\end{proof} 
 
 %\begin{corollary}\label{MoreConcreteCompleteness}
 %  By the above and propositional completeness, we have that $||Sp(B)||$ iff $0\neq_B1$. 
 %\end{corollary}
 
 
-\begin{remark}\label{StoneClosedUnderPullback}
-%  By \Cref {SpIsAntiEquivalence} and the fact that that countably presented Boolean algebras form a 
-%  finitely cocomplete category (\Cref{CoCompletenessBoole}), the category of Stone spaces is complete. 
-  By \Cref {SpIsAntiEquivalence} and the fact that that countably presented Boolean algebras are closed under pushouts, 
-  the category of Stone spaces is closed under pullbacks. 
-\end{remark}
 
 %SurjectionsFormalSurjections%We conclude this section on the anti-equivalence of Stone and $\Boole$ by a relating surjections to injections. 
 %SurjectionsFormalSurjections%This theorem is actually equivalent to completeness of propositional logic, which we'll discuss in 

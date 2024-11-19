@@ -1,7 +1,7 @@
-In this section, we will define the types of open and closed propositions. 
-These will allow us to define a (synthetic) topology  \cite{SyntheticTopologyLesnik} on any type.
-We will study this topology on Stone types in particular.
-
+%In this section, we will define the types of open and closed propositions. 
+%These will allow us to define a (synthetic) topology  \cite{SyntheticTopologyLesnik} on any type.
+%We will study this topology on Stone types in particular.
+%
 \subsection{Open and closed propositions}
 In this section we will introduce a topology on the type of propositions, and 
 study their logical properties.
@@ -22,8 +22,8 @@ Such a definition is universe-independent, and can be made internally.
 
 \begin{remark}\label{rmkOpenClosedNegation}
   The negation of an open proposition is closed, 
-  and by Markov's principle (\Cref{MarkovPrinciple}), the negation of a closed proposition is open. 
-  Also by Markov's principle, we have $\neg \neg P \to P$ whenever $P$ is open or closed. 
+  and by MP (\Cref{MarkovPrinciple}), the negation of a closed proposition is open. 
+  Also by MP, we have $\neg \neg P \to P$ whenever $P$ is open or closed. 
   By the negation of WLPO (\Cref{NotWLPO}), 
   not every closed proposition is decidable. 
   Therefore, not every open proposition is decidable. 
@@ -81,23 +81,22 @@ Such a definition is universe-independent, and can be made internally.
   which is a countable conjunction of decidable propositions, 
   hence closed by \Cref{ClosedCountableConjunction}.
 \end{proof}
-\begin{lemma}\label{OpenFiniteConjunction}
-  Open propositions are closed under finite conjunctions. 
-\end{lemma}
-\begin{proof}
-  We need to show that for any $\alpha,\beta:2^\N$, the following proposition is open:
-  \begin{equation}\label{eqnConjunctionOpen}
-    (\exists_{n:\N} \alpha(n) = 0 )\wedge(\exists_{n:\N} \beta(n) = 0 )
-  \end{equation}
-  Consider $\gamma:2^\N$ given by 
-  $\gamma(l) = 1$ iff there exist some $k,k'\leq l$ with 
-  $\alpha(k) = \beta(k') = 0$. 
-  As we only need to check finitely many combinations 
-  of $k,k'$, this is a decidable property for each $l:\N$ and $\gamma$ is well-defined. 
-  Then $\exists_{k:\N}\gamma(k)=0$ if and only if \Cref{eqnConjunctionOpen} holds.
-\end{proof}
+%\begin{lemma}\label{OpenFiniteConjunction}
+%  Open propositions are closed under finite conjunctions. 
+%\end{lemma}
+%\begin{proof}
+%  We need to show that for any $\alpha,\beta:2^\N$, the following proposition is open:
+%  \begin{equation}\label{eqnConjunctionOpen}
+%    (\exists_{n:\N} \alpha(n) = 0 )\wedge(\exists_{n:\N} \beta(n) = 0 )
+%  \end{equation}
+%  Consider $\gamma:2^\N$ given by 
+%  $\gamma(l) = 1$ iff there exist some $k,k'\leq l$ with 
+%  $\alpha(k) = \beta(k') = 0$. 
+%  As we only need to check finitely many combinations 
+%  of $k,k'$, this is a decidable property for each $l:\N$ and $\gamma$ is well-defined. 
+%  Then $\exists_{k:\N}\gamma(k)=0$ if and only if \Cref{eqnConjunctionOpen} holds.
+%\end{proof}
 
-\rednote{Next lemma is new, Markov for closed/open propositions}
 \begin{lemma}\label{ClosedMarkov}
   For $(P_n)_{n:\N}$ a sequence of closed propositions, we have 
   $\neg \forall_{n:\N} P_n \leftrightarrow  \exists_{n:\N} \neg P_n$. 
@@ -116,37 +115,30 @@ Such a definition is universe-independent, and can be made internally.
   We conclude that $\neg \forall_{n:\N} P_n \to \exists_{n:\N} \neg P_n$ as required. 
 \end{proof} 
 
-
-
-
-
-
-
-
-
-\begin{lemma}\label{OpenDependentSums}
-  Open propositions are closed under dependent sums.
-\end{lemma}
-\begin{proof}
-  First note that for $D$ a decidable proposition, and $X:D \to \Open$,
-  by case splitting on $D$, we can see 
-  $\Sigma_{d:D} X(d)$ is open.
+%\begin{lemma}\label{OpenDependentSums}
+%  Open propositions are closed under dependent sums.
+%\end{lemma}
+%\begin{proof}
+%  \rednote{If we show that Open propositions are exactly the overtly discrete ones, this is implied by $\Sigma$-closure}
+%  First note that for $D$ a decidable proposition, and $X:D \to \Open$,
+%  by case splitting on $D$, we can see 
+%  $\Sigma_{d:D} X(d)$ is open.
+%%
+%  Then note that for $P$ an open proposition, 
+%  there exists a sequence of decidable propositions $A_n$ with 
+%  $P = \exists_{n:\N} A_n $.
+%%
+%  So for $Y : P \to Open $, the dependent sum $\Sigma_P Y$ is given by 
+%  $\exists_{n:\N} (\Sigma_{a:A_n} Y(n,a))$,
+%  which is a countable disjunction of open propositions, 
+%  hence open by \Cref{OpenCountableDisjunction}.
+%\end{proof}
 %
-  Then note that for $P$ an open proposition, 
-  there exists a sequence of decidable propositions $A_n$ with 
-  $P = \exists_{n:\N} A_n $.
+%We will see the same holds for closed propositions in \Cref{ClosedDependentSums}.
 %
-  So for $Y : P \to Open $, the dependent sum $\Sigma_P Y$ is given by 
-  $\exists_{n:\N} (\Sigma_{a:A_n} Y(n,a))$,
-  which is a countable disjunction of open propositions, 
-  hence open by \Cref{OpenCountableDisjunction}.
-\end{proof}
-
-We will see the same holds for closed propositions in \Cref{ClosedDependentSums}.
-
-\begin{remark}\label{ImplicationOpenClosed}
-  If $P$ is open, $P \to \bot$ is only open if $P$ is decidable, which is not in general the case. 
-  Thus $\Open$ is not closed under dependent products. Neither is $\Closed$. 
-  However, as $(P\to Q)  \to \neg \neg (\neg P \vee Q)$,
-  we have that if $P$ is open and $Q$ is closed, then $P\to Q$ is closed, and similarly $Q\to P$ is open.
-\end{remark}
+%\begin{remark}\label{ImplicationOpenClosed}
+%  If $P$ is open, $P \to \bot$ is only open if $P$ is decidable, which is not in general the case. 
+%  Thus $\Open$ is not closed under dependent products. Neither is $\Closed$. 
+%  However, as $(P\to Q)  \to \neg \neg (\neg P \vee Q)$,
+%  we have that if $P$ is open and $Q$ is closed, then $P\to Q$ is closed, and similarly $Q\to P$ is open.
+%\end{remark}

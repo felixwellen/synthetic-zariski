@@ -2,6 +2,7 @@
 In constructive mathematics, we do not assume the law of excluded middle (LEM).
 There are some principles called principles of omniscience that are weaker than LEM, which can be used to describe 
 how close a logical system is to satisfying LEM.
+References on these principles include \Cref{HannesDiener, ReverseMathsBishop}.
 In this section, we will show that two of them (Markov's principle and LLPO) hold, 
 and one (WLPO) fails in our system.
 
@@ -32,9 +33,11 @@ The following result is due to David W\"arn:
   \end{equation}
 \end{theorem}
 \begin{proof}
-  We will show that the spectrum of $2/(\alpha(n))_{n:\N}$ is empty. 
-  Suppose $x:2\to 2$, if  $x(\alpha(n)) = 0$, we get $\alpha(n) \neq 1$. 
-  Thus if $\neg (\forall_{n:\N} \alpha(n) = 0$, we have $\neg Sp(2/(\alpha(n))_{n:\N})$.
+  By \Cref{ClosedPropAsSpectrum}, we have that $\neg(\forall_{n:\N} \alpha(n) = 0)$ implies that 
+  $Sp(2/(\alpha(n))_{n:\N}$ is empty. 
+%  We will show that the spectrum of $2/(\alpha(n))_{n:\N}$ is empty. 
+%  Suppose $x:2\to 2$, if  $x(\alpha(n)) = 0$, we get $\alpha(n) \neq 1$. 
+%  Thus if $\neg (\forall_{n:\N} \alpha(n) = 0$, we have $\neg Sp(2/(\alpha(n))_{n:\N})$.
   Hence $2/(\alpha(n))_{n:\N}$ is trivial by \Cref{SpectrumEmptyIff01Equal}. 
   Then there is a finite subset $N_0\subseteq \N$ with $\bigvee_{i:N_0} \alpha(i) = 1$. 
   As $\alpha(i) \in \{0,1\}$ and $\alpha(i) = 1$ for at most one $i:\N$, 
@@ -149,43 +152,57 @@ As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was no
   which gives a contradiction. Thus no retraction exists. 
 \end{proof}
 
-We finish with an equivalent formulation of LLPO:
-
-\begin{lemma}\label{corAlternativeLLPO}
-  Let $(\phi_n)_{n:\N}, (\psi_m)_{m:\N}$ be families of decidable propositions indexed over $\N$.
-  We then have 
+\begin{remark}\label{corAlternativeLLPO}
+  Using Proposition 1.4.1 of \cite{HannesDiener}, LLPO is equivalent to the statement that 
+  for $(\phi_n)_{n:\N}, (\psi_m)_{m:\N}$ families of decidable propositions indexed over $\N$, we have
   \begin{equation}
     (\forall_{n:\N} \forall_{m:\N} (\phi_n \vee \psi_m) )
     \leftrightarrow
     ((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )
   \end{equation}
-\end{lemma}
-
-\begin{proof}
-  Note that the implication from right to left in the above equation always holds.
-  Assume that for all $m,n:\mathbb N$ we have $\phi_n\vee \psi_m$ 
-  Consider the sequence $\alpha:2^\mathbb N$ where $\alpha(2n) = 0$ iff $\phi_n$ and 
-  $\alpha(2m+1) = 0$ iff $\psi_m$. 
-  Let $\beta:\Noo$ be such that $\beta(i) = 1$ iff $i$ is minimal with $\alpha(i) = 1$
-  By LLPO, we have that 
-  $\beta$ is $0$ on all odd entries or on all even entries. 
-  Suppose that $\beta$ hits $0$ on all odd entries. 
-  We will show $\psi_m$ for all $m:\N$. 
-  As $\beta(2m+1) = 0$, there are two options:
-  \begin{itemize}
-    	\item If $\alpha(l)=0$ for all $l\leq 2m+1$. Then in particular $\alpha(2m+1)=0$ and $\psi_m$ holds.
-	\item Otherwise there is some $l<2m+1$ with $\beta(l) = 1$. 
-  As $\beta$ hits $0$ on odd entries, $l$ is even. 
-  So $\alpha(2n) = 1$ for $n = \frac{l}2$, meaning that $\neg \phi_n$. 
-  By assumption, $\phi_n \vee \psi_m$ holds, hence $\psi_m$ must hold. 
-  Thus for all $m:\N$, we have $\psi_m$ if $\beta$ hits $0$ on all odd entries. 
-  By a symmetric argument, if $\beta$ hits $0$ on all even entries, we have $\phi_n$ for all $n:\N$. 
-  We conclude that 
-  $((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )$ 
-  as required. 
-  \end{itemize}
-\end{proof}
-
-\begin{remark}
-Note that the above statement implies LLPO as $\alpha(2n) =0 \vee \alpha(2m+1) =0$ for all $n,m:\mathbb N$ if $\alpha:\Noo$. 
 \end{remark}
+
+
+%We finish with an equivalent formulation of LLPO:
+%
+%
+%\begin{lemma}\label{corAlternativeLLPO}
+%  Let $(\phi_n)_{n:\N}, (\psi_m)_{m:\N}$ be families of decidable propositions indexed over $\N$.
+%  We then have 
+%  \begin{equation}
+%    (\forall_{n:\N} \forall_{m:\N} (\phi_n \vee \psi_m) )
+%    \leftrightarrow
+%    ((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )
+%  \end{equation}
+%\end{lemma}
+%\begin{proof}
+%  See \cite{HannesDiener, ReverseMathsBishop}
+%\end{proof}
+%\begin{proof}
+%  Note that the implication from right to left in the above equation always holds.
+%  Assume that for all $m,n:\mathbb N$ we have $\phi_n\vee \psi_m$ 
+%  Consider the sequence $\alpha:2^\mathbb N$ where $\alpha(2n) = 0$ iff $\phi_n$ and 
+%  $\alpha(2m+1) = 0$ iff $\psi_m$. 
+%  Let $\beta:\Noo$ be such that $\beta(i) = 1$ iff $i$ is minimal with $\alpha(i) = 1$
+%  By LLPO, we have that 
+%  $\beta$ is $0$ on all odd entries or on all even entries. 
+%  Suppose that $\beta$ hits $0$ on all odd entries. 
+%  We will show $\psi_m$ for all $m:\N$. 
+%  As $\beta(2m+1) = 0$, there are two options:
+%  \begin{itemize}
+%    	\item If $\alpha(l)=0$ for all $l\leq 2m+1$. Then in particular $\alpha(2m+1)=0$ and $\psi_m$ holds.
+%	\item Otherwise there is some $l<2m+1$ with $\beta(l) = 1$. 
+%  As $\beta$ hits $0$ on odd entries, $l$ is even. 
+%  So $\alpha(2n) = 1$ for $n = \frac{l}2$, meaning that $\neg \phi_n$. 
+%  By assumption, $\phi_n \vee \psi_m$ holds, hence $\psi_m$ must hold. 
+%  Thus for all $m:\N$, we have $\psi_m$ if $\beta$ hits $0$ on all odd entries. 
+%  By a symmetric argument, if $\beta$ hits $0$ on all even entries, we have $\phi_n$ for all $n:\N$. 
+%  We conclude that 
+%  $((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )$ 
+%  as required. 
+%  \end{itemize}
+%\end{proof}
+%
+%\begin{remark}
+%Note that the above statement implies LLPO as $\alpha(2n) =0 \vee \alpha(2m+1) =0$ for all $n,m:\mathbb N$ if $\alpha:\Noo$. 
+%\end{remark}
