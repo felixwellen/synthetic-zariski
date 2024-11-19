@@ -21,10 +21,10 @@
 %  \paragraph{The diagram}
   For each $n:\N$, let $G_n$ be the union of $\{g_i|{i\leq n}\}$ and 
   the finite set of terms occurring in $(r_i)_{i\leq n}$. 
-  Denote $B_n = 2[G_n]/(r_i)_{i\leq n}$, and note that each $B_n$ is a finite Boolean algebra, 
-  and we have maps $B_n \to B_{n+1}$.
+  Denote $B_n = 2[G_n]/(r_i)_{i\leq n}$. 
+  Each $B_n$ is a finite Boolean algebra, and there are canonical maps $B_n \to B_{n+1}$.
 %  The inclusion $G_n \hookrightarrow G_{n+1}$ induces maps $B_n \to B_{n+1}$.
-  Hence $B_n,~n:\N$ is an $(\N,\leq)$-indexed sequence of finite sets. 
+%  Hence $B_n,~n:\N$ is an $(\N,\leq)$-indexed sequence of finite sets. 
   We claim that $B$ is the colimit of this sequence. 
 %
 %  \paragraph{The colimit}
@@ -59,11 +59,12 @@
 
 
 \subsection{Maps of overtly discrete types}
-\begin{lemma}\label{colimitCompact}
+\begin{lemma}[Compactness of finite sets] \label{colimitCompact}
   For any finite set $A$ and $(\N,\leq)$-indexed sequence of finite sets $B_n$ with colimit $B$, 
   the colimit of $B_n^A$ is $B^A$. 
 \end{lemma}  
 \begin{proof}
+  \rednote{Should there be a reference here?}
 %  First note that $B^A$ forms a cocone on $(B_n^A)_{n:\N}$ 
   Any map $A \to B_n$ induces a map $A \to B$, hence $B^A$ is a cocone on $(B_n^A)_{n:\N}$.
   Let $C$ form a cocone on $(B_n^A)_{n:\N}$. %with maps $F_n:B_n^A \to C$.
@@ -89,8 +90,8 @@
 \end{proof}
 \begin{remark}\label{rmkEqualityColimit}
   In the above proof, we used that any element $b\in B$ already occurs in some $B_n$. 
-  However, please note that it is not necessarily the case that it occurs uniquely in $B_n$.
-  In general, if we assume $B$ is overtly discrete %is the colimit of any sequence $(B_n)_{n:\N}$, 
+  However, it does not necessarily occur uniquely in $B_n$.
+  In general, $B$ is overtly discrete 
   and there exist some $B_n$ with two elements corresponding to the same element in $B$, 
   Theorem 7.4 from \cite{SequentialColimitHoTT} says that there merely exists some $m\geq n$
   such that these elements become equal in $B_m$. 
@@ -163,7 +164,7 @@
 %  the map $C_{n'_{k+1}} \to C_{n_{k+1}}$, the following diagram does commute:
   \begin{equation}
     \begin{tikzcd}
-      B_{k-1} \arrow[d,"f_{k-1}"]\arrow[r] & B_{{k}} \arrow[rd, "f_{k}"] \arrow[rr] & & B \arrow[d,"f"] \\
+      B_{k-1} \arrow[d,"f_{k-1}"]\arrow[r] & B_{{k}} \arrow[rd, "f_{k}"] \arrow[rr,"\iota_k"] & & B \arrow[d,"f"] \\
       C_{n_{k-1}} \arrow[r] & C_{n'_{k}} \arrow[r] & C_{n_{k}} \arrow[r] & C 
     \end{tikzcd}
   \end{equation}
@@ -177,6 +178,7 @@
 \end{proof}
 
 \begin{lemma}\label{lemDecompositionOfEpiMonoFactorization}
+  \rednote{Can this be a shorter remark?}
   Let $f:A_\infty\to B_\infty$ be a map between overtly discrete types, and suppose we have $f_n:A_n\to B_n$ such that 
   the following diagram commutes:
   \begin{equation}
@@ -251,11 +253,13 @@
   Overtly discrete types are closed under $\Sigma$. 
 \end{corollary}
 \begin{proof}
-  Let $B$ be overtly discrete and $X:B \to \mathcal U$ be a $B$-indexed family of overtly discrete types. 
-  We then have that for every $i:\N$, $\Sigma_{b:B_i} (X\circ \iota_i(b))$ is a finite coproduct of of overtly discrete 
-  types, and as colimits commute with finite products, this is overtly discrete. 
+  Let $B$ be overtly discrete and $X:B \to \mathcal U$ be a 
+  $B$-indexed family of overtly discrete types. 
+  For any $i:\N$, we have a finite coproduct of overtly discrete types 
+  $\Sigma_{b:B_i} (X\circ \iota_i(b))$.  
+  As colimits commute with finite coproducts, this is overtly discrete. 
   By Theorem 5.1 of \cite{SequentialColimitHoTT}, 
-  taking the colimit over the latter sequence, we get $\Sigma_{b:B} X(b)$. 
+  taking the colimit in $i$, we get $\Sigma_{b:B} X(b)$. 
   By the above Lemma, this is overtly discrete. 
 \end{proof}
 

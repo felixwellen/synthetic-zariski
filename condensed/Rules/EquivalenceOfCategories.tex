@@ -21,11 +21,10 @@ By the above and Lemma 9.4.5 of \cite{hott}, the map $Sp$ defines a dual equival
   For $B:\Boole$, we have $0=_B1$ iff $\neg Sp(B)$.
 \end{lemma}
 \begin{proof}
-  Note that whenever $0=1$ in $B$, there is no map $B\to 2$ respecting both $0$ and $1$ as $0\neq 1$ in $2$. 
-  Thus $\neg Sp(B)$ whenever $0=1$ in $B$. 
-  % 
-  Conversely, if $\neg Sp(B)$, then $Sp(B) = \emptyset$, which is also the spectrum of the trivial Boolean algebra. 
-  As $Sp$ is an embedding, $B$ is equivalent to the trivial Boolean algebra, and $0=_B1$. 
+  If $0=_B1$, there is no map $B\to 2$ respecting both $0$ and $1$, thus $\neg Sp(B)$. 
+  Conversely, if $\neg Sp(B)$, then 
+  $Sp(B)$ equals $\bot$, the spectrum of the trivial Boolean algebra. 
+  As $Sp$ is an embedding, $B$ is equivalent to the trivial Boolean algebra, hence $0=_B1$. 
 \end{proof}
 
 %\begin{corollary}\label{MoreConcreteCompleteness}
@@ -40,43 +39,43 @@ By the above and Lemma 9.4.5 of \cite{hott}, the map $Sp$ defines a dual equival
   the category of Stone spaces is closed under pullbacks. 
 \end{remark}
 
-We conclude this section on the anti-equivalence of Stone and $\Boole$ by a relating surjections to injections. 
-This theorem is actually equivalent to completeness of propositional logic, which we'll discuss in 
-\Cref{NotesOnAxioms}. 
-
-\begin{theorem}\label{FormalSurjectionsAreSurjections}
-  Let $f:A\to B$ be a map of countably presented Boolean algebras. 
-  If $f$ is injective, then the corresponding map $(\cdot) \circ f : Sp(B) \to Sp(A)$ is surjective. 
-\end{theorem}
-
-\begin{proof}
-  Assume $f$ injective and let $x:Sp(A)$.
-  By \Cref{FiberConstruction}, we have that $\left(\sum\limits_{y:Sp(B)} y\circ f = x \right) = Sp(B/R) $
-  for $R=f(G)$ for some countable $G\subseteq A$ with $x(g) = 0$ for all $g\in G$. 
-  By propositional completeness and \Cref{SpectrumEmptyIff01Equal}, 
-  it's sufficient to show that $0\neq_{B/R}1$. 
-  Note that $0=_{B/R} 1$ iff 
-  $1 =_B \bigvee R_0$ for some $R_0\subseteq R$ finite. 
-  But then $$1 = \bigvee f(G_0) = f(\bigvee  G_0)$$ for some $G_0\subseteq G$ finite. 
-  And as $f$ is injective, $\bigvee G_0 = 1$. 
-  However, 
-  $$
-  x(\bigvee G_0) = 
-  x(\bigvee_{g\in G_0} g ) = \bigvee_{g \in G_0} x(g) = \bigvee_{g\in G_0} 0 = 0$$
-  And as $x(1) = 1$, we get a contradiction. Therefore $0\neq_{B/R} 1$ as required. 
-\end{proof}  
-The converse to the above theorem is true as well, regardless of propositional completeness:
-\begin{lemma}\label{SurjectionsAreFormalSurjections}
-If $f:A\to B$ is a map in $\Boole$ and $(\cdot) \circ f :Sp(B) \to Sp(A)$ is surjective, 
-$f$ is injective. 
-\end{lemma}
-\begin{proof}
-  Suppose precomposition with $f$ is surjective. 
-  Let $a:A$ be such that $f(a)= 0$. 
-  By assumption, for every $x:A\to 2$, there is a $y:B\to 2$ with $y\circ f = x$. 
-  Consequentely $x(a) = y(f(a)) = y(0) = 0$. 
-  So $x(a) = 0$ for every $x:Sp(A)$. 
-  Thus $Sp(A) = Sp(A/\{a\})$, and as $Sp$ is an embedding, 
-  $A \simeq A/\{a\}$, and $a = 0$ in $A$. 
-  So whenever $f(a) = 0$, we have $a=0$. Thus $f$ is injective. 
-\end{proof}
+%SurjectionsFormalSurjections%We conclude this section on the anti-equivalence of Stone and $\Boole$ by a relating surjections to injections. 
+%SurjectionsFormalSurjections%This theorem is actually equivalent to completeness of propositional logic, which we'll discuss in 
+%SurjectionsFormalSurjections%\Cref{NotesOnAxioms}. 
+%SurjectionsFormalSurjections%
+%SurjectionsFormalSurjections%\begin{theorem}\label{FormalSurjectionsAreSurjections}
+%SurjectionsFormalSurjections%  Let $f:A\to B$ be a map of countably presented Boolean algebras. 
+%SurjectionsFormalSurjections%  If $f$ is injective, then the corresponding map $(\cdot) \circ f : Sp(B) \to Sp(A)$ is surjective. 
+%SurjectionsFormalSurjections%\end{theorem}
+%SurjectionsFormalSurjections%
+%SurjectionsFormalSurjections%\begin{proof}
+%SurjectionsFormalSurjections%  Assume $f$ injective and let $x:Sp(A)$.
+%SurjectionsFormalSurjections%  By \Cref{FiberConstruction}, we have that $\left(\sum\limits_{y:Sp(B)} y\circ f = x \right) = Sp(B/R) $
+%SurjectionsFormalSurjections%  for $R=f(G)$ for some countable $G\subseteq A$ with $x(g) = 0$ for all $g\in G$. 
+%SurjectionsFormalSurjections%  By propositional completeness and \Cref{SpectrumEmptyIff01Equal}, 
+%SurjectionsFormalSurjections%  it's sufficient to show that $0\neq_{B/R}1$. 
+%SurjectionsFormalSurjections%  Note that $0=_{B/R} 1$ iff 
+%SurjectionsFormalSurjections%  $1 =_B \bigvee R_0$ for some $R_0\subseteq R$ finite. 
+%SurjectionsFormalSurjections%  But then $$1 = \bigvee f(G_0) = f(\bigvee  G_0)$$ for some $G_0\subseteq G$ finite. 
+%SurjectionsFormalSurjections%  And as $f$ is injective, $\bigvee G_0 = 1$. 
+%SurjectionsFormalSurjections%  However, 
+%SurjectionsFormalSurjections%  $$
+%SurjectionsFormalSurjections%  x(\bigvee G_0) = 
+%SurjectionsFormalSurjections%  x(\bigvee_{g\in G_0} g ) = \bigvee_{g \in G_0} x(g) = \bigvee_{g\in G_0} 0 = 0$$
+%SurjectionsFormalSurjections%  And as $x(1) = 1$, we get a contradiction. Therefore $0\neq_{B/R} 1$ as required. 
+%SurjectionsFormalSurjections%\end{proof}  
+%SurjectionsFormalSurjections%The converse to the above theorem is true as well, regardless of propositional completeness:
+%SurjectionsFormalSurjections%\begin{lemma}\label{SurjectionsAreFormalSurjections}
+%SurjectionsFormalSurjections%If $f:A\to B$ is a map in $\Boole$ and $(\cdot) \circ f :Sp(B) \to Sp(A)$ is surjective, 
+%SurjectionsFormalSurjections%$f$ is injective. 
+%SurjectionsFormalSurjections%\end{lemma}
+%SurjectionsFormalSurjections%\begin{proof}
+%SurjectionsFormalSurjections%  Suppose precomposition with $f$ is surjective. 
+%SurjectionsFormalSurjections%  Let $a:A$ be such that $f(a)= 0$. 
+%SurjectionsFormalSurjections%  By assumption, for every $x:A\to 2$, there is a $y:B\to 2$ with $y\circ f = x$. 
+%SurjectionsFormalSurjections%  Consequentely $x(a) = y(f(a)) = y(0) = 0$. 
+%SurjectionsFormalSurjections%  So $x(a) = 0$ for every $x:Sp(A)$. 
+%SurjectionsFormalSurjections%  Thus $Sp(A) = Sp(A/\{a\})$, and as $Sp$ is an embedding, 
+%SurjectionsFormalSurjections%  $A \simeq A/\{a\}$, and $a = 0$ in $A$. 
+%SurjectionsFormalSurjections%  So whenever $f(a) = 0$, we have $a=0$. Thus $f$ is injective. 
+%SurjectionsFormalSurjections%\end{proof}
