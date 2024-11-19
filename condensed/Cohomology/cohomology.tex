@@ -1,4 +1,4 @@
-In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\mathbb{I},\Z)=0$. We work on the first cohomology group with coefficient in $\Z$ as it is sufficient for the proof of Brouwer theorem, but the results could be extended to $H^n(X,A)$ for $A$ any family of countably presented abelian groups indexed by $X$.
+In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\mathbb{I},\Z)=0$. We work on the first cohomology group with coefficient in $\Z$ as it is sufficient for the proof of Brouwer's fixed-point theorem, but the results could be extended to $H^n(X,A)$ for $A$ any family of countably presented abelian groups indexed by $X$.
 
 \subsection{Needed results}
 
@@ -272,9 +272,7 @@ We could carry a similar computation for $\mathbb{S}^1$, by approximating it wit
 
 \rednote{This section is fun and interesting, but it would be shorter to just compute $H^1(\mathbb{S}^1,\Z)=\Z$ in the previous section, and it would require less requisite on modalities in HoTT.}
 
-Here we consider the modality defined by localising at $\mathbb{I}$ \cite{paper on modality in HoTT}, denoted by $L_\mathbb{I}$. We say $X$ is $\mathbb{I}$-local if $L_\mathbb{I}(X) = X$ and that it is $\mathbb{I}$-contractible if $L_\mathbb{I}(X)=1$.
-
-In this section we define $\mathbb{S}^1$ as $\R/\Z$ (TODO reference for why this is good).
+Here we consider the modality defined by localising at $\mathbb{I}$ \cite{modalities}, denoted by $L_\mathbb{I}$. We say $X$ is $\mathbb{I}$-local if $L_\mathbb{I}(X) = X$ and that it is $\mathbb{I}$-contractible if $L_\mathbb{I}(X)=1$.
 
 \begin{lemma}\label{BZ-I-local}
 We have that $B\Z$ is $\mathbb{I}$-local.
@@ -303,11 +301,11 @@ by applying the elimination principle for the modality.
 \end{proof}
 
 \begin{corollary}\label{R-I-contractible}
-We have that $\R$ and $\mathbb{D}^1$ are $\mathbb{I}$-contractible.
+We have that $\R$ and $\mathbb{D}^2\colonequiv\{(x,y):\mathbb R\vert x^2+y^2\leq 1\}$ are $\mathbb{I}$-contractible.
 \end{corollary}
 
 \begin{proposition}\label{shape-S1-is-BZ}
-We have that $L_\mathbb{I}(\mathbb{S}^1) = B\Z$.
+We have that $L_\mathbb{I}(\R/\Z) = B\Z$.
 \end{proposition}
 
 \begin{proof}
@@ -317,20 +315,36 @@ are $\Z$-torsor, se we have an induced pullback square:
 \begin{center}
 \begin{tikzcd}
 \R\ar[r]\ar[d] & 1\ar[d] \\
-\mathbb{S}^1\ar[r] & B\Z\\
+\R/\Z\ar[r] & B\Z\\
 \end{tikzcd}
 \end{center}
 Now we check that the bottom map is an $\mathbb{I}$-localisation. Since $B\Z$ is $\mathbb{I}$-local by \cref{BZ-I-local} it is enough to check that its fibers are $\mathbb{I}$-contractible. Since $B\Z$ is connected it is enough to check $\R$ is $\mathbb{I}$-contractible, but this is \cref{R-I-contractible}.
 \end{proof}
 
 \begin{remark}
-By \cref{BZ-I-local}, for any $X$ we have that $H^1(X,\Z) = H^1(L_\mathbb{X},\Z)$, so that by \cref{shape-S1-is-BZ} we have that $H^1(\mathbb{S}^1,\Z) = H^1(B\Z,\Z) = \Z$.
+By \cref{BZ-I-local}, for any $X$ we have that $H^1(X,\Z) = H^1(L_{\mathbb{I}}(X),\Z)$, so that by \cref{shape-S1-is-BZ} we have that $H^1(\R/\Z,\Z) = H^1(B\Z,\Z) = \Z$.
 \end{remark}
 
+We omit the proof that $\mathbb{S}^1\colonequiv\{(x,y):\R\vert x^2+y^2=1\}$ is equivalent to $\R/\Z$ (TODO reference for why this is good).
+
 \begin{proposition}
-The map $\mathbb{S}^1\to \mathbb{D}^1$ has no retraction.
+\label{no-retraction}
+The map $\mathbb{S}^1\to \mathbb{D}^2$ has no retraction.
 \end{proposition}
 
 \begin{proof}
 Otherwise by \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction of $B\Z\to 1$, so $B\Z$ would be contractible.
+\end{proof}
+
+\begin{theorem}[Brouwer's fixed-point theorem]
+  Any $f:\mathbb{D}^2\to \mathbb{D}^2$ has a fixed-point, i.e.\ there exists $x:\mathbb{D}^2$ such that $f(x)=x$.
+\end{theorem}
+
+\begin{proof}
+  For a surjection $\pi:S\to \mathbb{D}^2$ from a Stone space $S$, the proposition $\exists x:\mathbb{D}^2.f(x)=x$ is equivalent to  $\exists y:S.f(\pi(y))=\pi(y)$ and therefore closed.
+  Since closed propositions are $\neg\neg$-stable, we can conclude with a proof by contradiction.
+  So we assume $\neg \exists x:\mathbb{D}^2. f(x)=x$ which implies that we have $f(x)\neq x$ for all $x:\mathbb{D}^2$.
+  For any $x:\mathbb{D}^2$ we set $d_x\colonequiv x-f(x)$, so we have that one of the coordinates of $d_x$ is invertible.
+  Let $r(x)$ be the intersection of the half-line $(t:\R_{>0}\mapsto f(x) + t\cdot d_x$, then $r$ is a retraction from $\mathbb{D}^2$ onto its boundary $\mathbb{S}^1$, which is a contradiction by \cref{no-retraction}.
+  TODO: Argument why there is a intersection.
 \end{proof}
