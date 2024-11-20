@@ -1,29 +1,45 @@
 \subsection{Compact Hausdorff spaces are stable under dependent sums}
 
-\begin{lemma}
+\begin{lemma}\label{StoneAsClosedSubsetOfCantor}
 A type $X$ is Stone iff it is merely a closed in $2^\N$.
 \end{lemma}
-
 \begin{proof}
-Any countably presented boolean algebra $B$ is enumerable, which gives a surjective morphism:
-$$ 2[\N]\to B$$
-so that by \Cref{DualCompleteness} we merely have a closed embedding:
-$$ Sp(B)\to 2^\N$$
+  By \Cref{BooleAsCQuotient}, any $B:\Boole$ is can be written as $C/(r_n)_{n:\N}$.
+  By \Cref{BooleEpiMono}, the quotient map induces an embedding $Sp(B)\hookrightarrow Sp(C)= 2^\N$
+  and by \Cref{StoneClosedSubsets} it follows that $Sp(B)$ is closed. 
 \end{proof}
 
+%
+%\begin{proof}
+%Any countably presented boolean algebra $B$ is enumerable, which gives a surjective morphism:
+%$$ 2[\N]\to B$$
+%so that by \Cref{DualCompleteness} we merely have a closed embedding:
+%$$ Sp(B)\to 2^\N$$
+%\end{proof}
+
 \begin{lemma}\label{SigmaStoneCompactHausdorff}
-Assume given $S:\Stone$ and $T:X\to \Stone$. Then $\Sigma_{x:S}T(x)$ is Compact Hausdorff.
+Assume $S:\Stone$ and $T:X\to \Stone$. Then $\Sigma_{x:S}T(x)$ is Compact Hausdorff.
 \end{lemma}
 
 \begin{proof}
-By \Cref{ClosedDependentSums} we have that identity type in $\Sigma_{x:S}T(x)$ are closed.
-
-We know that for any $x:S$ we have that $\exists_{C:2^\N\to \Closed} T_x = \Sigma_{y:2^\N}C(y)$. Using local choice we get $S':\Stone$ with a surjective map:
-$$q:S'\to S$$
-and:
-$$ C : S'\to 2^\N\to\Closed$$
-such that for all $x:S'$ we have $T(q(x)) = \Sigma_{y:2^\N}C(x,y)$. This gives a surjective map:
-$$ \Sigma_{x:S'}\Sigma_{y:2^\N} C(x,y)\to \Sigma_{x:S}T(x)$$
+  By \Cref{ClosedDependentSums} and \Cref{StoneEqualityClosed}, the identity types in $\Sigma_{x:S}T(x)$ are closed.
+  By \Cref{StoneAsClosedSubsetOfCantor}, there is a surjection 
+  $\Sigma_{y:2^\N}(\cdot)(y):(2^\N \to \Closed) \twoheadrightarrow \Stone$. 
+  By \Cref{AxLocalChoice}, it follows we have some $S':\Stone$, a surjection $q:S'\twoheadrightarrow S$ and 
+%
+%  we have that $\exists_{C:2^\N\to \Closed} T_x = \Sigma_{y:2^\N}C(y)$. 
+%  Using local choice we get $S':\Stone$ with a surjective map:
+%$$q:S'\to S$$
+%and:
+%$ C : S'\to (2^\N\to\Closed)$
+$ C : (S'\times 2^\N)\to\Closed$
+such that for all $x:S'$ we have 
+$T(q(x)) = \Sigma_{y:2^\N}C(x,y).$
+This gives a surjective map:
+%$$ \Sigma_{x:S'}\Sigma_{y:2^\N} C(x,y)\twoheadrightarrow \Sigma_{x:S}T(x)$$
+$$ \Sigma_{c:(S'\times 2^\N)}C(c)\twoheadrightarrow \Sigma_{x:S}T(x)$$
+%By \Cref{StoneClosedUnderPullback}, $S'\times 2^\N$ is Stone, 
+%as $C(x,y):\Closed$ for any $(x,y):S'\times 2^\N$, by $\Cref{ClosedInStoneIsStone}$, it follows
 The source is Stone by \Cref{StoneClosedUnderPullback} and \Cref{ClosedInStoneIsStone} so we can conclude.
 \end{proof}
 

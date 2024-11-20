@@ -45,16 +45,41 @@
 %\begin{proof}
 %  A conjunction of propositions is a product, which is a dependent sum. 
 %\end{proof}
+%FollowsAlsoFromNextLemma%\begin{lemma}\label{ODiscEqualityOpen}
+%FollowsAlsoFromNextLemma%  Whenever $B$ is overtly discrete and $a,b:B$, the proposition $a=_B b$ is open. 
+%FollowsAlsoFromNextLemma%\end{lemma}
+%FollowsAlsoFromNextLemma%\begin{proof}
+%FollowsAlsoFromNextLemma%  For $a,b:B$ there is some $n:\N$ with $a',b':B_n$ and $\iota_n(a') = a,\iota_n(b') = b$.
+%FollowsAlsoFromNextLemma%  By \Cref{rmkEqualityColimit}, we have that $a=_B b$ iff 
+%FollowsAlsoFromNextLemma%  there is some $m\geq n$ with $\iota_n^m (a') = \iota_n^m(b')$. 
+%FollowsAlsoFromNextLemma%  As equality in finite sets is decidable, this is a countable disjunction of decidable propositions, hence open. 
+%FollowsAlsoFromNextLemma%%  \rednote{That reference can also be a direct cite}.
+%FollowsAlsoFromNextLemma%\end{proof}
+
 \begin{lemma}
-  Whenever $B$ is overtly discrete and $a,b:B$, the proposition $a=_B b$ is open. 
+  A type $B$ is overtly discrete iff it is the quotient of a countable set by an open equivalence relation. 
 \end{lemma}
 \begin{proof}
-  For $a,b:B$ there is some $n:\N$ with $a',b':B_n$ and $\iota_n(a') = a,\iota_n(b') = b$.
-  By \Cref{rmkEqualityColimit}, we have that $a=_B b$ iff 
-  there is some $m\geq n$ with $\iota_n^m (a') = \iota_n^m(b')$. 
-  As equality in finite sets is decidable, this is a countable disjunction of decidable propositions, hence open. 
-%  \rednote{That reference can also be a direct cite}.
+  Is $B:\ODisc$, then $B= \Sigma{n:\N} B_n/\sim_B$ where $\sim_B$ is the reflexive closure of  
+  $(n,b)\sim(m,\iota_n^m b)$ for $n\leq m$. 
+%
+  Conversely, assume $B= D/R$ with $D\subseteq \N$ decidable and $R$ open. 
+  By countable choice we get $\alpha_{(\cdot,\cdot)}:D \to D \to 2^\N$ such that 
+  $R(x,y)\leftrightarrow \exists_{n:\N}\alpha(n) = 1$. 
+  Define $D_n = (D \cap \N_{\leq n})$, and $R_n : D_n \to D_n \to 2$ so that $R_n(x,y)$ checks whether
+  $\alpha_{(x,y)}(k) =1$ for some $k\leq n$. 
+  Note that $B_n = D_n/R_n$ is a finite set, and has colimit $B$. 
 \end{proof}
+\begin{remark}\label{BooleEpiMono}
+  In particular equality in overtly discrete types is open. 
+  By \Cref{OdiscSigma}, it follows that any $g:B\to C$ in $\Boole$ has an overtly discrete kernel, 
+  which must therefore be enumerable. Hence $B/Ker(g)$ is in $\Boole$. 
+  By uniqueness of epi-mono factorizations and \Cref{SurjectionsAreFormalSurjections}, the factorization 
+  $B\twoheadrightarrow B/Ker(g) \hookrightarrow C$ corresponds to 
+  $Sp(C) \twoheadrightarrow Sp(B/Ker(g)) \hookrightarrow Sp(B)$. 
+\end{remark}
+
+
 \subsection{$\Closed$ and $\Stone$}
 %\begin{lemma}\label{BooleEqualityOpen}
 %  Whenever $B:\Boole$, $a,b:B$ the proposition $a=_Bb$ is open. 

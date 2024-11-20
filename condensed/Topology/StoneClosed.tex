@@ -24,10 +24,14 @@
      \end{equation}
    \item[$(ii) \to (iii)$.]
       Let $S=Sp(B)$. 
-      By Stone duality, we have $d_n,~n:\N$ terms of $B$ such that $D_n = \{x:S| x(d_n) = 1\}$. 
-      Let $C = B/(\neg d_n)_{n:\N}$.
+%      By Stone duality, we have $d_n,~n:\N$ terms of $B$ such that $D_n = \{x:S| x(d_n) = 1\}$. 
+%      Let $C = B/(\neg d_n)_{n:\N}$.
+%      Then the map $Sp(C) \to S$ is as desired because
+%      $$Sp(C) = \{x:S| \forall_{n:\N} x(\neg d_n) =0\}  = \bigcap_{n:\N} D_n.$$
+      By \Cref{AxStoneDuality}, we have $d_n,~n:\N$ terms of $B$ such that $D_n = \{x:S| x(d_n) = 0\}$. 
+      Let $C = B/(d_n)_{n:\N}$.
       Then the map $Sp(C) \to S$ is as desired because
-      $$Sp(C) = \{x:S| \forall_{n:\N} x(\neg d_n) =0\}  = \bigcap_{n:\N} D_n.$$
+      $$Sp(C) = \{x:S| \forall_{n:\N} x(d_n) =0\}  = \bigcap_{n:\N} D_n.$$
 %      By \Cref{SurjectionsAreFormalSurjections}, t
 %      The quotient map $B \twoheadrightarrow C$
 %      corresponds to a map $\iota:Sp(C) \hookrightarrow  S$. 
@@ -40,10 +44,9 @@
    \item[$(iii) \to (iv)$] Immediate.
    \item[$(iv) \to (i)$.] 
      Assume $f:T\to S$ corresponds to $g:B\to C$ in $\Boole$. 
-     Note that $Ker(g)\subseteq B$ is an inhabited open subset of an overtly discrete type, 
-     hence there is a surjection $d_\cdot:\N\to Ker(g)$ and $B/Ker(g) : \Boole$.
-     For $D_n$ corresponding to $d_n$, we have that 
-     $f(T) = Sp(B/Ker(g))\subseteq Sp(B) = S$ is given by $\bigcap_{n:\N} D_n$. 
+     By \Cref{BooleEpiMono}, $f(T) = Sp(B/Ker(g))$, and 
+     there is a surjection $d_\cdot:\N\to Ker(g)$. 
+     For $D_n$ corresponding to $d_n$, we have $Sp(B/Ker(g)) = \bigcap_{n:\N} D_n$. 
 %
 %
 %     Note that the factorization 
@@ -106,8 +109,8 @@
      As $A$ is closed, it induces a map $a:S\to \Closed$. 
      We can cover the closed propositions with Cantor space
      by sending 
-     $\alpha \mapsto \forall_{n:\mathbb N} \alpha n = 0.$
-     Now local choice gives us that there merely exists $T, e, \beta_\cdot$ as follows:
+     $\alpha \mapsto \forall_{n:\mathbb N} \alpha (n) = 0.$
+     By \Cref{AxLocalChoice} gives us that there merely exists $T, e, \beta_\cdot$ as follows:
      \begin{equation}
        \begin{tikzcd}
          T \arrow[r,"\beta_\cdot"] \arrow[d, two heads,"e"] & 2^\mathbb N 
@@ -120,7 +123,6 @@
      Furthermore, note that $A$ is the image of $B$, thus $A$ is the image of some Stone space. 
 \end{itemize} 
 \end{proof} 
-\rednote{Ordering from here on out is WIP}
 
 \begin{remark}\label{ClosedInStoneIsStone}
 Using condition $(iii)$, the previous result implies that closed subtype of Stone spaces are Stone.
@@ -131,7 +133,8 @@ Using condition $(iii)$, the previous result implies that closed subtype of Ston
   $\exists_{x:S} A(x)$ is closed. 
 \end{corollary}
 \begin{proof}
-  By \Cref{ClosedInStoneIsStone} we have that $\Sigma_{x:S}A(x)$ is Stone, so its truncation is closed by \Cref{TruncationStoneClosed}.
+  By \Cref{ClosedInStoneIsStone} we have that $\Sigma_{x:S}A(x)$ is Stone, 
+  so its truncation is closed by \Cref{TruncationStoneClosed}.
 \end{proof}
 
 \begin{corollary}\label{ClosedDependentSums}
@@ -141,7 +144,6 @@ Using condition $(iii)$, the previous result implies that closed subtype of Ston
   Let $P:\Closed$ and $Q:P \to \Closed$. 
   Then $\Sigma_{p:P} Q(p) \leftrightarrow \exists_{p:P} Q(p)$.
   As $P$ is Stone by \Cref{PropositionsClosedIffStone}, 
-%  As $P$ is Stone by \Cref{PropositionsClosedIffStone}, it is also compact Hausdorff, thus
   \Cref{InhabitedClosedSubSpaceClosed} gives that $\Sigma_{p:P} Q(p)$ is closed. 
 \end{proof}
 \begin{remark}
@@ -149,72 +151,100 @@ Using condition $(iii)$, the previous result implies that closed subtype of Ston
   closedness is transitive and $\Closed$ forms a dominance. 
 \end{remark}
 
-We can get a dual to completeness.
+%We can get a dual to completeness.
 
-\begin{lemma}\label{DualCompleteness}
-Let $A$ and $B$ be c.p. boolean algebra with a map:
-\[i:Sp(A)\to Sp(B)\] 
-The following are equivalent:
-\begin{enumerate}[(i)]
-\item The induced map $B\to A$ is surjective.
-\item The map $i$ is an embedding.
-\item The map $i$ is a closed embedding.
-\end{enumerate}
-\end{lemma}
 
-\begin{proof}
-\begin{itemize}
-\item[$(i)\to (ii)$] Immediate.
-\item[$(ii)\to (iii)$] By \Cref{StoneEqualityClosed} the fibers of $i$ are closed in $Sp(A)$, so by \Cref{ClosedInStoneIsStone} they are Stone, so they are closed by \Cref{PropositionsClosedIffStone}.
-\item[$(iii)\to (i)$] By we have that $Sp(A) = \cap_{n:\N}D_n$ for $D_n$ decidable in $Sp(B)$. Assuming $D_n$ correponds to $b_n:B$ though duality, we then have that $A=B/ (b_n)_{n:\N}$ and the induced map is the quotient map:
-$$B\to B/(b_n)_{n:\N}$$
-which is surjective.
-\end{itemize}
-\end{proof}
+%ImpliedByBooleEpiMono%\begin{lemma}\label{DualCompleteness}
+%ImpliedByBooleEpiMono%Let $A$ and $B$ be c.p. boolean algebra with a map:
+%ImpliedByBooleEpiMono%\[i:Sp(A)\to Sp(B)\] 
+%ImpliedByBooleEpiMono%The following are equivalent:
+%ImpliedByBooleEpiMono%\begin{enumerate}[(i)]
+%ImpliedByBooleEpiMono%\item The induced map $B\to A$ is surjective.
+%ImpliedByBooleEpiMono%\item The map $i$ is an embedding.
+%ImpliedByBooleEpiMono%\item The map $i$ is a closed embedding.
+%ImpliedByBooleEpiMono%\end{enumerate}
+%ImpliedByBooleEpiMono%\end{lemma}
+%ImpliedByBooleEpiMono%
+%ImpliedByBooleEpiMono%\begin{proof}
+%ImpliedByBooleEpiMono%  \item
+%ImpliedByBooleEpiMono%\begin{itemize}
+%ImpliedByBooleEpiMono%\item[$(i)\to (ii)$] Immediate.
+%ImpliedByBooleEpiMono%\item[$(ii)\to (iii)$] By \Cref{StoneEqualityClosed} the fibers of $i$ are closed in $Sp(A)$, so by \Cref{ClosedInStoneIsStone} they are Stone, so they are closed by \Cref{PropositionsClosedIffStone}.
+%ImpliedByBooleEpiMono%\item[$(iii)\to (i)$] By we have that $Sp(A) = \cap_{n:\N}D_n$ for $D_n$ decidable in $Sp(B)$. Assuming $D_n$ correponds to $b_n:B$ though duality, we then have that $A=B/ (b_n)_{n:\N}$ and the induced map is the quotient map:
+%ImpliedByBooleEpiMono%$$B\to B/(b_n)_{n:\N}$$
+%ImpliedByBooleEpiMono%which is surjective.
+%ImpliedByBooleEpiMono%\end{itemize}
+%ImpliedByBooleEpiMono%\end{proof}
 
 \begin{lemma}\label{StoneSeperated}
   If $S:\Stone $, and $F,G:S \to \Closed$ be such that $F\cap G = \emptyset$. 
   Then there exists a decidable subset $D:S \to 2$ such $F\subseteq D, G \subseteq \neg D$. 
 \end{lemma}
 \begin{proof}
+  \rednote{Too shorten this (and some other proofs), I've removed some negations and pretended  $D:S\to 2$ is given by 
+  $\{x:S|x(d) = 0\}$ instead of $\{x:S|x(d) = 1\}$ }
   Assume $S = Sp(B)$. 
-  By the above theorem, there exists sequences $f_n,g_n:B,~n:\N$ such that 
-  $x\in F$ iff $x(f_n) = 1$ for all $n:\N$ and 
-  $y\in G$ iff $y(g_m) = 1$ for all $m:\N$. 
+  By \Cref{StoneClosedSubsets}, there exists sequences $f_n,g_n:B,~n:\N$ such that 
+  $x\in F$ iff $x(f_n) = 0$ for all $n:\N$ and 
+  $y\in G$ iff $y(g_m) = 0$ for all $m:\N$. 
+%  $x\in F$ iff $x(f_n) = 1$ for all $n:\N$ and 
+%  $y\in G$ iff $y(g_m) = 1$ for all $m:\N$. 
 %
-  Denote $R\subseteq B$ for $\{\neg f_n|n:\N\} \cup\{\neg g_n|n:\N\}$. 
-  Note that any inhabitant $Sp(B/R)$ gives a map $x:B\to 2$ such that
-  $x(g_n)= x(f_n) = 1$ for all $n:\N$, hence $x\in F \cap G$. 
-  As $F\cap G = \emptyset $, it follows that $Sp(B/R)$ is empty.
+%  Denote $R\subseteq B$ for $\{\neg f_n|n:\N\} \cup\{\neg g_n|n:\N\}$. 
+  Denote $R\subseteq B$ for $\{f_n|n:\N\} \cup\{g_n|n:\N\}$. 
+  Note that $Sp(B/R) = F \cap G=\emptyset$, so by \Cref{SpectrumEmptyIff01Equal}
+%  Note that any $x:Sp(B/R)$ is such %gives a map $x:B\to 2$ such that
+%  $x(g_n)= x(f_n) = 1$ for all $n:\N$, hence $x\in F \cap G$. 
+%  As $F\cap G = \emptyset $, it follows that $Sp(B/R)$ is empty.
 %
-  Thus there exists finite sets $I,J\subseteq \N $ such that 
-  $$1 =_B ((\bigvee_{i\in I} \neg f_i) \vee (\bigvee_{j\in J} \neg g_j)).$$
+  there exists finite sets $I,J\subseteq \N $ such that 
+%  $$1 =_B \left(\left(\bigvee_{i\in I} \neg f_i\right) \vee \left(\bigvee_{j\in J} \neg g_j\right)\right).$$
+%  $$1 =_B \left(\left(\bigvee_{i\in I}  f_i\right) \vee \left(\bigvee_{j\in J}  g_j\right)\right).$$
+  $1 =_B ((\bigvee_{i\in I}  f_i) \vee (\bigvee_{j\in J}  g_j)).$
 %
-  Let $y\in G$. Then $y(\neg g_j) = 0$ for all $j \in J$. 
-  Hence 
-  $$
-  1 = y(1) 
-  = 
-  y(\bigvee_{i\in I} \neg f_i) = y (\neg (\bigwedge_{i\in I} f_i))
-  $$
-  Thus $y(\bigwedge_{i\in I} f_i) = 0$. 
-  Note that if $x\in F$, we have $x(f_i) = 1$ for all $i\in I$, hence 
-  $x(\bigwedge_{i\in I} f_i) = 1$. 
-  Thus for $D$ corresponding to $\bigwedge_{i\in I} f_i$, we have that 
-  $F\subseteq D, G\subseteq \neg D$ as required. 
+  Let $y\in F$, then $y(f_i) = 0$ for all $i\in I$, hence
+%  $$1 =_2 y(1) = y\left(\bigvee_{j\in J} g_j\right).$$
+  $y(\bigvee_{j\in J} g_j) = 1 $
+  And if $x\in G$, we have 
+%  $x\left(\bigvee_{j\in J} g_j\right) = 0$. 
+  $x(\bigvee_{j\in J} g_j) = 0$. 
+  Thus we can define the required $D$ by 
+  $D(x) \leftrightarrow x(\bigvee_{j\in J} g_j) = 0$.
+  %$$D = \{x:S | x\left(\bigvee_{j\in J} g_j \right) = 0\}$$.
+  %, we have $F\subseteq D, G\subseteq \neg D$. 
+  
+%  Let $y\in G$. Then $y(\neg g_j) = 0$ for all $j \in J$. 
+%  Let $y\in G$. Then $y(g_j) = 0$ for all $j \in J$. 
+%  Hence 
+%  $$
+%  1 
+%%  = y(1) 
+%  =_2
+%%  y(\bigvee_{i\in I} \neg f_i) = y (\neg (\bigwedge_{i\in I} f_i))
+%  y\left(\left(\bigvee_{i\in I}  f_i\right) \vee \left(\bigvee_{j\in J}  g_j\right)\right)
+%  = 
+%%  \left(y\left(\bigvee_{i\in I}  f_i\right)\right) \vee \left(\bigvee_{j\in J} y(g_j)\right)
+%%  = 
+%  y\left(\bigvee_{i\in I}  f_i\right)
+%  $$
+%%  Thus $y(\bigwedge_{i\in I} f_i) = 0$. 
+%%  Note that if $x\in F$, we have $x(f_i) = 1$ for all $i\in I$, hence 
+%%  $x(\bigwedge_{i\in I} f_i) = 1$. 
+%%  Thus for $D$ corresponding to $\bigwedge_{i\in I} f_i$, we have that 
+%%  $F\subseteq D, G\subseteq \neg D$ as required. 
 \end{proof} 
 
-\begin{corollary}\label{StoneOpenSubsets}
-  Let $A\subseteq S$ be a subset of a Stone space, then 
-  $A$ is open iff there exists some countable family $D_n,~n:\N$ of decidable subsets of $S$ with 
-  $A = \bigcup_{n:\N} D_n$. 
-\end{corollary}
-\begin{proof}
-  By \Cref{rmkOpenClosedNegation}, $A$ is open iff $\neg A$ is closed and $A = \neg \neg A$. 
-  By \Cref{StoneClosedSubsets}, $\neg A$ is closed iff 
-  $\neg A = \bigcap_{n\in \N} E_n$ for some countably family $E_n,~n:\N$. 
-  Thus $\neg \neg A = \neg (\bigcap_{n\in \N} E_n)$. 
-  As a concequence of Markov's principle (\Cref{MarkovPrinciple}), we have that 
-  $\neg (\bigcap_{n\in \N} E_n)= \bigcup_{n\in \N} \neg E_n$. 
-  Thus $D_n := \neg E_n$ is as required. 
-\end{proof}
+%RedundantByOpenInCHaus%\begin{corollary}\label{StoneOpenSubsets}
+%RedundantByOpenInCHaus%  Let $A\subseteq S$ be a subset of a Stone space, then 
+%RedundantByOpenInCHaus%  $A$ is open iff there exists some countable family $D_n,~n:\N$ of decidable subsets of $S$ with 
+%RedundantByOpenInCHaus%  $A = \bigcup_{n:\N} D_n$. 
+%RedundantByOpenInCHaus%\end{corollary}
+%RedundantByOpenInCHaus%\begin{proof}
+%RedundantByOpenInCHaus%  By \Cref{rmkOpenClosedNegation}, $A$ is open iff $\neg A$ is closed and $A = \neg \neg A$. 
+%RedundantByOpenInCHaus%  By \Cref{StoneClosedSubsets}, $\neg A$ is closed iff 
+%RedundantByOpenInCHaus%  $\neg A = \bigcap_{n\in \N} E_n$ for some countably family of decidable subsets $E_n,~n:\N$. 
+%RedundantByOpenInCHaus%  Thus $\neg \neg A = \neg (\bigcap_{n\in \N} E_n)$. 
+%RedundantByOpenInCHaus%  By MP (\Cref{MarkovPrinciple}), we have that 
+%RedundantByOpenInCHaus%  $\neg (\bigcap_{n\in \N} E_n)= \bigcup_{n\in \N} \neg E_n$. 
+%RedundantByOpenInCHaus%  Thus $D_n := \neg E_n$ is as required. 
+%RedundantByOpenInCHaus%\end{proof}
