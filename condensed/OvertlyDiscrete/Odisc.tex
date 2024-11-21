@@ -17,47 +17,6 @@
 %  The maps $B_n \to B$ will in this case be denoted $\iota_n$. 
 %  If convenient, given a sequence $B_n$, we will denote $B_\infty$ for the colimit $B$.
 \end{remark}
-\begin{lemma}\label{BooleIsODisc}
-  Every countably presented Boolean algebra is overtly discrete.
-\end{lemma}
-\begin{proof}
-  Consider a countably presented Boolean algebra of the form $B = 2[\N]/(r_n)_{n:\N}$. 
-%  We will show there exists a diagram of shape $\N$ taking values in Boolean algebras 
-%  with $B$ as colimit.
-%  \paragraph{The diagram}
-  For each $n:\N$, let $G_n$ be the union of $\{g_i|{i\leq n}\}$ and 
-  the finite set of terms occurring in $(r_i)_{i\leq n}$. 
-  Denote $B_n = 2[G_n]/(r_i)_{i\leq n}$. 
-  Each $B_n$ is a finite Boolean algebra, and there are canonical maps $B_n \to B_{n+1}$.
-%  The inclusion $G_n \hookrightarrow G_{n+1}$ induces maps $B_n \to B_{n+1}$.
-%  Hence $B_n,~n:\N$ is an $(\N,\leq)$-indexed sequence of finite sets. 
-  We claim that $B$ is the colimit of this sequence. 
-%
-%  \paragraph{The colimit}
-%  As $G_n\subseteq G$ and $R_n \subseteq R$, 
-%  \Cref{rmkMorphismsOutOfQuotient} also gives us a map $B_n\to \langle G \rangle \langle R \rangle$. 
-%  We claim the resulting cocone is a colimit. 
-%
-%  Suppose we have a cocone $C$ on the diagram $(B_n)_{n\in\N}$. 
-%  We need to show that there exists a map $\langle G \rangle / R\to C$ and
-%  we need to show this map is unique as map between cocones. 
-%  \begin{itemize}
-%    \item To show there exists a map $\langle G \rangle / R \to C$, 
-%      we use remark \Cref{rmkMorphismsOutOfQuotient} again. 
-%      Let $g\in G$ be the $n$'th element of $G$, 
-%      note that $g\in G_n$, and consider the image of $g$ under the map $B_n \to C$. 
-%      This procedure defines a function from $G$ to the underlying set of $C$. 
-%      Let $\phi \in R$ be the $n$'th element of $R$, 
-%      note that $\phi \in R_n$, and the map $B_n \to C$ must send $\phi$ to $0$. 
-%      Thus the function from $G$ to the underlying set of $C$ also sends $\phi$ to $0$. 
-%      This thus defines a map $\langle G \rangle / R \to C$. 
-%    \item To show uniqueness, consider that any map of cocones $\langle G \rangle / \langle R \rangle \to C$ 
-%      must take the same values on all $g\in G_n$ for all $n\in\N$. 
-%      Now all $g\in G$ occur in some $G_n$, so any map of cocones $\langle G \rangle /  \langle R \rangle \to C$ 
-%      takes the same values for all $g\in G$. 
-%      \Cref{rmkMorphismsOutOfQuotient} now tell us that these values uniquely determine the map. 
-%  \end{itemize}
-\end{proof}
 %\begin{definition}
 %A type $X$ is countable if there merely exists a decidable subset of $\N$ equal to $X$.
 %\end{definition}
@@ -236,7 +195,12 @@
   Similarly, if $f$ is surjective $i$ is an isomorphism and we consider $B$ as colimit of $f_n(A_n)$ and 
   take $f_n' = e_n$.
 \end{proof}
-\subsection{Closure properties of overtly discrete types}
+\subsection{Closure properties of $\ODisc$}
+\begin{remark}
+  As sequential colimits commute with finite colimits, 
+  and finite sets are closed under finite colimits,
+  $\ODisc$ is closed under finite colimits as well.
+\end{remark}
 \begin{lemma}
   The colimit an $(\N,\leq)$-indexed sequence overtly discrete types is overtly discrete. 
 \end{lemma}
@@ -268,6 +232,62 @@
   taking the colimit in $i$, we get $\Sigma_{b:B} X(b)$. 
   By the above Lemma, this is overtly discrete. 
 \end{proof}
+
+\subsection{Stone spaces as profinite sets}
+\begin{lemma}\label{BooleIsODisc}
+  Every countably presented Boolean algebra can be seen as the colimit 
+  of a sequence of finite Boolean algebras. 
+\end{lemma}
+\begin{proof}
+  Consider a countably presented Boolean algebra of the form $B = 2[\N]/(r_n)_{n:\N}$. 
+%  We will show there exists a diagram of shape $\N$ taking values in Boolean algebras 
+%  with $B$ as colimit.
+%  \paragraph{The diagram}
+  For each $n:\N$, let $G_n$ be the union of $\{g_i|{i\leq n}\}$ and 
+  the finite set of terms occurring in $(r_i)_{i\leq n}$. 
+  Denote $B_n = 2[G_n]/(r_i)_{i\leq n}$. 
+  Each $B_n$ is a finite Boolean algebra, and there are canonical maps $B_n \to B_{n+1}$.
+%  The inclusion $G_n \hookrightarrow G_{n+1}$ induces maps $B_n \to B_{n+1}$.
+%  Hence $B_n,~n:\N$ is an $(\N,\leq)$-indexed sequence of finite sets. 
+  We claim that $B$ is the colimit of this sequence. 
+%
+%  \paragraph{The colimit}
+%  As $G_n\subseteq G$ and $R_n \subseteq R$, 
+%  \Cref{rmkMorphismsOutOfQuotient} also gives us a map $B_n\to \langle G \rangle \langle R \rangle$. 
+%  We claim the resulting cocone is a colimit. 
+%
+%  Suppose we have a cocone $C$ on the diagram $(B_n)_{n\in\N}$. 
+%  We need to show that there exists a map $\langle G \rangle / R\to C$ and
+%  we need to show this map is unique as map between cocones. 
+%  \begin{itemize}
+%    \item To show there exists a map $\langle G \rangle / R \to C$, 
+%      we use remark \Cref{rmkMorphismsOutOfQuotient} again. 
+%      Let $g\in G$ be the $n$'th element of $G$, 
+%      note that $g\in G_n$, and consider the image of $g$ under the map $B_n \to C$. 
+%      This procedure defines a function from $G$ to the underlying set of $C$. 
+%      Let $\phi \in R$ be the $n$'th element of $R$, 
+%      note that $\phi \in R_n$, and the map $B_n \to C$ must send $\phi$ to $0$. 
+%      Thus the function from $G$ to the underlying set of $C$ also sends $\phi$ to $0$. 
+%      This thus defines a map $\langle G \rangle / R \to C$. 
+%    \item To show uniqueness, consider that any map of cocones $\langle G \rangle / \langle R \rangle \to C$ 
+%      must take the same values on all $g\in G_n$ for all $n\in\N$. 
+%      Now all $g\in G$ occur in some $G_n$, so any map of cocones $\langle G \rangle /  \langle R \rangle \to C$ 
+%      takes the same values for all $g\in G$. 
+%      \Cref{rmkMorphismsOutOfQuotient} now tell us that these values uniquely determine the map. 
+%  \end{itemize}
+\end{proof}
+\begin{lemma}
+  Any $S:\Stone$ can be described as the limit of some $(\N,\geq)$-indexed sequence of 
+  finite sets. 
+\end{lemma}
+\begin{proof}
+  Let $B:\Boole$ and $B_n$ as in \Cref{BooleIsODisc}. 
+  Then any Boolean map $B\to 2$ is the limit of Boolean maps $B_n \to 2$, 
+  which form finite sets. 
+\end{proof}
+\rednote{Converse direction follows from Boole is BA in ODisc}
+
+
 
 %\begin{theorem}
 %We have the following:
