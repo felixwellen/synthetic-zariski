@@ -2,7 +2,7 @@
 In constructive mathematics, we do not assume the law of excluded middle (LEM).
 There are some principles called principles of omniscience that are weaker than LEM, which can be used to describe 
 how close a logical system is to satisfying LEM.
-References on these principles include \Cref{HannesDiener, ReverseMathsBishop}.
+References on these principles include \cite{HannesDiener, ReverseMathsBishop}.
 In this section, we will show that two of them (Markov's principle and LLPO) hold, 
 and one (WLPO) fails in our system.
 
@@ -101,17 +101,17 @@ The following result is due to David W\"arn:
 %  and we make a case distincition based on \Cref{BinftyTermsWriting}.
   \begin{itemize}
     \item Suppose 
-      $x = \bigvee_{i\in I_0} p_i$ with $I_0$ finite. 
+      $x = \bigvee_{i\in I_0} g_i$ with $I_0$ finite. 
       Then 
-      $$f(x) = (\bigvee_{i\in I_0 \cap E } p_{\frac i2} , \bigvee_{i\in I_0 \cap O } p_{\frac {i-1}2} ) = (0,0)$$
-      As $p_j\neq 0$ for all $j\in\N$, we must have $I_0 \cap E = \emptyset = I_0 \cap O$. 
+      $$f(x) = (\bigvee_{i\in I_0 \cap E } g_{\frac i2} , \bigvee_{i\in I_0 \cap O } g_{\frac {i-1}2} ) = (0,0)$$
+      As $g_j\neq 0$ for all $j\in\N$, we must have $I_0 \cap E = \emptyset = I_0 \cap O$. 
       Thus $I_0= \emptyset$, and $x = 0$. 
     \item Suppose 
 %      Let $x$ correspond to a cofinite subset of $\N$. Write 
-      $x = \bigwedge_{j\in J} \neg p_j$ with $J$ finite. % for $J$ finite. 
+      $x = \bigwedge_{j\in J} \neg g_j$ with $J$ finite. % for $J$ finite. 
       We will derive a contradiction. %, from which we can conclude that $x=0$ after all. 
       Note that   
-      $$f(x) = (\bigwedge_{j\in J \cap E } \neg p_j , \bigwedge_{j\in J \cap O } \neg p_j ) = (0,0)$$
+      $$f(x) = (\bigwedge_{j\in J \cap E } \neg g_j , \bigwedge_{j\in J \cap O } \neg g_j ) = (0,0)$$
 %      As $f(x) = (0,0)$, we have that 
 %      $\bigwedge_{j\in J \cap E } \neg p_j =0$ and
 %      $\bigwedge_{j\in J \cap O } \neg p_j  = 0$.
@@ -130,8 +130,8 @@ The following result is due to David W\"arn:
   there exists some $x:\Noo + \Noo$ such that $s x = \alpha$. 
   If $x = inl(\beta)$, 
   for any $k:\N$, we have that 
-  $$\alpha (p_{2k+1}) = s(x) (p_{2k+1}) = x(f(p_{2k+1})) = inl(\beta) (0,p_k)  = \beta(0) = 0.$$
-  Similarly, if $x = inr(\beta)$, we have $\alpha(p_{2k}) = 0$ for all $k:\N$. 
+  $$\alpha (g_{2k+1}) = s(x) (g_{2k+1}) = x(f(g_{2k+1})) = inl(\beta) (0,g_k)  = \beta(0) = 0.$$
+  Similarly, if $x = inr(\beta)$, we have $\alpha(g_{2k}) = 0$ for all $k:\N$. 
   Thus \Cref{eqnLLPO} holds for $\alpha$ as required. 
 \end{proof}
 As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was non-trivial: 
@@ -142,9 +142,9 @@ As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was no
 \end{lemma}
 \begin{proof}
   Suppose $r:B_\infty \times B_\infty \to B_\infty$ is a retraction of $f$. 
-  Note that $r(0,1):B_\infty$ is expressable using only finitely many generators $(p_n)_{n\leq N}$
-  Note that $r(0,1) \geq r(0,p_k) = p_{2k+1}$ for all $k:\N$. 
-  As a consequence, $r(0,1)$ cannot be of the form $\bigvee_{i\in I_0} p_i$, and by \Cref{BinftyTermsWriting}, 
+  Note that $r(0,1):B_\infty$ is expressable using only finitely many generators $(g_n)_{n\leq N}$
+  Note that $r(0,1) \geq r(0,g_k) = g_{2k+1}$ for all $k:\N$. 
+  As a consequence, $r(0,1)$ cannot be of the form $\bigvee_{i\in I_0} g_i$, and by \Cref{BinftyTermsWriting}, 
   $r(0,1)$ corresponds to a cofinite subset of $\N$. % = \bigwedge_{i:I_0} \neg p_i$, where $i\leq N$ for $i\in I_0$. 
   By similar reasoning so does $r(1,0)$.% corresponds to a cofinite subset of $\N$. 
   But the intersection of cofinite subsets is cofinite, while 
