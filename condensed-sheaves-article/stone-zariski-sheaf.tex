@@ -1,10 +1,22 @@
-We write $\Boole$ for the type of c.p. algebras, and $\Boole_{\mathbb{B}}$ the type of c.p. boolean $\mathbb{B}$-algebras. We work in the presheaf topos, so by \cref{TODO} we can work in HoTT where we assume a boolean algebra $\mathbb{B}$ such that:
+First we introduce notations:
+\begin{itemize}
+\item We write $\mathrm{Alg}_2(U)$ the type of boolean algebra with carrier in $U$, $\mathrm{Alg}_\mathbb{B}(U)$ the type of boolean $\mathbb{B}$-algebras with carrier in $U$.
+\item For $C:\mathrm{Alg}_2(U)$ we write $\mathrm{pres}_{2}(C)$ the type of countable presentation of $B$, i.e.
+\[\mathrm{pres}_{2}(C) = \sum_{P:\N\to 2[\N]} B =_{\mathrm{Alg}_2} 2[\N]/P\]
+\item For $C:\mathrm{Alg}_\mathbb{B}(U)$ we write $\mathrm{pres}_\mathbb{B}(C)$ the type of countable presentations of $C$ as a boolean $\mathbb{B}$-algebra, i.e.
+\[\mathrm{pres}_\mathbb{B}(C) = \sum_{P:\N\to \mathbb{B}[\N]} C =_{\mathrm{Alg}_\mathbb{B}} \mathbb{B}[\N]/Q\]
+\item We write: 
+\[\mathrm{Alg}^{cp}_2(U) = \sum_{C:\mathrm{Alg}_2(U)}\propTrunc{\mathrm{pres}_2(C)} \]
+\[\mathrm{Alg}^{cp}_\mathbb{B}(U) = \sum_{C:\mathrm{Alg}_\mathbb{B}(U)}\propTrunc{\mathrm{pres}_\mathbb{B}(C)}\]
+\end{itemize}
+
+We will sometimes omit $U$ when a statement is polymorphic in the universe. We work in the presheaf topos, so by \cref{TODO} we can work in HoTT where we assume a boolean algebra $\mathbb{B}$ such that:
 
 \begin{enumerate}[(i)]
-\item For all $C:\Boole_\mathbb{B}$, the map:
+\item For all $C:\mathrm{Alg}^{cp}_\mathbb{B}$, the map:
 \[C \to \mathbb{B}^{\Spec_\mathbb{B}(C)}\]
 is an equivalence.
-\item For all $C:\Boole_\mathbb{B}$, the type $\Spec_\mathbb{B}(C)$ has choice.
+\item For all $C:\mathrm{Alg}^{cp}_\mathbb{B}$, the type $\Spec_\mathbb{B}(C)$ has choice.
 \item Dependent choice.
 \end{enumerate}
 
@@ -33,7 +45,7 @@ is an equivalence, which proves that being a Zariski sheaf is a lex modality. Th
 %\end{definition}
 
 \begin{lemma}\label{zariski-subcanonical}
-The type $\mathbb{B}$ is a Zariski sheaf. Any $C:\Boole_\mathbb{B}$ is a Zariski sheaf.
+The type $\mathbb{B}$ is a Zariski sheaf. Any $C:\mathrm{Alg}^{cp}_\mathbb{B}$ is a Zariski sheaf.
 \end{lemma}
 
 \begin{proof}
@@ -45,7 +57,7 @@ is an equivalence, but by duality it is equivalent to the map:
 \[\mathbb{B} \to \mathbb{B}_{1-b}\times\mathbb{B}_b\]
 being an equivalence, which is clear.
 
-We extend to $\Boole_{\mathbb{B}}$ by duality.
+We extend to $\mathrm{Alg}^{cp}_\mathbb{B}$ by duality.
 \end{proof}
 
 \begin{lemma}\label{bot-zariski}
@@ -79,30 +91,49 @@ is an equivalence.
 \end{proof}
 
 \begin{lemma}\label{zariski-cp-iff-cp}
-Assume $C$ be a boolean algebra that is a Zariski sheaf, if we have the interpretation of $C:\Boole$ in the Zariski topos then $C:\Boole_\mathbb{B}$.
+For any universe $U$ we have that:
+\[[\mathrm{Alg}_2(U)]_{Zar} = \mathrm{Alg}_\mathbb{B}(U_{Zar})\]
+\[[\mathrm{Alg}_2^{cp}(U)]_{Zar} = \mathrm{Alg}_\mathbb{B}^{cp}(U_{Zar})\]
 \end{lemma}
 
 \begin{proof}
-By \cref{bool-zariski} we have that the interpretation of ${2}=\mathbb{B}$ holds in the Zariski topos, so we can assume that we have that the interpretation of $C:\Boole_\mathbb{B}$ holds in the Zariski topos. By \cref{zariski-subcanonical} and \cref{truncation-zariski} we see this means that we merely have a map:
-\[P:L_{Zar}(\N)\to \mathbb{B}[\N]\]
-with corresponding map:
-\[\bar{P}:\N\to \mathbb{B}[\N]\]
-such that $C =  \mathbb{B}[\N]/P$. Let us show we have an equivalence of $\mathbb{B}$-algebras between $ \mathbb{B}[\N]/P$ and $\mathbb{B}[\N]/\bar{P}$. The map $\mathbb{B}[\N]/\bar{P}\to \mathbb{B}[\N]/P$ is easy to define, to go the other way we need to prove that for all $y:L_{Zar}(\N)$ we have that $P(y) =_{\mathbb{B}[\N]/\bar{P}} 0$, but since $\mathbb{B}[\N]/\bar{P}:\Boole_\mathbb{B}$ is a sheaf, we can use the dependent elimination on $L_{Zar}$.
+TODO
 \end{proof}
 
+%\begin{lemma}\label{zariski-cp-iff-cp}
+%Assume $C$ be a boolean algebra that is a Zariski sheaf, if we have the interpretation of $C:\mathrm{Alg}^{cp}_{2}$ in the Zariski topos then $C:\mathrm{Alg}^{cp}_\mathbb{B}$.
+%\end{lemma}
+
+%\begin{proof}
+%By \cref{bool-zariski} we have that the interpretation of ${2}=\mathbb{B}$ holds in the Zariski topos, so we can assume that we have that the interpretation of $C:\mathrm{Alg}^{cp}_\mathbb{B}$ holds in the Zariski topos. By \cref{zariski-subcanonical} and \cref{truncation-zariski} we see this means that we merely have a map:
+%\[P:L_{Zar}(\N)\to \mathbb{B}[\N]\]
+%with corresponding map:
+%\[\bar{P}:\N\to \mathbb{B}[\N]\]
+%such that $C =  \mathbb{B}[\N]/P$. Let us show we have an equivalence of $\mathbb{B}$-algebras between $ \mathbb{B}[\N]/P$ and $\mathbb{B}[\N]/\bar{P}$. The map $\mathbb{B}[\N]/\bar{P}\to \mathbb{B}[\N]/P$ is easy to define, to go the other way we need to prove that for all $y:L_{Zar}(\N)$ we have that $P(y) =_{\mathbb{B}[\N]/\bar{P}} 0$, but since $\mathbb{B}[\N]/\bar{P}:\mathrm{Alg}^{cp}_\mathbb{B}$ is a sheaf, we can use the dependent elimination on $L_{Zar}$.
+%\end{proof}
+
 \begin{theorem}\label{zariski-sheaf-axioms}
-We have that the Zariski interpretation of the following hold:
-\begin{enumerate}[(i)]
-\item For all $C:\Boole$, the map $C\to {2}^{\Spec(C)}$ is an equivalence.
-\item For all $C:\Boole$, the type $\Spec(C)$ has choice.
-\item Dependent choice.
-\end{enumerate}
+The following holds:
+\[[\prod_{C:\mathrm{Alg}_2^{cp}(U)} C\overset{\sim}{\to} {2}^{\Spec(C)}\ ]_{Zar}\]
+\[[\prod_{C:\mathrm{Alg}_2^{cp}(U)} \Spec(C)\ \mathrm{has\ choice}\ ]_{Zar}\]
+\[[\ \mathrm{Dependent\ choice}\ ]_{Zar}\]
+%\begin{enumerate}[(i)]
+%\item For all $C:\mathrm{Alg}^{cp}_{2}$, the map $C\to {2}^{\Spec(C)}$ is an equivalence.
+%\item For all $C:\mathrm{Alg}^{cp}_{2}$, the type $\Spec(C)$ has choice.
+%\item Dependent choice.
+%\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-By \cref{bool-zariski} we just need to prove the first two results replacing ${2}$ by $\mathbb{B}$. Using \cref{zariski-cp-iff-cp} the first point is clear, using \cref{truncation-zariski} we have the second one.
+Considering \cref{zariski-cp-iff-cp} together with the fact that $[2]_{Zar}=\mathbb{B}$ by \cref{bool-zariski}, for duality we need to prove:
+\[\prod_{C:\mathrm{Alg}_\mathbb{B}^{cp}(U_{Zar})} C\overset{\sim}{\to} \mathbb{B}^{\Spec_\mathbb{B}(C)} \]
+which is duality in presheaves.
 
-By \cref{truncation-zariski} being surjective is not changed by the interpretation, and a limit of sheaf is a sheaf, so that dependent choice is not changed by the interpretation.
+Similarly for choice since \cref{truncation-zariski} means that the truncation is unchanged by the translation, we need to prove:
+\[\prod_{C:\mathrm{Alg}_\mathbb{B}^{cp}(U_{Zar})} \Spec_\mathbb{B}(C)\ \mathrm{has\ choice\ in\ sheaves}\  \]
+which is choice restricted to sheaves.
+
+For dependent choice, since by \cref{truncation-zariski} the truncation is not changed by the translation, and since a limit of Zariski sheaf is a Zariski sheaf so limits are not changed either, we have that $[\ \mathrm{Dependent\ choice}\ ]_{Zar}$ is just dependent choice resticted to Zariski sheaves so it holds.
 \end{proof}
 
 

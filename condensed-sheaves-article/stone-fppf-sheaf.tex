@@ -1,3 +1,5 @@
+\rednote{TODO rework as Zariski sheaves}
+
 We write $\Boole_{\neg\neg}$ the type of $B:\Boole$ such that $\neg\neg\Spec(B)$. We work in the Zariski topos, so that by \cref{zariski-sheaf-axioms} we can assume the following:
 
 \begin{enumerate}[(i)]
@@ -31,7 +33,7 @@ Let $B,C$ be boolean alegbras with $a,c:B$ and $b,d:C$. Then $a\otimes b\leq c\o
 \end{lemma}
 
 \begin{proof}
-Details omitted as it is tedious. The key idea is that for $B,C$ boolean algebras we can define $B\boxtimes C$ as the set of formal sups $\bigvee_ib_i\otimes c_i$. Then we define inductively the preorder relation $a\otimes b\leq \lor_ic_i\otimes d_i$ by asking that it holds whenever one of the following holds:
+Details omitted. The key idea is that for $B,C$ boolean algebras we can define $B\boxtimes C$ as the set of formal sups $\bigvee_ib_i\otimes c_i$. Then we define inductively the preorder relation $a\otimes b\leq \lor_ic_i\otimes d_i$ by asking that it holds whenever one of the following holds:
 \begin{itemize}
 \item $a\leq c_i$ and $b\leq d_i$ for some $i$.
 \item $a=\bigvee_k a_k$ and for all $k$ we have $a_k\otimes b\leq \bigvee_ic_i\otimes d_i$.
@@ -45,11 +47,11 @@ The type ${2}$ is an fppf sheaf. Any $B:\Boole$ is a an fppf sheaf.
 \end{lemma}
 
 \begin{proof}
-We have a coequalizer in sets:
-\[\Spec(B)\times\Spec(B) \rightrightarrows \Spec(B)\to \propTrunc{\Spec(B)} \]
+Assume $C:\Boole_{\neg\neg}$ We have a coequalizer in sets:
+\[\Spec(C)\times\Spec(C) \rightrightarrows \Spec(C)\to \propTrunc{\Spec(C)} \]
 so we have an equaliser in boolean algebras:
-\[ {2}^{\propTrunc{\Spec(B)}}\to B\rightrightarrows B\otimes B \]
-But if $b\otimes 1 \leq 1\otimes b$, by \cref{tensor-boolean-algebras} we can conclude that $b=0$ or $b=1$, so the equaliser of this diagram is indeed ${2}$.
+\[ {2}^{\propTrunc{\Spec(C)}}\to C\rightrightarrows C\otimes C \]
+But if $b\otimes 1 \leq 1\otimes b$, by \cref{tensor-boolean-algebras} we can conclude that $b=0$ or $b=1$, and since $0\not=_C1$ we have that the equaliser of this diagram is indeed ${2}$.
 
 We extend to $\Boole$ by duality.
 \end{proof}
