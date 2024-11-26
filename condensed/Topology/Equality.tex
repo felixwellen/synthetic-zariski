@@ -1,5 +1,6 @@
 
 \subsection{Stone spaces as profinite sets}
+\rednote{WIP on 26 nov (for printing purposes)}
 %\begin{remark}\label{StoneClosedUnderPullback}
 %  Note that Boolean algebras are closed under finite colimits. 
 %  By \Cref{ODiscBAareBoole} and \Cref{ODiscFiniteColim}, $\Boole$ is closed under finite colimits.
@@ -16,19 +17,21 @@ This is the perspective taken in Condensed Mathematics \cite{Condensed,Dagur,Sch
   Then any Boolean map $B\to 2$ is the limit of Boolean maps $B_n \to 2$, 
   which form finite sets.
 \end{proof}
-\begin{lemma}
+\begin{lemma}\label{StoneAreProfinite}
   The limit of some $(\N,\geq)$-indexed sequence of finite sets is a Stone space. 
 \end{lemma}
 \begin{proof}
   Let $S$ be the limit of a sequence $S_n$. 
   Note that $2^S$ is the colimit of the sequence of finite Boolean algebras $2^{S_n}$.
-  As above, $Sp(2^S)$ the limit of $Sp(2^{S_n})$.
-  By \Cref{AxStoneDuality}, we must have $Sp(2^{S_n}) = S_n$, hence $Sp(2^S) = S$, 
+  By \Cref{SpIsAntiEquivalence}, $Sp(2^S)$ is the limit of $Sp(2^{S_n})$.
+  By Stone duality for finite sets, we have $Sp(2^{S_n}) = S_n$, hence $Sp(2^S) = S$, 
   and $S$ is Stone. 
 \end{proof}
-\begin{rmk}
-  Whenever $S:\Stone$, we shall 
-\end{rmk}
+\begin{remark}
+  Whenever $S:\Stone$, we shall denote $S_n$ for the underlying sequence 
+  and whenever $n\leq m$, we denote $\pi_m^n$ for the maps $S_m \to S_n$, 
+  and $\pi_n:S\to S_n$. 
+\end{remark}
 
 
 \begin{remark}\label{StoneClosedUnderPullback}\label{ProFiniteMapsFactorization}
@@ -50,20 +53,34 @@ This is the perspective taken in Condensed Mathematics \cite{Condensed,Dagur,Sch
   It follows that $f(s)\leq N$ for all $s:S$ as required. 
 \end{proof}
 %
+\begin{lemma}
+  For $S:\Stone$, $k:\N$ we have that ${Fin(k)}^S$ is the colimit of the $(\N,\leq)$-indexed sequence
+  $Fin(k)^{S_n}$.
+\end{lemma}
+\begin{proof}
+  For $k = 0$, this is obvious. 
+  Assume the above for $k = l$. As $Fin(l+1) = Fin(l) + 1$, 
+  a map $S\to Fin(l+1)$ induces a map $S\to 2$, 
+  and $2^S$ is the colimit of $2^{S_n}$.
+
+\end{proof}
+
+\rednote{Should we mention Scott continuity and Barton-Commelin explicitly here?}
 \begin{lemma}\label{scott-continuity}
-  Suppose $Z$ is a type with a surjection $e:\N \twoheadrightarrow Z$, 
-  and let $S_n$ be a $(\N,\geq)$-indexed sequence with limit $S$. 
-%  $S:\Stone$ be the limit of the $(\N,\geq)$-indexed sequence $S_n$. 
-  Then $Z^S$ is the colimit of the $(\N,\leq)$-indexed sequence $Z^{S_n}$.
+  Let $E:\ODisc$ and $S:\Stone$, then 
+  Then $E^S$ is the colimit of the $(\N,\leq)$-indexed sequence $E^{S_n}$.
 %  $\mathrm{colim}_k(Z^{S_k}) \to \Z^S$
 %  is an equivalence.
 \end{lemma}
 \begin{proof}
-  Let $f:S \to Z$.
+  Let $f:S \to E$. By \Cref{OdiscQuotientCountableByOpen}, 
+  we have an enumeration $\N\twoheadrightarrow 1 + E$. 
   By \Cref{MapsStoneToNareBounded} and \Cref{AxLocalChoice}, there is some $N:\N$ such that 
   $f(S)\subseteq e(\N_{\leq N})$. 
-  Hence $f$ hits only finitely many values in $Z$, and hence $S$ contains a finite subset 
-  $A\subseteq S$ such that $f(A) = f(S)$, and $A$ must already occur as subset of some $S_k$. 
+
+
+
+
 \end{proof} 
 
 \subsection{$\Closed$ and $\Stone$}
