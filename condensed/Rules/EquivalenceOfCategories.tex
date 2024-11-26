@@ -1,4 +1,6 @@
 \subsection{Anti-equivalence of $\Boole$ and $\Stone$}
+By \Cref{AxStoneDuality}, $Sp$ is an embedding from $\Boole$ to any universe of types. 
+We denote it's image by $\Stone$. 
 
 \begin{remark}\label{SpIsAntiEquivalence}
 Stone types will take over the role of affine scheme from \cite{draft}, 
@@ -11,13 +13,25 @@ $Sp$ gives a natural equivalence
 \begin{equation}
    Hom_{\Boole} (A, B) = (Sp(B) \to Sp(A))
 \end{equation}
-Therefore $Sp$ is an embedding from $\Boole$ to any universe of types, and $\isSt$ is a proposition.
+%Therefore $Sp$ is an embedding from $\Boole$ to any universe of types, and $\isSt$ is a proposition.
 %
-Its image, $\Stone$ also has a natural category structure.
+%Its image, 
+$\Stone$ also has a natural category structure.
 By the above and Lemma 9.4.5 of \cite{hott}, 
 the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Stone$.
 In particular the spectrum of any colimit in $\Boole$ is the limit of 
 the spectrum of the opposite diagram. 
+\end{remark}
+\begin{remark}
+  Local choice can also be formulated as follows:
+  whenever we have $S:\Stone$, $E,F$ arbitrary types, a map $f:S \to F$ and a 
+  surjection $e:E \twoheadrightarrow F$, 
+  there exists a Stone space $T$, a surjective map 
+  $T\twoheadrightarrow S$ and an arrow $T\to E$ making the following diagram commute:
+    \begin{equation}\begin{tikzcd}
+      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+      S  \arrow[r, "f"] & F
+    \end{tikzcd}\end{equation}  
 \end{remark}
 
 \begin{lemma}\label{SpectrumEmptyIff01Equal}

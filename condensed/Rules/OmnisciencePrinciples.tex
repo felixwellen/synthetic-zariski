@@ -7,12 +7,17 @@ In this section, we will show that two of them (Markov's principle and LLPO) hol
 and one (WLPO) fails in our system.
 
 \begin{theorem}[The negation of the weak lesser principle of omniscience ($\neg$WLPO)]\label{NotWLPO}
-  We cannot decide for general $\alpha:2^\N$, whether $\forall_{n:\mathbb N} \alpha(n) = 0$.
+  \begin{equation}
+    \neg \forall_{\alpha:2^\N} 
+    ((\forall_{n:\N} \alpha(n) = 0 ) \vee \neg (\forall_{n:\N} \alpha(n) = 0))
+  \end{equation}
+%  We cannot decide for general $\alpha:2^\N$, whether $\forall_{n:\mathbb N} \alpha(n) = 0$.
 %  It is not the case that the statement %There is no method which given $\alpha:2^\mathbb N$ decides whether 
 %  $\forall_{n:\mathbb N} \alpha(n) = 0$ is decidable for general $\alpha:2^\mathbb N$. 
 \end{theorem}
 \begin{proof}
-  Such a decision method is a function $f:2^\mathbb N \to 2$ such that 
+%  Such a decision method is a function 
+  Let $f:2^\mathbb N \to 2$ such that 
   $f(\alpha) = 0$ iff $\forall_{n:\mathbb N} \alpha (n)= 0$. 
   By \Cref{AxStoneDuality}, there is some $c:C$ with 
   $f(\alpha) = 0 \leftrightarrow \alpha(c) = 0$. 
@@ -151,16 +156,6 @@ As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was no
   $$r(0,1) \wedge r(1,0) = r( (1,0) \wedge (0,1)) = r(0,0) = 0$$
   which gives a contradiction. Thus no retraction exists. 
 \end{proof}
-
-\begin{remark}\label{corAlternativeLLPO}
-  Using Proposition 1.4.1 of \cite{HannesDiener}, LLPO is equivalent to the statement that 
-  for $(\phi_n)_{n:\N}, (\psi_m)_{m:\N}$ families of decidable propositions indexed over $\N$, we have
-  \begin{equation}
-    (\forall_{n:\N} \forall_{m:\N} (\phi_n \vee \psi_m) )
-    \leftrightarrow
-    ((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )
-  \end{equation}
-\end{remark}
 
 
 %We finish with an equivalent formulation of LLPO:
