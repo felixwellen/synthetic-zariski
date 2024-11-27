@@ -85,46 +85,34 @@ The following result is due to David W\"arn:
 %  Because of \Cref{rmkMorphismsOutOfQuotient}, it is sufficient to define $f$ on $(p_n)_{n:\N}$ with 
 %  $f(p_n) \wedge f(p_m) = (0,0)$ for $n\neq m$. 
 %  To define $f(p_n)$, we use a case distinction on whether $n$ is odd or even. 
-  Define $f:B_\infty \to B_\infty \times B_\infty$ as follows:
+  Define $f:B_\infty \to B_\infty \times B_\infty$ on generators as follows:
   \begin{equation}\label{eqnLLPOProofMap}
-    f(p_n) =\begin{cases}
-      (p_k,0) \text{ if } n = 2k\\
-      (0,p_k) \text{ if } n = 2k+1\\
+    f(g_n) =\begin{cases}
+      (g_k,0) \text{ if } n = 2k\\
+      (0,g_k) \text{ if } n = 2k+1\\
     \end{cases}
   \end{equation}
-  Note that $f$ is well-defined as map in $\Boole$. 
+  Note that $f$ is well-defined as map in $\Boole$ as 
+  $f(g_n) \wedge f(g_m) = 0$ whenever $m\neq n$. 
  % , can make a case distinction on parity. 
 %  By making a case distinction on $n,m$ being odd or even, 
 %  we can see that 
 %  $f(p_n) \wedge f(p_m) = (0,0)$ when $n\neq m$, thus $f$ is well-defined. 
-  We claim $f$ is injective. Assume $f(x) = 0$, 
-  to see that $x=0$, we make a case distinction on whether $x$ corresponds to a finite or a cofinite set as in \Cref{BinftyTermsWriting}.
-%
-%  We also claim it is injective.
-%  Now let $x:B_\infty$ with $f(x) = 0$. 
-  We denote $E,O\subseteq \N$ for the even and odd numbers respectively. 
-%  and we make a case distincition based on \Cref{BinftyTermsWriting}.
+  We claim that $f$ is injective. 
+  If $I\subseteq \N$, write 
+  $ I_0 =\{k\in \N | 2k \in I\}, 
+    I_1 =\{k\in \N | 2k+1 \in I\}
+  $.
+  Recall that any $x:B_\infty$ is of the form 
+  $\bigvee_{i\in I} g_i$ or $\bigwedge_{i\in I} \neg g_i$. 
   \begin{itemize}
+    \item If $x = \bigvee_{i\in I} g_i$, then 
+      $f(x) = (\bigvee_{i\in I_0}g_{i}, \bigvee_{i\in I_1}(g_i))$. 
+      So if $f(x) = 0$, then $I_0=I_1 = I = \emptyset$ and $x = 0$. 
     \item Suppose 
-      $x = \bigvee_{i\in I_0} g_i$ with $I_0$ finite. 
-      Then 
-      $$f(x) = (\bigvee_{i\in I_0 \cap E } g_{\frac i2} , \bigvee_{i\in I_0 \cap O } g_{\frac {i-1}2} ) = (0,0)$$
-      As $g_j\neq 0$ for all $j\in\N$, we must have $I_0 \cap E = \emptyset = I_0 \cap O$. 
-      Thus $I_0= \emptyset$, and $x = 0$. 
-    \item Suppose 
-%      Let $x$ correspond to a cofinite subset of $\N$. Write 
-      $x = \bigwedge_{j\in J} \neg g_j$ with $J$ finite. % for $J$ finite. 
-      We will derive a contradiction. %, from which we can conclude that $x=0$ after all. 
-      Note that   
-      $$f(x) = (\bigwedge_{j\in J \cap E } \neg g_j , \bigwedge_{j\in J \cap O } \neg g_j ) = (0,0)$$
-%      As $f(x) = (0,0)$, we have that 
-%      $\bigwedge_{j\in J \cap E } \neg p_j =0$ and
-%      $\bigwedge_{j\in J \cap O } \neg p_j  = 0$.
-      However, any finite meet of negations corresponds to a cofinite set, hence is nonzero. 
-      We get a contradiction and conclude $x=0$. 
-%      However, any finite meet of negations will correspond to a cofinite set,
-%      in particular it will not correspond to the empty set, and thus not be $0$.
-%      Thus $f(x)\neq 0$, contradicting the assumption that $f(x) = 0$, hence $x=0$ ex falso. 
+      $x = \bigwedge_{i\in I} \neg g_i$.
+      Then $f(x) = (\bigwedge_{i\in I_0} \neg g_i, \bigwedge_{i\in I_1} \neg g_i)$, 
+      so $f(x) \neq 0$. 
   \end{itemize}
 %  In both cases, we conclude $x=0$, thus $f$ is injective. 
   By \Cref{SurjectionsAreFormalSurjections},
@@ -135,26 +123,32 @@ The following result is due to David W\"arn:
   there exists some $x:\Noo + \Noo$ such that $s x = \alpha$. 
   If $x = inl(\beta)$, 
   for any $k:\N$, we have that 
-  $$\alpha (g_{2k+1}) = s(x) (g_{2k+1}) = x(f(g_{2k+1})) = inl(\beta) (0,g_k)  = \beta(0) = 0.$$
-  Similarly, if $x = inr(\beta)$, we have $\alpha(g_{2k}) = 0$ for all $k:\N$. 
+  $$\alpha ({2k+1}) = s(x) ({2k+1}) = x(f(g_{2k+1})) = inl(\beta) (0,g_k)  = \beta(0) = 0.$$
+  Similarly, if $x = inr(\beta)$, we have $\alpha({2k}) = 0$ for all $k:\N$. 
   Thus \Cref{eqnLLPO} holds for $\alpha$ as required. 
 \end{proof}
-As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was non-trivial: 
+%As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was non-trivial: 
 %The use of \Cref{FormalSurjectionsAreSurjections}, and hence of propositional completeness, 
 %was helpful in the above proof, as the following shows:
+The surjection $s:\Noo + \Noo \to \Noo$ as above does not have a section 
+as the following shows:
 \begin{lemma}
   The function $f$  as in \Cref{eqnLLPOProofMap} does not have a retraction. 
 \end{lemma}
 \begin{proof}
   Suppose $r:B_\infty \times B_\infty \to B_\infty$ is a retraction of $f$. 
+  Then $r(0,g_k) = g_{2k+1}, r(g_k,0) = g_{2k}$. 
   Note that $r(0,1):B_\infty$ is expressable using only finitely many generators $(g_n)_{n\leq N}$
   Note that $r(0,1) \geq r(0,g_k) = g_{2k+1}$ for all $k:\N$. 
-  As a consequence, $r(0,1)$ cannot be of the form $\bigvee_{i\in I_0} g_i$, and by \Cref{BinftyTermsWriting}, 
-  $r(0,1)$ corresponds to a cofinite subset of $\N$. % = \bigwedge_{i:I_0} \neg p_i$, where $i\leq N$ for $i\in I_0$. 
+  As a consequence, $r(0,1)$ cannot be of the form $\bigvee_{i\in I} g_i$
+  %, and by \Cref{BinftyTermsWriting}, 
+  %$r(0,1)$ corresponds to a cofinite subset of $\N$. % = \bigwedge_{i:I_0} \neg p_i$, where $i\leq N$ for $i\in I_0$. 
   By similar reasoning so does $r(1,0)$.% corresponds to a cofinite subset of $\N$. 
-  But the intersection of cofinite subsets is cofinite, while 
+%  But the intersection of cofinite subsets is cofinite, while 
+  But this contradicts
   $$r(0,1) \wedge r(1,0) = r( (1,0) \wedge (0,1)) = r(0,0) = 0$$
-  which gives a contradiction. Thus no retraction exists. 
+%  which gives a contradiction. 
+  Thus no retraction exists. 
 \end{proof}
 
 
