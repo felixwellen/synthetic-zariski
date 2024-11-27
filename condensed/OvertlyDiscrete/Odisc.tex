@@ -1,12 +1,26 @@
 %\input{OvertlyDiscrete/ColimitRepresentation.tex}
+\rednote{
+  Change the $\iota$ notation to have the domain on top, 
+and $\pi$ have codomain at bottom So $\pi_n^m \circ \pi_m = \pi_n, 
+\iota_m^n \circ \iota_n = \iota_m$ $\iota_m^n : B_n \to B_m$. } 
+\rednote{Discussion on what the colimit is exactly, refer to definition in\cite{SequentialColimitHoTT}}
+
+
+
 \begin{definition}
-  We call a type overtly discrete iff it can be described as 
-  the colimit of an $(\N,\leq)$-indexed sequence of finite sets. 
+  We call a type overtly discrete iff 
+  it is a sequential colimit of finite sets. 
+%  it can be described as 
+%  the colimit of an $(\N,\leq)$-indexed sequence of finite sets. 
 \end{definition} 
 \begin{remark}
-  We will denote $\ODisc$ for an universe of overtly discrete types. 
+  It follows from Corollary 7.7 of \cite{SequentialColimitHoTT} that 
+  overtly discrete types are sets. 
+  Note that the type of overtly discrete types is independent on choice of universe, 
+  so we can write $\ODisc$ for this type. 
+%
   If $B:\ODisc$, we will denote $B_n$ for the objects of the underlying sequence and 
-  $\iota_n^m: B_n \to B_m, \iota_n:B_n \to B$ for the obvious maps. 
+  $\iota^n)m: B_n \to B_m, \iota_n:B_n \to B$ for the obvious maps. 
 %  $\iota_n^m:B_n \to B_m$ for the maps and objects in the underlying sequence and 
 %  $\iota_n:B_n \to B$ for the colimit inclusion map. 
 %  If $B$ is overtly disc
@@ -25,33 +39,36 @@
 
 \subsection{Maps of overtly discrete types}
 \begin{lemma}[Compactness of finite sets] \label{colimitCompact}
-  For any finite set $A$ and $(\N,\leq)$-indexed sequence of finite sets $B_n$ with colimit $B$, 
-  the colimit of $B_n^A$ is $B^A$. 
+%  For any finite set $A$ and $(\N,\leq)$-indexed sequence of finite sets $B_n$ with colimit $B$, 
+%  the colimit of $B_n^A$ is $B^A$. 
+  Exponentiation by a finite sets commute with sequential colimit. 
 \end{lemma}  
 \begin{proof}
-  \rednote{Should there be a reference here?}
-%  First note that $B^A$ forms a cocone on $(B_n^A)_{n:\N}$ 
-  Any map $A \to B_n$ induces a map $A \to B$, hence $B^A$ is a cocone on $(B_n^A)_{n:\N}$.
-  Let $C$ form a cocone on $(B_n^A)_{n:\N}$. %with maps $F_n:B_n^A \to C$.
-  For any $f:A \to B$, the finite image $f(A)$ must already occur in some $B_n$, 
-  thus there is some $f':A\to B_n$ with $\iota_n\circ f' = f$.% occurs as some map $A\to B_n$, 
-  As $C$ is a cocone, $f'$ corresponds to some $c$ in $C$, and this term does not depend on $n$. 
-  Also any map $B^A \to C$ respecting the cocone conditions must send $f$ to $c$, 
-  hence $B^A$ is indeed the colimit. 
-%%  We shall show there is an unique morphism of cocones $B^A \to C$. 
-%%  Denote $\iota_n:B_n \to B, F_n:B_n^A\to C$ for the cocone maps. 
-%  \begin{itemize}
-%    \item 
-%      If $f:A\to B$, we have that $f(A)$ is a finite subset of $B$, and thus occurs already in some $B_n$. 
-%      This induces a map $f'_n:A\to B_n$ with $\iota_n\circ f'_n = f$. 
-%      As $C$ is a cocone, we have that $F_n(f'_n)$ does not depend on $n:\N$. 
-%%      Thus $(F_n)_{n:\N}$ induces a map 
-%      Thus we get a map $B^A\to C$. 
-%    \item 
-%      For uniqueness, by function extensionality maps $B^A \to C$ are uniquely determined by their values on 
-%      $f:B^A$. By the above, the value of $f$ is uniquely determined by it's value on $B_n$ for 
-%      any $n$ with the image of $f$ in $B_n$. Thus there is at most one morphism of cocones $B^A \to C$. 
-%  \end{itemize}
+  \rednote{Reference to standard proof working here as well.}
+%reference%
+%reference%  \rednote{Should there be a reference here?}
+%reference%%  First note that $B^A$ forms a cocone on $(B_n^A)_{n:\N}$ 
+%reference%  Any map $A \to B_n$ induces a map $A \to B$, hence $B^A$ is a cocone on $(B_n^A)_{n:\N}$.
+%reference%  Let $C$ form a cocone on $(B_n^A)_{n:\N}$. %with maps $F_n:B_n^A \to C$.
+%reference%  For any $f:A \to B$, the finite image $f(A)$ must already occur in some $B_n$, 
+%reference%  thus there is some $f':A\to B_n$ with $\iota_n\circ f' = f$.% occurs as some map $A\to B_n$, 
+%reference%  As $C$ is a cocone, $f'$ corresponds to some $c$ in $C$, and this term does not depend on $n$. 
+%reference%  Also any map $B^A \to C$ respecting the cocone conditions must send $f$ to $c$, 
+%reference%  hence $B^A$ is indeed the colimit. 
+%reference%%%  We shall show there is an unique morphism of cocones $B^A \to C$. 
+%reference%%%  Denote $\iota_n:B_n \to B, F_n:B_n^A\to C$ for the cocone maps. 
+%reference%%  \begin{itemize}
+%reference%%    \item 
+%reference%%      If $f:A\to B$, we have that $f(A)$ is a finite subset of $B$, and thus occurs already in some $B_n$. 
+%reference%%      This induces a map $f'_n:A\to B_n$ with $\iota_n\circ f'_n = f$. 
+%reference%%      As $C$ is a cocone, we have that $F_n(f'_n)$ does not depend on $n:\N$. 
+%reference%%%      Thus $(F_n)_{n:\N}$ induces a map 
+%reference%%      Thus we get a map $B^A\to C$. 
+%reference%%    \item 
+%reference%%      For uniqueness, by function extensionality maps $B^A \to C$ are uniquely determined by their values on 
+%reference%%      $f:B^A$. By the above, the value of $f$ is uniquely determined by it's value on $B_n$ for 
+%reference%%      any $n$ with the image of $f$ in $B_n$. Thus there is at most one morphism of cocones $B^A \to C$. 
+%reference%%  \end{itemize}
 \end{proof}
 \begin{remark}\label{rmkEqualityColimit}
   In the above proof, we used that any element $b\in B$ already occurs in some $B_n$. 
@@ -62,6 +79,11 @@
   such that these elements become equal in $B_m$. 
 \end{remark}
 \begin{lemma}\label{lemDecompositionOfColimitMorphisms}
+  \rednote{
+  Any map between overtly discrete sets is a sequential colimit of maps between finite sets.
+  }
+
+
   Let $B,C$ be overtly discrete, 
   and let $f:B\to C$.
   There exists $(\N,\leq)$-indexed sequences of finite sets 
@@ -143,6 +165,7 @@
 \end{proof}
 
 \begin{lemma}\label{lemDecompositionOfEpiMonoFactorization}
+  \rednote{Denote $\Im(f)$ instead of $f(A)$.} 
   \rednote{Can this be a shorter remark?}
   Let $f:A_\infty\to B_\infty$ be a map between overtly discrete types, and suppose we have $f_n:A_n\to B_n$ such that 
   the following diagram commutes:
