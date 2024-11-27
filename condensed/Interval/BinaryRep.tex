@@ -6,8 +6,131 @@ The definition is based on \cite{Bishop}.
 
 
 %\input{Interval/CauchySequences}
-\input{Interval/BinaryClosedEquivalence}
+%------------------content of file BinaryClosedEquivalence.tex...
+%We want to show that the interval of Cauchy reals is Compact Hausdorff. 
+%Informally, to any binary sequence $\alpha : \N \to 2$, 
+%we can associate a Cauchy sequence 
+%$cs(\alpha)$, given by 
+%\begin{equation}\label{eqnBinaryEncode}
+%  (cs(\alpha))_n = \sum\limits_{i = 0 }^n \frac {\alpha(i)}{2^{i+1}}
+%\end{equation}
+%and we are going to give a closed relation on Cantor space such that 
+%two binary sequences are equivalent iff they correspond to the same Cauchy reals. 
+\begin{example}
+  Let $n:\N$, we denote $C_n = 2[n]$ for the free Boolean algebra on $n$ generators 
+  and no relations. 
+  Note that $Sp(C_n) = 2^n$ corresponds to the space of finite binary sequences. 
+\end{example}
+Now we introduce some notation:
+\begin{definition}
+  \item Given an infinite binary sequence $\alpha:2^\N$ and a natural number $n : \N$  
+    we denote $\alpha|_n: 2^n$ for the 
+    restriction of $\alpha$ to a finite sequence of length $n$. 
+  \item We denote $\overline 0, \overline 1$ 
+    for the binary sequences which are constantly $0$ and $1$ respectively. 
+  \item We denote $0,1$ for the sequences of length $1$ hitting $0,1$ respectively. 
+  \item If $x$ is a finite sequence and $y$ is any sequence, 
+    denote $x\cdot y$ for their concatenation. 
+\end{definition} 
+Now we'll give a definition for when two finite binary sequences of length $n$ correspond 
+to real numbers whose distance is $\leq (\frac12)^n$.
+Informally, we want for every finite sequence $s$ that 
+$(s \cdot 0 \cdot \overline 1)$ and  $(s \cdot 1 \cdot \overline 0)$ are equivalent. 
 
+\begin{definition}
+  Let $n:\N$ and let $s,t : 2^n$. 
+  We say $s,t$ are $n$-near, and write $s\sim_n t$ if 
+  there merely exists some $m:\N$ and some $u:2^m$, such that 
+ \begin{equation}\label{EqnNearness}
+   \big(
+     (s = (u\cdot 0\cdot \overline 1)|_n) \vee (s = (u \cdot 1 \cdot \overline 0) |_n)
+   \big)
+    \wedge 
+   \big(
+     (t = (u\cdot 0\cdot \overline 1)|_n) \vee (t = (u \cdot 1 \cdot \overline 0) |_n)
+   \big)
+  \end{equation} 
+\end{definition}
+\begin{remark}\label{nearnessProperties}
+\item As we're dealing with finite sequences, $s\sim_n t$ is decidable. 
+\item Given any $s:2^n$, using $m=n, u = s$ above, we can show that $s\sim_n s$. 
+  So $n$-nearness is reflexive. 
+\item \Cref{EqnNearness} is symmetric in $s$ and $t$. Hence $n$-nearness is symmetric.
+\item Note that $0\cdot 0\sim_2 0\cdot 1 \sim_2 1\cdot 0 \sim_2 1\cdot 1$, 
+  but $0\cdot 0\nsim_2 1\cdot 1$. %is not $2$-near to $1\cdot 1$. 
+  Thus $n$-nearness is not in general transitive. 
+\end{remark}
+\begin{definition}
+  Let $\alpha, \beta: 2^\N$, we define $a\sim_I\beta$ as 
+  $\forall_{n:\N} (\alpha|_n \sim_n \beta|_n)$. 
+\end{definition}
+\begin{lemma}\label{IntervalFiberSizeAtMost2}
+  Whenever $\alpha,\beta,\gamma:2^\N$, are such that 
+  $\alpha\sim_I \beta, \beta\sim_I \gamma$, 
+  at least two of $\alpha,\beta,\gamma$ are equal. 
+\end{lemma}
+\begin{proof}
+  We will show that $\beta = \gamma \vee \alpha = \gamma \vee \alpha = \beta$. 
+  By \Cref{StoneEqualityClosed} and \Cref{ClosedFiniteDisjunction}, this is a closed proposition. 
+  By \Cref{rmkOpenClosedNegation}, we can instead show the double negation. 
+  To this end, assume that none of $\alpha,\beta,\gamma$ are equal. 
+  By \Cref{MarkovPrinciple}, there exist indices $i,j,k\in \N$ with 
+  \begin{equation}
+    \beta(i) \neq \gamma(i), \alpha(j) \neq \gamma(j), \alpha(k) \neq \beta(k)
+  \end{equation}
+  Let $n:=\max(i,j,k) + 2$. 
+  As $\alpha\sim_I \beta$, we have $\alpha|_n\sim_n\beta|_n$. 
+  By assumption $\alpha|_n \neq \beta|_n$, so WLOG we may assume that 
+  we have some $m: \N, u:2^m$ with 
+  \begin{equation}
+    \alpha|_n = (u\cdot 0 \cdot \overline 1) |_n , \beta|_n = (u \cdot 1 \cdot \overline 0)|_n.
+  \end{equation}
+  As $\alpha(k) \neq \beta(k) $ and $n\geq k+2$, 
+  it follows in particular that $m\leq n-2$ and hence 
+  $\beta(n-1) = 0$.% and $\beta(m) = 1$. 
+
+  As also $\beta\sim_I \gamma$, we have $\beta|_n \sim_n \gamma|_n$.
+  So there exists some $m':\N, u':2^m$ with 
+ \begin{equation} %\label{EqnNearness}
+   \big(
+     (\beta|_{n} = (u'\cdot 0\cdot \overline 1)|_n) \vee (\beta|_{n} = (u' \cdot 1 \cdot \overline 0) |_n)
+   \big)
+    \wedge 
+   \big(
+     (\gamma|_{n} = (u'\cdot 0\cdot \overline 1)|_n) \vee (\gamma|_{n} = (u' \cdot 1 \cdot \overline 0) |_n)
+   \big).
+  \end{equation} 
+  Similarly as above, we have that $m'\leq n-2$, and as $\beta(n-1) = 0$, it follows that 
+  $\beta|_{n} = (u' \cdot 1 \cdot \overline 0) |_n$. 
+  Now as $\beta(i)\neq \gamma(i)$ with $i<n$, we have that $\beta|_n \neq \gamma|_n$, hence 
+  $\gamma|_{n} = (u'\cdot 0\cdot \overline 1)|_n$. 
+  Now we have $m,m'\leq n-2$ and $u:2^m, u':2^{m'}$ such that 
+  \begin{equation}
+    (u\cdot 1 \cdot \overline 0)|_n = \beta|_n = (u'\cdot 1 \cdot \overline 0)|_n
+  \end{equation}
+  Note that $\beta(m') = 1$. 
+  But also $\beta(l) = 0$ for all $l$ with $m<l<n$
+  Therefore $m'\leq m$. 
+  By similar reasoning, $m\leq m'$. We conclude $m=m'$. 
+  As a consequence, $u = u'$, but then 
+  $\gamma|_n = \alpha|_n$, contradicting that $\alpha(j)\neq \gamma(j) $ for $j<n$. 
+  Hence we arrive at a contradiction, as required. 
+\end{proof}
+
+
+\begin{corollary}
+  $\sim_I$ is a closed equivalence relation on $2^\N$. 
+\end{corollary}
+\begin{proof}
+  By \Cref{nearnessProperties}, $\sim_I$ is a countable conjunction of decidable propositions. 
+  Also by \Cref{nearnessProperties}, $\sim_n$ is reflexive and symmetric for all $n:\N$, thus
+  $\sim_I$ is reflexive and symmetric as well. 
+  Finally $\sim_I$ is transitive as a consequence of \Cref{IntervalFiberSizeAtMost2}.
+\end{proof}
+\begin{definition}
+  We define $I:\Chaus$ as $I= 2^\N/\sim_I$. 
+\end{definition}
+%------------------
 %\input{AllFunctionsAreContinuous}
 
 %\input{Interval/EquivalenceOfSims}
