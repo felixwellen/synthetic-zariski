@@ -1,0 +1,144 @@
+\subsection{Compact Hausdorff types}
+
+
+\begin{definition}
+  A type $X$ is called compact Hausdorff iff there exists some $S:\Stone$ and some 
+  equivalence relation $\sim:S \times S \to \Closed$ such that $X \simeq S / \sim$. 
+  We denote $\CHaus$ for the type of compact Hausdorff types. 
+\end{definition} 
+
+\begin{lemma}\label{CompactHausdorffClosed}
+  Let $X:\CHaus$ be given as $X=S/\sim$ with quotient map $q:S\twoheadrightarrow X$.
+  Then $A\subseteq X$ is closed iff it is the image of a closed in $S$ under $q$. 
+\end{lemma}
+\begin{proof}
+%  If $A$ is closed, then it's pre-image under any map is also closed. 
+%  In particular for $q:S\to X$ the quotient map, $q^{-1}(A)$ is closed. 
+  As $q$ is surjective, we have $q(q^{-1}(A)) = A$,
+  if $A$ is closed, so is $q^{-1}(A)$ and 
+  hence $A$ is the image of a closed subtype of $S$. 
+  Conversely, let $B\subseteq S$ be closed. 
+%  Then for any $s:S$, the subtype $\{t:S| B(s) \wedge s \sim t\} \subseteq S$ is closed. 
+%  Hence by 
+  Define $A'\subseteq S$ by 
+  $$A'(s) := \exists_{s:S} (B(t) \wedge s \sim t).$$
+  As $B, \sim$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
+  we have that $A'$  is closed. 
+  Also $A'$ respects $\sim$, hence induces a map $A: X\to \Closed$.
+  Furthermore, $A'(q(s))$ iff $q(s)\in q(B)$. 
+  Hence $A=q(B)$. 
+%  Therefore $A(x)$ iff $x$ is in the image of $B$. 
+\end{proof}
+\begin{remark}\label{InhabitedClosedSubSpaceClosedCHaus}
+  Let $X:\Chaus$.
+  From \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed iff it is the image of a map 
+  $T\to X$ for some $T:\Stone$. 
+  If $A$ is closed, from \Cref{InhabitedClosedSubSpaceClosed}, it follows that $\exists_{x:X} A(x)$ is closed as well. 
+\end{remark}
+%\begin{corollary}
+%  For $X:\CHaus$ a subtype $A\subseteq X$ is closed iff it is the image of 
+%  a map $T\to X$ for some $T:\Stone$. 
+%\end{corollary}
+%\begin{proof}
+%  Directly from the above and \Cref{StoneClosedSubsets}.
+%\end{proof}
+%WhyDidWeNeedThis%\begin{remark}
+%WhyDidWeNeedThis%  It is not the case that every closed subset of a compact Hausdorff space can be written 
+%WhyDidWeNeedThis%  as countable intersection of decidable subsets. 
+%WhyDidWeNeedThis%  In \Cref{UnitInterval}, we shall introduce the unit interval $[0,1]$ as a compact Hausdorff space with many closed 
+%WhyDidWeNeedThis%  subsets, but only two decidable subsets. 
+%WhyDidWeNeedThis%  In \Cref{ConnectedComponent}, we shall actually see that whenever every singleton of a compact Hausdorff space $X$
+%WhyDidWeNeedThis%  can be written as countable intersection of decidable subsets, $X$ is Stone. 
+%WhyDidWeNeedThis%  \rednote{Actually, we'll see that $Sp(2^X)$ and $X$ are bijective sets, 
+%WhyDidWeNeedThis%    which only implies that $X$ is Stone if $2^X:\Boole$, but this depends on our definition of countable, 
+%WhyDidWeNeedThis%see \Cref{CountabilityDiscussion}}
+%WhyDidWeNeedThis%\end{remark}
+
+
+\begin{corollary}\label{AllOpenSubspaceOpen}
+  For $U\subseteq X$ an open subset of a compact Hausdorff space, we have 
+  $\forall_{x:X} U(x)$ open. 
+\end{corollary}
+\begin{proof}
+  As $U$ is open, $\neg U$ is closed. 
+  By \Cref{InhabitedClosedSubSpaceClosedCHaus} $\exists_{x:X} \neg U(x)$ is closed. 
+  Using \Cref{rmkOpenClosedNegation}, it follows that 
+  $\neg (\exists_{x:X} \neg U(x))$ is open. 
+  Furthermore, it is equivalent to $\forall_{x:X} \neg \neg U(x)$, 
+  which is equivalent to $\forall_{x:X} U(x)$ by \Cref{rmkOpenClosedNegation}.
+\end{proof}
+
+\begin{lemma}\label{CHausFiniteIntersectionProperty}
+  Whenever $X:\Chaus$ and $C_n:X\to \Closed$ closed subsets with $\bigcap_{n:\N} C_n =\emptyset$, there is some $N:\N$ 
+  with $\bigcap_{n\leq N} C_n  = \emptyset$. 
+\end{lemma}
+\begin{proof}
+  By \Cref{StoneClosedSubsets}, and \Cref{CompactHausdorffClosed} 
+  it is sufficient to prove the above when $X$ is Stone and $C_n$ decidable.
+  So assume 
+  $X=Sp(B)$ and $c_n:B$ are such that $C_n = \{x:B\to 2 | x(c_n) = 1\}$. 
+  Then the set of maps $B\to 2$ sending all $c_n$ to $1$ is given by 
+  $$Sp(B/\{\neg c_n |n:\N\}) \simeq \bigcap_{n:\N} C_n = \emptyset .$$
+  Hence 
+%  $0=_{B/(\neg c_n)_{n:\N}}1$ 
+  $0=1$ in $B/(\neg c_n)_{n:\N}$, 
+  and there is some $N:\N$ with 
+  $\bigvee_{n\leq N} (\neg c_n) = 1$, which also means that 
+  $$\emptyset = Sp(B/(\neg c_n)_{n \leq N})  \simeq \bigcap_{n\leq N} C_n .$$
+\end{proof}
+\begin{corollary}\label{ChausMapsPreserveIntersectionOfClosed}
+  Let $X,Y:\CHaus$ and $f:Y \to X$. 
+  Suppose $(G_n)_{n:\N}$ is a decreasing sequence of closed subsets of $Y$. 
+  Then $f(\bigcap_{n:\N} G_n) = \bigcap_{n:\N}(f(G_n))$. 
+\end{corollary}
+\begin{proof}
+  It is always the case that $f(\bigcap_{n:\N} G_n) \subseteq \bigcap_{n:\N} (f(G_n))$. 
+  For the converse direction, suppose that $x \in f(G_n)$ for all $n:\N$. 
+  Define $F: Y \to \Closed$ by $F(y) := \left(f(y) = x\right)$. 
+  $F$ defines a closed subset, furthermore, $F\cap G_n \neq \emptyset$ for all $n:\N$. 
+  Thus $\bigcap_{n:\N}(F\cap G_n) \neq \emptyset$ by \Cref{CHausFiniteIntersectionProperty}. 
+  By \Cref{InhabitedClosedSubSpaceClosedCHaus} and \Cref{rmkOpenClosedNegation}, there merely exists some 
+  $y$ in $\bigcap_{n:\N} (F\cap G_n)$. Thus $x\in f(\bigcap_{n:\N} G_n)$ as required. 
+\end{proof}
+\begin{corollary}\label{CompactHausdorffTopology}
+Let $A\subseteq X$ be a subtype of a compact Hausdorff space. 
+Let $p:S\to X$ be any presentation of $X$ with $S:\Stone$. Then:
+\begin{itemize}
+  \item $A$ is closed iff it can be written as $\bigcap_{n:\N} p(D_n)$
+for some sequence $D_n\subseteq S$ decidable. 
+  \item $A$ is open iff it can be written as $\bigcup_{n:\N} \neg p(D_n)$
+for some sequence $D_n\subseteq S$ decidable.
+\end{itemize}  
+\end{corollary}
+\begin{proof}
+  The characterization of closed sets follows from characterization (ii) in \Cref{StoneClosedSubsets}, 
+  \Cref{CompactHausdorffClosed} 
+  and \Cref{ChausMapsPreserveIntersectionOfClosed}. 
+  The characterization of open sets then follows from \Cref{rmkOpenClosedNegation} and \Cref{ClosedMarkov}.
+\end{proof}
+\begin{corollary}
+  Any $X:\Chaus$ is second countable (has a topological basis which is countable). 
+\end{corollary}
+\begin{proof}
+  By \Cref{CompactHausdorffTopology}, a basis is given by decidable subsets of some $S:\Stone$. 
+  By Stone duality, such a basis forms a countably presented Boolean algebra, which is countable. 
+\end{proof}
+
+\begin{lemma}\label{CHausSeperationOfClosedByOpens}
+  Let $X:\CHaus$, and let $A,B:X\to \Closed$ be disjoint. 
+  Then there exist $U,V:X\to \Open$ disjoint with $A\subseteq U, B\subseteq V$, 
+  and $B\cap U = A \cap V = \emptyset$. 
+\end{lemma}
+\begin{proof}
+  Let $q:S\to X$ be a projection map presenting $X$.
+  As $q^{-1}(A), q^{-1}(B)$ are closed, 
+  by \Cref{StoneSeperated}, there is some $D:S \to 2$ such that
+  $q^{-1}(A) \subseteq D, q^{-1}(B) \subseteq \neg D$. 
+  Note that $q(D), q(\neg D)$ are closed by \Cref{CompactHausdorffClosed}. 
+  Furthermore, as $q^{-1}(A) \cap \neg D  =\emptyset$, we have that 
+  $A\subseteq \neg q (\neg D)$. As $A\cap B = \emptyset$, we have that 
+  $A\subseteq \neg q (\neg D) \cap \neg B:= U$.
+  Similarly, $B\subseteq \neg  q (D) \cap \neg A:= V$. 
+  By definition, $U,V$ are as required. 
+\end{proof}
+

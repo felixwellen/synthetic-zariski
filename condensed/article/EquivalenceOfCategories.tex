@@ -1,0 +1,105 @@
+\subsection{Anti-equivalence of $\Boole$ and $\Stone$}
+By \Cref{AxStoneDuality}, $Sp$ is an embedding from $\Boole$ to any universe of types. 
+We denote it's image by $\Stone$. 
+
+\begin{remark}\label{SpIsAntiEquivalence}
+Stone types will take over the role of affine scheme from \cite{draft}, 
+and we repeat some results here. 
+Analogously to Lemma 3.1.2 of \cite{draft}, 
+for $X$ Stone, Stone duality tells us that $X = Sp(2^X)$. 
+%
+Proposition 2.2.1 of \cite{draft} now says that 
+$Sp$ gives a natural equivalence 
+\begin{equation}
+   Hom_{\Boole} (A, B) = (Sp(B) \to Sp(A))
+\end{equation}
+%Therefore $Sp$ is an embedding from $\Boole$ to any universe of types, and $\isSt$ is a proposition.
+%
+%Its image, 
+$\Stone$ also has a natural category structure.
+By the above and Lemma 9.4.5 of \cite{hott}, 
+the map $Sp$ defines a dual equivalence of categories between $\Boole$ and $\Stone$.
+In particular the spectrum of any colimit in $\Boole$ is the limit of 
+the spectrum of the opposite diagram. 
+\end{remark}
+\begin{remark}
+  Local choice can also be formulated as follows:
+  whenever we have $S:\Stone$, $E,F$ arbitrary types, a map $f:S \to F$ and a 
+  surjection $e:E \twoheadrightarrow F$, 
+  there exists a Stone space $T$, a surjective map 
+  $T\twoheadrightarrow S$ and an arrow $T\to E$ making the following diagram commute:
+    \begin{equation}\begin{tikzcd}
+      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+      S  \arrow[r, "f"] & F
+    \end{tikzcd}\end{equation}  
+\end{remark}
+
+\begin{lemma}\label{SpectrumEmptyIff01Equal}
+  For $B:\Boole$, we have $0=_B1$ iff $\neg Sp(B)$.
+\end{lemma}
+\begin{proof}
+  If $0=_B1$, there is no map $B\to 2$ respecting both $0$ and $1$, thus $\neg Sp(B)$. 
+  Conversely, if $\neg Sp(B)$, then 
+  $Sp(B)$ equals $\bot$, the spectrum of the trivial Boolean algebra. 
+  As $Sp$ is an embedding, $B$ is equivalent to the trivial Boolean algebra, hence $0=_B1$. 
+\end{proof}
+\begin{corollary}\label{LemSurjectionsFormalToCompleteness}
+ For $S:\Stone$, we have that $\neg \neg S \to || S ||$
+\end{corollary}
+\begin{proof}
+  Let $B:\Boole$ and suppose $\neg \neg Sp(B)$. 
+  Let $f:2 \to B$. If $f(0) = f(1)$ then $0=1$ in $B$, thus $\neg Sp(B)$, 
+  contradicting our assumption. Hence $f(0)\neq f(1)$. 
+  Hence by case distinction on $2$ we can show that $f$ is injective. 
+%  $f x = f y$ implies $ x= y$. 
+%  Thus $f$ is injective and 
+  By \Cref{SurjectionsAreFormalSurjections} the map $Sp(B) \to Sp(2)$ is surjective, 
+  thus $Sp(B)$ is merely inhabited. 
+\end{proof} 
+
+%\begin{corollary}\label{MoreConcreteCompleteness}
+%  By the above and propositional completeness, we have that $||Sp(B)||$ iff $0\neq_B1$. 
+%\end{corollary}
+
+
+
+%SurjectionsFormalSurjections%We conclude this section on the anti-equivalence of Stone and $\Boole$ by a relating surjections to injections. 
+%SurjectionsFormalSurjections%This theorem is actually equivalent to completeness of propositional logic, which we'll discuss in 
+%SurjectionsFormalSurjections%\Cref{NotesOnAxioms}. 
+%SurjectionsFormalSurjections%
+%SurjectionsFormalSurjections%\begin{theorem}\label{FormalSurjectionsAreSurjections}
+%SurjectionsFormalSurjections%  Let $f:A\to B$ be a map of countably presented Boolean algebras. 
+%SurjectionsFormalSurjections%  If $f$ is injective, then the corresponding map $(\cdot) \circ f : Sp(B) \to Sp(A)$ is surjective. 
+%SurjectionsFormalSurjections%\end{theorem}
+%SurjectionsFormalSurjections%
+%SurjectionsFormalSurjections%\begin{proof}
+%SurjectionsFormalSurjections%  Assume $f$ injective and let $x:Sp(A)$.
+%SurjectionsFormalSurjections%  By \Cref{FiberConstruction}, we have that $\left(\sum\limits_{y:Sp(B)} y\circ f = x \right) = Sp(B/R) $
+%SurjectionsFormalSurjections%  for $R=f(G)$ for some countable $G\subseteq A$ with $x(g) = 0$ for all $g\in G$. 
+%SurjectionsFormalSurjections%  By propositional completeness and \Cref{SpectrumEmptyIff01Equal}, 
+%SurjectionsFormalSurjections%  it's sufficient to show that $0\neq_{B/R}1$. 
+%SurjectionsFormalSurjections%  Note that $0=_{B/R} 1$ iff 
+%SurjectionsFormalSurjections%  $1 =_B \bigvee R_0$ for some $R_0\subseteq R$ finite. 
+%SurjectionsFormalSurjections%  But then $$1 = \bigvee f(G_0) = f(\bigvee  G_0)$$ for some $G_0\subseteq G$ finite. 
+%SurjectionsFormalSurjections%  And as $f$ is injective, $\bigvee G_0 = 1$. 
+%SurjectionsFormalSurjections%  However, 
+%SurjectionsFormalSurjections%  $$
+%SurjectionsFormalSurjections%  x(\bigvee G_0) = 
+%SurjectionsFormalSurjections%  x(\bigvee_{g\in G_0} g ) = \bigvee_{g \in G_0} x(g) = \bigvee_{g\in G_0} 0 = 0$$
+%SurjectionsFormalSurjections%  And as $x(1) = 1$, we get a contradiction. Therefore $0\neq_{B/R} 1$ as required. 
+%SurjectionsFormalSurjections%\end{proof}  
+%SurjectionsFormalSurjections%The converse to the above theorem is true as well, regardless of propositional completeness:
+%SurjectionsFormalSurjections%\begin{lemma}\label{SurjectionsAreFormalSurjections}
+%SurjectionsFormalSurjections%If $f:A\to B$ is a map in $\Boole$ and $(\cdot) \circ f :Sp(B) \to Sp(A)$ is surjective, 
+%SurjectionsFormalSurjections%$f$ is injective. 
+%SurjectionsFormalSurjections%\end{lemma}
+%SurjectionsFormalSurjections%\begin{proof}
+%SurjectionsFormalSurjections%  Suppose precomposition with $f$ is surjective. 
+%SurjectionsFormalSurjections%  Let $a:A$ be such that $f(a)= 0$. 
+%SurjectionsFormalSurjections%  By assumption, for every $x:A\to 2$, there is a $y:B\to 2$ with $y\circ f = x$. 
+%SurjectionsFormalSurjections%  Consequentely $x(a) = y(f(a)) = y(0) = 0$. 
+%SurjectionsFormalSurjections%  So $x(a) = 0$ for every $x:Sp(A)$. 
+%SurjectionsFormalSurjections%  Thus $Sp(A) = Sp(A/\{a\})$, and as $Sp$ is an embedding, 
+%SurjectionsFormalSurjections%  $A \simeq A/\{a\}$, and $a = 0$ in $A$. 
+%SurjectionsFormalSurjections%  So whenever $f(a) = 0$, we have $a=0$. Thus $f$ is injective. 
+%SurjectionsFormalSurjections%\end{proof}

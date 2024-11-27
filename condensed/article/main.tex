@@ -1,0 +1,143 @@
+% latexmk -pdf -pvc main.tex
+\documentclass[a4paper,UKenglish,cleveref, autoref, thm-restate, numberwithinsect]{lipics-v2021}
+\RequirePackage{amsmath,amssymb,mathtools,amsxtra,stmaryrd}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows, cd, babel}
+\include{zariski.sty}
+
+%This is a template for producing LIPIcs articles. 
+%See lipics-v2021-authors-guidelines.pdf for further information.
+%for A4 paper format use option "a4paper", for US-letter use option "letterpaper"
+%for british hyphenation rules use option "UKenglish", for american hyphenation rules use option "USenglish"
+%for section-numbered lemmas etc., use "numberwithinsect"
+%for enabling cleveref support, use "cleveref"
+%for enabling autoref support, use "autoref"
+%for anonymousing the authors (e.g. for double-blind review), add "anonymous"
+%for enabling thm-restate support, use "thm-restate"
+%for enabling a two-column layout for the author/affilation part (only applicable for > 6 authors), use "authorcolumns"
+%for producing a PDF according the PDF/A standard, add "pdfa"
+
+%\pdfoutput=1 %uncomment to ensure pdflatex processing (mandatatory e.g. to submit to arXiv)
+%\hideLIPIcs  %uncomment to remove references to LIPIcs series (logo, DOI, ...), e.g. when preparing a pre-final version to be uploaded to arXiv or another public repository
+
+%\graphicspath{{./graphics/}}%helpful if your graphic files are in another directory
+
+\bibliographystyle{plainurl}% the mandatory bibstyle
+
+\title{A Foundation for Synthetic Stone Duality}
+
+%\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
+%,  and 
+\author{Felix {Cherubini}}{University of Gothenburg and Chalmers University of Technology, Sweden \and \url{felix-cherubini.de}}{felix.cherubini@posteo.de}{}{}
+\author{Thierry {Coquand}}{University of Gothenburg and Chalmers University of Technology, Sweden}{}{}{}
+\author{Freek {Geerligs}}{University of Gothenburg and Chalmers University of Technology, Sweden}{}{}{}
+\author{Hugo {Moeneclaey}}{University of Gothenburg and Chalmers University of Technology, Sweden}{}{}{}
+
+\authorrunning{F. Cherubini and T. Coquand and F. Geerligs and H. Moeneclaey}
+
+\Copyright{Felix Cherubini, Thierry Coquand, Freek Geerligs and Hugo Moeneclaey}
+
+\ccsdesc[100]{\textcolor{red}{Replace ccsdesc macro with valid one}} %TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm 
+%\begin{CCSXML}
+%<ccs2012>
+%<concept>
+%<concept_id>10003752.10003790.10011740</concept_id>
+%<concept_desc>Theory of computation~Type theory</concept_desc>
+%<concept_significance>500</concept_significance>
+%</concept>
+%<concept>
+%<concept_id>10003752.10003790.10003796</concept_id>
+%<concept_desc>Theory of computation~Constructive mathematics</concept_desc>
+%<concept_significance>500</concept_significance>
+%</concept>
+%</ccs2012>
+%\end{CCSXML}
+
+\keywords{Homotopy Type Theory, Synthetic Topology, Cohomology}
+
+\category{} %optional, e.g. invited paper
+
+\relatedversion{} %optional, e.g. full version hosted on arXiv, HAL, or other respository/website
+%\relatedversiondetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93]{Classification (e.g. Full Version, Extended Version, Previous Version}{URL to related version} %linktext and cite are optional
+
+%\supplement{}%optional, e.g. related research data, source code, ... hosted on a repository like zenodo, figshare, GitHub, ...
+%\supplementdetails[linktext={opt. text shown instead of the URL}, cite=DBLP:books/mk/GrayR93, subcategory={Description, Subcategory}, swhid={Software Heritage Identifier}]{General Classification (e.g. Software, Dataset, Model, ...)}{URL to related version} %linktext, cite, and subcategory are optional
+
+%\funding{(Optional) general funding statement \dots}%optional, to capture a funding statement, which applies to all authors. Please enter author specific funding statements as fifth argument of the \author macro.
+
+\acknowledgements{I want to thank \dots}%optional
+
+%\nolinenumbers %uncomment to disable line numbering
+
+
+
+%Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\EventEditors{John Q. Open and Joan R. Access}
+\EventNoEds{2}
+\EventLongTitle{42nd Conference on Very Important Topics (CVIT 2016)}
+\EventShortTitle{CVIT 2016}
+\EventAcronym{CVIT}
+\EventYear{2016}
+\EventDate{December 24--27, 2016}
+\EventLocation{Little Whinging, United Kingdom}
+\EventLogo{}
+\SeriesVolume{42}
+\ArticleNo{23}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+%TODO mandatory: add short abstract of the document
+\begin{abstract}
+  \input{PaperAbstract}
+\end{abstract}
+
+\section*{Acknowledgements}
+\input{acknowledgements.tex}
+
+\section{Stone duality}
+\input{Preliminaries}
+%\input{axioms}
+\input{EquivalenceOfCategories}
+\input{OmnisciencePrinciples}
+\input{PropositionalTopology}
+\input{SyntheticTopology}
+
+\section{Overtly discrete spaces}
+\input{Odisc}
+\input{OpenAreOdisc}
+\input{BooleAsODisc}
+%\input{OvertlyDiscrete/BooleMaps}
+%\input{OvertlyDiscrete/KernelFactorization}
+%\section{Topology}
+\section{Stone spaces}
+\input{StoneProFinite}
+\input{StoneClosed}
+
+\section{Compact Hausdorff spaces}
+\input{CompactHausdorff}
+\input{CompactHausdorffSigma}
+\input{StoneSigma}
+
+\section{The Unit interval}
+\subsection{The unit interval as Compact Hausdorff space}
+\input{BinaryRep}
+\input{TopologyOnI}
+ 
+
+\section{Cohomology}
+\input{cohomology}
+
+%%
+%% Bibliography
+%%
+
+%% Please use bibtex, 
+
+\bibliography{literature.bib}
+
+\appendix
+
+\end{document}

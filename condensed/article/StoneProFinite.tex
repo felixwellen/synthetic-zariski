@@ -1,0 +1,152 @@
+
+\subsection{Stone spaces as profinite sets}
+%\begin{remark}\label{StoneClosedUnderPullback}
+%  Note that Boolean algebras are closed under finite colimits. 
+%  By \Cref{ODiscBAareBoole} and \Cref{ODiscFiniteColim}, $\Boole$ is closed under finite colimits.
+%  By \Cref {SpIsAntiEquivalence}  it follows that the category of Stone spaces is closed under finite limits. 
+%\end{remark}
+Here we present Stone spaces as limits of $(\N,\geq)$-indexed sequences of finite sets. 
+This is the perspective taken in Condensed Mathematics \cite{Condensed,Dagur,Scholze}.
+Some of the results in this section are specific versions of the axioms used in 
+\cite{bc24}. A full generalization is part of future work. 
+\begin{lemma}
+  Any $S:\Stone$ can be described as the limit of some $(\N,\geq)$-indexed sequence of 
+  finite sets. 
+\end{lemma}
+\begin{proof}
+  By \Cref{SpIsAntiEquivalence}, \Cref{BooleIsODisc} and \Cref{ODiscClosedUnderSequentialColimits}, 
+  for $B:\Boole$, we have $Sp(B)$ the limit of $Sp(B_n)$, which are finite sets. 
+\end{proof}
+\begin{lemma}\label{StoneAreProfinite}
+  The limit of some $(\N,\geq)$-indexed sequence $S_n$ of finite sets is a Stone space. 
+\end{lemma}
+\begin{proof}
+  For finite sets, we have that $Sp(2^{S_n}) = S_n$, hence each $S_n$ is Stone. 
+  By \Cref{SpIsAntiEquivalence}, \Cref{BooleIsODisc} and \Cref{ODiscClosedUnderSequentialColimits}, 
+  $\Stone$ is closed under sequential limits.
+%  As $\Boole$ is closed under sequential colimits, \Cref{SpIsAntiEquivalence} gives that the 
+%  sequential limit of Stone space is Stone, hence $S$ is Stone. 
+\end{proof}
+\begin{remark}
+  Whenever $S:\Stone$, we shall denote $S_n$ for the underlying sequence 
+  and whenever $n\leq m$, we denote $\pi_m^n$ for the maps $S_m \to S_n$, 
+  and $\pi_n:S\to S_n$. 
+\end{remark}
+\begin{remark}\label{StoneClosedUnderPullback}\label{ProFiniteMapsFactorization}
+  Dually to \Cref{ODiscFiniteColim} and \Cref{ODiscClosedUnderSequentialColimits}, 
+  Stone spaces are closed under finite limits and sequential limits.
+  By \Cref{decompositionInjectionSurjectionOfOdisc} and 
+  \Cref{SurjectionsAreFormalSurjections} when we have a map of Stone spaces $f:S\to T$, 
+  we have $(\N,\geq)$-indexed sequences $S_n,T_n$ with limits $S$ and $T$ respectively
+  and maps $f_n:S_n\to T_n$ inducing $f$, and if $f$ is surjective or injective, we 
+  can choose all $f_n$ to be surjective or injective respectively as well. 
+\end{remark}
+\begin{lemma}\label{ScottFiniteCodomain}
+  For $S:\Stone, k:\N$ we have that $Fin(k)^S$ is the colimit of $Fin(k)^{S_n}$. 
+\end{lemma}
+\begin{proof}
+  By \Cref{SpIsAntiEquivalence} we have $Fin(k)^S = (2^S)^{2^{Fin(k)}}$.
+  Note that $2^Fin(k)$ is finite, thus by \Cref{colimitCompact}, the latter
+  is the colimit of $(2^{S_n})^{2^Fin(k)}$. 
+  By applying \Cref{SpIsAntiEquivalence} again, these types are $Fin(k)^S_n$ as required. 
+\end{proof}
+\begin{lemma}\label{MapsStoneToNareBounded}
+  For $S:\Stone$ and $f:S \to \N$, there merely exists some $N:\N$ with $f(S)\subseteq \N_{\leq N}$. 
+\end{lemma}
+\begin{proof}
+  For each $n:\N$, the fiber of $f$ over $n$ is a decidable subset $f_n:S \to 2$. 
+  We must have that $Sp(2^S/(f_n)_{n:\N}) = \bot$, hence there exists some $N:\N$ with 
+  $\bigvee_{n\leq N} f_n =_{2^S} 1 $. 
+  It follows that $f(s)\leq N$ for all $s:S$ as required. 
+\end{proof}
+
+%\begin{lemma}\label{scott-continuity}
+%  Let $E:\ODisc$ and $S:\Stone$, then 
+%  Then $E^S$ is the colimit of the $(\N,\leq)$-indexed sequence $E^{S_n}$.
+%%  $\mathrm{colim}_k(Z^{S_k}) \to \Z^S$
+%%  is an equivalence.
+%\end{lemma}
+%\begin{proof}
+%  Let $f:S \to E$. By \Cref{OdiscQuotientCountableByOpen}, 
+%  we have an enumeration $\N\twoheadrightarrow 1 + E$. 
+%  By \Cref{MapsStoneToNareBounded} and \Cref{AxLocalChoice}, there is some $N:\N$ such that 
+%  $f(S)\subseteq e(\N_{\leq N})$. 
+%\end{proof} 
+\begin{corollary}
+  For $S:\Stone$, we have that $\N^S$ is the colimit of $\N^{S_n}$. 
+\end{corollary}
+\begin{proof}
+  By \Cref{MapsStoneToNareBounded} we have that any map $S\to \N$ factors as 
+  $S \to Fin(k)\hookrightarrow \N$ for some $k:\N$. 
+  By \Cref{ScottFiniteCodomain}, such a map is uniquely determined by 
+  compatible maps $S_n \to Fin(k)$, hence by compatible maps $S_n \to \N$, 
+  as required. 
+\end{proof} 
+
+
+
+\subsection{$\Closed$ and $\Stone$}
+%\begin{lemma}\label{BooleEqualityOpen}
+%  Whenever $B:\Boole$, $a,b:B$ the proposition $a=_Bb$ is open. 
+%\end{lemma}
+%\begin{proof}
+%  Let $G,R$ be the generators and relations of $B$. 
+%  Let $a,b$ be represented by $x,y$ in the free Boolean algebra on $G$. 
+%  Now let $R_n$ denote the first $n$ elements of $R$. 
+%  Note that $a=b$ iff there exists some $n:\N$ with $x-y \leq \bigvee_{r\in R_n} r$. 
+%  Furthermore, inequality is decidable in the free Boolean algebra, hence
+%  $a=b$ is a countable disjunction of decidable propositions, hence open. 
+%\end{proof}
+
+\begin{corollary}\label{TruncationStoneClosed}
+  Whenever $S:\Stone$, $||S||$ is closed. 
+\end{corollary}
+\begin{proof}
+  By \Cref{SpectrumEmptyIff01Equal}, $\neg S$ is equivalent to $0=_B 1$, which is open by the above. 
+  Hence $\neg \neg S$ is a closed proposition, and by \Cref{LemSurjectionsFormalToCompleteness}, so is $||S||$. 
+\end{proof}
+%\begin{remark}\label{ExplicitTruncationStoneClosed}
+%  \rednote{New check later}
+%  The above lemma and corollary actually show that if we have an explicit 
+%  presentation of a Stone space as $S = Sp(2[G] / R)$, 
+%  we can construct an explicit sequence $\alpha:2^\N$ such that $||S|| \leftrightarrow \forall_{n:\N} \alpha(n) = 0$. 
+%\end{remark}
+
+
+\begin{corollary}\label{PropositionsClosedIffStone}
+  A proposition $P$ is closed iff it is a Stone space. 
+\end{corollary}
+\begin{proof}
+  By the above, if $S$ is both a Stone space and a proposition, it is closed. 
+  By \Cref{ClosedPropAsSpectrum}, any closed proposition is Stone. 
+\end{proof}
+
+\begin{lemma}\label{StoneEqualityClosed}
+  Whenever $S:\Stone$, and $s,t:S$, the proposition $s=t$ is closed. 
+\end{lemma}
+\begin{proof}
+  Suppose $S= Sp(B)$ and let $G$ be the generators of $B$. 
+  Note that $s=t$ iff $s(g) =_2 t(g)$ for all $g:G$. 
+  As $G$ is countable, and equality in $2$ is decidable, 
+  $s=t$ is a countable conjunction of decidable propositions, hence 
+  closed. 
+\end{proof}
+%
+The following question was asked by Bas Spitters at TYPES 2024:
+\begin{corollary}
+  For $S:\Stone$ and $x,y,z:S$ 
+  \begin{equation}\label{Apartness}
+  x \neq y \to (x\neq z \vee y \neq z)
+  \end{equation}
+\end{corollary}
+\begin{proof}
+  As $x\neq y$, we can show that $\neg ( x = z \wedge y = z)$. 
+  This in turn implies $\neg \neg ( x \neq  z \vee y \neq  z)$. 
+  As, $x\neq z$ and $y \neq z$ are both open propositions, by \Cref{OpenCountableDisjunction} so is their disjunction. 
+  By \Cref{rmkOpenClosedNegation}, that disjunction is double negation stable and \Cref{Apartness} follows. 
+\end{proof}
+\begin{remark}
+  If \Cref{Apartness} holds in a type, we say that it's inequality is an apartness relation. 
+  By a similar proof as above, it can be shown that in our setting inequality is an apartness relation 
+  as soon as equality is open or closed. 
+\end{remark}

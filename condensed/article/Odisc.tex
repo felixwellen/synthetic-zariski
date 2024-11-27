@@ -1,0 +1,343 @@
+%\input{OvertlyDiscrete/ColimitRepresentation.tex}
+\rednote{
+  Change the $\iota$ notation to have the domain on top, 
+and $\pi$ have codomain at bottom So $\pi_n^m \circ \pi_m = \pi_n, 
+\iota_m^n \circ \iota_n = \iota_m$ $\iota_m^n : B_n \to B_m$. } 
+\rednote{Discussion on what the colimit is exactly, refer to definition in\cite{SequentialColimitHoTT}}
+
+
+
+\begin{definition}
+  We call a type overtly discrete iff 
+  it is a sequential colimit of finite sets. 
+%  it can be described as 
+%  the colimit of an $(\N,\leq)$-indexed sequence of finite sets. 
+\end{definition} 
+\begin{remark}
+  It follows from Corollary 7.7 of \cite{SequentialColimitHoTT} that 
+  overtly discrete types are sets. 
+  Note that the type of overtly discrete types is independent on choice of universe, 
+  so we can write $\ODisc$ for this type. 
+%
+  If $B:\ODisc$, we will denote $B_n$ for the objects of the underlying sequence and 
+  $\iota^n)m: B_n \to B_m, \iota_n:B_n \to B$ for the obvious maps. 
+%  $\iota_n^m:B_n \to B_m$ for the maps and objects in the underlying sequence and 
+%  $\iota_n:B_n \to B$ for the colimit inclusion map. 
+%  If $B$ is overtly disc
+%  If we denote an overtly discrete type by $B$, we will denote the objects of the underlying sequence as 
+%  $B_n,~n:\N$, and for $n\leq m$, we denote the maps $B_n \to B_m$ with 
+%  Greek letters with lower index $n$ and upper index $m$. 
+%  So for example $\iota_n^m:B_n \to B_m$. 
+%  The maps $B_n \to B$ will in this case be denoted $\iota_n$. 
+%  If convenient, given a sequence $B_n$, we will denote $B_\infty$ for the colimit $B$.
+\end{remark}
+%\begin{definition}
+%A type $X$ is countable if there merely exists a decidable subset of $\N$ equal to $X$.
+%\end{definition}
+%
+
+
+\subsection{Maps of overtly discrete types}
+\begin{lemma}[Compactness of finite sets] \label{colimitCompact}
+%  For any finite set $A$ and $(\N,\leq)$-indexed sequence of finite sets $B_n$ with colimit $B$, 
+%  the colimit of $B_n^A$ is $B^A$. 
+  Exponentiation by a finite sets commute with sequential colimit. 
+\end{lemma}  
+\begin{proof}
+  \rednote{Reference to standard proof working here as well.}
+%reference%
+%reference%  \rednote{Should there be a reference here?}
+%reference%%  First note that $B^A$ forms a cocone on $(B_n^A)_{n:\N}$ 
+%reference%  Any map $A \to B_n$ induces a map $A \to B$, hence $B^A$ is a cocone on $(B_n^A)_{n:\N}$.
+%reference%  Let $C$ form a cocone on $(B_n^A)_{n:\N}$. %with maps $F_n:B_n^A \to C$.
+%reference%  For any $f:A \to B$, the finite image $f(A)$ must already occur in some $B_n$, 
+%reference%  thus there is some $f':A\to B_n$ with $\iota_n\circ f' = f$.% occurs as some map $A\to B_n$, 
+%reference%  As $C$ is a cocone, $f'$ corresponds to some $c$ in $C$, and this term does not depend on $n$. 
+%reference%  Also any map $B^A \to C$ respecting the cocone conditions must send $f$ to $c$, 
+%reference%  hence $B^A$ is indeed the colimit. 
+%reference%%%  We shall show there is an unique morphism of cocones $B^A \to C$. 
+%reference%%%  Denote $\iota_n:B_n \to B, F_n:B_n^A\to C$ for the cocone maps. 
+%reference%%  \begin{itemize}
+%reference%%    \item 
+%reference%%      If $f:A\to B$, we have that $f(A)$ is a finite subset of $B$, and thus occurs already in some $B_n$. 
+%reference%%      This induces a map $f'_n:A\to B_n$ with $\iota_n\circ f'_n = f$. 
+%reference%%      As $C$ is a cocone, we have that $F_n(f'_n)$ does not depend on $n:\N$. 
+%reference%%%      Thus $(F_n)_{n:\N}$ induces a map 
+%reference%%      Thus we get a map $B^A\to C$. 
+%reference%%    \item 
+%reference%%      For uniqueness, by function extensionality maps $B^A \to C$ are uniquely determined by their values on 
+%reference%%      $f:B^A$. By the above, the value of $f$ is uniquely determined by it's value on $B_n$ for 
+%reference%%      any $n$ with the image of $f$ in $B_n$. Thus there is at most one morphism of cocones $B^A \to C$. 
+%reference%%  \end{itemize}
+\end{proof}
+\begin{remark}\label{rmkEqualityColimit}
+  In the above proof, we used that any element $b\in B$ already occurs in some $B_n$. 
+  However, it does not necessarily occur uniquely in $B_n$.
+  In general, $B$ is overtly discrete 
+  and there exist some $B_n$ with two elements corresponding to the same element in $B$, 
+  Theorem 7.4 from \cite{SequentialColimitHoTT} says that there merely exists some $m\geq n$
+  such that these elements become equal in $B_m$. 
+\end{remark}
+\begin{lemma}\label{lemDecompositionOfColimitMorphisms}
+  \rednote{
+  Any map between overtly discrete sets is a sequential colimit of maps between finite sets.
+  }
+
+
+  Let $B,C$ be overtly discrete, 
+  and let $f:B\to C$.
+  There exists $(\N,\leq)$-indexed sequences of finite sets 
+  $(B_n)_{n:\N}, (C_n)_{n:\N}$ with colimits $B,C$ respectively
+  and compatible maps $f_n:B_n \to C_n$, 
+  such that $f$ is the induced morphism $B\to C$.
+\end{lemma}
+\begin{proof}
+  Let $(B_n)_{n:\N}, (C_n)_{n:\N}$ be 
+  sequences of finite sets with colimits $B$ and $C$. 
+  Using \Cref{axDependentChoice}, we will construct an increasing sequence of natural numbers $n_i$ 
+  with a family of maps $f_i:B_i \to C_{n_i}$ such that the following diagram commutes for all $i>0$. :
+%  We will construct a subsequence of $(C_n)_{n:\N}$, using \Cref{axDependentChoice}.
+%choiceintro%%
+%choiceintro%  For $k:\N$, let $E_k$ consist of 
+%choiceintro%  strictly increasing sequences $(n_i)_{i<k}$ of natural numbers together with a finite family of maps 
+%choiceintro%  $(f_i: B_{i} \to C_{n_i})_{i<k}$ such that
+%choiceintro%  for all $0<i<k$ the following diagram commutes:
+  \begin{equation}\label{eqnDecompositionOfColimitMorphisms}
+    \begin{tikzcd}
+      B_{i-1} \arrow[r,"\iota_{i-1}^i"] \arrow[d, "f_{i-1}"]& B_{{i}} \arrow[r, "\iota_i"] 
+      \arrow[d,"f_{i}"]& B \arrow[d,"f"] \\
+      C_{n_{i-1}} \arrow[r,"\kappa_{i-1}^i"] & C_{n_{i}} \arrow[r,"\kappa_i"] & C 
+    \end{tikzcd}
+  \end{equation}
+%choiceintro%  For $e:E_k, e':E_{k+1}$, we let 
+%choiceintro%  $R_k(e,e')$ denote  whether the underlying sequences of $e'$ extends that of $e$. 
+%choiceintro%  The empty sequence inhabits $E_0$. We will show that if $e:E_k$, there exists some $e':E_{k+1}$ with 
+%choiceintro%  $R_k(e,e')$. Then \Cref{axDependentChoice} will give the required sequence $(f_i:B_i\to C_{n_i})$.
+%choiceintro%
+%  Suppose we have $(f_i: B_{i} \to C_{n_i})_{i<k}$ for some $k\geq 0$ 
+%  such that for all $0<i<k$ the diagram of \Cref{eqnDecompositionOfColimitMorphisms} commutes.
+  Suppose we have an initial segment $(n_i)_{i<k}$ of such a sequence with maps $(f_i)_{i<k}$ making 
+  \Cref{eqnDecompositionOfColimitMorphisms} commute for $i<k$. 
+  We shall show that in this case there exist $n_{k}:\N, f_{k}:B_k \to C_{n_k}$ extending it. 
+%  making the same diagram commute for $i = k$. 
+  Consider the map $f\circ \iota_k: B_{k}\to C$. 
+  As $B_k$ is finite, \Cref{colimitCompact} gives some $n_k':\N $ such that %, f_k':B_k \to C_{n_k'}$ such that 
+  it factors over some $C_{n_k'}$.
+%  \begin{equation}
+%    \begin{tikzcd}
+%    B_{k} \arrow[r,"\iota_k"]  \arrow[d,"f'_{k}"]& B \arrow[d,"f"]\\
+%    C_{n'_{k}} \arrow[r, "\kappa_{n'_k}"'] & C
+%    \end{tikzcd}
+%  \end{equation}
+%ExtraExplanationWhichReadercanNote%  We may assume $n'_{k+1} > n_k$.
+%ExtraExplanationWhichReadercanNote%  Note that it is not necessarily the case that 
+%ExtraExplanationWhichReadercanNote%  $f'_{k} \circ \iota_{k-1}^k = \kappa_{n_{k-1}}^{n'_k}\circ f_{k-1}$. 
+%  $f'_{k+1}$ is compatible with $f_k$, meaning the left square in the following diagram needn't commute:
+%  \begin{equation}
+%    \begin{tikzcd}
+%      B_{k-1} \arrow[r] \arrow[d, "f_{k-1}"]& B_{{k}}  \arrow[r] \arrow[d,"f'_{k}"] & B \arrow[d,"f"] \\
+%      C_{n_{k-1}} \arrow[r] & C_{n'_{k}} \arrow[r]  & C 
+%    \end{tikzcd}
+%  \end{equation}
+%ExtraExplanationWhichReadercanNote%  However, 
+  Both $f'_{k}, f_{k-1}$ induce the same map $B_{k-1} \to C$. 
+%  Recall by \Cref{rmkMorphismsOutOfQuotient} this map is induced by it's value on finitely many elements. 
+  As $B_{k-1}$ is finite, from \Cref{rmkEqualityColimit} there is some $n_{k} \geq {n'_{k}}$ 
+  such that they become equal in $C_{n_k}$, and we have $f_k:B_k \to C_{n_k}$ such that the following does commute;
+  by \Cref{axDependentChoice} we then get compatible maps as required. 
+%choiceintro% and we're done:
+
+%  such that for $f_{k}$ the composition of $f'_{k+1}:B_{k+1} \to C_{n'_{k+1}}$ and 
+%  the map $C_{n'_{k+1}} \to C_{n_{k+1}}$, the following diagram does commute:
+  \begin{equation}
+    \begin{tikzcd}
+      B_{k-1} \arrow[d,"f_{k-1}"]\arrow[r] & B_{{k}} \arrow[rd, "f_{k}"] \arrow[rr,"\iota_k"] & & B \arrow[d,"f"] \\
+      C_{n_{k-1}} \arrow[r] & C_{n'_{k}} \arrow[r] & C_{n_{k}} \arrow[r] & C 
+    \end{tikzcd}
+  \end{equation}
+%  Now by dependent choice for the above $x_0, R_n, E_n$, we get a sequence $(f_i:B_i \to C_{n_i})$  for some 
+%  strictly increasing sequence $n_i$ of natural numbers. 
+%  Note that for such a sequence $(n_i)_{i:\N}$, 
+%  $(C_{n_i})_{i:\N}$ converges to $C$. Also $(B_i)_{i:\N}$ still converges to $B$. 
+%  Furthermore, by construction the map that sequence $f_i$ induces from $B \to C$ shares all values with $f$
+%  and thus is equal to $f$. 
+%  Thus our sequence $f_i$ is as required. 
+\end{proof}
+
+\begin{lemma}\label{lemDecompositionOfEpiMonoFactorization}
+  \rednote{Denote $\Im(f)$ instead of $f(A)$.} 
+  \rednote{Can this be a shorter remark?}
+  Let $f:A_\infty\to B_\infty$ be a map between overtly discrete types, and suppose we have $f_n:A_n\to B_n$ such that 
+  the following diagram commutes:
+  \begin{equation}
+    \begin{tikzcd}
+      A_n \arrow[d,"f_n"]\arrow[r, "\iota_n^m"]  & A_m \arrow[d,"f_m"] \arrow[r,"\iota_m^\infty"]  & A_\infty \arrow[d,"f"] 
+      \\
+      B_n \arrow[r, "\kappa_n^m"'] & B_m \arrow[r,"\kappa_m^\infty"'] & B_\infty
+    \end{tikzcd}
+  \end{equation}
+  Then $f(A)$ is the colimit of $f_n(A_n)$, 
+  and the maps $A\twoheadrightarrow f(A)$ and $f(A) \hookrightarrow B$ 
+  are induced by the maps $A_n\twoheadrightarrow f_n(A_n)$ and $f_n(A_n) \hookrightarrow B_n$ respectively. 
+\end{lemma}
+\begin{proof}
+  For $n\leq m$, we have that $\kappa_n^m(f_n(A_n)) = f_m(\iota_n^m(A_n))\subseteq f_m(A_m)$, 
+  hence we can take the corestriction of the map $f_n(A_n) \to B_m$ to $f_m(A_m)$ to get 
+  maps $\lambda_n^m :f_n(A_n) \to f_m(A_m)$ making the following diagram commute:
+  % https://q.uiver.app/#q=WzAsOSxbMSwwLCJBX20iXSxbMiwwLCJBX1xcaW5mdHkiXSxbMSwyLCJCX20iXSxbMiwyLCJCX1xcaW5mdHkiXSxbMiwxLCJmKEEpIl0sWzEsMSwiZl9tKEFfbSkiXSxbMCwwLCJBX24iXSxbMCwyLCJCX24iXSxbMCwxLCJmX24oQV9uKSJdLFswLDFdLFsyLDNdLFsxLDQsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs0LDMsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsNSwiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzUsMiwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNywyLCJcXGthcHBhX25ebSIsMl0sWzYsMCwiXFxpb3RhX25ebSJdLFs2LDgsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs4LDcsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzgsNSwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzUsNCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV1d
+  \begin{equation}\label{eqnEpiMonoFactorizationDecomposition}
+    \begin{tikzcd}
+    {A_n} & {A_m} & {A_\infty} \\
+    {f_n(A_n)} & {f_m(A_m)} & {f(A_\infty)} \\
+    {B_n} & {B_m} & {B_\infty}
+    \arrow["{\iota_n^m}", from=1-1, to=1-2]
+    \arrow[two heads, from=1-1, to=2-1,"e_n"]
+    \arrow[from=1-2, to=1-3,"\iota_m^\infty"]
+    \arrow[two heads, from=1-2, to=2-2,"e_m"]
+    \arrow[two heads, from=1-3, to=2-3,"e_\infty"]
+    \arrow[dashed, from=2-1, to=2-2, "\lambda_n^m"]
+    \arrow[hook, from=2-1, to=3-1, "i_n"]
+    \arrow[dashed, from=2-2, to=2-3, "\lambda_m^\infty"]
+    \arrow[hook, from=2-2, to=3-2,"i_m"]
+    \arrow[hook, from=2-3, to=3-3,"i_\infty"]
+    \arrow["{\kappa_n^m}"', from=3-1, to=3-2]
+    \arrow[from=3-2, to=3-3,"\kappa_m^\infty"']
+  \end{tikzcd}
+\end{equation}
+  Also it is clear that any $b:f(A_\infty)$ already occurs in some $f_n(A_n)$, hence $f(A_\infty)$ is colimiting. 
+\end{proof}
+\begin{corollary}\label{decompositionInjectionSurjectionOfOdisc}
+  In \Cref{lemDecompositionOfColimitMorphisms}, when $f$ is injective or surjective, 
+  we can choose presentations such that each $f_n$ is also injective or surjective respectively. 
+\end{corollary}
+\begin{proof}
+  Using \Cref{lemDecompositionOfColimitMorphisms} and \Cref{lemDecompositionOfEpiMonoFactorization}, 
+  we get a factorization as in \Cref{eqnEpiMonoFactorizationDecomposition}. 
+  If $f$ is injective, then $e$ is an isomorphism. 
+  Hence $A$ is the colimit of $f_n(A_n)$, and we can take $f_n' = i_n$.
+  Similarly, if $f$ is surjective $i$ is an isomorphism and we consider $B$ as colimit of $f_n(A_n)$ and 
+  take $f_n' = e_n$.
+\end{proof}
+\subsection{Closure properties of $\ODisc$}
+\begin{remark}\label{ODiscFiniteColim}
+  As sequential colimits commute with finite colimits, 
+  and finite sets are closed under finite colimits,
+  $\ODisc$ is closed under finite colimits as well.
+\end{remark}
+\begin{lemma}\label{ODiscClosedUnderSequentialColimits}
+  The colimit an $(\N,\leq)$-indexed sequence overtly discrete types is overtly discrete. 
+\end{lemma}
+\begin{proof}
+  By applying \Cref{axDependentChoice} to \Cref{lemDecompositionOfColimitMorphisms}, 
+  given a colimit of the sequence $A_i$, we can find a quarterplane of the form 
+  \begin{equation}
+    \begin{tikzcd}
+    A_{0,0}\ar[d]\ar[r] & A_{0,1}\ar[d]\ar[r] & \cdots \\
+    A_{1,0}\ar[d]\ar[r] & A_{1,1}\ar[d]\ar[r] & \cdots \\
+    \vdots & \vdots & \ddots\\
+    \end{tikzcd}
+  \end{equation}
+  where all the $A_{i,j}$ are finite sets, and $A_i$ is the colimit in $j$ of $A_{i,j}$ and 
+  the maps $A_i \to A_k$ are induced by maps $A_{i,j}\to A_{k,j}$. 
+  The colimit of the above quarter-plane is also the colimit of the induced $(\N,\leq)$-indexed sequence $A_{j,j}$, 
+  which is overtly discrete by definition. 
+\end{proof}
+\begin{corollary}\label{OdiscSigma}
+  Overtly discrete types are closed under $\Sigma$. 
+\end{corollary}
+\begin{proof}
+  Let $B$ be overtly discrete and $X:B \to \mathcal U$ be a 
+  $B$-indexed family of overtly discrete types. 
+  For any $i:\N$, we have a finite coproduct of overtly discrete types 
+  $\Sigma_{b:B_i} (X\circ \iota_i(b))$.  
+  As colimits commute with finite coproducts, this is overtly discrete. 
+  By Theorem 5.1 of \cite{SequentialColimitHoTT}, 
+  taking the colimit in $i$, we get $\Sigma_{b:B} X(b)$. 
+  By the above Lemma, this is overtly discrete. 
+\end{proof}
+\begin{remark}
+  Note that the sequential colimit commutes with the propositional truncation, thus for $B:\ODisc$, we have 
+  $||B||:\ODisc$. 
+\end{remark}
+
+
+
+%\begin{theorem}
+%We have the following:
+%\begin{enumerate}[(i)]
+%\item Overtly dicrete types are stable under identity types and and sigma types.
+%\item Overly discrete types are stable under quotients by equivalence relation with value in overtly discrete types.
+%\item Overtly discrete type are stable under sequential colimits.
+%\item Overtly discrete types have local choice.
+%\end{enumerate}
+%\end{theorem}
+%
+%\begin{proof}
+%\begin{enumerate}[(i)]
+%\item For stability under identity types, we use that sequential colimits commutes with identity types. 
+%
+%For stability under sigma types, sequential colimits commutes with sigma so that by (iii) it is enough to show that overtly discrete types are stable under finite coproduct. But sequential colimits commute with finite coproducts.
+%
+%\item Clear from the alternative description in \cref{overtly-discrete-colimit-finite}.
+%
+%\item Assume given a tower of sequential colimits of finite types. By using dependent choice with \cref{presentation-maps-overtly-discrete} repeatedly, we get a quarter plane of finite types:
+%\begin{center}
+%\begin{tikzcd}
+%F_{0,0}\ar[d]\ar[r] & F_{0,1}\ar[d]\ar[r] & \cdots \\
+%F_{1,0}\ar[d]\ar[r] & F_{1,1}\ar[d]\ar[r] & \cdots \\
+%\vdots & \vdots & \ddots\\
+%\end{tikzcd}
+%\end{center}
+%which colimit is the colimit of the assumed tower. Then we just use \cref{colimit-quarter-diagonal} to conclude that this colimit is overtly discrete.
+%
+%\item By \cref{overtly-discrete-colimit-finite}, we have a cover of any overtly discrete type by a countable type, which is an overtly discrete type that has choice.
+%\end{enumerate}
+%\end{proof}
+%
+%\begin{remark}
+%(ii) implies that the propositional truncation of an overtly discrete type is open.
+%
+%(iii) implies that overtly discrete types are closed under countable coproducts.
+%\end{remark}
+%
+%\begin{lemma}\label{equivalence-induced-by-open-is-open}
+%Let $I$ be overtly discrete, and let $R$ be an open relation on $I$. Then the equivalence relation induced by $R$ is open.
+%\end{lemma}
+%
+%\begin{proof}
+%The equivalence relation $L(x,y)$ induced by $R$ is:
+%\[\exists(k:\N). \exists(i_0,\cdots,i_k:I). i_0=x\land i_k=y \land (\forall l<k.\ R(i_l,i_{l+1})) \]
+%which is open.
+%\end{proof}
+%
+%\begin{lemma}
+%Assume given a pushout square:
+%\begin{center}
+%\begin{tikzcd}
+%I\ar[d]\ar[r] & K\ar[d] \\
+%J\ar[r] & L  \\
+%\end{tikzcd}
+%\end{center}
+%such that $I\to J$ is an embedding and $I,J,K$ are overtly discrete. Then $L$ is overtly discrete.
+%\end{lemma}
+%
+%\begin{proof}
+%The situation means we have an open $I\subset J$ and a map $f:I\to K$. Then $L$ is equivalent to the quotient of $J+K$ by the  equivalence relation generated by:
+%\[i_0(x) \sim i_1(y)\ \mathrm{if\ we\ have\ that}\ (x\in I)\land f(x) = y\]
+%It is overtly discrete by \cref{equivalence-induced-by-open-is-open}.
+%\end{proof}
+%
+%
+%
+
+
+%DecompositionStone%
+%DecompositionStone%\begin{proof}
+%DecompositionStone%  By \Cref{FormalSurjectionsAreSurjections}, 
+%DecompositionStone%  $g$ corresponds to an injective map $f:2^T \to 2^S$ of Boolean algebras, 
+%DecompositionStone%  which by \Cref{decompositionInjectionSurjectionOfOdisc}
+%DecompositionStone%  can be decomposed into maps $f_n:(2^T)_n \to (2^S)_n$ which are all injective, 
+%DecompositionStone%  and by the duality described in \Cref{StoneDualToOdisc}, correspond to maps of finite Stone types
+%DecompositionStone%  $g_n : T_n \to S_n$ with $T_n,S_n$ $(\N,\geq)$-indexed sequences with limits $T,S$, and $g_N$ inducing $g:T\to S$.
+%DecompositionStone%  As all $f_n$ were injective, by \Cref{FormalSurjectionsAreSurjections}, all $g_n$ are surjective as required. 
+%DecompositionStone%\end{proof}
