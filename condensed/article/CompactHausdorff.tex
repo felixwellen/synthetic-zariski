@@ -1,11 +1,10 @@
-\subsection{Compact Hausdorff types}
-
-
 \begin{definition}
-  A type $X$ is called compact Hausdorff iff there exists some $S:\Stone$ and some 
+  A type $X$ is called compact Hausdorff space if there exists some $S:\Stone$ and some 
   equivalence relation $\_\sim\_ : S\times S \to \Closed$ such that $X \simeq S /_\sim$. 
-  We denote $\CHaus$ for the type of compact Hausdorff types. 
+  We denote $\CHaus$ for the type of compact Hausdorff spaces. 
 \end{definition} 
+
+\subsection{Topology on compact Hausdorff spaces}
 
 \begin{lemma}\label{CompactHausdorffClosed}
   Let $X:\CHaus$ be given as $X=S/_\sim$ with quotient map $q:S\twoheadrightarrow X$.
@@ -14,26 +13,27 @@
 \begin{proof}
 %  If $A$ is closed, then it's pre-image under any map is also closed. 
 %  In particular for $q:S\to X$ the quotient map, $q^{-1}(A)$ is closed. 
-  As $q$ is surjective, we have $q(q^{-1}(A)) = A$,
-  if $A$ is closed, so is $q^{-1}(A)$ and 
+  As $q$ is surjective, we have $q(q^{-1}(A)) = A$.
+  If $A$ is closed, so is $q^{-1}(A)$ and 
   hence $A$ is the image of a closed subtype of $S$. 
   Conversely, let $B\subseteq S$ be closed. 
 %  Then for any $s:S$, the subtype $\{t:S| B(s) \wedge s \sim t\} \subseteq S$ is closed. 
 %  Hence by 
   Define $A'\subseteq S$ by 
-  $$A'(s) := \exists_{s:S} (B(t) \wedge s \sim t).$$
-  As $B, \sim$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
+  $$A'(s) := \exists_{t:S} (B(t) \wedge s \sim t).$$
+  As $B$ and $\sim$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
   we have that $A'$  is closed. 
   Also $A'$ respects $\sim$, hence induces a map $A: X\to \Closed$.
-  Furthermore, $A'(q(s))$ iff $q(s)\in q(B)$. 
+  Furthermore, $A'(s) \leftrightarrow (q(s)\in q(B))$. 
   Hence $A=q(B)$. 
 %  Therefore $A(x)$ iff $x$ is in the image of $B$. 
 \end{proof}
+
 \begin{remark}\label{InhabitedClosedSubSpaceClosedCHaus}
   Let $X:\Chaus$.
-  From \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed iff it is the image of a map 
+  From \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed if and only if it is the image of a map 
   $T\to X$ for some $T:\Stone$. 
-  If $A$ is closed, from \Cref{InhabitedClosedSubSpaceClosed}, it follows that $\exists_{x:X} A(x)$ is closed as well. 
+  If $A$ is closed, it follows from \Cref{InhabitedClosedSubSpaceClosed} that $\exists_{x:X} A(x)$ is closed as well. 
 \end{remark}
 %\begin{corollary}
 %  For $X:\CHaus$ a subtype $A\subseteq X$ is closed iff it is the image of 
@@ -56,12 +56,12 @@
 
 
 \begin{corollary}\label{AllOpenSubspaceOpen}
-  For $U\subseteq X$ an open subset of a compact Hausdorff space, we have 
-  $\forall_{x:X} U(x)$ open. 
+  For $U\subseteq X$ an open subset of a compact Hausdorff space, we have that the proposition 
+  $\forall_{x:X} U(x)$ is open. 
 \end{corollary}
 \begin{proof}
   As $U$ is open, $\neg U$ is closed. 
-  By \Cref{InhabitedClosedSubSpaceClosedCHaus} $\exists_{x:X} \neg U(x)$ is closed. 
+  So $\exists_{x:X} \neg U(x)$ is closed by \Cref{InhabitedClosedSubSpaceClosedCHaus}. 
   Using \Cref{rmkOpenClosedNegation}, it follows that 
   $\neg (\exists_{x:X} \neg U(x))$ is open. 
   Furthermore, it is equivalent to $\forall_{x:X} \neg \neg U(x)$, 
@@ -69,8 +69,8 @@
 \end{proof}
 
 \begin{lemma}\label{CHausFiniteIntersectionProperty}
-  Whenever $X:\Chaus$ and $C_n:X\to \Closed$ closed subsets with $\bigcap_{n:\N} C_n =\emptyset$, there is some $N:\N$ 
-  with $\bigcap_{n\leq N} C_n  = \emptyset$. 
+  Given $X:\Chaus$ and $C_n:X\to \Closed$ closed subsets such that $\bigcap_{n:\N} C_n =\emptyset$, there is some $k:\N$ 
+  with $\bigcap_{n\leq k} C_n  = \emptyset$. 
 \end{lemma}
 \begin{proof}
   By \Cref{StoneClosedSubsets}, and \Cref{CompactHausdorffClosed} 
