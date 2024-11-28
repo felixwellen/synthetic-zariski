@@ -1,12 +1,12 @@
 \subsection{The topology on Stone spaces}
 \begin{theorem}\label{StoneClosedSubsets}
-  Let $A\subseteq S$ be a subset of a Stone space. TFAE:
+  Let $A\subseteq S$ be a subset of a Stone space. The following are equivalent:
   \begin{enumerate}[(i)]
     \item There exists a map $\alpha_{(\cdot)}:S \to 2^\N$ such that 
       $A (x) \leftrightarrow \forall_{n:\N} \alpha_x(n) = 0$ for any $x:S$. 
     \item There exists some countable family 
-      $D_n,~{n:\N}$ 
-      of decidable subsets of $S$ with $A = \bigcap_{n:\N} D_n$. 
+      $(D_n)_{n:\N}$ 
+      of decidable subsets of $S$ such that $A = \bigcap_{n:\N} D_n$. 
     \item There exists a Stone space $T$ and some embedding $T\to S$ which image is $A$
     \item There exists a Stone space $T$ and some map $T\to S$ which image is $A$. 
     \item $A$ is closed.
@@ -15,23 +15,22 @@
 \begin{proof}
 \item 
   \begin{itemize}
-  \item[$(i)\leftrightarrow (ii)$.] 
-    $D_n$ and $\alpha_{(\cdot)}$ can be defined from each other by 
+  \item 
+    $(i)\leftrightarrow (ii)$. $D_n$ and $\alpha_{(\cdot)}$ can be defined from each other by 
      $D_n(x) \leftrightarrow (\alpha_x(n) = 0)$. Then observe that
      \begin{equation}
-      (\bigcap_{n:\N} D_n) (x) \leftrightarrow 
+     x\in \bigcap_{n:\N} D_n \leftrightarrow 
       \forall_{n:\mathbb N} (\alpha_x(n) = 0) 
      \end{equation}
-   \item[$(ii) \to (iii)$.]
-      Let $S=Sp(B)$. 
+   \item $(ii) \to (iii)$. Let $S=Sp(B)$. 
 %      By Stone duality, we have $d_n,~n:\N$ terms of $B$ such that $D_n = \{x:S| x(d_n) = 1\}$. 
 %      Let $C = B/(\neg d_n)_{n:\N}$.
 %      Then the map $Sp(C) \to S$ is as desired because
 %      $$Sp(C) = \{x:S| \forall_{n:\N} x(\neg d_n) =0\}  = \bigcap_{n:\N} D_n.$$
-      By \Cref{AxStoneDuality}, we have $d_n,~n:\N$ terms of $B$ such that $D_n = \{x:S| x(d_n) = 0\}$. 
+      By \Cref{AxStoneDuality}, we have $(d_n)_{n:\N}$ terms of $B$ such that $D_n = \{x:S\ |\ x(d_n) = 0\}$. 
       Let $C = B/(d_n)_{n:\N}$.
-      Then the map $Sp(C) \to S$ is as desired because
-      $$Sp(C) = \{x:S| \forall_{n:\N} x(d_n) =0\}  = \bigcap_{n:\N} D_n.$$
+      Then the map $Sp(C) \to S$ is as desired because:
+      $$Sp(C) = \{x:S\ |\ \forall_{n:\N} x(d_n) =0\}  = \bigcap_{n:\N} D_n.$$
 %      By \Cref{SurjectionsAreFormalSurjections}, t
 %      The quotient map $B \twoheadrightarrow C$
 %      corresponds to a map $\iota:Sp(C) \hookrightarrow  S$. 
@@ -41,12 +40,11 @@
 %        x\in \iota(Sp(C)) \leftrightarrow x(\neg d_n) = 0 \leftrightarrow x(d_n) = 1 \leftrightarrow x\in D_n
 %      \end{equation}
 %      Thus the image of $\iota$ is given by $\bigcap_{n:\N} D_n$. 
-   \item[$(iii) \to (iv)$] Immediate.
-   \item[$(iv) \to (i)$.] 
-     Assume $f:T\to S$ corresponds to $g:B\to C$ in $\Boole$. 
+   \item $(iii) \to (iv)$. Immediate.
+   \item $(iv) \to (i)$. Assume $f:T\to S$ corresponds to $g:B\to C$ in $\Boole$. 
      By \Cref{BooleEpiMono}, $f(T) = Sp(B/Ker(g))$, and 
 %     by \Cref{OdiscQuotientCountableByOpen}
-     there is a surjection $d_\cdot:\N\to Ker(g)$. 
+     there is a surjection $d_{(\cdot)}:\N\to Ker(g)$. 
      For $D_n$ corresponding to $d_n$, we have $Sp(B/Ker(g)) = \bigcap_{n:\N} D_n$. 
 %
 %
@@ -105,8 +103,8 @@
 %      \end{equation}
 %      Note that we did not use any choice axioms in the proof of this implication,
 %      as we untruncated our assumptions before we specified $x$. 
-   \item [$(i) \to (v)$.] By definition.
-   \item[$(v) \to (iv)$.]
+   \item $(i) \to (v)$. By definition.
+   \item $(v) \to (iv)$.
      As $A$ is closed, it corresponds to a map $a:S\to \Closed$. 
      We can cover the closed propositions with Cantor space
      by sending 
@@ -114,9 +112,9 @@
      By \Cref{AxLocalChoice} gives us that there merely exists $T, e, \beta_\cdot$ as follows:
      \begin{equation}
        \begin{tikzcd}
-         T \arrow[r,"\beta_\cdot"] \arrow[d, two heads,"e"] & 2^\mathbb N 
+         T \arrow[r,"\beta_\cdot"] \arrow[d, two heads,swap,"e"] & 2^\mathbb N 
          \arrow[d,two heads, "\forall_{n:\mathbb N} (\cdot)n = 0"] \\
-         S \arrow[r,"a"] & \Closed
+         S \arrow[r,swap,"a"] & \Closed
        \end{tikzcd} 
      \end{equation} 
      Define $B(x) \leftrightarrow \forall_{n:\mathbb N} \beta_x(n) = 0$. 
@@ -183,8 +181,7 @@ Using condition $(iii)$, the previous result implies that closed subtype of Ston
   Then there exists a decidable subset $D:S \to 2$ such $F\subseteq D, G \subseteq \neg D$. 
 \end{lemma}
 \begin{proof}
-  \rednote{Too shorten this (and some other proofs), I've removed some negations and pretended  $D:S\to 2$ is given by 
-  $\{x:S|x(d) = 0\}$ instead of $\{x:S|x(d) = 1\}$ }
+%  \rednote{Too shorten this (and some other proofs), I've removed some negations and pretended  $D:S\to 2$ is given by $\{x:S|x(d) = 0\}$ instead of $\{x:S|x(d) = 1\}$ }
   Assume $S = Sp(B)$. 
   By \Cref{StoneClosedSubsets}, there exists sequences $f_n,g_n:B,~n:\N$ such that 
   $x\in F$ iff $x(f_n) = 0$ for all $n:\N$ and 
