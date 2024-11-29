@@ -1,30 +1,4 @@
 In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\I,\Z)=0$. We work only with the first cohomology group with coefficients in $\Z$ as it is sufficient for the proof of Brouwer's fixed-point theorem, but the results could be extended to $H^n(X,A)$ for $A$ any family of countably presented abelian groups indexed by $X$.
-
-\subsection{Needed results}
-
-\rednote{Should probably be moved elsewhere}
-
-\begin{lemma}\label{finite-approximation-surjection-stone}
-Given $S:\Stone$ and $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$, there exists a sequence of finite types $(S_k)_{k:\N}$
-\rednote{Should the maps in the sequence be mentioned? (Maps $p_k$ are mentioned below)}
-%\begin{equation}
-%\begin{tikzcd}
-%S_0 & S_1 \ar[l,"p_0"]& S_2\ar[l,"p_1"] & \cdots\ar[l]\\
-%\end{tikzcd}
-%\end{equation}
-such that: 
-\[\mathrm{lim}_kS_k = S\]
-and for each $k:\N$ we have a family of finite types $T_k(x)$ for $x:S_k$ such that $\prod_{x:S_k}\propTrunc{T_k(x)}$ with maps $T_{k+1}(x) \to T_k(p_k(x))$ such that:
-\[\mathrm{lim}_k\left(\sum_{x:S_k}T_k(x)\right) = \sum_{x:S}T(x)\]
-\end{lemma}
-
-\begin{proof}
-\rednote{ \@ Hugo This follows from \Cref{ProFiniteMapsFactorization} and \Cref{stone-sigma-closed} 
-  and considering the surjection $(\Sigma_{x:S} T(x)) \to S$, but we discussed whether it might be easier to 
-  refactor the proof where you use the above or make a remark after \Cref{stone-sigma-closed}}
-\end{proof}
-
-
 \subsection{\v{C}ech cohomology}
 
 \begin{definition}
@@ -105,9 +79,50 @@ and this means that $\beta'$ factors through $S$, giving a proof of $\alpha = *$
 
 \subsection{Cohomology of Stone spaces}
 
+%
+%%\subsection{Needed results}
+%
+%%\rednote{Should probably be moved elsewhere}
+%
+\begin{lemma}\label{finite-approximation-surjection-stone}
+Let $S:\Stone$ and $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$.
+There exists a sequence of finite types $(S_k)_{k:\N}$ with limit $S$, 
+%\rednote{Should the maps in the sequence be mentioned? (Maps $p_k$ are mentioned below)}
+%\begin{equation}
+%\begin{tikzcd}
+%S_0 & S_1 \ar[l,"p_0"]& S_2\ar[l,"p_1"] & \cdots\ar[l]\\
+%\end{tikzcd}
+%\end{equation}
+%such that: 
+%\[\mathrm{lim}_kS_k = S\]
+a compatible sequence of families of finite types $T_k$ over $S_k$
+with $\prod_{x:S_k}\propTrunc{T_k(x)}$ and 
+$\mathrm{lim}_k\left(\sum_{x:S_k}T_k(x)\right) = \sum_{x:S}T(x)$. 
+%
+%Given $S:\Stone$ and $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$, there exists a sequence of finite types $(S_k)_{k:\N}$
+%\rednote{Should the maps in the sequence be mentioned? (Maps $p_k$ are mentioned below)}
+%%\begin{equation}
+%%\begin{tikzcd}
+%%S_0 & S_1 \ar[l,"p_0"]& S_2\ar[l,"p_1"] & \cdots\ar[l]\\
+%%\end{tikzcd}
+%%\end{equation}
+%such that: 
+%\[\mathrm{lim}_kS_k = S\]
+%and for each $k:\N$ we have a family of finite types $T_k(x)$ for $x:S_k$ such that $\prod_{x:S_k}\propTrunc{T_k(x)}$ with maps $T_{k+1}(x) \to T_k(p_k(x))$ such that:
+%\[\mathrm{lim}_k\left(\sum_{x:S_k}T_k(x)\right) = \sum_{x:S}T(x)\]
+\end{lemma}
+
+\begin{proof}
+  This follows from \Cref{ProFiniteMapsFactorization} and \Cref{stone-sigma-closed}
+%\rednote{ \@ Hugo This follows from \Cref{ProFiniteMapsFactorization} and \Cref{stone-sigma-closed} 
+%  and considering the surjection $(\Sigma_{x:S} T(x)) \to S$, but we discussed whether it might be easier to 
+%  refactor the proof where you use the above or make a remark after \Cref{stone-sigma-closed}}
+\end{proof}
+
 \begin{lemma}\label{cech-complex-vanishing-stone}
 Given $S:\Stone$ with $T:S\to\Stone$, if $\prod_{x:S}\propTrunc{T_x}$ then we have that $\check{C}(S,T,\Z)$ is exact.
 \end{lemma}
+
 
 \begin{proof}
 We apply \cref{finite-approximation-surjection-stone} to get $S_k$ and $T_k$ finite. Then by \cref{scott-continuity} we have that:
