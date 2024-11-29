@@ -3,9 +3,23 @@ Cauchy reals or Dedekind reals.
 We can freely use results from constructive analysis \cite{Bishop}. 
 As we have $\neg$WLPO, MP and LLPO, we can use the results from 
 constructive reverse mathematics that follow from these principles \cite{ReverseMathsBishop, HannesDiener}. 
+%\begin{definition}
+%  We define $cs:2^\N \to \I$ as 
+%  $cs(\alpha) = \sum_{n:\N} \frac{\alpha(i)}{2^{i+1}}$. 
+%\end{definition}
 \begin{definition}
-  We define $cs:2^N \to \I$ as 
-  $cs(\alpha) = \sum_{n:\N} \frac{\alpha(i)}{2^{i+1}}$. 
+  We define for each $n:\N$ the Stone space $2^n$ of binary sequences of length $n$.
+  % = Sp(2[Fin(n)])$.
+  And we define $cs_n:2^n \to \mathbb Q$ by 
+  $cs_n(\alpha) = \sum_{i < n } \frac{\alpha(i)}{2^{i+1}}.$
+\end{definition}
+\begin{remark}
+  The inclusion $Fin(n) \hookrightarrow \N$ induces a restriction 
+  $(\cdot)|_n : 2^\N \to 2^n$ for each $n:\N$. 
+\end{remark}
+\begin{definition}
+  We define $cs:2^\N \to \I$ as 
+  $cs(\alpha) = \lim_{n\to\infty} cs_n(\alpha|_n)$. 
 \end{definition}
 
 \begin{theorem}
@@ -14,9 +28,11 @@ constructive reverse mathematics that follow from these principles \cite{Reverse
 \begin{proof}
   By LLPO, $cs$ is surjective.   
   Note that $cs(\alpha) = cs(\beta)$ iff 
-  $$|\sum_{n=0}^{n-1} \frac{\alpha(i)}{2^{i+1}}-
-  \sum_{n=0}^{n-1} \frac{\beta(i)}{2^{i+1}}|\leq \frac{1}{2^n}$$
-  for all $n:\N$, which is a countable conjunction of decidable propositions.
+  for all $n:\N$ we have $|cs_n(\alpha)-cs_n(\beta)|\leq \frac{1}{2^n}$
+%  $$|\sum_{n=0}^{n-1} \frac{\alpha(i)}{2^{i+1}}-
+%  \sum_{n=0}^{n-1} \frac{\beta(i)}{2^{i+1}}|\leq \frac{1}{2^n}$$
+%  for all $n:\N$, 
+  which is a countable conjunction of decidable propositions.
 %  as inequality in $\mathbb Q$ is decidable. 
 \end{proof}
 
