@@ -1,4 +1,4 @@
-In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\I,\Z)=0$. We work on the first cohomology group with coefficient in $\Z$ as it is sufficient for the proof of Brouwer's fixed-point theorem, but the results could be extended to $H^n(X,A)$ for $A$ any family of countably presented abelian groups indexed by $X$.
+In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\I,\Z)=0$. We work only with the first cohomology group with coefficients in $\Z$ as it is sufficient for the proof of Brouwer's fixed-point theorem, but the results could be extended to $H^n(X,A)$ for $A$ any family of countably presented abelian groups indexed by $X$.
 
 \subsection{Needed results}
 
@@ -6,16 +6,15 @@ In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\
 
 \begin{lemma}\label{finite-approximation-surjection-stone}
 Given $S:\Stone$ and $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$, there exists a sequence of finite types $(S_k)_{k:\N}$
+\rednote{Should the maps in the sequence be mentioned? (Maps $p_k$ are mentioned below)}
 %\begin{equation}
 %\begin{tikzcd}
 %S_0 & S_1 \ar[l,"p_0"]& S_2\ar[l,"p_1"] & \cdots\ar[l]\\
 %\end{tikzcd}
 %\end{equation}
 such that: 
-\[\mathrm{lim}_kS_k = S\] 
-and for each $k:\N$ we have a family of finite types $T_k(x)$ for $x:S_k$ such that $\prod_{x:S_k}\propTrunc{T_k(x)}$ with maps:
-\[T_{k+1}(x) \to T_k(p_k(x))\]
-such that:
+\[\mathrm{lim}_kS_k = S\]
+and for each $k:\N$ we have a family of finite types $T_k(x)$ for $x:S_k$ such that $\prod_{x:S_k}\propTrunc{T_k(x)}$ with maps $T_{k+1}(x) \to T_k(p_k(x))$ such that:
 \[\mathrm{lim}_k\left(\sum_{x:S_k}T_k(x)\right) = \sum_{x:S}T(x)\]
 \end{lemma}
 
@@ -32,7 +31,7 @@ such that:
 Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define $\check{C}(S,T,A)$ as the chain complex:
 \begin{equation}
 \begin{tikzcd}
-     \prod_{x:S}A_x^{T_x} \ar[r,"d_0"] & \prod_{x:S}A_x^{T_x^2}\ar[r,"d_1"] &  \prod_{x:S}A_x^{T_x^3}\\
+     \prod_{x:S}A_x^{T_x} \ar[r,"d_0"] & \prod_{x:S}A_x^{T_x^2}\ar[r,"d_1"] &  \prod_{x:S}A_x^{T_x^3}
 \end{tikzcd}
 \end{equation}
 with the usual boundary maps:
@@ -42,8 +41,10 @@ with the usual boundary maps:
 
 \begin{definition}
 Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define its \v{C}ech cohomology groups by:
-\[\check{H}^0(S,T,A) = \mathrm{ker}(d_0)\]
-\[\check{H}^1(S,T,A) = \mathrm{ker}(d_1)/\mathrm{im}(d_0)\]
+\[
+  \check{H}^0(S,T,A) = \mathrm{ker}(d_0)\quad \quad \quad \check{H}^1(S,T,A) = \mathrm{ker}(d_1)/\mathrm{im}(d_0)
+\]
+We call elements of $\mathrm{ker}(d_1)$ cocycles and elements of $\mathrm{im}(d_0)$ coboundaries.
 \end{definition}
 
 This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{C}(S,T,A)$ is exact. Now we give three very general lemmas about \v{C}ech complexes.
