@@ -73,41 +73,42 @@
   with $\bigcap_{n\leq k} C_n  = \emptyset$. 
 \end{lemma}
 \begin{proof}
-  By \Cref{StoneClosedSubsets}, and \Cref{CompactHausdorffClosed} 
-  it is sufficient to prove the above when $X$ is Stone and $C_n$ decidable.
+  By \Cref{CompactHausdorffClosed} it is enough to prove the result when $X$ is Stone, and by \Cref{StoneClosedSubsets} we can assume $C_n$ decidable.
   So assume 
-  $X=Sp(B)$ and $c_n:B$ are such that $C_n = \{x:B\to 2 | x(c_n) = 1\}$. 
-  Then the set of maps $B\to 2$ sending all $c_n$ to $1$ is given by 
-  $$Sp(B/\{\neg c_n |n:\N\}) \simeq \bigcap_{n:\N} C_n = \emptyset .$$
+  $X=Sp(B)$ and $c_n:B$ are such that: 
+  $$C_n = \{x:B\to 2\ |\ x(c_n) = 0\}.$$ 
+  Then the set of maps $B\to 2$ sending all $c_n$ to $0$ is given by: 
+  $$Sp(B/\{c_n\ |\ n:\N\}) \simeq \bigcap_{n:\N} C_n = \emptyset .$$
   Hence 
 %  $0=_{B/(\neg c_n)_{n:\N}}1$ 
-  $0=1$ in $B/(\neg c_n)_{n:\N}$, 
-  and there is some $N:\N$ with 
-  $\bigvee_{n\leq N} (\neg c_n) = 1$, which also means that 
-  $$\emptyset = Sp(B/(\neg c_n)_{n \leq N})  \simeq \bigcap_{n\leq N} C_n .$$
+  $0=1$ in $B/\{c_n\ |\ n:\N\}$, 
+  and there is some $k:\N$ with 
+  $\bigvee_{n\leq k} c_n = 1$, which also means that: 
+  $$\emptyset = Sp(B/\{c_n\ |\ n\leq k\})  \simeq \bigcap_{n\leq k} C_n .$$
 \end{proof}
+
 \begin{corollary}\label{ChausMapsPreserveIntersectionOfClosed}
-  Let $X,Y:\CHaus$ and $f:Y \to X$. 
-  Suppose $(G_n)_{n:\N}$ is a decreasing sequence of closed subsets of $Y$. 
-  Then $f(\bigcap_{n:\N} G_n) = \bigcap_{n:\N}(f(G_n))$. 
+  Let $X,Y:\CHaus$ and $f:X \to Y$. 
+  Suppose $(G_n)_{n:\N}$ is a decreasing sequence of closed subsets of $X$. 
+  Then $f(\bigcap_{n:\N} G_n) = \bigcap_{n:\N}f(G_n)$. 
 \end{corollary}
 \begin{proof}
-  It is always the case that $f(\bigcap_{n:\N} G_n) \subseteq \bigcap_{n:\N} (f(G_n))$. 
-  For the converse direction, suppose that $x \in f(G_n)$ for all $n:\N$. 
-  Define $F: Y \to \Closed$ by $F(y) := \left(f(y) = x\right)$. 
-  $F$ defines a closed subset, furthermore, $F\cap G_n \neq \emptyset$ for all $n:\N$. 
-  Thus $\bigcap_{n:\N}(F\cap G_n) \neq \emptyset$ by \Cref{CHausFiniteIntersectionProperty}. 
-  By \Cref{InhabitedClosedSubSpaceClosedCHaus} and \Cref{rmkOpenClosedNegation}, there merely exists some 
-  $y$ in $\bigcap_{n:\N} (F\cap G_n)$. Thus $x\in f(\bigcap_{n:\N} G_n)$ as required. 
+  It is always the case that $f(\bigcap_{n:\N} G_n) \subseteq \bigcap_{n:\N} f(G_n)$. 
+  For the converse direction, suppose that $y \in f(G_n)$ for all $n:\N$. 
+  We define $F\subseteq X$ closed by $F=f^{-1}(y)$. 
+  Then for all $n:\N$ we have that $F\cap G_n$ is merely inhabited and therefore non-empty. 
+  By \Cref{CHausFiniteIntersectionProperty} this implies that $\bigcap_{n:\N}(F\cap G_n) \neq \emptyset$. 
+  By \Cref{InhabitedClosedSubSpaceClosedCHaus} and \Cref{rmkOpenClosedNegation}, we have that $\bigcap_{n:\N} (F\cap G_n)$ is merely inhabited. Thus $y\in f(\bigcap_{n:\N} G_n)$ as required. 
 \end{proof}
+
 \begin{corollary}\label{CompactHausdorffTopology}
 Let $A\subseteq X$ be a subtype of a compact Hausdorff space. 
-Let $p:S\to X$ be any presentation of $X$ with $S:\Stone$. Then:
+Let $p:S\to X$ be a surjective map with $S:\Stone$. Then:
 \begin{itemize}
-  \item $A$ is closed iff it can be written as $\bigcap_{n:\N} p(D_n)$
-for some sequence $D_n\subseteq S$ decidable. 
-  \item $A$ is open iff it can be written as $\bigcup_{n:\N} \neg p(D_n)$
-for some sequence $D_n\subseteq S$ decidable.
+  \item $A$ is closed if and only if it can be written as $\bigcap_{n:\N} p(D_n)$
+for some $D_n\subseteq S$ decidable. 
+  \item $A$ is open if and only if it can be written as $\bigcup_{n:\N} \neg p(D_n)$
+for some $D_n\subseteq S$ decidable.
 \end{itemize}  
 \end{corollary}
 \begin{proof}
@@ -116,13 +117,14 @@ for some sequence $D_n\subseteq S$ decidable.
   and \Cref{ChausMapsPreserveIntersectionOfClosed}. 
   The characterization of open sets then follows from \Cref{rmkOpenClosedNegation} and \Cref{ClosedMarkov}.
 \end{proof}
+
 \begin{corollary}
   Any $X:\Chaus$ is second countable (has a topological basis which is countable). 
 \end{corollary}
 \begin{proof}
-  By \Cref{CompactHausdorffTopology}, a basis is given by decidable subsets of some $S:\Stone$. 
-  By Stone duality, such a basis forms a countably presented Boolean algebra, which is countable. 
-\end{proof}
+  By \Cref{CompactHausdorffTopology}, a basis is given by the images of the decidable subsets of some $S:\Stone$. 
+  By \cref{ODiscBAareBoole}, we have that $2^S$ is overtly discrete so we have a surjection $\N\to 2^S$.
+  \end{proof}
 
 \begin{lemma}\label{CHausSeperationOfClosedByOpens}
   Let $X:\CHaus$, and let $A,B:X\to \Closed$ be disjoint. 
