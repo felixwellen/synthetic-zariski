@@ -189,34 +189,37 @@ We apply \cref{cech-eilenberg-0-agree}, \cref{eilenberg-exact} and \cref{cech-ex
 In particular this means that the \v{C}ech cohomology $\check{H}^1(X,S,\Z)$ does not depend on $S$.
 
 \subsection{Cohomology of the interval}
-
-Recall that we denote $C_n=2^n$ with a binary relation $\sim_n$ on $C_n$ such that for all $x,y:2^\N$ we have that:
-\[\left(\forall(n:\N).\ x|_n\sim_n y|_n\right) \leftrightarrow x=_\I y\]
-
-\begin{lemma}\label{description-Cn-simn}
-We have that $(C_n,\sim_n)$ is equivalent to $(\mathrm{Fin}(2^n),\lambda x,y.\ |x-y|\leq 1)$.
-\end{lemma}
-
-\begin{proof}
-By \cref{alternativeSimByCauchyDistance}.
-\end{proof}
+%
+%Recall that we denote $C_n=2^n$ with a binary relation $\sim_n$ on $C_n$ such that for all $x,y:2^\N$ we have that:
+%\[\left(\forall(n:\N).\ x|_n\sim_n y|_n\right) \leftrightarrow x=_\I y\]
+%
+%\begin{lemma}\label{description-Cn-simn}
+%We have that $(C_n,\sim_n)$ is equivalent to $(\mathrm{Fin}(2^n),\lambda x,y.\ |x-y|\leq 1)$.
+%\end{lemma}
+\begin{remark}\label{description-Cn-simn}
+  Recall from \Cref{IntervalIsCHaus} that 
+  there is a binary relation $\sim_n$ on $2^n=:\I_n$ such that 
+  $(2^n,\sim_n)$ is equivalent to  $(\mathrm{Fin}(2^n),\lambda x,y.\ |x-y|\leq 1)$
+  and for $\alpha,\beta:2^\N$ we have $cs(\alpha) = cs(\beta) \leftrightarrow 
+  \left(\forall_{n:\N}\alpha|_n \sim_n \beta|_n\right)$. 
+\end{remark}
 
 We write:
-\[C_n^{\sim2} = \sum_{x,y:C_n}x\sim_n y\]
-\[C_n^{\sim3}  =  \sum_{x,y,z:C_n}x\sim_n y \land y\sim_n z\land x\sim_n z\]
+\[\I_n^{\sim2} = \sum_{x,y:\I_n}x\sim_n y\]
+\[\I_n^{\sim3}  =  \sum_{x,y,z:\I_n}x\sim_n y \land y\sim_n z\land x\sim_n z\]
 
 \begin{lemma}\label{Cn-exact-sequence}
 For any $n:\N$ we have an exact sequence:
-\[0\to \Z\to \Z^{C_n} \to \Z^{C_n^{\sim2}} \to \Z^{C_n^{\sim3}}\]
+\[0\to \Z\to \Z^{\I_n} \to \Z^{\I_n^{\sim2}} \to \Z^{\I_n^{\sim3}}\]
 with the obvious boundary maps.
 \end{lemma}
 
 \begin{proof}
-It is clear that the map $\Z\to \Z^{C_n}$ is injective as $C_n$ is inhabited, so the sequence is exact at $\Z$.
+It is clear that the map $\Z\to \Z^{\I_n}$ is injective as $\I_n$ is inhabited, so the sequence is exact at $\Z$.
 
-Assume a cocycle $\alpha:\Z^{C_n}$, meaning that for all $u,v:C_n$, if $u\sim_nv$ then $\alpha(u)=\alpha(v)$. Then by \cref{description-Cn-simn} we see that $\alpha$ is constant, so the sequence is exact at $\Z^{C_n}$.
+Assume a cocycle $\alpha:\Z^{\I_n}$, meaning that for all $u,v:\I_n$, if $u\sim_nv$ then $\alpha(u)=\alpha(v)$. Then by \cref{description-Cn-simn} we see that $\alpha$ is constant, so the sequence is exact at $\Z^{\I_n}$.
 
-Assume a cocycle $\beta:\Z^{C_n^{\sim2}}$, meaning that for all $u,v,w:C_n$ such that $u\sim_nv$, $v\sim_nw$ and $u\sim_nw$ we have that:
+Assume a cocycle $\beta:\Z^{\I_n^{\sim2}}$, meaning that for all $u,v,w:\I_n$ such that $u\sim_nv$, $v\sim_nw$ and $u\sim_nw$ we have that:
 \[\beta(u,v)+\beta(v,w) = \beta(u,w)\]
 which is equivalent to asking $\beta(u,u)=0$ and $\beta(u,v) = -\beta(v,u)$.
 
@@ -228,7 +231,7 @@ Then for all $(m,n)$ such that $|m-n|\leq 1$ we have that:
 \item If $m+1=n$ then $\beta(m,m+1) = \alpha(m+1)-\alpha(m)$.
 \item If $m=n+1$ then $\beta(n+1,n) = - \beta(n,n+1) = -\alpha(n+1)+\alpha(n)$.
 \end{itemize}
-So $\beta$ is indeed a coboundary and the sequence is exact at $\Z^{C_n^{\sim2}}$.
+So $\beta$ is indeed a coboundary and the sequence is exact at $\Z^{\I_n^{\sim2}}$.
 \end{proof}
 
 \begin{proposition}\label{cohomology-I}
@@ -237,13 +240,13 @@ We have that:
 \end{proposition}
 
 \begin{proof}
-Consider the canonical surjective map $p:2^\N\to\I$ and the associated \v{C}ech cover of $\I$ by: 
-\[T_x = \sum_{y:2^\N} x=_\I p(y)\]
+Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover of $\I$ by: 
+\[T_x = \sum_{y:2^\N} x=_\I cs(y)\]
 Then for $l=2,3$ we have that:
-\[\mathrm{lim}_nC_n^{\sim l} = \sum_{x:\I} T_x^l\]
+\[\mathrm{lim}_n\I_n^{\sim l} = \sum_{x:\I} T_x^l\]
 
 By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we know that:
-\[ 0\to \Z\to \mathrm{colim}_n \left(\Z^{C_n}\right) \to \mathrm{colim}_n \left(\Z^{C_n^{\sim2}}\right)\to \mathrm{colim}_n \left(\Z^{C_n^{\sim3}}\right)\]
+\[ 0\to \Z\to \mathrm{colim}_n \left(\Z^{\I_n}\right) \to \mathrm{colim}_n \left(\Z^{\I_n^{\sim2}}\right)\to \mathrm{colim}_n \left(\Z^{\I_n^{\sim3}}\right)\]
 is exact, but by \cref{scott-continuity} this sequence is equivalent to:
 \[ 0\to \Z\to \prod_{x:\I}\Z^{T_x} \to  \prod_{x:\mathbb{I}}\Z^{T_x^2} \to  \prod_{x:\mathbb{I}}\Z^{T_x^3}\]
 So it being exact implies that:

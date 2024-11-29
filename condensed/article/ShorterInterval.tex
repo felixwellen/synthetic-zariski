@@ -12,6 +12,9 @@ constructive reverse mathematics that follow from these principles \cite{Reverse
   % = Sp(2[Fin(n)])$.
   And we define $cs_n:2^n \to \mathbb Q$ by 
   $cs_n(\alpha) = \sum_{i < n } \frac{\alpha(i)}{2^{i+1}}.$
+  Finally we denote $\sim_n$ for the binary relation on $2^n$ given by 
+  $\alpha\sim_n \beta 
+  \leftrightarrow \left|cs_n(\alpha) - cs_n(\beta)\right|\leq\frac{1}{2^n}$
 \end{definition}
 \begin{remark}
   The inclusion $Fin(n) \hookrightarrow \N$ induces a restriction 
@@ -22,17 +25,18 @@ constructive reverse mathematics that follow from these principles \cite{Reverse
   $cs(\alpha) = \lim_{n\to\infty} cs_n(\alpha|_n)$. 
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\label{IntervalIsCHaus}
   $\I$ is compact Hausdorff
 \end{theorem}
 \begin{proof}
   By LLPO, $cs$ is surjective.   
   Note that $cs(\alpha) = cs(\beta)$ iff 
-  for all $n:\N$ we have $\left|cs_n(\alpha)-cs_n(\beta)\right|\leq \frac{1}{2^n}$
+  for all $n:\N$ we have $\alpha|_n \sim_n \beta|_n$. 
+  %$\left|cs_n(\alpha)-cs_n(\beta)\right|\leq \frac{1}{2^n}$
 %  $$|\sum_{n=0}^{n-1} \frac{\alpha(i)}{2^{i+1}}-
 %  \sum_{n=0}^{n-1} \frac{\beta(i)}{2^{i+1}}|\leq \frac{1}{2^n}$$
 %  for all $n:\N$, 
-  which is a countable conjunction of decidable propositions.
+  This is a countable conjunction of decidable propositions.
 %  as inequality in $\mathbb Q$ is decidable. 
 \end{proof}
 
