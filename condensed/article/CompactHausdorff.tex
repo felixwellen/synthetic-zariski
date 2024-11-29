@@ -1,8 +1,8 @@
 \begin{definition}
-  A type $X$ is called a compact Hausdorff space if its identity types are closed propositions and there exists some $S:\Stone$ and a surjection $S\to X$.
+  A type $X$ is called a compact Hausdorff space if its identity types are closed propositions and there exists some $S:\Stone$ and a surjection $S\twoheadrightarrow X$.
 \end{definition}
 
-This means that compact Hausdorff spaces are precisely quotients of Stone spaces by closed equivalence relations.
+%This means that compact Hausdorff spaces are precisely quotients of Stone spaces by closed equivalence relations.
 
 \subsection{Topology on compact Hausdorff spaces}
 
@@ -13,7 +13,7 @@ This means that compact Hausdorff spaces are precisely quotients of Stone spaces
 \begin{proof}
 %  If $A$ is closed, then it's pre-image under any map is also closed. 
 %  In particular for $q:S\to X$ the quotient map, $q^{-1}(A)$ is closed. 
-  As $q$ is surjective, we have $p(p^{-1}(A)) = A$.
+  As $p$ is surjective, we have $p(p^{-1}(A)) = A$.
   If $A$ is closed, so is $p^{-1}(A)$ and 
   hence $A$ is the image of a closed subtype of $S$. 
   Conversely, let $B\subseteq S$ be closed. 
@@ -21,7 +21,7 @@ This means that compact Hausdorff spaces are precisely quotients of Stone spaces
 %  Hence by 
   Define $A'\subseteq S$ by 
   $$A'(s) := \exists_{t:S} (B(t) \wedge p(s) = p(t)).$$
-  As $B$ and $p(s) = p(t)$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
+  As $B(t)$ and $p(s) = p(t)$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
   we have that $A'$ is closed. 
   Also $A'$ factors through $p$ as a map $A: X\to \Closed$.
   Furthermore, $A'(s) \leftrightarrow (p(s)\in p(B))$. 
@@ -78,13 +78,16 @@ This means that compact Hausdorff spaces are precisely quotients of Stone spaces
   $X=Sp(B)$ and $c_n:B$ are such that: 
   $$C_n = \{x:B\to 2\ |\ x(c_n) = 0\}.$$ 
   Then the set of maps $B\to 2$ sending all $c_n$ to $0$ is given by: 
-  $$Sp(B/\{c_n\ |\ n:\N\}) \simeq \bigcap_{n:\N} C_n = \emptyset .$$
+  $$Sp(B/(c_n)_{n:\N})%\ |\ n:\N\}) 
+  \simeq \bigcap_{n:\N} C_n = \emptyset .$$
   Hence 
 %  $0=_{B/(\neg c_n)_{n:\N}}1$ 
-  $0=1$ in $B/\{c_n\ |\ n:\N\}$, 
+  $0=1$ in $B/(c_n)_{n:\N}$ %\ |\ n:\N\}$, 
   and there is some $k:\N$ with 
   $\bigvee_{n\leq k} c_n = 1$, which also means that: 
-  $$\emptyset = Sp(B/\{c_n\ |\ n\leq k\})  \simeq \bigcap_{n\leq k} C_n .$$
+  $$\emptyset = Sp(B/(c_n)_{n\leq k}) %\ |\ n\leq k\})  
+  \simeq \bigcap_{n\leq k} C_n $$
+  as required.
 \end{proof}
 
 \begin{corollary}\label{ChausMapsPreserveIntersectionOfClosed}
@@ -105,9 +108,11 @@ This means that compact Hausdorff spaces are precisely quotients of Stone spaces
 Let $A\subseteq X$ be a subtype of a compact Hausdorff space. 
 Let $p:S\to X$ be a surjective map with $S:\Stone$. Then:
 \begin{itemize}
-  \item $A$ is closed if and only if it can be written as $\bigcap_{n:\N} p(D_n)$
+  \item $A$ is closed iff %if and only if 
+    it can be written as $\bigcap_{n:\N} p(D_n)$
 for some $D_n\subseteq S$ decidable. 
-  \item $A$ is open if and only if it can be written as $\bigcup_{n:\N} \neg p(D_n)$
+  \item $A$ is open iff %if and only if 
+    it can be written as $\bigcup_{n:\N} \neg p(D_n)$
 for some $D_n\subseteq S$ decidable.
 \end{itemize}  
 \end{corollary}
@@ -115,17 +120,26 @@ for some $D_n\subseteq S$ decidable.
   The characterization of closed sets follows from characterization (ii) in \Cref{StoneClosedSubsets}, 
   \Cref{CompactHausdorffClosed} 
   and \Cref{ChausMapsPreserveIntersectionOfClosed}. 
-  The characterization of open sets then follows from \Cref{rmkOpenClosedNegation} and \Cref{ClosedMarkov}.
+%  The characterization of open sets 
+  The rest then follows from \Cref{rmkOpenClosedNegation} and \Cref{ClosedMarkov}.
 \end{proof}
-
-\begin{corollary}
-  Any $X:\Chaus$ is second countable (has a topological basis which is countable). 
-\end{corollary}
-\begin{proof}
-  By \Cref{CompactHausdorffTopology}, a basis is given by the images of the decidable subsets of some $S:\Stone$. 
-  By \cref{ODiscBAareBoole}, we have that $2^S$ is overtly discrete so we have a surjection $\N\to 2^S$.
-  \end{proof}
-
+%
+\begin{remark}
+  For $S:\Stone$, there is a surjection $\N\twoheadrightarrow 2^S$. 
+  It follows that for any $X:\CHaus$ there is a surjection from $\N$ to a basis of $X$. 
+  Classically this means that $X$ is second countable. 
+\end{remark}
+%It follows that compact Hausdorff spaces are second countable:
+%\begin{corollary}
+%  Any $X:\Chaus$ is has a topological basis which is countable.
+%\end{corollary}
+%\begin{proof}
+%  By \Cref{CompactHausdorffTopology}, 
+%  a basis is given by the images of the decidable subsets of some $S:\Stone$. 
+%  By \cref{ODiscBAareBoole}, $2^S$ is 
+%  overtly discrete so we have a surjection $\N\to 2^S$.
+%  \end{proof}
+%
 \begin{lemma}\label{CHausSeperationOfClosedByOpens}
   Let $X:\CHaus$, and let $A,B:X\to \Closed$ be disjoint. 
   Then there exist $U,V:X\to \Open$ disjoint with $A\subseteq U, B\subseteq V$, 
