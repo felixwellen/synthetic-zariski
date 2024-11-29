@@ -1,31 +1,31 @@
 \begin{definition}
-  A type $X$ is called compact Hausdorff space if there exists some $S:\Stone$ and some 
-  equivalence relation $\_\sim\_ : S\times S \to \Closed$ such that $X \simeq S /_\sim$. 
-  We denote $\CHaus$ for the type of compact Hausdorff spaces. 
-\end{definition} 
+  A type $X$ is called a compact Hausdorff space if its identity types are closed propositions and there exists some $S:\Stone$ and a surjection $S\to X$.
+\end{definition}
+
+This means that compact Hausdorff spaces are precisely quotients of Stone spaces by closed equivalence relations.
 
 \subsection{Topology on compact Hausdorff spaces}
 
 \begin{lemma}\label{CompactHausdorffClosed}
-  Let $X:\CHaus$ be given as $X=S/_\sim$ with quotient map $q:S\twoheadrightarrow X$.
-  Then $A\subseteq X$ is closed if and only if it is the image of a closed in $S$ under $q$. 
+  Let $X:\CHaus$ with $S:\Stone$ and a surjective map $p:S\twoheadrightarrow X$.
+  Then $A\subseteq X$ is closed if and only if it is the image of a closed in $S$ under $p$. 
 \end{lemma}
 \begin{proof}
 %  If $A$ is closed, then it's pre-image under any map is also closed. 
 %  In particular for $q:S\to X$ the quotient map, $q^{-1}(A)$ is closed. 
-  As $q$ is surjective, we have $q(q^{-1}(A)) = A$.
-  If $A$ is closed, so is $q^{-1}(A)$ and 
+  As $q$ is surjective, we have $p(p^{-1}(A)) = A$.
+  If $A$ is closed, so is $p^{-1}(A)$ and 
   hence $A$ is the image of a closed subtype of $S$. 
   Conversely, let $B\subseteq S$ be closed. 
 %  Then for any $s:S$, the subtype $\{t:S| B(s) \wedge s \sim t\} \subseteq S$ is closed. 
 %  Hence by 
   Define $A'\subseteq S$ by 
-  $$A'(s) := \exists_{t:S} (B(t) \wedge s \sim t).$$
-  As $B$ and $\sim$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
-  we have that $A'$  is closed. 
-  Also $A'$ respects $\sim$, hence induces a map $A: X\to \Closed$.
-  Furthermore, $A'(s) \leftrightarrow (q(s)\in q(B))$. 
-  Hence $A=q(B)$. 
+  $$A'(s) := \exists_{t:S} (B(t) \wedge p(s) = p(t)).$$
+  As $B$ and $p(s) = p(t)$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
+  we have that $A'$ is closed. 
+  Also $A'$ factors through $p$ as a map $A: X\to \Closed$.
+  Furthermore, $A'(s) \leftrightarrow (p(s)\in p(B))$. 
+  Hence $A=p(B)$. 
 %  Therefore $A(x)$ iff $x$ is in the image of $B$. 
 \end{proof}
 
@@ -132,7 +132,7 @@ for some $D_n\subseteq S$ decidable.
   and $B\cap U = A \cap V = \emptyset$. 
 \end{lemma}
 \begin{proof}
-  Let $q:S\to X$ be a projection map presenting $X$.
+  Let $q:S\to X$ be a surjective map with $S:\Stone$.
   As $q^{-1}(A), q^{-1}(B)$ are closed, 
   by \Cref{StoneSeperated}, there is some $D:S \to 2$ such that
   $q^{-1}(A) \subseteq D, q^{-1}(B) \subseteq \neg D$. 
