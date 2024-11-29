@@ -11,7 +11,7 @@ Assume $X:\Chaus$, then $2^X$ is countably presented.
 %First we choose $S\to X$ surjective with $S$ Stone and prove that $2^X$ is an open subalgebra of $2^S$.
 %
   This induces an injection of Boolean algebras $2^X \hookrightarrow 2^S$.
-  Note that $a:S\to 2$ lies in $2^X$ iff %for all $s,t:S$, 
+  Note that $a:S\to 2$ lies in $2^X$ if and only if: %for all $s,t:S$, 
   $$\forall_{s,t:S}\ q(s) =_X q(t) \to a(s) =_2a(t).$$
   As equality in $X$ is closed and equality in $2$ is decidable, so \Cref{ImplicationOpenClosed}
   tells us that the implication is open for every $s,t:S$. 
@@ -63,24 +63,16 @@ For all $X:\CHaus$ with $x:X$, we have that $Q_x$ is a countable intersection of
 \end{proof}
 
 \begin{lemma}\label{ConnectedComponentConnected}
-Assume $X:\Chaus$ with $x:X$. Then any map $Q_x\to 2$ is constant.
+Assume $X:\Chaus$ with $x:X$. Then any map in $Q_x\to 2$ is constant.
 \end{lemma}
 \begin{proof}
 Assume given a separation $Q_x = A\cup B$ with $A,B$ disjoint and decidable in $Q_x$. Assume $x\in A$. 
-%We will show $B=\emptyset$. 
-%
 By \Cref{ConnectedComponentClosedInCompactHausdorff}, $Q_x\subseteq X$ is closed. 
 Using \Cref{ClosedTransitive}, it follows that $A,B\subseteq X$ are closed and disjoint.
 By \Cref{CHausSeperationOfClosedByOpens} there exist $U,V$ disjoint open such that $A\subseteq U$ and $B\subseteq V$. 
-%
 By \Cref{ConnectedComponentSubOpenHasDecidableInbetween} we have a decidable $D$ such that $Q_x\subseteq D\subseteq U\cup V$. 
-Note that $D\cap U = D \cap (\neg V):=E$ is clopen, hence decidable by \Cref{ClopenDecidable}.
-Remark that $x\in E$, hence $B\subseteq Q_x \subseteq E$ but $B \cap E = \emptyset$, hence $B=\emptyset$. 
-%Then we define $E = D\cap U$. 
-%We have that $E$ is open, it is closed as $E=D\cap \neg V$, therefore it is decidable by \Cref{ClopenDecidable}.
-%
-%Then $Q_x\subset E$ with $E$ decidable and $B\cap E = \emptyset$. 
-%But then $Q_x\cap B = \emptyset$ and $B=\emptyset$.
+Note that $E := D\cap U = D \cap (\neg V)$ is clopen, hence decidable by \Cref{ClopenDecidable}.
+But $x\in E$, hence $B\subseteq Q_x \subseteq E$ but $B \cap E = \emptyset$, hence $B=\emptyset$. 
 \end{proof}
 
 \begin{lemma}\label{StoneCompactHausdorffTotallyDisconnected}
@@ -129,11 +121,6 @@ $$ f(x) = f\circ \pi_1(x,y) = f\circ \pi_1(x',y') = f(x')$$
 so that $x'\in Q_x$ and since $S$ is Stone by \Cref{StoneCompactHausdorffTotallyDisconnected} we have that $x=x'$.
 %
 Therefore we have $Q_{(x,y)}\subseteq \{x\}\times T(x)$. Assume $z,z':Q_{(x,y)}$, then for any map $g:T(x)\to 2$ we have that $g(z)=g(z')$ by \Cref{ConnectedComponentConnected}. Since $T(x):\Stone$, we conclude $z=z'$ by \Cref{StoneCompactHausdorffTotallyDisconnected}.
-%Therefore we have $Q_{(x,y)}\subseteq \{x\}\times T_{x}$. 
-%By \Cref{ConnectedComponentConnected} we have an inhabited 
-%connected subtype of a Stone space. 
-%Then any map $T_x\to 2$ is constant on $Q_{(x,y)}$ and by 
-%\Cref{StoneCompactHausdorffTotallyDisconnected} we conclude that it is a singleton.
 \end{proof}
 
 
