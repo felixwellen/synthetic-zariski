@@ -9,7 +9,7 @@ and one (WLPO) fails in our system.
 \begin{theorem}[The negation of the weak lesser principle of omniscience ($\neg$WLPO)]\label{NotWLPO}
   \begin{equation}
     \neg \forall_{\alpha:2^\N} 
-    ((\forall_{n:\N} \alpha(n) = 0 ) \vee \neg (\forall_{n:\N} \alpha(n) = 0))
+    ((\forall_{n:\N} \alpha_n = 0 ) \vee \neg (\forall_{n:\N} \alpha_n = 0))
   \end{equation}
 %  We cannot decide for general $\alpha:2^\N$, whether $\forall_{n:\mathbb N} \alpha(n) = 0$.
 %  It is not the case that the statement %There is no method which given $\alpha:2^\mathbb N$ decides whether 
@@ -18,7 +18,7 @@ and one (WLPO) fails in our system.
 \begin{proof}
 %  Such a decision method is a function 
   Assume $f:2^\mathbb N \to 2$ such that 
-  $f(\alpha) = 0$ if and only if $\forall_{n:\mathbb N} \alpha (n)= 0$. 
+  $f(\alpha) = 0$ if and only if $\forall_{n:\mathbb N} \alpha_n= 0$. 
   By \Cref{AxStoneDuality}, there is some $c:2[\N]$ with 
   $f(\alpha) = 0 \leftrightarrow \alpha(c) = 0$. 
   There exists $k:\N$ such that $c$ is expressed the generators $(g_n)_{n\leq k}$. 
@@ -33,19 +33,19 @@ and one (WLPO) fails in our system.
 \begin{theorem}[Markov's principle (MP)]\label{MarkovPrinciple}
   For $\alpha:\Noo$, we have that 
   \begin{equation}
-    (\neg (\forall_{n:\mathbb N} \alpha (n)= 0)) \to \Sigma_{n:\mathbb N} \alpha (n)= 1
+    (\neg (\forall_{n:\mathbb N} \alpha_n= 0)) \to \Sigma_{n:\mathbb N} \alpha_n= 1
   \end{equation}
 \end{theorem}
 \begin{proof}
-  By \Cref{ClosedPropAsSpectrum}, we have that $\neg(\forall_{n:\N} \alpha(n) = 0)$ implies that 
-  $Sp(2/(\alpha(n))_{n:\N}$ is empty. 
+  By \Cref{ClosedPropAsSpectrum}, we have that $\neg(\forall_{n:\N} \alpha_n = 0)$ implies that 
+  $Sp(2/(\alpha_n)_{n:\N}$ is empty. 
 %  We will show that the spectrum of $2/(\alpha(n))_{n:\N}$ is empty. 
 %  Suppose $x:2\to 2$, if  $x(\alpha(n)) = 0$, we get $\alpha(n) \neq 1$. 
 %  Thus if $\neg (\forall_{n:\N} \alpha(n) = 0$, we have $\neg Sp(2/(\alpha(n))_{n:\N})$.
-  Hence $2/(\alpha(n))_{n:\N}$ is trivial by \Cref{SpectrumEmptyIff01Equal}. 
-  Then there exists $k:\N$ such that $\bigvee_{i\leq k} \alpha(i) = 1$. 
-  As $\alpha(i) \in \{0,1\}$ and $\alpha(i) = 1$ for at most one $i:\N$, 
-  there exists an unique $n\in\mathbb N$ with $\alpha(n) = 1$. 
+  Hence $2/(\alpha_n)_{n:\N}$ is trivial by \Cref{SpectrumEmptyIff01Equal}. 
+  Then there exists $k:\N$ such that $\bigvee_{i\leq k} \alpha_i = 1$. 
+  As $\alpha_i = 1$ for at most one $i:\N$, 
+  there exists an unique $n:\mathbb N$ with $\alpha_n = 1$. 
 %  Assume $\neg (\forall_{n:\mathbb N} \alpha (n)= 0)$.
 %  It is sufficient to show that $2/\{\alpha(n)|n\in\N\}$ is the trivial Boolean algebra. 
 %  It will then follow that there is a finite subset $N_0\subseteq \N$ 
@@ -63,19 +63,19 @@ and one (WLPO) fails in our system.
 \begin{corollary}
   For $\alpha:2^\mathbb N$, we have that 
   \begin{equation}
-    (\neg (\forall_{n:\mathbb N} \alpha (n)= 0)) \to \Sigma_{n:\mathbb N} \alpha (n)= 1
+    (\neg (\forall_{n:\mathbb N} \alpha_n= 0)) \to \Sigma_{n:\mathbb N} \alpha_n= 1
   \end{equation}
 \end{corollary}
 \begin{proof}
-  Given $\alpha:2^\mathbb N$, consider the sequence $\alpha':\Noo$ satisfying $\alpha'(n) = 1$ iff 
-  $n$ is minimal with $\alpha(n) = 1$. Then apply the above theorem.
+  Given $\alpha:2^\mathbb N$, consider the sequence $\alpha':\Noo$ satisfying $\alpha'_n = 1$ if and only if
+  $n$ is minimal with $\alpha_n = 1$. Then apply the above theorem.
 \end{proof}
 
 \begin{theorem}[The lesser limited principle of omniscience (LLPO)]\label{LLPO}
   For $\alpha:\N_\infty$, 
   we have: 
   \begin{equation}\label{eqnLLPO}
-    \forall_{k:\N} \alpha(2k) = 0  \vee \forall_{k:\N} \alpha(2k+1) = 0
+    \forall_{k:\N} \alpha_{2k} = 0  \vee \forall_{k:\N} \alpha_{2k+1} = 0
   \end{equation}
 \end{theorem}
 \begin{proof}
@@ -122,8 +122,8 @@ and one (WLPO) fails in our system.
   there exists some $x:\Noo + \Noo$ such that $s(x) = \alpha$. 
   If $x = inl(\beta)$, 
   for any $k:\N$, we have that 
-  $$\alpha ({2k+1}) = s(x) ({2k+1}) = x(f(g_{2k+1})) = inl(\beta) (0,g_k)  = \beta(0) = 0.$$
-  Similarly, if $x = inr(\beta)$, we have $\alpha({2k}) = 0$ for all $k:\N$. 
+  $$\alpha_{2k+1} = s(x)_{2k+1} = x(f(g_{2k+1})) = inl(\beta) (0,g_k)  = \beta(0) = 0.$$
+  Similarly, if $x = inr(\beta)$, we have $\alpha_{2k} = 0$ for all $k:\N$. 
   %Thus \Cref{eqnLLPO} holds for $\alpha$.% as required. 
 \end{proof}
 %As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was non-trivial: 
@@ -136,15 +136,15 @@ as the following shows:
 \end{lemma}
 \begin{proof}
   Suppose $r:B_\infty \times B_\infty \to B_\infty$ is a retraction of $f$. 
-  Then $r(0,g_k) = g_{2k+1}, r(g_k,0) = g_{2k}$. 
-  Note that $r(0,1):B_\infty$ is expressable using only finitely many generators $(g_n)_{n\leq N}$
+  Then $r(0,g_k) = g_{2k+1}$ and $r(g_k,0) = g_{2k}$. 
+  %Note that $r(0,1):B_\infty$ is expressible using only finitely many generators $(g_n)_{n\leq N}$.
   Note that $r(0,1) \geq r(0,g_k) = g_{2k+1}$ for all $k:\N$. 
   As a consequence, $r(0,1)$ is of the form $\bigwedge_{i\in I} \neg g_i$ for some finite set $I$.
   %, and by \Cref{BinftyTermsWriting}, 
   %$r(0,1)$ corresponds to a cofinite subset of $\N$. % = \bigwedge_{i:I_0} \neg p_i$, where $i\leq N$ for $i\in I_0$. 
   By similar reasoning so is $r(1,0)$. % corresponds to a cofinite subset of $\N$. 
 %  But the intersection of cofinite subsets is cofinite, while 
-  But this contradicts
+  But this contradicts:
   $$r(0,1) \wedge r(1,0) = r( (1,0) \wedge (0,1)) = r(0,0) = 0$$
 %  which gives a contradiction. 
   Thus no retraction exists. 
