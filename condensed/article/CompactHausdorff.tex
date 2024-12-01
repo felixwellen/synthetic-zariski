@@ -7,8 +7,8 @@
 \subsection{Topology on compact Hausdorff spaces}
 
 \begin{lemma}\label{CompactHausdorffClosed}
-  Let $X:\CHaus$ with $S:\Stone$ and a surjective map $p:S\twoheadrightarrow X$.
-  Then $A\subseteq X$ is closed if and only if it is the image of a closed in $S$ under $p$. 
+  Let $X:\CHaus$ with $S:\Stone$ and a surjective map $q:S\twoheadrightarrow X$.
+  Then $A\subseteq X$ is closed if and only if it is the image of a closed subset of $S$ by $q$. 
 \end{lemma}
 \begin{proof}
 %  If $A$ is closed, then it's pre-image under any map is also closed. 
@@ -24,7 +24,7 @@
   As $B(t)$ and $q(s) = q(t)$ are closed, by \Cref{ClosedCountableConjunction} and \Cref{InhabitedClosedSubSpaceClosed}, 
   we have that $A'$ is closed. 
   Also $A'$ factors through $q$ as a map $A: X\to \Closed$.
-  Furthermore, $A'(s) \leftrightarrow (q(s)\in p(B))$. 
+  Furthermore, $A'(s) \leftrightarrow (q(s)\in q(B))$. 
   Hence $A=q(B)$. 
 %  Therefore $A(x)$ iff $x$ is in the image of $B$. 
 \end{proof}
@@ -75,7 +75,7 @@
 \begin{proof}
   By \Cref{CompactHausdorffClosed} it is enough to prove the result when $X$ is Stone, and by \Cref{StoneClosedSubsets} we can assume $C_n$ decidable.
   So assume 
-  $X=Sp(B)$ and $c_n:B$ are such that: 
+  $X=Sp(B)$ and $c_n:B$ such that: 
   $$C_n = \{x:B\to 2\ |\ x(c_n) = 0\}.$$ 
   Then the set of maps $B\to 2$ sending all $c_n$ to $0$ is given by: 
   $$Sp(B/(c_n)_{n:\N})%\ |\ n:\N\}) 
@@ -105,23 +105,23 @@
 \end{proof}
 
 \begin{corollary}\label{CompactHausdorffTopology}
-Let $A\subseteq X$ be a subtype of a compact Hausdorff space. 
-Let $p:S\to X$ be a surjective map with $S:\Stone$. Then:
-\begin{itemize}
-  \item $A$ is closed iff %if and only if 
-    it can be written as $\bigcap_{n:\N} p(D_n)$
-for some $D_n\subseteq S$ decidable. 
-  \item $A$ is open iff %if and only if 
-    it can be written as $\bigcup_{n:\N} \neg p(D_n)$
-for some $D_n\subseteq S$ decidable.
-\end{itemize}  
+Let $A\subseteq X$ be a subset of a compact Hausdorff space and $p:S\twoheadrightarrow X$ be a surjective map with $S:\Stone$. Then $A$ is closed (resp. open) if and only if there exists a sequence $(D_n)_{n:\N}$ of decidable in $S$ such that $A = \bigcap_{n:\N} p(D_n)$ (resp. $A = \bigcup_{n:\N} \neg p(D_n)$).
+%\begin{itemize}
+%  \item $A$ is closed iff %if and only if 
+%    it can be written as $\bigcap_{n:\N} p(D_n)$
+%for some $D_n\subseteq S$ decidable. 
+%  \item $A$ is open iff %if and only if 
+%    it can be written as $\bigcup_{n:\N} \neg p(D_n)$
+%for some $D_n\subseteq S$ decidable.
+%\end{itemize}  
 \end{corollary}
 \begin{proof}
   The characterization of closed sets follows from characterization (ii) in \Cref{StoneClosedSubsets}, 
   \Cref{CompactHausdorffClosed} 
   and \Cref{ChausMapsPreserveIntersectionOfClosed}. 
 %  The characterization of open sets 
-  The rest then follows from \Cref{rmkOpenClosedNegation} and \Cref{ClosedMarkov}.
+  For open sets we use \Cref{rmkOpenClosedNegation} and
+  \Cref{ClosedMarkov}.
 \end{proof}
 %
 \begin{remark}
@@ -141,19 +141,19 @@ for some $D_n\subseteq S$ decidable.
 %  \end{proof}
 %
 \begin{lemma}\label{CHausSeperationOfClosedByOpens}
-  Let $X:\CHaus$, and let $A,B:X\to \Closed$ be disjoint. 
-  Then there exist $U,V$ disjoint open in $X$ with $A\subseteq U$ and $B\subseteq V$. 
+ Assume $X:\CHaus$ and $A,B\subseteq X$ closed such that $A\cap B=\emptyset$. 
+  Then there exist $U,V\subseteq X$ open such that $A\subseteq U$, $B\subseteq V$ and $U\cap V=\emptyset$. 
 \end{lemma}
 \begin{proof}
   Let $q:S\to X$ be a surjective map with $S:\Stone$.
-  As $q^{-1}(A), q^{-1}(B)$ are closed, 
+  As $q^{-1}(A)$ and $q^{-1}(B)$ are closed, 
   by \Cref{StoneSeperated}, there is some $D:S \to 2$ such that
   $q^{-1}(A) \subseteq D, q^{-1}(B) \subseteq \neg D$. 
-  Note that $q(D), q(\neg D)$ are closed by \Cref{CompactHausdorffClosed}. 
-  Furthermore, as $q^{-1}(A) \cap \neg D  =\emptyset$, we have that 
-  $A\subseteq \neg q (\neg D)$. As $A\cap B = \emptyset$, we have that 
-  $A\subseteq \neg q (\neg D) \cap \neg B:= U$.
-  Similarly, $B\subseteq \neg  q (D) \cap \neg A:= V$. 
-  Then $U$ and $V$ are disjoint because $\neg q(D)\cap \neg q(\neg D) \subset \neg (g(D)\cup q(\neg D)) = \neg X = \emptyset$.
+  Note that $q(D)$ and $q(\neg D)$ are closed by \Cref{CompactHausdorffClosed}. 
+  As $q^{-1}(A) \cap \neg D  =\emptyset$, we have that 
+  $A\subseteq \neg q(\neg D)$. As $A\cap B = \emptyset$, we have that 
+  $A\subseteq U:= \neg q(\neg D) \cap \neg B$.
+  Similarly, $B\subseteq V:=\neg  q(D) \cap \neg A$. 
+  Then $U$ and $V$ are disjoint because $\neg q(D)\cap \neg q(\neg D) \subset \neg (q(D)\cup q(\neg D)) = \neg X = \emptyset$.
 \end{proof}
 
