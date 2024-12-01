@@ -179,7 +179,7 @@ This means that \v{C}ech cohomology does not depend on $S$.
   Recall from \Cref{def-cs-Interval} that 
   there is a binary relation $\sim_n$ on $2^n=:\I_n$ such that 
   $(2^n,\sim_n)$ is equivalent to  $(\mathrm{Fin}(2^n),\lambda x,y.\ |x-y|\leq 1)$
-  and for $\alpha,\beta:2^\N$ we have $cs(\alpha) = cs(\beta) \leftrightarrow 
+  and for $\alpha,\beta:2^\N$ we have $(cs(\alpha) = cs(\beta)) \leftrightarrow 
   \left(\forall_{n:\N}\alpha|_n \sim_n \beta|_n\right)$. 
 \end{remark}
 
@@ -194,16 +194,10 @@ with the obvious boundary maps.
 \end{lemma}
 
 \begin{proof}
-It is clear that the map $\Z\to \Z^{\I_n}$ is injective as $\I_n$ is inhabited, so the sequence is exact at $\Z$.
+It is clear that the map $\Z\to \Z^{\I_n}$ is injective as $\I_n$ is inhabited, so the sequence is exact at $\Z$. Assume a cocycle $\alpha:\Z^{\I_n}$, meaning that for all $u,v:\I_n$, if $u\sim_nv$ then $\alpha(u)=\alpha(v)$. Then by \cref{description-Cn-simn} we see that $\alpha$ is constant, so the sequence is exact at $\Z^{\I_n}$.
 
-Assume a cocycle $\alpha:\Z^{\I_n}$, meaning that for all $u,v:\I_n$, if $u\sim_nv$ then $\alpha(u)=\alpha(v)$. Then by \cref{description-Cn-simn} we see that $\alpha$ is constant, so the sequence is exact at $\Z^{\I_n}$.
-
-Assume a cocycle $\beta:\Z^{\I_n^{\sim2}}$, meaning that for all $u,v,w:\I_n$ such that $u\sim_nv$, $v\sim_nw$ and $u\sim_nw$ we have that:
-\[\beta(u,v)+\beta(v,w) = \beta(u,w)\]
-which is equivalent to asking $\beta(u,u)=0$ and $\beta(u,v) = -\beta(v,u)$.
-
-Using \cref{description-Cn-simn} we can define: 
-\[\alpha(n) = \beta(0,1)+\cdots+\beta(n-1,n)\]
+Assume a cocycle $\beta:\Z^{\I_n^{\sim2}}$, meaning that for all $u,v,w:\I_n$ such that $u\sim_nv$, $v\sim_nw$ and $u\sim_nw$ we have that $\beta(u,v)+\beta(v,w) = \beta(u,w)$. %This is equivalent to asking $\beta(u,u)=0$ and $\beta(u,v) = -\beta(v,u)$.
+Using \cref{description-Cn-simn} we can define $\alpha(n) = \beta(0,1)+\cdots+\beta(n-1,n)$.
 Then for all $(m,n)$ such that $|m-n|\leq 1$ we have that:
 \begin{itemize} 
 \item If $m=n$ and then $\beta(m,m) = 0 = \alpha(m)-\alpha(m)$.
@@ -214,22 +208,17 @@ So $\beta$ is indeed a coboundary and the sequence is exact at $\Z^{\I_n^{\sim2}
 \end{proof}
 
 \begin{proposition}\label{cohomology-I}
-We have that:
-\[H^0(\I,\Z) = \Z\quad \quad \quad H^1(\I,\Z) = 0\]
+We have that $H^0(\I,\Z) = \Z$ and $H^1(\I,\Z) = 0$.
 \end{proposition}
 
 \begin{proof}
 Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover of $\I$ by: 
-\[T_x = \sum_{y:2^\N} x=_\I cs(y)\]
-Then for $l=2,3$ we have that:
-\[\mathrm{lim}_n\I_n^{\sim l} = \sum_{x:\I} T_x^l\]
-
-By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we know that:
+\[T_x = \Sigma_{y:2^\N} x=_\I cs(y)\]
+Then for $l=2,3$ we have that $\mathrm{lim}_n\I_n^{\sim l} = \sum_{x:\I} T_x^l$. By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we have an exact sequence:
 \[ 0\to \Z\to \mathrm{colim}_n \left(\Z^{\I_n}\right) \to \mathrm{colim}_n \left(\Z^{\I_n^{\sim2}}\right)\to \mathrm{colim}_n \left(\Z^{\I_n^{\sim3}}\right)\]
-is exact, but by \cref{scott-continuity} this sequence is equivalent to:
-\[ 0\to \Z\to \prod_{x:\I}\Z^{T_x} \to  \prod_{x:\mathbb{I}}\Z^{T_x^2} \to  \prod_{x:\mathbb{I}}\Z^{T_x^3}\]
-So it being exact implies that:
-\[\check{H}^0(\I,T,\Z) = \Z \quad \quad \quad \check{H}^1(\I,T,\Z) = 0\]
+By \cref{scott-continuity} this sequence is equivalent to:
+\[ 0\to \Z\to \Pi_{x:\I}\Z^{T_x} \to  \Pi_{x:\mathbb{I}}\Z^{T_x^2} \to  \Pi_{x:\mathbb{I}}\Z^{T_x^3}\]
+So it being exact implies that $\check{H}^0(\I,T,\Z) = \Z$ and $\check{H}^1(\I,T,\Z) = 0$.
 We conclude by \cref{cech-eilenberg-0-agree} and \cref{cech-eilenberg-1-agree}.
 \end{proof}
 
@@ -251,7 +240,7 @@ By \cref{cohomology-I}, from $H^0(\I,\Z)=\Z$ we get that the map $\Z\to \Z^\I$ i
 \end{proof}
 
 \begin{lemma}\label{continuously-path-connected-contractible}
-Assume $X$ a pointed type such that for all $x:X$ we have $f:\I\to X$ such that $f(0)=*$ and $f(1)=x$. Then $X$ is $\I$-contractible.
+Assume $X$ a type with $x:X$ such that for all $y:X$ we have $f:\I\to X$ such that $f(0)=x$ and $f(1)=y$. Then $X$ is $\I$-contractible.
 \end{lemma}
 
 \begin{proof}
@@ -259,15 +248,11 @@ Assume $X$ a pointed type such that for all $x:X$ we have $f:\I\to X$ such that 
 %\[\eta_X:X\to L_\I(X)\] 
 %is surjective. Indeed its fiber are $\I$-contractible, but for any type $F$ we have a map:
 %\[L_\I(F) \to L_\mathbb{F}(\propTrunc{F}) = \propTrunc{F}\] 
-For all $x:X$ we get a map $f:\I\to X\to L_\I(X)$ such that $f(0) = [*]$ and $f(1)=[x]$. Since $L_\I(X)$ is $\I$-local this means that:
-\[\prod_{x:X}[*]=[x]\]
-We conclude:
-\[\prod_{x:L_\I(X)}[*]=x\]
-by applying the elimination principle for the modality.
+For all $y:X$ we get a map $g:\I\to X\to L_\I(X)$ such that $g(0) = [x]$ and $g(1)=[y]$. Since $L_\I(X)$ is $\I$-local this means that $\prod_{x:X}[*]=[x]$. We conclude $\prod_{y:L_\I(X)}[x]=y$ by applying the elimination principle for the modality.
 \end{proof}
 
 \begin{corollary}\label{R-I-contractible}
-We have that $\R$ and $\mathbb{D}^2\colonequiv\{(x,y):\mathbb R\vert x^2+y^2\leq 1\}$ are $\I$-contractible.
+We have that $\R$ and $\mathbb{D}^2\colonequiv\{x,y:\mathbb R\ \vert\ x^2+y^2\leq 1\}$ are $\I$-contractible.
 \end{corollary}
 
 \begin{proposition}\label{shape-S1-is-BZ}
@@ -275,21 +260,21 @@ We have that $L_\I(\R/\Z) = B\Z$.
 \end{proposition}
 
 \begin{proof}
-As for any group quotient, the fibers of the map $\R\to\R/\Z$ are $\Z$-torsor, se we have an induced pullback square:
+As for any group quotient, the fibers of the map $\R\to\R/\Z$ are $\Z$-torsors, se we have an induced pullback square:
 \begin{center}
 \begin{tikzcd}
 \R\ar[r]\ar[d] & 1\ar[d] \\
 \R/\Z\ar[r] & B\Z
 \end{tikzcd}
 \end{center}
-Now we check that the bottom map is an $\I$-localisation. Since $B\Z$ is $\I$-local by \cref{BZ-I-local} it is enough to check that its fibers are $\I$-contractible. Since $B\Z$ is connected it is enough to check $\R$ is $\I$-contractible, but this is \cref{R-I-contractible}.
+Now we check that the bottom map is an $\I$-localisation. Since $B\Z$ is $\I$-local by \cref{BZ-I-local}, it is enough to check that its fibers are $\I$-contractible. Since $B\Z$ is connected it is enough to check that $\R$ is $\I$-contractible, but this is \cref{R-I-contractible}.
 \end{proof}
 
 \begin{remark}
 By \cref{BZ-I-local}, for any $X$ we have that $H^1(X,\Z) = H^1(L_{\I}(X),\Z)$, so that by \cref{shape-S1-is-BZ} we have that $H^1(\R/\Z,\Z) = H^1(B\Z,\Z) = \Z$.
 \end{remark}
 
-We omit the proof that $\mathbb{S}^1\colonequiv\{(x,y):\R\vert x^2+y^2=1\}$ is equivalent to $\R/\Z$.
+We omit the proof that $\mathbb{S}^1\colonequiv\{x,y:\R\ \vert\ x^2+y^2=1\}$ is equivalent to $\R/\Z$.
 The equivalence can be constructed using trigonometric functions, which exists by \cite{Bishop}[Prop 4.12].
 
 \begin{proposition}
@@ -298,7 +283,7 @@ The map $\mathbb{S}^1\to \mathbb{D}^2$ has no retraction.
 \end{proposition}
 
 \begin{proof}
-Otherwise by \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction of $B\Z\to 1$, so $B\Z$ would be contractible.
+By \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction of $B\Z\to 1$, so $B\Z$ would be contractible.
 \end{proof}
 
 \begin{theorem}[Intermediate value theorem]
@@ -328,6 +313,6 @@ Otherwise by \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a re
   For any $x:\mathbb{D}^2$ we set $d_x\colonequiv x-f(x)$, so we have that one of the coordinates of $d_x$ is invertible.
   Let $H_x(t)\colonequiv f(x) + t\cdot d_x $ be the line through $x$ and $f(x)$, where ``$+$'' and ``$\cdot$'' are defined by extending the usual definitions on $\I$.
   The intersections of $H_x$ and $\partial\mathbb{D}^2=\mathbb{S}^1$ are given by the solutions of an equation quadratic in $t$. By invertibility of one of the coordinates of $d_x$, there is exactly one solution with $t> 0$.
-  We donte the intersection with $r(x)$ and the resulting map $r:\mathbb D^2\to\mathbb S^1$ has the property that it preserves $\mathbb{S}^1$.
+  We denote this intersection by $r(x)$ and the resulting map $r:\mathbb D^2\to\mathbb S^1$ has the property that it preserves $\mathbb{S}^1$.
   Then $r$ is a retraction from $\mathbb{D}^2$ onto its boundary $\mathbb{S}^1$, which is a contradiction by \Cref{no-retraction}.
 \end{proof}
