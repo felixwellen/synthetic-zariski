@@ -9,8 +9,10 @@ Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define $\check{C
 \end{tikzcd}
 \end{equation}
 with the usual boundary maps:
-\[d_0(\alpha)_x(u,v) = \alpha_x(v)-\alpha_x(u)\]
-\[d_1(\beta)_x(u,v,w) = \beta_x(v,w) - \beta_x(u,w) + \beta_x(u,w)\]
+\begin{eqnarray}
+d_0(\alpha)_x(u,v) &=& \alpha_x(v)-\alpha_x(u)\\
+d_1(\beta)_x(u,v,w) &=& \beta_x(v,w) - \beta_x(u,w) + \beta_x(u,w)
+\end{eqnarray}
 \end{definition}
 
 \begin{definition}
@@ -21,21 +23,14 @@ Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define its \v{C}
 We call elements of $\mathrm{ker}(d_1)$ cocycles and elements of $\mathrm{im}(d_0)$ coboundaries.
 \end{definition}
 
-This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{C}(S,T,A)$ is exact. Now we give three very general lemmas about \v{C}ech complexes.
+This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{C}(S,T,A)$ is exact. Now we give three general lemmas about \v{C}ech complexes.
 
 \begin{lemma}\label{section-exact-cech-complex}
-Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$ with $t:\prod_{x:S}T_x$, then we have that $\check{C}(S,T,A)$ is exact.
+Assume given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$ with $t:\prod_{x:S}T_x$. Then $\check{C}(S,T,A)$ is exact.
 \end{lemma}
 
 \begin{proof}
-Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^2}$ such that for all $x:S$ and $u,v,w:T_x$ we have that:
-\[\beta_x(u,v)+\beta_x(v,w) = \beta_x(u,w)\]
-Define:
-\[\alpha:\prod_{x:S}A_x^{T_x}\]
-\[\alpha_x(u) = \beta_x(t_x,u)\]
-Then for all $x:S$ and $u,v:T_x$ we have that:
-\[\alpha_x(v)-\alpha_x(u) = \beta_x(t_x,v) - \beta_x(t_x,u) = \beta_x(u,t_x)+\beta_x(t_x,v) = \beta_x(u,v)\]
-so that $\beta$ is a coboundary.
+Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^2}$ such that for all $x:S$ and $u,v,w:T_x$ we have that $\beta_x(u,v)+\beta_x(v,w) = \beta_x(u,w)$. We define $\alpha:\prod_{x:S}A_x^{T_x}$ by $\alpha_x(u) = \beta_x(t_x,u)$. Then for all $x:S$ and $u,v:T_x$ we have that $d_0(\alpha)_x(u,v) =  \beta_x(t_x,v) - \beta_x(t_x,u) = \beta_x(u,v)$ so that $\beta$ is a coboundary.
 \end{proof}
 
 \begin{lemma}\label{canonical-exact-cech-complex}
@@ -43,37 +38,19 @@ Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we have that $\chec
 \end{lemma}
 
 \begin{proof}
-Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^3}$ such that for all $x:S$ and $u,v,w,t:T_x$ we have that:
-\[\beta_x(u,v,t)+\beta_x(v,w,t) = \beta_x(u,w,t)\]
-Define:
-\[\alpha:\prod_{x:S}A_x^{T_x^2}\]
-\[\alpha_x(u,t) = \beta_x(t,u,t)\]
-Then for all $x:S$ and $u,v,t:T_x$ we have that:
-\[\alpha_x(v,t)-\alpha_x(u,t) = \beta_x(t,v,t) - \beta_x(t,u,t) = \beta_x(u,t,t)+\beta_x(t,v,t) = \beta_x(u,v,t)\]
-so that $\beta$ is a coboundary.
+Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^3}$ such that for all $x:S$ and $u,v,w,t:T_x$ we have that $\beta_x(u,v,t)+\beta_x(v,w,t) = \beta_x(u,w,t)$. We define $\alpha:\prod_{x:S}A_x^{T_x^2}$ by $\alpha_x(u,t) = \beta_x(t,u,t)$. Then for all $x:S$ and $u,v,t:T_x$ we have that $d_0(\alpha)_x(u,v,t) = \beta_x(t,v,t) - \beta_x(t,u,t) = \beta_x(u,v,t)$ so that $\beta$ is a coboundary.
 \end{proof}
 
 \begin{lemma}\label{exact-cech-complex-vanishing-cohomology}
-Given $S:\Type$ with $T:S\to \Type$ such that $\prod_{x:S}\|T_x\|$ and $A:S\to\mathrm{Ab}$, assume that $\check{C}(S,T,A)$ is exact.
-Then given $\alpha:\prod_{x:S}BA_x$ with
-\[\beta: \prod_{x:S} (\alpha(x) = *)^{T_x}\]
-we can conclude $\alpha = *$.
+Assume given $S:\Type$ with $T:S\to \Type$ such that $\prod_{x:S}\propTrunc{T_x}$ and $A:S\to\mathrm{Ab}$ such that $\check{C}(S,T,A)$ is exact.
+Then given $\alpha:\prod_{x:S}BA_x$ with $\beta:\prod_{x:S} (\alpha(x) = *)^{T_x}$, we can conclude $\alpha = *$.
 \end{lemma}
 
 \begin{proof}
-We define:
-\[g : \prod_{x:S} A_x^{T_x^2}\]
-\[g_x(u,v) = \beta_x(u)^{-1}\cdot\beta_x(v)\] 
-It is a cocycle in the \v{C}ech complex, so that by exactness there is $f:\prod_{x:S}A_x^{T_x}$ such that for all $x:S$ and $u,v:T_x$ we have that:
-\[g_x(u,v)=f_x(v)\cdot f_x(u)^{-1}\]
-Then we define:
-\[\beta' : \prod_{x:S}(\alpha(x)=*)^{T_x}\]
-\[\beta'_x(u) = \beta_x(u)\cdot f_x(u)\]
-so that for all $x:S$ and $u,v:T_x$ we have that:
-\[\beta'_x(v)^{-1}\cdot\beta'_x(u) = f_x(v)^{-1}\cdot\beta_x(v)^{-1}\cdot\beta_x(u)\cdot f_x(u) = \mathrm{refl}\]
-so that:
-\[\beta'_x(u)=\beta'_x(v)\]
-and this means that $\beta'$ factors through $S$, giving a proof of $\alpha = *$.
+We define $g : \prod_{x:S} A_x^{T_x^2}$ by $g_x(u,v) = \beta_x(u)^{-1}\cdot\beta_x(v)$.
+It is a cocycle in the \v{C}ech complex, so that by exactness there is $f:\prod_{x:S}A_x^{T_x}$ such that for all $x:S$ and $u,v:T_x$ we have that $g_x(u,v)=f_x(u)^{-1}\cdot f_x(v)$.
+Then we define $\beta' : \prod_{x:S}(\alpha(x)=*)^{T_x}$ by $\beta'_x(u) = \beta_x(u)\cdot f_x(u)^{-1}$
+so that for all $x:S$ and $u,v:T_x$ we have that $\beta'_x(u) = \beta'_x(v)$ is equivalent to $f_x(u)^{-1}\cdot f_x(v) = \beta_x(u)^{-1}\cdot\beta_x(v)$, which holds by definition. Therefore $\beta'$ factors through $S$, giving a proof of $\alpha = *$.
 \end{proof}
 
 
@@ -85,8 +62,8 @@ and this means that $\beta'$ factors through $S$, giving a proof of $\alpha = *$
 %%\rednote{Should probably be moved elsewhere}
 %
 \begin{lemma}\label{finite-approximation-surjection-stone}
-Let $S:\Stone$ and $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$.
-There exists a sequence of finite types $(S_k)_{k:\N}$ with limit $S$, 
+Assume given $S:\Stone$ and $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$.
+Then there exists a sequence of finite types $(S_k)_{k:\N}$ with limit $S$ 
 %\rednote{Should the maps in the sequence be mentioned? (Maps $p_k$ are mentioned below)}
 %\begin{equation}
 %\begin{tikzcd}
@@ -95,7 +72,7 @@ There exists a sequence of finite types $(S_k)_{k:\N}$ with limit $S$,
 %\end{equation}
 %such that: 
 %\[\mathrm{lim}_kS_k = S\]
-a compatible sequence of families of finite types $T_k$ over $S_k$
+and a compatible sequence of families of finite types $T_k$ over $S_k$
 with $\prod_{x:S_k}\propTrunc{T_k(x)}$ and 
 $\mathrm{lim}_k\left(\sum_{x:S_k}T_k(x)\right) = \sum_{x:S}T(x)$. 
 %
@@ -113,21 +90,19 @@ $\mathrm{lim}_k\left(\sum_{x:S_k}T_k(x)\right) = \sum_{x:S}T(x)$.
 \end{lemma}
 
 \begin{proof}
-  This follows from \Cref{ProFiniteMapsFactorization} and \Cref{stone-sigma-closed}
+  This follows from \Cref{ProFiniteMapsFactorization} and \Cref{stone-sigma-closed}.
 %\rednote{ \@ Hugo This follows from \Cref{ProFiniteMapsFactorization} and \Cref{stone-sigma-closed} 
 %  and considering the surjection $(\Sigma_{x:S} T(x)) \to S$, but we discussed whether it might be easier to 
 %  refactor the proof where you use the above or make a remark after \Cref{stone-sigma-closed}}
 \end{proof}
 
 \begin{lemma}\label{cech-complex-vanishing-stone}
-Given $S:\Stone$ with $T:S\to\Stone$, if $\prod_{x:S}\propTrunc{T_x}$ then we have that $\check{C}(S,T,\Z)$ is exact.
+Assume given $S:\Stone$ with $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T_x}$. Then we have that $\check{C}(S,T,\Z)$ is exact.
 \end{lemma}
 
 
 \begin{proof}
-We apply \cref{finite-approximation-surjection-stone} to get $S_k$ and $T_k$ finite. Then by \cref{scott-continuity} we have that:
-\[\mathrm{colim}_k \check{C}(S_k,T_k,\Z) = \check{C}(S,T,\Z)\]
-and each of the $\check{C}(S_k,T_k,\Z)$ is exact by \cref{section-exact-cech-complex} so we can conclude since a sequential colimit of exact sequence is exact.
+We apply \cref{finite-approximation-surjection-stone} to get $S_k$ and $T_k$ finite. Then by \cref{scott-continuity} we have that $\check{C}(S,T,\Z)$ is the sequential colimit of the $\check{C}(S_k,T_k,\Z)$. By \cref{section-exact-cech-complex} we have that each of the $\check{C}(S_k,T_k,\Z)$ is exact, and a sequential colimit of exact sequences is exact.
 \end{proof}
 
 \begin{lemma}\label{eilenberg-stone-vanish}
@@ -135,15 +110,11 @@ Given $S:\Stone$, we have that $H^1(S,\Z) = 0$.
 \end{lemma}
 
 \begin{proof}
-Assume given a map $\alpha:S\to B\Z$. We use local choice to get $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T_x}$ and:
-\[\beta:\prod_{x:S}(\alpha(x)=*)^{T_x}\]
-and then apply \cref{cech-complex-vanishing-stone} and \cref{exact-cech-complex-vanishing-cohomology} to conclude.
+Assume given a map $\alpha:S\to B\Z$. We use local choice to get $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T_x}$ with $\beta:\prod_{x:S}(\alpha(x)=*)^{T_x}$. Then we conclude by \cref{cech-complex-vanishing-stone} and \cref{exact-cech-complex-vanishing-cohomology}.
 \end{proof}
 
 \begin{corollary}\label{stone-commute-delooping}
-For any $S:\Stone$ the canonical map:
-\[B(\Z^S) \to (B\Z)^S\]
-is an equivalence.
+For any $S:\Stone$ the canonical map $B(\Z^S) \to (B\Z)^S$ is an equivalence.
 \end{corollary}
 
 
@@ -156,16 +127,12 @@ A \v{C}ech cover consists of $X:\CHaus$ and $S:X\to\Stone$ such that $\prod_{x:X
 By definition any compact Hausdorff type has a \v{C}ech cover.
 
 \begin{lemma}\label{cech-eilenberg-0-agree}
-Given a \v{C}ech cover $(X,S)$, we have that:
-\[H^0(X,\Z) = \check{H}^0(X,S,\Z)\]
+Given a \v{C}ech cover $(X,S)$, we have that $H^0(X,\Z) = \check{H}^0(X,S,\Z)$.
 \end{lemma}
 
 \begin{proof}
-By definition an element in $\check{H}^0(X,S,\Z)$ is a map:
-\[f:\prod_{x:X}\Z^{S_x}\]
-such that for all $u,v:S_x$ we have $f(u)=f(v)$, which is equivalent to a map:
-\[\prod_{x:X}\Z^{\propTrunc{S_x}}\]
-since $\Z$ is a set, and since the $S_x$ are merely inhabited this is the same as $\Z^X$.
+By definition an element in $\check{H}^0(X,S,\Z)$ is a map $f:\prod_{x:X}\Z^{S_x}$
+such that for all $u,v:S_x$ we have $f(u)=f(v)$. Since $\Z$ is a set and the $S_x$ are merely inhabited, this is equivalent to $\Z^X$.
 \end{proof}
 
 \begin{lemma}\label{eilenberg-exact}
@@ -176,9 +143,7 @@ Given a \v{C}ech cover $(X,S)$ we have an exact sequence:
 \begin{proof}
 We use the long exact cohomology sequence associated to:
 \[0 \to \Z \to \Z^{S_x} \to \Z^{S_x}/\Z\to 0\]
-so that we just need $H^1(X,\lambda x.\Z^{S_x}) = 0$ to conclude. But by \cref{stone-commute-delooping} we have that:
-\[H^1(X,\lambda x.\Z^{S_x}) = H^1\left(\sum_{x:X}S_x,\Z\right)\]
-which vanishes by \cref{eilenberg-stone-vanish}.
+We just need $H^1(X,\lambda x.\Z^{S_x}) = 0$ to conclude. But by \cref{stone-commute-delooping} we have that $H^1(X,\lambda x.\Z^{S_x}) = H^1\left(\sum_{x:X}S_x,\Z\right)$ which vanishes by \cref{eilenberg-stone-vanish}.
 \end{proof}
 
 \begin{lemma}\label{cech-exact}
@@ -193,15 +158,14 @@ But since $\check{H}^1(X,\lambda x.\Z^{S_x}) = 0$ by \cref{canonical-exact-cech-
 \end{proof}
 
 \begin{theorem}\label{cech-eilenberg-1-agree}
-Given a \v{C}ech cover $(X,S)$, we have that:
-\[H^1(X,\Z) = \check{H}^1(X,S,\Z)\]
+Given a \v{C}ech cover $(X,S)$, we have that $H^1(X,\Z) = \check{H}^1(X,S,\Z)$
 \end{theorem}
 
 \begin{proof}
 We apply \cref{cech-eilenberg-0-agree}, \cref{eilenberg-exact} and \cref{cech-exact}.
 \end{proof}
 
-In particular this means that the \v{C}ech cohomology $\check{H}^1(X,S,\Z)$ does not depend on $S$.
+This means that \v{C}ech cohomology does not depend on $S$.
 
 \subsection{Cohomology of the interval}
 %
