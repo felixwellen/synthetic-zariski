@@ -1,6 +1,6 @@
 \subsection{Anti-equivalence of $\Boole$ and $\Stone$}
-By \Cref{AxStoneDuality}, $Sp$ is an embedding from $\Boole$ to any universe of types. 
-We denote it's image by $\Stone$. 
+By \Cref{AxStoneDuality}, $Sp$ is an embedding of $\Boole$ into any universe of types. 
+We denote its image by $\Stone$. 
 
 \begin{remark}\label{SpIsAntiEquivalence}
 Stone spaces will take over the role of affine scheme from \cite{draft}, 
@@ -30,7 +30,7 @@ the spectrum of the opposite diagram.
   $T\twoheadrightarrow S$ and an arrow $T\to E$ making the following diagram commute:
     \begin{equation}\begin{tikzcd}
       T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
-      S  \arrow[r, "f"] & F
+      S  \arrow[r, swap,"f"] & F
     \end{tikzcd}\end{equation}  
 \end{remark}
 
@@ -38,23 +38,17 @@ the spectrum of the opposite diagram.
   For $B:\Boole$, we have $0=_B1$ iff $\neg Sp(B)$.
 \end{lemma}
 \begin{proof}
-  If $0=_B1$, there is no map $B\to 2$ respecting both $0$ and $1$, thus $\neg Sp(B)$. 
+  If $0=_B1$, there is no map $B\to 2$ preserving both $0$ and $1$, thus $\neg Sp(B)$. 
   Conversely, if $\neg Sp(B)$, then 
   $Sp(B)$ equals $\bot$, the spectrum of the trivial Boolean algebra. 
   As $Sp$ is an embedding, $B$ is equivalent to the trivial Boolean algebra, hence $0=_B1$. 
 \end{proof}
+
 \begin{corollary}\label{LemSurjectionsFormalToCompleteness}
  For $S:\Stone$, we have that $\neg \neg S \to || S ||$
 \end{corollary}
 \begin{proof}
-  Let $B:\Boole$ and suppose $\neg \neg Sp(B)$. 
-  Let $f:2 \to B$. If $f(0) = f(1)$ then $0=1$ in $B$, thus $\neg Sp(B)$, 
-  contradicting our assumption. Hence $f(0)\neq f(1)$. 
-  Hence by case distinction on $2$ we can show that $f$ is injective. 
-%  $f x = f y$ implies $ x= y$. 
-%  Thus $f$ is injective and 
-  By \Cref{SurjectionsAreFormalSurjections} the map $Sp(B) \to Sp(2)$ is surjective, 
-  thus $Sp(B)$ is merely inhabited. 
+  Let $B:\Boole$ and suppose $\neg \neg Sp(B)$. By \Cref{SpectrumEmptyIff01Equal} we have that $0\not=_B1$, therefore the morphism $2\to B$ is injective. By \Cref{SurjectionsAreFormalSurjections} the map $Sp(B) \to Sp(2)$ is surjective, thus $Sp(B)$ is merely inhabited. 
 \end{proof} 
 
 %\begin{corollary}\label{MoreConcreteCompleteness}
