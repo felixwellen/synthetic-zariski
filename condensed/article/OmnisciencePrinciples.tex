@@ -17,16 +17,16 @@ and one (WLPO) fails in our system.
 \end{theorem}
 \begin{proof}
 %  Such a decision method is a function 
-  Let $f:2^\mathbb N \to 2$ such that 
-  $f(\alpha) = 0$ iff $\forall_{n:\mathbb N} \alpha (n)= 0$. 
-  By \Cref{AxStoneDuality}, there is some $c:C$ with 
+  Assume $f:2^\mathbb N \to 2$ such that 
+  $f(\alpha) = 0$ if and only if $\forall_{n:\mathbb N} \alpha (n)= 0$. 
+  By \Cref{AxStoneDuality}, there is some $c:2[\N]$ with 
   $f(\alpha) = 0 \leftrightarrow \alpha(c) = 0$. 
-  We can express $c$ using finitely many generators $(g_n)_{n\leq N}$. 
+  There exists $k:\N$ such that $c$ is expressed the generators $(g_n)_{n\leq k}$. 
   Now consider $\beta,\gamma:2^\N$ given by 
   $\beta(g_n) = 0$ for all $n:\mathbb N$ and
-  $\gamma(g_n) = 0$ iff $n\leq N$. 
-  As $\beta, \gamma$ are equal on $(g_n)_{n\leq N}$, we have $\beta(c) = \gamma(c)$. 
-  However, $f(\beta) = 0$ and $f(\gamma) = 1$, giving a contradiction as required. 
+  $\gamma(g_n) = 0$ if and only if $n\leq k$. 
+  As $\beta, \gamma$ are equal on $(g_n)_{n\leq k}$, we have $\beta(c) = \gamma(c)$. 
+  However, $f(\beta) = 0$ and $f(\gamma) = 1$, giving a contradiction. 
 %  We thus have a contradiction, thus a decision method as required doesn't exist. 
 \end{proof}
 
@@ -43,7 +43,7 @@ and one (WLPO) fails in our system.
 %  Suppose $x:2\to 2$, if  $x(\alpha(n)) = 0$, we get $\alpha(n) \neq 1$. 
 %  Thus if $\neg (\forall_{n:\N} \alpha(n) = 0$, we have $\neg Sp(2/(\alpha(n))_{n:\N})$.
   Hence $2/(\alpha(n))_{n:\N}$ is trivial by \Cref{SpectrumEmptyIff01Equal}. 
-  Then there is a finite subset $N_0\subseteq \N$ with $\bigvee_{i:N_0} \alpha(i) = 1$. 
+  Then there exists $k:\N$ such that $\bigvee_{i\leq k} \alpha(i) = 1$. 
   As $\alpha(i) \in \{0,1\}$ and $\alpha(i) = 1$ for at most one $i:\N$, 
   there exists an unique $n\in\mathbb N$ with $\alpha(n) = 1$. 
 %  Assume $\neg (\forall_{n:\mathbb N} \alpha (n)= 0)$.
@@ -99,11 +99,11 @@ and one (WLPO) fails in our system.
 %  $f(p_n) \wedge f(p_m) = (0,0)$ when $n\neq m$, thus $f$ is well-defined. 
   We claim that $f$ is injective. 
   If $I\subseteq \N$, write 
-  $ I_0 =\{k\in \N | 2k \in I\}, 
-    I_1 =\{k\in \N | 2k+1 \in I\}
+  $ I_0 =\{k\in \N\ |\ 2k \in I\}, 
+    I_1 =\{k\in \N\ |\ 2k+1 \in I\}
   $.
   Recall that any $x:B_\infty$ is of the form 
-  $\bigvee_{i\in I} g_i$ or $\bigwedge_{i\in I} \neg g_i$. 
+  $\bigvee_{i\in I} g_i$ or $\bigwedge_{i\in I} \neg g_i$ for some finite set $I$. 
   \begin{itemize}
     \item If $x = \bigvee_{i\in I} g_i$, then 
       $f(x) = (\bigvee_{i\in I_0}g_{i}, \bigvee_{i\in I_1}g_i)$. 
@@ -119,12 +119,12 @@ and one (WLPO) fails in our system.
   $f$ corresponds to a surjection 
   $s:\Noo + \Noo \to \Noo$.
   Thus for $\alpha : \Noo$, 
-  there exists some $x:\Noo + \Noo$ such that $s x = \alpha$. 
+  there exists some $x:\Noo + \Noo$ such that $s(x) = \alpha$. 
   If $x = inl(\beta)$, 
   for any $k:\N$, we have that 
   $$\alpha ({2k+1}) = s(x) ({2k+1}) = x(f(g_{2k+1})) = inl(\beta) (0,g_k)  = \beta(0) = 0.$$
   Similarly, if $x = inr(\beta)$, we have $\alpha({2k}) = 0$ for all $k:\N$. 
-  Thus \Cref{eqnLLPO} holds for $\alpha$.% as required. 
+  %Thus \Cref{eqnLLPO} holds for $\alpha$.% as required. 
 \end{proof}
 %As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was non-trivial: 
 %The use of \Cref{FormalSurjectionsAreSurjections}, and hence of propositional completeness, 
@@ -132,17 +132,17 @@ and one (WLPO) fails in our system.
 The surjection $s:\Noo + \Noo \to \Noo$ as above does not have a section 
 as the following shows:
 \begin{lemma}
-  The function $f$  as in \Cref{eqnLLPOProofMap} does not have a retraction. 
+  The function $f$ defined in \Cref{eqnLLPOProofMap} does not have a retraction. 
 \end{lemma}
 \begin{proof}
   Suppose $r:B_\infty \times B_\infty \to B_\infty$ is a retraction of $f$. 
   Then $r(0,g_k) = g_{2k+1}, r(g_k,0) = g_{2k}$. 
   Note that $r(0,1):B_\infty$ is expressable using only finitely many generators $(g_n)_{n\leq N}$
   Note that $r(0,1) \geq r(0,g_k) = g_{2k+1}$ for all $k:\N$. 
-  As a consequence, $r(0,1)$ cannot be of the form $\bigvee_{i\in I} g_i$
+  As a consequence, $r(0,1)$ is of the form $\bigwedge_{i\in I} \neg g_i$ for some finite set $I$.
   %, and by \Cref{BinftyTermsWriting}, 
   %$r(0,1)$ corresponds to a cofinite subset of $\N$. % = \bigwedge_{i:I_0} \neg p_i$, where $i\leq N$ for $i\in I_0$. 
-  By similar reasoning so does $r(1,0)$. % corresponds to a cofinite subset of $\N$. 
+  By similar reasoning so is $r(1,0)$. % corresponds to a cofinite subset of $\N$. 
 %  But the intersection of cofinite subsets is cofinite, while 
   But this contradicts
   $$r(0,1) \wedge r(1,0) = r( (1,0) \wedge (0,1)) = r(0,0) = 0$$

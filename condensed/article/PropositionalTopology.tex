@@ -9,15 +9,7 @@ We think of open and closed propositions respectively as countable disjunctions 
 Such a definition is universe-independent, and can be made internally.
 
 \begin{definition}
-  We define the types $\Open, \Closed$ of open and closed propositions as follows:
-  \begin{itemize}
-    \item 
-    A proposition $P$ is open iff there merely exists some $\alpha:2^\N$ such that 
-      $P \leftrightarrow \exists_{n:\mathbb N} \alpha(n) = 0$. 
-    \item 
-    A proposition $P$ is closed iff there merely exists some $\alpha:2^\N$ such that 
-      $P \leftrightarrow \forall_{n:\mathbb N} \alpha(n) = 0$. 
-  \end{itemize}
+A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such that $P \leftrightarrow \exists_{n:\mathbb N} \alpha(n) = 0$ (resp. $P \leftrightarrow \forall_{n:\mathbb N} \alpha(n) = 0$). We denote by $\Open$ and $\Closed$ the types of open and closed propositions.
 \end{definition}
 
 \begin{remark}\label{rmkOpenClosedNegation}
@@ -61,10 +53,10 @@ Such a definition is universe-independent, and can be made internally.
 \end{corollary}
 \begin{proof}
   If $P$ is open and closed, by \Cref{rmkOpenClosedNegation}, $\neg P$ is open.
-  By \Cref{OpenCountableDisjunction}, it follows $P\vee \neg P$ is open, 
-  hence 
-  equivalent to $\neg \neg (P \vee \neg P)$ by \Cref{rmkOpenClosedNegation}.
-  As the latter proposition is provable, we may conclude $P$ is decidable. 
+  By \Cref{OpenCountableDisjunction}, it follows that $P\vee \neg P$ is open, but open propositions are $\neg\neg$-stable by \Cref{rmkOpenClosedNegation} so we can conclude.
+%  hence 
+ % equivalent to $\neg \neg (P \vee \neg P)$ by \Cref{rmkOpenClosedNegation}.
+ % As the latter proposition is provable, we may conclude $P$ is decidable. 
 %  
 %  If $P$ is open and closed, $P\vee \neg P$ is open, hence
 %  equivalent to $\neg \neg (P \vee \neg P)$, which is provable. 
@@ -110,17 +102,18 @@ Such a definition is universe-independent, and can be made internally.
   $\neg \forall_{n:\N} P_n \leftrightarrow  \exists_{n:\N} \neg P_n$. 
 \end{lemma}
 \begin{proof}
-  It is always the case that $\exists_{n:\N}\neg P_n \to \neg \forall_{n:\N} P_n$. 
-  For the converse direction,
-  note that $\neg \exists_{n:\N} \neg P_n(x) \to \forall_{n:\N} \neg \neg P_n(x).$
-  By \Cref{rmkOpenClosedNegation}, $\neg \neg  P_n(x)\leftrightarrow P_n(x)$ for all $n:\N$. 
-  It follows that 
-  $\neg \forall_{n:\N} P_n(x)\to 
-  \neg \neg \exists_{n:\N} \neg P_n(x).$
-  As $\exists_{n:\N}\neg P_n(x)$ is a countable disjunction of open propositions, 
-  it is open by \Cref{OpenCountableDisjunction} and thus equivalent to 
-  $\neg\neg\exists_{n:\N} \neg P_n(x)$ by \Cref{rmkOpenClosedNegation}.
-  We conclude that $\neg \forall_{n:\N} P_n \to \exists_{n:\N} \neg P_n$ as required. 
+We have that $P_n$ is closed and and $\exists_{n:\N} \neg P_n$ is open by \Cref{OpenCountableDisjunction}, therefore both are $\neg\neg$-stable by \Cref{rmkOpenClosedNegation} and we can conclude.
+%It is always the case that $\exists_{n:\N}\neg P_n \to \neg \forall_{n:\N} P_n$. 
+  %For the converse direction,
+  %note that $\neg \exists_{n:\N} \neg P_n(x) \to \forall_{n:\N} \neg \neg P_n(x).$
+  %By \Cref{rmkOpenClosedNegation}, $\neg \neg  P_n(x)\leftrightarrow P_n(x)$ for all $n:\N$. 
+  %It follows that 
+  %$\neg \forall_{n:\N} P_n(x)\to 
+  %\neg \neg \exists_{n:\N} \neg P_n(x).$
+  %As $\exists_{n:\N}\neg P_n(x)$ is a countable disjunction of open propositions, 
+  %it is open by \Cref{OpenCountableDisjunction} and thus equivalent to 
+  %$\neg\neg\exists_{n:\N} \neg P_n(x)$ by \Cref{rmkOpenClosedNegation}.
+  %We conclude that $\neg \forall_{n:\N} P_n \to \exists_{n:\N} \neg P_n$ as required. 
 \end{proof} 
 
 %\begin{lemma}\label{OpenDependentSums}
