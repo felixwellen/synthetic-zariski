@@ -8,15 +8,15 @@
 
 
 \begin{definition}
-  We call a type overtly discrete iff 
+  We call a type overtly discrete if
   it is a sequential colimit of finite sets. 
 %  it can be described as 
 %  the colimit of an $(\N,\leq)$-indexed sequence of finite sets. 
 \end{definition} 
 \begin{remark}
   It follows from Corollary 7.7 of \cite{SequentialColimitHoTT} that 
-  overtly discrete types are sets, and the colimit can be defined as in set theory. 
-  Note that the type of overtly discrete types is independent on choice of universe, 
+  overtly discrete types are sets, and that the colimit can be defined as in set theory. 
+  The type of overtly discrete types is independent on a choice of universe, 
   so we can write $\ODisc$ for this type. 
 \end{remark}
   Using dependent choice, we have the following results: 
@@ -34,7 +34,7 @@
     For 
     $f:A\to B$ a sequential colimit of maps of finite sets $f_n:A_n \to B_n$, we have 
       that the factorisation $A \twoheadrightarrow Im(f) \hookrightarrow B$ is the 
-      sequential colimit of factorisations 
+      sequential colimit of the factorisations 
       $A_n \twoheadrightarrow Im(f_n) \hookrightarrow B_n$. 
     \end{lemma}
     
@@ -242,17 +242,21 @@
 %  take $f_n' = e_n$.
 %\end{proof}
 \subsection{Closure properties of $\ODisc$}
-\begin{remark}\label{ODiscFiniteColim}
-  As sequential colimits commute with finite colimits, 
-  and finite sets are closed under finite colimits,
-  $\ODisc$ is closed under finite colimits as well.
-\end{remark}
+
+%\begin{remark}\label{ODiscFiniteColim}
+%  As sequential colimits commute with finite colimits, 
+%  and finite sets are closed under finite colimits,
+%  $\ODisc$ is closed under finite colimits as well.
+%\end{remark}
+
+We can get the following result using \Cref{lemDecompositionOfColimitMorphisms} and dependent choice.
+
 \begin{lemma}\label{ODiscClosedUnderSequentialColimits}
   Overtly discrete types are closed under sequential colimits. 
 \end{lemma}
-\begin{proof}
-  By dependent choice and \Cref{lemDecompositionOfColimitMorphisms}.
-\end{proof}
+%\begin{proof}
+%  By dependent choice and \Cref{lemDecompositionOfColimitMorphisms}.
+%\end{proof}
 %\begin{proof}
 %  By applying \Cref{axDependentChoice} to \Cref{lemDecompositionOfColimitMorphisms}, 
 %  given a colimit of the sequence $A_i$, we can find a quarterplane of the form 
@@ -268,9 +272,13 @@
 %  The colimit of the above quarter-plane is also the colimit of the induced $(\N,\leq)$-indexed sequence $A_{j,j}$, 
 %  which is overtly discrete by definition. 
 %\end{proof}
-\begin{corollary}\label{OdiscSigma}
-  Overtly discrete types are closed under $\Sigma$. 
-\end{corollary}
+
+We have that $\Sigma$-types, identity types and propositional truncation commutes with sequential colimits (Theorem 5.1, Theorem 7.4 and Corollary 7.7 in \cite{SequentialColimitHoTT}). Then by closure of finite sets under these constructors, we can get the following: 
+
+\begin{lemma}\label{OdiscSigma}
+  Overtly discrete types are closed under $\Sigma$-type, identity type and propositional truncation.
+\end{lemma}
+
 %\begin{proof}
 %  Let $B$ be overtly discrete and $X:B \to \mathcal U$ be a 
 %  $B$-indexed family of overtly discrete types. 
@@ -281,10 +289,11 @@
 %  taking the colimit in $i$, we get $\Sigma_{b:B} X(b)$. 
 %  By the \Cref{ODiscClosedUnderSequentialColimits}, this is overtly discrete. 
 %\end{proof}
-\begin{remark}
-  Note that the sequential colimit commutes with the propositional truncation, thus for $B:\ODisc$, we have 
-  $||B||:\ODisc$. 
-\end{remark}
+
+%\begin{remark}
+%  Note that the sequential colimit commutes with the propositional truncation, thus for $B:\ODisc$, we have 
+%  $||B||:\ODisc$. 
+%\end{remark}
 
 
 
