@@ -3,8 +3,8 @@
   Let $A\subseteq S$ be a subset of a Stone space. The following are equivalent:
   \begin{enumerate}[(i)]
     \item There exists a map $\alpha:S \to 2^\N$ such that 
-      $A (x) \leftrightarrow \forall_{n:\N} \alpha_x(n) = 0$ for any $x:S$. 
-    \item There exists a countable family 
+      $A (x) \leftrightarrow \forall_{n:\N} \alpha_{x,n} = 0$ for any $x:S$. 
+    \item There exists a family 
       $(D_n)_{n:\N}$ 
       of decidable subsets of $S$ such that $A = \bigcap_{n:\N} D_n$. 
     \item There exists a Stone space $T$ and some embedding $T\to S$ which image is $A$
@@ -17,17 +17,18 @@
   \begin{itemize}
   \item 
     $(i)\leftrightarrow (ii)$. $D_n$ and $\alpha$ can be defined from each other by 
-     $D_n(x) \leftrightarrow (\alpha_x(n) = 0)$. Then observe that
+     $D_n(x) \leftrightarrow (\alpha_{x,n} = 0)$. Then observe that
      \begin{equation}
      x\in \bigcap_{n:\N} D_n \leftrightarrow 
-      \forall_{n:\mathbb N} (\alpha_x(n) = 0) 
+      \forall_{n:\mathbb N} (\alpha_{x,n} = 0) 
      \end{equation}
+     
    \item $(ii) \to (iii)$. Let $S=Sp(B)$. 
 %      By Stone duality, we have $d_n,~n:\N$ terms of $B$ such that $D_n = \{x:S| x(d_n) = 1\}$. 
 %      Let $C = B/(\neg d_n)_{n:\N}$.
 %      Then the map $Sp(C) \to S$ is as desired because
 %      $$Sp(C) = \{x:S| \forall_{n:\N} x(\neg d_n) =0\}  = \bigcap_{n:\N} D_n.$$
-      By \Cref{AxStoneDuality}, we have $(d_n)_{n:\N}$ terms of $B$ such that $D_n = \{x:S\ |\ x(d_n) = 0\}$. 
+      By \Cref{AxStoneDuality}, we have $(d_n)_{n:\N}$ in $B$ such that $D_n = \{x:S\ |\ x(d_n) = 0\}$. 
       Let $C = B/(d_n)_{n:\N}$.
       Then $Sp(C) \to S$ is as desired because:
       $$Sp(C) = \{x:S\ |\ \forall_{n:\N} x(d_n) =0\}  = \bigcap_{n:\N} D_n.$$
@@ -41,13 +42,10 @@
 %      \end{equation}
 %      Thus the image of $\iota$ is given by $\bigcap_{n:\N} D_n$. 
    \item $(iii) \to (iv)$. Immediate.
-   \item $(iv) \to (i)$. Assume $f:T\to S$ corresponds to $g:B\to C$ in $\Boole$. 
+   \item $(iv) \to (ii)$. Assume $f:T\to S$ corresponds to $g:B\to C$ in $\Boole$. 
      By \Cref{BooleEpiMono}, $f(T) = Sp(B/Ker(g))$, and 
 %     by \Cref{OdiscQuotientCountableByOpen}
-     there is a surjection $d:\N\to Ker(g)$. 
-     For $D_n$ corresponding to $d_n$, we have $Sp(B/Ker(g)) = \bigcap_{n:\N} D_n$. 
-%
-%
+     there is a surjection $d:\N\to Ker(g)$. Denote by $D_n$ the decidable subset of $S$ corresponding to $d_n$. Then we have that $Sp(B/Ker(g)) = \bigcap_{n:\N} D_n$. 
 %     Note that the factorization 
 %     $B\twoheadrightarrow B/Ker(g) \hookrightarrow C$ 
 %     corresponds to the factorization 
@@ -105,19 +103,17 @@
 %      as we untruncated our assumptions before we specified $x$. 
    \item $(i) \to (v)$. By definition.
    \item $(v) \to (iv)$.
-     As $A$ is closed, it corresponds to a map $a:S\to \Closed$. 
-     We can cover the closed propositions with Cantor space
-     by sending 
-     $\alpha \mapsto \forall_{n:\mathbb N} \alpha (n) = 0.$
+     %As $A$ is closed, it corresponds to a map $a:S\to \Closed$. 
+     We have a surjection $2^\N\to\Closed$ defined by $\alpha \mapsto \forall_{n:\mathbb N} \alpha_n = 0.$
      \Cref{AxLocalChoice} gives us that there merely exists $T, e, \beta_\cdot$ as follows:
      \begin{equation}
        \begin{tikzcd}
-         T \arrow[r,"\beta_\cdot"] \arrow[d, two heads,swap,"e"] & 2^\mathbb N 
-         \arrow[d,two heads, "\forall_{n:\mathbb N} (\cdot)n = 0"] \\
-         S \arrow[r,swap,"a"] & \Closed
+         T \arrow[r,"\beta"] \arrow[d, two heads,swap,"e"] & 2^\mathbb N 
+         \arrow[d,two heads] \\
+         S \arrow[r,swap,"A"] & \Closed
        \end{tikzcd} 
      \end{equation} 
-     Define $B(x) \leftrightarrow \forall_{n:\mathbb N} \beta_x(n) = 0$. 
+     Define $B(x) \leftrightarrow \forall_{n:\mathbb N} \beta_{x,n} = 0$. 
      As $(i) \to (iii)$ by the above, $B$ is the image of some Stone space. 
      Note that $A$ is the image of $B$, 
      thus $A$ is the image of some Stone space. 
@@ -178,15 +174,15 @@ The previous result implies that closed subtype of Stone spaces are Stone.
 %ImpliedByBooleEpiMono%\end{proof}
 
 \begin{lemma}\label{StoneSeperated}
-  If $S:\Stone $, and $F,G:S \to \Closed$ be such that $F\cap G = \emptyset$. 
+  Assume $S:\Stone $ with $F,G:S \to \Closed$ be such that $F\cap G = \emptyset$. 
   Then there exists a decidable subset $D:S \to 2$ such $F\subseteq D, G \subseteq \neg D$. 
 \end{lemma}
 \begin{proof}
 %  \rednote{Too shorten this (and some other proofs), I've removed some negations and pretended  $D:S\to 2$ is given by $\{x:S|x(d) = 0\}$ instead of $\{x:S|x(d) = 1\}$ }
   Assume $S = Sp(B)$. 
-  By \Cref{StoneClosedSubsets}, there exists sequences $f_n,g_n:B,~n:\N$ such that 
-  $x\in F$ iff $x(f_n) = 0$ for all $n:\N$ and 
-  $y\in G$ iff $y(g_m) = 0$ for all $m:\N$. 
+  By \Cref{StoneClosedSubsets}, for all $n:\N$ there is $f_n,g_n:B$ such that 
+  $x\in F$ if and only if $x(f_n) = 0$ for all $n:\N$ and 
+  $y\in G$ if and only if $y(g_m) = 0$ for all $m:\N$. 
 %  $x\in F$ iff $x(f_n) = 1$ for all $n:\N$ and 
 %  $y\in G$ iff $y(g_m) = 1$ for all $m:\N$. 
 %
