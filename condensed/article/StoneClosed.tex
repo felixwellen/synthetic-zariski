@@ -117,8 +117,8 @@
      As $(i) \to (iii)$ by the above, $B$ is the image of some Stone space. 
      Note that $A$ is the image of $B$, 
      thus $A$ is the image of some Stone space. 
-\end{itemize} 
-\end{proof} 
+     \end{itemize} 
+     \end{proof} 
 
 \begin{remark}\label{ClosedInStoneIsStone}
 %Using condition $(iii)$, 
@@ -181,14 +181,14 @@ The previous result implies that closed subtype of Stone spaces are Stone.
 %  \rednote{Too shorten this (and some other proofs), I've removed some negations and pretended  $D:S\to 2$ is given by $\{x:S|x(d) = 0\}$ instead of $\{x:S|x(d) = 1\}$ }
   Assume $S = Sp(B)$. 
   By \Cref{StoneClosedSubsets}, for all $n:\N$ there is $f_n,g_n:B$ such that 
-  $x\in F$ if and only if $x(f_n) = 0$ for all $n:\N$ and 
-  $y\in G$ if and only if $y(g_m) = 0$ for all $m:\N$. 
+  $x\in F$ if and only if $\forall_{n:\N}x(f_n) = 0$ and 
+  $y\in G$ if and only if $\forall_{n:\N}y(g_n) = 0$.
 %  $x\in F$ iff $x(f_n) = 1$ for all $n:\N$ and 
 %  $y\in G$ iff $y(g_m) = 1$ for all $m:\N$. 
 %
 %  Denote $R\subseteq B$ for $\{\neg f_n|n:\N\} \cup\{\neg g_n|n:\N\}$. 
-  Denote $R\subseteq B$ for $\{f_n|n:\N\} \cup\{g_n|n:\N\}$. 
-  Note that $Sp(B/R) = F \cap G=\emptyset$, so by \Cref{SpectrumEmptyIff01Equal}
+  Denote by $h$ the sequence define by $h_{2k}=f_k$ and $h_{2k+1}=g_k$.
+Then $Sp(B/(h_k)_{k:\N}) = F \cap G=\emptyset$, so by \Cref{SpectrumEmptyIff01Equal}
 %  Note that any $x:Sp(B/R)$ is such %gives a map $x:B\to 2$ such that
 %  $x(g_n)= x(f_n) = 1$ for all $n:\N$, hence $x\in F \cap G$. 
 %  As $F\cap G = \emptyset $, it follows that $Sp(B/R)$ is empty.
@@ -198,17 +198,16 @@ The previous result implies that closed subtype of Stone spaces are Stone.
 %  $$1 =_B \left(\left(\bigvee_{i\in I}  f_i\right) \vee \left(\bigvee_{j\in J}  g_j\right)\right).$$
   $1 =_B ((\bigvee_{i\in I}  f_i) \vee (\bigvee_{j\in J}  g_j)).$
 %
-  Let $y\in F$, then $y(f_i) = 0$ for all $i\in I$, hence
+  If $y\in F$, then $y(f_i) = 0$ for all $i\in I$, hence
 %  $$1 =_2 y(1) = y\left(\bigvee_{j\in J} g_j\right).$$
   $y(\bigvee_{j\in J} g_j) = 1 $
-  And if $x\in G$, we have 
+ If $x\in G$, we have 
 %  $x\left(\bigvee_{j\in J} g_j\right) = 0$. 
   $x(\bigvee_{j\in J} g_j) = 0$. 
   Thus we can define the required $D$ by 
-  $D(x) \leftrightarrow x(\bigvee_{j\in J} g_j) = 0$.
+  $D(x) \leftrightarrow x(\bigvee_{j\in J} g_j) = 1$.
   %$$D = \{x:S | x\left(\bigvee_{j\in J} g_j \right) = 0\}$$.
   %, we have $F\subseteq D, G\subseteq \neg D$. 
-  
 %  Let $y\in G$. Then $y(\neg g_j) = 0$ for all $j \in J$. 
 %  Let $y\in G$. Then $y(g_j) = 0$ for all $j \in J$. 
 %  Hence 
