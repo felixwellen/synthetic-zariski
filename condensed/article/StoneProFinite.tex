@@ -5,41 +5,40 @@
 %  By \Cref{ODiscBAareBoole} and \Cref{ODiscFiniteColim}, $\Boole$ is closed under finite colimits.
 %  By \Cref {SpIsAntiEquivalence}  it follows that the category of Stone spaces is closed under finite limits. 
 %\end{remark}
-Here we present Stone spaces as limits of $(\N,\geq)$-indexed sequences of finite sets. 
+Here we present Stone spaces as sequential limits of finite sets. 
 This is the perspective taken in Condensed Mathematics \cite{Condensed,Dagur,Scholze}.
 Some of the results in this section are specific versions of the axioms used in 
 \cite{bc24}. A full generalization is part of future work. 
 
 \begin{lemma}
-  Any $S:\Stone$ can be described as the limit of some $(\N,\geq)$-indexed sequence of 
-  finite sets. 
+  Any $S:\Stone$ can is merely a sequential limit of finite sets. 
 \end{lemma}
 \begin{proof}
-  By \Cref{SpIsAntiEquivalence}, \Cref{BooleIsODisc} %and \Cref{ODiscClosedUnderSequentialColimits}, 
-  for $B:\Boole$, we have that $Sp(B)$ is the limit of the $Sp(B_n)$, which are finite sets. 
+  Assume $B:\Boole$. By \Cref{SpIsAntiEquivalence} and \Cref{BooleIsODisc}, %and \Cref{ODiscClosedUnderSequentialColimits}, 
+ we have that $Sp(B)$ is the sequential limit of the $Sp(B_n)$, which are finite sets. 
 \end{proof}
 
 \begin{lemma}\label{StoneAreProfinite}
-  The limit of some $(\N,\geq)$-indexed sequence $S_n$ of finite sets is a Stone space. 
+  A sequential limit of finite sets is a Stone space. 
 \end{lemma}
 \begin{proof}
-  For finite sets, we have that $Sp(2^{S_n}) = S_n$, hence each $S_n$ is Stone. 
+  %For finite sets, we have that $Sp(2^{S_n}) = S_n$, hence each $S_n$ is Stone. 
   By \Cref{SpIsAntiEquivalence} and %\Cref{BooleIsODisc}
   \Cref{ODiscClosedUnderSequentialColimits}, 
-  $\Stone$ is closed under sequential limits.
+  we have that $\Stone$ is closed under sequential limits, and finite sets are Stone.
 %  As $\Boole$ is closed under sequential colimits, \Cref{SpIsAntiEquivalence} gives that the 
 %  sequential limit of Stone space is Stone, hence $S$ is Stone. 
 \end{proof}
 
-\begin{remark}
-  For all $S:\Stone$, we shall denote $S_n$ any underlying sequence of finite sets 
-  and whenever $n\leq m$, we denote $\pi_m^n$ for the maps $S_m \to S_n$, 
-  and $\pi_n:S\to S_n$. 
-\end{remark}
+%\begin{remark}
+ % For all $S:\Stone$, we shall denote by $S_n$ any sequence of finite sets which limit is $S$. 
+ % Whenever $n\leq m$, we denote $\pi_m^n$ for the maps $S_m \to S_n$, 
+ % and $\pi_n:S\to S_n$. 
+%\end{remark}
 
 \begin{remark}\label{StoneClosedUnderPullback}\label{ProFiniteMapsFactorization}
-  Dually to \Cref{ODiscFiniteColim} and \Cref{ODiscClosedUnderSequentialColimits}, 
-  Stone spaces are closed under finite and sequential limits.
+  %Dually to \Cref{ODiscFiniteColim} and \Cref{ODiscClosedUnderSequentialColimits}, 
+  %Stone spaces are closed under $\Sigma$-types and sequential limits.
 %  Dually to \Cref{lemDecompositionOfColimitMorphisms} 
 %  maps of Stone spaces are sequential limits of maps of finite sets. 
   By \Cref{lemDecompositionOfColimitMorphisms}, 
@@ -57,21 +56,21 @@ Some of the results in this section are specific versions of the axioms used in
 \end{remark}
 
 \begin{lemma}\label{ScottFiniteCodomain}
-  For $S:\Stone$ and $k:\N$, we have that $\mathrm{Fin}(k)^S$ is the colimit of $\mathrm{Fin}(k)^{S_n}$. 
+  For $(S_n)_{n:\N}$ a sequence of finite type with $S=\lim_nS_n$ and $k:\N$, we have that $\mathrm{Fin}(k)^{S}$ is the sequential colimit of $\mathrm{Fin}(k)^{S_n}$.
 \end{lemma}
 \begin{proof}
-  By \Cref{SpIsAntiEquivalence} we have $\mathrm{Fin}(k)^S = \Hom(2^{\mathrm{Fin}(k)},2^S)$.
-  Since $2^{\mathrm{Fin}(k)}$ is finite, we have that $\Hom(2^{\mathrm{Fin}(k)},\_)$ commutes with sequential colimits, therefore $\Hom(2^{\mathrm{Fin}(k)},2^S)$ is the colimit of $\Hom(2^{\mathrm{Fin}(k)},2^{S_n})$. 
+  By \Cref{SpIsAntiEquivalence} we have $\mathrm{Fin}(k)^S = \Hom(2^{k},2^S)$.
+  Since $2^{k}$ is finite, we have that $\Hom(2^k,\_)$ commutes with sequential colimits, therefore $\Hom(2^{k},2^S)$ is the colimit of $\Hom(2^{k},2^{S_n})$. 
   By applying \Cref{SpIsAntiEquivalence} again, %these types are 
   the latter type is $\mathrm{Fin}(k)^{S_n}$.% as required. 
 \end{proof}
 
 \begin{lemma}\label{MapsStoneToNareBounded}
-  For $S:\Stone$ and $f:S \to \N$, there merely exists some $k:\N$ such that $f$ factors through $\mathrm{Fin}(k)$. 
+  For $S:\Stone$ and $f:S \to \N$, there exists some $k:\N$ such that $f$ factors through $\mathrm{Fin}(k)$. 
 \end{lemma}
 \begin{proof}
   For each $n:\N$, the fiber of $f$ over $n$ is a decidable subset $f_n:S \to 2$. 
-  We must have that $Sp(2^S/(f_n)_{n:\N}) = \bot$, hence there exists some $N:\N$ with 
+  We must have that $Sp(2^S/(f_n)_{n:\N}) = \bot$, hence there exists some $k:\N$ with 
   $\bigvee_{n\leq k} f_n =_{2^S} 1 $. 
   It follows that $f(s)\leq k$ for all $s:S$ as required. 
 \end{proof}
@@ -89,15 +88,12 @@ Some of the results in this section are specific versions of the axioms used in
 %  $f(S)\subseteq e(\N_{\leq N})$. 
 %\end{proof} 
 \begin{corollary}\label{scott-continuity}
-  For $S:\Stone$, we have that $\N^S$ is the colimit of $\N^{S_n}$. 
+  For $(S_n)_{n:\N}$ a sequence of finite type with $S=\lim_nS_n$, we have that $\N^S$ is the sequential colimit of $\N^{S_n}$. 
 \end{corollary}
 \begin{proof}
-  By \Cref{MapsStoneToNareBounded} we have that any map $S\to \N$ factors as 
-  $S \to Fin(k)\hookrightarrow \N$ for some $k:\N$, so that $\N^S$ is the colimit of $\mathrm{Fin}(k)^S$. 
-  By \Cref{ScottFiniteCodomain}, such a map is uniquely determined by 
-  compatible maps $S_n \to Fin(k)$, hence by compatible maps $S_n \to \N$, 
-  as required. 
-\end{proof} 
+  By \Cref{MapsStoneToNareBounded} we have that $\N^S$ is the sequential colimit of $\mathrm{Fin}(k)^S$. 
+  By \Cref{ScottFiniteCodomain}, $\mathrm{Fin}(k)^S$ is the sequential colimit of the $\mathrm{Fin}(k)^{S_n}$ and we can swap the sequential colimits to conclude.
+  \end{proof} 
 
 
 
@@ -115,11 +111,11 @@ Some of the results in this section are specific versions of the axioms used in
 %\end{proof}
 
 \begin{corollary}\label{TruncationStoneClosed}
-  For all $S:\Stone$, the proposition $||S||$ is closed. 
+  For all $S:\Stone$, the proposition $\propTrunc{S}$ is closed. 
 \end{corollary}
 \begin{proof}
   By \Cref{SpectrumEmptyIff01Equal}, $\neg S$ is equivalent to $0=_{2^S} 1$, which is open by \Cref{BooleIsODisc} and \Cref{OdiscQuotientCountableByOpen}. 
-  Hence $\neg \neg S$ is a closed proposition, and by \Cref{LemSurjectionsFormalToCompleteness}, so is $||S||$. 
+  Hence $\neg \neg S$ is a closed proposition, and by \Cref{LemSurjectionsFormalToCompleteness}, so is $\propTrunc{S}$. 
 \end{proof}
 %\begin{remark}\label{ExplicitTruncationStoneClosed}
 %  \rednote{New check later}
@@ -141,9 +137,8 @@ Some of the results in this section are specific versions of the axioms used in
 For all $S:\Stone$ and $s,t:S$, the proposition $s=t$ is closed. 
 \end{lemma}
 \begin{proof}
-  Suppose $S= Sp(B)$ and let $G$ be generators for $B$. 
-  Note that $s=t$ iff $s(g) =_2 t(g)$ for all $g:G$. 
-  As $G$ is countable, and equality in $2$ is decidable, 
-  $s=t$ is a countable conjunction of decidable propositions, hence 
-  closed. 
+  Suppose $S= Sp(B)$ and let $G$ be a countable set of generators for $B$. 
+  Then $s=t$ if and only if $s(g) = t(g)$ for all $g:G$. 
+  So $s=t$ is a countable conjunction of decidable propositions, hence 
+  closed.
 \end{proof}
