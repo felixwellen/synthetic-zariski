@@ -20,7 +20,7 @@
 %  Then for any $s:S$, the subtype $\{t:S| B(s) \wedge s \sim t\} \subseteq S$ is closed. 
 %  Hence by 
   Define $A'\subseteq S$ by 
-  \[A'(s) := \exists_{t:S} (B(t) \wedge q(s) = q(t)).\]
+  \[A'(s) = \exists_{t:S} (B(t) \wedge q(s) = q(t)).\]
   Note that $B(t)$ and $q(s) = q(t)$ are closed. 
   Hence by \Cref{InhabitedClosedSubSpaceClosed}, $A'$ is closed. 
 %  Also $A'$ factors through $q$ as a map $A: X\to \Closed$.
@@ -109,7 +109,7 @@
 \end{proof}
 
 \begin{corollary}\label{CompactHausdorffTopology}
-Let $A\subseteq X$ be a subset of a compact Hausdorff space and $p:S\twoheadrightarrow X$ be a surjective map with $S:\Stone$. Then $A$ is closed (resp. open) if and only if there exists a sequence $(D_n)_{n:\N}$ of decidable in $S$ such that $A = \bigcap_{n:\N} p(D_n)$ (resp. $A = \bigcup_{n:\N} \neg p(D_n)$).
+Let $A\subseteq X$ be a subset of a compact Hausdorff space and $p:S\twoheadrightarrow X$ be a surjective map with $S:\Stone$. Then $A$ is closed (resp. open) if and only if there exists a sequence $(D_n)_{n:\N}$ of decidable subsets of $S$ such that $A = \bigcap_{n:\N} p(D_n)$ (resp. $A = \bigcup_{n:\N} \neg p(D_n)$).
 %\begin{itemize}
 %  \item $A$ is closed iff %if and only if 
 %    it can be written as $\bigcap_{n:\N} p(D_n)$
@@ -152,12 +152,10 @@ Let $A\subseteq X$ be a subset of a compact Hausdorff space and $p:S\twoheadrigh
   Let $q:S\to X$ be a surjective map with $S:\Stone$.
   As $q^{-1}(A)$ and $q^{-1}(B)$ are closed, 
   by \Cref{StoneSeperated}, there is some $D:S \to 2$ such that
-  $q^{-1}(A) \subseteq D, q^{-1}(B) \subseteq \neg D$. 
+  $q^{-1}(A) \subseteq D$ and $q^{-1}(B) \subseteq \neg D$. 
   Note that $q(D)$ and $q(\neg D)$ are closed by \Cref{CompactHausdorffClosed}. 
-  As $q^{-1}(A) \cap \neg D  =\emptyset$, we have that 
-  $A\subseteq \neg q(\neg D)$. As $A\cap B = \emptyset$, we have that 
-  $A\subseteq U:= \neg q(\neg D) \cap \neg B$.
-  Similarly, $B\subseteq V:=\neg  q(D) \cap \neg A$. 
-  Then $U$ and $V$ are disjoint because $\neg q(D)\cap \neg q(\neg D) \subset \neg (q(D)\cup q(\neg D)) = \neg X = \emptyset$.
+  We define $U = \neg q(\neg D) \cap \neg B$ and $V=\neg  q(D) \cap \neg A$. As $q^{-1}(A) \cap \neg D  =\emptyset$, we have that 
+  $A\subseteq \neg q(\neg D)$. As $A\cap B = \emptyset$, we have that $A\subseteq \neg B$ so $A\subseteq U$. Similarly $B\subseteq V$. 
+  Then $U$ and $V$ are disjoint because $\neg q(D)\cap \neg q(\neg D) \subseteq \neg (q(D)\cup q(\neg D)) = \neg X = \emptyset$.
 \end{proof}
 
