@@ -26,6 +26,8 @@ A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such
   Every decidable proposition is both open and closed.
 %  and in \Cref{ClopenDecidable} we shall see the converse. 
 \end{remark}
+\rednote{Phrase the following lemmas as one big lemma, 
+and use them silently without reference, also we should just state $\neg\neg$-stability instead of referring to the above all the time. }
 
 \begin{lemma}\label{ClosedCountableConjunction}
   Closed propositions are closed under countable conjunctions.
@@ -44,28 +46,19 @@ A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such
   $\forall_{n:\N} P_n$. 
   Hence the countable conjunction of closed propositions is closed. 
 \end{proof} 
-
+Using similar arguments, we can show the following two lemmas:
 \begin{lemma}\label{OpenCountableDisjunction}
   Open propositions are closed under countable disjunctions. 
 \end{lemma}
+\begin{lemma}\label{OpenFiniteConjunction}
+Open propositions are closed under finite conjunctions. 
+\end{lemma}
+%\begin{proof}
+%We use \Cref{ClosedFiniteDisjunction} and the fact that $\neg(P\lor Q) \leftrightarrow \neg P \land \neg Q$.
+%\end{proof}
 %\begin{proof}
 %  Similar to the previous lemma. 
 %\end{proof}
-
-\begin{corollary}\label{ClopenDecidable}
-  If a proposition is both open and closed, it is decidable. 
-\end{corollary}
-\begin{proof}
-  If $P$ is open and closed, by \Cref{rmkOpenClosedNegation}, $\neg P$ is open.
-  By \Cref{OpenCountableDisjunction}, it follows that $P\vee \neg P$ is open, but open propositions are $\neg\neg$-stable by \Cref{rmkOpenClosedNegation} so we can conclude.
-%  hence 
- % equivalent to $\neg \neg (P \vee \neg P)$ by \Cref{rmkOpenClosedNegation}.
- % As the latter proposition is provable, we may conclude $P$ is decidable. 
-%  
-%  If $P$ is open and closed, $P\vee \neg P$ is open, hence
-%  equivalent to $\neg \neg (P \vee \neg P)$, which is provable. 
-\end{proof}
-
 \begin{lemma}\label{ClosedFiniteDisjunction} 
   Closed propositions are closed under finite disjunctions. 
 \end{lemma}
@@ -86,12 +79,21 @@ A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such
 %  hence closed by \Cref{ClosedCountableConjunction}.
 \end{proof}
 
-\begin{corollary}\label{OpenFiniteConjunction}
-Open propositions are closed under finite conjunctions. 
+\begin{corollary}\label{ClopenDecidable}
+  If a proposition is both open and closed, it is decidable. 
 \end{corollary}
 \begin{proof}
-We use \Cref{ClosedFiniteDisjunction} and the fact that $\neg(P\lor Q) \leftrightarrow \neg P \land \neg Q$.
+  If $P$ is open and closed, by \Cref{rmkOpenClosedNegation}, $\neg P$ is open.
+  By \Cref{OpenCountableDisjunction}, it follows that $P\vee \neg P$ is open, but open propositions are $\neg\neg$-stable by \Cref{rmkOpenClosedNegation} so we can conclude.
+%  hence 
+ % equivalent to $\neg \neg (P \vee \neg P)$ by \Cref{rmkOpenClosedNegation}.
+ % As the latter proposition is provable, we may conclude $P$ is decidable. 
+%  
+%  If $P$ is open and closed, $P\vee \neg P$ is open, hence
+%  equivalent to $\neg \neg (P \vee \neg P)$, which is provable. 
 \end{proof}
+
+
 %\begin{lemma}\label{OpenFiniteConjunction}
 %  Open propositions are closed under finite conjunctions. 
 %\end{lemma}
