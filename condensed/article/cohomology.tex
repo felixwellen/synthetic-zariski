@@ -1,7 +1,11 @@
-In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\I,\Z)=0$. We work only with the first cohomology group with coefficients in $\Z$ as it is sufficient for the proof of Brouwer's fixed-point theorem, but the results could be extended to $H^n(X,A)$ for $A$ any family of countably presented abelian groups indexed by $X$.
+In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\I,\Z)=0$. 
 
 \begin{remark}
-We write $Ab$ for the type of Abelian groups and if $G:Ab$ we write $BG$ for the delooping of $G$ \cite{hott,davidw23}. This means that $H^1(X,G)$ is the set truncation of $X \to BG$. 
+We only work with the first cohomology group with coefficients in $\Z$ as it is sufficient for the proof of Brouwer's fixed-point theorem, but the results could be extended to $H^n(X,A)$ for $A$ any family of countably presented abelian groups indexed by $X$.
+\end{remark}
+
+\begin{remark}
+We write $Ab$ for the type of Abelian groups and if $G:Ab$ we write $\B G$ for the delooping of $G$ \cite{hott,davidw23}. This means that $H^1(X,G)$ is the set truncation of $X \to \B G$. 
 \end{remark}
 
 \subsection{\v{C}ech cohomology}
@@ -48,7 +52,7 @@ Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^3}$ such that for all $x
 
 \begin{lemma}\label{exact-cech-complex-vanishing-cohomology}
 Assume a type $S$ and types $T_x$ for $x:S$ such that $\prod_{x:S}\propTrunc{T_x}$ and $A:S\to\mathrm{Ab}$ such that $\check{C}(S,T,A)$ is exact.
-Then given $\alpha:\prod_{x:S}BA_x$ with $\beta:\prod_{x:S} (\alpha(x) = *)^{T_x}$, we can conclude $\alpha = *$.
+Then given $\alpha:\prod_{x:S}\B A_x$ with $\beta:\prod_{x:S} (\alpha(x) = *)^{T_x}$, we can conclude $\alpha = *$.
 \end{lemma}
 
 \begin{proof}
@@ -115,11 +119,11 @@ Given $S:\Stone$, we have that $H^1(S,\Z) = 0$.
 \end{lemma}
 
 \begin{proof}
-Assume given a map $\alpha:S\to B\Z$. We use local choice to get $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T_x}$ with $\beta:\prod_{x:S}(\alpha(x)=*)^{T_x}$. Then we conclude by \cref{cech-complex-vanishing-stone} and \cref{exact-cech-complex-vanishing-cohomology}.
+Assume given a map $\alpha:S\to \B\Z$. We use local choice to get $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T_x}$ with $\beta:\prod_{x:S}(\alpha(x)=*)^{T_x}$. Then we conclude by \cref{cech-complex-vanishing-stone} and \cref{exact-cech-complex-vanishing-cohomology}.
 \end{proof}
 
 \begin{corollary}\label{stone-commute-delooping}
-For any $S:\Stone$ the canonical map $B(\Z^S) \to (B\Z)^S$ is an equivalence.
+For any $S:\Stone$ the canonical map $\B(\Z^S) \to (\B\Z)^S$ is an equivalence.
 \end{corollary}
 
 
@@ -243,11 +247,11 @@ Since $2$ is $\I$-local, we know by duality that any Stone space is $\I$-local.
 \end{remark}
 
 \begin{lemma}\label{BZ-I-local}
-We have that $B\Z$ is $\I$-local.
+We have that $\B\Z$ is $\I$-local.
 \end{lemma}
 
 \begin{proof}
-Any identity type in $B\Z$ is a $\Z$-torsor, so it is $\I$-local by \cref{Z-I-local}. So there is at most one factorisation of any map $\I\to B\Z$ through $1$. From $H^1(\I,\Z)=0$ we get that there merely exists such a factorisation.
+Any identity type in $\B\Z$ is a $\Z$-torsor, so it is $\I$-local by \cref{Z-I-local}. So there is at most one factorisation of any map $\I\to \B\Z$ through $1$. From $H^1(\I,\Z)=0$ we get that there merely exists such a factorisation.
 \end{proof}
 
 \begin{lemma}\label{continuously-path-connected-contractible}
@@ -267,7 +271,7 @@ We have that $\R$ and $\mathbb{D}^2\colonequiv\{x,y:\mathbb R\ \vert\ x^2+y^2\le
 \end{corollary}
 
 \begin{proposition}\label{shape-S1-is-BZ}
-We have that $L_\I(\R/\Z) = B\Z$.
+We have that $L_\I(\R/\Z) = \B\Z$.
 \end{proposition}
 
 \begin{proof}
@@ -275,14 +279,14 @@ As for any group quotient, the fibers of the map $\R\to\R/\Z$ are $\Z$-torsors, 
 \[
 \begin{tikzcd}
 \R\ar[r]\ar[d] & 1\ar[d] \\
-\R/\Z\ar[r] & B\Z
+\R/\Z\ar[r] & \B\Z
 \end{tikzcd}
 \]
-Now we check that the bottom map is an $\I$-localisation. Since $B\Z$ is $\I$-local by \cref{BZ-I-local}, it is enough to check that its fibers are $\I$-contractible. Since $B\Z$ is connected it is enough to check that $\R$ is $\I$-contractible, but this is \cref{R-I-contractible}.
+Now we check that the bottom map is an $\I$-localisation. Since $\B\Z$ is $\I$-local by \cref{BZ-I-local}, it is enough to check that its fibers are $\I$-contractible. Since $\B\Z$ is connected it is enough to check that $\R$ is $\I$-contractible, but this is \cref{R-I-contractible}.
 \end{proof}
 
 \begin{remark}
-By \cref{BZ-I-local}, for any $X$ we have that $H^1(X,\Z) = H^1(L_{\I}(X),\Z)$, so that by \cref{shape-S1-is-BZ} we have that $H^1(\R/\Z,\Z) = H^1(B\Z,\Z) = \Z$.
+By \cref{BZ-I-local}, for any $X$ we have that $H^1(X,\Z) = H^1(L_{\I}(X),\Z)$, so that by \cref{shape-S1-is-BZ} we have that $H^1(\R/\Z,\Z) = H^1(\B\Z,\Z) = \Z$.
 \end{remark}
 
 We omit the proof that $\mathbb{S}^1\colonequiv\{x,y:\R\ \vert\ x^2+y^2=1\}$ is equivalent to $\R/\Z$.
@@ -294,7 +298,7 @@ The map $\mathbb{S}^1\to \mathbb{D}^2$ has no retraction.
 \end{proposition}
 
 \begin{proof}
-By \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction of $B\Z\to 1$, so $B\Z$ would be contractible.
+By \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction of $\B\Z\to 1$, so $\B\Z$ would be contractible.
 \end{proof}
 
 \begin{theorem}[Intermediate value theorem]
