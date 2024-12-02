@@ -7,7 +7,7 @@ We write $Ab$ for the type of Abelian groups and if $G:Ab$ we write $BG$ for the
 \subsection{\v{C}ech cohomology}
 
 \begin{definition}
-Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define $\check{C}(S,T,A)$ as the chain complex:
+Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we define $\check{C}(S,T,A)$ as the chain complex:
 \[
 \begin{tikzcd}
      \prod_{x:S}A_x^{T_x} \ar[r,"d_0"] & \prod_{x:S}A_x^{T_x^2}\ar[r,"d_1"] &  \prod_{x:S}A_x^{T_x^3}
@@ -21,7 +21,7 @@ d_1(\beta)_x(u,v,w) =&\ \beta_x(v,w) - \beta_x(u,w) + \beta_x(u,w)
 \end{definition}
 
 \begin{definition}
-Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we define its \v{C}ech cohomology groups by:
+Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we define its \v{C}ech cohomology groups by:
 \[
   \check{H}^0(S,T,A) = \mathrm{ker}(d_0)\quad \quad \quad \check{H}^1(S,T,A) = \mathrm{ker}(d_1)/\mathrm{im}(d_0)
 \]
@@ -31,7 +31,7 @@ We call elements of $\mathrm{ker}(d_1)$ cocycles and elements of $\mathrm{im}(d_
 This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{C}(S,T,A)$ is exact. Now we give three general lemmas about \v{C}ech complexes.
 
 \begin{lemma}\label{section-exact-cech-complex}
-Assume given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$ with $t:\prod_{x:S}T_x$. Then $\check{C}(S,T,A)$ is exact.
+Assume a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$ with $t:\prod_{x:S}T_x$. Then $\check{C}(S,T,A)$ is exact.
 \end{lemma}
 
 \begin{proof}
@@ -39,7 +39,7 @@ Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^2}$ such that for all $x
 \end{proof}
 
 \begin{lemma}\label{canonical-exact-cech-complex}
-Given $S:\Type$ with $T:S\to \Type$ and $A:S\to\mathrm{Ab}$, we have that $\check{C}(S,T,\lambda x.A_x^{T_x})$ is exact.
+Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we have that $\check{C}(S,T,\lambda x.A_x^{T_x})$ is exact.
 \end{lemma}
 
 \begin{proof}
@@ -47,7 +47,7 @@ Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^3}$ such that for all $x
 \end{proof}
 
 \begin{lemma}\label{exact-cech-complex-vanishing-cohomology}
-Assume given $S:\Type$ with $T:S\to \Type$ such that $\prod_{x:S}\propTrunc{T_x}$ and $A:S\to\mathrm{Ab}$ such that $\check{C}(S,T,A)$ is exact.
+Assume a type $S$ and types $T_x$ for $x:S$ such that $\prod_{x:S}\propTrunc{T_x}$ and $A:S\to\mathrm{Ab}$ such that $\check{C}(S,T,A)$ is exact.
 Then given $\alpha:\prod_{x:S}BA_x$ with $\beta:\prod_{x:S} (\alpha(x) = *)^{T_x}$, we can conclude $\alpha = *$.
 \end{lemma}
 
