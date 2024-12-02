@@ -7,10 +7,10 @@ In this section, we will show that two of them (MP and LLPO) hold,
 and one (WLPO) fails in our system.
 
 \begin{theorem}[The negation of the weak lesser principle of omniscience ($\neg$WLPO)]\label{NotWLPO}
-  \begin{equation}
+  \[
     \neg \forall_{\alpha:2^\N} 
     ((\forall_{n:\N} \alpha_n = 0 ) \vee \neg (\forall_{n:\N} \alpha_n = 0))
-  \end{equation}
+  \]
 %  We cannot decide for general $\alpha:2^\N$, whether $\forall_{n:\mathbb N} \alpha(n) = 0$.
 %  It is not the case that the statement %There is no method which given $\alpha:2^\mathbb N$ decides whether 
 %  $\forall_{n:\mathbb N} \alpha(n) = 0$ is decidable for general $\alpha:2^\mathbb N$. 
@@ -32,9 +32,9 @@ and one (WLPO) fails in our system.
 
 \begin{theorem}
   For $\alpha:\Noo$, we have that 
-  \begin{equation}
+  \[
     (\neg (\forall_{n:\mathbb N} \alpha_n= 0)) \to \Sigma_{n:\mathbb N} \alpha_n= 1
-  \end{equation}
+  \]
 \end{theorem}
 \begin{proof}
   By \Cref{ClosedPropAsSpectrum}, we have that $\neg(\forall_{n:\N} \alpha_n = 0)$ implies that 
@@ -62,9 +62,9 @@ and one (WLPO) fails in our system.
 
 \begin{corollary}[Markov's principle (MP)]\label{MarkovPrinciple}
   For $\alpha:2^\mathbb N$, we have that 
-  \begin{equation}
+  \[
     (\neg (\forall_{n:\mathbb N} \alpha_n= 0)) \to \Sigma_{n:\mathbb N} \alpha_n= 1
-  \end{equation}
+  \]
 \end{corollary}
 \begin{proof}
   Given $\alpha:2^\mathbb N$, consider the sequence $\alpha':\Noo$ satisfying $\alpha'_n = 1$ if and only if
@@ -74,9 +74,9 @@ and one (WLPO) fails in our system.
 \begin{theorem}[The lesser limited principle of omniscience (LLPO)]\label{LLPO}
   For $\alpha:\N_\infty$, 
   we have: 
-  \begin{equation}\label{eqnLLPO}
+  \[\label{eqnLLPO}
     \forall_{k:\N} \alpha_{2k} = 0  \vee \forall_{k:\N} \alpha_{2k+1} = 0
-  \end{equation}
+  \]
 \end{theorem}
 \begin{proof}
 %
@@ -85,12 +85,12 @@ and one (WLPO) fails in our system.
 %  $f(p_n) \wedge f(p_m) = (0,0)$ for $n\neq m$. 
 %  To define $f(p_n)$, we use a case distinction on whether $n$ is odd or even. 
   Define $f:B_\infty \to B_\infty \times B_\infty$ on generators as follows:
-  \begin{equation}\label{eqnLLPOProofMap}
+  \[\label{eqnLLPOProofMap}
     f(g_n) =\begin{cases}
       (g_k,0) \text{ if } n = 2k\\
       (0,g_k) \text{ if } n = 2k+1\\
     \end{cases}
-  \end{equation}
+  \]
   Note that $f$ is well-defined as map in $\Boole$ as 
   $f(g_n) \wedge f(g_m) = 0$ whenever $m\neq n$. 
  % , can make a case distinction on parity. 
@@ -122,7 +122,7 @@ and one (WLPO) fails in our system.
   there exists some $x:\Noo + \Noo$ such that $s(x) = \alpha$. 
   If $x = inl(\beta)$, 
   for any $k:\N$, we have that 
-  $$\alpha_{2k+1} = s(x)_{2k+1} = x(f(g_{2k+1})) = inl(\beta) (0,g_k)  = \beta(0) = 0.$$
+\[\alpha_{2k+1} = s(x)_{2k+1} = x(f(g_{2k+1})) = inl(\beta) (0,g_k)  = \beta(0) = 0.\]
   Similarly, if $x = inr(\beta)$, we have $\alpha_{2k} = 0$ for all $k:\N$. 
   %Thus \Cref{eqnLLPO} holds for $\alpha$.% as required. 
 \end{proof}
@@ -132,7 +132,7 @@ and one (WLPO) fails in our system.
 The surjection $s:\Noo + \Noo \to \Noo$ as above does not have a section 
 as the following shows:
 \begin{lemma}
-  The function $f$ defined in \Cref{eqnLLPOProofMap} does not have a retraction. 
+  The function $f$ defined above does not have a retraction. 
 \end{lemma}
 \begin{proof}
   Suppose $r:B_\infty \times B_\infty \to B_\infty$ is a retraction of $f$. 
@@ -145,7 +145,7 @@ as the following shows:
   By similar reasoning so is $r(1,0)$. % corresponds to a cofinite subset of $\N$. 
 %  But the intersection of cofinite subsets is cofinite, while 
   But this contradicts:
-  $$r(0,1) \wedge r(1,0) = r( (1,0) \wedge (0,1)) = r(0,0) = 0$$
+  \[r(0,1) \wedge r(1,0) = r( (1,0) \wedge (0,1)) = r(0,0) = 0.\]
 %  which gives a contradiction. 
   Thus no retraction exists. 
 \end{proof}
