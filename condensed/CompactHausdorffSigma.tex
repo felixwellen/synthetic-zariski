@@ -1,0 +1,26 @@
+\subsection{Compact Hausdorff spaces are stable under sigma types}
+
+\begin{lemma}\label{StoneAsClosedSubsetOfCantor}
+A type $X$ is Stone if and only if it is merely a closed subset of $2^\N$.
+\end{lemma}
+\begin{proof}
+  By \Cref{BooleAsCQuotient}, any $B:\Boole$ can be written as $2[\N]/(r_n)_{n:\N}$. %\ |\ n:\N\}$.
+  By \Cref{BooleEpiMono}, the quotient map induces an embedding $Sp(B)\hookrightarrow Sp(2[\N])= 2^\N$, 
+  which is closed by \Cref{StoneClosedSubsets}.
+\end{proof}
+
+%\begin{proof}
+%Any countably presented boolean algebra $B$ is enumerable, which gives a surjective morphism:
+%$$ 2[\N]\to B$$
+%so that by \Cref{DualCompleteness} we merely have a closed embedding:
+%$$ Sp(B)\to 2^\N$$
+%\end{proof}
+
+\begin{lemma}\label{SigmaCompactHausdorff}
+Compact Hausdorff spaces are stable under $\Sigma$-types.
+%Assume $X:\CHaus$ and $Y:X\to \CHaus$. Then $\Sigma_{x:X}Y(x)$ is compact Hausdorff.
+\end{lemma}
+
+\begin{proof}
+Assume $X:\CHaus$ and $Y:X\to \CHaus$. By \Cref{ClosedDependentSums} we have that identity type in $\Sigma_{x:X}Y(x)$ are closed. By \Cref{StoneAsClosedSubsetOfCantor} we know that for any $x:X$ there merely exists a closed $C\subseteq 2^\N$ with a surjection $\Sigma_{2^\N}C \twoheadrightarrow Y(x)$. By local choice we merely get $S:\Stone$ with a surjection $p:S\to X$ such that for all $s:S$ we have $C_s\subseteq 2^\N$ closed and a surjection $\Sigma_{2^\N}C_s\twoheadrightarrow Y(p(s))$. This gives a surjection $\Sigma_{s:S,x:2^\N}C_s(x)\twoheadrightarrow\Sigma_{x:X}Y_x$ and the source is Stone by \Cref{StoneClosedUnderPullback} and \Cref{ClosedInStoneIsStone}.
+\end{proof}

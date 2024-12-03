@@ -1,0 +1,247 @@
+\subsection{The topology on Stone spaces}
+\begin{theorem}\label{StoneClosedSubsets}
+  Let $A\subseteq S$ be a subset of a Stone space. The following are equivalent:
+  \begin{enumerate}[(i)]
+    \item There exists a map $\alpha:S \to 2^\N$ such that 
+      $A (x) \leftrightarrow \forall_{n:\N} \alpha_{x,n} = 0$ for any $x:S$. 
+    \item There exists a family 
+      $(D_n)_{n:\N}$ 
+      of decidable subsets of $S$ such that $A = \bigcap_{n:\N} D_n$. 
+    \item There exists a Stone space $T$ and some embedding $T\to S$ which image is $A$
+    \item There exists a Stone space $T$ and some map $T\to S$ which image is $A$. 
+    \item $A$ is closed.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+\item 
+  \begin{itemize}
+  \item 
+    $(i)\leftrightarrow (ii)$. $D_n$ and $\alpha$ can be defined from each other by 
+     $D_n(x) \leftrightarrow (\alpha_{x,n} = 0)$. Then observe that
+     \[
+     x\in \bigcap_{n:\N} D_n \leftrightarrow 
+      \forall_{n:\mathbb N} (\alpha_{x,n} = 0) 
+     \]
+     
+   \item $(ii) \to (iii)$. Let $S=Sp(B)$. 
+%      By Stone duality, we have $d_n,~n:\N$ terms of $B$ such that $D_n = \{x:S| x(d_n) = 1\}$. 
+%      Let $C = B/(\neg d_n)_{n:\N}$.
+%      Then the map $Sp(C) \to S$ is as desired because
+%      $$Sp(C) = \{x:S| \forall_{n:\N} x(\neg d_n) =0\}  = \bigcap_{n:\N} D_n.$$
+      By \Cref{AxStoneDuality}, we have $(d_n)_{n:\N}$ in $B$ such that $D_n = \{x:S\ |\ x(d_n) = 0\}$. 
+      Let $C = B/(d_n)_{n:\N}$.
+      Then $Sp(C) \to S$ is as desired because:
+      \[Sp(C) = \{x:S\ |\ \forall_{n:\N} x(d_n) =0\}  = \bigcap_{n:\N} D_n.\]
+%      By \Cref{SurjectionsAreFormalSurjections}, t
+%      The quotient map $B \twoheadrightarrow C$
+%      corresponds to a map $\iota:Sp(C) \hookrightarrow  S$. 
+%      For $s:S$, $s$ lies in the image of this map iff 
+%      for all $n:\N$ we have  $s(\neg d_n) = 0$, 
+%      \begin{equation}
+%        x\in \iota(Sp(C)) \leftrightarrow x(\neg d_n) = 0 \leftrightarrow x(d_n) = 1 \leftrightarrow x\in D_n
+%      \end{equation}
+%      Thus the image of $\iota$ is given by $\bigcap_{n:\N} D_n$. 
+   \item $(iii) \to (iv)$. Immediate.
+   \item $(iv) \to (ii)$. Assume $f:T\to S$ corresponds to $g:B\to C$ in $\Boole$. 
+     By \Cref{BooleEpiMono}, $f(T) = Sp(B/Ker(g))$, and 
+%     by \Cref{OdiscQuotientCountableByOpen}
+     there is a surjection $d:\N\to Ker(g)$. Denote by $D_n$ the decidable subset of $S$ corresponding to $d_n$. Then we have that $Sp(B/Ker(g)) = \bigcap_{n:\N} D_n$. 
+%     Note that the factorization 
+%     $B\twoheadrightarrow B/Ker(g) \hookrightarrow C$ 
+%     corresponds to the factorization 
+%     $S\twotheadleftarrow f(T) \hookleftarrow T$
+%%     We have a surjection $B\twoheadrightarrow B/Ker(g)$ in $\Boole$, 
+%%     which corresponds to the inclusion $f(T) = Sp(B/Ker(g)) \subseteq S$. 
+%     Ans $f(T) = Sp(B/Ker(g))$
+%
+%     Therefore $B/Ker(g):\Boole$, 
+%     and the quotient map $B\twoheadrightarrow B/Ker(g)$ induces an inclusion 
+%     $Sp(B/Ker(g)) \hookrightarrow Sp(B)$ with 
+%     $f\in Sp(B/Ker(g))\leftrightarrow \forall_{n:\N}f(d_n) = 0 $. 
+%     
+%
+%
+%
+%
+%
+%oldProof%     \rednote{TODO 
+%oldProof%       The order of untracating is important in this proof, 
+%oldProof%     and I struggle a bit with stressing this in a way this is clear (and concise). 
+%oldProof%    Check with fresh eyes later. }
+%oldProof%      Let $f:T\to S$ be a map between Stone spaces. 
+%oldProof%      Assume $S = Sp(A), T = Sp (B)$. 
+%oldProof%%      For this proof, we work with explicit presentations for $A,B$. 
+%oldProof%%
+%oldProof%      Let $G$ be a countable set of generators of $A$. 
+%oldProof%      Assume also we have countable sets of generators and relations for $B$. 
+%oldProof%%
+%oldProof%      Following \Cref{FiberConstruction}, using $G$, for each $x:S$, we can construct 
+%oldProof%      a countable set $I_x\subseteq B$ such that $$Sp(B/I_x) = (\Sigma_{y:T} f(y) = x) .$$
+%oldProof%      By \Cref{ExplicitTruncationStoneClosed}, we can construct a sequence 
+%oldProof%      $\alpha_x$ such that this type is inhabited iff $\forall_{n:\N} \alpha_x(n) = 0$,
+%oldProof%      as required. 
+%
+%      Recall that the propositional truncation of a Stone is closed, as it is the negation of $0=1$ in the underlying 
+%      Boolean algebra, which is open as it f
+%
+%
+%      the core idea of the proof was that the closed proposition corresponds to checking equality in the underlying BA, 
+%      which was closed as 
+%
+%
+%
+%
+%      Note that $x$ in the image of $f$ iff $0\neq_{B/I_x} 1$. 
+%      At this point, we have generators and relations of $B/I_x$ as data.
+%      Hence using the proof of \Cref{BooleEqualityOpen}, we can construct a sequence 
+%      $\alpha_x:2^\N$ such that $0 =_{B/I_x}1\leftrightarrow \exists_{n:\N} \alpha_x(n) = 0$. 
+%      And for $\beta_x(n) = 1-\alpha_x(n)$, we conclude that 
+%      \begin{equation}
+%        x\in f(T) \leftrightarrow \forall_{n:\N} \beta_x(n) = 0
+%      \end{equation}
+%      Note that we did not use any choice axioms in the proof of this implication,
+%      as we untruncated our assumptions before we specified $x$. 
+   \item $(i) \to (v)$. By definition.
+   \item $(v) \to (iv)$.
+     %As $A$ is closed, it corresponds to a map $a:S\to \Closed$. 
+     We have a surjection $2^\N\to\Closed$ defined by $\alpha \mapsto \forall_{n:\mathbb N} \alpha_n = 0.$
+     \Cref{LocalChoiceSurjectionForm} 
+     gives us that there merely exists $T, e, \beta_\cdot$ as follows:
+     \[
+       \begin{tikzcd}
+         T \arrow[r,"\beta"] \arrow[d, two heads,swap,"e"] & 2^\mathbb N 
+         \arrow[d,two heads] \\
+         S \arrow[r,swap,"A"] & \Closed
+       \end{tikzcd} 
+     \] 
+     Define $B(x) \leftrightarrow \forall_{n:\mathbb N} \beta_{x,n} = 0$. 
+     As $(i) \to (iii)$ by the above, $B$ is the image of some Stone space. 
+     Note that $A$ is the image of $B$, 
+     thus $A$ is the image of some Stone space. 
+     \end{itemize} 
+     \end{proof} 
+
+\begin{corollary}\label{ClosedInStoneIsStone}
+%Using condition $(iii)$, 
+%The previous result implies that c
+Closed subtypes of Stone spaces are Stone.
+\end{corollary}
+
+\begin{corollary}\label{InhabitedClosedSubSpaceClosed}
+  For $S:\Stone$ and $A\subseteq S$ closed, we have 
+  $\exists_{x:S} A(x)$ is closed. 
+\end{corollary}
+\begin{proof}
+  By \Cref{ClosedInStoneIsStone}, $\Sigma_{x:S}A(x)$ is Stone, 
+  so its truncation is closed by \Cref{TruncationStoneClosed}.
+\end{proof}
+
+\begin{corollary}\label{ClosedDependentSums}
+  Closed propositions are closed under sigma types. 
+\end{corollary}
+\begin{proof}
+  Let $P:\Closed$ and $Q:P \to \Closed$. 
+  Then $\Sigma_{p:P} Q(p) \leftrightarrow \exists_{p:P} Q(p)$.
+  As $P$ is Stone by \Cref{PropositionsClosedIffStone}, 
+  \Cref{InhabitedClosedSubSpaceClosed} gives that $\Sigma_{p:P} Q(p)$ is closed. 
+\end{proof}
+\begin{remark}\label{ClosedDominance}\label{ClosedTransitive}
+  Analogously to \Cref{OpenTransitive} and \Cref{OpenDominance}, it follows that 
+  closedness is transitive and $\Closed$ forms a dominance. 
+\end{remark}
+
+%We can get a dual to completeness.
+
+
+%ImpliedByBooleEpiMono%\begin{lemma}\label{DualCompleteness}
+%ImpliedByBooleEpiMono%Let $A$ and $B$ be c.p. boolean algebra with a map:
+%ImpliedByBooleEpiMono%\[i:Sp(A)\to Sp(B)\] 
+%ImpliedByBooleEpiMono%The following are equivalent:
+%ImpliedByBooleEpiMono%\begin{enumerate}[(i)]
+%ImpliedByBooleEpiMono%\item The induced map $B\to A$ is surjective.
+%ImpliedByBooleEpiMono%\item The map $i$ is an embedding.
+%ImpliedByBooleEpiMono%\item The map $i$ is a closed embedding.
+%ImpliedByBooleEpiMono%\end{enumerate}
+%ImpliedByBooleEpiMono%\end{lemma}
+%ImpliedByBooleEpiMono%
+%ImpliedByBooleEpiMono%\begin{proof}
+%ImpliedByBooleEpiMono%  \item
+%ImpliedByBooleEpiMono%\begin{itemize}
+%ImpliedByBooleEpiMono%\item[$(i)\to (ii)$] Immediate.
+%ImpliedByBooleEpiMono%\item[$(ii)\to (iii)$] By \Cref{StoneEqualityClosed} the fibers of $i$ are closed in $Sp(A)$, so by \Cref{ClosedInStoneIsStone} they are Stone, so they are closed by \Cref{PropositionsClosedIffStone}.
+%ImpliedByBooleEpiMono%\item[$(iii)\to (i)$] By we have that $Sp(A) = \cap_{n:\N}D_n$ for $D_n$ decidable in $Sp(B)$. Assuming $D_n$ correponds to $b_n:B$ though duality, we then have that $A=B/ (b_n)_{n:\N}$ and the induced map is the quotient map:
+%ImpliedByBooleEpiMono%$$B\to B/(b_n)_{n:\N}$$
+%ImpliedByBooleEpiMono%which is surjective.
+%ImpliedByBooleEpiMono%\end{itemize}
+%ImpliedByBooleEpiMono%\end{proof}
+
+\begin{lemma}\label{StoneSeperated}
+  Assume $S:\Stone $ with $F,G:S \to \Closed$ be such that $F\cap G = \emptyset$. 
+  Then there exists a decidable subset $D:S \to 2$ such $F\subseteq D, G \subseteq \neg D$. 
+\end{lemma}
+\begin{proof}
+%  \rednote{Too shorten this (and some other proofs), I've removed some negations and pretended  $D:S\to 2$ is given by $\{x:S|x(d) = 0\}$ instead of $\{x:S|x(d) = 1\}$ }
+  Assume $S = Sp(B)$. 
+  By \Cref{StoneClosedSubsets}, for all $n:\N$ there is $f_n,g_n:B$ such that 
+  $x\in F$ if and only if $\forall_{n:\N}x(f_n) = 0$ and 
+  $y\in G$ if and only if $\forall_{n:\N}y(g_n) = 0$.
+%  $x\in F$ iff $x(f_n) = 1$ for all $n:\N$ and 
+%  $y\in G$ iff $y(g_m) = 1$ for all $m:\N$. 
+%
+%  Denote $R\subseteq B$ for $\{\neg f_n|n:\N\} \cup\{\neg g_n|n:\N\}$. 
+  Denote by $h$ the sequence define by $h_{2k}=f_k$ and $h_{2k+1}=g_k$.
+Then $Sp(B/(h_k)_{k:\N}) = F \cap G=\emptyset$, so by \Cref{SpectrumEmptyIff01Equal}
+%  Note that any $x:Sp(B/R)$ is such %gives a map $x:B\to 2$ such that
+%  $x(g_n)= x(f_n) = 1$ for all $n:\N$, hence $x\in F \cap G$. 
+%  As $F\cap G = \emptyset $, it follows that $Sp(B/R)$ is empty.
+%
+  there exists finite sets $I,J\subseteq \N $ such that 
+%  $$1 =_B \left(\left(\bigvee_{i\in I} \neg f_i\right) \vee \left(\bigvee_{j\in J} \neg g_j\right)\right).$$
+%  $$1 =_B \left(\left(\bigvee_{i\in I}  f_i\right) \vee \left(\bigvee_{j\in J}  g_j\right)\right).$$
+  $1 =_B ((\bigvee_{i:I}  f_i) \vee (\bigvee_{j:J}  g_j)).$
+%
+  If $y\in F$, then $y(f_i) = 0$ for all $i:I$, hence
+%  $$1 =_2 y(1) = y\left(\bigvee_{j\in J} g_j\right).$$
+  $y(\bigvee_{j:J} g_j) = 1 $
+ If $x\in G$, we have 
+%  $x\left(\bigvee_{j\in J} g_j\right) = 0$. 
+  $x(\bigvee_{j:J} g_j) = 0$. 
+  Thus we can define the required $D$ by 
+  $D(x) \leftrightarrow x(\bigvee_{j:J} g_j) = 1$.
+  %$$D = \{x:S | x\left(\bigvee_{j\in J} g_j \right) = 0\}$$.
+  %, we have $F\subseteq D, G\subseteq \neg D$. 
+%  Let $y\in G$. Then $y(\neg g_j) = 0$ for all $j \in J$. 
+%  Let $y\in G$. Then $y(g_j) = 0$ for all $j \in J$. 
+%  Hence 
+%  $$
+%  1 
+%%  = y(1) 
+%  =_2
+%%  y(\bigvee_{i\in I} \neg f_i) = y (\neg (\bigwedge_{i\in I} f_i))
+%  y\left(\left(\bigvee_{i\in I}  f_i\right) \vee \left(\bigvee_{j\in J}  g_j\right)\right)
+%  = 
+%%  \left(y\left(\bigvee_{i\in I}  f_i\right)\right) \vee \left(\bigvee_{j\in J} y(g_j)\right)
+%%  = 
+%  y\left(\bigvee_{i\in I}  f_i\right)
+%  $$
+%%  Thus $y(\bigwedge_{i\in I} f_i) = 0$. 
+%%  Note that if $x\in F$, we have $x(f_i) = 1$ for all $i\in I$, hence 
+%%  $x(\bigwedge_{i\in I} f_i) = 1$. 
+%%  Thus for $D$ corresponding to $\bigwedge_{i\in I} f_i$, we have that 
+%%  $F\subseteq D, G\subseteq \neg D$ as required. 
+\end{proof} 
+
+%RedundantByOpenInCHaus%\begin{corollary}\label{StoneOpenSubsets}
+%RedundantByOpenInCHaus%  Let $A\subseteq S$ be a subset of a Stone space, then 
+%RedundantByOpenInCHaus%  $A$ is open iff there exists some countable family $D_n,~n:\N$ of decidable subsets of $S$ with 
+%RedundantByOpenInCHaus%  $A = \bigcup_{n:\N} D_n$. 
+%RedundantByOpenInCHaus%\end{corollary}
+%RedundantByOpenInCHaus%\begin{proof}
+%RedundantByOpenInCHaus%  By \Cref{rmkOpenClosedNegation}, $A$ is open iff $\neg A$ is closed and $A = \neg \neg A$. 
+%RedundantByOpenInCHaus%  By \Cref{StoneClosedSubsets}, $\neg A$ is closed iff 
+%RedundantByOpenInCHaus%  $\neg A = \bigcap_{n\in \N} E_n$ for some countably family of decidable subsets $E_n,~n:\N$. 
+%RedundantByOpenInCHaus%  Thus $\neg \neg A = \neg (\bigcap_{n\in \N} E_n)$. 
+%RedundantByOpenInCHaus%  By MP (\Cref{MarkovPrinciple}), we have that 
+%RedundantByOpenInCHaus%  $\neg (\bigcap_{n\in \N} E_n)= \bigcup_{n\in \N} \neg E_n$. 
+%RedundantByOpenInCHaus%  Thus $D_n := \neg E_n$ is as required. 
+%RedundantByOpenInCHaus%\end{proof}
