@@ -1,14 +1,13 @@
-# Synthetic Reasoning
+# Synthetic Mathematics
 
-The usual approach in mathematics is to construct objects of interest from the ground up.
-So behind a complicated object like a surface there is a whole tower of constructions:
-First, if real numbers are used to describe the surface, they may be constructed from the rational numbers which have to be constructed from the integers.
-To arrive at the concept of a surface, there are still a couple of constructions using the real numbers.
+Mathematicians usually construct complicated objects they want to study from more basic objects.
+The most basic objects are sets, for example the set of natural numbers.
+These can be used to construct integers, rational and real numbers, which can then be used to, for example, construct more advanced mathematical objects like surfaces.
 
-The objects of interest in mondern mathematics often the product of a significantly longer chain of constructions as the one sketched above.
-And understanding a sketch is not enough for a mathematician to work with those objects -- it is often neccessary to understand all the concepts along the way very well to be able to advance the state of the art, which means that new researchers have to study for a long time to join a field.
+This leads to increasing towers of constructions behind every contemporary mathematical concept,
+which newcomers have to learn and which cause problems when mathematical arguments need to be made completely formal.
 
-The idea of synthetic mathematics, as we use the term in our project, is to start with the concepts of interest and figure out a language which allows to reasone about them directly, without giving and understanding a tower of constructions.
+The synthetic mathematics we study is a more direct approach, where, for a fixed domain of mathematics, a special formal language is used which has the objects of interest already as its most basic objects. 
 
 # Synthetic Algebraic Geometry
 
