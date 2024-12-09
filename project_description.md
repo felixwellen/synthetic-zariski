@@ -10,7 +10,7 @@ In algebraic geometry, polynomial equations are studied using methods from geome
 
 # Synthetic Stone Duality
  
-The analytic approach to analysis starts with the notion of convergence of sequences of real numbers. It lead to the real numbers being given a topology, which is an abstract structure encoding this notion of convergence. In our synthetic approach, every object, including the real numbers, is naturally endowed with an intrinsic topology.
+The traditionhal approach to analysis starts with the notion of convergence of sequences of real numbers. It leads to the real numbers being given a topology, which is an abstract structure encoding this notion of convergence. In our synthetic approach, every object, including the real numbers, is naturally endowed with an intrinsic topology.
 
 This combines with synthetic homotopy theory to give us a shortcut to algebraic topology, which is the study of topological spaces up to deformation.
 
