@@ -1,0 +1,56 @@
+For the purposes of this exercise, we let a dyadic number of length $n$ be 
+$cs_n(d)$ for a finite sequence $d:2^n$. 
+If the number corresponds to $\frac{1}{2^n}$ or $\frac{2^n-1}{2^n}$, we call it an outer dyadic number, 
+otherwise we call it an inner dyadic number. 
+
+\begin{lemma}
+  Denote $q:2^\N \to \I$. 
+  Given a function $a:\N \to 2^\N$ such that 
+  $|cs_n(a|_n) - cs_{n+1}(a|_{n+1})|\leq \frac{1}{2^n+1}$ 
+  the limit of $q(a_n):\I$ exists as number in $\I$. 
+\end{lemma}
+\begin{proof}
+  Define $a':2^\N$ inductively by 
+  $a'(n) = \begin{cases}
+    1 \text{ if } cs_{n+1}(a|_{n+1}) > cs_{n-1}(a'|_{n-1}) + \frac{1}{2^{n}}
+    \\ 
+    0 \text{ otherwise}
+  \end{cases}
+  $
+  Then $a$ converges to $cs (a')$. 
+\end{proof}
+
+
+\begin{lemma}
+  Let $S:\Stone$ and let $A,B\subseteq S$ closed and disjoint. 
+  Then there merely exists a function $f:S \to \I$ such that 
+  $f(a) = 0$ if $a\in A$ and $f(b) = 1$ if $b\in B$. 
+\end{lemma}
+\begin{proof}
+  We will use dependent choice to define for each $n:\N$ 
+  and for each dyadic number $d$ of length $n$ with $d\neq 0,1$, 
+  a decidable subset $D_d\subseteq S$ satisfying $A\subseteq  D_d\subseteq \neg B$. 
+  And whenever $d \leq d'$ we will have $D_d \subseteq D_{d'}$.
+
+  By \Cref{StoneSeperated}, we can find $D(\frac{1}{2})$ with $A\subseteq D \subseteq \neg B$. 
+  Assume given $D_d$ for all dyadic $d\neq 0,1$ of length $n$. 
+  To show that there exist $D_d$ for all new dyadic $d\neq 0,1$ of length $n+1$ 
+  we make a case distinction on whether $d$ is outer or inner. 
+  \begin{itemize}
+    \item If $d$ is inner, we have that $D_{d \pm \frac{1}{2^{n+1}}}$ are already defined, and we apply 
+      \Cref{StoneSeperated} to find $D_d$. 
+    \item If $d= \frac{1}{2^{n+1}}$, we apply \Cref{StoneSeperated} to $D_{\frac{1}{2^n}}$ and $A$. 
+    \item If $d= \frac{2^{n+1}-1}{2^{n+1}}$, we apply \Cref{StoneSeperated} to $D_{\frac{2^n-1}{2^n}}$ and $B$. 
+  \end{itemize}
+  Using countable choice, we end up with an $2^\N$-indexed tree of decidable subsets of $S$ as required. 
+  
+  We then define $f:\Pi_{n:\N} (S \to 2^n)$ by 
+%  We then define $f: \N \times S \to 2^\N$ by 
+  $f(n,s) $ the lowest dyadic number $d$ of length $n$ with $D_d(s)$ if it exists, and $1$ otherwise. 
+  Note that $f(n,s) \geq f(n+1,s) \geq f(n,s) -\frac{1}{2^{n+1}}$  for all $n:\N$. 
+  Therefore for each $s:S$ the sequence $f(n,s)$ converges to a real number in $\I$, 
+  and thus $f$ defines a function $S \to \I$. 
+  
+  By design for every $a\in A$ we have $a\in D_d$ for all $d$, hence $f(a) = 0$ and 
+  for every $b\in B$ we have $b\notin D_d$ for all $d$ hence $f(b) = 1$. 
+\end{proof} 
