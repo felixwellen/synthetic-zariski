@@ -6,7 +6,7 @@ As a way to bypass this increasing complexity, we use a synthetic approach to th
 
 # Synthetic Algebraic Geometry
 
-In algebraic geometry, polynomial equations are studied using methods from geometry and algebra. These two fields have many links, the most basic being the correspondence between a space and the algebra of functions from that space to a fixed ring. In the usual analytic approach, this correspondence is made one-to-one by using a complicated notion of space. In our synthetic approach, this correspondence is assumed one-to-one as an axiom. We were able to reproduce many non-trivial algebraic geometry results with this synthetic approach.
+In algebraic geometry, polynomial equations are studied using methods from geometry and algebra. These two fields have many links, the most basic being the correspondence between a space and the algebra of functions from that space to a fixed ring. In the usual analytic approach, this correspondence is made one-to-one by using a complicated notion of space. In our synthetic approach, this correspondence is assumed one-to-one as an axiom. We were able to reproduce non-trivial basic algebraic geometry results with this synthetic approach.
 
 # Synthetic Stone Duality
  
