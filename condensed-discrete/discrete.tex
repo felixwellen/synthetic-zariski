@@ -1,0 +1,121 @@
+\section{Weakly discrete types}
+
+There is a tower:
+\[N_0 \leftarrow N_1 \leftarrow N_2 \leftarrow \cdots\]
+where $N_k = \mathrm{Fin(k+1)}$ the map $N_{k+1}\to N_k$ sends $k$ to $k-1$ and is the identity on other element. Then:
+\[\mathrm{lim}_kN_k = \Noo\]
+
+\begin{definition}
+A type $X$ is called weakly discrete if the canonical map:
+\[\mathrm{colim}_kX^{N_k} \to X^{\Noo}\]
+is an equivalence.
+\end{definition}
+
+Discrete clearly implies weakly discrete. We look at truncated types:
+
+\begin{lemma}
+Any proposition is weakly discrete.
+\end{lemma}
+
+\begin{proof}
+As $\Noo$ and $N_k$ are all inhabited.
+\end{proof}
+
+\begin{lemma}\label{weakly-discrete-sets}
+If $X$ is a set, $X$ is discrete if and only if every convergent sequence in $X$ is eventually constant, or equivalently if any map $\Noo\to X$ merely factor through a finite set.
+\end{lemma}
+
+\begin{proof}
+If $X$ is a set, the map:
+\[\mathrm{colim}_kX^{N_k} \to X^{\Noo}\]
+is always an embedding, and the conditions precisely means it is surjective.
+\end{proof}
+
+\begin{remark}
+Presumably, we have that $X$ truncated is weakly discrete if and only if a map from $\Noo$ to any iterated identity type of $X$ is eventually constant.
+\end{remark}
+
+\begin{lemma}
+Weakly discrete types are stable under $\Sigma$-types and identity types.
+\end{lemma}
+
+\begin{proof}
+By commutation of sequential colimits with $\Sigma$-types and identity types.
+\end{proof}
+
+\begin{lemma}
+Any type with open identity types is weakly discrete.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+
+\section{Discrete types}
+
+\begin{definition}
+A type $X$ is called discrete given any tower $(S_k)_{k:\N}$ of finite types, the canonical map:
+\[\mathrm{colim}_kX^{S_k} \to X^{\mathrm{lim}_kS_k}\]
+is an equivalence.
+\end{definition}
+
+\begin{lemma}
+If $X$ is a proposition the following are equivalent:
+\begin{enumerate}[(i)]
+\item $X$ is discrete.
+\item For all $(D_n)_{n:\N}$ decidable propositions:
+\[((\forall_nD_n)\to P) \leftrightarrow \exists_n(D_n\to P)\]
+\item For all $C$ closed proposition:
+\[(C\to P) \leftrightarrow \not C\lor P\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{corollary}
+Any open proposition is discrete.
+\end{corollary}
+
+\begin{lemma}
+If $X$ is a set, $X$ is discrete if and only if for all $S:\Stone$, any map $S\to X$ merely factor through a finite type.
+\end{lemma}
+
+\begin{proof}
+As in \Cref{weakly-discrete-sets}.
+\end{proof}
+
+\begin{lemma}
+Weakly discrete types are stable under $\Sigma$-types and identity types.
+\end{lemma}
+
+\begin{proof}
+By commutation of sequential colimits with $\Sigma$-types and identity types.
+\end{proof}
+
+\begin{lemma}
+Any overtly discrete type is discrete.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+Given any overtly discrete abelian group $A$, the type $BA$ is discrete.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+Questions:
+\begin{itemize}
+\item If $S$ is Stone and $A$ is a discrete abelian group, do we have $H^1(S,A) = 0$? 
+\item What about higher cohomology groups? 
+\item What about $H^1(\I,A)$? 
+\item Is any discrete type $\I$-local? 
+\item Do we have that discrete and overt sets are the same as overtly discrete sets?
+\end{itemize}
