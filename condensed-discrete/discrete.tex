@@ -13,7 +13,7 @@ is an equivalence.
 
 Discrete clearly implies weakly discrete. We look at truncated types:
 
-\begin{lemma}
+\begin{lemma}\label{proposition-weakly-discrete}
 Any proposition is weakly discrete.
 \end{lemma}
 
@@ -48,7 +48,7 @@ Any type with open identity types is weakly discrete.
 \end{lemma}
 
 \begin{proof}
-TODO
+Let $X$ have open identity types. By \Cref{weakly-discrete-sets} it is enough to show any map $f:\Noo\to X$ is eventually constant. By $f^{-1}(\infty)$ is an open in $\Noo$ containing $\infty$, therefore it contains a decidable in $\Noo$ cointaining $\infty$, therefore it contains all natural numbers but finitely many.
 \end{proof}
 
 
@@ -61,19 +61,28 @@ is an equivalence.
 \end{definition}
 
 \begin{lemma}
-If $X$ is a proposition the following are equivalent:
+If $P$ is a proposition the following are equivalent:
 \begin{enumerate}[(i)]
-\item $X$ is discrete.
-\item For all $(D_n)_{n:\N}$ decidable propositions:
-\[((\forall_nD_n)\to P) \leftrightarrow \exists_n(D_n\to P)\]
+\item $P$ is discrete.
+\item For all $(D_k)_{k:\N}$ decidable propositions:
+\[((\forall_kD_k)\to P) \leftrightarrow \exists_k(D_k\to P)\]
 \item For all $C$ closed proposition:
-\[(C\to P) \leftrightarrow \not C\lor P\]
+\[P^C \leftrightarrow \neg C\lor P\]
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-TODO
+(i) $\to$ (ii). Clear.
+
+(ii) $\to$ (i). Assume $(S_k)_{k:\N}$ a tower of finite type with $S=\mathrm{lim}_kS_k$. Then:
+\[P^S = P^{\propTrunc{S}} = P^{\forall_{k}\propTrunc{S_k}} = \exists_{k} P^{\propTrunc{S_k}} = \exists_{k} P^{S_k} = \mathrm{colim}_kP^{S_k}\]
+where the key step $\propTrunc{S} = \forall_{k:\N}\propTrunc{S_k}$ comes from Scott-continuity.
+
+(ii) $\leftrightarrow$ (iii). Any $P$ closed there are $(D_k)_{k:\N}$ decidable such that $P = \forall_kD_k$. Then:
+\[\exists_k P^{D_k} = \exists_k (\neg D_k\lor P) = (\exists_k\neg D_k)\lor P = \neg (\forall_kD_k)\lor P\] 
 \end{proof}
+
+By \Cref{proposition-weakly-discrete} we know that weakly discrete and discrete do not mean the same.
 
 \begin{corollary}
 Any open proposition is discrete.
@@ -100,7 +109,7 @@ Any overtly discrete type is discrete.
 \end{lemma}
 
 \begin{proof}
-TODO
+This is a special case of Scott continuity.
 \end{proof}
 
 \begin{lemma}
@@ -108,7 +117,7 @@ Given any overtly discrete abelian group $A$, the type $BA$ is discrete.
 \end{lemma}
 
 \begin{proof}
-TODO
+TODO \rednote{Maybe $A$ discrete is enough?}
 \end{proof}
 
 Questions:
