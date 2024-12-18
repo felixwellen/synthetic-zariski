@@ -60,7 +60,7 @@ A type $X$ is called discrete given any tower $(S_k)_{k:\N}$ of finite types, th
 is an equivalence.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{proposition-discrete}
 If $P$ is a proposition the following are equivalent:
 \begin{enumerate}[(i)]
 \item $P$ is discrete.
@@ -88,7 +88,7 @@ By \Cref{proposition-weakly-discrete} we know that weakly discrete and discrete 
 Any open proposition is discrete.
 \end{corollary}
 
-\begin{lemma}
+\begin{lemma}\label{set-discrete}
 If $X$ is a set, $X$ is discrete if and only if for all $S:\Stone$, any map $S\to X$ merely factor through a finite type.
 \end{lemma}
 
@@ -120,6 +120,56 @@ Given any overtly discrete abelian group $A$, the type $BA$ is discrete.
 TODO \rednote{Maybe $A$ discrete is enough?}
 \end{proof}
 
+
+\subsection{Discrete sets}
+
+\begin{lemma}
+Assume $C:\CHaus$ and $P$ a discrete proposition, any map:
+\[C\to \Sigma(P)\]
+merely factor through $2$. 
+\end{lemma}
+
+\begin{proof}
+By local choice we get:
+\begin{center}
+\begin{tikzcd}
+S\ar[r,"i"]\ar[d,"p"] & 2\ar[d] \\
+C\ar[r] & \Sigma(P)\\
+\end{tikzcd}
+\end{center}
+Consider the Stone space $T = \Sigma_{x,y:S'}p(x)=p(y)\land i(x)\not=i(y)$. Then $T\to P$ so that by \Cref{proposition-discrete} we have that $\neg T\lor P$. If $P$ then we can conclude, if $\neg T$ then for all $x,y:S'$, if $p(x)=p(y)$ then $i(x)=i(y)$ so that there is $j:S\to 2$ such that $j\circ p=i$. We have that the map $C\to \Sigma(P)$ factors through $j$ by surjectivity of $p$. 
+\end{proof}
+
+\begin{corollary}
+Let $P$ be a discrete proposition, then the suspension of $P$ is discrete.
+\end{corollary}
+
+\begin{lemma}\label{compact-hausdorff-discrete-quotient-finite-factorisation}
+Assume $C:\CHaus$ and $X$ is a discrete set. Any map:
+\[C\to X\]
+merely factor through a finite type. 
+\end{lemma}
+
+\begin{proof}
+Consider a surjection $S\to C$, the composite $S\to X$ merely factor through a finite type, so the map $C\to X$ merely factors through the quotient of a finite type by a discrete equivalence relation. TODO \rednote{probably an inductive version of the case of suspensions}
+\end{proof}
+
+\begin{corollary}
+Let $\sim$ a discrete equivalence relation $\mathrm{Fin}(k)$. Then $\mathrm{Fin}(k)/\sim$ is discrete.
+\end{corollary}
+
+\begin{proposition}
+Discrete sets are $\I$-local.
+\end{proposition}
+
+\begin{proof}
+Let $X$ be a discrete set with a map $f:\mathbb{I}\to X$, we need to factor $f$ through $1$. We conclude by \Cref{compact-hausdorff-discrete-quotient-finite-factorisation} and the fact that any map $\I\to \mathrm{Fin}(k)$ is constant.
+\end{proof}
+
+\begin{remark}
+\rednote{Out of place?}. Using $\Noo$ to define closed subset of say $1$ doesn't work (i.e. a subset $X$ is closed if $X$ is stable by limit of convergent sequence), consider e.g. $U$ open proposition subset of $1$.
+\end{remark}
+
 Questions:
 \begin{itemize}
 \item If $S$ is Stone and $A$ is a discrete abelian group, do we have $H^1(S,A) = 0$? 
@@ -127,4 +177,5 @@ Questions:
 \item What about $H^1(\I,A)$? 
 \item Is any discrete type $\I$-local? 
 \item Do we have that discrete and overt sets are the same as overtly discrete sets?
+\item What about stability by quotient?
 \end{itemize}
