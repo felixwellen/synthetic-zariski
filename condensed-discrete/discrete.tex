@@ -97,7 +97,7 @@ As in \Cref{weakly-discrete-sets}.
 \end{proof}
 
 \begin{lemma}
-Weakly discrete types are stable under $\Sigma$-types and identity types.
+Discrete types are stable under $\Sigma$-types and identity types.
 \end{lemma}
 
 \begin{proof}
@@ -123,7 +123,8 @@ TODO \rednote{Maybe $A$ discrete is enough?}
 
 \subsection{Discrete sets}
 
-\begin{lemma}
+\begin{lemma}\label{factorisation-suspension-discrete}
+\rednote{Obsolete, replaced by \Cref{factorisation-finite-discrete-quotient}.}
 Assume $C:\CHaus$ and $P$ a discrete proposition, any map:
 \[C\to \Sigma(P)\]
 merely factor through $2$. 
@@ -137,12 +138,43 @@ S\ar[r,"i"]\ar[d,"p"] & 2\ar[d] \\
 C\ar[r] & \Sigma(P)\\
 \end{tikzcd}
 \end{center}
-Consider the Stone space $T = \Sigma_{x,y:S'}p(x)=p(y)\land i(x)\not=i(y)$. Then $T\to P$ so that by \Cref{proposition-discrete} we have that $\neg T\lor P$. If $P$ then we can conclude, if $\neg T$ then for all $x,y:S'$, if $p(x)=p(y)$ then $i(x)=i(y)$ so that there is $j:S\to 2$ such that $j\circ p=i$. We have that the map $C\to \Sigma(P)$ factors through $j$ by surjectivity of $p$. 
+Consider the Stone space $T = \Sigma_{x,y:S'}p(x)=p(y)\land i(x)\not=i(y)$. Then $T\to P$ so that by \Cref{proposition-discrete} we have that $\neg T\lor P$. If $P$ then we can conclude, if $\neg T$ then for all $x,y:S$, if $p(x)=p(y)$ then $i(x)=i(y)$ so that there is $j:S\to 2$ such that $j\circ p=i$. We have that the map $C\to \Sigma(P)$ factors through $j$ by surjectivity of $p$. 
 \end{proof}
 
 \begin{corollary}
 Let $P$ be a discrete proposition, then the suspension of $P$ is discrete.
 \end{corollary}
+
+\begin{proof}
+By \Cref{set-discrete} and \Cref{factorisation-suspension-discrete}.
+\end{proof}
+
+\begin{lemma}\label{factorisation-finite-discrete-quotient}
+Assume $C:\CHaus$, $k:\N$ and $\sim$ a discrete equivalence relation on $\mathrm{Fin}(k)$, then any map
+\[C\to \mathrm{Fin}(k)/\sim\]
+merely factor a finite type.
+\end{lemma}
+
+\begin{proof}
+We proceed by induction on $k$. If $k\leq 1$ it is clear. By local choice we get:
+\begin{center}
+\begin{tikzcd}
+S\ar[r,"i"]\ar[d,"p"] & \mathrm{Fin}(k)\ar[d] \\
+C\ar[r] & \mathrm{Fin}(k)/\sim\\
+\end{tikzcd}
+\end{center}
+For all $l,l'<k$, consider the Stone space:
+\[T_{l,l'} = \Sigma_{x,y:S'}p(x)=p(y)\land i(x) = l \land i(y) = l'\] 
+Then $T_{l,l'}\to l\sim l'$ so that by \Cref{proposition-discrete} we have that $\neg T_{l,l'}\lor l\sim l'$. If for all $l\not=l'$ we have $\neg T_{l,l'}$, then for all $x,y:S$, if $p(x)=p(y)$ then $i(x)=i(y)$ so that there is $j:S\to \mathrm{Fin}(k)$ such that $j\circ p=i$. To check that $j$ is the desired factorisation we use that $p$ is surjective, and that identity types in $Y$ are proposition. Otherwise there exists $l\not=l'$ such that $l\sim l'$ and we can conclude by induction.
+\end{proof}
+
+\begin{corollary}
+Let $\sim$ a discrete equivalence relation $\mathrm{Fin}(k)$. Then $\mathrm{Fin}(k)/\sim$ is discrete.
+\end{corollary}
+
+\begin{proof}
+By \Cref{set-discrete} and \Cref{factorisation-finite-discrete-quotient}.
+\end{proof}
 
 \begin{lemma}\label{compact-hausdorff-discrete-quotient-finite-factorisation}
 Assume $C:\CHaus$ and $X$ is a discrete set. Any map:
@@ -151,12 +183,8 @@ merely factor through a finite type.
 \end{lemma}
 
 \begin{proof}
-Consider a surjection $S\to C$, the composite $S\to X$ merely factor through a finite type, so the map $C\to X$ merely factors through the quotient of a finite type by a discrete equivalence relation. TODO \rednote{probably an inductive version of the case of suspensions}
+Consider a surjection $S\to C$, the composite $S\to X$ merely factor through a finite type, so the map $C\to X$ merely factors through the quotient of a finite type by a discrete equivalence relation. We conclude by \Cref{factorisation-finite-discrete-quotient}.
 \end{proof}
-
-\begin{corollary}
-Let $\sim$ a discrete equivalence relation $\mathrm{Fin}(k)$. Then $\mathrm{Fin}(k)/\sim$ is discrete.
-\end{corollary}
 
 \begin{proposition}
 Discrete sets are $\I$-local.
@@ -169,6 +197,83 @@ Let $X$ be a discrete set with a map $f:\mathbb{I}\to X$, we need to factor $f$ 
 \begin{remark}
 \rednote{Out of place?}. Using $\Noo$ to define closed subset of say $1$ doesn't work (i.e. a subset $X$ is closed if $X$ is stable by limit of convergent sequence), consider e.g. $U$ open proposition subset of $1$.
 \end{remark}
+
+
+\subsection{Stability by quotients}
+
+\begin{lemma}
+Let $Y$ be a set with discrete identity type with a surjection $X\twoheadrightarrow Y$ where $X$ is a discrete type. Then $Y$ is discrete.
+\end{lemma}
+
+\begin{proof}
+Let $S$ be Stone with a map $S\to Y$. By local choice we get:
+ \begin{center}
+\begin{tikzcd}
+S'\ar[r,"i"]\ar[d,"p"] & X\ar[d] \\
+S\ar[r] & Y\\
+\end{tikzcd}
+\end{center}
+The top map merely factors through a finite type, so the bottom map merely factor through the quotient of a finite type by the discrete equivalence relation induced identity in $Y$. Then we conclude by \Cref{factorisation-finite-discrete-quotient}.
+\end{proof}
+
+\begin{corollary}\label{prop-set-truncation-discrete}
+Let $X$ be a discrete type, then the propositional and set truncation of $X$ are discrete.
+\end{corollary}
+
+\begin{lemma}\label{discrete-continuity-dependent}
+Assume $(S_k)_{k:\N}$ a tower of finite type and $P(x)$ discreet for $x:S_0$. Then the canonical map:
+\[\mathrm{colim}_k\prod_{x:S_k}P(x_0) \to \prod_{x:\mathrm{lim}_kS_k}P(x_0)\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Through commutation of sequential limit with finite sums, and of sequential colimit with finite product, we can assume $S_0 = 1$. Then $P$ is constant and this is just the definition.
+\end{proof}
+
+\begin{lemma}
+Let $Y$ be a type with discrete identity types. Then for any tower of finite type $(S_k)_{k:\N}$, the canonical map:
+\[\mathrm{colim}_kY^{S_k} \to Y^{\mathrm{lim}_kS_k}\]
+is an embedding.
+\end{lemma}
+
+\begin{proof}
+Essentially we apply \Cref{discrete-continuity-dependent} to identity type in $Y$. \rednote{TODO: details}
+\end{proof}
+
+\begin{lemma}\label{higher-quotient-finite-discrete-discrete}
+Let $Y$ be a type with discrete identity types and $k:\N$ with a surjection $\mathrm{Fin}(k)\to Y$. Then $Y$ is discrete.
+\end{lemma}
+
+\begin{proof}
+We proceed by induction on $k$. By local choice we get:
+ \begin{center}
+\begin{tikzcd}
+S'\ar[r,"i"]\ar[d,"p"] & \mathrm{Fin}(k)\ar[d] \\
+S\ar[r] & Y\\
+\end{tikzcd}
+\end{center}
+For all $l,l'<k$, consider the Stone space:
+\[T_{l,l'} = \Sigma_{x,y:S'}p(x)=p(y)\land i(x) = l \land i(y) = l'\] 
+Then $T_{l,l'}\to \propTrunc{i(x)=_Yi(y)}$. By \Cref{prop-set-truncation-discrete} we have that $\neg T_{l,l'} \lor \propTrunc{i(x)=_Yi(y)}$. If for all $l\not=l'$ we have $\neg T_{l,l'}$ we can conclude as $i$ factors through $S$ \rednote{NO this doesn't work, this doesn't mean the original map factors through a fintie type.}
+\end{proof}
+
+\begin{proposition}
+Let $Y$ be a type with discrete identity types and a surjection $X\twoheadrightarrow Y$ with $X$ discrete. Then $Y$ is discrete. 
+\end{proposition}
+
+\begin{proof}
+We just need to prove that for any $S$ Stone, any map $S\to Y$ merely factors though a finite type. Given such a map use local choice to get:
+ \begin{center}
+\begin{tikzcd}
+S'\ar[r,"i"]\ar[d,"p"] & X\ar[d] \\
+S\ar[r] & Y\\
+\end{tikzcd}
+\end{center}
+The top map merely factors through a finite type, so the bottom merely factors through the image of a finite type in $Y$. Then we conclude by \Cref{higher-quotient-finite-discrete-discrete}.
+\end{proof}
+
+
+\subsection{Future work}
 
 Questions:
 \begin{itemize}
