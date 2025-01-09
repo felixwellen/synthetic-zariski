@@ -89,11 +89,13 @@ Any open proposition is discrete.
 \end{corollary}
 
 \begin{lemma}\label{set-discrete}
-If $X$ is a set, $X$ is discrete if and only if for all $S:\Stone$, any map $S\to X$ merely factor through a finite type.
+If $X$ is a set, $X$ is discrete if and only if its identity types are discrete, and for all $S:\Stone$ any map $S\to X$ merely factor through a finite type.
 \end{lemma}
 
 \begin{proof}
-As in \Cref{weakly-discrete-sets}.
+Consider $(S_n)$ a tower of finite type,  by \Cref{discrete-identity-embedding} the map:
+\[\mathrm{colim}_kX^{S_k} \to X^{\mathrm{lim}_kS_k}\]
+is an embedding, and the factorisation implies it is surjective.
 \end{proof}
 
 \begin{lemma}
@@ -230,7 +232,7 @@ is an equivalence.
 Through commutation of sequential limit with finite sums, and of sequential colimit with finite product, we can assume $S_0 = 1$. Then $P$ is constant and this is just the definition.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{discrete-identity-embedding}
 Let $Y$ be a type with discrete identity types. Then for any tower of finite type $(S_k)_{k:\N}$, the canonical map:
 \[\mathrm{colim}_kY^{S_k} \to Y^{\mathrm{lim}_kS_k}\]
 is an embedding.
@@ -254,7 +256,7 @@ S\ar[r] & Y\\
 \end{center}
 For all $l,l'<k$, consider the Stone space:
 \[T_{l,l'} = \Sigma_{x,y:S'}p(x)=p(y)\land i(x) = l \land i(y) = l'\] 
-Then $T_{l,l'}\to \propTrunc{i(x)=_Yi(y)}$. By \Cref{prop-set-truncation-discrete} we have that $\neg T_{l,l'} \lor \propTrunc{i(x)=_Yi(y)}$. If for all $l\not=l'$ we have $\neg T_{l,l'}$ we can conclude as $i$ factors through $S$ \rednote{NO this doesn't work, this doesn't mean the original map factors through a fintie type.}
+Then $T_{l,l'}\to \propTrunc{i(x)=_Yi(y)}$. By \Cref{prop-set-truncation-discrete} we have that $\neg T_{l,l'} \lor \propTrunc{i(x)=_Yi(y)}$. If for all $l\not=l'$ we have $\neg T_{l,l'}$ we can conclude as $i$ factors through $S$ \rednote{NO this doesn't work, this doesn't mean the original map factors through a finite type.}
 \end{proof}
 
 \begin{proposition}
