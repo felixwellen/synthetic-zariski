@@ -1,0 +1,43 @@
+We assume $2\not=0$.
+
+\begin{definition}
+Assume given $a,b,c:R$ invertible. Then we define $C(a,b,c)$ as the set of $[x:y:z]:\bP^3$ such that $ax^2=by^2+cz^2$.
+\end{definition}
+
+\begin{lemma}\label{severi-example-with-roots}
+Assume given $a,b,c$ invertible with square roots $\sqrt{a}$, $\sqrt{b}$ and $\sqrt{c}$. Then the map:
+\[\psi:\bP^2\to \bP^3\]
+\[ [m:n]\mapsto \left[\frac{m^2+n^2}{\sqrt{a}} : \frac{2mn}{\sqrt{b}} : \frac{m^2-n^2}{\sqrt{c}}\right] \]
+induces an equivalence between $\bP^2$ and $C(a,b,c)$.
+\end{lemma}
+
+\begin{proof}
+The ideal $I = \left(\frac{m^2+n^2}{\sqrt{a}}, \frac{2mn}{\sqrt{b}}, \frac{m^2-n^2}{\sqrt{c}}\right)$ contains $m^2$ and $n^2$, therefore if $(m,n)=1$ then $I=1$. So the map is well defined.
+\begin{itemize}
+
+\item The map $\psi$ takes value in $C(a,b,c)$. By direct computations, we check that for all $m,n:R$ we have that:
+\[a\left(\frac{m^2+n^2}{\sqrt{a}}\right)^2 = b\left(\frac{2mn}{\sqrt{b}}\right)^2 + c\left(\frac{m^2-n^2}{\sqrt{c}}\right)^2\]
+
+\item The map $\psi$ is injective. Indeed assume $[m:n]$ and $[\bar{m}:\bar{n}]$ in $\bP^2$ such that $\psi([m:n])=\psi([\bar{m}:\bar{n}])$, we have that $m\bar{n}=\bar{m}n$. By linear combinations we get that:
+\begin{eqnarray}
+m^2\bar{m}\bar{n} &=& \bar{m}mn\\
+\bar{m}\bar{n}n^2 &=& mn\bar{n}^2\\
+\bar{m}^2n^2 &=& m^2\bar{n}^2
+\end{eqnarray}
+If $m$ and $\bar{m}$ are invertible we conclude by (1). If $n$ and $\bar{n}$ are invertible we conclude by (2). If $\bar{m}$ and $n$ (resp. $m$ and $\bar{n}$) are invertible by (3) we have that $m$ and $\bar{n}$ (resp. $\bar{m}$ and $n$) are invertible, and we conclude as before.
+
+\item The map $\psi$ is surjective. Assume $[x:y:z]:C(a,b,c)$. We know that $x$, $y$ or $z$ is invertible, and since $ax^2=by^2+cz^2$, we have that if $y$ is invertible then $x$ or $z$ is invertible. Since $x$ and $z$ belong to $\left(\sqrt{a}x+\sqrt{c}z, \sqrt{a}x-\sqrt{c}z)\right)$, we know one of the two is invertible, say $\sqrt{a}x+\sqrt{c}z$. 
+
+Since $\psi$ is an embedding of schemes, its fibers being merely inhabited is an fppf sheaf by \Cref{scheme-is-fppf-sheaf}. So we can assume $m$ such that $m^2 = \frac{\sqrt{a}x+\sqrt{c}z}{2}$. Then we can define $n=\frac{\sqrt{b}y}{2m}$ and check that $n^2 = \frac{\sqrt{a}x-\sqrt{c}z}{2}$ and that $\psi([m:n]) = [x:y:z]$. 
+
+If $\sqrt{a}x-\sqrt{c}z$ is invertible, we proceed similarly using an $n$ such that $n^2=\frac{\sqrt{a}x-\sqrt{c}z}{2}$.
+\end{itemize}
+\end{proof}
+
+\begin{lemma}
+Assume given $a,b,c$ invertible, then $C(a,b,c)$ is a Severi-Brauer variety.
+\end{lemma}
+
+\begin{proof}
+Since being a Severi-Brauer variety is an fppf sheaf, we can assume square roots of $a$, $b$ and $c$. Then we just apply \Cref{severi-example-with-roots}.
+\end{proof}
