@@ -1,0 +1,77 @@
+In this section, we present an alternative way to prove that   $\Aut(\bP^n)$ is $\PGL_{n+1}$.
+
+\begin{lemma}\label{notnot}
+ Let $A$ be $R[X_1,\dots,X_n]$. A line bundle on $Sp(A) = R^n$ is not not trivial.
+\end{lemma}
+
+\begin{proof}
+  Let $L$ be a line bundle $Sp(A)\rightarrow\KR$. As we saw above, the $A$-module $M = \prod_{u:\Spec(A)}L(u)$,
+  which is projective of rank $1$,   is presented by an idempotent square matrix $P$, and this module is free
+  exactly if we can find a column vector $x$ and a line vector $y$ such that $xy = I-P$. Using
+  \cite{seminormal}, this is satisfied if $A$ is a gcd domain. Since $R$ is not not a discrete
+  field, in the sense that we have $\forall_{x:R}\neg\neg (x=0 \vee \exists_y (xy = 1))$, we conclude
+  that we have $\neg\neg \exists_{x~y}xy = I-P$, and hence the $A$-module  $M$
+  is not not free, in the sense $\neg\neg \exists_{m_0:M}\forall_{m:M}\exists_{a:A}! m = am_0$
+  (or, equivalently $\neg\neg M = A$, where the equality is equality of $A$-modules).
+\end{proof}
+
+We deduce from this the following weaker version of Corollary \ref{map}, which we can prove without relying
+on Horrocks' Lemma.
+
+\begin{lemma}\label{weakmap}
+  Given $\varphi:\bP^n\rightarrow  \bP^m$, we have not not there exists
+  $m+1$ homogeneous polynomials $p = (p_0,\dots,p_m)$ on $R^{n+1}$
+  of the same   degree $d$ such that $x\neq 0$ implies $p(x)\neq 0$.
+\end{lemma}
+
+\begin{proof}
+  As in the previous Section, let $T$ be the ring of polynomials $u = \Sigma_p u(p)X^p$ with
+$X^p = X_0^{p_0}\dots X_n^{p_n}$ with $\Sigma p_i = 0$. We write $T_l$ for the subring
+of $T$ which contains only monomials $X^p$ with $p_i\geqslant 0$ if $i\neq l$
+and $T_{lm}$ the subring of $T$ 
+which contains only monomials $X^p$ with $p_i\geqslant 0$ if $i\neq l$ and $i\neq m$.
+
+  We view $\varphi(u)$ as a line in $R^{m+1}$. 
+  If $U_i = Sp(T_i)$ is the affine open subset of
+  $(x_0:\dots:x_n)$ in $\bP^n$ such that $x_i\neq 0$, we have by the previous Lemma that
+  $\prod_{u:U_i}\varphi(u)$ is not not a free $T_i$-module and so we not not have
+  an element $\psi_i:\prod_{u:U_i}R^{m+1}-0$ such that $\psi_i(u)$ generates $\varphi(u)$ for $u:U_i$.
+  We get then $m+1$ elements $(p_{i0},\dots,p_{im})$ of $T_i$ such that
+  $\psi_i(u) = (p_{i0}(u),\dots,p_{im}(u))$.
+
+  For $u$ in $U_i\cap U_j$ the line $\varphi(u)$ is generated both by $\psi_i(u)$ and $\psi_j(u)$
+  and we not not have $t_{ij}$ invertible in $T_i[X_i/X_j] = T_j[X_j/X_i] = T_{ij}$ such that
+  $t_{ij}(u)\psi_i(u) = \psi_j(u)$. By Proposition \ref{units} (which has a much simpler proof in the case
+  of a discrete field), we have not not $d$ and $s_i$ invertible in $T_i$ such that
+  $t_{ij} = X_j^d s_j/X_i^d s_i$.
+  We then not not
+  get $m+1$ homogeneous polynomials $p_{il}X_i^ds_i = p_{jl}X_j^d s_j$ = p_l$ for $l = 0,\dots,m$
+  such that $\varphi(u) = (p_0(u):\dots:p_m(u))$.
+\end{proof}
+
+We can then give a proof that   $\Aut(\bP^n)$ is $\PGL_{n+1}$ without relying on Horrocks' Lemma.
+
+We see the element of $\bP^n$ as lines in $R^{n+1}$.
+If $p_0,\dots,p_n$ are $n+1$ points of $\bP^n$, we can define the open proposition that are independent
+by the fact that for any choice of non zero elements $v_0,\dots,v_n$ in respectively $p_0,\dots,p_n$
+the determinant of the $(n+1)\times (n+1)$ matrix $v_0\dots v_n$ is $\neq 0$.
+
+\begin{corollary}
+    $\Aut(\bP^n)$ is $\PGL_{n+1}$.
+\end{corollary}
+
+\begin{proof}
+  Let $\varphi$ be an element of $\Aut(\bP^n)$.
+  Let $u_0,\dots,u_n$ be the vectors $(1,0,\dots,0), \dots, (0,\dots,0,1)$
+  and $u$ be the vector $(1,1,\dots,1)$.
+
+  We can find a $(n+1)\times (n+1)$ matrix $A$ such that $\varphi(R u_i) = R (Au_i)$
+  and $varphi(R u) = R (A u)$. By Lemma \ref{weakmap}, we have not not $\varphi$ is represented by $A$,
+  that is $\neg\neg \forall_{v\neq 0}\varphi(R v) = R (Av)$. If follows that $\neg \neg det(A) \neq 0$
+  and hence $\det(A)\neq 0$ and $A$ is in $GL_{n+1}$.
+
+  In this way, we reduce the problem of showing that if $\neg\neg \forall_{v\neq 0}\varphi (R v) = R v$
+  then $\varphi$ is the identity. But then we have not not $\varphi(U_i)\subseteq U_i$
+  and so $\varphi(U_i)\subseteq U_i$ for the standard $n+1$ affine charts $U_i$ of $\bP^n$, and we can
+  conclude as in \cite{Demazure}, III, 4.6.
+\end{proof}
