@@ -1,22 +1,38 @@
 In this section, we present an alternative way to prove that   $\Aut(\bP^n)$ is $\PGL_{n+1}$.
 
+It is direct \cite{seminormal} to show that a projective module of rank $1$ over a polynomial
+ring $K[X_1,\dots,X_n]$ is free, where $K$ is a discrete field. (The result actually holds in general
+for rank $n$, this is the famous Serre's Problem \cite{lam}.) Interpreting this proof dynamically
+\cite{lombardi-quitte}, it follows that if $A$ is now an arbitrary commutative ring, and $M$ a
+projective module of rank $1$ over $A[X_1,\dots,X_n]$, it is possible to build a binary tree, where
+the root is $A$, and each node is an ring extension $i:A\rightarrow B$, and a branch is obtained
+by forcing an element $a$ in $A$ to be invertible $B\rightarrow B[1/i(a)]$ or zero $B\rightarrow B/(i(a))$,
+and each leaf is such that $M\otimes B[X_1,\dots,X_n]$ is free.
+
+For the ring $R$, we have $a\neq 0\rightarrow \exists_x ax=1$ and hence $\neg \neg (a=0\vee \exists_x a x=1)$.
+Hence we have the following result.
+
 \begin{lemma}\label{notnot}
- Let $A$ be $R[X_1,\dots,X_n]$. A line bundle on $Sp(A) = R^n$ is not not trivial.
+  A projective module of rank $1$ over $R[X_1,\dots,X_n]$ is not not free. Equivalently, 
+a line bundle on $Sp(R[X_1,\dots,X_n]) = R^n$ is not not trivial.
 \end{lemma}
 
-\begin{proof}
-  Let $L$ be a line bundle $Sp(A)\rightarrow\KR$. As we saw above, the $A$-module $M = \prod_{u:\Spec(A)}L(u)$,
-  which is projective of rank $1$,   is presented by an idempotent square matrix $P$, and this module is free
-  exactly if we can find a column vector $x$ and a line vector $y$ such that $xy = I-P$. Using
-  \cite{seminormal}, this is satisfied if $A$ is a gcd domain. Since $R$ is not not a discrete
-  field, in the sense that we have $\forall_{x:R}\neg\neg (x=0 \vee \exists_y (xy = 1))$, we conclude
-  that we have $\neg\neg \exists_{x~y}xy = I-P$, and hence the $A$-module  $M$
-  is not not free, in the sense $\neg\neg \exists_{m_0:M}\forall_{m:M}\exists!_{a:A} m = am_0$
-  (or, equivalently $\neg\neg M = A$, where the equality is equality of $A$-modules).
-\end{proof}
+This generalizes Corollary 3.3.6 of \cite{draft}.
 
-We deduce from this the following weaker version of Corollary \ref{map}, which we can prove without relying
-on Horrocks' Lemma.
+
+%% \begin{proof}
+%%   Let $L$ be a line bundle $R^n\rightarrow\KR$. As we saw above, the $R[X_1,\dots,X_n]$-module $M = \prod_{u:\Spec(A)}L(u)$,
+%%   which is projective of rank $1$,   is presented by an idempotent square matrix $P$, and this module is free
+%%   exactly if we can find a column vector $x$ and a line vector $y$ such that $xy = I-P$. Using
+%%   \cite{seminormal}, this is satisfied if $A$ is a gcd domain. Since $R$ is not not a discrete
+%%   field, in the sense that we have $\forall_{x:R}\neg\neg (x=0 \vee \exists_y (xy = 1))$, we conclude
+%%   that we have $\neg\neg \exists_{x~y}xy = I-P$, and hence the $A$-module  $M$
+%%   is not not free, in the sense $\neg\neg \exists_{m_0:M}\forall_{m:M}\exists!_{a:A} m = am_0$
+%%   (or, equivalently $\neg\neg M = A$, where the equality is equality of $A$-modules).
+%% \end{proof}
+
+Similarly, using the fact that maps $\bP^n\rightarrow \bP^m$ are given by $m+1$ homogeneous polynomials in $K[X_0,\dots,X_n]$
+over a discrete field $K$, we deduce.
 
 \begin{lemma}\label{weakmap}
   Given $\varphi:\bP^n\rightarrow  \bP^m$, we have not not there exists
@@ -24,35 +40,36 @@ on Horrocks' Lemma.
   of the same   degree $d$ such that $x\neq 0$ implies $p(x)\neq 0$.
 \end{lemma}
 
-\begin{proof}
-  As in the previous Section, let $T$ be the ring of polynomials $u = \Sigma_p u(p)X^p$ with
-$X^p = X_0^{p_0}\dots X_n^{p_n}$ with $\Sigma p_i = 0$. We write $T_l$ for the subring
-of $T$ which contains only monomials $X^p$ with $p_i\geqslant 0$ if $i\neq l$
-and $T_{lm}$ the subring of $T$ 
-which contains only monomials $X^p$ with $p_i\geqslant 0$ if $i\neq l$ and $i\neq m$.
+%% \begin{proof}
+%%   As in the previous Section, let $T$ be the ring of polynomials $u = \Sigma_p u(p)X^p$ with
+%% $X^p = X_0^{p_0}\dots X_n^{p_n}$ with $\Sigma p_i = 0$. We write $T_l$ for the subring
+%% of $T$ which contains only monomials $X^p$ with $p_i\geqslant 0$ if $i\neq l$
+%% and $T_{lm}$ the subring of $T$ 
+%% which contains only monomials $X^p$ with $p_i\geqslant 0$ if $i\neq l$ and $i\neq m$.
 
-  We view $\varphi(u)$ as a line in $R^{m+1}$. 
-  If $U_i = Sp(T_i)$ is the affine open subset of
-  $(x_0:\dots:x_n)$ in $\bP^n$ such that $x_i\neq 0$, we have by the previous Lemma that
-  $\prod_{u:U_i}\varphi(u)$ is not not a free $T_i$-module and so we not not have
-  an element $\psi_i:\prod_{u:U_i}R^{m+1}-0$ such that $\psi_i(u)$ generates $\varphi(u)$ for $u:U_i$.
-  We get then $m+1$ elements $(p_{i0},\dots,p_{im})$ of $T_i$ such that
-  $\psi_i(u) = (p_{i0}(u),\dots,p_{im}(u))$.
+%%   We view $\varphi(u)$ as a line in $R^{m+1}$. 
+%%   If $U_i = Sp(T_i)$ is the affine open subset of
+%%   $(x_0:\dots:x_n)$ in $\bP^n$ such that $x_i\neq 0$, we have by the previous Lemma that
+%%   $\prod_{u:U_i}\varphi(u)$ is not not a free $T_i$-module and so we not not have
+%%   an element $\psi_i:\prod_{u:U_i}R^{m+1}-0$ such that $\psi_i(u)$ generates $\varphi(u)$ for $u:U_i$.
+%%   We get then $m+1$ elements $(p_{i0},\dots,p_{im})$ of $T_i$ such that
+%%   $\psi_i(u) = (p_{i0}(u),\dots,p_{im}(u))$.
 
-  For $u$ in $U_i\cap U_j$ the line $\varphi(u)$ is generated both by $\psi_i(u)$ and $\psi_j(u)$
-  and we not not have $t_{ij}$ invertible in $T_i[X_i/X_j] = T_j[X_j/X_i] = T_{ij}$ such that
-  $t_{ij}(u)\psi_i(u) = \psi_j(u)$. By Proposition \ref{units} (which has a much simpler proof in the case
-  of a discrete field), we have not not $d$ and $s_i$ invertible in $T_i$ such that
-  $t_{ij} = X_j^d s_j/X_i^d s_i$.
-  We then not not
-  get $m+1$ homogeneous polynomials $p_{il}X_i^ds_i = p_{jl}X_j^d s_j = p_l$ for $l = 0,\dots,m$
-  such that $\varphi(u) = (p_0(u):\dots:p_m(u))$.
-\end{proof}
+%%   For $u$ in $U_i\cap U_j$ the line $\varphi(u)$ is generated both by $\psi_i(u)$ and $\psi_j(u)$
+%%   and we not not have $t_{ij}$ invertible in $T_i[X_i/X_j] = T_j[X_j/X_i] = T_{ij}$ such that
+%%   $t_{ij}(u)\psi_i(u) = \psi_j(u)$. By Proposition \ref{units} (which has a much simpler proof in the case
+%%   of a discrete field), we have not not $d$ and $s_i$ invertible in $T_i$ such that
+%%   $t_{ij} = X_j^d s_j/X_i^d s_i$.
+%%   We then not not
+%%   get $m+1$ homogeneous polynomials $p_{il}X_i^ds_i = p_{jl}X_j^d s_j = p_l$ for $l = 0,\dots,m$
+%%   such that $\varphi(u) = (p_0(u):\dots:p_m(u))$.
+%% \end{proof}
 
-We can then give a proof that   $\Aut(\bP^n)$ is $\PGL_{n+1}$ without relying on Horrocks' Lemma.
+ We can then give a proof that   $\Aut(\bP^n)$ is $\PGL_{n+1}$ without relying on Horrocks' Theorem.
 
 We see the element of $\bP^n$ as lines in $R^{n+1}$.
-If $p_0,\dots,p_n$ are $n+1$ points of $\bP^n$, we can define the open proposition that are independent
+If $p_0,\dots,p_n$ are $n+1$ points of $\bP^n$, we can define the open proposition that
+the points $p_0,\dots,p_n$ are independent
 by the fact that for any choice of non zero elements $v_0,\dots,v_n$ in respectively $p_0,\dots,p_n$
 the determinant of the $(n+1)\times (n+1)$ matrix $v_0\dots v_n$ is $\neq 0$.
 
