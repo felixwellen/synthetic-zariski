@@ -15,6 +15,18 @@ There is in particular a ``generic
 local ring'' $R$, which associates to $A$ its underlying set. As described in \cite{kockreyes}
 the projective space $\bP^n$ is then the set of lines in $R^{n+1}$.
 
+In \cite{draft}, we presented an axiomatisation of the Zariski {\em higher topos} \cite{lurie-htt},
+using instead of the language of higher-order logic the language of dependent type theory
+with univalence \cite{hott}. The first axiom is that we have a local ring $R$. We then define
+an affine scheme to be a type of the form $\Sp(A) = \Hom_{\Alg{R}}(A,R)$ for some finitely presented
+$R$-algebra $A$. The second axiom, inspired from the work of Ingo Blechschmidt \cite{ingo-thesis},
+states that the evaluation map $A\rightarrow R^{\Sp(A)}$ is a bijection. The last axiom states
+that each $\Sp(A)$ satisfies some form of local choice \cite{draft}. We can then define a notion
+of {\em open} proposition, with the corresponding notion of open subset, and define a scheme as a type
+covered by a finite number of open subsets that are affine schemes. In particular, we define
+$\bP^n$ as in \cite{kockreyes} and show that it is a scheme, by the usual covering by $n+1$
+open affine subsets $U_0,\dots,U_n$.
+
 A natural question is if we can show in this setting that the automorphism group of $\bP^n$
 is  $\PGL_{n+1}(R)$.
 More generally, can we show that any map $\bP^n\rightarrow \bP^m$ is given by $m+1$ homogeneous
@@ -25,28 +37,29 @@ as a scheme (but the maps are now {\em maps of schemes}).
 While this result is a basic text book in the case of projective space over a field, the general
 case is more subtle.
 (This general result, though fundamental, is not in \cite{Hartshorne} for instance.)
-One goal of this paper is to present such a proof.
-
-In \cite{draft}, we presented an axiomatisation of the Zariski {\em higher topos} \cite{lurie-htt},
-using instead of the language of higher-order logic the language of dependent type theory
-with univalence \cite{hott}. The first axiom is that we have a local ring $R$. We then define
-an affine scheme to be a type of the form $\Sp(A) = \Hom_{\Alg{R}}(A,R)$ for some finitely presented
-$R$-algebra $A$. The second axiom, inspired from the work of Ingo Blechschmidt \cite{ingo-thesis},
-states that the evaluation map $A\rightarrow R^{\Sp(A)}$ is a bijection. The last axiom states
-that each $\Sp(A)$ satisfies some form of local choice \cite{draft}. We can then define a notion
-of {\em open} proposition, with the corresponding notion of open subset, and define a scheme as a type
-covered by a finite number of open subsets that are affine schemes. In particular, we define
-$\bP^n$ as in \cite{kockreyes} and show that it is a scheme.
-In this setting, dependent type theory with univalence extended with these 3 axioms,
-we show the above result about maps between $\bP^n$ and $\bP^m$ and the result about automorphisms of $\bP^n$.
+One goal of this paper is to present such a proof in the setting of \cite{draft},
+dependent type theory with univalence extended with these 3 axioms described above.
+%we show the above result about maps between $\bP^n$ and $\bP^m$ and the result about automorphisms of $\bP^n$.
 
 Interestingly, though these results are
 about the Zariski $1$-topos, the proof makes use of types that
-are not (homotopy) sets (in the sense of \cite{hott}),
-since it proceeds in characterizing $\bP^n\rightarrow\KR$, where $\KR$ is the delooping
-(thus a type which is not a set) of the multiplicative group of units of $R$.
-More technically, we also use such higher types as an alternative to the technique
-of Quillen patching \cite{Quillen,lombardi-quitte,Lam}.
+are {\em not} (homotopy) sets (in the sense of \cite{hott}).
+The argument proceeds as follows. The first step is to show that any line bundle on $\bP^1$
+is trivial on each standard affine chart. The proof here is a reformulation of the standard
+argument which follows from Horrocks Theorem \cite{Quillen,lombardi-quitte,Lam}.
+The usual way to generalise this result to $\bP^n$ is to use the technique
+of Quillen patching \cite{Quillen,lombardi-quitte,Lam}. 
+We present an alternative argument which proceeds in characterizing $\bP^n\rightarrow\KR$
+as $\ints\times\KR$, where $\KR$ is the delooping
+(thus a type which is not a set) of the multiplicative group of units of $R$. Once we have
+the result that a line bundle on $\bP^n$ is trivial on each standard affine chart, we
+can deduce by a purely algebraic result (Proposition \ref{units}) that
+$\Pic(\bP^n) = \ints$ and $\Aut(\bP^n) = \PGL_{n+1}(R)$ and that
+any map $\bP^n\rightarrow \bP^m$ is given by $m+1$ homogeneous
+polynomials of same degree in $n+1$ variables. We also provide an alternative direct geometric
+proof that $\Pic(\bP^n) = \ints$ from our charcterisation of $\bP^n\rightarrow \KR$. 
+
+
 
 
 
