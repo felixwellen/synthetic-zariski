@@ -33,7 +33,10 @@ In particular, if we write $x:U$ for a subtype $U:X\to\Prop$, we mean that $x:\s
   Let $I$ and $X$ be types and $U_i:X\to\Prop$ a subtype for any $i:I$.
   \begin{enumerate}[(a)]
   \item The \notion{union} $\bigcup_{i:I}U_i$\index{$\bigcup_{i:I}U_i$} is the subtype $(x:X)\mapsto \exists_{i:I}U_i(x)$.
-  \item The \notion{intersection} $\bigcap_{i:I}U_i$\index{$\bigcap_{i:I}U_i$} is the subtype $(x:X)\mapsto\prod_{i:I}U_i(x)$.
+  \item The \notion{intersection} $\bigcap_{i:I}U_i$\index{$\bigcap_{i:I}U_i$} is the subtype $(x:X)\mapsto\prod_{i:I}U_i(x)$. Note that applying $\prod$ to a family of propositions is a proposition, so in this case no truncation is needed.
+  \item We use $\emptyset$ for the subtype $(x:X)\mapsto \emptyset$. \index{$\emptyset$}
+  \item For $U\subseteq X$, let $\neg U\colonequiv (x:X)\mapsto \neg U(x)$. \index{$\neg U$}
+  \item For $U\subseteq X$, let $\neg\neg U\colonequiv (x:X)\mapsto \neg\neg U(x)$. \index{$\neg\neg U$}
   \end{enumerate}
 \end{definition}
 
@@ -41,7 +44,7 @@ We will use common notation for finite unions and intersections.
 The following formula hold:
 
 \begin{lemma}
-  Let $I$, $X$ be types, $U_i:X\to\Prop$ a subtype for any $i:I$ and $V,W$ subtypes of $X$.
+  Let $I$, $X$ be types, $U_i:X\to\Prop$ a subtype for any $i:I$ and $V$ subtypes of $X$.
   \begin{enumerate}[(a)]
   \item Any subtype $P:V\to\Prop$ is a subtype of $X$ given by $(x:X)\mapsto\sum_{x:V}P(x)$.
   \item $V\cap \bigcup_{i:I} U_i=\bigcup (V\cap U_i)$.
@@ -49,15 +52,6 @@ The following formula hold:
   \item If $\bigcup_{i:I}U_i=\emptyset$, then $U_i=\emptyset$ for all $i:I$.
   \end{enumerate}
 \end{lemma}
-
-\begin{definition}
-  Let $X$ be a type.
-  \begin{enumerate}[(a)]
-  \item $\emptyset\colonequiv (x:X)\mapsto \emptyset$. \index{$\emptyset$}
-  \item For $U\subseteq X$, let $\neg U\colonequiv (x:X)\mapsto \neg U(x)$. \index{$\neg U$}
-  \item For $U\subseteq X$, let $\neg\neg U\colonequiv (x:X)\mapsto \neg\neg U(x)$. \index{$\neg\neg U$}
-  \end{enumerate}
-\end{definition}
 
 \begin{lemma}
   $U=\emptyset$ if and only if $\neg\left(\exists_{x:X}U(x)\right)$.
@@ -104,7 +98,7 @@ Similarly we can prove.
   and $P:X\to \nType{1}$, we have the following glueing property: \\
   If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
   proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(x))$ satisfying the cocycle
-  condition $p_{ij}\cdot p_{jk} = p_{ik}$.
+  condition $p_{ij}\cdot p_{jk} = p_{ik}$, where ``$\cdot$'' denotes concatenation of equalities.
   then there is a globally defined dependent function $s:(x:X) \to P(x)$,
   such that for all $x:X$ and $i:I$ we have $p_i:U_i(x) \to s(x)=s_i(x)$ such that $p_i\cdot p_{ij} = p_j$.
 \end{lemma}
@@ -115,6 +109,8 @@ The condition for $\nType{0}$ can be seen as an internal version of the usual pa
 The condition for $\nType{1}$ is then the internal version of the usual patching {\em $1$-stack} condition.
 
 \subsection{Algebra}
+We will use basic concepts from constructive algebra, like quotients, units and localizations.
+Theses concepts are introduced and discussed in more detail in \cite{lombardi-quitte}[Chapter II, Section 1].
 
 \begin{definition}%
   \label{local-ring}
