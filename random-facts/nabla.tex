@@ -1,0 +1,41 @@
+\begin{definition}
+The $\nabla$-modality is the modality obtained by localising at the family of $x=0+x\not=0$ for $x:R$.
+\end{definition}
+
+\begin{lemma}
+The type $\bot$ is $\nabla$-modal.
+\end{lemma}
+
+\begin{proof}
+Indeed for any $x:R$ we have $\neg\neg(x=0 + x\not=0)$ which is precisely what we want.
+\end{proof}
+
+\begin{remark}
+It means any negated statement is $\nabla$-modal, e.g. $x:R$ being invertible or nilpotent.
+\end{remark}
+
+\begin{lemma}
+The type $2$ is not $\nabla$-modal.
+\end{lemma}
+
+\begin{proof}
+If $2$ is $\nabla$-modal, then for all $x:R$ we can define:
+\[x=0+x\not=0\to 2\]
+with value $0$ if $x=0$ and $1$ if $x\not=0$. This gives $b:2$ such that $x=0 \to b=0$ and $x\not=0\to b=1$ so that $b=0 \leftrightarrow \neg\neg(x=0)$ and $b=1\leftrightarrow x\not=0$. So we get $\prod_{x:R} \neg\neg(x=0)+x\not=0$, i.e. a map $f:R\to R$ such that if $\neg\neg(x=0)$ then $f(x)=0$ and if $x\not=0$ then $f(x)=1$. We get $P:R[X]$ such that $P(0)=0$, i.e. $P = XQ$, and $Q$ constant on $R^\times$. This is a contradiction.
+\end{proof}
+
+\begin{lemma}\label{closed-not-nabla}
+If a closed proposition is $\nabla$-modal then it is decidable.
+\end{lemma}
+
+\begin{proof}
+Assume $P$ closed with $P \leftrightarrow x_1=0\land\cdots\land x_n=0$, by Nakayama it is enough to prove that $\neg\neg P\to P$. Assume $\neg\neg P$, let us prove $P$. By hypothesis we can assume $x_1=0+x\not=0$. If $x_1\not=0$ this contradicts $\neg\neg P$. So $x_1=0$. Then we do the same with $x_2,\cdots,x_n$ and conclude $P$.
+\end{proof}
+
+\begin{corollary}
+The type $R$ is not $\nabla$-modal.
+\end{corollary}
+
+\begin{proof}
+Otherwise its identity type would be decidable by \Cref{closed-not-nabla}.
+\end{proof}
