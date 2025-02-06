@@ -2,7 +2,7 @@
 The $\nabla$-modality is the modality obtained by localising at the family of $x=0+x\not=0$ for $x:R$.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{bot-nabla-modal}
 The type $\bot$ is $\nabla$-modal.
 \end{lemma}
 
@@ -24,12 +24,20 @@ If $2$ is $\nabla$-modal, then for all $x:R$ we can define:
 with value $0$ if $x=0$ and $1$ if $x\not=0$. This gives $b:2$ such that $x=0 \to b=0$ and $x\not=0\to b=1$ so that $b=0 \leftrightarrow \neg\neg(x=0)$ and $b=1\leftrightarrow x\not=0$. So we get $\prod_{x:R} \neg\neg(x=0)+x\not=0$, i.e. a map $f:R\to R$ such that if $\neg\neg(x=0)$ then $f(x)=0$ and if $x\not=0$ then $f(x)=1$. We get $P:R[X]$ such that $P(0)=0$, i.e. $P = XQ$, and $Q$ constant on $R^\times$. This is a contradiction.
 \end{proof}
 
+\begin{lemma}\label{nabla-closed-not-not}
+Let $P$ be a closed proposition, then $\nabla P = \neg\neg P$
+\end{lemma}
+
+\begin{proof}
+Assume $P$ closed with $P \leftrightarrow x_1=0\land\cdots\land x_n=0$. By \Cref{bot-nabla-modal} we have that $\nabla P\to \neg\neg P$. Now assume $\neg\neg P$, let us prove $\nabla P$. By hypothesis we can assume $x_1=0+x\not=0$. If $x_1\not=0$ this contradicts $\neg\neg P$. So $x_1=0$. Then we do the same with $x_2,\cdots,x_n$ and conclude $\nabla P$.
+\end{proof}
+
 \begin{lemma}\label{closed-not-nabla}
 If a closed proposition is $\nabla$-modal then it is decidable.
 \end{lemma}
 
 \begin{proof}
-Assume $P$ closed with $P \leftrightarrow x_1=0\land\cdots\land x_n=0$, by Nakayama it is enough to prove that $\neg\neg P\to P$. Assume $\neg\neg P$, let us prove $P$. By hypothesis we can assume $x_1=0+x\not=0$. If $x_1\not=0$ this contradicts $\neg\neg P$. So $x_1=0$. Then we do the same with $x_2,\cdots,x_n$ and conclude $P$.
+Assume $P$ closed and $\nabla$-modal, by \Cref{nabla-closed-not-not} we have $\neg\neg P \leftrightarrow = P$, so $P$ is decidable by Nakayama.
 \end{proof}
 
 \begin{corollary}
