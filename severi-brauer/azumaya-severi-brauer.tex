@@ -72,6 +72,13 @@ By \Cref{azumayas-are-finite-free} we have that $A$ is finite free as a module, 
 \end{proof}
 
 
+\subsection{Example of Azumaya algebra}
+
+We assume $2\not=0$.
+
+TODO
+
+
 \subsection{A remark on Azumaya algebras}
 
 \begin{lemma}\label{MnR-endomorphism-multiplication}
@@ -79,7 +86,11 @@ For any $n:\N$, the map $M_{n+1}(R)\otimes M_{n+1}(R)^{op}\to \mathrm{End}_R(M_{
 \end{lemma}
 
 \begin{proof}
-Both algebras have the same dimension so we just need to check surjectivity. TODO
+Let us denote by $(E_{i,j})_{0\leq i,j\leq n}$ the canonical basis of $M_{n+1}(R)$. We consider the basis: 
+\[(E_{i,j}\otimes E_{k,l})_{0\leq i,j,k,l\leq n}\] 
+of $M_{n+1}(R)\otimes M_{n+1}(R)^{op}$, as well as the basis:
+\[(C_{i,j,k,l})_{0\leq i,j,k,l\leq n}\] 
+of $\mathrm{End}_R(M_{n+1}(R))$ where $C_{i,j,k,l}(E_{j,k}) = E_{i,l}$ and $C_{i,j,k,l}$ is null on other element of the basis. It is clear that the morphism sends one basis to the other, and that both algebras have the same multiplication table. 
 \end{proof}
 
 \begin{lemma}
@@ -150,3 +161,62 @@ it is enough to prove:
 \[\RI(M_{n+1}(R)) = \bP^n\]
 which is \Cref{right-ideal-of-matrices-are-projective}.
 \end{proof}
+
+
+\subsection{Example of Severi-Brauer variety}
+
+We assume $2\not=0$.
+
+\begin{definition}
+Assume given $a,b,c:R$ invertible. Then we define $C(a,b)$ as the set of $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$.
+\end{definition}
+
+\begin{lemma}\label{severi-example-with-roots}
+Assume given $a,b$ invertible with square roots $\sqrt{a}$, $\sqrt{b}$. Then the map:
+\[\psi:\bP^1\to \bP^2\]
+\[ [m:n]\mapsto \left[m^2+n^2 : \frac{2mn}{\sqrt{a}} : \frac{m^2-n^2}{\sqrt{b}}\right] \]
+induces an equivalence between $\bP^1$ and $C(a,b)$.
+\end{lemma}
+
+\begin{proof}
+The ideal $I = \left(m^2+n^2, \frac{2mn}{\sqrt{a}}, \frac{m^2-n^2}{\sqrt{b}}\right)$ contains $m^2$ and $n^2$, therefore if $(m,n)=1$ then $I=1$. So the map is well defined.
+\begin{itemize}
+
+\item The map $\psi$ takes value in $C(a,b)$. By direct computations, we check that for all $m,n:R$ we have that:
+\[\left(m^2+n^2\right)^2 = a\left(\frac{2mn}{\sqrt{a}}\right)^2 + b\left(\frac{m^2-n^2}{\sqrt{b}}\right)^2\]
+
+\item The map $\psi$ is injective. Indeed assume $[m:n]$ and $[\bar{m}:\bar{n}]$ in $\bP^1$ such that $\psi([m:n])=\psi([\bar{m}:\bar{n}])$, we have that $m\bar{n}=\bar{m}n$. By linear combinations we get that:
+\begin{eqnarray}
+m^2\bar{m}\bar{n} &=& \bar{m}mn\\
+\bar{m}\bar{n}n^2 &=& mn\bar{n}^2\\
+\bar{m}^2n^2 &=& m^2\bar{n}^2
+\end{eqnarray}
+If $m$ and $\bar{m}$ are invertible we conclude by (1). If $n$ and $\bar{n}$ are invertible we conclude by (2). If $\bar{m}$ and $n$ (resp. $m$ and $\bar{n}$) are invertible by (3) we have that $m$ and $\bar{n}$ (resp. $\bar{m}$ and $n$) are invertible, and we conclude as before.
+
+\item The map $\psi$ is surjective. Assume $[x:y:z]:C(a,b)$. We know that $x$, $y$ or $z$ is invertible, and since $x^2=ay^2+bz^2$, we have that if $y$ is invertible then $x$ or $z$ is invertible. Since $x$ and $z$ belong to $\left(x+\sqrt{b}z, x-\sqrt{b}z)\right)$, we know one of the two is invertible, say $x+\sqrt{b}z$. 
+
+Since $\psi$ is an embedding of schemes, its fibers being merely inhabited is an fppf sheaf by \Cref{scheme-is-fppf-sheaf}. So we can assume $m$ such that $m^2 = \frac{x+\sqrt{b}z}{2}$. Then we can define $n=\frac{\sqrt{a}y}{2m}$ and check that $n^2 = \frac{x-\sqrt{b}z}{2}$ and that $\psi([m:n]) = [x:y:z]$. 
+
+If $x-\sqrt{b}z$ is invertible, we proceed similarly using an $n$ such that $n^2=\frac{x-\sqrt{b}z}{2}$.
+\end{itemize}
+\end{proof}
+
+\begin{lemma}
+Assume given $a,b$ invertible, then $C(a,b)$ is a Severi-Brauer variety.
+\end{lemma}
+
+\begin{proof}
+Since being a Severi-Brauer variety is an fppf sheaf, we can assume square roots of $a$, $b$. Then we just apply \Cref{severi-example-with-roots}.
+\end{proof}
+
+\begin{lemma}
+Assume $a,b:R$ invertible such that $\propTrunc{C(a,b)}$, then $\propTrunc{C(a,b)=\bP^1}$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{remark}
+We will see in \Cref{chatelet-theorem} that this holds for any Severi-Brauer variety, i.e. any merely inhabited Severi-Brauer variety is a projective space. 
+\end{remark}
