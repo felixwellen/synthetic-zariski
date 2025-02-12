@@ -1,4 +1,4 @@
-% latexmk -pdf -pvc main.tex
+% latexmk -pdf -pvc abstract.tex
 % latexmk -pdf -pvc -interaction=nonstopmode main.tex
 \documentclass{../util/zariski}
 \newcommand{\SB}{\mathrm{SB}}
@@ -28,7 +28,7 @@ where $\propTrunc{X=\bP^n}_{\mathrm{\acute{E}t}}$ is the étale sheafification o
 \section{Synthetic algebraic geometry}
 
 Algebraic geometry is concerned with the study of roots of polynomial systems over an arbitrary base ring. A key idea is that given a system of polynomial equations:
-\[P_1(x_1,\cdots,x_n)=0\land\cdots\land P_m(x_1,\cdots,x_n)\]
+\[P_1(x_1,\cdots,x_n)=0\land\cdots\land P_m(x_1,\cdots,x_n)=0\]
 we can define an algebra:
 \[A = R[X_1,\cdots,X_n]/(P_1,\cdots,P_m)\]
 as well as a geometric object $\Spec(A)$ called an affine scheme, such that points in $\Spec(A)$ correspond to roots of the system. This is fruitful because one can then use geometric tools to study $\Spec(A)$, for example smoothness, connectedness, sheaf cohomology, etc. This allows one to gain understanding about $\Spec(A)$ even in a situations where it is unknown whether $\Spec(A)$ has a point. For this theory to work, $\Spec(A)$ needs to be a quite refined object, e.g. a locally ringed space or a sheaf on the Zariski site.
@@ -46,7 +46,7 @@ is an equivalence for any such $A$. This means that there is an equivalence betw
 This work is part of the \href{https://github.com/felixwellen/synthetic-zariski/blob/main/README.md}{ongoing investigations} into how much traditional algebraic geometry can be derived from these three axioms. It relies crucially on previous work on the projective space $\bP^n$, which is define as the type of line in $R^{n+1}$ \cite{sag-projective}.
 
 
-\section{Ch\^atelet's theorem in traditional algebraic geometry}
+\section{Ch\^atelet's Theorem in traditional algebraic geometry}
 
 {F}ran\c cois {C}h\^atelet introduced the notion of Severi-Brauer variety in his 1944 PhD thesis
 \cite{chatelet44} in order to generalise of a result of Poincar\'e about rational curves over a field.
@@ -84,7 +84,7 @@ We define the type $\SB_n$ of Severi-Brauer varieties of dimension $n$ as the ty
 for $a,b$ invertible, when $R$ is not of characteristic $2$.
 
 We define the type $\AZ_n$ of Azumaya algebras of rank $n$ as the type of algebras $A$ that are étale sheaves such that $\propTrunc{A=M_{n+1}(R)}_{\mathrm{\acute{E}t}}$. Examples include quaternion non-commutative algebras: 
-\[R[1,i,j,k]/(i^2=a,j^2=b,ij=k,ji=-k)\]
+\[R[1,i,j]/(i^2=a,j^2=b,ij=-ji)\]
 for $a,b$ invertible, when $R$ is not of characteristic $2$.
 
 Using that $\mathrm{Aut}(\bP^n) = PGL_{n+1}$ from \cite{sag-projective} and proving that $\mathrm{Aut}_{\mathrm{Alg}}(M_{n+1}(R)) = PGL_{n+1}$,
