@@ -337,3 +337,59 @@ TODO
 \end{proof}
 
 
+\subsection{The fppf topology}
+
+We will refine the condition on sheafification of proposition, specializing \Cref{topology-from-pretopology}. Here we have an eye toward Azumaya algebras.
+
+\begin{definition}
+Let $A$ be an algebra, then $P:A[X]$ is monic by component if there exists a decomposition $A=A_1\times\cdot\times A_n$ and for all $i$ a monic polynomial $P_i:A_i[X]$ such that $P = (P_1,\cdots,P_n)$, where we implicitly used the iso:
+\[(A_1\times\cdots\times A_n)[X] = A_1[X]\times\cdots\times A_n[X]\]
+\end{definition}
+
+\begin{definition}
+Define inductively the class $S_\Sigma$ of f.p. algebras as follows:
+\begin{itemize}
+\item $R\in S_\Sigma$.
+\item If $A\in S_\Sigma$ and $P:A[X]$ is monic by component, then $A[X]/P\in S_\Sigma$.
+\item If $A\in S_\Sigma$ and $u_1,\cdots,u_n:A$ such that $(u_1,\cdots,u_n)=1$, then $A_{u_1}\times\cdots\times A_{u_n}\in S_\Sigma$.
+\end{itemize} 
+\end{definition}
+
+\begin{lemma}\label{fppf-sheafifcation-description-SSigma}
+If $L_T(\propTrunc{P})$, then there merely exists $A\in S_\Sigma$ such that $\Spec(A)\to P$.
+\end{lemma}
+
+\begin{proof}
+By local choice it is clear it is enough to prove there exists an $A\in S_\Sigma$ such that $\Spec(A)\to \propTrunc{P}$, so we might as well assume $P$ is a proposition. By \Cref{Tsigma'-proposition} we know there exists $X\in T_\Sigma'$ such that $X\to P$, so it is enough to prove that for any $X\in T_\Sigma'$ there exists $A\in S_\Sigma$ such that $\Spec(A)\to X$. We proceed by induction on $X\in T_\Sigma'$
+\begin{itemize}
+\item If $X=1$ it is immediate. 
+
+\item Assume $X$ with $Y:X\to Zar$ and $A\in S_\Sigma$ with $f:\Spec(A)\to X$. Consider the surjective map $\psi : \Sigma_{n:\N}R^n\to Zar$ defined by $\psi(x_1,\cdots,x_n) = 1 + x_1\not=0 +\cdots + x_n\not=0$. By local choice there exists a Zariski cover $p:\Spec(B)\to \Spec(A)$ and a map $Y':\Spec(B)\to \Sigma_{n:\N}R^n$ such that for all $x:\Spec(B)$ we have that $Y_{f(p(x))} = \psi(Y'_x)$. Then $\Sigma_{\Spec(B)} \psi\circ Y' \in S_\Sigma$ and we have a map $\Sigma_{\Spec(B)} \psi\circ Y'\to \Sigma_XY$.
+
+\item Assume $X$ with $Y:X\to T$ and $A\in S_\Sigma$ with $f:\Spec(A)\to X$. Consider the surjective map $\psi : \Sigma_{n:\N}R^n\to T$ defined by $\psi(x_0,\cdots,x_{n-1}) = \Spec(R[X]/X^n+x_{n-1}X^{n-1}+\cdots+x_0)$. We do local choice as before. But given a map $\Spec(B)\to \Sigma_{n:\N}R^n$ we get $\Spec(B)$ a disjoint union of pieces where $n$ is constant, hence a $P:B[X]$ monic by component such that we have a map $\Spec(B[X]/P) \to \Sigma_XY$.
+\end{itemize}
+\end{proof}
+
+Next lemma is interesting for Azumaya algebras.
+
+\begin{lemma}
+Assume $A,B$ a non-commutative algebras, finite free as modules. Assume:
+\[\propTrunc{A=B}_{\mathrm{fppf}}\]
+Then there exists $C$ in $S_\Sigma$ such that:
+\[C\otimes A = C\otimes B\]
+\end{lemma}
+
+\begin{proof}
+By \Cref{fppf-sheafifcation-description-SSigma} we have $C\in S_\Sigma$ such that:
+\[\Spec(C)\to A=_{\mathrm{Alg}}B\]
+so that:
+\[A^{\Spec(C)} =_{\mathrm{Alg}} B^{\Spec(C)}\]
+But since $A$ and $B$ are finite free as modules, we have that $A\otimes C = A^{\Spec(C)}$ and $B\otimes C = B^{\Spec(C)}$ as it is clear this holds for modules, and we can easily check the maps $A\otimes C\to A^{\Spec(C)}$ and $B\otimes C\to B^{\Spec(C)}$ are morphisms of non-commutative algebras.
+\end{proof}
+
+\begin{remark}
+Note that $C$ is fppf, but $C\otimes A=C\otimes B$ does not imply $A=C$ because the equality does not necessarily comes from a map $A\to B$.
+\end{remark}
+
+
+
