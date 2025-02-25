@@ -1,3 +1,149 @@
+\subsection{Generalities on delooping in $T$-sheaves}
+
+\begin{definition}
+A type $A$ is $T$-connected if:
+\[\forall(x,y:A).\ \propTrunc{x=y}_T\]
+\end{definition}
+
+The key intuition for the next lemma is that both $A$ and $B$ are deloopings of the same group in the topos of sheaves.
+
+\begin{lemma}\label{deloopings-equivalence}
+Assume $A,B$ pointed $T$-connected sheaves. Let $f:A\to B$ be a pointed map inducing an equivalence:
+\[\Omega f : \Omega A \simeq \Omega B\]
+Then $f$ is an equivalence.
+\end{lemma}
+
+\begin{proof}
+First we prove that $f$ is an embedding. We have to prove that for all $x,y:A$ the map:
+\[\mathrm{ap}_f : x=y \to f(x)=f(y)\]
+is an equivalence. Since $A$ and $B$ are sheaves so are their identity types, so $\mathrm{ap}_f$ being an equivalence is a sheaf, so by $T$-connectedness of $A$ we can assume $x$ and $y$ are the basepoint, in which case it is part of the hypothesis.
+
+Now we prove it is surjective, indeed for any $x:B$ we have that $\fib_f(x)$ is a sheaf and a proposition so when proving it is inhabited we can assume $x$ is the basepoint of $B$ and give the basepoint of $A$ as antecedent.
+\end{proof}
+
+
+\subsection{Both $\Aut(M_{n+1}(R))$ and $\Aut(\bP^n)$ are $\PGL_{n+1}(R)$}
+
+\begin{lemma}\label{finite-projective-free}
+Let $M$ be a finite projective module, then $M$ is finite free.
+\end{lemma}
+
+\begin{proof}
+\cite{TODO}, crucially relies on $R$ being local.
+\end{proof}
+
+\begin{lemma}\label{fundamental-system-matrices}
+Assume $e_{i,j}:M_{n+1}(R)$ for $0\leq i,j\leq n$ such that:
+\[e_{i,j}e_{k,l} = \delta_{j,k}e_{i,l}\]
+where $\delta_{j,k} = 1$ if $j=k$ and $0$ otherwise. Moreover assume:
+\[e_{0,0}+\cdots+e_{n,n}=1\]
+Then there exists $P:GL_{n+1}(R)$ such that:
+\[e_{i,j} = PE_{i,j}P^{-1}\]
+\end{lemma}
+
+\begin{proof}
+We define $e_i = e_{i,i}$, then $e_0+\cdots+e_n = 1$, for all $i$ we have $e_i^2=e_i$ and for all $i\not=j$ we have that $e_ie_j=0$. From this we get:
+\[R^{n+1} = V_0\oplus\cdots\oplus V_n\]
+where:
+\[V_i = \{x\ |\ e_i(x)=x\}\]
+and:
+\[e_{i,j}:V_j\simeq V_i\]
+
+As a direct summand of a free module we have that $V_0$ is projective, and since $V_0 = e_{0}(R^{n+1})$ we have that $V_0$ is finitely generated, so by \Cref{finite-projective-free} it is finite free. From $V_0^{n+1}=R^{n+1}$ we get that $\propTrunc{V_0=R}$, and therefore that $\propTrunc{V_i=R}$ for all $i$.
+
+Then we choose $v_0$ generating $V_0$ and define $v_i = e_{i,0}(v_0)$ so that $v_i$ generates $V_i$ because $e_{i,0}:V_0\simeq V_i$. We get a basis $v_0,\cdots,v_n$ of $R^{n+1}$.
+
+Let $u_0,\cdots,u_n$ be the canonical basis of $R^{n+1}$ and define $P:GL_{n+1}(R)$ by sending $u_i$ to $v_i$. Then for all $v_k$ we have that:
+\[e_{i,j}v_k = PE_{i,j}P^{-1}v_k\]
+so we can conclude.
+\end{proof}
+
+\begin{proposition}\label{Aut-MnR-PGL}
+The map:
+\[\alpha:\PGL_{n+1}(R)\to\Aut(M_{n+1}(R))\]
+\[P\mapsto (M\mapsto PMP^{-1})\]
+is an equivalence.
+\end{proposition}
+
+\begin{proof}
+It is clearly a group morphism. 
+
+For injectivity we just need to check that if for all $M:M_{n+1}(R)$ we have $PMP^{-1}=M$ then there exists $\lambda\not=0$ such that $P=\lambda I_{n+1}$. This is a well-known linear algebra exercise.
+
+For surjectivity consider $e_{i,j}=\sigma(E_{i,j})$, we can apply \Cref{fundamental-system-matrices} to get $P:GL_{n+1}(R)$ such that:
+\[\sigma(E_{i,j}) = PE_{i,j}P^{-1}\]
+from which we conclude that for all $M:M_{n+1}(R)$ we have that:
+\[\sigma(M) = PMP^{-1}\]
+as desired.
+\end{proof}
+
+\begin{proposition}\label{Aut-Pn-PGL}
+The map:
+\[\beta:\PGL_{n+1}(R)\to\Aut(\bP^n)\]
+\[X\mapsto PX\]
+is an equivalence.
+\end{proposition}
+
+\begin{proof}
+\cite{TODO}
+\end{proof}
+
+
+\subsection{The Severi-Brauer construction is an equivalence}
+
+\begin{proposition}\label{right-ideal-is-equivalence}
+The map:
+\[\RI:\AZ_n\to\SB_n\]
+is an equivalence.
+\end{proposition}
+
+\begin{proof}
+By \Cref{deloopings-equivalence} it is enough to prove that the top map in the triangle:
+\begin{center}
+\begin{tikzcd}
+\Aut(M_n(R))\ar[rr,"\Omega\RI"] & & \Aut(\bP^n) \\
+& \PGL_{n+1}(R)\ar[ru,swap,"\beta"]\ar[lu,"\alpha"] & \\
+\end{tikzcd}
+\end{center}
+is an equivalence. But since the two other maps in the triangle are equivalences by \Cref{Aut-MnR-PGL} and \Cref{Aut-Pn-PGL}, it is enough to prove that the triangle commutes. To do this we need to check that for all $P:\PGL_{n+1}(R)$ we have that:
+\[\delta^{-1}\circ \mathrm{ap}_\RI(\alpha(P))\circ\delta = \beta(P)\]
+in $\Aut(\bP^n)$, with $\delta$ defined in \Cref{right-ideal-of-matrices-are-projective}. So we need to prove the following square commutes:
+\begin{center}
+\begin{tikzcd}
+\RI(M_{n+1}(R))\ar[rr,"I\mapsto PIP^{-1}"]&& \RI(M_{n+1}(R)) \\
+\bP^n\ar[u,"\delta"]\ar[rr,swap,"X\mapsto PX"]&& \bP^n\ar[u,swap,"\delta"] 
+\end{tikzcd}
+\end{center}
+where $\mathrm{ap}_\RI$ was computed using path induction.
+
+We see that:
+\[\delta(Y) = \{M:M_n(R)\ |\ \forall A,B:R^{n+1}.\ A^tX\cdot B^tM = B^tX\cdot A^tM\}\]
+To check that:
+\[P\delta(X)P^{-1} = \delta(PX)\]
+we just need to check an inclusion as both are finite free modules of the same dimension. Assume $M\in\delta(X)$, to check that $PMP^{-1}\in\delta(PX)$ we need to check that for all $A,B:R^{n+1}$ we have that:
+\[A^tPX\cdot B^tPMP^{-1} = B^tX\cdot A^tPMP^{-1}\]
+but since $M\in\delta(X)$ we have that:
+\[(P^tA)^tX\cdot (P^tB)^tM = (P^tB)^tX\cdot (P^tA)^tM\]
+which gives us what we want.
+\end{proof}
+
+\begin{remark}
+By \Cref{severi-brauer-are-schemes} and \Cref{right-ideal-is-equivalence} we can conclude than any Severi-Brauer variety is a scheme. This is not clear because being a scheme is not modal, i.e. we do not have fppf descent for schemes.
+\end{remark}
+
+\begin{remark}\label{severi-brauer-independent-modality}
+By \Cref{right-ideal-is-equivalence} and \Cref{azumaya-independent-modality} and we can conclude that a type $X$ being a Severi-Brauer variety for any modality $T$ such that:
+\begin{itemize}
+\item Schemes are $T$-modal.
+\item The type of finite free modules is $T$-modal.
+\item $T$-modal types are étale sheaves.
+\end{itemize}
+is equivalent to $X$ being a Severi-Brauer variety for the étale topology. In particular Severi-Brauer varieties do not depend on the choice of such a $T$.
+\end{remark}
+
+
+\subsection{Ch\^atelet's Theorem}
+
 \begin{lemma}\label{azumaya-with-right-ideal}
 Assume $A:\AZ_n$ with $I:\RI(A)$, then:
 \[A = \mathrm{End}_R(I)^{op}\]
