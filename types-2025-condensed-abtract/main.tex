@@ -37,9 +37,21 @@ Felix Cherubini %\inst{1}
 Peter Scholze and Dustin Clausen \cite{Scholze} introduced light condensed sets which can be used as an alternative to topological spaces. Light condensed sets are defined as sheaves on profinite sets.
 Inspired by the interpretation of homotopy type theory into the higher topos on this site, \cite{synthetic-stone-duality} introduced an extension of homotopy type theory by axioms which is called synthetic stone duality. In this theory some results where shown about the first cohomology group with integer coefficients. We extend these results to higher cohomology groups with non-constant countably presented abelian groups as coefficients.
 
-In topology, a Stone space is a totally disconnected Hausdorff space and Stone duality is a one to one correspondence between Stone spaces and boolean algebras. In \textbf{synthetic stone duality} Stone duality for countably presented boolean algebras is one of the four axioms of the theory. Compact Hausdorff spaces are defined 
+In topology, a Stone space is a totally disconnected Hausdorff space. In \textbf{synthetic stone duality}, a Stone space is a profinite set in the sense of a sequential limit of finite sets, so from a classical point of view only Stone spaces up to a certain size are considered. The axioms of synthetic stone duality postulate stone duality, depedent choice, that non-empty stone spaces are inhabited and a \emph{local-choice} axiom. The latter is the only axiom mentioning higher types and, analogous to the axiom of choice admits to find sections to some surjection by passing to certain kinds of covers. This is necessary to perferm the cohomological computations mentioned below, but has consequences beyond that.
 
-\textbf{Barton-Commelin}
+Many classically known topological properties of Stone spaces can be shown synthetically, sometimes phrased in a more type theoretic way, like, for example, the closure of Stone spaces under sigma types.
+Open and closed subsets can be defined for arbitrary types and compact Hausdorff spaces can be defined as quotients of Stone spaces by a closed equivalence relation.
+One important example is the real interval $\I$ from which the real numbers $\R$ are constructed.
+As in \cite{shulman-Brouwer-fixed-point} it is important to distinguish topological spaces like $\bS^1:=\{(x,y):\R^2\vert x^2+y^2=1\}$ from homotopical spaces like the higher inductive 1-type $S^1$.
+The sets
+
+It is however possible to use higher types to reason about topological spaces.
+For any abelian group $A$, the homotopical Eilenberg-MacLane spaces $K(A,n)$ can be constructed in homotopy type theory. For any type $X$ and depedent abelian group $A:X\to \mathrm{Ab}$, we use the known definition of the $n$-th cohomology group $H^n(X,A)$ as $\|(x:X)\to K(A_x,n)\|_0$, which is also an interesting invariant of topological spaces. In \cite{synthetic-stone-duality} it is calculated that $H^1(\I,\Z)=0$.
+
+\textbf{Reid Barton and Johann Commelin} proposed a system of axioms inspired by Paul Taylors abstract Stone duality, which they call condensed type theory, where compact Hausdorff spaces and overtly discrete types are related by certain duality axioms. We prove the axioms of Barton and Commelin in synthetic stone duality for a concrete definition of compact Hausdorff spaces and overtly discrete types.
+
+We denote the type of overtly discrete types with $\ODisc$ and use overtly discrete abelian groups as coefficients for cohomology.
+Important for our cohomological results is the dual of Tychonoff's theorem, which states that for a compact Hausdorff space $X$ and a family $B:X\to \ODisc$, the depedent product $(x:X)\to B(x)$ is overtly discrete and Scott continuity, which ensure a certain commutativity of sequential colimits and limits.
 
 \section{Vanishing of higher cohomology of stone spaces}
 
