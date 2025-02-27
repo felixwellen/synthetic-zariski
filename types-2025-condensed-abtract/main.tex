@@ -42,9 +42,40 @@ In topology, a Stone space is a totally disconnected Hausdorff space and Stone d
 \textbf{Barton-Commelin}
 
 \textbf{Vanishing of higher cohomology of stone spaces}
-We follow an idea of Wärn \cite{cech-draft}[Theorem 3.4] to get $H^n(S,A)=0$ for $n>1$, for Stone spaces $S$ and $A : S\to \mathrm{Ab}_\ODisc$.
+
+First we prove that $H^1(S,A) = 0$ with $S$ Stone and  $A : S\to \mathrm{Ab}_\ODisc$. To do that we assume $\alpha:\prod_{x:S}K(A_x,1)$, then we proceed in 4 setps steps:
+\begin{enumerate}[(1)]
+\item By local choice we get a surjection $p:T\twoheadrightarrow S$ with $T$ Stone which trivialise $\alpha$.
+\item We get an approximation of $p$ as a sequential limit of surjective maps $p_k:T_k\to S_k$ between finite sets.
+\item We show that the trivialisation of the induced $\alpha_k:S_k\to BA_k$ over $T_k$ induced by $p_k$ gives a trivialisation of $\alpha_k$, essentially using that $p_k$ merely has a section.
+\item We conclude through a dependent version of Scott Continuity that $\alpha$ is trivial over $\mathrm{lim}_kS_k =S$.
+\end{enumerate}
+
+We follow an idea of Wärn \cite{cech-draft}[Theorem 3.4] to go from the $H^1(S,A)=0$ to $H^n(S,A)=0$ for $n>1$. The proof is subtle but one key idea is to generalize $H^n(S,A) = 0$ for all $S,A$ to: 
+\begin{itemize}
+\item $K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n)$ is an equivalence.
+\item $K(\prod_{x:S}A_x,n+1) \to \prod_{x:S}K(A_x,n+1)$ is an embedding
+\end{itemize}
+Assume the hypothesis for $n-1\geq 1$, let's prove it for $n$.
+\begin{enumerate}
+\item The embedding follows immediately from induction hypothesis on the equivalence.
+\item To prove the equivalence hypothesis we just need surjectivity, so it is enough to prove $\prod_{x:S}K(A_x,n)$ is connected, i.e. $H^n(S,A)=0$. We assume $\alpha:\prod_{x:S}K(A_x,n)$, by local choice we get a trivialisation $p:T\twoheadrightarrow S$ of $\alpha$ with $T$ Stone. Then writing $T_x$ the fiber of $p$ over $x$, we consider the exact sequence:
+\[0\to A_x\to A_x^{T_x}\to L_x\to 0\]
+giving a sequence:
+\[H^{n-1}(S,L)\to H^n(S,A)\to H^n(S,\lambda x. A_x^{T_x})\]
+exact at $H^n(S,A)$. By induction hypothesis $H^{n-1}(S,L) = 0$ so we have an injection:
+\[H^n(S,A)\to H^n(S,\lambda x. A_x^{T_x})\]
+By induction hypothesis again the map: 
+\[\prod_{x:S}K(A_x^{T_x},n)\to \prod_{x:S}K(A_x,n)^{T_x}\]
+is an embedding so the map:
+\[H^n(S,\lambda x. A_x^{T_x}) \to H^n(\Sigma_{x:S}T_x,A_x)\]
+is an injection and we get an injection:
+\[H^n(S,A)\to H^n(\Sigma_{x:S}T_x,A_x)\] 
+But $p$ trivialise $\alpha$ so it vanish in $H^n(\Sigma_{x:S}T_x,A_x)$, therefore $\alpha=0$.
+\end{enumerate}
 
 \textbf{Cech-cohomology}
+
 
 We use an axiomatization of (separable) Stone spaces within a homotopy type theory \cite{synthetic-stone-duality}, which is related to synthetic algebraic geometry \cite{draft}.
 In \cite{synthetic-stone-duality} compact Hausdorff spaces are defined as certain quotients of stone spaces and LLPO and Markov's principle hold.
