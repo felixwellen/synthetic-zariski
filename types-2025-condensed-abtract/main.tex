@@ -3,9 +3,6 @@
 \documentclass{../util/zariski}
 
 \RequirePackage[safe]{tipa}
-%
-\title{Synthetic Stone Duality 
-}
 
 % Authors are joined by \and. 
 % Their affiliations are given by \inst, which indexes
@@ -50,9 +47,9 @@ As in \cite{shulman-Brouwer-fixed-point} it is important to distinguish topologi
 
 Despite topological spaces being sets, it is possible to use higher types to reason about them. Indeed, for any abelian group $A$, the homotopical Eilenberg-MacLane spaces $K(A,n)$ can be constructed as usual in homotopy type theory. For any type $X$ and dependent abelian group $A:X\to \mathrm{Ab}$, we use the usual synthetic definition of the $n$-th cohomology group $H^n(X,A)$ as $\|(\Pi_{x:X}K(A_x,n)\|_0$. In \cite{synthetic-stone-duality}, it is proven that $H^1(\bS^1,\Z)=\Z$, despite $\bS^1$ being a set.
 
-\subsection*{Condensed type theory}
+\subsection*{Barton and Commelin's condensed type theory}
 
-Reid Barton and Johann Commelin proposed a system of axioms called condensed type theory, inspired by Paul Taylors abstract Stone duality. This system postulates classes of types called compact Hausdorff spaces and overtly discrete types, with certain duality axioms relating them. We prove the axioms of Barton and Commelin in synthetic stone duality, defining compact Hausdorff spaces as quotients of Stone spaces by closed equivalence relations and overtly discrete types as sequential colimits of finite types.
+Reid Barton and Johann Commelin proposed a system of axioms called condensed type theory, inspired by Paul Taylors abstract Stone duality. This system postulates classes of types called compact Hausdorff spaces and overtly discrete types, with certain duality axioms relating them. We prove the axioms of Barton and Commelin in synthetic Stone duality, defining compact Hausdorff spaces as quotients of Stone spaces by closed equivalence relations and overtly discrete types as sequential colimits of finite types.
 
 An abelian group is overtly discrete if and only if it is countably presented, so we will use countably presented abelian groups as coefficients for cohomology. The following are crucial for our cohomology results:
 \begin{itemize} 
@@ -80,28 +77,28 @@ giving an exact sequence:
 By induction hypothesis (i) we have that $H^{n-1}(S,L) = 0$ so we have an injection:
 \[H^n(S,A)\to H^n(S,\lambda x. A_x^{T_x})\]
 By induction hypothesis (ii) the map: 
-\[H^n(S,\lambda x. A_x^{T_x}) \to H^n(T,A\circ p)\]
+\[H^n(S,\lambda x. A_x^{T_x}) \to H^n(\Sigma_{x:S}T_x,A_x) = H^n(T,A\circ p)\]
 is an injection and we get an injection:
 \[H^n(S,A)\to H^n(T,A\circ p)\] 
-But $p$ trivialise $\alpha$ so it vanish in $H^n(T,A\circ p)$, therefore $\alpha=0$.
+But $p$ trivialise $\alpha$ so it vanishes in $H^n(T,A\circ p)$, therefore $\alpha=0$.
 
-\subsection*{\v{C}ech cohomology}
+\subsection*{\v{C}ech cohomology for compact Hausdorff spaces}
 
-Given a type $X$, a \v{C}ech cover for $X$ consists of a Stone space $S$ and a surjective map $p:S\twoheadrightarrow X$ which fibers $S_x$ are Stone. It is immediate that compact Hausdorff space have a \v{C}ech cover.
+Given a compact Hausforff type $X$, a \v{C}ech cover for $X$ consists of a Stone space $S$ and a surjective map $p:S\twoheadrightarrow X$. By definition any compact Hausdorff space has a \v{C}ech cover.
 
-Given such a \v{C}ech cover and $A:X\to \mathrm{Ab}_\ODisc$. we define the \v{C}ech complex as:
+Given such a \v{C}ech cover and $A:X\to \mathrm{Ab}_{\mathrm{cp}}$, we define its \v{C}ech complex as:
 \[\prod_{x:X}A_x^{S_x} \to \prod_{x:X}A_x^{S_x\times S_x} \to \cdots\]
-with the boundary maps defined as expected, and the \v{C}ech cohomology $\check{H}^k(X,A)$ as the $k$-th homology group of the \v{C}ech complex.
+with the boundary maps defined as expected, and its \v{C}ech cohomology $\check{H}^k(X,A)$ as the $k$-th homology group of its \v{C}ech complex.
 %\[\delta(\alpha)(x,u_0,\cdots,u_n) = \sum_{i=0}^n (-1)^i\alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n)\]
 
-From vanishing, for all $n$ we get an exact sequences:
+From vanishing, we get an exact sequences:
 \[H^{n-1}(X,\lambda x.A_x^{S_x}) \to H^{n-1}(X,L)\to H^n(X,A)\to 0\]
 and by the usual long exact sequence argument and direct computations we get exact sequences:
 \[\check{H}^{n-1}(X,\lambda x.A_x^{S_x}) \to \check{H}^{n-1}(X,L)\to \check{H}^n(X,A)\to 0\]
 
 We conclude inductively that $H^n(X,A) = \check{H}^n(X,A)$, so that in particular \v{C}ech cohomology do not depend on a choice of \v{C}ech cover. For this induction to go through it is crucial that $A_x^{S_x}$ is overtly discrete, which follows from the dual to Tychonov theorem.
 
-Using finite approximations to the \v{C}ech cover $2^\N\to \mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $A:\mathbb{I}\to \mathrm{Ab}_\ODisc$.
+Using finite approximations to the \v{C}ech cover $2^\N\to \mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $A:\mathbb{I}\to \mathrm{Ab}_{\mathrm{cp}}$.
 
 \printbibliography
 
