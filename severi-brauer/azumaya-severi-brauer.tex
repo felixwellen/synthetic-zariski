@@ -272,7 +272,7 @@ Assume given $a,b:R^\times$, then $C(a,b)$ is a Severi-Brauer variety.
 Since a sheaf being a Severi-Brauer variety is an fppf sheaf, we can assume $\sqrt{a}$ . Then by \Cref{conic-change-variable} we have that $C(1,b) = C(\sqrt{a}^2,b)=C(a,b)$ and we conclude by \Cref{conic-one-split}.
 \end{proof}
 
-\rednote{Maybe TODO: $RI(Q(a,b)) = C(a,b)$}
+\rednote{Maybe TODO: $RI(Q(a,b)) = C(a,b)$. I am not sure how to do it easily, not sure it is that relevant.}
 
 \begin{lemma}\label{pointed-conics-projective}
 Assume $a,b:R^\times$ such that $\propTrunc{C(a,b)}$, then $\propTrunc{C(a,b)=\bP^1}$.
@@ -334,6 +334,23 @@ In both cases we can check that $\psi([u:v]) = [x:y:z]$ using that:
 \end{proof}
 
 \rednote{Proof of \Cref{conic-one-split} is actually \Cref{pointed-conics-projective} when $a=1$ and $[x_0:y_0:z_0] = [1:1:0]$. We should probably factor.}
+
+\begin{remark}
+We give an explicit description of the inverse to the map $\psi$ in \Cref{pointed-conics-projective} defined by:
+\[\psi(u,v) = [\alpha_0:\alpha_1:\alpha_2]\]
+\[[u:v] \mapsto [au^2+bv^2: y_0(au^2-bv^2) + 2buvz_0 : z_0(au^2-bv^2) - 2auvy_0]\]
+We use the proven fact that $x+ay_0y+bz_0z$ or $x-ay_0y-bz_0z$ is invertible.
+
+If $x + ay_0y + bz_0z$ is invertible we send $[x,y,z]$ to $[1:\frac{a(z_0y-y_0z)}{x + ay_0y + bz_0z}]$.
+
+If $x - ay_0y - bz_0z$ is invertible we send $[x,y,z]$ to $[\frac{b(z_0y-y_0z)}{x - ay_0y - bz_0z}:1]$.
+
+This is well defined as if both are invertible then:
+\[\frac{b(z_0y-y_0z)}{x - ay_0y - bz_0z}\times\frac{a(z_0y-y_0z)}{x + ay_0y + bz_0z} = \frac{ab(z_0y-y_0z)^2}{x^2 - (ay_0y + bz_0z)^2} = 1\]
+because:
+\[x^2 - (ay_0y + bz_0z)^2 = (ay^2+bz^2)(ay_0^2+bz_0^2) - (ay_0y + bz_0z)^2 = ab(z_0y-y_0z)^2\]
+We omit the verification that this is indeed an inverse to $\psi$.
+\end{remark}
 
 \begin{remark}
 We will see in \Cref{chatelet-theorem} that this holds for any Severi-Brauer variety, i.e. any merely inhabited Severi-Brauer variety is a projective space. 
