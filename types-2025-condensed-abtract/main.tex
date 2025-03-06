@@ -1,8 +1,131 @@
-% latexmk -pdf -pvc main.tex
-% latexmk -pdf -pvc -interaction=nonstopmode main.tex
-\documentclass{../util/zariski}
+\documentclass[letterpaper]{../util/easychair}
+\usepackage{doc}
+\usepackage[expansion=true,protrusion=true]{microtype}
+%
+\newcommand{\easychair}{\textsf{easychair}}
+\newcommand{\miktex}{MiK{\TeX}}
+\newcommand{\texniccenter}{{\TeX}nicCenter}
+\newcommand{\makefile}{\texttt{Makefile}}
+\newcommand{\latexeditor}{LEd}
 
-\RequirePackage[safe]{tipa}
+% some stuff from ../util/zarisky.cls:
+\RequirePackage{amsmath,amssymb,mathtools}
+\newtheorem{axiom}{Axiom}
+
+\RequirePackage{tikz}
+\usetikzlibrary{arrows, cd, babel}
+
+% Referenzen
+\RequirePackage[backend=biber,style=alphabetic, backref, backrefstyle=none]{biblatex}
+\addbibresource{../util/literature.bib}
+
+%Numbers for axiom in abstract
+
+
+% content of ../util/zarisky.sty:
+% names for types
+% names for types
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Bool}{\mathrm{Bool}}
+\DeclareMathOperator{\Fin}{Fin}
+\newcommand{\unit}{\mathbf{1}}
+\newcommand{\two}{\mathbf{2}}
+\newcommand{\isContr}{\mathrm{isContr}}
+\newcommand{\isProp}{\mathrm{isProp}}
+\newcommand{\isSet}{\mathrm{isSet}}
+\newcommand{\isEquiv}{\mathrm{isEquiv}}
+\newcommand{\qinv}{\mathrm{qinv}}
+\newcommand{\mU}{\mathcal{U}}
+\newcommand{\Eq}[1]{\mathrm{Eq}_{#1}}
+\newcommand{\isNType}[1]{\mathrm{is}\mbox{-}{#1}\mbox{-}\mathrm{type}}
+\newcommand{\nType}[1]{#1\mbox{-}\mathrm{Type}}
+\newcommand{\Type}{\mathrm{Type}}
+\newcommand{\Prop}{\mathrm{Prop}}
+\newcommand{\Open}{\mathsf{Open}}
+\newcommand{\Susp}{\mathrm{Susp}}
+\newcommand{\propTrunc}[1]{\lVert #1 \rVert}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\Um}{\mathrm{Um}}
+\newcommand{\Boole}{\mathsf{Boole}}
+\newcommand{\Stone}{\mathsf{Stone}}
+\newcommand{\CHaus}{\mathsf{CHaus}}
+\newcommand{\Chaus}{\mathsf{CHaus}}
+\newcommand{\ODisc}{\mathsf{ODisc}}
+\newcommand{\Noo}{\N_{\infty}}
+\newcommand{\Closed}{\mathsf{Closed}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\KR}{K(R^{\times},1)}
+\newcommand{\KR}{\mathsf{Line}}
+\newcommand{\B}{\mathrm{B}}
+
+% names for terms
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\refl}{\mathrm{refl}}
+\newcommand{\pair}{\mathrm{pair}}
+\newcommand{\FunExt}{\mathrm{FunExt}}
+\newcommand{\transp}{\mathrm{tr}}
+\newcommand{\transpconst}{\mathrm{tconst}}
+\newcommand{\ua}{\mathrm{ua}}
+\newcommand{\fib}{\mathrm{fib}}
+\newcommand{\pt}{\mathrm{pt}}
+
+% category theory
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\yo}{\mathrm{y}}
+
+% algebra
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\divides}{\mathbin{|}}
+\DeclareMathOperator{\AbGroup}{Ab}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\newcommand{\Tors}[1]{#1\text{-}\mathrm{Tors}}
+\newcommand{\Mod}[1]{#1\text{-}\mathrm{Mod}}
+\newcommand{\Vect}[2]{#1\text{-}\mathrm{Vect}_{#2}}
+\newcommand{\fpMod}[1]{#1\text{-}\mathrm{Mod}_{\text{fp}}}
+\newcommand{\Alg}[1]{#1\text{-}\mathrm{Alg}}
+\newcommand{\Sym}{\mathrm{Sym}}
+
+% algebraic geometry
+\DeclareMathOperator{\Sp}{Spec}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Sch}{\mathrm{Sch}_{qc}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\Gm}{\mathbb{G}_m}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\mm}{\mathfrak{m}}
+\newcommand{\Bl}{\mathrm{Bl}}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\GL}{GL}
+\newcommand{\Pic}{\mathrm{Pic}}
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\Aut}{\mathrm{Aut}}
+
+
+% misc
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\notion}[1]{\emph{#1}\index{#1}}
+\providecommand*\colonequiv{\vcentcolon\mspace{-1.2mu}\equiv}
+\newcommand{\ignore}[1]{}
+\newcommand{\rednote}[1]{{\color{red}(#1)}}
+
+% cohesion
+\DeclareMathOperator{\shape}{\textrm{\textesh}}
+
+% condensed
+\newcommand{\isSt}{\mathrm{isStone}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+%
+\title{Cohomology in Synthetic Stone Duality 
+}
 
 % Authors are joined by \and. 
 % Their affiliations are given by \inst, which indexes
@@ -15,19 +138,39 @@ Felix Cherubini %\inst{1}
  Thierry Coquand% \inst{2}%
 \and 
  Freek Geerligs% \inst{3}%
-% \thanks{Speaker.}%
+\thanks{Speaker.}%
 \and
  Hugo Moeneclaey %\inst{4}%
 }
 
 % Institutes for affiliations are also joined by \and,
-% \institute{
-%  University of Gothenburg and Chalmers University of Technology, Gothenburg, Sweden%\\
-% }
+\institute{
+  University of Gothenburg and Chalmers University of Technology, Gothenburg, Sweden%\\
+}
+%  \email{felix.cherubini@posteo.de}
+%% uncomment the following for multiple authors.
+%\and
+%  University of Gothenburg\\
+%  \email{Thierry.Coquand@cse.gu.se}
+%\and
+%  University of Gothenburg\\
+%  \email{geerligs@chalmers.se}
+%\and
+%  University of Gothenburg\\
+%  \email{hugomo@chalmers.se}
+%}
 
-% \authorrunning{Cherubini, Coquand, Geerligs and Moeneclaey}
+%  \authorrunning{} has to be set for the shorter version of the authors' names;
+% otherwise a warning will be rendered in the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \authorrunning
+% will be rejected by EasyChair
+\authorrunning{Cherubini, Coquand, Geerligs and Moeneclaey}
 
-\title{Cohomology in Synthetic Stone Duality}
+% \titlerunning{} has to be set to either the main title or its shorter
+% version for the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \titlerunning
+% will be rejected by EasyChair
+\titlerunning{Cohomology in Synthetic Stone Duality}
 
 \begin{document}
 \maketitle
@@ -66,10 +209,10 @@ We call it generalised Scott continuity.
 First we prove that $H^1(S,A) = 0$ with $S$ Stone and  $A : S\to \mathrm{Ab}_{\mathrm{cp}}$. We assume $\alpha:\prod_{x:S}K(A_x,1)$, by local choice we get a surjection $p:T\twoheadrightarrow S$ with $T$ Stone which trivialises $\alpha$. Then we get an approximation of $p$ as a sequential limit of surjective maps $p_k:T_k\to S_k$ between finite sets, we check that the induced trivialisation over $T_k$ gives a trivialisation over $S_k$, and conclude through the dependent version of generalised Scott Continuity that $\alpha$ is trivial over $\mathrm{lim}_kS_k =S$.
 
 We follow an idea due to David W\"arn \cite{cech-draft}[Theorem 3.4] to go from $H^1(S,A)=0$ to $H^n(S,A)=0$ for $n>1$. The key idea is to proceed by induction on $n$, generalising the induction hypothesis from $H^n(S,A) = 0$ to: 
-\begin{enumerate}[(i)]
-\item $K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n)$ is an equivalence, directly implying $H^n(S,A)=0$.
-\item $K(\prod_{x:S}A_x,n+1) \to \prod_{x:S}K(A_x,n+1)$ is an embedding.
-\end{enumerate}
+\begin{itemize}
+\item $ K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n)$ is an equivalence, directly implying $H^n(S,A)=0$.
+\item $ K(\prod_{x:S}A_x,n+1) \to \prod_{x:S}K(A_x,n+1)$ is an embedding.
+\end{itemize}
 Assume (i) and (ii) for $n-1>0$, let's prove (i) and (ii) for $n$. (ii) follows immediately from induction hypothesis (i). To prove (i), by induction hypothesis (ii) it is enough to prove that $\prod_{x:S}K(A_x,n)$ is connected, i.e. $H^n(S,A)=0$. We assume $\alpha:\prod_{x:S}K(A_x,n)$, by local choice we get a trivialisation $p:T\twoheadrightarrow S$ of $\alpha$ with $T$ Stone. Denoting by $T_x$ the fiber of $p$ over $x$ , we consider the exact sequence:
 \[0\to A_x\to A_x^{T_x}\to L_x\to 0\]
 giving an exact sequence:
