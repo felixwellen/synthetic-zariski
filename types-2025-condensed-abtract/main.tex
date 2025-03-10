@@ -179,14 +179,14 @@ Synthetic Stone duality is an extension of homotopy type theory by four axioms, 
 
 \paragraph*{Synthetic Stone Duality}
 
-In traditional topology, Stone spaces are defined as totally disconnected compact Hausdorff spaces, or equivalently as profinite sets. In synthetic Stone duality, Stone spaces are precisely (countable) sequential limits of finite sets, which means there is a size restriction on the considered Stone spaces, making this setting analogous to \emph{light} condensed sets. 
+In traditional topology, Stone spaces are defined as totally disconnected compact Hausdorff spaces, or equivalently as profinite sets. In synthetic Stone duality, Stone spaces are precisely \emph{countable} sequential limits of finite sets, making this setting analogous to \emph{light} condensed sets. 
 
-The axioms of synthetic Stone duality postulate Stone duality (Stone spaces are equivalent to countably presented Boolean algebras), completeness (non-empty Stone spaces are merely inhabited), dependent choice and a \emph{local-choice} axiom. The latter is the only axiom mentioning higher types, it says that given a Stone space $S$ and a type family $B$ over $S$ such that $\Pi_{x:S} \| B(x)  \|$, there merely is a Stone space $T$ and a surjection $s:T\to S$ such that $\Pi_{x:T} B(s(x))$. Local choice is crucial when performing the cohomological computations mentioned below.
+The axioms of synthetic Stone duality postulate Stone duality (Stone spaces are equivalent to countably presented Boolean algebras), completeness (non-empty Stone spaces are merely inhabited), dependent choice and a \emph{local-choice} axiom. The latter says that given a Stone space $S$ and a type family $B$ over $S$ such that $\Pi_{x:S} \| B(x)  \|$, there merely is a Stone space $T$ and a surjection $s:T\to S$ such that $\Pi_{x:T} B(s(x))$. Local choice is crucial when performing the cohomological computations mentioned below.
 
 Many traditional properties of Stone spaces can be shown synthetically, sometimes phrased in a more type-theoretic way, e.g. Stone spaces are closed under $\Sigma$-types. Open and closed propositions can be defined, inducing a topology on any type such that any map is continuous. This topology is as expected for Stone spaces and compact Hausdorff spaces (i.e. quotient of Stone spaces by closed equivalence relations).
 
 One important example of compact Hausdorff space is the real interval $\I$, from which the type $\R$  of real numbers is constructed.
-As in \cite{shulman-Brouwer-fixed-point}, it is important to distinguish topological spaces like $\bS^1:=\{(x,y):\R^2\vert x^2+y^2=1\}$ from homotopical spaces like the higher inductive 1-type $S^1$.
+As in \cite{shulman-Brouwer-fixed-point}, it is important to distinguish topological spaces like $\bS^1:=\{(x,y):\R^2\ \vert\ x^2+y^2=1\}$ from homotopical spaces like the higher inductive 1-type $S^1$.
 
 Despite topological spaces being sets, they can have non-trivial cohomology. Indeed, for any type $X$ and dependent abelian group $A:X\to \mathrm{Ab}$, we use the usual synthetic definition of the $n$-th cohomology group $H^n(X,A)$ as $\|\Pi_{x:X}K(A_x,n)\|_0$ where $K(A_x,n)$ is the $n$-th Eilenberg Mac-Lane space with coefficient $A_x$. In \cite{synthetic-stone-duality}, it is proven that $H^1(\bS^1,\Z)=\Z$, despite $\bS^1$ being a set.
 
@@ -233,12 +233,12 @@ Given such a \v{C}ech cover and $A:X\to \mathrm{Ab}_{\mathrm{cp}}$, we define it
 with the boundary maps defined as expected, and its \v{C}ech cohomology $\check{H}^k(X,A)$ as the $k$-th homology group of its \v{C}ech complex. We can prove by induction on $n$ that $H^n(X,A) = \check{H}^n(X,A)$. It is clear that $H^0(X,A) = \check{H}^0(X,A)$.
 %\[\delta(\alpha)(x,u_0,\cdots,u_n) = \sum_{i=0}^n (-1)^i\alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n)\]
 
-From vanishing, for $n>0$ we get an exact sequences:
+From hypothesis (i) in the previous paragraph, for $n>0$ we get an exact sequences:
 \[H^{n-1}(X,\lambda x.A_x^{S_x}) \to H^{n-1}(X,L)\to H^n(X,A)\to 0\]
-By the usual long exact sequence argument and direct computations, for $n>0$ we get exact sequences:
+By direct computations, for $n>0$ we get exact sequences:
 \[\check{H}^{n-1}(X,\lambda x.A_x^{S_x}) \to \check{H}^{n-1}(X,L)\to \check{H}^n(X,A)\to 0\]
 
-We conclude by induction on $n$ that $H^n(X,A) = \check{H}^n(X,A)$ for all $n$, so that in particular \v{C}ech cohomology does not depend on the \v{C}ech cover. For this induction to go through it is crucial that $A_x^{S_x}$ is overtly discrete, which follows from the Barton and Commelin's axioms.  Using this result and finite approximations to the \v{C}ech cover $2^\N\to \mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{\mathrm{cp}}$.
+We conclude by induction on $n$ that $H^n(X,A) = \check{H}^n(X,A)$ for all $n$, so that in particular \v{C}ech cohomology does not depend on the \v{C}ech cover. For this induction to go through it is crucial that $A_x^{S_x}$ is overtly discrete, which follows from the Barton and Commelin's axioms.  Using this result and finite approximations to a well-chosen \v{C}ech cover of $\mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{\mathrm{cp}}$.
 
 %Using finite approximations to the \v{C}ech cover $2^\N\to \mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{\mathrm{cp}}$.
 
