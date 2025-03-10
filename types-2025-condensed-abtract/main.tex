@@ -175,11 +175,11 @@ Felix Cherubini %\inst{1}
 \begin{document}
 \maketitle
 Peter Scholze and Dustin Clausen \cite{Scholze} introduced light condensed sets, defined as sheaves on the site of profinite sets, which can be used as an alternative to topological spaces. 
-An extension of homotopy type theory by axioms called synthetic Stone duality was introduced in \cite{synthetic-stone-duality}. This extension implies some results about the first integral cohomology groups. More precisely, we have that $H^1(S,\Z) = 0$ for $S$ a Stone space, that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology and that $H^1(\mathbb{I},\Z) = 0$ where $\mathbb{I}$ is the unit interval \cite{synthetic-stone-duality}. In this talk we will present the extension of these results to higher cohomology groups with non-constant countably presented abelian groups as coefficients. Those are synthetic analogues of results from Roy Dyckhoff \cite{dyckhoff76,dyckhoff76-1}.
+Synthetic Stone duality is an extension of homotopy type theory by axioms, wich was introduced in \cite{synthetic-stone-duality}. This extension implies some results about the first integral cohomology groups. More precisely, we have that $H^1(S,\Z) = 0$ for $S$ a Stone space, that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology and that $H^1(\mathbb{I},\Z) = 0$ where $\mathbb{I}$ is the unit interval \cite{synthetic-stone-duality}. In this talk we will present the extension of these results to higher cohomology groups with non-constant countably presented abelian groups as coefficients. Those are synthetic analogues of results from Roy Dyckhoff \cite{dyckhoff76,dyckhoff76-1}.
 
 \paragraph*{Synthetic Stone Duality}
 
-In traditional topology, Stone spaces are defined as totally disconnected Hausdorff spaces, or equivalently as profinite sets. In synthetic Stone duality, Stone spaces are precisely (countable) sequential limits of finite sets, which means there is a size restriction on the considered Stone spaces, making this setting analogous to \emph{light} condensed sets. 
+In traditional topology, Stone spaces are defined as totally disconnected compact Hausdorff spaces, or equivalently as profinite sets. In synthetic Stone duality, Stone spaces are precisely (countable) sequential limits of finite sets, which means there is a size restriction on the considered Stone spaces, making this setting analogous to \emph{light} condensed sets. 
 
 The axioms of synthetic Stone duality postulate Stone duality (Stone spaces are equivalent to countably presented Boolean algebras), completeness (non-empty Stone spaces are merely inhabited), dependent choice and a \emph{local-choice} axiom. The latter is the only axiom mentioning higher types, it says that given a Stone space $S$ and a type family $B$ over $S$ such that $\Pi_{x:S} \| B(x)  \|$, there merely is a Stone space $T$ and a surjection $s:T\to S$ such that $\Pi_{x:T} B(s(x))$. Local choice is crucial when performing the cohomological computations mentioned below.
 
@@ -197,10 +197,8 @@ Reid Barton and Johann Commelin proposed an extension of type theory called cond
 An abelian group is overtly discrete if and only if it is countably presented, and we will use these groups as coefficients for cohomology. The following are crucial for our results:
 \begin{itemize} 
 \item Barton and Commelin's dual to Tychonoff: For any compact Hausdorff space $X$ and any family of overtly discrete types $B_x$ for $x:X$, the dependent product $\Pi_{x:X}B(x)$ is overtly discrete.
-\item A generalisation of both Barton and Commelin's Scott continuity and factorisation axioms: Given sequences of compact Hausdorff spaces $(C_k)_{k:\N}$ and overtly discrete types $(I_i)_{i:\N}$, we have that:
+\item Generalisations of both Barton and Commelin's Scott continuity and factorisation axioms: For exmaple, given sequences of compact Hausdorff spaces $(C_k)_{k:\N}$ and overtly discrete types $(I_i)_{i:\N}$, we have what we call generalised Scott continuity:
 \[\mathrm{colim}_{k,i}(C_k\to I_i) \simeq \left(\mathrm{lim}_kC_k \to \mathrm{colim}_iI_i\right)\]
-We call it generalised Scott continuity.
-\item A dependent version of generalised Scott-continuity, to account for non-constant cohomology coefficients.
 \end{itemize}
 
 
@@ -210,12 +208,11 @@ First we prove that $H^1(S,A) = 0$ with $S$ Stone and  $A : S\to \mathrm{Ab}_{\m
 
 We follow an idea due to David W\"arn \cite{cech-draft}[Theorem 3.4] to go from $H^1(S,A)=0$ to $H^n(S,A)=0$ for $n>1$. The key idea is to proceed by induction on $n$, generalising the induction hypothesis from $H^n(S,A) = 0$ to: 
 \begin{itemize}
-\item $ K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n)$ is an equivalence, directly implying $H^n(S,A)=0$.
-\item $ K(\prod_{x:S}A_x,n+1) \to \prod_{x:S}K(A_x,n+1)$ is an embedding.
+\item[(i)~] $ K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n)$ is an equivalence, directly implying $H^n(S,A)=0$.
+\item[(ii)] $ K(\prod_{x:S}A_x,n+1) \to \prod_{x:S}K(A_x,n+1)$ is an embedding.
 \end{itemize}
-Assume (i) and (ii) for $n-1>0$, let's prove (i) and (ii) for $n$. (ii) follows immediately from induction hypothesis (i). To prove (i), by induction hypothesis (ii) it is enough to prove that $\prod_{x:S}K(A_x,n)$ is connected, i.e. $H^n(S,A)=0$. We assume $\alpha:\prod_{x:S}K(A_x,n)$, by local choice we get a trivialisation $p:T\twoheadrightarrow S$ of $\alpha$ with $T$ Stone. Denoting by $T_x$ the fiber of $p$ over $x$ , we consider the exact sequence:
-\[0\to A_x\to A_x^{T_x}\to L_x\to 0\]
-giving an exact sequence:
+Assume (i) and (ii) for $n-1>0$, let's prove (i) and (ii) for $n$. (ii) follows immediately from induction hypothesis (i). To prove (i), by induction hypothesis (ii) it is enough to prove that $\prod_{x:S}K(A_x,n)$ is connected, i.e. $H^n(S,A)=0$. We assume $\alpha:\prod_{x:S}K(A_x,n)$, by local choice we get a trivialisation $p:T\twoheadrightarrow S$ of $\alpha$ with $T$ Stone. Denoting by $T_x$ the fiber of $p$ over $x$, we consider the exact sequence
+$0\to A_x\to A_x^{T_x}\to L_x\to 0$ giving an exact sequence:
 \[H^{n-1}(S,L)\to H^n(S,A)\to H^n(S,\lambda x. A_x^{T_x})\]
 By induction hypothesis (i) we have that $H^{n-1}(S,L) = 0$ so we have an injection:
 \[H^n(S,A)\to H^n(S,\lambda x. A_x^{T_x})\]
@@ -223,7 +220,7 @@ By induction hypothesis (ii) the map:
 \[H^n(S,\lambda x. A_x^{T_x}) \to H^n(\Sigma_{x:S}T_x,A_x) = H^n(T,A\circ p)\]
 is an injection and we get an injection:
 \[p^* : H^n(S,A)\to H^n(T,A\circ p)\] 
-But $p$ trivialise $\alpha$ so $p^*(\alpha)=0$, therefore $\alpha=0$.
+But $p$ trivializes $\alpha$ so $p^*(\alpha)=0$, therefore $\alpha=0$.
 
 \paragraph*{\v{C}ech cohomology for compact Hausdorff spaces}
 
