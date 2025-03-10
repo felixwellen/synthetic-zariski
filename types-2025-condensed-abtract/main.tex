@@ -174,14 +174,14 @@ Felix Cherubini %\inst{1}
 
 \begin{document}
 \maketitle
-Peter Scholze and Dustin Clausen \cite{Scholze} introduced light condensed sets, defined as sheaves on the site of profinite sets, which can be used as an alternative to topological spaces. 
-Synthetic Stone duality is an extension of homotopy type theory by four axioms, which was introduced in \cite{synthetic-stone-duality}. This extension implies some results about the first integral cohomology groups. More precisely, we have that $H^1(S,\Z) = 0$ for $S$ a Stone space, that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology and that $H^1(\mathbb{I},\Z) = 0$ where $\mathbb{I}$ is the unit interval \cite{synthetic-stone-duality}. In this talk we will present the extension of these results to higher cohomology groups with non-constant countably presented abelian groups as coefficients. Those are synthetic analogues of results from Roy Dyckhoff \cite{dyckhoff76,dyckhoff76-1}.
+Peter Scholze and Dustin Clausen \cite{Scholze} introduced light condensed sets, defined as sheaves on the site of light profinite sets, which can be used as an alternative to topological spaces. 
+Synthetic Stone duality is an extension of homotopy type theory by four axioms, which was introduced in \cite{synthetic-stone-duality}. In this article, it was proven that $H^1(S,\Z) = 0$ for $S$ a Stone space, that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology and that $H^1(\mathbb{I},\Z) = 0$ where $\mathbb{I}$ is the unit interval \cite{synthetic-stone-duality}. In this talk we will present the extension of these results to higher cohomology groups with non-constant countably presented abelian groups as coefficients. Those are synthetic analogues of results from Roy Dyckhoff \cite{dyckhoff76,dyckhoff76-1}.
 
 \paragraph*{Synthetic Stone Duality}
 
-In traditional topology, Stone spaces are defined as totally disconnected compact Hausdorff spaces, or equivalently as profinite sets. In synthetic Stone duality, Stone spaces are precisely \emph{countable} sequential limits of finite sets, making this setting analogous to \emph{light} condensed sets. 
+In our setting, Stone spaces are precisely \emph{countable} sequential limits of finite sets, making them analogous to \emph{light} profinite sets. 
 
-The axioms of synthetic Stone duality postulate Stone duality (Stone spaces are equivalent to countably presented Boolean algebras), completeness (non-empty Stone spaces are merely inhabited), dependent choice and a \emph{local-choice} axiom. The latter says that given a Stone space $S$ and a type family $B$ over $S$ such that $\Pi_{x:S} \| B(x)  \|$, there merely is a Stone space $T$ and a surjection $s:T\to S$ such that $\Pi_{x:T} B(s(x))$. Local choice is crucial when performing the cohomological computations mentioned below.
+The axioms of synthetic Stone duality postulate Stone duality (Stone spaces are equivalent to countably presented Boolean algebras), completeness (non-empty Stone spaces are merely inhabited), dependent choice and a \emph{local-choice} axiom. The latter says that given a Stone space $S$ and a type family $B$ over $S$ such that $\Pi_{x:S} \| B(x)  \|$, there merely is a Stone space $T$ and a surjection $s:T\twoheadrightarrow S$ such that $\Pi_{x:T} B(s(x))$. Local choice is crucial when performing the cohomological computations mentioned below.
 
 Many traditional properties of Stone spaces can be shown synthetically, sometimes phrased in a more type-theoretic way, e.g. Stone spaces are closed under $\Sigma$-types. Open and closed propositions can be defined, inducing a topology on any type such that any map is continuous. This topology is as expected for Stone spaces and compact Hausdorff spaces (i.e. quotient of Stone spaces by closed equivalence relations).
 
@@ -190,7 +190,7 @@ As in \cite{shulman-Brouwer-fixed-point}, it is important to distinguish topolog
 
 Despite topological spaces being sets, they can have non-trivial cohomology. Indeed, for any type $X$ and dependent abelian group $A:X\to \mathrm{Ab}$, we use the usual synthetic definition of the $n$-th cohomology group $H^n(X,A)$ as $\|\Pi_{x:X}K(A_x,n)\|_0$ where $K(A_x,n)$ is the $n$-th Eilenberg Mac-Lane space with coefficient $A_x$. In \cite{synthetic-stone-duality}, it is proven that $H^1(\bS^1,\Z)=\Z$, despite $\bS^1$ being a set.
 
-We prove all of Barton and Commelin's condensed type theory axioms in synthetic Stone duality, and give dependent generalisations of them. These are used to guarantee that non-constant countably presented abelian group coefficients interact well with compact Hausdorff spaces.
+We prove Barton and Commelin's condensed type theory axioms in synthetic Stone duality, as well as dependent generalisations of them. These are used to show that any compact Hausdorff space $X$ interact well with any family of countably presented abelian groups $A:X\to \mathrm{Ab}_{cp}$.
 
 %\paragraph*{Barton and Commelin's condensed type theory}
 
@@ -206,41 +206,40 @@ We prove all of Barton and Commelin's condensed type theory axioms in synthetic 
 
 \paragraph*{Vanishing of higher cohomology of Stone spaces}
 
-First we prove that $H^1(S,A) = 0$ with $S$ Stone and  $A : S\to \mathrm{Ab}_{\mathrm{cp}}$. We assume $\alpha:\prod_{x:S}K(A_x,1)$, by local choice we get a surjection $p:T\twoheadrightarrow S$ with $T$ Stone which trivialises $\alpha$. Then we get an approximation of $p$ as a sequential limit of surjective maps $p_k:T_k\to S_k$ between finite sets, we check that the induced trivialisation over $T_k$ gives a trivialisation over $S_k$, and conclude through our dependent extension of Barton and Commelin's axioms that $\alpha$ is trivial over $\mathrm{lim}_kS_k =S$.
+First we prove that $H^1(S,A) = 0$ for all $S$ Stone and $A : S\to \mathrm{Ab}_{cp}$. We assume $\alpha:\prod_{x:S}K(A_x,1)$, by local choice we get a surjection $p:T\twoheadrightarrow S$ with $T$ Stone which trivialises $\alpha$. Then we get an approximation of $p$ as a sequential limit of surjective maps $p_k:T_k\to S_k$ between finite sets, we check that the induced trivialisation over $T_k$ gives a trivialisation over $S_k$, and conclude through our dependent generalisations of Barton and Commelin's axioms that $\alpha$ is trivial over $\mathrm{lim}_kS_k =S$.
 
-We follow an idea due to David W\"arn \cite{cech-draft}[Theorem 3.4] to go from $H^1(S,A)=0$ to $H^n(S,A)=0$ for $n>1$. The key idea is to proceed by induction on $n$, generalising the induction hypothesis from $H^n(S,A) = 0$ to: 
+We follow an idea due to David W\"arn \cite{cech-draft}[Theorem 3.4] to go from $H^1(S,A)=0$ to $H^n(S,A)=0$ for all $n>0$. The key idea is to proceed by induction on $n>0$, generalising the induction hypothesis from $H^n(S,A) = 0$ to: 
 \begin{itemize}
 \item[(i)~] $ K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n)$ is an equivalence, directly implying $H^n(S,A)=0$.
 \item[(ii)] $ K(\prod_{x:S}A_x,n+1) \to \prod_{x:S}K(A_x,n+1)$ is an embedding.
 \end{itemize}
-Assume (i) and (ii) for $n-1>0$, let's prove (i) and (ii) for $n$. (ii) follows immediately from induction hypothesis (i). To prove (i), by induction hypothesis (ii) it is enough to prove that $\prod_{x:S}K(A_x,n)$ is connected, i.e. $H^n(S,A)=0$. We assume $\alpha:\prod_{x:S}K(A_x,n)$, by local choice we get a trivialisation $p:T\twoheadrightarrow S$ of $\alpha$ with $T$ Stone. Denoting by $T_x$ the fiber of $p$ over $x$, we consider the exact sequence
-$0\to A_x\to A_x^{T_x}\to L_x\to 0$ giving an exact sequence:
-\[H^{n-1}(S,L)\to H^n(S,A)\to H^n(S,\lambda x. A_x^{T_x})\]
-By induction hypothesis (i) we have that $H^{n-1}(S,L) = 0$ so we have an injection:
-\[H^n(S,A)\to H^n(S,\lambda x. A_x^{T_x})\]
+Assume (i) and (ii) for $n>0$, let's prove (i) and (ii) for $n+1$. (ii) follows immediately from (i). To prove (i), by induction hypothesis (ii) it is enough to prove that $\prod_{x:S}K(A_x,n+1)$ is connected, i.e. $H^{n+1}(S,A)=0$. We assume $\alpha:\prod_{x:S}K(A_x,n+1)$, by local choice we get a trivialisation $p:T\twoheadrightarrow S$ of $\alpha$ with $T$ Stone. Denoting by $T_x$ the fiber of $p$ over $x$, we consider the exact sequence $0\to A_x\to A_x^{T_x}\to L_x\to 0$ giving an exact sequence:
+\[H^{n}(S,L)\to H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A_x^{T_x})\]
+By induction hypothesis (i) we have that $H^{n}(S,L) = 0$ so we have an injection:
+\[H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A_x^{T_x})\]
 By induction hypothesis (ii) the map: 
-\[H^n(S,\lambda x. A_x^{T_x}) \to H^n(\Sigma_{x:S}T_x,A_x) = H^n(T,A\circ p)\]
-is an injection and we get an injection:
-\[p^* : H^n(S,A)\to H^n(T,A\circ p)\] 
+\[H^{n+1}(S,\lambda x. A_x^{T_x}) \to H^{n+1}(\Sigma_{x:S}T_x,A_x) = H^{n+1}(T,A\circ p)\]
+is an injection so that we get an injection:
+\[p^* : H^{n+1}(S,A)\to H^{n+1}(T,A\circ p)\] 
 But $p$ trivialises $\alpha$ so $p^*(\alpha)=0$, therefore $\alpha=0$.
 
 \paragraph*{\v{C}ech cohomology for compact Hausdorff spaces}
 
-Given a compact Hausforff space $X$, a \v{C}ech cover for $X$ consists of a Stone space $S$ and a surjective map $p:S\twoheadrightarrow X$. By definition any compact Hausdorff space has a \v{C}ech cover.
+Given a compact Hausdorff space $X$, a \v{C}ech cover for $X$ consists of a Stone space $S$ and a surjective map $p:S\twoheadrightarrow X$. By definition any compact Hausdorff space has a \v{C}ech cover.
 
-Given such a \v{C}ech cover and $A:X\to \mathrm{Ab}_{\mathrm{cp}}$, we define its \v{C}ech complex as:
+Given such a \v{C}ech cover and $A:X\to \mathrm{Ab}_{cp}$, we define its \v{C}ech complex as:
 \[\Pi_{x:X}A_x^{S_x} \to \Pi_{x:X}A_x^{S_x\times S_x} \to \cdots\]
-with the boundary maps defined as expected, and its \v{C}ech cohomology $\check{H}^k(X,A)$ as the $k$-th homology group of its \v{C}ech complex. We can prove by induction on $n$ that $H^n(X,A) = \check{H}^n(X,A)$. It is clear that $H^0(X,A) = \check{H}^0(X,A)$.
+with the boundary maps defined as expected, and its \v{C}ech cohomology $\check{H}^k(X,A)$ as the $k$-th homology group of its \v{C}ech complex. It is clear that $H^0(X,A) = \check{H}^0(X,A)$.
 %\[\delta(\alpha)(x,u_0,\cdots,u_n) = \sum_{i=0}^n (-1)^i\alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n)\]
 
 From hypothesis (i) in the previous paragraph, for $n>0$ we get an exact sequences:
 \[H^{n-1}(X,\lambda x.A_x^{S_x}) \to H^{n-1}(X,L)\to H^n(X,A)\to 0\]
-By direct computations, for $n>0$ we get exact sequences:
+By direct computations, for $n>0$ we get an exact sequence:
 \[\check{H}^{n-1}(X,\lambda x.A_x^{S_x}) \to \check{H}^{n-1}(X,L)\to \check{H}^n(X,A)\to 0\]
 
-We conclude by induction on $n$ that $H^n(X,A) = \check{H}^n(X,A)$ for all $n$, so that in particular \v{C}ech cohomology does not depend on the \v{C}ech cover. For this induction to go through it is crucial that $A_x^{S_x}$ is overtly discrete, which follows from the Barton and Commelin's axioms.  Using this result and finite approximations to a well-chosen \v{C}ech cover of $\mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{\mathrm{cp}}$.
+We conclude by induction on $n$ that $H^n(X,A) = \check{H}^n(X,A)$ for all $n$, so that in particular \v{C}ech cohomology does not depend on the \v{C}ech cover. For this induction to go through it is crucial that $A_x^{S_x}$ is countably presented, which follows from Barton and Commelin's axioms.  Using this result and finite approximations of a well-chosen \v{C}ech cover of $\mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{cp}$.
 
-%Using finite approximations to the \v{C}ech cover $2^\N\to \mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{\mathrm{cp}}$.
+%Using finite approximations to the \v{C}ech cover $2^\N\to \mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{cp}$.
 
 \printbibliography
 
