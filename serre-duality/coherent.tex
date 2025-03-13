@@ -1,0 +1,101 @@
+
+Classically, there is no abelian category of coherent $\mathcal O_X$-modules over a general base.
+Synthetically, the category of finitely presented modules over $R$ does not have all kernels,
+since $R$ is not coherent, so module bundles with values in finitely presented modules are not abelian.
+
+There is a surprising fix: The category of kernels of maps between finitely presented $R$-modules is abelian.
+This rests on the surprising duality between finitely co-presented $R$-modules and finitely presented $R$-modules (unless I made a mistake...):
+
+\begin{theorem}
+  For an $R$-module $M$ let $M^\ast\colonequiv \Hom_{\Mod{R}}(M,R)$ be its dual.
+  Then dualizing a finite co-presentation of $M$:
+  \[ M \hookrightarrow R^n \to R^m \]
+  yields a finite presentation:
+  \[ R^m \to R^n \twoheadrightarrow M^\ast \]
+  This induces an anti equivalence between finitely presented $R$-modules and finitely co-presented $R$-modules.
+\end{theorem}
+
+\begin{proof}
+  \cite{etale-draft}
+\end{proof}
+
+\begin{lemma}
+  \label{presentation-extension}
+  Let $M,N$ be finitely presented and $f:M\to N$.
+  Then there is an extension of this morphism to all presentations of $M$ and $N$:
+  \begin{center}
+    \begin{tikzcd}
+      R^{m'}\ar[r]\ar[d,dotted,"\exists"] & R^m\ar[->>,r,"\pi_M"]\ar[d,dotted,"\exists"] & M\ar[d, "f"] \\ 
+      R^{n'}\ar[r] & R^n\ar[->>,r,"\pi_N"] & N \\ 
+    \end{tikzcd}
+  \end{center}
+  By dualizing, the analogous statement holds for finitely co-presented modules.
+\end{lemma}
+
+\begin{proof}
+  By linear extension: For a standard basis vector $e_i:R^m$ we merely have $y:R^n$ such that $\pi_N(y)=f(\pi_M(e_i))$. By exactness, we also get $R^{m'}\to R^{n'}$ by linear extension.
+\end{proof}
+
+\begin{lemma}
+  Let $f:M\to M'$ and $g:N\to N'$ be morphisms of fintely presented modules, then for any morphism
+  $k:\ker{f}\to \ker{g}$ there are the following morphisms:
+  \begin{center}
+    \begin{tikzcd}
+      \ker{f}\ar[r,hook]\ar[d,"k"] & M\ar[r,"f"]\ar[d,dotted,"\exists"] & M'\ar[d,dotted,"\exists"] \\
+      \ker{g}\ar[r,hook] & N\ar[r,"g"] & N'
+    \end{tikzcd}
+  \end{center}
+\end{lemma}
+
+\begin{proof}
+  Assume presentations for $M,M',N,N'$ with cokernel maps $\pi_M,\pi_{M'},\pi_N,\pi_{N'}$.
+  Pullbacks of $R$-modules preserve surjections and injections, so we get a finite co-presentation of the pullback $P_f$:
+  \begin{center}
+    \begin{tikzcd}
+      P_f\ar[r,hook]\ar[d] & R^m\ar[r,dotted]\ar[d,"\pi_M"] & R^{m'}\ar[d,"\pi_{M'}"] \\
+      \ker{f}\ar[r,hook] & M\ar[r,"f"] & M'
+    \end{tikzcd}
+  \end{center}
+  -- where the dotted arrow is given by \cref{presentation-extension}.
+  Analogously, we get a finite co-presentation of the pullback $P_g$ and then a lift $\tilde{k}:P_f\to P_g$ of $k$.
+  By \cref{presentation-extension}, $\tilde{K}$ extends to a morphism of co-presentations:
+  \begin{center}
+    \begin{tikzcd}
+      P_f\ar[d,"\tilde{k}"]\ar[r,hook] & R^m\ar[r]\ar[d,dotted,"\exists\phi"] & R^{m'}\ar[d,dotted,"\exists\psi"] \\
+      P_g\ar[r,hook] & R^n\ar[r] & R^{n'} 
+    \end{tikzcd}
+  \end{center}
+  Then we get the morphisms claimed in the lemma by the universal property of cokernels and the squares commute by direct computation.
+\end{proof}
+
+\begin{lemma}
+  \label{cokernel-closure}
+  Let $f:M\to M'$ and $g:N\to N'$ be morphisms of fintely presented modules, then for any morphism
+  $k:\ker{f}\to \ker{g}$, $\coker{k}$ is again a kernel of a map between finitely presented modules.
+\end{lemma}
+
+\begin{proof}
+  By taking cokernels of all vertical arrows in the presentation of $k$ given by \cref{presentation-extension}.
+\end{proof}
+
+Due to lack of a better name, we call the following modules coherent --
+the idea is that they might yield an analogue of the algebro-geometric notion of coherent sheaf of modules
+
+\begin{definition}
+  Let $M$ be an $R$-module, then $M$ is called coherent, if one of the following equivalent conditions hold:
+  \begin{enumerate}[(i)]
+  \item $M$ is the kernel of a morphism of finitely presented modules.
+  \item $M$ is the cokernel of a map of finitely co-presented modules.
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}
+  Coherent modules are an abelian category.
+\end{theorem}
+
+\begin{proof}
+  We have seen in \cref{cokernel-closure} that coherent modules are closed under cokernels.
+  For the dual statement, we can show that the kernel of a morphism of finitely co-presented modules
+  is coherent, by dualizing \cref{cokernel-closure}.
+  We assume everything else needed for an abelian category is clear.
+\end{proof}
