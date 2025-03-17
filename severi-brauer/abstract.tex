@@ -5,6 +5,7 @@
 \newcommand{\RI}{\mathrm{RI}}
 \newcommand{\AZ}{\mathrm{AZ}}
 \newcommand{\propTruncEt}[1]{\propTrunc{#1}_{\mathrm{\acute{E}t}}}
+\mathchardef\mhyphen="2D
 
 \title{Ch\^atelet's Theorem in Synthetic Algebraic Geometry}
 \author{Thierry Coquand and Hugo Moeneclaey}
@@ -20,44 +21,44 @@ by a homography.
 
 We make essential use of basic results about HoTT \cite{hott}
 and modalities \cite{modalities}. Indeed, in this context, \'etale sheafification can be described
-as a modality. The formulation of Ch\^atelet's Theorem then becomes that for any étale sheaf $X$, we have that:
+as a modality. The formulation of Ch\^atelet's Theorem then becomes that for any étale sheaf $X$, we have that
 \[\propTrunc{X=\bP^n}_{\mathrm{\acute{E}t}} \to \propTrunc{X} \to \propTrunc{X=\bP^n}\]
-where $\propTrunc{X=\bP^n}_{\mathrm{\acute{E}t}}$ is the étale sheafification of $\propTrunc{X=\bP^n}$.
+where $\propTrunc{X=\bP^n}_{\mathrm{\acute{E}t}}$ is the étale sheafification of $\propTrunc{X=\bP^n}$. In words, it says that given an inhabited étale sheaf, it being merely equal to $\bP^n$ is itself an étale sheaf.
 
 
 \section{Synthetic algebraic geometry}
 
-Algebraic geometry is concerned with the study of roots of polynomial systems over an arbitrary base ring. A key idea is that given a system of polynomial equations:
-\[P_1(x_1,\cdots,x_n)=0\land\cdots\land P_m(x_1,\cdots,x_n)=0\]
-we can define an algebra:
-\[A = R[X_1,\cdots,X_n]/(P_1,\cdots,P_m)\]
-as well as a geometric object $\Spec(A)$ called an affine scheme, such that points in $\Spec(A)$ correspond to roots of the system. This is fruitful because one can then use geometric tools to study $\Spec(A)$, for example smoothness, connectedness, sheaf cohomology, etc. This allows one to gain understanding about $\Spec(A)$ even in a situations where it is unknown whether $\Spec(A)$ has a point. For this theory to work, $\Spec(A)$ needs to be a quite refined object, e.g. a locally ringed space or a sheaf on the Zariski site.
+Algebraic geometry is concerned with the study of roots of polynomial systems over an arbitrary base ring. A key idea is that given a system of polynomial equations
+\[P_1(x_1,\ldots,x_n)=0\land\ldots\land P_m(x_1,\ldots,x_n)=0\]
+with $P_1,\ldots,P_m:R[X]$, we can define an $R$-algebra
+\[A = R[X_1,\ldots,X_n]/(P_1,\ldots,P_m)\]
+as well as a geometric object $\Spec(A)$ called an affine scheme, such that points in $\Spec(A)$ correspond to roots of the system. This is fruitful because one can then use geometric tools to study $\Spec(A)$, for example smoothness, connectedness, sheaf cohomology, etc. This allows one to gain understanding of $\Spec(A)$ even in a situations where it is unknown whether $\Spec(A)$ has a point. For this theory to work, $\Spec(A)$ needs to be a quite refined object, e.g. a locally ringed space or a sheaf on the Zariski site.
 
 It is known that HoTT can be interpreted in any higher topos \cite{shulman2019all}, e.g. the topos of higher sheaves over the Zariski site. Synthetic algebraic geometry consists of HoTT plus three axioms which should be satisfied by this interpretation (the details are still work in progress).
 
-The first axiom postulates a local ring $R$. Given a finitely presented algebra:
-\[A = R[X_1,\cdots,X_n]/(P_1,\cdots,P_m)\]
-we can define the corresponding affine scheme:
-\[\Spec(A) = \Hom_{\mathrm{Alg}}(A,R) = \{x_1,\cdots,x_n:R\ |\ P_1(x_1,\cdots,x_n) = 0 \land\cdots\land P_m(x_1,\cdots,x_n) = 0\}\] 
-A key contrast between synthetic and traditional algebraic geometry is that synthetically $\Spec(A)$ is just a type, without any additional structure. The second axiom called duality postulates that the map:
+The first axiom postulates a local ring $R$. Given a finitely presented algebra
+\[A = R[X_1,\ldots,X_n]/(P_1,\ldots,P_m)\]
+we can define the corresponding affine scheme
+\[\Spec(A) = \Hom_{R\mhyphen\mathrm{Alg}}(A,R) = \{x_1,\ldots,x_n:R\ |\ P_1(x_1,\ldots,x_n) = 0 \land\ldots\land P_m(x_1,\ldots,x_n) = 0\}\] 
+A key contrast between synthetic and traditional algebraic geometry is that synthetically $\Spec(A)$ is just a type, without any additional structure. The second axiom called duality postulates that the map
 \[A\to R^{\Spec(A)}\]
-is an equivalence for any such $A$. This means that there is an equivalence between finitely presented algebras and affine schemes, and it implies that any map between affine scheme is polynomial. The third axiom called local choice postulates that affine schemes enjoys a weakening of the axiom of choice.
+is an equivalence for any such $A$. This means that there is an equivalence between finitely presented algebras and affine schemes, and it implies that any map between affine schemes is polynomial. The third axiom called local choice postulates that affine schemes enjoys a weakening of the axiom of choice.
 
-This work is part of the \href{https://github.com/felixwellen/synthetic-zariski/blob/main/README.md}{ongoing investigations} into how much traditional algebraic geometry can be derived from these three axioms. It relies crucially on previous work on the projective space $\bP^n$, which is define as the type of line in $R^{n+1}$ \cite{sag-projective}.
+This work is part of the \href{https://github.com/felixwellen/synthetic-zariski/blob/main/README.md}{ongoing investigations} into how much traditional algebraic geometry can be derived from these three axioms. It relies crucially on previous work on the projective space $\bP^n$, which is define as the type of lines in $R^{n+1}$ \cite{sag-projective}.
 
 
 \section{Ch\^atelet's Theorem in traditional algebraic geometry}
 
 {F}ran\c cois {C}h\^atelet introduced the notion of Severi-Brauer variety in his 1944 PhD thesis
-\cite{chatelet44} in order to generalise of a result of Poincar\'e about rational curves over a field.
+\cite{chatelet44} in order to generalise a result of Poincar\'e about rational curves over a field.
 He defines a Severi-Brauer variety to be a variety which becomes isomorphic to some $\bP^n$ after
 a separable extension. After recalling the characterisation of a central simple algebra over a field $k$ as
 an algebra which becomes isomorphic to a matrix algebra $M_n(k)$ after a separable extension, he notices the fundamental
-fact that $\bP^{n}(k)$ and $M_{n+1}(k)$ have the same automorphism group $PGL_{n+1}(k)$. He uses then this
+fact that $\bP^{n}(k)$ and $M_{n+1}(k)$ have the same automorphism group $PGL_{n+1}(k)$. He then uses this
 to describe a correspondence between Severi-Brauer varieties and central simple algebras, and as a corollary
 obtains the following generalisation of Poincar\'e's result: a Severi-Brauer variety which has a rational point
 is isomorphic to some $\bP^{n}(k)$. This result and its proof are described in Serre's book on local fields \cite{serre62}.
-The paper \cite{colliot88} contains also a description of this result.
+The paper \cite{colliot88} also contains a description of this result.
 
 The notion of central simple algebra over a field
 has been generalised to the notion of Azumaya algebra  \cite{azumaya51}, and
@@ -66,9 +67,9 @@ Grothendieck \cite{grothendieck68} defined Severi-Brauer varieties over an arbit
 
 \section{Étale sheaves in synthetic algebraic geometry}
 
-A monic polynomial which splits into linear factors is unramifiable if and only if it has a simple root. It turns out this can be expressed using only the coefficients of the polynomial, so that we can extend this notion of unramifiable to arbitrary monic polynomials.
+A monic polynomial which splits into linear factors is unramifiable if and only if it has a simple root \cite{wraith79}. It turns out this can be expressed using only the coefficients of the polynomial, so that we can extend this notion of unramifiable to arbitrary monic polynomials.
 
-Étale sheafification is then defined as the localisation \cite{modalities} at the types: 
+Étale sheafification is then defined as the localisation \cite{modalities} at the types
 \[\exists (x:R).P(x)=0\] 
 for $P$ monic unramifiable. This means that when trying to give an inhabitant in an étale sheaf, we are free to assume that monic unramifiable polynomials have roots. It is reasonable to call this modality étale sheafification because the étale topos is the classifying topos of the theory local rings such that these polynomials have roots \cite{wraith79}.
 
@@ -77,18 +78,19 @@ We prove that any scheme is an étale sheaf, as well as descent for finite free 
 
 \section{Ch\^atelet's Theorem in synthetic algebraic geometry}
 
-Given a type $X$ we denote the étale sheafification of $\propTrunc{X}$ by $\propTruncEt{X}$. So $\propTruncEt{X}$ essentially means that $X$ merely holds assuming that a finite number of monic unramifiable polynomials have roots.
+Given a type $X$ we denote the étale sheafification of $\propTrunc{X}$ by $\propTruncEt{X}$. So $\propTruncEt{X}$ essentially means that $X$ is inhabited assuming that a finite number of monic unramifiable polynomials have roots.
 
-We define the type $\SB_n$ of Severi-Brauer varieties of dimension $n$ as the type of étale sheaves $X$ such that $\propTrunc{X=\bP^n}_{\mathrm{\acute{E}t}}$. Examples include the conics:
+We define the type $\SB_n$ of Severi-Brauer varieties of dimension $n$ as the type of étale sheaves $X$ such that $\propTrunc{X=\bP^n}_{\mathrm{\acute{E}t}}$. Examples include the conics
 \[\{[x:y:z]:\bP^2\ |\ x^2 = ay^2+bz^2\}\]
 for $a,b$ invertible, when $R$ is not of characteristic $2$.
 
-We define the type $\AZ_n$ of Azumaya algebras of rank $n$ as the type of algebras $A$ that are étale sheaves such that $\propTrunc{A=M_{n+1}(R)}_{\mathrm{\acute{E}t}}$. Examples include quaternion non-commutative algebras: 
+We define the type $\AZ_n$ of Azumaya algebras of rank $n$ as the type of algebras $A$ that are étale sheaves such that $\propTrunc{A=M_{n+1}(R)}_{\mathrm{\acute{E}t}}$. Examples include quaternion non-commutative algebras
 \[R[1,i,j]/(i^2=a,j^2=b,ij=-ji)\]
 for $a,b$ invertible, when $R$ is not of characteristic $2$.
 
-Using that $\mathrm{Aut}(\bP^n) = PGL_{n+1}$ from \cite{sag-projective} and proving that $\mathrm{Aut}_{\mathrm{Alg}}(M_{n+1}(R)) = PGL_{n+1}$,
-we can conclude that both $\SB_n$ and $\AZ_n$ are deloopings of $PGL_{n+1}$ inside étale sheaves, and therefore are equivalent. We give an explicit description of this equivalence as the map $\RI:\AZ_n\to\SB_n$ sending $A$ to the type of right ideals of $A$ that are free of dimension $n+1$ as modules. Using that given $I:\RI(A)$ we have that $A = \mathrm{End}_R(I)$, we conclude: 
+
+Using that $\mathrm{Aut}_{\mathrm{Type}}(\bP^n) = PGL_{n+1}$ from \cite{sag-projective} and proving that $\mathrm{Aut}_{R\mhyphen\mathrm{Alg}}(M_{n+1}(R)) = PGL_{n+1}$,
+we can conclude that both $\SB_n$ and $\AZ_n$ are deloopings of $PGL_{n+1}$ in the submodel of étale sheaves, and therefore are equivalent. We give an explicit description of this equivalence as the map $\RI:\AZ_n\to\SB_n$ sending $A$ to the type of right ideals $I$ of $A$ such that $\propTrunc{I=_{R\mhyphen\mathrm{Mod}}R^{n+1}}$. Moreover we prove that given $I:\RI(A)$ we have that $A = \mathrm{End}_{R\mhyphen\mathrm{Mod}}(I)$. Then given $X:\SB_n$, any $x:X$ gives $I:\RI(\RI^{-1}(X))$ so that $\RI^{-1}(X) = \mathrm{End}_{R\mhyphen\mathrm{Mod}}(I)$. Then by definition of $\RI$ we merely have $\RI^{-1}(X) = M_{n+1}(R)=\RI^{-1}(\bP^n)$. We conclude: 
 \paragraph{Main Result (Ch\^atelet's Theorem)} For all $X:\SB_n$, we have that $\propTrunc{X}$ implies $\propTrunc{X=\bP^n}$.
 
 \printindex
