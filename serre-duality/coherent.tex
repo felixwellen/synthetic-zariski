@@ -49,7 +49,7 @@ This rests on the surprising duality between finitely co-presented $R$-modules a
 
 \begin{proof}
   Assume presentations for $M,M',N,N'$ with cokernel maps $\pi_M,\pi_{M'},\pi_N,\pi_{N'}$.
-  Pullbacks of $R$-modules preserve surjections and injections, so we get a finite co-presentation of the pullback $P_f$:
+  Pullbacks of $R$-modules preserve surjections and injections, so we get a finite co-presentation of the pullback $P_f$ \rednote{WRONG}:
   \begin{center}
     \begin{tikzcd}
       P_f\ar[r,hook]\ar[d] & R^m\ar[r,dotted]\ar[d,"\pi_M"] & R^{m'}\ar[d,"\pi_{M'}"] \\
@@ -87,6 +87,7 @@ the idea is that they might yield an analogue of the algebro-geometric notion of
   \item $M$ is the kernel of a morphism of finitely presented modules.
   \item $M$ is the cokernel of a map of finitely co-presented modules.
   \end{enumerate}
+  We write $\Mod{R}_{\mathrm{coh}}$ for the type of coherent $R$-modules.
 \end{definition}
 
 \begin{theorem}
@@ -104,8 +105,56 @@ the idea is that they might yield an analogue of the algebro-geometric notion of
   Any coherent $R$-module is wqc.
 \end{remark}
 
-Questions:
+\begin{remark}
+\label{hom-closure}
+  For coherent $R$-modules $M,N$, the $R$-module $\Hom_{\Mod{R}}(M,N)$ is coherent.
+\end{remark}
+
+\begin{proof}
+  In \cite{lombardi-quitte}[Chapter IV, 4.12], ``coherent'' means something else, but their proof can still be applied twice to show the statement of the remark as follows.
+  
+  First we use their proof to show that for finitely presented $R$-modules $M,N$ the $R$-module $\Hom_{\Mod{R}}(M,N)$ is coherent. Morphisms $f:M\to N$ are presented by squares:
+  \begin{center}
+  \begin{tikzcd}
+        R^m \ar[r]\ar[d,"\varphi"] & R^{m'}\ar[d,"\psi"] \\
+        R^n\ar[r] & R^{n'}
+\end{tikzcd}
+\end{center}
+  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commtes.
+  This submodule $S$ is the kernel of a linear map and therefore coherent.
+  We have a surjection $\pi:S\to \Hom_{\Mod{R}}(M,N)$, so $\Hom_{\Mod{R}}(M,N)$ is coherent,
+  if $\pi$ is a cokernel of a map of coherent modules.
+  This is the case, since there is a surjection onto $\ker{\pi}$ from the finite free $R$-module of linear maps which splitting the square:
+  \begin{center}
+  \begin{tikzcd}
+        R^m \ar[r]\ar[d,"\varphi"] & R^{m'}\ar[d,"\psi"]\ar[ld,"s"] \\
+        R^n\ar[r] & R^{n'}
+\end{tikzcd}
+\end{center}
+
+  Then we can reuse the same argument to show the statement of the remark.
+\end{proof}
+
+\paragraph{Questions:}
 \begin{enumerate}
+\item Are coherent modules closed under $\Hom$?
+\item Are coherent modules closed under $\_\otimes\_$?
+\item \label{coherent-local} Is a locally coherent $R$-module coherent?
 \item Are projective/proper/finite-scheme products of coherent modules coherent?
 \item Are the cohomology groups of coherent module bundles on projective schemes coherent?
+\end{enumerate}
+
+\paragraph{Answers:}
+\begin{enumerate}
+\item Yes, \cref{hom-closure}.
+\item It could be possible to just use the result for finitely presented modules, by extending the extension properties above to bilinear maps.
+\item None so far
+\item Partial answer:
+\begin{enumerate}
+\item Let $X$ be a finite scheme, i.e. $X$ an affine scheme such that $R^X$ is a finitely presented $R$-module.
+  For any coherent $R$-module $M$, $M^X$ is coherent: We can exponentiate the diagram witnessing coherence.
+  Exponentiating is left exact and since $M$ is wqc and $X$ affine, it is also right exact.
+\item Let $M:X\to \Mod{R}_{\mathrm{coh}}$ for a finite scheme $X$. Then $(x:X)\to M_x$ would be a coherent $R$-module, if we have \cref{coherent-local}: By local choice, we get a cover $D(f_1),\dots,D(f_n)$ of $X$, such that coherence of $M$ is witnessed by a diagram $M\hookrightarrow N \to L$ with $N,L$ finitely presented. By \cite{draft}[Theorem 7.2.3], $(x:D(f_i))\to N_x$ and $(x:D(f_i))\to L_x$ are finitely presented $R^{D(f_i)}$-modules and therefore finitely presented $R$-modules and the dependent product is a left exact functor.
+\end{enumerate}
+\item None so far
 \end{enumerate}
