@@ -197,14 +197,28 @@ For any $P$ closed dense and any diagram:
 
 \subsection{Algebraic examples and counter-examples}
 
-\rednote{Can be deduced from stability R smooth + smooth closed are decidable... Should we give the fun proof anyway?}
+\rednote{UNCLEAR WHAT THIS REFERS TO: Can be deduced from stability R smooth + smooth closed are decidable... Should we give the fun proof anyway?}
 
+Since our definition of scheme already contains locally finite presentedness, the following definition matches the classical terminology.
+
+\begin{definition}
+  A \notion{étale/unramified/smooth scheme} is a scheme which is formally étale/unramified/smooth.
+  A \notion{étale/unramified/smooth map} is a map between schemes which is formally étale/unramified/smooth.
+\end{definition}
+\rednote{should the following be example instead of lemma?}
 \begin{lemma}\label{An-is-smooth}
 For all $k:\N$, we have that $\A^k$ is smooth.
 \end{lemma}
 
 \begin{proof}
-TODO
+  Let $P$ be a closed dense proposition and $N$ a nilpotent, finitely generated ideal such that $P=\Spec R/N$.
+  Then $\Spec R[X_1,\dots,X_k]=\A^k$ is smooth lifts always exist as indicated below by the universal property of $R[X_1,\dots,X_k]$:
+  \begin{center}
+    \begin{tikzcd}
+      R/N & R[X_1,\dots,X_k]\ar[l]\ar[ld,dotted]  \\
+      R\ar[u] & 
+    \end{tikzcd}
+  \end{center}
 \end{proof}
 
 \begin{lemma}
@@ -212,7 +226,15 @@ The affine scheme $\Spec(R[X]/X^2)$ is not smooth.
 \end{lemma}
 
 \begin{proof}
-TODO
+If it were smooth then, for any $\epsilon$ with $\epsilon^3=0$, we would be able to prove $\epsilon^2=0$.
+Indeed we would merely have a dotted lift in:
+ \begin{center}
+      \begin{tikzcd}
+        R/(\epsilon^2)& R[X]/(X^2)\ar[l,"\epsilon"]\ar[ld,dashed] \\
+        R \ar[u]& 
+      \end{tikzcd}
+    \end{center}
+    that is, an $r:R$ such that $(\epsilon+r\epsilon^2)^2=0$. Then $\epsilon^2=0$.
 \end{proof}
 
 \begin{lemma}
@@ -220,7 +242,15 @@ The affine scheme $\Spec(R[X,Y]/XY)$ is not smooth.
 \end{lemma}
 
 \begin{proof}
-TODO
+If it were smooth, for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$.
+Indeed we would merely have a dotted lift in:
+ \begin{center}
+   \begin{tikzcd}
+     R/(\epsilon^2) & R[X,Y]/(XY)\ar[l]\ar[ld,dashed] \\
+     R\ar[u] & 
+   \end{tikzcd}
+ \end{center}
+ where the top map sends both $X$ and $Y$ to $\epsilon$. Then we have $r,r':R$ such that $(\epsilon+r\epsilon^2)(\epsilon+r'\epsilon^2)=0$ so that $\epsilon^2=0$.
 \end{proof}
 
 
