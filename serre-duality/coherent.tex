@@ -3,8 +3,7 @@ Classically, there is no abelian category of coherent $\mathcal O_X$-modules ove
 Synthetically, the category of finitely presented modules over $R$ does not have all kernels,
 since $R$ is not coherent, so module bundles with values in finitely presented modules are not abelian.
 
-There is a surprising fix: The category of kernels of maps between finitely presented $R$-modules is abelian.
-This rests on the surprising duality between finitely co-presented $R$-modules and finitely presented $R$-modules (unless I made a mistake...):
+This section is about finding a suitable replacement category.
 
 \begin{theorem}
   For an $R$-module $M$ let $M^\ast\colonequiv \Hom_{\Mod{R}}(M,R)$ be its dual.
@@ -37,6 +36,7 @@ This rests on the surprising duality between finitely co-presented $R$-modules a
 \end{proof}
 
 \begin{lemma}
+  \rednote{Unfortunately, the proof below is wrong...}
   Let $f:M\to M'$ and $g:N\to N'$ be morphisms of fintely presented modules, then for any morphism
   $k:\ker{f}\to \ker{g}$ there are the following morphisms:
   \begin{center}
@@ -68,45 +68,24 @@ This rests on the surprising duality between finitely co-presented $R$-modules a
   Then we get the morphisms claimed in the lemma by the universal property of cokernels and the squares commute by direct computation.
 \end{proof}
 
-\begin{lemma}
-  \label{cokernel-closure}
-  Let $f:M\to M'$ and $g:N\to N'$ be morphisms of fintely presented modules, then for any morphism
-  $k:\ker{f}\to \ker{g}$, $\coker{k}$ is again a kernel of a map between finitely presented modules.
-\end{lemma}
-
-\begin{proof}
-  By taking cokernels of all vertical arrows in the presentation of $k$ given by \cref{presentation-extension}.
-\end{proof}
-
 Due to lack of a better name, we call the following modules coherent --
 the idea is that they might yield an analogue of the algebro-geometric notion of coherent sheaf of modules
 
 \begin{definition}
-  Let $M$ be an $R$-module, then $M$ is called coherent, if one of the following equivalent conditions hold:
-  \begin{enumerate}[(i)]
-  \item $M$ is the kernel of a morphism of finitely presented modules.
-  \item $M$ is the cokernel of a map of finitely co-presented modules.
-  \end{enumerate}
-  We write $\Mod{R}_{\mathrm{coh}}$ for the type of coherent $R$-modules.
+  Let $M$ be an $R$-module, then $M$ is called coherent, if it is in the closure of the subcategory of all $R$-modules, spanned by finite free modules and taking kernels and cokernels.
 \end{definition}
 
 \begin{theorem}
   Coherent modules are an abelian category.
 \end{theorem}
 
-\begin{proof}
-  We have seen in \cref{cokernel-closure} that coherent modules are closed under cokernels.
-  For the dual statement, we can show that the kernel of a morphism of finitely co-presented modules
-  is coherent, by dualizing \cref{cokernel-closure}.
-  We assume everything else needed for an abelian category is clear.
-\end{proof}
-
 \begin{remark}
   Any coherent $R$-module is wqc.
 \end{remark}
 
 \begin{remark}
-\label{hom-closure}
+  \label{hom-closure}
+  \rednote{This should be recheked for the current definition of coherent}
   For coherent $R$-modules $M,N$, the $R$-module $\Hom_{\Mod{R}}(M,N)$ is coherent.
 \end{remark}
 
@@ -145,6 +124,7 @@ the idea is that they might yield an analogue of the algebro-geometric notion of
 \end{enumerate}
 
 \paragraph{Answers:}
+  \rednote{This should be recheked for the current definition of coherent}
 \begin{enumerate}
 \item Yes, \cref{hom-closure}.
 \item It could be possible to just use the result for finitely presented modules, by extending the extension properties above to bilinear maps.
