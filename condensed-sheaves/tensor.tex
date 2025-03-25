@@ -1,0 +1,160 @@
+
+
+\subsection{Bounded distributive lattices}
+
+\begin{definition}
+A bounded distributive lattice is a set $X$ with $0,1:X$ and $\lor,\land$ binary operations such that:
+\begin{itemize}
+\item $\lor$ and $\land$ are idempotent commutative and associative.
+\item $1$ is an identity for $\land$ and $0$ is an identity for $\lor$.
+\item  $a\lor(a\land b) = a$ (or equivalently $a\land(a\lor b) = a$).
+\item $a\land(b\lor c) = (a\land b)\lor(a\land c)$
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+Given $A,B$ bounded distributive lattices, we define $A\boxtimes B$ as the type of formal sups $\bigvee_i a_i\boxtimes b_i$ for $a_i:A$ and $b_i:B$.
+
+Then we define $\lor$ a binary operation on $A\boxtimes B$ as expected, and $\land$ by:
+\[(\bigvee_ia_i\boxtimes b_i)\land (\bigvee_jc_j\boxtimes d_j) = \bigvee_{i,j}(a_i\land c_j)\boxtimes (b_i\land d_j)\]
+as well as $0=0\boxtimes 0$ and $1=1\boxtimes 1$. 
+\end{definition}
+
+Note that $A\boxtimes B$ is not a distributive lattice. We want to correct that.
+
+\begin{definition}
+Inductively, we say that:
+\[a\boxtimes b \leq \bigvee_ic_i\boxtimes d_i\]
+if one of the following hold:
+\begin{itemize}
+\item $a\leq c_i$ and $b\leq d_i$ for some $i$.
+\item $a=\bigvee_k a_k$ and for all $k$ we have $a_k\boxtimes b\leq \bigvee_ic_i\boxtimes d_i$.
+\item $b=\bigvee_k b_k$ and for all $k$ we have $a\boxtimes b_k\leq \bigvee_ic_i\boxtimes d_i$.
+\end{itemize}
+Then we define:
+\[\bigvee_ia_i\boxtimes b_i \leq \bigvee_ic_i\boxtimes d_i\]
+as:
+\[\forall i.\ a_i\boxtimes b_i \leq \bigvee_ic_i\boxtimes d_i\]
+\end{definition}
+
+\begin{lemma}\label{and-or-respect-leq}
+Assume given $x,y,z:A\otimes B$. If $x\leq y$ then:
+\[x\lor z \leq y\lor z\]
+\[z\lor z \leq z\lor y\]
+\[x\land z \leq y\land z\]
+\[z\land z \leq z\land y\]
+\end{lemma}
+
+\begin{proof}
+For the results about $\lor$, it is clear from the definition of $\leq$ that it is enough to prove that $a\otimes b\leq y\lor z$ when $a\otimes b \leq y$. We prove this by induction on $a\otimes b\leq y$.
+
+For the results about $\land$, we see by the first results and direct computations that it is enough to prove it when $x=a\otimes b$ and $y=e\otimes f$. We prove this by induction on $a\otimes b \leq y$.
+\end{proof}
+
+\begin{definition}
+We define $A\otimes B$ as the set quotient of $A\boxtimes B$ by the relation $x\leq y$ and $y\leq x$.
+
+By \Cref{and-or-respect-leq} we have induced operations $0,1,\land,\lor$.
+\end{definition}
+
+\begin{lemma}
+We have that $A\otimes B$ is a bounded distributive lattice, and that:
+\[i_A:A\to A\otimes B\]
+\[a\mapsto a\otimes 1\]
+and:
+\[i_B : B\to A\otimes B\]
+\[b\mapsto 1\otimes b\]
+are morphisms of bounded distributive lattice.
+\end{lemma}
+
+\begin{proof}
+By direct computation.
+\end{proof}
+
+\begin{lemma}
+We have that $A\otimes B$ is the coproduct of $A$ and $B$ in the category of bounded distributive lattice.
+\end{lemma}
+
+\begin{proof}
+We need to check that given $f:A\to C$ and $g:B\to C$, there is a unique map $\psi:A\otimes B\to C$ such that $\psi\circ i_A = f$ and $\psi\circ i_B$.
+
+It is clear that if such a $\psi$ exists, it is unique, as if $\psi(a\otimes 1) = f(a)$ and $\psi(1\otimes b) = g(b)$ then:
+\[\psi(\bigvee_ia_i\otimes b_i) = \bigvee_i f(a_i)\land g(b_i)\]
+Now we need to check that this formula indeed define a morphism in $A\otimes B\to C$.
+
+First we check it respects the equivalence relation. It is enough to prove that if $a\boxtimes b \leq \bigvee_i c_i\otimes d_i$ then:
+\[f(a)\land g(b) \leq \bigvee_i f(c_i)\land f(d_i)\] 
+We proceed by induction on  $a\boxtimes b \leq \bigvee_i c_i\otimes d_i$.
+
+Checking that $\psi$ is a morphism of lattice is straightforward.
+\end{proof}
+
+\begin{lemma}\label{leq-transitive}
+The relation $\leq$ is reflexive and transitive on $A\boxtimes B$. Therefore the relation ($x\leq y$ and $y\leq x$) is an equivalence relation.
+\end{lemma}
+
+\begin{proof}
+Reflexivity is straightforward, transitivity is by induction on $\leq$.
+\end{proof}
+
+As is customary in a lattice, we write $x\leq y$ in $A\otimes B$ as a shorthand for $x\land y = x$ in $A\otimes B$.
+
+\begin{lemma}\label{leq-otimes}
+Given $x,y:A\boxtimes B$ we have $[x]\leq [y]$ in $A\otimes B$ if and only if $x\leq y$ in $A\boxtimes B$.
+\end{lemma}
+
+\begin{proof}
+By \Cref{leq-transitive} we have that $[x]\land [y]=[x]$ is and only if $x\land y\leq x$ and $x\leq x\land y$, which is equivalent to $x\leq y$.
+\end{proof}
+
+This is the result I am interested in:
+
+\begin{proposition}
+Given $a,c:A$ and $b,d:B$, we have that:
+\[(a\otimes b) \leq (c\otimes d)\]
+in $A\otimes B$ if and only if $a=0$ or $b=0$ or ($a\leq c$ and $b\leq d$).
+\end{proposition}
+
+\begin{proof}
+By \Cref{leq-otimes} we have that $(a\otimes b) \leq (c\otimes d)$ in $A\otimes B$ if and only if $(a\boxtimes b) \leq (c\boxtimes d)$ in $A\boxtimes B$, and then we proceed by induction $\leq$.
+\end{proof}
+
+\begin{remark}
+This mean that given a bounded distributive lattice $A$, tensoring with $A$ is an exact functor. Can we relativise to bounded distributive $A$-lattice? Can we extend to modules to get flatness of every module?
+\end{remark}
+
+\subsection{Boolean algebras}
+
+\begin{definition}
+Assume given $a:A$. A complement for $a$ is a $b:A$ such that $a \lor b = 1$ and $a\land b = 0$.
+\end{definition}
+
+\begin{lemma}\label{complement-unique}
+Any $a:A$ has at most one complement.
+\end{lemma}
+
+\begin{proof}
+We just need to check that there is at most one $b:A$ such that $a\lor b=1$ and $a\land b = 0$. But given two such $b,b'$ we have that:
+\[b = b\land (a\lor b') = (b\land a) \lor (b\land b') = b\land b'\]
+so $b\leq b'$ and for the same reason we have that $b'\leq b$ so that $b=b'$.
+\end{proof}
+
+\begin{definition}
+A boolean algebra is a bounded distributive lattice where every element has a complement.
+\end{definition}
+
+\begin{lemma}\label{being-boolean-proposition}
+A bounded distributive lattice being a boolean algebra is a proposition.
+\end{lemma}
+
+\begin{proof}
+By \Cref{complement-unique}.
+\end{proof}
+
+\begin{lemma}
+If $A$ and $B$ are boolean algebras, then so is $A\otimes B$. Then $A\otimes B$ is the coproduct of $A$ and $B$ in the category of boolean algebras.
+\end{lemma}
+
+\begin{proof}
+If $x$ and $y$ have complements $x'$ and $y'$, then $x'\land y'$ is a complement for $x\lor y$. So it is enough to check that any $a\otimes b$ has a complement. But $(\neg a\otimes b) \lor (a\otimes \neg b) \lor (\neg a\otimes \neg b)$ is a complement for $a\otimes b$ by straightforward computations.
+\end{proof}
