@@ -1,0 +1,61 @@
+
+In mathematics, it is common practice to assume a fixed set theory, usually with the axiom of choice, as a common basis. While it is a great advantage to work in one common language and share a lot of the basic constructions, the dual approach of adapting the  ``base language'' to particular mathematical domains is sometimes more concise, provides a new perspective and encourages new proof techniques which would be hard to find otherwise.
+We use the word ``synthetic'' to indicate that the latter approach is used,
+as it was used by Lawvere, when he described a program to develop mathematics inside of certain categories \cite{lawvere-categorical-dynamics}.
+
+Just using category theory is not the same as reasoning synthetically -- for the latter the goal is usually to derive results exclusively in one system,
+as Lawvere did with differential geometry in his work.
+The distinction with just using an abstraction like categories is important, since the translation from the synthetic language and back can become quite cumbersome.
+
+Starting with Lawvere's work, more differential geometry was developed synthetically \cite{kock-sdg} along with a study of the models of the theory \cite{moerdijk-reyes}.
+One basic axiom of the theory, the Kock-Lawvere axiom admits intuitive reasoning with nilpotent infinitesimals.
+One first assumes a ring $R$ in a topos, which means that a couple of basic sets like $\empty$, $\{\ast\}$ and $\N$ exist and for objects $A$, $B$ natural constructions like $A\times B$ or $A^B$ exists and behave as they would for sets -- we also have predicates $P(x)$ for elements $x:A$ and can form subobjects like $\{x:A\vert P(x)\}$.
+The ring $R$ can be thought of as the real numbers and if we take the $\D(1):=\{x\in R\vert x^2=0\}$ to be the set of all square-zero elements of $R$, then we have a bijection
+\[ d : R^{\D(1)} \to R \times R \]
+which commutes with evaluation at 0 and projection to the first factor.
+The derivative at $0:R$ of a function $f : R \to R$ may then be defined as $\pi_2(d(f_{\vert \D(1)}))$, which is the start of a convenient way to develop calculus. To give just an example: The tangent bundle of a manifold $M$ can be defined as $M^{\D(1)}$ and vector fields as sections of the canonical map $M^{\D(1)}\to M$. Then it is easy to see that a vector field is the same as a map $\zeta:\D(1)\to M^M$ with $\zeta(0)=\id_M$, which can be interpreted as an infinitesimal transformation of the identity map. This style of reasoning with spaces as if they were sets is also central in current synthetic algebraic geometry and can be quite convenient. 
+
+The Kock-Lawvere axiom above and many of the axioms used in synthetic reasoning are however incompatible with the law of excluded middle and therefore also with the axiom of choice. It is however a recurring phenomen that restricted versions of excluded middle and choice are compatible with synthetic languages in the sense that they are supported by a model. A very basic example is, that equality of natural numbers is decidable, meaning that two natural numbers are either equal or not equal. 
+
+The use of nilpotent elements to capture infinitesimal quantities as mentioned above was inspired by the Grothendieck school of algebraic geometry and Anders Kock also worked with an extended axiom \cite{Kock74}, where the role of $\D(1)$ above can be taken by any finitely presented affine scheme. In 2017 Ingo Blechschmidt finished his doctoral thesis in which he noticed a property holding internally in the Zariski-topos, which he called synthetic quasi-coherence -- this was a more general and internal verision of what Kock used. In 2018, David Jaz Myers started to work with a specialization of Blechschmidt's sqc, which is now one of the axioms of synthetic algebraic geometry, called duality: For any finitely presented algebra $A$ over the base ring $R$ we have an isomorphism:
+\[ A\to R^{\Spec A}\]
+-- where $\Spec A:=\Hom_{\Alg{R}}(A,R)$ is the synthetic version of the spectrum.
+
+Myers stated the duality axiom in homotopy type theory which, in addition to being a convenient language, also provides a language for a synthetic homotopy theory.
+So instead of the usual practice in algebraic topology to provide model spaces using point-set topology, one can start directly at the level of homotopy types and instead of implementing their higher structure with kan-complexes, there are rules which do not mention any implementation.
+The rules of homotopy type theory allow to work with the basic objects of the theory, types, in very much the same way as one would work with sets in traditional mathematics -- with the clear exception of the law of excluded middle and the axiom of choice - although the former and restricted versions of the latter can be assumed.
+Both can be seen as stating something about the spatial structure. The law of excluded middle allows us to find a complement of each subset of a given set A, which exposes A as a coproduct.
+This is not true in topology, for example, $\R$ is not the coproduct of the topological subspaces $\{0\}$ and $\R/\{0\}$.
+The axiom of choice states that any surjection has a section. This is also not true in topology and would trivialize all cohomology.
+Thus, constructive reasoning in the sense of not using these two axioms is a necessity if we want to use spatial collections in the same way we use sets.
+In synthetic algebraic geometry, we work inside homotopy type theory and remind readers of this by using the notation $x:X$ which can often be thought of as $x\in X$.
+\cite{shulman-logic-of-spaces} is an introduction to homotopy type theory for a general mathematical audience.
+
+
+One of the main advantages of using specifically homotopy type theory and not a different internal language,
+is that it is possible to make cohomological computations, using homotopy type theory for synthetic homotopical reasoning.
+This means that we are mixing two synthetic approaches, combining their advantages,
+which rests on the possibility of interpreting homotopy type theory in higher toposes \cite{shulman2019all} and not just the higher topos of $\infty$-groupoids.
+The general idea of using homotopy type theory to combine some kind of synthetic, spatial reasoning with synthetic homotopy theory, goes back at least to 2014, to Mike Shulman and Urs Schreiber \cite{Schreiber_2014}.
+Schreiber suggested to the HoTT community at various occasions to make use of HoTT as the internal language of higher toposes, where specifities of the topos are accessed in the language via modalities.
+This approach proved to be quite flexible and Shulman's \cite{shulman-Brouwer-fixed-point} work on mixing synthetic homotopy theory in the form of HoTT and a synthetic approach to topology using a triple of modalities (a structure called cohesion by Lawvere),
+
+One of Schreiber's motivation was to make use of the modern perspective on cohomology, which in a higher topos can be realized as the connected components of a space of maps. This can be mimicked in HoTT, like follows: Let $X$ be a type and $A$ an abelian group and $n:\N$, then
+\[ H^n(X,A):=\| X\to K(A,n) \|_0\]
+is the $n$-th cohomology group of $X$ with coefficients in $A$, where $\|\_\|_0$ is the $0$-truncation, an operation which turns a type with possibly non-trivial higher identity types into a set -- a type witt trivial higher structure. The type $K(A,n)$ is the $n$-th Eilenberg MacLane space, which can always be constructed for any abelian group $A$ and has the property that $\Omega^n(K(A,n))\simeq A$.
+This definition of cohomology groups allows using the synthetic homotopy theory to reason about cohomology, which had been already done successfully at the time for the cohomology of homotopy types, like spheres and finite CW-complexes. But, in this case, this kind of reasoning is applied to study $0$-types.
+
+In 2022, trying to use this approach to calculate cohomology groups in synthetic algebraic geometry led to the discovery of what is now called Zariski-local choice, which is an additional axiom that holds in some cubical models of HoTT based on the Zariski-topos. Surprisingly, this local choice axiom was also usable to solve problems which have no obvious connection to cohomology. For example, it admits a proof that pointwise open subsets of an affine scheme are the same as subsets which are given by unions of non-vanishing sets of functions on the scheme.
+In more detail, we say a proposition $P$ is open, if there are a natural number $n$ and elements $r_1,\dots,r_n$ of the base ring $R$,
+such that $P$ is equivalent to the proposition $r_1\neq 0 \vee\dots\vee r_n\neq 0$.
+Then we call a subset $U$ of a type $X$ open, if the proposition $x\in U$ is open for all $x:X$.
+Using Zariski-local choice, these pointwise existing ring elements can be turned into locally existing functions.
+For an affine scheme $X$ it is even the case, that an open subset in the pointwise sense, is a union of non-vanishing sets of global functions.
+
+This connection between pointwise and local openness is important to make the synthetic definition of a scheme work well:
+A scheme is a type $X$, that merely has a finite open cover by affine schemes.
+To produce interesting examples, it is neccessary to use another axiom: The base ring $R$ is a local ring.
+This is related to the Zariski topology and ensures that classical examples of Zariski covers can be reproduced.
+The main example is projective space, which can be defined as the quotient of $R^{n+1}/\{0\}$ by the action of $R^\times$ by scaling.
+A cover of this type is given by sets of equivalence classes of the form $\{[x_0:\cdots:x_n] \vert x_i\neq 0 \}$, which is clearly open by the pointwise definition.
+To see that it is a cover, one has to note that for $x:R^{n+1}$, $x\neq 0$ is equivalent to one of the entries $x_i$ being different from 0. In constructive algebra, this is the case if $R$ is a local ring.
