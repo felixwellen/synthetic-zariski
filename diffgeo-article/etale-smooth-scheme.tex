@@ -1,5 +1,6 @@
 \subsection{Smooth and étale maps between schemes}
 
+\rednote{TODO: fix sentence}
 Note that it is immediate from the definition of smoothness that smooth maps induce surjections on tangent spaces. We have a converse when the domain is smooth.
 
 \begin{corollary}\label{smooth-schemes-iff-submersion}
@@ -15,7 +16,7 @@ is surjective.
 \begin{proof}
 (i) implies (ii). Assume given a map $v:\D(1)\to Y$ such that $v(0)=f(x)$, then for all $t:\D(1)$ we have a map:
 \[t=0 \to \fib_f(v(t))\]
-so since the $f$ is smooth we merely have $w_t:\fib_f(v(t))$ such that $t=0$ implies $w_t=0$. We conclude using choice over $\D(1)$.
+so since $f$ is smooth we merely have $w_t:\fib_f(v(t))$ such that $t=0$ implies $w_t=0$. We conclude using choice over $\D(1)$.
 
 (ii) implies (i). Assume given $y:Y$ and $\epsilon:R$ such that $\epsilon^2=0$ and try to merely find a dotted lift in:
  \begin{center}
@@ -28,7 +29,7 @@ so since the $f$ is smooth we merely have $w_t:\fib_f(v(t))$ such that $t=0$ imp
 \[\prod_{p:\epsilon=0} \phi(p)=x\]
 and therefore:
 \[ \epsilon=0 \to y=f(x)\]
-which means that $y\in N_1(f(x))$. We use \Cref{neighborhood-tangent-correspondence-smooth} to get that the map $N_1(x)\to N_1(f(x))$ merely has a section $s$ sending $f(x)$ to $x$.
+which means that $y\in N_1(f(x))$. We use \Cref{neighborhood-tangent-correspondence-smooth} to get that the map $N_1(x)\to N_1(f(x))$ induced by $f$ merely has a section $s$ sending $f(x)$ to $x$.
 
 Then $s(y):\fib_f(y)$ such that for all $p:\epsilon=0$ we have that:
 \[\phi(p) = x = s(f(x)) = s(y)\]
@@ -64,17 +65,17 @@ is formally smooth. Both source and target are schemes, and the source is formal
 \[dp:T_{(x,v)}(T(X))\to T_x(X)\]
 is surjective. 
 
-Consider $w:T_x(X)$. By unpacking the definition of tangent spaces, we see that merely finding $w:T_{(x,v)}(T(X))$ such that $dp(w) = w$ means merely finding:
+Consider $u:T_x(X)$. By unpacking the definition of tangent spaces and computing $dp(w)$, we see that merely finding $w:T_{(x,v)}(T(X))$ such that $dp(w) = u$ means merely finding:
 \[\phi : \mathbb{D}(1) \times \mathbb{D}(1) \to X\]
 such that for all $t:\mathbb{D}(1)$ we have that:
 \[\phi(0,t) = v(t)\]
-\[\phi(t,0) = w(t)\]
+\[\phi(t,0) = u(t)\]
 
 But we know that there exists a unique:
-\[\psi_{v,w} : \mathbb{D}(2)\to X\]
+\[\psi_{v,u} : \mathbb{D}(2)\to X\]
 such that:
-\[\psi_{v,w}(0,t) = v(t)\]
-\[\psi_{w,v}(t,0) = w(t)\]
+\[\psi_{v,u}(0,t) = v(t)\]
+\[\psi_{v,u}(t,0) = u(t)\]
 as defined in \Cref{from-D1-to-D2}.
 
 Then the fact that $X$ is smooth and that the fibers of:
@@ -85,7 +86,7 @@ are closed dense with $\mathbb{D}(1) \times \mathbb{D}(1)$ having choice means t
 \begin{lemma}\label{smooth-kernel-decidable}
 Assume given a linear map:
 \[M:R^m\to R^n\] 
-which has a formally smooth kernel. Then we can decide whether $M=0$.
+which has a formally smooth kernel $K$. Then we can decide whether $M=0$.
 \end{lemma}
 
 \begin{proof}

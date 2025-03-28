@@ -78,15 +78,16 @@ A scheme is unramified if and only if it has a cover by standard unramified sche
 \end{proposition}
 
 \begin{proof}
-By \Cref{etale-zariski-local} we have the converse. If $X$ is an unramified scheme, up to taking an affine cover we can assume:
-\[X = \Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_k)\]
-Assume $x:X$, by \Cref{tangent-finite-copresented} we have an exact sequence: 
-\begin{center}
-\begin{tikzcd}
-0\ar[r] & T_x(X)\ar[r] & R^n\ar[r] & R^k
-\end{tikzcd}
-\end{center}
-So by \Cref{unramified-affine-characterisation} we know that $\mathrm{Jac}(P_1,\cdots,P_k)_{x}$ is the matrix of an injective map, therefore $k\geq n$ and one of its $n$-minor is invertible. Now we can conclude by covering according to which $n$-minor is invertible and reordering variables.
+  By \Cref{etale-zariski-local}, it is enough to consider an affine scheme $X=\Spec(R[X_1,\cdots,X_n]/P_1,\cdots,P_k)$.
+  For any $x:X$, by \Cref{kernel-is-tangent-of-fibers} we have an exact sequence: 
+  \begin{center}
+    \begin{tikzcd}
+      0\ar[r] & T_x(X)\ar[r] & R^n\ar[r] & R^k
+    \end{tikzcd}
+  \end{center}
+  By \Cref{unramified-affine-characterisation}, $X$ is unramified if and only if $T_x(X)=0$ for all $x:X$.
+  We have $T_x(X)=\ker(\mathrm{Jac}(P_1,\cdots,P_k)_{x})$, so that $T_x(X)=0$ if and only if $n\leq k$ and this Jacobian has an invertible $n$-minor. 
+  The latter is the case for a standard unramified scheme and the converse follows by covering according to which $n$-minor is invertible and reordering variables.
 \end{proof}
 
 
