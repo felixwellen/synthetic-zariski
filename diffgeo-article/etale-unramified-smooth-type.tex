@@ -195,14 +195,30 @@ For any $P$ closed dense and any diagram:
 \end{proof}
 
 
-\subsection{Algebraic examples and counter-examples}
+\subsection{Classical definitions, examples and counter-examples}
 
-Since our definition of scheme already contains locally finite presentedness, the following definition matches the classical terminology.
+We will show in this section that our definition of étale/smooth/unramified maps and types is equivalent to a internal version of the classical definition. It is important to keep in mind, that our schemes are always locally of finite presentation, so the following definition is sensible:
 
 \begin{definition}
   A \notion{étale/unramified/smooth scheme} is a scheme which is formally étale/unramified/smooth.
   A \notion{étale/unramified/smooth map} is a map between schemes which is formally étale/unramified/smooth.
 \end{definition}
+
+The following criterion appears as the definition of a formally étale/smooth/unramified map in \cite{EGAIV4}[§17],
+with the only difference, that the lifting property is stated in terms of the comparison map into a pullback and also non-finitely presented algebras and general ideals are considered. The latter is superfluous for maps between schemes, where, as stated above, we only consider schemes that are locally of finite presentation. It is however not clear if this internal criterion corresponds to the (external) definitions in \cite{EGAIV4}[§17].
+
+\begin{remark}
+  Let $f:X\to Y$ be a map. Then $f$ is formally étale/smooth/unramified if and only if there is exactly one/at least one/at most one lift in all squares
+  \begin{center}
+    \begin{tikzcd}
+      \Spec(A/N)\ar[r]\ar[d] & X\ar[d,"f"] \\
+      \Spec(A)\ar[r] & Y
+    \end{tikzcd}    
+  \end{center}
+where $A$ is a finitely presented $R$-algebra, $N$ a finitely generated nilpotent ideal and the map $\Spec(A/N)\to\Spec(A)$ is induced by the quotient map.
+\end{remark}
+
+\rednote{TODO: prove or make statement for smooth maps local}
 
 \begin{lemma}\label{An-is-smooth}
 For all $k:\N$, we have that $\A^k$ is smooth.
