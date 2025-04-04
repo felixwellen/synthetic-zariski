@@ -17,7 +17,7 @@ and the construction is functorial by the discussion above.
 We write $\D(n)$ for $\D(R^n)$ so that for example:
 \[\D(1) = \Spec(R[X]/(X^2)) = \{\epsilon:R\ |\ \epsilon^2=0\}\]
 
-\begin{definition}
+\begin{definition}\label{derivation-pointwise}
 Assume given $M$ a finitely presented $R$-module and $A$ a finitely presented $R$-algebra with $x:\Spec(A)$. An $M$-derivation at $x$ is a morphism of $R$-modules:
 \[d:A\to M\]
 such that for all $a,b:A$ we have that:
@@ -172,6 +172,46 @@ We conclude by \Cref{An-dimension-n}.
     \end{align*}
   \end{enumerate}
 \end{proof}
+
+\begin{definition}
+For $X$ a type and $p : X$ a point, the \notion{cotangent space} at $p$ is the
+$R$-linear dual $T_p X^\star$ of the tangent space $T_p X$.
+\end{definition}
+
+If $X$ is a scheme, then by \cref{tangent-finite-copresented} the cotangent spaces of $X$
+are finitely presented.
+We will not use the following definition and remark in the rest of this article, but included them to show a connection to the classical theory.
+See \cite{Hartshorne}[p. 172] or \cite{vakil}[p. 573] for the classical theory.
+
+\begin{definition}
+For $A$ an $R$-module, there is a universal derivation $d : A \to \Omega_{A/R}$. We call elements of the type $\Omega_{A/R}$ \notion{Kähler differentials}.
+
+\end{definition}
+
+That is, $\Omega_{A/R}$ is generated as an $A$-module by symbols
+$df$ for $f : A$, subject to relations $d(rf) = r \cdot df$ for $r : R$ and
+$d(fg) = f \cdot dg + g \cdot df$.
+It can be seen that if $A$ is finitely presented as an $R$-algebra,
+then $\Omega_{A/R}$ is finitely presented as an $A$-module.
+Classically, the sheaf $\Omega_{A/R}$ is the cotangent bundle.
+Synthetically, it is enough to show this pointwise on $\Spec A$ by \cite[Theorem 8.2.3]{draft}.
+To apply this, we first turn $\Omega_{A/R}$ into an $R$-module bundle on $\Spec A$: For $p:\Spec A$, let $\Omega_{A/R,p}$ be the type of $R$-derivations at $p$, as defined in \Cref{derivation-pointwise} -- this agrees with tensoring $\Omega_{A/R,p}$ with $R$ using the evaluation at $p$, which is the general construction used in \cite[Theorem 8.2.3]{draft}. 
+
+\begin{remark}
+For all $p:\Spec A$, we have $\Omega_{A/R,p}\simeq T_p X^\star$ and therefore also $\Omega_{A/R}\simeq \prod_{x:\Spec A}T_p X^\star$.
+\end{remark}
+
+\begin{proof}
+We need to show that for $p : X$,
+   we have an isomorphism of $R$-modules
+   \[ T^\star_p X\simeq\Omega_{A/R,p}=\Omega_{A/R} \otimes_A R .\]
+By \Cref{tangent-are-derivation} the tangent space $T_p X$ corresponds to derivations
+$A \to R$, where the $A$-module structure on $R$ is obtained by evaluating at $p$.
+These derivations correspond to $A$-module maps $\Omega_{A/R} \to R$, by the universal property
+of Kähler differentials. In \Cref{double-dual-identity}, we will see that double dualization is an isomorphism for finitely (co-)presented $R$-modules, so we can conclude by dualizing.
+\end{proof}
+
+
 
 \subsection{Infinitesimal neighbourhoods}
 
