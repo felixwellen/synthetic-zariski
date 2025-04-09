@@ -221,6 +221,7 @@ with the only difference, that the lifting property is stated in terms of the co
 where $A$ is a finitely presented $R$-algebra, $N$ a finitely generated nilpotent ideal and the map $\Spec(A/N)\to\Spec(A)$ is induced by the quotient map.
 \end{remark}
 
+For the proof we will use a cohomological result and the notion of wqc $R$-modules from \cite{draft}.
 \rednote{TODO: make proof more readable/complete/correct}
 \begin{proof}
   Without loss of generality, we can assume $N$ is of the form $(a)$ with $a$ square-zero.
@@ -229,21 +230,24 @@ where $A$ is a finitely presented $R$-algebra, $N$ a finitely generated nilpoten
   by finding a family of lifts for each point $v:\Spec A$ with $\epsilon:=a(v)$ and $\phi$ induced by $t$:
   \begin{center}
     \begin{tikzcd}
-      \epsilon=0\ar[r,"\phi"]\ar[d] & \fib_f(b(v))=:Z \\
+      \epsilon=0\ar[r,"\phi"]\ar[d] & \fib_f(b(v))=:X_v \\
       1\ar[ur,dotted] &
     \end{tikzcd}
   \end{center}
   For any two lifts $\psi,\xi$, we have $\neg\neg(\psi=\xi)$
-  and can therefore assume $Z=\Spec R[X_1,\dots,X_n]/P_1,\dots,P_l$.
+  and can therefore assume $X_v=\Spec R[X_1,\dots,X_n]/P_1,\dots,P_l$.
   We merely have $y:R^n$ such that the dual to $\phi$ is given by evaluation at $y$.
   Then lifts are given by vectors $x:R^n$ such that $P(x)=0$ and $\epsilon = 0$ implies $x=y$.
   The latter dualizes to an inclusion of ideals $(x_1-y_1,\dots,x_n-y_n)\subseteq (\epsilon)$.
-  So we have $x_i-y_i=\alpha_i\epsilon$. Putting everything together, we get that a lift is given by numbers $\alpha_i\epsilon$ such that
-  \begin{align*}
-     0 = P(y+\alpha \epsilon) = P(y)+dP_y(\epsilon\alpha)
-  \end{align*}
-  For a different choice of $y$, we get a translated solution, so we get a well-defined module $M_v$ by Krauss-Lemma applied to the 1-type of modules.
-  $M_v$ is wqc since for each $y$ it is the image of multiplication by $\epsilon$ of the kernel of the linear map $dP_y$.
+  So we have $x_i-y_i=a_i\epsilon$.
+  Putting everything together, we get the following type of lifts:
+  \[L_y:=\sum_{\alpha:(\epsilon)^n}dP_y(\alpha)=-P(y) \]
+  Let $M_{v}:=\{\alpha:(\epsilon)^n\vert dP_y(\alpha)=0\}$, then  $M_{v}$ is a wqc $R$-module and $L_y$ has the structure of an $M_{v}$-torsor.
+  For a different choice $y':R^n$, also inducing $\phi$, we get $y'=y+\beta$ for some $\beta:(\epsilon)^n$.
+  Then
+  \[L_{y'}=\sum_{\alpha:(\epsilon)^n}dP_y(\beta+\alpha)=-P(y)\]
+  so translation by $\beta$ give a isomorphism of $M_v$-torsors.
+  So we get a well-defined $M_v$-torsor $L_v$ by Krauss' Lemma for 1-types.
   Then by \cite{draft}, $H^1(v:\Spec A, M_v)$ vanishes and we therefore have a global lift. 
 \end{proof}
 
