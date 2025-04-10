@@ -208,8 +208,8 @@ For any $P$ closed dense and any diagram:
 We will show in this section that our definition of étale/smooth/unramified maps and types is equivalent to a internal version of the classical definition. It is important to keep in mind, that our schemes are always locally of finite presentation, so the following definition is sensible:
 
 \begin{definition}
-  A étale (resp. unramified, smooth)\index{étale}\index{unramified}\index{smooth} type is a scheme which is étale (resp. unramified, smooth).
-  A étale (resp. unramified, smooth) map is a map between schemes which is étale (resp. unramified, smooth).
+  A étale (resp.\ unramified, smooth)\index{étale}\index{unramified}\index{smooth} type is a scheme which is étale (resp.\ unramified, smooth).
+  A étale (resp.\ unramified, smooth) map is a map between schemes which is étale (resp.\ unramified, smooth).
 \end{definition}
 
 The following criterion appears as the definition of a formally étale/smooth/unramified map in \cite[§17]{EGAIV4},
@@ -228,11 +228,16 @@ with the only difference, that the lifting property is stated in terms of the co
 where $A$ is a finitely presented $R$-algebra, $N$ a finitely generated nilpotent ideal and the map $\Spec(A/N)\to\Spec(A)$ is induced by the quotient map.
 \end{remark}
 
-For the proof we will use a cohomological result and the notion of wqc $R$-modules from \cite{draft}.
-\rednote{TODO: make proof more readable/complete/correct}
+For the proof we will use a cohomological result and the notion of wqc $R$-modules from \cite{draft},
+to prove the result as stated above -- this is would not be neccessary, if we would weaken the statement in the smooth case to Zariski-local existence of lifts.
+
 \begin{proof}
+  The inclusion of a closed dense proposition $P$ into $1$ is a special case of the left in the remark, so we only need to show, that formally étale,
+  formally smooth and formally unramified maps satisfy the more general lifting property.
+  For formally étale and unramified maps, we can just apply the lifting property for closed dense propositions for all points in $\Spec A$.
+  So let $f:X\to Y$ be formally smooth.
+  
   Without loss of generality, we can assume $N$ is of the form $(a)$ with $a$ square-zero.
-  In the situation of the remark, let $f:X\to Y$ be formally smooth.
   Then the existence of a lift can be shown
   by finding a family of lifts for each point $v:\Spec A$ with $\epsilon:=a(v)$ and $\phi$ induced by $t$:
   \begin{center}
@@ -248,12 +253,15 @@ For the proof we will use a cohomological result and the notion of wqc $R$-modul
   The latter dualizes to an inclusion of ideals $(x_1-y_1,\dots,x_n-y_n)\subseteq (\epsilon)$.
   So we have $x_i-y_i=a_i\epsilon$.
   Putting everything together, we get the following type of lifts:
-  \[L_y:=\sum_{\alpha:(\epsilon)^n}dP_y(\alpha)=-P(y) \]
+  \[L_{v,y}:=\sum_{\alpha:(\epsilon)^n}dP_y(\alpha)=-P(y) \]
   Let $M_{v,y}:=\{\alpha:(\epsilon)^n\vert dP_y(\alpha)=0\}$, then  $M_{v,y}$ is a wqc $R$-module and $L_y$ has the structure of an $M_{v,y}$-torsor.
   For a different choice $y':R^n$, also inducing $\phi$, we get $y'=y+\beta$ for some $\beta:(\epsilon)^n$.
-  Then
-  \[L_{y'}=\sum_{\alpha:(\epsilon)^n}dP_y(\beta+\alpha)=-P(y)\]
-  so translation by $\beta$ give a isomorphism of $M_v$-torsors.
+  By computing $P(y'+\alpha)$ in different ways we have:
+  \[P(y)+dP_y(\beta+\alpha)=P(y+\beta)+dP_{y+\beta}(\alpha)=P(y)+dP_y(\beta)+dP_{y+\beta}(\alpha)\]
+  And therefore $dP_y(\beta+\alpha)=dP_y(\beta)+dP_{y+\beta}(\alpha)$ and $dP_{y+\beta}(\alpha)=dP_y(\alpha)$, which means that $M_{v,y}$ is independent of $y$, so let us write $M_v$ instead.
+  We also have:
+  \[L_{v,y'}=\sum_{\alpha:(\epsilon)^n}dP_y(\beta+\alpha)=-P(y)\]
+  so translation by $\beta$ give a isomorphism of $M_{v}$-torsors.
   So we get a well-defined $M_v$-torsor $L_v$ by Krauss' Lemma for 1-types.
   Then by \cite{draft}, $H^1(v:\Spec A, M_v)$ vanishes and we therefore have a global lift. 
 \end{proof}
