@@ -233,7 +233,7 @@ Conversely if $J=0 \to I=0$ then we have that $I\subset J$ by duality so that $J
 \end{proof}
 
 \begin{lemma}\label{first-order-schemes}
-Let $X$ be a scheme with $x:X$. Then $N_1(x)$ is an affine scheme.
+Let $X$ be a scheme with $x:X$. Then $N_1(x)$ is an affine scheme. 
 \end{lemma}
 
 \begin{proof}
@@ -245,6 +245,19 @@ This means $X$ is a closed subscheme $C\subset R^n$. Then by \Cref{first-order-s
 \begin{definition}
 A pointed scheme $(X,*)$ is called a \notion{first order (infinitesimal) disk} if for all $x:X$ we have $x\in N_1(*)$.
 \end{definition}
+
+\begin{lemma}
+  \label{N1-functor}
+  $N_1$ extends to a functor from pointed schemes to first order disks.
+\end{lemma}
+
+\begin{proof}
+  Since for $x:X$, $N_1(x)$ is just a subspace the functoriality is clear once we know that the defining relation of first order disks is preserved by functions between schemes.
+  It is enough to consider $f:X\to Y$ for affine $X,Y\subseteq R^n$.
+  So let $x,y:X$ such that $y\in N_1(x)$. Then for $\epsilon:=x-y$ we have $e_ie_j=0$ for all $i,j$ and
+  \[ f(x)-f(y)=f(x)-f(x+\epsilon)=f(x)-(f(x) + df_x\epsilon)=-df_x\epsilon\]
+  which means that $f(y)\in N_1(f(x))$.
+\end{proof}
 
 \begin{lemma}\label{disk-are-infinitesimal}
 A pointed scheme $(X,*)$ is a first order disk if and only if there exists a finitely presented module $M$ such that:
@@ -404,9 +417,9 @@ By \Cref{duality-infinitesimal-tangent} and \Cref{tangent-copresented-modules} w
 \end{tikzcd}
 \end{center}
 Since $\D(N^*)$ has choice and $f$ is surjective there is $g:\D(N^\star)\to M$ such that $f\circ g = i$. Up to translation we can assume $g(0) = 0$.
-Then we can factor $g$ through $\D(M^\star)$ as $N_1$ is functorial. This gives us a pointed section of the map:
+Then we can factor $g$ through $\D(M^\star)$ as $N_1$ is functorial by \Cref{N1-functor}. This gives us a pointed section of the map:
 \[\D(M^\star) \to \D(N^\star)\]
-which by \Cref{equivalence-module-infinitesimal} gives a linear section of $f$. \rednote{TODO should we check functoriality?}
+which by \Cref{equivalence-module-infinitesimal} gives a linear section of $f$.
 \end{proof}
 
 \begin{lemma}\label{neighborhood-tangent-correspondence-smooth}
