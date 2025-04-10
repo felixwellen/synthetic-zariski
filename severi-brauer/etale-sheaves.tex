@@ -1,17 +1,27 @@
-\label{fppf-sheaves}
+\label{etale-sheaves}
 
-\subsection{Affine schemes are fppf sheaves}
+\subsection{Affine schemes are \'etale sheaves}
 
-\rednote{How to name this topology? Perhaps we should use the étale topology?}
+%\begin{definition}
+%Unramifiable polynomial
+%\end{definition}
+
+\rednote{Should we recall the definition? I don't think so as it is never used. TODO}
+
+Monic unramifiable polynomials are defined \cite{wraith79}.
 
 \begin{definition}
-A type $X$ is called an fppf sheaf if for all $g:R[X]$ monic we have that $X$ is $\propTrunc{\Spec(R[X]/g)}$-local.
+A type $X$ is called an \'etale sheaf if for all $g:R[X]$ monic unramifiable, we have that $X$ is $\propTrunc{\Spec(R[X]/g)}$-local.
 \end{definition}
 
-This means that being an fppf sheaf is a lex modality, as it is localisation at a family of propositions.
+This means that being an \'etale sheaf is a lex modality, as it is localisation at a family of propositions. 
 
-\begin{lemma}\label{fppf-subcanonical}
-The type $R$ is an fppf sheaf.
+\begin{remark}
+By \cite{wraith79} this should agree with the usual \'etale topology. It should also be noted that we will never use the unramifiability assumption, so we could just use non-constant monic polynomials instead.
+\end{remark}
+
+\begin{lemma}\label{etale-subcanonical}
+The type $R$ is an \'etale sheaf.
 \end{lemma}
 
 \begin{proof}
@@ -32,9 +42,7 @@ If $R$ is modal, then so is $\mathrm{Hom}(A,R)$ for any $R$-algebra $A$ by gener
 \end{remark}
 
 
-\subsection{Schemes are fppf sheaves}
-
-\rednote{Could prove that if $X$ is a type with a Zariski cover by fppf sheaf, then $X$ is an fppf sheaf, which sounds interesting to state.}
+\subsection{Schemes are \'etale sheaves}
 
 \begin{lemma}\label{scheme-are-sheaf-from-affine}
 Assume given a proposition $P$ such that:
@@ -62,7 +70,7 @@ Assume $k:I$ such that $V_k$ holds. Then $f^{-1}(U_k) = P$ and the map $f$ facto
 Now we conclude that any scheme is $P$-local by proving that its identity types are $P$-local. Indeed they are schemes, so the previous point implies they are $P$-local.
 \end{proof}
 
-\rednote{Next lemma surely has a more direct, algebraic proof.}
+\rednote{Next lemma surely has a more direct, algebraic proof. TODO}
 
 \begin{lemma}\label{roots-monic-proper}
 For any monic $g:R[X]$, we have that $\Spec(R[X]/g)$ is projective. In particular it is compact, meaning that for any open $U$ in $\Spec(R[X]/g)$ the proposition:
@@ -88,18 +96,18 @@ Now we conclude using the fact that
 is closed in the compact scheme $\bP^1$, so that it is compact.
 \end{proof}
 
-\begin{proposition}\label{scheme-is-fppf-sheaf}
-Any scheme is an fppf sheaf.
+\begin{proposition}\label{scheme-is-etale-sheaf}
+Any scheme is an \'etale sheaf.
 \end{proposition}
 
 \begin{proof}
 Assume given $g:R[X]$ monic, we can apply \Cref{scheme-are-sheaf-from-affine} because:
 \begin{itemize}
-\item The type $R$ is an fppf sheaf by \Cref{fppf-subcanonical}.
-\item Any open proposition $U$ is an fppf sheaf because if:
+\item The type $R$ is an \'etale sheaf by \Cref{etale-subcanonical}.
+\item Any open proposition $U$ is an \'etale sheaf because if:
 \[\propTrunc{\Spec(R[X]/g)}\to U\]
 then since $\neg\neg\Spec(R[X]/g)$ we have $\neg\neg U$, which implies $U$.
-\item Since open propositions are fppf-sheaf it is enough that any map:
+\item Since open propositions are \'etale sheaves, it is enough that any map:
 \[\propTrunc{\Spec(R[X]/g)}\to \mathrm{Open}\]
 merely factors through $1$. But given a constant open $U$ in $\Spec(R[X]/g)$, for any $x:\Spec(R[X]/g)$ we have that:
 \[x\in U \leftrightarrow \prod_{y:\Spec(R[X]/g)} y\in U)\]
@@ -110,54 +118,56 @@ The right hand side is open by \Cref{roots-monic-proper}, giving the required li
 
 \subsection{Descent for finite free modules}
 
+\rednote{Maybe give a clearer proof, for finite free only? TODO}
+
 \begin{lemma}\label{fp-equivalent-pointwise}
 If we have $M_x$ a finitely presented $R$-module depending on $x:\Spec(A)$, then $\prod_{x:\Spec(A)}M_x$ is a finitely presented $A$-module.
 \end{lemma}
 
 \begin{proof}
-\cite{TODO}
+See Theorem 7.2.3 in \cite{foundation-sag}.
 \end{proof}
 
-\begin{lemma}\label{descent-sqc-fppf}
-Let $M$ be a module that is an fppf sheaf such that $\propTrunc{M\ \mathrm{is\ f.p.}}_{fppf}$, then for any monic $g$ we have that:
+\begin{lemma}\label{descent-sqc-etale}
+Let $M$ be a module that is an \'etale sheaf such that we have the \'etale sheafification of "$M$ is f.p.", then for any monic $g$ we have that:
 \[R[X]/g\otimes M \simeq M^{\Spec(R[X]/g)}\]
 \end{lemma}
 
 \begin{proof}
-We have that $R[X]/g\otimes M$ is merely equal to $M^n$ where $n$ is the degree of $g$, therefore it is an fppf sheaf. As $M^{\Spec(R[X]/g)}$ is an fppf sheaf as well, the canonical map:
+We have that $R[X]/g\otimes M$ is merely equal to $M^n$ where $n$ is the degree of $g$, therefore it is an \'etale sheaf. As $M^{\Spec(R[X]/g)}$ is an \'etale sheaf as well, so when proving that:
 \[R[X]/g\otimes M \to M^{\Spec(R[X]/g)}\]
-being an equivalence is an fppf sheaf, and we can assume $M$ finitely presented when proving. In this case it is true because f.p. modules are strongly quasi-coherent \cite{TODO}.
+is an equivalence, we can assume that $M$ is finitely presented. In this case we conclude by Theorem 7.2.3 in \cite{foundation-sag}.
 \end{proof}
 
-\begin{lemma}\label{fp-stable-fppf-tensor}
-Let $A$ be a fppf algebra and let $M$ be an $R$-module. Then if $A\otimes M$ is f.p. as an $A$-module if and only if $M$ is f.p. as an $R$-module.
+\begin{lemma}\label{fp-stable-etale-tensor}
+Let $A$ be an fppf algebra and let $M$ be an $R$-module. Then if $A\otimes M$ is f.p. as an $A$-module if and only if $M$ is f.p. as an $R$-module.
 \end{lemma}
 
 \begin{proof}
-Lombardi-Quitté VIII.6.7.
+See VIII.6.7 in \cite{lombardi-quitte}.
 \end{proof}
 
 \begin{lemma}\label{descent-fp-fcop}
-Any finitely presented (resp. finitely copresented) module is an fppf sheaf.
+Any finitely presented (resp. finitely copresented) module is an \'etale sheaf.
 
-The type of finitely presented (resp. finitely copresented) modules is an fppf sheaf.
+For $M$ a module that is an \'etale sheaf, the proposition "$M$ is an \'etale sheaf" is itself an \'etale sheaf. %The type of finitely presented (resp. finitely copresented) modules is an \'etale sheaf.
 \end{lemma}
 
 \begin{proof}
-For the first part we just use \Cref{fppf-subcanonical} and the fact that $M=M^{\star\star}$ for $M$ finitely presented of finitely copresented \cite{TODO}.
+For the first part we just use \Cref{etale-subcanonical} and the fact that $M=M^{\star\star}$ for $M$ finitely presented or finitely copresented \cite{TODO-diffgeo}.
 
-The types of finitely presented and finitely copresented modules are equivalent so it is enough to prove the result for finitely presented modules. Since any finitely presented module is an fppf sheaf it is enough to prove that being finitely presented is an fppf sheaf. Assume $M$ a module that is an fppf sheaf, and $g$ monic with $A=R[X]/g$ such that:
+By duality it is enough to treat the finitely presented case. Assume $M$ a module that is an \'etale sheaf, and $g$ monic with $A=R[X]/g$ such that:
 \[\Spec(A)\to M\ \mathrm{is\ f.p.}\]
-Then by \Cref{fp-equivalent-pointwise} we have that $M^{\Spec(A)}$ is an f.p. $A$-module. By \Cref{descent-sqc-fppf} we have that:
+Then by \Cref{fp-equivalent-pointwise} we have that $M^{\Spec(A)}$ is an f.p. $A$-module. By \Cref{descent-sqc-etale} we have that:
 \[A\otimes M \simeq M^{\Spec(A)}\]
-so that $A\otimes M$ is an f.p. $A$-module and we conclude using \Cref{fp-stable-fppf-tensor}.
+so that $A\otimes M$ is an f.p. $A$-module and we conclude using \Cref{fp-stable-etale-tensor}.
 \end{proof}
 
 \begin{proposition}\label{descent-finite-free}
-The type of finite free modules is an fppf sheaf.
+For $M$ a module that is an \'etale sheaf, the proposition "$M$ is an finite free" is itself an \'etale sheaf.
 \end{proposition}
 
 \begin{proof}
-It is enough to prove that if $M$ is a module that is an fppf sheaf, then $M$ being finite free is an fppf-sheaf because finite free modules are sheaves. Since $R$ is local being finite free is equivalent to being finitely presented and finitely copresented \cite{TODO}. But both are fppf sheaves by \Cref{descent-fp-fcop} so we can conclude.
+Since $R$ is local, $M$ being finite free is equivalent to $M$ being finitely presented and finitely copresented \cite{TODO-diffgeo}. But both are \'etale sheaves by \Cref{descent-fp-fcop} so we can conclude.
 \end{proof}
 

@@ -3,9 +3,9 @@ From now on we assume a lex modality $T$ such that:
 \item Schemes are modal.
 \item The type of finite free modules is modal.
 \end{itemize}
-We call $T$-modal types sheaves and we write $\propTrunc{X}_T$ the sheafification of the propositional truncation of $X$.
+We call $T$-modal types sheaves and we write $\propTrunc{X}_T$ the sheafification of the propositional truncation of $X$. Note that $T$-modal types form a model of homotopy type theory \cite{modalities,Quirin16}.
 
-In \Cref{fppf-sheaves} we constructed such a modality (\Cref{scheme-is-fppf-sheaf} and \Cref{descent-finite-free}).
+In \Cref{etale-sheaves} we constructed such a modality (\Cref{scheme-is-etale-sheaf} and \Cref{descent-finite-free}).
 
 We fix a natural number $n$ throughout.
 
@@ -54,9 +54,9 @@ For all $A:\AZ_n$ and $I:\Gr_{n+1}(A)$, we have that $I$ being a right ideal in 
 \end{lemma}
 
 \begin{proof}
-By \Cref{azumayas-are-finite-free} we have that $A$ is finite free as a module. Consider $a_0,\cdots,a_n$ a basis of $I$ and extend it to a basis of $A$ using $b_1,\cdots,b_l$. 
+By \Cref{azumayas-are-finite-free} we have that $A$ is finite free as a module. Consider $a_0,\cdots,a_n$ a basis of $I$ and extend it to a basis of $A$ adding $b_1,\cdots,b_l$. We can proceed as if $R$ was a field because a non zero vector has a non-zero coefficient \cite{foundation-sag}.
 
-For any $a:A$, we have that $a\in I$ is a closed as it says that the $b_1,\cdots,b_l$ coordinates of $a$ are zero. 
+For any $a:A$, we have that $a\in I$ is a closed proposition as it says that the $b_1,\cdots,b_l$ coordinates of $a$ are zero. 
 
 Then $I$ is an ideal if and only if for any $a$ in the chosen basis of $A$ and any $i$ in the chosen basis of $I$ we have that $ai\in I$, which is a closed proposition.
 \end{proof}
@@ -74,7 +74,7 @@ By \Cref{azumayas-are-finite-free} we have that $A$ is finite free as a module, 
 
 \subsection{Quaternion algebras are Azumaya algebras}
 
-We assume $2\not=0$.
+In this section we assume $2\not=0$, and we take $T$ to be the étale sheafification.
 
 \begin{definition}
 Given $a,b:R^\times$, we define the quaternion algebra $Q(a,b)$ as the non-commutative algebra:
@@ -172,7 +172,7 @@ A type $X$ is called a Severi-Brauer variety of dimension $n$ if $X$ is a sheaf 
 \[\propTrunc{X=\bP^n}_T\]
 \end{definition}
 
-We write $\SB_n$ the type of Severi-Brauer varieties of dimension $n$.
+We write $\SB_n$ the type of Severi-Brauer varieties of dimension $n$. We will see later that every Severi-Brauer variety is a scheme.
 
 \begin{lemma}\label{right-ideal-of-matrices-are-projective}
 Consider the map:
@@ -218,42 +218,45 @@ which is \Cref{right-ideal-of-matrices-are-projective}.
 
 \subsection{Conics are Severi-Brauer varieties}
 
-We assume $2\not=0$.
+In this section we assume $2\not=0$, and we take $T$ to be the étale sheafification.
 
 \begin{definition}
-Given $a,b:R^\times$, we define the conic$C(a,b)$ as the set of $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$.
+Given $a,b:R^\times$, we define the conic $C(a,b)$ as the set of $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$.
 \end{definition}
 
-\begin{lemma}\label{conic-one-split}
-Assume given $b:R^\times$, then $C(1,b) = \bP^1$.
+\begin{lemma}\label{pointed-conics-projective}
+Assume $a,b:R^\times$ such that $\propTrunc{C(a,b)}$, then $\propTrunc{C(a,b)=\bP^1}$.
 \end{lemma}
 
 \begin{proof}
-Consider the map:
+Let us assume $x_0,y_0,z_0$ such that $x_0^2 = ay_0^2+bz_0^2$. We can assume $x_0\not=0$ by possibly considering $C(a,b) = C(\frac{1}{a},-\frac{b}{a})$. Then we can clearly assume $x_0=1$ without loss of generality, so that $ay_0 + bz_0 = 1$.
+
+ Let us consider the map:
 \[\psi:\bP^1\to \bP^2\]
-\[ [m:n]\mapsto \left[m^2+bn^2 : m^2-bn^2 : 2mn\right] \]
-We now check it is an isomorphism.
-\begin{itemize}
+\[[u:v] \mapsto [au^2+bv^2: y_0(au^2-bv^2) + 2buvz_0 : z_0(au^2-bv^2) - 2auvy_0]\]
 
-\item The ideal $I = (m^2+bn^2, m^2-bn^2, 2mn)$ contains $m^2$ and $n^2$, therefore if $(m,n)=1$ then $I=1$. So the map is well defined.
+We want to define $\phi$ inverse to $\phi$. Assume $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$. 
 
-\item The map $\psi$ takes value in $C(1,b)$. By direct computations, we check that for all $m,n:R$ we have that:
-\[(m^2+bn^2)^2 = (m^2-bn^2)^2 + b(2mn)^2\]
+Let us proof that either $x+ay_0y+bz_0z$ or $x-ay_0y-bz_0z$ is invertible, to do this it is enough to prove that either $x$ or $ay_0y+bz_0z$ is invertible. Assume $x=0$ and $ay_0y+bz_0z=0$, then we have a contradiction. Indeed $y$ or $z$ is invertible and $ay^2+bz^2=0$, so that $y$ and $z$ are invertible and $b = -a\frac{y^2}{z^2}$ and $y_0z=yz_0$. Moreover $y_0$ or $z_0$ is invertible, so that both $y_0$ and $z_0$ are invertible and $\frac{y}{z} = \frac{y_0}{z_0}$ which means $ay^2+bz^2=0$ implies $ay_0^2+bz_0^2=0$, a contradiction. 
 
-\item The map $\psi$ is injective. Indeed assume $[m:n]$ and $[\bar{m}:\bar{n}]$ in $\bP^1$ such that $\psi([m:n])=\psi([\bar{m}:\bar{n}])$, we have that $m\bar{n}=\bar{m}n$. By linear combinations we get that:
-\begin{eqnarray}
-m^2\bar{m}\bar{n} &=& \bar{m}^2mn\\
-\bar{m}\bar{n}n^2 &=& mn\bar{n}^2\\
-\bar{m}^2n^2 &=& m^2\bar{n}^2
-\end{eqnarray}
-If $m$ and $\bar{m}$ are invertible we conclude by (1). If $n$ and $\bar{n}$ are invertible we conclude by (2). If $\bar{m}$ and $n$ (resp. $m$ and $\bar{n}$) are invertible by (3) we have that $m$ and $\bar{n}$ (resp. $\bar{m}$ and $n$) are invertible, and we conclude as before.
+If $x + ay_0y + bz_0z$ is invertible we define $\phi([x,y,z]) = [1:\frac{a(z_0y-y_0z)}{x + ay_0y + bz_0z}]$.
 
-\item The map $\psi$ is surjective. Assume $[x:y:z]:C(a,b)$. We know that $x$, $y$ or $z$ is invertible, and since $x^2=y^2+bz^2$, we have that if $z$ is invertible then $x$ or $y$ is invertible. Since $x$ and $y$ belong to $(x+y, x-y)$, we know one of the two is invertible, say $x+y$. 
+If $x - ay_0y - bz_0z$ is invertible we define $\phi([x,y,z]) = [\frac{b(z_0y-y_0z)}{x - ay_0y - bz_0z}:1]$.
 
-Since $\psi$ is an embedding of schemes, its fibers being merely inhabited is an fppf sheaf by \Cref{scheme-is-fppf-sheaf}. So we can define $m=\sqrt{\frac{x+y}{2}}$. Then we can define $n=\frac{z}{2m}$ and check that $n^2 = \frac{x-y}{2b}$ and that $\psi([m:n]) = [x:y:z]$. 
+This is well defined as if both are invertible then:
+\[\frac{b(z_0y-y_0z)}{x - ay_0y - bz_0z}\times\frac{a(z_0y-y_0z)}{x + ay_0y + bz_0z} = \frac{ab(z_0y-y_0z)^2}{x^2 - (ay_0y + bz_0z)^2} = 1\]
+because:
+\[x^2 - (ay_0y + bz_0z)^2 = (ay^2+bz^2)(ay_0^2+bz_0^2) - (ay_0y + bz_0z)^2 = ab(z_0y-y_0z)^2\]
+We omit the verification that this $\phi$ is indeed an inverse to $\psi$.
+\end{proof}
 
-If $x-y$ is invertible, we proceed similarly using $n=\sqrt{\frac{x-y}{2b}}$ and $m=\frac{z}{2n}$.
-\end{itemize}
+
+\begin{lemma}\label{conic-one-split}
+Assume given $b:R^\times$, then $\propTrunc{C(1,b) = \bP^1}$.
+\end{lemma}
+
+\begin{proof}
+We just apply \Cref{pointed-conics-projective} to the point $[1,1,0]:C(1,b)$.
 \end{proof}
 
 \begin{lemma}\label{conic-change-variable}
@@ -269,89 +272,9 @@ Assume given $a,b:R^\times$, then $C(a,b)$ is a Severi-Brauer variety.
 \end{lemma}
 
 \begin{proof}
-Since a sheaf being a Severi-Brauer variety is an fppf sheaf, we can assume $\sqrt{a}$ . Then by \Cref{conic-change-variable} we have that $C(1,b) = C(\sqrt{a}^2,b)=C(a,b)$ and we conclude by \Cref{conic-one-split}.
+Since a sheaf being a Severi-Brauer variety is an \'etale sheaf, we can assume $\sqrt{a}$ . Then by \Cref{conic-change-variable} we have that $C(1,b) = C(\sqrt{a}^2,b)=C(a,b)$ and we conclude by \Cref{conic-one-split}.
 \end{proof}
 
-\rednote{Maybe TODO: $RI(Q(a,b)) = C(a,b)$. I am not sure how to do it easily, not sure it is that relevant.}
-
-\begin{lemma}\label{pointed-conics-projective}
-Assume $a,b:R^\times$ such that $\propTrunc{C(a,b)}$, then $\propTrunc{C(a,b)=\bP^1}$.
-\end{lemma}
-
-\begin{proof}
-Let us assume $x_0,y_0,z_0$ such that $x_0^2 = ay_0^2+bz_0^2$. We can assume $x_0\not=0$ by possibly considering $C(a,b) = C(\frac{1}{a},-\frac{b}{a})$. Then we can clearly assume $x_0=1$ without loss of generality, so that $ay_0 + bz_0 = 1$.
-
- Let us consider the map:
-\[\psi:\bP^1\to \bP^2\]
-\[[u:v] \mapsto [au^2+bv^2: y_0(au^2-bv^2) + 2buvz_0 : z_0(au^2-bv^2) - 2auvy_0]\]
-We will check that it is a bijection.
-\begin{itemize}
-
-\item It is well defined. Indeed the ideal generated by the coordinates of $\psi([u,v])$ contains $au^2+bv^2$ and:
-\[ay_0(y_0(au^2-bv^2) + 2buvz_0) + bx_0(z_0(au^2-bv^2) - 2auvy_0) = au^2-bv^2\]
-therefore it contains $(u^2,v^2)$ which is equal to $1$.
-
-\item It takes value in $C(a,b)$. Indeed we can compute:
-\[ a\left( y_0(au^2-bv^2) + 2buvz_0\right)^2 + b\left(z_0(au^2-bv^2) - 2auvy_0\right)^2 = (au^2+bv^2)^2\]
-
-\item It is injective. Assume $[u:v],[\bar{u}:\bar{v}]:\bP^1$ such that $\psi(u,v) = \psi(\bar{u},\bar{v})$. Let us write: 
-\[\psi(u,v) = [\alpha_0:\alpha_1:\alpha_2]\]
-\[\psi(\bar{u},\bar{v}) = [\bar{\alpha}_0:\bar{\alpha}_1:\bar{\alpha}_2]\]
-From:
-\[\alpha_0(ay_0\bar{\alpha}_1 + bz_0\bar{\alpha}_2) = \bar{\alpha}_0(ay_0\alpha_1 + bz_0\alpha_2)\]
-we get that:
-\[(au^2+bv^2)(a\bar{u}^2-b\bar{v}^2)= (a\bar{u}^2+b\bar{v}^2)(au^2-bv^2)\]
-and therefore that:
-\[u^2\bar{v}^2 = \bar{u}^2v^2\]
-From:
-\[\alpha_1\bar{\alpha}_2 = \bar{\alpha}_1\alpha_2\]
-we get that:
-\[uv(a\bar{u}^2-b\bar{v}^2) = \bar{u}\bar{v}(au^2-bv^2)\]
-Finally from:
-\[\alpha_0(z_0\bar{\alpha}_1-y_0\bar{\alpha}_2) = \bar{\alpha}_0(z_0\alpha_1-y_0\alpha_2)\]
-we get that:
-\[\bar{u}\bar{v}(au^2+bv^2) = uv(a\bar{u}^2+b\bar{v}^2)\]
-from which we get that:
-\[\bar{u}\bar{v}u^2 = uv\bar{u}^2\]
-\[\bar{u}\bar{v}v^2 = uv\bar{v}^2\]
-and then we conclude as in \Cref{conic-one-split}.
-
-\item It is surjective. Assume $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$. We look for $u,v$ such that $\psi(u,v) = [x:y:z]$. As in \Cref{conic-one-split}, we are able to use square roots when doing so. 
-
-Assume $x=0$ and $ay_0y+bz_0z=0$, then we have a contradiction. Indeed $y$ or $z$ is invertible and $ay^2+bz^2=0$, so that $y$ and $z$ are invertible and $b = -a\frac{y^2}{z^2}$ and $y_0z=yz_0$. Moreover $y_0$ or $z_0$ is invertible, so that both $y_0$ and $z_0$ are invertible and $\frac{y}{z} = \frac{y_0}{z_0}$ which means $ay^2+bz^2=0$ implies $ay_0^2+bz_0^2=0$, a contradiction.
-
-Therefore either $x$ or $ay_0y+bz_0z$ is invertible, so either $x+ay_0y+bz_0z$ or $x-ay_0y-bz_0z$ is invertible.
-
-If $x+ay_0y+bz_0z$ is invertible, we take $u=\sqrt{\frac{x+ay_0y+bz_0z}{2a}}$ and $v = \frac{z_0y-y_0z}{2u}$.
-
-If $x-ay_0y-bz_0z$ is invertible, we take $v=\sqrt{\frac{x-ay_0y-bz_0z}{2b}}$ and $u = \frac{z_0y-y_0z}{2v}$.
-
-In both cases we can check that $\psi([u:v]) = [x:y:z]$ using that:
-\[u^2 = \frac{x+ay_0y+bz_0z}{2a}\]
-\[v^2 = \frac{x-ay_0y-bz_0z}{2b}\]
-\[uv = \frac{z_0y-y_0z}{2}\]
-\end{itemize}
-\end{proof}
-
-\rednote{Proof of \Cref{conic-one-split} is actually \Cref{pointed-conics-projective} when $a=1$ and $[x_0:y_0:z_0] = [1:1:0]$. We should probably factor.}
-
 \begin{remark}
-We give an explicit description of the inverse to the map $\psi$ in \Cref{pointed-conics-projective} defined by:
-\[\psi(u,v) = [\alpha_0:\alpha_1:\alpha_2]\]
-\[[u:v] \mapsto [au^2+bv^2: y_0(au^2-bv^2) + 2buvz_0 : z_0(au^2-bv^2) - 2auvy_0]\]
-We use the proven fact that $x+ay_0y+bz_0z$ or $x-ay_0y-bz_0z$ is invertible.
-
-If $x + ay_0y + bz_0z$ is invertible we send $[x,y,z]$ to $[1:\frac{a(z_0y-y_0z)}{x + ay_0y + bz_0z}]$.
-
-If $x - ay_0y - bz_0z$ is invertible we send $[x,y,z]$ to $[\frac{b(z_0y-y_0z)}{x - ay_0y - bz_0z}:1]$.
-
-This is well defined as if both are invertible then:
-\[\frac{b(z_0y-y_0z)}{x - ay_0y - bz_0z}\times\frac{a(z_0y-y_0z)}{x + ay_0y + bz_0z} = \frac{ab(z_0y-y_0z)^2}{x^2 - (ay_0y + bz_0z)^2} = 1\]
-because:
-\[x^2 - (ay_0y + bz_0z)^2 = (ay^2+bz^2)(ay_0^2+bz_0^2) - (ay_0y + bz_0z)^2 = ab(z_0y-y_0z)^2\]
-We omit the verification that this is indeed an inverse to $\psi$.
-\end{remark}
-
-\begin{remark}
-We will see in \Cref{chatelet-theorem} that this holds for any Severi-Brauer variety, i.e. any merely inhabited Severi-Brauer variety is a projective space. 
+We will see in \Cref{chatelet-theorem} that any merely inhabited Severi-Brauer variety is a projective space. 
 \end{remark}
