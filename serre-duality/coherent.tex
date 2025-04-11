@@ -36,48 +36,36 @@ This section is about finding a suitable replacement category.
 \end{proof}
 
 \begin{lemma}
-  \rednote{Unfortunately, the proof below is wrong...}
-  Let $f:M\to M'$ and $g:N\to N'$ be morphisms of fintely presented modules, then for any morphism
-  $k:\ker{f}\to \ker{g}$ there are the following morphisms:
-  \begin{center}
-    \begin{tikzcd}
-      \ker{f}\ar[r,hook]\ar[d,"k"] & M\ar[r,"f"]\ar[d,dotted,"\exists"] & M'\ar[d,dotted,"\exists"] \\
-      \ker{g}\ar[r,hook] & N\ar[r,"g"] & N'
-    \end{tikzcd}
-  \end{center}
+  \label{kernel-fp-is-cok-fcp}       
+  Let $f:M\to N$ be a map of finitely presented $R$-modules, then $\ker f$ is the cokernel of map between finitely copresented $R$-modules.
 \end{lemma}
 
 \begin{proof}
-  Assume presentations for $M,M',N,N'$ with cokernel maps $\pi_M,\pi_{M'},\pi_N,\pi_{N'}$.
-  Pullbacks of $R$-modules preserve surjections and injections, so we get a finite co-presentation of the pullback $P_f$ \rednote{WRONG}:
+  By \Cref{presentation-extension} we can assume $f$ is induced by a square (we use ``$^\bullet$'' to indicate there is some natural number) and we construct finitely copresented modules $A,B$ like described below:
   \begin{center}
-    \begin{tikzcd}
-      P_f\ar[r,hook]\ar[d] & R^m\ar[r,dotted]\ar[d,"\pi_M"] & R^{m'}\ar[d,"\pi_{M'}"] \\
-      \ker{f}\ar[r,hook] & M\ar[r,"f"] & M'
+  \begin{tikzcd}
+    A\ar[r,"\pi_1"]\ar[d,"l\times\id"] & R^\bullet\ar[r,"t"]\ar[d,"l"] & R^\bullet\ar[d,"r"]   \\
+    B\ar[r,"\pi_1"]\ar[d] & R^\bullet\ar[r,"b"]\ar[d] & R^\bullet\ar[d] \\
+    K\ar[r] &M\ar[r,"f"] & N
     \end{tikzcd}
-  \end{center}
-  -- where the dotted arrow is given by \cref{presentation-extension}.
-  Analogously, we get a finite co-presentation of the pullback $P_g$ and then a lift $\tilde{k}:P_f\to P_g$ of $k$.
-  By \cref{presentation-extension}, $\tilde{K}$ extends to a morphism of co-presentations:
-  \begin{center}
-    \begin{tikzcd}
-      P_f\ar[d,"\tilde{k}"]\ar[r,hook] & R^m\ar[r]\ar[d,dotted,"\exists\phi"] & R^{m'}\ar[d,dotted,"\exists\psi"] \\
-      P_g\ar[r,hook] & R^n\ar[r] & R^{n'} 
-    \end{tikzcd}
-  \end{center}
-  Then we get the morphisms claimed in the lemma by the universal property of cokernels and the squares commute by direct computation.
+   \end{center}
+   $A:=\{(z,y):R^\bullet\times R^\bullet\mid blz=ry\}$, $B:=\{(x,y):R^\bullet\times R^\bullet\mid bx=ry\}$.
 \end{proof}
 
 Due to lack of a better name, we call the following modules coherent --
 the idea is that they might yield an analogue of the algebro-geometric notion of coherent sheaf of modules
 
 \begin{definition}
-  Let $M$ be an $R$-module, then $M$ is called coherent, if it is in the closure of the subcategory of all $R$-modules, spanned by finite free modules and taking kernels and cokernels.
+  Let $M$ be an $R$-module, then $M$ is called coherent, if it merely is the kernel of a homomorphism of finitely presented $R$-modules.
 \end{definition}
 
 \begin{theorem}
   Coherent modules are an abelian category.
 \end{theorem}
+
+\begin{proof}
+  Using \Cref{kernel-fp-is-cok-fcp} and its dual.
+\end{proof}
 
 \begin{remark}
   Any coherent $R$-module is wqc.
