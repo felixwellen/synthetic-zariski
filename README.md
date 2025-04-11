@@ -81,7 +81,13 @@ To put one of the drafts on the arxiv, we have to
   ```
   tar -czv -f DRAFT.tar.gz *.tex *.cls *.sty main.bbl
   ```
-  [Login to the arxiv](https://arxiv.org/login), fill in the forms (usually we choose the arxiv perpetual license) and upload the tar.
+- [Login to the arxiv](https://arxiv.org/login)
+- Fill in forms - usually we choose the arxiv perpetual license.
+- upload the tar
+- Fill in more forms - for the foundations we used the following MSC subject classification:
+  ```
+  MSC-class: 14A99 (Primary), 03B38, 18N99 (Secondary)
+  ```
 # Watching this repo
 ... is a good idea since we started to use the issue-tracker 
 
