@@ -5,14 +5,14 @@ Due to a *bug* in the mailinglist-service of chalmers, it does not work to just 
 This is a latex documentation of our understanding of the synthetic theory of the Zariski-Topos
 and related ideas. The drafts below are currently built hourly -
 if you want to make sure you are viewing the latest built, CTRL+F5 should clear all caches in most browsers.
-There are currently the following preprints:
+There are currently the following preprints/articles:
 - Foundations ([latest pdf](https://felix-cherubini.de/iag.pdf), [arxiv](https://arxiv.org/abs/2307.00073), [talk](https://www.youtube.com/watch?v=lp4kcmQ0ueY))
 - Automorphisms of and line bundles on projective space ([latest pdf](https://felix-cherubini.de/projective.pdf), [arxiv](https://arxiv.org/abs/2405.13916), [talk](https://www.youtube.com/watch?v=SS-47RKmnVc))
 - Synthetic stone duality ([latest pdf](https://felix-cherubini.de/condensed.pdf), [arxiv](https://arxiv.org/abs/2412.03203), [old extended version](https://felix-cherubini.de/condensed-old.pdf))
+- Differential Geometry/étale maps ([pdf](https://felix-cherubini.de/diffgeo-V2.pdf), [arxiv](https://arxiv.org/abs/2504.08495), [full notes pdf](https://felix-cherubini.de/diffgeo.pdf))
 
 And the following drafts and notes:
 - Čech-Cohomology ([early draft pdf](https://felix-cherubini.de/cech.pdf))
-- Differential Geometry/étale maps ([full draft pdf](https://felix-cherubini.de/diffgeo.pdf), [article draft pdf](https://felix-cherubini.de/diffgeo-V2.pdf))
 - Proper Schemes ([early draft pdf](https://felix-cherubini.de/proper.pdf))
 - Topology of Synthetic Schemes ([early draft pdf](https://felix-cherubini.de/topology.pdf))
 - $\mathbb A^1$-homotopy theory ([early draft pdf](https://felix-cherubini.de/A1-homotopy.pdf))
