@@ -41,15 +41,15 @@ This section is about finding a suitable replacement category.
 \end{lemma}
 
 \begin{proof}
-  By \Cref{presentation-extension} we can assume $f$ is induced by a square (we use ``$^\bullet$'' to indicate there is some natural number) and we construct finitely copresented modules $A,B$ like described below:
+  By \Cref{presentation-extension} we can assume $f$ is induced by a square and we construct finitely copresented modules $A,B$ like described below:
   \begin{center}
   \begin{tikzcd}
-    A\ar[r,"\pi_1"]\ar[d,"l\times\id"] & R^\bullet\ar[r,"t"]\ar[d,"l"] & R^\bullet\ar[d,"r"]   \\
-    B\ar[r,"\pi_1"]\ar[d] & R^\bullet\ar[r,"b"]\ar[d] & R^\bullet\ar[d] \\
+    A\ar[r,"\pi_1"]\ar[d,"l\times\id"] & R^{m'}\ar[r,"t"]\ar[d,"l"] & R^{n'}\ar[d,"r"]   \\
+    B\ar[r,"\pi_1"]\ar[d] & R^m\ar[r,"b"]\ar[d] & R^n\ar[d] \\
     K\ar[r] &M\ar[r,"f"] & N
     \end{tikzcd}
    \end{center}
-   $A:=\{(z,y):R^\bullet\times R^\bullet\mid blz=ry\}$, $B:=\{(x,y):R^\bullet\times R^\bullet\mid bx=ry\}$.
+   $A:=\{(z,y):R^{m'}\times R^{n'}\mid blz=ry\}$, $B:=\{(x,y):R^{m}\times R^{n'}\mid bx=ry\}$.
 \end{proof}
 
 Due to lack of a better name, we call the following modules coherent --
@@ -73,7 +73,6 @@ the idea is that they might yield an analogue of the algebro-geometric notion of
 
 \begin{remark}
   \label{hom-closure}
-  \rednote{This should be recheked for the current definition of coherent}
   For coherent $R$-modules $M,N$, the $R$-module $\Hom_{\Mod{R}}(M,N)$ is coherent.
 \end{remark}
 
@@ -87,7 +86,7 @@ the idea is that they might yield an analogue of the algebro-geometric notion of
         R^n\ar[r] & R^{n'}
 \end{tikzcd}
 \end{center}
-  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commtes.
+  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commutes.
   This submodule $S$ is the kernel of a linear map and therefore coherent.
   We have a surjection $\pi:S\to \Hom_{\Mod{R}}(M,N)$, so $\Hom_{\Mod{R}}(M,N)$ is coherent,
   if $\pi$ is a cokernel of a map of coherent modules.
@@ -104,6 +103,7 @@ the idea is that they might yield an analogue of the algebro-geometric notion of
 
 \paragraph{Questions:}
 \begin{enumerate}
+\item Are coherent modules closed under extension?
 \item Are coherent modules closed under $\Hom$?
 \item Are coherent modules closed under $\_\otimes\_$?
 \item \label{coherent-local} Is a locally coherent $R$-module coherent?
@@ -112,8 +112,8 @@ the idea is that they might yield an analogue of the algebro-geometric notion of
 \end{enumerate}
 
 \paragraph{Answers:}
-  \rednote{This should be recheked for the current definition of coherent}
 \begin{enumerate}
+\item None so far
 \item Yes, \cref{hom-closure}.
 \item It could be possible to just use the result for finitely presented modules, by extending the extension properties above to bilinear maps.
 \item None so far
