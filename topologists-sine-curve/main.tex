@@ -1,0 +1,149 @@
+\documentclass{../util/zariski}
+\title{Using the topologist's sine curve to separate path-connectedness and $\mathbb I$-contractibility}
+
+\begin{document}
+In this note we show that the topologists sine curve can be defined in the setting of 
+synthetic Stone duality as introduced in \cite{synthetic-stone-duality}. 
+We recall the proof that this space is not path-connected. 
+However, we show that it is $\mathbb I$-contractible. 
+Note that anything that is path-connected is $\mathbb I$-contractible 
+(lemma 5.24 of \cite{synthetic-stone-duality})
+but the converse thus does not hold. 
+
+\begin{lemma}
+  In SSD, for each $k:\mathbb N$, we can define the function 
+  $t:[\frac1k, 1] \to [-1,1]$ by $t(r) = \sin(\frac1r)$.
+\end{lemma}
+\begin{proof}
+  TODO
+\end{proof}
+\begin{lemma}
+  For $A\subseteq X$ a closed subset of a compact Hausdorff space and 
+  $f: A \to Y$ a function to a compact Hausdorff space, 
+  $graph(f) \subseteq X \times Y$ is closed. 
+\end{lemma}
+\begin{proof}
+  $(x,y)$ lies in $graph(f)$ iff $A(x) \wedge f x = y$, 
+  equality in $Y$ is closed and $A$ is closed. 
+  As closed propositions are conjunction-closed, $graph(f)$ is closed. 
+\end{proof}
+\begin{definition}[The topologist's sine curve]
+  For each $k:\mathbb N$, define $Y_k \subset [0,1] \times [-1,1]$ by 
+  $$Y_k = ([0, \frac1k] \times [-1,1]) \cup graph(t)$$
+  Then define $Y = \bigcap_{k:\mathbb N} Y_k$. 
+  The inclusion maps are called $\iota_k : Y_k \to [0,1] \times [-1,1]$ 
+  and $\iota:Y \to [0,1] \times [-1,1]$. 
+\end{definition}
+\begin{remark}
+  $Y_k$ is a closed for each $k:\mathbb N$, 
+  as it's the union of two closed subsets. 
+  It follows that $Y$ is closed also. 
+\end{remark}
+\begin{lemma}[The topologist's since curve is not path-connected]
+  There is no continuous function $f:\mathbb I \to Y$ such that $f(0) = (0,0)$ and 
+  $f(1) = (1,sin(1))$. 
+\end{lemma}
+\begin{proof}
+  TODO, the classical argument should work here as we're showing a negation.
+  However, since we haven't provided a definition for $\sin(\frac1x)$, 
+  it might be actually good to show the relevant properties, namely that 
+  for any $\epsilon>0$ the block $[0,\epsilon] \times [-\frac12,\frac12]\cap Y$
+  is very much not (path)connected.
+\end{proof}
+
+\begin{definition}
+  Define $e : [0,1]\times [-1,1] \to [0,1]$ by $e(x,y) = x$. 
+\end{definition}  
+
+\begin{lemma}
+  $e\circ \iota : Y \to [0,1]$ is surjective.  
+\end{lemma}
+\begin{proof}
+  We shall show that for each $r:[0,1]$ the fiber $e\circ \iota^{-1}(r)$ is merely inhabited. 
+  As the fiber is closed, it's sufficient to show it's non-empty. 
+
+  Note that $e\circ \iota^{-1}(r)= e^{-1}(r) \cap Y$. 
+  By Lemma 4.5, it's sufficient to show that $e^{-1}(r) \cap Y_k$ is non-empty for any $k:\mathbb N$. 
+
+  Let $k:\mathbb N$. 
+  Note that $r\leq \frac1k \vee r \geq \frac 1k$. 
+  \begin{itemize}
+    \item If $r\leq \frac1k$, we have that $(r,0) \in Y_k$. 
+    \item If $r\geq \frac1k$, $\frac1r$ is well-defined and 
+      $(r,\sin(\frac1r)) \in Y_k$. 
+  \end{itemize}
+  Hence in both cases we have that $e^{-1}(r) \cap Y_k$ is non-empty, as required. 
+\end{proof}
+
+\begin{definition}
+  A subset $X$ of $\mathbb R^n$ is called convex if 
+  for any $\alpha,\beta:\mathbb I$ with $\alpha + \beta = 1$, we have 
+  $X(y) \wedge X(y') \to X(\alpha y + \beta y')$
+\end{definition}
+\begin{lemma}
+  For each $k:\mathbb N$ and $r:[0,1]$, $Y_k\cap e^{-1}(r)$ is convex. 
+\end{lemma}
+\begin{proof}
+  Suppose that $(x,y), (x',y')$ both lie in $Y_k\cap e^{-1}(r)$. 
+%  and 
+%  $$x = e(x,y) = e(x',y') = x' = r.$$
+  Suppose furthermore that $\alpha,\beta:\mathbb I, \alpha+ \beta = 1$. 
+  We will show that $\alpha\cdot (x,y) + \beta\cdot (x',y') $ also lies in 
+  $Y_k \cap e^{-1}(r)$. 
+%  $Y_k$ and that $e(\alpha\cdot (x,y) + \beta\cdot (x',y') ) = r$. 
+%  For the latter, note that 
+%  $$e(\alpha\cdot (x,y) + \beta\cdot (x',y') ) = 
+%   e( \alpha x + \beta x', \alpha y + \beta y') 
+%   = \alpha x + \beta x' = \alpha r + \beta r = r.
+%  $$
+%  For the former, recall that 
+
+  Recall that 
+  $Y_k = [0,\frac1k] \times [-1,1]  \cup graph(t)$. 
+  As we will show a proposition, we can make a case distinction 
+  for both $(x,y), (x',y')$ on whether they come from $[0,\frac 1k] \times [-1,1]$ or 
+  from $graph(t)$.
+  \begin{itemize}
+    \item 
+      If either comes from $[0,\frac1k] \times [-1,1]$, we must have that 
+      then $r \leq \frac1k$. 
+      Then $e^{-1}(r) = \{r\} \times [-1,1]\subseteq Y_k$. 
+      It follows that $e^{-1}(r) \cap Y_k = \{r\} \times [-1, 1]$, which is convex. 
+    \item 
+      If both come from $graph(t)$, 
+      then $x = x' = r$ and $y = y' = \sin(\frac1r)$. 
+      Hence $(x,y) = (x',y')$ and thus $\alpha(x,y) + \beta(x',y') = (x',y')$. 
+  \end{itemize}
+  In both cases we conclude that $\alpha (x,y) + \beta(x',y')$ lies in 
+  $Y_k\cap e^{-1}(r)$. 
+\end{proof}
+
+
+\begin{remark}
+  Any intersection of convex subspaces of $\mathbb R^n$ is itself convex. 
+\end{remark}
+\begin{corollary}
+  for each $r:\mathbb I$, the fiber 
+  $Y_r:=(\iota \circ e)^{-1}(r) = Y\cap e^{-1}(r)$ is convex. 
+\end{corollary}
+\begin{lemma}
+  Any convex inhabited subspace of $\mathbb R^n$ is $\mathbb I$-contractible. 
+\end{lemma} 
+\begin{proof}
+  TODO
+\end{proof}
+\begin{theorem}
+  $Y$ is $\mathbb I$-contractible. 
+\end{theorem}
+\begin{proof}
+  By the above, we can write $Y = \sum\limits_{r:\mathbb I} Y_r$, 
+  such that for all $r:\mathbb I$, we have 
+  $Y_r$ $\mathbb I$-contractible. 
+
+  Thus both the maps $\sum\limits_{r:\mathbb I} Y_r \to \mathbb I$ and 
+  $\mathbb I \to 1$ have $\mathbb I$-contractible fibers. 
+  By Lemma 1.33 of \cite{modalities}, so does their composite. 
+  It follows that $Y$ is $\mathbb I$-contractible. 
+\end{proof}
+
+\end{document}
