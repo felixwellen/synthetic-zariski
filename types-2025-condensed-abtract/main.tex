@@ -1,3 +1,4 @@
+%latexmk -pdf -pvc main.tex
 \documentclass[letterpaper]{../util/easychair}
 \usepackage{doc}
 \usepackage[expansion=true,protrusion=true]{microtype}
@@ -190,7 +191,7 @@ As in \cite{shulman-Brouwer-fixed-point}, it is important to distinguish topolog
 
 Despite topological spaces being sets, they can have non-trivial cohomology. Indeed, for any type $X$ and dependent abelian group $A:X\to \mathrm{Ab}$, we use the usual synthetic definition of the $n$-th cohomology group $H^n(X,A)$ as $\|\Pi_{x:X}K(A_x,n)\|_0$ where $K(A_x,n)$ is the $n$-th Eilenberg Mac-Lane space with coefficient $A_x$. In \cite{synthetic-stone-duality}, it is proven that $H^1(\bS^1,\Z)=\Z$, despite $\bS^1$ being a set.
 
-We prove Barton and Commelin's condensed type theory axioms in synthetic Stone duality, as well as dependent generalisations of them. These are used to show that any compact Hausdorff space $X$ interact well with any family of countably presented abelian groups $A:X\to \mathrm{Ab}_{cp}$.
+We prove Barton and Commelin's condensed type theory axioms \cite{barton2024condensed} in synthetic Stone duality, as well as dependent generalisations of them. These are used to show that any compact Hausdorff space $X$ interact well with any family of countably presented abelian groups $A:X\to \mathrm{Ab}_{\mathrm{c.p.}}$.
 
 %\paragraph*{Barton and Commelin's condensed type theory}
 
@@ -206,9 +207,9 @@ We prove Barton and Commelin's condensed type theory axioms in synthetic Stone d
 
 \paragraph*{Vanishing of higher cohomology of Stone spaces}
 
-First we prove that $H^1(S,A) = 0$ for all $S$ Stone and $A : S\to \mathrm{Ab}_{cp}$. We assume $\alpha:\prod_{x:S}K(A_x,1)$, by local choice we get a surjection $p:T\twoheadrightarrow S$ with $T$ Stone which trivialises $\alpha$. Then we get an approximation of $p$ as a sequential limit of surjective maps $p_k:T_k\to S_k$ between finite sets, we check that the induced trivialisation over $T_k$ gives a trivialisation over $S_k$, and conclude through our dependent generalisations of Barton and Commelin's axioms that $\alpha$ is trivial over $\mathrm{lim}_kS_k =S$.
+First we prove that $H^1(S,A) = 0$ for all $S$ Stone and $A : S\to \mathrm{Ab}_{\mathrm{c.p.}}$. We assume $\alpha:\prod_{x:S}K(A_x,1)$, by local choice we get a surjection $p:T\twoheadrightarrow S$ with $T$ Stone which trivialises $\alpha$. Then we get an approximation of $p$ as a sequential limit of surjective maps $p_k:T_k\to S_k$ between finite sets, we check that the induced trivialisation over $T_k$ gives a trivialisation over $S_k$, and conclude through our dependent generalisations of Barton and Commelin's axioms that $\alpha$ is trivial over $\mathrm{lim}_kS_k =S$.
 
-We follow an idea due to David W\"arn \cite{cech-draft}[Theorem 3.4] to go from $H^1(S,A)=0$ to $H^n(S,A)=0$ for all $n>0$. The key idea is to proceed by induction on $n>0$, generalising the induction hypothesis from $H^n(S,A) = 0$ to: 
+We follow an idea due to David W\"arn \cite[Theorem 3.4]{cech-draft} to go from $H^1(S,A)=0$ to $H^n(S,A)=0$ for all $n>0$. The key idea is to proceed by induction on $n>0$, generalising the induction hypothesis from $H^n(S,A) = 0$ to: 
 \begin{itemize}
 \item[(i)~] $ K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n)$ is an equivalence, directly implying $H^n(S,A)=0$.
 \item[(ii)] $ K(\prod_{x:S}A_x,n+1) \to \prod_{x:S}K(A_x,n+1)$ is an embedding.
@@ -227,7 +228,7 @@ But $p$ trivialises $\alpha$ so $p^*(\alpha)=0$, therefore $\alpha=0$.
 
 Given a compact Hausdorff space $X$, a \v{C}ech cover for $X$ consists of a Stone space $S$ and a surjective map $p:S\twoheadrightarrow X$. By definition any compact Hausdorff space has a \v{C}ech cover.
 
-Given such a \v{C}ech cover and $A:X\to \mathrm{Ab}_{cp}$, we define its \v{C}ech complex as:
+Given such a \v{C}ech cover and $A:X\to \mathrm{Ab}_{\mathrm{c.p.}}$, we define its \v{C}ech complex as:
 \[\Pi_{x:X}A_x^{S_x} \to \Pi_{x:X}A_x^{S_x\times S_x} \to \cdots\]
 with the boundary maps defined as expected, and its \v{C}ech cohomology $\check{H}^k(X,A)$ as the $k$-th homology group of its \v{C}ech complex. It is clear that $H^0(X,A) = \check{H}^0(X,A)$.
 %\[\delta(\alpha)(x,u_0,\cdots,u_n) = \sum_{i=0}^n (-1)^i\alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n)\]
@@ -237,7 +238,7 @@ From hypothesis (i) in the previous paragraph, for $n>0$ we get an exact sequenc
 By direct computations, for $n>0$ we get an exact sequence:
 \[\check{H}^{n-1}(X,\lambda x.A_x^{S_x}) \to \check{H}^{n-1}(X,L)\to \check{H}^n(X,A)\to 0\]
 
-We conclude by induction on $n$ that $H^n(X,A) = \check{H}^n(X,A)$ for all $n$, so that in particular \v{C}ech cohomology does not depend on the \v{C}ech cover. For this induction to go through it is crucial that $A_x^{S_x}$ is countably presented, which follows from Barton and Commelin's axioms.  Using this result and finite approximations of a well-chosen \v{C}ech cover of $\mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{cp}$.
+We conclude by induction on $n$ that $H^n(X,A) = \check{H}^n(X,A)$ for all $n$, so that in particular \v{C}ech cohomology does not depend on the \v{C}ech cover. For this induction to go through it is crucial that $A_x^{S_x}$ is countably presented, which follows from Barton and Commelin's axioms.  Using this result and finite approximations of a well-chosen \v{C}ech cover of $\mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{\mathrm{c.p.}}$.
 
 %Using finite approximations to the \v{C}ech cover $2^\N\to \mathbb{I}$, we can check that $H^n(\mathbb{I},A) = 0$ for all $n>0$ and $A:\mathbb{I}\to \mathrm{Ab}_{cp}$.
 
