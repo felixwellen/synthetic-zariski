@@ -2,21 +2,30 @@
 \title{Using the topologist's sine curve to separate path-connectedness and $\mathbb I$-contractibility}
 
 \begin{document}
-In this note we show that the topologists sine curve can be defined in the setting of 
+In this note we show that the topologists sine curve $Y$ can be defined in the setting of 
 synthetic Stone duality as introduced in \cite{synthetic-stone-duality}. 
-We recall the proof that this space is not path-connected. 
-However, we show that it is $\mathbb I$-contractible. 
+We show, using Markov's principle, that $Y$ is not path-connected. 
+We will also show that it is $\mathbb I$-contractible. 
 Note that anything that is path-connected is $\mathbb I$-contractible 
-(lemma 5.24 of \cite{synthetic-stone-duality})
-but the converse thus does not hold. 
+(Lemma 5.24 of \cite{synthetic-stone-duality}) but the converse thus does not hold. 
+
+
+\begin{remark}[on notation]
+  We will denote $\mathbb I$ and $[0,1]$ for the same object, the interval as defined in \cite{synthetic-stone-duality}. 
+  We will use $\mathbb I$ as the domain of a path, and $[0,1]$ for the induced closed subobject of $\mathbb R$. 
+  Furthermore, we will use $\pi_1 : [0,1] \times [-1,1] \to [0,1] $ and $\pi_2: [0,1] \times [-1,1] \to [-1,1]$ 
+  for the canoncical projection maps. 
+\end{remark}
 
 \begin{lemma}
-  In SSD, for each $k:\mathbb N$, we can define the function 
+  In the setting of \cite{synthetic-stone-duality}, 
+  for each $k:\mathbb N$, we can define the function 
   $t:[\frac1k, 1] \to [-1,1]$ by $t(r) = \sin(\frac1r)$.
 \end{lemma}
 \begin{proof}
   TODO
 \end{proof}
+
 \begin{lemma}
   For $A\subseteq X$ a closed subset of a compact Hausdorff space and 
   $f: A \to Y$ a function to a compact Hausdorff space, 
@@ -39,31 +48,126 @@ but the converse thus does not hold.
   as it's the union of two closed subsets. 
   It follows that $Y$ is closed also. 
 \end{remark}
-\begin{lemma}[The topologist's since curve is not path-connected]
-  There is no continuous function $f:\mathbb I \to Y$ such that $f(0) = (0,0)$ and 
-  $f(1) = (1,sin(1))$. 
+
+\begin{lemma}\label{postiveNumbersCharacter}
+  For $x:\mathbb I$ with $x>0$ there exists some $k:\mathbb N$ with $x>\frac1k$. 
 \end{lemma}
 \begin{proof}
-  TODO, the classical argument should work here as we're showing a negation.
-  However, since we haven't provided a definition for $\sin(\frac1x)$, 
-  it might be actually good to show the relevant properties, namely that 
-  for any $\epsilon>0$ the block $[0,\epsilon] \times [-\frac12,\frac12]\cap Y$
-  is very much not (path)connected.
+  This follows from Markov's principle.
+  \rednote{I think this is nicer if we redefine to use $\frac1{2^k}$ instead of $\frac1k$, 
+  this is actually the statement of Markov's principle.}
+\end{proof}
+
+\begin{lemma}\label{sinCharacter}
+  Given $r:[0,1]$ with $r>0$ and 
+  $y:[-1,1]$, there is some $s:[0,1]$ with $0<s<r$ such that 
+  $\sin(\frac1s) = y$. 
+\end{lemma}
+\begin{proof}
+  By the intermediate value theorem (Theorem 6.5.7 of \cite{synthetic-stone-duality}, 
+  it's sufficient to show this for $y \in \{-1,1\}$. 
+  We will do this proof for $y = 1$, as the other case is similar. 
+  We know that for any natural number $k:\mathbb N$ we have that 
+  $\sin( (2 k + \frac12)\cdot \pi) = 1$. 
+  It's thus sufficient to provide some $k:\mathbb N$ such that $\frac1{(2k+\frac12)\cdot \pi}<r$. 
+  As $(2k+\frac12)\cdot \pi>k$, it's sufficient to provide some $k:\mathbb N$ with $\frac1k<r$, 
+  which is given to us by \Cref{postiveNumbersCharacter}.
+\end{proof}
+\begin{lemma}\label{topologistsSineCurveWillHitInfinitelyManyTimes}
+  Let $a:[-1,1]$. 
+  Suppose $f:\mathbb I \to Y$ is such that $\pi_1(f(0)) > 0$
+  If there is some $r:\mathbb I$ with $\pi_1(f(r)) = 0$, 
+  there is also some $r':\mathbb I$ with $\pi_2(f(r')) = a$. 
+\end{lemma}
+\begin{proof}
+  By \Cref{sinCharacter}, there is some $s:[0,1]$ with $0<s<\pi_1(f(0))$ with $\sin(\frac1s) = a$. 
+  Suppose now an $r:\mathbb I$ with $\pi_1(f(r)) = 0$. 
+  By the intermediate value theorem, there must then exist an $r':\mathbb I$ with $\pi_1(f(r')) = s$. 
+  As $0<s$, the only such point $f(r')$ must equal $(s, a)$.
+  Hence $\pi_2(f(r')) = a$. 
 \end{proof}
 
 \begin{definition}
-  Define $e : [0,1]\times [-1,1] \to [0,1]$ by $e(x,y) = x$. 
-\end{definition}  
+  A path in a space $X$ is a map $f:\mathbb I \to X$. 
+  We say that $f$ starts at $f(0)$ and ends at $f(1)$. 
+\end{definition}
+\begin{definition}
+  A space $X$ is called path-connected iff for any two points $x,y:X$ there
+  exists a path starting at $x$ and ending at $y$. 
+\end{definition}
 
-\begin{lemma}
-  $e\circ \iota : Y \to [0,1]$ is surjective.  
+\begin{remark}\label{imageOpenPathConnected}
+  For $f$ a path in $X$ and, the image of any open interval is path-connected. 
+\end{remark}
+
+\begin{lemma}\label{niceIntervalCover}
+  Given a countable cover  of $\mathbb I$ with open intervals $(U_i)_{i:\mathbb N}$, 
+  we can find a finite subcover $(V_i)_{0\leq i \leq n}$ 
+  such that $V_0 = [0,b_0), V_n = (a_n, 1]$ and for $0<i<n$ we have $V_i = (a_i, b_i)$ 
+  such that the sequences 
+  $
+  (a_i)_{0<i\leq n} , (b_i)_{0\leq i \leq n}, 
+  $
+  are increasing and for all $0\leq i < n$ we have 
+  $a_{i+1}<b_i$. 
+  \rednote{I think here a picture should be drawn.}
 \end{lemma}
 \begin{proof}
-  We shall show that for each $r:[0,1]$ the fiber $e\circ \iota^{-1}(r)$ is merely inhabited. 
+  Using Lemma 4.1.4 of \cite{synthetic-stone-duality}, 
+  we get a finite subcover of $(U_i)_{i:\mathbb N}$. 
+\end{proof}
+
+
+
+
+
+\begin{theorem}
+  The topologist's sine curve is not path-connected
+\end{theorem}
+\begin{proof}
+  Let $f:\mathbb I \to Y$ be such that 
+  $f(0) = (1,\sin(1))$ and 
+  $f(1) = (0,0)$. 
+  
+  Consider the open subsets of $[-1,1]$ given by 
+  $U = [-1, \frac14), V = (-\frac14, 1]$. 
+  Note that the inverse image of $U,V$ under $\pi_2 \circ f$ give open subsets covering $\mathbb I$.
+  
+  By Lemma 5.0.9. of \cite{synthetic-stone-duality}, these open subsets 
+  can be written as countable union of basic open intervals 
+  $(U'_i)_{i:\mathbb N}$ and $(V'_j)_{j:\mathbb N}$. 
+  By \Cref{niceIntervalCover}, we get finite subcovers aligning as in the mentioned Lemma. 
+
+  By \Cref{imageOpenPathConnected}, for all $i:\mathbb N$, 
+  we have that the image $f(U_i)$ is path-connected. 
+  However, as $1\notin U$, we have that $\pi_1(f(r))\neq 1$ for all $r\in U_i$. 
+  Hence by \Cref{topologistsSineCurveWillHitInfinitelyManyTimes}, 
+  whenever $\pi_2(f(r))>0$ for some $r\in U_i$, we have $\pi_2(f(r'))>0$ for all $r'\in U_i$. 
+  The same holds for all $V_i$. 
+
+  It follows with induction that $f(r)>0$ for all $r\in U_i, V_i$.
+  As these cover the interval, it follows that $f(r) >0$ for all $r\in \mathbb I$, 
+  contradicting that $f(1) = (0,0)$. 
+  Thus $Y$ is not path-connected. 
+\end{proof}
+\begin{remark}
+  One could define an equivalence relation on any type $X$ such that 
+  $x\sim y$ iff there is a path from $x$ to $y$. 
+  The equivalence classes of this relation would normally be called the path-connected components. 
+  We conjecture that the space of path-connected components of $Y$ is equivalent to the type of open propositions. 
+\end{remark}
+
+\begin{lemma}
+  $\pi_1\circ \iota : Y \to [0,1]$ is surjective.  
+\end{lemma}
+\begin{proof}
+  We shall show that for each $r:[0,1]$ the fiber $\pi_1\circ \iota^{-1}(r)$ is merely inhabited. 
   As the fiber is closed, it's sufficient to show it's non-empty. 
 
-  Note that $e\circ \iota^{-1}(r)= e^{-1}(r) \cap Y$. 
-  By Lemma 4.5, it's sufficient to show that $e^{-1}(r) \cap Y_k$ is non-empty for any $k:\mathbb N$. 
+  Note that $\pi_1\circ \iota^{-1}(r)= \pi_1^{-1}(r) \cap Y$. 
+  By Lemma 4.1.5 of \cite{synthetic-stone-duality}, 
+  it's sufficient to show that $\pi_1^{-1}(r) \cap Y_k$ 
+  is non-empty for any $k:\mathbb N$. 
 
   Let $k:\mathbb N$. 
   Note that $r\leq \frac1k \vee r \geq \frac 1k$. 
@@ -72,7 +176,7 @@ but the converse thus does not hold.
     \item If $r\geq \frac1k$, $\frac1r$ is well-defined and 
       $(r,\sin(\frac1r)) \in Y_k$. 
   \end{itemize}
-  Hence in both cases we have that $e^{-1}(r) \cap Y_k$ is non-empty, as required. 
+  Hence in both cases we have that $\pi_1^{-1}(r) \cap Y_k$ is non-empty, as required. 
 \end{proof}
 
 \begin{definition}
@@ -81,22 +185,13 @@ but the converse thus does not hold.
   $X(y) \wedge X(y') \to X(\alpha y + \beta y')$
 \end{definition}
 \begin{lemma}
-  For each $k:\mathbb N$ and $r:[0,1]$, $Y_k\cap e^{-1}(r)$ is convex. 
+  For each $k:\mathbb N$ and $r:[0,1]$, $Y_k\cap \pi_1^{-1}(r)$ is convex. 
 \end{lemma}
 \begin{proof}
-  Suppose that $(x,y), (x',y')$ both lie in $Y_k\cap e^{-1}(r)$. 
-%  and 
-%  $$x = e(x,y) = e(x',y') = x' = r.$$
+  Suppose that $(x,y), (x',y')$ both lie in $Y_k\cap \pi_1^{-1}(r)$. 
   Suppose furthermore that $\alpha,\beta:\mathbb I, \alpha+ \beta = 1$. 
   We will show that $\alpha\cdot (x,y) + \beta\cdot (x',y') $ also lies in 
-  $Y_k \cap e^{-1}(r)$. 
-%  $Y_k$ and that $e(\alpha\cdot (x,y) + \beta\cdot (x',y') ) = r$. 
-%  For the latter, note that 
-%  $$e(\alpha\cdot (x,y) + \beta\cdot (x',y') ) = 
-%   e( \alpha x + \beta x', \alpha y + \beta y') 
-%   = \alpha x + \beta x' = \alpha r + \beta r = r.
-%  $$
-%  For the former, recall that 
+  $Y_k \cap \pi_1^{-1}(r)$. 
 
   Recall that 
   $Y_k = [0,\frac1k] \times [-1,1]  \cup graph(t)$. 
@@ -107,15 +202,15 @@ but the converse thus does not hold.
     \item 
       If either comes from $[0,\frac1k] \times [-1,1]$, we must have that 
       then $r \leq \frac1k$. 
-      Then $e^{-1}(r) = \{r\} \times [-1,1]\subseteq Y_k$. 
-      It follows that $e^{-1}(r) \cap Y_k = \{r\} \times [-1, 1]$, which is convex. 
+      Then $\pi_1^{-1}(r) = \{r\} \times [-1,1]\subseteq Y_k$. 
+      It follows that $\pi_1^{-1}(r) \cap Y_k = \{r\} \times [-1, 1]$, which is convex. 
     \item 
       If both come from $graph(t)$, 
       then $x = x' = r$ and $y = y' = \sin(\frac1r)$. 
       Hence $(x,y) = (x',y')$ and thus $\alpha(x,y) + \beta(x',y') = (x',y')$. 
   \end{itemize}
   In both cases we conclude that $\alpha (x,y) + \beta(x',y')$ lies in 
-  $Y_k\cap e^{-1}(r)$. 
+  $Y_k\cap \pi_1^{-1}(r)$. 
 \end{proof}
 
 
@@ -124,13 +219,14 @@ but the converse thus does not hold.
 \end{remark}
 \begin{corollary}
   for each $r:\mathbb I$, the fiber 
-  $Y_r:=(\iota \circ e)^{-1}(r) = Y\cap e^{-1}(r)$ is convex. 
+  $Y_r:=(\pi_1\circ \iota)^{-1}(r) = Y\cap \pi_1^{-1}(r)$ is convex. 
 \end{corollary}
 \begin{lemma}
   Any convex inhabited subspace of $\mathbb R^n$ is $\mathbb I$-contractible. 
 \end{lemma} 
 \begin{proof}
-  TODO
+  See Lemma 5.24 of \cite{synthetic-stone-duality}. 
+  Convex spaces can shown to be path-connected.
 \end{proof}
 \begin{theorem}
   $Y$ is $\mathbb I$-contractible. 
@@ -145,5 +241,6 @@ but the converse thus does not hold.
   By Lemma 1.33 of \cite{modalities}, so does their composite. 
   It follows that $Y$ is $\mathbb I$-contractible. 
 \end{proof}
+\printbibliography
 
 \end{document}
