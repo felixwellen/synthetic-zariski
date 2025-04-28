@@ -20,7 +20,7 @@ Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we define $\che
 with the usual boundary maps:
 \begin{align*}
 d_0(\alpha)_x(u,v) =&\ \alpha_x(v)-\alpha_x(u)\\
-d_1(\beta)_x(u,v,w) =&\ \beta_x(v,w) - \beta_x(u,w) + \beta_x(u,w)
+d_1(\beta)_x(u,v,w) =&\ \beta_x(v,w) - \beta_x(u,w) + \beta_x(u,v)
 \end{align*}
 \end{definition}
 
@@ -32,10 +32,10 @@ Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we define its \
 We call elements of $\mathrm{ker}(d_1)$ cocycles and elements of $\mathrm{im}(d_0)$ coboundaries.
 \end{definition}
 
-This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{C}(S,T,A)$ is exact. Now we give three general lemmas about \v{C}ech complexes.
+This means that $\check{H}^1(S,T,A) = 0$ if and only if $\check{C}(S,T,A)$ is exact at the middle term. Now we give three general lemmas about \v{C}ech complexes.
 
 \begin{lemma}\label{section-exact-cech-complex}
-Assume a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$ with $t:\prod_{x:S}T_x$. Then $\check{C}(S,T,A)$ is exact.
+Assume a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$ with $t:\prod_{x:S}T_x$. Then $\check{H}^1(S,T,A)=0$.
 \end{lemma}
 
 \begin{proof}
@@ -43,7 +43,7 @@ Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^2}$ such that for all $x
 \end{proof}
 
 \begin{lemma}\label{canonical-exact-cech-complex}
-Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we have that $\check{C}(S,T,\lambda x.A_x^{T_x})$ is exact.
+Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we have that $\check{H}^1(S,T,\lambda x.A_x^{T_x})=0$.
 \end{lemma}
 
 \begin{proof}
@@ -51,15 +51,15 @@ Assume given a cocycle, i.e. $\beta:\prod_{x:S}A_x^{T_x^3}$ such that for all $x
 \end{proof}
 
 \begin{lemma}\label{exact-cech-complex-vanishing-cohomology}
-Assume a type $S$ and types $T_x$ for $x:S$ such that $\prod_{x:S}\propTrunc{T_x}$ and $A:S\to\mathrm{Ab}$ such that $\check{C}(S,T,A)$ is exact.
+Assume a type $S$ and types $T_x$ for $x:S$ such that $\prod_{x:S}\propTrunc{T_x}$ and $A:S\to\mathrm{Ab}$ such that $\check{H}^1(S,T,A) = 0$.
 Then given $\alpha:\prod_{x:S}\B A_x$ with $\beta:\prod_{x:S} (\alpha(x) = *)^{T_x}$, we can conclude $\alpha = *$.
 \end{lemma}
 
 \begin{proof}
-We define $g : \prod_{x:S} A_x^{T_x^2}$ by $g_x(u,v) = \beta_x(u)^{-1}\cdot\beta_x(v)$.
-It is a cocycle in the \v{C}ech complex, so that by exactness there is $f:\prod_{x:S}A_x^{T_x}$ such that for all $x:S$ and $u,v:T_x$ we have that $g_x(u,v)=f_x(u)^{-1}\cdot f_x(v)$.
-Then we define $\beta' : \prod_{x:S}(\alpha(x)=*)^{T_x}$ by $\beta'_x(u) = \beta_x(u)\cdot f_x(u)^{-1}$
-so that for all $x:S$ and $u,v:T_x$ we have that $\beta'_x(u) = \beta'_x(v)$ is equivalent to $f_x(u)^{-1}\cdot f_x(v) = \beta_x(u)^{-1}\cdot\beta_x(v)$, which holds by definition. Therefore $\beta'$ factors through $S$, giving a proof of $\alpha = *$.
+We define $g : \prod_{x:S} A_x^{T_x^2}$ by $g_x(u,v) = \beta_x(v) - \beta_x(u)$.
+It is a cocycle in the \v{C}ech complex, so that by exactness there is $f:\prod_{x:S}A_x^{T_x}$ such that for all $x:S$ and $u,v:T_x$ we have that $g_x(u,v)= f_x(v) - f_x(u)$.
+Then we define $\beta' : \prod_{x:S}(\alpha(x)=*)^{T_x}$ by $\beta'_x(u) = \beta_x(u) - f_x(u)$
+so that for all $x:S$ and $u,v:T_x$ we have that $\beta'_x(u) = \beta'_x(v)$ is equivalent to $f_x(v) - f_x(u) = \beta_x(v) - \beta_x(u)$, which holds by definition. So $\beta'$ is constant on each $T_x$ and therefore gives $\prod_{x:S} (\alpha(x)=*)^{\propTrunc{T_x}}$. By $\prod_{x:S}\propTrunc{T_x}$ we conclude $\alpha = *$.
 \end{proof}
 
 
@@ -106,7 +106,7 @@ $\mathrm{lim}_k\left(\sum_{x:S_k}T_k(x)\right) = \sum_{x:S}T(x)$.
 \end{proof}
 
 \begin{lemma}\label{cech-complex-vanishing-stone}
-Assume given $S:\Stone$ with $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T_x}$. Then we have that $\check{C}(S,T,\Z)$ is exact.
+Assume given $S:\Stone$ with $T:S\to\Stone$ such that $\prod_{x:S}\propTrunc{T_x}$. Then we have that $\check{H}^1(S,T,\Z) = 0$.
 \end{lemma}
 
 
@@ -126,6 +126,10 @@ Assume given a map $\alpha:S\to \B\Z$. We use local choice to get $T:S\to\Stone$
 For any $S:\Stone$ the canonical map $\B(\Z^S) \to (\B\Z)^S$ is an equivalence.
 \end{corollary}
 
+\begin{proof}
+This map is always an embedding. To show it is surjective it is enough to prove that $(\B\Z)^S$ is connected, which is precisely \Cref{eilenberg-stone-vanish}.
+\end{proof}
+
 
 \subsection{\v{C}ech cohomology of compact Hausdorff spaces}
 
@@ -136,12 +140,12 @@ A \v{C}ech cover consists of $X:\CHaus$ and $S:X\to\Stone$ such that $\prod_{x:X
 By definition any compact Hausdorff type has a \v{C}ech cover.
 
 \begin{lemma}\label{cech-eilenberg-0-agree}
-Given a \v{C}ech cover $(X,S)$, we have that $H^0(X,\Z) = \check{H}^0(X,S,\Z)$.
+Given a \v{C}ech cover $(X,S)$ and $A:X\to\mathrm{Ab}$, we have an isomorphism $H^0(X,A) = \check{H}^0(X,S,A)$ natural in $A$.
 \end{lemma}
 
 \begin{proof}
-By definition an element in $\check{H}^0(X,S,\Z)$ is a map $f:\prod_{x:X}\Z^{S_x}$
-such that for all $u,v:S_x$ we have $f(u)=f(v)$. Since $\Z$ is a set and the $S_x$ are merely inhabited, this is equivalent to $\Z^X$.
+By definition an element in $\check{H}^0(X,S,A)$ is a map $f:\prod_{x:X}A_x^{S_x}$
+such that for all $u,v:S_x$ we have $f(u)=f(v)$. Since $A_x$ is a set and the $S_x$ are merely inhabited, this is equivalent to $\prod_{x:X}A_x$. Naturality in $A$ is immediate.
 \end{proof}
 
 \begin{lemma}\label{eilenberg-exact}
@@ -157,7 +161,7 @@ We just need $H^1(X,\lambda x.\Z^{S_x}) = 0$ to conclude. But by \cref{stone-com
 
 \begin{lemma}\label{cech-exact}
 Given a \v{C}ech cover $(X,S)$ we have an exact sequence:
-\[\check{H}^0(X,\lambda x.\Z^{S_x}) \to \check{H}^0(X,\lambda x.\Z^{S_x}/\Z) \to \check{H}^1(X,\Z)\to 0\]
+\[\check{H}^0(X,S,\lambda x.\Z^{S_x}) \to \check{H}^0(X,S,\lambda x.\Z^{S_x}/\Z) \to \check{H}^1(X,S,\Z)\to 0\]
 \end{lemma}
 
 \begin{proof}
@@ -171,7 +175,7 @@ Given a \v{C}ech cover $(X,S)$, we have that $H^1(X,\Z) = \check{H}^1(X,S,\Z)$
 \end{theorem}
 
 \begin{proof}
-We apply \cref{cech-eilenberg-0-agree}, \cref{eilenberg-exact} and \cref{cech-exact}.
+By applying \cref{cech-eilenberg-0-agree}, \cref{eilenberg-exact} and \cref{cech-exact} we get that $H^1(X,\Z)$ and $\check{H}^1(X,S,\Z)$ are cokernels of isomorphic maps, so they are isomorphic.
 \end{proof}
 
 This means that \v{C}ech cohomology does not depend on $S$.
@@ -204,8 +208,8 @@ with the obvious boundary maps.
 It is clear that the map $\Z\to \Z^{\I_n}$ is injective as $\I_n$ is inhabited, so the sequence is exact at $\Z$. Assume a cocycle $\alpha:\Z^{\I_n}$, meaning that for all $u,v:\I_n$, if $u\sim_nv$ then $\alpha(u)=\alpha(v)$. Then by \cref{description-Cn-simn} we see that $\alpha$ is constant, so the sequence is exact at $\Z^{\I_n}$.
 
 Assume a cocycle $\beta:\Z^{\I_n^{\sim2}}$, meaning that for all $u,v,w:\I_n$ such that $u\sim_nv$, $v\sim_nw$ and $u\sim_nw$ we have that $\beta(u,v)+\beta(v,w) = \beta(u,w)$. %This is equivalent to asking $\beta(u,u)=0$ and $\beta(u,v) = -\beta(v,u)$.
-Using \cref{description-Cn-simn} we can define $\alpha(n) = \beta(0,1)+\cdots+\beta(n-1,n)$.
-We can check that $\beta(m,n) = \alpha(n)-\alpha(m)$, so $\beta$ is indeed a coboundary and the sequence is exact at $\Z^{\I_n^{\sim2}}$.
+Using \cref{description-Cn-simn} to pass along the equivalence between $2^n$ and $\mathrm{Fin}(2^n)$ we can define $\alpha(k) = \beta(0,1)+\cdots+\beta(k-1,k)$.
+We can check that $\beta(k,l) = \alpha(l)-\alpha(k)$, so $\beta$ is indeed a coboundary and the sequence is exact at $\Z^{\I_n^{\sim2}}$.
 \end{proof}
 
 \begin{proposition}\label{cohomology-I}
@@ -261,11 +265,11 @@ Assume $X$ a type with $x:X$ such that for all $y:X$ we have $f:\I\to X$ such th
 %\[\eta_X:X\to L_\I(X)\] 
 %is surjective. Indeed its fiber are $\I$-contractible, but for any type $F$ we have a map:
 %\[L_\I(F) \to L_\mathbb{F}(\propTrunc{F}) = \propTrunc{F}\] 
-For all $y:X$ we get a map $g:\I\to X\to L_\I(X)$ such that $g(0) = [x]$ and $g(1)=[y]$. Since $L_\I(X)$ is $\I$-local this means that $\prod_{x:X}[*]=[x]$. We conclude $\prod_{y:L_\I(X)}[x]=y$ by applying the elimination principle for the modality.
+For all $y:X$ we get a map $g:\I\to L_\I(X)$ such that $g(0) = [x]$ and $g(1)=[y]$. Since $L_\I(X)$ is $\I$-local this means that $\prod_{y:X}[x]=[y]$. We conclude $\prod_{y:L_\I(X)}[x]=y$ by applying the elimination principle for the modality.
 \end{proof}
 
 \begin{corollary}\label{R-I-contractible}
-We have that $\R$ and $\mathbb{D}^2=\{x,y:\mathbb R\ \vert\ x^2+y^2\leq 1\}$ are $\I$-contractible.
+We have that $\R$ and $\mathbb{D}^2=\{(x,y):\mathbb R^2\ \vert\ x^2+y^2\leq 1\}$ are $\I$-contractible.
 \end{corollary}
 
 \begin{proposition}\label{shape-S1-is-BZ}
@@ -273,7 +277,7 @@ $L_\I(\R/\Z) = \B\Z$.
 \end{proposition}
 
 \begin{proof}
-As for any group quotient, the fibers of the map $\R\to\R/\Z$ are $\Z$-torsors, se we have an induced pullback square:
+As for any group quotient, the fibers of the map $\R\to\R/\Z$ are $\Z$-torsors, so we have an induced pullback square:
 \[
 \begin{tikzcd}
 \R\ar[r]\ar[d] & 1\ar[d] \\
@@ -287,8 +291,8 @@ Now we check that the bottom map is an $\I$-localisation. Since $\B\Z$ is $\I$-l
 By \cref{BZ-I-local}, for any $X$ we have that $H^1(X,\Z) = H^1(L_{\I}(X),\Z)$, so that by \cref{shape-S1-is-BZ} we have that $H^1(\R/\Z,\Z) = H^1(\B\Z,\Z) = \Z$.
 \end{remark}
 
-We omit the proof that $\mathbb{S}^1=\{x,y:\R\ \vert\ x^2+y^2=1\}$ is equivalent to $\R/\Z$.
-The equivalence can be constructed using trigonometric functions, which exists by Proposition 4.12 in \cite{Bishop}.
+We omit the proof that $\mathbb{S}^1=\{(x,y):\R^2\ \vert\ x^2+y^2=1\}$ is equivalent to $\R/\Z$.
+The equivalence can be constructed using trigonometric functions, which exist by Proposition 4.12 in \cite{Bishop}.
 
 \begin{proposition}
 \label{no-retraction}
@@ -308,7 +312,7 @@ By \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction o
 \begin{proof}
   By \Cref{InhabitedClosedSubSpaceClosedCHaus}, the proposition $\exists x:\I.f(x)=y$ is closed and therefore $\neg\neg$-stable, so we can proceed with a proof by contradiction.
   If there is no such $x:\I$, we have $f(x)\neq y$ for all $x:\I$.
-  It is a standard fact of constructive analysis \cite{Bishop}, that for different numbers $a,b:\I$, we have $a<b$ or $b<a$, so the following two sets cover $\I$:
+  By \cref{LesserOpenPropAndApartness} we have that for different numbers $a,b:\I$, we have $a<b$ or $b<a$, so the following two sets cover $\I$:
   \[
     U_0:= \{x:\I\mid f(x)<y\} \quad\quad
     U_1:= \{x:\I\mid y<f(x)\}
