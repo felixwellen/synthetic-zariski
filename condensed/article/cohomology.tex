@@ -261,11 +261,11 @@ Assume $X$ a type with $x:X$ such that for all $y:X$ we have $f:\I\to X$ such th
 %\[\eta_X:X\to L_\I(X)\] 
 %is surjective. Indeed its fiber are $\I$-contractible, but for any type $F$ we have a map:
 %\[L_\I(F) \to L_\mathbb{F}(\propTrunc{F}) = \propTrunc{F}\] 
-For all $y:X$ we get a map $g:\I\to X\to L_\I(X)$ such that $g(0) = [x]$ and $g(1)=[y]$. Since $L_\I(X)$ is $\I$-local this means that $\prod_{x:X}[*]=[x]$. We conclude $\prod_{y:L_\I(X)}[x]=y$ by applying the elimination principle for the modality.
+For all $y:X$ we get a map $g:\I\to L_\I(X)$ such that $g(0) = [x]$ and $g(1)=[y]$. Since $L_\I(X)$ is $\I$-local this means that $\prod_{y:X}[x]=[y]$. We conclude $\prod_{y:L_\I(X)}[x]=y$ by applying the elimination principle for the modality.
 \end{proof}
 
 \begin{corollary}\label{R-I-contractible}
-We have that $\R$ and $\mathbb{D}^2=\{x,y:\mathbb R\ \vert\ x^2+y^2\leq 1\}$ are $\I$-contractible.
+We have that $\R$ and $\mathbb{D}^2=\{(x,y):\mathbb R^2\ \vert\ x^2+y^2\leq 1\}$ are $\I$-contractible.
 \end{corollary}
 
 \begin{proposition}\label{shape-S1-is-BZ}
@@ -273,7 +273,7 @@ $L_\I(\R/\Z) = \B\Z$.
 \end{proposition}
 
 \begin{proof}
-As for any group quotient, the fibers of the map $\R\to\R/\Z$ are $\Z$-torsors, se we have an induced pullback square:
+As for any group quotient, the fibers of the map $\R\to\R/\Z$ are $\Z$-torsors, so we have an induced pullback square:
 \[
 \begin{tikzcd}
 \R\ar[r]\ar[d] & 1\ar[d] \\
@@ -287,8 +287,8 @@ Now we check that the bottom map is an $\I$-localisation. Since $\B\Z$ is $\I$-l
 By \cref{BZ-I-local}, for any $X$ we have that $H^1(X,\Z) = H^1(L_{\I}(X),\Z)$, so that by \cref{shape-S1-is-BZ} we have that $H^1(\R/\Z,\Z) = H^1(\B\Z,\Z) = \Z$.
 \end{remark}
 
-We omit the proof that $\mathbb{S}^1=\{x,y:\R\ \vert\ x^2+y^2=1\}$ is equivalent to $\R/\Z$.
-The equivalence can be constructed using trigonometric functions, which exists by Proposition 4.12 in \cite{Bishop}.
+We omit the proof that $\mathbb{S}^1=\{(x,y):\R^2\ \vert\ x^2+y^2=1\}$ is equivalent to $\R/\Z$.
+The equivalence can be constructed using trigonometric functions, which exist by Proposition 4.12 in \cite{Bishop}.
 
 \begin{proposition}
 \label{no-retraction}
@@ -308,7 +308,7 @@ By \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction o
 \begin{proof}
   By \Cref{InhabitedClosedSubSpaceClosedCHaus}, the proposition $\exists x:\I.f(x)=y$ is closed and therefore $\neg\neg$-stable, so we can proceed with a proof by contradiction.
   If there is no such $x:\I$, we have $f(x)\neq y$ for all $x:\I$.
-  It is a standard fact of constructive analysis \cite{Bishop}, that for different numbers $a,b:\I$, we have $a<b$ or $b<a$, so the following two sets cover $\I$:
+  By \cref{LesserOpenPropAndApartness} we have that for different numbers $a,b:\I$, we have $a<b$ or $b<a$, so the following two sets cover $\I$:
   \[
     U_0:= \{x:\I\mid f(x)<y\} \quad\quad
     U_1:= \{x:\I\mid y<f(x)\}
