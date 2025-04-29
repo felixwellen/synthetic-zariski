@@ -25,6 +25,13 @@ Note that anything that is path-connected is $\mathbb I$-contractible
 \begin{proof}
   TODO
 \end{proof}
+\begin{lemma}
+  In the same setting, we can define for each $n:\mathbb N$ 
+  the standard metric $d:\mathbb R^n \times \mathbb R^n \to \mathbb R_{\geq 0}$. 
+\end{lemma}
+\begin{proof}
+  TODO
+\end{proof}
 
 \begin{lemma}
   For $A\subseteq X$ a closed subset of a compact Hausdorff space and 
@@ -58,13 +65,27 @@ Note that anything that is path-connected is $\mathbb I$-contractible
   this is actually the statement of Markov's principle.}
 \end{proof}
 
+\section{The curve is not path-connected}
+\begin{lemma}[uniform continuity of maps $\mathbb I \to \mathbb R^n$]\label{uniformContinuity}
+  For any map $f:\mathbb I \to [0,1] \times [-1,1]$, and for every $\epsilon:\mathbb R$ with $\epsilon>0$, 
+  there exists a $\delta>0$ such that for any $x,y:\mathbb I$ with $d(x,y)<\delta$, we have
+  that $d(f(x) , f(y))<\epsilon$.
+\end{lemma}
+\begin{proof}
+  Because $f$ is continuous, for each $x:\mathbb I$ there exists some $n:\mathbb N$ such that 
+  if $d(x,y)<\frac1n$, then $d((f(x), f(y)))<\epsilon$. 
+  By local choice, we get a Stone space $S$ with a surjection $a:S\twoheadrightarrow \mathbb I$ 
+  and a map $b:S\to \mathbb N$ such that if $d(x,a(s))<\frac1{b(s)}$, then $d(f(x), f(a(s)))<\epsilon$. 
+  By Lemma 3.1.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
+  Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
+\end{proof}
 \begin{lemma}\label{sinCharacter}
   Given $r:[0,1]$ with $r>0$ and 
   $y:[-1,1]$, there is some $s:[0,1]$ with $0<s<r$ such that 
   $\sin(\frac1s) = y$. 
 \end{lemma}
 \begin{proof}
-  By the intermediate value theorem (Theorem 6.5.7 of \cite{synthetic-stone-duality}, 
+  By the intermediate value theorem (Theorem 6.5.7 of \cite{synthetic-stone-duality}), 
   it's sufficient to show this for $y \in \{-1,1\}$. 
   We will do this proof for $y = 1$, as the other case is similar. 
   We know that for any natural number $k:\mathbb N$ we have that 
@@ -73,7 +94,7 @@ Note that anything that is path-connected is $\mathbb I$-contractible
   As $(2k+\frac12)\cdot \pi>k$, it's sufficient to provide some $k:\mathbb N$ with $\frac1k<r$, 
   which is given to us by \Cref{postiveNumbersCharacter}.
 \end{proof}
-\begin{lemma}\label{topologistsSineCurveWillHitInfinitelyManyTimes}
+\begin{lemma}
   Let $a:[-1,1]$. 
   Suppose $f:\mathbb I \to Y$ is such that $\pi_1(f(0)) > 0$
   If there is some $r:\mathbb I$ with $\pi_1(f(r)) = 0$, 
@@ -85,76 +106,26 @@ Note that anything that is path-connected is $\mathbb I$-contractible
   By the intermediate value theorem, there must then exist an $r':\mathbb I$ with $\pi_1(f(r')) = s$. 
   As $0<s$, the only such point $f(r')$ must equal $(s, a)$.
   Hence $\pi_2(f(r')) = a$. 
-\end{proof}
+\end{proof}  
+\begin{corollary}\label{topologistsSineCurveWillHitInfinitelyManyTimes}
+  Let $a:[-1,1]$ and let $f:\mathbb I \to Y$ satisfy $f(1) = (0,0)$, 
+  and let $r:\mathbb I$ be such that $\pi_1(f(r))>0$, 
+  then there is some $r':\mathbb I$ with $r<r'<1$ with $f(r') = a$. 
+\end{corollary}
 
-\begin{definition}
-  A path in a space $X$ is a map $f:\mathbb I \to X$. 
-  We say that $f$ starts at $f(0)$ and ends at $f(1)$. 
-\end{definition}
-\begin{definition}
-  A space $X$ is called path-connected iff for any two points $x,y:X$ there
-  exists a path starting at $x$ and ending at $y$. 
-\end{definition}
-
-\begin{remark}\label{imageOpenPathConnected}
-  For $f$ a path in $X$ and, the image of any open interval is path-connected. 
-\end{remark}
-
-\begin{lemma}\label{niceIntervalCover}
-  Given a countable cover  of $\mathbb I$ with open intervals $(U_i)_{i:\mathbb N}$, 
-  we can find a finite subcover $(V_i)_{0\leq i \leq n}$ 
-  such that $V_0 = [0,b_0), V_n = (a_n, 1]$ and for $0<i<n$ we have $V_i = (a_i, b_i)$ 
-  such that the sequences 
-  $
-  (a_i)_{0<i\leq n} , (b_i)_{0\leq i \leq n}, 
-  $
-  are increasing and for all $0\leq i < n$ we have 
-  $a_{i+1}<b_i$. 
-  \rednote{I think here a picture should be drawn.}\\
-
-
-  Basic property is that there exists a finite sequence $a_i:\mathbb I$
-  such that each $a_i$ is contained in two $U_i$ and for each 
-  $U_i$ that's inhabited, it contains at least one $a_i$. 
-\end{lemma}
-\begin{proof}
-  Using Lemma 4.1.4 of \cite{synthetic-stone-duality}, 
-  we get a finite subcover of $(U_i)_{i:\mathbb N}$. 
-\end{proof}
-
-
-
-
-
-\begin{theorem}
-  The topologist's sine curve is not path-connected
+\begin{theorem}[The topologist's sine curve is not path-connected]
+  There is no map $f:\mathbb I \to Y$ such that $f(0) = (1,sin(1))$ and $f(1) = (0,0)$. 
 \end{theorem}
 \begin{proof}
-  Let $f:\mathbb I \to Y$ be such that 
-  $f(0) = (1,\sin(1))$ and 
-  $f(1) = (0,0)$. 
-  
-  Consider the open subsets of $[-1,1]$ given by 
-  $U = [-1, \frac14), V = (-\frac14, 1]$. 
-  Note that the inverse image of $U,V$ under $\pi_2 \circ f$ give open subsets covering $\mathbb I$.
-  
-  By Lemma 5.0.9. of \cite{synthetic-stone-duality}, these open subsets 
-  can be written as countable union of basic open intervals 
-  $(U'_i)_{i:\mathbb N}$ and $(V'_j)_{j:\mathbb N}$. 
-  By \Cref{niceIntervalCover}, we get finite subcovers aligning as in the mentioned Lemma. 
-
-  By \Cref{imageOpenPathConnected}, for all $i:\mathbb N$, 
-  we have that the image $f(U_i)$ is path-connected. 
-  However, as $1\notin U$, we have that $\pi_1(f(r))\neq 1$ for all $r\in U_i$. 
-  Hence by \Cref{topologistsSineCurveWillHitInfinitelyManyTimes}, 
-  whenever $\pi_2(f(r))>0$ for some $r\in U_i$, we have $\pi_2(f(r'))>0$ for all $r'\in U_i$. 
-  The same holds for all $V_i$. 
-
-  It follows with induction that $f(r)>0$ for all $r\in U_i, V_i$.
-  As these cover the interval, it follows that $f(r) >0$ for all $r\in \mathbb I$, 
-  contradicting that $f(1) = (0,0)$. 
-  Thus $Y$ is not path-connected. 
+  By applying countable dependent choice to \Cref{topologistsSineCurveWillHitInfinitelyManyTimes}, 
+  we can find increasing sequences $t_i,b_i,~i:\mathbb N$ such that $\pi_2(f(t_i)) = 1, \pi_2(f(b_i)) = -1$ and 
+  $t_{i+1}>b_{i+1}>t_i>b_i$ for all $i:\mathbb N$. 
+  By \Cref{uniformContinuity} for $\epsilon = 2$, there is some $\delta:\mathbb I$ with $\delta>0$ such that 
+  $d(b_i, t_j)\geq \delta$ for any $i,j:\mathbb N$. 
+  Therefore, the sequence $t_i$ is increasing with steps of at least size $2\delta>0$. 
+  But this means that for $N<\frac1{2\delta}$, we have $t_{N}>1$, while $t_N :\mathbb I$, which is a contradiction. 
 \end{proof}
+
 \begin{remark}
   One could define an equivalence relation on any type $X$ such that 
   $x\sim y$ iff there is a path from $x$ to $y$. 
@@ -162,6 +133,7 @@ Note that anything that is path-connected is $\mathbb I$-contractible
   We conjecture that the space of path-connected components of $Y$ is equivalent to the type of open propositions. 
 \end{remark}
 
+\section{The shape of the curve}
 \begin{lemma}
   $\pi_1\circ \iota : Y \to [0,1]$ is surjective.  
 \end{lemma}

@@ -1,0 +1,84 @@
+\rednote{I tought part of this approach was interesting, so I'm saving it here, but it's not necessary 
+to show that the topologist's sine curve is not path-connected}
+\begin{definition}
+  Recall that an open interval $U$ of $\mathbb R$ corresponds to two numbers
+  $a,b:\mathbb R$ and is given by $U(r)\leftrightarrow a<r \wedge r < b$. 
+  We denote such opens $U$ as $(a,b)$. 
+
+  An open interval of $\mathbb I$ is given by $(a,b) \cap \mathbb I$ for some $a,b:\mathbb R$. 
+  We might denote $[0,b)$, $(a,1]$ or $[0,1]$ if we know that $0\in (a,b)$, $1\in (a,b)$ or both. 
+\end{definition}
+
+\begin{lemma}\label{niceIntervalCover}
+%  Given a finite cover of $\mathbb I$ with 
+%  inhabited basic open intervals $(U_i)_{0\leq i \leq n}$,
+%  we can show the double negation of the following statement: 
+%  there exists a sequence $(x_j)_{0\leq j < n}$ of elements of $\mathbb I$, 
+%  satisfying both of the following two conditions:
+%  \begin{enumerate}
+%    \item For every $0\leq i\leq n$ there is some $j$ with $x_j\in U_i$. 
+%    \item For every $0\leq j < n$, there exist $i,i'$ with $0\leq i < i' \leq n$ such that $x_j \in U_i \cap U_{i'}$. 
+%  \end{enumerate}
+  Given a finite cover  of $\mathbb I$ with open intervals $(U_i)_{0\leq i \leq n}$, 
+  there merely exists a subcover $(V_i)_{0\leq i \leq n}$ 
+  such that $V_0 = [0,b_0), V_n = (a_n, 1]$ and for $0<i<n$ we have $V_i = (a_i, b_i)$ 
+  such that the sequences 
+  $
+  (a_i)_{0<i\leq n} , (b_i)_{0\leq i \leq n}, 
+  $
+  are increasing and for all $0\leq i < n$ we have 
+  $a_{i+1}<b_i$. 
+  \rednote{I think here a picture should be drawn.}\\
+%%
+%%
+%%  Basic property is that there exists a finite sequence $a_i:\mathbb I$
+%%  such that each $a_i$ is contained in two $U_i$ and for each 
+%%  $U_i$ that's inhabited, it contains at least one $a_i$. 
+\end{lemma}
+\begin{proof}
+  As the opens cover $\mathbb I$, we have $\bigvee_{0\leq i \leq n} U_i(0)$. 
+  As we're showing a proposition, we can untruncate this statement, 
+  and consider those $U_i$ containing $0$. 
+  These finitely many $U_i$ are of the form $(a_i,b_i)\cap \mathbb I$ with $a_i<0, b_i>0$ 
+  and we can select the one with maximal $b_i$. 
+  Denote $V_0 = [0,b'_0)$. 
+  Now we know that $b'_0\leq 1 \vee b'_0\geq 1$, 
+  \begin{itemize}
+    \item If $b'_0\leq 1$, we choose $V_1$ in a similar manner, namely such that $a'_1<b'_0$ and $b'_1$ maximal. 
+    \item If $b'_0 \geq 1$, we're done. 
+  \end{itemize}
+  We keep repeating this process. 
+  As there are only finitely many $i$, and there is some $U_i = (a_i, b_i)$ with $b_i>1$, we know this process ends. 
+\end{proof}
+%
+%\begin{theorem}
+%  The topologist's sine curve is not path-connected
+%\end{theorem}
+%\begin{proof}
+%  Let $f:\mathbb I \to Y$ be such that 
+%  $f(0) = (1,\sin(1))$ and 
+%  $f(1) = (0,0)$. 
+%  
+%  Consider the open subsets of $[-1,1]$ given by 
+%  $U = [-1, \frac14), V = (-\frac14, 1]$. 
+%  Note that the inverse image of $U,V$ under $\pi_2 \circ f$ give open subsets covering $\mathbb I$.
+%  
+%  By Lemma 5.0.9. of \cite{synthetic-stone-duality}, these open subsets 
+%  can be written as countable union of basic open intervals 
+%  $(U'_i)_{i:\mathbb N}$ and $(V'_j)_{j:\mathbb N}$. 
+%  Using Lemma 4.1.4 of \cite{synthetic-stone-duality}, 
+%  we find a finite subcover of these basic open intervals, denoted $U_i, V_j$. 
+%
+%  By \Cref{imageOpenPathConnected}, for all $i$, 
+%  we have that the image $f(U_i)$ is path-connected. 
+%  However, as $1\notin U$, we have that $\pi_1(f(r))\neq 1$ for all $r\in U_i$. 
+%  Hence by \Cref{topologistsSineCurveWillHitInfinitelyManyTimes}, 
+%  whenever $\pi_2(f(r))>0$ for some $r\in U_i$, we have $\pi_2(f(r'))>0$ for all $r'\in U_i$. 
+%  The same holds for all $V_i$. 
+%
+%  Now using the sequence from \Cref{niceIntervalCover}, 
+%  we can use induction to show that $f(r)>0$ for all $r\in U_i, V_j$ for all $i,j$.
+%  As these cover the interval, it follows that $f(r) >0$ for all $r\in \mathbb I$, 
+%  contradicting that $f(1) = (0,0)$. 
+%  Thus $Y$ is not path-connected. 
+%\end{proof}
