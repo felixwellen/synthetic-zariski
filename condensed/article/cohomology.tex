@@ -165,7 +165,9 @@ Given a \v{C}ech cover $(X,S)$ we have an exact sequence:
 \end{lemma}
 
 \begin{proof}
-By \cref{eilenberg-stone-vanish} and the long exact sequence for cohomology, we have an exact sequence of complexes:
+For $n=1,2,3$, we have that $\Sigma_{x:X}S_x^n$ is Stone so that  $H^1(\Sigma_{x:X}S_x^n, \Z) = 0$ by \cref{eilenberg-stone-vanish}, giving short exact sequences:
+\[0\to \Pi_{x:X}\Z^{S_x^n} \to \Pi_{x:X}(\Z^{S_x})^{S_x^n}\to \Pi_{x:X}(\Z^{S_x}/\Z)^{S_x^n}\to 0\]
+They fit together in a short exact sequence of complexes:
 \[0 \to \check{C}(X,S,\Z) \to \check{C}(X,S,\lambda x.\Z^{S_x}) \to \check{C}(X,S,\lambda x.\Z^{S_x}/\Z)\to 0\]
 But since $\check{H}^1(X,\lambda x.\Z^{S_x}) = 0$ by \cref{canonical-exact-cech-complex}, we conclude using the associated long exact sequence.
 \end{proof}
@@ -200,8 +202,12 @@ We define $\I_n^{\sim2} = \Sigma_{x,y:\I_n}x\sim_n y$ and $\I_n^{\sim3} = \Sigma
 
 \begin{lemma}\label{Cn-exact-sequence}
 For any $n:\N$ we have an exact sequence:
-\[0\to \Z\to \Z^{\I_n} \to \Z^{\I_n^{\sim2}} \to \Z^{\I_n^{\sim3}}\]
-with the obvious boundary maps.
+\[0\to \Z\overset{d_0}{\longrightarrow} \Z^{\I_n} \overset{d_1}{\longrightarrow} \Z^{\I_n^{\sim2}} \overset{d_2}{\longrightarrow} \Z^{\I_n^{\sim3}}\]
+where $d_0(k) = (\_\mapsto k)$ and:
+\begin{eqnarray}
+ d_1(\alpha)(u,v) &=& \alpha(v)-\alpha(u)\nonumber\\
+ d_2(\beta)(u,v,w) &=& \beta(v,w)-\beta(u,w)+\beta(u,v)\nonumber
+\end{eqnarray}
 \end{lemma}
 
 \begin{proof}
@@ -333,3 +339,7 @@ By \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction o
   We denote this intersection by $r(x)$ and the resulting map $r:\mathbb D^2\to\mathbb S^1$ has the property that it preserves $\mathbb{S}^1$.
   Then $r$ is a retraction from $\mathbb{D}^2$ onto its boundary $\mathbb{S}^1$, which is a contradiction by \Cref{no-retraction}.
 \end{proof}
+
+\begin{remark}
+In constructive reverse mathematics \cite{HannesDiener}, it is known that both the intermediate value theorem and Brouwer's fixed-point theorem are equivalent to LLPO.
+\end{remark}
