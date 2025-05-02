@@ -1,0 +1,52 @@
+
+\begin{lemma}
+  \label{bundle-homs-to-dual-tensor}
+  Let $X$ be a type and $\mathcal L:X\to \Line$ a line bundle.
+  For all $\mathcal F:X\to\Mod{R}$ we have an isomorphism of $R$-module bundles:
+  \[ \HomBun_{\Mod{R}(X)}(\mathcal L,\mathcal F) \to \mathcal L^{\vee} \otimes \mathcal F\rlap{.}\]
+  (where $\HomBun_{\Mod{R}(X)}(\mathcal L,\mathcal F)= (x:X) \mapsto \Hom_{\Mod{R}}(\mathcal L_x,\mathcal F_x)$)
+  In particular, we have
+  \[\Hom_{\Mod{R}(X)}(\mathcal L,\mathcal F) \simeq H^0(X,\mathcal L^{\vee} \otimes \mathcal F)\rlap{.} \]
+\end{lemma}
+
+\begin{proof}
+  Let $x:X$ and choose an isomorphism of $R$-modules $\mu:\mathcal L_x\to R$.
+  Note first, that we have an isomorphism
+  \[ \psi: \Hom_{\Mod{R}}(R,\mathcal F_x) \to R^{\vee}\otimes \mathcal F_x\]
+  given by mapping $\varphi:\Hom_{\Mod{R}}(R,\mathcal F_x)$ to $\id_R\otimes \varphi(1)$.
+  So
+  \[ \mu^{\vee}\otimes \id_R \circ \psi\circ (\_\circ \mu^{-1})
+  : \Hom_{\Mod{R}}(\mathcal L_x,\mathcal F_x) \to {\mathcal L_x}^{\vee}\otimes \mathcal F_x\]
+  is a map of the desired type and by elemtary calculation using linearity it is independent of the choice of $\mu$.
+\end{proof}
+
+\rednote{We are not sure, whether the following theorem is true in the stated generality}
+We write $\omega=\omega_X$ for the canonical line bundle over $X$, which we assume (remains to be proven) to be isomorphic to $\mathcal O(-1-n)$ for $X=\bP^n$.
+
+\begin{theorem}[Duality for $\bP^n$]
+  Let $\mathcal F:\bP^n\to\Mod{R}_{\mathrm{fp}}$ be a finitely presented $R$-module bundle.
+  \begin{enumerate}[(a)]
+  \item $H^n(\bP^n,\omega)=R$.
+  \item There is a pairing (natural in $\mathcal F$?)
+    \[ \Hom_{\Mod{R}(X)}(\mathcal F,\omega) \times H^n(X,\mathcal F) \to H^n(X,\omega) \simeq R \]
+    inducing an isomorphism for $\Hom_{\Mod{R}(X)}(\mathcal F,\omega) \to H^n(X,\mathcal F)^\vee$.
+  \item \rednote{Hartshorne asks for a field, to make the dualization below exact. } For every $i\geq 0$ there is a natural functorial isomorphism
+    \[\Ext^i(\mathcal F,\omega) \to H^{n-i}(X,\mathcal F)^\vee \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \rednote{UNCLEAR}, following \cite[Ch. III, 7.1]{Hartshorne}.
+  \begin{enumerate}[(a)]
+  \item This follow from \Cref{calculate-cohomology-twisting-sheaves} \ref{calculate-cohomology-twisting-sheaves-b}
+  \item The pairing is given by letting $\varphi:\Hom_{\Mod{R}(X)}(\mathcal F,\omega)$ induce a $\varphi^*:H^n(X,\mathcal F)\to H^n(X,\omega)$.
+    In the case $\mathcal F\simeq \mathcal O(q)$, we can use \Cref{bundle-homs-to-dual-tensor}
+    to compute $\Hom_{\Mod{R}(X)}(\mathcal O(q),\omega)\simeq H^0(\bP^n,\omega\otimes \mathcal O(-q))$.
+    So in this case, we can conclude by \Cref{calculate-cohomology-twisting-sheaves} \ref{calculate-cohomology-twisting-sheaves-c}.
+
+    By \Cref{fp-module-bundle-globally-generated}, we get an exact sequence:
+    \[ \mathcal O(p)^{\oplus n}\to\mathcal O(p')^{\oplus n'}\to \mathcal F\to 0 \]
+    and the functors $\Hom_{\Mod{R}(X)}(\_,\omega)$ and $H^n(X,\_)^\vee$ both map right exact sequences to left exact sequences. So we can conclude with the 5-lemma.
+  \item Idea: Prove that projective schemes have coherent $H^i(X,\mathcal F)$ for all $i$ and show that dualizing coherent modules is exact. Then the proof in Hartshorne might go through.
+  \end{enumerate}
+\end{proof}
