@@ -84,7 +84,52 @@ This is a variant of \cite{vakil}[Theorem 17.6.2] (which might hold):
   \end{enumerate}
 \end{definition}
 
-We expect the following to be true:
+The following lemmas carry over from \cite[Chapter II.5]{Hartshorne}.
+
+\begin{lemma}
+  Let $X = \Spec A$ be an affine scheme and $f:A$.
+  Let furthermore $\mathcal F:X\to \Mod{R}_{\mathrm{wqc}}$ be a weakly quasi-coherent bundle of $R$-modules.
+  \begin{enumerate}[(i)]
+    \item Given $s:\mathcal F(X)$ with $s|_{D(f)} = 0$  there merely exists a $n>0$ such that $f^ns=0$.
+    \item For any section $t:\mathcal F (D(f))$ there merely exists a $n>0$
+      such that $f^nt$ extends to a global section of $\mathcal F$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Since $\mathcal F$ is weakly quasi-coherent we have $\mathcal F (X)_f = \mathcal F (D(f))$.
+  This implies both the first and second part.
+\end{proof}
+
+
+\begin{lemma}
+  \label{affine-extension-of-sections}
+  Let $X$ be a scheme and $\mathcal L$ a line bundle on $X$ with a given section $f:\mathcal L(X)$.
+  Let $\mathcal F:X\to \Mod{R}_{\mathrm{wqc}}$ be a weakly quasi-coherent bundle of $R$-modules.
+  Denote by $X_f \subseteq X$ the open locus where $f$ does not vanish.
+  \begin{enumerate}[(i)]
+    \item Given $s:\mathcal F(X)$ with $s|_{X_f} = 0$ there merely exists a $n>0$ such that $f^ns=0$,
+      when considered as a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
+    \item For any section $t:\mathcal F (X_f)$ there merely exists a $n>0$
+      such that $f^nt$ extends to a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
+  \end{enumerate}
+\end{lemma}
+
+This generalizes the above lemma by simultaneously allowing non-affine schemes, as well as twists.
+
+\begin{proof}
+  For the first part consider any affine open subscheme $U=\Spec A$ of $X$ that trivializes $\mathcal L$,
+  i.e. suppose there is an equivalence  $\varphi:\mathcal L_U \to \mathcal O_U$ and set $g :\equiv \varphi(f|_U)$.
+  Thus we have $X_f\cap U = D(g)$ and $s|_{D(g)}=0$.
+  By virtue of \Cref{affine-extension-of-sections} there is a $n>0$ such that $g^ns=0: \mathcal F(U)$.
+  Using the equivalence $\mathcal F|_U\otimes\mathcal L^{\otimes n}|_U \to \mathcal F|_U$ this implies $f^ns=0$,
+  when considered as a section of $\mathcal F\otimes\mathcal L^{\otimes n}$ over $U$.
+  Since $X$ can be covered by finitely many such $U$, we finally obtain a natural number $n>0$ such that $f^ns=0$ as a global section of $\mathcal F\otimes\mathcal L^{\otimes n}$.
+
+  \rednote{TODO: write up part (ii)}
+\end{proof}
+
+We expect the following to be deducible from the above:
 
 \begin{lemma}
   Let $\mathcal F:\bP^n \to \Mod{R}_{\mathrm{fg}}$ be a finitely generated $R$-module bundle.
