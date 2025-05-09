@@ -30,16 +30,16 @@ A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such
 \begin{lemma}
   We have the following results on open and closed propositions:
   \begin{itemize}
-    \item Closed propositions are closed under finite disjunctions. 
+%    \item Closed propositions are closed under finite disjunctions. 
     \item Closed propositions are closed under countable conjunctions. 
     \item Open propositions are closed under finite conjunctions. 
     \item Open propositions are closed under countable disjunctions. 
   \end{itemize}
 \end{lemma}
 \begin{proof}
-  By Proposition 1.4.1 of \cite{HannesDiener}, LLPO (\Cref{LLPO}) is equivalent to the statement that 
-  the disjunction of two closed propositions are closed. 
-  The other statements have similar proofs, and we only present the proof that closed propositions are closed under 
+%  By Proposition 1.4.1 of \cite{HannesDiener}, LLPO (\Cref{LLPO}) is equivalent to the statement that 
+%  the disjunction of two closed propositions are closed. 
+  The statements have similar proofs, and we only present the proof that closed propositions are closed under 
   countable conjunctions. 
   Let $(P_n)_{n:\N}$ be a countable family of closed propositions. 
   By countable choice, for each 
@@ -53,6 +53,30 @@ A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such
 %  $\forall_{m,n:\N}\alpha_{m,n} = 0$, which happens if and only if 
   $\forall_{n:\N} P_n$. 
 %  Hence the countable conjunction of closed propositions is closed. 
+\end{proof}
+\begin{remark}
+  LLPO (\Cref{LLPO}) is equivalent to the statement that for $P,Q$ open, we have 
+  $(\neg P \vee \neg Q) \leftrightarrow \neg (P\wedge Q)$. 
+\end{remark}
+%\begin{proof}
+%  Assuming the above statement, let $\alpha:\Noo$, and consider 
+%  the open propositions 
+%  $\exists_{k:\mathbb N}\alpha_{2k+1} = 1, \exists_{k:\N} \alpha_{2k} = 1$. 
+%  As $\alpha:\Noo$ there's at most one $n:\mathbb N$ with $\alpha_n =1$, so their conjunction is false. 
+%  By the above statement, it follows one of them is false, leading to the statement of LLPO. 
+%  
+%  Now suppose LLPO holds, and assume $\neg (\exists_{n:\mathbb N} \alpha_n = 1\wedge \exists_{n:\mathbb N} \beta_n = 1$
+%  for $\alpha,\beta :\Noo$. Then the sequence $\gamma:2^\N$ given by $\gamma_{2n} = \alpha_n, \gamma_{2n+1} = \beta_n$
+%  can hit $1$ at most once and thus induces a sequence in $\Noo$. LLPO then shows that 
+%  $\neg \forall_{n:\mathbb N} \alpha_n = 1\vee \neg \forall_{n:\mathbb N} \beta_n=1$ as required. 
+%\end{proof}
+\begin{corollary}
+  Closed propositions are closed under finite disjunctions.
+\end{corollary}
+\begin{proof}
+  Closed propositions are negations of open propositions. 
+  As the conjunction of two open propositions is open, LLPO gives that 
+  the disjunction of two closed propositions is closed. 
 \end{proof}
 We will use the above properties silently from now on. 
 %OneBigLemma#
