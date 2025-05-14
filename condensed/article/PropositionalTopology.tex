@@ -3,10 +3,8 @@
 %We will study this topology on Stone types in particular.
 %
 \subsection{Open and closed propositions}
-In this section we will introduce a topology on the type of propositions, and 
-study their logical properties.
-We think of open and closed propositions respectively as countable disjunctions and conjunctions of decidable propositions.
-Such a definition is universe-independent, and can be made internally.
+Open (resp. closed) propositions are defined as countable disjunctions (resp. conjunctions) of decidable propositions.
+In this section we will study their logical properties.
 
 \begin{definition}
 A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such that $P \leftrightarrow \exists_{n:\mathbb N} \alpha_n = 0$ (resp. $P \leftrightarrow \forall_{n:\mathbb N} \alpha_n = 0$). We denote by $\Open$ and $\Closed$ the types of open and closed propositions.
@@ -16,7 +14,7 @@ A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such
   The negation of an open proposition is closed, 
   and by MP (\Cref{MarkovPrinciple}), the negation of a closed proposition is open %. 
 %  Also by MP, we have 
-  and both open, closed propositions are $\neg\neg$-stable. 
+  Moreover both open and closed propositions are $\neg\neg$-stable. 
 %  and $\neg \neg P \to P$ whenever $P$ is open or closed. 
 %  By the negation of WLPO (\Cref{NotWLPO}), 
   By $\neg$WLPO (\Cref{NotWLPO}), 
@@ -28,57 +26,34 @@ A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such
 %  and in \Cref{ClopenDecidable} we shall see the converse. 
 \end{remark}
 \begin{lemma}
-  We have the following results on open and closed propositions:
+  We have the following:
   \begin{itemize}
 %    \item Closed propositions are closed under finite disjunctions. 
-    \item Closed propositions are closed under countable conjunctions. 
-    \item Open propositions are closed under finite conjunctions. 
-    \item Open propositions are closed under countable disjunctions. 
+    \item Closed propositions are stable under countable conjunctions and finite disjunctions. 
+    \item Open propositions are stable under countable disjunctions and finite conjunctions. 
   \end{itemize}
 \end{lemma}
 \begin{proof}
 %  By Proposition 1.4.1 of \cite{HannesDiener}, LLPO (\Cref{LLPO}) is equivalent to the statement that 
 %  the disjunction of two closed propositions are closed. 
-  The statements have similar proofs, and we only present the proof that closed propositions are closed under 
-  countable conjunctions. 
+  All statements but the one about finite disjunctions have similar proofs, so we only present the proof that closed propositions are stable under countable conjunctions. 
   Let $(P_n)_{n:\N}$ be a countable family of closed propositions. 
   By countable choice, for each 
-  $n:\N$ we have an $\alpha_n:2^\N $ 
-  such that $P_n \leftrightarrow \forall_{m:\N} \alpha_{n,m} =0$. 
+  $n:\N$ we have an $\alpha_n:2^\N$ 
+  such that $P_n \leftrightarrow \forall_{m:\N}\, \alpha_{n,m} =0$. 
   Consider a surjection $s:\N \twoheadrightarrow \N \times \N$, and let 
 %  Let 
 %  $$\beta_k = \alpha_{s(k)}.$$
   $\beta_k = \alpha_{s(k)}.$
-  Note that $\forall_{k:\N} \beta_k = 0$ if and only if 
+  Note that $\forall_{k:\N}\, \beta_k = 0$ if and only if 
 %  $\forall_{m,n:\N}\alpha_{m,n} = 0$, which happens if and only if 
   $\forall_{n:\N} P_n$. 
 %  Hence the countable conjunction of closed propositions is closed. 
+
+To prove that closed propositions are closed under finite disjunctions, we use the known fact that LLPO (\Cref{LLPO}) is equivalent to the statement that for $P$ and $Q$ open, we have that $(\neg P \vee \neg Q) \leftrightarrow \neg (P\wedge Q)$. We conclude using that closed propositions are negations of open propositions, and that the conjunction of two open propositions is open.
 \end{proof}
-\begin{remark}
-  LLPO (\Cref{LLPO}) is equivalent to the statement that for $P,Q$ open, we have 
-  $(\neg P \vee \neg Q) \leftrightarrow \neg (P\wedge Q)$. 
-\end{remark}
-%\begin{proof}
-%  Assuming the above statement, let $\alpha:\Noo$, and consider 
-%  the open propositions 
-%  $\exists_{k:\mathbb N}\alpha_{2k+1} = 1, \exists_{k:\N} \alpha_{2k} = 1$. 
-%  As $\alpha:\Noo$ there's at most one $n:\mathbb N$ with $\alpha_n =1$, so their conjunction is false. 
-%  By the above statement, it follows one of them is false, leading to the statement of LLPO. 
-%  
-%  Now suppose LLPO holds, and assume $\neg (\exists_{n:\mathbb N} \alpha_n = 1\wedge \exists_{n:\mathbb N} \beta_n = 1$
-%  for $\alpha,\beta :\Noo$. Then the sequence $\gamma:2^\N$ given by $\gamma_{2n} = \alpha_n, \gamma_{2n+1} = \beta_n$
-%  can hit $1$ at most once and thus induces a sequence in $\Noo$. LLPO then shows that 
-%  $\neg \forall_{n:\mathbb N} \alpha_n = 1\vee \neg \forall_{n:\mathbb N} \beta_n=1$ as required. 
-%\end{proof}
-\begin{corollary}
-  Closed propositions are closed under finite disjunctions.
-\end{corollary}
-\begin{proof}
-  Closed propositions are negations of open propositions. 
-  As the conjunction of two open propositions is open, LLPO gives that 
-  the disjunction of two closed propositions is closed. 
-\end{proof}
-We will use the above properties silently from now on. 
+
+From now on we will use the previous lemma silently. 
 %OneBigLemma#
 %OneBigLemma#\rednote{Phrase the following lemmas as one big lemma, 
 %OneBigLemma#and use them silently without reference, also we should just state $\neg\neg$-stability instead of referring to the above all the time. }
@@ -134,12 +109,11 @@ We will use the above properties silently from now on.
 %OneBigLemma#\end{proof}
 %OneBigLemma#
 \begin{corollary}\label{ClopenDecidable}
-  If a proposition is both open and closed, it is decidable. 
+  If a proposition is both open and closed, then it is decidable. 
 \end{corollary}
 \begin{proof}
-  If $P$ is open and closed, %$\neg P$, and hence 
-  $P\vee \neg P$ is open, 
-  hence $\neg\neg$-stable and provable. 
+  If $P$ is open and closed, then 
+  $P\vee \neg P$ is open. So it is $\neg\neg$-stable and we conclude from $\neg\neg(P\vee\neg P)$. 
 %  and we conclude by $\neg\neg$-stability of open propositions. 
 %  but open propositions are $\neg\neg$-stable by \Cref{rmkOpenClosedNegation} so we can conclude.
 %  hence 
@@ -218,14 +192,12 @@ We will use the above properties silently from now on.
 %  we have that if $P$ is open and $Q$ is closed, then $P\to Q$ is closed, and similarly $Q\to P$ is open.
 %\end{remark}
 \begin{lemma}\label{ImplicationOpenClosed}
-  If $P$ is open %(resp. closed) 
-  and $Q$ is closed % (resp. open) 
-  then $P\to Q$ is closed. % (resp. open). 
+  If $P$ is open and $Q$ is closed then $P\to Q$ is closed.
   If $P$ is closed and $Q$ open, then $P\to Q$ is open. 
 \end{lemma}
 \begin{proof}
   Note that $\neg P \vee Q$ is closed. Using $\neg\neg$-stability
-  we can show $(P\to Q) \leftrightarrow (\neg P \vee Q)$. 
+  we conclude that $(P\to Q) \leftrightarrow (\neg P \vee Q)$. 
   The other proof is similar. 
 %  and we conclude by 
 %  Assume $P$ open and $Q$ closed, the other proof is similar. 

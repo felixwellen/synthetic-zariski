@@ -1,15 +1,12 @@
 \subsection{Principles of omniscience}
-In constructive mathematics, we do not assume the law of excluded middle (LEM).
-There are some principles called principles of omniscience that are weaker than LEM, which can be used to describe 
-how close a logical system is to satisfying LEM.
-References on these principles include \cite{HannesDiener, ReverseMathsBishop}.
-In this section, we will show that two of them (MP and LLPO) hold, 
-and one (WLPO) fails in our system.
+The so-called principles of omniscience are all weaker than the law of excluded middle (LEM), and help measure how close a logical system is to satisfying LEM \cite{HannesDiener, ReverseMathsBishop}.
+In this section, we will show that two such principles hold (MP and LLPO), 
+and that another one fails (WLPO).
 
 \begin{theorem}[The negation of the weak lesser principle of omniscience ($\neg$WLPO)]\label{NotWLPO}
   \[
     \neg \forall_{\alpha:2^\N} 
-    ((\forall_{n:\N} \alpha_n = 0 ) \vee \neg (\forall_{n:\N} \alpha_n = 0))
+    ((\forall_{n:\N}\, \alpha_n = 0 ) \vee \neg (\forall_{n:\N}\, \alpha_n = 0))
   \]
 %  We cannot decide for general $\alpha:2^\N$, whether $\forall_{n:\mathbb N} \alpha(n) = 0$.
 %  It is not the case that the statement %There is no method which given $\alpha:2^\mathbb N$ decides whether 
@@ -17,28 +14,28 @@ and one (WLPO) fails in our system.
 \end{theorem}
 \begin{proof}
 %  Such a decision method is a function 
-  The key idea is that any decidable property of binary sequences is determined by a finite prefix. 
+  We will prove that any decidable property of binary sequences is determined by a finite prefix of fixed length, contradicting $\forall_{n:\N}\, \alpha_n=0$ being decidable for all $\alpha$. 
   Indeed assume $f:2^\mathbb N \to 2$ such that 
-  $f(\alpha) = 0$ if and only if $\forall_{n:\mathbb N} \alpha_n= 0$. 
+  $f(\alpha) = 0$ if and only if $\forall_{n:\mathbb N}\ \alpha_n= 0$. 
   By \Cref{AxStoneDuality}, there is some $c:2[\N]$ with 
-  $f(\alpha) = 0 \leftrightarrow \alpha(c) = 0$. 
+  $f(\alpha) = 0$ if and only if $\alpha(c) = 0$. 
   There exists $k:\N$ such that $c$ is expressed in terms of the generators $(g_n)_{n\leq k}$. 
   Now consider $\beta,\gamma:2^\N$ given by 
   $\beta(g_n) = 0$ for all $n:\mathbb N$ and
   $\gamma(g_n) = 0$ if and only if $n\leq k$. 
-  As $\beta, \gamma$ are equal on $(g_n)_{n\leq k}$, we have $\beta(c) = \gamma(c)$. 
+  As $\beta$ and $\gamma$ are equal on $(g_n)_{n\leq k}$, we have $\beta(c) = \gamma(c)$. 
   However, $f(\beta) = 0$ and $f(\gamma) = 1$, giving a contradiction. 
 %  We thus have a contradiction, thus a decision method as required doesn't exist. 
 \end{proof}
 
 \begin{theorem}
-  For $\alpha:\Noo$, we have that 
+  For all $\alpha:\Noo$, we have that 
   \[
-    (\neg (\forall_{n:\mathbb N} \alpha_n= 0)) \to \Sigma_{n:\mathbb N} \alpha_n= 1
+    (\neg (\forall_{n:\mathbb N}\, \alpha_n= 0)) \to \Sigma_{n:\mathbb N}\, \alpha_n= 1
   \]
 \end{theorem}
 \begin{proof}
-  By \Cref{ClosedPropAsSpectrum}, we have that $\neg(\forall_{n:\N} \alpha_n = 0)$ implies that 
+  By \Cref{ClosedPropAsSpectrum}, we have that $\neg(\forall_{n:\N}\, \alpha_n = 0)$ implies that 
   $\Sp(2/(\alpha_n)_{n:\N})$ is empty. 
 %  We will show that the spectrum of $2/(\alpha(n))_{n:\N}$ is empty. 
 %  Suppose $x:2\to 2$, if  $x(\alpha(n)) = 0$, we get $\alpha(n) \neq 1$. 
@@ -62,9 +59,9 @@ and one (WLPO) fails in our system.
 \end{proof}
 
 \begin{corollary}[Markov's principle (MP)]\label{MarkovPrinciple}
-  For $\alpha:2^\mathbb N$, we have that 
+  For all $\alpha:2^\mathbb N$, we have that 
   \[
-    (\neg (\forall_{n:\mathbb N} \alpha_n= 0)) \to \Sigma_{n:\mathbb N} \alpha_n= 1
+    (\neg (\forall_{n:\mathbb N}\, \alpha_n= 0)) \to \Sigma_{n:\mathbb N}\, \alpha_n= 1
   \]
 \end{corollary}
 \begin{proof}
@@ -73,10 +70,10 @@ and one (WLPO) fails in our system.
 \end{proof}
 
 \begin{theorem}[The lesser limited principle of omniscience (LLPO)]\label{LLPO}
-  For $\alpha:\N_\infty$, 
-  we have: 
+  For all $\alpha:\N_\infty$, 
+  we have that
   \[\label{eqnLLPO}
-    \forall_{k:\N} \alpha_{2k} = 0  \vee \forall_{k:\N} \alpha_{2k+1} = 0
+    (\forall_{k:\N}\, \alpha_{2k} = 0)  \vee (\forall_{k:\N}\, \alpha_{2k+1} = 0)
   \]
 \end{theorem}
 \begin{proof}
@@ -85,14 +82,14 @@ and one (WLPO) fails in our system.
 %  Because of \Cref{rmkMorphismsOutOfQuotient}, it is sufficient to define $f$ on $(p_n)_{n:\N}$ with 
 %  $f(p_n) \wedge f(p_m) = (0,0)$ for $n\neq m$. 
 %  To define $f(p_n)$, we use a case distinction on whether $n$ is odd or even. 
-  Define $f:B_\infty \to B_\infty \times B_\infty$ on generators as follows:
+  Define $f:B_\infty \to B_\infty \times B_\infty$ on generators as follows
   \[\label{eqnLLPOProofMap}
     f(g_n) =\begin{cases}
       (g_k,0) \text{ if } n = 2k\\
       (0,g_k) \text{ if } n = 2k+1\\
     \end{cases}
   \]
-  Note that $f$ is well-defined as map in $\Boole$ as 
+  Note that $f$ is a well-defined morphism in $\Boole$ as 
   $f(g_n) \wedge f(g_m) = 0$ whenever $m\neq n$. 
  % , can make a case distinction on parity. 
 %  By making a case distinction on $n,m$ being odd or even, 
@@ -117,21 +114,20 @@ and one (WLPO) fails in our system.
 %  In both cases, we conclude $x=0$, thus $f$ is injective. 
   By \Cref{SurjectionsAreFormalSurjections},
 %  \Cref{FormalSurjectionsAreSurjections}, 
-  $f$ corresponds to a surjection 
+  we have that $f$ corresponds to a surjection 
   $s:\Noo + \Noo \to \Noo$.
   Thus for $\alpha : \Noo$, 
   there exists some $x:\Noo + \Noo$ such that $s(x) = \alpha$. 
-  If $x = inl(\beta)$, 
-  for any $k:\N$, we have that 
-\[\alpha_{2k+1} = s(x)_{2k+1} = x(f(g_{2k+1})) = inl(\beta) (0,g_k)  = \beta(0) = 0.\]
-  Similarly, if $x = inr(\beta)$, we have $\alpha_{2k} = 0$ for all $k:\N$. 
+  If $x = \mathrm{inl}(\beta)$, 
+  then for any $k:\N$ we have that 
+\[\alpha_{2k+1} = s(x)_{2k+1} = x(f(g_{2k+1})) = \mathrm{inl}(\beta) (0,g_k)  = \beta(0) = 0.\]
+  Similarly, if $x = \mathrm{inr}(\beta)$, we have that $\alpha_{2k} = 0$ for all $k:\N$. 
   %Thus \Cref{eqnLLPO} holds for $\alpha$.% as required. 
 \end{proof}
 %As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was non-trivial: 
 %The use of \Cref{FormalSurjectionsAreSurjections}, and hence of propositional completeness, 
 %was helpful in the above proof, as the following shows:
-The surjection $s:\Noo + \Noo \to \Noo$ as above does not have a section 
-as the following shows:
+The surjection $s:\Noo + \Noo \to \Noo$ above does not have a section. Indeed:
 \begin{lemma}
   The function $f$ defined above does not have a retraction. 
 \end{lemma}
@@ -145,10 +141,9 @@ as the following shows:
   %$r(0,1)$ corresponds to a cofinite subset of $\N$. % = \bigwedge_{i:I_0} \neg p_i$, where $i\leq N$ for $i\in I_0$. 
   By similar reasoning so is $r(1,0)$. % corresponds to a cofinite subset of $\N$. 
 %  But the intersection of cofinite subsets is cofinite, while 
-  But this contradicts:
+  But this contradicts
   \[r(0,1) \wedge r(1,0) = r( (1,0) \wedge (0,1)) = r(0,0) = 0.\]
-%  which gives a contradiction. 
-  Thus no retraction exists. 
+  This is a contradiction.
 \end{proof}
 
 
