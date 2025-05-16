@@ -1,0 +1,93 @@
+%In this section, we will introduce the basic rules we'll use in this paper. 
+%We will first state our axioms, and then draw out some first consequences.
+%Most notably, 
+%we will see that Markov's principle (\Cref{MarkovPrinciple}) and the 
+%lesser limited principle of omniscience (\Cref{LLPO}) can be shown. 
+%%There are equivalent axiom systems we could have stated instead, which we discuss in \Cref{NotesOnAxioms}.
+\subsection{Axioms}\label{Axioms}
+%In this section, we will state our axioms. 
+%In \Cref{NotesOnAxioms}, we will discuss alternative versions of our axiom system. 
+\begin{axiom}[Stone duality]\label{AxStoneDuality}
+  For all $B:\Boole$, 
+  the evaluation map $B\rightarrow  2^{\Sp(B)}$ is an isomorphism.
+\end{axiom} 
+
+%\begin{axiom}[Propositional completeness]
+%  For $S:\Stone$, we have that $\neg \neg S \leftrightarrow || S ||$
+%\end{axiom}
+
+\begin{axiom}[Surjections are formal surjections]\label{SurjectionsAreFormalSurjections}
+  For all morphism $g:B\to C$ in $\Boole$, we have that $g$ is injective if and only if
+  $(-)\circ g: \Sp(C) \to \Sp(B)$ is surjective. 
+%  A map $f:\Sp(B')\to \Sp(B)$ is surjective iff the corresponding map $B \to B'$ is injective.
+\end{axiom} 
+%
+%\begin{lemma}\label{LemSurjectionsFormalToCompleteness}
+% For $S:\Stone$, we have that $\neg \neg S \to || S ||$
+%\end{lemma}
+%\begin{proof}
+%  First, assume that surjections are formal surjections. 
+%  Let $B:\Boole$ and suppose $\neg \neg \Sp(B)$. 
+%  %Note that if $0=1$ in $B$, then $\Sp(B) =\emptyset$, meaning $\neg \Sp(B)$. 
+%  %Therefore, we have $0\neq 1$ in $B$. 
+%  We will show that the map $f:2\to B$ is injective. 
+%  Let $f:2 \to B$, note that if $f(0) = f(1)$ then $0=1$ in $B$, 
+%  If $0=1$ in $B$, there are no maps $B\to 2$ preserving $0$ and $1$, thus $\neg \Sp(B)$. 
+%  This is a contradiction with $\neg \neg \Sp(B)$. Thus we may conclude that $f(0)\neq f(1)$. 
+%  Hence by case distinction on $2$ we can show $f$ we have that $f x = f y$ implies $ x= y$. Thus 
+%  $f$ is injective thus the map $\Sp(B) \to \Sp(2) = 1$ is surjective, thus $\Sp(B)$ is merely inhabited. 
+%\end{proof} 
+%Actually, we will see in \Cref{CorDoubleNegToAx2} that the converse is also true. 
+
+%\begin{axiom}[Local choice]
+%  Whenever $S$ Stone and $E\twoheadrightarrow S$ surjective, then there is some $T$ Stone,
+%    a surjection $T \twoheadrightarrow S$ and a map $T\to E$ 
+%    such that the following diagram commutes:
+%    \begin{equation}\begin{tikzcd}
+%      E \arrow[d,""',two heads]\\
+%      S & \arrow[l, "", two heads, dashed] T\arrow[lu, ""',dashed ]
+%    \end{tikzcd}\end{equation}  
+%\end{axiom} 
+%\begin{axiom}[Local choice]\label{AxLocalChoice}
+%  Whenever we have $S:\Stone$, $E,F$ arbitrary types, a map $f:S \to F$ and a 
+%  surjection $e:E \twoheadrightarrow F$, 
+%  there exists a Stone space $T$, a surjective map 
+%  $T\twoheadrightarrow S$ and an arrow $T\to E$ making the following diagram commute:
+%    \begin{equation}\begin{tikzcd}
+%      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+%      S  \arrow[r, "f"] & F
+%    \end{tikzcd}\end{equation}  
+%\end{axiom}
+
+%\begin{axiom}[Local choice]\label{AxLocalChoice}
+%  Whenever we have $S:\Stone$, $X$ an arbitrary type and a predicate $P:S \times X \to \Prop$, 
+%  such that $\forall_{s:S} \exists_{x:X} P(s,x)$, then there merely exists some $T:\Stone$ with surjection 
+%  $q:T\twoheadrightarrow S$ and a function $\Pi_{t:T} \Sigma_{x:X} P(q(t), x)$. 
+%\end{axiom}
+%\begin{axiom}[Local choice]\label{AxLocalChoice}
+%  Whenever we have $S:\Stone$, and some type family $P:S\to\Type$ such that 
+%  $\Pi_{s:S} ||P s||$, then there 
+%  merely exists some $T:\Stone$ and surjection $q:T\to S$ with 
+%$  \Pi_{t:T} P(q(t))$.
+%\end{axiom}
+\begin{axiom}[Local choice]\label{AxLocalChoice}
+  For all $B:\Boole$ and type family $P$ over $\Sp(B)$ such that 
+  $\Pi_{s:\Sp(B)} \propTrunc{P(s)}$, there 
+  merely exists some $C:\Boole$ and surjection $q:\Sp(C)\to \Sp(B)$ such that 
+ $\Pi_{t:\Sp(C)} P(q(t))$.
+\end{axiom}
+
+\begin{axiom}[Dependent choice]\label{axDependentChoice}
+For all types $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$ for all $n:\N$, the projection from the sequential limit $\lim_kE_k$ to $E_0$ is surjective.
+\end{axiom}
+%\begin{remark}
+%  Local choice can also be formulated as follows:
+%  whenever we have $S:\Stone$, $E,F$ arbitrary types, a map $f:S \to F$ and a 
+%  surjection $e:E \twoheadrightarrow F$, 
+%  there exists a Stone space $T$, a surjective map 
+%  $T\twoheadrightarrow S$ and an arrow $T\to E$ making the following diagram commute:
+%    \begin{equation}\begin{tikzcd}
+%      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+%      S  \arrow[r, "f"] & F
+%    \end{tikzcd}\end{equation}  
+%\end{remark}

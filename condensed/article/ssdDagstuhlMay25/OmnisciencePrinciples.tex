@@ -1,0 +1,192 @@
+\subsection{Principles of omniscience}
+The so-called principles of omniscience are all weaker than the law of excluded middle (LEM), and help measure how close a logical system is to satisfying LEM \cite{HannesDiener, ReverseMathsBishop}.
+In this section, we will show that two such principles hold (MP and LLPO), 
+and that another one fails (WLPO).
+
+\begin{theorem}[The negation of the weak lesser principle of omniscience ($\neg$WLPO)]\label{NotWLPO}
+  \[
+    \neg \forall_{\alpha:2^\N} 
+    ((\forall_{n:\N}\, \alpha_n = 0 ) \vee \neg (\forall_{n:\N}\, \alpha_n = 0))
+  \]
+%  We cannot decide for general $\alpha:2^\N$, whether $\forall_{n:\mathbb N} \alpha(n) = 0$.
+%  It is not the case that the statement %There is no method which given $\alpha:2^\mathbb N$ decides whether 
+%  $\forall_{n:\mathbb N} \alpha(n) = 0$ is decidable for general $\alpha:2^\mathbb N$. 
+\end{theorem}
+\begin{proof}
+%  Such a decision method is a function 
+  We will prove that any decidable property of binary sequences is determined by a finite prefix of fixed length, contradicting $\forall_{n:\N}\, \alpha_n=0$ being decidable for all $\alpha$. 
+  Indeed assume $f:2^\mathbb N \to 2$ such that 
+  $f(\alpha) = 0$ if and only if $\forall_{n:\mathbb N}\ \alpha_n= 0$. 
+  By \Cref{AxStoneDuality}, there is some $c:2[\N]$ with 
+  $f(\alpha) = 0$ if and only if $\alpha(c) = 0$. 
+  There exists $k:\N$ such that $c$ is expressed in terms of the generators $(g_n)_{n\leq k}$. 
+  Now consider $\beta,\gamma:2^\N$ given by 
+  $\beta(g_n) = 0$ for all $n:\mathbb N$ and
+  $\gamma(g_n) = 0$ if and only if $n\leq k$. 
+  As $\beta$ and $\gamma$ are equal on $(g_n)_{n\leq k}$, we have $\beta(c) = \gamma(c)$. 
+  However, $f(\beta) = 0$ and $f(\gamma) = 1$, giving a contradiction. 
+%  We thus have a contradiction, thus a decision method as required doesn't exist. 
+\end{proof}
+
+\begin{theorem}
+  For all $\alpha:\Noo$, we have that 
+  \[
+    (\neg (\forall_{n:\mathbb N}\, \alpha_n= 0)) \to \Sigma_{n:\mathbb N}\, \alpha_n= 1
+  \]
+\end{theorem}
+\begin{proof}
+  By \Cref{ClosedPropAsSpectrum}, we have that $\neg(\forall_{n:\N}\, \alpha_n = 0)$ implies that 
+  $\Sp(2/(\alpha_n)_{n:\N})$ is empty. 
+%  We will show that the spectrum of $2/(\alpha(n))_{n:\N}$ is empty. 
+%  Suppose $x:2\to 2$, if  $x(\alpha(n)) = 0$, we get $\alpha(n) \neq 1$. 
+%  Thus if $\neg (\forall_{n:\N} \alpha(n) = 0$, we have $\neg \Sp(2/(\alpha(n))_{n:\N})$.
+  Hence $2/(\alpha_n)_{n:\N}$ is trivial by \Cref{SpectrumEmptyIff01Equal}. 
+  Then there exists $k:\N$ such that $\bigvee_{i\leq k} \alpha_i = 1$. 
+  As $\alpha_i = 1$ for at most one $i:\N$, 
+  there exists a unique $n:\mathbb N$ with $\alpha_n = 1$. 
+%  Assume $\neg (\forall_{n:\mathbb N} \alpha (n)= 0)$.
+%  It is sufficient to show that $2/\{\alpha(n)|n\in\N\}$ is the trivial Boolean algebra. 
+%  It will then follow that there is a finite subset $N_0\subseteq \N$ 
+%  with $\bigvee_{i:N_0} \alpha(i) = 1$.
+%  As $\alpha(i) \in \{0,1\}$ and $\alpha(i) = 1$ for at most one $i$, it then follows that 
+%  there exists an unique $n\in\mathbb N$ with $\alpha(n) = 1$. 
+%%
+%  To show that $2/\{\alpha(n)|n\in\N\}$ is trivial, we will show it has an empty spectrum. 
+%  Suppose $x: 2 \to 2$ is such that $x(\alpha(n)) = 0$ for every $n:\N$. 
+%  As $x(1) = 1$, we must have for every $n:\N$ that $\alpha(n) \neq 1$. 
+%  But then $\alpha(n) = 0$, contradicting our assumption. 
+%  We get a contradicition and there thus there are no points in the spectrum of $2/\{\alpha(n)|n\in\N\}$ as required. 
+\end{proof}
+
+\begin{corollary}[Markov's principle (MP)]\label{MarkovPrinciple}
+  For all $\alpha:2^\mathbb N$, we have that 
+  \[
+    (\neg (\forall_{n:\mathbb N}\, \alpha_n= 0)) \to \Sigma_{n:\mathbb N}\, \alpha_n= 1
+  \]
+\end{corollary}
+\begin{proof}
+  Given $\alpha:2^\mathbb N$, consider the sequence $\alpha':\Noo$ satisfying $\alpha'_n = 1$ if and only if
+  $n$ is minimal with $\alpha_n = 1$. Then apply the above theorem.
+\end{proof}
+
+\begin{theorem}[The lesser limited principle of omniscience (LLPO)]\label{LLPO}
+  For all $\alpha:\N_\infty$, 
+  we have that
+  \[\label{eqnLLPO}
+    (\forall_{k:\N}\, \alpha_{2k} = 0)  \vee (\forall_{k:\N}\, \alpha_{2k+1} = 0)
+  \]
+\end{theorem}
+\begin{proof}
+%
+%  We first will define a map $f:B_\infty \to B_\infty \times B_\infty$. 
+%  Because of \Cref{rmkMorphismsOutOfQuotient}, it is sufficient to define $f$ on $(p_n)_{n:\N}$ with 
+%  $f(p_n) \wedge f(p_m) = (0,0)$ for $n\neq m$. 
+%  To define $f(p_n)$, we use a case distinction on whether $n$ is odd or even. 
+  Define $f:B_\infty \to B_\infty \times B_\infty$ on generators as follows
+  \[\label{eqnLLPOProofMap}
+    f(g_n) =\begin{cases}
+      (g_k,0) \text{ if } n = 2k\\
+      (0,g_k) \text{ if } n = 2k+1\\
+    \end{cases}
+  \]
+  Note that $f$ is a well-defined morphism in $\Boole$ as 
+  $f(g_n) \wedge f(g_m) = 0$ whenever $m\neq n$. 
+ % , can make a case distinction on parity. 
+%  By making a case distinction on $n,m$ being odd or even, 
+%  we can see that 
+%  $f(p_n) \wedge f(p_m) = (0,0)$ when $n\neq m$, thus $f$ is well-defined. 
+  We claim that $f$ is injective. 
+  If $I\subseteq \N$, write 
+  $ I_0 =\{k\ |\ 2k \in I\}, 
+    I_1 =\{k\ |\ 2k+1 \in I\}
+  $.
+  Recall that any $x:B_\infty$ is of the form 
+  $\bigvee_{i\in I} g_i$ or $\bigwedge_{i\in I} \neg g_i$ for some finite set $I$. 
+  \begin{itemize}
+    \item If $x = \bigvee_{i\in I} g_i$, then 
+      $f(x) = (\bigvee_{i\in I_0}g_{i}, \bigvee_{i\in I_1}g_i)$. 
+      So if $f(x) = 0$, then $I_0=I_1 = I = \emptyset$ and $x = 0$. 
+    \item Suppose 
+      $x = \bigwedge_{i\in I} \neg g_i$.
+      Then $f(x) = (\bigwedge_{i\in I_0} \neg g_i, \bigwedge_{i\in I_1} \neg g_i)$, 
+      so $f(x) \neq 0$. 
+  \end{itemize}
+%  In both cases, we conclude $x=0$, thus $f$ is injective. 
+  By \Cref{SurjectionsAreFormalSurjections},
+%  \Cref{FormalSurjectionsAreSurjections}, 
+  we have that $f$ corresponds to a surjection 
+  $s:\Noo + \Noo \to \Noo$.
+  Thus for $\alpha : \Noo$, 
+  there exists some $x:\Noo + \Noo$ such that $s(x) = \alpha$. 
+  If $x = \mathrm{inl}(\beta)$, 
+  then for any $k:\N$ we have that 
+\[\alpha_{2k+1} = s(x)_{2k+1} = x(f(g_{2k+1})) = \mathrm{inl}(\beta) (0,g_k)  = \beta(0) = 0.\]
+  Similarly, if $x = \mathrm{inr}(\beta)$, we have that $\alpha_{2k} = 0$ for all $k:\N$. 
+  %Thus \Cref{eqnLLPO} holds for $\alpha$.% as required. 
+\end{proof}
+%As the following shows, our use of \Cref{SurjectionsAreFormalSurjections} was non-trivial: 
+%The use of \Cref{FormalSurjectionsAreSurjections}, and hence of propositional completeness, 
+%was helpful in the above proof, as the following shows:
+The surjection $s:\Noo + \Noo \to \Noo$ above does not have a section. Indeed:
+\begin{lemma}
+  The function $f$ defined above does not have a retraction. 
+\end{lemma}
+\begin{proof}
+  Suppose $r:B_\infty \times B_\infty \to B_\infty$ is a retraction of $f$. 
+  Then $r(0,g_k) = g_{2k+1}$ and $r(g_k,0) = g_{2k}$. 
+  %Note that $r(0,1):B_\infty$ is expressible using only finitely many generators $(g_n)_{n\leq N}$.
+  Note that $r(0,1) \geq r(0,g_k) = g_{2k+1}$ for all $k:\N$. 
+  As a consequence, $r(0,1)$ is of the form $\bigwedge_{i\in I} \neg g_i$ for some finite set $I$.
+  %, and by \Cref{BinftyTermsWriting}, 
+  %$r(0,1)$ corresponds to a cofinite subset of $\N$. % = \bigwedge_{i:I_0} \neg p_i$, where $i\leq N$ for $i\in I_0$. 
+  By similar reasoning so is $r(1,0)$. % corresponds to a cofinite subset of $\N$. 
+%  But the intersection of cofinite subsets is cofinite, while 
+  But then %this contradicts
+  \[r(0,1) \wedge r(1,0) = r( (1,0) \wedge (0,1)) = r(0,0) = 0.\]
+  This is a contradiction.
+\end{proof}
+
+
+%We finish with an equivalent formulation of LLPO:
+%
+%
+%\begin{lemma}\label{corAlternativeLLPO}
+%  Let $(\phi_n)_{n:\N}, (\psi_m)_{m:\N}$ be families of decidable propositions indexed over $\N$.
+%  We then have 
+%  \begin{equation}
+%    (\forall_{n:\N} \forall_{m:\N} (\phi_n \vee \psi_m) )
+%    \leftrightarrow
+%    ((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )
+%  \end{equation}
+%\end{lemma}
+%\begin{proof}
+%  See \cite{HannesDiener, ReverseMathsBishop}
+%\end{proof}
+%\begin{proof}
+%  Note that the implication from right to left in the above equation always holds.
+%  Assume that for all $m,n:\mathbb N$ we have $\phi_n\vee \psi_m$ 
+%  Consider the sequence $\alpha:2^\mathbb N$ where $\alpha(2n) = 0$ iff $\phi_n$ and 
+%  $\alpha(2m+1) = 0$ iff $\psi_m$. 
+%  Let $\beta:\Noo$ be such that $\beta(i) = 1$ iff $i$ is minimal with $\alpha(i) = 1$
+%  By LLPO, we have that 
+%  $\beta$ is $0$ on all odd entries or on all even entries. 
+%  Suppose that $\beta$ hits $0$ on all odd entries. 
+%  We will show $\psi_m$ for all $m:\N$. 
+%  As $\beta(2m+1) = 0$, there are two options:
+%  \begin{itemize}
+%    	\item If $\alpha(l)=0$ for all $l\leq 2m+1$. Then in particular $\alpha(2m+1)=0$ and $\psi_m$ holds.
+%	\item Otherwise there is some $l<2m+1$ with $\beta(l) = 1$. 
+%  As $\beta$ hits $0$ on odd entries, $l$ is even. 
+%  So $\alpha(2n) = 1$ for $n = \frac{l}2$, meaning that $\neg \phi_n$. 
+%  By assumption, $\phi_n \vee \psi_m$ holds, hence $\psi_m$ must hold. 
+%  Thus for all $m:\N$, we have $\psi_m$ if $\beta$ hits $0$ on all odd entries. 
+%  By a symmetric argument, if $\beta$ hits $0$ on all even entries, we have $\phi_n$ for all $n:\N$. 
+%  We conclude that 
+%  $((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )$ 
+%  as required. 
+%  \end{itemize}
+%\end{proof}
+%
+%\begin{remark}
+%Note that the above statement implies LLPO as $\alpha(2n) =0 \vee \alpha(2m+1) =0$ for all $n,m:\mathbb N$ if $\alpha:\Noo$. 
+%\end{remark}

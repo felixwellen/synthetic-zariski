@@ -1,0 +1,212 @@
+%In this section, we will define the types of open and closed propositions. 
+%These will allow us to define a (synthetic) topology  \cite{SyntheticTopologyLesnik} on any type.
+%We will study this topology on Stone types in particular.
+%
+\subsection{Open and closed propositions}
+Open (resp. closed) propositions are defined as countable disjunctions (resp. conjunctions) of decidable propositions.
+In this section we will study their logical properties.
+
+\begin{definition}
+A proposition $P$ is open (resp. closed) if there exists some $\alpha:2^\N$ such that $P \leftrightarrow \exists_{n:\mathbb N} \alpha_n = 0$ (resp. $P \leftrightarrow \forall_{n:\mathbb N} \alpha_n = 0$). We denote by $\Open$ and $\Closed$ the types of open and closed propositions.
+\end{definition}
+
+\begin{remark}\label{rmkOpenClosedNegation}
+  The negation of an open proposition is closed, 
+  and by MP (\Cref{MarkovPrinciple}), the negation of a closed proposition is open. %. 
+%  Also by MP, we have 
+  Moreover both open and closed propositions are $\neg\neg$-stable. 
+%  and $\neg \neg P \to P$ whenever $P$ is open or closed. 
+%  By the negation of WLPO (\Cref{NotWLPO}), 
+  By $\neg$WLPO (\Cref{NotWLPO}), 
+  not every closed proposition is decidable. 
+  Therefore, not every open proposition is decidable. 
+  % Both therefore and similarly can be used here, by a similar proof we can show it, or we can use that 
+  % if $P$ is closed and $\neg P$ is decidable, so is $\neg \neg P = P$. 
+  Every decidable proposition is both open and closed.
+%  and in \Cref{ClopenDecidable} we shall see the converse. 
+\end{remark}
+\begin{lemma}
+  We have the following:
+  \begin{itemize}
+%    \item Closed propositions are closed under finite disjunctions. 
+    \item Closed propositions are stable under countable conjunctions and finite disjunctions. 
+    \item Open propositions are stable under countable disjunctions and finite conjunctions. 
+  \end{itemize}
+\end{lemma}
+\begin{proof}
+%  By Proposition 1.4.1 of \cite{HannesDiener}, LLPO (\Cref{LLPO}) is equivalent to the statement that 
+%  the disjunction of two closed propositions are closed. 
+  All statements but the one about finite disjunctions have similar proofs, so we only present the proof that closed propositions are stable under countable conjunctions. 
+  Let $(P_n)_{n:\N}$ be a countable family of closed propositions. 
+  By countable choice, for each 
+  $n:\N$ we have an $\alpha_n:2^\N$ 
+  such that $P_n \leftrightarrow \forall_{m:\N}\, \alpha_{n,m} =0$. 
+  Consider a surjection $s:\N \twoheadrightarrow \N \times \N$, and let 
+%  Let 
+%  $$\beta_k = \alpha_{s(k)}.$$
+  $\beta_k = \alpha_{s(k)}.$
+  Note that $\forall_{k:\N}\, \beta_k = 0$ if and only if 
+%  $\forall_{m,n:\N}\alpha_{m,n} = 0$, which happens if and only if 
+  $\forall_{n:\N} P_n$. 
+%  Hence the countable conjunction of closed propositions is closed. 
+
+To prove that closed propositions are closed under finite disjunctions, we use the known fact that LLPO (\Cref{LLPO}) is equivalent to the statement that for $P$ and $Q$ open, we have that $(\neg P \vee \neg Q) \leftrightarrow \neg (P\wedge Q)$. We conclude using that closed propositions are negations of open propositions, and that the conjunction of two open propositions is open.
+\end{proof}
+
+From now on we will use the above properties silently. 
+%OneBigLemma#
+%OneBigLemma#\rednote{Phrase the following lemmas as one big lemma, 
+%OneBigLemma#and use them silently without reference, also we should just state $\neg\neg$-stability instead of referring to the above all the time. }
+%OneBigLemma#
+%OneBigLemma#\begin{lemma}\label{ClosedCountableConjunction}
+%OneBigLemma#  Closed propositions are closed under countable conjunctions.
+%OneBigLemma#\end{lemma}
+%OneBigLemma#\begin{proof}
+%OneBigLemma#  Let $(P_n)_{n:\N}$ be a countable family of closed propositions. 
+%OneBigLemma#  By countable choice, for each 
+%OneBigLemma#  $n:\N$ we have an $\alpha_n:2^\N $ 
+%OneBigLemma#  such that $P_n \leftrightarrow \forall_{m:\N} \alpha_{n,m} =0$. 
+%OneBigLemma#  Consider a surjection $s:\N \twoheadrightarrow \N \times \N$, and let 
+%OneBigLemma#%  Let 
+%OneBigLemma#%  $$\beta_k = \alpha_{s(k)}.$$
+%OneBigLemma#  $\beta_k = \alpha_{s(k)}.$
+%OneBigLemma#  Note that $\forall_{k:\N} \beta_k = 0$ if and only if 
+%OneBigLemma#%  $\forall_{m,n:\N}\alpha_{m,n} = 0$, which happens if and only if 
+%OneBigLemma#  $\forall_{n:\N} P_n$. 
+%OneBigLemma#  Hence the countable conjunction of closed propositions is closed. 
+%OneBigLemma#\end{proof} 
+%OneBigLemma#Using similar arguments, we can show the following two lemmas:
+%OneBigLemma#\begin{lemma}\label{OpenCountableDisjunction}
+%OneBigLemma#  Open propositions are closed under countable disjunctions. 
+%OneBigLemma#\end{lemma}
+%OneBigLemma#\begin{lemma}\label{OpenFiniteConjunction}
+%OneBigLemma#Open propositions are closed under finite conjunctions. 
+%OneBigLemma#\end{lemma}
+%OneBigLemma#%\begin{proof}
+%OneBigLemma#%We use \Cref{ClosedFiniteDisjunction} and the fact that $\neg(P\lor Q) \leftrightarrow \neg P \land \neg Q$.
+%OneBigLemma#%\end{proof}
+%OneBigLemma#%\begin{proof}
+%OneBigLemma#%  Similar to the previous lemma. 
+%OneBigLemma#%\end{proof}
+%OneBigLemma#\begin{lemma}\label{ClosedFiniteDisjunction} 
+%OneBigLemma#  Closed propositions are closed under finite disjunctions. 
+%OneBigLemma#\end{lemma}
+%OneBigLemma#\begin{proof}
+%OneBigLemma#  This statement is equivalent to LLPO (\Cref{LLPO}) by  
+%OneBigLemma#  Proposition 1.4.1 of \cite{HannesDiener}. 
+%OneBigLemma#%  , LLPO is equivalent to the statement that 
+%OneBigLemma#%  for $(\phi_n)_{n:\N}, (\psi_m)_{m:\N}$ families of decidable propositions indexed over $\N$, we have
+%OneBigLemma#%  \begin{equation}
+%OneBigLemma#%    (\forall_{n:\N} \forall_{m:\N} (\phi_n \vee \psi_m) )
+%OneBigLemma#%    \leftrightarrow
+%OneBigLemma#%    ((\forall_{n:\N} \phi_n) \vee (\forall_{m:\N} \psi_m) )
+%OneBigLemma#%  \end{equation}
+%OneBigLemma#%%  $(\forall_{n:\N} \alpha(n) = 0 )\vee (\forall_{n:\N} \beta(n) = 0 )$ is closed for any $\alpha,\beta:2^\N$.
+%OneBigLemma#%%  By \Cref{corAlternativeLLPO}, the statement is equivalent to 
+%OneBigLemma#%%  $ \forall_{n:\N}  \forall_{m:\N}  (\alpha(n) = 0 \vee \beta(m) = 0)$, 
+%OneBigLemma#%  The latter which is a countable conjunction of decidable propositions, 
+%OneBigLemma#%  hence closed by \Cref{ClosedCountableConjunction}.
+%OneBigLemma#\end{proof}
+%OneBigLemma#
+\begin{corollary}\label{ClopenDecidable}
+  If a proposition is both open and closed, then it is decidable. 
+\end{corollary}
+\begin{proof}
+  If $P$ is open and closed, then 
+  $P\vee \neg P$ is open. So it is $\neg\neg$-stable and we conclude from $\neg\neg(P\vee\neg P)$. 
+%  and we conclude by $\neg\neg$-stability of open propositions. 
+%  but open propositions are $\neg\neg$-stable by \Cref{rmkOpenClosedNegation} so we can conclude.
+%  hence 
+ % equivalent to $\neg \neg (P \vee \neg P)$ by \Cref{rmkOpenClosedNegation}.
+ % As the latter proposition is provable, we may conclude $P$ is decidable. 
+%  
+%  If $P$ is open and closed, $P\vee \neg P$ is open, hence
+%  equivalent to $\neg \neg (P \vee \neg P)$, which is provable. 
+\end{proof}
+
+
+%\begin{lemma}\label{OpenFiniteConjunction}
+%  Open propositions are closed under finite conjunctions. 
+%\end{lemma}
+%\begin{proof}
+%  We need to show that for any $\alpha,\beta:2^\N$, the following proposition is open:
+%  \begin{equation}\label{eqnConjunctionOpen}
+%    (\exists_{n:\N} \alpha(n) = 0 )\wedge(\exists_{n:\N} \beta(n) = 0 )
+%  \end{equation}
+%  Consider $\gamma:2^\N$ given by 
+%  $\gamma(l) = 1$ iff there exist some $k,k'\leq l$ with 
+%  $\alpha(k) = \beta(k') = 0$. 
+%  As we only need to check finitely many combinations 
+%  of $k,k'$, this is a decidable property for each $l:\N$ and $\gamma$ is well-defined. 
+%  Then $\exists_{k:\N}\gamma(k)=0$ if and only if \Cref{eqnConjunctionOpen} holds.
+%\end{proof}
+
+\begin{lemma}\label{ClosedMarkov}
+  For $(P_n)_{n:\N}$ a sequence of closed propositions, we have 
+  $\neg \forall_{n:\N} P_n \leftrightarrow  \exists_{n:\N} \neg P_n$. 
+\end{lemma}
+\begin{proof}
+  Both $\neg \forall_{n:\N} P_n$ and $\exists_{n:\N} \neg P_n$ are open, hence $\neg\neg$-stable.
+  The equivalence follows. 
+%  and the equivalence follows. 
+%  from which the equivalence follows. 
+%  We have that $\forall_{n:\N}P_n$ is closed and $\exists_{n:\N} \neg P_n$ is open by \Cref{OpenCountableDisjunction}, therefore both are $\neg\neg$-stable by \Cref{rmkOpenClosedNegation} and we can conclude.
+%It is always the case that $\exists_{n:\N}\neg P_n \to \neg \forall_{n:\N} P_n$. 
+  %For the converse direction,
+  %note that $\neg \exists_{n:\N} \neg P_n(x) \to \forall_{n:\N} \neg \neg P_n(x).$
+  %By \Cref{rmkOpenClosedNegation}, $\neg \neg  P_n(x)\leftrightarrow P_n(x)$ for all $n:\N$. 
+  %It follows that 
+  %$\neg \forall_{n:\N} P_n(x)\to 
+  %\neg \neg \exists_{n:\N} \neg P_n(x).$
+  %As $\exists_{n:\N}\neg P_n(x)$ is a countable disjunction of open propositions, 
+  %it is open by \Cref{OpenCountableDisjunction} and thus equivalent to 
+  %$\neg\neg\exists_{n:\N} \neg P_n(x)$ by \Cref{rmkOpenClosedNegation}.
+  %We conclude that $\neg \forall_{n:\N} P_n \to \exists_{n:\N} \neg P_n$ as required. 
+\end{proof} 
+
+%\begin{lemma}\label{OpenDependentSums}
+%  Open propositions are closed under dependent sums.
+%\end{lemma}
+%\begin{proof}
+%  \rednote{If we show that Open propositions are exactly the overtly discrete ones, this is implied by $\Sigma$-closure}
+%  First note that for $D$ a decidable proposition, and $X:D \to \Open$,
+%  by case splitting on $D$, we can see 
+%  $\Sigma_{d:D} X(d)$ is open.
+%%
+%  Then note that for $P$ an open proposition, 
+%  there exists a sequence of decidable propositions $A_n$ with 
+%  $P = \exists_{n:\N} A_n $.
+%%
+%  So for $Y : P \to Open $, the dependent sum $\Sigma_P Y$ is given by 
+%  $\exists_{n:\N} (\Sigma_{a:A_n} Y(n,a))$,
+%  which is a countable disjunction of open propositions, 
+%  hence open by \Cref{OpenCountableDisjunction}.
+%\end{proof}
+%
+%We will see the same holds for closed propositions in \Cref{ClosedDependentSums}.
+%
+%\begin{remark}\label{ImplicationOpenClosed}
+%  If $P$ is open, $P \to \bot$ is only open if $P$ is decidable, which is not in general the case. 
+%  Thus $\Open$ is not closed under dependent products. Neither is $\Closed$. 
+%  However, as $(P\to Q)  \to \neg \neg (\neg P \vee Q)$,
+%  we have that if $P$ is open and $Q$ is closed, then $P\to Q$ is closed, and similarly $Q\to P$ is open.
+%\end{remark}
+\begin{lemma}\label{ImplicationOpenClosed}
+  If $P$ is open and $Q$ is closed then $P\to Q$ is closed.
+  If $P$ is closed and $Q$ open, then $P\to Q$ is open. 
+\end{lemma}
+\begin{proof}
+  Note that $\neg P \vee Q$ is closed. Using $\neg\neg$-stability
+  we conclude that $(P\to Q) \leftrightarrow (\neg P \vee Q)$. 
+  The other proof is similar. 
+%  and we conclude by 
+%  Assume $P$ open and $Q$ closed, the other proof is similar. 
+%  Note that $(\neg P \vee Q) \to (P \to Q)$ and 
+%  $(P\to Q)\to \neg\neg(\neg P \vee Q)$. 
+%  By \Cref{rmkOpenClosedNegation} it follows that 
+%  $(\neg P \vee Q)\leftrightarrow (P \to Q)$, and using \Cref{ClosedFiniteDisjunction}, 
+%  we can conclude that $P\to Q$ is closed. 
+\end{proof}
+%
+%The following question was asked by Bas Spitters at TYPES 2024:
+

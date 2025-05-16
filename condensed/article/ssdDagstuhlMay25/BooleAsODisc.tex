@@ -1,0 +1,97 @@
+\subsection{Relating $\ODisc$ and $\Boole$}
+\begin{lemma}\label{BooleIsODisc}
+  Every countably presented Boolean algebra is a sequential colimit of finite Boolean algebras. 
+\end{lemma}
+\begin{proof}
+  Consider a countably presented Boolean algebra of the form $B = 2[\N]/(r_n)_{n:\N}$. 
+%  We will show there exists a diagram of shape $\N$ taking values in Boolean algebras 
+%  with $B$ as colimit.
+%  \paragraph{The diagram}
+  For each $n:\N$, let $G_n$ be the union of $\{g_i\ |\ {i\leq n}\}$ and 
+  the finite set of generators occurring in $r_i$ for some $i\leq n$. 
+  Denote $B_n = 2[G_n]/(r_i)_{i\leq n}$. 
+  Each $B_n$ is a finite Boolean algebra, and there are canonical maps $B_n \to B_{n+1}$.
+%  The inclusion $G_n \hookrightarrow G_{n+1}$ induces maps $B_n \to B_{n+1}$.
+%  Hence $B_n,~n:\N$ is an $(\N,\leq)$-indexed sequence of finite sets. 
+  Then $B$ is the colimit of this sequence. 
+%
+%  \paragraph{The colimit}
+%  As $G_n\subseteq G$ and $R_n \subseteq R$, 
+%  \Cref{rmkMorphismsOutOfQuotient} also gives us a map $B_n\to \langle G \rangle \langle R \rangle$. 
+%  We claim the resulting cocone is a colimit. 
+%
+%  Suppose we have a cocone $C$ on the diagram $(B_n)_{n\in\N}$. 
+%  We need to show that there exists a map $\langle G \rangle / R\to C$ and
+%  we need to show this map is unique as map between cocones. 
+%  \begin{itemize}
+%    \item To show there exists a map $\langle G \rangle / R \to C$, 
+%      we use remark \Cref{rmkMorphismsOutOfQuotient} again. 
+%      Let $g\in G$ be the $n$'th element of $G$, 
+%      note that $g\in G_n$, and consider the image of $g$ under the map $B_n \to C$. 
+%      This procedure defines a function from $G$ to the underlying set of $C$. 
+%      Let $\phi \in R$ be the $n$'th element of $R$, 
+%      note that $\phi \in R_n$, and the map $B_n \to C$ must send $\phi$ to $0$. 
+%      Thus the function from $G$ to the underlying set of $C$ also sends $\phi$ to $0$. 
+%      This thus defines a map $\langle G \rangle / R \to C$. 
+%    \item To show uniqueness, consider that any map of cocones $\langle G \rangle / \langle R \rangle \to C$ 
+%      must take the same values on all $g\in G_n$ for all $n\in\N$. 
+%      Now all $g\in G$ occur in some $G_n$, so any map of cocones $\langle G \rangle /  \langle R \rangle \to C$ 
+%      takes the same values for all $g\in G$. 
+%      \Cref{rmkMorphismsOutOfQuotient} now tell us that these values uniquely determine the map. 
+%  \end{itemize}
+\end{proof}
+
+
+
+
+\begin{corollary}\label{ODiscBAareBoole}
+  A Boolean algebra $B$ is overtly discrete if and only if it is countably presented. 
+\end{corollary}
+\begin{proof}
+  Assume $B:\ODisc$. 
+  By \Cref{OdiscQuotientCountableByOpen}, we get a surjection $\N\twoheadrightarrow B$ and that $B$ has open equality. 
+  Consider the induced surjective morphism $f:2[\N]\twoheadrightarrow B$.
+  By countable choice, we get for each $b:2[\N]$
+  a sequence $\alpha_{b}:2^\N$ such that 
+  $(f(b) = 0)\leftrightarrow \exists_{k:\N} (\alpha_{b,k}=1)$. 
+  Consider 
+  $r:2[\N] \to \N \to 2[\N]$ 
+  given by 
+  \[r(b,k) =\begin{cases}
+    b &\text{ if } \alpha_{b}(k) = 1\\
+    0   &\text{ if } \alpha_{b}(k) = 0
+  \end{cases}
+  \] 
+  Then $B= 2[\N]/(r(b,k))_{b:2[\N],k:\N}$.
+  %By countable choice, we get for each $a,b:2[\N]$
+  %a sequence $\alpha_{a,b}:2^\N$ such that 
+  %$(f(a) = f(b))\leftrightarrow \exists_{k:\N} (\alpha_{a,b}(k) =1)$. 
+  %Consider 
+  %$r:2[\N] \times 2[\N] \times \N \to 2[\N]$ 
+  %given by 
+  %$$r(a,b,k) =\begin{cases}
+  %  a-b &\text{ if } \alpha_{(a,b)}(k) = 1\\
+  %  0   &\text{ if } \alpha_{(a,b)}(k) = 0
+  %\end{cases}
+  %$$
+  %Then $B= 2[\N]/(r(a,b,k))_{(a,b,n): F \times F \times \N}$. 
+  The converse comes from \Cref{BooleIsODisc}.
+\end{proof}
+
+\begin{remark}\label{BooleEpiMono}
+%  In particular equality in overtly discrete types is open. 
+  By \Cref{OdiscSigma} and \Cref{ODiscBAareBoole}, 
+  it follows that any 
+  $g:B\to C$ in $\Boole$ has an overtly discrete kernel.
+  As a consequence, the kernel is enumerable and $B/Ker(g)$ is in $\Boole$. 
+  By uniqueness of epi-mono factorizations and \Cref{SurjectionsAreFormalSurjections}, 
+  the factorization 
+  $B\twoheadrightarrow B/Ker(g) \hookrightarrow C$ corresponds to 
+  $\Sp(C) \twoheadrightarrow \Sp(B/Ker(g)) \hookrightarrow \Sp(B)$. 
+\end{remark}
+\begin{remark}\label{decompositionBooleMaps}
+  Similarly to \Cref{lemDecompositionOfColimitMorphisms} and 
+  \Cref{lemDecompositionOfEpiMonoFactorization}, a (resp. surjective, injective) morphism
+  in $\Boole$ is a sequential colimit of (resp. surjective, injective) morphisms between 
+  finite Boolean algebras.
+\end{remark}
