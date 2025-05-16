@@ -1,23 +1,23 @@
-In this section we compute $H^1(S,\Z) = 0$ for $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We then apply this to compute $H^1(\I,\Z)=0$. 
+In this section we compute $H^1(S,\Z) = 0$ for all $S$ Stone, and show that $H^1(X,\Z)$ for $X$ compact Hausdorff can be computed using \v{C}ech cohomology. We use this to compute $H^1(\I,\Z)=0$. 
 
 \begin{remark}
 We only work with the first cohomology group with coefficients in $\Z$ as it is sufficient for the proof of Brouwer's fixed-point theorem, but the results could be extended to $H^n(X,A)$ for $A$ any family of countably presented abelian groups indexed by $X$.
 \end{remark}
 
 \begin{remark}
-We write $Ab$ for the type of Abelian groups and if $G:Ab$ we write $\B G$ for the delooping of $G$ \cite{hott,davidw23}. This means that $H^1(X,G)$ is the set truncation of $X \to \B G$. 
+We write $\mathrm{Ab}$ for the type of abelian groups and if $G:\mathrm{Ab}$ we write $\B G$ for the delooping of $G$ \cite{hott,davidw23}. This means that $H^1(X,G)$ is the set truncation of $X \to \B G$. 
 \end{remark}
 
 \subsection{\v{C}ech cohomology}
 
 \begin{definition}
-Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we define $\check{C}(S,T,A)$ as the chain complex:
+Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we define $\check{C}(S,T,A)$ as the chain complex
 \[
 \begin{tikzcd}
      \prod_{x:S}A_x^{T_x} \ar[r,"d_0"] & \prod_{x:S}A_x^{T_x^2}\ar[r,"d_1"] &  \prod_{x:S}A_x^{T_x^3}
 \end{tikzcd}
 \]
-with the usual boundary maps:
+where the boundary maps are defined as
 \begin{align*}
 d_0(\alpha)_x(u,v) =&\ \alpha_x(v)-\alpha_x(u)\\
 d_1(\beta)_x(u,v,w) =&\ \beta_x(v,w) - \beta_x(u,w) + \beta_x(u,v)
@@ -25,7 +25,7 @@ d_1(\beta)_x(u,v,w) =&\ \beta_x(v,w) - \beta_x(u,w) + \beta_x(u,v)
 \end{definition}
 
 \begin{definition}
-Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we define its \v{C}ech cohomology groups by:
+Given a type $S$, types $T_x$ for $x:S$ and $A:S\to\mathrm{Ab}$, we define its \v{C}ech cohomology groups by
 \[
   \check{H}^0(S,T,A) = \mathrm{ker}(d_0)\quad \quad \quad \check{H}^1(S,T,A) = \mathrm{ker}(d_1)/\mathrm{im}(d_0)
 \]
@@ -137,7 +137,7 @@ This map is always an embedding. To show it is surjective it is enough to prove 
 A \v{C}ech cover consists of $X:\CHaus$ and $S:X\to\Stone$ such that $\prod_{x:X}\propTrunc{S_x}$ and $\sum_{x:X}S_x:\Stone$.
 \end{definition}
 
-By definition any compact Hausdorff type has a \v{C}ech cover.
+By definition any compact Hausdorff space $X$ is part of a \v{C}ech cover $(X,S)$.
 
 \begin{lemma}\label{cech-eilenberg-0-agree}
 Given a \v{C}ech cover $(X,S)$ and $A:X\to\mathrm{Ab}$, we have an isomorphism $H^0(X,A) = \check{H}^0(X,S,A)$ natural in $A$.
@@ -149,25 +149,25 @@ such that for all $u,v:S_x$ we have $f(u)=f(v)$. Since $A_x$ is a set and the $S
 \end{proof}
 
 \begin{lemma}\label{eilenberg-exact}
-Given a \v{C}ech cover $(X,S)$ we have an exact sequence:
+Given a \v{C}ech cover $(X,S)$ we have an exact sequence
 \[H^0(X,\lambda x.\Z^{S_x}) \to H^0(X,\lambda x.\Z^{S_x}/\Z) \to H^1(X,\Z)\to 0\]
 \end{lemma}
 
 \begin{proof}
-We use the long exact cohomology sequence associated to:
+We use the long exact cohomology sequence associated to
 \[0 \to \Z \to \Z^{S_x} \to \Z^{S_x}/\Z\to 0\]
 We just need $H^1(X,\lambda x.\Z^{S_x}) = 0$ to conclude. But by \cref{stone-commute-delooping} we have that $H^1(X,\lambda x.\Z^{S_x}) = H^1\left(\sum_{x:X}S_x,\Z\right)$ which vanishes by \cref{eilenberg-stone-vanish}.
 \end{proof}
 
 \begin{lemma}\label{cech-exact}
-Given a \v{C}ech cover $(X,S)$ we have an exact sequence:
+Given a \v{C}ech cover $(X,S)$ we have an exact sequence
 \[\check{H}^0(X,S,\lambda x.\Z^{S_x}) \to \check{H}^0(X,S,\lambda x.\Z^{S_x}/\Z) \to \check{H}^1(X,S,\Z)\to 0\]
 \end{lemma}
 
 \begin{proof}
-For $n=1,2,3$, we have that $\Sigma_{x:X}S_x^n$ is Stone so that  $H^1(\Sigma_{x:X}S_x^n, \Z) = 0$ by \cref{eilenberg-stone-vanish}, giving short exact sequences:
+For $n=1,2,3$, we have that $\Sigma_{x:X}S_x^n$ is Stone so that  $H^1(\Sigma_{x:X}S_x^n, \Z) = 0$ by \cref{eilenberg-stone-vanish}, giving short exact sequences
 \[0\to \Pi_{x:X}\Z^{S_x^n} \to \Pi_{x:X}(\Z^{S_x})^{S_x^n}\to \Pi_{x:X}(\Z^{S_x}/\Z)^{S_x^n}\to 0\]
-They fit together in a short exact sequence of complexes:
+They fit together in a short exact sequence of complexes
 \[0 \to \check{C}(X,S,\Z) \to \check{C}(X,S,\lambda x.\Z^{S_x}) \to \check{C}(X,S,\lambda x.\Z^{S_x}/\Z)\to 0\]
 But since $\check{H}^1(X,\lambda x.\Z^{S_x}) = 0$ by \cref{canonical-exact-cech-complex}, we conclude using the associated long exact sequence.
 \end{proof}
@@ -201,12 +201,12 @@ This means that \v{C}ech cohomology does not depend on $S$.
 We define $\I_n^{\sim2} = \Sigma_{x,y:\I_n}x\sim_n y$ and $\I_n^{\sim3} = \Sigma_{x,y,z:\I_n}x\sim_n y \land y\sim_n z\land x\sim_n z$.
 
 \begin{lemma}\label{Cn-exact-sequence}
-For any $n:\N$ we have an exact sequence:
+For any $n:\N$ we have an exact sequence
 \[0\to \Z\overset{d_0}{\longrightarrow} \Z^{\I_n} \overset{d_1}{\longrightarrow} \Z^{\I_n^{\sim2}} \overset{d_2}{\longrightarrow} \Z^{\I_n^{\sim3}}\]
-where $d_0(k) = (\_\mapsto k)$ and:
+where $d_0(k) = (\_\mapsto k)$ and
 \begin{eqnarray}
  d_1(\alpha)(u,v) &=& \alpha(v)-\alpha(u)\nonumber\\
- d_2(\beta)(u,v,w) &=& \beta(v,w)-\beta(u,w)+\beta(u,v)\nonumber
+ d_2(\beta)(u,v,w) &=& \beta(v,w)-\beta(u,w)+\beta(u,v).\nonumber
 \end{eqnarray}
 \end{lemma}
 
@@ -214,8 +214,8 @@ where $d_0(k) = (\_\mapsto k)$ and:
 It is clear that the map $\Z\to \Z^{\I_n}$ is injective as $\I_n$ is inhabited, so the sequence is exact at $\Z$. Assume a cocycle $\alpha:\Z^{\I_n}$, meaning that for all $u,v:\I_n$, if $u\sim_nv$ then $\alpha(u)=\alpha(v)$. Then by \cref{description-Cn-simn} we see that $\alpha$ is constant, so the sequence is exact at $\Z^{\I_n}$.
 
 Assume a cocycle $\beta:\Z^{\I_n^{\sim2}}$, meaning that for all $u,v,w:\I_n$ such that $u\sim_nv$, $v\sim_nw$ and $u\sim_nw$ we have that $\beta(u,v)+\beta(v,w) = \beta(u,w)$. %This is equivalent to asking $\beta(u,u)=0$ and $\beta(u,v) = -\beta(v,u)$.
-Using \cref{description-Cn-simn} to pass along the equivalence between $2^n$ and $\Fin(2^n)$ we can define $\alpha(k) = \beta(0,1)+\cdots+\beta(k-1,k)$.
-We can check that $\beta(k,l) = \alpha(l)-\alpha(k)$, so $\beta$ is indeed a coboundary and the sequence is exact at $\Z^{\I_n^{\sim2}}$.
+Using \cref{description-Cn-simn} to pass along the equivalence between $2^n$ and $\Fin(2^n)$, we define $\alpha(k) = \beta(0,1)+\cdots+\beta(k-1,k)$.
+We can check that $\beta(k,l) = \alpha(l)-\alpha(k)$, so that $\beta$ is indeed a coboundary and the sequence is exact at $\Z^{\I_n^{\sim2}}$.
 \end{proof}
 
 \begin{proposition}\label{cohomology-I}
@@ -225,22 +225,22 @@ We have that $H^0(\I,\Z) = \Z$ and $H^1(\I,\Z) = 0$.
 \begin{proof}
 Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover $T$ of $\I$ defined by: 
 \[T_x = \Sigma_{y:2^\N} (x=_\I cs(y))\]
-Then for $l=2,3$ we have that $\mathrm{lim}_n\I_n^{\sim l} = \sum_{x:\I} T_x^l$. By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we have an exact sequence:
+Then for $l=2,3$ we have that $\mathrm{lim}_n\I_n^{\sim l} = \sum_{x:\I} T_x^l$. By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we have an exact sequence
 \[ 0\to \Z\to \mathrm{colim}_n \Z^{\I_n} \to \mathrm{colim}_n \Z^{\I_n^{\sim2}}\to \mathrm{colim}_n \Z^{\I_n^{\sim3}}\]
-By \cref{scott-continuity} this sequence is equivalent to:
+By \cref{scott-continuity} this sequence is equivalent to
 \[ 0\to \Z\to \Pi_{x:\I}\Z^{T_x} \to  \Pi_{x:\mathbb{I}}\Z^{T_x^2} \to  \Pi_{x:\mathbb{I}}\Z^{T_x^3}\]
 So it being exact implies that $\check{H}^0(\I,T,\Z) = \Z$ and $\check{H}^1(\I,T,\Z) = 0$.
 We conclude by \cref{cech-eilenberg-0-agree} and \cref{cech-eilenberg-1-agree}.
 \end{proof}
 
 \begin{remark}
-We could carry a similar computation for $\mathbb{S}^1$, by approximating it with $2^n$ with $0^n\sim_n1^n$ added. We would find $H^1(\mathbb{S}^1,\Z)=\Z$.
+We could carry a similar computation for $\mathbb{S}^1$, by approximating it with $2^n$ with $0^n\sim_n1^n$ added. We would find $H^1(\mathbb{S}^1,\Z)=\Z$. We will give an alternative, more conceptual proof in the next section.
 \end{remark}
 
 
 \subsection{Brouwer's fixed-point theorem}
 
-Here we consider the modality defined by localising at $\I$ \cite{modalities}, denoted by $L_\I$. We say that $X$ is $\I$-local if $L_\I(X) = X$ and that it is $\I$-contractible if $L_\I(X)=1$.
+Here we consider the modality defined by localising at $\I$ as explained in \cite{modalities}. It is denoted by $L_\I$. We say that $X$ is $\I$-local if $L_\I(X) = X$ and that it is $\I$-contractible if $L_\I(X)=1$.
 
 \begin{lemma}\label{Z-I-local}
 $\Z$ and $2$ are $\I$-local.
@@ -251,7 +251,7 @@ By \cref{cohomology-I}, from $H^0(\I,\Z)=\Z$ we get that the map $\Z\to \Z^\I$ i
 \end{proof}
 
 \begin{remark}
-Since $2$ is $\I$-local, we know by duality that any Stone space is $\I$-local.
+Since $2$ is $\I$-local, we have that any Stone space is $\I$-local.
 \end{remark}
 
 \begin{lemma}\label{BZ-I-local}
@@ -259,7 +259,7 @@ $\B\Z$ is $\I$-local.
 \end{lemma}
 
 \begin{proof}
-Any identity type in $\B\Z$ is a $\Z$-torsor, so it is $\I$-local by \cref{Z-I-local}. So there is at most one factorisation of any map $\I\to \B\Z$ through $1$. From $H^1(\I,\Z)=0$ we get that there merely exists such a factorisation.
+Any identity type in $\B\Z$ is a $\Z$-torsor, so it is $\I$-local by \cref{Z-I-local}. So the map $\B\Z\to \B\Z^{\I}$ is an embedding. From $H^1(\I,\Z)=0$ we get that it is surjective, hence an equivalence.
 \end{proof}
 
 \begin{lemma}\label{continuously-path-connected-contractible}
@@ -283,14 +283,14 @@ $L_\I(\R/\Z) = \B\Z$.
 \end{proposition}
 
 \begin{proof}
-As for any group quotient, the fibers of the map $\R\to\R/\Z$ are $\Z$-torsors, so we have an induced pullback square:
+As for any group quotient, the fibers of the map $\R\to\R/\Z$ are $\Z$-torsors, so we have an induced pullback square
 \[
 \begin{tikzcd}
 \R\ar[r]\ar[d] & 1\ar[d] \\
 \R/\Z\ar[r] & \B\Z
 \end{tikzcd}
 \]
-Now we check that the bottom map is an $\I$-localisation. Since $\B\Z$ is $\I$-local by \cref{BZ-I-local}, it is enough to check that its fibers are $\I$-contractible. Since $\B\Z$ is connected it is enough to check that $\R$ is $\I$-contractible, but this is \cref{R-I-contractible}.
+Now we check that the bottom map is an $\I$-localisation. Since $\B\Z$ is $\I$-local by \cref{BZ-I-local}, it is enough to check that its fibers are $\I$-contractible. Since $\B\Z$ is connected it is enough to check that $\R$ is $\I$-contractible. This is \cref{R-I-contractible}.
 \end{proof}
 
 \begin{remark}
@@ -316,9 +316,9 @@ By \cref{R-I-contractible} and \cref{shape-S1-is-BZ} we would get a retraction o
 \end{theorem}
 
 \begin{proof}
-  By \Cref{InhabitedClosedSubSpaceClosedCHaus}, the proposition $\exists x:\I.f(x)=y$ is closed and therefore $\neg\neg$-stable, so we can proceed with a proof by contradiction.
+  By \Cref{InhabitedClosedSubSpaceClosedCHaus}, the proposition $\exists_{x:\I}\, f(x)=y$ is closed and therefore $\neg\neg$-stable, so we can proceed with a proof by contradiction.
   If there is no such $x:\I$, we have $f(x)\neq y$ for all $x:\I$.
-  By \cref{LesserOpenPropAndApartness} we have that for different numbers $a,b:\I$, we have $a<b$ or $b<a$, so the following two sets cover $\I$:
+  By \cref{LesserOpenPropAndApartness} we have that $a<b$ or $b<a$ for all distinct numbers $a,b:\I$. So the following two sets cover $\I$
   \[
     U_0:= \{x:\I\mid f(x)<y\} \quad\quad
     U_1:= \{x:\I\mid y<f(x)\}

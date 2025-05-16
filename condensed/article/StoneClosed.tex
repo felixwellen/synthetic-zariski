@@ -3,7 +3,7 @@
   Let $A\subseteq S$ be a subset of a Stone space. The following are equivalent:
   \begin{enumerate}[(i)]
     \item There exists a map $\alpha:S \to 2^\N$ such that 
-      $A (x) \leftrightarrow \forall_{n:\N} \alpha_{x,n} = 0$ for any $x:S$. 
+      $A (x) \leftrightarrow \forall_{n:\N}\, \alpha_{x,n} = 0$ for any $x:S$. 
     \item There exists a family 
       $(D_n)_{n:\N}$ 
       of decidable subsets of $S$ such that $A = \bigcap_{n:\N} D_n$. 
@@ -20,7 +20,7 @@
      $D_n(x) \leftrightarrow (\alpha_{x,n} = 0)$. Then observe that
      \[
      x\in \bigcap_{n:\N} D_n \leftrightarrow 
-      \forall_{n:\mathbb N} (\alpha_{x,n} = 0) 
+      \forall_{n:\mathbb N} (\alpha_{x,n} = 0). 
      \]
      
    \item $(ii) \to (iii)$. Let $S=\Sp(B)$. 
@@ -31,7 +31,7 @@
       By \Cref{AxStoneDuality}, we have $(d_n)_{n:\N}$ in $B$ such that $D_n = \{x:S\ |\ x(d_n) = 0\}$. 
       Let $C = B/(d_n)_{n:\N}$.
       Then $\Sp(C) \to S$ is as desired because:
-      \[\Sp(C) = \{x:S\ |\ \forall_{n:\N} x(d_n) =0\}  = \bigcap_{n:\N} D_n.\]
+      \[\Sp(C) = \{x:S\ |\ \forall_{n:\N}\, x(d_n) =0\}  = \bigcap_{n:\N} D_n.\]
 %      By \Cref{SurjectionsAreFormalSurjections}, t
 %      The quotient map $B \twoheadrightarrow C$
 %      corresponds to a map $\iota:\Sp(C) \hookrightarrow  S$. 
@@ -43,9 +43,9 @@
 %      Thus the image of $\iota$ is given by $\bigcap_{n:\N} D_n$. 
    \item $(iii) \to (iv)$. Immediate.
    \item $(iv) \to (ii)$. Assume $f:T\to S$ corresponds to $g:B\to C$ in $\Boole$. 
-     By \Cref{BooleEpiMono}, $f(T) = \Sp(B/Ker(g))$, and 
+     By \Cref{BooleEpiMono}, $f(T) = \Sp(B/Ker(g))$ and 
 %     by \Cref{OdiscQuotientCountableByOpen}
-     there is a surjection $d:\N\to Ker(g)$. Denote by $D_n$ the decidable subset of $S$ corresponding to $d_n$. Then we have that $\Sp(B/Ker(g)) = \bigcap_{n:\N} D_n$. 
+     there is a countable set $I$ with a surjection $d:I\to Ker(g)$. For $i:I$, wenote by $D_i$ the decidable subset of $S$ corresponding to $d_i$. Then we have that $\Sp(B/Ker(g)) = \bigcap_{i:I} D_i$. 
 %     Note that the factorization 
 %     $B\twoheadrightarrow B/Ker(g) \hookrightarrow C$ 
 %     corresponds to the factorization 
@@ -104,7 +104,7 @@
    \item $(i) \to (v)$. By definition.
    \item $(v) \to (iv)$.
      %As $A$ is closed, it corresponds to a map $a:S\to \Closed$. 
-     We have a surjection $2^\N\to\Closed$ defined by $\alpha \mapsto \forall_{n:\mathbb N} \alpha_n = 0.$
+     We have a surjection $2^\N\twoheadrightarrow\Closed$ defined by $\alpha \mapsto \forall_{n:\mathbb N}\, \alpha_n = 0.$
      \Cref{LocalChoiceSurjectionForm} 
      gives us that there merely exists $T, e, \beta_\cdot$ as follows:
      \[
@@ -114,7 +114,7 @@
          S \arrow[r,swap,"A"] & \Closed
        \end{tikzcd} 
      \] 
-     Define $B(x) \leftrightarrow \forall_{n:\mathbb N} \beta_{x,n} = 0$. 
+     Define $B(x) \leftrightarrow \forall_{n:\mathbb N}\, \beta_{x,n} = 0$. 
      As $(i) \to (iii)$ by the above, $B$ is the image of some Stone space. 
      Note that $A$ is the image of $B$, 
      thus $A$ is the image of some Stone space. 
@@ -128,11 +128,11 @@ Closed subtypes of Stone spaces are Stone.
 \end{corollary}
 
 \begin{corollary}\label{InhabitedClosedSubSpaceClosed}
-  For $S:\Stone$ and $A\subseteq S$ closed, we have 
+  For $S:\Stone$ and $A\subseteq S$ closed, we have that 
   $\exists_{x:S} A(x)$ is closed. 
 \end{corollary}
 \begin{proof}
-  By \Cref{ClosedInStoneIsStone}, $\Sigma_{x:S}A(x)$ is Stone, 
+  By \Cref{ClosedInStoneIsStone}, we have that $\Sigma_{x:S}A(x)$ is Stone, 
   so its truncation is closed by \Cref{TruncationStoneClosed}.
 \end{proof}
 
@@ -183,8 +183,8 @@ Closed subtypes of Stone spaces are Stone.
 %  \rednote{Too shorten this (and some other proofs), I've removed some negations and pretended  $D:S\to 2$ is given by $\{x:S|x(d) = 0\}$ instead of $\{x:S|x(d) = 1\}$ }
   Assume $S = \Sp(B)$. 
   By \Cref{StoneClosedSubsets}, for all $n:\N$ there is $f_n,g_n:B$ such that 
-  $x\in F$ if and only if $\forall_{n:\N}x(f_n) = 0$ and 
-  $y\in G$ if and only if $\forall_{n:\N}y(g_n) = 0$.
+  $x\in F$ if and only if $\forall_{n:\N}\, x(f_n) = 0$ and 
+  $y\in G$ if and only if $\forall_{n:\N}\, y(g_n) = 0$.
 %  $x\in F$ iff $x(f_n) = 1$ for all $n:\N$ and 
 %  $y\in G$ iff $y(g_m) = 1$ for all $m:\N$. 
 %
