@@ -1,5 +1,5 @@
 \begin{definition}
-  A type $X$ is called a compact Hausdorff space if its identity types are closed propositions and there exists some $S:\Stone$ and a surjection $S\twoheadrightarrow X$. We write $\CHaus$ for the type of compact Hausdorff spaces.
+  A type $X$ is called a compact Hausdorff space if its identity types are closed propositions and there exists some $S:\Stone$ with a surjection $S\twoheadrightarrow X$. We write $\CHaus$ for the type of compact Hausdorff spaces.
 \end{definition}
 
 %This means that compact Hausdorff spaces are precisely quotients of Stone spaces by closed equivalence relations.
@@ -7,7 +7,7 @@
 \subsection{Topology on compact Hausdorff spaces}
 
 \begin{lemma}\label{CompactHausdorffClosed}
-  Let $X:\CHaus$, $S:\Stone$ and $q:S\twoheadrightarrow X$ surjective.
+  Let $X:\CHaus$ with $S:\Stone$ and a surjective map $q:S\twoheadrightarrow X$.
   Then $A\subseteq X$ is closed if and only if it is the image of a closed subset of $S$ by $q$. 
 \end{lemma}
 \begin{proof}
@@ -15,32 +15,29 @@
 %  In particular for $q:S\to X$ the quotient map, $q^{-1}(A)$ is closed. 
   As $q$ is surjective, we have $q(q^{-1}(A)) = A$.
   If $A$ is closed, so is $q^{-1}(A)$ and 
-  hence $A$ is the image of a closed subtype of $S$. 
-  Conversely, let $B\subseteq S$ be closed. 
-%  Then for any $s:S$, the subtype $\{t:S| B(s) \wedge s \sim t\} \subseteq S$ is closed. 
-%  Hence by 
-  Define $A'\subseteq S$ by 
-  \[A'(s) = \exists_{t:S} (B(t) \wedge q(s) = q(t)).\]
-  Note that $B(t)$ and $q(s) = q(t)$ are closed. 
-  Hence by \Cref{InhabitedClosedSubSpaceClosed}, $A'$ is closed. 
-%  Also $A'$ factors through $q$ as a map $A: X\to \Closed$.
-  Also $A'$ factors through $q$ as a map $A: X\to \Closed$.
-  Furthermore, $A'(s) \leftrightarrow (q(s)\in q(B))$. 
-  Hence $A=q(B)$. 
-%  Therefore $A(x)$ iff $x$ is in the image of $B$. 
+  hence $A$ is the image of a closed subset of $S$. 
+  Conversely, let $B\subseteq S$ be closed. Then $x\in q(B)$ if and only if
+   \[\exists_{t:S} (B(t) \wedge q(s) = x).\]
+   Hence by \Cref{InhabitedClosedSubSpaceClosed}, $q(B)$ is closed. 
+  % Define $A'\subseteq S$ by 
+  %\[A'(s) = \exists_{t:S} (B(t) \wedge q(s) = q(t)).\]
+  %Note that $B(t)$ and $q(s) = q(t)$ are closed. 
+  %Hence by \Cref{InhabitedClosedSubSpaceClosed}, $A'$ is closed. 
+  %Also $A'$ factors through $q$ as a map $A: X\to \Closed$.
+  %Furthermore, $A'(s) \leftrightarrow (q(s)\in q(B))$. 
+  %Hence $A=q(B)$. 
 \end{proof}
 
-The next two corollaries mean that compact Hausdorff spaces behave like finite sets for the purposes of unions/intersections of open/closed sets.
+The next two corollaries mean that compact Hausdorff spaces behave as finite sets for the purposes of unions/intersections of open/closed sets.
 
 \begin{corollary}\label{InhabitedClosedSubSpaceClosedCHaus}
-Let $X:\Chaus$ with $A\subseteq X$ closed. Then $\exists_{x:X} A(x)$ is closed as well, and equivalent to $A \neq \emptyset$. 
+Assume given $X:\Chaus$ with $A\subseteq X$ closed. Then $\exists_{x:X} A(x)$ is closed, and equivalent to $A \neq \emptyset$. 
 \end{corollary}
 
 \begin{proof}
-From \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed if and only if it is the image of a map 
-  $T\to X$ for some $T:\Stone$. 
-  If $A$ is closed, it follows from \Cref{InhabitedClosedSubSpaceClosed} that $\exists_{x:X} A(x)$ is closed as well, 
-  hence $\neg\neg$-stable, and equivalent to $A \neq \emptyset$. 
+From \Cref{CompactHausdorffClosed} and \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed if and only if it is the image of a map $T\to X$ for some $T:\Stone$. Then $\exists_{x:X} A(x)$ if and only $\propTrunc{T}$, which is closed by \Cref{TruncationStoneClosed}. Therefore $\exists_{x:X} A(x)$ is $\neg\neg$-stable and equivalent to $A \neq \emptyset$. 
+  %If $A$ is closed, it follows from \Cref{InhabitedClosedSubSpaceClosed} that $\exists_{x:X} A(x)$ is closed as well, 
+ % hence $\neg\neg$-stable, and equivalent to $A \neq \emptyset$. 
 \end{proof}
 
 %\begin{remark}\label{InhabitedClosedSubSpaceClosedCHaus}
@@ -71,8 +68,7 @@ From \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed if and 
 
 
 \begin{corollary}\label{AllOpenSubspaceOpen}
-  For $U\subseteq X$ an open subset of a compact Hausdorff space, %we have that the proposition 
-  $\forall_{x:X} U(x)$ is open. 
+  Assume given $X:\Chaus$ with $U\subseteq X$ open. Then $\forall_{x:X} U(x)$ is open. 
 \end{corollary}
 %\begin{proof}
 %  As $U$ is open, $\neg U$ is closed. 
@@ -83,7 +79,7 @@ From \Cref{StoneClosedSubsets}, it follows that $A\subseteq X$ is closed if and 
 %  which is equivalent to $\forall_{x:X} U(x)$ by \Cref{rmkOpenClosedNegation}.
 %\end{proof}
 
-The next lemma means that compact Hausdorff space are not too far from being compact in the classical sense.
+Next lemma means that compact Hausdorff space are not too far from being compact in the classical sense.
 
 \begin{lemma}\label{CHausFiniteIntersectionProperty}
   Given $X:\Chaus$ and $C_n:X\to \Closed$ closed subsets such that $\bigcap_{n:\N} C_n =\emptyset$, there is some $k:\N$ 
@@ -92,16 +88,16 @@ The next lemma means that compact Hausdorff space are not too far from being com
 \begin{proof}
   By \Cref{CompactHausdorffClosed} it is enough to prove the result when $X$ is Stone, and by \Cref{StoneClosedSubsets} we can assume $C_n$ decidable.
   So assume 
-  $X=\Sp(B)$ and $c_n:B$ such that: 
+  $X=\Sp(B)$ and $c_n:B$ such that
   \[C_n = \{x:B\to 2\ |\ x(c_n) = 0\}.\]
-  Then the set of maps $B\to 2$ sending all $c_n$ to $0$ is given by: 
+  Then we have that
   \[\Sp(B/(c_n)_{n:\N})%\ |\ n:\N\}) 
   \simeq \bigcap_{n:\N} C_n = \emptyset .\]
   Hence 
 %  $0=_{B/(\neg c_n)_{n:\N}}1$ 
   $0=1$ in $B/(c_n)_{n:\N}$ %\ |\ n:\N\}$, 
   and there is some $k:\N$ with 
-  $\bigvee_{n\leq k} c_n = 1$, which also means that: 
+  $\bigvee_{n\leq k} c_n = 1$, which means that
   \[\emptyset = \Sp(B/(c_n)_{n\leq k}) %\ |\ n\leq k\})  
   \simeq \bigcap_{n\leq k} C_n \]
   as required.
@@ -119,7 +115,7 @@ The next lemma means that compact Hausdorff space are not too far from being com
   Then for all $n:\N$ we have that $F\cap G_n$ is %merely inhabited and therefore 
   non-empty. 
   By \Cref{CHausFiniteIntersectionProperty} this implies that $\bigcap_{n:\N}(F\cap G_n) \neq \emptyset$. 
-  By \Cref{InhabitedClosedSubSpaceClosedCHaus},  %and \Cref{rmkOpenClosedNegation}, 
+  By \Cref{InhabitedClosedSubSpaceClosedCHaus},  we have that %and \Cref{rmkOpenClosedNegation}, 
   $\bigcap_{n:\N} (F\cap G_n)$ is merely inhabited. Thus $y\in f(\bigcap_{n:\N} G_n)$ as required. 
 \end{proof}
 
@@ -135,11 +131,11 @@ Let $A\subseteq X$ be a subset of a compact Hausdorff space and $p:S\twoheadrigh
 %\end{itemize}  
 \end{corollary}
 \begin{proof}
-  The characterization of closed sets follows from characterization (ii) in \Cref{StoneClosedSubsets}, 
+  The characterization of closed subsets follows from characterization (ii) in \Cref{StoneClosedSubsets}, 
   \Cref{CompactHausdorffClosed} 
   and \Cref{ChausMapsPreserveIntersectionOfClosed}. 
 %  The characterization of open sets 
-  For open sets we use \Cref{rmkOpenClosedNegation} and
+  To deduce the characterization of open subsets we use \Cref{rmkOpenClosedNegation} and
   \Cref{ClosedMarkov}.
 \end{proof}
 %
@@ -160,7 +156,7 @@ Let $A\subseteq X$ be a subset of a compact Hausdorff space and $p:S\twoheadrigh
 %  \end{proof}
 %
 
-The next lemma means that compact Hausdorff space are normal.
+Next lemma means that compact Hausdorff spaces are normal.
 
 \begin{lemma}\label{CHausSeperationOfClosedByOpens}
  Assume $X:\CHaus$ and $A,B\subseteq X$ closed such that $A\cap B=\emptyset$. 
@@ -179,6 +175,6 @@ The next lemma means that compact Hausdorff space are normal.
 %  As $A\cap B = \emptyset$, we have that $A\subseteq \neg B$ so $A\subseteq U$.
 %  Similarly $B\subseteq V$. 
   Similarly $B\subseteq \neg q(D):=V$. 
-  Then $U$ and $V$ are disjoint because $\neg q(D)\cap \neg q(\neg D) \subseteq \neg (q(D)\cup q(\neg D)) = \neg X = \emptyset$.
+  Then $U$ and $V$ are disjoint because $\neg q(D)\cap \neg q(\neg D) = \neg (q(D)\cup q(\neg D)) = \neg X = \emptyset$.
 \end{proof}
 
