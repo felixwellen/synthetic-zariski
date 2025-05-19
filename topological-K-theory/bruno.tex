@@ -1,0 +1,64 @@
+
+\begin{definition}
+Let $M$ be the commutative $1$-monoid of finite dimensional vector spaces, that is:
+\[M = \Sigma_{k:\N} BU_k\]
+with $\oplus$ as addition.
+\end{definition}
+
+We will define three simplicial types. 
+
+\begin{remark}
+Given a simplicial type $X$ we define its geometric realisation $|X|$ by:
+\[|X| = \mathrm{coend}_k X_k\times\Delta^k\]
+We cannot prove $|X|$ exists for arbitrary simplicial types, but it does exist for simplicial sets.
+
+At least in favorable cases, we expect $\shape |X| = \mathrm{colim}_k \shape X_k$, since inclusions $\Delta^k \subset \Delta^{k+1}$ are all $\shape$-equivalence.
+\end{remark}
+
+\begin{definition}
+We define a simplicial groupoid $H$ by $H_k = M^k$, with inner face maps sending $(m_1,\cdots,m_k)$ to $(m_1,\cdots,m_i+m_{i+1},\cdots,m_k)$ and the outer face maps forgetting extremal elements.
+\end{definition}
+
+The simplicial groupoid $H$ is intuitively a delooping of $M$. This means we expect $\shape |H|$ to be pointed connected, and $\Omega(\shape |H|)$ to be the group completion of $M$, which we expect to be $\Z\times B\shape U$. 
+
+\begin{definition}
+We define the simplicial set $F_n$ by as the set $n$ tuples of pairwise orthogonal finite support projection on $\C^\infty$. The face maps defined as for $H$.
+\end{definition}
+
+\begin{proposition}
+We have that $|F| = U$.
+\end{proposition}
+
+\begin{proof}
+We have that $\Delta_n = \{t_1,\cdots,t_n:\I\ |\ t_1\leq \cdots\leq t_n\}$.
+
+Consider the map:
+\[F_n\to U\] 
+\[((E_1,\cdots,E_n),(t_1,\cdots,t_n)) \mapsto \mathrm{exp}(2i\pi(t_1E_1+\cdots+t_nE_n))\]
+It easy to check it is define a map $|F|\to U$, that it is an equivalence is the spectral theorem.
+\end{proof}
+
+\begin{definition}
+We define the simplicial sets $G$ by $G_n = (\Sigma_{k:\N}\Sigma_{V:BU_k}V\subset \C^\infty)^n_{orth}$ where the $orth$ means that the images in $\C^\infty$ are pairwise orthognal. The face maps defined as for $H$.
+\end{definition}
+
+\begin{lemma}
+We have $F=G$.
+\end{lemma}
+
+\begin{proof}
+Finite support projection on $\C^\infty$ correspond to finite dimensional subspace of $\C^\infty$.
+\end{proof}
+
+\begin{lemma}
+The obvious forgetful map $G\to H$ is levelwise $\shape$-contractible.
+\end{lemma}
+
+\begin{proof}
+The key point is that given $V\subset \C^\infty$ and $W$ a finite dimensional vector space, the type:
+\[W\subset V^\perp\]
+is $\shape$-contractible. Fibers of maps $G_n\to H_n$ are $\Sigma$-types of types of this form so we conclude.
+\end{proof}
+
+Therefore we expect the map $|F| \to |H|$ to be a $\shape$-equivalence. We have $|F| = U$, so we would essentially need something like $\shape |H| = B(\Z\times B\shape U)$ to conclude. Another problem is of course that simplicial colimits do not exists.
+
