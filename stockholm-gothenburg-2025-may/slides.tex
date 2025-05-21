@@ -27,6 +27,8 @@
 \newcommand{\yields}{\vdash}
 \newcommand{\cbar}{\, | \,}
 
+\newcommand{\nop}[1]{\textcolor{bg}{#1}}
+
 
 % für tabellen
 \usepackage{booktabs}
@@ -50,6 +52,20 @@
       Hugo Moeneclaey & Marc N-W & Matthias Ritter \\
       Christian Sattler & Lukas Stoll & David Wärn \\
       Mark Williams & & 
+    \end{tabularx}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  In the following we will see work of:
+  \begin{center}
+    \begin{tabularx}{\textwidth}{XXX}
+      \nop{Peter Arndt} & \nop{Ulrik Buchholtz} & Ingo Blechschmidt \\
+      Felix Cherubini & Thierry Coquand & Fabian Endres \\
+      \nop{Freek Geerligs} & \nop{Jonas Höfer} & \nop{Tim Lichtnau} \\
+      Hugo Moeneclaey & \nop{Marc N-W} & Matthias Ritter \\
+      \nop{Christian Sattler} & \nop{Lukas Stoll} & David Wärn \\
+      \nop{Mark Williams} & & 
     \end{tabularx}
   \end{center}
 \end{frame}
@@ -91,23 +107,6 @@
   \end{center}
   \vspace{1cm}
   {\footnotesize * Schemes = quasi-compact, quasi-separated schemes of finite presentation}
-\end{frame}
-
-\begin{frame}
-    
-  Morphisms of schemes should be locally polynomial. \\
-  \pause
-  $\Rightarrow$ Correspondence between affine schemes and algebra: \\
-  \pause
-  \begin{center}
-    \begin{tabular}{ll}
-      Affine Schemes & $\to$ $R$-algebras \\
-      $V$ & $\mapsto R^V$
-    \end{tabular}
-  \end{center}
-  \pause
-  One classical way to turn this into an (anti) equivalence of categories,
-  is to give affine schemes a lot more structure than just subsets of $R^n$.
 \end{frame}
 
 \begin{frame}
@@ -161,57 +160,19 @@
 \end{frame}
 
 \begin{frame}
-  \begin{columns}
-    % Linke Spalte mit Text
-    \begin{column}{0.5\textwidth}
-      \textbf{Projective Space} $\bP^n$ \\
-      Points are straight lines through the origin in $R^{n+1}$.
-      \[ \bP^n:= R^{n+1}\text{\textbackslash}\{0\}/\sim \]
-      where $x\sim y \Leftrightarrow \exists \lambda :R. x=\lambda y$. 
-
-      \vspace{1em}
-      \textbf{Or:}
-      \[ \bP^n:= \sum_{l:\mathrm{Lines}}(l\text{\textbackslash}\{0\})^{n+1} \]
-      where
-      \[\mathrm{Lines}=\{L:\Mod{R}\mid \|L=R^1\|\}=K(R^\times,1)\]
-    \end{column}
-
-    % Rechte Spalte mit Bild
-    \begin{column}{0.5\textwidth}
-      \includegraphics[width=\textwidth]{projective-space.png}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-{ % all template changes are local to this group.
-    \setbeamertemplate{navigation symbols}{}
-    \begin{frame}<article:0>[plain]
-        \begin{tikzpicture}[remember picture,overlay]
-            \node[at=(current page.center)] {
-                \includegraphics[keepaspectratio,
-                                 width=\paperwidth,
-                                 height=\paperheight]{hartshorne2.png}
-            };
-        \end{tikzpicture}
-     \end{frame}
-}
-
-{ % all template changes are local to this group.
-    \setbeamertemplate{navigation symbols}{}
-    \begin{frame}<article:0>[plain]
-        \begin{tikzpicture}[remember picture,overlay]
-            \node[at=(current page.center)] {
-                \includegraphics[keepaspectratio,
-                                 width=\paperwidth,
-                                 height=\paperheight]{hartshorne1.png}
-            };
-        \end{tikzpicture}
-     \end{frame}
-}
-
-
-\begin{frame}
-  \frametitle{Selected Results and Definitions (SAG)}
+  \frametitle{\textbf{Synthetic Algebraic Geometry}}
+  A proposition $P$ is \textbf{open} if there merely are $r_1,\dots,r_n:R$
+  such that
+  \[ P \Leftrightarrow r_1\neq 0 \vee \dots \vee r_n\neq 0\] \\
+  \pause
+  $U\subseteq X$ is open if $x\in U$ is an open proposition for all $x:X$. \\
+  \pause
+  \textbf{Example:} $\{x:R\mid x\neq 0\}$ and $\{x:R\mid x\neq 1\}$ are open subsets. By locality, they cover $R$. \\
+  \vspace{5mm}
+  \pause
+  By Zariski-local choice every open $U\subseteq \Spec(A)$ is a finite union of subsets of the form ($f:\Spec(A)\to R$)
+  \[ D(f) := \{x:\Spec(A) \mid f(x)\neq 0 \} \] \\
+  \pause
   A type $X$ is a \textbf{scheme} if
   there exist open $U_1, \dots, U_n \subseteq X$
   such that $X = \bigcup_i U_i$
@@ -220,85 +181,120 @@
   \pause
   \textbf{Morphisms} of schemes are just maps between types.
   
-  \pause
-  \vspace{5mm}
-  \textbf{Example.}
-  \emph{Projective $n$-space}:
-  \begin{align*}
-    \bP^n
-    &\coloneq \{x : R^{n+1}\mid x\neq 0\}/\approx\text{ where $(x\approx y)\coloneq \exists \lambda:R. \lambda x= y$}\} \\
-    &= \{\,\text{submodules $L\subseteq R^{n+1}$ such that $\|L=R^1\|$}\,\}
-  \end{align*}
-  is a scheme, since
-  \[
-    U_i([x]) \coloneq \text{($x_i$ is invertible)}
-  \]
-  is an open affine cover.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Selected Results and Definitions (SAG)}
-  Schemes are closed under $\Sigma$-types and identity types. \\
+  \begin{columns}
+    % Rechte Spalte mit Bild
+    \begin{column}{0.5\textwidth}
+      \textbf{Projective Space} $\bP^n$ \\
+      \pause
+      ($n\geq 1$)
+      \vspace{4mm}
+      \pause
+      \includegraphics[width=\textwidth]{projective-space.png}
+      \vspace{2cm}
+    \end{column}
+    
+    % Linke Spalte mit Text
+    \begin{column}{0.5\textwidth}
+      \pause
+      Points are straight lines through the origin in $R^{n+1}$.
+      \[ \bP^n:= R^{n+1}\text{\textbackslash}\{0\}/\sim \]
+      where $x\sim y \Leftrightarrow \exists \lambda :R. x=\lambda y$. 
+
+      \vspace{1em}
+      \pause
+      \textbf{Or:}
+      \[ \bP^n:= \sum_{l:\mathrm{Lines}}(l\text{\textbackslash}\{0\})^{n+1} \]
+      where
+      \[\mathrm{Lines}=\{L:\Mod{R}\mid \|L=R^1\|\}.\]
+      \pause
+      Projective space is a scheme with cover
+      \[ U_i([x]) \coloneq \text{($x_i$ is invertible)}. \]      
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Projective Space}
+  All functions $\bP^n\to R$ are constant, so $\bP^n$ is not affine. \\
+  \vspace{4mm}
   \pause
-  \vspace{1cm}
-  \emph{Classical equivalent}: Schemes are closed under pullbacks. \\
+  A \textbf{line bundle} on a type $X$ is a map $\mathcal L:X\to \mathrm{Lines}$.
+  Note that $\mathrm{Lines}=K(R^\times,1)$.\\
+  \vspace{4mm}
   \pause
-  \vspace{1cm}
-  SAG statement is more general. \\
-  \vspace{1cm}
+  \textbf{Theorem:} $(\bP^n\to \mathrm{Lines}) = \Z\times K(R^\times,1)$. \\
+  \textbf{Or:} Each line bundle on $\bP^n$ is merely one of the following:
+  \begin{enumerate}[(i)]
+  \item $\mathcal O(-1):=([x] \mapsto \text{line through $x$})$
+  \item $\mathcal O(-n):=\mathcal O(-1)^{\otimes n}$ for $n:\N$.
+  \item $\mathcal O(n):=(x\mapsto \Hom_{\Mod{R}}(\mathcal O(-n)_x,R))$.
+  \end{enumerate}
+  \vspace{4mm}
+  \pause
+  Any open $U\subseteq \bP^n$ is a finite union of more general
+  \[ D(f):=\{x:\bP^n\mid f(x)\neq 0 \}\]
+  with $f:(x:\bP^n)\to \mathcal O(n)_x$ for some $n:\N$.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Selected Results and Definitions (SAG)}
-  \vspace{0.25cm}
-  For $A : X \to \mathrm{Ab}$, define \emph{cohomology} as:
-  \[ H^n(X, A) :\equiv \Big\| \prod_{x:X}K(A_x,n) \Big\|_{\mathrm{set}} \]
-  
+  \frametitle{Projective Schemes}
   \pause
-  Good because:
-  \begin{itemize}
-  \item $\prod$-type.
-  \item $\|\_\|_{\mathrm{set}}$ is a modality.
-  \item Homotopy group: $H^n(X,A)=\pi_{k}(\prod_{x:X}K(A,n+k))$.
-  \end{itemize}
-
+  A scheme $X$ is \textbf{projective} if it merely is a closed subset of some $\bP^n$. \\
+  \vspace{4mm}
+  \textbf{Example and tentative definition:}
+  An elliptic curve is a pointed projective scheme $C$
+  which is smooth of dimension $1$, connected and $H^1(C,R)=1$.
   \pause
-  Non-trivial for $X:\mathrm{Set}$ because:
-
-  $X=$ Pushout of sets $U\leftarrow Y\to V$, \\
-  Then a ``cohomology class'' $X\to K(A,1)$ is given by:
-  \begin{itemize}
-  \item Maps $f:U\to K(A,1)$, $g:V\to K(A,1)$.
-  \item And $h:(x:Y)\to f(x)=g(x)$, which is essentially a map $Y\to A$,
-    if $U$ and $V$ do not have higher cohomology...
-  \end{itemize}
+  Assume $2\neq 0,3\neq 0$ in $R$.
+  For all $a,b:R$ such that $4a^3+27b^2\neq 0$ we have the elliptic curve
+  \[ E_{a,b}:=\{ [x,y,z] :\bP^2\mid y^2z-x^3-axz^2-bz^3=0 \}.\] \\
+  \pause
+  \textbf{Classically}, over a field, there is a converse - each elliptic curve is of the above form (if $2\neq 0, 3\neq 0$ in $R$).
+  % Silverman, p. 59
+  \pause
+  The proof uses the Riemann-Roch theorem, which can be derived from Serre-Duality.
+  The latter relies on cohomology computations on $\bP^n$.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Selected Results and Definitions (SAG)}
-
-  Let
-  \[ \mathrm{Lines} \coloneq \sum_{L : R\text{-Mod}} \lVert L = R^1 \rVert \]
-
-  \pause
-  \vspace{5mm}
-  The \emph{Picard group} of $X$ is
-  \[ \mathrm{Pic}(X) \coloneq \lVert X \to \mathrm{Lines} \rVert_{\text{set}} \rlap{.}\]
-  
-  \pause
-  We have $\mathrm{Pic}(\mathbb P^n)=\mathbb Z$. \\
-  \pause
-  And the more general: $(\mathbb P^n \to \mathrm{Lines}) = \mathbb Z \times \mathrm{Lines}$. \\
+  \frametitle{Cohomology of Line Bundles on Projective Space}
+\begin{theorem}
+  \label{calculate-cohomology-twisting-sheaves}
+  \begin{enumerate}[(a)]
+  \item \label{calculate-cohomology-twisting-sheaves-a}
+  For all $n:\N$, $d:\Z$, there are isomorphisms $R[X_0,\dots,X_n]_d\to H^0(\bP^n,\mathcal O(d))$ of $R$-modules, inducing an isomorphism $R[X_0,\dots,X_n]\to \bigoplus_{d:\Z} H^0(\bP^n,\mathcal O(d))$ of graded $R[X_0,\dots,X_n]$-modules.
+  \item \label{calculate-cohomology-twisting-sheaves-b}
+        $H^n(\bP^n,\mathcal O(-n-1))=R$ is free of rank 1 and $H^n(\bP^n,\mathcal O(d))=0$ for $d>-n-1$.
+  \item \label{calculate-cohomology-twisting-sheaves-c}
+    The canonical map given by tensoring
+    \[
+      H^0(\bP^n,\mathcal O(d)) \times H^n(\bP^n,\mathcal O(-d-n-1))\to R
+    \]
+    is a perfect pairing of finite free $R$-modules for all $d:\Z$.
+  \item $H^i(\bP^n,\mathcal O(d))=0$ for $i\in\{1,\dots,n-1\}$ and all $d:\Z$.
+  \end{enumerate}
+\end{theorem}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Concluding remarks on SAG and SSD}
-  \begin{enumerate}[(1)]
-  \item Models in constructive meta-theory.
-  \item Unclear how much of the classical theory is reproducible in this way.
-  \item Type theory sometimes leads to a nicer formulation of results.
-  \item Far away from mainstream practice.
-  \item Might admit significantly shorter formalization. 
+  \frametitle{Serre-Duality for Projective Space}
+  Algebraic Geometry textbook by Hartshorne, p.\ 257: 
+  \begin{center}
+  \includegraphics[keepaspectratio,
+                                 width=0.8\paperwidth,
+                                 height=\paperheight]{hartshorne1.png}    
+  \end{center}
+  \pause
+  \textbf{Challenges:}
+  \begin{enumerate}[(i)]
+  \item (c) needs that dualization is exact.
+  \item It is unclear if we have a good replacement for ``coherent''.
+  \item It is even less clear if cohomology groups of coherent sheaves will be coherent - which is needed in (c).
   \end{enumerate}
 \end{frame}
 
