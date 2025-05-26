@@ -1,0 +1,501 @@
+\documentclass[proof]{beamer}
+\usetheme{default}
+
+\usecolortheme{rose}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+ \usepackage{amssymb}
+ \usepackage{latexsym}
+ \usepackage{amsmath}
+ \usepackage{amssymb}
+ \usepackage{tikz}
+ \usepackage{tikz-cd}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{forest}
+\usepackage{color}
+\usepackage[all,cmtip]{xy}
+
+\usepackage{pgfplots}
+\usepackage{array}
+    \newcolumntype{C}{>{\centering\arraybackslash}c}
+
+
+
+\definecolor{qbblue}{RGB}{43,126,128}
+%\definecolor{qbblue}{RGB}{43,126,204}
+\definecolor{qborange}{RGB}{242,151,36}
+\definecolor{qblight}{RGB}{210,210,210}
+\definecolor{qbdark}{RGB}{180,180,180}
+\definecolor{qbred}{RGB}{184,13,72}
+
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{block title}{bg=qblight,fg=black}
+\setbeamercolor{frametitle}{bg=qblight,fg=black}
+\setbeamercolor{section in head/foot}{bg=black}
+\setbeamertemplate{itemize item}{\color{qbdark}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{qbdark}$\blacktriangleright$}
+%\setbeamercolor*{palette tertiary}{bg=black}
+\setbeamercolor{local structure}{fg=black}
+
+\usepackage[style=verbose,backend=biber]{biblatex}
+\addbibresource{biblio.bib}
+
+\renewcommand{\_}{\rule{.6em}{.5pt}\hspace{0.023cm}}
+
+\newcommand{\bloc}[2]{\begin{block}{#1}\setlength\abovedisplayskip{0pt}#2\end{block}}
+
+\setbeamertemplate{navigation symbols}{} 
+\addtobeamertemplate{footline}{\hfill{\tiny \insertframenumber}\hspace{2em} \vspace{1em}}
+
+\newcommand{\red}[1]{\textcolor{qbred}{#1}}
+\newcommand{\blue}[1]{\textcolor{qbblue}{#1}}
+\newcommand{\orange}[1]{\textcolor{qborange}{#1}}
+
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\propTrunc}[1]{\lVert #1 \rVert}
+\newcommand{\eqspace}{\vspace{0.32cm}}
+
+\def\mhyphen{{\hbox{-}}}
+
+%\newcommand{\trunc}[1]{|| #1 ||}
+
+\AtBeginSection[]
+{
+ \begin{frame}<beamer>
+ \frametitle{Outline}
+ \tableofcontents[currentsection]
+ \end{frame}
+}
+
+\begin{document}
+
+
+%\abovedisplayskip=0.0cm
+%\abovedisplayshortskip=-0.3cm
+%\belowdisplayskip=0.6cm
+
+
+\title{\red{Ch\^atelet's Theorem in Synthetic Algebraic Geometry}}
+\author{Hugo Moeneclaey\\
+Gothenburg University and Chalmers University of Technology\\
+\vspace{0.32cm}
+j.w.w Thierry Coquand}
+\date{\blue{HoTT/UF 2025}\\
+Genoa}
+
+
+
+\frame{\titlepage}
+
+
+
+
+\frame{\frametitle{Overview}
+
+Algebraic geometry is the study of \red{roots of systems of polynomials}.
+\pause
+\bloc{Theorem [Ch\^atelet 1944]}{
+Any inhabited Severi-Brauer variety is a projective space.
+}
+\pause
+\bloc{Goal}{
+Give a \red{synthetic} proof of Ch\^atelet's theorem.
+}
+
+}
+
+
+\frame{\frametitle{Overview}
+
+\bloc{Today}{ 
+\begin{enumerate}
+\item Introduce synthetic algebraic geometry.
+\item Define \red{\'etale sheaves}. Being an \'etale sheaf is a \red{lex modality}.
+\item Use \red{\'etale sheafification} to define Severi-Brauer varieties.
+\item Sketch the proof of Ch\^atelet's theorem. 
+
+Essentially \red{lex modality reasoning} + some linear algebra.
+\end{enumerate}
+}
+\pause
+\bloc{Main point of this talk}{
+Working with \red{\'etale sheaves} in synthetic algebraic geometry is \red{convenient} and \red{helpful}.
+}
+
+}
+
+
+% \begin{frame}<beamer>
+% \frametitle{Outline}
+% \tableofcontents
+% \end{frame}
+
+
+
+\section{Introduction to synthetic algebraic geometry}
+
+%\frame{\frametitle{Traditional algebraic geometry, in one slide}}
+
+\frame{\frametitle{What is synthetic algebraic geometry?}
+
+It consists of HoTT plus 3 axioms:
+
+\bloc{Axiom 1}{
+There is a \red{local ring $R$}.
+}
+
+$R$ is assumed to be a set.
+
+}
+
+\frame{\frametitle{Affine schemes}
+
+For $A$ a finitely presented algebra, we define:
+\[Spec(A) = Hom_{R\mhyphen Alg}(A,R)\]
+
+\bloc{Example}{
+If:
+\[A = R[X]/P\]
+then:
+\[Spec(A) = \{x:R\ |\ P(x) = 0\}\]
+}
+\pause
+\bloc{Definition}{
+A type $X$ is an \red{affine scheme} if there is an f.p.\ algebra $A$ such that:
+\vspace{-0.1cm}
+\[X=Spec(A)\]
+}
+
+}
+
+\frame{
+
+\bloc{Axiom 2: \red{Duality}}{
+For any f.p.\ algebra $A$ the map:
+
+\[A \to R^{Spec(A)}\]
+is an equivalence.
+}
+\pause
+Then:
+\begin{itemize}
+\item $Spec : \{f.p.\ algebras\} \simeq \{Affine\ schemes\}$
+\pause
+\item All maps between affine schemes are polynomials.
+\end{itemize}
+
+}
+
+
+\frame{
+
+\bloc{Axiom 3: \red{Zariski local choice}}{
+Affine schemes enjoys a weakening of the axiom of choice.
+}
+
+}
+
+
+\frame{\frametitle{Schemes}
+
+\bloc{Defintion}{
+A type is a \red{scheme} if it has a finite open cover by affine schemes.
+}
+\pause
+\bloc{Example}{
+The \red{projective space}:
+\vspace{0.42cm}
+\[\bP^n = \{Lines\ in\ R^{n+1}\ going\ through\ the\ origin\}\] %= (R^{n+1}\backslash\{0\}) / R^\times\]
+is a scheme.
+}
+
+}
+
+
+\frame{\frametitle{Ch\^atelet's theorem in traditional algebraic geometry}
+
+\bloc{Definition (Traditional algebraic geometry, $k$ a field)}{
+A \red{Severi-Brauer variety over $k$} is a $k$-scheme $X$ such that $X$ is a projective space over the separable closure of $k$.
+}
+
+\bloc{Theorem [Ch\^atelet 1944]}{
+Any inhabited Severi-Brauer variety is a projective space.
+}
+\pause
+Synthetically, for $X$ a Severi-Brauer variety:
+\vspace{-0.12cm}
+\[\propTrunc{X}\to\exists (n:\mathbb{N}).\, \propTrunc{X=\bP^n}\]
+\pause
+\vspace{-0.64cm}
+\bloc{Challenge}{
+How to define synthetic Severi-Brauer varieties?
+}
+
+%We use \'etale sheaves.
+
+}
+
+
+
+\section{\'Etale sheaves}
+
+
+\frame{\frametitle{Definition}
+
+\bloc{Definition}{
+A type $X$ is an \red{\'etale sheaf} if for any monic unramifiable $P:R[X]$, we have a unique filler:
+\vspace{0.24cm}
+\[\xymatrix{
+\exists(x:R).\, P(x)=0\ar[r]\ar[d] & X\\
+1\ar@{-->}[ru]_{\exists !} & 
+}\]
+}
+
+\'Etale sheaves behave as if any monic unramifiable $P$ had a root.
+\pause
+\bloc{Remark}{
+By [Wraith 79], this should correspond to \red{traditional \'etale sheaves}.
+}
+
+}
+
+
+\frame{
+
+Being an \'etale sheaf is a \red{lex modality}.
+
+So we have an \red{\'etale sheafification} [Rijke, Shulman, Spitters 2017].
+
+\bloc{Remark}{
+HoTT can be interpreted \red{inside \'etale sheaves}:
+\begin{itemize}
+\item The universe $U$ is interpreted as the type $U_{Et}$ of \'etale sheaves. %is itself an \'etale sheaf .
+\item $\Sigma$, $\Pi$ and identity types are interpreted as themselves.
+\item Truncation $\propTrunc{\_}$ is interpreted as the \'etale sheafification of the truncation, denoted $\propTrunc{\_}_{Et}$.
+\end{itemize}
+}
+
+}
+
+
+%\frame{
+
+%Why do this match up with sheaves in the usual sense?
+
+%Sets, $1$-types
+
+%A bit complicated that we use monic unramifiable...
+
+%}
+
+
+\frame{\frametitle{Required properties of \'etale sheaves}
+
+
+%The ring $R$ is an \'etale sheaf, so any affine scheme is an \'etale sheaf.
+
+%Moreover:
+
+
+\bloc{Lemma}{
+\red{Any scheme} is an \'etale sheaf.
+}
+\pause
+\bloc{Lemma}{
+Let $M$ be a module that is an \'etale sheaf. 
+
+The proposition \red{``$M$ is finite free"} is an \'etale sheaf.
+}
+
+Equivalently, \red{the type of finite free module} is an \'etale sheaf.
+
+\bloc{Remark}{
+Traditionally phrased as \red{\'etale descent for finite free modules}.
+}
+
+}
+
+
+\section{Severi-Brauer varieties and Ch\^atelet's theorem}
+
+\frame{\frametitle{Severi-Brauer varieties}
+
+We fix a natural number $n$.
+
+\bloc{Definition}{
+A \red{Severi-Brauer variety} is an \'etale sheaf $X$ such that $\propTrunc{X=\bP^n}_{Et}$.
+}
+
+We write:
+\[SB_n = \{X:U_{Et}\ |\ \propTrunc{X=\bP^n}_{Et}\}\]
+
+%So $X:SB_n$ is a projective space, assuming some roots in $R$.
+
+}
+
+
+\frame{\frametitle{Example: Conics}
+
+Assume $2\not=0$.
+
+\bloc{Example}{
+For all $a,b:R$ invertible:
+\eqspace
+\[C(a,b) = \{[x:y:z]:\bP^2\ |\  ax^2 + by^2 = z^2\}\]
+is a Severi-Brauer variety.
+}
+
+%\bloc{Proof}{
+%\begin{itemize}
+%\item $C(1,1)=\bP^1$ by direct computation.
+%\item $C(c^2,d^2) = C(1,1)$ by the variable change $x\mapsto cx, y\mapsto dy$.
+%\item $X^2-a$ and $X^2-b$ are unramifiable (as $2\not=0$).
+%\end{itemize}
+%Then assuming $\sqrt{a}$ and $\sqrt{b}$, we have: 
+%\[C(a,b) = C(\sqrt{a}^2,\sqrt{b}^2) = C(1,1) = \bP^1\]
+%}
+
+}
+
+
+\frame{\frametitle{Severi-Brauer varieties form a delooping}
+
+\bloc{Theorem [Cherubini, Coquand, Hutzler, W\"arn 2024]}{
+%The group of automorphism of $\bP^n$ is $PGL_{n+1}(R)$.
+\vspace{-0.32cm}
+\[Aut(\bP^n) = PGL_{n+1}(R)\]
+}
+
+\pause
+
+Therefore:
+\[SB_n = \{X:U_{Et}\ |\ \propTrunc{X=\bP^n}_{Et}\}\]
+is the interpretation inside \'etale sheaves of: 
+\vspace{-0.1cm}
+\[ \{X:U\ |\ \propTrunc{X=\bP^n}\} = B(Aut(\bP^n)) = B(PGL_{n+1}(R))\] 
+
+}
+
+
+
+\frame{\frametitle{Azumaya algebras form a delooping}
+
+\bloc{Lemma}{
+%The group of automorphisms of the algebra $M_{n+1}(R)$ is $PGL_{n+1}(R)$.
+\vspace{-0.32cm}
+\[Aut_{R\mhyphen Alg}(M_{n+1}(R)) = PGL_{n+1}(R)\]
+}
+
+\pause
+
+So we define the type of Azumaya algebras:
+\[AZ_n = \{A:R\mhyphen Alg_{Et}\ |\ \propTrunc{A=M_{n+1}(R)}_{Et}\}\]
+It is also the interpretation of $B(PGL_{n+1}(R))$ inside \'etale sheaves.
+}
+
+
+\frame{\frametitle{Severi-Brauer varieties from Azumaya algebras}
+
+By \red{unicity of deloopings}, we know that $AZ_n \simeq SB_n$. 
+
+\pause 
+
+We can be more concrete:
+\bloc{Lemma}{
+The pointed map:
+\vspace{0.12cm}
+\begin{eqnarray}
+LI &:& AZ_n \to SB_n\nonumber\\
+LI(A) &=& \{I\ left\ ideals\ in\ A\ |\ I\ free\ of\ rank\ n+1\}\nonumber
+\end{eqnarray}
+\vspace{-0.76cm}
+
+is an equivalence.
+}
+
+\pause
+
+\bloc{Proof sketch}{
+$LI$ induces a map: 
+\vspace{0.1cm}
+\[\alpha:PGL_{n+1}(R) = \Omega AZ_n \overset{\Omega LI}{\longrightarrow} \Omega SB_n = PGL_{n+1}(R)\]
+
+\vspace{-0.22cm}
+
+By \red{lex modality reasoning}, we just need that $\alpha$ is the identity.
+
+Check this by direct computation.
+}
+
+%\bloc{Remark}{
+%This means all Severi-Brauer varieties are schemes.
+%}
+
+}
+
+
+\frame{
+
+\bloc{Lemma}{
+Given $A:AZ_n$, if we have $I:LI(A)$ then $A = End_R(I)$.
+}
+
+\pause
+
+\bloc{Proof sketch}{
+By \red{lex modality reasoning}, we can assume $A=M_{n+1}(R)$.
+
+Then we do some linear algebra.
+}
+
+\pause
+
+\bloc{Corollary}{
+Given $A:AZ_n$, if we have $\propTrunc{LI(A)}$ then $\propTrunc{A = M_{n+1}(R)}$.
+}
+
+}
+
+\frame{\frametitle{Ch\^atelet's theorem in synthetic algebraic geometry}
+
+\bloc{Theorem}{
+For all $X:SB_n$, we have that $\propTrunc{X}$ implies $\propTrunc{X=\bP^n}$.
+}
+
+\bloc{Proof}{
+\vspace{-0.32cm}
+
+%\begin{eqnarray}
+% & & \propTrunc{X}\nonumber\\
+%(LI\ is\ an\ equivalence)&\Rightarrow& \exists(I:LI(LI^{-1}(X)))\nonumber\\ 
+%(previous\ Lemma) &\Rightarrow& \propTrunc{LI^{-1}(X) = End_R(I)}\nonumber\\
+%(I\ is\ finite\ free\ of\ rank\ n+1) &\Rightarrow&  \propTrunc{LI^{-1}(X) = M_{n+1}(R)}\nonumber\\
+%(LI\ is\ an\ equivalence) &\Rightarrow& \propTrunc{X=LI(M_{n+1}(R))}\nonumber\\
+%(direct\ computation) &\Rightarrow& \propTrunc{X=\bP^n}\nonumber
+%\end{eqnarray}
+
+\begin{eqnarray}
+  & \propTrunc{X}& \nonumber\\
+\Rightarrow& \propTrunc{LI(A)}&(write\ A=LI^{-1}(X))\nonumber\\ 
+%\Rightarrow& \propTrunc{A = End_R(I)}& (previous\ Lemma) \nonumber\\
+\Rightarrow&  \propTrunc{A = M_{n+1}(R)}& (previous\ Corollary) \nonumber\\
+\Rightarrow& \propTrunc{X=LI(M_{n+1}(R))}& (apply\ LI) \nonumber\\
+\Rightarrow& \propTrunc{X=\bP^n} & (LI\ pointed) \nonumber
+\end{eqnarray}
+
+%$\propTrunc{X}\Rightarrow \exists(I:LI(LI^{-1}(X))) \Rightarrow \propTrunc{LI^{-1}(X) = End_R(I)} \Rightarrow  \propTrunc{LI^{-1}(X) = M_{n+1}(R)} \Rightarrow \propTrunc{X=LI(M_{n+1}(R))} \Rightarrow \propTrunc{X=\bP^n}$.
+}
+
+}
+
+
+
+
+
+
+
+\end{document}
