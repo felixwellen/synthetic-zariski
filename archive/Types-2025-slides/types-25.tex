@@ -1,0 +1,263 @@
+\documentclass[proof]{beamer}
+\usetheme{default}
+
+\usecolortheme{rose}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+ \usepackage{amssymb}
+ \usepackage{latexsym}
+ \usepackage{amsmath}
+ \usepackage{amssymb}
+ \usepackage{tikz}
+ \usepackage{tikz-cd}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{forest}
+\usepackage{color}
+\usepackage[all,cmtip]{xy}
+
+\usepackage{pgfplots}
+\usepackage{array}
+    \newcolumntype{C}{>{\centering\arraybackslash}c}
+
+
+
+\definecolor{qbblue}{RGB}{43,126,128}
+%\definecolor{qbblue}{RGB}{43,126,204}
+\definecolor{qborange}{RGB}{242,151,36}
+\definecolor{qblight}{RGB}{210,210,210}
+\definecolor{qbdark}{RGB}{180,180,180}
+\definecolor{qbred}{RGB}{184,13,72}
+
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{block title}{bg=qblight,fg=black}
+\setbeamercolor{frametitle}{bg=qblight,fg=black}
+\setbeamercolor{section in head/foot}{bg=black}
+\setbeamertemplate{itemize item}{\color{qbdark}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{qbdark}$\blacktriangleright$}
+%\setbeamercolor*{palette tertiary}{bg=black}
+\setbeamercolor{local structure}{fg=black}
+
+\usepackage[style=verbose,backend=biber]{biblatex}
+\addbibresource{biblio.bib}
+
+\renewcommand{\_}{\rule{.6em}{.5pt}\hspace{0.023cm}}
+
+\newcommand{\bloc}[2]{\begin{block}{#1}\setlength\abovedisplayskip{0pt}#2\end{block}}
+
+\setbeamertemplate{navigation symbols}{} 
+\addtobeamertemplate{footline}{\hfill{\tiny \insertframenumber}\hspace{2em} \vspace{1em}}
+
+\newcommand{\red}[1]{\textcolor{qbred}{#1}}
+\newcommand{\blue}[1]{\textcolor{qbblue}{#1}}
+\newcommand{\orange}[1]{\textcolor{qborange}{#1}}
+
+
+\newcommand{\propTrunc}[1]{\lVert #1 \rVert}
+\newcommand{\CHaus}{CHaus}
+\newcommand{\Stone}{Stone}
+\newcommand{\ODisc}{ODisc}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\U}{Type}
+
+\def\mhyphen{{\hbox{-}}}
+
+%\newcommand{\trunc}[1]{|| #1 ||}
+
+\AtBeginSection[]
+{
+ \begin{frame}<beamer>
+ \frametitle{Outline}
+ \tableofcontents[currentsection]
+ \end{frame}
+}
+
+\begin{document}
+
+
+%\abovedisplayskip=0.0cm
+%\abovedisplayshortskip=-0.3cm
+%\belowdisplayskip=0.6cm
+
+
+\title{\red{Cohomology in Synthetic Stone Duality}}
+\author{Hugo Moeneclaey\\
+Gothenburg University and Chalmers University of Technology\\
+\vspace{0.32cm}
+j.w.w Thierry Coquand, Felix Cherubini and Freek Geerligs}
+\date{\blue{TYPES 2025}\\
+Glasgow}
+
+
+
+\frame{\titlepage}
+
+
+
+\frame{\frametitle{Overview}
+
+We work in Synthetic Stone Duality (SSD). 
+
+SSD = HoTT + 4 axioms.
+
+\bloc{Cohomology in HoTT}{
+Given $n:\N,\ X:\U,\ A:X\to Ab$, we define a group $H^n(X,A)$.
+}
+
+$H^n(X,A)$ is the $n$-th cohomology group of $X$ with coefficient $A$.
+
+\bloc{Our previous work [CCGM24]}{
+\begin{itemize}
+\item Showed SSD is suitable for synthetic topological study of Stone and compact Hausdorff spaces.
+\item Proved $H^1(X,\Z)$ is well-behaved for $X:\CHaus$ .
+\end{itemize}
+}
+
+\bloc{Goal}{
+$H^n(X,A)$ is well-behaved for $n:\N,\ X:\CHaus,\ A:X\to Ab_{cp}$.
+}
+
+}
+
+
+
+\frame{\frametitle{Overview}
+
+\bloc{Today}{ 
+\begin{enumerate}
+\item Introduce SSD, Stone spaces and compact Hausdorff spaces.
+\item Introduce the cohomology groups $H^n(X,A)$.
+\item Introduce overtly discrete types and Barton-Commelin axioms:
+\begin{center}
+$\prod_{x:X}I(x)$ is well-behaved for $X:\CHaus,\ I:X\to \ODisc$. 
+\end{center}
+\item Explain our main result:
+\begin{center}
+$H^n(X,A)$ is well-behaved for $X:\CHaus,\ A:X\to Ab_{\ODisc}$.
+\end{center}
+\end{enumerate}
+}
+
+An abelian group is overtly discrete iff it is countably presented.
+
+}
+
+
+\section{SSD, Stone spaces and compact Hausdorff spaces}
+
+
+\frame{\frametitle{Stone spaces}
+
+\bloc{Definition}{
+A type $X$ is a Stone space if it merely is a sequential limit of finite types.
+}
+
+\bloc{Example 1: Cantor space}{
+The type $2^\N$ is a Stone space. Indeed $2^\N = lim_i\, 2^i$.
+}
+
+\bloc{Example 2: The compactification of $\N$}{
+The type:
+\[\N_\infty = \{\alpha:2^\N\ |\ \alpha\ hits\ 1\ at\ most\ once\}\]
+is a Stone space.
+}
+
+}
+
+\frame{
+\vspace{0.3cm}
+%\bloc{Example 2: The compactification of $\N$}{
+%The compactification of $\N$, defined as:
+%\[\N_\infty = \{\alpha:2^\N\ |\ \alpha\ hits\ 1\ at\ most\ once\}\]
+%is the limit of:
+
+Indeed $\N_\infty$ is the limit of:
+\[\xymatrix{
+Fin(1) & Fin(2)\ar[l]_{-1} & Fin(3)\ar[l]_{-1} &Fin(4)\ar[l]_{-1} & \cdots\ar[l]_{-1} \\
+\{\} & \{0\}\ar[l] & \{00\}\ar[l] & \{000\}\ar[l] &\cdots\ar[l] \\
+	& \{1\}\ar[ul] & \{01\}\ar[ul] & \{001\} \ar[lu]  & \cdots\ar[lu] \\
+	& 	& \{10\}\ar[ul] & \{010\}\ar[lu]  & \cdots\ar[lu] \\
+	&	&	& \{100\}\ar[lu]  & \cdots\ar[lu]\\
+	&	&	&	&\cdots\ar[lu]
+}\]
+
+%}
+
+}
+
+
+\frame{\frametitle{Synthetic Stone duality}
+
+\bloc{Axiom 1: Continuity}{
+If $(S_k)_{k:\N}$ is a sequence of finite type, then
+\[colim_k(S_k\to 2) \overset{\simeq}{\to} (lim_k\, S_k \to 2)\]
+}
+
+\bloc{Axiom 2: Completeness (Equivalent to WKL)}{
+If $(S_k)_{k:\N}$ is a sequence of inhabited finite type, then $\propTrunc{lim_k\, S_k}$.
+}
+
+\bloc{Axiom 3: Local choice}{
+Given $S:\Stone$ and $Y:S\to Type$ such that $\prod_{s:S}\propTrunc{Y(s)}$, 
+
+there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\prod_{t:T}Y(p(t))$.
+}
+
+\bloc{Axiom 4: Dependent choice}{
+}
+
+}
+
+
+\frame{\frametitle{Stability of Stone spaces}
+
+We have ...
+
+But no quotients!
+
+}
+
+
+\frame{\frametitle{Compact Hausdorff space}
+
+\bloc{Definition}{}
+
+Examples
+
+Compact Hausdorff have the same stability as Stone Spaces + quotients
+
+}
+
+
+
+\section{Intoduction to cohomology}
+
+\frame{\frametitle{Eilenberg Mac Lane spaces}}
+
+\frame{\frametitle{Cohomology groups}
+
+Main challenge: find a good class of coefficient
+
+}
+
+
+\section{Overtly discrete types and Barton-Commelin axioms}
+
+\frame{\frametitle{Definition}}
+
+\frame{\frametitle{Stability}}
+
+\frame{\frametitle{Tychonov and its dual}}
+
+\frame{\frametitle{Scott Continuity}}
+
+
+\section{Main results}
+
+
+
+
+\end{document}
