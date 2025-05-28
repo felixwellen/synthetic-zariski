@@ -56,12 +56,13 @@
 
 
 \newcommand{\propTrunc}[1]{\lVert #1 \rVert}
-\newcommand{\CHaus}{CHaus}
-\newcommand{\Stone}{Stone}
-\newcommand{\ODisc}{ODisc}
+\newcommand{\CHaus}{\mathsf{CHaus}}
+\newcommand{\Stone}{\mathsf{Stone}}
+\newcommand{\ODisc}{\mathsf{ODisc}}
+\newcommand{\Type}{\mathsf{Type}}
+\newcommand{\Ab}{\mathsf{Ab}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\Type}{Type}
 \newcommand{\I}{\mathbb{I}}
 
 \def\mhyphen{{\hbox{-}}}
@@ -86,9 +87,8 @@
 
 \title{\red{Cohomology in Synthetic Stone Duality}}
 \author{Hugo Moeneclaey\\
-Gothenburg University and Chalmers University of Technology\\
 \vspace{0.32cm}
-j.w.w Thierry Coquand, Felix Cherubini and Freek Geerligs}
+j.w.w. Felix Cherubini, Thierry Coquand and Freek Geerligs}
 \date{\blue{TYPES 2025}\\
 Glasgow}
 
@@ -105,7 +105,7 @@ We work in Synthetic Stone Duality (SSD).
 SSD = HoTT + 4 axioms.
 
 \bloc{Cohomology in HoTT}{
-Given $n:\N,\ X:\Type,\ A:X\to Ab$, we define a group $H^n(X,A)$.
+Given $n:\N,\ X:\Type,\ A:X\to \Ab$, we define a group $H^n(X,A)$.
 }
 
 $H^n(X,A)$ is the $n$-th cohomology group of $X$ with coefficient $A$.
@@ -118,7 +118,7 @@ $H^n(X,A)$ is the $n$-th cohomology group of $X$ with coefficient $A$.
 }
 
 \bloc{Goal}{
-$H^n(X,A)$ is well-behaved for $n:\N,\ X:\CHaus,\ A:X\to Ab_{cp}$.
+$H^n(X,A)$ is well-behaved for $n:\N,\ X:\CHaus,\ A:X\to \Ab_{cp}$.
 }
 
 }
@@ -137,7 +137,7 @@ $\prod_{x:X}I(x)$ is well-behaved for $X:\CHaus,\ I:X\to \ODisc$.
 \end{center}
 \item Explain our main result:
 \begin{center}
-$H^n(X,A)$ is well-behaved for $X:\CHaus,\ A:X\to Ab_{\ODisc}$.
+$H^n(X,A)$ is well-behaved for $X:\CHaus,\ A:X\to \Ab_{\ODisc}$.
 \end{center}
 \end{enumerate}
 }
@@ -172,10 +172,6 @@ is a Stone space.
 
 \frame{
 \vspace{0.3cm}
-%\bloc{Example 2: The compactification of $\N$}{
-%The compactification of $\N$, defined as:
-%\[\N_\infty = \{\alpha:2^\N\ |\ \alpha\ hits\ 1\ at\ most\ once\}\]
-%is the limit of:
 
 Indeed $\N_\infty$ is the limit of:
 \[\xymatrix{
@@ -187,10 +183,7 @@ Fin(1) & Fin(2)\ar[l]_{-1} & Fin(3)\ar[l]_{-1} &Fin(4)\ar[l]_{-1} & \cdots\ar[l]
 	&	&	&	&\cdots\ar[lu]
 }\]
 
-%}
-
 }
-
 
 \frame{\frametitle{Synthetic Stone duality}
 
@@ -213,7 +206,6 @@ there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\prod_{t:T}Y(p(
 }
 
 }
-
 
 \frame{\frametitle{Stability of Stone spaces}
 
@@ -255,7 +247,6 @@ Closed subtypes of Stone spaces and of $\mathbb{I}$ are as expected.
 }
 
 
-
 \section{Intoduction to cohomology in HoTT}
 
 \frame{\frametitle{Delooping abelian groups}
@@ -263,7 +254,7 @@ Closed subtypes of Stone spaces and of $\mathbb{I}$ are as expected.
 We define $K(A,0)=A$.
 
 \bloc{Proposition}{
-Given $A:Ab,\, n>0$, there exists a unique pointed $(n-1)$-connected $n$-truncated type $K(A,n)$ such that
+Given $A:\Ab,\, n>0$, there exists a unique pointed $(n-1)$-connected $n$-truncated type $K(A,n)$ such that
 \[\Omega^nK(A,n) = A\]
 }
 
@@ -274,7 +265,7 @@ $K(A,n)$ is called the $n$-th delooping of $A$.
 \frame{\frametitle{Cohomology groups}
 
 \bloc{Definition}{
-Given $X:\Type,\, A:X\to Ab,\, n:\N$, we define:
+Given $X:\Type,\, A:X\to \Ab,\, n:\N$, we define:
 
 \[H^n(X,A) = \propTrunc{\prod_{x:X}K(A_x,n)}_0\]
 }
@@ -320,7 +311,7 @@ Open propositions are precisely negation of closed propositions and vice versa.
 \bloc{Remark}{
 A type $X$ is overtly discrete if and only if:
 \begin{itemize}
-\item It has open identity types.merely is the quotient of a countable set by an open equivalence relation.
+\item It has open identity types.
 \item There exists a countable type $I$ (i.e. a decidable subtype of $\N$) with $I\twoheadrightarrow X$.
 \end{itemize}
 }
@@ -350,15 +341,16 @@ This is a first sign that taking overtly discrete (aka cp) abelian groups as coe
 \frame{\frametitle{Scott Continuity revisited}
 
 \bloc{Definition}{
-We have a category structure on $\Sigma_{X:\CHaus} (X\to \ODisc)$ where:
+We have a category $\mathcal C$ where:
 \begin{itemize}
-\item A morphism $(X,I) \to (Y,J)$ consists of $f:Y\to X$ with $\forall y:Y.\ I_{f(x)}\to J_x$.
+\item An object consists of $X:\CHaus$ and $I:X\to\ODisc$.
+\item A morphism  from $(X,I)$ to $(Y,J)$ consists of $f:Y\to X$ with $\prod_{y:Y} I_{f(x)}\to J_x$.
 \end{itemize}
 }
 
 \bloc{Theorem (Generalized Scott continuity)}{
-The functor:
-\[\prod : \Sigma_{X:\CHaus} (X\to\ODisc) \to \ODisc\]
+The covariant functor:
+\[\prod : {\mathcal C} \to \ODisc\]
 commutes with sequential colimits.
 }
 
@@ -367,7 +359,50 @@ The last three results are assumed as axioms in Barton-Commelin's condensed type
 }
 
 
-\section{Main results}
+\section{Cohomology results}
+
+\frame{\frametitle{\v{C}ech cohomology}
+
+\bloc{Definition}{
+A \v{C} TODO
+}
+
+}
+
+\frame{\frametitle{Vanishing of the first cohomology group}
+
+\bloc{Lemma}{
+Given $S:\Stone,\, A:S\to \Ab_\ODisc$, we have that $\check{H}^1(S,T,A) = 0$.
+}
+
+\bloc{Proof}{
+\begin{itemize}
+\item By finite approximation, 
+\item $\check{H}^1(S,T,A)=0$ for $S$ finite 
+\item conclude by Scott continuity.
+\end{itemize}
+}
+
+\bloc{Lemma}{
+Given $S:\Stone,\, A:S\to \Ab_\ODisc$, we have that $H^1(S,A) = 0$.
+}
+
+\bloc{Proof}{
+Assume $\alpha:S\to K(A,1)$, 
+\begin{itemize}
+\item By local choice we get $T\to S$ trivializing $\alpha$.
+\item Since $\check{H}^1(S,T,A) = 0$ we can glue the trivializing.
+\end{itemize}
+}
+
+}
+
+
+\frame{\frametitle{Going to $n$}}
+
+\frame{\frametitle{\v{C}ech agree with usual}}
+
+
 
 
 
