@@ -61,7 +61,8 @@
 \newcommand{\ODisc}{ODisc}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
-\newcommand{\U}{Type}
+\newcommand{\Type}{Type}
+\newcommand{\I}{\mathbb{I}}
 
 \def\mhyphen{{\hbox{-}}}
 
@@ -104,7 +105,7 @@ We work in Synthetic Stone Duality (SSD).
 SSD = HoTT + 4 axioms.
 
 \bloc{Cohomology in HoTT}{
-Given $n:\N,\ X:\U,\ A:X\to Ab$, we define a group $H^n(X,A)$.
+Given $n:\N,\ X:\Type,\ A:X\to Ab$, we define a group $H^n(X,A)$.
 }
 
 $H^n(X,A)$ is the $n$-th cohomology group of $X$ with coefficient $A$.
@@ -155,6 +156,8 @@ An abelian group is overtly discrete iff it is countably presented.
 A type $X$ is a Stone space if it merely is a sequential limit of finite types.
 }
 
+\bloc{Example 0: Finite types}{}
+
 \bloc{Example 1: Cantor space}{
 The type $2^\N$ is a Stone space. Indeed $2^\N = lim_i\, 2^i$.
 }
@@ -196,12 +199,12 @@ If $(S_k)_{k:\N}$ is a sequence of finite type, then
 \[colim_k(S_k\to 2) \overset{\simeq}{\to} (lim_k\, S_k \to 2)\]
 }
 
-\bloc{Axiom 2: Completeness (Equivalent to WKL)}{
+\bloc{Axiom 2: Weak K\"onig's Lemma)}{
 If $(S_k)_{k:\N}$ is a sequence of inhabited finite type, then $\propTrunc{lim_k\, S_k}$.
 }
 
 \bloc{Axiom 3: Local choice}{
-Given $S:\Stone$ and $Y:S\to Type$ such that $\prod_{s:S}\propTrunc{Y(s)}$, 
+Given $S:\Stone$ and $Y:S\to \Type$ such that $\prod_{s:S}\propTrunc{Y(s)}$, 
 
 there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\prod_{t:T}Y(p(t))$.
 }
@@ -214,45 +217,154 @@ there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\prod_{t:T}Y(p(
 
 \frame{\frametitle{Stability of Stone spaces}
 
-We have ...
+\bloc{Definition}{
+A proposition that is a Stone space is called closed.
+}
 
-But no quotients!
+$P$ is closed iff it merely is of the form $\forall_{n:\N}D_n$ with $D_n$ decidable.
+
+\bloc{Proposition}{
+Stone spaces are stable under $+$, $\Sigma$-types (subtle), identity types and sequential limits.
+}
+
+But they are not stable under quotients!
 
 }
 
 
 \frame{\frametitle{Compact Hausdorff space}
 
-\bloc{Definition}{}
+\bloc{Definition}{
+A set $X$ is called a compact Hausdorff space if: 
+\begin{itemize}
+\item It has closed identity types.
+\item There exists $S:\Stone$ and $S\twoheadrightarrow X$.
+\end{itemize}
+}
 
-Examples
+\bloc{Examples}{
+The unit interval $\I = [0,1]$ is a closed quotient of $2^\N$
+}
 
-Compact Hausdorff have the same stability as Stone Spaces + quotients
+Compact Hausdorff have the same stability as Stone Spaces + quotients.
+
+\bloc{Remark [CCGM24]}{
+Closed subtypes of Stone spaces and of $\mathbb{I}$ are as expected.
+}
 
 }
 
 
 
-\section{Intoduction to cohomology}
+\section{Intoduction to cohomology in HoTT}
 
-\frame{\frametitle{Eilenberg Mac Lane spaces}}
+\frame{\frametitle{Delooping abelian groups}
+
+We define $K(A,0)=A$.
+
+\bloc{Proposition}{
+Given $A:Ab,\, n>0$, there exists a unique pointed $(n-1)$-connected $n$-truncated type $K(A,n)$ such that
+\[\Omega^nK(A,n) = A\]
+}
+
+$K(A,n)$ is called the $n$-th delooping of $A$.
+
+}
 
 \frame{\frametitle{Cohomology groups}
 
-Main challenge: find a good class of coefficient
+\bloc{Definition}{
+Given $X:\Type,\, A:X\to Ab,\, n:\N$, we define:
+
+\[H^n(X,A) = \propTrunc{\prod_{x:X}K(A_x,n)}_0\]
+}
+
+\bloc{Remark}{
+If $X$ has choice then $H^n(X,A) = 0$ for any $A$ and $n>0$. Indeed:
+\begin{itemize}
+\item For all $y:K(A,n)$ we have that $\propTrunc{y=*}$.
+\item So for all $f:\prod_{x:X}K(A_x,n)$ we have that $\prod_{x:X} \propTrunc{f(x)=*}$.
+\item So by choice $\propTrunc{f=0}$.
+\end{itemize}
+}
 
 }
 
 
 \section{Overtly discrete types and Barton-Commelin axioms}
 
-\frame{\frametitle{Definition}}
+\frame{\frametitle{Overtly discrete types}
 
-\frame{\frametitle{Stability}}
+\bloc{Main challenge}{
+Find a class of coefficients $A$ such that $H^n(X,A)$ is well-behaved for $X:\CHaus$.
+}
 
-\frame{\frametitle{Tychonov and its dual}}
+\bloc{Definition}{
+A type is overtly discrete if it merely is a sequential colimit of finite types.
+}
 
-\frame{\frametitle{Scott Continuity}}
+\bloc{Definition}{
+A proposition that is overtly discrete is called open.
+}
+
+$U$ open iff it merely is of the form $\exists_{n:\N}D_n$ with $D_n$ decidable.
+
+\bloc{Remark [CCGM24]}{
+Open propositions are precisely negation of closed propositions and vice versa.
+}
+
+}
+
+\frame{\frametitle{Overtly discrete types as quotients}
+
+\bloc{Remark}{
+A type $X$ is overtly discrete if and only if:
+\begin{itemize}
+\item It has open identity types.merely is the quotient of a countable set by an open equivalence relation.
+\item There exists a countable type $I$ (i.e. a decidable subtype of $\N$) with $I\twoheadrightarrow X$.
+\end{itemize}
+}
+
+An abelian group is overtly discrete iff it is countably presented.
+
+\bloc{Stability}{
+Overtly discrete types are stable under $+$, $\Sigma$-types, identity types, sequential colimits and quotients by open equivalence relations.
+}
+
+}
+
+\frame{\frametitle{Tychonov and its dual}
+
+\bloc{Lemma (Tychonov)}{
+For $I:\ODisc$ and $X:I\to \CHaus$, we have that $\prod_{i:I}X_i$ is compact Hausdorff.
+}
+
+\bloc{Proposition (Tychonov dual)}{
+For $X:\CHaus$ and $I:X\to \ODisc$, we have that $\prod_{x:X}I_x$ is overtly discrete.
+}
+
+This is a first sign that taking overtly discrete (aka cp) abelian groups as coefficient is a good idea. We have better!
+
+}
+
+\frame{\frametitle{Scott Continuity revisited}
+
+\bloc{Definition}{
+We have a category structure on $\Sigma_{X:\CHaus} (X\to \ODisc)$ where:
+\begin{itemize}
+\item A morphism $(X,I) \to (Y,J)$ consists of $f:Y\to X$ with $\forall y:Y.\ I_{f(x)}\to J_x$.
+\end{itemize}
+}
+
+\bloc{Theorem (Generalized Scott continuity)}{
+The functor:
+\[\prod : \Sigma_{X:\CHaus} (X\to\ODisc) \to \ODisc\]
+commutes with sequential colimits.
+}
+
+The last three results are assumed as axioms in Barton-Commelin's condensed type theory.
+
+}
 
 
 \section{Main results}

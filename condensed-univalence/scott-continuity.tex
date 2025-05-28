@@ -1,3 +1,5 @@
+\subsection{Preliminary work}
+
 \begin{lemma}\label{factorisation-stone-finite}
 For any tower of Stone space $(S_k)_{k:\N}$ and $l:\N$, we have that:
 \[\left(\mathrm{lim}_kS_k\to \mathrm{Fin}(l)\right) \simeq \mathrm{colim}_k (S_k\to \mathrm{Fin}(l))\]
@@ -138,12 +140,12 @@ Since $\Sigma(x,y:S). p(x)=p(y)$ is compact Hausdorff we can apply \cref{compact
 which gives a factorisation of $f$ through $I_j$.
 \end{proof}
 
-\begin{lemma}\label{scott-continuity-right}
+\begin{proposition}\label{scott-continuity-right}
 Assume given $C$ compact Hausdorff and for each $x:C$ a tower:
 \[I_0(x)\to I_1(x)\to \cdots\]
 of overtly discrete types. Then we have that:
 \[\prod_{x:C} \mathrm{colim}_{i} I_i(x) = \mathrm{colim}_{i} \prod_{x:C} I_i(x)\]
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
 Let us check that the canonical map:
@@ -167,10 +169,10 @@ but $f(x)\in \mathrm{Im}(I_i(x))$ is open by \cref{overtly-discrete-union-open} 
 which precisely mean that $f$ factors through $\mathrm{Im}(I_i)$ for some $i$. We conclude by \cref{factorisation-image-true-factorisation}.
 \end{proof}
 
-\begin{theorem}[Scott Continuity]\label{scott-continuity}
+\begin{proposition}\label{scott-continuity}
 Assume given $(C_k)_{k:\N}$ a tower of compact Hausdorff spaces and $(I_i)_{i:\N}$ a tower of overtly discrete types. Then:
 \[\left( \mathrm{lim}_k C_k \to \mathrm{colim}_i I_i\right) \simeq \mathrm{colim}_{k,i} (C_k\to I_i)\]
-\end{theorem}
+\end{proposition}
 
 \begin{proof}
 By the non-dependent version of \cref{scott-continuity-right} we just have to prove that for any overtly discrete $I$ we have that:
@@ -188,4 +190,48 @@ there merely exists $n:\N$ such that $f$ factors through:
 which justifies the name.
 \end{remark}
 
+\subsection{The general version of Scott continuity}
+
+So far we have two versions of Scott continuity (\Cref{scott-continuity-right} and \Cref{scott-continuity}), neither clearly implying the other. We give a common generalisation, suggested to me (Hugo) by Reid Barton.
+
+\begin{definition}
+We have a category $\mathcal C$ defined by:
+\begin{itemize}
+\item An object consists of $X:\CHaus$ and $I:X\to \ODisc$.
+\item A morphism from $(X,I)$ to $(Y,J)$ consists of $f:Y\to X$ with $\forall y:Y.\ I_{f(x)}\to J_x$.
+\end{itemize}
+\end{definition}
+
+The arrows are oriented such that we have a covariant functor $\prod:{\mathcal C}\to \ODisc$.
+
+\begin{theorem}[Die Eine Scott Continuity]
+The functor:
+\[\prod : \Sigma_{X:\CHaus} (X\to\ODisc) \to \ODisc\]
+commutes with sequential colimits.
+\end{theorem}
+
+\begin{proof}
+We assume given a tower in $\C$, that is we assume a tower:
+\[C_0 \overset{p_0}{\leftarrow} C_1 \overset{p_0}{\leftarrow} C_2 \overset{p_2}{\leftarrow}\cdots \]
+in $\CHaus$ with for all $k:\N$ a dependent type $I_k:C_k\to \ODisc$ and:
+\[q_k : \prod_{x:C_{k+1}}I_k(p_k(x))\to I_{k+1}(x)\]
+We want to prove the canonical map:
+\[\mathrm{colim}_i (\prod_{x:C_i}I_i(x)) \to \prod_{x\mathrm{lim}_kC_k}\mathrm{colim}_i I_i(x_i))\]
+is an equivalence. 
+
+By general reasoning on colimits, we know that the source is equivalent to:
+\[\mathrm{colim}_{i,k\geq i} \prod_{x:C_k} I_i(x_i)\]
+which is the same as:
+\[\mathrm{colim}_{i,k\geq i} \prod_{x:C_i}\prod_{y:C_k} y_k=x \to I_i(x)\]
+which by \Cref{scott-continuity-right} is in turn equal to:
+\[\mathrm{colim}_i\prod_{x:C_i} \mathrm{colim}_{k\geq i} \prod_{y:C_k} y_i = x \to I_i(x)\]
+which by \Cref{scott-continuity} is equal to:
+\[\mathrm{colim}_i\prod_{x:C_i} \prod_{y:\mathrm{lim}_{k\geq i} C_k} y_i=x \to I_i(x)\]
+which is immediately seen as:
+\[\mathrm{colim}_i\prod_{x:\mathrm{lim}_{k} C_k} I_i(x_i)\]
+which by \Cref{scott-continuity-right} is equal to:
+\[\prod_{x:\mathrm{lim}_{k} C_k} \mathrm{colim}_i I_i(x_k)\]
+
+We omit the checking that this is indeed the canonical map.
+\end{proof}
 
