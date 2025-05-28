@@ -120,7 +120,7 @@ which is the propositional truncation of an overtly discrete type and therefore 
 Assume given $C$ compact Hausdorff and for each $x:C$ a tower:
 \[I_0(x)\to I_1(x)\to \cdots\]
 of overtly discrete types. Given:
-\[f:\prod_{x:S}\mathrm{colim}_i I_i(x)\]
+\[f:\Pi_{x:S}\mathrm{colim}_i I_i(x)\]
 such that there exists $i:\N$ such that $f$ factors through $\mathrm{Im}(I_i)$. Then there exists $j\geq i$ such that $f$ factors through $I_j$.
 \end{lemma}
 
@@ -128,7 +128,7 @@ such that there exists $i:\N$ such that $f$ factors through $\mathrm{Im}(I_i)$. 
 By local choice there exists a surjective map:
 \[p:S\to C\]
 with:
-\[g:\prod_{x:S} I_i(p(x))\]
+\[g:\Pi_{x:S} I_i(p(x))\]
 such that:
 \[\forall(x:S). g(x) =_{\mathrm{colim}_i I_i(x)} f(p(x))\]
 Then we have that:
@@ -144,24 +144,24 @@ which gives a factorisation of $f$ through $I_j$.
 Assume given $C$ compact Hausdorff and for each $x:C$ a tower:
 \[I_0(x)\to I_1(x)\to \cdots\]
 of overtly discrete types. Then we have that:
-\[\prod_{x:C} \mathrm{colim}_{i} I_i(x) = \mathrm{colim}_{i} \prod_{x:C} I_i(x)\]
+\[\Pi_{x:C} \mathrm{colim}_{i} I_i(x) = \mathrm{colim}_{i} \Pi_{x:C} I_i(x)\]
 \end{proposition}
 
 \begin{proof}
 Let us check that the canonical map:
-\[\mathrm{colim}_i \prod_{x:C} I_i(x) \to \prod_{x:C} \mathrm{colim}_i I_i(x) \]
+\[\mathrm{colim}_i \Pi_{x:C} I_i(x) \to \Pi_{x:C} \mathrm{colim}_i I_i(x) \]
 is an equivalence. 
 
-First we check that it is injective. Given $f,g:\prod_{x:C} I_i(x)$ such that:
+First we check that it is injective. Given $f,g:\Pi_{x:C} I_i(x)$ such that:
 \[\forall(x:C).  f(x) =_{\mathrm{colim}_iI_i(x)} g(x)\]
 Then we have that:
 \[\forall(x:C).  \exists(i:\N). f(x) =_{I_i(x)} g(x)\]
 so that by \cref{compact-hausforff-countable-cover} we have that:
 \[\exists(j:\N). \forall(x:C). f(x) =_{I_j(x)} g(x)\]
-which precisely means that $f=g$ in $\mathrm{colim}_i \prod_{x:C} I_i(x)$.
+which precisely means that $f=g$ in $\mathrm{colim}_i \Pi_{x:C} I_i(x)$.
 
 Now we check that it is surjective. Given a map:
-\[f: \prod_{x:C} \mathrm{colim}_i I_i(x)\]
+\[f: \Pi_{x:C} \mathrm{colim}_i I_i(x)\]
 we know that:
 \[\forall(x:C). \exists(i:\N). f(x)\in \mathrm{Im}(I_i(x))\]
 but $f(x)\in \mathrm{Im}(I_i(x))$ is open by \cref{overtly-discrete-union-open} so that by \cref{compact-hausforff-countable-cover} we have that:
@@ -184,9 +184,9 @@ but we can see that by using \cref{scott-continuity-right} and \cref{factorisati
 
 \begin{remark}
 A consequence of Scott continuity is that given a family $(S_k)_{k:\N}$ and $I$ overtly discrete, for any map:
-\[f: \left(\prod_{k:\N} S_k\right) \to I\]
+\[f: \left(\Pi_{k:\N} S_k\right) \to I\]
 there merely exists $n:\N$ such that $f$ factors through:
-\[\prod_{k:\mathrm{Fin}(n)} S_k\]
+\[\Pi_{k:\mathrm{Fin}(n)} S_k\]
 which justifies the name.
 \end{remark}
 
@@ -202,11 +202,11 @@ We have a category $\mathcal C$ defined by:
 \end{itemize}
 \end{definition}
 
-The arrows are oriented such that we have a covariant functor $\prod:{\mathcal C}\to \ODisc$.
+The arrows are oriented such that we have a covariant functor $\Pi:{\mathcal C}\to \ODisc$.
 
 \begin{theorem}[Die Eine Scott Continuity]
 The functor:
-\[\prod : \Sigma_{X:\CHaus} (X\to\ODisc) \to \ODisc\]
+\[\Pi : {\mathcal C} \to \ODisc\]
 commutes with sequential colimits.
 \end{theorem}
 
@@ -214,23 +214,23 @@ commutes with sequential colimits.
 We assume given a tower in $\C$, that is we assume a tower:
 \[C_0 \overset{p_0}{\leftarrow} C_1 \overset{p_0}{\leftarrow} C_2 \overset{p_2}{\leftarrow}\cdots \]
 in $\CHaus$ with for all $k:\N$ a dependent type $I_k:C_k\to \ODisc$ and:
-\[q_k : \prod_{x:C_{k+1}}I_k(p_k(x))\to I_{k+1}(x)\]
+\[q_k : \Pi_{x:C_{k+1}}I_k(p_k(x))\to I_{k+1}(x)\]
 We want to prove the canonical map:
-\[\mathrm{colim}_i (\prod_{x:C_i}I_i(x)) \to \prod_{x\mathrm{lim}_kC_k}\mathrm{colim}_i I_i(x_i))\]
+\[\mathrm{colim}_i (\Pi_{x:C_i}I_i(x)) \to \Pi_{x\mathrm{lim}_kC_k}\mathrm{colim}_i I_i(x_i))\]
 is an equivalence. 
 
 By general reasoning on colimits, we know that the source is equivalent to:
-\[\mathrm{colim}_{i,k\geq i} \prod_{x:C_k} I_i(x_i)\]
+\[\mathrm{colim}_{i,k\geq i} \Pi_{x:C_k} I_i(x_i)\]
 which is the same as:
-\[\mathrm{colim}_{i,k\geq i} \prod_{x:C_i}\prod_{y:C_k} y_k=x \to I_i(x)\]
+\[\mathrm{colim}_{i,k\geq i} \Pi_{x:C_i}\Pi_{y:C_k} y_k=x \to I_i(x)\]
 which by \Cref{scott-continuity-right} is in turn equal to:
-\[\mathrm{colim}_i\prod_{x:C_i} \mathrm{colim}_{k\geq i} \prod_{y:C_k} y_i = x \to I_i(x)\]
+\[\mathrm{colim}_i\Pi_{x:C_i} \mathrm{colim}_{k\geq i} \Pi_{y:C_k} y_i = x \to I_i(x)\]
 which by \Cref{scott-continuity} is equal to:
-\[\mathrm{colim}_i\prod_{x:C_i} \prod_{y:\mathrm{lim}_{k\geq i} C_k} y_i=x \to I_i(x)\]
+\[\mathrm{colim}_i\Pi_{x:C_i} \Pi_{y:\mathrm{lim}_{k\geq i} C_k} y_i=x \to I_i(x)\]
 which is immediately seen as:
-\[\mathrm{colim}_i\prod_{x:\mathrm{lim}_{k} C_k} I_i(x_i)\]
+\[\mathrm{colim}_i\Pi_{x:\mathrm{lim}_{k} C_k} I_i(x_i)\]
 which by \Cref{scott-continuity-right} is equal to:
-\[\prod_{x:\mathrm{lim}_{k} C_k} \mathrm{colim}_i I_i(x_k)\]
+\[\Pi_{x:\mathrm{lim}_{k} C_k} \mathrm{colim}_i I_i(x_k)\]
 
 We omit the checking that this is indeed the canonical map.
 \end{proof}
