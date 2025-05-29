@@ -1,11 +1,4 @@
-%alg\documentclass[12pt,a4paper]{amsart}
 \documentclass[10pt,a4paper]{article}
-%\ifx\pdfpageheight\undefined\PassOptionsToPackage{dvips}{graphicx}\else%
-%\PassOptionsToPackage{pdftex}{graphicx}
-%\PassOptionsToPackage{pdftex}{color}
-%\fi
-
-%\usepackage{diagrams}
 
 \usepackage{color}
 \newcommand\coloremph[2][red]{\textcolor{#1}{\emph{#2}}}
@@ -13,19 +6,16 @@
 \newcommand\greenemph[2][green]{\textcolor{#1}{\emph{#2}}}
 \newcommand{\EMP}[1]{\emph{\textcolor{red}{#1}}}
 
-%\usepackage[all]{xy}
 \usepackage{url}
 \usepackage{verbatim}
 \usepackage{latexsym}
 \usepackage{amssymb,amstext,amsmath,amsthm}
 \usepackage{epsf}
 \usepackage{epsfig}
-% \usepackage{isolatin1}
 \usepackage{a4wide}
 \usepackage{verbatim}
 \usepackage{proof}
 \usepackage{latexsym}
-%\usepackage{mytheorems}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[section]
 \newtheorem{lemma}{Lemma}[section]
@@ -36,7 +26,6 @@
 \floatstyle{boxed}
 \restylefloat{figure}
 
-
 %%%%%%%%%
 \def\oge{\leavevmode\raise
 .3ex\hbox{$\scriptscriptstyle\langle\!\langle\,$}}
@@ -44,7 +33,6 @@
 .3ex\hbox{$\scriptscriptstyle\,\rangle\!\rangle$}}
 
 %%%%%%%%%
-
 
 \newcommand\myfrac[2]{
  \begin{array}{c}
@@ -80,12 +68,11 @@
 \newcommand\Nmr{\mathsf{Nrd}}
 \newcommand\Hom{\mathsf{Hom}}
 
-
 \begin{document}
 
-\title{Central simple algebras over $\rats_{p,alg}$ are cyclic}
+\title{Errata}
 
-\author{}
+\author{Thierry Coquand, Jonas H\"ofer and Christian Sattler}
 \date{}
 \maketitle
 
@@ -93,240 +80,46 @@
 
 \section*{introduction}
 
-We adapt the proof of Hasse, as presented by Weil \cite{Weil}, that central simple algebras
-over $\rats_p$ are cyclic, to a proof,  {\em in a constructive framework}, that central simple algebras over $\rats_{p,alg}$ are
-cyclic. For this, we rely on the preliminary work \cite{CLN1},
-which provides the foundation of a constructive treatment of central simple algebras over
-a {\em discrete field}. To simplify the notation, we write $K(p)$ for $\rats_{p,alg}$
-and $Z(p)$ for $\ints_{p,alg}$. In a constructive setting, $K(p)$ and $Z(p)$ are {\em discrete}.
-Following Weil, we show that a division algebra over $K(p)$ is cyclic, and we find $x$ and $y$
-in $K(p)$ such that the algebra is $K(p)[x,y]$ and for some $n$ and $r$ prime with $n$
-\begin{center}
-  $x^{p^n-1} = 1~~~~~~~~~~yx = x^{p^r} y~~~~~~~~~y^n = p~~~~~~~~~(1)$
-\end{center}
+Section 8.1 the mistake is in building the presheaf model
 
-A corollary of our analysis is that it is decidable if a given central simple algebra over $K(p)$
-has zero divisors or not. We do this by following ``dynamically'' Weil's argument, starting from
-a given central simple algebra $A$: either we get a problem and find a divisor of $0$, or we find $x$ and $y$
-satisfying the relations (1), and $A$ is a division algebra.
+It works in the 1-topos case
 
-\section{Valuation}
+\section{Problem with quotient}
 
-Let $A$ be a finite dimensional algebra over $K(p)$, of basis $\alpha_1,\dots,\alpha_m$.
-We can assume that all $\alpha_i$ are integral over $Z(p)$.
-If $x$ in $A$, we can define the characteristic
-polynomial of $x$ (the characteristic polynomial of multiplication by $x$) and the trace $\Tr(x)$
-and the norm $\Nm(x)$.  We define $v(x) = v_p(\Nm(x))/m$.
+We work with cubical set. If $E$ is a set we write $\Delta E$ constant cubical set.
+Let $R$ be an equivalence relation on $E$. This defines a (strict) equivalence relation $\Delta R$
+on the cubical set $\Delta E$. There is a projection map $\Delta E \rightarrow \Delta (E/R)$.
 
-We assume that $A$ is a division algebra. Let $x\neq 0$ be an element of $A$. Let $F$ be its
-characteristic polynomial and $f$ be its minimal polynomial. Then $f$ divides $F$ and $F$ divides $f^m$.
-Furthermore $f$ is irreducible since $A$ is a division algebra.
-
-\begin{lemma}\label{main}
-We have $v(x)\geqslant 0$ if, and only if, $x$ is integral over $Z(p)$, i.e.
-all the coefficients $a$ of $F$ are in $Z(p)$. 
-\end{lemma}
+\begin{proposition}
+  The projection map  $\Delta E \rightarrow \Delta (E/R)$ defines a quotient of $\Delta E$
+  by $\Delta R$ in the cubical set model  if, and only if, $E\rightarrow E/R$ has section.
+\end{proposition}
 
 \begin{proof}
-Otherwise there exists $h>0$ such that
-$p^hF(X)$ is $\neq 0$ mod. $p$ and all its coefficients are in $Z(p)$.  We then have mod. $p$
-and equality $p^hF(X) = x^lP(X)$ with $P(0)\neq 0$. We can then lift this decomposition  in $\rats_p[X]$
-(Hensel's Lemma) and we get $p^hF(X) = G(X)H(X)$ with $G,H$ relatively prime. This contradicts
-that $F$ divides $f^m$ and $f$ irreducible.
 \end{proof}
 
-We let then $E = \{x\in A~|~v(x)\geqslant 0\}$ and $P = \{x\in A~|~v(x)>0\}$. If $v(y)\leqslant v(x)$
-with $y\neq 0$, we have $0\leqslant v(xy^{-1})$ and so $xy^{-1}$ is integral, and so is $1+xy^{-1}$.
-Hence $v(y)\leqslant v(x+y)$. In general, we get $v(x+y)\geqslant \Min(v(x),v(y))$ and if $v(y)<v(x)$ then
-$v(x+y) = v(y)$.
-It follows that $E$ is a {\em subring} of $A$.
+\section{Case where $k$ is $\ints$ or a dicrete field}
+
+ We have to use cobar.
 
 
+A(p), R[X] is not described correctly
+we don't clearly get that it has the desired universal property
+
+We can even derive EM from
 
 
-Let $\delta = \disc(\alpha_1,\dots,\alpha_m)$ be the determinant of $\Tr(\alpha_i\alpha_j)$. Since $A$ is a division algebra we
-have $\delta \neq 0$. If $x = \Sigma x_i\alpha_i$ in $A$ is integral and $x_1\neq 0$, we can change
-$\alpha_1$ to $x$ and we get that $\delta x_1^2 = \disc(x,\alpha_2,\dots,\alpha_n)$ is in $Z(p)$.
-It follows that $(\delta x_1)^2$ and so $\delta x_1$ is in $Z(p)$. Similarly, we can prove that all $\delta x_i$ are in $Z(p)$.
-Let $l = v_p(\delta)\geqslant 0$. It follows that we can find generators for the $Z(p)$-module $E$ by looking at
-finitely many elements $\Sigma x_i a_i/p^l $, and we can find a $Z(p)$-basis $\omega_1,\dots,\omega_m$ of $E$.
+-problem general case
 
-The valuation $v$ on $A$ extends the valuation $v_p$ on $K(p)$. Since $\omega_1,\dots,\omega_m$ is
-a $Z(p)$-basis of $E$, we have the following simple but key lemma.
+-if no quotient k = Z or k discrete field needs cobar
 
-\begin{lemma}\label{key}
-  If $x = \Sigma x_i\omega_i$ with $x_i$ in $K(p)$ we have $v(x)\geqslant 0$ if, and only if,
-  $v_p(x_i)\geqslant 0$ for all $i$.
-\end{lemma}
+\section{An example where it works}
 
-\section{A division algebra is cyclic}
-
- We have $v(p) = 1$. We try to find $\omega = \Sigma y_i\omega_i$
- with $y_1,\dots, y_m$ in $\{0,\dots,p-1\}$ such that $0<v(\omega)<1$ and minimum.
- Each $z$ in $E$ can be written $z_0 + p z_1$ with the $z_0 = \Sigma z_{0i}\omega_i$ and $z_{0i}$
- in $\{0,\dots,p-1\}$. If $v(z_0) <1$ then $v(z) = v(z_0)$. If $1\leqslant v(z_0)$ then
- $v(z)\geqslant \Min(v(z_0),v(pz_1))\geqslant 1$. 
- So if we can find such $\omega$ we have $P = (\omega)$ and if we cannot find such $\omega$
- we have $P = (p)$ and we write $\omega = p$. We have $v(\omega) = 1/e = v(\Nmr(\omega))/n$
- and so $e$ divides $n$.
-
- Since $P$ is prime, $E/P$ is an integral extension of $K(p)/pK(p) = \FF_p$ and hence a division
- algebra since it is finite. It is finite since it is a vector space over $\FF_p$ generated by
- the equivalence classes of $\omega_1,\dots,\omega_m$. Let $p^f$ its cardinality.
-
- The basis $\omega_1,\dots,\omega_m$ is still a basis mod. $p$, hence $E/(p)$ has $p^m$ elements.
- We can write any element $a$ in $E$ on the form $a_0 + \dots + \omega^{e-1} a_{e-1}$, and this
- notation is unique for elements mod. $p$ if we select representative of elements mod. $P$.
- It follows that we have $p^m = (p^f)^e = p^{fe}$ and so $fe = m = n^2$.
-
- The field $E/P$ is an extension of $\FF_p$ of degree $f$. We choose $\epsilon$ which is an element of $E$
- of degree $f$ mod. $P$. The element $\epsilon$ is then of degree $\geqslant f$ over $Z(p)$. Hence we have
- $f\leqslant n$.
-
- Since we have $ef = n^2$ and $e$ divides $n$ and $f\leqslant n$, it follows that we have $e = f = n$.
-
- It follows that $\epsilon$ is of degree $n$. Furthermore, by \cite[Corollary 5.12]{ALP}, the local ring $Z(p)[\epsilon]$ is
- Henselien. Since $X^{p^n}-X$ is decomposable in linear factors mod. $p$, we can lift this decomposition
- and $X^{p^n}-X$ is decomposable in linear factor in $Z(p)[\epsilon]$. There is one factor which is
- irreducible of degree $n$ mod. $p$. We can thus assume that
- $\epsilon$ is of degree $n$ and satisfies $\epsilon^{p^n} = \epsilon$.
-
- We get in this way a list $\epsilon^i$ for $0\leqslant i<p^n$ of representatives of all elements of $E$ mod. $P$
- not in $P$. Among them, the elements $\epsilon^{jl}$ for $0< j<p$, with  for $l = (p^n-1)/p-1$,
- list all representative
- in $\{1,\dots,p-1\}\subseteq E$ mod. $p$.
-
- \begin{lemma}\label{unit}
- Any unit in $Z(p)$ is the norm of an element in $E$.   
- \end{lemma}
- 
- \begin{proof}
-   Let $e$ be such a unit. We have $e = \epsilon^{jl}$ mod. $p$ with $0<j<p$.
-   We have $\Nm(\epsilon^j) = \epsilon^{jl}$ which is $e$ mod. $p$. The element $\epsilon^j$
-   is root of an irreducible polynomial $X^n + \alpha_1 X^{n-1}+\dots+\alpha_n$. Since
-   $X^n+\alpha_1 X^{n-1} +\dots +\alpha_{n-1}X + (-1)^ne$ is decomposable in $n$ linear factors in $Z(p)[\epsilon]$
-   mod. $p$, and $Z(p)[\epsilon]$ is Henselian, it has a root in $Z(p)[\epsilon]$ which is an element of norm $e$.
- \end{proof}
- 
- The automorphism $\psi : x\mapsto \omega x \omega^{-1}$ leaves $P$ invariant, hence we have
- $\psi(\epsilon) = \epsilon^{p^r}$ mod. $P$ for some $r$. Let $l_0$ the least $l$ such that $rl = 0$ mod. $n$.
-
- \begin{lemma}
-   We can find $\alpha$ in $E\otimes \ints_p$ such that
-   $(\omega+\omega^2 \alpha) \epsilon = \epsilon^{p^r}(\omega + \omega^2\alpha)$.
- \end{lemma}
-
- \begin{proof}
-   We find $\alpha$ as a limit of sums $\gamma_n = \alpha_0 +\omega \alpha_1 + \omega^2\alpha_2+\dots + \omega^n\alpha_n$ by determining
-   recursively $\alpha_0,\alpha_,\dots$ in $E$ in a recursive way such that
-   $(\omega + \omega^2\gamma_n)\epsilon = \epsilon^{p^r} (\omega + \omega^2\gamma_n)$ mod. $\omega^{n+2}$.
-   In this way, we get a Cauchy sequence w.r.t. the valuation $v$, and the conclusion follows
-   from Lemma \ref{key}.
- \end{proof}
- 
- \begin{corollary}
-   We have find $\alpha$ in $E$ such that
-   $(\omega+\omega^2 \alpha) \epsilon = \epsilon^{p^r}(\omega + \omega^2\alpha)$.
- \end{corollary}
-
- \begin{proof}
-   The linear system in $\alpha$, viewing $A$ as a vector space over $K(p)$
-   \begin{center}
-     $(\omega+\omega^2 \alpha) \epsilon = \epsilon^{p^r}(\omega + \omega^2\alpha)$.
-   \end{center}
-   is not contradictory since it has a solution in $E\otimes \ints_p$. So we can find a solution
-   $u_0$ and $u_1,\dots,u_l$ such that all solutions are of the form $u_0+\Sigma x_i u_i$ with
-   $x_i$ in $K(p)$. In $A\otimes \rats_p$, all solutions are $u_0+\Sigma x_i u_i$ with $x_i$ in $\rats_p$.
-   By the previous Lemma, we have a solution which satisfies $v(u_0+\Sigma x_i u_i)\geqslant 0$.
-   If $v(x_i-y_i)$ big enough with $y_i$  in $K(p)$ we have $v(u_0+\Sigma y_iu_i)\geqslant 0$ and
-   we take $\alpha = u_0+\Sigma y_iu_i$. 
- \end{proof}
- 
+-distributive lattice
 
 
- If we change $\omega$ to $\omega + \omega^2\alpha$, we have $\omega \epsilon = \epsilon^{p^r}\omega$.
- It follows that $\omega^{l_0}$ commutes with $\epsilon$ and $\omega$ and hence is in $\FF_p$.
- Since we have $v(\omega) = 1/n$ it follows that $\omega$ is of degree $n$ over $Z(p)$ and hence $l_0 = n$
- and $r$ is prime with $n$. Since $(\omega^n) = (p)$ we have $\omega^n = p e$ with $e$ unit in $Z(p)$.
- By Lemma \ref{unit}, the element $e$ is a norm of an element $u$ in $E$ and then $\omega u$
- satisfies $\omega u \epsilon = \epsilon^{p^r}\omega u$ and $(\omega u)^n = p$.
-
- We get in this way the following presentation of $A$ as a cyclic algebra over $K(p)$ with
- elements $x$ and $y$ such that $x$ is a primitive $p^n-1$ root of unity and
- $yx = x^{p^r}y$ with $r$ prime with $n$ and $y^n = p$.
- 
- This provides a way of testing if a given central simple algebra $A$ over $K(p)$ is a division algebra or not.
- We follow dynamically this argument assuming that $A$ is a division algebra. Either we get in this way
- a zero divisor, or we find such $x$ and $y$ and we can conclude that $A$ is a division algebra
- from \cite{Wedderburn} and the following Lemma.
-
- \begin{lemma} 
-   The elements $p,p^2,\dots,p^{n-1}$ are not norm of an element in $K(p)[x]$.
- \end{lemma}
-
- \begin{proof}
-   Since $x$ is of degree $n$ mod. $p$, we get that $(p)$ is prime in $Z(p)[x]$ and then $Z(p)[x]$
-   mod. $p$ is a finite field extension of $\FF_p$. If $\Nm(u) = p^i$ with $i>0$ then $u$ is in
-   $Z(p)[x]$ by Lemma \ref{main}, and $u$ is $0$ mod. $p$, hence $i\geqslant n$.
- \end{proof}
- 
- \section{Example}
-
- As an exemple, we take the quaternion algebra over $K(5)$, which is determined by the multiplication table
- \begin{center}
-   $i^2 = j^2 = k^2 = -1~~~~~~~ij = -ji = k~~~~ik = -ki = -j~~~~~~jk = -kj = i$
- \end{center}
- We have a basis $1,i,j,k$ where all elements are integral over $Z(5)$.
-
- We assume that it is a division algebra. We should be able following Weil's argument to find
- automatically a contradiction.
-
- We compute $v(1) = v(i) = v(j) = v(k) = 0$ 
-
- The discriminant is a unit in $Z(5)$. Hence, $1,i,j,k$ is already an integral basis of $E$.
- Next, we find $\omega = 2+i$ such that $v(\omega) = 1/2$. We have $(2+i)^{-1} = 2/5 -1/5i$.
- The prime ideal $P$ should formed of all
- elements $a_0 + a_1i+a_2j+a_3k\neq 0$ such that $5$ divides $a_0^2 + a_1^2 + a_2^2 + a_3^3$.
- We should have $E/P$ finite field. However $(2+j)(2+i)^{-1} = (2+j)(2/5-1/5i) = 4/5 -2/5i + 2/5j +1/5k$
- is not integral and we get a contradiction, that we found in a finite way.
-
-  \begin{thebibliography}{9}
-
- \bibitem[ALP]{ALP}
-    M. E. Alonso, H. Lombardi and H. Perdry.
-    \newblock{Elementary constructive theory of Henselian local rings.}
-    \newblock{Mathematical Logic Quarterly 54, 253-271 (2008)}
-
-  \bibitem[CLN2]{CLN2}
-    Th. Coquand, H. Lombardi and S. Neuwirth.
-    \newblock{Alg\`ebre d'Azumaya and Barr's Theorem.}
-    \newblock{https://arxiv.org/html/2306.17679v2 (2025).}
-
-  \bibitem[CLN1]{CLN1}
-    Th. Coquand, H. Lombardi and S. Neuwirth.
-    \newblock{Constructive basic theory of central simple algebras.}
-    \newblock{https://arxiv.org/abs/2102.12775 (2023).}
-
-   \bibitem[LQ]{LQ}
-    H.\ Lombardi and C.\ Quitté.
-    \newblock{\em Commutative Algebra. Constructive Methods.}
-    \newblock{Springer  (2015).}
-    
-  \bibitem[Wedd]{Wedderburn}
-    J.H.M. Wedderbrun.
-    \newblock{A type of primitive algebra.}
-    \newblock{Transactions of the Mathematical Society, Vol. 15 (1914).}
-
-  \bibitem[Weil]{Weil}
-    A. Weil.
-    \newblock{Les corps gauches $p$-adiques.}
-    \newblock{Le s\'eminaire de math\'ematiques, 1. Ann\'ee 1933-1934.}
-    
-    
-
-
- \end{thebibliography}
-
+\bibliography{../../utils/literature}
+\bibliographystyle{plain}
 
 \end{document}     
                                                                                   
