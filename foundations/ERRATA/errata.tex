@@ -9,7 +9,7 @@
 \usepackage{url}
 \usepackage{verbatim}
 \usepackage{latexsym}
-\usepackage{amssymb,amstext,amsmath,amsthm}
+\usepackage{amssymb,amstext,amsmath,mathtools,amsthm}
 \usepackage{epsf}
 \usepackage{epsfig}
 \usepackage{a4wide}
@@ -37,7 +37,7 @@
 \newcommand\myfrac[2]{
  \begin{array}{c}
  #1 \\
- \hline \hline 
+ \hline \hline
  #2
 \end{array}}
 
@@ -68,6 +68,13 @@
 \newcommand\Nmr{\mathsf{Nrd}}
 \newcommand\Hom{\mathsf{Hom}}
 
+\newcommand\Ty{\mathsf{Ty}}
+\newcommand\El{\mathsf{El}}
+\newcommand\p{\mathsf{p}}
+\newcommand\q{\mathsf{q}}
+\DeclareMathOperator\id{id}
+
+
 \begin{document}
 
 \title{Errata}
@@ -86,16 +93,29 @@ It works in the 1-topos case
 
 \section{Problem with quotient}
 
-We work with cubical set. If $E$ is a set we write $\Delta E$ constant cubical set.
+We work with cubical sets. If $E$ is a set we write $\Delta E$ constant cubical set.
 Let $R$ be an equivalence relation on $E$. This defines a (strict) equivalence relation $\Delta R$
 on the cubical set $\Delta E$. There is a projection map $\Delta E \rightarrow \Delta (E/R)$.
 
-\begin{proposition}
-  The projection map  $\Delta E \rightarrow \Delta (E/R)$ defines a quotient of $\Delta E$
-  by $\Delta R$ in the cubical set model  if, and only if, $E\rightarrow E/R$ has section.
-\end{proposition}
 
+\begin{proposition}
+  The projection map $\Delta E \rightarrow \Delta (E/R)$ defines a quotient of $\Delta E$
+  by $\Delta R$ in the cubical set model if, and only if, $E\rightarrow E/R$ has section.
+\end{proposition}
 \begin{proof}
+  Suppose first that $\eta \colon E \to E/R$ has a section $s \colon E/R \to E$.
+  This means that we internally also have a section of $\Delta\eta \colon \Delta E \to \Delta(E/R)$ interpreted by $\Delta s$, implying in particular that $\Delta \eta$ is surjective in the internal sense.
+  Furthermore, since paths in $\Delta (E/R)$ correspond to strict equality, we have that $\Delta R$ is equivalent to the kernel of $\Delta\eta$.
+  These two properties already characterize the quotient~\cite[Theorem~18.2.3]{rijke2025intro}.
+
+  Conversely, suppose that $\Delta\eta \colon \Delta E \to \Delta(E/R)$ has the universal property of the quotient internally.
+  We view $E$ as a groupoid with objects $E$ and an invertible morphism between two objects exactly if they are related by $R$.
+  The nerve of this groupoid $NE$ is a fibrant cubical set.
+  This fibrant cubical set admits a map $p \colon \Delta E \to NE$ uniquely determined by the identity function $E \to E = (NE)([0])$.
+  Furthermore, we have that the kernel of this map contains $\Delta R$ since we have an element of $\El(\Delta E. \Delta E. \Delta R, p(\q\p) = p(\q\p^2))$ exactly if for all $e_0, e_1 \in E$ satisfying $R(e_0, e_1)$ we have an element of $N(e_0, e_1)$ which is defined as the subsingleton $R(e_0, e_1)$.
+  Hence, we get a map $\Delta(E/R) \to NE$ with $\overline p \circ \Delta\eta \sim p$.
+  This means we have a map on points $\overline{p}_{[0]} \colon E/R \to E$ that we claim to be a section of \(\eta\).
+  Externally, we have an element of $\El(\Delta E, \overline p (\Delta\eta\q) =_{NE} p\q)$ meaning that for each $e \in E$ we have $R(\overline p_{[0]}(\eta e), e)$ which implies that $\eta \overline{p}_{[0]} = \id_{E/R}$.
 \end{proof}
 
 \section{Case where $k$ is $\ints$ or a dicrete field}
@@ -118,11 +138,11 @@ We can even derive EM from
 -distributive lattice
 
 
-\bibliography{../../utils/literature}
+\bibliography{../../util/literature}
 \bibliographystyle{plain}
 
-\end{document}     
-                                                                                  
+\end{document}
+
 
 
 
