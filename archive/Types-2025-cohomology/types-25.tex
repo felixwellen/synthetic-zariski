@@ -364,24 +364,38 @@ The last three results are assumed as axioms in Barton-Commelin's condensed type
 \frame{\frametitle{\v{C}ech cohomology}
 
 \bloc{Definition}{
-A \v{C} TODO
+A \v{C}ech cover of $X:\CHaus$ consists of $S:\Stone$ with $S\twoheadrightarrow X$.
+}
+
+\bloc{Definition}{
+Given a \v{C}ech cover $S\twoheadrightarrow X$ and $A:X\to \Ab$, its \v{C}ech complex $\check{C}(X,S,A)$ is defined as
+\[\prod_{x:X}A_x^{S_x}\to \prod_{x:X}A_x^{S_x^2} \to \prod_{x:X}A_x^{S_x^3}\to \cdots\]
+}
+
+\bloc{Definition}{
+Given a \v{C}ech cover $S\twoheadrightarrow X$ and $A:X\to \Ab$, its \v{C}ech cohomology $\check{H}^n(X,S,A)$ is defined as the $n$-th cohomology of $\check{C}(X,S,A)$.
 }
 
 }
 
-\frame{\frametitle{Vanishing of the first cohomology group}
+\frame{\frametitle{$\check{H}^1(S,T,A)=0$}
 
 \bloc{Lemma}{
-Given $S:\Stone,\, A:S\to \Ab_\ODisc$, we have that $\check{H}^1(S,T,A) = 0$.
+Given $S,T:\Stone,\, p:T\twoheadrightarrow S,\, A:S\to \Ab_\ODisc$, we have that 
+\[\check{H}^1(S,T,A) = 0\]
 }
 
 \bloc{Proof}{
 \begin{itemize}
-\item By finite approximation, 
-\item $\check{H}^1(S,T,A)=0$ for $S$ finite 
-\item conclude by Scott continuity.
+\item Approximate $p$ as a sequential limits of maps between finite types.
+\item We have $\check{H}^1(S_n,T_n,A)=0$ for $S$ finite.
+\item Conclude by Scott continuity.
 \end{itemize}
 }
+
+}
+
+\frame{\frametitle{$H^1(S,A) = 0$}
 
 \bloc{Lemma}{
 Given $S:\Stone,\, A:S\to \Ab_\ODisc$, we have that $H^1(S,A) = 0$.
@@ -391,18 +405,64 @@ Given $S:\Stone,\, A:S\to \Ab_\ODisc$, we have that $H^1(S,A) = 0$.
 Assume $\alpha:S\to K(A,1)$, 
 \begin{itemize}
 \item By local choice we get $T\to S$ trivializing $\alpha$.
-\item Since $\check{H}^1(S,T,A) = 0$ we can glue the trivializing.
+\item Since $\check{H}^1(S,T,A) = 0$ we can push the trivializing forward.
 \end{itemize}
 }
 
 }
 
 
-\frame{\frametitle{Going to $n$}}
+\frame{\frametitle{$H^n(S,A) = 0$}
 
-\frame{\frametitle{\v{C}ech agree with usual}}
+\bloc{Theorem}{
+Given $S:\Stone,\, A:S\to\Ab_\ODisc$, we have that $H^n(S,A) = 0$.
+}
 
+\bloc{Proof}{
+By induction on $n$. Assume given $\alpha:\prod_{x:S} K(A_x,n)$.
+\begin{itemize}
+\item By local choice there is $p:T\twoheadrightarrow S$ trivialising $\alpha$.
+\item We define $L_x$ as $A_x^{T_x}/A_x$ giving the exact sequence:
+\[H^{n-1}(S,L)\to H^n(S,A)\to H^n(S,A^T)\]
+By induction the second map is injective.
+\item By induction $K(A_x^{T_x},n)\to K(A_x,n)^{T_x}$ is an embedding, so:
+\[H^n(S,A^T) \to H^n(T,A\circ p)\]
+is injective.
+\item So $p^*:H^{n}(S,A)\to H^n(T,A\circ p)$ is injective, and it sends $\alpha$ to $0$.
+\end{itemize}
+}
 
+}
+
+\frame{\frametitle{$H^n(X,A) = \check{H}^n(X,S,A)$}
+
+\bloc{Theorem}{
+Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to\Ab_\ODisc$, we have that:
+\[H^n(X,A) = \check{H}^n(X,S,A)\]
+}
+
+%A \v{C}ech cover of $X:\CHaus$ consists of $S:X\to\Stone$ such that:
+%\begin{itemize}
+%\item $\prod_{x:X}\propTrunc{S_x}$
+%\item $\Sigma_{x:X}S_x$ is Stone
+%\end{itemize}
+
+\bloc{Proof}{
+From $0\to A_x\to A_x^{T_x}\to L_x\to 0$, we get long exact sequences:
+\[H^{n-1}(X,\lambda x.A_x^{S_x})\to H^{n-1}(X,L)\to H^n(X,A)\to H^n(X,\lambda x.A_x^{S_x})\]
+\[\check{H}^{n-1}(X,S,A^S)\to H^{n-1}(X,S,L)\to \check{H}^n(X,S,A)\to \check{H}^n(X,S,A^S)\]
+\begin{itemize}
+\item By vanishing, $H^n(X,A^S) = H^n(S,A\circ p) = 0$.
+\item By direct computation, $\check{H}^n(X,S,A^S)=0$
+\item We conclude by induction.
+\end{itemize}
+}
+
+We can prove that $H^n(\mathbb{I},A) = 0$ for all $n>0$, $A:\mathbb{I}\to \Ab_\ODisc$.
+
+From this we get $\mathbb{I}$-localisation well-behaved.
+
+}
 
 
 
