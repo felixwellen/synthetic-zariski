@@ -65,10 +65,13 @@
 \newcommand{\Open}{\mathsf{Open}}
 \newcommand{\Closed}{\mathsf{Closed}}
 
+\renewcommand{\lim}{\mathsf{lim}}
+\newcommand{\colim}{\mathsf{colim}}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
 
 \def\mhyphen{{\hbox{-}}}
 
@@ -122,17 +125,17 @@ $H^n(X,A)$ is the $n$-th cohomology group of $X$ with coefficient $A$.
 \end{itemize}
 }
 
-\bloc{Goal}{
-$H^n(X,A)$ is well-behaved for $n:\N,\ X:\CHaus,\ A:X\to \Ab_{cp}$.
-}
-
 }
 
 
 
 \frame{\frametitle{Overview}
 
-\bloc{Today}{ 
+\bloc{Today}{
+$H^n(X,A)$ is well-behaved for $n:\N,\ X:\CHaus,\ A:X\to \Ab_{cp}$.
+}
+
+\bloc{Plan}{ 
 \begin{enumerate}
 \item Introduce SSD, Stone spaces and compact Hausdorff spaces.
 \item Introduce the cohomology groups $H^n(X,A)$.
@@ -161,13 +164,15 @@ An abelian group is overtly discrete iff it is countably presented.
 A type $X$ is a Stone space if it is a sequential limit of finite types.
 }
 
-\bloc{Example 0: Finite types}{}
+%\bloc{Example 0: Finite types}{}
 
-\bloc{Example 1: Cantor space}{
-The type $2^\N$ is a Stone space. Indeed $2^\N = lim_i\, 2^i$.
+\bloc{Example 1 (Cantor space)}{
+The type $2^\N$ is a Stone space.
 }
 
-\bloc{Example 2: The compactification of $\N$}{
+Indeed $2^\N = \lim_{i:\N}\, 2^i$.
+
+\bloc{Example 2 (Compactification of $\N$)}{
 The type:
 \[\N_\infty = \{\alpha:2^\N\ |\ \alpha\ hits\ 1\ at\ most\ once\}\]
 is a Stone space.
@@ -193,12 +198,12 @@ Fin(1) & Fin(2)\ar[l]_{-1} & Fin(3)\ar[l]_{-1} &Fin(4)\ar[l]_{-1} & \cdots\ar[l]
 \frame{\frametitle{Synthetic Stone duality}
 
 \bloc{Axiom 1: Scott continuity}{
-If $(S_k)_{k:\N}$ is a sequence of finite type, then
-\[colim_k(S_k\to 2) \overset{\simeq}{\to} (lim_k\, S_k \to 2)\]
+If $(S_k)_{k:\N}$ is a sequence of finite types, then
+\[\colim_k(S_k\to 2) \overset{\simeq}{\to} (\lim_k\, S_k \to 2)\]
 }
 
 \bloc{Axiom 2: Weak K\"onig's lemma}{
-If $(S_k)_{k:\N}$ is a sequence of inhabited finite type, then $\propTrunc{lim_k\, S_k}$.
+If $(S_k)_{k:\N}$ is a sequence of inhabited finite types, then $\propTrunc{\lim_k\, S_k}$.
 }
 
 \bloc{Axiom 3: Local choice}{
@@ -212,44 +217,46 @@ there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\Pi_{t:T}Y(p(t)
 
 }
 
-\frame{\frametitle{Stability of Stone spaces}
+%\frame{\frametitle{Stability of Stone spaces}
 
-\bloc{Definition}{
-A proposition that is a Stone space is called closed.
-}
+%\bloc{Definition}{
+%A proposition that is a Stone space is called closed.
+%}
 
-$P$ is closed iff it is of the form $\forall_{n:\N}\, D_n$ with $D_n$ decidable.
+%$P$ is closed iff it is of the form $\forall_{n:\N}\, D_n$ with $D_n$ decidable.
 
-\bloc{Proposition}{
-$\Stone$ is stable under $+$, $\Sigma$, $=$ and sequential limits.
-}
+%\bloc{Proposition}{
+%$\Stone$ is stable under $+$, $\Sigma$, $=$ and sequential limits.
+%}
 
-Stable under $\propTrunc{\_}$, but not under general quotients!
+%Stable under $\propTrunc{\_}$, but not under general quotients!
 
-}
+%}
 
 
 \frame{\frametitle{Compact Hausdorff space}
 
+Stone spaces are not stable under quotients.
+
 \bloc{Definition}{
-A set $X$ is called a compact Hausdorff space if: 
+A set $X$ is a compact Hausdorff space if: 
 \begin{itemize}
-\item It has closed identity types.
+\item Its identity types are Stone spaces.
 \item There exists $S:\Stone$ and $S\twoheadrightarrow X$.
 \end{itemize}
 }
 
 \bloc{Examples}{
-The unit interval $\I = [0,1]$ is a closed quotient of $2^\N$
+The unit interval $\I = [0,1]$ is a such a quotient of $2^\N$.
 }
 
-\bloc{Proposition}{
-$\CHaus$ is stable under $+$, $\Sigma$, $=$, sequential limits and quotients.
-}
+%\bloc{Proposition}{
+%$\CHaus$ is stable under $+$, $\Sigma$, $=$, sequential limits and quotients.
+%}
 
-\bloc{Remark [CCGM24]}{
-Closed subtypes of Stone spaces and of $\mathbb{I}$ are as expected.
-}
+%\bloc{Remark [CCGM24]}{
+%Closed subtypes of Stone spaces and of $\mathbb{I}$ are as expected.
+%}
 
 }
 
@@ -296,73 +303,85 @@ If $X$ has choice then $H^n(X,A) = 0$ for any $A$ and $n>0$. Indeed:
 
 \frame{\frametitle{Overtly discrete types}
 
-\bloc{Challenge}{
-Find a class of $A$ such that $H^n(X,A)$ is well-behaved for $X:\CHaus$.
-}
+We want a class of $A$ such that $H^n(X,A)$ is well-behaved for $X:\CHaus$
 
 \bloc{Definition}{
 A type is overtly discrete if it is a sequential colimit of finite types.
 }
 
-\bloc{Definition}{
-A proposition that is overtly discrete is called open.
-}
-
-$U$ is open iff it is of the form $\exists_{n:\N}D_n$ with $D_n$ decidable.
-
-\bloc{Remark [CCGM24]}{
-\vspace{-0.3cm}
-\[\xymatrix{
-\Open\ar@/^1.0pc/[rr]^\neg & \simeq & \Closed\ar@/^1.0pc/[ll]^\neg
-}\]
-%\] \
-%\Open \Closed
-}
-
-}
-
-\frame{\frametitle{Overtly discrete types as quotients}
-
-\bloc{Remark}{
-A type $X$ is overtly discrete if and only if:
-\begin{itemize}
-\item It has open identity types.
-\item There exists a decidable subset $I\subset \N$ with $I\twoheadrightarrow X$.
-\end{itemize}
-}
+%\bloc{Remark}{
+%A type $X$ is overtly discrete if and only if:
+%\begin{itemize}
+%\item It has open identity types.
+%\item There exists a decidable subset $I\subset \N$ with $I\twoheadrightarrow X$.
+%\end{itemize}
+%}
 
 An abelian group is overtly discrete iff it is countably presented.
 
-\bloc{Stability}{
-$\ODisc$ is stable under $+$, $\Sigma$, $=$ sequential colimits and quotients.
-}
+%\bloc{Definition}{
+%A proposition that is overtly discrete is called open.
+%}
+
+%$U$ is open iff it is of the form $\exists_{n:\N}D_n$ with $D_n$ decidable.
+
+%\bloc{Remark [CCGM24]}{
+%\vspace{-0.3cm}
+%\[\xymatrix{
+%\Open\ar@/^1.0pc/[rr]^\neg & \simeq & \Closed\ar@/^1.0pc/[ll]^\neg
+%}\]
+%\] \
+%\Open \Closed
+%}
 
 }
+
+%\frame{\frametitle{Overtly discrete types as quotients}
+
+%\bloc{Remark}{
+%A type $X$ is overtly discrete if and only if:
+%\begin{itemize}
+%\item It has open identity types.
+%\item There exists a decidable subset $I\subset \N$ with $I\twoheadrightarrow X$.
+%\end{itemize}
+%}
+
+%An abelian group is overtly discrete iff it is countably presented.
+
+%\bloc{Stability}{
+%$\ODisc$ is stable under $+$, $\Sigma$, $=$ sequential colimits and quotients.
+%}
+
+%}
 
 \frame{\frametitle{Tychonov and its dual}
 
 We prove Barton-Commelin's condensed type theory axioms.
 
 \bloc{Lemma (Tychonov)}{
-For $I:\ODisc$ and $X:I\to \CHaus$, we have that $\Pi_{i:I}X_i$ is compact Hausdorff.
+If $I:\ODisc$ and $X:I\to \CHaus$, then $\Pi_{i:I}X_i$ is compact Hausdorff.
 }
 
 \bloc{Proposition (Tychonov dual)}{
-For $X:\CHaus$ and $I:X\to \ODisc$, we have that $\Pi_{x:X}I_x$ is overtly discrete.
+If $X:\CHaus$ and $I:X\to \ODisc$, then $\Pi_{x:X}I_x$ is overtly discrete.
 }
 
-This is a first sign that taking overtly discrete (aka cp) abelian groups as coefficient is a good idea. We have better!
+This is encouraging. We have better!
 
 }
 
-\frame{\frametitle{Scott Continuity revisited}
+\frame{\frametitle{Scott continuity}
 
 \bloc{Definition}{
 We have a category $\mathcal C$ where:
-\begin{itemize}
-\item An object consists of $X:\CHaus$ and $I:X\to\ODisc$.
-\item A morphism  from $(X,I)$ to $(Y,J)$ consists of $f:Y\to X$ with $\Pi_{y:Y} I_{f(x)}\to J_x$.
-\end{itemize}
+\begin{eqnarray}
+\mathsf{Ob}_{\mathcal C} & = & \Sigma(X:\CHaus).\, X\to\ODisc\nonumber\\
+\mathsf{Hom}_{\mathcal C}((X,I),(Y,J)) & = & \Sigma(f:Y\to X).\, \Pi_{y:Y} I_{f(x)}\to J_x\nonumber
+\end{eqnarray}
+%\begin{itemize}
+%\item $\mathsf{Ob}_{\mathcal C} = \Sigma(X:\CHaus).\, X\to\ODisc$.
+%\item $\mathsf{Hom}_{\mathcal C}((X,I),(Y,J)) = \Sigma(f:Y\to X).\, \Pi_{y:Y} I_{f(x)}\to J_x$
+%\end{itemize}
 }
 
 \bloc{Theorem (Generalized Scott continuity)}{
@@ -374,12 +393,12 @@ commutes with sequential colimits.
 }
 
 
-\section{Cohomology results}
+\section{Cohomology of Stone and compact Hausdorff spaces}
 
 \frame{\frametitle{\v{C}ech cohomology}
 
 \bloc{Definition}{
-A \v{C}ech cover of $X:\CHaus$ consists of $S:\Stone$ with $p:S\twoheadrightarrow X$.
+A \v{C}ech cover consists of $X:\CHaus, S:\Stone$ with $p:S\twoheadrightarrow X$.
 }
 
 \bloc{Definition}{
@@ -399,7 +418,7 @@ its \v{C}ech cohomology $\check{H}^n(X,S,A)$ is the $n$-th cohomology group of:
 \frame{\frametitle{$\check{H}^1(S,T,A)=0$}
 
 \bloc{Lemma}{
-Given $S,T:\Stone,\, T\twoheadrightarrow S,\, A:S\to \Ab_\ODisc$, we have that 
+Given $S,T:\Stone,\, T\twoheadrightarrow S,\, A:S\to \Ab_{cp}$, we have that 
 
 \[\check{H}^1(S,T,A) = 0\]
 }
@@ -417,7 +436,7 @@ Given $S,T:\Stone,\, T\twoheadrightarrow S,\, A:S\to \Ab_\ODisc$, we have that
 \frame{\frametitle{$H^1(S,A) = 0$}
 
 \bloc{Lemma}{
-Given $S:\Stone,\, A:S\to \Ab_\ODisc$, we have that $H^1(S,A) = 0$.
+Given $S:\Stone,\, A:S\to \Ab_{cp}$, we have that $H^1(S,A) = 0$.
 }
 
 \bloc{Proof}{
@@ -430,54 +449,83 @@ Assume $\alpha:\Pi_{x:S} K(A_x,1)$.
 
 }
 
-
-\frame{\frametitle{$H^n(S,A) = 0$}
-
-\bloc{Theorem}{
-Given $S:\Stone,\, A:S\to\Ab_\ODisc$, we have that $H^n(S,A) = 0$.
-}
-
-\bloc{Proof}{
-By induction on $n$. Assume given $\alpha:\Pi_{x:S} K(A_x,n)$.
-\begin{itemize}
-\item By local choice there is $p:T\twoheadrightarrow S$ trivialising $\alpha$.
-\item We define $L_x$ as $A_x^{T_x}/A_x$ giving the exact sequence:
-\[H^{n-1}(S,L)\to H^n(S,A)\to H^n(S,A^T)\]
-By induction the second map is injective.
-\item By induction $K(A_x^{T_x},n)\to K(A_x,n)^{T_x}$ is an embedding, so:
-\[H^n(S,A^T) \to H^n(T,A\circ p)\]
-is injective.
-\item So $p^*:H^{n}(S,A)\to H^n(T,A\circ p)$ is injective, and $p^*(\alpha)=0$.
-\end{itemize}
-}
-
-}
-
-\frame{\frametitle{$H^n(X,A) = \check{H}^n(X,S,A)$}
+\frame{\frametitle{Main results}
 
 \bloc{Theorem}{
-Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to\Ab_\ODisc$, we have that:
-\[H^n(X,A) = \check{H}^n(X,S,A)\]
+Given $n>0$, $S:\Stone$ and $A:S\to\Ab_{cp}$, we have that
+
+\[H^n(S,A) = 0.\]
 }
 
-\bloc{Proof}{
-From $0\to A_x\to A_x^{S_x}\to L_x\to 0$, we get long exact sequences:
-\[H^{n-1}(X,\lambda x.A_x^{S_x})\to H^{n-1}(X,L)\to H^n(X,A)\to H^n(X,\lambda x.A_x^{S_x})\]
-\[\check{H}^{n-1}(X,S,A^S)\to H^{n-1}(X,S,L)\to \check{H}^n(X,S,A)\to \check{H}^n(X,S,A^S)\]
-\begin{itemize}
-\item By vanishing, $H^n(X,A^S) = H^n(S,A\circ p) = 0$.
-\item By direct computation, $\check{H}^n(X,S,A^S)=0$
-\item We conclude by induction.
-\end{itemize}
+\bloc{Theorem}{
+Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to\Ab_{cp}$, we have that
+
+\[H^n(X,A) = \check{H}^n(X,S,A).\]
 }
-
-We can prove that $H^n(\mathbb{I},A) = 0$ for all $n>0$, $A:\mathbb{I}\to \Ab_\ODisc$.
-
-From this we get $\mathbb{I}$-localisation well-behaved.
 
 }
 
+\frame{\frametitle{Applications}
 
+\bloc{Lemma}{
+For all $n>0$, $A:\mathbb{I}\to \Ab_{cp}$, we have that $H^n(\mathbb{I},A) = 0$.
+}
+
+This means $\I$-localisation is well-behaved. For example:
+
+\bloc{Lemma}{
+For $\mathbb{S}^k = \{x_0,\hdots,x_k:\R\ |\ \sum_i x_i^2 = 1\}$ and $A:\Ab_{cp}$, we have
+
+\[H^n(\mathbb{S}^k,A) = 
+\begin{cases}
+	A & $if$\ n=0\ $or$\ n=k \\
+    	0 & $otherwise$
+\end{cases}\]
+}
+
+}
+
+%\frame{\frametitle{$H^n(S,A) = 0$}
+
+%\bloc{Theorem}{
+%Given $S:\Stone,\, A:S\to\Ab_\ODisc$, we have that $H^n(S,A) = 0$.
+%}
+
+%\bloc{Proof}{
+%By induction on $n$. Assume given $\alpha:\Pi_{x:S} K(A_x,n)$.
+%\begin{itemize}
+%\item By local choice there is $p:T\twoheadrightarrow S$ trivialising $\alpha$.
+%\item We define $L_x$ as $A_x^{T_x}/A_x$ giving the exact sequence:
+%\[H^{n-1}(S,L)\to H^n(S,A)\to H^n(S,A^T)\]
+%By induction the second map is injective.
+%\item By induction $K(A_x^{T_x},n)\to K(A_x,n)^{T_x}$ is an embedding, so:
+%\[H^n(S,A^T) \to H^n(T,A\circ p)\]
+%is injective.
+%\item So $p^*:H^{n}(S,A)\to H^n(T,A\circ p)$ is injective, and $p^*(\alpha)=0$.
+%\end{itemize}
+%}
+
+%}
+
+%\frame{\frametitle{$H^n(X,A) = \check{H}^n(X,S,A)$}
+
+%\bloc{Theorem}{
+%Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to\Ab_\ODisc$, we have that:
+%\[H^n(X,A) = \check{H}^n(X,S,A)\]
+%}
+
+%\bloc{Proof}{
+%From $0\to A_x\to A_x^{S_x}\to L_x\to 0$, we get long exact sequences:
+%\[H^{n-1}(X,\lambda x.A_x^{S_x})\to H^{n-1}(X,L)\to H^n(X,A)\to H^n(X,\lambda x.A_x^{S_x})\]
+%\[\check{H}^{n-1}(X,S,A^S)\to H^{n-1}(X,S,L)\to \check{H}^n(X,S,A)\to \check{H}^n(X,S,A^S)\]
+%\begin{itemize}
+%\item By vanishing, $H^n(X,A^S) = H^n(S,A\circ p) = 0$.
+%\item By direct computation, $\check{H}^n(X,S,A^S)=0$
+%\item We conclude by induction.
+%\end{itemize}
+%}
+
+%}
 
 
 \end{document}
