@@ -56,11 +56,16 @@
 
 
 \newcommand{\propTrunc}[1]{\lVert #1 \rVert}
+
 \newcommand{\CHaus}{\mathsf{CHaus}}
 \newcommand{\Stone}{\mathsf{Stone}}
 \newcommand{\ODisc}{\mathsf{ODisc}}
 \newcommand{\Type}{\mathsf{Type}}
 \newcommand{\Ab}{\mathsf{Ab}}
+\newcommand{\Open}{\mathsf{Open}}
+\newcommand{\Closed}{\mathsf{Closed}}
+
+
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\I}{\mathbb{I}}
@@ -133,7 +138,7 @@ $H^n(X,A)$ is well-behaved for $n:\N,\ X:\CHaus,\ A:X\to \Ab_{cp}$.
 \item Introduce the cohomology groups $H^n(X,A)$.
 \item Introduce overtly discrete types and Barton-Commelin axioms:
 \begin{center}
-$\prod_{x:X}I(x)$ is well-behaved for $X:\CHaus,\ I:X\to \ODisc$. 
+$\Pi_{x:X}I(x)$ is well-behaved for $X:\CHaus,\ I:X\to \ODisc$. 
 \end{center}
 \item Explain our main result:
 \begin{center}
@@ -153,7 +158,7 @@ An abelian group is overtly discrete iff it is countably presented.
 \frame{\frametitle{Stone spaces}
 
 \bloc{Definition}{
-A type $X$ is a Stone space if it merely is a sequential limit of finite types.
+A type $X$ is a Stone space if it is a sequential limit of finite types.
 }
 
 \bloc{Example 0: Finite types}{}
@@ -187,19 +192,19 @@ Fin(1) & Fin(2)\ar[l]_{-1} & Fin(3)\ar[l]_{-1} &Fin(4)\ar[l]_{-1} & \cdots\ar[l]
 
 \frame{\frametitle{Synthetic Stone duality}
 
-\bloc{Axiom 1: Continuity}{
+\bloc{Axiom 1: Scott continuity}{
 If $(S_k)_{k:\N}$ is a sequence of finite type, then
 \[colim_k(S_k\to 2) \overset{\simeq}{\to} (lim_k\, S_k \to 2)\]
 }
 
-\bloc{Axiom 2: Weak K\"onig's Lemma)}{
+\bloc{Axiom 2: Weak K\"onig's lemma}{
 If $(S_k)_{k:\N}$ is a sequence of inhabited finite type, then $\propTrunc{lim_k\, S_k}$.
 }
 
 \bloc{Axiom 3: Local choice}{
-Given $S:\Stone$ and $Y:S\to \Type$ such that $\prod_{s:S}\propTrunc{Y(s)}$, 
+Given $S:\Stone$ and $Y:S\to \Type$ such that $\Pi_{s:S}\propTrunc{Y(s)}$, 
 
-there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\prod_{t:T}Y(p(t))$.
+there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\Pi_{t:T}Y(p(t))$.
 }
 
 \bloc{Axiom 4: Dependent choice}{
@@ -213,13 +218,13 @@ there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\prod_{t:T}Y(p(
 A proposition that is a Stone space is called closed.
 }
 
-$P$ is closed iff it merely is of the form $\forall_{n:\N}D_n$ with $D_n$ decidable.
+$P$ is closed iff it is of the form $\forall_{n:\N}\, D_n$ with $D_n$ decidable.
 
 \bloc{Proposition}{
-Stone spaces are stable under $+$, $\Sigma$-types (subtle), identity types and sequential limits.
+$\Stone$ is stable under $+$, $\Sigma$, $=$ and sequential limits.
 }
 
-But they are not stable under quotients!
+Stable under $\propTrunc{\_}$, but not under general quotients!
 
 }
 
@@ -238,7 +243,9 @@ A set $X$ is called a compact Hausdorff space if:
 The unit interval $\I = [0,1]$ is a closed quotient of $2^\N$
 }
 
-Compact Hausdorff have the same stability as Stone Spaces + quotients.
+\bloc{Proposition}{
+$\CHaus$ is stable under $+$, $\Sigma$, $=$, sequential limits and quotients.
+}
 
 \bloc{Remark [CCGM24]}{
 Closed subtypes of Stone spaces and of $\mathbb{I}$ are as expected.
@@ -251,11 +258,14 @@ Closed subtypes of Stone spaces and of $\mathbb{I}$ are as expected.
 
 \frame{\frametitle{Delooping abelian groups}
 
-We define $K(A,0)=A$.
+Fix $A$ an abelian group. We define $K(A,0)=A$.
 
 \bloc{Proposition}{
-Given $A:\Ab,\, n>0$, there exists a unique pointed $(n-1)$-connected $n$-truncated type $K(A,n)$ such that
-\[\Omega^nK(A,n) = A\]
+Given $n>0$, there is a unique pointed type $K(A,n)$ such that:
+\begin{itemize}
+\item $K(A,n)$ is $(n-1)$-connected and $n$-truncated.
+\item $\Omega^n K(A,n) = A$.
+\end{itemize}
 }
 
 $K(A,n)$ is called the $n$-th delooping of $A$.
@@ -265,16 +275,16 @@ $K(A,n)$ is called the $n$-th delooping of $A$.
 \frame{\frametitle{Cohomology groups}
 
 \bloc{Definition}{
-Given $X:\Type,\, A:X\to \Ab,\, n:\N$, we define:
+Given $n:\N,\, X:\Type,\, A:X\to \Ab$, we define:
 
-\[H^n(X,A) = \propTrunc{\prod_{x:X}K(A_x,n)}_0\]
+\[H^n(X,A) = \propTrunc{\Pi_{x:X}K(A_x,n)}_0\]
 }
 
 \bloc{Remark}{
 If $X$ has choice then $H^n(X,A) = 0$ for any $A$ and $n>0$. Indeed:
 \begin{itemize}
-\item For all $y:K(A,n)$ we have that $\propTrunc{y=*}$.
-\item So for all $f:\prod_{x:X}K(A_x,n)$ we have that $\prod_{x:X} \propTrunc{f(x)=*}$.
+\item For all $x:X,\, y:K(A_x,n)$ we have that $\propTrunc{y=*}$.
+\item So for all $f:\Pi_{x:X}K(A_x,n)$ we have that $\Pi_{x:X} \propTrunc{f(x)=*}$.
 \item So by choice $\propTrunc{f=0}$.
 \end{itemize}
 }
@@ -286,22 +296,27 @@ If $X$ has choice then $H^n(X,A) = 0$ for any $A$ and $n>0$. Indeed:
 
 \frame{\frametitle{Overtly discrete types}
 
-\bloc{Main challenge}{
-Find a class of coefficients $A$ such that $H^n(X,A)$ is well-behaved for $X:\CHaus$.
+\bloc{Challenge}{
+Find a class of $A$ such that $H^n(X,A)$ is well-behaved for $X:\CHaus$.
 }
 
 \bloc{Definition}{
-A type is overtly discrete if it merely is a sequential colimit of finite types.
+A type is overtly discrete if it is a sequential colimit of finite types.
 }
 
 \bloc{Definition}{
 A proposition that is overtly discrete is called open.
 }
 
-$U$ open iff it merely is of the form $\exists_{n:\N}D_n$ with $D_n$ decidable.
+$U$ is open iff it is of the form $\exists_{n:\N}D_n$ with $D_n$ decidable.
 
 \bloc{Remark [CCGM24]}{
-Open propositions are precisely negation of closed propositions and vice versa.
+\vspace{-0.3cm}
+\[\xymatrix{
+\Open\ar@/^1.0pc/[rr]^\neg & \simeq & \Closed\ar@/^1.0pc/[ll]^\neg
+}\]
+%\] \
+%\Open \Closed
 }
 
 }
@@ -312,26 +327,28 @@ Open propositions are precisely negation of closed propositions and vice versa.
 A type $X$ is overtly discrete if and only if:
 \begin{itemize}
 \item It has open identity types.
-\item There exists a countable type $I$ (i.e. a decidable subtype of $\N$) with $I\twoheadrightarrow X$.
+\item There exists a decidable subset $I\subset \N$ with $I\twoheadrightarrow X$.
 \end{itemize}
 }
 
 An abelian group is overtly discrete iff it is countably presented.
 
 \bloc{Stability}{
-Overtly discrete types are stable under $+$, $\Sigma$-types, identity types, sequential colimits and quotients by open equivalence relations.
+$\ODisc$ is stable under $+$, $\Sigma$, $=$ sequential colimits and quotients.
 }
 
 }
 
 \frame{\frametitle{Tychonov and its dual}
 
+We prove Barton-Commelin's condensed type theory axioms.
+
 \bloc{Lemma (Tychonov)}{
-For $I:\ODisc$ and $X:I\to \CHaus$, we have that $\prod_{i:I}X_i$ is compact Hausdorff.
+For $I:\ODisc$ and $X:I\to \CHaus$, we have that $\Pi_{i:I}X_i$ is compact Hausdorff.
 }
 
 \bloc{Proposition (Tychonov dual)}{
-For $X:\CHaus$ and $I:X\to \ODisc$, we have that $\prod_{x:X}I_x$ is overtly discrete.
+For $X:\CHaus$ and $I:X\to \ODisc$, we have that $\Pi_{x:X}I_x$ is overtly discrete.
 }
 
 This is a first sign that taking overtly discrete (aka cp) abelian groups as coefficient is a good idea. We have better!
@@ -344,17 +361,15 @@ This is a first sign that taking overtly discrete (aka cp) abelian groups as coe
 We have a category $\mathcal C$ where:
 \begin{itemize}
 \item An object consists of $X:\CHaus$ and $I:X\to\ODisc$.
-\item A morphism  from $(X,I)$ to $(Y,J)$ consists of $f:Y\to X$ with $\prod_{y:Y} I_{f(x)}\to J_x$.
+\item A morphism  from $(X,I)$ to $(Y,J)$ consists of $f:Y\to X$ with $\Pi_{y:Y} I_{f(x)}\to J_x$.
 \end{itemize}
 }
 
 \bloc{Theorem (Generalized Scott continuity)}{
 The covariant functor:
-\[\prod : {\mathcal C} \to \ODisc\]
+\[\Pi : {\mathcal C} \to \ODisc\]
 commutes with sequential colimits.
 }
-
-The last three results are assumed as axioms in Barton-Commelin's condensed type theory.
 
 }
 
@@ -364,31 +379,35 @@ The last three results are assumed as axioms in Barton-Commelin's condensed type
 \frame{\frametitle{\v{C}ech cohomology}
 
 \bloc{Definition}{
-A \v{C}ech cover of $X:\CHaus$ consists of $S:\Stone$ with $S\twoheadrightarrow X$.
+A \v{C}ech cover of $X:\CHaus$ consists of $S:\Stone$ with $p:S\twoheadrightarrow X$.
 }
 
 \bloc{Definition}{
-Given a \v{C}ech cover $S\twoheadrightarrow X$ and $A:X\to \Ab$, its \v{C}ech complex $\check{C}(X,S,A)$ is defined as
-\[\prod_{x:X}A_x^{S_x}\to \prod_{x:X}A_x^{S_x^2} \to \prod_{x:X}A_x^{S_x^3}\to \cdots\]
+Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to \Ab$, 
+
+its \v{C}ech cohomology $\check{H}^n(X,S,A)$ is the $n$-th cohomology group of:
+
+\[\Pi_{x:X}A_x^{S_x}\to \Pi_{x:X}A_x^{S_x^2} \to \Pi_{x:X}A_x^{S_x^3}\to \cdots\]
 }
 
-\bloc{Definition}{
-Given a \v{C}ech cover $S\twoheadrightarrow X$ and $A:X\to \Ab$, its \v{C}ech cohomology $\check{H}^n(X,S,A)$ is defined as the $n$-th cohomology of $\check{C}(X,S,A)$.
-}
+%\bloc{Definition}{
+%Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to \Ab$, its \v{C}ech cohomology $\check{H}^n(X,S,A)$ is defined as the $n$-th cohomology of $\check{C}(X,S,A)$.
+%}
 
 }
 
 \frame{\frametitle{$\check{H}^1(S,T,A)=0$}
 
 \bloc{Lemma}{
-Given $S,T:\Stone,\, p:T\twoheadrightarrow S,\, A:S\to \Ab_\ODisc$, we have that 
+Given $S,T:\Stone,\, T\twoheadrightarrow S,\, A:S\to \Ab_\ODisc$, we have that 
+
 \[\check{H}^1(S,T,A) = 0\]
 }
 
 \bloc{Proof}{
 \begin{itemize}
-\item Approximate $p$ as a sequential limits of maps between finite types.
-\item We have $\check{H}^1(S_n,T_n,A)=0$ for $S$ finite.
+\item Show $p$ is a sequential limits of maps between finite types.
+\item Show that $\check{H}^1(S,T,A)=0$ for $S$ finite.
 \item Conclude by Scott continuity.
 \end{itemize}
 }
@@ -402,9 +421,9 @@ Given $S:\Stone,\, A:S\to \Ab_\ODisc$, we have that $H^1(S,A) = 0$.
 }
 
 \bloc{Proof}{
-Assume $\alpha:S\to K(A,1)$, 
+Assume $\alpha:\Pi_{x:S} K(A_x,1)$.
 \begin{itemize}
-\item By local choice we get $T\to S$ trivializing $\alpha$.
+\item By local choice we get $T\twoheadrightarrow S$ trivializing $\alpha$.
 \item Since $\check{H}^1(S,T,A) = 0$ we can push the trivializing forward.
 \end{itemize}
 }
@@ -419,7 +438,7 @@ Given $S:\Stone,\, A:S\to\Ab_\ODisc$, we have that $H^n(S,A) = 0$.
 }
 
 \bloc{Proof}{
-By induction on $n$. Assume given $\alpha:\prod_{x:S} K(A_x,n)$.
+By induction on $n$. Assume given $\alpha:\Pi_{x:S} K(A_x,n)$.
 \begin{itemize}
 \item By local choice there is $p:T\twoheadrightarrow S$ trivialising $\alpha$.
 \item We define $L_x$ as $A_x^{T_x}/A_x$ giving the exact sequence:
@@ -428,7 +447,7 @@ By induction the second map is injective.
 \item By induction $K(A_x^{T_x},n)\to K(A_x,n)^{T_x}$ is an embedding, so:
 \[H^n(S,A^T) \to H^n(T,A\circ p)\]
 is injective.
-\item So $p^*:H^{n}(S,A)\to H^n(T,A\circ p)$ is injective, and it sends $\alpha$ to $0$.
+\item So $p^*:H^{n}(S,A)\to H^n(T,A\circ p)$ is injective, and $p^*(\alpha)=0$.
 \end{itemize}
 }
 
@@ -441,14 +460,8 @@ Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to\Ab_\ODisc$, we have
 \[H^n(X,A) = \check{H}^n(X,S,A)\]
 }
 
-%A \v{C}ech cover of $X:\CHaus$ consists of $S:X\to\Stone$ such that:
-%\begin{itemize}
-%\item $\prod_{x:X}\propTrunc{S_x}$
-%\item $\Sigma_{x:X}S_x$ is Stone
-%\end{itemize}
-
 \bloc{Proof}{
-From $0\to A_x\to A_x^{T_x}\to L_x\to 0$, we get long exact sequences:
+From $0\to A_x\to A_x^{S_x}\to L_x\to 0$, we get long exact sequences:
 \[H^{n-1}(X,\lambda x.A_x^{S_x})\to H^{n-1}(X,L)\to H^n(X,A)\to H^n(X,\lambda x.A_x^{S_x})\]
 \[\check{H}^{n-1}(X,S,A^S)\to H^{n-1}(X,S,L)\to \check{H}^n(X,S,A)\to \check{H}^n(X,S,A^S)\]
 \begin{itemize}
