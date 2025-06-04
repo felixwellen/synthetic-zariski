@@ -187,10 +187,10 @@ Indeed $\N_\infty$ is the limit of:
 \[\xymatrix{
 Fin(1) & Fin(2)\ar[l]_{-1} & Fin(3)\ar[l]_{-1} &Fin(4)\ar[l]_{-1} & \cdots\ar[l]_{-1} \\
 \{\} & \{0\}\ar[l] & \{00\}\ar[l] & \{000\}\ar[l] &\cdots\ar[l] \\
-	& \{1\}\ar[ul] & \{01\}\ar[ul] & \{001\} \ar[lu]  & \cdots\ar[lu] \\
-	& 	& \{10\}\ar[ul] & \{010\}\ar[lu]  & \cdots\ar[lu] \\
-	&	&	& \{100\}\ar[lu]  & \cdots\ar[lu]\\
-	&	&	&	&\cdots\ar[lu]
+	& \{1\}\ar[ul] & \{01\}\ar[ul] & \{001\} \ar[lu]  & \ddots\ar[lu] \\
+	& 	& \{10\}\ar[ul] & \{010\}\ar[lu]  & \ddots\ar[lu] \\
+	&	&	& \{100\}\ar[lu]  & \ddots\ar[lu]\\
+	&	&	&	&\ddots\ar[lu]
 }\]
 
 }
@@ -303,7 +303,11 @@ If $X$ has choice then $H^n(X,A) = 0$ for any $A$ and $n>0$. Indeed:
 
 \frame{\frametitle{Overtly discrete types}
 
-We want a class of $A$ such that $H^n(X,A)$ is well-behaved for $X:\CHaus$
+We want $A$ such that $H^n(X,A)$ is well-behaved for $X:\CHaus$.
+
+\bloc{Idea}{
+We use overtly discrete abelian groups (equivalent to c.p.).
+}
 
 \bloc{Definition}{
 A type is overtly discrete if it is a sequential colimit of finite types.
@@ -415,39 +419,39 @@ its \v{C}ech cohomology $\check{H}^n(X,S,A)$ is the $n$-th cohomology group of:
 
 }
 
-\frame{\frametitle{$\check{H}^1(S,T,A)=0$}
+%\frame{\frametitle{$\check{H}^1(S,T,A)=0$}
 
-\bloc{Lemma}{
-Given $S,T:\Stone,\, T\twoheadrightarrow S,\, A:S\to \Ab_{cp}$, we have that 
+%\bloc{Lemma}{
+%Given $S,T:\Stone,\, T\twoheadrightarrow S,\, A:S\to \Ab_{cp}$, we have that 
 
-\[\check{H}^1(S,T,A) = 0\]
-}
+%\[\check{H}^1(S,T,A) = 0\]
+%}
 
-\bloc{Proof}{
-\begin{itemize}
-\item Show $p$ is a sequential limits of maps between finite types.
-\item Show that $\check{H}^1(S,T,A)=0$ for $S$ finite.
-\item Conclude by Scott continuity.
-\end{itemize}
-}
+%\bloc{Proof}{
+%\begin{itemize}
+%\item Show $p$ is a sequential limits of maps between finite types.
+%\item Show that $\check{H}^1(S,T,A)=0$ for $S$ finite.
+%\item Conclude by Scott continuity.
+%\end{itemize}
+%}
 
-}
+%}
 
-\frame{\frametitle{$H^1(S,A) = 0$}
+%\frame{\frametitle{$H^1(S,A) = 0$}
 
-\bloc{Lemma}{
-Given $S:\Stone,\, A:S\to \Ab_{cp}$, we have that $H^1(S,A) = 0$.
-}
+%\bloc{Lemma}{
+%Given $S:\Stone,\, A:S\to \Ab_{cp}$, we have that $H^1(S,A) = 0$.
+%}
 
-\bloc{Proof}{
-Assume $\alpha:\Pi_{x:S} K(A_x,1)$.
-\begin{itemize}
-\item By local choice we get $T\twoheadrightarrow S$ trivializing $\alpha$.
-\item Since $\check{H}^1(S,T,A) = 0$ we can push the trivializing forward.
-\end{itemize}
-}
+%\bloc{Proof}{
+%Assume $\alpha:\Pi_{x:S} K(A_x,1)$.
+%\begin{itemize}
+%\item By local choice we get $T\twoheadrightarrow S$ trivializing $\alpha$.
+%\item Since $\check{H}^1(S,T,A) = 0$ we can push the trivializing forward.
+%\end{itemize}
+%}
 
-}
+%}
 
 \frame{\frametitle{Main results}
 
@@ -468,13 +472,19 @@ Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to\Ab_{cp}$, we have t
 \frame{\frametitle{Applications}
 
 \bloc{Lemma}{
-For all $n>0$, $A:\mathbb{I}\to \Ab_{cp}$, we have that $H^n(\mathbb{I},A) = 0$.
+For all $A:\Ab_{cp}$, we have that
+
+\[H^n(\mathbb{I},A) = 
+\begin{cases}
+	A& $if$\ n=0 \\
+    	0 & $otherwise$
+\end{cases}\]
 }
 
-This means $\I$-localisation is well-behaved. For example:
+%This means $\I$-localisation is well-behaved. For example:
 
 \bloc{Lemma}{
-For $\mathbb{S}^k = \{x_0,\hdots,x_k:\R\ |\ \sum_i x_i^2 = 1\}$ and $A:\Ab_{cp}$, we have
+For $\mathbb{S}^k = \{x_0,\hdots,x_k:\R\ |\ \Sigma_i x_i^2 = 1\}$ and $A:\Ab_{cp}$, we have that
 
 \[H^n(\mathbb{S}^k,A) = 
 \begin{cases}
@@ -482,6 +492,8 @@ For $\mathbb{S}^k = \{x_0,\hdots,x_k:\R\ |\ \sum_i x_i^2 = 1\}$ and $A:\Ab_{cp}$
     	0 & $otherwise$
 \end{cases}\]
 }
+
+This extends to all topological countable CW complex.
 
 }
 
