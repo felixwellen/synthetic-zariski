@@ -23,12 +23,12 @@
 
 
 
-\definecolor{qbblue}{RGB}{43,126,128}
-%\definecolor{qbblue}{RGB}{43,126,204}
-\definecolor{qborange}{RGB}{242,151,36}
-\definecolor{qblight}{RGB}{210,210,210}
-\definecolor{qbdark}{RGB}{180,180,180}
-\definecolor{qbred}{RGB}{184,13,72}
+%\definecolor{qbblue}{HTML}{1E88E5}
+\definecolor{qbblue}{HTML}{1029E6}
+%\definecolor{qbred}{RGB}{184,13,72}
+\definecolor{qbred}{HTML}{D81B60}
+\definecolor{qblight}{RGB}{220,220,220}
+\definecolor{qbdark}{RGB}{190,190,190}
 
 \setbeamercolor{title}{fg=black}
 \setbeamercolor{section in toc}{fg=black}
@@ -57,13 +57,14 @@
 
 \newcommand{\propTrunc}[1]{\lVert #1 \rVert}
 
-\newcommand{\CHaus}{\mathsf{CHaus}}
-\newcommand{\Stone}{\mathsf{Stone}}
-\newcommand{\ODisc}{\mathsf{ODisc}}
-\newcommand{\Type}{\mathsf{Type}}
-\newcommand{\Ab}{\mathsf{Ab}}
-\newcommand{\Open}{\mathsf{Open}}
-\newcommand{\Closed}{\mathsf{Closed}}
+\newcommand{\mathstyle}[1]{\mathsf{#1}}
+\newcommand{\CHaus}{\mathstyle{CHaus}}
+\newcommand{\Stone}{\mathstyle{Stone}}
+\newcommand{\ODisc}{\mathstyle{ODisc}}
+\newcommand{\Type}{\mathstyle{Type}}
+\newcommand{\Ab}{\mathstyle{Ab}}
+\newcommand{\Open}{\mathstyle{Open}}
+\newcommand{\Closed}{\mathstyle{Closed}}
 
 \renewcommand{\lim}{\mathsf{lim}}
 \newcommand{\colim}{\mathsf{colim}}
@@ -108,16 +109,18 @@ Glasgow}
 
 \frame{\frametitle{Overview}
 
-We work in Synthetic Stone Duality (SSD). 
-
+We work in Synthetic Stone Duality (SSD), using pen and paper. 
+\pause
+\begin{center}
 SSD = HoTT + 4 axioms.
-
+\end{center}
+\pause
 \bloc{Cohomology in HoTT}{
 Given $n:\N,\ X:\Type,\ A:X\to \Ab$, we define a group $H^n(X,A)$.
 }
 
-$H^n(X,A)$ is the $n$-th cohomology group of $X$ with coefficient $A$.
-
+$H^n(X,A)$ is the \red{$n$-th cohomology group of $X$ with coefficient $A$}.
+\pause
 \bloc{Our previous work [CCGM24]}{
 \begin{itemize}
 \item Showed SSD is suitable for synthetic topological study of Stone and compact Hausdorff spaces.
@@ -132,20 +135,20 @@ $H^n(X,A)$ is the $n$-th cohomology group of $X$ with coefficient $A$.
 \frame{\frametitle{Overview}
 
 \bloc{Today}{
-$H^n(X,A)$ is well-behaved for $n:\N,\ X:\CHaus,\ A:X\to \Ab_{cp}$.
+$H^n(X,A)$ is well-behaved for $X:\CHaus$ and $A:X\to \Ab_{cp}$.
 }
-
+\pause
 \bloc{Plan}{ 
 \begin{enumerate}
-\item Introduce SSD, Stone spaces and compact Hausdorff spaces.
-\item Introduce the cohomology groups $H^n(X,A)$.
-\item Introduce overtly discrete types and Barton-Commelin axioms:
+\item Introduce \red{SSD}, \red{Stone spaces} and \red{compact Hausdorff spaces}.\pause
+\item Introduce the \red{cohomology groups} $H^n(X,A)$.\pause
+\item Introduce \red{overtly discrete types} and \red{Barton-Commelin axioms}:
 \begin{center}
-$\Pi_{x:X}I(x)$ is well-behaved for $X:\CHaus,\ I:X\to \ODisc$. 
-\end{center}
-\item Explain our main result:
+$\Pi_{x:X}I(x)$ is well-behaved for $X:\CHaus$ and $I:X\to \ODisc$. 
+\end{center}\pause
+\item Explain our \red{main results}:
 \begin{center}
-$H^n(X,A)$ is well-behaved for $X:\CHaus,\ A:X\to \Ab_{\ODisc}$.
+$H^n(X,A)$ is well-behaved for $X:\CHaus$ and $A:X\to \Ab_{\ODisc}$.
 \end{center}
 \end{enumerate}
 }
@@ -161,20 +164,21 @@ An abelian group is overtly discrete iff it is countably presented.
 \frame{\frametitle{Stone spaces}
 
 \bloc{Definition}{
-A type $X$ is a Stone space if it is a sequential limit of finite types.
+A type $X$ is a \red{Stone space} if it is a sequential limit of finite types.
 }
 
 %\bloc{Example 0: Finite types}{}
-
-\bloc{Example 1 (Cantor space)}{
+\pause
+\bloc{Example 1: \blue{Cantor space}}{
 The type $2^\N$ is a Stone space.
 }
 
 Indeed $2^\N = \lim_{i:\N}\, 2^i$.
-
-\bloc{Example 2 (Compactification of $\N$)}{
+\pause
+\bloc{Example 2: \blue{Compactification of $\N$}}{
 The type:
-\[\N_\infty = \{\alpha:2^\N\ |\ \alpha\ hits\ 1\ at\ most\ once\}\]
+\vspace{0.2cm}
+\[\N_\infty = \{\alpha:2^\N\ |\ \alpha\ \mathsf{hits\ 1\ at\ most\ once}\}\]
 is a Stone space.
 }
 
@@ -184,8 +188,9 @@ is a Stone space.
 \vspace{0.3cm}
 
 Indeed $\N_\infty$ is the limit of:
+\vspace{0.2cm}
 \[\xymatrix{
-Fin(1) & Fin(2)\ar[l]_{-1} & Fin(3)\ar[l]_{-1} &Fin(4)\ar[l]_{-1} & \cdots\ar[l]_{-1} \\
+\mathsf{Fin}(1) & \mathsf{Fin}(2)\ar[l]_{-1} & \mathsf{Fin}(3)\ar[l]_{-1} & \mathsf{Fin}(4)\ar[l]_{-1} & \cdots\ar[l]_{-1} \\
 \{\} & \{0\}\ar[l] & \{00\}\ar[l] & \{000\}\ar[l] &\cdots\ar[l] \\
 	& \{1\}\ar[ul] & \{01\}\ar[ul] & \{001\} \ar[lu]  & \ddots\ar[lu] \\
 	& 	& \{10\}\ar[ul] & \{010\}\ar[lu]  & \ddots\ar[lu] \\
@@ -197,22 +202,30 @@ Fin(1) & Fin(2)\ar[l]_{-1} & Fin(3)\ar[l]_{-1} &Fin(4)\ar[l]_{-1} & \cdots\ar[l]
 
 \frame{\frametitle{Synthetic Stone duality}
 
-\bloc{Axiom 1: Scott continuity}{
-If $(S_k)_{k:\N}$ is a sequence of finite types, then
-\[\colim_k(S_k\to 2) \overset{\simeq}{\to} (\lim_k\, S_k \to 2)\]
+%\bloc{Axiom 1: \blue{Scott continuity}}{
+%If $(S_k)_{k:\N}$ is a tower of finite types, then
+%\vspace{0.2cm}
+%\[\colim_k(S_k\to 2) \overset{\simeq}{\to} (\lim_k\, S_k \to 2).\]
+%}
+
+\bloc{Axiom 1a: \blue{Scott continuity}}{
+If $(S_k)_{k:\N}$ is a tower of finite types, then any map in $(\lim_k\, S_k) \to 2$ merely factors through an $S_k$.
 }
-
-\bloc{Axiom 2: Weak K\"onig's lemma}{
-If $(S_k)_{k:\N}$ is a sequence of inhabited finite types, then $\propTrunc{\lim_k\, S_k}$.
+\pause
+\bloc{Axiom 1b: \blue{Markov's principle}}{
+If $(D_k)_{k:\N}$ are decidable propositions, $\neg(\forall_{k:\N}\, D_k) \to \exists(k:\N).\, \neg D_k$.
 }
-
-\bloc{Axiom 3: Local choice}{
-Given $S:\Stone$ and $Y:S\to \Type$ such that $\Pi_{s:S}\propTrunc{Y(s)}$, 
-
-there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\Pi_{t:T}Y(p(t))$.
+\pause
+\bloc{Axiom 2: \blue{Weak K\"onig's lemma}}{
+If $(S_k)_{k:\N}$ is a tower of inhabited finite types, then $\propTrunc{\lim_k\, S_k}$.
 }
+\pause
+\bloc{Axiom 4: \blue{Dependent choice}}{}
+\pause
+\bloc{Axiom 3: \blue{Local choice}}{
+Assume given $S:\Stone$ and $Y:S\to \Type$ such that $\Pi_{s:S}\propTrunc{Y(s)}$.
 
-\bloc{Axiom 4: Dependent choice}{
+Then there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\Pi_{t:T}Y(p(t))$.
 }
 
 }
@@ -234,21 +247,23 @@ there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\Pi_{t:T}Y(p(t)
 %}
 
 
-\frame{\frametitle{Compact Hausdorff space}
+\frame{\frametitle{Compact Hausdorff spaces}
 
 Stone spaces are not stable under quotients.
 
 \bloc{Definition}{
-A set $X$ is a compact Hausdorff space if: 
+A set $X$ is a \red{compact Hausdorff space} if: 
 \begin{itemize}
 \item Its identity types are Stone spaces.
 \item There exists $S:\Stone$ and $S\twoheadrightarrow X$.
 \end{itemize}
 }
-
-\bloc{Examples}{
-The unit interval $\I = [0,1]$ is a such a quotient of $2^\N$.
+\pause
+\bloc{Example: \blue{The unit interval}}{
+The type $\I = [0,1]$ is a compact Hausdorff space.
 }
+
+Indeed $\I$ is a quotient of $2^\N$.
 
 %\bloc{Proposition}{
 %$\CHaus$ is stable under $+$, $\Sigma$, $=$, sequential limits and quotients.
@@ -268,31 +283,39 @@ The unit interval $\I = [0,1]$ is a such a quotient of $2^\N$.
 Fix $A$ an abelian group. We define $K(A,0)=A$.
 
 \bloc{Proposition}{
-Given $n>0$, there is a unique pointed type $K(A,n)$ such that:
+Given $n>0$, there is a \blue{unique} pointed type $K(A,n)$ such that:
 \begin{itemize}
-\item $K(A,n)$ is $(n-1)$-connected and $n$-truncated.
+\item $K(A,n)$ is $(n\,\hbox{-}1)$-connected and $n$-truncated.
 \item $\Omega^n K(A,n) = A$.
 \end{itemize}
 }
 
-$K(A,n)$ is called the $n$-th delooping of $A$.
+$K(A,n)$ is called the \red{$n$-th delooping of $A$}.
 
 }
 
 \frame{\frametitle{Cohomology groups}
 
-\bloc{Definition}{
-Given $n:\N,\, X:\Type,\, A:X\to \Ab$, we define:
-
-\[H^n(X,A) = \propTrunc{\Pi_{x:X}K(A_x,n)}_0\]
+\bloc{Definition: \blue{Cohomology}}{
+Given $n:\N,\, X:\Type$ and $A:X\to \Ab$, we define
+\vspace{0.2cm}
+\[H^n(X,A) = \propTrunc{\Pi_{x:X}\, K(A_x,n)}_0.\]
 }
+\pause
+%\bloc{Remark}{
+%If $X$ has choice then $H^n(X,A) = 0$ for any $A$ and $n>0$. \pause Indeed:
+%\begin{itemize}
+%\item For all $A:\Ab$ and $y:K(A,n)$, we have that $\propTrunc{y=*}$.\pause
+%\item For all $f:\Pi_{x:X}\, K(A_x,n)$ we have that $\Pi_{x:X}\, \propTrunc{f(x)=*}$.\pause
+%\item By choice $\propTrunc{\Pi_{x:X}\, f(x)=*}$, so that $[f]=_{H^n(X,A)}0$.
+%\end{itemize}
+%}
 
-\bloc{Remark}{
-If $X$ has choice then $H^n(X,A) = 0$ for any $A$ and $n>0$. Indeed:
+\bloc{Remark: \blue{Why cohomology?}}{
 \begin{itemize}
-\item For all $x:X,\, y:K(A_x,n)$ we have that $\propTrunc{y=*}$.
-\item So for all $f:\Pi_{x:X}K(A_x,n)$ we have that $\Pi_{x:X} \propTrunc{f(x)=*}$.
-\item So by choice $\propTrunc{f=0}$.
+%\item If $X$ has choice then $H^n(X,A) = 0$ for any $A$ and $n>0$.
+\item If $H^n(X,A)=0$ then we can use some choice on $X$.
+\item There exists many tools to compute cohomology.
 \end{itemize}
 }
 
@@ -303,14 +326,15 @@ If $X$ has choice then $H^n(X,A) = 0$ for any $A$ and $n>0$. Indeed:
 
 \frame{\frametitle{Overtly discrete types}
 
+
 We want $A$ such that $H^n(X,A)$ is well-behaved for $X:\CHaus$.
-
+\pause
 \bloc{Idea}{
-We use overtly discrete abelian groups (equivalent to c.p.).
+We assume $A$ takes value in overtly discrete abelian groups.
 }
-
+\pause
 \bloc{Definition}{
-A type is overtly discrete if it is a sequential colimit of finite types.
+A type is \red{overtly discrete} if it is a sequential colimit of finite types.
 }
 
 %\bloc{Remark}{
@@ -361,13 +385,13 @@ An abelian group is overtly discrete iff it is countably presented.
 \frame{\frametitle{Tychonov and its dual}
 
 We prove Barton-Commelin's condensed type theory axioms.
-
-\bloc{Lemma (Tychonov)}{
-If $I:\ODisc$ and $X:I\to \CHaus$, then $\Pi_{i:I}X_i$ is compact Hausdorff.
+\pause
+\bloc{Lemma: \blue{Tychonov}}{
+If $I:\ODisc$ and $X:I\to \CHaus$, then $\Pi_{i:I}\, X_i$ is compact Hausdorff.
 }
-
-\bloc{Proposition (Tychonov dual)}{
-If $X:\CHaus$ and $I:X\to \ODisc$, then $\Pi_{x:X}I_x$ is overtly discrete.
+\pause
+\bloc{Proposition: \blue{Tychonov's dual}}{
+If $X:\CHaus$ and $I:X\to \ODisc$, then $\Pi_{x:X}\, I_x$ is overtly discrete.
 }
 
 This is encouraging. We have better!
@@ -378,20 +402,19 @@ This is encouraging. We have better!
 
 \bloc{Definition}{
 We have a category $\mathcal C$ where:
+\vspace{0.2cm}
 \begin{eqnarray}
 \mathsf{Ob}_{\mathcal C} & = & \Sigma(X:\CHaus).\, X\to\ODisc\nonumber\\
-\mathsf{Hom}_{\mathcal C}((X,I),(Y,J)) & = & \Sigma(f:Y\to X).\, \Pi_{y:Y} I_{f(x)}\to J_x\nonumber
+\mathsf{Hom}_{\mathcal C}((X,I),(Y,J)) & = & \Sigma(f:Y\to X).\, \Pi_{y:Y}\, I_{f(x)}\to J_x\nonumber
 \end{eqnarray}
 %\begin{itemize}
 %\item $\mathsf{Ob}_{\mathcal C} = \Sigma(X:\CHaus).\, X\to\ODisc$.
 %\item $\mathsf{Hom}_{\mathcal C}((X,I),(Y,J)) = \Sigma(f:Y\to X).\, \Pi_{y:Y} I_{f(x)}\to J_x$
 %\end{itemize}
 }
-
-\bloc{Theorem (Generalized Scott continuity)}{
-The covariant functor:
-\[\Pi : {\mathcal C} \to \ODisc\]
-commutes with sequential colimits.
+\pause
+\bloc{Theorem: \blue{Generalized Scott continuity}}{
+The functor $\Pi : {\mathcal C} \to \ODisc$ commutes with sequential colimits.
 }
 
 }
@@ -402,16 +425,16 @@ commutes with sequential colimits.
 \frame{\frametitle{\v{C}ech cohomology}
 
 \bloc{Definition}{
-A \v{C}ech cover consists of $X:\CHaus, S:\Stone$ with $p:S\twoheadrightarrow X$.
+A \v{C}ech cover consists of $X:\CHaus$ and $S:\Stone$ with $p:S\twoheadrightarrow X$.
 }
 
 \bloc{Definition}{
-Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to \Ab$, 
-
-its \v{C}ech cohomology $\check{H}^n(X,S,A)$ is the $n$-th cohomology group of:
-
-\[\Pi_{x:X}A_x^{S_x}\to \Pi_{x:X}A_x^{S_x^2} \to \Pi_{x:X}A_x^{S_x^3}\to \cdots\]
+Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to \Ab_{cp}$, we define $\check{H}^n(X,S,A)$ as the $n$-th cohomology group of
+\vspace{0.2cm}
+\[\Pi_{x:X}\, A_x^{S_x}\to \Pi_{x:X}\, A_x^{S_x^2} \to \Pi_{x:X}\, A_x^{S_x^3}\to \cdots.\]
 }
+
+$\check{H}^n(X,S,A)$ is called the \red{$n$-th \v{C}ech cohomology group of $X$ with coefficient in $A$}.
 
 %\bloc{Definition}{
 %Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to \Ab$, its \v{C}ech cohomology $\check{H}^n(X,S,A)$ is defined as the $n$-th cohomology of $\check{C}(X,S,A)$.
@@ -455,15 +478,15 @@ its \v{C}ech cohomology $\check{H}^n(X,S,A)$ is the $n$-th cohomology group of:
 
 \frame{\frametitle{Main results}
 
-\bloc{Theorem}{
+\bloc{Theorem: \blue{Cohomology vanishing for Stone spaces}}{
 Given $n>0$, $S:\Stone$ and $A:S\to\Ab_{cp}$, we have that
-
+\vspace{0.2cm}
 \[H^n(S,A) = 0.\]
 }
 
-\bloc{Theorem}{
+\bloc{Theorem: \blue{\v{C}ech and regular cohomology agree on $\CHaus$}}{
 Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to\Ab_{cp}$, we have that
-
+\vspace{0.2cm}
 \[H^n(X,A) = \check{H}^n(X,S,A).\]
 }
 
@@ -471,29 +494,29 @@ Given a \v{C}ech cover $p:S\twoheadrightarrow X$ and $A:X\to\Ab_{cp}$, we have t
 
 \frame{\frametitle{Applications}
 
-\bloc{Lemma}{
-For all $A:\Ab_{cp}$, we have that
-
+\bloc{Lemma: \blue{Cohomology of the interval}}{
+For $A:\Ab_{cp}$, we have that
+\vspace{0.2cm}
 \[H^n(\mathbb{I},A) = 
 \begin{cases}
 	A& $if$\ n=0 \\
-    	0 & $otherwise$
+    	0 & $otherwise.$
 \end{cases}\]
 }
 
 %This means $\I$-localisation is well-behaved. For example:
 
-\bloc{Lemma}{
-For $\mathbb{S}^k = \{x_0,\hdots,x_k:\R\ |\ \Sigma_i x_i^2 = 1\}$ and $A:\Ab_{cp}$, we have that
-
+\bloc{Lemma: \blue{Cohomology of the spheres}}{
+For $\mathbb{S}^k = \{x_0,\hdots,x_k:\R\ |\ \Sigma_i\, x_i^2 = 1\}$ and $A:\Ab_{cp}$, we have that
+\vspace{0.2cm}
 \[H^n(\mathbb{S}^k,A) = 
 \begin{cases}
 	A & $if$\ n=0\ $or$\ n=k \\
-    	0 & $otherwise$
+    	0 & $otherwise.$
 \end{cases}\]
 }
 
-This extends to all topological countable CW complex.
+This extends to all countable topological CW complex.
 
 }
 
@@ -538,6 +561,40 @@ This extends to all topological countable CW complex.
 %}
 
 %}
+
+
+\frame{
+
+%\bloc{Axiom 1: \blue{Scott continuity}}{
+%If $(S_k)_{k:\N}$ is a tower of finite types, then
+%\vspace{0.2cm}
+%\[\colim_k(S_k\to 2) \overset{\simeq}{\to} (\lim_k\, S_k \to 2).\]
+%}
+
+
+\bloc{Axiom 1a: \blue{Scott continuity}}{
+If $(S_k)_{k:\N}$ is a tower of finite types, then any map in $(\lim_k\, S_k) \to 2$ merely factors through an $S_k$.
+}
+
+\bloc{Axiom 1b: \blue{Markov's principle}}{
+If $(D_k)_{k:\N}$ are decidable propositions, $\neg(\forall_{k:\N}\, D_k) \to \exists(k:\N).\, \neg D_k$.
+}
+
+\bloc{Axiom 2: \blue{Weak K\"onig's lemma}}{
+If $(S_k)_{k:\N}$ is a tower of inhabited finite types, then $\propTrunc{\lim_k\, S_k}$.
+}
+
+\bloc{Axiom 4: \blue{Dependent choice}}{
+If $(X_k)_{k:\N}$ is a tower with surjective maps, then $\lim_k\, X_k\twoheadrightarrow X_0$.
+}
+
+\bloc{Axiom 3: \blue{Local choice}}{
+Assume given $S:\Stone$ and $Y:S\to \Type$ such that $\Pi_{s:S}\propTrunc{Y(s)}$.
+
+Then there exists $T:\Stone$ and $p:T\twoheadrightarrow S$ such that $\Pi_{t:T}Y(p(t))$.
+}
+
+}
 
 
 \end{document}
