@@ -68,11 +68,28 @@
 \newcommand\Nmr{\mathsf{Nrd}}
 \newcommand\Hom{\mathsf{Hom}}
 
+\newcommand{\Cat}{\mathsf{Cat}}
+\newcommand{\Set}{\mathsf{Set}}
+\newcommand{\Alg}{\mathsf{Alg}}
+
+\newcommand\inl{\mathsf{inl}}
+\newcommand\inr{\mathsf{inr}}
+
 \newcommand\Ty{\mathsf{Ty}}
 \newcommand\El{\mathsf{El}}
 \newcommand\p{\mathsf{p}}
 \newcommand\q{\mathsf{q}}
 \DeclareMathOperator\id{id}
+\DeclarePairedDelimiter\gen{\langle}{\rangle}
+\DeclarePairedDelimiter\paren{(}{)}
+\DeclarePairedDelimiter\set{\{}{\}}
+\newcommand\R{\mathsf{R}}
+\newcommand\Spec{\mathsf{Spec}}
+
+\usepackage{tikz-cd}
+
+
+\usepackage{todonotes}
 
 
 \begin{document}
@@ -85,25 +102,36 @@
 
 %\rightfooter{}
 
-\section*{introduction}
+\section*{Introduction}
 
-We report a mistake (and a way to fix this mistake in important cases) in the construction of a model
-for the axiom system presented in \cite{draft}. This model construction has two parts: the first one
+We report a mistake (and a way to fix this mistake in important cases) in the construction of a model for the axiom system presented in~\cite{draft}.
+A construction for the general cases will be presented in upcoming work.
+
+This model construction has two parts: the first one
 
 Section 8.1 the mistake is in building the presheaf model
 
 It works in the 1-topos case
 
-\section{Problem with quotient}
+\section{Separating homotopy and set-level quotients}
 
-We work with cubical sets. If $E$ is a set we write $\Delta E$ constant cubical set.
-Let $R$ be an equivalence relation on $E$. This defines a (strict) equivalence relation $\Delta R$
-on the cubical set $\Delta E$. There is a projection map $\Delta E \rightarrow \Delta (E/R)$.
+We work with cubical sets.
+If $E$ is a set we write $\Delta E$ for the constant cubical set on $E$.
+Recall that for a set $E$ and a cubical set $X$ we have a natural bijection between $\widehat{\square}(\Delta E, X)$ and $\Set(S, X_{[0]})$.
+As a consequence, elements of a type $A \in \Ty(\Delta\Gamma)$ are in natural bijection with elements of $A_{[0]} \in \Ty(\Gamma)$.
 
+Furthermore, recall that the nerve functor $N \colon \Cat \to \widehat{\square}$ sends a groupoid $G$ to the fibrant cubical set $NG$, so a type in the model on cubical sets.
+The objects of this groupoid correspond exactly to the closed elements of this type, and elements of the hom-set $G(x, y)$ corresponds exactly to the closed elements of the type of paths from $x$ to $y$ in $NG$.
 
-\begin{proposition}
-  The projection map $\Delta E \rightarrow \Delta (E/R)$ defines a quotient of $\Delta E$
-  by $\Delta R$ in the cubical set model if, and only if, $E\rightarrow E/R$ has section.
+Let $R$ be an equivalence relation on $E$.
+This defines a (strict) equivalence relation $\Delta R$ on the cubical set $\Delta E$.
+There is a projection map $\Delta E \rightarrow \Delta (E/R)$.
+We show that this projection map models the homotopy quotients in cubical sets exactly if the axiom of choice holds in the meta theory.
+
+% TODO: claim important externalizations about nerve, and only use later
+
+\begin{proposition}\label{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}
+  The projection map $\Delta E \rightarrow \Delta (E/R)$ defines a quotient of $\Delta E$ by $\Delta R$ in the cubical set model if, and only if, $E\rightarrow E/R$ has section.
 \end{proposition}
 \begin{proof}
   Suppose first that $\eta \colon E \to E/R$ has a section $s \colon E/R \to E$.
@@ -113,17 +141,101 @@ on the cubical set $\Delta E$. There is a projection map $\Delta E \rightarrow \
 
   Conversely, suppose that $\Delta\eta \colon \Delta E \to \Delta(E/R)$ has the universal property of the quotient internally.
   We view $E$ as a groupoid with objects $E$ and an invertible morphism between two objects exactly if they are related by $R$.
-  The nerve of this groupoid $NE$ is a fibrant cubical set.
-  This fibrant cubical set admits a map $p \colon \Delta E \to NE$ uniquely determined by the identity function $E \to E = (NE)([0])$.
-  Furthermore, we have that the kernel of this map contains $\Delta R$ since we have an element of $\El(\Delta E. \Delta E. \Delta R, p(\q\p) = p(\q\p^2))$ exactly if for all $e_0, e_1 \in E$ satisfying $R(e_0, e_1)$ we have an element of $N(e_0, e_1)$ which is defined as the subsingleton $R(e_0, e_1)$.
-  Hence, we get a map $\Delta(E/R) \to NE$ with $\overline p \circ \Delta\eta \sim p$.
+  Internally, we have a (closed) function $p \colon \Delta E \to NE$ uniquely determined by the identity $E \to (NE)_{[0]} = E$.
+  Furthermore, we have that the kernel of this map contains $\Delta R$ because $\Delta R(e_0, e_1) \to pe_0 \simeq pe_1$ holds for all $e_0, e_1 \colon \Delta E$ (in the empty context).
+  Hence, we get a map $\overline{p} \colon \Delta(E/R) \to NE$ and a homotopy $\overline p \circ \Delta\eta \sim p$.
+  \[\begin{tikzcd}
+    \Delta E \arrow[dd, "\Delta\eta"'] \arrow[rr, "p"] &  & NE &                      & E \arrow[dd, "\eta"'] \arrow[rr, "\id_E"]        &  & {(NE)_{[0]}} \\
+                                                      &  &    & \leftrightsquigarrow &                                                  &  &              \\
+    \Delta (E/R) \arrow[rruu, "\overline p"', dashed]  &  &    &                      & E/R \arrow[rruu, "{\overline p_{[0]}}"', dashed] &  &             
+  \end{tikzcd}\]
   This means we have a map on points $\overline{p}_{[0]} \colon E/R \to E$ that we claim to be a section of \(\eta\).
-  Externally, we have an element of $\El(\Delta E, \overline p (\Delta\eta\q) =_{NE} p\q)$ meaning that for each $e \in E$ we have $R(\overline p_{[0]}(\eta e), e)$ which implies that $\eta \overline{p}_{[0]} = \id_{E/R}$.
+  Note that the triangle on the right commutes only up to $R$.
+  Thus, for some $e \in E$ we have that $e \sim s (\eta e)$, and therefore that $\eta e = \eta (s (\eta e))$ showing that $s\eta = \id$ by the universal property of the quotient.
+  % \todo[inline]{Simplify this direction by simply using the above bijections.}
+  % Conversely, suppose that $\Delta\eta \colon \Delta E \to \Delta(E/R)$ has the universal property of the quotient internally.
+  % We view $E$ as a groupoid with objects $E$ and an invertible morphism between two objects exactly if they are related by $R$.
+  % The nerve of this groupoid $NE$ is a fibrant cubical set.
+  % This fibrant cubical set admits a map $p \colon \Delta E \to NE$ uniquely determined by the identity function $E \to E = (NE)([0])$.
+  % Furthermore, we have that the kernel of this map contains $\Delta R$ since we have an element of $\El(\Delta E. \Delta E. \Delta R, p(\q\p) = p(\q\p^2))$ exactly if for all $e_0, e_1 \in E$ satisfying $R(e_0, e_1)$ we have an element of $NE(e_0, e_1)$ which is defined as the subsingleton $R(e_0, e_1)$.
+  % Hence, we get a map $\Delta(E/R) \to NE$ with $\overline p \circ \Delta\eta \sim p$.
+  % This means we have a map on points $\overline{p}_{[0]} \colon E/R \to E$ that we claim to be a section of \(\eta\).
+  % Externally, we have an element of $\El(\Delta E, \overline p (\Delta\eta\q) =_{NE} p\q)$ meaning that for each $e \in E$ we have $R(\overline p_{[0]}(\eta e), e)$ which implies that $\eta \overline{p}_{[0]} = \id_{E/R}$.
 \end{proof}
 
-\section{Case where $k$ is $\ints$ or a dicrete field}
+We now show that the duality axiom, for the generic ring as defined in the paper, implies in certain cases a constructive taboo.
+In the next section, we will focus on those special cases that avoid this taboo.
+The upcoming work will circumvent this taboo by changing the definition of the generic ring, by changing the definition of the base category instead.
 
- We have to use cobar.
+We will reduce to the statement of the next lemma, which is an adaptation of an argument by Diaconescu~\cite{diaconescu1975choice}.
+For $E$ a set and $e_0, e_1 \in E$ denote by $\gen{(e_0, e_1)}$ the equivalence relation generated by $(e_0, e_1)$.
+
+\begin{lemma}\label{prop:coequalizers-of-disjoint-subobjects-with-terminal-doamin-split-implies-lem}
+  If for all $E$, $e_0, e_1 \in E$ the map $E \to E/\gen{(e_0, e _1)}$ splits, every proposition is decidable.
+\end{lemma}
+\begin{proof}
+  Let $p$ be a proposition, and set $P \coloneqq \{ 0, 1 \} / \sim_p$ the quotient of the two element set by the equivalence relation that identifies $0$ and $1$ if $p$ holds.
+  We consider the set $Q \coloneqq P + P$, the disjoint union of $P$ with itself.
+  Note that for elements of $Q$ we can decide whether they are in the left or the right copy of $P$.
+  By assumption, the canonical map
+  \[
+    \eta \colon Q \longrightarrow R \coloneqq Q / \gen[\big]{\paren[\big]{ \inl(0), \inr(0) }}
+  \]
+  has a section that we denote $s$.
+  Since $R$ is a retract of $P + P$ we have that $R \cong R_0 + R_1$ where
+  \[
+    R_0 \coloneqq \set{ r \in R \mid \exists i \in P. s(r) = \inl(i) } \qquad
+    R_1 \coloneqq \set{ r \in R \mid \exists i \in P. s(r) = \inr(i) }.
+  \]
+  If $p$ holds, then $\eta(\inl(1)), \eta(\inr(1)) \in R_j$ for some $j$.
+  Hence, if this is not the case, then we can conclude $\neg p$.
+
+  So now suppose, without loss of generality, that $s(\eta(\inl(1))), s(\eta(\inr(1))) \in R_0$.
+  Hence, there exists some $i \in P$ with $\inl(i) = s(\eta(\inr(1)))$.
+  Since $s$ is a section of $\eta$, this implies $\inl(i)$ is related to $\inr(1)$ by $\gen[\big]{\paren[\big]{ \inl(0), \inr(0) }}$.
+  Thus, we must have $(\inl(i), \inr(1)) = (\inl(0), \inr(0))$ and therefore that $\inr(0) = \inr(1)$.
+  This implies that $0 = 1$ in $P$ and therefore that $p$ holds.
+\end{proof}
+
+We now show that if the duality axioms holds for all base-rings, then the law of the excluded middle already holds in the meta theory.
+
+\begin{proposition}\label{prop:strict-duality-implies-lem}
+  If for all rings \(k\) the duality axiom holds in \(\widehat{k\text{-}\Alg_{fp} \times \square}\) with the generic ring is interpreted as in the paper, then every proposition is decidable.
+\end{proposition}
+\begin{proof}
+  We show that the assumption of Lemma~\ref{prop:coequalizers-of-disjoint-subobjects-with-terminal-doamin-split-implies-lem} is satisfied to show the claim.
+  So let $E$ be a set, and $e_0, e_1 \in E$.
+
+  By assumption, the duality axiom holds in the model over the base-ring $k \coloneqq \ints[E]$.
+  We write $\R$ for the generic ring in $\widehat{k\textsf{-Alg}_{fp}}$ and $\Delta\R$ for the generic ring in $\widehat{k\textsf{-Alg}_{fp} \times \square}$ .
+  We have two global sections of $\R$ and $\Delta \R$ given by $e_0$ and $e_1$.
+  Hence, by duality, we obtain that the top map in the following diagram is an equivalence, where $\Delta E/(e_0 - e_1)$ denotes the $\Delta\R$-algebra constructed as a homotopy quotient.
+  \[\begin{tikzcd}
+    \Delta\R/(e_0 - e_1) \arrow[rr]                &  & \Delta\R^{\Spec\paren{\R/(e_0 - e_1)}} \\
+                                                   &  &                                  \\
+    \Delta\paren[\big]{\R/(e_0 - e_1)} \arrow[rruu] \arrow[uu] &  &                                 
+  \end{tikzcd}\]
+  Because $\Delta\R$ is, by definition, a strict cubical presheaf, the spectrum of an algebra is equivalent to a strict cubical presheaf as-well (because it can be defined just in terms of elements of $\Delta \R$ and paths in $\Delta \R$ which coincide with strict equality).
+  Thus, $\Delta\R^{\Spec\paren{\R/(e_0 - e_1)}}$ is isomorphic to a strict cubical presheaf as-well.
+  By the arguments in Section 8.1 of the paper, we have that the duality axiom holds in $\widehat{k\textsf{-Alg}_{fp}}$.
+  Hence, we obtain an isomorphism $\R/(e_0 - e_1) \to \R^{\Spec(\R / (e_0 - e_1))}$ in $\widehat{k\textsf{-Alg}_{fp}}$.
+  The bottom map in the above diagram, is the image of this isomorphism under \(\Delta\).
+  Direct inspection show that this triangle commutes.
+  By 2-out-of-3 for equivalences, we obtain the left map is an equivalence.
+  Hence, by Proposition~\ref{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}, we have that the underlying map in sets $k \to k/(e_0 - e_1)$ splits. 
+
+  Using the techniques by~\cite{mines}, we can show that the following square is a pullback, by showing that the bottom map is injective.
+  \[\begin{tikzcd}
+    E \arrow[dd] \arrow[rr]                                        &  & {\ints[E]} \arrow[dd]                                 \\
+                                                                  &  &                                                       \\
+    {E/\gen{(e_0, e_1)}} \arrow[rr] \arrow[uu, dashed, bend right] &  & {\ints[E]/(e_0 - e_1)} \arrow[uu, dashed, bend right]
+  \end{tikzcd}\]
+  Hence, from the map on the right splitting, we obtain that the left map splits as-well.
+\end{proof}
+
+\section{Case where $k$ is $\ints$ or a discrete field}
+
+ We have to use cobar. % We can levelwise build the map in cubical sets as described above, but they are only natural up to homotopy
 
 
 A(p), R[X] is not described correctly
