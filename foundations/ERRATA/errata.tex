@@ -168,11 +168,11 @@ We now show that the duality axiom, for the generic ring as defined in the paper
 In the next section, we will focus on those special cases that avoid this taboo.
 The upcoming work will circumvent this taboo by changing the definition of the generic ring, by changing the definition of the base category instead.
 
-We now show that if the duality axioms holds for all base-rings, then the law of the excluded middle already holds in the meta theory.
+We now show that if the duality axiom holds for all base-rings, then the law of the excluded middle already holds in the meta theory.
 For that, we conclude a choice like principle from the axiom.
 
 \begin{proposition}\label{prop:strict-duality-implies-lem}
-  If for a ring $k$ the duality axiom holds in $\widehat{k\text{-}\Alg_{fp} \times \square}$ with the generic ring is interpreted as in the paper, then for all finite lists of elements $u_1, \ldots, u_n \in k$ the projection $k \to k /(u_1, \ldots, u_n)$ splits.
+  If for a ring $k$ the duality axiom holds in $\widehat{k\text{-}\Alg_{fp} \times \square}$ with the generic ring interpreted as in the paper, then for all finite lists of elements $u_1, \ldots, u_n \in k$ the projection $k \to k /(u_1, \ldots, u_n)$ splits.
 \end{proposition}
 \begin{proof}
   By assumption, the duality axiom holds in the model over the base-ring $k$.
@@ -203,6 +203,7 @@ For that, we conclude a choice like principle from the axiom.
 
 The following is now an adaptation of an argument by Diaconescu~\cite{diaconescu1975choice}.
 
+\todo[inline]{Justify that we can take $n \in k$ not a polynomial, and that $a + b = c + d$ implies pairwise equality}
 \begin{corollary}
   If for all rings \(k\) the duality axiom holds in \(\widehat{k\text{-}\Alg_{fp} \times \square}\) with the generic ring is interpreted as in the paper, then all propositions are decidable.
 \end{corollary}
@@ -210,12 +211,12 @@ The following is now an adaptation of an argument by Diaconescu~\cite{diaconescu
   Following the techniques in~\cite{mines}, we can show that for any set $E$ and any ring $R$ the canonical map $E \to R[E]$ is injective.
 
   Let $p$ be a proposition and $P \coloneqq \set{0,1} / \sim_p$.
-  We consider the base-ring $k \coloneqq \ints_2[P + P]$.
-  By the arguments in the errata, the map $\eta \colon \ints_2[P + P] \to \ints_2[P + P] / (\inl(0) - \inr(0))$ splits.
-  Denote the section by $s : \ints_2[P + P] / (\inl(0) - \inr(0)) \to \ints_2[P + P]$.
+  We consider the base-ring $k \coloneqq \mathbb{F}_2[P + P]$.
+  By the arguments in the errata, the map $\eta \colon \mathbb{F}_2[P + P] \to \mathbb{F}_2[P + P] / (\inl(0) - \inr(0))$ splits.
+  Denote the section by $s : \mathbb{F}_2[P + P] / (\inl(0) - \inr(0)) \to \mathbb{F}_2[P + P]$.
 
-  For $\inl(1) \in \ints_2[P + P]$ we have that $\eta(\inl(1)) = \eta(s(\eta(\inl(1))))$ since s is a section of $\eta$.
-  Thus, there exists some $n \in \ints_2$ with $\inl(1) - s(\eta(\inl(1))) = n(\inr(0) - \inr(1))$.
+  For $\inl(1) \in \mathbb{F}_2[P + P]$ we have that $\eta(\inl(1)) = \eta(s(\eta(\inl(1))))$ since s is a section of $\eta$.
+  Thus, there exists some $n \in \mathbb{F}_2$ with $\inl(1) - s(\eta(\inl(1))) = n(\inr(0) - \inr(1))$.
   If $n = 0$ then we have $\inl(1) = s(\eta(\inl(1)))$.
   If $n = 1$ then we have $\inl(1) + \inr(1) = \inr(0) + s(\eta(\inl(1)))$.
   Since $\inl(i) \ne \inr(j)$ for all $i, j$ in $k$ (by injectivity of $P + P \hookrightarrow k$ and the same fact in $P + P$), we have that $\inr(1) = \inr(0)$.
