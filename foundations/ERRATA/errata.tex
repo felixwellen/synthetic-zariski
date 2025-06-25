@@ -172,7 +172,7 @@ We now show that if the duality axioms holds for all base-rings, then the law of
 For that, we conclude a choice like principle from the axiom.
 
 \begin{proposition}\label{prop:strict-duality-implies-lem}
-  If for a ring $k$ the duality axiom holds in \(\widehat{k\text{-}\Alg_{fp} \times \square}\) with the generic ring is interpreted as in the paper, then for all finite lists of elements $u_1, \ldots, u_n \in k$ the projection $k \to k /(u_1, \ldots, u_n)$ splits.
+  If for a ring $k$ the duality axiom holds in $\widehat{k\text{-}\Alg_{fp} \times \square}$ with the generic ring is interpreted as in the paper, then for all finite lists of elements $u_1, \ldots, u_n \in k$ the projection $k \to k /(u_1, \ldots, u_n)$ splits.
 \end{proposition}
 \begin{proof}
   By assumption, the duality axiom holds in the model over the base-ring $k$.
@@ -234,8 +234,60 @@ The following is now an adaptation of an argument by Diaconescu~\cite{diaconescu
 \end{proof}
 
 
-
 \section{Case where $k$ is $\ints$ or a discrete field}
+
+The above shows that we cannot expect a model on $\widehat{k\text{-}\Alg_{fp} \times \square}$ without choice for set-level quotients of $k$.
+In cases where $k$ is well-behaved we can still expect this in our constructive meta theory.
+Recall that a field $k$ is \emph{discrete} if for all $u \in k$ we have $u = 0$ or $u$ that is invertible, which is equivalent to $k$ having decidable equality~\cite{mines}.
+In this case, we can construct $k[X_1, \ldots, X_n]$ as linear combinations of monomials with non-zero coefficients.
+
+\begin{lemma}
+  If $k$ is $\ints$ or $k$ is a discrete field, then for every finitely generated ideal $I = (f_1, \ldots, f_n) \subseteq k[X_1, \ldots, X_n]$ the quotient $k[X_1,\ldots,X_n]/I$ can be constructed as a subset of the polynomial ring $k[X_1, \ldots, X_n]$, and the canonical projection splits.
+\end{lemma}
+\begin{proof}
+  \todo[inline]{via Gröbner basis. We can compute one from the ideal description, and obtain representatives for the classes via the multi-variate division algorithm.}
+\end{proof}
+
+The above sufficient condition will guarantee a model for base the rings given by $\ints$, and finite field extensions of $\rats$, and finite fields $\mathbb F_n$.
+Crucially, it does not include real, or complex numbers.
+Furthermore, the way we constructed the polynomial ring, and the quotient makes the entire construction independent of the availability of quotients in the meta theory.
+
+
+\subsection{A strictness issue}
+
+Proposition~\ref{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}  characterizes (closed) homotopy quotients in $\widehat\square$ in terms of choice in $\Set$, we do not obtain a similar characterization for quotients in the na\"ive cubical presheaf model on $\widehat{k\text{-}\Alg_{fp} \times \square}$.
+\todo[inline]{Outline that we can define the components of a natural transformation, but they won't be strictly natural. Essentially: a quotient in presheaves is not a levelwise quotient}
+
+\subsection{Strictification}
+
+Let $D$ be the modality from \cite{CRS21}.
+We consider the CwF-morphism $\Delta \colon \widehat{k\text{-}\Alg_{fp}} \to \widehat{k\text{-}\Alg_{fp} \times \square}$.
+This morphism sends types to fibrant, and $D$-modal types.
+
+We define the generic ring as $\Delta\R$.
+To define the polynomial ring in finitely many variables, not that we have $\R[-] \in \Ty_{\widehat{k\text{-}\Alg_{fp}}}(\nats)$.
+Thus, we obtain $\Delta(\R[-]) \in \Ty_{\widehat{k\text{-}\Alg_{fp} \times \square}}(\nats)$.
+We lift operations by defining them in the generic context.
+For example, for the map $\R \to \R[n]$ we consider the corresponding element $\El_{\widehat{k\text{-}\Alg_{fp}}}(\nats.\R, \R[-])$ yielding $\El_{\widehat{k\text{-}\Alg_{fp}\times \square}}(\nats.\Delta\R, \Delta R[-])$.
+Similarly, we can lift all operations valued in the polynomial ring, but not its universal property.
+
+The model of $D$-modal, fibrant types on $\widehat{k\text{-}\Alg_{fp} \times \square}$ has all higher inductive types by the construction in \cite{CRS21}, since the model of fibrant types has all higher inductive types by the results in \cite{CoquandHM18}.
+Hence, we can construct the polynomial ring $(\Delta\R)[n]$ for each $n \colon \nats$ directly.
+Thus, we obtain a comparison map $(\Delta\R)[n] \to \Delta(\R[n])$ commuting with all operations by its universal property.
+We show that $\Delta(\R[n])$ has the universal property by showing that this map is an equivalence.
+
+Between $D$-modal types, a map is an equivalence exactly if it is levelwise an equivalence.
+Hence, it suffices to check for each $M \in k\text{-}\Alg_{fp}$ that the above map is sent to an equivalence in $\widehat{\square}$ by the CwF-morphism that is evaluation at $M$.
+\todo[inline]{Here we now need that the HIT is sent (up to equivalence) to the correct object in $\widehat\square$. Then we can conclude because both types have the same universal property: the HIT by preservation under evaluation, and the strict one by the splitting lemma (or rather a version in a non-empty context). The case for quotients is then similar. Duality is free for the strict objects.}
+
+
+% Whats the plan? Sending a presheaf on k-Alg to a cubical one lands in fibrant, and D-modal types.
+% Does this suffice for the dependent types?
+% Take, for example, n:N |- R[n] in PSh(k-Alg). Then we get N |- Delta R[n] in cubical presheaves. (this is not obviously correct)
+% 
+
+
+\todo[inline]{}
 
  We have to use cobar. % We can levelwise build the map in cubical sets as described above, but they are only natural up to homotopy
 
@@ -249,8 +301,6 @@ We can even derive EM from
 -problem general case
 
 -if no quotient k = Z or k discrete field needs cobar
-
-\todo[inline]{One quick/elegant way of showing this, is to use that we the quotient is one in cSet by using the lemma, and then to use cobar to lift it to the presheaves.}
 
 \section{An example where it works}
 
