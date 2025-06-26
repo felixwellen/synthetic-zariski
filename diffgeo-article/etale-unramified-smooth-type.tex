@@ -134,7 +134,23 @@ The next proposition implies that open propositions are formally étale.
 \begin{proof}
   Assume $U$ is a $\neg\neg$-stable proposition. For $U$ to be formally étale it is enough to check that $U^P\to U$ for all $P$ closed dense. This holds because for $P$ closed dense we have $\neg\neg P$.
   \end{proof}
-  
+
+Before proving the next lemma about closed formally étale propositions,
+we will state and prove a general fact about closed propositions:
+
+\begin{lemma}
+  \label{square-zero-implies-zero-decidable}
+  Let $I$ be a finitely generated ideal of $R$ such that $I^2=0$ implies $I=0$,
+  then the closed proposition $I=0$ is decidable.
+\end{lemma}
+
+\begin{proof}
+  Let $I\subseteq R$ be a finitely generated ideal such that $I^2=0$ implies $I=0$.
+  Since the other implication always holds, the propositions $I^2=0$ and $I=0$ are equivalent, so we have $I=I^2$.
+  By Nakayama (see \cite[Lemma II.4.6]{lombardi-quitte}) there exists $e:R$ such that $eI = 0$ and $1-e\in I$.
+  If $e$ is invertible then $I=0$, if $1-e$ in invertible then $I=R$.
+\end{proof}
+
 \begin{lemma}\label{closed-and-etale-decidable}
 A closed and formally étale proposition is decidable.
 \end{lemma} 
@@ -144,7 +160,8 @@ Given a formally étale closed proposition $P$, let us prove it is $\neg\neg$-st
 
 Let $I$ be the finitely generated ideal in $R$ such that:
 \[P\leftrightarrow I=0\]
-We have that $I^2=0$ implies $\neg\neg (I=0)$ which implies $I=0$. But then we have that $I=I^2$, so that by Nakayama (see \cite[Lemma II.4.6]{lombardi-quitte}) there exists $e:R$ such that $eI = 0$ and $1-e\in I$. If $e$ is invertible then $I=0$, if $1-e$ in invertible then $I=R$.
+We have that $I^2=0$ implies $\neg\neg (I=0)$ which implies $I=0$.
+Then $P$ is decidable by \Cref{square-zero-implies-zero-decidable}. 
 \end{proof}
 
 \begin{proposition}\label{bool-is-etale}
