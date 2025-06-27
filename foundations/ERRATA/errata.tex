@@ -10,6 +10,7 @@
 \usepackage{verbatim}
 \usepackage{latexsym}
 \usepackage{amssymb,amstext,amsmath,mathtools,amsthm}
+\usepackage{xfrac}
 \usepackage{epsf}
 \usepackage{epsfig}
 \usepackage{a4wide}
@@ -25,6 +26,9 @@
 \usepackage{float}
 \floatstyle{boxed}
 \restylefloat{figure}
+
+\usepackage{hyperref}
+\usepackage{cleveref}
 
 %%%%%%%%%
 \def\oge{\leavevmode\raise
@@ -81,11 +85,15 @@
 \newcommand\q{\mathsf{q}}
 \DeclareMathOperator\id{id}
 \DeclarePairedDelimiter\gen{\langle}{\rangle}
+\DeclarePairedDelimiter\trunc{\lVert}{\rVert}
 \DeclarePairedDelimiter\paren{(}{)}
 \DeclarePairedDelimiter\set{\{}{\}}
 \newcommand\R{\mathsf{R}}
 \newcommand\Spec{\mathsf{Spec}}
 \newcommand\bbI{\mathbb{I}}
+\renewcommand\Pr{\mathsf{Pr}}
+\newcommand\Term{\mathsf{Term}}
+
 
 \usepackage{tikz-cd}
 
@@ -198,14 +206,14 @@ For that, we conclude a choice like principle from the axiom.
   \[\begin{tikzcd}
     \Delta k/(u_1, \ldots, u_n) \arrow[rr] & & \Delta\paren[\big]{k/(u_1, \ldots, u_n)}                            
   \end{tikzcd}\]
-  Hence, by Proposition~\ref{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}, we have that the underlying map in sets $k \to k/(u_1, \ldots, u_n)$ splits. 
+  Hence, by \Cref{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}, we have that the underlying map in sets $k \to k/(u_1, \ldots, u_n)$ splits. 
 \end{proof}
 
 The following is now an adaptation of an argument by Diaconescu~\cite{diaconescu1975choice}.
 
 \todo[inline]{Justify that we can take $n \in k$ not a polynomial, and that $a + b = c + d$ implies pairwise equality}
 \begin{corollary}
-  If for all rings \(k\) the duality axiom holds in \(\widehat{k\text{-}\Alg_{fp} \times \square}\) with the generic ring is interpreted as in the paper, then all propositions are decidable.
+  If for all rings \(k\) the duality axiom holds in $\widehat{k\text{-}\Alg_{fp} \times \square}$ with the generic ring is interpreted as in the paper, then all propositions are decidable.
 \end{corollary}
 \begin{proof}
   Following the techniques in~\cite{mines}, we can show that for any set $E$ and any ring $R$ the canonical map $E \to R[E]$ is injective.
@@ -235,12 +243,12 @@ The following is now an adaptation of an argument by Diaconescu~\cite{diaconescu
 \end{proof}
 
 
-\section{Case where $k$ is $\ints$ or a discrete field}
+\section{Case where \texorpdfstring{$k$}{k} is \texorpdfstring{$\ints$}{ℤ} or a discrete field}
 
 The above shows that we cannot expect a model on $\widehat{k\text{-}\Alg_{fp} \times \square}$ without choice for set-level quotients of $k$.
 In cases where $k$ is well-behaved we can still expect this in our constructive meta theory.
 Recall that a field $k$ is \emph{discrete} if for all $u \in k$ we have $u = 0$ or $u$ that is invertible, which is equivalent to $k$ having decidable equality~\cite{mines}.
-In this case, we can construct $k[X_1, \ldots, X_n]$ as linear combinations of monomials with non-zero coefficients.
+In this case, we can construct $k[X_1, \ldots, X_n]$ as linear combinations of monomials with non-zero coefficients, so as a subset of $\Term_{k\text{-}\Alg}(X_1, \ldots, X_n)$.
 
 \begin{lemma}
   If $k$ is $\ints$ or $k$ is a discrete field, then for every finitely generated ideal $I = (f_1, \ldots, f_n) \subseteq k[X_1, \ldots, X_n]$ the quotient $k[X_1,\ldots,X_n]/I$ can be constructed as a subset of the polynomial ring $k[X_1, \ldots, X_n]$, and the canonical projection splits.
@@ -254,54 +262,117 @@ Crucially, it does not include real, or complex numbers.
 Furthermore, the way we constructed the polynomial ring, and the quotient makes the entire construction independent of the availability of quotients in the meta theory.
 
 
+\subsection{Lifting constructions to cubical presheaves}\label{sec:lifting-objects}
+
+In this section, we will explain how to lift the objects involved in the statement of the axioms, as defined in the paper, to the higher topos.
+For that, we again consider the functor $\Delta \colon \widehat{C} \to \widehat{C \times \square}$, which can either be described as postcomposition with the functor $\Delta \colon \Set \to \widehat\square$ or restriction along the functor $\pi_1 \colon C \times \square \to C$.
+From the second description, it follows immediately that it is a CwF-morphism.
+
+We first define all objects in their generic contexts.
+For the generic ring $\R \in \Ty(1)$ is a closed type, so we just obtain $\Delta\R \in \Ty(1)$.
+For a finitely generated free $\R$-algebra, we have $\R[-] \in \Ty(1.\nats)$ we obtain $\Delta\R[-] \in \Ty(1.\Delta\nats)$.
+Here, we use that $\Delta\nats$ is the interpretation of $\nats$ in $\widehat{k\text{-}\Alg_{fp} \times \square}$.
+Lastly, a finitely presented algebra is given by $A(-) \in \Ty(1.\nats.\nats.{\R[\q\p]}^{\mathsf{Fin}_\q})$, so we obtain $\Delta A(-) \in \Ty(1.\Delta\nats.\Delta\nats.\Delta\R[\q\p]^{\Delta\mathsf{Fin}_\q})$, using that $\Delta$ preserves exponentials.
+Operations lift similarly.
+Lastly, since every CwF-morphism preserves $\Sigma$-types we have that the image of $\Spec(-) \in \Ty(1.\nats.\nats.{\R[\q\p]}^{\mathsf{Fin}_\q})$ coincides with the analogous construction in $\widehat{k\text{-}\Alg_{fp} \times \square}$ in terms of $\Delta\R[-]$.
+For example, $(+) \in \El(\R.\R, \R)$ so we obtain $\Delta(+) \in \El(\Delta\R.\Delta\R, \Delta\R)$.
+Since $\Delta$ also preserves limits, it preserves the extensional identity types, and we can lift the proofs of associativity, etc. as-well.
+Furthermore, we can also lift the statement of the duality axiom.
+Crucially, we \emph{cannot} lift the elimination principles, since their generic contexts contain the universe which we cannot lift.\footnote{The image of the universe is a universe of constant presheaves, so we obtain an elimination principle into those.} 
+
+To then give the ordinary interpretations of these objects in some context $\Gamma$ with the appropriate assumptions, we construct the unique substitution into the generic context, and substitute over.
+For example, if $u, v \in \El(\Gamma, \Delta \R)$ then we define $u + v \in \El(\Gamma)$ by  substitution of $\Delta(+)$ along $(u, v) \colon \Gamma \to 1.\R.\R$.
+This means these objects are automatically substitution stable.
+The only thing left to show is that $\R[-]$ and $A(-)$ satisfy their universal properties, to see that we obtained to the correct duality statement.
+
+
 \subsection{A strictness issue}
 
-Proposition~\ref{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}  characterizes (closed) homotopy quotients in $\widehat\square$ in terms of choice in $\Set$, we do not obtain a similar characterization for quotients in the na\"ive cubical presheaf model on $\widehat{k\text{-}\Alg_{fp} \times \square}$.
-\todo[inline]{Outline that we can define the components of a natural transformation, but they won't be strictly natural. Essentially: a quotient in presheaves is not a levelwise quotient}
+\todo[inline]{Essentially, argue that lifting a quotient as in the previous section does not work, even if the underlying maps in sets splits}
+\Cref{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}  characterizes (closed) homotopy quotients in $\widehat\square$ in terms of choice in $\Set$, we do not obtain a similar characterization for quotients in the na\"ive cubical presheaf model on $\widehat{k\text{-}\Alg_{fp} \times \square}$.
+\todo[inline]{Outline that we can define the components of a natural transformation, but they won't be strictly natural. Essentially: a quotient in na\"ive cubical presheaves is not a levelwise quotient}
+
 
 \subsection{Strictification}
 
-Let $D$ be the modality from \cite{CRS21}.
-We consider the CwF-morphism $\Delta \colon \widehat{k\text{-}\Alg_{fp}} \to \widehat{k\text{-}\Alg_{fp} \times \square}$.
-This morphism sends types to fibrant, and $D$-modal types.
+Let $D$ be the modality from~\cite{CRS21}.
+The model of $D$-modal, fibrant types on $\widehat{k\text{-}\Alg_{fp} \times \square}$ has all higher inductive types by the construction in \cite{CRS21}, since the model of fibrant types has all higher inductive types by the results in~\cite{CoquandHM18}.
 
-We define the generic ring as $\Delta\R$.
-To define the polynomial ring in finitely many variables, not that we have $\R[-] \in \Ty_{\widehat{k\text{-}\Alg_{fp}}}(\nats)$.
-Thus, we obtain $\Delta(\R[-]) \in \Ty_{\widehat{k\text{-}\Alg_{fp} \times \square}}(\nats)$.
-We lift operations by defining them in the generic context.
-For example, for the map $\R \to \R[n]$ we consider the corresponding element $\El_{\widehat{k\text{-}\Alg_{fp}}}(\nats.\R, \R[-])$ yielding $\El_{\widehat{k\text{-}\Alg_{fp}\times \square}}(\nats.\Delta\R, \Delta R[-])$.
-Similarly, we can lift all operations valued in the polynomial ring, but not its universal property.
+Let $C$ be a category and $I \in C$.
+Then we have a functor $-_I : \widehat{C \times \square} \to \widehat{\square}$ given by restriction along $\langle I, \id_{\square} \rangle \colon \square \to C \times \square$.
+Since paths in the model of fibrant types on $\widehat{C \times \square}$ are given by levelwise paths that are natrual w.r.t. $C$, it is easy to see that if a type is of hlevel $n$ then it is also levelwise of hlevel $n$. 
 
-The model of $D$-modal, fibrant types on $\widehat{k\text{-}\Alg_{fp} \times \square}$ has all higher inductive types by the construction in \cite{CRS21}, since the model of fibrant types has all higher inductive types by the results in \cite{CoquandHM18}.
-Hence, we can construct the polynomial ring $(\Delta\R)[n]$ for each $n \colon \nats$ directly.
-Thus, we obtain a comparison map $(\Delta\R)[n] \to \Delta(\R[n])$ commuting with all operations by its universal property.
-We show that $\Delta(\R[n])$ has the universal property by showing that this map is an equivalence.
+The crucial property of the model of $D$-modal types is that types are contractible if they are levelwise contractible.
+This allows us to characterize proposition, and inhabitance levelwise.
+This is summarized by the following proposition.
 
-Between $D$-modal types, a map is an equivalence exactly if it is levelwise an equivalence.
-Hence, it suffices to check for each $M \in k\text{-}\Alg_{fp}$ that the above map is sent to an equivalence in $\widehat{\square}$ by the CwF-morphism that is evaluation at $M$.
-\todo[inline]{Here we now need that the HIT is sent (up to equivalence) to the correct object in $\widehat\square$. Then we can conclude because both types have the same universal property: the HIT by preservation under evaluation, and the strict one by the splitting lemma (or rather a version in a non-empty context). The case for quotients is then similar. Duality is free for the strict objects.}
+\begin{proposition}[levelwise principle]
+  For $D$-modal types $A \in \Ty_{\widehat{C \times \square}}(\Gamma)$ we have a logical equivalence that is natural in $\Gamma$
+  \[
+    \El(\Gamma, \trunc{ A }) \longleftrightarrow \prod_{I \in C} \El(\Gamma, \trunc{A_I}).
+  \]
+\end{proposition}
+\begin{proof}
+  We construct a proposition $P(A) \in \Ty(\Gamma)$ with a map $A \to P(A)$.
+  We have a canonical inclusion $i \colon C_0 \hookrightarrow C$.
+  Hence, we obtain a CwF-morphism by restriction $i^* \colon \widehat{C \times \square} \to \widehat{C_0 \times \square}$.
+  This CwF-morphism has a right adjoint on types $i_* \colon \Ty_{\widehat{C_0 \times \square}}(i^*\Gamma) \to \Ty_{\widehat{C \times \square}}(\Gamma)$ which is easily seen to preserve fibrant types.
+  In the model on $\widehat{C \times \square}$ propositional truncation is given by levelwise proposition truncation.
+  
+  We define $PA \coloneqq i_*\trunc{i^*A}$.
+  Since we have $\eta_{i^*A} \colon i^* A \to \trunc{i^*A}$ we obtain $i_*\eta \colon i_*i^*A \to i_*\trunc{i^*A}$ for which precomposition with the unit of the dependent right adjoint yields the desired map $A \to PA$.
+  Concretely, the constructed type is given by
+  \[
+    (PA)(I, \gamma) = \prod_{f \colon J \to I} \trunc{A(J, \gamma f)}.
+  \]
+  Furthermore, this type is a proposition, since dependent right adjoints preserve propositions.
+  Hence, we obtain the following chain of functions
+  \begin{align*}
+    \El_{\widehat{C \times \square}}(\Gamma, \trunc{A})
+    &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, PA) \tag{Universal property} \\
+    &\longrightarrow \El_{\widehat{C_0 \times \square}}(\Gamma, \trunc{i^*A}) \tag{Dependent right adjoint} \\
+    &\longrightarrow \prod_{I \in C} \El_{\widehat\square}(\Gamma_I, \trunc{A_I}) \tag{Definition} \\
+    &\longrightarrow \El_{\widehat{\square}}(\Gamma_I, \trunc{A}_I) \tag{$\eta_I \colon A_I \to \trunc{A}_I$}  \\
+    &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, \trunc{A}) \tag{\cite[Proposition~16]{CRS21}}.
+  \end{align*}
+  The second to last step follows since $\trunc{A}_I$ is levelwise a proposition.
+  The last step uses that in the model of $D$-modal types, a type is contractible, exactly if it is levelwise contractible.
+\end{proof}
 
+By choosing a characterization of homotopy quotients that is independent of universes, we can easily characterize them levelwise.
+This characterization will allow us to show that among $D$-modal types, that the lifted objects $\R[-], A(-)$ have the correct universal property (since they are certain set level quotients).
 
-% Whats the plan? Sending a presheaf on k-Alg to a cubical one lands in fibrant, and D-modal types.
-% Does this suffice for the dependent types?
-% Take, for example, n:N |- R[n] in PSh(k-Alg). Then we get N |- Delta R[n] in cubical presheaves. (this is not obviously correct)
-% 
+\begin{lemma}
+  In the model of $D$-modal, fibrant types, let $X \in \Ty_{\widehat{C \times \square}}(\Gamma)$ an hset, and $R$ a relation on $X$.
+  A map $q \colon X \to Q$ is a homotopy quotient exactly if for all $I \in C$ the map $p_I \colon X_I \to Q_I$ is a homotopy quotient of $X_I$ by $R_I$.
+\end{lemma}
+\begin{proof}
+  By \cite[Theorem 18.2.3]{rijke2025intro}, we have that the map $q$ is a homotopy quotient of $X$ by $R$ exactly if $p$ is surjective, and $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ for all $x, y \colon X$.
+  Note that the type $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ is a proposition:
+  To show that the type is a proposition, we can assume that we have an inhabitant.
+  If we know that the types are equivalent then both are propositions, since $R(x, y)$ is a proposition.
+  This shows the claim since the equality of proposition is a proposition.
+  The proposition $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ for all $x, y \colon X$ is logically equivalent to the proposition that $q(x) = q(y)$ is a proposition, and that we have a logical equivalence $\paren[\big]{q(x) = q(y)} \longleftrightarrow R(x,y)$.
+  
+  \todo[inline]{Now everything should be trivial as everything is characterized levelwise}
+  
+\end{proof}
 
+\todo[inline]{We have to argue that the objects defined in this section are fibrant and $D$-modal}
+\todo[inline]{We have to argue that the type of first order terms has the correct unviersal property in cubical presheaves}
 
-\todo[inline]{}
+We can now characterize in which cases the objects defined in \Cref{sec:lifting-objects} have the desired universal property in the model of $D$-modal types.
 
- We have to use cobar. % We can levelwise build the map in cubical sets as described above, but they are only natural up to homotopy
+\begin{proposition}
+  In the model of $D$-modal types, the types $\R[-]$ and $A(-)$ as defined in \Cref{sec:lifting-objects} have the universal property of the finitely free $\R$-algebra and finitely presented $\R$-algebra respectively, exactly if for all $n, m\in \nats$, and $p_1, \ldots, p_m \in \Term_{k\text{-}\Alg}(X_1, \ldots, X_n)$ the following canonical map splits.
+  \[
+    \Term_{k\text{-}\Alg}(X_1, \ldots, X_n) \longrightarrow \sfrac{k[X_1, \ldots, X_m]}{(p_1, \ldots, p_m)}
+  \]
+\end{proposition}
+\begin{proof}
+  \todo[inline]{Show as follows: universal properties are actually quotient universal properties (w.r.t. well-behaved type of terms). This is characterized levelwise by lemma. The quotient in cubical sets characterized by splitting in set.}
+\end{proof}
 
-
-A(p), R[X] is not described correctly
-we don't clearly get that it has the desired universal property
-
-We can even derive EM from
-
-
--problem general case
-
--if no quotient k = Z or k discrete field needs cobar
 
 \section{An example where it works}
 
@@ -310,5 +381,7 @@ We can even derive EM from
 
 \bibliography{../../util/literature}
 \bibliographystyle{plain}
+
+\todo[inline]{All cubical presheaf models use the constant cofibration classifier. We need in particular that hlevels }
 
 \end{document}
