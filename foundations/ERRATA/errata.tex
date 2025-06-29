@@ -93,6 +93,8 @@
 \newcommand\bbI{\mathbb{I}}
 \renewcommand\Pr{\mathsf{Pr}}
 \newcommand\Term{\mathsf{Term}}
+\newcommand\Fib{\mathsf{Fib}}
+\newcommand\isContr{\mathsf{isContr}}
 
 
 \usepackage{tikz-cd}
@@ -264,6 +266,8 @@ Furthermore, the way we constructed the polynomial ring, and the quotient makes 
 
 \subsection{Lifting constructions to cubical presheaves}\label{sec:lifting-objects}
 
+\todo[inline]{Recall basic definition of cubical presheaf model. In particular how paths are defined.}
+
 In this section, we will explain how to lift the objects involved in the statement of the axioms, as defined in the paper, to the higher topos.
 For that, we again consider the functor $\Delta \colon \widehat{C} \to \widehat{C \times \square}$, which can either be described as postcomposition with the functor $\Delta \colon \Set \to \widehat\square$ or restriction along the functor $\pi_1 \colon C \times \square \to C$.
 From the second description, it follows immediately that it is a CwF-morphism.
@@ -306,7 +310,7 @@ The crucial property of the model of $D$-modal types is that types are contracti
 This allows us to characterize proposition, and inhabitance levelwise.
 This is summarized by the following proposition.
 
-\begin{proposition}[levelwise principle]
+\begin{proposition}[levelwise principle]\label{prop:levelwise-principle}
   For $D$-modal types $A \in \Ty_{\widehat{C \times \square}}(\Gamma)$ we have a logical equivalence that is natural in $\Gamma$
   \[
     \El(\Gamma, \trunc{ A }) \longleftrightarrow \prod_{I \in C} \El(\Gamma, \trunc{A_I}).
@@ -332,7 +336,7 @@ This is summarized by the following proposition.
     &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, PA) \tag{Universal property} \\
     &\longrightarrow \El_{\widehat{C_0 \times \square}}(\Gamma, \trunc{i^*A}) \tag{Dependent right adjoint} \\
     &\longrightarrow \prod_{I \in C} \El_{\widehat\square}(\Gamma_I, \trunc{A_I}) \tag{Definition} \\
-    &\longrightarrow \El_{\widehat{\square}}(\Gamma_I, \trunc{A}_I) \tag{$\eta_I \colon A_I \to \trunc{A}_I$}  \\
+    &\longrightarrow \prod_{I \in C} \El_{\widehat{\square}}(\Gamma_I, \trunc{A}_I) \tag{$\eta_I \colon A_I \to \trunc{A}_I$}  \\
     &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, \trunc{A}) \tag{\cite[Proposition~16]{CRS21}}.
   \end{align*}
   The second to last step follows since $\trunc{A}_I$ is levelwise a proposition.
@@ -351,15 +355,31 @@ This characterization will allow us to show that among $D$-modal types, that the
   Note that the type $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ is a proposition:
   To show that the type is a proposition, we can assume that we have an inhabitant.
   If we know that the types are equivalent then both are propositions, since $R(x, y)$ is a proposition.
-  This shows the claim since the equality of proposition is a proposition.
-  The proposition $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ for all $x, y \colon X$ is logically equivalent to the proposition that $q(x) = q(y)$ is a proposition, and that we have a logical equivalence $\paren[\big]{q(x) = q(y)} \longleftrightarrow R(x,y)$.
+  This shows the claim since the equality of propositions is a proposition.
+  The proposition $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ for all $x, y \colon X$ is logically equivalent to the proposition that $q(x) \simeq q(y)$ is a proposition, and that we have a logical equivalence $\paren[\big]{q(x) = q(y)} \longleftrightarrow R(x,y)$.
   
-  \todo[inline]{Now everything should be trivial as everything is characterized levelwise}
-  
+  Recall that $-_I$ commutes with $\Sigma$- and path types, hence we have that $\paren{\Fib_{q}}_I = \Fib_{q_I} \in \Ty(\Gamma_I.Q_I)$.
+  Hence, by \Cref{prop:levelwise-principle}, the map $q \colon X \to Q$ is surjective exactly if it is levelwise surjective.
+  The type $q(x) \simeq q(y)$ is a proposition exactly if all its path types are contractible. % more generally, n-types are characterized levelwise by doing this unfolding.
+  Being contractible is characterized levelwise by~\cite[Proposition~16]{CRS21}.
+  In abusive notation with names, we have that
+  \begin{multline*}
+    \El\paren[\big]{\Gamma.(x_0\,x_1\colon X).(p_0\,p_1\colon x_0 \simeq_X x_1), \isContr(p_0 \simeq p_1)} \\
+    \longleftrightarrow \prod_{I \in C}
+    \El\paren[\big]{\Gamma.(x_0\,x_1\colon X_I).(p_0\,p_1\colon x_0 \simeq_{X_I} x_1), \isContr(p_0 \simeq p_1)}.
+  \end{multline*}
+  Hence, we can assume that $Q$, and $Q_I$ for all $I \in C$ are hsets.  
+  To characterize the logical equivalence between $q(x) \simeq q(y)$ and $R(x, y)$ levelwise we have to give functions in both directions.
+  In both cases we have to give functions and therefore have
+  \begin{align*}
+    \El\paren[\big]{ \Gamma.(x_0\,x_1\colon X).q(x_0) \simeq q(x_1) , R(x_0, x_1) } \longleftrightarrow \El\paren[\big]{ \Gamma.(x_0\,x_1\colon X_I).q(x_0) \simeq q(x_1) , R_I(x_0, x_1) } \\
+    \El\paren[\big]{ \Gamma.(x_0\,x_1\colon X).R(x_0, x_1), q(x_0) \simeq q(x_1) } \longleftrightarrow \El\paren[\big]{ \Gamma.(x_0\,x_1\colon X_I).R_I(x_0, x_1), q(x_0) \simeq q(x_1) }
+  \end{align*}
+  since both types are proposition.
 \end{proof}
 
 \todo[inline]{We have to argue that the objects defined in this section are fibrant and $D$-modal}
-\todo[inline]{We have to argue that the type of first order terms has the correct unviersal property in cubical presheaves}
+\todo[inline]{We have to argue that the type of first order terms has the correct universal property in cubical presheaves}
 
 We can now characterize in which cases the objects defined in \Cref{sec:lifting-objects} have the desired universal property in the model of $D$-modal types.
 
