@@ -67,12 +67,13 @@
 \newcommand{\Noo}{\nats_{\infty}}
 \newcommand\norm[1]{\left\lVert #1 \right\rVert}
 \newcommand\cHH{\check{H}}%\newcommand\cHH{\check{\mathrm{H}}}
-\newcommand\disc{\mathsf{disc}}
-\newcommand\Min{\mathsf{min}}
-\newcommand\Tr{\mathsf{Tr}}
-\newcommand\Nm{\mathsf{Nr}}
-\newcommand\Nmr{\mathsf{Nrd}}
-\newcommand\Hom{\mathsf{Hom}}
+\newcommand{\disc}{\mathsf{disc}}
+\newcommand{\Min}{\mathsf{min}}
+\newcommand{\Tr}{\mathsf{Tr}}
+\newcommand{\Nm}{\mathsf{Nr}}
+\newcommand{\Nmr}{\mathsf{Nrd}}
+\newcommand{\Hom}{\mathsf{Hom}}
+\newcommand{\U}{\mathsf{U}}
 
 \newcommand{\Cat}{\mathsf{Cat}}
 \newcommand{\Set}{\mathsf{Set}}
@@ -142,16 +143,17 @@ In a constructive meta theory, it is not provable that the version of the dualit
 The object claimed to be the finitely presented \(\R\)-algebra specified by a given presentation can in general not be shown to have the correct universal property. 
 
 \paragraph{Structure}
+\Cref{sec:preliminaries} covers some preliminaries and establishes notation.
 In \Cref{sec:cset-homotopy-quotients-vs-meta-quotients}, we prove some precise statements linking homotopy quotients in cubical sets, and quotients in the meta theory.
 In \Cref{sec:k-duality-implies-k-alg-choice}, we show that for the category considered in the paper, we can only expect that the duality axiom is provable in \([\Alg*[k], \cSet]\) if finitely presented \(k\)-algebras admit a choice principle.
 In \Cref{sec:duality-in-model-of-modal-types}, we show that if we refine the notion of type slightly, the implication from \Cref{sec:k-duality-implies-k-alg-choice} is a characterization.
 From that, we conclude that the model construction works in important cases, such as \(\ints\) and finite field extensions of \(\rats\) and \(\mathbb{F}_p\). 
 This also yields another obstruction to duality in the case of a general \(k\) when working with \([\Alg*[k], \cSet]\). 
 
-\section*{Preliminaries}
+\section{Preliminaries}\label{sec:preliminaries}
 
-We freely make us of the interpretation of extensional type theory in presheaf categories~\cite{hofmann,huber-phd-thesis}.
-In particular, we use the notation by \cite{huber-phd-thesis}.
+We freely make use of the interpretation of extensional type theory in presheaf categories~\cite{hofmann,huber-phd-thesis}.
+In particular, we use the notation by~\cite{huber-phd-thesis}.
 As in \cite{draft}, we work with cubical sets.
 We denote by \(\square\) a cube category that satisfies the axioms from \cite{survey}.
 Since we work with strict equality and paths, we denote the latter by \(\simeq\).
@@ -164,6 +166,94 @@ For \(A \in \Ty_{\cSet}(\Gamma)\) we denote the usual truncation by \(\trunc{A} 
 Presheaf models also support in general a \emph{strict} truncation.
 For \(A \in \Ty_{\widehat{C}}(\Gamma)\) we write \(\trunc*{S} \in \Ty_{\widehat{C}}(\Gamma)\) for the strict truncation given by \(\trunc*{S}\gamma \coloneqq \set{ \star \mid \exists x. x \in S\gamma }\).
 In the model of \HoTT{}, this is always a fibrant type, and a proposition.
+
+
+\subsection{Cubical Presheaves}
+\todo[inline,color=green]{This should maybe be an appendix. We derive some easy consequences of the CRS setup that are not easily citable from the paper.}
+
+The model on \([C^{\op}, \cSet]\) is a cubical presheaf model.
+We recall some results by~\cite{CRS21}, that we need below.
+Let \(C\) be a category.
+As~\cite{CRS21}, we work internally to cubical sets.
+For every \(I \in C\) there is a functor \(I \colon 1 \to C\).
+Restriction and right Kan extension induce the evaluation functor \(-_I \colon [C^{\op}, \U] \to \U\) and \(I_* \colon \U \to [C^{\op}, \U]\)
+The latter yields also a dependent right adjoint \(I_{*,\Gamma} \colon \Ty_{\U}(\Gamma_I) \to \Ty_{[C^{\op}, \U]}(\Gamma)\) given by
+\[
+  (I_{*,\Gamma}A)(J, \gamma) \coloneqq \prod_{f \colon J \to I} A\gamma f.
+\]
+As an external product over fibrant types, this type is fibrant, and we have the usual isomorphism \(\El(\Gamma_I, A) \cong \El(\Gamma, I_{*,\Gamma}A)\).
+Path types are given by equalizers over products with \(\bbI\) are therefore preserved.
+
+\begin{lemma}
+  If \(n \geq -2\), and \(A \colon \Ty_{[C^{\op}, \U]}(\Gamma)\) is an \(n\)-type then \(A_I \colon \Ty_{\U}(\Gamma_I)\) is an \(n\)-type.
+\end{lemma}
+\begin{proof}
+  The case for contractible types follows by the characterization as types with an extension operation as defined by~\cite{CRS21}.
+  An extension operation for a type in presheaves, has in particular an extension structure for each \(I \in C\).
+  For the inductive case, it suffices to observe that by the universal property of \(\Pi\), we have \(\El(\Gamma, \textsf{is-\((n+1)\)-type}(A)) \cong \El(\Gamma.A \times A, \textsf{is-\(n\)-type}(x\simeq y))\).
+\end{proof}
+%
+The claim for an internal natural number follows similarly by induction internally to the model of type theory on \(\U\), but we do not need it.
+
+\begin{lemma}
+  If \(A \colon \Ty_{[C^{\op}, \U]}(\Gamma)\) then \(\trunc{A}_I \leftrightarrow \trunc{A_I}\) for all \(I \colon C\).
+\end{lemma}
+\begin{proof}
+  \todo[inline]{Move construction of "levelwise" truncation here.}
+\end{proof}
+
+
+
+\begin{lemma}
+  If \(A \colon \Ty_{[C^{\op}, \U]}(\Gamma)\), \(R \colon \Ty_{[C^{\op}, \U]}(\Gamma.A.A)\) a homotopy proposition, and \(\varrho_R \colon A \to A/R\) a homotopy quotient of \(A\) by \(r\), then \((\varrho_R)_I \colon A_I \to (A/R)_I\) is a homotopy quotient of \(A_I\) by \(R_I\).
+\end{lemma}
+\begin{proof}
+  \todo[inline]{We can avoid the juggeling by using the characterization again. But this needs something about truncations}
+\end{proof}
+
+
+\subsection{\texorpdfstring{\(D\)}{D}-modal types}
+
+The key problem with the na{\"\i}ve cubical presheaf model is that many constructions are not characterized pointwise, as they are in ordinary presheaves.
+The converses to all results from the previous section do not hold.
+Later, we will need some of these converses, to reduce problems to levelwise problems in cubical sets, and from there to problems in set.
+
+To solve the above,~\cite{CRS21} introduce a lex modality \(D\) on cubical presheaves.
+The key property made true by this modality is that contractibility is characterized levelwise.
+We derive some consequences of this key theorem for later use.
+
+\begin{proposition}[levelwise principle]\label{prop:levelwise-principle}
+  For $D$-modal types $A \in \Ty_{\widehat{C \times \square}}(\Gamma)$ we have a logical equivalence that is natural in $\Gamma$
+  \[
+    \El_{[C^{\op}, \cSet]}(\Gamma, \trunc{ A }) \longleftrightarrow \prod_{I \in C} \El_{\cSet}(\Gamma, \trunc{A_I}).
+  \]
+\end{proposition}
+\begin{proof}
+  We construct a proposition $P(A) \in \Ty(\Gamma)$ with a map $A \to P(A)$.
+  We have a canonical inclusion $i \colon C_0 \hookrightarrow C$.
+  Hence, we obtain a CwF-morphism by restriction $i^* \colon \widehat{C \times \square} \to \widehat{C_0 \times \square}$.
+  This CwF-morphism has a right adjoint on types $i_* \colon \Ty_{\widehat{C_0 \times \square}}(i^*\Gamma) \to \Ty_{\widehat{C \times \square}}(\Gamma)$ which is easily seen to preserve fibrant types.
+  In the model on $\widehat{C \times \square}$ propositional truncation is given by levelwise proposition truncation.
+
+  We define $PA \coloneqq i_*\trunc{i^*A}$.
+  Since we have $\eta_{i^*A} \colon i^* A \to \trunc{i^*A}$ we obtain $i_*\eta \colon i_*i^*A \to i_*\trunc{i^*A}$ for which precomposition with the unit of the dependent right adjoint yields the desired map $A \to PA$.
+  Concretely, the constructed type is given by
+  \[
+    (PA)(I, \gamma) = \prod_{f \colon J \to I} \trunc{A(J, \gamma f)}.
+  \]
+  Furthermore, this type is a proposition, since dependent right adjoints preserve propositions.
+  Hence, we obtain the following chain of functions
+  \begin{align*}
+    \El_{\widehat{C \times \square}}(\Gamma, \trunc{A})
+    &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, PA) \tag{Universal property} \\
+    &\longrightarrow \El_{\widehat{C_0 \times \square}}(\Gamma, \trunc{i^*A}) \tag{Dependent right adjoint} \\
+    &\longrightarrow \prod_{I \in C} \El_{\widehat\square}(\Gamma_I, \trunc{A_I}) \tag{Definition} \\
+    &\longrightarrow \prod_{I \in C} \El_{\widehat{\square}}(\Gamma_I, \trunc{A}_I) \tag{$\eta_I \colon A_I \to \trunc{A}_I$}  \\
+    &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, \trunc{A}) \tag{\cite[Proposition~16]{CRS21}}.
+  \end{align*}
+  The second to last step follows since $\trunc{A}_I$ is levelwise a proposition.
+  The last step uses that in the model of $D$-modal types, a type is contractible, exactly if it is levelwise contractible.
+\end{proof}
 
 
 \section{Separating homotopy and set-level quotients}\label{sec:cset-homotopy-quotients-vs-meta-quotients}
@@ -330,7 +420,7 @@ Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\)
     \arrow[weq, from=3-3, to=3-5]
     \arrow[weq, from=3-5, to=1-5]
   \end{tikzcd}\]
-  The definition of the spectrum in \([\Alg*[k], \Set]\) and \([\Alg*[k], \cSet]\) agree, since for each type of the form \(\Delta X\) the diagonal \((\Delta X) \to (\Delta X)^{\mathsf I}\) is an isomorphism since it is levelwise an isomorphism in \(\cSet\).
+  The definition of the spectrum in \([\Alg*[k], \Set]\) and \([\Alg*[k], \cSet]\) agree, since for each type of the form \(\Delta X\) the diagonal \((\Delta X) \to (\Delta X)^{\bbI}\) is an isomorphism since it is levelwise an isomorphism in \(\cSet\).
   We also lift the type \(R_{(n,m,p)}\) of derivations of equality modulo a presentation, and define the hprop valued relation \(\trunc{R_{(n,m,p)}}\) used in the statement of the duality axiom.
   As before, we have a map \(\sfrac{\Delta\Term_{\R}(m)}{\trunc{\Delta R_{(n,m,p)}}} \to \Delta\paren[\big]{\sfrac{\Term_{\R}(m)}{\trunc*{R_{(n,m,p)}}}}\) making the triangle above commute.
   The square on the right commutes by the universal property of the quotient as-well, since the outer diagram commutes by definition.
@@ -366,51 +456,19 @@ Exploiting results from computational algebra, the same holds true for quotients
 
 % comment about section not being coherent in general 
 
-\subsection{The strictification modality}
+\subsection{The strictified model}
 
-Let $D$ be the modality from~\cite{CRS21}.
 The model of $D$-modal, fibrant types on $\widehat{k\text{-}\Alg_{fp} \times \square}$ has all higher inductive types by the construction in \cite{CRS21}, since the model of fibrant types has all higher inductive types by the results in~\cite{CoquandHM18}.
 
-Let $C$ be a category and $I \in C$.
-Then we have a functor $-_I : \widehat{C \times \square} \to \widehat{\square}$ given by restriction along $\langle I, \id_{\square} \rangle \colon \square \to C \times \square$.
-Since paths in the model of fibrant types on $\widehat{C \times \square}$ are given by levelwise paths that are natrual w.r.t. $C$, it is easy to see that if a type is of hlevel $n$ then it is also levelwise of hlevel $n$.
+% Let $C$ be a category and $I \in C$.
+% Then we have a functor $-_I : \widehat{C \times \square} \to \widehat{\square}$ given by restriction along $\langle I, \id_{\square} \rangle \colon \square \to C \times \square$.
+% Since paths in the model of fibrant types on $\widehat{C \times \square}$ are given by levelwise paths that are natrual w.r.t. $C$, it is easy to see that if a type is of hlevel $n$ then it is also levelwise of hlevel $n$.
 
-The crucial property of the model of $D$-modal types is that types are contractible if they are levelwise contractible.
-This allows us to characterize proposition, and inhabitance levelwise.
-This is summarized by the following proposition that is a consequence of results from \cite{CRS21}.
+% The crucial property of the model of $D$-modal types is that types are contractible if they are levelwise contractible.
+% This allows us to characterize proposition, and inhabitance levelwise.
+% This is summarized by the following proposition that is a consequence of results from \cite{CRS21}.
 
-\begin{proposition}[levelwise principle]\label{prop:levelwise-principle}
-  For $D$-modal types $A \in \Ty_{\widehat{C \times \square}}(\Gamma)$ we have a logical equivalence that is natural in $\Gamma$
-  \[
-    \El_{[C^{\op}, \cSet]}(\Gamma, \trunc{ A }) \longleftrightarrow \prod_{I \in C} \El_{\cSet}(\Gamma, \trunc{A_I}).
-  \]
-\end{proposition}
-\begin{proof}
-  We construct a proposition $P(A) \in \Ty(\Gamma)$ with a map $A \to P(A)$.
-  We have a canonical inclusion $i \colon C_0 \hookrightarrow C$.
-  Hence, we obtain a CwF-morphism by restriction $i^* \colon \widehat{C \times \square} \to \widehat{C_0 \times \square}$.
-  This CwF-morphism has a right adjoint on types $i_* \colon \Ty_{\widehat{C_0 \times \square}}(i^*\Gamma) \to \Ty_{\widehat{C \times \square}}(\Gamma)$ which is easily seen to preserve fibrant types.
-  In the model on $\widehat{C \times \square}$ propositional truncation is given by levelwise proposition truncation.
-
-  We define $PA \coloneqq i_*\trunc{i^*A}$.
-  Since we have $\eta_{i^*A} \colon i^* A \to \trunc{i^*A}$ we obtain $i_*\eta \colon i_*i^*A \to i_*\trunc{i^*A}$ for which precomposition with the unit of the dependent right adjoint yields the desired map $A \to PA$.
-  Concretely, the constructed type is given by
-  \[
-    (PA)(I, \gamma) = \prod_{f \colon J \to I} \trunc{A(J, \gamma f)}.
-  \]
-  Furthermore, this type is a proposition, since dependent right adjoints preserve propositions.
-  Hence, we obtain the following chain of functions
-  \begin{align*}
-    \El_{\widehat{C \times \square}}(\Gamma, \trunc{A})
-    &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, PA) \tag{Universal property} \\
-    &\longrightarrow \El_{\widehat{C_0 \times \square}}(\Gamma, \trunc{i^*A}) \tag{Dependent right adjoint} \\
-    &\longrightarrow \prod_{I \in C} \El_{\widehat\square}(\Gamma_I, \trunc{A_I}) \tag{Definition} \\
-    &\longrightarrow \prod_{I \in C} \El_{\widehat{\square}}(\Gamma_I, \trunc{A}_I) \tag{$\eta_I \colon A_I \to \trunc{A}_I$}  \\
-    &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, \trunc{A}) \tag{\cite[Proposition~16]{CRS21}}.
-  \end{align*}
-  The second to last step follows since $\trunc{A}_I$ is levelwise a proposition.
-  The last step uses that in the model of $D$-modal types, a type is contractible, exactly if it is levelwise contractible.
-\end{proof}
+\todo[inline]{Above should move}
 
 By choosing a characterization of homotopy quotients that is independent of universes, we can easily characterize them levelwise.
 % This characterization will allow us to show that among $D$-modal types, that the lifted objects $\R[-], A(-)$ have the correct universal property (since they are certain set level quotients).
@@ -455,7 +513,7 @@ By choosing a characterization of homotopy quotients that is independent of univ
   In the model of \(D\)-modal types on \([\Alg*[k], \cSet]\) the duality axiom holds exactly if all \(k\)-algebras have choice and witnesses.
 \end{theorem}
 \begin{proof}
-  \todo[inline]{Forward as before as soon as we observe that \(\Delta\) lands in \(D\)-modal types (just state this); backward we need to work in an arbitrary context/in a context with a presentation.}
+  \todo[inline]{Forward as before as soon as we observe that \(\Delta\) lands in \(D\)-modal types, and \(\eta\) is levelwise an equivalence (just state this); backward we need to work in an arbitrary context/in a context with a presentation.}
   \begin{description}
   \item[``\(\implies\)'']
   \item[``\(\impliedby\)'']
