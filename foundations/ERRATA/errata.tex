@@ -144,7 +144,7 @@ The object claimed to be the finitely presented \(\R\)-algebra specified by a gi
 
 \paragraph{Structure}
 \Cref{sec:preliminaries} covers some preliminaries and establishes notation.
-In \Cref{sec:cset-homotopy-quotients-vs-meta-quotients}, we prove some precise statements linking homotopy quotients in cubical sets, and quotients in the meta theory.
+In \Cref{sec:cset-homotopy-quotient-vs-meta-quotient}, we prove some precise statements linking homotopy quotients in cubical sets, and quotients in the meta theory.
 In \Cref{sec:k-duality-implies-k-alg-choice}, we show that for the category considered in the paper, we can only expect that the duality axiom is provable in \([\Alg*[k], \cSet]\) if finitely presented \(k\)-algebras admit a choice principle.
 In \Cref{sec:duality-in-model-of-modal-types}, we show that if we refine the notion of type slightly, the implication from \Cref{sec:k-duality-implies-k-alg-choice} is a characterization.
 From that, we conclude that the model construction works in important cases, such as \(\ints\) and finite field extensions of \(\rats\) and \(\mathbb{F}_p\). 
@@ -168,24 +168,15 @@ For \(A \in \Ty_{\widehat{C}}(\Gamma)\) we write \(\trunc*{S} \in \Ty_{\widehat{
 In the model of \HoTT{}, this is always a fibrant type, and a proposition.
 
 
+\todo[inline,color=green]{The remaining subsection should maybe be an appendix. We derive some easy consequences of the CRS setup that are not easily citable from the paper.}
 \subsection{Cubical Presheaves}
-\todo[inline,color=green]{This should maybe be an appendix. We derive some easy consequences of the CRS setup that are not easily citable from the paper.}
 
 The model on \([C^{\op}, \cSet]\) is a cubical presheaf model.
 We recall some results by~\cite{CRS21}, that we need below.
-Let \(C\) be a category.
-As~\cite{CRS21}, we work internally to cubical sets.
-For every \(I \in C\) there is a functor \(I \colon 1 \to C\).
-Restriction and right Kan extension induce the evaluation functor \(-_I \colon [C^{\op}, \U] \to \U\) and \(I_* \colon \U \to [C^{\op}, \U]\)
-The latter yields also a dependent right adjoint \(I_{*,\Gamma} \colon \Ty_{\U}(\Gamma_I) \to \Ty_{[C^{\op}, \U]}(\Gamma)\) given by
-\[
-  (I_{*,\Gamma}A)(J, \gamma) \coloneqq \prod_{f \colon J \to I} A\gamma f.
-\]
-As an external product over fibrant types, this type is fibrant, and we have the usual isomorphism \(\El(\Gamma_I, A) \cong \El(\Gamma, I_{*,\Gamma}A)\).
-Path types are given by equalizers over products with \(\bbI\) are therefore preserved.
+Let \(C\) be a (small) category.
 
-\begin{lemma}
-  If \(n \geq -2\), and \(A \colon \Ty_{[C^{\op}, \U]}(\Gamma)\) is an \(n\)-type then \(A_I \colon \Ty_{\U}(\Gamma_I)\) is an \(n\)-type.
+\begin{lemma}\label{prop:psh:levelwise-n-type-if-n-type}
+  If \(n \geq -2\), and \(A \in \Ty_{[C^{\op}, \cSet]}(\Gamma)\) is an \(n\)-type then \(A_I \in \Ty_{\cSet}(\Gamma_I)\) is an \(n\)-type.
 \end{lemma}
 \begin{proof}
   The case for contractible types follows by the characterization as types with an extension operation as defined by~\cite{CRS21}.
@@ -193,70 +184,102 @@ Path types are given by equalizers over products with \(\bbI\) are therefore pre
   For the inductive case, it suffices to observe that by the universal property of \(\Pi\), we have \(\El(\Gamma, \textsf{is-\((n+1)\)-type}(A)) \cong \El(\Gamma.A \times A, \textsf{is-\(n\)-type}(x\simeq y))\).
 \end{proof}
 %
-The claim for an internal natural number follows similarly by induction internally to the model of type theory on \(\U\), but we do not need it.
+The claim for an internal natural number follows similarly by induction internally to the model of type theory on \(\cSet\) and the fact that every CwF morphism preserves \(\Pi\) in a lax way, but we do not need it here.
 
-\begin{lemma}
-  If \(A \colon \Ty_{[C^{\op}, \U]}(\Gamma)\) then \(\trunc{A}_I \leftrightarrow \trunc{A_I}\) for all \(I \colon C\).
+\begin{lemma}\label{prop:psh:levelwise-inhabited-if-inhabited}
+  If \(A \in \Ty_{[C^{\op}, \cSet]}(\Gamma)\) is inhabited, then \(A_I \in Ty_{\cSet}(\Gamma_I)\) is inhabited.
+  More formally, natural in \((\Gamma, A) \in \int_{[C^{\op}, \cSet]} \Ty\) there is a family of maps
+  \[
+    \El_{[C^{\op}, \cSet]}(\Gamma, \trunc{A}) \longrightarrow \prod_{I \in C} \El(\Gamma_{I}, \trunc{A_{I}}).
+  \]
 \end{lemma}
 \begin{proof}
-  \todo[inline]{Move construction of "levelwise" truncation here.}
+  We construct a proposition $PA \in \Ty(\Gamma)$ with a map $A \to PA$.
+  We have a canonical inclusion of objects $i \colon C_0 \hookrightarrow C$.
+  Hence, we obtain a CwF-morphism by restriction $i^* \colon [C^{\op}, \cSet] \to [C^{\op}_0, \cSet]$.
+  This CwF-morphism has a right adjoint on types $i_{*,\Gamma} \colon \Ty_{[C^{\op}_0, \cSet]}(i^*\Gamma) \to \Ty_{[C^{\op}, \cSet]}(\Gamma)$ which is easily seen to preserve fibrant types and propositions.
+
+  We define $PA \coloneqq i_{*,\Gamma}\trunc{i^*A}$.
+  Since we have $\eta_{i^*A} \colon i^* A \to \trunc{i^*A}$ we obtain $i_{*,\Gamma}\eta \colon i_{*,\Gamma}i^*A \to i_{*,\Gamma}\trunc{i^*A}$ for which precomposition with the unit of the dependent right adjoint yields the desired map $A \to PA$.
+  Concretely, the constructed type is given by
+  \[
+    (PA)(I, \gamma) = \prod_{f \colon J \to I} \trunc{A(J, \gamma f)}.
+  \]
+  Hence, we obtain the following chain of functions
+  \[
+    \El_{\widehat{C \times \square}}(\Gamma, \trunc{A})
+    \longrightarrow \El_{\widehat{C \times \square}}(\Gamma, PA)
+    \longrightarrow \El_{\widehat{C_0 \times \square}}(\Gamma, \trunc{i^*A})
+    \longrightarrow \prod_{I \in C} \El_{\widehat\square}(\Gamma_I, \trunc{A_I}),
+  \]
+  by the universal property of \(\trunc{A}\), the right adjoint on types, and the definition of elements in the model on \([C_0^{\op}, \cSet]\).
 \end{proof}
 
+A consequence of the above is that surjective functions are levelwise surjective.
+This fact is needed for showing that homotopy quotients are levelwise homotopy quotients, the key lemma needed in \Cref{sec:cset-homotopy-quotient-vs-meta-quotient}.
 
-
-\begin{lemma}
-  If \(A \colon \Ty_{[C^{\op}, \U]}(\Gamma)\), \(R \colon \Ty_{[C^{\op}, \U]}(\Gamma.A.A)\) a homotopy proposition, and \(\varrho_R \colon A \to A/R\) a homotopy quotient of \(A\) by \(r\), then \((\varrho_R)_I \colon A_I \to (A/R)_I\) is a homotopy quotient of \(A_I\) by \(R_I\).
+\begin{lemma}\label{prop:psh:levelwise-quotient-if-homotopy-quotient}
+  If \(A \colon \Ty_{[C^{\op}, \U]}(\Gamma)\), \(R \colon \Ty_{[C^{\op}, \U]}(\Gamma.A.A)\) a homotopy proposition, and \(\varrho_R \colon A \to A/R\) a homotopy quotient of \(A\) by \(R\), then \((\varrho_R)_I \colon A_I \to (A/R)_I\) is a homotopy quotient of \(A_I\) by \(R_I\).
 \end{lemma}
 \begin{proof}
-  \todo[inline]{We can avoid the juggeling by using the characterization again. But this needs something about truncations}
+  By \cite[Theorem 18.2.3]{rijke2025intro}, the map \((\varrho_R)_I \colon A_I \to (A/R)_I\) is a homotopy quotient exactly if \((\varrho_R)_I\) is surjective, \((A/R)_I\) is a set, and for \(a_0, a_1 \colon A_I\) we have a logical equivalence \(R_I(a_0, a_1) \leftrightarrow (a_0 \simeq a_1)\).
+  The evaluation \(I\) preserves path types.
+  Hence, the logical equivalence for \(\varrho_R\) induces a levelwise one.
+  By \Cref{prop:psh:levelwise-n-type-if-n-type}, the type \((A/R)_I\) is an hset because \(A/R\) is.
+  By \Cref{prop:psh:levelwise-inhabited-if-inhabited}, the map \((\varrho_R)_I\) is surjective since \(\varrho_R\) is.
 \end{proof}
 
 
 \subsection{\texorpdfstring{\(D\)}{D}-modal types}
 
-The key problem with the na{\"\i}ve cubical presheaf model is that many constructions are not characterized pointwise, as they are in ordinary presheaves.
+The key problem with the na{\"\i}ve cubical presheaf model is that many constructions are not characterized levelwise, as they are in ordinary presheaves.
 The converses to all results from the previous section do not hold.
-Later, we will need some of these converses, to reduce problems to levelwise problems in cubical sets, and from there to problems in set.
+In \Cref{sec:duality-in-model-of-modal-types}, we will need some of these converses, to reduce problems to levelwise problems in cubical sets, and from there to problems in set.
 
-To solve the above,~\cite{CRS21} introduce a lex modality \(D\) on cubical presheaves.
-The key property made true by this modality is that contractibility is characterized levelwise.
+To solve the above,~\cite{CRS21} introduce a lex modality \(D\) on \([C^{\op}, \cSet]\).
+The key property made true by this modality is that contractibility, and therefore equivalences are characterized levelwise.
 We derive some consequences of this key theorem for later use.
 
-\begin{proposition}[levelwise principle]\label{prop:levelwise-principle}
-  For $D$-modal types $A \in \Ty_{\widehat{C \times \square}}(\Gamma)$ we have a logical equivalence that is natural in $\Gamma$
+\begin{lemma}\label{prop:psh:modal:levelwise-n-type-iff-n-type}
+  \todo[inline]{Factor out n-truncation claim as above? I think we need it again in both lemmas}
+\end{lemma}
+\begin{proof}
+  
+\end{proof}
+
+\begin{lemma}\label{prop:psh:modal:levelwise-inhabited-iff-inhabited}
+  For \(D\)-modal types \(A \in \Ty_{[C^{\op}, \cSet]}(\Gamma)\) we have a logical equivalence natural in \(\Gamma\)
   \[
     \El_{[C^{\op}, \cSet]}(\Gamma, \trunc{ A }) \longleftrightarrow \prod_{I \in C} \El_{\cSet}(\Gamma, \trunc{A_I}).
   \]
-\end{proposition}
+\end{lemma}
 \begin{proof}
-  We construct a proposition $P(A) \in \Ty(\Gamma)$ with a map $A \to P(A)$.
-  We have a canonical inclusion $i \colon C_0 \hookrightarrow C$.
-  Hence, we obtain a CwF-morphism by restriction $i^* \colon \widehat{C \times \square} \to \widehat{C_0 \times \square}$.
-  This CwF-morphism has a right adjoint on types $i_* \colon \Ty_{\widehat{C_0 \times \square}}(i^*\Gamma) \to \Ty_{\widehat{C \times \square}}(\Gamma)$ which is easily seen to preserve fibrant types.
-  In the model on $\widehat{C \times \square}$ propositional truncation is given by levelwise proposition truncation.
-
-  We define $PA \coloneqq i_*\trunc{i^*A}$.
-  Since we have $\eta_{i^*A} \colon i^* A \to \trunc{i^*A}$ we obtain $i_*\eta \colon i_*i^*A \to i_*\trunc{i^*A}$ for which precomposition with the unit of the dependent right adjoint yields the desired map $A \to PA$.
-  Concretely, the constructed type is given by
-  \[
-    (PA)(I, \gamma) = \prod_{f \colon J \to I} \trunc{A(J, \gamma f)}.
-  \]
-  Furthermore, this type is a proposition, since dependent right adjoints preserve propositions.
-  Hence, we obtain the following chain of functions
+  Let \(PA\) denote the type from the proof of \Cref{prop:psh:levelwise-inhabited-if-inhabited}.
+  We show that this type is \(D\)-modal.
+  Since \(D\) is a lex-modality, it preserves propositions.
+  Hence, it suffices to give map \(D(PA) \to PA\).
+  Since \(D\) is a weighted limit of all powers of \(i_{*,\Gamma}i^* \colon [C^{\op}, \cSet] \to [C^{\op}, \cSet]\), we obtain in particular a map \(D(PA) \to i_*i^*(PA)\) from the transformation \(D \to i_*i^*\) of pointed CwF-endomorphisms. % here use that we have morphism of pointed endofunctors between them
+  A map \(\alpha \colon i_{*,\Gamma}(i^*(PA)) \to PA\) is given by \((\alpha_{(I, \gamma)}u)_f \coloneqq (u_{f})_{\id}\) which is easily seen to be natural.
+  Hence, \Cref{prop:psh:levelwise-inhabited-if-inhabited} also holds for the model of \(D\)-modal types, and we obtain
   \begin{align*}
-    \El_{\widehat{C \times \square}}(\Gamma, \trunc{A})
-    &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, PA) \tag{Universal property} \\
-    &\longrightarrow \El_{\widehat{C_0 \times \square}}(\Gamma, \trunc{i^*A}) \tag{Dependent right adjoint} \\
-    &\longrightarrow \prod_{I \in C} \El_{\widehat\square}(\Gamma_I, \trunc{A_I}) \tag{Definition} \\
-    &\longrightarrow \prod_{I \in C} \El_{\widehat{\square}}(\Gamma_I, \trunc{A}_I) \tag{$\eta_I \colon A_I \to \trunc{A}_I$}  \\
-    &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, \trunc{A}) \tag{\cite[Proposition~16]{CRS21}}.
+    \El_{[C^{\op}, \cSet]}(\Gamma, D\trunc{A})
+    &\longrightarrow \prod_{I \in C} \El_{\cSet}(\Gamma_I, \trunc{A_I}) \tag{\Cref{prop:psh:levelwise-inhabited-if-inhabited}} \\
+    &\longrightarrow \prod_{I \in C} \El_{\cSet}(\Gamma_I, \trunc{A}_I) \tag{$\eta_I \colon A_I \to \trunc{A}_I$}  \\
+    &\longrightarrow \El_{[C^{\op}, \cSet]}(\Gamma, \trunc{A}) \tag{\cite[Proposition~16]{CRS21}}.
   \end{align*}
-  The second to last step follows since $\trunc{A}_I$ is levelwise a proposition.
-  The last step uses that in the model of $D$-modal types, a type is contractible, exactly if it is levelwise contractible.
+  The second to last step follows since $\trunc{A}_I$ is levelwise a proposition because \(\trunc{A}\) is also a proposition in the model of fibrant types (since \(\Pi\) and identity types of modal types are modal), and therefore levelwise one by \Cref{prop:psh:levelwise-n-type-if-n-type}.
+  The last step uses that in the model of $D$-modal types, a type is contractible, (exactly) if it is levelwise contractible.
+\end{proof}
+
+\begin{lemma}\label{prop:psh:modal:levelwise-quotient-iff-homotopy-quotient}
+  \todo[inline]{This is in the last section, move!}
+\end{lemma}
+\begin{proof}
+  
 \end{proof}
 
 
-\section{Separating homotopy and set-level quotients}\label{sec:cset-homotopy-quotients-vs-meta-quotients}
+\section{Separating homotopy and set-level quotients}\label{sec:cset-homotopy-quotient-vs-meta-quotient}
 
 In this preliminary section we only work with cubical sets, because the key issue already appears in this setting.
 
@@ -307,7 +330,7 @@ The above lemma only concerns quotients of sets by set-level equivalence relatio
 Later we will deal with a more general situation: We consider quotients of fiberwise constant types by relations that are not automatically valued in (strict) propositions.
 Instead, we have to truncate them.
 Then, the quotient in \(\cSet\) will be the one by the relation truncated to an hprop, while in \(\Set\) the one truncated to a strict proposition.
-The following lemma can be summarized as: strict quotients model homotopy quotients by a set-valued relations exactly if they have choice and provide witnesses for the relation.
+The following lemma can be summarized as: strict quotients model homotopy quotients by a truncated relations exactly if they have choice and provide witnesses for the relation.
 
 \begin{corollary}\label{prop:set-relevant-quotient-is-homotopy-quotient-iff-surjection-splits-and-witnesses-exist}
   For \(S \in \Ty_{\Set}(\pi_0\Gamma)\) a type, and \(R \in \Ty_{\Set}(\pi_0\Gamma.S.S)\) the following are equivalent:
@@ -380,16 +403,13 @@ The following is an adaptation of an argument by Diaconescu~\cite{diaconescu1975
 
 The key issue is that the duality axiom, as claimed in the paper, implies the above.
 This means that without changing some basic definitions, we cannot expect to be able to derive the duality axiom in general.
-Furthermore, it also immediately implies that without changing these definitions we have to at least limit ourselves to those \(k\) for which f.p. \(k\)-algebras have choice and witnesses.
 
 For each f.p. \(k\)-algebra \(M\), and natural number \(n\) we have the set \(\Term_{\Alg[M]}(X_1, \ldots, X_n)\).
 This family of sets is easily seen to be functorial in \(M\), and therefore defines a type \(\Term_{\Alg[\R]} \in \Ty_{[\Alg*[k], \Set]}(1.\nats)\) given by \(\Term_{\Alg[\R]}(M, n) \coloneqq \Term_{\Alg[M]}(X_1, \ldots, X_n)\).
 This type has internally the universal property of the type of terms over the theory of \(\R\)-algebras in a given finite number of variables.
 The type of \(\R\)-algebra presentations is defined as \(\Pr \coloneqq \sum_{n, m \colon \nats} \Term_{\Alg[\R]}(m)^n\). 
 The spectrum of an \(\R\)-algebra presentations is defined as \(\Spec(n, m, p) \coloneqq \sum_{ u \colon \R^{m} } \prod_{i \leq n} p_i(u) \simeq 0\).
-Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\) and \(t_0, t_1 \colon \Term_{\R}\) we can define the type of derivations \(p_1 \doteq 0, \ldots, p_n \doteq 0 \vdash t_0 \doteq t_1\), defining a (strict) equivalence relation on \(\Term_{\R}(m)\) by \(\trunc*{p_1 \doteq 0, \ldots, p_n \doteq 0 \vdash t_0 \doteq t_1}\).
-
-\todo[inline]{We need that evaluation (at least at the terminal object) preserves homotopy quotients}
+Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\) and \(t_0, t_1 \colon \Term_{\R}\) the type of derivations \(p_1 \doteq 0, \ldots, p_n \doteq 0 \vdash t_0 \doteq t_1\), defining a (strict) equivalence relation on \(\Term_{\R}(m)\) by \(\trunc*{p_1 \doteq 0, \ldots, p_n \doteq 0 \vdash t_0 \doteq t_1}\).
 
 \begin{proposition}
   If the duality axiom holds in \([\Alg*[k], \cSet]\) then all f.p. \(k\)-algebras have choice and witnesses.
@@ -427,12 +447,22 @@ Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\)
 
   By the \(2\)-out-of-\(3\) property of equivalences, we can conclude that the duality axiom holds exactly if the vertical map on the left is an equivalence.
   This means exactly if \(\Delta\Term_{\R}(m) \to \Delta\paren[\big]{\sfrac{\Term_{\R}(m)}{\trunc*{R_{(n,m,p)}}}}\) has the universal property of the homotopy quotient by w.r.t. the relation \(\trunc{R_{(n,m,p)}}\).
-  The latter also implies by effectiveness of the homotopy quotient that \(\trunc{R_{(n,m,p)}} \leftrightarrow \trunc*{R_{(n,m,p)}}\).
+  % The latter also implies by effectiveness of the homotopy quotient that \(\trunc{R_{(n,m,p)}} \leftrightarrow \trunc*{R_{(n,m,p)}}\).
 
-  \todo[inline]{Now use that quotients are levelwise and appeal to fist section} 
+  By \Cref{prop:psh:levelwise-quotient-if-homotopy-quotient}, we have that the evaluation at \(k \in \Alg*[k]\) yields a homotopy quotient in \(\cSet\). 
+  Note that \((\Delta \Pr)_k\) is the constant presheaf of finite \(k\)-algebra presentations.
+  So in the context with a finite \(k\)-algebra presentation \((n, m, p)\) we have that 
+  \[\begin{tikzcd}
+    {\frac{\Delta \Term_k(X_1, \ldots, X_n)}{\trunc{\Delta (R_{(n,m,p)})_k}}} && {\Delta\paren[\bigg]{\frac{k[X_1, \ldots, X_m]}{(p_1, \ldots, p_n)}}}
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-1, to=1-3]
+  \end{tikzcd}\]
+  is a homotopy quotient of \(\Delta \Term_k(X_1, \ldots, X_n)\) by the propositional truncation of a relation valued in strict sets.
+  \Cref{prop:set-relevant-quotient-is-homotopy-quotient-iff-surjection-splits-and-witnesses-exist}, this implies that f.p. \(k\)-algebras have choice and witnesses.
 \end{proof}
 
-Lastly, we record here a large class of examples for which f.p. \(k\)-algebras have choice.
+The above implies that without changing basic definitions we have to at least limit ourselves to those \(k\) for which f.p. \(k\)-algebras have choice and witnesses.
+We record here a class of examples which have these properties.
 Recall that a field $k$ is \emph{discrete} if for all $u \in k$ we have $u = 0$ or $u$ that is invertible, which is equivalent to $k$ having decidable equality~\cite{mines}.
 Crucially, it does not include real, or complex numbers.
 In this case, we can construct $k[X_1, \ldots, X_n]$ as linear combinations of monomials with non-zero coefficients, so as a subset of $\Term_{\Alg[k]}(X_1, \ldots, X_n)$.
@@ -446,7 +476,7 @@ Exploiting results from computational algebra, the same holds true for quotients
   \todo[inline,color=yellow]{via Gröbner basis. We can compute one from the ideal description, and obtain representatives for the classes via the multi-variate division algorithm.}
 \end{proof}
 
-\todo[inline]{In these cases, we don't even need the quotients. Maybe state this in the end.}
+\todo[inline]{In these cases, we don't even need the quotients. Maybe state this in the very end when we have duality for these examples.}
 
 
 
@@ -473,7 +503,7 @@ The model of $D$-modal, fibrant types on $\widehat{k\text{-}\Alg_{fp} \times \sq
 By choosing a characterization of homotopy quotients that is independent of universes, we can easily characterize them levelwise.
 % This characterization will allow us to show that among $D$-modal types, that the lifted objects $\R[-], A(-)$ have the correct universal property (since they are certain set level quotients).
 
-\begin{lemma}\label{prop:homotopy-quotients-are-levelwise}
+\begin{lemma}\label{prop:homotopy-quotient-are-levelwise}
   In the model of $D$-modal, fibrant types, let $X \in \Ty_{\widehat{C \times \square}}(\Gamma)$ an hset, and $R$ a relation on $X$.
   A map $q \colon X \to Q$ is a homotopy quotient exactly if for all $I \in C$ the map $p_I \colon X_I \to Q_I$ is a homotopy quotient of $X_I$ by $R_I$.
 \end{lemma}
@@ -486,8 +516,8 @@ By choosing a characterization of homotopy quotients that is independent of univ
   The proposition $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ for all $x, y \colon X$ is logically equivalent to the proposition that $q(x) \simeq q(y)$ is a proposition, and that we have a logical equivalence $\paren[\big]{q(x) = q(y)} \longleftrightarrow R(x,y)$.
 
   Recall that $-_I$ commutes with $\Sigma$- and path types, hence we have that $\paren{\Fib_{q}}_I = \Fib_{q_I} \in \Ty(\Gamma_I.Q_I)$.
-  Hence, by \Cref{prop:levelwise-principle}, the map $q \colon X \to Q$ is surjective exactly if it is levelwise surjective.
-  The type $q(x) \simeq q(y)$ is a proposition exactly if all its path types are contractible. % more generally, n-types are characterized levelwise by doing this unfolding.
+  Hence, by \Cref{prop:psh:modal:levelwise-inhabited-iff-inhabited}, the map $q \colon X \to Q$ is surjective exactly if it is levelwise surjective.
+  The type $q(x) \simeq q(y)$ is a proposition exactly if all its path types are contractible. % more generally, n-type are characterized levelwise by doing this unfolding.
   Being contractible is characterized levelwise by~\cite[Proposition~16]{CRS21}.
   In abusive notation with names, we have that
   \begin{multline*}
@@ -533,7 +563,7 @@ By choosing a characterization of homotopy quotients that is independent of univ
     % By construction, the right map is an equivalence.
     % Hence, it suffices to show that the diagonal map is an equivalence.
     % Since the left vertical map is the homotopy quotient of \(\Term_{\Alg[\R]}\) by the relation induced by the presentation, it suffices to show that the bottom horizontal map has the same property.
-    % By \Cref{prop:homotopy-quotients-are-levelwise}, this is equivalent to the statement that for all \(M \in \Alg*[k]\) we have that for all \((n, m, p) \in \El(\Gamma_M, \Pr)\) the following map in \(\cSet \downarrow \Gamma_M\) is a homotopy quotient
+    % By \Cref{prop:homotopy-quotient-are-levelwise}, this is equivalent to the statement that for all \(M \in \Alg*[k]\) we have that for all \((n, m, p) \in \El(\Gamma_M, \Pr)\) the following map in \(\cSet \downarrow \Gamma_M\) is a homotopy quotient
     % \[
     %   \Term_{\Alg[M]}(X_1, \ldots, X_n) \longrightarrow \sfrac{M[X_1, \ldots, X_n]}{(p_1, \ldots, p_m)}.
     % \]
@@ -733,7 +763,7 @@ By choosing a characterization of homotopy quotients that is independent of univ
 % This allows us to characterize proposition, and inhabitance levelwise.
 % This is summarized by the following proposition that is a consequence of results from \cite{CRS21}.
 
-% \begin{proposition}[levelwise principle]\label{prop:levelwise-principle}
+% \begin{proposition}[levelwise principle]\label{prop:psh:modal:levelwise-inhabited-iff-inhabited}
 %   For $D$-modal types $A \in \Ty_{\widehat{C \times \square}}(\Gamma)$ we have a logical equivalence that is natural in $\Gamma$
 %   \[
 %     \El(\Gamma, \trunc{ A }) \longleftrightarrow \prod_{I \in C} \El(\Gamma, \trunc{A_I}).
@@ -782,8 +812,8 @@ By choosing a characterization of homotopy quotients that is independent of univ
 %   The proposition $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ for all $x, y \colon X$ is logically equivalent to the proposition that $q(x) \simeq q(y)$ is a proposition, and that we have a logical equivalence $\paren[\big]{q(x) = q(y)} \longleftrightarrow R(x,y)$.
 
 %   Recall that $-_I$ commutes with $\Sigma$- and path types, hence we have that $\paren{\Fib_{q}}_I = \Fib_{q_I} \in \Ty(\Gamma_I.Q_I)$.
-%   Hence, by \Cref{prop:levelwise-principle}, the map $q \colon X \to Q$ is surjective exactly if it is levelwise surjective.
-%   The type $q(x) \simeq q(y)$ is a proposition exactly if all its path types are contractible. % more generally, n-types are characterized levelwise by doing this unfolding.
+%   Hence, by \Cref{prop:psh:modal:levelwise-inhabited-iff-inhabited}, the map $q \colon X \to Q$ is surjective exactly if it is levelwise surjective.
+%   The type $q(x) \simeq q(y)$ is a proposition exactly if all its path types are contractible. % more generally, n-type are characterized levelwise by doing this unfolding.
 %   Being contractible is characterized levelwise by~\cite[Proposition~16]{CRS21}.
 %   In abusive notation with names, we have that
 %   \begin{multline*}
@@ -850,7 +880,7 @@ By choosing a characterization of homotopy quotients that is independent of univ
 % \section{Quotient and witness nonsense}
 
 % When we compare the lifted quotient from \([\Alg*[k], \Set]\) and the canonical object in \([\Alg*[k], \cSet]\) there is yet another mismatch.
-% We can view both objects as set-quotients of the type of terms in a finite number of variables (since the theory of \(k\)-algebras is finitary).
+% We can view both objects as set-quotient of the type of terms in a finite number of variables (since the theory of \(k\)-algebras is finitary).
 % The first is the quotient by a \emph{strict} relation, the second is the quotient by a \emph{homotopy} relation.
 % We still obtain a comparison map, since the homotopy relation implies the strict relation which implies equality in the strict quotient.
 % Hence, we obtain still that duality is equivalent to these two quotients coinciding.
