@@ -269,6 +269,37 @@ Hence, all homotopy quotients exist.
   Note that the first three types are propositions.
   By \Cref{prop:psh:levelwise-n-type-if-n-type,prop:psh:levelwise-inhabited-if-inhabited}, these imply the analogous levelwise statements, and for modal types the converse.
 \end{proof}
+%
+To apply these results later, we record the following lemma.
+
+\begin{lemma}\label{prop:levelwise-constant-presheaves-are-modal}
+  Levelwise constant types are \(D\)-modal.
+\end{lemma}
+\begin{proof}
+  It suffices to show that \(\eta_A \colon A \to DA\) has a left inverse \(p_A \colon DA \to A\).
+  The map \(\eta_A\) is levelwise an equivalence~\cite[Proposition~3.8]{CRS21}.
+  This means, internally to \(\cSet\) that for each \(I \in C\) and \(\gamma \colon \Gamma(I)\) we have an inverse \((p_A)_{(I, \gamma)} \colon (DA)\gamma \to A\gamma\) up to homotopy.
+  By the usual argument that pointwise inverses of natural transformations are inverses, we obtain that the pointwise inverses are natural up to homotopy:
+  \[\begin{tikzcd}
+    {A\gamma} && {(DA)\gamma} && {A\gamma} && {(DA)\gamma} \\
+    &&& \rightsquigarrow && {\clap{\(H_{(f, \gamma)}\)}} \\
+    {A\gamma f} && {(DA)\gamma f} && {A\gamma f} && {(DA)\gamma f\clap{.}}
+    \arrow[""{name=0, anchor=center, inner sep=0}, "{(\eta_A)_{(I, \gamma)}}"', shift right=2, from=1-1, to=1-3]
+    \arrow[from=1-1, to=3-1]
+    \arrow[""{name=1, anchor=center, inner sep=0}, "{(p_A)_{(I, \gamma)}}"', shift right=2, from=1-3, to=1-1]
+    \arrow[from=1-3, to=3-3]
+    \arrow[from=1-5, to=3-5]
+    \arrow["{(p_A)_{(I, \gamma)}}"', from=1-7, to=1-5]
+    \arrow[from=1-7, to=3-7]
+    \arrow[""{name=2, anchor=center, inner sep=0}, "{(\eta_A)_{(J, \gamma f)}}", shift left=2, from=3-1, to=3-3]
+    \arrow[""{name=3, anchor=center, inner sep=0}, "{(p_A)_{(J, \gamma f)}}", shift left=2, from=3-3, to=3-1]
+    \arrow["{(p_A)_{(J, \gamma f)}}", from=3-7, to=3-5]
+  \end{tikzcd}\]
+  This means for each \(f \colon J \to I\) we have for each \(u \colon DA\) a path \(H_{(f, \gamma)} \colon (p_A)_J(uf) \simeq_{A} ((p_A)_Iu)f\).
+  Since \(A\) was assumed to be levelwise constant, we have that this path coincides with a strict equality.
+  Hence, the levelwise inverses assemble into an inverse.
+\end{proof}
+
 
 
 \section{Separating homotopy and set-level quotients}\label{sec:cset-homotopy-quotient-vs-meta-quotient}
@@ -405,7 +436,7 @@ Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\)
 
 \todo[inline]{We have to argue that the objects defined above are fibrant and $D$-modal}
 
-\begin{proposition}
+\begin{proposition}\label{prop:duality-for-k-implies-k-choice-and-witnesses}
   If the duality axiom holds in \([\Alg*[k], \cSet]\) then all f.p. \(k\)-algebras have choice and witnesses.
 \end{proposition}
 \begin{proof}
@@ -467,7 +498,7 @@ Exploiting results from computational algebra, the same holds true for quotients
   Furthermore, for every finitely generated ideal $I = (f_1, \ldots, f_n) \subseteq k[X_1, \ldots, X_n]$ the quotient $k[X_1,\ldots,X_n]/I$ can be constructed as a subset of the polynomial ring $k[X_1, \ldots, X_n]$.
 \end{lemma}
 \begin{proof}
-  \todo[inline,color=yellow]{via Gröbner basis. We can compute one from the ideal description, and obtain representatives for the classes via the multi-variate division algorithm.}
+  \todo[inline,color=yellow]{via Gröbner basis. We can compute one from the ideal description, and obtain representatives for the classes via the multi-variate division algorithm. This allows us in to decide equality in the ideal, implying the witness property.}
 \end{proof}
 
 
@@ -483,14 +514,16 @@ Exploiting results from computational algebra, the same holds true for quotients
   In the model of \(D\)-modal types on \([\Alg*[k], \cSet]\) the duality axiom holds exactly if all \(k\)-algebras have choice and witnesses.
 \end{theorem}
 \begin{proof}
-  \begin{itemize}
-    \item constructed types are \(D\)-modal 
-    \item as before the duality axiom is equivalent to a particular map being a homotopy quotient.
-  \end{itemize}
-
-
-  \todo[inline]{Forward as before as soon as we observe that \(\Delta\) lands in \(D\)-modal types, and \(\eta\) is levelwise an equivalence (just state this); backward we need to work in an arbitrary context/in a context with a presentation.}
-
+  For all types in the image of \(\Delta \colon [\Alg*[k], \Set] \to [\Alg*[k], \cSet]\) are levelwise constant, and therefore modal by \Cref{prop:levelwise-constant-presheaves-are-modal}.
+  Hence, we can deduce as in the proof of \Cref{prop:duality-for-k-implies-k-choice-and-witnesses} that duality holds exactly if for all presentations \((n, m, p) \colon \Delta\Pr\) we have that the following is a homotopy quotient of \(\Delta \Term_\R(X_1, \ldots, X_n)\) by the relation induced by the presentation.
+  \[\begin{tikzcd}
+    {\frac{\Delta \Term_\R(X_1, \ldots, X_n)}{\trunc{\Delta (R_{(n,m,p)})_k}}} && {\Delta\paren[\bigg]{\frac{k[X_1, \ldots, X_m]}{(p_1, \ldots, p_n)}}}
+    \arrow[from=1-1, to=1-3]
+    \arrow[from=1-1, to=1-3]
+  \end{tikzcd}\]
+  Since all involved types are \(D\)-modal, this is the case exactly if we have for each \(M \in C\) that for all \((n, m, p) \colon \Delta \Pr_M\) the following is a homotopy quotient in \(\cSet\) of \(\Delta\Term_M(X_1, \ldots, X_n)\) by the relation induced by the presentation.
+  As before, the case for \(M = k\) implies that f.p. \(k\)-algebras have choice and witnesses.
+  \todo[inline]{We need that the good properties of \(k\) are inherited by f.p. \(k\)-algebras (or strengthen the assumption)}
 \end{proof}
 
 By \Cref{prop:good-base-rings-exist}, therefore have a number of base rings for which duality holds in \([\Alg*[k], \cSet]\).
