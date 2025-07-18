@@ -19,10 +19,13 @@
 \usepackage{proof}
 \usepackage{latexsym}
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
 \newcommand{\ras}{\twoheadrightarrow}
 
 \usepackage{float}
@@ -381,7 +384,7 @@ The following lemma can be summarized as: strict quotients model homotopy quotie
 \section{A taboo from duality in \texorpdfstring{\([\Alg*[k], \cSet]\)}{[k-Algᶠᵖ, cSet]}}\label{sec:k-duality-implies-k-alg-choice}
 
 % The key issue with the construction from the paper is that objects from presheaf model \([\Alg[k], \Set]\) are lifted to the cubical presheaf model \([\Alg[k], \cSet]\) as constant cubical sets.
-We denote by \(\Term_{\Alg[k]}(X_1, \ldots, X_n)\) the set of first-order terms for the theory of \(k\)-algebras that contain additional variables from the set \(\set{X_1, \ldots, X_n}\).
+We denote by \(\Term_{\Alg[k]}(X_1, \ldots, X_n)\) the set of first-order terms for the theory of \(k\)-algebras that contain additional variables from the finite set \(\set{X_1, \ldots, X_n}\).
 
 \begin{definition}
   We say \emph{f.p.~\(k\)-algebras have choice} if for all \(n, m \in \nats\) and \(p_1, \ldots, p_m \in k[X_1, \ldots, X_n]\) the following canonical surjection splits:
@@ -393,6 +396,24 @@ We denote by \(\Term_{\Alg[k]}(X_1, \ldots, X_n)\) the set of first-order terms 
     \set{\star \mid \eta t_1 = \eta t_2 } \longrightarrow \set{ p_1 \doteq 0, \ldots, p_m \doteq 0 \vdash t_1 \doteq t_2 }. 
   \]
 \end{definition}
+\begin{remark}
+  If we have a f.p.~\(k\)-algebra \(M\) presented by \((n, m, p)\), then we can choose for each \(m \in M\) a term representation \(t_m \in \Term_{\Alg[k]}(X_1, \ldots, X_n)\) for it.
+  We can consider the projection \(\underline{\cdot} \colon \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i) \to \Term_{\Alg[M]}(Y_1, \ldots, Y_i)\) that sends \(X_i\) to the corresponding element of \(M\).
+  There is a map \(c_M \colon \Term_{\Alg[M]}(Y_1, \ldots, Y_i) \to \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i)\) given by replacing all \(m \in M\) in a term by \(t_m\).
+  We have that \(p_1, \ldots, p_m \vdash \underline{t_m} \doteq m\) and therefore that \(p_1, \ldots, p_M \vdash \underline{c_M s} \doteq s\)
+  
+  Using \(c_M\), we can lift \(M\)-algebra presentations to \(k\)-algebra presentations.
+  Thus, if \(N\) is an \(M\)-algebra presented by \((i, j, q)\), then from the composite
+  \[
+    \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i) \longrightarrow \Term_{\Alg[M]}(Y_1, \ldots, Y_i) \longrightarrow \frac{k[x_1, \ldots, X_m, Y_1, \ldots, Y_i]}{(p_1, \ldots, p_n, q_1, \ldots, q_j)} \cong N
+  \]
+  splitting, we obtain that the second map splits as-well.
+  Lastly, let \(t_0, t_1 \in \Term_{\Alg[M]}(Y_1, \ldots, Y_i)\) describing equal elements in \(N\).
+  We obtain a derivation that \(\set{p_\ell}_\ell, \set{q_\ell}_\ell \vdash c_Mt_0 \doteq c_M t_1\).
+  From such a derivation we obtain one \(\set{q_\ell}_\ell \vdash \underline{c_Mt_0} \doteq \underline{c_Mt_1}\) since the additional equations hold in the theory of \(M\)-algebras.
+  From \(\set{q_\ell}_\ell \vdash \underline{c_Mt_\ell} \doteq t_\ell\) for \(\ell \in \set{0,1}\) we obtain the final derivation.
+\end{remark}
+\todo[inline]{The above is a by handwavy; recheck that the transformation of derivations is possible}
 
 In a constructive meta-theory it cannot be the case that f.p. \(k\)-algebras have choice for all \(k\).
 The following is an adaptation of an argument by Diaconescu~\cite{diaconescu1975choice} to derive a constructive taboo from this statement.
@@ -437,8 +458,6 @@ This type has internally the universal property of the type of terms over the th
 The type of \(\R\)-algebra presentations is defined as \(\Pr \coloneqq \sum_{n, m \colon \nats} \Term_{\Alg[\R]}(m)^n\). 
 The spectrum of an \(\R\)-algebra presentations is defined as \(\Spec(n, m, p) \coloneqq \sum_{ u \colon \R^{m} } \prod_{i \leq n} p_i(u) \simeq 0\).
 Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\) and \(t_0, t_1 \colon \Term_{\R}\) the type of derivations \(p_1 \doteq 0, \ldots, p_n \doteq 0 \vdash t_0 \doteq t_1\), defining a (strict) equivalence relation on \(\Term_{\R}(m)\) by \(\trunc*{p_1 \doteq 0, \ldots, p_n \doteq 0 \vdash t_0 \doteq t_1}\).
-
-\todo[inline]{We have to argue that the objects defined above are fibrant and $D$-modal}
 
 \begin{proposition}\label{prop:duality-for-k-implies-k-choice-and-witnesses}
   If the duality axiom holds in \([\Alg*[k], \cSet]\) then all f.p. \(k\)-algebras have choice and witnesses.
@@ -534,332 +553,7 @@ By \Cref{prop:good-base-rings-exist}, therefore have a number of base rings for 
 In these case we can furthermore construct all objects of interest as subsets of the inductively defined set of terms.
 This makes the construction independent of the existence of quotients in the meta theory.
 
-
-
-% \section{Separating homotopy and set-level quotients}
-
-% As in \cite{draft}, we work with cubical sets.
-% If $E$ is a set we write $\Delta E$ for the constant cubical set on $E$.
-% Recall that for a set $E$ and a cubical set $X$ we have a natural bijection between $\widehat{\square}(\Delta E, X)$ and $\Set(S, X_{[0]})$.
-% As a consequence, elements of a type $A \in \Ty(\Delta\Gamma)$ are in natural bijection with elements of $A_{[0]} \in \Ty(\Gamma)$.
-
-% Furthermore, recall that the nerve functor $N \colon \Cat \to \widehat{\square}$ sends a groupoid $G$ to the fibrant cubical set $NG$, so a type in the model on cubical sets.
-% The objects of this groupoid correspond exactly to the closed elements of this type, and elements of the hom-set $G(x, y)$ corresponds exactly to the closed elements of the type of paths from $x$ to $y$ in $NG$.
-
-% Let $R$ be an equivalence relation on $E$.
-% This defines a (strict) equivalence relation $\Delta R$ on the cubical set $\Delta E$.
-% There is a projection map $\Delta E \rightarrow \Delta (E/R)$.
-% We show that this projection map models the homotopy quotients in cubical sets exactly if the axiom of choice holds in the meta theory.
-
-% % TODO: claim important externalizations about nerve, and only use later
-% \todo[inline]{We need a relative version of this lemma below}
-
-% \begin{proposition}\label{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}
-%   The projection map $\Delta E \rightarrow \Delta (E/R)$ defines a quotient of $\Delta E$ by $\Delta R$ in the cubical set model if, and only if, $E\rightarrow E/R$ has section.
-% \end{proposition}
-% \begin{proof}
-%   Suppose first that $\eta \colon E \to E/R$ has a section $s \colon E/R \to E$.
-%   This means that we internally also have a section of $\Delta\eta \colon \Delta E \to \Delta(E/R)$ interpreted by $\Delta s$, implying in particular that $\Delta \eta$ is surjective in the internal sense.
-%   Furthermore, since paths in $\Delta (E/R)$ correspond to strict equality, we have that $\Delta R$ is equivalent to the kernel of $\Delta\eta$.
-%   These two properties already characterize the quotient~\cite[Theorem~18.2.3]{rijke2025intro}.
-
-%   Conversely, suppose that $\Delta\eta \colon \Delta E \to \Delta(E/R)$ has the universal property of the quotient internally.
-%   We view $E$ as a groupoid with objects $E$ and an invertible morphism between two objects exactly if they are related by $R$.
-%   Internally, we have a (closed) function $p \colon \Delta E \to NE$ uniquely determined by the identity $E \to (NE)_{[0]} = E$.
-%   Furthermore, we have that the kernel of this map contains $\Delta R$ because $\Delta R(e_0, e_1) \to pe_0 \simeq pe_1$ holds for all $e_0, e_1 \colon \Delta E$ (in the empty context).
-%   Hence, we get a map $\overline{p} \colon \Delta(E/R) \to NE$ and a homotopy $\overline p \circ \Delta\eta \sim p$.
-%   \[\begin{tikzcd}
-%     \Delta E \arrow[dd, "\Delta\eta"'] \arrow[rr, "p"] &  & NE &                      & E \arrow[dd, "\eta"'] \arrow[rr, "\id_E"]        &  & {(NE)_{[0]}} \\
-%                                                       &  &    & \leftrightsquigarrow &                                                  &  &              \\
-%     \Delta (E/R) \arrow[rruu, "\overline p"', dashed]  &  &    &                      & E/R \arrow[rruu, "{\overline p_{[0]}}"', dashed] &  &
-%   \end{tikzcd}\]
-%   This means we have a map on points $\overline{p}_{[0]} \colon E/R \to E$ that we claim to be a section of \(\eta\).
-%   Note that the triangle on the right commutes only up to $R$.
-%   Thus, for some $e \in E$ we have that $e \sim s (\eta e)$, and therefore that $\eta e = \eta (s (\eta e))$ showing that $s\eta = \id$ by the universal property of the quotient.
-%   % \todo[inline]{Simplify this direction by simply using the above bijections.}
-%   % Conversely, suppose that $\Delta\eta \colon \Delta E \to \Delta(E/R)$ has the universal property of the quotient internally.
-%   % We view $E$ as a groupoid with objects $E$ and an invertible morphism between two objects exactly if they are related by $R$.
-%   % The nerve of this groupoid $NE$ is a fibrant cubical set.
-%   % This fibrant cubical set admits a map $p \colon \Delta E \to NE$ uniquely determined by the identity function $E \to E = (NE)([0])$.
-%   % Furthermore, we have that the kernel of this map contains $\Delta R$ since we have an element of $\El(\Delta E. \Delta E. \Delta R, p(\q\p) = p(\q\p^2))$ exactly if for all $e_0, e_1 \in E$ satisfying $R(e_0, e_1)$ we have an element of $NE(e_0, e_1)$ which is defined as the subsingleton $R(e_0, e_1)$.
-%   % Hence, we get a map $\Delta(E/R) \to NE$ with $\overline p \circ \Delta\eta \sim p$.
-%   % This means we have a map on points $\overline{p}_{[0]} \colon E/R \to E$ that we claim to be a section of \(\eta\).
-%   % Externally, we have an element of $\El(\Delta E, \overline p (\Delta\eta\q) =_{NE} p\q)$ meaning that for each $e \in E$ we have $R(\overline p_{[0]}(\eta e), e)$ which implies that $\eta \overline{p}_{[0]} = \id_{E/R}$.
-% \end{proof}
-
-% We now show that the duality axiom, for the generic ring as defined in the paper, implies in certain cases a constructive taboo.
-% In the next section, we will focus on those special cases that avoid this taboo.
-% The upcoming work will circumvent this taboo by changing the definition of the generic ring, by changing the definition of the base category instead.
-
-% We now show that if the duality axiom holds for all base-rings, then the law of the excluded middle already holds in the meta theory.
-% For that, we conclude a choice like principle from the axiom.
-
-% \begin{proposition}\label{prop:strict-duality-implies-lem}
-%   If for a ring $k$ the duality axiom holds in $\widehat{k\text{-}\Alg_{fp} \times \square}$ with the generic ring interpreted as in the paper, then for all finite lists of elements $u_1, \ldots, u_n \in k$ the projection $k \to k /(u_1, \ldots, u_n)$ splits.
-% \end{proposition}
-% \begin{proof}
-%   By assumption, the duality axiom holds in the model over the base-ring $k$.
-%   We write $\R$ for the generic ring in $\widehat{k\textsf{-Alg}_{fp}}$ and $\Delta\R$ for the generic ring in $\widehat{k\textsf{-Alg}_{fp} \times \square}$.
-%   We have elements of $\R$ and $\Delta \R$ given by $u_1, \ldots, u_n$.
-%   Hence, we have that $\R/I$ is for $I \coloneqq (u_1, \ldots, u_n)$ a finitely presented $\R$-algebra in the internal sense, and similarly for $\Delta \R$.
-%   Hence, by duality, we obtain that the top map in the following diagram is an equivalence, where $\Delta \R/I$ denotes the $\Delta\R$-algebra constructed as a homotopy quotient.
-%   \[\begin{tikzcd}
-%     \Delta\R/I \arrow[dd] \arrow[rr]                &  & \Delta\R^{\Spec\paren{\R/I}} \\
-%                                                    &  &                                  \\
-%     \Delta\paren[\big]{\R/I} \arrow[rruu] &  &
-%   \end{tikzcd}\]
-%   Because $\Delta\R$ is, by definition, a strict cubical presheaf, the spectrum of an algebra is equivalent to a strict cubical presheaf as-well (because it can be defined just in terms of elements of $\Delta \R$ and paths in $\Delta \R$ which coincide with strict equality).
-%   Thus, $\Delta\R^{\Spec\paren{\R/I}}$ is isomorphic to a strict cubical presheaf as-well.
-%   By the arguments in Section 8.1 of the paper, we have that the duality axiom holds in $\widehat{k\textsf{-Alg}_{fp}}$.
-%   Hence, we obtain an isomorphism $\R/I \to \R^{\Spec(\R / I)}$ in $\widehat{k\textsf{-Alg}_{fp}}$.
-%   The diagonal map in the above diagram, is the image of this isomorphism under \(\Delta\).
-%   Direct inspection show that this triangle commutes.
-%   By 2-out-of-3 for equivalences, we obtain that the left map is an equivalence.
-
-%   We consider the component of this map at $k$.
-%   Since evaluation preserves equivalences, and homotopy quotients, we obtain that the following canonical map is an equivalence.
-%   \[\begin{tikzcd}
-%     \Delta k/(u_1, \ldots, u_n) \arrow[rr] & & \Delta\paren[\big]{k/(u_1, \ldots, u_n)}
-%   \end{tikzcd}\]
-%   Hence, by \Cref{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}, we have that the underlying map in sets $k \to k/(u_1, \ldots, u_n)$ splits.
-% \end{proof}
-
-% The following is now an adaptation of an argument by Diaconescu~\cite{diaconescu1975choice}.
-
-% \todo[inline]{Justify that we can take $n \in k$ not a polynomial, and that $a + b = c + d$ implies pairwise equality}
-% \begin{corollary}
-%   If for all rings \(k\) the duality axiom holds in $\widehat{k\text{-}\Alg_{fp} \times \square}$ with the generic ring is interpreted as in the paper, then all propositions are decidable.
-% \end{corollary}
-% \begin{proof}
-%   Following the techniques in~\cite{mines}, we can show that for any set $E$ and any ring $R$ the canonical map $E \to R[E]$ is injective.
-
-%   Let $p$ be a proposition and $P \coloneqq \set{0,1} / \sim_p$.
-%   We consider the base-ring $k \coloneqq \mathbb{F}_2[P + P]$.
-%   By the arguments in the errata, the map $\eta \colon \mathbb{F}_2[P + P] \to \mathbb{F}_2[P + P] / (\inl(0) - \inr(0))$ splits.
-%   Denote the section by $s : \mathbb{F}_2[P + P] / (\inl(0) - \inr(0)) \to \mathbb{F}_2[P + P]$.
-
-%   For $\inl(1) \in \mathbb{F}_2[P + P]$ we have that $\eta(\inl(1)) = \eta(s(\eta(\inl(1))))$ since s is a section of $\eta$.
-%   Thus, there exists some $n \in \mathbb{F}_2$ with $\inl(1) - s(\eta(\inl(1))) = n(\inr(0) - \inr(1))$.
-%   If $n = 0$ then we have $\inl(1) = s(\eta(\inl(1)))$.
-%   If $n = 1$ then we have $\inl(1) + \inr(1) = \inr(0) + s(\eta(\inl(1)))$.
-%   Since $\inl(i) \ne \inr(j)$ for all $i, j$ in $k$ (by injectivity of $P + P \hookrightarrow k$ and the same fact in $P + P$), we have that $\inr(1) = \inr(0)$.
-%   Hence, $0 = 1$ in $P$ and therefore $p$ holds.
-
-%   Thus, we have $p$ or $\inl(1) = s(\eta(\inl(1)))$.
-%   Similarly, we can show that $p$ or $\inr(1) = s(\eta(\inr(1)))$.
-%   Our goal is to show $p$ or not $p$.
-%   So suppose we are in the case in which $\inl(1) = s(\eta(\inl(1)))$ and $\inr(1) = s(\eta(\inr(1)))$.
-%   We claim not $p$, so suppose that we have $p$ with the goal of a contradiction.
-%   Since $p$ holds, we have that
-%   \[
-%     \inl(1) = s(\eta(\inl(1))) = s(\eta(\inl(0))) = s(\eta(\inr(0))) = s(\eta(\inr(1))) = \inr(1).
-%   \]
-%   This is a contradiction since $\inl(1) \ne \inr(1)$.
-% \end{proof}
-
-
-% \section{Case where \texorpdfstring{$k$}{k} is \texorpdfstring{$\ints$}{ℤ} or a discrete field}
-
-% The above shows that we cannot expect a model on $\widehat{k\text{-}\Alg_{fp} \times \square}$ without choice for set-level quotients of $k$.
-% In cases where $k$ is well-behaved we can still expect this in our constructive meta theory.
-% Recall that a field $k$ is \emph{discrete} if for all $u \in k$ we have $u = 0$ or $u$ that is invertible, which is equivalent to $k$ having decidable equality~\cite{mines}.
-% In this case, we can construct $k[X_1, \ldots, X_n]$ as linear combinations of monomials with non-zero coefficients, so as a subset of $\Term_{k\text{-}\Alg}(X_1, \ldots, X_n)$.
-
-% \begin{lemma}
-%   If $k$ is $\ints$ or $k$ is a discrete field, then for every finitely generated ideal $I = (f_1, \ldots, f_n) \subseteq k[X_1, \ldots, X_n]$ the quotient $k[X_1,\ldots,X_n]/I$ can be constructed as a subset of the polynomial ring $k[X_1, \ldots, X_n]$, and the canonical projection splits.
-% \end{lemma}
-% \begin{proof}
-%   \todo[inline]{via Gröbner basis. We can compute one from the ideal description, and obtain representatives for the classes via the multi-variate division algorithm.}
-% \end{proof}
-
-% The above sufficient condition will guarantee a model for base the rings given by $\ints$, and finite field extensions of $\rats$, and finite fields $\mathbb F_n$.
-% Crucially, it does not include real, or complex numbers.
-% Furthermore, the way we constructed the polynomial ring, and the quotient makes the entire construction independent of the availability of quotients in the meta theory.
-
-
-% \subsection{Lifting constructions to cubical presheaves}\label{sec:lifting-objects}
-
-% \todo[inline]{Maybe this is not needed at all. The only thing we should need is the type of terms and its quotients.}
-% \todo[inline]{Recall basic definition of cubical presheaf model. In particular how paths are defined.}
-
-% In this section, we will explain how to lift the objects involved in the statement of the axioms, as defined in the paper, to the higher topos.
-% For that, we again consider the functor $\Delta \colon \widehat{C} \to \widehat{C \times \square}$, which can either be described as postcomposition with the functor $\Delta \colon \Set \to \widehat\square$ or restriction along the functor $\pi_1 \colon C \times \square \to C$.
-% From the second description, it follows immediately that it is a CwF-morphism.
-
-% We first define all objects in their generic contexts.
-% For the generic ring $\R \in \Ty(1)$ is a closed type, so we just obtain $\Delta\R \in \Ty(1)$.
-% For a finitely generated free $\R$-algebra, we have $\R[-] \in \Ty(1.\nats)$ we obtain $\Delta\R[-] \in \Ty(1.\Delta\nats)$.
-% Here, we use that $\Delta\nats$ is the interpretation of $\nats$ in $\widehat{k\text{-}\Alg_{fp} \times \square}$.
-% Lastly, a finitely presented algebra is given by $A(-) \in \Ty(1.\nats.\nats.{\R[\q\p]}^{\mathsf{Fin}_\q})$, so we obtain $\Delta A(-) \in \Ty(1.\Delta\nats.\Delta\nats.\Delta\R[\q\p]^{\Delta\mathsf{Fin}_\q})$, using that $\Delta$ preserves exponentials.
-% Operations lift similarly.
-% Lastly, since every CwF-morphism preserves $\Sigma$-types we have that the image of $\Spec(-) \in \Ty(1.\nats.\nats.{\R[\q\p]}^{\mathsf{Fin}_\q})$ coincides with the analogous construction in $\widehat{k\text{-}\Alg_{fp} \times \square}$ in terms of $\Delta\R[-]$.
-% For example, $(+) \in \El(\R.\R, \R)$ so we obtain $\Delta(+) \in \El(\Delta\R.\Delta\R, \Delta\R)$.
-% Since $\Delta$ also preserves limits, it preserves the extensional identity types, and we can lift the proofs of associativity, etc. as-well.
-% Furthermore, we can also lift the statement of the duality axiom.
-% Crucially, we \emph{cannot} lift the elimination principles, since their generic contexts contain paths which we cannot obtain by lifting.
-
-% To then give the ordinary interpretations of these objects in some context $\Gamma$ with the appropriate assumptions, we construct the unique substitution into the generic context, and substitute over.
-% For example, if $u, v \in \El(\Gamma, \Delta \R)$ then we define $u + v \in \El(\Gamma)$ by  substitution of $\Delta(+)$ along $(u, v) \colon \Gamma \to 1.\R.\R$.
-% This means these objects are automatically substitution stable.
-% The only thing left to show is that $\R[-]$ and $A(-)$ satisfy their universal properties, to see that we obtained to the correct duality statement.
-
-
-% \subsection{A strictness issue}
-
-% \todo[inline]{Essentially, argue that lifting a quotient as in the previous section does not work, even if the underlying maps in sets splits}
-% \Cref{prop:strict-quotient-is-homotopy-quotient-iff-projection-splits}  characterizes (closed) homotopy quotients in $\widehat\square$ in terms of choice in $\Set$, we do not obtain a similar characterization for quotients in the na\"ive cubical presheaf model on $\widehat{k\text{-}\Alg_{fp} \times \square}$.
-% \todo[inline]{Outline that we can define the components of a natural transformation, but they won't be strictly natural. Essentially: a quotient in na\"ive cubical presheaves is not a levelwise quotient}
-
-
-% \subsection{Strictification}
-
-% Let $D$ be the modality from~\cite{CRS21}.
-% The model of $D$-modal, fibrant types on $\widehat{k\text{-}\Alg_{fp} \times \square}$ has all higher inductive types by the construction in \cite{CRS21}, since the model of fibrant types has all higher inductive types by the results in~\cite{CoquandHM18}.
-
-% Let $C$ be a category and $I \in C$.
-% Then we have a functor $-_I : \widehat{C \times \square} \to \widehat{\square}$ given by restriction along $\langle I, \id_{\square} \rangle \colon \square \to C \times \square$.
-% Since paths in the model of fibrant types on $\widehat{C \times \square}$ are given by levelwise paths that are natrual w.r.t. $C$, it is easy to see that if a type is of hlevel $n$ then it is also levelwise of hlevel $n$.
-
-% The crucial property of the model of $D$-modal types is that types are contractible if they are levelwise contractible.
-% This allows us to characterize proposition, and inhabitance levelwise.
-% This is summarized by the following proposition that is a consequence of results from \cite{CRS21}.
-
-% \begin{proposition}[levelwise principle]\label{prop:psh:modal:levelwise-inhabited-iff-inhabited}
-%   For $D$-modal types $A \in \Ty_{\widehat{C \times \square}}(\Gamma)$ we have a logical equivalence that is natural in $\Gamma$
-%   \[
-%     \El(\Gamma, \trunc{ A }) \longleftrightarrow \prod_{I \in C} \El(\Gamma, \trunc{A_I}).
-%   \]
-% \end{proposition}
-% \begin{proof}
-%   We construct a proposition $P(A) \in \Ty(\Gamma)$ with a map $A \to P(A)$.
-%   We have a canonical inclusion $i \colon C_0 \hookrightarrow C$.
-%   Hence, we obtain a CwF-morphism by restriction $i^* \colon \widehat{C \times \square} \to \widehat{C_0 \times \square}$.
-%   This CwF-morphism has a right adjoint on types $i_* \colon \Ty_{\widehat{C_0 \times \square}}(i^*\Gamma) \to \Ty_{\widehat{C \times \square}}(\Gamma)$ which is easily seen to preserve fibrant types.
-%   In the model on $\widehat{C \times \square}$ propositional truncation is given by levelwise proposition truncation.
-
-%   We define $PA \coloneqq i_*\trunc{i^*A}$.
-%   Since we have $\eta_{i^*A} \colon i^* A \to \trunc{i^*A}$ we obtain $i_*\eta \colon i_*i^*A \to i_*\trunc{i^*A}$ for which precomposition with the unit of the dependent right adjoint yields the desired map $A \to PA$.
-%   Concretely, the constructed type is given by
-%   \[
-%     (PA)(I, \gamma) = \prod_{f \colon J \to I} \trunc{A(J, \gamma f)}.
-%   \]
-%   Furthermore, this type is a proposition, since dependent right adjoints preserve propositions.
-%   Hence, we obtain the following chain of functions
-%   \begin{align*}
-%     \El_{\widehat{C \times \square}}(\Gamma, \trunc{A})
-%     &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, PA) \tag{Universal property} \\
-%     &\longrightarrow \El_{\widehat{C_0 \times \square}}(\Gamma, \trunc{i^*A}) \tag{Dependent right adjoint} \\
-%     &\longrightarrow \prod_{I \in C} \El_{\widehat\square}(\Gamma_I, \trunc{A_I}) \tag{Definition} \\
-%     &\longrightarrow \prod_{I \in C} \El_{\widehat{\square}}(\Gamma_I, \trunc{A}_I) \tag{$\eta_I \colon A_I \to \trunc{A}_I$}  \\
-%     &\longrightarrow \El_{\widehat{C \times \square}}(\Gamma, \trunc{A}) \tag{\cite[Proposition~16]{CRS21}}.
-%   \end{align*}
-%   The second to last step follows since $\trunc{A}_I$ is levelwise a proposition.
-%   The last step uses that in the model of $D$-modal types, a type is contractible, exactly if it is levelwise contractible.
-% \end{proof}
-
-% By choosing a characterization of homotopy quotients that is independent of universes, we can easily characterize them levelwise.
-% This characterization will allow us to show that among $D$-modal types, that the lifted objects $\R[-], A(-)$ have the correct universal property (since they are certain set level quotients).
-
-% \begin{lemma}
-%   In the model of $D$-modal, fibrant types, let $X \in \Ty_{\widehat{C \times \square}}(\Gamma)$ an hset, and $R$ a relation on $X$.
-%   A map $q \colon X \to Q$ is a homotopy quotient exactly if for all $I \in C$ the map $p_I \colon X_I \to Q_I$ is a homotopy quotient of $X_I$ by $R_I$.
-% \end{lemma}
-% \begin{proof}
-%   By \cite[Theorem 18.2.3]{rijke2025intro}, we have that the map $q$ is a homotopy quotient of $X$ by $R$ exactly if $p$ is surjective, and $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ for all $x, y \colon X$.
-%   Note that the type $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ is a proposition:
-%   To show that the type is a proposition, we can assume that we have an inhabitant.
-%   If we know that the types are equivalent then both are propositions, since $R(x, y)$ is a proposition.
-%   This shows the claim since the equality of propositions is a proposition.
-%   The proposition $\paren[\big]{q(x) \simeq q(y)} \simeq R(x, y)$ for all $x, y \colon X$ is logically equivalent to the proposition that $q(x) \simeq q(y)$ is a proposition, and that we have a logical equivalence $\paren[\big]{q(x) = q(y)} \longleftrightarrow R(x,y)$.
-
-%   Recall that $-_I$ commutes with $\Sigma$- and path types, hence we have that $\paren{\Fib_{q}}_I = \Fib_{q_I} \in \Ty(\Gamma_I.Q_I)$.
-%   Hence, by \Cref{prop:psh:modal:levelwise-inhabited-iff-inhabited}, the map $q \colon X \to Q$ is surjective exactly if it is levelwise surjective.
-%   The type $q(x) \simeq q(y)$ is a proposition exactly if all its path types are contractible. % more generally, n-type are characterized levelwise by doing this unfolding.
-%   Being contractible is characterized levelwise by~\cite[Proposition~16]{CRS21}.
-%   In abusive notation with names, we have that
-%   \begin{multline*}
-%     \El\paren[\big]{\Gamma.(x_0\,x_1\colon X).(p_0\,p_1\colon x_0 \simeq_X x_1), \isContr(p_0 \simeq p_1)} \\
-%     \longleftrightarrow \prod_{I \in C}
-%     \El\paren[\big]{\Gamma.(x_0\,x_1\colon X_I).(p_0\,p_1\colon x_0 \simeq_{X_I} x_1), \isContr(p_0 \simeq p_1)}.
-%   \end{multline*}
-%   Hence, we can assume that $Q$, and $Q_I$ for all $I \in C$ are hsets.
-%   To characterize the logical equivalence between $q(x) \simeq q(y)$ and $R(x, y)$ levelwise we have to give functions in both directions.
-%   In both cases we have to give functions and therefore have
-%   \begin{align*}
-%     \El\paren[\big]{ \Gamma.(x_0\,x_1\colon X).q(x_0) \simeq q(x_1) , R(x_0, x_1) } \longleftrightarrow \El\paren[\big]{ \Gamma.(x_0\,x_1\colon X_I).q(x_0) \simeq q(x_1) , R_I(x_0, x_1) } \\
-%     \El\paren[\big]{ \Gamma.(x_0\,x_1\colon X).R(x_0, x_1), q(x_0) \simeq q(x_1) } \longleftrightarrow \El\paren[\big]{ \Gamma.(x_0\,x_1\colon X_I).R_I(x_0, x_1), q(x_0) \simeq q(x_1) }
-%   \end{align*}
-%   since both types are proposition.
-% \end{proof}
-
-% \todo[inline]{We have to argue that the objects defined in this section are fibrant and $D$-modal}
-% \todo[inline]{We have to argue that the type of first order terms has the correct universal property in cubical presheaves}
-
-% We can now characterize in which cases the objects defined in \Cref{sec:lifting-objects} have the desired universal property in the model of $D$-modal types.
-
-% \begin{proposition}
-%   In the model of $D$-modal types, the types $\R[-]$ and $A(-)$ as defined in \Cref{sec:lifting-objects} have the universal property of the finitely free $\R$-algebra and finitely presented $\R$-algebra respectively, exactly if for all $n, m\in \nats$, and $p_1, \ldots, p_m \in \Term_{k\text{-}\Alg}(X_1, \ldots, X_n)$ the following canonical map splits.
-%   \[
-%     \Term_{k\text{-}\Alg}(X_1, \ldots, X_n) \longrightarrow \sfrac{k[X_1, \ldots, X_m]}{(p_1, \ldots, p_m)}
-%   \]
-% \end{proposition}
-% \begin{proof}
-%   In $\widehat{k\text{-}\Alg_{fp}}$ we define the type $\Term_{\R\text{-}\Alg} \in \Ty(\nats)$ of terms of the theory of $\R$-algebras in a finite number of variables.
-%   This type is at $(M, n) \in \int_{k\text{-}\Alg}\nats$ given by the set $\Term_{M\text{-}\Alg}$ of terms of the theory of $M$-algebras in $n$ variables.
-%   % For a $\R$-algebra presentation given by $n,m \in \nats$, $p_1,\ldots, p_m \colon \R[X_1, \ldots, X_n]$ there are canonical projections onto quotients
-%   % \[
-%   %   \Term_{\R\text{-}\Alg}(X_1, \ldots, X_n) \longrightarrow \R[X_1, \ldots, X_n] \longrightarrow \sfrac{\R[X_1, \ldots, X_n]}{(p_1, \ldots, p_m)}.
-%   % \]
-%   By the construction in \Cref{sec:lifting-objects}, we lift this object to $\widehat{k\text{-}\Alg \times \square}$.
-%   This object satisfies the universal property of
-
-
-%   \todo[inline]{Show as follows: universal properties are actually quotient universal properties (w.r.t. well-behaved type of terms). This is characterized levelwise by lemma. The quotient in cubical sets characterized by splitting in set.}
-% \end{proof}
-
-
-% \section{An example where it works}
-
-% - distributive lattice
-
-
 \bibliography{../../util/literature}
 \bibliographystyle{plain}
-
-\todo[inline]{All cubical presheaf models use the constant cofibration classifier. We need in particular that truncation levels are levelwise}
-
-% \appendix
-
-% \section{Strict setoids}
-
-% We show that every strict setoid induces a fibrant cubical set.
-% This factors over the fact that the nerve of every groupoid is fibrant.
-
-% % consider realization nerve
-
-
-% \section{Quotient and witness nonsense}
-
-% When we compare the lifted quotient from \([\Alg*[k], \Set]\) and the canonical object in \([\Alg*[k], \cSet]\) there is yet another mismatch.
-% We can view both objects as set-quotient of the type of terms in a finite number of variables (since the theory of \(k\)-algebras is finitary).
-% The first is the quotient by a \emph{strict} relation, the second is the quotient by a \emph{homotopy} relation.
-% We still obtain a comparison map, since the homotopy relation implies the strict relation which implies equality in the strict quotient.
-% Hence, we obtain still that duality is equivalent to these two quotients coinciding.
-% Since both quotients are effective in their respective senses, this also forces a logical equivalence between the relations!
-% On points, this means that we can extract witnesses from the strict propositional truncation of the homotopy relation. 
-
-% The following example shows that we can have a choice function without being able to extract witnesses from the squashed relation.
-% Let \(A\) be a set and assume that \(\exists x.x\in A\) holds.
-% So it is inhabited in the strict sense.
-% We can construct a homotopy relation \(R\) on \(2\) by letting the points of \(R(i, 1 - i)\) be given by \(A\).
-% There is a strict version of the same relation, given by squashing the witnesses.
-% The strict quotient of \(2\) by this relation is \(1\), which clearly admits a choice function.
-
-% Suppose that this yields the homotopy quotient.
-% Then we get that \(1 \simeq (\star = \star) \simeq R(0, 1)\).
-% Hence, we extract a function \(1 \to A\), so for every inhabited set we can choose an element.
-
-% \todo[inline]{In essence: We want a quotient of a set (luckily) by what is a homotopy relation. We form the strict quotient by the strict truncation. For the result to be the quotient, the projection map has to be a surjection (so it splits on points) and effective (so truncation has to imply a witness)}
-
 
 \end{document}
