@@ -304,22 +304,13 @@ To apply these results later, we record the following lemma.
 \section{Separating homotopy and set-level quotients}\label{sec:cset-homotopy-quotient-vs-meta-quotient}
 
 In this preliminary section we only work with cubical sets, because the key issue already appears in this setting.
-
-We say a type \(A \in \Ty(\Gamma)\) is \emph{fiberwise constant} if for all \(I \in \square\) and \(\gamma \colon I \to \Gamma\) we have that \(A\gamma \in \Ty(I)\) is a constant presheaf.
-In particular, each constant presheaf is fiberwise constant.
-If \(A\) is fiberwise constant, we identify \(A\gamma \in \Ty(I)\) with its underlying set \((A\gamma)(\id_I)\).
-Note that if \(f \colon J \to I\) then \(A(\gamma f) = A\gamma\) since \(A(\gamma f)(\id_J) = (A\gamma)(f\id_J) = (A\gamma)(\id_I)\) since \(A\gamma\) is constant.
-
-The adjunction \(\pi_0 \dashv \Delta\) induced by left Kan extension and restriction along \(\square \to 1\) can be extended to a right adjoint on types.
-The fiberwise constant types are exactly those on the image of this right adjoint on types.
-Note that \(\pi_0\) is not a CwF morphism in general.
-Since \(\Delta\) is a CwF morphism, the right adjoint on types preserves context extension.
+Recall that \(\Delta \colon \Set \to \cSet\) is a CwF-homomorphism.
 
 \begin{lemma}\label{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits}
-  Let \(S \in \Ty_{\Set}(\pi_0\Gamma)\) a set, and \(R \in \Ty_{\Set}(\pi_0\Gamma.S.S)\) a strict proposition.
+  Let \(S \in \Ty_{\Set}(\Gamma)\) a set, and \(R \in \Ty_{\Set}(\Gamma.S.S)\) a strict proposition.
   \begin{enumerate}[label=(\arabic*)]
     \item\label{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:well-defined}
-      \(\Delta(S/R) \in \Ty_{\cSet}(\Gamma)\) is an hset with a map \(\Delta\varrho_{R} \colon \Delta S \to \Delta(S/R)\) whose kernel equals \(\Delta R\). 
+      \(\Delta(S/R) \in \Ty_{\cSet}(\Delta\Gamma)\) is an hset with a map \(\Delta\varrho_{R} \colon \Delta S \to \Delta(S/R)\) whose kernel equals \(\Delta R\). 
     \item\label{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:characterization}
       The type \(\Delta(S/R)\) is a homotopy quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\varrho_{R} \colon S \to S/R\) splits.
     \end{enumerate}  
@@ -327,37 +318,36 @@ Since \(\Delta\) is a CwF morphism, the right adjoint on types preserves context
 \begin{proof}
   \begin{description}[font=\normalfont,leftmargin=0cm]
   \item[\ref{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:well-defined}] 
-    We have \(S/R \in \Ty(\pi_0\Gamma)\) given by \((S/R)\gamma = S\gamma / R\gamma\), the quotient of the set \(S\gamma\) by the relation relating \(s_0, s_1 \in S\gamma\) exactly if \(\star \in R(\gamma, s_0, s_1)\).
+    We have \(S/R \in \Ty(\Gamma)\) given by \((S/R)\gamma = S\gamma / R\gamma\), the quotient of the set \(S\gamma\) by the relation relating \(s_0, s_1 \in S\gamma\) exactly if \(\star \in R(\gamma, s_0, s_1)\).
     This type is equipped with a function \(\varrho_R \colon S \to S/R\) and in the context with \(s_0, s_1 \colon S\) a logical equivalence \(R(s_0, s_1) \leftrightarrow (s_0 =_S s_1)\).
 
     Applying \(\Delta\), we obtain the desired objects in \(\cSet\).
     Since \(\Delta(S/R)\) is fiberwise constant, we have in the context with \(s_0, s_1 \colon S\) that \((s_0 \simeq s_1) \leftrightarrow (s_0 =_S s_1)\) and thus \((s_0 \simeq s_1) \leftrightarrow \Delta R(s_0, s_1)\).
-  
-    % said differently: the given object is th coequalizer in the slice of set. Delta preserves this colimit. In the topos PSh([]), we can then pull back this epi.
-    % since (Delta S) -> (Delta S)^I is iso, we get that evaluation at the two endpoints agree
   \item[\ref{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:characterization}] % we can reduce to I = [0] if every object in \square admits a map from [0].
     By \cite[Theorem 18.2.3]{rijke2025intro} the map \(\Delta \varrho_{R} \colon \Delta S \to \Delta(S/R)\) is the homotopy quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\Delta(S/R)\) is an hset, \((s_0 \simeq s_1) \leftrightarrow \Delta R(s_0, s_1)\), and \(\Delta \varrho_{R}\) is surjective.
     The first two statements hold by construction.
     If \(\varrho_R\) splits, then so does \(\Delta \varrho_{R} = \Delta \varrho_{R}\), and is therefore surjective.
 
     Hence, to show the converse assume that \(\Delta \varrho_{R}\) has the universal property of the homotopy quotient.
-    We define a type \(Q \in \Ty_{\cSet}(\Gamma)\) at \((I, \gamma) \in \int\Gamma\) by
+    We define a type \(Q \in \Ty_{\cSet}(\Delta\Gamma)\) at \((I, \gamma) \in \int\Delta\Gamma\) by
     \[
-      Q(I, \gamma) \coloneqq \set{ s \in {(S[\gamma])}^{|I|} \mid \text{ \(R[\gamma](si_0, si_1)\) if \(i_0 \leq i_1\) } }.
+      Q(I, \gamma) \coloneqq \set{ s \in {(S\gamma)}^{|I|} \mid \text{ \(R\gamma(si_0, si_1)\) if \(i_0 \leq i_1\) } }.
     \]
-    % This type can be described in terms of the nerve of a fibration fibered in groupoid over the discrete groupoid \(\pi_0\Gamma\) where the fiber over \([\gamma] \in \Gamma\) is the groupoid with objects \(S[\gamma]\) and exactly one morphism between related elements.
-    This is a fibrant family of types: If \(\gamma \in \Gamma(I \times [1])\), \(u_0 \in Q\gamma(I \times 0)\), \(\varphi \in \Phi(I)\), and \(u_f \in Q\gamma(J \times [1])\) for all \(f \colon J \to I\) with \(\varphi f = \top\), obeying the usual coherences.
-    We define the family \(\overline u \in Q\gamma \subseteq {(S[\gamma])}^{|I \times [1]|}\).
-    We are given a family \(u_0 \in Q\gamma(I \times 0) \subseteq {(S[\gamma])}^{|I|}\) (because \([\gamma f] = \gamma\)).
-    Furthermore, for each \(i \colon [0] \to I\) with \(\varphi i = \top\) we have \(u_i\) corresponding to some element of \(S[\gamma]\).
+    This is a fibrant family of types: If \(\gamma \in \Delta\Gamma(I \times [1]) = \Gamma\), \(u_0 \in Q\gamma(I \times 0)\), \(\varphi \in \Phi(I)\), and \(u_f \in Q\gamma(J \times [1])\) for all \(f \colon J \to I\) with \(\varphi f = \top\), obeying the usual coherences.
+    We define the family \(\overline u \in Q\gamma \subseteq {(S\gamma)}^{|I \times [1]|}\).
+    We are given a family \(u_0 \in Q\gamma(I \times 0) \subseteq {(S\gamma)}^{|I|}\).
+    Furthermore, for each \(i \colon [0] \to I\) with \(\varphi i = \top\) we have \(u_i\) corresponding to some element of \(S\gamma\).
     Hence, we set \(\overline u(i, 0) \coloneqq u_0(i)\), \(\overline u(i, 1) \coloneqq u_i\) if \(\varphi i = \top\), and \(\overline u(i, 1) \coloneqq \overline u(i, 0)\) otherwise.
 
-    There is an obvious map \(q \colon \Delta S \to Q\) given at \((I, \gamma) \in \int\Gamma\) by sending \(s \in (\Delta S)(I, \gamma) = S[\gamma]\) to the constant family.
+    There is an obvious map \(q \colon \Delta S \to Q\) given at \((I, \gamma) \in \int\Gamma\) by sending \(s \in (\Delta S)(I, \gamma) = S\gamma\) to the constant family.
     Furthermore, there is a map \(R(s_0, s_1) \to (qs_0 \simeq_{Q} qs_1)\).
-    At \((I, \gamma) \in \int\Gamma\) for \(s_0, s_1 \in S[\gamma]\) related by \(R[\gamma]\), we have to give a family in \(S[\gamma]\) indexed by \(|I \times [1]|\) which we define by \(s_e\) at \((i, e) \in I \times [1]\).
+    At \((I, \gamma) \in \int\Gamma\) for \(s_0, s_1 \in S\gamma\) related by \(R\gamma\), we have to give a family in \(S\gamma\) indexed by \(|I \times [1]|\) which we define by \(s_e\) at \((i, e) \in I \times [1]\).
 
-    Hence, we obtain, by the universal property of the quotient, a map \(\overline q \colon \Delta(S/R) \to Q\) with a homotopy \(H \colon \overline q \circ \Delta\varrho_R \sim q\).
-    \todo[inline]{Are we choosing reps here? I think we only apply this in the empty context, so we can get away with the simpler version}
+    Hence, we obtain, by the universal property of the homotopy quotient, a map \(\overline q \colon \Delta(S/R) \to Q\) with a homotopy \(H \colon \overline q \circ \Delta\varrho_R \sim q\).
+    Now we construct for each \(\gamma \in \Gamma\) a splitting.
+    We have \(\overline{q}_{([0], \gamma)} \colon S/R \to S\) since the points of \(Q\) are given by \(S\).
+    Furthermore, for \(s \in S\gamma\) we have a path \(H(\gamma, s) \in Q([1], \gamma\pi_1) \subseteq {(S\gamma)}^{|[1]|}\) with \(H(\gamma, s)(0) = (\overline{q}_{([0], \gamma)} \circ \varrho_R\gamma)(s)\) and \(H(\gamma, s)(1) = s\), i.e., that these two elements are related by \(R\gamma\).
+    Hence, \(\overline{q}_{([0], \gamma)}\) is up to \(R\) a retraction of \(\varrho_R\gamma\) implying that \(\varrho_R\gamma\) splits. \qedhere
   \end{description}
 \end{proof}
 
@@ -370,9 +360,9 @@ Then, the quotient in \(\cSet\) will be the one by the relation truncated to an 
 The following lemma can be summarized as: strict quotients model homotopy quotients by a truncated relations exactly if they have choice and provide witnesses for the relation.
 
 \begin{corollary}\label{prop:set-relevant-quotient-is-homotopy-quotient-iff-surjection-splits-and-witnesses-exist}
-  For \(S \in \Ty_{\Set}(\pi_0\Gamma)\) a type, and \(R \in \Ty_{\Set}(\pi_0\Gamma.S.S)\) the following are equivalent:
+  For \(S \in \Ty_{\Set}(\Gamma)\) a type, and \(R \in \Ty_{\Set}(\Gamma.S.S)\) the following are equivalent:
   \begin{enumerate}[label=(\arabic*)]
-    \item The type \(\Delta(S/\trunc*{R})\) is a homotopy quotient of \(\Delta S\) by \(\trunc{\Delta R} \in \Ty_{\cSet}(\Gamma.\Delta S. \Delta S)\).
+    \item The type \(\Delta(S/\trunc*{R})\) is a homotopy quotient of \(\Delta S\) by \(\trunc{\Delta R} \in \Ty_{\cSet}(\Delta\Gamma.\Delta S. \Delta S)\).
     \item The map \(S \to S/\trunc*{R}\) in \(\Set\) splits, and there is a map \(\trunc*{R} \to R\).
   \end{enumerate}
 \end{corollary}
@@ -382,7 +372,7 @@ The following lemma can be summarized as: strict quotients model homotopy quotie
   
   First, there always exists a map \(\trunc{\Delta R} \to \Delta\trunc*{R}\) since the latter is a also a homotopy proposition with a map from \(R\).
   They are equivalent exactly if there is a map \(\Delta\trunc*{R} \to \trunc{\Delta R}\).
-  From the existence property of the truncation, such a map yields a map on points \(\trunc*{R} \to R\).
+  From the existence property of the truncation (c.f.~\cite[Section~8.3]{draft}), such a map yields a map on points \(\trunc*{R} \to R\).
   Conversly, if we have such a map we can even construct a map \(\Delta\trunc*{R} \to \Delta R\).
 \end{proof}
 \todo[inline,color=green]{The above is in essence an effectiveness condition. I avoided the name to since it clashes with other uses. In fact, w.r.t. the strict relation, the strict quotient \emph{is} effective.}
@@ -394,11 +384,11 @@ The following lemma can be summarized as: strict quotients model homotopy quotie
 We denote by \(\Term_{\Alg[k]}(X_1, \ldots, X_n)\) the set of first-order terms for the theory of \(k\)-algebras that contain additional variables from the set \(\set{X_1, \ldots, X_n}\).
 
 \begin{definition}
-  We say \emph{f.p. \(k\)-algebras have choice} if for all \(n, m \in \nats\) and \(p_1, \ldots, p_m \in k[X_1, \ldots, X_n]\) the following canonical surjection splits:
+  We say \emph{f.p.~\(k\)-algebras have choice} if for all \(n, m \in \nats\) and \(p_1, \ldots, p_m \in k[X_1, \ldots, X_n]\) the following canonical surjection splits:
   \[
     \eta_{(p_1, \ldots, p_n)} \colon \Term_{\Alg[k]}(X_1, \ldots, X_n) \longrightarrow \sfrac{k[X_1, \ldots, X_n]}{(p_1, \ldots, p_m)}.
   \]
-  We say \emph{f.p. \(k\)-algebras have witnesses} if for all \(n, m \in \nats\), \(p_1, \ldots, p_m \in k[X_1, \ldots, X_n]\), \(t_1, t_2 \in \Term_{\Alg[k]}(X_1, \ldots, X_n)\) there is a function into the set of derivations that \(t_1, t_2\) are equivalent in the theory of \(k\)-algebras modulo \(p_1 \doteq 0, \ldots, p_m \doteq 0\)
+  We say \emph{f.p.~\(k\)-algebras have witnesses} if for all \(n, m \in \nats\), \(p_1, \ldots, p_m \in k[X_1, \ldots, X_n]\), \(t_1, t_2 \in \Term_{\Alg[k]}(X_1, \ldots, X_n)\) there is a function into the set of derivations that \(t_1, t_2\) are equivalent in the theory of \(k\)-algebras modulo \(p_1 \doteq 0, \ldots, p_m \doteq 0\)
   \[
     \set{\star \mid \eta t_1 = \eta t_2 } \longrightarrow \set{ p_1 \doteq 0, \ldots, p_m \doteq 0 \vdash t_1 \doteq t_2 }. 
   \]
