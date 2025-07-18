@@ -319,7 +319,7 @@ Since \(\Delta\) is a CwF morphism, the right adjoint on types preserves context
   Let \(S \in \Ty_{\Set}(\pi_0\Gamma)\) a set, and \(R \in \Ty_{\Set}(\pi_0\Gamma.S.S)\) a strict proposition.
   \begin{enumerate}[label=(\arabic*)]
     \item\label{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:well-defined}
-      \(\Delta(S/R) \in \Ty_{\cSet}(\Gamma)\) is an hset with a map \(\varrho_{\Delta R} \colon \Delta S \to \Delta(S/R)\) whose kernel equals \(\Delta R\). 
+      \(\Delta(S/R) \in \Ty_{\cSet}(\Gamma)\) is an hset with a map \(\Delta\varrho_{R} \colon \Delta S \to \Delta(S/R)\) whose kernel equals \(\Delta R\). 
     \item\label{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:characterization}
       The type \(\Delta(S/R)\) is a homotopy quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\varrho_{R} \colon S \to S/R\) splits.
     \end{enumerate}  
@@ -336,13 +336,28 @@ Since \(\Delta\) is a CwF morphism, the right adjoint on types preserves context
     % said differently: the given object is th coequalizer in the slice of set. Delta preserves this colimit. In the topos PSh([]), we can then pull back this epi.
     % since (Delta S) -> (Delta S)^I is iso, we get that evaluation at the two endpoints agree
   \item[\ref{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:characterization}] % we can reduce to I = [0] if every object in \square admits a map from [0].
-    By \cite[Theorem 18.2.3]{rijke2025intro} the map \(\varrho_{\Delta R} \colon \Delta S \to \Delta(S/R)\) is the homotopy quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\Delta(S/R)\) is an hset, \((s_0 \simeq s_1) \leftrightarrow \Delta R(s_0, s_1)\), and \(\varrho_{\Delta R}\) is surjective.
+    By \cite[Theorem 18.2.3]{rijke2025intro} the map \(\Delta \varrho_{R} \colon \Delta S \to \Delta(S/R)\) is the homotopy quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\Delta(S/R)\) is an hset, \((s_0 \simeq s_1) \leftrightarrow \Delta R(s_0, s_1)\), and \(\Delta \varrho_{R}\) is surjective.
     The first two statements hold by construction.
-    If \(\varrho_R\) splits, then so does \(\varrho_{\Delta R} = \Delta \varrho_{R}\), and is therefore surjective.
+    If \(\varrho_R\) splits, then so does \(\Delta \varrho_{R} = \Delta \varrho_{R}\), and is therefore surjective.
 
-    Hence, to show the converse assume that \(\varrho_{\Delta R}\) has the universal property of the homotopy quotient.
+    Hence, to show the converse assume that \(\Delta \varrho_{R}\) has the universal property of the homotopy quotient.
+    We define a type \(Q \in \Ty_{\cSet}(\Gamma)\) at \((I, \gamma) \in \int\Gamma\) by
+    \[
+      Q(I, \gamma) \coloneqq \set{ s \in {(S[\gamma])}^{|I|} \mid \text{ \(R[\gamma](si_0, si_1)\) if \(i_0 \leq i_1\) } }.
+    \]
+    % This type can be described in terms of the nerve of a fibration fibered in groupoid over the discrete groupoid \(\pi_0\Gamma\) where the fiber over \([\gamma] \in \Gamma\) is the groupoid with objects \(S[\gamma]\) and exactly one morphism between related elements.
+    This is a fibrant family of types: If \(\gamma \in \Gamma(I \times [1])\), \(u_0 \in Q\gamma(I \times 0)\), \(\varphi \in \Phi(I)\), and \(u_f \in Q\gamma(J \times [1])\) for all \(f \colon J \to I\) with \(\varphi f = \top\), obeying the usual coherences.
+    We define the family \(\overline u \in Q\gamma \subseteq {(S[\gamma])}^{|I \times [1]|}\).
+    We are given a family \(u_0 \in Q\gamma(I \times 0) \subseteq {(S[\gamma])}^{|I|}\) (because \([\gamma f] = \gamma\)).
+    Furthermore, for each \(i \colon [0] \to I\) with \(\varphi i = \top\) we have \(u_i\) corresponding to some element of \(S[\gamma]\).
+    Hence, we set \(\overline u(i, 0) \coloneqq u_0(i)\), \(\overline u(i, 1) \coloneqq u_i\) if \(\varphi i = \top\), and \(\overline u(i, 1) \coloneqq \overline u(i, 0)\) otherwise.
 
-    \todo[inline]{Can we build the quotient as image? By the work in the paper, we can exploit a truncation with the existence property. Alternatively, build by hand/as nerve of groupoid coming from a (strict) setoid.}
+    There is an obvious map \(q \colon \Delta S \to Q\) given at \((I, \gamma) \in \int\Gamma\) by sending \(s \in (\Delta S)(I, \gamma) = S[\gamma]\) to the constant family.
+    Furthermore, there is a map \(R(s_0, s_1) \to (qs_0 \simeq_{Q} qs_1)\).
+    At \((I, \gamma) \in \int\Gamma\) for \(s_0, s_1 \in S[\gamma]\) related by \(R[\gamma]\), we have to give a family in \(S[\gamma]\) indexed by \(|I \times [1]|\) which we define by \(s_e\) at \((i, e) \in I \times [1]\).
+
+    Hence, we obtain, by the universal property of the quotient, a map \(\overline q \colon \Delta(S/R) \to Q\) with a homotopy \(H \colon \overline q \circ \Delta\varrho_R \sim q\).
+    \todo[inline]{Are we choosing reps here? I think we only apply this in the empty context, so we can get away with the simpler version}
   \end{description}
 \end{proof}
 
