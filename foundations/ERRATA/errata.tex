@@ -9,7 +9,9 @@
 \usepackage{url}
 \usepackage{verbatim}
 \usepackage{latexsym}
-\usepackage{amssymb,amstext,amsmath,mathtools,amsthm}
+\usepackage{amssymb,amstext,amsmath,mathtools,amsthm,thmtools}
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
 \usepackage{xfrac}
 \usepackage{enumitem}
 \usepackage{epsf}
@@ -31,9 +33,6 @@
 \usepackage{float}
 \floatstyle{boxed}
 \restylefloat{figure}
-
-\usepackage{hyperref}
-\usepackage{cleveref}
 
 %%%%%%%%%
 \def\oge{\leavevmode\raise
@@ -108,6 +107,8 @@
 \newcommand\Term{\mathsf{Term}}
 \newcommand\Fib{\mathsf{Fib}}
 \newcommand\isContr{\mathsf{isContr}}
+
+\newcommand\bbT{\mathbb{T}}
 
 \DeclareDocumentCommand\Alg{so}{\IfNoValueTF{#2}{\mathsf{Alg}}{#2\textsf{-}\mathsf{Alg}}\IfBooleanT{#1}{_{fp}}}
 
@@ -373,10 +374,10 @@ The following lemma can be summarized as: strict quotients model homotopy quotie
   By \Cref{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits}, the map \(\Delta S \to \Delta(S/\trunc*{R})\) is a homotopy quotient of \(\Delta S\) by \(\Delta\trunc*{R}\) exactly if \(S \to S/\trunc*{R}\) splits.
   Hence, for the claim, it suffices to show that \(\trunc{\Delta R}\) and \(\Delta\trunc*{R}\) coincide exactly if there is a map \(\trunc*{R} \to R\).
   
-  First, there always exists a map \(\trunc{\Delta R} \to \Delta\trunc*{R}\) since the latter is a also a homotopy proposition with a map from \(R\).
+  First, there always exists a map \(\trunc{\Delta R} \to \Delta\trunc*{R}\) since the latter is also a homotopy proposition with a map from \(R\).
   They are equivalent exactly if there is a map \(\Delta\trunc*{R} \to \trunc{\Delta R}\).
   From the existence property of the truncation (c.f.~\cite[Section~8.3]{draft}), such a map yields a map on points \(\trunc*{R} \to R\).
-  Conversly, if we have such a map we can even construct a map \(\Delta\trunc*{R} \to \Delta R\).
+  Conversely, if we have such a map we can even construct a map \(\Delta\trunc*{R} \to \Delta R\).
 \end{proof}
 \todo[inline,color=green]{The above is in essence an effectiveness condition. I avoided the name to since it clashes with other uses. In fact, w.r.t. the strict relation, the strict quotient \emph{is} effective.}
 
@@ -397,23 +398,24 @@ We denote by \(\Term_{\Alg[k]}(X_1, \ldots, X_n)\) the set of first-order terms 
   \]
 \end{definition}
 \begin{remark}\label{rem:choice-and-witness-property-descend}
-  If we have a f.p.~\(k\)-algebra \(M\) presented by \((n, m, p)\), then we can choose for each \(m \in M\) a term representation \(t_m \in \Term_{\Alg[k]}(X_1, \ldots, X_n)\) for it.
-  We can consider the projection \(\underline{\cdot} \colon \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i) \to \Term_{\Alg[M]}(Y_1, \ldots, Y_i)\) that sends \(X_i\) to the corresponding element of \(M\).
-  There is a map \(c_M \colon \Term_{\Alg[M]}(Y_1, \ldots, Y_i) \to \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i)\) given by replacing all \(m \in M\) in a term by \(t_m\).
-  We have that \(p_1, \ldots, p_m \vdash \underline{t_m} \doteq m\) and therefore that \(p_1, \ldots, p_M \vdash \underline{c_M s} \doteq s\)
+  If we have a \(k\)-algebra \(M\) presented by \(p_1, \ldots, p_m \in \Term_{\Alg[k]}(X_1, \ldots, X_n)\), then we can choose for each \(m \in M\) a term representation \(t_m \in \Term_{\Alg[k]}(X_1, \ldots, X_n)\) for it.
+  We can consider the projection \(\eta \colon \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i) \to \Term_{\Alg[M]}(Y_1, \ldots, Y_i)\) that sends \(X_i\) to the corresponding element of \(M\).
+  There is a map in the other direction \(\overline\cdot \colon \Term_{\Alg[M]}(Y_1, \ldots, Y_i) \to \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i)\) given by replacing all \(m \in M\) in a term by \(t_m\).
+  We have that \(p_1 \doteq 0, \ldots, p_m \doteq 0 \vdash \eta(t_m) \doteq m\) and therefore that \(p_1 \doteq 0, \ldots, p_M \doteq 0 \vdash \eta(\overline{t}) \doteq t\) for all \(t \in \Term_{\Alg[M]}(Y_1, \ldots, Y_i)\)
   
-  Using \(c_M\), we can lift \(M\)-algebra presentations to \(k\)-algebra presentations.
-  Thus, if \(N\) is an \(M\)-algebra presented by \((i, j, q)\), then from the composite
+  Hence, we can lift \(M\)-algebra presentations to \(k\)-algebra presentations.
+  Thus, if \(N\) is an \(M\)-algebra presented by \(q_1, \ldots, q_j \in \Term_{\Alg[M]}(Y_1, \ldots, Y_i)\) we can obtain representatives \(\overline{q_1}, \ldots, \overline{q_j} \in \Term_{\Alg[k]}(X_1, \ldots, X_m, Y_1, \ldots, Y_i)\).
+  Then from the composite
   \[
-    \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i) \longrightarrow \Term_{\Alg[M]}(Y_1, \ldots, Y_i) \longrightarrow \frac{k[x_1, \ldots, X_m, Y_1, \ldots, Y_i]}{(p_1, \ldots, p_n, q_1, \ldots, q_j)} \cong N
+    \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i) \longrightarrow \Term_{\Alg[M]}(Y_1, \ldots, Y_i) \longrightarrow \frac{k[x_1, \ldots, X_m, Y_1, \ldots, Y_i]}{(p_1, \ldots, p_n, \overline{q_1}, \ldots, \overline{q_j})} \cong N
   \]
   splitting, we obtain that the second map splits as-well.
   Lastly, let \(t_0, t_1 \in \Term_{\Alg[M]}(Y_1, \ldots, Y_i)\) describing equal elements in \(N\).
-  We obtain a derivation that \(\set{p_\ell \doteq 0}_\ell, \set{q_\ell \doteq 0}_\ell \vdash c_Mt_0 \doteq c_M t_1\).
-  From such a derivation we obtain one \(\set{q_\ell \doteq 0}_\ell \vdash \underline{c_Mt_0} \doteq \underline{c_Mt_1}\) since the additional equations hold in the theory of \(M\)-algebras.
-  From \(\set{q_\ell \doteq 0}_\ell \vdash \underline{c_Mt_\ell} \doteq t_\ell\) for \(\ell \in \set{0,1}\) we obtain the final derivation.
+  We obtain a derivation that \(\set{p_\ell \doteq 0}_\ell, \set{\overline{q_\ell} \doteq 0}_\ell \vdash \overline{t_0} \doteq \overline{t_1}\).
+  Hence, we obtain that \(\set{\eta(p_\ell) \doteq 0}_\ell, \set{\eta(\overline{q_\ell}) \doteq 0}_\ell \vdash \eta(\overline{t_0}) \doteq \eta(\overline{t_1})\) in the theory of \(M\)-algebras.
+  Since \(\eta(p_\ell) \doteq 0\), \(\eta(\overline{q_\ell}) = q_\ell\), and \(\eta(\overline{t_i}) \doteq t_i\) are also derivable, we obtain \(\set{q_\ell \doteq t_1}_\ell \vdash t_0 \doteq t_1\).
 \end{remark}
-\todo[inline]{The above is a by handwavy; recheck that the transformation of derivations is possible}
+\todo[inline,color=yellow]{The above is a by handwavy; In the appendix is a more detailed very direct argument. I am not sure if there is a better argument/whether we should elaborate.}
 
 In a constructive meta-theory it cannot be the case that f.p. \(k\)-algebras have choice for all \(k\).
 The following is an adaptation of an argument by Diaconescu~\cite{diaconescu1975choice} to derive a constructive taboo from this statement.
@@ -525,8 +527,9 @@ Exploiting results from computational algebra, the same holds true for quotients
 \end{proof}
 
 
-
 \section{Duality in the strictified model}\label{sec:duality-in-model-of-modal-types}
+
+
 
 \todo[inline]{Explain this as follows: The above taboo is bad in general. We can isolate cases for \(k\) where this is actually the case (Gröbner bases!). Sadly, the converse does not hold in general since levelwise sections need not be coherent. In the strictified model we get an if-and-only-if}
 
@@ -557,5 +560,50 @@ This makes the construction independent of the existence of quotients in the met
 
 \bibliography{../../util/literature}
 \bibliographystyle{plain}
+
+\appendix
+
+\section{Choice and witness properties are hereditary}
+
+We work in a slightly more general setting, to simplify notation.
+Let \(\bbT\) be an algebraic theory.
+A presentation of a model is a set of equations \(\ell_1, r_1, \ldots \in \Term_{\bbT}(X_1, \ldots)\).
+The presented model is \(\Term_{\bbT}(X_1, \ldots) / \sim\) where \(t_0 \sim t_1\) exactly if \(\bbT, \ell_1 \doteq r_1 \vdash t_0 \doteq t_1\).
+A model is (finitely) presented if it is isomorphic to a model generated by a presentation (in finitely many variables and equations).
+\(\bbT\) has the choice property if the projection onto the presented model splits for all models.
+\(\bbT\) has the witness property if from the relation \(\sim\) we can obtain derivations of equality.
+
+If \(M\) is a \(\bbT\)-model define the theory \(\bbT/M\) as \(\bbT\) adjoint constants \(c_m\) for \(m \in M\), and equations \(f(c_{m_1}, \ldots) \doteq c_{f(m_1, \ldots)}\).
+We show that if \(\bbT\) has choice and witnesses, then so does \(\bbT/M\) for a finitely presented \(M\).
+% Note that for any term \(t \in \Term_{\bbT/M}(\emptyset)\) we have a proof \(\bbT/M \vdash t \doteq c_{[\![t]\!]^M}\) by following the inductive structure of the term.
+
+Let \(M\) be a \(\bbT\)-model presented by \(p_1, q_1, \ldots, q_m, p_m \in \Term_{\bbT}(X_1, \ldots, X_n)\).
+By the choice property, there is a function \(\overline{\cdot} \colon \Term_{\bbT/M}(Y_1, \ldots, Y_i) \to \Term_{\bbT}(X_1, \ldots, X_n, Y_1, \ldots, Y_i)\) replacing \(c_m\) by a chosen \(t_m \in \Term_{\bbT}(X_1, \ldots, X_n)\).
+There is also a function \(\eta \colon \Term_{\bbT}(X_1, \ldots, X_n, Y_1, \ldots, Y_i) \to \Term_{\bbT/M}(Y_1, \ldots, Y_i)\) defined by \(\eta(Y_k) \coloneqq Y_k\) and \(\eta(X_k) \coloneqq c_{[\![X_k]\!]^M}\) where \([\![X_k]\!]^M\) denotes the image of the term \(X_k \in \Term_{\bbT}(X_1, \ldots, X_n)\) in \(M\).
+We have that \(\bbT/M \vdash \eta(t_m) \doteq c_m\) by following the inductive structure of \(t_m\), since \(t_m\) was chosen using the section to \([\![\cdot]\!] \colon \Term_{\bbT}(X_1, \ldots, X_n) \to M\).
+From that we conclude that \(\bbT/M \vdash \eta(\overline{t}) \doteq t\).
+
+Suppose we have \(N\) a finitely presented \(\bbT/M\)-model.
+This means we have \(i, j \in \nats\) with equations \(\ell_1, r_1, \ldots, \ell_j, r_j \in \Term_{\bbT/M}(Y_1, \ldots, Y_i)\).
+By the above we obtain lifts \(\overline\ell_1, \overline r_1, \ldots \in \Term_{\bbT/M}(X_1, \ldots, X_n, Y_1, \ldots, Y_i)\).
+These allow us to view \(N\) as a finitely presented \(\bbT\)-model.
+Hence, we obtain a choice function \(N \to \Term_{\bbT}(X_1, \ldots, X_n, Y_1, \ldots, Y_i) \xrightarrow{\eta} \Term_{\bbT/M}(Y_1, \ldots, Y_i)\).
+
+We show the witness property for \(\bbT/M\).
+Let \(t_0, t_1 \in \Term_{\bbT/M}(Y_1, \ldots, Y_n)\) with equal interpretations in \(N\).
+As above, we obtain lifts \(\overline t_0, \overline t_1 \in \Term_{\bbT}(X_1, \ldots, X_n, Y_1, \ldots, Y_n)\).
+Since the lifts still coincide when interpreted in \(N\), we obtain a derivation
+\[
+  \bbT, p_1 \doteq q_1, \ldots, \overline\ell_1 \doteq \overline r_1, \ldots \vdash \overline t_0 \doteq \overline  t_1.
+\]
+Hence, we obtain a derivation
+\[
+  \bbT \cup \set{ c_{[\![X_k]\!]} }_{k \leq n}, \eta(p_1) \doteq \eta(q_1), \ldots, \eta(\overline \ell_1) \doteq \eta (\overline r_1), \ldots \vdash \eta (\overline t_0) \doteq \eta (\overline t_1).
+\]
+Over the larger theory \(\bbT/M \supseteq \bbT \cup \set{ c_{[\![X_k]\!]} }_{k \leq n}\) we have that \(t_i \doteq \eta(\overline{t}_i)\).
+Hence, it suffices to show that \(\bbT/M, \ell_1 \doteq r_1, \ldots\) proves the additional assumptions.
+From \(\bbT/M \vdash \eta(p_k) \doteq c_{[\![p_k]\!]} = c_{[\![q_k]\!]} \doteq \eta(q_k)\) it follows that the first assumptions are redundant.
+From \(\bbT/M, \ell_k \doteq r_k \vdash \eta(\overline\ell_k) \doteq \ell_k \doteq r_k \doteq \eta(\overline{r}_k)\) it follows that the second assumptions are redundant.
+
 
 \end{document}
