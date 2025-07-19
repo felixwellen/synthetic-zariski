@@ -36,9 +36,9 @@
 
 %%%%%%%%%
 \def\oge{\leavevmode\raise
-.3ex\hbox{$\scriptscriptstyle\langle\!\langle\,$}}
+.3ex\hbox{\(\scriptscriptstyle\langle\!\langle\,\)}}
 \def\feg{\leavevmode\raise
-.3ex\hbox{$\scriptscriptstyle\,\rangle\!\rangle$}}
+.3ex\hbox{\(\scriptscriptstyle\,\rangle\!\rangle\)}}
 
 %%%%%%%%%
 
@@ -167,7 +167,7 @@ Since we work with strict equality and paths, we denote the latter by \(\simeq\)
 We only ever consider propositional truncations.
 For \(A \in \Ty_{\cSet}(\Gamma)\) we denote the usual truncation by \(\trunc{A} \in \Ty_{\cSet}(\Gamma)\).
 Presheaf models also support in general a \emph{strict} truncation.
-For \(A \in \Ty_{\widehat{C}}(\Gamma)\) we write \(\trunc*{S} \in \Ty_{\widehat{C}}(\Gamma)\) for the strict truncation given by \(\trunc*{S}\gamma \coloneqq \set{ \star \mid \exists x. x \in S\gamma }\).
+For \(A \in \Ty_{[C^{\op}, \Set]}(\Gamma)\) we write \(\trunc*{S} \in \Ty_{[C^{\op}, \Set]}(\Gamma)\) for the strict truncation given by \(\trunc*{S}\gamma \coloneqq \set{ \star \mid \exists x. x \in S\gamma }\).
 In the model of \HoTT{}, this is always a fibrant type, and a proposition.
 
 
@@ -216,14 +216,14 @@ The claim for an internal natural number follows similarly by induction internal
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  We construct a proposition $PA \in \Ty(\Gamma)$ with a map $A \to PA$.
-  We have a canonical inclusion of objects $i \colon C_0 \hookrightarrow C$.
-  Hence, we obtain a CwF-morphism by restriction $i^* \colon [C^{\op}, \cSet] \to [C^{\op}_0, \cSet]$.
-  This CwF-morphism has a right adjoint on types $i_{*,\Gamma} \colon \Ty_{[C^{\op}_0, \cSet]}(i^*\Gamma) \to \Ty_{[C^{\op}, \cSet]}(\Gamma)$ which is easily seen to preserve fibrant types and propositions.
+  We construct a proposition \(PA \in \Ty(\Gamma)\) with a map \(A \to PA\).
+  We have a canonical inclusion of objects \(i \colon C_0 \hookrightarrow C\).
+  Hence, we obtain a CwF-morphism by restriction \(i^* \colon [C^{\op}, \cSet] \to [C^{\op}_0, \cSet]\).
+  This CwF-morphism has a right adjoint on types \(i_{*,\Gamma} \colon \Ty_{[C^{\op}_0, \cSet]}(i^*\Gamma) \to \Ty_{[C^{\op}, \cSet]}(\Gamma)\) which is easily seen to preserve fibrant types and propositions.
 
   The truncation operation in \([C^{\op}, \cSet]\) is given by applying the truncation operation of \(\cSet\) levelwise.
-  We define $PA \coloneqq i_{*,\Gamma}\trunc{i^*A}$.
-  Since we have $\eta_{i^*A} \colon i^* A \to \trunc{i^*A}$ we obtain $i_{*,\Gamma}\eta \colon i_{*,\Gamma}i^*A \to i_{*,\Gamma}\trunc{i^*A}$ for which precomposition with the unit of the dependent right adjoint yields the desired map $A \to PA$.
+  We define \(PA \coloneqq i_{*,\Gamma}\trunc{i^*A}\).
+  Since we have \(\eta_{i^*A} \colon i^* A \to \trunc{i^*A}\) we obtain \(i_{*,\Gamma}\eta \colon i_{*,\Gamma}i^*A \to i_{*,\Gamma}\trunc{i^*A}\) for which precomposition with the unit of the dependent right adjoint yields the desired map \(A \to PA\).
   Concretely, the constructed type is given by
   \[
     (PA)(I, \gamma) = \prod_{f \colon J \to I} \trunc{A(J, \gamma f)}.
@@ -424,32 +424,32 @@ The following is an adaptation of an argument by Diaconescu~\cite{diaconescu1975
   If for all \(k\) f.p. \(k\)-algebras have choice, then all propositions are decidable.
 \end{proposition}
 \begin{proof}
-  Following the techniques in~\cite{mines}, we can show that for any set $E$ and any ring $R$ the canonical map $E \to R[E]$ is injective.
+  Following the techniques in~\cite{mines}, we can show that for any set \(E\) and any ring \(R\) the canonical map \(E \to R[E]\) is injective.
 
-  Let $p$ be a proposition and $P \coloneqq \set{0,1} / \sim_p$.
-  We consider the base-ring $k \coloneqq \mathbb{F}_2[P + P]$.
-  By assumption, the map $\eta \colon \mathbb{F}_2[P + P] \to \mathbb{F}_2[P + P] / (\inl(0) - \inr(0))$ splits.
-  Denote the section by $s : \mathbb{F}_2[P + P] / (\inl(0) - \inr(0)) \to \mathbb{F}_2[P + P]$.
+  Let \(p\) be a proposition and \(P \coloneqq \set{0,1} / \sim_p\).
+  We consider the base-ring \(k \coloneqq \mathbb{F}_2[P + P]\).
+  By assumption, the map \(\eta \colon \mathbb{F}_2[P + P] \to \mathbb{F}_2[P + P] / (\inl(0) - \inr(0))\) splits.
+  Denote the section by \(s : \mathbb{F}_2[P + P] / (\inl(0) - \inr(0)) \to \mathbb{F}_2[P + P]\).
 
-  For $\inl(1) \in \mathbb{F}_2[P + P]$ we have that $\eta(\inl(1)) = \eta(s(\eta(\inl(1))))$ since s is a section of $\eta$.
-  Thus, there exists some $n \in \mathbb{F}_2$ with $\inl(1) - s(\eta(\inl(1))) = n(\inr(0) - \inr(1))$.
-  If $n = 0$ then we have $\inl(1) = s(\eta(\inl(1)))$.
-  If $n = 1$ then we have $\inl(1) + \inr(1) = \inr(0) + s(\eta(\inl(1)))$.
-  Since $\inl(i) \ne \inr(j)$ for all $i, j$ in $k$ (by injectivity of $P + P \hookrightarrow k$ and the same fact in $P + P$), we have that $\inr(1) = \inr(0)$.
-  Hence, $0 = 1$ in $P$ and therefore $p$ holds.
+  For \(\inl(1) \in \mathbb{F}_2[P + P]\) we have that \(\eta(\inl(1)) = \eta(s(\eta(\inl(1))))\) since s is a section of \(\eta\).
+  Thus, there exists some \(n \in \mathbb{F}_2\) with \(\inl(1) - s(\eta(\inl(1))) = n(\inr(0) - \inr(1))\).
+  If \(n = 0\) then we have \(\inl(1) = s(\eta(\inl(1)))\).
+  If \(n = 1\) then we have \(\inl(1) + \inr(1) = \inr(0) + s(\eta(\inl(1)))\).
+  Since \(\inl(i) \ne \inr(j)\) for all \(i, j\) in \(k\) (by injectivity of \(P + P \hookrightarrow k\) and the same fact in \(P + P\)), we have that \(\inr(1) = \inr(0)\).
+  Hence, \(0 = 1\) in \(P\) and therefore \(p\) holds.
 
-  Thus, we have $p$ or $\inl(1) = s(\eta(\inl(1)))$.
-  Similarly, we can show that $p$ or $\inr(1) = s(\eta(\inr(1)))$.
-  Our goal is to show $p$ or not $p$.
-  So suppose we are in the case in which $\inl(1) = s(\eta(\inl(1)))$ and $\inr(1) = s(\eta(\inr(1)))$.
-  We claim not $p$, so suppose that we have $p$ with the goal of a contradiction.
-  Since $p$ holds, we have that
+  Thus, we have \(p\) or \(\inl(1) = s(\eta(\inl(1)))\).
+  Similarly, we can show that \(p\) or \(\inr(1) = s(\eta(\inr(1)))\).
+  Our goal is to show \(p\) or not \(p\).
+  So suppose we are in the case in which \(\inl(1) = s(\eta(\inl(1)))\) and \(\inr(1) = s(\eta(\inr(1)))\).
+  We claim not \(p\), so suppose that we have \(p\) with the goal of a contradiction.
+  Since \(p\) holds, we have that
   \[
     \inl(1) = s(\eta(\inl(1))) = s(\eta(\inl(0))) = s(\eta(\inr(0))) = s(\eta(\inr(1))) = \inr(1).
   \]
-  This is a contradiction since $\inl(1) \ne \inr(1)$.
+  This is a contradiction since \(\inl(1) \ne \inr(1)\).
 \end{proof}
-\todo[inline,color=yellow]{Justify that we can take $n \in k$ not a polynomial, and that $a + b = c + d$ implies pairwise equality}
+\todo[inline,color=yellow]{Justify that we can take \(n \in k\) not a polynomial, and that \(a + b = c + d\) implies pairwise equality}
 
 The key issue is that the duality axiom, as claimed in the paper, implies the above.
 This means that without changing some basic definitions, we cannot expect to be able to derive the duality axiom in general.
@@ -513,14 +513,14 @@ Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\)
 
 The above implies that without changing basic definitions we have to at least limit ourselves to those \(k\) for which f.p. \(k\)-algebras have choice and witnesses.
 We record here a class of examples which have these properties.
-Recall that a field $k$ is \emph{discrete} if for all $u \in k$ we have $u = 0$ or $u$ that is invertible, which is equivalent to $k$ having decidable equality~\cite{mines}.
+Recall that a field \(k\) is \emph{discrete} if for all \(u \in k\) we have \(u = 0\) or \(u\) that is invertible, which is equivalent to \(k\) having decidable equality~\cite{mines}.
 Crucially, it does not include real, or complex numbers.
-In this case, we can construct $k[X_1, \ldots, X_n]$ as linear combinations of monomials with non-zero coefficients, so as a subset of $\Term_{\Alg[k]}(X_1, \ldots, X_n)$.
+In this case, we can construct \(k[X_1, \ldots, X_n]\) as linear combinations of monomials with non-zero coefficients, so as a subset of \(\Term_{\Alg[k]}(X_1, \ldots, X_n)\).
 Exploiting results from computational algebra, the same holds true for quotients by finitely generated ideals.
 
 \begin{lemma}\label{prop:good-base-rings-exist}
-  If $k$ is $\ints$ or $k$ is a discrete field, then f.p. \(k\)-algebras have choice and witnesses.
-  Furthermore, for every finitely generated ideal $I = (f_1, \ldots, f_n) \subseteq k[X_1, \ldots, X_n]$ the quotient $k[X_1,\ldots,X_n]/I$ can be constructed as a subset of the polynomial ring $k[X_1, \ldots, X_n]$.
+  If \(k\) is \(\ints\) or \(k\) is a discrete field, then f.p. \(k\)-algebras have choice and witnesses.
+  Furthermore, for every finitely generated ideal \(I = (f_1, \ldots, f_n) \subseteq k[X_1, \ldots, X_n]\) the quotient \(k[X_1,\ldots,X_n]/I\) can be constructed as a subset of the polynomial ring \(k[X_1, \ldots, X_n]\).
 \end{lemma}
 \begin{proof}
   \todo[inline,color=yellow]{via Gröbner basis. We can compute one from the ideal description, and obtain representatives for the classes via the multi-variate division algorithm. This allows us in to decide equality in the ideal, implying the witness property.}
