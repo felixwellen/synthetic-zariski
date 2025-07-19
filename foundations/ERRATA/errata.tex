@@ -254,7 +254,7 @@ Hence, all homotopy quotients exist.
   Let \(A \colon \Ty_{[C^{\op}, \U]}(\Gamma)\), \(R \colon \Ty_{[C^{\op}, \U]}(\Gamma.A.A)\) a homotopy proposition.
   \begin{enumerate}[label=(\arabic*)]
     \item If \(\varrho_R \colon A \to A/R\) is a homotopy quotient of \(A\) by \(R\), then \((\varrho_R)_I \colon A_I \to (A/R)_I\) is a homotopy quotient of \(A_I\) by \(R_I\) for all \(I \in C\).
-    \item If \(A\) and \(R\) are \(D\)-modal, then the converse holds.
+    \item\label{prop:psh:levelwise-quotient-if-homotopy-quotient:modal-converse} If \(A\) and \(R\) are \(D\)-modal, then the converse holds.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -529,12 +529,16 @@ Exploiting results from computational algebra, the same holds true for quotients
 
 \section{Duality in the strictified model}\label{sec:duality-in-model-of-modal-types}
 
+\Cref{prop:duality-for-k-implies-k-choice-and-witnesses} shows that in this setup, we can only expect to derive a duality axiom base rings \(k\) with choice and witnesses.
+In the original model, this is still not sufficient.
+We only sketch the issue.
 
-
-\todo[inline]{Explain this as follows: The above taboo is bad in general. We can isolate cases for \(k\) where this is actually the case (Gröbner bases!). Sadly, the converse does not hold in general since levelwise sections need not be coherent. In the strictified model we get an if-and-only-if}
-
-\todo[inline]{We have to argue that the type of first order terms has the correct universal property in cubical presheaves}
-
+If for example, we want to define the presheaf \(\R[X]\), we would like to define it at level \(M\) by a subset of \(\Term_{\Alg[M]}(X)\).
+This is possible since by \Cref{rem:choice-and-witness-property-descend}, \(M\)-algebras have choice, so the canonical map \(\Term_{\Alg[M]}(X) \to M[X]\) splits.
+The issue is that if \(\alpha \colon M \to N\) is a homomorphism, then the chosen sections for \(M, N\) do not commute with the restriction actions.
+In essence, we can define the homotopy quotient \(R[X]\) of \(\Term_{\R}(X)\) levelwise, but not in a coherent way, which is needed in the na{\"\i}ve cubical presheaf model.
+To resolve this, we use the modality \(D\) from~\cite{CRS21} and pass to the model of \(D\)-modal types.
+In this model, the quotient can be characterized levelwise.
 
 \begin{theorem}
   In the model of \(D\)-modal types on \([\Alg*[k], \cSet]\) the duality axiom holds exactly if all \(k\)-algebras have choice and witnesses.
@@ -550,8 +554,8 @@ Exploiting results from computational algebra, the same holds true for quotients
   Since all involved types are \(D\)-modal, this is the case exactly if we have for each \(M \in C\) that for all \((n, m, p) \colon \Delta \Pr_M\) the following is a homotopy quotient in \(\cSet\) of \(\Delta\Term_M(X_1, \ldots, X_n)\) by the relation induced by the presentation.
   As before, the case for \(M = k\) implies that f.p. \(k\)-algebras have choice and witnesses.
   
-  
-  \todo[inline]{We need that the good properties of \(k\) are inherited by f.p. \(k\)-algebras (or strengthen the assumption)}
+  Conversely, by \Cref{prop:psh:levelwise-quotient-if-homotopy-quotient}~\ref{prop:psh:levelwise-quotient-if-homotopy-quotient:modal-converse} it suffices to show for all \(M \in \Alg[k]\) that \(\Delta \paren{\sfrac{M[X_1, \ldots, X_m]}{p_1, \ldots, p_n}}\) is a homotopy quotient of \(\Delta\Term_{M}(X_1, \ldots, X_n)\) by the relation \(\Delta R_{(n,m,p)}\) in a context with a finite \(M\)-algebra presentation \((n,m,p) \colon \Delta \Pr_M\).
+  By \Cref{prop:set-relevant-quotient-is-homotopy-quotient-iff-surjection-splits-and-witnesses-exist} this is the case if \(M\)-algebras have choice and witnesses, which follows from \Cref{rem:choice-and-witness-property-descend}.
 \end{proof}
 
 By \Cref{prop:good-base-rings-exist}, therefore have a number of base rings for which duality holds in \([\Alg*[k], \cSet]\).
