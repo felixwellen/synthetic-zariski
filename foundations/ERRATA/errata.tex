@@ -396,7 +396,7 @@ We denote by \(\Term_{\Alg[k]}(X_1, \ldots, X_n)\) the set of first-order terms 
     \set{\star \mid \eta t_1 = \eta t_2 } \longrightarrow \set{ p_1 \doteq 0, \ldots, p_m \doteq 0 \vdash t_1 \doteq t_2 }. 
   \]
 \end{definition}
-\begin{remark}
+\begin{remark}\label{rem:choice-and-witness-property-descend}
   If we have a f.p.~\(k\)-algebra \(M\) presented by \((n, m, p)\), then we can choose for each \(m \in M\) a term representation \(t_m \in \Term_{\Alg[k]}(X_1, \ldots, X_n)\) for it.
   We can consider the projection \(\underline{\cdot} \colon \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i) \to \Term_{\Alg[M]}(Y_1, \ldots, Y_i)\) that sends \(X_i\) to the corresponding element of \(M\).
   There is a map \(c_M \colon \Term_{\Alg[M]}(Y_1, \ldots, Y_i) \to \Term_{\Alg[k]}(X_1, \ldots, X_n, Y_1, \ldots, Y_i)\) given by replacing all \(m \in M\) in a term by \(t_m\).
@@ -409,9 +409,9 @@ We denote by \(\Term_{\Alg[k]}(X_1, \ldots, X_n)\) the set of first-order terms 
   \]
   splitting, we obtain that the second map splits as-well.
   Lastly, let \(t_0, t_1 \in \Term_{\Alg[M]}(Y_1, \ldots, Y_i)\) describing equal elements in \(N\).
-  We obtain a derivation that \(\set{p_\ell}_\ell, \set{q_\ell}_\ell \vdash c_Mt_0 \doteq c_M t_1\).
-  From such a derivation we obtain one \(\set{q_\ell}_\ell \vdash \underline{c_Mt_0} \doteq \underline{c_Mt_1}\) since the additional equations hold in the theory of \(M\)-algebras.
-  From \(\set{q_\ell}_\ell \vdash \underline{c_Mt_\ell} \doteq t_\ell\) for \(\ell \in \set{0,1}\) we obtain the final derivation.
+  We obtain a derivation that \(\set{p_\ell \doteq 0}_\ell, \set{q_\ell \doteq 0}_\ell \vdash c_Mt_0 \doteq c_M t_1\).
+  From such a derivation we obtain one \(\set{q_\ell \doteq 0}_\ell \vdash \underline{c_Mt_0} \doteq \underline{c_Mt_1}\) since the additional equations hold in the theory of \(M\)-algebras.
+  From \(\set{q_\ell \doteq 0}_\ell \vdash \underline{c_Mt_\ell} \doteq t_\ell\) for \(\ell \in \set{0,1}\) we obtain the final derivation.
 \end{remark}
 \todo[inline]{The above is a by handwavy; recheck that the transformation of derivations is possible}
 
@@ -546,6 +546,8 @@ Exploiting results from computational algebra, the same holds true for quotients
   \end{tikzcd}\]
   Since all involved types are \(D\)-modal, this is the case exactly if we have for each \(M \in C\) that for all \((n, m, p) \colon \Delta \Pr_M\) the following is a homotopy quotient in \(\cSet\) of \(\Delta\Term_M(X_1, \ldots, X_n)\) by the relation induced by the presentation.
   As before, the case for \(M = k\) implies that f.p. \(k\)-algebras have choice and witnesses.
+  
+  
   \todo[inline]{We need that the good properties of \(k\) are inherited by f.p. \(k\)-algebras (or strengthen the assumption)}
 \end{proof}
 
