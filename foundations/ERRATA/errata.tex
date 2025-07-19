@@ -174,9 +174,11 @@ In the model of \HoTT{}, this is always a fibrant type, and a proposition.
 \todo[inline,color=green]{The remaining subsection should maybe be an appendix. We derive some easy consequences of the CRS setup that are not easily citable from the paper.}
 \subsection{Cubical Presheaves}
 
-The model on \([C^{\op}, \cSet]\) is a cubical presheaf model.
+The model on \([\Alg[k], \cSet]\) is a cubical presheaf model.
 We recall some results by~\cite{CRS21}, that we need below.
 Let \(C\) be a (small) category.
+Then, \([C^{op}, \cSet] \cong [C^{\op} \times \square^{\op}, \Set]\) carries a model of homotopy type theory since it satisfies the axiom in from~\cite{survey}.
+We refer to this model as the \emph{na{\"\i}ve cubical presheaf}.
 
 The key problem with the na{\"\i}ve cubical presheaf model is that many constructions are not characterized levelwise, as they are in ordinary presheaves.
 The properties we consider (e.g. the universal property of the quotient) imply that the analogous property holds levelwise, but the converse is not true in general.
@@ -246,9 +248,7 @@ The claim for an internal natural number follows similarly by induction internal
 \end{proof}
 
 A consequence of the above is that surjective functions are levelwise surjective.
-This fact is needed for showing that homotopy quotients are levelwise homotopy quotients, the key lemma needed in \Cref{sec:cset-homotopy-quotient-vs-meta-quotient}.
-The model of \(D\)-modal types on \([C^{\op}, \cSet]\) has all higher inductive types by the construction in \cite{CRS21}, since the model of fibrant types has all higher inductive types by the results in~\cite{CoquandHM18}.
-Hence, all homotopy quotients exist.
+This fact is needed for showing that homotopy quotients are levelwise homotopy quotients, the key lemma needed in \Cref{sec:k-duality-implies-k-alg-choice}.
 
 \begin{lemma}\label{prop:psh:levelwise-quotient-if-homotopy-quotient}
   Let \(A \colon \Ty_{[C^{\op}, \U]}(\Gamma)\), \(R \colon \Ty_{[C^{\op}, \U]}(\Gamma.A.A)\) a homotopy proposition.
@@ -539,6 +539,9 @@ The issue is that if \(\alpha \colon M \to N\) is a homomorphism, then the chose
 In essence, we can define the homotopy quotient \(R[X]\) of \(\Term_{\R}(X)\) levelwise, but not in a coherent way, which is needed in the na{\"\i}ve cubical presheaf model.
 To resolve this, we use the modality \(D\) from~\cite{CRS21} and pass to the model of \(D\)-modal types.
 In this model, the quotient can be characterized levelwise.
+
+Before we state the theorem recall that the model of \(D\)-modal types on \([\Alg*[k], \cSet]\) has all higher inductive types by the construction in \cite{CRS21}, since the model of fibrant types has all higher inductive types by the results in~\cite{CoquandHM18}.
+Hence, the homotopy quotients considered below exist.
 
 \begin{theorem}
   In the model of \(D\)-modal types on \([\Alg*[k], \cSet]\) the duality axiom holds exactly if all \(k\)-algebras have choice and witnesses.
