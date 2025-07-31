@@ -2,15 +2,15 @@
 \subsection{Modules and infinitesimal disks}
 The most basic infinitesimal schemes are the first order neighbourhoods in affine n-space $R^n$. Their algebra of functions is $R^{n+1}$, which is an instance of the more general construction below.
 
-For any $R$-module $M$, there is an $R$-algebra structure on $R\oplus M$ with multiplication given by
+For any $R$-module $M$, there is an $R$-algebra structure on $R\oplus M$ with multiplication given by:
 \[(r,m)(r',m') = (rr',rm'+r'm)\]
 Algebras of this form are called \emph{square zero extensions} of $R$, since products of the form $(0,m)(0,n)$ are zero.
 By this property, for any $R$-linear map $\varphi:M\to N$ between modules $M,N$, the map $\mathrm{id}\oplus \varphi: R\oplus M\to R\oplus N$ is an $R$-algebra homomorphism. In particular, if $M$ is finitely presented, i.e.\ merely the cokernel of some $p:R^n\to R^m$ then $R\oplus M$ is the cokernel of a map between finitely presented algebras and therefore finitely presented as an algebra. 
 
 \begin{definition}
   \index{$\D(M)$}
-Given $M$ a finitely presented $R$-module, we define a finitely presented algebra structure on $R\oplus M$ as above and set:
-\[\D(M)\colonequiv \Spec(R\oplus M)\]
+Given $M$ a finitely presented $R$-module, we define a finitely presented algebra structure on $R\oplus M$ as above and define:
+\[\D(M) = \Spec(R\oplus M)\]
 This is a pointed scheme by the first projection which we denote $0$
 and the construction is functorial by the discussion above.
 \end{definition}
@@ -40,8 +40,8 @@ We can immediately see that $f$ being a map of $R$-algebras is equivalent to $d$
 \end{proof}
 
 \begin{lemma}\label{equivalence-module-infinitesimal}
-Let $M$, $N$ be finitely presented modules. Then linear maps $M \to N$ correspond to
-pointed maps $\D(N) \to_\pt \D(M)$. 
+Let $M$, $N$ be finitely presented modules. Then linear maps from $M$ to $N$ correspond to
+pointed maps from $\D(N)$ to $\D(M)$. 
 %Explicitly, a linear map $g : M \to N$ corresponds to the pointed map $f \mapsto m \mapsto f(g(m))$.
 \end{lemma}
 
@@ -52,20 +52,20 @@ Such a derivation is a morphism of modules:
 \[d:R\oplus M\to N\]
 such that for all $(r,m),(r',m'):R\oplus M$ we have that:
 \[d(rr',rm'+r'm) = rd(r',m')+r'd(r,m)\]
-This implies $d(r,0) = 0$ for all $r : R$, so we obtain a section to the injective functorial action of $\mathbb{D}$ on linear maps.
+This implies $d(r,0) = 0$ for all $r : R$, so such a map is entirely determined by the linear map $m\mapsto d(0,m)$. Conversly given a linear map $f:M\to N$ we can check that $(r,m)\mapsto f(m)$ is such a derivation, giving the correspondence.
 \end{proof}
 
 
 \subsection{Tangent spaces}
   \label{remark-sym-dual}
 
-In classical algebraic geometry, the tangent sheaf is defined as the dual of the cotangent sheaf which is given affine locally by the universal module of derivations. We could copy this approach synthetically, but contrary to the classical picture, we can also define the tangent bundle and dualize to get the usual cotangent bundle. This mismatch with the classical theory comes from the fact that classical dualiuzation of $\mathcal O_X$-module sheaves is not the same as the dualization of $R$-module bundles we use.
+In traditional algebraic geometry, the tangent sheaf is defined as the dual of the cotangent sheaf which is given Zariski locally by the universal module of derivations. We could copy this approach synthetically, but contrary to the traditional picture, we can also define the tangent bundle directly and dualize to get the usual cotangent bundle. This mismatch with the traditional theory comes from the fact that the traditional dualization of $\mathcal O_X$-module sheaves is not the same as our dualization of $R$-module bundles.
 
 We start with the definition of tangent spaces which is also used in synthetic differential geometry:
 
 \begin{definition}
-Let $X$ be a type and let $x:X$, then we define the \notion{tangent space} $T_x(X)$ \index{$T_x(X)$} of $X$ at $x$ by:
-\[\{t:\D(1)\to X\ |\ t(0)=x\}\]
+Let $X$ be a type with $x:X$, then we define the \notion{tangent space} $T_x(X)$ \index{$T_x(X)$} of $X$ at $x$ by:
+\[T_x(X) = \{t:\D(1)\to X\ |\ t(0)=x\}\]
 \end{definition}
 
 \begin{definition}
@@ -103,14 +103,11 @@ For any scheme $X$ and $x:X$, we have that $T_x(X)$ is a module.
 \end{lemma}
 
 \begin{proof}
-There is a more conceptual proof given as \cite[Theorem 4.2.19]{david-orbifolds} which could be made to work with schemes -- we proceed by sketching a more tedious, explicit proof with less technical prerequisites.
-We define scalar multiplication by sending $v$ to $t\mapsto v(rt)$.
+We could give a conceptual proof similar to \cite[Theorem 4.2.19]{david-orbifolds}. Instead we give a more explicit proof with less technical prerequisites.
 
-Then for addition of $v,w:T_x(X)$, we define:
+We define scalar multiplication by sending $v$ to $t\mapsto v(rt)$. Then for addition of $v,w:T_x(X)$, we define:
 \[(v+w)(\epsilon) = \psi_{v,w}(\epsilon,\epsilon)\]
-where $\psi_{v,w}$ is defined in \Cref{from-D1-to-D2}.
-
-We omit checking that this is a module structure.
+where $\psi_{v,w}$ is defined in \Cref{from-D1-to-D2}. We omit checking that this is a module structure.
 \end{proof}
 
 \begin{lemma}
@@ -118,9 +115,7 @@ For $f:X\to Y$ a map between schemes, for all $x:X$ the map $df_x$ is a map of $
 \end{lemma}
 
 \begin{proof}
-Commutation with scalar multiplication is immediate.
-
-Commutation with addition comes by applying uniqueness in \Cref{from-D1-to-D2} to show:
+Commutation with scalar multiplication is immediate. Commutation with addition comes by applying uniqueness from \Cref{from-D1-to-D2} to get:
 \[f\circ \psi_{v,w} = \psi_{f\circ v,f\circ w}\]
 \end{proof}
 
@@ -132,15 +127,11 @@ For any map $f:X\to Y$ and $x:X$, we have that:
 \end{lemma}
 
 \begin{proof}
-This holds because:
-\[
-(\mathrm{fib}_f(f(x)),(x,\refl_{f(x)}))
-\]
-is the pullback of:
+Indeed we have that $\mathrm{fib}_f(f(x))$ pointed by $(x,\refl_{f(x)})$ is the pullback of:
 \[
 (X,x) \to (Y,f(x)) \leftarrow (1,*)
 \]
-in pointed types, applied using $(\mathbb{D}(1),0)$.
+in pointed types, and we conclude by exponentiating with $(\mathbb{D}(1),0)$.
 \end{proof}
 
 \begin{lemma}\label{tangent-finite-copresented}
@@ -160,66 +151,68 @@ We conclude by \Cref{An-dimension-n}.
 \end{corollary}
 
 \begin{proof}
-  We give two independent arguments, the first uses the lemma, the second is a direct computation:
+  We give two proofs, the first uses \Cref{tangent-finite-copresented} and the second is a direct computation:
   \begin{enumerate}[(i)]
-  \item Finitely copresented modules are schemes, since they are the common zeros of linear functions on $R^n$.
-    So by the lemma, all tangent spaces $T_x(X)$ are schemes and
+  \item Any finitely copresented modules is a scheme, indeed it is the set of common zeros of linear functions between finite free modules.
+    So by \Cref{tangent-finite-copresented}, all tangent spaces $T_x(X)$ are schemes and:
     \[
       X^{\mathbb{D}(1)}=\sum_{x:X}T_x(X)
     \]
     is a dependent sum of schemes and therefore a scheme.
-  \item Let $X$ be covered by open affine $U_1,\dots,U_n$ then $U_1^{\mathbb{D}(1)},\dots,U_n^{\mathbb{D}(1)}$ is an open cover by double negation stability of opens.
-    So we conclude by showing that for affine $Y=\Spec R[X_1,\dots,X_n]/(f_1,\dots,f_l)$ the tangent bundle $Y^{\mathbb{D}(1)}$ is affine
+  \item Let $X$ be covered by open affine $U_1,\dots,U_n$ then $U_1^{\mathbb{D}(1)},\dots,U_n^{\mathbb{D}(1)}$ is an open cover of $X^{\mathbb{D}(1)}$. Indeed given $f:X^{\mathbb{D}(1)}$, by double negation stability of opens we have that $f\in U_i^{\mathbb{D}(1)}$ if and only if $f(0)\in U_i$.
+    So we conclude by showing that for any affine $Y=\Spec R[X_1,\dots,X_n]/(f_1,\dots,f_l)$ the tangent bundle $Y^{\mathbb{D}(1)}$ is affine
     by direct computation:
     \begin{align*}
       Y^{\mathbb{D}(1)}&=\Hom_{\Alg{R}}(R[X_1,\dots,X_n]/(f_1,\dots,f_l), R\oplus \epsilon R) \\
-                       &= \{(y_1,\dots,y_n):R\oplus \epsilon R \mid \forall_i. f_i(y_1,\dots,y_n)=0\} \\
-                       &= \{(x_1,\dots,x_n,d_1,\dots,d_n):R^{2n} \mid \forall_i. f_i(x_1,\dots,x_n)=0\text{ and } \sum_j d_j\frac{\partial f_i}{\partial X_j}(x_1,\dots,x_n) =0\} 
+                       &= \{(y_1,\dots,y_n):R\oplus \epsilon R \mid \forall i.\, f_i(y_1,\dots,y_n)=0\} \\
+                       &= \{(x_1,\dots,x_n,d_1,\dots,d_n):R^{2n} \mid \forall i.\, f_i(x_1,\dots,x_n)=0\text{ and } \sum_j d_j\frac{\partial f_i}{\partial X_j}(x_1,\dots,x_n) =0\} 
     \end{align*}
   \end{enumerate}
 \end{proof}
 
-\begin{definition}
-For $X$ a type and $p : X$ a point, the \notion{cotangent space} at $p$ is the
-$R$-linear dual $T_p X^\star$ of the tangent space $T_p X$.
-\end{definition}
-
-If $X$ is a scheme, then by \cref{tangent-finite-copresented} the cotangent spaces of $X$
-are finitely presented.
-We will not use the following definition and remark in the rest of this article, but included them to show a connection to the classical theory.
-See \cite[p. 172]{Hartshorne} or \cite[p. 573]{vakil} for the classical theory.
+Now we want to define cotangent spaces.
 
 \begin{definition}
-For $A$ an $R$-module, there is a universal derivation $d : A \to \Omega_{A/R}$. We call elements of the type $\Omega_{A/R}$ \notion{Kähler differentials}.
+  For $M$ an $R$-module, we denote its dual $\Hom_{R}(M,R)$ by $M^\star$.
 \end{definition}
 
-That is, $\Omega_{A/R}$ is generated as an $A$-module by symbols
-$df$ for $f : A$, subject to relations $d = r \cdot df$ for $r : R$ and
+\begin{definition}
+For $X$ a type with $x : X$, the \notion{cotangent space} of $X$ at $x$ is the dual $T_x^\star(X)$ of the tangent space $T_x(X)$.
+\end{definition}
+
+If $X$ is a scheme, then by \cref{tangent-finite-copresented} the cotangent spaces of $X$ are finitely presented.
+We will not use the following definition and remark in the rest of this article, but we included them to show the connection with the traditional theory (see \cite[p. 172]{Hartshorne} or \cite[p. 573]{vakil}).
+
+\begin{definition}
+For $A$ an $R$-module, there is a universal derivation $d : A \to \Omega_{A/R}$. Elements of $\Omega_{A/R}$ are called \notion{Kähler differentials}.
+\end{definition}
+
+More precisely, $\Omega_{A/R}$ is generated as an $A$-module by symbols
+$df$ for $f : A$, subject to the relations $d(r\cdot f) = r \cdot df$ for $r : R$ and
 $d(fg) = f \cdot dg + g \cdot df$.
 It can be seen that if $A$ is finitely presented as an $R$-algebra,
 then $\Omega_{A/R}$ is finitely presented as an $A$-module.
-Classically, the sheaf $\Omega_{A/R}$ is the cotangent bundle.
-Synthetically, it is enough to show this pointwise on $\Spec A$ by \cite[Theorem 8.2.3]{draft}.
-To apply this theorem, we first turn $\Omega_{A/R}$ into an $R$-module bundle on $\Spec A$: For $p:\Spec A$, let $\Omega_{A/R,p}$ be the type of $R$-derivations at $p$, as defined in \Cref{derivation-pointwise} -- this agrees with tensoring $\Omega_{A/R,p}$ with $R$ using the evaluation at $p$, which is the general construction used in \cite[Theorem 8.2.3]{draft}. 
+Traditionally, the sheaf corresponding to $\Omega_{A/R}$ is the cotangent bundle.
+Synthetically, it is enough to show this pointwise on $\Spec(A)$ by \cite[Theorem 8.2.3]{draft}.
+To apply this theorem, we first turn $\Omega_{A/R}$ into an $R$-module bundle on $\Spec(A)$ by sending $x:\Spec A$ to $\Omega_{A/R,x}$ the type of $R$-derivations at $x$, as defined in \Cref{derivation-pointwise}. This agrees with tensoring $\Omega_{A/R}$ with $R$ using the evaluation at $x$, which is the general construction used in \cite[Theorem 8.2.3]{draft}.
 
 \begin{remark}
-For all $p:\Spec A$, we have $\Omega_{A/R,p}\simeq T_p X^\star$ and therefore also $\Omega_{A/R}\simeq \prod_{x:\Spec A}T_p X^\star$.
+For all $x:\Spec A$, we have $\Omega_{A/R,x} = T_x^\star(X)$ and therefore $\Omega_{A/R} = \prod_{x:\Spec A} T_x^\star(X)$.
 \end{remark}
 
 \begin{proof}
-We need to show that for $p : X$,
-   we have an isomorphism of $R$-modules
-   \[ T^\star_p X\simeq\Omega_{A/R,p}=\Omega_{A/R} \otimes_A R .\]
-By \Cref{tangent-are-derivation} the tangent space $T_p X$ corresponds to derivations
-$A \to R$, where the $A$-module structure on $R$ is obtained by evaluating at $p$.
-These derivations correspond to $A$-module maps $\Omega_{A/R} \to R$, by the universal property
-of Kähler differentials. In \Cref{double-dual-identity}, we will see that double dualization is an isomorphism for finitely (co-)presented $R$-modules, so we can conclude by dualizing.
+We need to show that for $x : X$,
+   we have an isomorphism of $R$-modules:
+   \[ T^\star_x(X) = \Omega_{A/R,x}=\Omega_{A/R} \otimes_A R\]
+By \Cref{tangent-are-derivation} the tangent space $T_x(X)$ corresponds to derivations
+$A \to R$, where the $A$-module structure on $R$ is obtained by evaluating at $x$.
+By the universal property of Kähler differentials, these derivations correspond to $A$-module maps $\Omega_{A/R} \to R$, or equivalently to elements in $(\Omega_{A/R}\otimes_AR)^\star$. In \Cref{double-dual-identity}, we will see that $M^{\star\star} = M$ for finitely presented $R$-modules $M$, so we can conclude by dualizing.
 \end{proof}
 
 \subsection{Infinitesimal neighbourhoods}
 
 \begin{definition}
-Let $X$ be a set with $x:X$. The \notion{first order neighborhood} $N_1(x)$ \index{$N_1(x)$}is defined as the set of $y:X$ such that there exists an finitely generated ideal $I\subseteq R$ with $I^{2}=0$ and:
+Let $X$ be a set with $x:X$. The \notion{first order neighborhood} $N_1(x)$ \index{$N_1(x)$}is defined as the set of $y:X$ such that there exists a finitely generated ideal $I\subseteq R$ with $I^{2}=0$ and:
 \[I=0 \to x=y\]
 \end{definition}
 
@@ -232,7 +225,7 @@ Let us denote $I$ the ideal generated by the $x_i-y_i$ so that $x=y$ if and only
 
 If $I^2=0$ then it is clear that $y\in N_1(x)$.
 
-Conversely if $J=0 \to I=0$ then we have that $I\subset J$ by duality so that $J^2=0$ implies $I^2=0$.
+Conversely if $y\in N_1(x)$ then there is $J$ such that $J^2=0$ and $J=0 \to I=0$. Then by duality we have that $I\subset J$ so that $I^2=0$.
 \end{proof}
 
 \begin{lemma}\label{first-order-schemes}
@@ -240,9 +233,7 @@ Let $X$ be a scheme with $x:X$. Then $N_1(x)$ is an affine scheme.
 \end{lemma}
 
 \begin{proof}
-If $x\in U$ open in $X$, we have that $N_1(x)\subset U$ so that we can assume $X$ affine.
-
-This means $X$ is a closed subscheme $C\subset R^n$. Then by \Cref{first-order-square-zero}, we have that $N_1(x)$ is the type of $y:R^n$ such that $y\in C$ and for all $i,j$ we have that $(x_i-y_i)(x_j-y_j) = 0$, which is a closed subset of $C$ so it is an affine scheme.
+If $x\in U$ open in $X$, we have that $N_1(x)\subset U$ so that we can assume $X$ affine. This means $X$ is a closed subscheme $C\subset R^n$. Then by \Cref{first-order-square-zero}, we have that $N_1(x)$ is the type of $y:R^n$ such that $y\in C$ and for all $i,j$ we have that $(x_i-y_i)(x_j-y_j) = 0$, which is a closed subset of $C$ so it is an affine scheme.
 \end{proof}
 
 \begin{definition}
@@ -255,11 +246,7 @@ A pointed scheme $(X,*)$ is called a \notion{first order (infinitesimal) disk} i
 \end{lemma}
 
 \begin{proof}
-  Since for $x:X$, $N_1(x)$ is just a subspace the functoriality is clear once we know that the defining relation of first order disks is preserved by functions between schemes.
-  It is enough to consider $f:X\to Y$ for affine $X,Y\subseteq R^n$.
-  So let $x,y:X$ such that $y\in N_1(x)$. Then for $\epsilon:=x-y$ we have $e_ie_j=0$ for all $i,j$ and
-  \[ f(x)-f(y)=f(x)-f(x+\epsilon)=f(x)-(f(x) + df_x\epsilon)=-df_x\epsilon\]
-  which means that $f(y)\in N_1(f(x))$.
+It is clear that $N_1$ is functorial, as it is clear that $y\in N_1(x)$ implies $f(y)\in N_1(f(x))$ from the definition of $N_1$. Now we just need to check that for $X$ a scheme with $x:X$, we have that $(N_1(x),x)$ is a first order disk. Then $N_1(x)$ is a disk by \Cref{first-order-schemes}, and it is clear that the first order neighbourhood of $x$ in $N_1(x))$ is the whole type $N_1(x)$.
 \end{proof}
 
 \begin{lemma}\label{disk-are-infinitesimal}
@@ -268,23 +255,18 @@ A pointed scheme $(X,*)$ is a first order disk if and only if there exists a fin
 \end{lemma}
 
 \begin{proof}
-First we check that for all $M$ finitely presented and $y:\D(M)$ we have that $y\in N_1(0)$. Let $m_1,\cdots, m_n$ be generators of $M$, then consider $d:M\to R$ induced by $y$, then $y=0$ if and only if $d=0$ and for all $i,j$ we have that:
+First we check that for all $M$ finitely presented and $y:\D(M)$ we have that $y\in N_1(0)$. Let $m_1,\cdots, m_k$ be generators of $M$, then consider $d:M\to R$ induced by $y$, then $y=0$ if and only if $d=0$ and for all $i,j$ we have that:
 \[d(m_i)d(m_j) = 0\]
-This means that $I = (d(m_1),\cdots,d(m_n))$ has square $0$ and $I=0$ implies $y=0$ so that $y\in N_1(0)$.
+This means that $I = (d(m_1),\cdots,d(m_k))$ has square $0$ and $I=0$ implies $y=0$ so that $y\in N_1(0)$.
 
-For the converse we assume $X$ a first order disk, by \Cref{first-order-schemes} we have that $X$ is affine and pointed, up to translation we can assume $X\subset R^n$ closed pointed by $0$. Since $X$ is a first order disk we have that $X\subset N_1(0)$ and by \Cref{first-order-square-zero} we have $N_1(0) = \D(R^n)$.
+For the converse we assume $X$ a first order disk, by \Cref{first-order-schemes} we have that $X$ is affine and pointed, up to translation we can assume $X$ is a closed subset $X\subset R^n$ pointed by $0$. Since $X$ is a first order disk we have that $X\subset N_1(0)$ and by \Cref{first-order-square-zero} we have $N_1(0) = \D(R^n)$.
 
-This means there is an f.g.\ ideal $J$ in $R\oplus R^n$ such that $X=\Spec(R\oplus R^n / J)$.
-But $0$ corresponds to the first projection from $R\oplus R^n$, so that $0\in X$ means that if $(x,y)\in J$ then $x=0$, so that $J$ corresponds uniquely to an f.g.\ sub-module $K$ of $R^n$ and:
+This means there is a finitely generated ideal $J$ in $R\oplus R^n$ such that $X=\Spec(R\oplus R^n / J)$.
+But $0$ corresponds to the first projection from $R\oplus R^n$, so that $0\in X$ means that if $(x,y)\in J$ then $x=0$, so that $J$ corresponds uniquely to a finitely generated sub-module $K$ of $R^n$ and:
 \[X = \Spec(R\oplus (R^n/K)) = \D(R^n/K)\] 
 \end{proof}
 
-\begin{definition}
-  Let $M^\star\colonequiv \Hom_{R}(M,R)$ denote the $R$-linear dual of an $R$-module $M$.
-\end{definition}
-
-While it is clear that the dual of a finite presentation yields a finite copresentation, the reverse is not true in general, but holds with the duality axiom.
-We will give a proof of this fact in \Cref{dual-of-fcop-fp}, which will need the following two extension results.
+Now we want to study the duality between finitely presented and finitely copresented modules. While it is clear that the dual of a finite presentation yields a finite copresentation, the reverse is not true in general, but we will show  in \Cref{dual-of-fcop-fp} that it is a consequence of the duality axiom. First we need the following two extension results.
 
 \begin{lemma}
   \label{extend-from-kernel}
@@ -293,8 +275,8 @@ We will give a proof of this fact in \Cref{dual-of-fcop-fp}, which will need the
 \end{lemma}
 
 \begin{proof}
-  First note that $M=\Spec(R[X_1,\dots,X_n]/(l_1,\dots,l_m))$ is affine, where the $l_i$ are linear.
-  Let $L:M\to R$ be $R$-linear and $P:R^n\to R$ be given by taking a preimage under the quotient map $R[X_1,\dots,X_n]\to R[X_1,\dots,X_n]/(l_1,\dots,l_m)$,
+  First note that $M$ is affine of the form $\Spec(R[X_1,\dots,X_n]/(l_1,\dots,l_m))$ with $l_i$ linear.
+  Let $L:M\to R$ be linear and $P:R^n\to R$ be given by taking a preimage under the quotient map $R[X_1,\dots,X_n]\to R[X_1,\dots,X_n]/(l_1,\dots,l_m)$,
   so we have $P_{\vert M}=L$.
   Let $P=\sum_{\sigma:\N^{\{1,\dots,n\}}}a_\sigma X_1^{\sigma(1)}\cdots X_n^{\sigma(n)}$.
   Now we can conclude by showing that the linear part of $P$
