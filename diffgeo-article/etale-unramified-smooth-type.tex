@@ -1,17 +1,21 @@
 \subsection{Definitions}
 
 In \cite{draft} it is shown that elements of the base ring $R$ are nilpotent if and only if they are not not zero.
-Both, nilpotency and double negated equality have been used to describe infinitesimals and the following closed dense propositions can be viewed as closed subspaces of the point which are infinitesimally close to being the whole point:
+Both nilpotency and double negated equality have been used to describe infinitesimals and the following closed dense propositions can be viewed as closed subspaces of the point which are infinitesimally close to being the whole point:
 
 \begin{definition}
 A closed proposition is dense\index{closed dense proposition} if it is merely of the form:
 \[r_1=0\land\cdots\land r_n=0\]
-for $r_1,\cdots,r_n:R$ nilpotent.
+with $r_1,\cdots,r_n:R$ nilpotent.
 \end{definition}
 
-From a classical perspective, the inclusion $P\subseteq 1$ of a closed dense prosition into the point would be an infinitesimal extension.
-We will use closed dense propositions in the following to define synthetic analogs of some classical notions, which are classically defined with lifting properties against more general classes of infinitesimal extensions.
-More details on the connection to classical definitions will be given in \Cref{connection-to-ega-definition}.
+\begin{remark}
+A closed proposition $P$ is closed dense if and only if $\neg\neg P$.
+\end{remark}
+
+From a traditional perspective, the inclusion $P\subseteq 1$ of a closed dense proposition into the point would be an infinitesimal extension.
+In the following, we will use closed dense propositions to define synthetic analogs of notions which are traditionally defined using lifting properties against classes of infinitesimal extensions.
+More details on the connection to traditional definitions will be given in \Cref{connection-to-ega-definition}.
 
 \begin{definition}
   \label{def-etale-closed-dense}
@@ -25,7 +29,7 @@ The map $X\to X^P$ is an equivalence (resp. an embedding, surjective) if and onl
 \begin{center}
 \begin{tikzcd}
 P\ar[r]\ar[d] & X\\
-1\ar[ru,dotted]& \\
+1\ar[ru,dashed]& \\
 \end{tikzcd}
 \end{center}
 \end{remark}
@@ -38,7 +42,7 @@ A map is said to be formally étale (resp. formally unramified, formally smooth)
 A type (or map) is formally étale if and only if it is formally unramified and formally smooth.
 \end{remark}
 
-\begin{lemma}
+\begin{lemma}\label{etale-unramified-smooth-square-zero}
 A type $X$ is formally étale (resp. formally unramified, formally smooth) if and only if for all $\epsilon:R$ such that $\epsilon^2=0$, the map:
 \[X\to X^{\epsilon=0}\]
 is an equivalence (resp. an embedding, surjective).
@@ -63,7 +67,7 @@ Then by hypothesis we have that for all $k$ and $x:P_{k}$ the map:
 \[X\to X^{\mathrm{fib}_{i_k}(x)}\]
 is an equivalence (resp. an embedding, surjective). So the map:
 \[X^{P_{k}} \to \prod_{x:P_{k}}X^{\mathrm{fib}_{i_k}(x)} = X^{P_{k+1}}\]
-is an equivalence (resp. an embedding, surjective by $P_{k}$ having choice).
+is an equivalence (resp. an embedding, surjective, where surjectivity uses $P_{k}$ having choice).
 We conclude that the map:
 \[X\to X^P\]
 is an equivalence (resp. an embedding, surjective).
@@ -74,58 +78,48 @@ is an equivalence (resp. an embedding, surjective).
 \subsection{Stability results}
 
 Being formally étale is a modality given as nullification at all dense closed propostions and therefore lex \cite[Corollary 3.12]{modalities}.
-This means we have the following results:
+This means that we have the following:
 
 \begin{proposition}
+Formally étale types enjoy the following stability results:
 \begin{itemize}
-\item If $X$ is any type and for all $x:X$ we have a formally étale type $Y_x$, then:
-\[\prod_{x:X}Y_x\]
-is formally étale. 
-\item  If $X$ is formally étale and for all $x:X$ we have a formally étale type $Y_x$, then:
-\[\sum_{x:X}Y_x\]
-is formally étale. 
+\item If $X$ is any type and for all $x:X$ we have $Y_x$ formally étale, then $\prod_{x:X}Y_x$ is formally étale. 
+\item  If $X$ is formally étale and for all $x:X$ we have $Y_x$ formally étale, then $\sum_{x:X}Y_x$ is formally étale. 
 \item If $X$ is formally étale then for all $x,y : X$ the type $x=y$ is formally étale.
-\item The type of formally étale types is formally étale.
+\item The type of formally étale types is itself formally étale.
 \end{itemize}
 \end{proposition}
 
-Formally unramified type are the separated types \cite[Definition 2.13]{localization} associated to formally étale types.
-By \cite[Lemma 2.15]{localization}, being formally unramified is a nullification modality as well.
+Formally unramified type are the separated types \cite[Definition 2.13]{localization} associated to formally étale types. This means:
 
 \begin{lemma}
-A type $X$ is formally unramified if and only if for any $x,y:X$ the type $x=y$ is formally étale.
+A type $X$ is formally unramified if and only if for all $x,y:X$ the type $x=y$ is formally étale.
 \end{lemma}
 
-This means we have the following:
+By \cite[Lemma 2.15]{localization}, being formally unramified is a nullification modality as well. This means we have the following:
 
 \begin{proposition}
+Formally unramified types enjoy the following stability results:
 \begin{itemize}
-\item If $X$ is any type and for all $x:X$ we have a formally unramified type $Y_x$, then:
-\[\prod_{x:X}Y_x\]
-is formally unramified. 
-\item  If $X$ is formally unramified and for all $x:X$ we have a formally unramified type $Y_x$, then:
-\[\sum_{x:X}Y_x\]
-is formally unramified.
+\item If $X$ is any type and for all $x:X$ we have $Y_x$ formally unramified, then $\prod_{x:X}Y_x$ is formally unramified. 
+\item If $X$ is formally unramified and for all $x:X$ we have $Y_x$ formally unramified, then $\sum_{x:X}Y_x$ is formally unramified.
 \end{itemize}
 \end{proposition}
 
 Being formally smooth is not a modality, indeed we will see it is not stable under identity types. Neverthless we have the following results:
 
 \begin{lemma}\label{smooth-sigma-closed}
+Formally smooth types enjoy the following stability results:
 \begin{itemize}
-\item If $X$ is any type satifying choice and for all $x:X$ we have a formally smooth type $Y_x$, then:
-\[\prod_{x:X}Y_x\]
-is formally smooth.
-\item If $X$ is a formally smooth type and for all $x:X$ we have a formally smooth type $Y_x$, then:
-\[\sum_{x:X}Y_x\]
-is formally smooth.
+\item If $X$ is any type satifying choice and for all $x:X$ we have $Y_x$ formally smooth, then $\prod_{x:X}Y_x$ is formally smooth.
+\item If $X$ is a formally smooth type and for all $x:X$ we have $Y_x$ formally smooth, then $\sum_{x:X}Y_x$ is formally smooth.
 \end{itemize}
 \end{lemma}
 
 
 \subsection{Type-theoretic examples}
 
-The next proposition implies that open propositions are formally étale.
+The next proposition implies that open propositions, and therefore open embeddings, are formally étale.
 
 \begin{lemma}\label{not-not-stable-prop-etale}
   Any $\neg\neg$-stable proposition is formally étale.
@@ -152,7 +146,7 @@ we will state and prove a general fact about closed propositions:
 \end{proof}
 
 \begin{lemma}\label{closed-and-etale-decidable}
-A closed and formally étale proposition is decidable.
+Any formally étale closed proposition is decidable.
 \end{lemma} 
 
 \begin{proof}
@@ -188,7 +182,7 @@ The type $\N$ is formally étale.
 \begin{proof}
 Identity types in $\N$ are decidable so $\N$ is formally unramified, we want to show it is formally smooth. Assume given a map:
 \[P\to \N\]
-for $P$ a closed dense proposition, we want to show it merely factors through $1$. By boundedness the map merely factors through a finite type, which is formally étale by \Cref{finite-are-etale} so we conclude.
+for $P$ a closed dense proposition, we want to show it merely factors through $1$. By boundedness the map merely factors through a finite type, which is formally étale by \Cref{finite-are-etale} so we can conclude.
 \end{proof}
 
 \begin{lemma}\label{prop-are-unramified}
@@ -205,56 +199,54 @@ This means that any subtype of a formally unramified type is formally unramified
 We also have the following surprising dual result, meaning that any quotient of a formally smooth type is formally smooth:
 
 \begin{proposition}\label{smoothSurjective}
-If $X$ is formally smooth and $p:X\to Y$ surjective, then $Y$ is formally smooth.
+If $X$ is formally smooth and $p:X\twoheadrightarrow Y$ surjective, then $Y$ is formally smooth.
 \end{proposition}
 
 \begin{proof}
-For any $P$ closed dense and any diagram:
+For any $P$ closed dense and any map $P\to Y$, consider the diagram:
  \begin{center}
       \begin{tikzcd}
-      P \ar[rd,dotted]\ar[d]\ar[r]& Y\\
-      1 \ar[r,dotted,swap,"x"]& X\ar[u,swap,"p"]
+      P \ar[rd,dashed]\ar[d]\ar[r]& Y\\
+      1 \ar[r,dashed,swap,"x"]& X\ar[u,swap,"p",two heads]
       \end{tikzcd}
     \end{center} 
-    by choice for closed propositions we merely get the dotted diagonal, and since $X$ is formally smooth we get the dotted $x$, and then $p(x)$ gives a lift.
+    By choice for closed propositions we merely get the dotted diagonal, and since $X$ is formally smooth we get the dotted $x$, and then $p(x)$ gives a lift.
 \end{proof}
 
 
 \subsection{Classical definitions, examples and counter-examples}
 
-We will show in this section that our definition of étale/smooth/unramified maps and types is equivalent to a internal version of the classical definition. It is important to keep in mind, that our schemes are always locally of finite presentation, so the following definition is sensible:
+In this section we will show that our definition of étale, smooth and unramified maps between schemes is equivalent to the obvious internal version of the traditional definition. It is important to keep in mind that our schemes are always locally of finite presentation, so the following definition is sensible:
 
 \begin{definition}
-  A étale (resp.\ unramified, smooth)\index{étale}\index{unramified}\index{smooth} type is a scheme which is étale (resp.\ unramified, smooth).
-  A étale (resp.\ unramified, smooth) map is a map between schemes which is étale (resp.\ unramified, smooth).
+  An étale (resp. smooth, unramified)\index{étale}\index{unramified}\index{smooth} scheme is a scheme which is formally étale (resp.\ formally smooth, formally unramified) as a type.
+  An étale (resp. smooth, unramified) map is a map between schemes which is formally étale (resp. formally smooth, formally unramified).
 \end{definition}
 
-The following criterion appears as the definition of a formally étale/smooth/unramified map in \cite[§17]{EGAIV4},
-with the only difference, that the lifting property is stated in terms of the comparison map into a pullback and also non-finitely presented algebras and general ideals are considered. The latter is superfluous for maps between schemes, where, as stated above, we only consider schemes that are locally of finite presentation. It is however not clear if this internal criterion corresponds to the (external) definitions in \cite[§17]{EGAIV4}.
+The following criterion appears as the definition of a formally étale, smooth and unramified maps in \cite[§17]{EGAIV4},
+where the lifting property is stated in terms of the comparison map into a pullback, and non-finitely presented algebras and non-finitely generated ideals are considered. The latter is superfluous for maps between schemes, as we only consider schemes that are locally of finite presentation. It is however not clear if this internal criterion corresponds to the external definitions in \cite[§17]{EGAIV4}.
 
 \begin{remark}
   \label{connection-to-ega-definition}
-  Let $f:X\to Y$ be a map such that every fiber is a scheme.
-  Then $f$ is formally étale/smooth/unramified if and only if there is exactly one/at least one/at most one lift in all squares
+  Let $f:X\to Y$ be a map between schemes.
+  Then $f$ is étale (resp. smooth, unramified) if and only if there is exactly one (resp. at least one, at most one) dotted lift in all squares of the form:
   \begin{center}
     \begin{tikzcd}
       \Spec(A/N)\ar[r,"t"]\ar[d] & X\ar[d,"f"] \\
-      \Spec(A)\ar[r,"b"] & Y
+      \Spec(A)\ar[ru,dashed]\ar[r,swap,"b"] & Y
     \end{tikzcd}    
   \end{center}
-where $A$ is a finitely presented $R$-algebra, $N$ a finitely generated nilpotent ideal and the map $\Spec(A/N)\to\Spec(A)$ is induced by the quotient map.
+where $A$ is a finitely presented $R$-algebra, $N$ a finitely generated nilpotent ideal and the left map is induced by the quotient map $A\to A/N$.
 \end{remark}
 
 For the proof we will use a cohomological result and the notion of wqc $R$-modules from \cite{draft},
-to prove the result as stated above -- this is would not be neccessary, if we would weaken the statement in the smooth case to Zariski-local existence of lifts.
+to prove the result as stated above. Alternatively we could weaken the statement in the smooth case by asking for the Zariski-local existence of lifts.
 
 \begin{proof}
-  The inclusion of a closed dense proposition $P$ into $1$ is a special case of the left in the remark, so we only need to show, that formally étale,
-  formally smooth and formally unramified maps satisfy the more general lifting property.
-  For formally étale and unramified maps, we can just apply the lifting property for closed dense propositions for all points in $\Spec A$.
-  So let $f:X\to Y$ be formally smooth.
+  The inclusion of a closed dense proposition $P$ into $1$ is a special case of left map in the remark, so we only need to show that étale,
+  smooth and unramified maps satisfy the more general lifting property. For étale and unramified maps, we can just apply the lifting property for closed dense propositions for all points in $\Spec A$. So let $f:X\to Y$ be smooth.
   
-  Without loss of generality, we can assume $N$ is of the form $(a)$ with $a$ square-zero.
+  By decomposing as in the proof of \Cref{etale-unramified-smooth-square-zero}, we can assume without loss of generality that $N$ is of the form $(a)$ with $a^2=0$.
   Then the existence of a lift can be shown
   by finding a family of lifts for each point $v:\Spec A$ with $\epsilon:=a(v)$ and $\phi$ induced by $t$:
   \begin{center}
@@ -283,21 +275,22 @@ to prove the result as stated above -- this is would not be neccessary, if we wo
   Then by \cite{draft}, $H^1(v:\Spec A, M_v)$ vanishes and we therefore have a global lift. 
 \end{proof}
 
-The following lemma is easy to proof -- we conclude this section afterwards with counter examples for smoothness and one example of an étale scheme.
+We conclude this section with a few examples and counter examples.
 
 \begin{lemma}\label{An-is-smooth}
 For all $k:\N$, we have that $\A^k$ is smooth.
 \end{lemma}
 
 \begin{proof}
-  Let $P$ be a closed dense proposition and $N$ a nilpotent, finitely generated ideal such that $P=\Spec R/N$.
-  Then $\Spec R[X_1,\dots,X_k]=\A^k$ is smooth lifts always exist as indicated below by the universal property of $R[X_1,\dots,X_k]$:
+  Let $P$ be a closed dense proposition and $N$ a nilpotent, finitely generated ideal such that $P=\Spec(R/N)$.
+  Since $\Spec(R[X_1,\dots,X_k])=\A^k$, to prove $\A^k$ smooth we just need to find dotted lifts in:
   \begin{center}
     \begin{tikzcd}
-      R/N & R[X_1,\dots,X_k]\ar[l]\ar[ld,dotted]  \\
+      R/N & R[X_1,\dots,X_k]\ar[l]\ar[ld,dashed]  \\
       R\ar[u] & 
     \end{tikzcd}
   \end{center}
+  This is easy using the universal property of $R[X_1,\dots,X_k]$.
 \end{proof}
 
 \begin{example}
@@ -305,11 +298,11 @@ The affine scheme $\Spec(R[X]/X^2)$ is not smooth.
 \end{example}
 
 \begin{proof}
-If it were smooth then, for any $\epsilon$ with $\epsilon^3=0$, we would be able to prove $\epsilon^2=0$.
+If it were smooth, then for any $\epsilon$ with $\epsilon^3=0$ we would be able to prove $\epsilon^2=0$.
 Indeed we would merely have a dotted lift in:
  \begin{center}
       \begin{tikzcd}
-        R/(\epsilon^2)& R[X]/(X^2)\ar[l,"\epsilon"]\ar[ld,dashed] \\
+        R/(\epsilon^2)& R[X]/(X^2)\ar[l,swap,"\epsilon"]\ar[ld,dashed] \\
         R \ar[u]& 
       \end{tikzcd}
     \end{center}
@@ -335,31 +328,28 @@ We will proof a generalization of the following example in \Cref{standard-etale-
 The essential step is to improve a zero $g(y)=0$ up to some square-zero $\epsilon$ to an actual zero.
 
 \begin{example}
-Let $g$ be a polynomial in $R[X]$ such that for all $x:R$ we have that $g(x)=0$ implies $g'(x)\not=0$. Then:
-\[\Spec(R[X]/g)\]
-is étale.
+Let $g$ be a polynomial in $R[X]$ such that for all $x:R$ we have that $g(x)=0$ implies $g'(x)\not=0$. Then $\Spec(R[X]/g)$ is étale.
 \end{example}
 
 
 \subsection{Being formally étale, unramified or smooth is Zariski local}
 
 \begin{lemma}\label{etale-zariski-local}
-Let $X$ with $(U_i)_{i:I}$ be a finite open cover of $X$. Then $X$ is formally étale (resp. formally unramified, formally smooth) if and only if all the $U_i$ are formally étale (resp. formally unramified, formally smooth).
+Let $X$ be a type with $(U_i)_{i:I}$ a finite open cover of $X$. Then $X$ is formally étale (resp. formally unramified, formally smooth) if and only if all the $U_i$ are formally étale (resp. formally unramified, formally smooth).
 \end{lemma}
 
 \begin{proof}
 First, we show this for formally unramified:
 \begin{itemize}
-\item Any subtype of a formally unramified type is formally unramified by \Cref{prop-are-unramified}.
-\item Conversely, assume $X$ with such a cover, for all $x,y:X$ there exists $i:I$ such that $x\in U_i$ and then:
+\item Any subtype of a formally unramified type is formally unramified by \Cref{prop-are-unramified}, so $X$ formally unramified implies $U_i$ formally unramified.
+\item Conversely, is each $U_i$ is formally unramified, then for all $x,y:X$ we need to prove $x=_Xy$ formally étale. But there exists $i:I$ such that $x\in U_i$ and then:
 \[x=_Xy \leftrightarrow \sum_{y\in U_i} x=_{U_i}y \]
 which is formally étale because open propositions are formally étale by \Cref{not-not-stable-prop-etale}.
 \end{itemize}
 Now for formally smooth:
 \begin{itemize}
 \item Open propositions are formally smooth by \Cref{not-not-stable-prop-etale} so that open subtypes of formally smooth types are formally smooth.
-\item Conversely if each $U_i$ is formally smooth then $\Sigma_{i:I}U_i$ is formally smooth by \Cref{finite-are-etale}, so we can conclude by applying \Cref{smoothSurjective} to the surjection:
-\[\Sigma_{i:I}U_i \to X\]
+\item Conversely if each $U_i$ is formally smooth then $\Sigma_{i:I}U_i$ is formally smooth by \Cref{finite-are-etale}, so we can conclude that $X$ is formally smooth by applying \Cref{smoothSurjective} to the surjection $\Sigma_{i:I}U_i \twoheadrightarrow X$.
 \end{itemize}
 The result for formally étale immediately follows.
 \end{proof}
