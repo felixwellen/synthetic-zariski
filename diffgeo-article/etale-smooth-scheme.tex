@@ -1,6 +1,8 @@
+In this section we will give characterizations similar to Section \ref{unramified-characterisation} for smooth and étale schemes.
+
 \subsection{Smooth and étale maps between schemes}
 
-Note that it is immediate from the definition of smoothness that smooth maps induce surjections on tangent spaces. We have a converse when the domain is smooth.
+Smooth maps between with a smooth smooth source are precisely submersions.
 
 \begin{corollary}\label{smooth-schemes-iff-submersion}
 Let $f:X\to Y$ be a map between schemes with $X$ smooth. Then the following are equivalent:
@@ -13,9 +15,9 @@ is surjective.
 \end{corollary}
 
 \begin{proof}
-(i) implies (ii). Assume given a map $v:\D(1)\to Y$ such that $v(0)=f(x)$, then for all $t:\D(1)$ we have a map:
+(i) implies (ii). Assume given $v:T_{f(x)}(Y)$, then for all $t:\D(1)$ we have a map:
 \[t=0 \to \fib_f(v(t))\]
-so since $f$ is smooth we merely have $w_t:\fib_f(v(t))$ such that $t=0$ implies $w_t=0$. We conclude using choice over $\D(1)$.
+with constant value $x$. So since $f$ is smooth we merely have $w_t:\fib_f(v(t))$ such that $t=0$ implies $w_t=x$. We conclude using choice over $\D(1)$.
 
 (ii) implies (i). Assume given $y:Y$ and $\epsilon:R$ such that $\epsilon^2=0$ and try to merely find a dotted lift in:
  \begin{center}
@@ -28,14 +30,14 @@ so since $f$ is smooth we merely have $w_t:\fib_f(v(t))$ such that $t=0$ implies
 \[\prod_{p:\epsilon=0} \phi(p)=x\]
 and therefore:
 \[ \epsilon=0 \to y=f(x)\]
-which means that $y\in N_1(f(x))$. We use \Cref{neighborhood-tangent-correspondence-smooth} to get that the map $N_1(x)\to N_1(f(x))$ induced by $f$ merely has a section $s$ sending $f(x)$ to $x$.
+which means that $y\in N_1(f(x))$. 
 
-Then $s(y):\fib_f(y)$ such that for all $p:\epsilon=0$ we have that:
+We use \Cref{duality-infinitesimal-tangent} and \Cref{neighborhood-tangent-correspondence-smooth} to get that the map $N_1(x)\to N_1(f(x))$ induced by $f$ merely has a section $s$ sending $f(x)$ to $x$. Then $s(y):\fib_f(y)$ is such that for all $p:\epsilon=0$ we have that:
 \[\phi(p) = x = s(f(x)) = s(y)\]
 \end{proof}
 
 \begin{corollary}\label{etale-schemes-iff-local-iso}
-Let $f:X\to Y$ be a map between schemes. Assume $X$ is smooth. Then the following are equivalent:
+Let $f:X\to Y$ be a map between schemes with $X$ smooth. Then the following are equivalent:
 \begin{enumerate}[(i)]
 \item The map $f$ is étale. 
 \item For all $x:X$, the induced map:
@@ -48,14 +50,18 @@ is an iso.
 We apply \Cref{unramified-map-characterisation} and \Cref{smooth-schemes-iff-submersion}.
 \end{proof}
 
+\begin{remark}\label{smooth-maps-are-submersions}
+In both previous results, we did not use the smoothness hypothesis on $X$ to prove (i) implies (ii).
+\end{remark}
+
 \subsection{Smooth schemes have free tangent spaces}
 
 \begin{lemma}\label{smooth-implies-smooth-tangent}
-Assume $X$ is a smooth scheme. Then for any $x:X$ the type $T_x(X)$ is formally smooth.
+Assume $X$ is a smooth scheme. Then for any $x:X$ the type $T_x(X)$ is smooth.
 \end{lemma}
 
 \begin{proof}
-Consider $T(X) = X^{\mathbb{D}(1)}$ the total tangent bundle of $X$. We have to prove that the map:
+Consider $T(X) = X^{\mathbb{D}(1)}$ the tangent bundle of $X$. We have to prove that the map:
 \[p:T(X)\to X\]
 is formally smooth. Both source and target are schemes, and the source is formally smooth because $X$ is smooth and $\mathbb{D}(1)$ has choice. So by \Cref{smooth-schemes-iff-submersion} it is enough to prove that for all $x:X$ and $v:T_x(X)$ the induced map:
 \[dp:T_{(x,v)}(T(X))\to T_x(X)\]
@@ -67,41 +73,40 @@ such that for all $t:\mathbb{D}(1)$ we have that:
 \[\phi(0,t) = v(t)\]
 \[\phi(t,0) = u(t)\]
 
-But we know that there exists a unique:
+But from \Cref{from-D1-to-D2} we know that there exists a unique:
 \[\psi_{v,u} : \mathbb{D}(2)\to X\]
 such that:
 \[\psi_{v,u}(0,t) = v(t)\]
 \[\psi_{v,u}(t,0) = u(t)\]
-as defined in \Cref{from-D1-to-D2}.
 
-Then the fact that $X$ is smooth and that the fibers of:
+Then since $X$ is smooth and the fibers of:
 \[\mathbb{D}(2) \to\mathbb{D}(1) \times \mathbb{D}(1) \]
-are closed dense with $\mathbb{D}(1) \times \mathbb{D}(1)$ having choice means that there merely exists a lift of $\psi_{v,w}$ to $\mathbb{D}(1) \times \mathbb{D}(1)$, which gives us the $\phi$ we wanted.
+are closed dense, we conclude from $\mathbb{D}(1) \times \mathbb{D}(1)$ having choice that there merely exists a lift of $\psi_{v,u}$ to $\mathbb{D}(1) \times \mathbb{D}(1)$, which gives us the $\phi$ we wanted.
 \end{proof}
 
 \begin{lemma}\label{smooth-kernel-decidable}
 Assume given a linear map:
 \[M:R^m\to R^n\] 
-which has a formally smooth kernel $K$. Then we can decide whether $M=0$.
+which has smooth kernel $K$. Then we can decide whether $M=0$.
 \end{lemma}
 
 \begin{proof}
-Since $M=0$ is closed, it is enough to prove that it is $\neg\neg$-stable to conclude that it is decidable by \Cref{not-not-stable-prop-etale} and \Cref{closed-and-etale-decidable}. Assume $\neg\neg(M=0)$, then for any $x:R^m$ we have a dotted lift in:
+Since $M=0$ is closed, by \Cref{not-not-stable-prop-etale} and \Cref{closed-and-etale-decidable} it is enough to prove that it is $\neg\neg$-stable to conclude that it is decidable. Assume $\neg\neg(M=0)$, then for any $x:R^m$ we have a dotted lift in:
  \begin{center}
       \begin{tikzcd}
-        M=0\ar[d] \ar[r,"\_\mapsto x"] & K \\
-       1 \ar[dotted,ru] &
+        M=0\ar[d] \ar[r,"\_\, \mapsto x"] & K \\
+       1 \ar[dashed,ru] &
       \end{tikzcd}
 \end{center}
-because $K$ is formally smooth, so that we merely have $y:K$ such that: 
+because $K$ is formally smooth, so that we merely have $y\in K$ such that: 
 \[M=0\to x=y\]
 which implies that $\neg\neg(x=y)$ since we assumed $\neg\neg(M=0)$.
 
-Then considering a basis $(x_1,\cdots,x_n)$ of $R^m$, we get $(y_1,\cdots,y_n)$ such that for all $i$ we have that $M(y_i) = 0$ and $\neg\neg(y_i=x_i)$. But then we have that $(y_1,\cdots,y_n)$ is infinitesimally close to a basis and that being a basis is an open proposition, so that $(y_1,\cdots,y_n)$ is a basis and $M=0$.
+Then considering a basis $(x_1,\cdots,x_n)$ of $R^m$, we get $(y_1,\cdots,y_n)$ such that for all $i$ we have that $y_i\in K$ and $\neg\neg(y_i=x_i)$. But then we have that $(y_1,\cdots,y_n)$ is infinitesimally close to a basis and that being a basis is an open proposition, so that $(y_1,\cdots,y_n)$ is a basis and $K=R^m$ so $M=0$.
 \end{proof}
 
 \begin{lemma}\label{smooth-corpresented-implies-free}
-Assume that $K$ is a finitely copresented module that is also formally smooth. Then it is finite free.
+Assume that $K$ is a finitely copresented module that is also smooth. Then it is finite free.
 \end{lemma}
 
 \begin{proof}
@@ -111,15 +116,13 @@ We proceed by induction on $m$. By \Cref{smooth-kernel-decidable} we can decide 
 \begin{itemize}
 \item If $M=0$ then $K=R^m$ and we can conclude.
 \item If $M\not=0$ then we can find a non-zero coefficient in the matrix corresponding to $M$, and so up to base change it is of the form:
-
 \[
 \begin{pmatrix}
 1 & \begin{matrix}0&\cdots & 0\end{matrix}  \\
 \begin{matrix}0\\ \vdots\\ 0\end{matrix} & \widetilde{M} \\
 \end{pmatrix}
 \]
-
-But then we know that the kernel of $M$ is equivalent to the kernel of $\widetilde{M}$, and by applying the induction hypothesis we can conclude that it is finite free.
+But then we know that the kernel of $M$ is isomorphic to the kernel of $\widetilde{M}$, and by applying the induction hypothesis we can conclude that it is finite free.
 \end{itemize}
 \end{proof}
 
@@ -136,8 +139,9 @@ We can turn this into a definition of dimension which works well in the case of 
 
 \begin{definition}
   \label{definition-smooth-dim-n}
-  A scheme is \notion{smooth of dimension $n$}, if it is smooth and all tangent spaces are finite free $R$-modules of dimension $n$.
+  A scheme is \notion{smooth of dimension $n$}, if it is smooth and all its tangent spaces are finite free of dimension $n$.
 \end{definition}
+
 
 \subsection{Standard étale and standard smooth schemes}
 
@@ -146,7 +150,7 @@ A standard smooth scheme of dimension $k$ is an affine scheme of the form:
 \[\Spec\big(R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\big)\]
 where the determinant of:
 \[\left( \frac{\partial P_i}{\partial X_j}\right)_{1\leq i,j\leq n}\]
-is invertible as an element of the algebra $R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n$.
+is invertible in $R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n$.
 \end{definition}
 
 \begin{definition}
@@ -162,7 +166,7 @@ A standard smooth scheme of dimension $0$ is called a \notion{standard étale sc
   \[ \Spec\big(R[X_1,\cdots,X_n,X_{n+1},Y_1,\cdots,Y_k] / P_1,\cdots,P_n,GX_{n+1}-1\big)\]
   and we can compute
   \[\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n,GX_{n+1}-1)) = \pm\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n)) \cdot G\]
-  which is invertible.
+  which is invertible in $R[X_1,\cdots,X_n,X_{n+1},Y_1,\cdots,Y_k] / P_1,\cdots,P_n,GX_{n+1}-1$.
 \end{remark}
 
 \begin{lemma}\label{standard-etale-are-etale}
@@ -179,7 +183,7 @@ for the map induced by $P_1,\cdots,P_n$.
 Assume given $\epsilon:R$ such that $\epsilon^2=0$, we need to prove that there is a unique dotted lifting in:
   \begin{center}
       \begin{tikzcd}
-       R/\epsilon & R[X_1,\cdots,X_n]/P_1,\cdots,P_n\ar[l,swap,"x"]\ar[dotted,ld] \\
+       R/\epsilon & R[X_1,\cdots,X_n]/P_1,\cdots,P_n\ar[l,swap,"x"]\ar[dashed,ld] \\
        R\ar[u]&
       \end{tikzcd}
     \end{center}
@@ -201,7 +205,7 @@ But $dP_{y'}$ is invertible and we can conclude that $y=y'$.
 \end{proof}
 
 \begin{lemma}\label{standard-smooth-is-smooth}
-Any standard smooth scheme of dimension $k$ is smooth of dimension $k$ (\Cref{definition-smooth-dim-n}).
+Any standard smooth scheme of dimension $k$ is smooth of dimension $k$. %(\Cref{definition-smooth-dim-n}).
 \end{lemma}
 
 \begin{proof}
@@ -211,7 +215,7 @@ are standard étale, so the map is étale by \Cref{standard-etale-are-etale}. Si
 \[\Spec(R[Y_1,\cdots Y_{k}]) = \A^k\]
 is smooth by \Cref{An-is-smooth}, we can conclude it is smooth using \Cref{smooth-sigma-closed}. 
 
-For the dimension we use \Cref{An-dimension-n} and \Cref{etale-schemes-iff-local-iso}.
+For the dimension we use \Cref{An-dimension-n} and \Cref{smooth-maps-are-submersions}.
 \end{proof}
 
 
