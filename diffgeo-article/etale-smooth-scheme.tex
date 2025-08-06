@@ -157,17 +157,17 @@ is invertible in $R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n$.
 A standard smooth scheme of dimension $0$ is called a \notion{standard étale scheme}.
 \end{definition}
 
-\begin{remark}
-  \label{standard-open-in-std-smooth}
-  Let $X=\Spec\big(R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\big)$
-  be as above but such that the determinant is
-  only invertible in a localization $(R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G$ for some $G:X\to R$.
-  Then $X$ is standard smooth of dimension $k$ since it is
-  \[ \Spec\big(R[X_1,\cdots,X_n,X_{n+1},Y_1,\cdots,Y_k] / P_1,\cdots,P_n,GX_{n+1}-1\big)\]
-  and we can compute
-  \[\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n,GX_{n+1}-1)) = \pm\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n)) \cdot G\]
-  which is invertible in $R[X_1,\cdots,X_n,X_{n+1},Y_1,\cdots,Y_k] / P_1,\cdots,P_n,GX_{n+1}-1$.
-\end{remark}
+%\begin{remark}
+%  \label{standard-open-in-std-smooth}
+%  Let $X=\Spec\big(R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n\big)$
+%  be as above but such that the determinant is
+%  only invertible in a localization $(R[X_1,\cdots,X_n,Y_1,\cdots Y_{k}] / P_1,\cdots,P_n)_G$ for some $G:X\to R$.
+%  Then $X$ is standard smooth of dimension $k$ since it is
+%  \[ \Spec\big(R[X_1,\cdots,X_n,X_{n+1},Y_1,\cdots,Y_k] / P_1,\cdots,P_n,GX_{n+1}-1\big)\]
+%  and we can compute
+%  \[\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n,GX_{n+1}-1)) = \pm\mathrm{det}(\mathrm{Jac}(P_1,\cdots,P_n)) \cdot G\]
+%  which is invertible in $R[X_1,\cdots,X_n,X_{n+1},Y_1,\cdots,Y_k] / P_1,\cdots,P_n,GX_{n+1}-1$.
+%\end{remark}
 
 \begin{lemma}\label{standard-etale-are-etale}
 Standard étale schemes are étale.
@@ -227,32 +227,40 @@ A scheme is smooth of dimension $k$ if and only if it has a finite open cover by
 \end{proposition}
 
 \begin{proof}
-We can assume the scheme $X$ affine, say of the form:
-\[X = \Spec(R[X_1,\cdots,X_m]/P_1,\cdots,P_l)\]
+By \Cref{etale-zariski-local} and \Cref{standard-smooth-is-smooth}, we get the converse. 
 
-By \Cref{smooth-have-free-tangent}, for any $x:X$ we have that $dP_x$ has finite free kernel of rank $k$. Then by \Cref{rank-equivalent-definitions} we know that $dP_x$ has rank $n=m-k$ for every $x$.
+For the direct implication, by \Cref{etale-zariski-local} it is enough to consider an affine scheme: 
+\[
+X = \Spec(R[X_1,\cdots,X_m]/P_1,\cdots,P_l)
+\]
 
-We cover $X$ according to which $n$-minor is invertible, so that up to a rearranging of variables and polynomials and using \Cref{standard-open-in-std-smooth} we can assume that:
+From \Cref{smooth-have-free-tangent}we get that for any $x:X$ we have that $dP_x$ has finite free kernel of rank $k$. Then by \Cref{rank-equivalent-definitions} we know that $dP_x$ has rank $n=m-k$ for every $x$.
+
+We cover $X$ by principal opens according to which $n$-minor is invertible, so that up to a rearranging of variables and polynomials we can assume a polynomial $G$ such that:
+\[X = \Spec(R[X_1,\cdots,X_{n},Z,Y_1,\cdots,Y_k]/P_1,\cdots,P_{n},1-ZG,Q_1,\cdots, Q_p)\]
+which can be rewritten as:
 \[X = \Spec(R[X_1,\cdots,X_{q},Y_1,\cdots,Y_k]/P_1,\cdots,P_{q},Q_1,\cdots, Q_p)\]
-with $q:=n+1$ and where $P_q$ is given by the construction in \Cref{standard-open-in-std-smooth} and we have:
+where $q=n+1$ and $\left(\frac{\partial P_i}{\partial X_j}\right)_{i,j}$ is invertible modulo $P_1,\cdots,P_{q},Q_1,\cdots, Q_p$.
+
+ Then we have:
 \[d(P,Q)_{x,y} = \begin{pmatrix}
 \left(\frac{\partial P}{\partial X}\right)_{x,y} & \left(\frac{\partial P}{\partial Y}\right)_{x,y} \\
 \left(\frac{\partial Q}{\partial X}\right)_{x,y} & \left(\frac{\partial Q}{\partial Y}\right)_{x,y} \\
 \end{pmatrix}\]
 where we used the notation:
-\[\left(\frac{\partial P}{\partial X}\right)_{x,y} = \begin{pmatrix}\left(\frac{\partial P_i}{\partial X_j}\right)_{x,y}\end{pmatrix}_{i,j}\]
-so that $\frac{\partial P}{\partial X}_{x,y}$ is invertible of size $q$. Moreover by \Cref{rank-bloc-matrix} we get:
+\[\left(\frac{\partial P}{\partial X}\right)_{x,y} = \left(\frac{\partial P_i}{\partial X_j}(x,y)\right)_{i,j}\]
+so that $\left(\frac{\partial P}{\partial X}\right)_{x,y}$ is invertible of size $q$. Moreover by \Cref{rank-bloc-matrix} we get:
 \[\left(\frac{\partial Q}{\partial Y}\right)_{x,y} = \left(\frac{\partial Q}{\partial X}\right)_{x,y}\left(\frac{\partial P}{\partial X}\right)_{x,y}^{-1} \left(\frac{\partial P}{\partial Y}\right)_{x,y} \]
 which will be useful later.
 
-Now we prove that for any $(x,y):R^{q+k}$ such that $P(x,y)=0$ it is decidable whether
-\[Q(x,y)=0 \] 
+Now we prove that for any $(x,y):R^{q+k}$ such that $P(x,y)=0$, the proposition $Q(x,y)=0$ is decidable.
+
 Using \Cref{square-zero-implies-zero-decidable} this follow from:
 \[(Q_1(x,y),\cdots,Q_p(x,y))^2=0 \to (Q_1(x,y),\cdots,Q_p(x,y))=0\]
 Assuming $(Q_1(x,y),\cdots,Q_p(x,y))^2=0$, by smoothness there is a dotted lift in:
 \begin{center}
       \begin{tikzcd}
-        R/(Q_1(x,y),\cdots,Q_l(x,y)) & \Spec(R[X_1,\cdots,X_q,Y_1,\cdots,Y_k]/P_1,\cdots,P_q,Q_1,\cdots, Q_l)\ar[l,swap,"(x{,}y)"] \ar[dotted,ld,"(x{'}{,}y{'})"]\\
+        R/(Q_1(x,y),\cdots,Q_l(x,y)) & \Spec(R[X_1,\cdots,X_q,Y_1,\cdots,Y_k]/P_1,\cdots,P_q,Q_1,\cdots, Q_l)\ar[l,swap,"(x{,}y)"] \ar[dashed,ld,"(x{'}{,}y{'})"]\\
        R\ar[u] & \\
       \end{tikzcd}
 \end{center}
@@ -267,8 +275,8 @@ so that $Q(x,y)=0$ as we have seen previously that:
 \[\left(\frac{\partial Q}{\partial Y}\right)_{x',y'} = \left(\frac{\partial Q}{\partial X}\right)_{x',y'}\left(\frac{\partial P}{\partial X}\right)_{x',y'}^{-1} \left(\frac{\partial P}{\partial Y}\right)_{x',y'} \]
 From the decidability of $Q(x,y)=0$ we get that $X$ is an open in $\Spec(R[X_1,\cdots,X_q,Y_1,\cdots,Y_k]/P_1,\cdots,P_q)$
 so it is of the form $D(G_1,\cdots,G_r)$, and we have an open cover of our scheme by pieces of the form:
-\[\Spec((R[X_1,\cdots,X_q,Y_1,\cdots,Y_k]/P_1,\cdots,P_q)_{G_i})\]
-and we can conclude with \Cref{standard-open-in-std-smooth}.
+\[\Spec(R[X_1,\cdots,X_q,Z,Y_1,\cdots,Y_k]/P_1,\cdots,P_q,1-ZG_i)\]
+which is standard smooth of dimension $k$.
 \end{proof}
 
 \begin{corollary}
