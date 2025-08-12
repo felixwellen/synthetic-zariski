@@ -116,7 +116,7 @@ where $\propTrunc{X=\bP^n}_{T}$ is the modal replacement of $\propTrunc{X=\bP^n}
 \section{\'Etale sheaves}
 \label{etale-sheaves}
 
-In this section we define étale sheaves and prove that schemes are étale sheaves. We also prove descent for finite free modules, which means that the type of finite free $R$-modules is an étale sheaf, or equivalently that given an $R$-module $M$ that is an étale sheaf, the proposition ``$M$ is finite free'' is an étale sheaf.
+In this section we define étale sheaves and prove that schemes are étale sheaves. We also prove descent for finite free modules, which means that the type of finite free modules is an étale sheaf, or equivalently that given a module $M$ that is an étale sheaf, the proposition ``$M$ is finite free'' is an étale sheaf.
 
 
 \subsection{Definition of étale sheaves}
@@ -143,12 +143,6 @@ As explained above, this means that étale sheaves form a model of type theory w
 
 
 \subsection{Schemes are \'etale sheaves}
-
-%\begin{definition}
-%Unramifiable polynomial
-%\end{definition}
-
-%\rednote{Should we recall the definition? I don't think so as it is never used. TODO}
 
 First we prove that $R$ is an étale sheaf, immediately implying that all affine schemes are étale sheaves.
 
@@ -238,8 +232,6 @@ The right hand side is open by Lemma \ref{roots-monic-proper}, giving the requir
 
 \subsection{Descent for finite free modules}
 
-%\rednote{Maybe give a clearer proof, for finite free only? TODO}
-
 \begin{lemma}\label{fp-equivalent-pointwise}
   Given a finitely presented (resp.\ finite projective)
   $R$-module $M_x$ depending on $x:\Spec(A)$, we have that $\prod_{x:\Spec(A)}M_x$ is a finitely presented (resp.\ finite projective) $A$-module.
@@ -282,7 +274,7 @@ This is IX.2.2 in \cite{lombardi-quitte}, it crucially relies on $R$ being local
 We are now ready to conclude.
 
 \begin{proposition}\label{descent-finite-free}
-For $M$ an $R$-module that is an \'etale sheaf, the proposition ``$M$ is an finite free'' is itself an \'etale sheaf.
+For $M$ a module that is an \'etale sheaf, the proposition ``$M$ is a finite free'' is itself an \'etale sheaf.
 \end{proposition}
 
 \begin{proof}
@@ -294,9 +286,12 @@ By Lemma \ref{fp-equivalent-pointwise} we get that $M^{\Spec(R[X]/g)}$ is finite
 \end{proof}
 
 \begin{remark}
-We sketch how Proposition \ref{descent-finite-free} relates to the traditional notion of descent, justifying the title of this section. TODO
-\end{remark}
+We sketch how Proposition \ref{descent-finite-free} relates to the traditional notion of descent, justifying the title of this section. 
+A first remark is that it implies that the type of finite free modules is itself an étale sheaf.
 
+Now consider a monic separable polynomial $g$, so that $g$ is unramifiable, $\Spec(R[X]/g)$ is étale and $\Spec(R[X]/g)\to 1$ is an étale cover. Then a descent data in finite free module for this cover is precisely a finite free module depending on 
+$\propTrunc{\Spec(R[X]/g)}$, so that Proposition \ref{descent-finite-free} implies that giving such a descent data is equivalent to just giving a finite free module, which is a direct translation of what would be traditionally called descent.
+\end{remark}
 
 
 
@@ -305,14 +300,11 @@ We sketch how Proposition \ref{descent-finite-free} relates to the traditional n
 From now on we assume a lex modality $T$ such that:
 \begin{itemize}
 \item Schemes are modal.
-\item If $M$ is a $T$-modal $R$-module, then the proposition of $M$ being finite free is modal.
+\item If $M$ is a modal $R$-module, then the proposition ``$M$ is finite free'' is modal.
 \end{itemize}
-We call $T$-modal types sheaves and we write $\propTrunc{X}_T$ the sheafification of the propositional truncation of $X$. Note that $T$-modal types form a model of homotopy type theory \cite{modalities,Quirin16}.
+Thel modal types are called sheaves, the modal replacement is called sheafification and we denote the sheafification of the propositional truncation of $X$ by $\propTrunc{X}_T$. Sheaves form a model of homotopy type theory \cite{modalities,Quirin16}.
 
-In Section \ref{etale-sheaves} we proved that étale sheafification is such a modality, by Propositions \ref{scheme-is-etale-sheaf} and \ref{descent-finite-free}.
-
-We fix a natural number $n$ throughout, which will be the dimension of the considered Severi-Brauer varieties.
-
+We proved in Section \ref{etale-sheaves} that étale sheafification is such a modality, in Propositions \ref{scheme-is-etale-sheaf} and \ref{descent-finite-free}.
 
 
 \subsection{Severi-Brauer varieties}
@@ -322,7 +314,13 @@ A type $X$ is called a Severi-Brauer variety of dimension $n$ if $X$ is a sheaf 
 \[\propTrunc{X=\bP^n}_T\]
 \end{definition}
 
-We write $\SB_n$ the type of Severi-Brauer varieties of dimension $n$. We will see later that every Severi-Brauer variety is a scheme. We state that the automorphism group of $\bP^n$ is $\PGL_{n+1}(R)$, that is the type of automorphism of $R^{n+1}$, or equivalently matrices in $M_{N+1}(R)$ with invertible determinant, modulo multiplication by an nvertible $\lambda:R$.
+We denote the type of Severi-Brauer varieties of dimension $n$ by $\SB_n$.
+
+\begin{remark}
+We will see later that every Severi-Brauer variety is a scheme. 
+\end{remark}
+
+Now we state the key result that the automorphism group of $\bP^n$ is $\PGL_{n+1}(R)$. Recall that $\PGL_{n+1}(R)$ is defined as the type of automorphism of $R^{n+1}$ (or equivalently matrices in $M_{n+1}(R)$ with invertible determinant) modulo multiplication by an invertible $\lambda:R$.
 
 \begin{proposition}\label{Aut-Pn-PGL}
 The map:
@@ -335,9 +333,11 @@ is an equivalence.
 This is the main result from \cite{sag-projective}.
 \end{proof}
 
-TODO means it is a delooping in etale sheaves.
+\begin{remark}\label{SB-is-delooping}
+Consider $G$ a group, a delooping of $G$ inside sheaves is a pointed sheaf $(\mathrm{B}_TG,*)$ such that for all $\forall(x:\mathrm{B}_TG).\, \propTrunc{x=*}_T$ and $\Omega (\mathrm{B}_TG) = G$. This is precisely a delooping of $G$ inside the model of homotopy type theory where types are interpreted as sheaves. Then $\SB_n$ is a delooping of $PGL_{n+1}(R)$ inside sheaves.
+\end{remark}
 
-We want to give examples of Severi-Brauer varities. To do that we assume that $2\not=0$ for the rest of the subsection, and we take $T$ to be the étale sheafification.
+We want to give examples of Severi-Brauer varities. To do that we assume that $2\not=0$ and we take $T$ to be étale sheafification for the rest of the subsection.
 
 \begin{definition}
 Given $a,b:R^\times$, we define the conic $C(a,b)$ as the set of $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$.
@@ -356,7 +356,7 @@ Let us assume $x_0,y_0,z_0$ such that $x_0^2 = ay_0^2+bz_0^2$. We can assume $x_
 
 We want to define $\phi$ inverse to $\phi$. Assume $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$. 
 
-Let us proof that either $x+ay_0y+bz_0z$ or $x-ay_0y-bz_0z$ is invertible, to do this it is enough to prove that either $x$ or $ay_0y+bz_0z$ is invertible. Assume $x=0$ and $ay_0y+bz_0z=0$, then we have a contradiction. Indeed $y$ or $z$ is invertible and $ay^2+bz^2=0$, so that $y$ and $z$ are invertible and $b = -a\frac{y^2}{z^2}$ and $y_0z=yz_0$. Moreover $y_0$ or $z_0$ is invertible, so that both $y_0$ and $z_0$ are invertible and $\frac{y}{z} = \frac{y_0}{z_0}$ which means $ay^2+bz^2=0$ implies $ay_0^2+bz_0^2=0$, a contradiction. 
+Let us proof that either $x+ay_0y+bz_0z$ or $x-ay_0y-bz_0z$ is invertible, to do this it is enough to prove that either $x$ or $ay_0y+bz_0z$ is invertible, so we assume $x=0$ and $ay_0y+bz_0z=0$ try to reach a contradiction. We have that $y$ or $z$ is invertible and $ay^2+bz^2=0$, so that $y$ and $z$ are invertible and $b = -a\frac{y^2}{z^2}$ and $y_0z=yz_0$. Moreover $y_0$ or $z_0$ is invertible, so that both $y_0$ and $z_0$ are invertible and $\frac{y}{z} = \frac{y_0}{z_0}$ which means $ay^2+bz^2=0$ implies $ay_0^2+bz_0^2=0$, which is a contradiction. 
 
 If $x + ay_0y + bz_0z$ is invertible we define $\phi([x,y,z]) = [1:\frac{a(z_0y-y_0z)}{x + ay_0y + bz_0z}]$.
 
@@ -390,7 +390,7 @@ Assume given $a,b:R^\times$, then $C(a,b)$ is a Severi-Brauer variety.
 \end{lemma}
 
 \begin{proof}
-Since a sheaf being a Severi-Brauer variety is an \'etale sheaf, we can assume $\sqrt{a}$ . Then by Lemma \ref{conic-change-variable} we have that $C(1,b) = C(\sqrt{a}^2,b)=C(a,b)$ and we conclude by Lemma \ref{conic-one-split}.
+Since a sheaf being a Severi-Brauer variety is an \'etale sheaf, we can assume $\sqrt{a}$ . Then by Lemma \ref{conic-change-variable} we have that $C(a,b) = C(\sqrt{a}^2,b) = C(1,b)$ and we conclude by Lemma \ref{conic-one-split}.
 \end{proof}
 
 \begin{remark}
@@ -424,6 +424,7 @@ where $\delta_{j,k} = 1$ if $j=k$ and $0$ otherwise. Moreover assume:
 \[e_{0,0}+\cdots+e_{n,n}=1\]
 Then there exists $P:GL_{n+1}(R)$ such that:
 \[e_{i,j} = PE_{i,j}P^{-1}\]
+Where $E_{i,j}$ for $0\leq i,j\leq n$ is the canonical basis of $M_{n+1}(R)$.
 \end{lemma}
 
 \begin{proof}
@@ -462,9 +463,11 @@ from which we conclude that for all $M:M_{n+1}(R)$ we have that:
 as desired.
 \end{proof}
 
-TODO means also a delooping
+\begin{remark}\label{AZ-is-delooping}
+As in Remark \ref{SB-is-delooping}, we have that $\AZ_n$ is also a delooping of $PGL_{n+1}(R)$ inside sheaves.
+\end{remark}
 
-Now we give examples of Azumaya alegbras. To do this we assume $2\not=0$ for the rest of the subsection, and we take $T$ to be the étale sheafification.
+Now we give examples of Azumaya alegbras. To do this we assume $2\not=0$ and we take $T$ to be étale sheafification for the rest of the subsection.
 
 \begin{definition}
 Given $a,b:R^\times$, we define the quaternion algebra $Q(a,b)$ as the non-commutative algebra:
@@ -494,12 +497,12 @@ and $j$ to:
 0 & b\\
 1 & 0\\
 \end{pmatrix}\]
-Then $IJ$ is:
-\[K = \begin{pmatrix}
+Then $ij$ is send to:
+\[IJ = \begin{pmatrix}
 0 & b\\
 -1 & 0\\
 \end{pmatrix}\]
-It is easy to check this define an algebra morphism, and since $1,I,J,K$ form a basis of $M_2(R)$ the map is an isomorphism.
+It is easy to check this define an algebra morphism, and since $1,I,J,IJ$ form a basis of $M_2(R)$ the map is an isomorphism.
 \end{proof}
 
 \begin{lemma}\label{quaternion-change-variable}
@@ -515,7 +518,7 @@ Given $a,b:R^\times$, we have that $Q(a,b)$ is an Azumaya algebra.
 \end{lemma}
 
 \begin{proof}
-We have that $Q(a,b)$ is finite free as a vector space so it is a sheaf. So $Q(a,b)$ being Azumaya is a sheaf and we can assume $\sqrt{a}$. Then by Lemma \ref{quaternion-change-variable} we have $Q(1,b) = Q(\sqrt{a}^2,b) = Q(a,b)$ and we conclude by Lemma \ref{quaternion-split}.
+We have that $Q(a,b)$ is finite free as a vector space so it is a sheaf. When proving $\propTrunc{Q(a,b)=M_2(R)}_T$ we can assume $\sqrt{a}$ such that $\sqrt{a}^2 = a$. Then by Lemma \ref{quaternion-change-variable} we have $Q(a,b) = Q(\sqrt{a}^2,b) = Q(1,b)$ and we conclude by Lemma \ref{quaternion-split}.
 \end{proof}
 
 
@@ -533,19 +536,21 @@ Let us denote by $(E_{i,j})_{0\leq i,j\leq n}$ the canonical basis of $M_{n+1}(R
 \[(E_{i,j}\otimes E_{k,l})_{0\leq i,j,k,l\leq n}\] 
 of $M_{n+1}(R)\otimes M_{n+1}(R)^{op}$, as well as the basis:
 \[(C_{i,j,k,l})_{0\leq i,j,k,l\leq n}\] 
-of $\mathrm{End}_R(M_{n+1}(R))$ where $C_{i,j,k,l}(E_{j,k}) = E_{i,l}$ and $C_{i,j,k,l}$ is null on other element of the basis. It is clear that the morphism sends one basis to the other, and that both algebras have the same multiplication table. 
+of $\mathrm{End}_R(M_{n+1}(R))$ where $C_{i,j,k,l}(E_{m,n}) = \delta_{j,m}\delta_{k,n} E_{i,l}$. It is clear that the morphism sends one basis to the other. We can check that both algebras have the same multiplication table. %, indeed:
+%\[(E_{i,j}\otimes E_{k,l}) (E_{i',j'}\otimes E_{k',l'}) = \delta_{j,i'}\delta_{k,l'}E_{i,j'}\otimes E_{k',l}\]
+%\[C_{i,j,k,l}C_{i',j',k',l'} = \delta_{j,i'}\delta_{k,l'}C_{i,j',k',l}\]
 \end{proof}
 
 \begin{lemma}
-Assume $A:\AZ_n$, then $A$ is finite free as a module and the map $A\otimes A^{op}\to \mathrm{End}_R(A)$ sending $a\otimes b$ to $c\mapsto acb$ is an equivalence.
+Given $A:\AZ_n$, the map $A\otimes A^{op}\to \mathrm{End}_R(A)$ sending $a\otimes b$ to $c\mapsto acb$ is an equivalence.
 \end{lemma}
 
 \begin{proof}
-The fact that $A$ is finite free is Lemma \ref{azumayas-are-finite-free}. Then both $A\otimes A^{op}$ and $\mathrm{End}_R(A)$ are finite free modules and therefore are $T$-modal, so that the map being an equivalence is $T$-modal and when proving it we can assume $A=M_{n+1}(R)$. Then we conclude by Lemma \ref{MnR-endomorphism-multiplication}.
+We have that $A$ is a finite free module by Lemma \ref{azumayas-are-finite-free}. Then both $A\otimes A^{op}$ and $\mathrm{End}_R(A)$ are finite free modules and therefore they are sheaves, so that the map being an equivalence is itself a sheaf and we can assume $A=M_{n+1}(R)$. Then we conclude by Lemma \ref{MnR-endomorphism-multiplication}.
 \end{proof}
 
 \begin{remark}\label{azumaya-independent-modality}
-In \cite{coqazumaya}, we give a constructive proof of the converse when $T$-modal types are étale sheaves, meaning that an $R$-algebra $A$ is an Azumaya algebra of rank $n$ for such a $T$ if and only if $A$ is free of rank $(n+1)^2$ as a $R$-module and the canonical map $A\otimes A^{op}\rightarrow \mathrm{End}_R(A)$ is an isomorphism. In particular this means that $\AZ_n$ do not depend on the choice of such a $T$.
+In \cite{coqazumaya}, we give a constructive proof of the converse when $T$-modal types are included in étale sheaves, meaning that an $R$-algebra $A$ is an Azumaya algebra of rank $n$ for such a $T$ if and only if $A$ is free of rank $(n+1)^2$ as a module and the canonical map $A\otimes A^{op}\rightarrow \mathrm{End}_R(A)$ is an isomorphism. In particular this means that $\AZ_n$ do not depend on the choice of such a $T$.
 \end{remark}
 
 %% \begin{remark}\label{azumaya-independent-modality}
@@ -560,9 +565,9 @@ In \cite{coqazumaya}, we give a constructive proof of the converse when $T$-moda
 
 
 
-\section{Construction an equivalence from $\AZ_n$ to $\SB_n$}
+\section{Constructing an equivalence from $\AZ_n$ to $\SB_n$}
 
-TODO intro they are equivalent
+By Remarks \ref{SB-is-delooping} and \ref{AZ-is-delooping}, we have that both $\SB_n$ and $\AZ_n$ are deloopings of $PGL_{n+1}(R)$ inside the model of homotopy type theory where types are interpreted as sheaves. By unicity of deloopings, we can immediately conclude that $\SB_n = \AZ_n$. In section we give an explicit description of such an equivalence, as seems required to deduce Ch\^telet's result. 
 
 
 \subsection{Constructing a Severi-Brauer variety from an Azumaya alegbra}
@@ -722,6 +727,8 @@ By Remark \ref{azumaya-independent-modality} and Lemma \ref{right-ideal-is-equiv
 
 
 \section{Inhabited Severi-Brauer varieties are projective spaces}
+
+Now that we have an equivalence $\RI:\AZ_n \to \SB_n$, we assume $X:\SB_n$ with $x:X$ and try to conclude that $\AZ^{-1}(X) = M_{n+1}(R)$. We need an auxiliary lemma.
 
 \begin{lemma}\label{azumaya-with-right-ideal}
 Assume $A:\AZ_n$ with $I:\RI(A)$, then:
