@@ -123,7 +123,7 @@ In this section we define étale sheaves and prove that schemes are étale sheav
 
 Our definition of étale sheaves crucially relies on monic unramifiable polynomials, which are defined in \cite{wraith79} and analysed in \cite{coqazumaya}. As the precise definition of unramifiable does not matter in this article, we think it is enough to mention that a polynomial of degree $n$ with $n$ roots in unramifiable if and only if it has a simple root.
 
-If $P$ is a proposition, we say that a type $X$ is $P$-local if and only if the canonical map $X\rightarrow X^P$ is an equivalence.
+If $P$ is a proposition, we say that a type $X$ is $P$-local if and only if the canonical map $X\to X^P$ is an equivalence.
 Given a family of propositions $P_i$, the types that are $P_i$-local for all $i$ form a model of type theory with univalence,
 and we have an associated lex modality called the nullification modality \cite{modalities,Quirin16}.
 Following \cite{wraith79}, we can consider\'etale sheafificatiom, which is the nullificatiom at the family of propositions stating that monic unramifiable polynomials have roots.
@@ -197,7 +197,7 @@ Now we just have to apply this previous result. To do this we need the type of r
 \begin{lemma}\label{roots-monic-proper}
   If $g$ is a monic polynomial, and $h_1,\dots,h_m$ in $R[X]$, then the proposition:
   \[
-  \forall_xg(x)=0\rightarrow h_1(x)\neq 0\vee\dots\vee h_m(x)\neq 0
+  \forall_xg(x)=0\to h_1(x)\neq 0\vee\dots\vee h_m(x)\neq 0
   \] 
   is open. It follows that, for any monic $g:R[X]$, and for any open $U$ in $\Spec(R[X]/g)$ the proposition:
   \[\Spec(R[X]/g) = U\]
@@ -325,7 +325,7 @@ Now we state the key result that the automorphism group of $\bP^n$ is $\PGL_{n+1
 \begin{proposition}\label{Aut-Pn-PGL}
 The map:
 \[\beta:\PGL_{n+1}(R)\to\Aut(\bP^n)\]
-\[X\mapsto PX\]
+\[P\mapsto (X\mapsto PX)\]
 is an equivalence.
 \end{proposition}
 
@@ -437,9 +437,9 @@ and:
 
 As a direct summand of a free module we have that $V_0$ is projective, and since $V_0 = e_{0}(R^{n+1})$ we have that $V_0$ is finitely generated, so by Lemma \ref{finite-projective-free} it is finite free. From $V_0^{n+1}=R^{n+1}$ we get that $\propTrunc{V_0=R}$, and therefore that $\propTrunc{V_i=R}$ for all $i$.
 
-Then we choose $v_0$ generating $V_0$ and define $v_i = e_{i,0}(v_0)$ so that $v_i$ generates $V_i$ because $e_{i,0}:V_0\simeq V_i$. We get a basis $v_0,\cdots,v_n$ of $R^{n+1}$.
+Then we choose $v_0$ generating $V_0$ and define $v_i = e_{i,0}(v_0)$ so that $v_i$ generates $V_i$ because $e_{i,0}:V_0\simeq V_i$. We get a basis $v_0,\hdots,v_n$ of $R^{n+1}$.
 
-Let $u_0,\cdots,u_n$ be the canonical basis of $R^{n+1}$ and define $P:GL_{n+1}(R)$ by sending $u_i$ to $v_i$. Then for all $v_k$ we have that:
+Let $u_0,\hdots,u_n$ be the canonical basis of $R^{n+1}$ and define $P:GL_{n+1}(R)$ by sending $u_i$ to $v_i$. Then for all $v_k$ we have that:
 \[e_{i,j}v_k = PE_{i,j}P^{-1}v_k\]
 so we can conclude.
 \end{proof}
@@ -550,7 +550,7 @@ We have that $A$ is a finite free module by Lemma \ref{azumayas-are-finite-free}
 \end{proof}
 
 \begin{remark}\label{azumaya-independent-modality}
-In \cite{coqazumaya}, we give a constructive proof of the converse when $T$-modal types are included in étale sheaves, meaning that an $R$-algebra $A$ is an Azumaya algebra of rank $n$ for such a $T$ if and only if $A$ is free of rank $(n+1)^2$ as a module and the canonical map $A\otimes A^{op}\rightarrow \mathrm{End}_R(A)$ is an isomorphism. In particular this means that $\AZ_n$ do not depend on the choice of such a $T$.
+In \cite{coqazumaya}, we give a constructive proof of the converse when $T$-modal types are included in étale sheaves, meaning that an $R$-algebra $A$ is an Azumaya algebra of rank $n$ for such a $T$ if and only if $A$ is free of rank $(n+1)^2$ as a module and the canonical map $A\otimes A^{op}\to \mathrm{End}_R(A)$ is an isomorphism. In particular this means that $\AZ_n$ do not depend on the choice of such a $T$.
 \end{remark}
 
 %% \begin{remark}\label{azumaya-independent-modality}
@@ -567,17 +567,23 @@ In \cite{coqazumaya}, we give a constructive proof of the converse when $T$-moda
 
 \section{Constructing an equivalence from $\AZ_n$ to $\SB_n$}
 
-By Remarks \ref{SB-is-delooping} and \ref{AZ-is-delooping}, we have that both $\SB_n$ and $\AZ_n$ are deloopings of $PGL_{n+1}(R)$ inside the model of homotopy type theory where types are interpreted as sheaves. By unicity of deloopings, we can immediately conclude that $\SB_n = \AZ_n$. In section we give an explicit description of such an equivalence, as seems required to deduce Ch\^telet's result. 
+By Remarks \ref{SB-is-delooping} and \ref{AZ-is-delooping}, we have that both $\SB_n$ and $\AZ_n$ are deloopings of $PGL_{n+1}(R)$ inside sheaves. Since deloopings are unique in homotopy type theory, and sheaves form a model of homotopy type theory, we can immediately conclude that $\SB_n = \AZ_n$. But this is not enough to conclude Ch\^atelet's result, as we have no control on how this equivalence looks like. In section we give an explicit description of such an equivalence.
 
 
-\subsection{Constructing a Severi-Brauer variety from an Azumaya alegbra}
+\subsection{Constructing a Severi-Brauer variety from an Azumaya algebra}
+
+First we define Grassmanians.
+
+\begin{definition}
+Given $V$ a module and $k:\N$, we define $\Gr_k(V)$ as the type of submodule of $V$ which are finite free of dimension $k$.
+\end{definition}
 
 \begin{lemma}\label{grassmanians-are-schemes}
 Let $V$ be a finite free module, then $\Gr_k(V)$ is a scheme.
 \end{lemma}
 
 \begin{proof}
-We can assume $V=R^n$. The type of $k$-dimensional subspaces of $R^n$ is the type of $n\times k$ matrices of rank $k$ quotiented by the natural action of $\GL_k$. For all $k\times k$ minor, we consider the open proposition stating this minor is non-zero, which well defined as it is invariant under the $\GL_k$-action. This gives a finite open cover of $\Gr_k(R^n)$.
+We can assume $V=R^n$. The type of $k$-dimensional subspaces of $R^n$ is the type of $n\times k$ matrices of rank $k$ quotiented by the natural action of $\GL_k$. For all $k\times k$ minor, we consider the open proposition stating this minor is invertible, which well defined as it is invariant under the $\GL_k$-action. This gives a finite open cover of $\Gr_k(R^n)$.
 
 Let us show any piece is affine. For example consider the piece of matrices of the form:
 \[\begin{pmatrix}
@@ -595,86 +601,80 @@ For all $A:\AZ_n$ and $I:\Gr_{n+1}(A)$, we have that $I$ being a right ideal in 
 \end{lemma}
 
 \begin{proof}
-By Lemma \ref{azumayas-are-finite-free} we have that $A$ is finite free as a module. Consider $a_0,\cdots,a_n$ a basis of $I$ and extend it to a basis of $A$ adding $b_1,\cdots,b_l$. We can proceed as if $R$ was a field because a non zero vector has a non-zero coefficient \cite{draft}.
+By Lemma \ref{azumayas-are-finite-free} we have that $A$ is finite free as a module. Consider $a_0,\hdots,a_n$ a basis of $I$ and extend it to a basis of $A$ by adding $b_1,\hdots,b_l$. We can proceed as if $R$ was a field because a non-zero vector has an invertible coefficient \cite{draft}.
 
-For any $a:A$, we have that $a\in I$ is a closed proposition as it says that the $b_1,\cdots,b_l$ coordinates of $a$ are zero. 
-
-Then $I$ is an ideal if and only if for any $a$ in the chosen basis of $A$ and any $i$ in the chosen basis of $I$ we have that $ai\in I$, which is a closed proposition.
+For any $a:A$, we have that $a\in I$ is a closed proposition as it says that the $b_1,\hdots,b_l$ coordinates of $a$ are zero. Then $I$ is a right ideal if and only if for any $a$ in the chosen basis of $A$ and any $i$ in the chosen basis of $I$ we have that $ia\in I$, which is a closed proposition.
 \end{proof}
 
-\begin{lemma}\label{severi-brauer-are-schemes}
+We are now ready to give the definition of the map that will turn out to be an equivalence.
+
+\begin{definition}
 For all $A:\AZ_n$ we define:
-\[\RI(A) := \{I:\Gr_{n+1}(A)\ |\ I\ \mathrm{is\ a\ right\ ideal}\}\]
-Then $\RI(A)$ is a scheme.
+\[\RI_n(A) = \{I:\Gr_{n+1}(A)\ |\ I\ \mathrm{is\ a\ right\ ideal}\}\]
+\end{definition}
+
+\begin{lemma}\label{severi-brauer-are-schemes}
+For all $A:\AZ_n$ we have that $\RI_n(A)$ is a scheme.
 \end{lemma}
 
 \begin{proof}
-By Lemma \ref{azumayas-are-finite-free} we have that $A$ is finite free as a module, so that by Lemma \ref{grassmanians-are-schemes} we have that $\Gr_{n+1}(A)$ is a scheme, and then by Lemma \ref{being-ideal-in-azumaya-closed} we have that $\RI(A)$ is closed in a scheme, so it is a scheme.
+By Lemma \ref{azumayas-are-finite-free} we have that $A$ is finite free as a module, so that by Lemma \ref{grassmanians-are-schemes} we have that $\Gr_{n+1}(A)$ is a scheme, and then by Lemma \ref{being-ideal-in-azumaya-closed} we have that $\RI_n(A)$ is a closed subtype of a scheme, so it is a scheme.
 \end{proof}
 
 \begin{lemma}\label{right-ideal-of-matrices-are-projective}
 Consider the map:
-\[\delta:\bP^n \to \RI(M_{n+1}(R))\]
-sending $(x_0:\cdots:x_n):\bP^n$ to:
-\[\{M:M_n(R)\ |\ \forall i,j.\ x_i\cdot M_j = x_j\cdot M_i\}\]
+\[\delta:\bP^n \to \RI_n(M_{n+1}(R))\]
+defined by:
+\[\delta([x_0:\cdots:x_n]) = \{M:M_n(R)\ |\ \forall i,j.\ x_i\cdot M_j = x_j\cdot M_i\}\]
 where $M_i$ is the $i$-th line of $M$. Then $\delta$ is an equivalence.
 \end{lemma}
 
 \begin{proof}
-Write $X=(x_0:\cdots:x_n)$. First we check $\delta$ is well defined. It is clear that for all $\lambda\not=0$ we have that:
+Let us denote $[x_0:\cdots:x_n]:\bP^n$ by $X$. First we check $\delta$ is well defined. It is clear that for all $\lambda\not=0$ we have that:
 \[\delta(\lambda X) = \delta(X)\]
 and that $\delta(X)$ is a right ideal. To check the dimension assume $x_k\not=0$. Then $M\in\delta(X)$ if and only if for all $i$ we have that $M_i = \frac{x_i}{x_k} M_k$, which means giving $M\in\delta(X)$ is equivalent to giving $M_k$ in $R^{n+1}$, so $\delta(X)$ is free of dimension $n+1$.
 
-Next we check injectivity. Assume given $(x_0:\cdots:x_n)$ and $(y_0:\cdots:y_n)$ in $\bP^n$ such that for all $M:M_n(R)$ we have:
+Next we check injectivity. Assume given $[x_0:\cdots:x_n]$ and $[y_0:\cdots:y_n]$ in $\bP^n$ such that for all $M:M_n(R)$ we have:
 \[(\forall i,j.\ x_i\cdot M_j = x_j\cdot M_i) \leftrightarrow (\forall i,j.\ y_i\cdot M_j = y_j\cdot M_i)\]
-In particular considering the matrix $N$ such that $N_j = (y_j,\cdots,y_j)$ we get that:
+In particular considering the matrix $N$ such that $N_j = (y_j,\hdots,y_j)$ we get that:
 \[\forall i,j.\ x_iy_j=x_jy_i\] 
 so that:
-\[(x_0:\cdots:x_n) = (y_0:\cdots:y_n)\]
+\[[x_0:\cdots:x_n] = [y_0:\cdots:y_n]\]
 
-Finally we check surjectivity. Assume $I:\RI(M_{n+1}(R))$, since $\propTrunc{I=R^{n+1}}$ we have $M\in I$ such that $M\not=0$, for example assume $M_{0,0}\not=0$. Then for all $k$ we have that:
-\[ME_{0,k}\in I\]
-meaning that we have $N^k\in I$ where:
-\[N^k_{i,k} = M_{i,0}\]
-and when when $j\not=k$
-\[N^k_{i,j} = 0\]
-Then since $M_{0,0}\not=0$ the matrices $N^k$ are linearly independent and since $I$ has dimension $n+1$, it is precisely the ideal spanned by the $N^k$. But this ideal is $\delta(M_{0,0}:\cdots:M_{n,0})$.
+Finally we check surjectivity. Assume $I:\RI_n(M_{n+1}(R))$, since $\propTrunc{I=R^{n+1}}$ there exists $M\in I$ such that $M\not=0$, for example assume $M_{0,0}\not=0$. Then for all $k$ we have $ME_{0,k}\in I$. Let us denote that matrix by $N_k$, so that $N_k\in I$ and:
+\[(N_k)_{i,j} = \delta_{j,k}M_{i,0}\]
+Then since $M_{0,0}\not=0$ the matrices $(N_k)_{0\leq k\leq n}$ are linearly independent and since $I$ has dimension $n+1$, it is precisely the ideal spanned by  $(N_k)_{0\leq k\leq n}$. But this ideal is $\delta([M_{0,0}:\cdots:M_{n,0}])$.
 \end{proof}
 
 \begin{lemma}
-If $A$ is an Azumaya algebra, then $\RI(A)$ is a Severi-Brauer variety.
+We have that $\RI_n$ gives a pointed map from $\AZ_n$ to $\SB_n$.
 \end{lemma}
 
 \begin{proof}
-By Lemma \ref{severi-brauer-are-schemes} and the assumption that schemes are sheaves, we have that $\RI(A)$ is a sheaf. Then to prove:
-\[\propTrunc{A=M_{n+1}(R)}_T \to \propTrunc{\RI(A)=\bP^n}_T\]
-it is enough to prove:
-\[\RI(M_{n+1}(R)) = \bP^n\]
-which is Lemma \ref{right-ideal-of-matrices-are-projective}.
+By Lemma \ref{severi-brauer-are-schemes} and the assumption that schemes are sheaves, we have that $\RI_n(A)$ is a sheaf. Then to prove:
+\[\propTrunc{A=M_{n+1}(R)}_T \to \propTrunc{\RI_n(A)=\bP^n}_T\]
+it is enough to prove that the map is pointed, i.e. that $\RI_n(M_{n+1}(R)) = \bP^n$. This is Lemma \ref{right-ideal-of-matrices-are-projective}.
 \end{proof}
 
 
-\subsection{Generalities on deloopings in $T$-sheaves}
+\subsection{Generalities on deloopings in sheaves}
 
 \begin{definition}
-A type $A$ is $T$-connected if:
-\[\forall(x,y:A).\ \propTrunc{x=y}_T\]
+A type $A$ is called $T$-connected if we have that $\propTrunc{x=y}_T$ for all $x,y:A$.
 \end{definition}
 
-The key intuition for the next lemma is that both $A$ and $B$ are deloopings of the same group in the topos of sheaves.
+A key intuition for next lemma is that both $A$ and $B$ are deloopings of the same group inside sheaves.
 
 \begin{lemma}\label{deloopings-equivalence}
-Assume $A,B$ pointed $T$-connected sheaves. Let $f:A\to B$ be a pointed map inducing an equivalence:
-\[\Omega f : \Omega A \simeq \Omega B\]
-Then $f$ is an equivalence.
+Assume $A$ and $B$ pointed $T$-connected sheaves. Let $f:A\to B$ be a pointed map such that the induced map $\Omega f : \Omega A \to \Omega B$ is an equivalence. Then $f$ is an equivalence.
 \end{lemma}
 
 \begin{proof}
 First we prove that $f$ is an embedding. We have to prove that for all $x,y:A$ the map:
 \[\mathrm{ap}_f : x=y \to f(x)=f(y)\]
-is an equivalence. Since $A$ and $B$ are sheaves so are their identity types, so $\mathrm{ap}_f$ being an equivalence is a sheaf, so by $T$-connectedness of $A$ we can assume $x$ and $y$ are the basepoint, in which case it is part of the hypothesis.
+is an equivalence. Since $A$ and $B$ are sheaves so are their identity types, so $\mathrm{ap}_f$ being an equivalence is a sheaf, so by $T$-connectedness of $A$ and $B$ we can assume that $x$ and $y$ are the basepoints, and conclude from $\Omega f$ being an equivalence.
 
-Now we prove it is surjective, indeed for any $x:B$ we have that $\fib_f(x)$ is a sheaf and a proposition so when proving it is inhabited we can assume $x$ is the basepoint of $B$ and give the basepoint of $A$ as antecedent.
+Now we prove $f$ is surjective. For any $x:B$, we have that $\fib_f(x)$ is a sheaf and a proposition so when proving it is inhabited we can assume $x$ is the basepoint of $B$. Then the basepoint of $A$ is in the corresponding fiber.
 \end{proof}
 
 
@@ -682,32 +682,30 @@ Now we prove it is surjective, indeed for any $x:B$ we have that $\fib_f(x)$ is 
 \subsection{The Severi-Brauer construction is an equivalence}
 
 \begin{proposition}\label{right-ideal-is-equivalence}
-The map:
-\[\RI:\AZ_n\to\SB_n\]
-is an equivalence.
+The pointed map $\RI_n:\AZ_n\to\SB_n$ is an equivalence.
 \end{proposition}
 
 \begin{proof}
 By Lemma \ref{deloopings-equivalence} it is enough to prove that the top map in the triangle:
 \begin{center}
 \begin{tikzcd}
-\Aut(M_n(R))\ar[rr,"\Omega\RI"] & & \Aut(\bP^n) \\
-& \PGL_{n+1}(R)\ar[ru,swap,"\beta"]\ar[lu,"\alpha"] & \\
+\Aut(M_n(R))\ar[rr,"\Omega\RI_n"] & & \Aut(\bP^n) \\
+& \PGL_{n+1}(R)\ar[ru,swap,"\beta"]\ar[lu,"\alpha"] & 
 \end{tikzcd}
 \end{center}
 is an equivalence. But since the two other maps in the triangle are equivalences by Propositions \ref{Aut-Pn-PGL} and \ref{Aut-MnR-PGL}, it is enough to prove that the triangle commutes. To do this we need to check that for all $P:\PGL_{n+1}(R)$ we have that:
-\[\delta^{-1}\circ \mathrm{ap}_\RI(\alpha(P))\circ\delta = \beta(P)\]
+\[\delta^{-1}\circ \mathrm{ap}_{\RI_n}(\alpha(P))\circ\delta = \beta(P)\]
 in $\Aut(\bP^n)$, with $\delta$ defined in Lemma \ref{right-ideal-of-matrices-are-projective}. So we need to prove the following square commutes:
 \begin{center}
 \begin{tikzcd}
-\RI(M_{n+1}(R))\ar[rr,"I\mapsto PIP^{-1}"]&& \RI(M_{n+1}(R)) \\
+\RI_n(M_{n+1}(R))\ar[rr,"I\mapsto PIP^{-1}"]&& \RI_n(M_{n+1}(R)) \\
 \bP^n\ar[u,"\delta"]\ar[rr,swap,"X\mapsto PX"]&& \bP^n\ar[u,swap,"\delta"] 
 \end{tikzcd}
 \end{center}
-where $\mathrm{ap}_\RI$ was computed using path induction.
+where $\mathrm{ap}_{\RI_n}$ was computed using path induction.
 
 We see that:
-\[\delta(Y) = \{M:M_n(R)\ |\ \forall A,B:R^{n+1}.\ A^tX\cdot B^tM = B^tX\cdot A^tM\}\]
+\[\delta(Y) = \{M:M_n(R)\ |\ \forall (A,B:R^{n+1}).\, A^tX\cdot B^tM = B^tX\cdot A^tM\}\]
 To check that:
 \[P\delta(X)P^{-1} = \delta(PX)\]
 we just need to check an inclusion as both are finite free modules of the same dimension. Assume $M\in\delta(X)$, to check that $PMP^{-1}\in\delta(PX)$ we need to check that for all $A,B:R^{n+1}$ we have that:
@@ -718,40 +716,39 @@ which gives us what we want.
 \end{proof}
 
 \begin{remark}
-By Lemma \ref{severi-brauer-are-schemes} and Lemma \ref{right-ideal-is-equivalence} we can conclude than any Severi-Brauer variety is a scheme. This was not clear a priori because being a scheme is not modal.
+By Lemmas \ref{severi-brauer-are-schemes} and \ref{right-ideal-is-equivalence} we can conclude than any Severi-Brauer variety is a scheme. This was not clear a priori because being a scheme is a not itself a sheaf.
 \end{remark}
 
 \begin{remark}\label{severi-brauer-independent-modality}
-By Remark \ref{azumaya-independent-modality} and Lemma \ref{right-ideal-is-equivalence}, we can conclude that a type $X$ being a Severi-Brauer variety for a $T$ such that $T$-modal types are étale is equivalent to $X$ being a Severi-Brauer variety for the étale topology. In particular Severi-Brauer varieties do not depend on the choice of such a $T$.
+By Remark \ref{azumaya-independent-modality} and Lemma \ref{right-ideal-is-equivalence}, we can conclude that given $T$ such that $T$-modal types are included in étale sheaf, a type $X$ being a Severi-Brauer variety for a $T$ if and only if it is a Severi-Brauer variety for étale sheafification. In particular Severi-Brauer varieties do not depend on the choice of such a $T$.
 \end{remark}
 
 
 \section{Inhabited Severi-Brauer varieties are projective spaces}
 
-Now that we have an equivalence $\RI:\AZ_n \to \SB_n$, we assume $X:\SB_n$ with $x:X$ and try to conclude that $\AZ^{-1}(X) = M_{n+1}(R)$. We need an auxiliary lemma.
+Now that we have a pointed equivalence $\RI_n:\AZ_n \to \SB_n$, our plan is to assume $X:\SB_n$ with $x:X$ and try to conclude that $\AZ_n^{-1}(X) = M_{n+1}(R)$. We need an auxiliary lemma.
 
 \begin{lemma}\label{azumaya-with-right-ideal}
-Assume $A:\AZ_n$ with $I:\RI(A)$, then:
-\[A = \mathrm{End}_R(I)^{op}\]
+Assume $A:\AZ_n$ with $I:\RI_n(A)$, then $A = \mathrm{End}_R(I)^{op}$.
 \end{lemma}
 
 \begin{proof}
-Since $I$ is an ideal, there is a canonical map of algebra:
+Since $I$ is a right ideal, there is a canonical map of algebra:
 \[A \to\mathrm{End}_R(I)^{op}\]
 Since both algebras are sheaves (indeed $\propTrunc{I=R^{n+1}}$ implies $I$ is a sheaf), this map being an equivalence is a sheaf so we can assume $A=M_{n+1}(R)$.
 
-By Lemma \ref{right-ideal-of-matrices-are-projective} we can assume $X=(x_0:\cdots:x_n):\bP^n$ such that $I=\delta(X)$. There is a $k$ such that $x_k\not=0$, so we can assume $x_k=1$, then we have an isomorphism:
+By Lemma \ref{right-ideal-of-matrices-are-projective} we can assume $X=[x_0:\cdots:x_n]:\bP^n$ such that $I=\delta(X)$. There is a $k$ such that $x_k\not=0$, so we can assume $x_k=1$, then we have an isomorphism:
 \[\theta:R^{n+1}\to I\]
-sending $Y:R^{n+1}$ to the matrix $M$ with its $i$-th line $M_i=x_iY$. Then for all $M:M_n(R)$ we have a commutative square:
+sending $Y:R^{n+1}$ to the matrix $N$ with its $i$-th line $N_i=x_iY$. Then for all $M:M_n(R)$ we have a commutative square:
 \begin{center}
 \begin{tikzcd}
 I\ar[rr,"N\mapsto NM"] && I \\
 R^{n+1}\ar[u,"\theta"]\ar[rr,swap,"X\mapsto M^tX"] && R^{n+1}\ar[u,swap,"\theta"]\\
 \end{tikzcd}
 \end{center}
-meaning the natural map:
+meaning that the natural map:
 \[ M_{n+1}(R)\to \mathrm{End}_R(I)^{op}\]
-sends $M$ to $\delta^{-1}\circ M\circ\delta$, so it is an equivalence.
+sends $M$ to $\theta^{-1}\circ M^t\circ\theta$, so it is an equivalence.
 \end{proof}
 
 \begin{theorem}[Ch\^atelet's Theorem]\label{chatelet-theorem}
@@ -760,12 +757,12 @@ Assume $X:\SB_n$, then:
 \end{theorem}
 
 \begin{proof}
-By Proposition \ref{right-ideal-is-equivalence} we can assume $X=\RI(A)$ for some $A:\AZ_n$. Then we can assume $I:\RI(A)$, so that by Lemma \ref{azumaya-with-right-ideal} we have that:
+By Proposition \ref{right-ideal-is-equivalence} we can assume $X=\RI_n(A)$ for some $A:\AZ_n$. Then we can assume $I:\RI_n(A)$, so that by Lemma \ref{azumaya-with-right-ideal} we have that:
 \[A=\mathrm{End}_R(I)^{op}\]
 Since we merely have that $I=R^{n+1}$, we merely have:
 \[A = M_{n+1}(R)^{op} = M_{n+1}(R)\]
 Applying Lemma \ref{right-ideal-of-matrices-are-projective} we merely conclude:
-\[X=\RI(A)=\RI(M_{n+1}(R)) = \bP^n\]
+\[X=\RI_n(A)=\RI_n(M_{n+1}(R)) = \bP^n\]
 \end{proof}
 
 \begin{thebibliography}{10}
