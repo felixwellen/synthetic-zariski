@@ -444,23 +444,25 @@ Let $u_0,\hdots,u_n$ be the canonical basis of $R^{n+1}$ and define $P:GL_{n+1}(
 so we can conclude.
 \end{proof}
 
+We could also use $M\mapsto PMP^{-1}$ in the next proposition, but our choice will come helpful later.
+
 \begin{proposition}\label{Aut-MnR-PGL}
 The map:
 \[\alpha:\PGL_{n+1}(R)\to\Aut(M_{n+1}(R))\]
-\[P\mapsto (M\mapsto PMP^{-1})\]
+\[P\mapsto (M\mapsto (P^t)^{-1}MP^t)\]
 is an equivalence.
 \end{proposition}
 
 \begin{proof}
 It is clearly a group morphism. 
 
-For injectivity we just need to check that if for all $M:M_{n+1}(R)$ we have $PMP^{-1}=M$ then there exists $\lambda\not=0$ such that $P=\lambda I_{n+1}$. We deduce this from $Pe_{i,j} = e_{i,j}P$ and $P$ invertible.
+For injectivity we just need to check that if for all $M:M_{n+1}(R)$ we have $(P^t)^{-1}MP^t=M$ then there exists $\lambda\not=0$ such that $P=\lambda I_{n+1}$. We deduce this from $Pe_{i,j} = e_{i,j}P$ and $P$ invertible.
 
-For surjectivity consider $e_{i,j}=\sigma(E_{i,j})$, we can apply Lemma \ref{fundamental-system-matrices} to get $P:GL_{n+1}(R)$ such that:
-\[\sigma(E_{i,j}) = PE_{i,j}P^{-1}\]
-from which we conclude that for all $M:M_{n+1}(R)$ we have that:
-\[\sigma(M) = PMP^{-1}\]
-as desired.
+For surjectivity consider $e_{i,j}=\sigma(E_{i,j})$, we can apply Lemma \ref{fundamental-system-matrices} to get $Q:GL_{n+1}(R)$ such that:
+\[\sigma(E_{i,j}) = QE_{i,j}Q^{-1}\]
+so that for all $M:M_{n+1}(R)$ we have that:
+\[\sigma(M) = QMQ^{-1}\]
+Then $P = (Q^t)^{-1}$ works.
 \end{proof}
 
 \begin{remark}\label{AZ-is-delooping}
@@ -597,20 +599,20 @@ where $I_k$ is the identity matrix, so this piece is equivalent to $R^{(n-k)k}$.
 \end{proof}
 
 \begin{lemma}\label{being-ideal-in-azumaya-closed}
-For all $A:\AZ_n$ and $I:\Gr_{n+1}(A)$, we have that $I$ being a right ideal in $A$ is a closed proposition.
+For all $A:\AZ_n$ and $I:\Gr_{n+1}(A)$, we have that $I$ being a left ideal in $A$ is a closed proposition.
 \end{lemma}
 
 \begin{proof}
 By Lemma \ref{azumayas-are-finite-free} we have that $A$ is finite free as a module. Consider $a_0,\hdots,a_n$ a basis of $I$ and extend it to a basis of $A$ by adding $b_1,\hdots,b_l$. We can proceed as if $R$ was a field because a non-zero vector has an invertible coefficient \cite{draft}.
 
-For any $a:A$, we have that $a\in I$ is a closed proposition as it says that the $b_1,\hdots,b_l$ coordinates of $a$ are zero. Then $I$ is a right ideal if and only if for any $a$ in the chosen basis of $A$ and any $i$ in the chosen basis of $I$ we have that $ia\in I$, which is a closed proposition.
+For any $a:A$, we have that $a\in I$ is a closed proposition as it says that the $b_1,\hdots,b_l$ coordinates of $a$ are zero. Then $I$ is a left ideal if and only if for any $a$ in the chosen basis of $A$ and any $i$ in the chosen basis of $I$ we have that $ai\in I$, which is a closed proposition.
 \end{proof}
 
 We are now ready to give the definition of the map that will turn out to be an equivalence.
 
 \begin{definition}
 For all $A:\AZ_n$ we define:
-\[\RI_n(A) = \{I:\Gr_{n+1}(A)\ |\ I\ \mathrm{is\ a\ right\ ideal}\}\]
+\[\RI_n(A) = \{I:\Gr_{n+1}(A)\ |\ I\ \mathrm{is\ a\ left\ ideal}\}\]
 \end{definition}
 
 \begin{lemma}\label{severi-brauer-are-schemes}
@@ -626,24 +628,22 @@ Consider the map:
 \[\delta:\bP^n \to \RI_n(M_{n+1}(R))\]
 defined by:
 \[\delta([x_0:\cdots:x_n]) = \{M:M_n(R)\ |\ \forall i,j.\ x_i\cdot M_j = x_j\cdot M_i\}\]
-where $M_i$ is the $i$-th line of $M$. Then $\delta$ is an equivalence.
+where $M_i$ is the $i$-th column of $M$. Then $\delta$ is an equivalence.
 \end{lemma}
 
 \begin{proof}
 Let us denote $[x_0:\cdots:x_n]:\bP^n$ by $X$. First we check $\delta$ is well defined. It is clear that for all $\lambda\not=0$ we have that:
 \[\delta(\lambda X) = \delta(X)\]
-and that $\delta(X)$ is a right ideal. To check the dimension assume $x_k\not=0$. Then $M\in\delta(X)$ if and only if for all $i$ we have that $M_i = \frac{x_i}{x_k} M_k$, which means giving $M\in\delta(X)$ is equivalent to giving $M_k$ in $R^{n+1}$, so $\delta(X)$ is free of dimension $n+1$.
+and that $\delta(X)$ is a left ideal. To check the dimension assume $x_k\not=0$. Then $M\in\delta(X)$ if and only if for all $i$ we have that $M_i = \frac{x_i}{x_k} M_k$, which means giving $M\in\delta(X)$ is equivalent to giving $M_k$ in $R^{n+1}$, so $\delta(X)$ is free of dimension $n+1$.
 
 Next we check injectivity. Assume given $[x_0:\cdots:x_n]$ and $[y_0:\cdots:y_n]$ in $\bP^n$ such that for all $M:M_n(R)$ we have:
-\[(\forall i,j.\ x_i\cdot M_j = x_j\cdot M_i) \leftrightarrow (\forall i,j.\ y_i\cdot M_j = y_j\cdot M_i)\]
-In particular considering the matrix $N$ such that $N_j = (y_j,\hdots,y_j)$ we get that:
+\[(\forall i,j.\ x_i\cdot M_j = x_j\cdot M_i) \leftrightarrow (\forall i,j.\ y_i M_j = y_j M_i)\]
+In particular considering the matrix $N$ such that its $j$-th column $N_j$ is $(y_j,\hdots,y_j)$ we get that:
 \[\forall i,j.\ x_iy_j=x_jy_i\] 
 so that:
 \[[x_0:\cdots:x_n] = [y_0:\cdots:y_n]\]
 
-Finally we check surjectivity. Assume $I:\RI_n(M_{n+1}(R))$, since $\propTrunc{I=R^{n+1}}$ there exists $M\in I$ such that $M\not=0$, for example assume $M_{0,0}\not=0$. Then for all $k$ we have $ME_{0,k}\in I$. Let us denote that matrix by $N_k$, so that $N_k\in I$ and:
-\[(N_k)_{i,j} = \delta_{j,k}M_{i,0}\]
-Then since $M_{0,0}\not=0$ the matrices $(N_k)_{0\leq k\leq n}$ are linearly independent and since $I$ has dimension $n+1$, it is precisely the ideal spanned by  $(N_k)_{0\leq k\leq n}$. But this ideal is $\delta([M_{0,0}:\cdots:M_{n,0}])$.
+Finally we check surjectivity. Assume $I:\RI_n(M_{n+1}(R))$, since $\propTrunc{I=R^{n+1}}$ there exists $M\in I$ such that $M\not=0$, for example assume $M_{0,0}\not=0$. Then for all $k$ we have $E_{k,0}M\in I$. Let us denote that matrix by $N_k$, so that $N_k\in I$ and $N_k$ has the first line of $M$ as its $k$-th line, and $0$ elsewhere. Then since $M_{0,0}\not=0$ the matrices $(N_k)_{0\leq k\leq n}$ are linearly independent and since $I$ has dimension $n+1$, it is precisely the ideal spanned by  $(N_k)_{0\leq k\leq n}$. But this ideal is $\delta([M_{0,0}:\cdots:M_{n,0}])$.
 \end{proof}
 
 \begin{lemma}
@@ -698,20 +698,20 @@ is an equivalence. But since the two other maps in the triangle are equivalences
 in $\Aut(\bP^n)$, with $\delta$ defined in Lemma \ref{right-ideal-of-matrices-are-projective}. So we need to prove the following square commutes:
 \begin{center}
 \begin{tikzcd}
-\RI_n(M_{n+1}(R))\ar[rr,"I\mapsto PIP^{-1}"]&& \RI_n(M_{n+1}(R)) \\
+\RI_n(M_{n+1}(R))\ar[rr,"I\mapsto (P^t)^{-1}IP^t"]&& \RI_n(M_{n+1}(R)) \\
 \bP^n\ar[u,"\delta"]\ar[rr,swap,"X\mapsto PX"]&& \bP^n\ar[u,swap,"\delta"] 
 \end{tikzcd}
 \end{center}
 where $\mathrm{ap}_{\RI_n}$ was computed using path induction.
 
 We see that:
-\[\delta(Y) = \{M:M_n(R)\ |\ \forall (A,B:R^{n+1}).\, A^tX\cdot B^tM = B^tX\cdot A^tM\}\]
+\[\delta(Y) = \{M:M_n(R)\ |\ \forall (A,B:R^{n+1}).\, X^tA\cdot MB = X^tB\cdot MA\}\]
 To check that:
-\[P\delta(X)P^{-1} = \delta(PX)\]
-we just need to check an inclusion as both are finite free modules of the same dimension. Assume $M\in\delta(X)$, to check that $PMP^{-1}\in\delta(PX)$ we need to check that for all $A,B:R^{n+1}$ we have that:
-\[A^tPX\cdot B^tPMP^{-1} = B^tX\cdot A^tPMP^{-1}\]
+\[(P^t)^{-1}\delta(X)P^t = \delta(PX)\]
+we just need to check an inclusion as both are finite free modules of the same dimension. Assume $M\in\delta(X)$, to check that $(P^t)^{-1}MP^t\in\delta(PX)$ we need to check that for all $A,B:R^{n+1}$ we have that:
+\[(PX)^tA \cdot (P^t)^{-1}MP^tB = (PX)^tB \cdot (P^t)^{-1}MP^tA \]
 but since $M\in\delta(X)$ we have that:
-\[(P^tA)^tX\cdot (P^tB)^tM = (P^tB)^tX\cdot (P^tA)^tM\]
+\[X^tP^tA \cdot MP^tB = X^tP^tB\cdot MP^tA \]
 which gives us what we want.
 \end{proof}
 
@@ -729,26 +729,26 @@ By Remark \ref{azumaya-independent-modality} and Lemma \ref{right-ideal-is-equiv
 Now that we have a pointed equivalence $\RI_n:\AZ_n \to \SB_n$, our plan is to assume $X:\SB_n$ with $x:X$ and try to conclude that $\AZ_n^{-1}(X) = M_{n+1}(R)$. We need an auxiliary lemma.
 
 \begin{lemma}\label{azumaya-with-right-ideal}
-Assume $A:\AZ_n$ with $I:\RI_n(A)$, then $A = \mathrm{End}_R(I)^{op}$.
+Assume $A:\AZ_n$ with $I:\RI_n(A)$, then $A = \mathrm{End}_R(I)$.
 \end{lemma}
 
 \begin{proof}
-Since $I$ is a right ideal, there is a canonical map of algebra:
-\[A \to\mathrm{End}_R(I)^{op}\]
+Since $I$ is a left ideal, there is a canonical map of algebra:
+\[A \to\mathrm{End}_R(I)\]
 Since both algebras are sheaves (indeed $\propTrunc{I=R^{n+1}}$ implies $I$ is a sheaf), this map being an equivalence is a sheaf so we can assume $A=M_{n+1}(R)$.
 
 By Lemma \ref{right-ideal-of-matrices-are-projective} we can assume $X=[x_0:\cdots:x_n]:\bP^n$ such that $I=\delta(X)$. There is a $k$ such that $x_k\not=0$, so we can assume $x_k=1$, then we have an isomorphism:
 \[\theta:R^{n+1}\to I\]
-sending $Y:R^{n+1}$ to the matrix $N$ with its $i$-th line $N_i=x_iY$. Then for all $M:M_n(R)$ we have a commutative square:
+sending $Y:R^{n+1}$ to the matrix $N$ with its $i$-th column $N_i=x_iY$. Then for all $M:M_n(R)$ we have a commutative square:
 \begin{center}
 \begin{tikzcd}
-I\ar[rr,"N\mapsto NM"] && I \\
-R^{n+1}\ar[u,"\theta"]\ar[rr,swap,"X\mapsto M^tX"] && R^{n+1}\ar[u,swap,"\theta"]\\
+I\ar[rr,"N\mapsto MN"] && I \\
+R^{n+1}\ar[u,"\theta"]\ar[rr,swap,"Y\mapsto MY"] && R^{n+1}\ar[u,swap,"\theta"]\\
 \end{tikzcd}
 \end{center}
 meaning that the natural map:
-\[ M_{n+1}(R)\to \mathrm{End}_R(I)^{op}\]
-sends $M$ to $\theta^{-1}\circ M^t\circ\theta$, so it is an equivalence.
+\[ M_{n+1}(R)\to \mathrm{End}_R(I)\]
+sends $M$ to $\theta^{-1}\circ M\circ\theta$, so it is an equivalence.
 \end{proof}
 
 \begin{theorem}[Ch\^atelet's Theorem]\label{chatelet-theorem}
@@ -760,7 +760,7 @@ Assume $X:\SB_n$, then:
 By Proposition \ref{right-ideal-is-equivalence} we can assume $X=\RI_n(A)$ for some $A:\AZ_n$. Then we can assume $I:\RI_n(A)$, so that by Lemma \ref{azumaya-with-right-ideal} we have that:
 \[A=\mathrm{End}_R(I)^{op}\]
 Since we merely have that $I=R^{n+1}$, we merely have:
-\[A = M_{n+1}(R)^{op} = M_{n+1}(R)\]
+\[A = M_{n+1}(R)\]
 Applying Lemma \ref{right-ideal-of-matrices-are-projective} we merely conclude:
 \[X=\RI_n(A)=\RI_n(M_{n+1}(R)) = \bP^n\]
 \end{proof}
