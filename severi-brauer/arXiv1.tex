@@ -83,7 +83,7 @@ University of Gothenburg, Sweden,
 
 
 \begin{abstract}
-We work in synthetic algebraic geometry. It is an extension of homotopy type theory by three axioms, which can be interpreted in a higher version of the Zariski topos and therefore gives a novel approach to algebraic geometry. In particular, this means that a Zariski sheaf of higher groupoids is represented simply as a type. In this context we give a proof of Ch\^atelet's result that a Severi-Brauer variety with a point is a projective space. We make crucial use of étale sheaves, which can be defined and worked with conveniently using synthetic methods.
+We work in synthetic algebraic geometry. It is an extension of homotopy type theory by three axioms, which can be interpreted in a higher version of the Zariski topos and therefore gives a novel approach to algebraic geometry where a Zariski sheaf of higher groupoids is represented simply as a type. In this context we give a proof of Ch\^atelet's result that a Severi-Brauer variety with a point is a projective space. We make crucial use of étale sheaves, which can be defined and worked with conveniently in this synthetic approach.
 \end{abstract}
 
 \tableofcontents
@@ -94,51 +94,52 @@ We work in synthetic algebraic geometry. It is an extension of homotopy type the
 {F}ran\c cois {C}h\^atelet introduced the notion of Severi-Brauer variety in his 1944 PhD thesis
 \cite{chatelet44}. One of his motivation was to provide
 a generalisation of Poincarr\'e's result that a conic which has a rational point is isomorphic to $\bP^1(k)$.
-He defined Severi-Brauer varieties as varieties which become isomorphic to a projective space $\bP^n(k)$ after
-a separable extension. After recalling the characterisation of a central simple algebra over a field $k$ as
-an algebra which becomes isomorphic to a matrix algebra $M_n(k)$ after a separable extension, he noticed the fundamental
-fact that $\bP^{n}(k)$ and $M_{n+1}(k)$ have the same automorphism group $PGL_{n+1}(k)$. Then he used this
+He defined a Severi-Brauer variety as a variety which becomes isomorphic to a projective space after
+a separable extension. He uses the characterisation of a central simple algebra over a field $k$ as
+an algebra which becomes isomorphic to a matrix algebra $M_n(k)$ after a separable extension. He then noticed the fundamental
+fact that $\bP^{n}(k)$ and $M_{n+1}(k)$ have the same automorphism group, namely $\PGL_{n+1}(k)$. He used this
 to give a correspondence between Severi-Brauer varieties and central simple algebras, and as a corollary
 obtained the following generalisation of Poincar\'e's result: a Severi-Brauer variety which has a rational point
-is isomorphic to a projective $\bP^{n}(k)$. This result and its proof are described in Serre's book on local fields \cite{serre62}, as well as in \cite{colliot88} and \cite{gille2017central}.
+is isomorphic to a projective space. This result and its proof are described in Serre's book on local fields \cite{serre62}, as well as in \cite{colliot88} and \cite{gille2017central}. The notion of central simple algebra over a field has been extended over an arbitrary ring under the name of Azumaya algebra \cite{azumaya51}, and the notion of Severi-Brauer variety has been extended over an arbitrary ring by Grothendieck \cite{grothendieck68}.
 
-The notion of central simple algebra over a field has been extended over an arbitrary ring under the name of Azumaya algebra \cite{azumaya51}, and the notion of Severi-Brauer variety has been extended over an arbitrary ring by Grothendieck \cite{grothendieck68}.
-The goal of this note is to present a formulation and proof of Ch\^atelet's result over an arbitrary commutative ring
+This article present a formulation and a proof of Ch\^atelet's result over an arbitrary commutative ring
 in the setting of synthetic algebraic geometry \cite{draft}, using the results about projective
-spaces already proved in this context \cite{sag-projective}, in particular the fact that any automorphism of the projective space is given by a homography. We also rely essentially on basic results about dependent type theory with univalence \cite{hott}
-and modalities \cite{modalities}, in particular the fact that in this context \'etale sheafification can be defined
-as a lex modality. Our formulation of Ch\^atelet's result is then that for $X$ a scheme, we have that:
-\[\propTrunc{X=\bP^n}_{T} \to \propTrunc{X} \to \propTrunc{X=\bP^n}\]
-where $\propTrunc{X=\bP^n}_{T}$ is the modal replacement of $\propTrunc{X=\bP^n}$ for a lex modality $T$ satisfying two basic properties. We show that \'etale sheafification satisfies these properties.
+spaces already proved in this context \cite{sag-projective}. A key such result is the fact that any automorphism of the projective space is given by a homography. We also crucially rely on basic results about dependent type theory with univalence \cite{hott}
+and modalities \cite{modalities}, as in our context \'etale sheafification can be defined
+as a lex modality. 
 
+Our formulation of Ch\^atelet's result is that given a lex modality $T$ such that schemes are $T$-modal and the type of finite free module is $T$-modal, for all $T$-modal type $X$ we have that:
+\[\propTrunc{X=\bP^n}_{T} \to \propTrunc{X} \to \propTrunc{X=\bP^n}\]
+where $\propTrunc{X=\bP^n}_{T}$ is the modal replacement of $\propTrunc{X=\bP^n}$. 
+
+We also show that \'etale sheafification is an example of such a $T$.
 
 
 \section{\'Etale sheaves}
 \label{etale-sheaves}
 
-In this section we define étale sheaves and prove that schemes are étale sheaves. We also prove descent for finite free modules, which means that the type of finite free modules is an étale sheaf, or equivalently that given a module $M$ that is an étale sheaf, the proposition ``$M$ is finite free'' is an étale sheaf.
+In this section we define étale sheaves, prove that schemes are étale sheaves and prove that given a module $M$ that is an étale sheaf, the proposition ``$M$ is finite free'' is an étale sheaf.  This last statement is equivalent to the type of finite free modules being an étale sheaf, and we call it étale descent for finite free modules.
 
 
-\subsection{Definition of étale sheaves}
+\subsection{Defining étale sheaves}
 
-Our definition of étale sheaves crucially relies on monic unramifiable polynomials, which are defined in \cite{wraith79} and analysed in \cite{coqazumaya}. As the precise definition of unramifiable does not matter in this article, we think it is enough to mention that a polynomial of degree $n$ with $n$ roots in unramifiable if and only if it has a simple root.
+Our definition of étale sheaves crucially relies on monic unramifiable polynomials, which are defined in \cite{wraith79} and analysed in \cite{coqazumaya}. For the purpose of this article it is enough to know that monic unramifiable polynomials are non-constant, and that a monic polynomial of degree $n$ with $n$ roots in unramifiable if and only if it has a simple root.
 
 If $P$ is a proposition, we say that a type $X$ is $P$-local if and only if the canonical map $X\to X^P$ is an equivalence.
-Given a family of propositions $P_i$, the types that are $P_i$-local for all $i$ form a model of type theory with univalence,
-and we have an associated lex modality called the nullification modality \cite{modalities,Quirin16}.
-Following \cite{wraith79}, we can consider\'etale sheafificatiom, which is the nullificatiom at the family of propositions stating that monic unramifiable polynomials have roots.
+Given a type $I$ and family of propositions $(P_i)_{i:I}$, the types that are $P_i$-local for all $i:I$ form a model of homotopy type theory, and we have an associated lex modality called the nullification modality \cite{modalities,Quirin16}.
+Following \cite{wraith79}, we consider \'etale sheafification, which is the nullification at the family of propositions stating that monic unramifiable polynomials have roots.
 
 \begin{definition}
 A type $X$ is called an \'etale sheaf if for all $g:R[X]$ monic unramifiable, we have that $X$ is $(\exists(x:R).\, g(x)=0)$-local.
 \end{definition}
 
-As explained above, this means that étale sheaves form a model of type theory with univalence.
+As explained above, this means that étale sheaves form a model of homotopy type theory.
 
 %This means that being an \'etale sheaf is a lex modality, as it is localisation at a family of propositions. 
 
 \begin{remark}
   By \cite{wraith79} this should agree with the usual \'etale topology.
-  It should also be noted that we will never use the unramifiability assumption, so we could just use non-constant monic polynomials instead.
+  We will never use the unramifiability assumption, we could just use non-constant monic polynomials instead.
 \end{remark}
 
 
@@ -159,16 +160,14 @@ Therefore to conclude it is enough to prove that $R$ is the equaliser of:
 \[R[X]/g \rightrightarrows R[X]/g \otimes R[X]/g\]
 But since $g$ is monic we merely have an $n$ such that:
 \[R[X]/g \simeq R^n\]
-and it is clear that $R$ is the equaliser of the corresponding maps in $R^n \to R^n\otimes R^n$ which are $x\mapsto x\otimes 1$ and $x\mapsto 1\otimes x$.
+and it is clear that the equaliser of the corresponding maps $R^n\rightrightarrows R^n\otimes R^n$ (which are $x\mapsto x\otimes 1$ and $x\mapsto 1\otimes x$) is the submodule freely generated by $1$, so it is $R$.
 \end{proof}
 
 \begin{remark}\label{R-modal-subcanonical}
-If $R$ is modal, then by general reasoning on modalities so is $\mathrm{Hom}(A,R)$, so that every affine scheme is modal. By duality we also get that every finitely presented algebra is modal.
+If $R$ is modal, then by general reasoning on modalities so is $\mathrm{Hom}(A,R)$ for any $R$-algebra $A$, so that every affine scheme is modal. By duality we also get that every finitely presented algebra is modal.
 \end{remark}
 
-Now we want to prove that every scheme is modal, for that we will use the following auxiliary result. We will use freely the terminology and results of \cite{draft}, in particular a proposition is {\em open}
-if, and only if, it is equivalent to a proposition of the form $r_1\neq 0\vee\dots\vee r_m\neq 0$ for some
-$r_1,\dots,r_m$ in $R$.
+Now we want to prove that every scheme is an étale sheaf. We will use freely the terminology and results of \cite{draft}, in particular a proposition is {\em open} if and only if it is merely of the form $r_1\neq 0\vee\dots\vee r_m\neq 0$ for some $r_1,\dots,r_m$ in $R$. We will use the following auxiliary result.
 
 \begin{lemma}\label{scheme-are-sheaf-from-affine}
 Assume given a proposition $P$ such that:
@@ -189,15 +188,15 @@ We check that for all scheme $X$, any map $f:P\to X$ merely factors through $1$.
 Since the $f^{-1}(U_i)$ cover $P$, we have that $P\to \lor_{i:I} V_i$, but open propositions are assumed to be $P$-local, so we have $\lor_{i:I} V_i$.
 Assume $k:I$ such that $V_k$ holds. Then $f^{-1}(U_k) = P$ and the map $f$ factors through the affine scheme $U_k$. Since affine schemes are $P$-local, we merely have a lift for $f$.
 
-Now we conclude that any scheme is $P$-local by proving that its identity types are $P$-local. Indeed they are schemes, so the previous point implies they are $P$-local.
+Now we conclude that any scheme is $P$-local by proving that its identity types are $P$-local. Indeed they are schemes and propositions, so the previous reasoning implies that they are $P$-local.
 \end{proof}
 
-Now we just have to apply this previous result. To do this we need the type of roots of a monic polynomial to be compact. More precisely, we need:
+Now we want to apply this. We need the type of roots of a monic polynomial to be compact. More precisely, we need:
 
 \begin{lemma}\label{roots-monic-proper}
-  If $g$ is a monic polynomial, and $h_1,\dots,h_m$ in $R[X]$, then the proposition:
+  Given $g$ is a monic polynomial and $h_1,\dots,h_m:R[X]$, the proposition:
   \[
-  \forall_xg(x)=0\to h_1(x)\neq 0\vee\dots\vee h_m(x)\neq 0
+  \forall(x:R).\, (g(x)=0\to h_1(x)\neq 0\vee\dots\vee h_m(x)\neq 0)
   \] 
   is open. It follows that, for any monic $g:R[X]$, and for any open $U$ in $\Spec(R[X]/g)$ the proposition:
   \[\Spec(R[X]/g) = U\]
@@ -215,22 +214,39 @@ Any scheme is an \'etale sheaf.
 \end{proposition}
 
 \begin{proof}
-Assume given $g:R[X]$ monic, we can apply Lemma \ref{scheme-are-sheaf-from-affine} because:
+Assume given $g:R[X]$ monic non-constant, we can apply Lemma \ref{scheme-are-sheaf-from-affine} because:
 \begin{itemize}
 \item The type $R$ is an \'etale sheaf by Lemma \ref{etale-subcanonical}.
-\item Any open proposition $U$ is an \'etale sheaf because if:
-\[\propTrunc{\Spec(R[X]/g)}\to U\]
-then since $\neg\neg\Spec(R[X]/g)$ we have $\neg\neg U$, which implies $U$.
-\item Since open propositions are \'etale sheaves, it is enough that any map:
-\[\propTrunc{\Spec(R[X]/g)}\to \mathrm{Open}\]
-merely factors through $1$. But given a constant open $U$ in $\Spec(R[X]/g)$, for any $x:\Spec(R[X]/g)$ we have that:
-\[x\in U \leftrightarrow \Spec(R[X]/g) = U\]
+\item Any open proposition $U$ is an \'etale sheaf because if $\propTrunc{\Spec(R[X]/g)}\to U$ then since $\neg\neg\Spec(R[X]/g)$ we have $\neg\neg U$, which implies $U$.
+\item Since open propositions are \'etale sheaves, it is enough that any map $\propTrunc{\Spec(R[X]/g)}\to \mathrm{Open}$ merely factors through $1$. But given a constant open $U$ in $\Spec(R[X]/g)$, for any $x:\Spec(R[X]/g)$ we have that:
+\[x\in U \leftrightarrow (\Spec(R[X]/g) = U)\]
 The right hand side is open by Lemma \ref{roots-monic-proper}, giving the required lift. 
 \end{itemize}
 \end{proof}
 
 
-\subsection{Descent for finite free modules}
+\subsection{Étale descent for finite free modules}
+
+It might be surprising to the reader familiar with traditional algebraic geometry that we get descent for finite free modules instead of finite projective module. This is because we work in the Zariski topos, where both notions agree:
+
+\begin{lemma}\label{finite-projective-free}
+Let $M$ be a finite projective module, then $M$ is finite free.
+\end{lemma}
+
+\begin{proof}
+This is IX.2.2 in \cite{lombardi-quitte}, it crucially relies on $R$ being local.
+\end{proof}
+
+Now we gather a string of auxiliary results.
+
+\begin{lemma}\label{fp-stable-etale-tensor}
+  Let $A$ be an fppf algebra and let $M$ be an $R$-module. Then if $A\otimes M$ is finitely presented (resp.\ finite projective)
+  as an $A$-module if and only if $M$ is finitely presented (resp.\ finite projective) as an $R$-module.
+\end{lemma}
+
+\begin{proof}
+See VIII.6.7 in \cite{lombardi-quitte}.
+\end{proof}
 
 \begin{lemma}\label{fp-equivalent-pointwise}
   Given a finitely presented (resp.\ finite projective)
@@ -242,39 +258,20 @@ See Theorem 7.2.3 in \cite{draft}.
 \end{proof}
 
 \begin{lemma}\label{descent-sqc-etale}
-Let $M$ be a module that is an \'etale sheaf such that we have the \'etale sheafification of ``$M$ is finitely presented'', then for any monic polynomial $g$ we have that:
+Let $M$ be an $R$-module that is an \'etale sheaf such that we have the \'etale sheafification of ``$M$ is finitely presented'', then for any monic polynomial $g$ we have that:
 \[R[X]/g\otimes M \simeq M^{\Spec(R[X]/g)}\]
 \end{lemma}
 
 \begin{proof}
-We have that $R[X]/g\otimes M$ is merely equal to $M^n$ where $n$ is the degree of $g$, therefore it is an \'etale sheaf. But $M^{\Spec(R[X]/g)}$ is an \'etale sheaf as well, so when proving that:
+We have that $R[X]/g\otimes M$ is merely equal to $M^n$ where $n$ is the degree of $g$, therefore it is an \'etale sheaf. But $M^{\Spec(R[X]/g)}$ is an \'etale sheaf as well, so when proving that the map:
 \[R[X]/g\otimes M \to M^{\Spec(R[X]/g)}\]
 is an equivalence, we can assume that $M$ is finitely presented. In this case we conclude by Theorem 7.2.3 in \cite{draft}.
-\end{proof}
-
-We need two well-known algebra results.
-
-\begin{lemma}\label{fp-stable-etale-tensor}
-  Let $A$ be an fppf algebra and let $M$ be an $R$-module. Then if $A\otimes M$ is f.p. (resp. finite projective)
-  as an $A$-module if and only if $M$ is f.p. (resp. finite projective) as an $R$-module.
-\end{lemma}
-
-\begin{proof}
-See VIII.6.7 in \cite{lombardi-quitte}.
-\end{proof}
-
-\begin{lemma}\label{finite-projective-free}
-Let $M$ be a finite projective module, then $M$ is finite free.
-\end{lemma}
-
-\begin{proof}
-This is IX.2.2 in \cite{lombardi-quitte}, it crucially relies on $R$ being local.
 \end{proof}
 
 We are now ready to conclude.
 
 \begin{proposition}\label{descent-finite-free}
-For $M$ a module that is an \'etale sheaf, the proposition ``$M$ is a finite free'' is itself an \'etale sheaf.
+For $M$ an $R$-module that is an \'etale sheaf, the proposition ``$M$ is a finite free'' is itself an \'etale sheaf.
 \end{proposition}
 
 \begin{proof}
@@ -282,15 +279,15 @@ By Lemma \ref{finite-projective-free} being finite free is equivalent to being f
 
 Assume a monic unramifiable polynomial $g$ such that:
 \[\Spec(R[X]/g) \to \textrm{``$M$ is finite projective''}\]
-By Lemma \ref{fp-equivalent-pointwise} we get that $M^{\Spec(R[X]/g)}$ is finite projective, but by Lemma \ref{descent-sqc-etale} we have that $M^{\Spec(R[X]/g)} = R[X]/g\otimes M$ and we conclude using Lemma \ref{fp-stable-etale-tensor} and the fact that $R[X]/g$ is fppf.
+By Lemma \ref{fp-equivalent-pointwise} we get that $M^{\Spec(R[X]/g)}$ is finite projective, but by Lemma \ref{descent-sqc-etale} we have that:
+\[M^{\Spec(R[X]/g)} = R[X]/g\otimes M\] 
+and we conclude using Lemma \ref{fp-stable-etale-tensor} and the fact that $R[X]/g$ is fppf.
 \end{proof}
 
 \begin{remark}
-We sketch how Proposition \ref{descent-finite-free} relates to the traditional notion of descent, justifying the title of this section. 
-A first remark is that it implies that the type of finite free modules is itself an étale sheaf.
-
-Now consider a monic separable polynomial $g$, so that $g$ is unramifiable, $\Spec(R[X]/g)$ is étale and $\Spec(R[X]/g)\to 1$ is an étale cover. Then a descent data in finite free module for this cover is precisely a finite free module depending on 
-$\propTrunc{\Spec(R[X]/g)}$, so that Proposition \ref{descent-finite-free} implies that giving such a descent data is equivalent to just giving a finite free module, which is a direct translation of what would be traditionally called descent.
+We sketch how Proposition \ref{descent-finite-free} relates to the traditional notion of étale descent, justifying the title of this section. 
+A first remark is that it implies that the type of finite free modules is itself an étale sheaf. Now consider a monic separable polynomial $g$, so that $g$ is unramifiable and $\Spec(R[X]/g)$ is étale. Then $\Spec(R[X]/g)\to 1$ is an étale cover. But a descent data in finite free module for this cover is precisely a finite free module depending on 
+$\propTrunc{\Spec(R[X]/g)}$, so that Proposition \ref{descent-finite-free} implies that giving such a descent data is equivalent to just giving a finite free module, which is a direct translation of what would be traditionally called étale descent.
 \end{remark}
 
 
@@ -302,16 +299,15 @@ From now on we assume a lex modality $T$ such that:
 \item Schemes are modal.
 \item If $M$ is a modal $R$-module, then the proposition ``$M$ is finite free'' is modal.
 \end{itemize}
-Thel modal types are called sheaves, the modal replacement is called sheafification and we denote the sheafification of the propositional truncation of $X$ by $\propTrunc{X}_T$. Sheaves form a model of homotopy type theory \cite{modalities,Quirin16}.
+Modal types are called sheaves, the modal replacement is called sheafification and we denote the sheafification of the propositional truncation of $X$ by $\propTrunc{X}_T$. Sheaves form a model of homotopy type theory \cite{modalities,Quirin16}.
 
-We proved in Section \ref{etale-sheaves} that étale sheafification is such a modality, in Propositions \ref{scheme-is-etale-sheaf} and \ref{descent-finite-free}.
+We proved in Section \ref{etale-sheaves} that étale sheafification is such a modality, see Propositions \ref{scheme-is-etale-sheaf} and \ref{descent-finite-free}.
 
 
 \subsection{Severi-Brauer varieties}
 
 \begin{definition}
-A type $X$ is called a Severi-Brauer variety of dimension $n$ if $X$ is a sheaf and:
-\[\propTrunc{X=\bP^n}_T\]
+A type $X$ is called a Severi-Brauer variety of dimension $n$ if $X$ is a sheaf and $\propTrunc{X=\bP^n}_T$.
 \end{definition}
 
 We denote the type of Severi-Brauer varieties of dimension $n$ by $\SB_n$.
@@ -320,7 +316,7 @@ We denote the type of Severi-Brauer varieties of dimension $n$ by $\SB_n$.
 We will see later that every Severi-Brauer variety is a scheme. 
 \end{remark}
 
-Now we state the key result that the automorphism group of $\bP^n$ is $\PGL_{n+1}(R)$. Recall that $\PGL_{n+1}(R)$ is defined as the type of automorphism of $R^{n+1}$ (or equivalently matrices in $M_{n+1}(R)$ with invertible determinant) modulo multiplication by an invertible $\lambda:R$.
+Now we state the key result that the automorphism group of $\bP^n$ is $\PGL_{n+1}(R)$. Recall that $\PGL_{n+1}(R)$ is defined as the type of automorphism of $R^{n+1}$ (or equivalently of matrices in $M_{n+1}(R)$ with invertible determinant) modulo multiplication by an invertible $\lambda:R$.
 
 \begin{proposition}\label{Aut-Pn-PGL}
 The map:
@@ -334,10 +330,10 @@ This is the main result from \cite{sag-projective}.
 \end{proof}
 
 \begin{remark}\label{SB-is-delooping}
-Consider $G$ a group, a delooping of $G$ inside sheaves is a pointed sheaf $(\mathrm{B}_TG,*)$ such that for all $\forall(x:\mathrm{B}_TG).\, \propTrunc{x=*}_T$ and $\Omega (\mathrm{B}_TG) = G$. This is precisely a delooping of $G$ inside the model of homotopy type theory where types are interpreted as sheaves. Then $\SB_n$ is a delooping of $PGL_{n+1}(R)$ inside sheaves.
+Consider $G$ a group, a delooping of $G$ inside sheaves is a pointed sheaf $(\mathrm{B}_TG,*)$ such that $\forall(x:\mathrm{B}_TG).\, \propTrunc{x=*}_T$ and $\Omega (\mathrm{B}_TG) = G$. This is precisely a delooping of $G$ inside the model of homotopy type theory where types are interpreted as sheaves. Then $\SB_n$ is a delooping of $PGL_{n+1}(R)$ inside sheaves.
 \end{remark}
 
-We want to give examples of Severi-Brauer varities. To do that we assume that $2\not=0$ and we take $T$ to be étale sheafification for the rest of the subsection.
+We want to give examples of Severi-Brauer varities. To do that we assume that $2\not=0$ and we take $T$ to be the étale sheafification for the rest of the subsection.
 
 \begin{definition}
 Given $a,b:R^\times$, we define the conic $C(a,b)$ as the set of $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$.
@@ -348,15 +344,15 @@ Assume $a,b:R^\times$ such that $\propTrunc{C(a,b)}$, then $\propTrunc{C(a,b)=\b
 \end{lemma}
 
 \begin{proof}
-Let us assume $x_0,y_0,z_0$ such that $x_0^2 = ay_0^2+bz_0^2$. We can assume $x_0\not=0$ by possibly considering $C(a,b) = C(\frac{1}{a},-\frac{b}{a})$. Then we can clearly assume $x_0=1$ without loss of generality, so that $ay_0 + bz_0 = 1$.
+Let us assume $x_0,y_0,z_0$ such that $x_0^2 = ay_0^2+bz_0^2$. We can assume $x_0\not=0$ without loss of generality by using $C(a,b) = C(\frac{1}{a},-\frac{b}{a})$ if $y_0\not=0$ and $C(a,b) = C(\frac{1}{b},-\frac{a}{b})$ if $z_0\not=0$. Then we can assume $x_0=1$, so that $ay_0^2 + bz_0^2 = 1$.
 
  Let us consider the map:
 \[\psi:\bP^1\to \bP^2\]
 \[[u:v] \mapsto [au^2+bv^2: y_0(au^2-bv^2) + 2buvz_0 : z_0(au^2-bv^2) - 2auvy_0]\]
 
-We want to define $\phi$ inverse to $\phi$. Assume $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$. 
+We want to define $\phi$ inverse to $\psi$. Assume $[x:y:z]:\bP^2$ such that $x^2=ay^2+bz^2$. 
 
-Let us proof that either $x+ay_0y+bz_0z$ or $x-ay_0y-bz_0z$ is invertible, to do this it is enough to prove that either $x$ or $ay_0y+bz_0z$ is invertible, so we assume $x=0$ and $ay_0y+bz_0z=0$ try to reach a contradiction. We have that $y$ or $z$ is invertible and $ay^2+bz^2=0$, so that $y$ and $z$ are invertible and $b = -a\frac{y^2}{z^2}$ and $y_0z=yz_0$. Moreover $y_0$ or $z_0$ is invertible, so that both $y_0$ and $z_0$ are invertible and $\frac{y}{z} = \frac{y_0}{z_0}$ which means $ay^2+bz^2=0$ implies $ay_0^2+bz_0^2=0$, which is a contradiction. 
+Let us proof that either $x+ay_0y+bz_0z$ or $x-ay_0y-bz_0z$ is invertible. It is enough to prove that either $x$ or $ay_0y+bz_0z$ is invertible, so we assume $x=0$ and $ay_0y+bz_0z=0$ and try to reach a contradiction. We have that $y$ or $z$ is invertible and $ay^2+bz^2=0$, so that $y$ and $z$ are invertible and $b = -a\frac{y^2}{z^2}$ and $y_0z=yz_0$. Moreover $y_0$ or $z_0$ is invertible. If say $z_0$ is invertible then $\frac{y}{z} = \frac{y_0}{z_0}$, so that $ay^2+bz^2=0$ implies $ay_0^2+bz_0^2=0$, which is a contradiction. 
 
 If $x + ay_0y + bz_0z$ is invertible we define $\phi([x,y,z]) = [1:\frac{a(z_0y-y_0z)}{x + ay_0y + bz_0z}]$.
 
@@ -368,6 +364,10 @@ because:
 \[x^2 - (ay_0y + bz_0z)^2 = (ay^2+bz^2)(ay_0^2+bz_0^2) - (ay_0y + bz_0z)^2 = ab(z_0y-y_0z)^2\]
 We omit the verification that this $\phi$ is indeed an inverse to $\psi$.
 \end{proof}
+
+\begin{remark}
+We will extend this in Theorem \ref{chatelet-theorem}, which prove that any inhabited Severi-Brauer variety is a projective space. 
+\end{remark}
 
 \begin{lemma}\label{conic-one-split}
 Assume given $b:R^\times$, then $\propTrunc{C(1,b) = \bP^1}$.
@@ -390,32 +390,27 @@ Assume given $a,b:R^\times$, then $C(a,b)$ is a Severi-Brauer variety.
 \end{lemma}
 
 \begin{proof}
-Since a sheaf being a Severi-Brauer variety is an \'etale sheaf, we can assume $\sqrt{a}$ . Then by Lemma \ref{conic-change-variable} we have that $C(a,b) = C(\sqrt{a}^2,b) = C(1,b)$ and we conclude by Lemma \ref{conic-one-split}.
+We have that $C(a,b)$ is a scheme so it is an étale, then we can assume $\sqrt{a}$ such that $\sqrt{a}^2 = a$ to prove $C(a,b)=\bP^1$. But by Lemma \ref{conic-change-variable} we have that $C(a,b) = C(\sqrt{a}^2,b) = C(1,b)$ and we conclude by Lemma \ref{conic-one-split}.
 \end{proof}
-
-\begin{remark}
-We will see in Theorem \ref{chatelet-theorem} that any merely inhabited Severi-Brauer variety is a projective space. 
-\end{remark}
 
 
 \subsection{Azumaya algebras}
 
 \begin{definition}
-An Azumaya algebra of rank $n$ is a (non-commutative, unital) $R$-algebra $A$ such that its underlying type is a sheaf and:
-\[\propTrunc{A=M_{n+1}(R)}_T\]
+An Azumaya algebra of rank $n$ is a (non-commutative, unital) $R$-algebra $A$ such that its underlying type is a sheaf and $\propTrunc{A=M_{n+1}(R)}_T$.
 \end{definition}
 
-We write $\AZ_n$ for the type of Azumaya algebra of rank $n$.
+We write $\AZ_n$ for the type of Azumaya algebras of rank $n$.
 
 \begin{lemma}\label{azumayas-are-finite-free}
-For all $A:\AZ_n$ we have that $A$ is finite free as a module.
+Given $A:\AZ_n$, we have that $A$ is finite free as a module.
 \end{lemma}
 
 \begin{proof}
 By hypothesis $A$ being finite free is modal so that $\propTrunc{A=M_{n+1}(R)}_T$ implies $A$ finite free.
 \end{proof}
 
-Now we want to prove that the automorphism group of $M_{n+1}(R)$ in $R$-algebras is also $\PGL_{n+1}(R)$.
+Now we want to prove that the automorphism group of $M_{n+1}(R)$ in $R$-algebras is also $\PGL_{n+1}(R)$. We start with an auxiliary result.
 
 \begin{lemma}\label{fundamental-system-matrices}
 Assume $e_{i,j}:M_{n+1}(R)$ for $0\leq i,j\leq n$ such that:
@@ -424,20 +419,17 @@ where $\delta_{j,k} = 1$ if $j=k$ and $0$ otherwise. Moreover assume:
 \[e_{0,0}+\cdots+e_{n,n}=1\]
 Then there exists $P:GL_{n+1}(R)$ such that:
 \[e_{i,j} = PE_{i,j}P^{-1}\]
-Where $E_{i,j}$ for $0\leq i,j\leq n$ is the canonical basis of $M_{n+1}(R)$.
+for all $0\leq i,j\leq n$, where the $E_{i,j}$ are the vectors of the canonical basis of $M_{n+1}(R)$.
 \end{lemma}
 
 \begin{proof}
 We define $e_i = e_{i,i}$, then $e_0+\cdots+e_n = 1$, for all $i$ we have $e_i^2=e_i$ and for all $i\not=j$ we have that $e_ie_j=0$. From this we get:
 \[R^{n+1} = V_0\oplus\cdots\oplus V_n\]
-where:
-\[V_i = \{x\ |\ e_i(x)=x\}\]
-and:
-\[e_{i,j}:V_j\simeq V_i\]
+where $V_i = \{x\ |\ e_i(x)=x\}$ and $e_{i,j}:V_j\simeq V_i$.
 
-As a direct summand of a free module we have that $V_0$ is projective, and since $V_0 = e_{0}(R^{n+1})$ we have that $V_0$ is finitely generated, so by Lemma \ref{finite-projective-free} it is finite free. From $V_0^{n+1}=R^{n+1}$ we get that $\propTrunc{V_0=R}$, and therefore that $\propTrunc{V_i=R}$ for all $i$.
+As a direct summand of a free module we have that $V_0$ is projective, and since $V_0 = e_{0}(R^{n+1})$ we have that $V_0$ is finitely generated, so that by Lemma \ref{finite-projective-free} it is finite free. From $V_0^{n+1}=R^{n+1}$ we get that $\propTrunc{V_0=R}$, and therefore that $\propTrunc{V_i=R}$ for all $i$.
 
-Then we choose $v_0$ generating $V_0$ and define $v_i = e_{i,0}(v_0)$ so that $v_i$ generates $V_i$ because $e_{i,0}:V_0\simeq V_i$. We get a basis $v_0,\hdots,v_n$ of $R^{n+1}$.
+Then we choose $v_0$ generating $V_0$ and define $v_i = e_{i,0}(v_0)$ so that $v_i$ generates $V_i$. We get a basis $v_0,\hdots,v_n$ of $R^{n+1}$.
 
 Let $u_0,\hdots,u_n$ be the canonical basis of $R^{n+1}$ and define $P:GL_{n+1}(R)$ by sending $u_i$ to $v_i$. Then for all $v_k$ we have that:
 \[e_{i,j}v_k = PE_{i,j}P^{-1}v_k\]
@@ -458,26 +450,23 @@ It is clearly a group morphism.
 
 For injectivity we just need to check that if for all $M:M_{n+1}(R)$ we have $(P^t)^{-1}MP^t=M$ then there exists $\lambda\not=0$ such that $P=\lambda I_{n+1}$. We deduce this from $Pe_{i,j} = e_{i,j}P$ and $P$ invertible.
 
-For surjectivity consider $e_{i,j}=\sigma(E_{i,j})$, we can apply Lemma \ref{fundamental-system-matrices} to get $Q:GL_{n+1}(R)$ such that:
+For surjectivity we can apply Lemma \ref{fundamental-system-matrices} to the $\sigma(E_{i,j})$ to get $Q:GL_{n+1}(R)$ such that:
 \[\sigma(E_{i,j}) = QE_{i,j}Q^{-1}\]
-so that for all $M:M_{n+1}(R)$ we have that:
-\[\sigma(M) = QMQ^{-1}\]
-Then $P = (Q^t)^{-1}$ works.
+so that for all $M:M_{n+1}(R)$ we have that $\sigma(M) = QMQ^{-1}$. Then $P = (Q^t)^{-1}$ works.
 \end{proof}
 
 \begin{remark}\label{AZ-is-delooping}
 As in Remark \ref{SB-is-delooping}, we have that $\AZ_n$ is also a delooping of $PGL_{n+1}(R)$ inside sheaves.
 \end{remark}
 
-Now we give examples of Azumaya alegbras. To do this we assume $2\not=0$ and we take $T$ to be étale sheafification for the rest of the subsection.
+Now we give examples of Azumaya algebras. To do this we assume $2\not=0$ and we take $T$ to be the étale sheafification for the rest of the subsection.
 
 \begin{definition}
-Given $a,b:R^\times$, we define the quaternion algebra $Q(a,b)$ as the non-commutative algebra:
-\[R[i,j]/(i^2=a,j^2=b,ij=-ji)\] 
+Given $a,b:R^\times$, we define the quaternion algebra $Q(a,b)$ as the non-commutative algebra $R[i,j]/(i^2=a,j^2=b,ij=-ji)$.
 \end{definition}
 
 \begin{remark}
-As a vector space, $Q(a,b)$ is of dimension $4$, generated by $1,i,j,ij$.
+As an $R$-module, $Q(a,b)$ is free of dimension $4$ generated by $1,i,j,ij$.
 \end{remark}
 
 \begin{remark}
@@ -504,7 +493,7 @@ Then $ij$ is send to:
 0 & b\\
 -1 & 0\\
 \end{pmatrix}\]
-It is easy to check this define an algebra morphism, and since $1,I,J,IJ$ form a basis of $M_2(R)$ the map is an isomorphism.
+It is easy to check this defines an algebra morphism, and since $1,I,J,IJ$ form a basis of $M_2(R)$ the map is an isomorphism.
 \end{proof}
 
 \begin{lemma}\label{quaternion-change-variable}
@@ -512,7 +501,7 @@ For all $a,b,u,v:R^\times$, we have that $Q(a,b) = Q(u^2a,v^2b)$.
 \end{lemma}
 
 \begin{proof}
-We use the variable change $i\mapsto ui$ and $j\mapsto vj$.
+We use the change of variable $i\mapsto ui$ and $j\mapsto vj$.
 \end{proof}
 
 \begin{lemma}
@@ -520,7 +509,7 @@ Given $a,b:R^\times$, we have that $Q(a,b)$ is an Azumaya algebra.
 \end{lemma}
 
 \begin{proof}
-We have that $Q(a,b)$ is finite free as a vector space so it is a sheaf. When proving $\propTrunc{Q(a,b)=M_2(R)}_T$ we can assume $\sqrt{a}$ such that $\sqrt{a}^2 = a$. Then by Lemma \ref{quaternion-change-variable} we have $Q(a,b) = Q(\sqrt{a}^2,b) = Q(1,b)$ and we conclude by Lemma \ref{quaternion-split}.
+We have that $Q(a,b)$ is finite free as a vector space so it is a sheaf. So we can assume $\sqrt{a}$ such that $\sqrt{a}^2 = a$ to prove that $Q(a,b) = M_2(R)$. Then by Lemma \ref{quaternion-change-variable} we have $Q(a,b) = Q(\sqrt{a}^2,b) = Q(1,b)$ and we conclude by Lemma \ref{quaternion-split}.
 \end{proof}
 
 
@@ -538,7 +527,7 @@ Let us denote by $(E_{i,j})_{0\leq i,j\leq n}$ the canonical basis of $M_{n+1}(R
 \[(E_{i,j}\otimes E_{k,l})_{0\leq i,j,k,l\leq n}\] 
 of $M_{n+1}(R)\otimes M_{n+1}(R)^{op}$, as well as the basis:
 \[(C_{i,j,k,l})_{0\leq i,j,k,l\leq n}\] 
-of $\mathrm{End}_R(M_{n+1}(R))$ where $C_{i,j,k,l}(E_{m,n}) = \delta_{j,m}\delta_{k,n} E_{i,l}$. It is clear that the morphism sends one basis to the other. We can check that both algebras have the same multiplication table. %, indeed:
+of $\mathrm{End}_R(M_{n+1}(R))$ where $C_{i,j,k,l}(E_{m,n}) = \delta_{j,m}\delta_{k,n} E_{i,l}$. It is clear that the morphism sends one basis to the other. We can then check that both algebras have the same multiplication table. %, indeed:
 %\[(E_{i,j}\otimes E_{k,l}) (E_{i',j'}\otimes E_{k',l'}) = \delta_{j,i'}\delta_{k,l'}E_{i,j'}\otimes E_{k',l}\]
 %\[C_{i,j,k,l}C_{i',j',k',l'} = \delta_{j,i'}\delta_{k,l'}C_{i,j',k',l}\]
 \end{proof}
@@ -552,7 +541,7 @@ We have that $A$ is a finite free module by Lemma \ref{azumayas-are-finite-free}
 \end{proof}
 
 \begin{remark}\label{azumaya-independent-modality}
-In \cite{coqazumaya}, we give a constructive proof of the converse when $T$-modal types are included in étale sheaves, meaning that an $R$-algebra $A$ is an Azumaya algebra of rank $n$ for such a $T$ if and only if $A$ is free of rank $(n+1)^2$ as a module and the canonical map $A\otimes A^{op}\to \mathrm{End}_R(A)$ is an isomorphism. In particular this means that $\AZ_n$ do not depend on the choice of such a $T$.
+A constructive proof of the converse when $T$-modal types are included in étale sheaves is given in \cite{coqazumaya}. This means that an $R$-algebra $A$ is an Azumaya algebra of rank $n$ for such a $T$ if and only if $A$ is free of rank $(n+1)^2$ as a module and the canonical map $A\otimes A^{op}\to \mathrm{End}_R(A)$ is an isomorphism. In particular this means that $\AZ_n$ do not depend on the choice of such a $T$.
 \end{remark}
 
 %% \begin{remark}\label{azumaya-independent-modality}
