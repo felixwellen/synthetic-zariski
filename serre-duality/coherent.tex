@@ -14,7 +14,7 @@ This section is joint work of Felix Cherubini, Dan Christensen and Thomas Thorbj
   \[ M \hookrightarrow R^n \to R^m \]
   yields a finite presentation:
   \[ R^m \to R^n \twoheadrightarrow M^\ast \]
-  This induces an anti equivalence between finitely presented $R$-modules and finitely co-presented $R$-modules.
+  This induces an anti-equivalence between finitely presented $R$-modules and finitely co-presented $R$-modules. In particular, the canonical map into the double dual, $M\to M^{\ast\ast}$ is an isomorphims for finitely presented and finitely co-presented $R$-modules.
 \end{theorem}
 
 \begin{proof}
@@ -75,6 +75,23 @@ We will show the equivalence of the last statement and the first two in ??.
 
 \begin{proof}
   By \cite{draft}[7.1.6, 7.1.13], the category of wqc $R$-modules is abelian and it contains finite free $R$-modules.
+\end{proof}
+
+\begin{lemma}
+  For any coherent $R$-module $K$, the double dualization map $K\to K^{\ast\ast}$ is a monomorphism.
+\end{lemma}
+
+\begin{proof}
+  Let $A$ and $B$ be finitely co-presented $R$-modules with a homomorphism $f:A\to B$ such that $K$ is the kernel, then we have the following diagram, which we will explain below:
+\begin{center}
+\begin{tikzcd}
+  B\ar[r,"\sim"] & B^{\ast\ast} \\   
+  A\ar[r,"\sim"]\ar[u,"f"] & A^{\ast\ast}\ar[u,"f^{\ast\ast}"] \\   
+  K\ar[r,"i"]\ar[u,hook]\ar[ur,hook] & K^{\ast\ast}\ar[u]\ar[l,dotted,bend left=20,"p"] \\   
+\end{tikzcd}
+\end{center}
+$K$ is also the kernel of $f^{\ast\ast}$ by the indicated composition.
+By the universal property of this kernel, the dotted map exists and we have $p\circ i=\id$.
 \end{proof}
 
 \begin{lemma}
