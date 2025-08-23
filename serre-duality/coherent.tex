@@ -1,9 +1,12 @@
 
+
 Classically, there is no abelian category of coherent $\mathcal O_X$-modules over a general base.
 Synthetically, the category of finitely presented modules over $R$ does not have all kernels,
 since $R$ is not coherent, so module bundles with values in finitely presented modules are not abelian.
 
 This section is about finding a suitable replacement category.
+This section is joint work of Felix Cherubini, Dan Christensen and Thomas Thørbjornson.
+\rednote{This is work in progress and "coherent" is a bad, preliminary name for the modules introduced in this section.}
 
 \begin{theorem}
   For an $R$-module $M$ let $M^\ast\colonequiv \Hom_{\Mod{R}}(M,R)$ be its dual.
@@ -17,6 +20,7 @@ This section is about finding a suitable replacement category.
 \begin{proof}
   \cite{etale-draft}
 \end{proof}
+
 
 \begin{lemma}
   \label{presentation-extension}
@@ -56,24 +60,53 @@ Due to lack of a better name, we call the following modules coherent --
 the idea is that they might yield an analogue of the algebro-geometric notion of coherent sheaf of modules
 
 \begin{definition}
-  Let $M$ be an $R$-module, then $M$ is called coherent, if it merely is the kernel of a homomorphism of finitely presented $R$-modules.
+  Let $M$ be an $R$-module, then $M$ is called coherent one of the following equivalent statements hold:
+  \begin{enumerate}[(i)]
+  \item $M$ is merely the kernel of a homomorphism of finitely presented $R$-modules.
+  \item $M$ is merely the cokernel of a homomorphism of finitely copresented $R$-modules.
+  \item $M$ is the image of a map from a finitely co-presented $R$-module to a finitely presented $R$-module.
+  \end{enumerate}
 \end{definition}
-
-\begin{theorem}
-  Coherent modules are an abelian category.
-\end{theorem}
-\rednote{TODO: This seems to assume that dualization is idempotent on coherent modules.}
-\begin{proof}
-  Using \Cref{kernel-fp-is-cok-fcp} and its dual.
-\end{proof}
+We will show the equivalence of the last statement and the first two in ??.
 
 \begin{remark}
-  Any coherent $R$-module is wqc.
+  Any coherent $R$-module is wqc (\cite{draft}[Definition 7.1.5]).
 \end{remark}
+
+\begin{proof}
+  By \cite{draft}[7.1.6, 7.1.13], the category of wqc $R$-modules is abelian and it contains finite free $R$-modules.
+\end{proof}
+
+\begin{lemma}
+  Let $A$ and $B$ be finitely co-presented $R$-modules and $K$ be a coherent $R$-module.
+  Then for any homorphism $f:A\to K$ there is a lift of the underlying sets:
+  \begin{center}
+    \begin{tikzcd}
+       & C\ar[d,->>,"e"] \\
+     A\ar[r,"f"]\ar[ru,dotted,"\exists"] & K 
+    \end{tikzcd}
+  \end{center}
+  (where $e$ is the canonical map)
+\end{lemma}
+
+\begin{proof}
+  Let $M$ be the kernel of $e$, then $M$ is wqc.
+  By \cite{draft}[Theorem 7.3.6] we have $H^1(A,M)=0$, since $A$, like any finitely co-presented $R$-module, is an affine scheme.
+
+  By definition, we have $H^1(A,M)=||A\to K(M,1)||_0$ and therefore that $A\to K(M,1)$ is connected.
+  For $x:K$ let $E_x$ denote the fiber of $e$ over $x$, then $E_x$ is a $M$-torsor or in other words an element of $K(M,1)$.
+  So $E\circ f:A\to K(M,1)$ and we have $|| E\circ f = (\_\mapsto M) ||$ by the connectedness noted above.
+  This means that the dependent type $E\circ f$ merely has a section, since $(\_\mapsto M)$ has a section.
+  This proves existence of the dotted map.
+\end{proof}
+
+\begin{theorem}
+  \rednote{TODO} The category of coherent modules is abelian.
+\end{theorem}
 
 \begin{remark}
   \label{hom-closure}
-  For coherent $R$-modules $M,N$, the $R$-module $\Hom_{\Mod{R}}(M,N)$ is coherent.
+  \rednote{needs closure under taking kernels and cokernels} For coherent $R$-modules $M,N$, the $R$-module $\Hom_{\Mod{R}}(M,N)$ is coherent.
 \end{remark}
 
 \begin{proof}
