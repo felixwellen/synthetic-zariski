@@ -190,7 +190,7 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
 \end{lemma}
 
 \begin{proof}
-  It is possible to construct a diagram of the following shape, where the two left columns and all rows are exact:
+  It is possible \rednote{TODO: add construction} to construct a diagram of the following shape, where the two left columns and all rows are exact:
   \begin{center}
     \begin{tikzcd}
       A\ar[r,hook]\ar[d] & R^{m_1}\ar[r,"t"]\ar[d,"l"] & R^{n}\ar[d,"\id"] \\
@@ -219,15 +219,15 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
   We can assume $K$ is in a sequence of $R$-modules:
   \begin{center}
     \begin{tikzcd}
-      A\ar[r] & B\ar[r,->>] & K\ar[r,hook] & M\ar[r] & N
+      A\ar[r,"f"] & B\ar[r,->>] & K
     \end{tikzcd}
   \end{center}
-  where $B$ is finitely co-presented, $M,N$ are finitely presented and $K\to M$ is a kernel, $B\to K$ a cokernel.
-  Taking double duals and using \Cref{fp-kernel-dual-surjective} we end up in this situation:
+  where $A,B$ are finitely co-presented and $B\to K$ is the cokernel of $f$.
+  Taking double duals and using \Cref{fp-kernel-dual-surjective} and \Cref{coherent-double-dual-mono} we end up in this situation:
   \begin{center}
     \begin{tikzcd}
-      A\ar[r] & B\ar[r,->>]\ar[d,"\sim"] & K\ar[r,hook]\ar[d,hook] & M\ar[d,"\sim"]\ar[r] & N \\
-              & B^{\ast\ast} \ar[r,->>] & K^{\ast\ast} \ar[r] & M^{\ast\ast} &
+      A\ar[r,"f"] & B\ar[r,->>]\ar[d,"\sim"] & K\ar[d,hook] \\
+      & B^{\ast\ast} \ar[r,->>] & K^{\ast\ast} 
     \end{tikzcd}
   \end{center}
   So $K\to K^{\ast\ast}$ is an isomorphism.
