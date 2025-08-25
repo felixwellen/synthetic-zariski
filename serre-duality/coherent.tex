@@ -78,6 +78,7 @@ We will show the equivalence of the last statement and the first two in ??.
 \end{proof}
 
 \begin{lemma}
+  \label{coherent-double-dual-mono}
   For any coherent $R$-module $K$, the double dualization map $K\to K^{\ast\ast}$ is a monomorphism.
 \end{lemma}
 
@@ -142,7 +143,19 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
   \]
   which induces a linear map $f_L:A\to B$.
   Let us note that the difference $f_{NL}\coloneq \tilde{f}-f_L$ is given by monomials $S_i$ which are all of degree at least two.
-  \item \rednote{TODO: expand} We analyse $e(S_i(tx))$.
+  \item We know that $e\circ \tilde{f}$ is a linear map, so $e\circ f_{NL}$ is linear as well.
+  Let $f_{NL}=\sum_i S_i$ be a decomposition into monomials with degrees $n_i\geq 2$ as above.
+  For all $t:R$ and $x:A$ we have
+  \[
+  \sum_i te(S_i(x))=te(\sum_i S_i(x))=e(\sum_i S_i(tx))=e(\sum_i t^{n_i}S_i(x))=\sum_i t^{n_i}e( S_i(x))
+  \]
+  So by taking the difference we have a polynomial $P(t)\coloneq \sum_i te(S_i(x))-\sum_i t^{n_i}e( S_i(x))$ in $t$ with coefficients in $K$, such that $P(t)=0$ for all $t$.
+  Since all $e(S_i(x))$ appear as coefficients of $P$, we can conclude $e\circ f_{NL}=0$, from $P$ being zero.
+
+  Let $f:K\to R$ be an arbitrary linear map, then $f(P(t)):R\to R$ has to be the zero polynomial,
+  so $f$ maps all $e(S_i(x))$ to zero.
+  This means that the double dualization $K\to K^{\ast\ast}$ maps each $e(S_i(x))$ to zero,
+  but by \Cref{coherent-double-dual-mono} it is injective, so all $e(S_i(x))$ are zero.
   \end{enumerate}
 \end{proof}
 
@@ -157,7 +170,7 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
 
 \begin{remark}
   \label{hom-closure}
-  \rednote{needs closure under taking kernels and cokernels} For coherent $R$-modules $M,N$, the $R$-module $\Hom_{\Mod{R}}(M,N)$ is coherent.
+  For coherent $R$-modules $M,N$, the $R$-module $\Hom_{\Mod{R}}(M,N)$ is coherent.
 \end{remark}
 
 \begin{proof}
