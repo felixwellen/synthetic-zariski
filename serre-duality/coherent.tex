@@ -162,6 +162,7 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
 \end{proof}
 
 \begin{lemma}
+  \label{coherent-kernels}
   The cokernel of a homomorphism between coherent $R$-modules is coherent.  
 \end{lemma}
 
@@ -172,17 +173,56 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
   \begin{center}
     \begin{tikzcd}
       A\ar[d]\ar[r,dotted] & C\ar[d,"r"] & \\
-      B\ar[d,->>]\ar[r,dotted,"b"] & D\ar[d,->>]\ar[rd,->>,"g"] & \\
-      K\ar[r,"f"] & L\ar[r,->>,"\mathrm{cok}",swap] & \mathrm{Cok}
+      B\ar[d,->>]\ar[r,dotted,"b",swap] & D\ar[d,->>]\ar[rd,->>,"g"] & \\
+      K\ar[r,"f",swap] & L\ar[r,->>,"\mathrm{cok}",swap] & \mathrm{Cok}
     \end{tikzcd}
   \end{center}
   Now we conclude by showing that the composition $g$ is the cokernel of a homorphism of the finitely co-presented $R$-modules $B\oplus C$ and $D$.
   By diagram-chasing, $b\oplus r:B\oplus C\to D$ surjects onto the kernel of $g$.
 \end{proof}
 
+\begin{lemma}
+  \label{fp-kernel-dual-surjective}
+  Let $M,N$ be finitely presented $R$-modules, $f:M\to N$ a homomorphism and $K$ its kernel,
+  then the dual of the canonical map $K\to M$ is surjective.
+\end{lemma}
+
+\begin{proof}
+  \rednote{TODO: expand}
+\end{proof}
+
 \begin{theorem}
-  \rednote{TODO} The category of coherent modules is abelian.
+  \label{coherent-self-dual}
+  Let $K$ be a coherent $R$-module, then the canonical map $K\to K^{\ast\ast}$ is an isomorphism.
+  In particular, dualization is an anti-equivalence of the category of coherent $R$-modules.
 \end{theorem}
+
+\begin{proof}
+  We can assume $K$ is in a sequence of $R$-modules:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r] & B\ar[r,->>] & K\ar[r,hook] & M\ar[r] & N
+    \end{tikzcd}
+  \end{center}
+  where $B$ is finitely co-presented, $M,N$ are finitely presented and $K\to M$ is a kernel, $B\to K$ a cokernel.
+  Taking double duals and using \Cref{fp-kernel-dual-surjective} we end up in this situation:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r] & B\ar[r,->>]\ar[d,"\sim"] & K\ar[r,hook]\ar[d,hook] & M\ar[d,"\sim"]\ar[r] & N \\
+              & B^{\ast\ast} \ar[r,->>] & K^{\ast\ast} \ar[r] & M^{\ast\ast} &
+    \end{tikzcd}
+  \end{center}
+  So $K\to K^{\ast\ast}$ is an isomorphism.
+\end{proof}
+
+\begin{theorem}
+  \rednote{TODO: Check all proofs that go into this} The category of coherent $R$-modules is abelian.
+\end{theorem}
+
+\begin{proof}
+  By \Cref{coherent-kernels} coherent $R$-modules are closed under kernels.
+  By the duality from \Cref{coherent-self-dual}, this also shows the closure under cokernels.
+\end{proof}
 
 \begin{remark}
   \label{hom-closure}
