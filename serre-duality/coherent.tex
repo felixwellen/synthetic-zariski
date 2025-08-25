@@ -18,7 +18,7 @@ This section is joint work of Felix Cherubini, Dan Christensen and Thomas Thorbj
 \end{theorem}
 
 \begin{proof}
-  \cite{etale-draft}
+  \cite{diffgeo-article}
 \end{proof}
 
 
@@ -60,14 +60,16 @@ Due to lack of a better name, we call the following modules coherent --
 the idea is that they might yield an analogue of the algebro-geometric notion of coherent sheaf of modules
 
 \begin{definition}
-  Let $M$ be an $R$-module, then $M$ is called coherent one of the following equivalent statements hold:
+  Let $M$ be an $R$-module, then $M$ is called coherent if one of the following equivalent statements hold:
   \begin{enumerate}[(i)]
   \item $M$ is merely the kernel of a homomorphism of finitely presented $R$-modules.
   \item $M$ is merely the cokernel of a homomorphism of finitely copresented $R$-modules.
   \item $M$ is the image of a map from a finitely co-presented $R$-module to a finitely presented $R$-module.
+  \item $M$ is in the smallest abelian subcategory of $\Mod{R}$ that contains all finite free $R$-modules.
   \end{enumerate}
 \end{definition}
-We will show the equivalence of the last statement and the first two in ??.
+We will show the equivalence of statement (iii) and the first two in ??.
+The equivalence with (iv) will follow from \Cref{coherent-R-modules-abelian}.
 (iii) will turn out to be self-dual.
 
 \begin{remark}
@@ -131,7 +133,7 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
   So $E\circ f:A\to K(M,1)$ and we have $|| E\circ f = (\_\mapsto M) ||$ by the connectedness noted above.
   This means that the dependent type $E\circ f$ merely has a section, since $(\_\mapsto M)$ has a section.
   This proves existence of the dotted map.
-  \item By \cite{diffgeo-draft}, we know that the differential of $\tilde{f}$ is such a linear map,
+  \item By \cite{diffgeo-article}, we know that the differential of $\tilde{f}$ is such a linear map,
   but a direct computation is also possible, which we will carry out in the following.
   
   Let $A$ and $C$ be given by $A=\Spec R[X_1,\dots,X_n]/(P_1,\dots,P_r)$ and $B=\Spec R[Y_1,\dots,Y_m]/(Q_1,\dots,Q_s)$.
@@ -188,7 +190,23 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
 \end{lemma}
 
 \begin{proof}
-  \rednote{TODO: expand}
+  It is possible to construct a diagram of the following shape, where the two left columns and all rows are exact:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r,hook]\ar[d] & R^{m_1}\ar[r,"t"]\ar[d,"l"] & R^{n}\ar[d,"\id"] \\
+      B\ar[r,hook]\ar[d,->>] & R^{m_2}\ar[r,"b"]\ar[d,->>] & R^{n} \\
+      K\ar[r,hook] & M\ar[r] & N
+    \end{tikzcd}
+  \end{center}
+  Then a linear map $L:K\to R$ restricts to a map $L_1:B\to R$ which is zero on $A$.
+  By \cite{diffgeo-article}[Lemma 2.3.7] it is possible to extend $L_1$ to $L_2:R^{m_2}\to R$.
+  $L_2$ will descend to $M$, if and only if it vanishes on the image of $r$.
+  This will generally not be the case, but we can construct a linear correction $c:R^{m_2}\to R$ such that $L_2-c$ has this property.
+
+  To construct $c$, let $c_0\coloneq L_2\circ l$, note that $c_0$ vanishes on $A$ and therefore extends to the image of $t$, to a linear map $c_1:\mathrm{im}(t)\to R$.
+  By \cite{diffgeo-article}[Lemma 2.3.8], $c_1$ extends to a map $c_2:R^{n}\to R$.
+  Now $c\coloneq c_2\circ b$ is a linear map on $R^{m_2}$, that is zero on $B$,
+  so $L_2-c$ is still an extension of $L_1$ and $L_2-c$ vanishes on $A$.
 \end{proof}
 
 \begin{theorem}
@@ -216,6 +234,7 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
 \end{proof}
 
 \begin{theorem}
+  \label{coherent-R-modules-abelian}
   \rednote{TODO: Check all proofs that go into this} The category of coherent $R$-modules is abelian.
 \end{theorem}
 
