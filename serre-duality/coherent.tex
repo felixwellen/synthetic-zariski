@@ -68,6 +68,7 @@ the idea is that they might yield an analogue of the algebro-geometric notion of
   \end{enumerate}
 \end{definition}
 We will show the equivalence of the last statement and the first two in ??.
+(iii) will turn out to be self-dual.
 
 \begin{remark}
   Any coherent $R$-module is wqc (\cite{draft}[Definition 7.1.5]).
@@ -165,17 +166,18 @@ By the universal property of this kernel, the dotted map exists and we have $p\c
 \end{lemma}
 
 \begin{proof}
-  \rednote{TODO: expand}
   Let $K,L$ be coherent $R$-modules and $f:K\to L$ a homomorphism.
   Choose finitely co-presented $R$-modules $A,B,C,D$ and homomorphisms to present $K$ and $L$ as cokernles.
-  By the preceeding \Cref{maps-into-coherent-lift} there a lifts yielding this diagram:
+  By the preceeding \Cref{maps-into-coherent-lift} there are lifts yielding this diagram:
   \begin{center}
     \begin{tikzcd}
-      A\ar[d]\ar[r,dotted] & C\ar[d] \\
-      B\ar[d,->>]\ar[r,dotted] & D\ar[d,->>] \\
-      K\ar[r] & L 
+      A\ar[d]\ar[r,dotted] & C\ar[d,"r"] & \\
+      B\ar[d,->>]\ar[r,dotted,"b"] & D\ar[d,->>]\ar[rd,->>,"g"] & \\
+      K\ar[r,"f"] & L\ar[r,->>,"\mathrm{cok}",swap] & \mathrm{Cok}
     \end{tikzcd}
   \end{center}
+  Now we conclude by showing that the composition $g$ is the cokernel of a homorphism of the finitely co-presented $R$-modules $B\oplus C$ and $D$.
+  By diagram-chasing, $b\oplus r:B\oplus C\to D$ surjects onto the kernel of $g$.
 \end{proof}
 
 \begin{theorem}
