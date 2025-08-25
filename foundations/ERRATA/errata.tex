@@ -177,7 +177,7 @@ In the model of \HoTT{}, this is always a fibrant type, and a proposition.
 The model on \([\Alg[k], \cSet]\) is a cubical presheaf model.
 We recall some results by~\cite{CRS21}, that we need below.
 Let \(C\) be a (small) category.
-Then, \([C^{op}, \cSet] \cong [C^{\op} \times \square^{\op}, \Set]\) carries a model of homotopy type theory since it satisfies the axiom in from~\cite{survey}.
+Then, \([C^{\op}, \cSet] \cong [C^{\op} \times \square^{\op}, \Set]\) carries a model of homotopy type theory since it satisfies the axiom in from~\cite{survey}.
 We refer to this model as the \emph{na{\"\i}ve cubical presheaf}.
 
 The key problem with the na{\"\i}ve cubical presheaf model is that many constructions are not characterized levelwise, as they are in ordinary presheaves.
@@ -223,27 +223,26 @@ The claim for an internal natural number follows similarly by induction internal
   Hence, we obtain a CwF-morphism by restriction \(i^* \colon [C^{\op}, \cSet] \to [C^{\op}_0, \cSet]\).
   This CwF-morphism has a right adjoint on types \(i_{*,\Gamma} \colon \Ty_{[C^{\op}_0, \cSet]}(i^*\Gamma) \to \Ty_{[C^{\op}, \cSet]}(\Gamma)\) which is easily seen to preserve fibrant types and propositions.
 
-  The truncation operation in \([C^{\op}, \cSet]\) is given by applying the truncation operation of \(\cSet\) levelwise.
+  The truncation operation in \([C_0^{\op}, \cSet]\) is given by applying the truncation operation of \(\cSet\) levelwise.
   We define \(PA \coloneqq i_{*,\Gamma}\trunc{i^*A}\).
   Since we have \(\eta_{i^*A} \colon i^* A \to \trunc{i^*A}\) we obtain \(i_{*,\Gamma}\eta \colon i_{*,\Gamma}i^*A \to i_{*,\Gamma}\trunc{i^*A}\) for which precomposition with the unit of the dependent right adjoint yields the desired map \(A \to PA\).
   Concretely, the constructed type is given by
   \[
     (PA)(I, \gamma) = \prod_{f \colon J \to I} \trunc{A(J, \gamma f)}.
   \]
-  We show that this type is also \(D\)-modal.
-  Since \(D\) is a lex modality, it preserves propositions.
-  Hence, it suffices to give map \(D(PA) \to PA\).
-  Since \(D\) is a weighted limit of all powers of \(i_{*,\Gamma}i^* \colon [C^{\op}, \cSet] \to [C^{\op}, \cSet]\), we obtain in particular a map \(D(PA) \to i_*i^*(PA)\) from the transformation \(D \to i_*i^*\) of pointed CwF-endomorphisms. % here use that we have morphism of pointed endofunctors between them
-  A map \(\alpha \colon i_{*,\Gamma}(i^*(PA)) \to PA\) is given by \((\alpha_{(I, \gamma)}u)_f \coloneqq (u_{f})_{\id}\) which is easily seen to be natural.
-  
-  Hence, we obtain (for the modal as well as non-modal case) that we have a chain of functions
-  \[
+  We can now consider a \(D\)-modal replacement of \(PA\).
+  Since \(D(PA)\) is levelwise equivalent to proposition and \(D\)-modal, it is a proposition by \Cref{prop:psh:levelwise-n-type-if-n-type}~\ref{prop:psh:levelwise-n-type-if-n-type:modal-converse}.
+  The type \(D(PA)\) is therefore a fibrant, \(D\)-modal proposition with a map from \(A\).
+  Hence, we obtain (for the \(D\)-modal as well as non-\(D\)-modal case) that we have a chain of functions
+  \begin{multline*}
     \El_{[C^{\op}, \cSet]}(\Gamma, \trunc{A})
-    \longrightarrow \El_{[C^{\op}, \cSet]}(\Gamma, PA)
-    \longrightarrow \El_{[C_0^{\op}, \cSet]}(\Gamma, \trunc{i^*A})
+    \longrightarrow \El_{[C^{\op}, \cSet]}(\Gamma, D(PA))
+    \longrightarrow \El_{[C_0^{\op}, \cSet]}(i^*\Gamma, i^*D(PA)) \\
+    \longrightarrow \El_{[C_0^{\op}, \cSet]}(i^*\Gamma, i^*(PA))
+    \longrightarrow \El_{[C_0^{\op}, \cSet]}(i^*\Gamma, \trunc{i^*A})
     \longrightarrow \prod_{I \in C} \El_{\cSet}(\Gamma_I, \trunc{A_I}),
-  \]
-  by the universal property of \(\trunc{A}\), the right adjoint on types, and the definition of elements in the model on \([C_0^{\op}, \cSet]\).
+  \end{multline*}
+  by the universal property of \(\trunc{A}\), considering the given element levelwise, the fact that \(\eta_{PA} \colon PA \to D(PA)\) is levelwise an equivalence, the counit of the adjunction, and the definition of elements in the model on \([C^{\op}_0, \cSet]\).
   The converse for modal types follows from \Cref{prop:psh:levelwise-n-type-if-n-type}~\ref{prop:psh:levelwise-n-type-if-n-type:modal-converse} since propositions are contractible exactly if they are inhabited.
 \end{proof}
 
