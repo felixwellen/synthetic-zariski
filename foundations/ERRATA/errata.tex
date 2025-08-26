@@ -250,14 +250,14 @@ A consequence of the above is that surjective functions are levelwise surjective
 This fact is needed for showing that homotopy quotients are levelwise homotopy quotients, the key lemma needed in \Cref{sec:k-duality-implies-k-alg-choice}.
 
 \begin{lemma}\label{prop:psh:levelwise-quotient-if-homotopy-quotient}
-  Let \(A \colon \Ty_{[C^{\op}, \cSet]}(\Gamma)\), \(R \colon \Ty_{[C^{\op}, \cSet]}(\Gamma.A.A)\) a homotopy proposition.
+  Let \(A \in \Ty_{[C^{\op}, \cSet]}(\Gamma)\), \(R \in \Ty_{[C^{\op}, \cSet]}(\Gamma.A.A)\) a homotopy proposition.
   \begin{enumerate}[label=(\arabic*)]
     \item If \(\varrho_R \colon A \to A/R\) is a homotopy quotient of \(A\) by \(R\), then \((\varrho_R)_I \colon A_I \to (A/R)_I\) is a homotopy quotient of \(A_I\) by \(R_I\) for all \(I \in C\).
     \item\label{prop:psh:levelwise-quotient-if-homotopy-quotient:modal-converse} If \(A\) and \(R\) are \(D\)-modal, then the converse holds.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  From \cite[Theorem 18.2.3]{rijke2025intro} it follows that \(\varrho_R \colon A \to A/R\) is a homotopy quotient if \(A\) by \(R\) exactly of \(\varrho_R\) is surjective, \(A/R\) is an hset, and for all \(a_0, a_1 \colon A\) we have a logical equivalence \(R(a_0, a_1) \leftrightarrow \paren{\varrho_R(a_0) \simeq \varrho_R(a_1)}\).
+  From \cite[Theorem 18.2.3]{rijke2025intro} it follows that \(\varrho_R \colon A \to A/R\) is a homotopy quotient of \(A\) by \(R\) exactly of \(\varrho_R\) is surjective, \(A/R\) is an hset, and for all \(a_0, a_1 \colon A\) we have a logical equivalence \(R(a_0, a_1) \leftrightarrow \paren{\varrho_R(a_0) \simeq \varrho_R(a_1)}\).
   The same characterization applies levelwise.
 
   Using that \(-_I\) preserves \(\Sigma\) and path types, having a witness that \(\varrho_R\) is a homotopy quotient means we have elements of
@@ -266,7 +266,7 @@ This fact is needed for showing that homotopy quotients are levelwise homotopy q
     \qquad \El(\Gamma.(a_0\,a_1 \colon A).(\varrho_R(a_0) \simeq \varrho_R(a_1)), R(a_0, a_1)) \\
     \El(\Gamma, \textsf{is-hset}(A/R))
     \qquad
-    \El(\Gamma.(u \colon A/R), \trunc{\Fib_{\varrho_R}}(u)).
+    \El(\Gamma.(u \colon A/R), \trunc{\Fib_{\varrho_R}(u)}).
   \end{gather*}
   Note that the first three types are propositions.
   By \Cref{prop:psh:levelwise-n-type-if-n-type,prop:psh:levelwise-inhabited-if-inhabited}, these imply the analogous levelwise statements, and for modal types the converse.
@@ -329,7 +329,7 @@ Recall that \(\Delta \colon \Set \to \cSet\) is a CwF-homomorphism.
   \item[\ref{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:characterization}] % we can reduce to I = [0] if every object in \square admits a map from [0].
     By \cite[Theorem 18.2.3]{rijke2025intro} the map \(\Delta \varrho_{R} \colon \Delta S \to \Delta(S/R)\) is the homotopy quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\Delta(S/R)\) is an hset, \((s_0 \simeq s_1) \leftrightarrow \Delta R(s_0, s_1)\), and \(\Delta \varrho_{R}\) is surjective.
     The first two statements hold by construction.
-    If \(\varrho_R\) splits, then so does \(\Delta \varrho_{R} = \Delta \varrho_{R}\), and is therefore surjective.
+    If \(\varrho_R\) splits, then so does \(\Delta \varrho_{R}\), and is therefore surjective.
 
     Hence, to show the converse assume that \(\Delta \varrho_{R}\) has the universal property of the homotopy quotient.
     We define a type \(Q \in \Ty_{\cSet}(\Delta\Gamma)\) at \((I, \gamma) \in \int\Delta\Gamma\) by
@@ -420,17 +420,17 @@ In a constructive meta-theory it cannot be the case that f.p. \(k\)-algebras hav
 The following is an adaptation of an argument by Diaconescu~\cite{diaconescu1975choice} to derive a constructive taboo from this statement.
 
 \begin{proposition}
-  If for all \(k\) f.p. \(k\)-algebras have choice, then all propositions are decidable.
+  If for all \(k\), f.p. \(k\)-algebras have choice, then all propositions are decidable.
 \end{proposition}
 \begin{proof}
-  Following the techniques in~\cite{mines}, we can show that for any set \(E\) and any ring \(R\) the canonical map \(E \to R[E]\) is injective.
+  Following the techniques in~\cite{mines}, we can show that for any set \(E\) and any ring \(R\) the canonical map \(E \to R[E]\) is injective, where \(R[X]\) is the free commutative \(R\)-algebra on \(E\).
 
-  Let \(p\) be a proposition and \(P \coloneqq \set{0,1} / \sim_p\).
+  Let \(p\) be a proposition and \(P \coloneqq \set{0,1} / \sim_p\) where \(a \sim_p b\) if \(a = b \vee p\).
   We consider the base-ring \(k \coloneqq \mathbb{F}_2[P + P]\).
   By assumption, the map \(\eta \colon \mathbb{F}_2[P + P] \to \mathbb{F}_2[P + P] / (\inl(0) - \inr(0))\) splits.
   Denote the section by \(s : \mathbb{F}_2[P + P] / (\inl(0) - \inr(0)) \to \mathbb{F}_2[P + P]\).
 
-  For \(\inl(1) \in \mathbb{F}_2[P + P]\) we have that \(\eta(\inl(1)) = \eta(s(\eta(\inl(1))))\) since s is a section of \(\eta\).
+  We have that \(\eta(\inl(1)) = \eta(s(\eta(\inl(1))))\) since s is a section of \(\eta\).
   Thus, there exists some \(n \in \mathbb{F}_2\) with \(\inl(1) - s(\eta(\inl(1))) = n(\inr(0) - \inr(1))\).
   If \(n = 0\) then we have \(\inl(1) = s(\eta(\inl(1)))\).
   If \(n = 1\) then we have \(\inl(1) + \inr(1) = \inr(0) + s(\eta(\inl(1)))\).
@@ -458,7 +458,8 @@ This family of sets is easily seen to be functorial in \(M\), and therefore defi
 This type has internally the universal property of the type of terms over the theory of \(\R\)-algebras in a given finite number of variables.
 The type of \(\R\)-algebra presentations is defined as \(\Pr \coloneqq \sum_{n, m \colon \nats} \Term_{\Alg[\R]}(m)^n\). 
 The spectrum of an \(\R\)-algebra presentations is defined as \(\Spec(n, m, p) \coloneqq \sum_{ u \colon \R^{m} } \prod_{i \leq n} p_i(u) \simeq 0\).
-Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\) and \(t_0, t_1 \colon \Term_{\R}\) the type of derivations \(p_1 \doteq 0, \ldots, p_n \doteq 0 \vdash t_0 \doteq t_1\), defining a (strict) equivalence relation on \(\Term_{\R}(m)\) by \(\trunc*{p_1 \doteq 0, \ldots, p_n \doteq 0 \vdash t_0 \doteq t_1}\).
+Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\) and \(t_0, t_1 \colon \Term_{\R}\) the type \(R_{(n,m,p)}\) of derivations \(p_1 \doteq 0, \ldots, p_n \doteq 0 \vdash t_0 \doteq t_1\).
+This is an hset valued familie of types, that we use to define the strict equivalence relation \(\trunc*{R_{(n,m,p)}}\) on \(\Term_{\R}(m)\).
 
 \begin{proposition}\label{prop:duality-for-k-implies-k-choice-and-witnesses}
   If the duality axiom holds in \([\Alg*[k], \cSet]\) then all f.p. \(k\)-algebras have choice and witnesses.
@@ -472,24 +473,24 @@ Lastly, internally, we can define for each presentation \((n, m, p) \colon \Pr\)
     \arrow[weq, from=1-1, to=1-3]
   \end{tikzcd}\]
   %
-  The CwF morphism \(\Delta \colon \Set \to \cSet\) lifts via postcomposition to one \([\Alg*[k], \Set] \to [\Alg*[k], \cSet]\).
+  The CwF-morphism \(\Delta \colon \Set \to \cSet\) lifts via postcomposition to one \([\Alg*[k], \Set] \to [\Alg*[k], \cSet]\).
   Furthermore, it preserves strict identity, \(\Sigma\), and \(\Pi\) types.
   Hence, applying it to the above, we obtain a strict version of the duality axiom in \([\Alg*[k], \cSet]\).
 
   We work in \([\Alg*[k], \cSet]\) in the context with a presentation \((n, m, p) \colon \Delta\Pr\).
-  We have the following diagram in \([\Alg*[k], \cSet]\).
+  We have the following commutative diagram in \([\Alg*[k], \cSet]\) where the map on the right is constructed using the preservation properties of \(\Delta\), and the canonical comparison map from strict identities to paths.
   \[\begin{tikzcd}
-    && {\frac{\Delta\Term_{\R}(m)}{\trunc{\Delta R_{(n,m,p)}}}} && {\paren[\Bigg]{\paren[\bigg]{ \sum_{u \colon (\Delta\R)^m} \prod_{i \leq n} p_i(u) \simeq 0 } \to \R} } \\
+    && {\frac{\Delta\Term_{\R}(m)}{\trunc{\Delta R_{(n,m,p)}}}} && {\paren[\Bigg]{\paren[\bigg]{ \sum_{u \colon (\Delta\R)^m} \prod_{i \leq n} p_i(u) \simeq 0 } \to \Delta\R} } \\
     {\Delta\Term_{\R}(m)} \\
-    && {\Delta\paren[\bigg]{\frac{\Term_{\R}(m)}{\trunc*{R_{(n,m,p)}}}}} && {\paren[\Bigg]{\paren[\bigg]{\sum_{u \colon (\Delta\R)^m} \prod_{i \leq n} p_i(u) = 0} \to \R} }
+    && {\Delta\paren[\bigg]{\frac{\Term_{\R}(m)}{\trunc*{R_{(n,m,p)}}}}} && {\Delta\paren[\Bigg]{\paren[\bigg]{\sum_{u \colon {\R}^m} \prod_{i \leq n} p_i(u) = 0} \to \R} }
     \arrow[from=1-3, to=1-5]
     \arrow[from=1-3, to=3-3]
     \arrow[from=2-1, to=1-3]
     \arrow[from=2-1, to=3-3]
     \arrow[weq, from=3-3, to=3-5]
-    \arrow[weq, from=3-5, to=1-5]
+    \arrow[from=3-5, to=1-5]
   \end{tikzcd}\]
-  The definition of the spectrum in \([\Alg*[k], \Set]\) and \([\Alg*[k], \cSet]\) agree, since for each type of the form \(\Delta X\) the diagonal \((\Delta X) \to (\Delta X)^{\bbI}\) is an isomorphism since it is levelwise an isomorphism in \(\cSet\).
+  The vertical map on the right is an equivalence, since \(\Delta\) preserves all involved type-formers, and for each type of the form \(\Delta X\) the diagonal \((\Delta X) \to (\Delta X)^{\bbI}\) is an isomorphism since it is levelwise an isomorphism in \(\cSet\).
   We also lift the type \(R_{(n,m,p)}\) of derivations of equality modulo a presentation, and define the hprop valued relation \(\trunc{R_{(n,m,p)}}\) used in the statement of the duality axiom.
   As before, we have a map \(\sfrac{\Delta\Term_{\R}(m)}{\trunc{\Delta R_{(n,m,p)}}} \to \Delta\paren[\big]{\sfrac{\Term_{\R}(m)}{\trunc*{R_{(n,m,p)}}}}\) making the triangle above commute.
   The square on the right commutes by the universal property of the quotient as-well, since the outer diagram commutes by definition.
@@ -529,7 +530,7 @@ Exploiting results from computational algebra, the same holds true for quotients
 
 \section{Duality in the strictified model}\label{sec:duality-in-model-of-modal-types}
 
-\Cref{prop:duality-for-k-implies-k-choice-and-witnesses} shows that in this setup, we can only expect to derive a duality axiom base rings \(k\) with choice and witnesses.
+\Cref{prop:duality-for-k-implies-k-choice-and-witnesses} shows that in this setup, we can only expect to derive a duality axiom for base rings \(k\) with choice and witnesses.
 In the original model, this is still not sufficient.
 We only sketch the issue.
 
@@ -548,14 +549,13 @@ Hence, the homotopy quotients considered below exist.
 \end{theorem}
 \begin{proof}
   For all types in the image of \(\Delta \colon [\Alg*[k], \Set] \to [\Alg*[k], \cSet]\) are levelwise constant, and therefore modal by \Cref{prop:levelwise-constant-presheaves-are-modal}.
-  Hence, we can deduce as in the proof of \Cref{prop:duality-for-k-implies-k-choice-and-witnesses} that duality holds exactly if for all presentations \((n, m, p) \colon \Delta\Pr\) we have that the following is a homotopy quotient of \(\Delta \Term_\R(X_1, \ldots, X_n)\) by the relation induced by the presentation.
+  Hence, we can deduce as in the proof of \Cref{prop:duality-for-k-implies-k-choice-and-witnesses} that duality holds exactly if for all presentations \((n, m, p) \colon \Delta\Pr\) we have that the following canonical map is a homotopy quotient of \(\Delta \Term_\R(m)\) by the relation \(\trunc{R_{(n,m,p)}}\) induced by the presentation.
   \[\begin{tikzcd}
-    {\frac{\Delta \Term_\R(X_1, \ldots, X_n)}{\trunc{\Delta (R_{(n,m,p)})_k}}} && {\Delta\paren[\bigg]{\frac{k[X_1, \ldots, X_m]}{(p_1, \ldots, p_n)}}}
-    \arrow[from=1-1, to=1-3]
+    {\Delta \Term_\R(m)} && {\Delta\paren[\bigg]{\frac{\Term_\R(m)}{\trunc*{R_{(n,m,p)}}}}}
     \arrow[from=1-1, to=1-3]
   \end{tikzcd}\]
   Since all involved types are \(D\)-modal, this is the case exactly if we have for each \(M \in C\) that for all \((n, m, p) \colon \Delta \Pr_M\) the following is a homotopy quotient in \(\cSet\) of \(\Delta\Term_M(X_1, \ldots, X_n)\) by the relation induced by the presentation.
-  As before, the case for \(M = k\) implies that f.p. \(k\)-algebras have choice and witnesses.
+  As in \Cref{prop:duality-for-k-implies-k-choice-and-witnesses}, the case for \(M = k\) implies that f.p. \(k\)-algebras have choice and witnesses.
   
   Conversely, by \Cref{prop:psh:levelwise-quotient-if-homotopy-quotient}~\ref{prop:psh:levelwise-quotient-if-homotopy-quotient:modal-converse} it suffices to show for all \(M \in \Alg[k]\) that \(\Delta \paren{\sfrac{M[X_1, \ldots, X_m]}{p_1, \ldots, p_n}}\) is a homotopy quotient of \(\Delta\Term_{M}(X_1, \ldots, X_n)\) by the relation \(\Delta R_{(n,m,p)}\) in a context with a finite \(M\)-algebra presentation \((n,m,p) \colon \Delta \Pr_M\).
   By \Cref{prop:set-relevant-quotient-is-homotopy-quotient-iff-surjection-splits-and-witnesses-exist} this is the case if \(M\)-algebras have choice and witnesses, which follows from \Cref{rem:choice-and-witness-property-descend}.
