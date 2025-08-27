@@ -86,67 +86,6 @@ This is a variant of \cite{vakil}[Theorem 17.6.2] (which might hold):
   \end{enumerate}
 \end{definition}
 
-The following lemmas carry over from \cite[Chapter II.5]{Hartshorne}.
-
-\begin{lemma}
-  Let $X = \Spec A$ be an affine scheme and $f:A$.
-  Let furthermore $\mathcal F:X\to \Mod{R}_{\mathrm{wqc}}$ be a weakly quasi-coherent bundle of $R$-modules.
-  \begin{enumerate}[(i)]
-    \item Given $s:\mathcal F(X)$ with $s|_{D(f)} = 0$  there merely exists a $n>0$ such that $f^ns=0$.
-    \item For any section $t:\mathcal F (D(f))$ there merely exists a $n>0$
-      such that $f^nt$ extends to a global section of $\mathcal F$.
-  \end{enumerate}
-\end{lemma}
-
-\begin{proof}
-  Since $\mathcal F$ is weakly quasi-coherent we have $\mathcal F (X)_f = \mathcal F (D(f))$.
-  This implies both the first and second part.
-\end{proof}
-
-
-\begin{lemma}
-  \label{affine-extension-of-sections}
-  Let $X$ be a scheme and $\mathcal L$ a line bundle on $X$ with a given section $f:\mathcal L(X)$.
-  Let $\mathcal F:X\to \Mod{R}_{\mathrm{wqc}}$ be a weakly quasi-coherent bundle of $R$-modules.
-  Denote by $X_f \subseteq X$ the open locus where $f$ does not vanish.
-  \begin{enumerate}[(i)]
-    \item Given $s:\mathcal F(X)$ with $s|_{X_f} = 0$ there merely exists a $n>0$ such that $f^ns=0$,
-      when considered as a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
-    \item For any section $t:\mathcal F (X_f)$ there merely exists a $n>0$
-      such that $f^nt$ extends to a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
-  \end{enumerate}
-\end{lemma}
-
-This generalizes the above lemma by simultaneously allowing non-affine schemes, as well as twists.
-
-\begin{proof}
-  For the first part consider any affine open subscheme $U=\Spec A$ of $X$ that trivializes $\mathcal L$,
-  i.e. suppose there is an equivalence  $\varphi:\mathcal L_U \to \mathcal O_U$ and set $g :\equiv \varphi(f|_U)$.
-  Thus we have $X_f\cap U = D(g)$ and $s|_{D(g)}=0$.
-  By virtue of \Cref{affine-extension-of-sections} there is a $n>0$ such that $g^ns=0: \mathcal F(U)$.
-  Using the equivalence $\mathcal F|_U\otimes\mathcal L^{\otimes n}|_U \to \mathcal F|_U$ this implies $f^ns=0$,
-  when considered as a section of $\mathcal F\otimes\mathcal L^{\otimes n}$ over $U$.
-  Since $X$ can be covered by finitely many such $U$, we finally obtain a natural number $n>0$ such that $f^ns=0$ as a global section of $\mathcal F\otimes\mathcal L^{\otimes n}$.
-
-  \rednote{TODO: write up part (ii)}
-\end{proof}
-
-We expect the following to be deducible from the above:
-
-\begin{lemma}
-  \label{fp-module-bundle-globally-generated}
-  Let $\mathcal F:\bP^n \to \Mod{R}_{\mathrm{fg}}$ be a finitely generated $R$-module bundle.
-  Then there merely are $n,q$ and a surjection
-  \[ \mathcal O(q)^{\oplus n}\to \mathcal F\rlap{.}\]
-  Furthermore, if $\mathcal F$ is finitely presented, there are $n',n,q',q$ and an exact sequence:
-  \[ \mathcal O(q')^{\oplus n'}\to \mathcal O(q)^{\oplus n}\to \mathcal F\to 0\rlap{.}\]
-\end{lemma}
-
-\begin{proof}
-TODO.
-\cite[Chapter IV, 1.0 Lemma]{lombardi-quitte} for the second part, to see that the kernel of a surjection from a finite free module to a finitely presented module is finitely generated.
-\end{proof}
-
 \begin{definition}
   For a scheme $X$, we call
   \[
@@ -244,3 +183,100 @@ TODO.
     \omega_{\bP^n} = \det(\Omega_X) \otimes \det(\mathcal O_{\bP^n}) = \det(\mathcal O(-1)^{\oplus n+1}) = \mathcal O (-n-1).
   \]
 \end{proof}
+
+\subsection{WIP: Eventually Globally Generated Bundles}
+
+\rednote{TODO: Check and streamline proofs. Unify notation.}
+
+\begin{lemma}
+  \label{wqc+fg-bundle-is-explicitly-generated}
+  Let $X=\Spec A$ be an affine scheme and let $\mathcal F : X \to \Mod{R}$ be a weakly quasi-coherent and finitely generated bundle of $R$-modules.
+  Then the proposition
+  \[
+    \Big\Vert
+      \sum_{N:\N}\prod_{x:X}\Hom_R^\mathrm{surj}(R^N,\mathcal F_x)
+    \Big\Vert
+  \]
+  holds. Here $\Hom_R^\mathrm{surj}$ denotes the set of surjective $R$-module morphisms.
+\end{lemma}
+
+\begin{proof}
+  By virtue of Zariski-local choice and boundedness there merely is an open cover $D(f_1), ..., D(f_m) \subseteq X$ as well as surjective $R$-module morphisms $\alpha_{i,x} : R^n \to \mathcal F_x$ for all $i=1, ..., m$ and $x:D(f_i)$.
+  Since $\mathcal F$ is weakly quasi-coherent, the induced $A_{f_i}$-linear map
+  \[
+    \textstyle\prod_{x:D(f_i)}\alpha_{i,x} :  A_{f_i}^n \longrightarrow \Gamma (D(f_i),\mathcal F) = \Gamma (X,\mathcal F)_{f_i}
+  \]
+  is again surjective. We may merely find $s_{i1}, ..., s_{in}:\Gamma (X,\mathcal F)$ and $n_{ij}:\N$ such that this map takes the standard basis vector $e_j$ to $s_{ij}/f_i^{n_{ij}}$.
+  Then for all $x:X$ the $R$-linear maps
+  \[
+    \beta_x : R^{m \times n} \longrightarrow \mathcal F_x, \;
+    e_{ij} \longmapsto s_{ij}(x)
+  \]
+  are surjective, hence we win.
+\end{proof}
+
+The following lemmas and parts of their proofs carry over from \cite[Chapter II.5]{Hartshorne}.
+
+\begin{lemma}
+  \label{affine-extension-of-sections}
+  Let $X = \Spec A$ be an affine scheme and $f:A$.
+  Let $\mathcal F:X\to \Mod{R}_{\mathrm{wqc}}$ be a weakly quasi-coherent bundle of $R$-modules.
+  \begin{enumerate}[(i)]
+    \item Given $s:\Gamma (X,\mathcal F)$ with $s|_{D(f)} = 0$  there merely exists a $n>0$ such that $f^ns=0$.
+    \item For any section $t:\Gamma(D(f),\mathcal F)$ there merely exists a $n>0$
+      such that $f^nt$ extends to a global section of $\mathcal F$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Since $\mathcal F$ is weakly quasi-coherent we have $\Gamma (X,\mathcal F)_f = \Gamma (D(f),\mathcal F)$.
+  This implies both the first and second part.
+\end{proof}
+
+
+\begin{lemma}
+  \label{extension-of-sections-by-twisting}
+  Let $X$ be a scheme and $\mathcal L$ a line bundle on $X$ with a given section $f:\Gamma (X,\mathcal L)$.
+  Let $\mathcal F:X\to \Mod{R}_{\mathrm{wqc}}$ be a weakly quasi-coherent bundle of $R$-modules.
+  Denote by $X_f \subseteq X$ the open locus where $f$ does not vanish.
+  \begin{enumerate}[(i)]
+    \item Given $s:\Gamma (X,\mathcal F)$ with $s|_{X_f} = 0$ there merely exists a $n>0$ such that $f^ns=0$,
+      when considered as a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
+    \item For any section $t:\Gamma (X_f,\mathcal F)$ there merely exists a $n>0$
+      such that $f^nt$ extends to a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
+  \end{enumerate}
+\end{lemma}
+
+This generalizes the above lemma by simultaneously allowing non-affine schemes, as well as twists.
+
+\begin{proof}
+  For the first part consider any affine open subscheme $U=\Spec A$ of $X$ that trivializes $\mathcal L$,
+  i.e. suppose there is an equivalence  $\varphi:\mathcal L_U \to \mathcal O_U$ and set $g :\equiv \varphi(f|_U)$.
+  Thus we have $X_f\cap U = D(g)$ and $s|_{D(g)}=0$.
+  By virtue of \Cref{affine-extension-of-sections} there is a $n>0$ such that $g^ns=0:\Gamma (U,\mathcal F)$.
+  Using the equivalence $\mathcal F|_U\otimes\mathcal L^{\otimes n}|_U \to \mathcal F|_U$ this implies $f^ns=0$,
+  when considered as a section of $\mathcal F\otimes\mathcal L^{\otimes n}$ over $U$.
+  Since $X$ can be covered by finitely many such $U$, we finally obtain a natural number $n>0$ such that $f^ns=0$ as a global section of $\mathcal F\otimes\mathcal L^{\otimes n}$.
+
+  \rednote{TODO: write up part (ii)}
+\end{proof}
+
+\begin{proposition}
+  \label{fp-module-bundle-globally-generated}
+  Let $\mathcal F:\bP^n \to \Mod{R}$ be a weakly quasi-coherent and finitely generated $R$-module bundle.
+  Then there merely are $n\geq 0$, $q\leq 0$ and a surjection
+  \[ \mathcal O(q)^{\oplus n}\to \mathcal F\rlap{.}\]
+  Furthermore, if $\mathcal F$ is even finitely presented, there are $n',n\geq 0$, $q',q\leq 0$ and an exact sequence:
+  \[ \mathcal O(q')^{\oplus n'}\to \mathcal O(q)^{\oplus n}\to \mathcal F\to 0\rlap{.}\]
+\end{proposition}
+
+\begin{proof}
+  Let $U_i = D(x_i)$ be the standard affine cover of $\bP^n$.
+  By virtue of lemma \ref{wqc+fg-bundle-is-explicitly-generated} we can find sections $s_{ij} : (x:U_i) \to \mathcal F_x$ such that $s_{i1}(x), ..., s_{im}(x)$ generate $\mathcal F_x$ for all $x:U_i$.
+  Using lemma \ref{extension-of-sections-by-twisting} we find $n:\mathbb{N}$ such that $x_i^ns_{ij}$ extends to a global section $t_{ij}:\Gamma (\bP^n,\mathcal F(n))$.
+  Then the sections $\{t_{ij}\}_{ij}$ generate $\mathcal F(n)$ at every point $x:\bP^n$.
+
+  For the second part we use \cite[Chapter IV, 1.0 Lemma]{lombardi-quitte} to see that the kernel of a surjection from a finite free module to a finitely presented module is finitely generated.
+  The claim follows from this.
+\end{proof}
+
