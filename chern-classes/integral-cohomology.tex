@@ -1,0 +1,247 @@
+%\begin{definition}
+%The $n$-th integral Eilenberg Mac Lane space $K_n$ is defined by:
+%\[K_0 = \Z\]
+%and for $n\geq 1$ by:
+%\[K_{n} = \propTrunc_n{S^n}\]
+%\end{definition}
+
+\subsection{Torsors}
+
+We write $K_n$ for the $n$-th integral Eilenberg Mac Lane space $K(\Z,n)$.
+
+\begin{definition}
+A $\mathbf{2}$-torsor is a type $X$ such that $\propTrunc{X=\mathbf{2}}$.
+\end{definition}
+
+\begin{definition}
+A pseudo-$\mathbf{2}$-torsor is a type $X$ such that $\propTrunc{X}\to \propTrunc{X=\mathbf{2}}$.
+\end{definition}
+
+\begin{lemma}
+For $n\geq 2$, we have:
+\[K_{n} = \Sigma_{X:\Type} \prod_{x:X}(X,x) = (K_{n-1},*)\]
+We call an $X:\Type$ such that $\prod_{x:X}(X,x) = (K_{n-1},*)$ an integral $n$-torsor. We call an inhabitant of $\prod_{x:X}(X,x) = (K_{n-1},*)$ an orientation for the integral torsor $X$.
+\end{lemma}
+
+From David and Louise work \cite{}. We have a canonical orientation for $K_{n-1}$ sending $*$ to the identity equivalence $(K_{n-1},*) = (K_{n-1},*)$, making it an integral $n$-torsor.
+
+Note that for $X:K_n$ we have that $\propTrunc{X}_{n-2} = 1$ and $\propTrunc{X}_{n-1} = X$.
+
+\begin{lemma}
+Assume $X$ a type, then $\prod_{x:X}(X,x) = (K_{n-1},*)$ is a pseudo-$\mathbf{2}$-torsor.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}
+Assume $X:K_n$ for $n\geq 2$, then we have $\alpha : X = (* =_{K_m} X)$. We have that $\alpha_x(*) = x$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+We will use the notation $\alpha_x$ for the induced equality $X=*$ in the rest of the note.
+
+\begin{lemma}\label{naturality-alpha}
+Given $X:K_n$ and $x:X$ with $y:0$, we have that $\alpha_y\cdot\alpha_x = \alpha_{\alpha_x(y)}$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+
+
+\subsection{Torsors over torsors}
+
+\begin{lemma}\label{2-torsor-over-Kn}
+Assume $n\geq 2$ and a pseudo-$\mathbf{2}$-torsor $Y$ over $K_n$. Then:
+\[\prod_{x:K_n} Y(x) = Y(*)\]
+In particular this type is a pseudo-$\mathbf{2}$-torsor.
+\end{lemma}
+
+\begin{proof}
+A pseudo-$\mathbf{2}$-torsor over $K_n$ is the same as an action of $\Omega K_n$ on $F(*)$, but if $n\geq 2$ then this action is trivial as pseudo-$\mathbf{2}$-torsor are sets, and then any point is a fixed point so we get the equality we want.
+\end{proof}
+
+\begin{lemma}\label{torsor-map}
+Assume given $X:K_n$, $Y:K_l$ such that $2\leq l<n$, then the map:
+\[Y\to Y^X\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+We have $Y^X$ is equivalent to $Y^{\propTrunc{X}_{l-1}}$ and that $X$ is $n-2$-connected therefore $\propTrunc{X}_{l-1}$ is contractible.
+\end{proof}
+
+\begin{corollary}\label{dependent-torsor-gives-torsor}
+Assume given $X:K_n$ and $1\leq l<n-1$, then the map:
+\[K_l\to K_l^X\]
+is an equivalence.
+\end{corollary}
+
+\begin{lemma}\label{integral-torsor-over-Kn}
+Given $X:K_n$ with $n\geq 2$ and $Y:X\to K_l$ with $l<n-1$. Then given $a:X$ we have that:
+\[\prod_{x:X} Y(x) = Y(a)\]
+\end{lemma}
+
+\begin{proof}
+Just apply \cref{dependent-torsor-gives-torsor} and \cref{torsor-map}.
+\end{proof}
+
+
+\subsection{Defining substraction, cup product and addition}
+
+We write $0:K_n$ the trivial integral $n$-torsor.
+
+\begin{definition}
+Given $X:K_n$, we define $-X:K_n$ as the same torsor with reverse orientation.
+\end{definition}
+
+\begin{lemma}
+Assume given $X:K_{m}$ and $Y:K_{n}$, such that $m,n\geq 2$, then $\propTrunc{X*Y}_{m+n-1}$ has an orientation.
+\end{lemma}
+
+\begin{proof}
+By applying \cref{2-torsor-over-Kn} twice, we know it is enough to give a proof that $\propTrunc{K_{m-1}*K_{n-1}}_{m+n-1} = K_{m+n-1}$, but we have that $S^{m-1}*S^{n-1} = S^{m+n-1}$, and TODO.
+\end{proof}
+
+\begin{definition}
+Given $X:K_{m}$ and $Y:K_{n}$ where $m,n\geq 2$, the $m+n$-torsor $\propTrunc{X*Y}_{m+n-1}$ is denoted by $X\cup Y$.
+\end{definition}
+
+\begin{definition}
+Assume given $X,Y:K_n$ for $n\geq 2$, then we have a map:
+\[\phi : X\cup Y \to K_n\]
+such that for $x:X$ we have that $\phi([\inleft(x)]) = Y$ and  for $y:Y$ we have that $\phi([\inright(y)]) = X$. Indeed given $x:X$ and $y:Y$ we have that $Y = X$ via $\alpha_y^{-1}\cdot \alpha_x$. 
+
+ By \Cref{dependent-torsor-gives-torsor} this gives an element of $K_n$ denoted by $X+Y$.
+\end{definition}
+
+
+\subsection{Join and truncation}
+
+\begin{lemma}
+Assume $X$ is $m$-connected and $Y$ is $n$-connected, then $X*Y$ is $m+l+2$-connected.
+\end{lemma}
+
+\begin{lemma}\label{truncation-and-join}
+Assume $X:K_m$ and $Y:K_n$ for $m,n\geq 2$, then:
+\[\propTrunc{X*Y}_{m+n-1} = \propTrunc{\propTrunc{X}_{m-1}*\propTrunc{Y}_{n-1}}_{m+n-1}\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+%\begin{lemma}
+%\[\propTrunc{\propTrunc{X}_{m-1} *\propTrunc{Y}_{n-1}}_{m+l-1} = \propTrunc{X*Y}_{m+l-1}\]
+%\end{lemma}
+
+
+\subsection{Eilenberg Mac Lane spaces form a wild commutative graded ring}
+
+Curiously it is nicer to work first with cup product, and then with addition.
+
+\begin{lemma}
+Given $X:K_l$, $Y:K_m$ and $Z:K_n$ where $l,m,n\geq 2$, we have that $(X\cup Y)\cup Z = X\cup (Y\cup Z)$.
+\end{lemma}
+
+\begin{proof}
+Clear on the level of the types from $(X*Y)*Z = X*(Y*Z)$ together with \Cref{truncation-and-join}, for the orientation we just need to check the map:
+\[S^{l+m+n-1} = (S^{l-1}\cup S^{m-1})\cup S^{n-1} = S^{l-1}*(S^{m-1}*S^{n-1}) = S^{l+m+n-1}\]
+is the identity TODO
+\end{proof}
+
+\begin{lemma}
+Given $X:K_m$ and considering $0:K_{n}$where $m,n\geq 2$, $X\cup 0 = 0$.
+\end{lemma}
+
+\begin{proof}
+A pointed integral $n$-torsor is trivial, and since $0$ is pointed so is $X\cup 0 = \propTrunc{X*0}_{m+n-1}$ is also pointed therefore trivial.
+\end{proof}
+
+\begin{lemma}
+Given $X:K_{m}$ and $Y:K_{n}$ where $m,n\geq 2$, we have that:
+\[X\cup Y = (-1)^{mn} Y\cup X\]
+\end{lemma}
+
+\begin{proof}
+Clear on the level of the types from $X*Y = Y*X$ together with \Cref{truncation-and-join}, for the orientation we just need to check the map:
+\[S^{m+n-1} = S^{m-1}*S^{n-1} = S^{n-1}*S^{m-1} = S^{n+m-1}\]
+is of degree $(-1)^{mn}$ TODO
+\end{proof}
+
+Now we can work with addition.
+
+\begin{lemma}
+Given $X,Y,Z:K_n$ where $n\geq 2$, we have that $(X+Y)+Z = X+(Y+Z)$.
+\end{lemma}
+
+\begin{proof}
+Comes from the isomorphism $(X\cup Y) \cup Z = X\cup (Y\cup Z)$
+\end{proof}
+
+\begin{lemma}
+Given $X:K_{n}$ where $m\geq 2$, we have that $X+0 = X$
+\end{lemma}
+
+\begin{proof}
+We need to prove that the map $\phi : X\cup 0 \to K_n$ is equal to the constant map with value $X$.
+
+Given $x:X$, we have that $\phi([\inleft(x)]) = 0$ by definition, and $\alpha_x:0=X$.
+
+Given $y:0$ we have that $\phi([\inright(y)]) = 0$ by definition.
+
+Given $x:X$ and $y:0$, we need to show:
+\[\alpha_x^{-1}\cdot \alpha_y\cdot \alpha_x = \alpha_x^{-1}\cdot \alpha_{\alpha_x(y)}\]
+This is \Cref{naturality-alpha}.
+\end{proof}
+
+\begin{lemma}
+Given $X,Y:K_{n}$ where $n\geq 2$, we have that $X+Y = Y+X$
+\end{lemma}
+
+\begin{proof}
+We have the map $\phi : X\cup Y\to K_n$ defining $X+Y$ and $\psi:Y\cup X\to K_n$ defining $Y+X$, as well as $s:X\cup Y = Y\cup X$. We need to check $\psi\circ s = \phi$, which is straightforward.
+\end{proof}
+
+\begin{lemma}
+Given $X:K_n$ for $n\geq 2$, we have that $(-X)+X = 0$.
+\end{lemma}
+
+\begin{proof}
+We need to check that the map $-X\cup X \to K_n$ defining $(-X)+X$ has constant value $0$. Write $s : 0 = 0$ the map swaping orientation. Then we have:
+
+Given $x:-X$, we have $\alpha_x:0=X$.
+
+Given $y:X$, we have that $s\cdot \alpha_y:0=-X$
+
+TODO something fishy is happening...
+\end{proof}
+
+\begin{lemma}
+Given $X,Y:K_m$ and $Z:K:n$ for $m,n\geq 2$, we have that:
+\[(X+Y)\cup Z = X\cup Z + Y\cup Z\]
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{proposition}
+We get that $\Sigma_{n:\N}K_{2n}$ with $0,+,1,\cup$ is a wild commutative graded ring.
+\end{proposition}
+
+\begin{proof}
+It just summarise the previous results, adding the obvious multiplication and addition for the case $K_0 = \Z$.
+\end{proof}
+
+\begin{remark}
+We just need even numbers for Chern character, so we didn't bother extending this to $K_1$. This could certainly be done.
+\end{remark}
+
+
