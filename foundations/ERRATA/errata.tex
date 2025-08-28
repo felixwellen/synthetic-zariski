@@ -148,7 +148,7 @@ The object claimed to be the finitely presented \(\R\)-algebra specified by a gi
 
 \paragraph{Structure}
 \Cref{sec:preliminaries} covers some preliminaries and establishes notation.
-In \Cref{sec:cset-homotopy-quotient-vs-meta-quotient}, we prove some precise statements linking homotopy quotients in cubical sets, and quotients in the meta theory.
+In \Cref{sec:cset-hset-quotient-vs-meta-quotient}, we prove some precise statements linking hset quotients in cubical sets, and quotients in the meta theory.
 In \Cref{sec:k-duality-implies-k-alg-choice}, we show that for the category considered in the paper, we can only expect that the duality axiom is provable in \([\Alg*[k], \cSet]\) if finitely presented \(k\)-algebras admit a choice principle.
 In \Cref{sec:duality-in-model-of-modal-types}, we show that if we refine the notion of type slightly, the implication from \Cref{sec:k-duality-implies-k-alg-choice} is a characterization.
 From that, we conclude that the model construction works in important cases, such as \(\ints\) and finite field extensions of \(\rats\) and \(\mathbb{F}_p\). 
@@ -247,20 +247,20 @@ The claim for an internal natural number follows similarly by induction internal
 \end{proof}
 
 A consequence of the above is that surjective functions are levelwise surjective.
-This fact is needed for showing that homotopy quotients are levelwise homotopy quotients, the key lemma needed in \Cref{sec:k-duality-implies-k-alg-choice}.
+This fact is needed for showing that hset quotients are levelwise hset quotients, the key lemma needed in \Cref{sec:k-duality-implies-k-alg-choice}.
 
-\begin{lemma}\label{prop:psh:levelwise-quotient-if-homotopy-quotient}
-  Let \(A \in \Ty_{[C^{\op}, \cSet]}(\Gamma)\), \(R \in \Ty_{[C^{\op}, \cSet]}(\Gamma.A.A)\) a homotopy proposition.
+\begin{lemma}\label{prop:psh:levelwise-quotient-if-hset-quotient}
+  Let \(A \in \Ty_{[C^{\op}, \cSet]}(\Gamma)\), \(R \in \Ty_{[C^{\op}, \cSet]}(\Gamma.A.A)\) an hprop valued equivalence relation.
   \begin{enumerate}[label=(\arabic*)]
-    \item If \(\varrho_R \colon A \to A/R\) is a homotopy quotient of \(A\) by \(R\), then \((\varrho_R)_I \colon A_I \to (A/R)_I\) is a homotopy quotient of \(A_I\) by \(R_I\) for all \(I \in C\).
-    \item\label{prop:psh:levelwise-quotient-if-homotopy-quotient:modal-converse} If \(A\) and \(R\) are \(D\)-modal, then the converse holds.
+    \item If \(\varrho_R \colon A \to A/R\) is a hset quotient of \(A\) by \(R\), then \((\varrho_R)_I \colon A_I \to (A/R)_I\) is a hset quotient of \(A_I\) by \(R_I\) for all \(I \in C\).
+    \item\label{prop:psh:levelwise-quotient-if-hset-quotient:modal-converse} If \(A\) and \(R\) are \(D\)-modal, then the converse holds.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  From \cite[Theorem 18.2.3]{rijke2025intro} it follows that \(\varrho_R \colon A \to A/R\) is a homotopy quotient of \(A\) by \(R\) exactly of \(\varrho_R\) is surjective, \(A/R\) is an hset, and for all \(a_0, a_1 \colon A\) we have a logical equivalence \(R(a_0, a_1) \leftrightarrow \paren{\varrho_R(a_0) \simeq \varrho_R(a_1)}\).
+  From \cite[Theorem 18.2.3]{rijke2025intro} it follows that \(\varrho_R \colon A \to A/R\) is a hset quotient of \(A\) by \(R\) exactly of \(\varrho_R\) is surjective, \(A/R\) is an hset, and for all \(a_0, a_1 \colon A\) we have a logical equivalence \(R(a_0, a_1) \leftrightarrow \paren{\varrho_R(a_0) \simeq \varrho_R(a_1)}\).
   The same characterization applies levelwise.
 
-  Using that \(-_I\) preserves \(\Sigma\) and path types, having a witness that \(\varrho_R\) is a homotopy quotient means we have elements of
+  Using that \(-_I\) preserves \(\Sigma\) and path types, having a witness that \(\varrho_R\) is a hset quotient means we have elements of
   \begin{gather*}  
     \El(\Gamma.(a_0\,a_1 \colon A).R(a_0, a_1), \varrho_R(a_0) \simeq \varrho_R(a_1))
     \qquad \El(\Gamma.(a_0\,a_1 \colon A).(\varrho_R(a_0) \simeq \varrho_R(a_1)), R(a_0, a_1)) \\
@@ -304,34 +304,34 @@ To apply these results later, we record the following lemma.
 
 
 
-\section{Separating homotopy and set-level quotients}\label{sec:cset-homotopy-quotient-vs-meta-quotient}
+\section{Separating homotopy and set-level quotients}\label{sec:cset-hset-quotient-vs-meta-quotient}
 
 In this preliminary section we only work with cubical sets, because the key issue already appears in this setting.
-Recall that \(\Delta \colon \Set \to \cSet\) is a CwF-homomorphism.
+Recall that \(\Delta \colon \Set \to \cSet\) is a CwF-morphism.
 
-\begin{lemma}\label{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits}
-  Let \(S \in \Ty_{\Set}(\Gamma)\) a set, and \(R \in \Ty_{\Set}(\Gamma.S.S)\) a strict proposition.
+\begin{lemma}\label{prop:set-quotient-is-hset-quotient-iff-surjection-splits}
+  Let \(S \in \Ty_{\Set}(\Gamma)\) a set, and \(R \in \Ty_{\Set}(\Gamma.S.S)\) a strict equivalence relation.
   \begin{enumerate}[label=(\arabic*)]
-    \item\label{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:well-defined}
+    \item\label{prop:set-quotient-is-hset-quotient-iff-surjection-splits:well-defined}
       \(\Delta(S/R) \in \Ty_{\cSet}(\Delta\Gamma)\) is an hset with a map \(\Delta\varrho_{R} \colon \Delta S \to \Delta(S/R)\) whose kernel equals \(\Delta R\). 
-    \item\label{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:characterization}
-      The type \(\Delta(S/R)\) is a homotopy quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\varrho_{R} \colon S \to S/R\) splits.
+    \item\label{prop:set-quotient-is-hset-quotient-iff-surjection-splits:characterization}
+      The type \(\Delta(S/R)\) is a hset quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\varrho_{R} \colon S \to S/R\) splits.
     \end{enumerate}  
 \end{lemma}
 \begin{proof}
   \begin{description}[font=\normalfont,leftmargin=0cm]
-  \item[\ref{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:well-defined}] 
+  \item[\ref{prop:set-quotient-is-hset-quotient-iff-surjection-splits:well-defined}] 
     We have \(S/R \in \Ty(\Gamma)\) given by \((S/R)\gamma = S\gamma / R\gamma\), the quotient of the set \(S\gamma\) by the relation relating \(s_0, s_1 \in S\gamma\) exactly if \(\star \in R(\gamma, s_0, s_1)\).
     This type is equipped with a function \(\varrho_R \colon S \to S/R\) and in the context with \(s_0, s_1 \colon S\) a logical equivalence \(R(s_0, s_1) \leftrightarrow (s_0 =_S s_1)\).
 
     Applying \(\Delta\), we obtain the desired objects in \(\cSet\).
     Since \(\Delta(S/R)\) is fiberwise constant, we have in the context with \(s_0, s_1 \colon S\) that \((s_0 \simeq s_1) \leftrightarrow (s_0 =_S s_1)\) and thus \((s_0 \simeq s_1) \leftrightarrow \Delta R(s_0, s_1)\).
-  \item[\ref{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits:characterization}] % we can reduce to I = [0] if every object in \square admits a map from [0].
-    By \cite[Theorem 18.2.3]{rijke2025intro} the map \(\Delta \varrho_{R} \colon \Delta S \to \Delta(S/R)\) is the homotopy quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\Delta(S/R)\) is an hset, \((s_0 \simeq s_1) \leftrightarrow \Delta R(s_0, s_1)\), and \(\Delta \varrho_{R}\) is surjective.
+  \item[\ref{prop:set-quotient-is-hset-quotient-iff-surjection-splits:characterization}] % we can reduce to I = [0] if every object in \square admits a map from [0].
+    By \cite[Theorem 18.2.3]{rijke2025intro} the map \(\Delta \varrho_{R} \colon \Delta S \to \Delta(S/R)\) is the hset quotient of \(\Delta S\) by \(\Delta R\) exactly if \(\Delta(S/R)\) is an hset, \((s_0 \simeq s_1) \leftrightarrow \Delta R(s_0, s_1)\), and \(\Delta \varrho_{R}\) is surjective.
     The first two statements hold by construction.
     If \(\varrho_R\) splits, then so does \(\Delta \varrho_{R}\), and is therefore surjective.
 
-    Hence, to show the converse assume that \(\Delta \varrho_{R}\) has the universal property of the homotopy quotient.
+    Hence, to show the converse assume that \(\Delta \varrho_{R}\) has the universal property of the hset quotient.
     We define a type \(Q \in \Ty_{\cSet}(\Delta\Gamma)\) at \((I, \gamma) \in \int\Delta\Gamma\) by
     \[
       Q(I, \gamma) \coloneqq \set{ s \in {(S\gamma)}^{|I|} \mid \text{ \(R\gamma(si_0, si_1)\) if \(i_0 \leq i_1\) } }.
@@ -346,7 +346,7 @@ Recall that \(\Delta \colon \Set \to \cSet\) is a CwF-homomorphism.
     Furthermore, there is a map \(R(s_0, s_1) \to (qs_0 \simeq_{Q} qs_1)\).
     At \((I, \gamma) \in \int\Gamma\) for \(s_0, s_1 \in S\gamma\) related by \(R\gamma\), we have to give a family in \(S\gamma\) indexed by \(|I \times [1]|\) which we define by \(s_e\) at \((i, e) \in I \times [1]\).
 
-    Hence, we obtain, by the universal property of the homotopy quotient, a map \(\overline q \colon \Delta(S/R) \to Q\) with a homotopy \(H \colon \overline q \circ \Delta\varrho_R \sim q\).
+    Hence, we obtain, by the universal property of the hset quotient, a map \(\overline q \colon \Delta(S/R) \to Q\) with a homotopy \(H \colon \overline q \circ \Delta\varrho_R \sim q\).
     Now we construct for each \(\gamma \in \Gamma\) a splitting.
     We have \(\overline{q}_{([0], \gamma)} \colon S/R \to S\) since the points of \(Q\) are given by \(S\).
     Furthermore, for \(s \in S\gamma\) we have a path \(H(\gamma, s) \in Q([1], \gamma\pi_1) \subseteq {(S\gamma)}^{|[1]|}\) with \(H(\gamma, s)(0) = (\overline{q}_{([0], \gamma)} \circ \varrho_R\gamma)(s)\) and \(H(\gamma, s)(1) = s\), i.e., that these two elements are related by \(R\gamma\).
@@ -360,17 +360,17 @@ The above lemma only concerns quotients of sets by set-level equivalence relatio
 Later we will deal with a more general situation: We consider quotients of fiberwise constant types by relations that are not automatically valued in (strict) propositions.
 Instead, we have to truncate them.
 Then, the quotient in \(\cSet\) will be the one by the relation truncated to an hprop, while in \(\Set\) the one truncated to a strict proposition.
-The following lemma can be summarized as: strict quotients model homotopy quotients by a truncated relations exactly if they have choice and provide witnesses for the relation.
+The following lemma can be summarized as: strict quotients model hset quotients by a truncated relations exactly if they have choice and provide witnesses for the relation.
 
-\begin{corollary}\label{prop:set-relevant-quotient-is-homotopy-quotient-iff-surjection-splits-and-witnesses-exist}
-  For \(S \in \Ty_{\Set}(\Gamma)\) a type, and \(R \in \Ty_{\Set}(\Gamma.S.S)\) the following are equivalent:
+\begin{lemma}\label{prop:set-relevant-quotient-is-hset-quotient-iff-surjection-splits-and-witnesses-exist}
+  For \(S \in \Ty_{\Set}(\Gamma)\) a type, and \(R \in \Ty_{\Set}(\Gamma.S.S)\) a proof relevant equivalence relation, then the following are equivalent:
   \begin{enumerate}[label=(\arabic*)]
-    \item The type \(\Delta(S/\trunc*{R})\) is a homotopy quotient of \(\Delta S\) by \(\trunc{\Delta R} \in \Ty_{\cSet}(\Delta\Gamma.\Delta S. \Delta S)\).
+    \item The type \(\Delta(S/\trunc*{R})\) is a hset quotient of \(\Delta S\) by \(\trunc{\Delta R} \in \Ty_{\cSet}(\Delta\Gamma.\Delta S. \Delta S)\).
     \item The map \(S \to S/\trunc*{R}\) in \(\Set\) splits, and there is a map \(\trunc*{R} \to R\).
   \end{enumerate}
-\end{corollary}
+\end{lemma}
 \begin{proof}
-  By \Cref{prop:set-quotient-is-homotopy-quotient-iff-surjection-splits}, the map \(\Delta S \to \Delta(S/\trunc*{R})\) is a homotopy quotient of \(\Delta S\) by \(\Delta\trunc*{R}\) exactly if \(S \to S/\trunc*{R}\) splits.
+  By \Cref{prop:set-quotient-is-hset-quotient-iff-surjection-splits}, the map \(\Delta S \to \Delta(S/\trunc*{R})\) is a hset quotient of \(\Delta S\) by \(\Delta\trunc*{R}\) exactly if \(S \to S/\trunc*{R}\) splits.
   Hence, for the claim, it suffices to show that \(\trunc{\Delta R}\) and \(\Delta\trunc*{R}\) coincide exactly if there is a map \(\trunc*{R} \to R\).
   
   First, there always exists a map \(\trunc{\Delta R} \to \Delta\trunc*{R}\) since the latter is also a homotopy proposition with a map from \(R\).
@@ -496,10 +496,10 @@ This is an hset valued familie of types, that we use to define the strict equiva
   The square on the right commutes by the universal property of the quotient as-well, since the outer diagram commutes by definition.
 
   By the \(2\)-out-of-\(3\) property of equivalences, we can conclude that the duality axiom holds exactly if the vertical map on the left is an equivalence.
-  This means exactly if \(\Delta\Term_{\R}(m) \to \Delta\paren[\big]{\sfrac{\Term_{\R}(m)}{\trunc*{R_{(n,m,p)}}}}\) has the universal property of the homotopy quotient by w.r.t. the relation \(\trunc{R_{(n,m,p)}}\).
-  % The latter also implies by effectiveness of the homotopy quotient that \(\trunc{R_{(n,m,p)}} \leftrightarrow \trunc*{R_{(n,m,p)}}\).
+  This means exactly if \(\Delta\Term_{\R}(m) \to \Delta\paren[\big]{\sfrac{\Term_{\R}(m)}{\trunc*{R_{(n,m,p)}}}}\) has the universal property of the hset quotient by w.r.t. the relation \(\trunc{R_{(n,m,p)}}\).
+  % The latter also implies by effectiveness of the hset quotient that \(\trunc{R_{(n,m,p)}} \leftrightarrow \trunc*{R_{(n,m,p)}}\).
 
-  By \Cref{prop:psh:levelwise-quotient-if-homotopy-quotient}, we have that the evaluation at \(k \in \Alg*[k]\) yields a homotopy quotient in \(\cSet\). 
+  By \Cref{prop:psh:levelwise-quotient-if-hset-quotient}, we have that the evaluation at \(k \in \Alg*[k]\) yields a hset quotient in \(\cSet\). 
   Note that \((\Delta \Pr)_k\) is the constant presheaf of finite \(k\)-algebra presentations.
   So in the context with a finite \(k\)-algebra presentation \((n, m, p) \colon (\Delta \Pr)_k\) we have that 
   \[\begin{tikzcd}
@@ -507,8 +507,8 @@ This is an hset valued familie of types, that we use to define the strict equiva
     \arrow[from=1-1, to=1-3]
     \arrow[from=1-1, to=1-3]
   \end{tikzcd}\]
-  is a homotopy quotient of \(\Delta \Term_k(X_1, \ldots, X_n)\) by the propositional truncation of a relation valued in strict sets.
-  \Cref{prop:set-relevant-quotient-is-homotopy-quotient-iff-surjection-splits-and-witnesses-exist} implies that f.p. \(k\)-algebras have choice and witnesses.
+  is a hset quotient of \(\Delta \Term_k(X_1, \ldots, X_n)\) by the propositional truncation of a relation valued in strict sets.
+  \Cref{prop:set-relevant-quotient-is-hset-quotient-iff-surjection-splits-and-witnesses-exist} implies that f.p. \(k\)-algebras have choice and witnesses.
 \end{proof}
 
 The above implies that without changing basic definitions we have to at least limit ourselves to those \(k\) for which f.p. \(k\)-algebras have choice and witnesses.
@@ -537,28 +537,28 @@ We only sketch the issue.
 If for example, we want to define the presheaf \(\R[X]\), we would like to define it at level \(M\) by a subset of \(\Term_{\Alg[M]}(X)\).
 This is possible since by \Cref{rem:choice-and-witness-property-descend}, \(M\)-algebras have choice, so the canonical map \(\Term_{\Alg[M]}(X) \to M[X]\) splits.
 The issue is that if \(\alpha \colon M \to N\) is a homomorphism, then the chosen sections for \(M, N\) do not commute with the restriction actions.
-In essence, we can define the homotopy quotient \(R[X]\) of \(\Term_{\R}(X)\) levelwise, but not in a coherent way, which is needed in the na{\"\i}ve cubical presheaf model.
+In essence, we can define the hset quotient \(R[X]\) of \(\Term_{\R}(X)\) levelwise, but not in a coherent way, which is needed in the na{\"\i}ve cubical presheaf model.
 To resolve this, we use the modality \(D\) from~\cite{CRS21} and pass to the model of \(D\)-modal types.
 In this model, the quotient can be characterized levelwise.
 
 Before we state the theorem recall that the model of \(D\)-modal types on \([\Alg*[k], \cSet]\) has all higher inductive types by the construction in \cite{CRS21}, since the model of fibrant types has all higher inductive types by the results in~\cite{CoquandHM18}.
-Hence, the homotopy quotients considered below exist.
+Hence, the hset quotients considered below exist.
 
 \begin{theorem}
   In the model of \(D\)-modal types on \([\Alg*[k], \cSet]\) the duality axiom holds exactly if all \(k\)-algebras have choice and witnesses.
 \end{theorem}
 \begin{proof}
   For all types in the image of \(\Delta \colon [\Alg*[k], \Set] \to [\Alg*[k], \cSet]\) are levelwise constant, and therefore modal by \Cref{prop:levelwise-constant-presheaves-are-modal}.
-  Hence, we can deduce as in the proof of \Cref{prop:duality-for-k-implies-k-choice-and-witnesses} that duality holds exactly if for all presentations \((n, m, p) \colon \Delta\Pr\) we have that the following canonical map is a homotopy quotient of \(\Delta \Term_\R(m)\) by the relation \(\trunc{R_{(n,m,p)}}\) induced by the presentation.
+  Hence, we can deduce as in the proof of \Cref{prop:duality-for-k-implies-k-choice-and-witnesses} that duality holds exactly if for all presentations \((n, m, p) \colon \Delta\Pr\) we have that the following canonical map is a hset quotient of \(\Delta \Term_\R(m)\) by the relation \(\trunc{R_{(n,m,p)}}\) induced by the presentation.
   \[\begin{tikzcd}
     {\Delta \Term_\R(m)} && {\Delta\paren[\bigg]{\frac{\Term_\R(m)}{\trunc*{R_{(n,m,p)}}}}}
     \arrow[from=1-1, to=1-3]
   \end{tikzcd}\]
-  Since all involved types are \(D\)-modal, this is the case exactly if we have for each \(M \in C\) that for all \((n, m, p) \colon \Delta \Pr_M\) the following is a homotopy quotient in \(\cSet\) of \(\Delta\Term_M(X_1, \ldots, X_n)\) by the relation induced by the presentation.
+  Since all involved types are \(D\)-modal, this is the case exactly if we have for each \(M \in C\) that for all \((n, m, p) \colon \Delta \Pr_M\) the following is a hset quotient in \(\cSet\) of \(\Delta\Term_M(X_1, \ldots, X_n)\) by the relation induced by the presentation.
   As in \Cref{prop:duality-for-k-implies-k-choice-and-witnesses}, the case for \(M = k\) implies that f.p. \(k\)-algebras have choice and witnesses.
   
-  Conversely, by \Cref{prop:psh:levelwise-quotient-if-homotopy-quotient}~\ref{prop:psh:levelwise-quotient-if-homotopy-quotient:modal-converse} it suffices to show for all \(M \in \Alg[k]\) that \(\Delta \paren{\sfrac{M[X_1, \ldots, X_m]}{p_1, \ldots, p_n}}\) is a homotopy quotient of \(\Delta\Term_{M}(X_1, \ldots, X_n)\) by the relation \(\Delta R_{(n,m,p)}\) in a context with a finite \(M\)-algebra presentation \((n,m,p) \colon \Delta \Pr_M\).
-  By \Cref{prop:set-relevant-quotient-is-homotopy-quotient-iff-surjection-splits-and-witnesses-exist} this is the case if \(M\)-algebras have choice and witnesses, which follows from \Cref{rem:choice-and-witness-property-descend}.
+  Conversely, by \Cref{prop:psh:levelwise-quotient-if-hset-quotient}~\ref{prop:psh:levelwise-quotient-if-hset-quotient:modal-converse} it suffices to show for all \(M \in \Alg[k]\) that \(\Delta \paren{\sfrac{M[X_1, \ldots, X_m]}{p_1, \ldots, p_n}}\) is a hset quotient of \(\Delta\Term_{M}(X_1, \ldots, X_n)\) by the relation \(\Delta R_{(n,m,p)}\) in a context with a finite \(M\)-algebra presentation \((n,m,p) \colon \Delta \Pr_M\).
+  By \Cref{prop:set-relevant-quotient-is-hset-quotient-iff-surjection-splits-and-witnesses-exist} this is the case if \(M\)-algebras have choice and witnesses, which follows from \Cref{rem:choice-and-witness-property-descend}.
 \end{proof}
 
 By \Cref{prop:good-base-rings-exist}, therefore have a number of base rings for which duality holds in \([\Alg*[k], \cSet]\).
