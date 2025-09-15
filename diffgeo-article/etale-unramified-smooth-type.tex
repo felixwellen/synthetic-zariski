@@ -225,56 +225,25 @@ In this section we will show that our definition of étale, smooth and unramifie
   An étale (resp. smooth, unramified) map is a map between schemes which is formally étale (resp. formally smooth, formally unramified).
 \end{definition}
 
-The following criterion appears as the definition of a formally étale, smooth and unramified maps in \cite[§17]{EGAIV4},
-where the lifting property is stated in terms of the comparison map into a pullback, and non-finitely presented algebras and non-finitely generated ideals are considered. The latter is superfluous for maps between schemes, as we only consider schemes that are locally of finite presentation. It is however not clear if this internal criterion corresponds to the external definitions in \cite[§17]{EGAIV4}.
+The following criterion appears as the definition of a formally étale, smooth and unramified maps in \cite[§17]{EGAIV4} revised by comments in \cite{insert stacks project reference here},
+where the lifting property is stated in terms of the comparison map into a pullback, and non-finitely presented algebras and non-finitely generated ideals are considered. The latter is superfluous for maps between schemes, as we only consider schemes that are locally of finite presentation. It is however not clear if this internal criterion corresponds to the external definitions.
 
 \begin{remark}
   \label{connection-to-ega-definition}
   Let $f:X\to Y$ be a map between schemes.
-  Then $f$ is étale (resp. smooth, unramified) if and only if there is exactly one (resp. at least one, at most one) dotted lift in all squares of the form:
+  Then $f$ is étale (resp. smooth, unramified) if and only if there exists exactly one (resp. at least one \emph{Zariski-locally}, at most one) dotted lift in all squares of the form:
   \begin{center}
     \begin{tikzcd}
       \Spec(A/N)\ar[r,"t"]\ar[d] & X\ar[d,"f"] \\
       \Spec(A)\ar[ru,dashed]\ar[r,swap,"b"] & Y
     \end{tikzcd}    
   \end{center}
-where $A$ is a finitely presented $R$-algebra, $N$ a finitely generated nilpotent ideal and the left map is induced by the quotient map $A\to A/N$.
+where $A$ is a finitely presented $R$-algebra, $N$ a finitely generated nilpotent ideal and the left map is induced by the quotient map $A\to A/N$. In the smooth case, we only ask for Zariski-local lifts as proposed in \cite{insert stacks project reference here}. We believe however that it is possible to prove global existence of these lifts using cohmological methods.
 \end{remark}
-
-For the proof we will use a cohomological result and the notion of wqc $R$-modules from \cite{draft},
-to prove the result as stated above. Alternatively we could weaken the statement in the smooth case by asking for the Zariski-local existence of lifts.
 
 \begin{proof}
   The inclusion of a closed dense proposition $P$ into $1$ is a special case of left map in the remark, so we only need to show that étale,
-  smooth and unramified maps satisfy the more general lifting property. For étale and unramified maps, we can just apply the lifting property for closed dense propositions for all points in $\Spec A$. So let $f:X\to Y$ be smooth.
-  
-  By decomposing as in the proof of \Cref{etale-unramified-smooth-square-zero}, we can assume without loss of generality that $N$ is of the form $(a)$ with $a^2=0$.
-  Then the existence of a lift can be shown
-  by finding a family of lifts for each point $v:\Spec A$ with $\epsilon:=a(v)$ and $\phi$ induced by $t$:
-  \begin{center}
-    \begin{tikzcd}
-      \epsilon=0\ar[r,"\phi"]\ar[d] & \fib_f(b(v))=:X_v \\
-      1\ar[ur,dotted] &
-    \end{tikzcd}
-  \end{center}
-  For any two lifts $\psi,\xi$, we have $\neg\neg(\psi=\xi)$
-  and can therefore assume $X_v=\Spec R[X_1,\dots,X_n]/P_1,\dots,P_l$.
-  We merely have $y:R^n$ such that the dual to $\phi$ is given by evaluation at $y$.
-  Then lifts are given by vectors $x:R^n$ such that $P(x)=0$ and $\epsilon = 0$ implies $x=y$.
-  The latter dualizes to an inclusion of ideals $(x_1-y_1,\dots,x_n-y_n)\subseteq (\epsilon)$.
-  So we have $x_i-y_i=a_i\epsilon$.
-  Putting everything together, we get the following type of lifts:
-  \[L_{v,y}:=\sum_{\alpha:(\epsilon)^n}dP_y(\alpha)=-P(y) \]
-  Let $M_{v,y}:=\{\alpha:(\epsilon)^n\vert dP_y(\alpha)=0\}$, then  $M_{v,y}$ is a wqc $R$-module and $L_y$ has the structure of an $M_{v,y}$-torsor.
-  For a different choice $y':R^n$, also inducing $\phi$, we get $y'=y+\beta$ for some $\beta:(\epsilon)^n$.
-  By computing $P(y'+\alpha)$ in different ways we have:
-  \[P(y)+dP_y(\beta+\alpha)=P(y+\beta)+dP_{y+\beta}(\alpha)=P(y)+dP_y(\beta)+dP_{y+\beta}(\alpha)\]
-  And therefore $dP_y(\beta+\alpha)=dP_y(\beta)+dP_{y+\beta}(\alpha)$ and $dP_{y+\beta}(\alpha)=dP_y(\alpha)$, which means that $M_{v,y}$ is independent of $y$, so let us write $M_v$ instead.
-  We also have:
-  \[L_{v,y'}=\sum_{\alpha:(\epsilon)^n}dP_y(\beta+\alpha)=-P(y)\]
-  so translation by $\beta$ give a isomorphism of $M_{v}$-torsors.
-  So we get a well-defined $M_v$-torsor $L_v$ by Krauss' Lemma for 1-types.
-  Then by \cite{draft}, $H^1(v:\Spec A, M_v)$ vanishes and we therefore have a global lift. 
+  smooth and unramified maps satisfy the more general lifting property. For étale and unramified maps, we can just apply the lifting property for closed dense propositions for all points in $\Spec A$. So let $f:X\to Y$ be smooth. Then we merely have a lift for each point in $\Spec(A)$ and can apply Zariski-local choice to get the desired result.
 \end{proof}
 
 We conclude this section with a few examples and counter examples.
