@@ -1,7 +1,7 @@
 
 In mathematics, it is common practice to assume a fixed set theory, usually with the axiom of choice, as a common basis. While it is a great advantage to work in one common language and share a lot of the basic constructions, the dual approach of adapting the  ``base language'' to particular mathematical domains is sometimes more concise, provides a new perspective and encourages new proof techniques which would be hard to find otherwise.
 We use the word ``synthetic'' to indicate that the latter approach is used,
-as it was used by Lawvere, when he described a program to develop mathematics inside of certain categories \cite{lawvere-categorical-dynamics}.
+as it was used by Kock and Lawvere to describe developement of mathematics internal to certain categories \cite{lawvere-categorical-dynamics}, in particular toposes -- a program which dates back as far as 1967.
 
 Also already in the 70s in the same program, Anders Kock suggested to use the language of higher-order logic \cite{Church40} to describe the Zariski topos, the collection of sheaves for the Zariski topology \cite{Kock74,kockreyes}, which is the first occurence of synthetic algebraic geometry.
 Kock's approach allowed for a more suggestive and geometrical description of schemes.
@@ -9,8 +9,8 @@ There is in particular a ``generic local ring'' $R$, which, as a sheaf, associat
 
 
 Just using category theory is not the same as reasoning synthetically -- for the latter the goal is usually to derive results exclusively in one system,
-as Lawvere did with differential geometry in his work.
-The distinction with just using an abstraction like categories is important, since the translation from the synthetic language and back can become quite cumbersome.
+as Kock and Lawvere did with differential geometry in his work.
+The distinction with just using an abstraction like categories is important, since the translation from the synthetic language and back can become cumbersome -- although it is still the goal to derive statements about ordinary mathematical objects in the end.
 
 Starting with Kock and Lawvere's work, more differential geometry was developed synthetically \cite{kock-sdg} along with a study of the models of the theory \cite{moerdijk-reyes}.
 One basic axiom of the theory, the Kock-Lawvere axiom admits intuitive reasoning with nilpotent infinitesimals.
@@ -61,7 +61,7 @@ While this internal version of cohomology does not agree with the external versi
 even the type is wrong; it is a sheaf of groups instead of a single one and, indexed by an internal natural number instead of an external one -- internal cohomology turned out to be quite useful in practice.
 
 In 2022, trying to use this approach to calculate cohomology groups in synthetic algebraic geometry led to the discovery of what is now called Zariski-local choice \cite{draft},
-which is an additional axiom that holds in some cubical models of HoTT based on the Zariski-topos.
+which is an additional axiom that holds in the higher Zariski-topos.
 It is a weakening of the axiom of choice which can be formulated as: For any surjective map $f:X\to Y$, there exists a section, i.e.\ a map $s:Y\to X$ such that $f\circ s=\id_Y$.
 Zariski-local choice also states the existence of a section, but only Zariski-local and only for surjections into an affine scheme: For any surjection $f:E\to \Spec A$,
 there exists a Zariski-cover $U_1,\dots,U_n$ of $\Spec A$ and maps $s_i:U_i\to E$ such that $f(s_i(x))=x$ for all $x\in U_i$.
@@ -71,7 +71,7 @@ Propositional truncation turns an arbitrary type $A$ into a type $\|A\|$ with th
 Types with this property are called propositions or (-1)-types in homotopy type theory.
 Using a univalent universe of types $\mathcal U$ we have that surjection into a type $A$ are the same as type families $F:A\to \mathcal U$, such that we have $\|F(x)\|$ for all $x: A$.
 Using type families instead of maps allows us to drop the condition that the maps we get are sections, since we can express it using dependent function types and we arrive at the formulation of Zariski-local choice given below in the list of axioms.
-In this instance and many others, homotopy type theory provides a lot of convience when working very formally, which is an advantage in formalization of synthetic algebraic geometry.
+In this instance and many others, homotopy type theory provides a lot of convenience when working very formally, which is an advantage in formalization of synthetic algebraic geometry.
 
 In total, apart from homotopy type theory and a fixed commutative ring $R$ we use in synthetic algebraic geometry the following three axioms -- we will provide some explanation for the first one below:
 
