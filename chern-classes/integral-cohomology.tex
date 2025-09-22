@@ -19,53 +19,60 @@ A pseudo-$\mathbf{2}$-torsor is a type $X$ such that $\propTrunc{X}\to \propTrun
 
 \begin{lemma}
 For $n\geq 2$, we have:
-\[K_{n} = \Sigma_{X:\Type} \prod_{x:X}(X,x) = (K_{n-1},*)\]
-We call an $X:\Type$ such that $\prod_{x:X}(X,x) = (K_{n-1},*)$ an integral $n$-torsor. We call an inhabitant of $\prod_{x:X}(X,x) = (K_{n-1},*)$ an orientation for the integral torsor $X$.
+\[K_{n} = \Sigma_{X:\Type} \prod_{x:X}(K_{n-1},*) = (X,x)\]
+We call an $X:\Type$ such that $\prod_{x:X}(K_{n-1},*) = (X,x)$ an integral $n$-torsor. We call an inhabitant of $\prod_{x:X}(K_{n-1},*) = (X,x)$ an orientation for the integral torsor $X$.
 \end{lemma}
 
 From David and Louise work \cite{}. We have a canonical orientation for $K_{n-1}$ sending $*$ to the identity equivalence $(K_{n-1},*) = (K_{n-1},*)$, making it an integral $n$-torsor.
 
 Note that for $X:K_n$ we have that $\propTrunc{X}_{n-2} = 1$ and $\propTrunc{X}_{n-1} = X$.
 
-\begin{lemma}
-Assume $X$ a type, then $\prod_{x:X}(X,x) = (K_{n-1},*)$ is a pseudo-$\mathbf{2}$-torsor.
+\begin{lemma}\Cref{orientation-two-torsor} 
+Assume given $X$ a type and $x:X$, then $(K_{n-1},*) = (X,x)$ is a pseudo-$\mathbf{2}$-torsor.
 \end{lemma}
 
 \begin{proof}
-TODO
+Given $\epsilon:(K_{n-1},*) = (X,x)$, then we have two elements $\epsilon$ and $\epsilon\circ s$ where $s$ is the swap in $(K_{n-1},*)=(K_{n-1},*)$. Both are clearly distinct and any $\epsilon:(K_{n-1},*) = (X,x)$ is such that $\epsilon^{-1} \circ \epsilon'$ is either the identity or the swap, so that $\epsilon'=\epsilon$ or $\epsilon' = \epsilon\circ s$, allowing to conclude.
 \end{proof}
 
-\begin{lemma}
-Assume $X:K_n$ for $n\geq 2$, then we have $\alpha : X = (* =_{K_m} X)$. We have that $\alpha_x(*) = x$.
+\begin{lemma}\label{2-torsor-over-Kn}
+Given $X:K_{n+1}$ for $n\geq 2$ and a pseudo-$\mathbf{2}$-torsor $P$, then:
+\begin{itemize}
+\item Given $x:X$ we have that:
+\[\prod_{y:X}P(y) = Y_x\]
+\item In particular $\prod_{y:X}P(y)$ is a pseudo-$\mathbf{2}$-torsor
+\end{itemize}
 \end{lemma}
 
 \begin{proof}
-TODO
+Given $x:X$, a pseudo-$\mathbf{2}$-torsor over $X$ is the same as an action of $\Omega X$ on $F(x)$, but if $n\geq 2$ then this action is trivial as pseudo-$\mathbf{2}$-torsor are sets, and then any point is a fixed point so we get the equality we want.
 \end{proof}
 
-We will use the notation $\alpha_x$ for the induced equality $X=*$ in the rest of the note.
+\begin{corollary}
+Given $X$ a type, the type of orientation of $X$ is a pseudo-$\mathbf{2}$-torsor.
+\end{corollary}
+
+\begin{lemma}
+Assume $X:K_n$ for $n\geq 2$, then we have $\alpha : X = (* =_{K_n} X)$. We have that $\alpha_x(*) = x$.
+\end{lemma}
+
+\begin{proof}
+Write $\epsilon : \prod_{x:X} (K_{n-1},*) = (X,x)$ for the assumed orientation and $\delta : \prod_{x:K_{n-1}} (K_{n-1},*) = (K_{n-1},x)$ the canonical orientation. By unpacking the definition, we see we need to check that given $y:X$, we need that the orientation $\epsilon$ and $\lambda x.\epsilon_x\circ \delta_{\epsilon^{-1}_x(y)}$ are equal. But by \Cref{orientation-two-torsor} and \Cref{2-torsor-over-Kn} it is enough to check that when $x=y$ we have that $\epsilon_x = \epsilon_x\circ \delta_*$, i.e. that $\delta_*$ is the identity, which holds by definition.
+\end{proof}
+
+We will use the notation $\alpha_x$ for the induced equality $*=X$ in the rest of the note.
 
 \begin{lemma}\label{naturality-alpha}
 Given $X:K_n$ and $x:X$ with $y:0$, we have that $\alpha_y\cdot\alpha_x = \alpha_{\alpha_x(y)}$.
 \end{lemma}
 
 \begin{proof}
-TODO
+TODO I am not sure this is true... 
 \end{proof}
 
 
 
 \subsection{Torsors over torsors}
-
-\begin{lemma}\label{2-torsor-over-Kn}
-Assume $n\geq 2$ and a pseudo-$\mathbf{2}$-torsor $Y$ over $K_n$. Then:
-\[\prod_{x:K_n} Y(x) = Y(*)\]
-In particular this type is a pseudo-$\mathbf{2}$-torsor.
-\end{lemma}
-
-\begin{proof}
-A pseudo-$\mathbf{2}$-torsor over $K_n$ is the same as an action of $\Omega K_n$ on $F(*)$, but if $n\geq 2$ then this action is trivial as pseudo-$\mathbf{2}$-torsor are sets, and then any point is a fixed point so we get the equality we want.
-\end{proof}
 
 \begin{lemma}\label{torsor-map}
 Assume given $X:K_n$, $Y:K_l$ such that $2\leq l<n$, then the map:
@@ -121,6 +128,19 @@ such that for $x:X$ we have that $\phi([\inleft(x)]) = Y$ and  for $y:Y$ we have
  By \Cref{dependent-torsor-gives-torsor} this gives an element of $K_n$ denoted by $X+Y$.
 \end{definition}
 
+\begin{lemma}\label{equality-sum-torsor}
+Assume given $X,Y,Z:K_{n}$ for $n\geq 2$, to prove that $X+Y=Z$ it is enough to prove that:
+\begin{itemize}
+\item For all $x:X$, we have $\beta_x: Y=Z$.
+\item For all $y:Y$, we have $\beta'_y: X=Z$.
+\item For all $x:X,y:Y$, we have that $\alpha_y\cdot \beta_x = \alpha_x\cdot\beta'_y$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
 
 \subsection{Join and truncation}
 
@@ -140,6 +160,8 @@ TODO
 %\begin{lemma}
 %\[\propTrunc{\propTrunc{X}_{m-1} *\propTrunc{Y}_{n-1}}_{m+l-1} = \propTrunc{X*Y}_{m+l-1}\]
 %\end{lemma}
+
+
 
 
 \subsection{Eilenberg Mac Lane spaces form a wild commutative graded ring}
@@ -186,19 +208,16 @@ Comes from the isomorphism $(X\cup Y) \cup Z = X\cup (Y\cup Z)$
 \end{proof}
 
 \begin{lemma}
-Given $X:K_{n}$ where $m\geq 2$, we have that $X+0 = X$
+Given $X:K_{n}$ where $m\geq 2$, we have that $X+0 = X$ and $0+X=X$.
 \end{lemma}
 
 \begin{proof}
-We need to prove that the map $\phi : X\cup 0 \to K_n$ is equal to the constant map with value $X$.
-
-Given $x:X$, we have that $\phi([\inleft(x)]) = 0$ by definition, and $\alpha_x:0=X$.
-
-Given $y:0$ we have that $\phi([\inright(y)]) = 0$ by definition.
-
-Given $x:X$ and $y:0$, we need to show:
-\[\alpha_x^{-1}\cdot \alpha_y\cdot \alpha_x = \alpha_x^{-1}\cdot \alpha_{\alpha_x(y)}\]
-This is \Cref{naturality-alpha}.
+Both are proved the same, indeed by \Cref{equality-sum-torsor}, we just need to give:
+\begin{itemize}
+\item For all $x:X$, we have $\alpha_x : 0=X$.
+\item For all $y:0$, we have $TODO : X=X$.
+\item Given $x:X,y:0$, we have TODO
+\end{itemize}
 \end{proof}
 
 \begin{lemma}
@@ -206,7 +225,7 @@ Given $X,Y:K_{n}$ where $n\geq 2$, we have that $X+Y = Y+X$
 \end{lemma}
 
 \begin{proof}
-We have the map $\phi : X\cup Y\to K_n$ defining $X+Y$ and $\psi:Y\cup X\to K_n$ defining $Y+X$, as well as $s:X\cup Y = Y\cup X$. We need to check $\psi\circ s = \phi$, which is straightforward.
+We have the map $\phi : X\cup Y\to K_n$ defining $X+Y$ and $\psi:Y\cup X\to K_n$ defining $Y+X$, as well as $s:X\cup Y = Y\cup X$. We need to check $\psi\circ s = \phi$, which is straightforward. (TODO alternative proof relying on the naturality of $+$)
 \end{proof}
 
 \begin{lemma}
@@ -220,7 +239,7 @@ Given $x:-X$, we have $\alpha_x:0=X$.
 
 Given $y:X$, we have that $s\cdot \alpha_y:0=-X$
 
-TODO something fishy is happening...
+TODO something fishy is happening... See next section
 \end{proof}
 
 \begin{lemma}
@@ -243,5 +262,37 @@ It just summarise the previous results, adding the obvious multiplication and ad
 \begin{remark}
 We just need even numbers for Chern character, so we didn't bother extending this to $K_1$. This could certainly be done.
 \end{remark}
+
+
+
+
+\subsection{Alternative approach: identity types in torsors}
+
+\begin{lemma}
+Given $X:K_{n+1}$ (for $n\geq 3$?) and $x,y:X$, we have $x=_Xy : K_{n-1}$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{sign-properties}
+We have the following:
+\begin{itemize}
+\item $x =_{K_n} (x=_{K_n}0)$ via the map $x,y\mapsto x=_Xy$.
+\item $(x=_Xy) =_{K_n} -(y=_Xx)$
+\item $(x=_{-X}y) =_{K_n} -(x=_Xy)$
+\item $x=_{K_n}-y =_{K_{n+1}} x-y$ (not sure about the sign here).
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{corollary}
+Given $X:K_n$, we have that $X+0 = 0+X = X$ and that $X-X = -X+X = 0$.
+\end{corollary}
+
 
 
