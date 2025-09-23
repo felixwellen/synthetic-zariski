@@ -23,63 +23,59 @@ With this axiom, the derivative at $0:R$ of a function $f : R \to R$ may then be
 
 To give an example, the tangent bundle of a manifold $M$ can be defined as $M^{\D(1)}$ and vector fields as sections of the map $M^{\D(1)}\to M$ evaluating at $0$. Then it is easy to see that a vector field is the same as a map $\zeta:\D(1)\to M^M$ with $\zeta(0)=\id_M$, which can be interpreted as an infinitesimal transformation of the identity map. This style of reasoning with spaces as if they were sets is also central in current synthetic algebraic geometry. 
 
-The Kock-Lawvere axiom above and many of the axioms used in synthetic reasoning are incompatible with the law of excluded middle (LEM) and therefore also with the axiom of choice (AC). Indeed they tend to imply all maps are well-behaved (for example all maps are differentiable in the case of the Kock-Lawvere axiom), which contradicts LEM. It is however a recurring phenomenon that restricted versions of LEM and AC are compatible with synthetic languages. A very basic example is that equality of natural numbers is decidable, meaning that two natural numbers are either equal or not equal. 
+The Kock-Lawvere axiom above are incompatible with the law of excluded middle (LEM) and therefore also with the axiom of choice (AC). Indeed they imply all maps from say $R$ to $R$ are differentiable, which contradicts LEM. 
+However restricted versions of LEM and AC are compatible with this axiom. A very basic example is that equality of natural numbers is decidable, meaning that two natural numbers are either equal or not equal. We will latter go back to why full LEM and AC tend to be incompatible with synthetic approach to various geometry.
 
 %TODO: Hugo is here in the rereading
 
-The use of nilpotent elements to capture infinitesimal quantities as mentioned above was inspired by the Grothendieck school of algebraic geometry and Anders Kock also worked with an extended axiom \cite{Kock74,kockreyes} suitable for synthetic algebraic geometry, where the role of $\D(1)$ above can be taken by any finitely presented affine scheme. In 2017 Ingo Blechschmidt finished his doctoral thesis in which he noticed a property holding internally in the Zariski-topos, which he called synthetic quasi-coherence -- this was a more general and internal version of what Kock used. In 2018, David Jaz Myers\footnote{Myers' never published on the subject, but communicated his ideas to Felix Cherubini and in talks to a larger audience \cite{myers-talk1,myers-talk2}.} started to work with a specialization of Blechschmidt's synthetic quasi-coherence and used homotopy type theory as a base language, which is the standard in synthetic algebraic geometry now and we will highlight some implications below. Myers' specialized axiom is what we now call \emph{duality axiom}.
+The use of nilpotent elements to capture infinitesimal quantities as mentioned above was inspired by the Grothendieck school of algebraic geometry and Anders Kock also worked with an extended axiom \cite{Kock74,kockreyes} suitable for synthetic algebraic geometry, where the role of $\D(1)$ above can be taken by any finitely presented affine scheme. In his 2017 doctoral thesis, Ingo Blechschmidt noticed a property holding internally in the Zariski-topos, which he called synthetic quasi-coherence. It is generalised and internalised version of what Kock used. In 2018, David Jaz Myers\footnote{Myers' never published on the subject, but communicated his ideas to Felix Cherubini and in talks to a larger audience \cite{myers-talk1,myers-talk2}.} started working with a specialization of Blechschmidt's synthetic quasi-coherence, which is what we now call \emph{duality axiom}.
 
-To state the duality axiom we need the general concept behind the space $\D(1)$, which is spaces that are the common zeros of some system of polynomial equations over $R$. Such a system can be encoded representation independent by a finitely presented $R$-algebra, i.e.\ an $R$-algebra $A$ which is of the form $R[X_1,\dots,X_n]/(P_1,\dots,P_l)$ for some numbers $n,l$ and polynomials $P_i\in R[X_1,\dots,X_n]$.
-Then the zero set of the system is given by the type $\Hom_{\Alg{R}}(A,R)$ of $R$-algebra homomorphisms from $A$ to the base ring, which we denote by $\Spec A$.
+To state the duality axiom we need to go from the space $\D(1)$ to spaces that are the common zeros of some finite system of polynomial equations over $R$. Such a space can be encoded independently of the choice of polynomials as a finitely presented $R$-algebra, i.e.\ an $R$-algebra $A$ which is of the form $R[X_1,\dots,X_n]/(P_1,\dots,P_l)$ for some numbers $n,l$ and polynomials $P_i\in R[X_1,\dots,X_n]$.
+Then the set of roots of the system is given by the type $\Hom_{\Alg{R}}(A,R)$ of $R$-algebra homomorphisms from $A$ to the base ring. We denote this type by $\Spec A$.
 Now the duality axiom states that $\Spec$ is the inverse to exponentiating with $R$, i.e.\ for all 
 finitely presented $R$-algebras $A$ the following is an isomorphism:
 \[ (a\mapsto (\varphi\mapsto \varphi(a))) : A\to R^{\Spec A}\rlap{.}\]
 
-Using homotopy type theory as a language for synthetic algebraic geometry is, in addition to convenience, also a language for synthetic homotopy theory.
-So instead of the usual practice in algebraic topology to provide model spaces using point-set topology, one can start directly at the level of homotopy types and instead of implementing their higher structure with Kan complexes, there are rules which do not mention any implementation.
-The rules of homotopy type theory allow to work with the basic objects of the theory, types, in very much the same way as one would work with sets in traditional mathematics -- with the clear exception of the law of excluded middle and the axiom of choice - although the former and restricted versions of the latter can be assumed.
-Both can be seen as stating something about the spatial structure. The law of excluded middle allows us to find a complement of each subset of a given set A, which exposes A as a coproduct.
-This is not true in topology, for example, $\R$ is not the coproduct of the topological subspaces $\{0\}$ and $\R/\{0\}$.
-The axiom of choice states that any surjection has a section. This is also not true in topology and would trivialize all cohomology.
-Thus, constructive reasoning in the sense of not using these two axioms is a necessity if we want to use spatial collections in the same way we use sets.
-In synthetic algebraic geometry, we work inside homotopy type theory and remind readers of this by using the notation $x:X$ which can often be thought of as $x\in X$.
-\cite{shulman-logic-of-spaces} is a more detailed introduction to homotopy type theory for a general mathematical audience.
+Myers used homotopy type theory as a base language, which is now the standard in synthetic algebraic geometry. Now we introduce homotopy type theory, in the next paragraphs we will explain how it fits with synthetic algebraic geometry. Homotopy type theory is a language for synthetic homotopy theory.
+This means that when using it, we can think of the basic objects of the theory, that is types, directly as homotopy types. This should be contrasted with the usual practice in algebraic topology, which is to implement these homotopy types as topological spaces or Kan complexes.
+So the rules of homotopy type theory allow to work with types in very much the same way as one would work with homotopy types in traditional mathematics. % -- with the clear exception of the law of excluded middle and the axiom of choice - although the former and restricted versions of the latter can be assumed.
 
+On the other hand we also use homotopy type theory because it allows to reason synthetically about spaces, as plain type theory does. A key point is that we do not use the law of excluded middle (LEM) or the axiom of choice (AC), which are incompatible with types being interpreted as spaces. Indeed on one hand LEM allows us to find a complement of each subset of a given type $A$, which exposes $A$ as a coproduct.
+This is not true for spaces, for example, $\R$ is not the coproduct of the topological subspaces $\{0\}$ and $\R/\{0\}$.
+On the other hand AC states that any surjection has a section. This is also not true for any sensible notion of space, in particular it would trivialise all cohomology.
+Thus, constructive reasoning in the sense of not using LEM and AC is a necessity if we want to types to be understood as having a spatial structure. It turns out that this is the only obstruction, so the rules of type theory allow to work with type as one would work with spaces in algebraic geometry.
 
-One of the main advantages of using specifically homotopy type theory and not a different internal language,
-is that it is possible to make cohomological computations, using homotopy type theory for synthetic homotopical reasoning.
-This means that we are mixing two synthetic approaches, combining their advantages,
-which rests on the possibility of interpreting homotopy type theory in higher toposes \cite{shulman2019all} and not just the higher topos of $\infty$-groupoids.
+In synthetic algebraic geometry, we work inside homotopy type theory so that types behave both as homotopy types and as spaces from algebraic geometry. This means that we are mixing two synthetic approaches, combining their advantages,
+which rests on the possibility of interpreting homotopy type theory in any higher topos \cite{shulman2019all} and not just the higher topos of $\infty$-groupoids. More precisely we think of the higher topos of Zariski sheaves with value in homotopy type. %We remind readers of this by using the notation $x:X$ which can often be thought of as $x\in X$.
 The general idea of using homotopy type theory to combine some kind of synthetic, spatial reasoning with synthetic homotopy theory, goes back at least to 2014, to Mike Shulman and Urs Schreiber \cite{Schreiber_2014}.
 Schreiber suggested to the HoTT community at various occasions to make use of HoTT as the internal language of higher toposes, where specifities of the topos are accessed in the language via modalities.
-This approach was shown to be quite effective and intuitive in Shulman's \cite{shulman-Brouwer-fixed-point} work on mixing synthetic homotopy theory in the form of HoTT and a synthetic approach to topology using a triple of modalities -- a structure called cohesion by Lawvere \cite{Lawvere2007}.
+This approach was shown to be quite effective and intuitive in Shulman's \cite{shulman-Brouwer-fixed-point} work on mixing synthetic homotopy theory in the form of HoTT and a synthetic approach to topology using a triple of modalities -- a structure called cohesion by Lawvere \cite{Lawvere2007}. A more detailed introduction to homotopy type theory for a general mathematical audience, with an emphasis on this mix of homotopical and spatial structure can be found in \cite{shulman-logic-of-spaces}.
 
-One of Schreiber's motivation was to make use of the modern perspective on cohomology, which in a higher topos can be realized as the connected components of a space of maps. This can be mimicked in HoTT, like follows: Let $X$ be a type and $A$ an abelian group and $n:\N$, then
+One of the main advantages of using specifically homotopy type theory and not plain type theory, is using synthetic homotopical reasoning to make cohomological computations. Indeed one of Schreiber's motivation was to make use of the modern perspective on cohomology as the connected components of a space of maps in a higher topos. This can be mimicked in HoTT as follows: Given $X$ a type, $A$ an abelian group and $n:\N$, we define the $n$-th cohomology group of $X$ with coefficients in $A$ as
 \[ H^n(X,A):=\| X\to K(A,n) \|_0\]
-is the $n$-th cohomology group of $X$ with coefficients in $A$, where $\|\_\|_0$ is the $0$-truncation, an operation which turns a type with possibly non-trivial higher identity types into a set -- a type with trivial higher structure. The type $K(A,n)$ is the $n$-th Eilenberg MacLane space, which can always be constructed for any abelian group $A$ and comes with an isomorphism $\Omega^n(K(A,n))\simeq A$.
-This definition of cohomology groups allows using the synthetic homotopy theory to reason about cohomology, which had been already done successfully at the time for the cohomology of homotopy types, like spheres and finite CW-complexes, but works as well to study $0$-types.
-While this internal version of cohomology does not agree with the external version mentioned above --
-even the type is wrong; it is a sheaf of groups instead of a single one and, indexed by an internal natural number instead of an external one -- internal cohomology turned out to be quite useful in practice.
+ where $\|\_\|_0$ is the $0$-truncation, an operation which turns any type into a $0$-type, that is a type with trivial higher structure. The type $K(A,n)$ is the $n$-th Eilenberg MacLane space, which can always be constructed for any abelian group $A$ and comes with an isomorphism $\Omega^n(K(A,n))\simeq A$.
+With this definition of cohomology groups we can use synthetic homotopy theory to reason about cohomology, which had already been done successfully for the cohomology of homotopy types like spheres and finite cell complexes. It also works for the cohomology of $0$-types such as spaces in synthetic algebraic geometry.
+This internal version of cohomology does not agree with the external version mentioned above, indeed it is a sheaf of groups instead of a single group, and it is indexed by an internal natural number instead of an external one. Nevertheless, internal cohomology turned out to be quite useful in practice.
 
 In 2022, trying to use this approach to calculate cohomology groups in synthetic algebraic geometry led to the discovery of what is now called Zariski-local choice \cite{draft},
 which is an additional axiom that holds in the higher Zariski-topos.
-It is a weakening of the axiom of choice which can be formulated as: For any surjective map $f:X\to Y$, there exists a section, i.e.\ a map $s:Y\to X$ such that $f\circ s=\id_Y$.
-Zariski-local choice also states the existence of a section, but only Zariski-local and only for surjections into an affine scheme: For any surjection $f:E\to \Spec A$,
+It is a weakening of the axiom of choice. In homotopy type theory, the axiom of choice can be formulated as follows: For any surjective map $f:X\to Y$, there exists a section, i.e.\ a map $s:Y\to X$ such that $f\circ s=\id_Y$.
+Zariski-local choice also states the existence of a section, but only Zariski-locally and only for surjections into an affine scheme: For any surjection $f:E\to \Spec A$,
 there exists a Zariski-cover $U_1,\dots,U_n$ of $\Spec A$ and maps $s_i:U_i\to E$ such that $f(s_i(x))=x$ for all $x\in U_i$.
 
-In homotopy type theory, we use the propositional truncation $\|\_\|$ to define surjections and more generally what we mean with ``exists''.
-Propositional truncation turns an arbitrary type $A$ into a type $\|A\|$ with the property $x=y$ for all $x,y:\|A\|$.
+In homotopy type theory, we use the propositional truncation $\|\_\|$ to define surjections and more generally what we mean by ``exists''.
+Propositional truncation turns an arbitrary type $A$ into a type $\|A\|$ with the property that $x=y$ for all $x,y:\|A\|$.
 Types with this property are called propositions or (-1)-types in homotopy type theory.
 Using a univalent universe of types $\mathcal U$ we have that surjection into a type $A$ are the same as type families $F:A\to \mathcal U$, such that we have $\|F(x)\|$ for all $x: A$.
 Using type families instead of maps allows us to drop the condition that the maps we get are sections, since we can express it using dependent function types and we arrive at the formulation of Zariski-local choice given below in the list of axioms.
-In this instance and many others, homotopy type theory provides a lot of convenience when working very formally, which is an advantage in formalization of synthetic algebraic geometry.
+In this instance and many others, homotopy type theory is much more convenient for formal reasoning, which is an advantage when formalizing synthetic algebraic geometry.
 
-In total, apart from homotopy type theory and a fixed commutative ring $R$ we use in synthetic algebraic geometry the following three axioms -- we will provide some explanation for the first one below:
+In total, the system we use for synthetic algebraic geometry consists of the extension of homotopy type theory postulating a fixed commutative ring $R$ satisfying these three axioms (see below for an explanation of the first one):
 
 \begin{center}
 \begin{axiom}[Locality]%
   \label{loc-axiom}
-  $R$ is a local ring, i.e.\ $1\neq 0$ and whenever $x+y$ is invertible $x$ is invertible or $y$ is invertible.
+  $R$ is a local ring, i.e.\ $1\neq 0$ and whenever $x+y$ is invertible then $x$ is invertible or $y$ is invertible.
 \end{axiom}
 
 \begin{axiom}[Duality]%
@@ -98,26 +94,23 @@ In total, apart from homotopy type theory and a fixed commutative ring $R$ we us
 \end{axiom}
 \end{center}
 
-With the Kock-Lawvere axiom, we introduced the first historic predecessor of the duality axiom as a starting point for convenient infinitesimal computations,
-while this is also possible in synthetic algebraic geometry, the general duality axiom has a lot of surprising consequences.
-In line with classical algebraic geometry, it shows that we have the usual anti-equivalence between finitely presented $R$-algebras and affine schemes of finite presentation over $R$.
-What is more surprising, is the consequence that all functions $R\to R$ are polynomials and that it has implications on the properties of the base ring $R$.
-For example, for all $x:R$, $x$ is invertible if and only if we have $x\neq 0$.
-Duality also implies that affine schemes can only have bounded maps to the natural numbers.
+As we explained above the duality axiom is a generalisation of the Kock-Lawvere axiom, which was used for convenient infinitesimal computations. It has a lot of consequences. In line with classical algebraic geometry, it shows that we have an anti-equivalence between finitely presented $R$-algebras and affine schemes of finite presentation over $R$.
+More surprisingly, it implies that all functions in $R\to R$ are polynomials, as well as various the properties of the base ring $R$.
+For example, for all $x:R$, we have that $x$ is invertible if and only if we have $x\neq 0$.
+It also implies that any map from an affine schemes to the natural numbers is bounded.
 
 Surprisingly, the Zariski-local choice axiom was also usable to solve problems which have no obvious connection to cohomology.
-For example, it admits a proof that pointwise open subsets of an affine scheme are the same as subsets which are given by unions of non-vanishing sets of functions on the scheme.
-In more detail, we say a proposition $P$ is open, if there are a natural number $n$ and elements $r_1,\dots,r_n$ of the base ring $R$,
-such that $P$ is equivalent to the proposition $r_1\neq 0 \vee\dots\vee r_n\neq 0$.
-Then we call a subset $U$ of a type $X$ open, if the proposition $x\in U$ is open for all $x:X$.
-Using Zariski-local choice, these pointwise existing ring elements can be turned into locally existing functions.
-For an affine scheme $X$ it is even the case, that an open subset in the pointwise sense, is a union of non-vanishing sets $D(f_i)$ of global functions $f_i:\Spec A \to R$.
-An analogous result holds also for closed propositions, which are propositions of the form $r_1=0\wedge\dots\wedge r_n=0$ for $r_i:R$ and vanishing sets of functions on affine schemes.
+For example, it implies that pointwise open subsets of an affine scheme are the same as subsets which are given by unions of non-vanishing sets of functions on the scheme.
+In more detail, we an open proposition is a proposition of the form $r_1\neq 0 \vee\dots\vee r_n\neq 0$ where $r_i:R$.
+Then a subset $U$ of a type $X$  is called open if the proposition $x\in U$ is open for all $x:X$.
+Given an open subset $U$ of $\Spec A$, using Zariski-local choice we turn these elements $r_1,\dots,r_n$ of the base ring into functions defined Zariski-locally on $\Spec A$.
+We can then even prove that $U$ is a union of non-vanishing sets $D(f_i)$ of global functions $f_i:\Spec A \to R$.
+An analogous result holds for closed propositionsand vanishing sets of functions on affine schemes, where closed propositions are propositions of the form $r_1=0\wedge\dots\wedge r_n=0$ where $r_i:R$.
 
-The connection between pointwise and local openness is important to make the synthetic definition of a scheme work well:
+This connection between pointwise and Zariski-local openness is crucial to make the synthetic definition of a scheme work well:
 A scheme is a type $X$, that merely has a finite open cover by affine schemes.
 To produce interesting examples, it is necessary to use the locality axiom.
 This is related to the Zariski topology and ensures that classical examples of Zariski covers can be reproduced.
-One central example is projective space, which can be defined as the quotient of $R^{n+1}/\{0\}$ by the action of $R^\times$ by scaling.
-A cover of this type is given by sets of equivalence classes of the form $\{[x_0:\cdots:x_n] \vert x_i\neq 0 \}$, which is clearly open by the pointwise definition.
-To see that it is a cover, one has to note that for $x:R^{n+1}$, $x\neq 0$ is equivalent to one of the entries $x_i$ being different from 0. In synthetic algebraic geometry, this is the case for the base ring $R$ and the proof uses that $R$ is a local ring.
+A central example is the projective spaces $\bP^n$, which can be defined as the quotients of $R^{n+1}/\{0\}$ by the action of $R^\times$ by scaling.
+A cover of $\bP^n$ is given by sets of equivalence classes of the form $\{[x_0:\cdots:x_n] \vert x_i\neq 0 \}$, which is clearly open using the pointwise definition.
+To see that it is a cover, one has to note that for $x:R^{n+1}$, we have that $x\neq 0$ is equivalent to one of the entries $x_i$ being different from $0$. In synthetic algebraic geometry, this is the case for the base ring $R$ and the proof uses that $R$ is a local ring.
