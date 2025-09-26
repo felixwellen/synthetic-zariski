@@ -63,6 +63,8 @@
 \newcommand{\Open}{\mathsf{Open}}
 \newcommand{\Closed}{\mathsf{Closed}}
 \newcommand{\AbG}{\mathsf{Ab}}
+\newcommand{\Der}{\mathsf{Der}}
+\newcommand{\nf}{\mathsf{nf}}
 \newcommand{\OAbG}{\mathsf{Ab_{ODisc}}}
 \newcommand{\refl}{\mathsf{refl}}
 \newcommand{\ra}{\rightarrow}
@@ -101,7 +103,7 @@
 \DeclarePairedDelimiter\gen{\langle}{\rangle}
 \DeclarePairedDelimiter\paren{(}{)}
 \DeclarePairedDelimiter\set{\{}{\}}
-\newcommand\R{\mathsf{R}}
+\newcommand\RR{\mathsf{R}}
 \newcommand\Spec{\mathsf{Spec}}
 \newcommand\bbI{\mathbb{I}}
 \renewcommand\Pr{\mathsf{Pr}}
@@ -156,25 +158,27 @@ We write $L,M,N,\dots$ for such objects and $f,g,h,\dots$ for the $k$-algebra mo
 A cubical presheaf $F$ on this category $\CC$
 can be seen as a family of cubical sets $F(L)$ with restriction maps $F(L)\rightarrow F(M),~u\mapsto fu$ for $f:L\rightarrow M$ satistying the
 {\em strict} equalities $\id~u= u$ and $(g\circ f)~u = g(f~u)$. A natural transformation $u:F\rightarrow G$ is given by a family of
-cubical set maps $u_L:F(L)\rightarrow G(L)$ satisfying {\em strict} commutation $f(u_La) = u_M(f a)$ for $f:L\rightarrow M$ and $a:F(L)$.
+cubical set maps $u_L:F(L)\rightarrow G(L)$ satisfying {\em strict} commutation $f(u_La) = u_M(f a)$ for $f:L\rightarrow M$ and $a:F(L)$\footnote{This is an internal statement in the presheaf of cubical sets, involving a quantification on the cubical set $F(L)$.}.
 If $E$ is a set, we write $\Delta(E)$ the associated constant cubical set.
 We can see $\Delta$ as a functor from sets to cubical sets, and, if $F$ is a {\em set valued} presheaf, consider $\Delta\circ F$ which is now
 a cubical presheaf.
 The model described in \cite{draft} is the internal model of fibrant cubical presheaves \cite{draft,CRS21} over $\CC$.
 
-We define $R$ by taking $R(M)$ to be $\Delta(M)$. This defines (internally) a ring, and the claim in~\cite{draft}
-was that this ring satisfies suitable axioms, involving finitely presented $R$-algebras.
+We define $\RR$ by taking $\RR(M)$ to be $\Delta(M)$. This defines (internally) a ring, and the claim in~\cite{draft}
+was that this ring satisfies suitable axioms, involving finitely presented $\RR$-algebras.
 
 The problem is in the description of these
-finitely presented $R$-algebras. It turns out that this problem can already be seen in the simple case $P = R[X]$.
+finitely presented $\RR$-algebras. It turns out that this problem can already be seen in the simple case $P = \RR[X]$.
 We are  going to explain this case in detail.
 
 In \cite{draft}, it was assumed implicitely that we could define $P$ simply as $P(L) = \Delta (L[X])$. This defines a presheaf,
-which is a $R$-algebra. 
+which is a $\RR$-algebra. 
 The problem is that this
-$R$-algebra is {\em not} $R[X]$ in general, i.e. it does not satisfy the required universal property of $R[X]$ in the presheaf model.
-Indeed, for this universal property, we should be able, given a cubical presheaf ring
-$A$ with a ring morphism $u:R\rightarrow A$ and a global element $a:A$ to extend it to a map $v:P\rightarrow A$. This would require
+$\RR$-algebra is {\em not} $\RR[X]$ in general for the homotopical semantics, i.e.
+it does not satisfy the required universal property of $\RR[X]$ in the presheaf model.
+Indeed, for this universal property, we should be able, in particular, given a cubical presheaf ring
+$A$ with a ring morphism $u:\RR\rightarrow A$ and a global element $a:A$, to extend
+it to a map $v:P\rightarrow A$. This would require
 \begin{enumerate}
 \item a {\em levelwise} problem, to define for each $L$ a map $v_L:\Delta (P(L))\rightarrow A(L)$
 \item a {\em strict coherence} problem, to check that these maps commute {\em strictly} with restrictions, i.e. $v_M(f~p) = f v_L(p)$, as a
@@ -244,37 +248,37 @@ This suggests that a solution (in the case where each $L$ has a decidable equali
 We build a model of the axioms 1-4 discussed in \cite{draft} in the case where $k$
 is a finitely presented algebra over $\ints$ or a discrete field, using the cobar relativisation of the presheaf models over $\CC$
 as a underlying model of type theory.
-We use the same interpretation of $R$ as in \cite{draft}, namely defined by $R(L) = \Delta(L)$, which is already cobar modal.
+We use the same interpretation of $\RR$ as in \cite{draft}, namely defined by $\RR(L) = \Delta(L)$, which is already cobar modal.
 
 In order to do this, we use a general Lemma\footnote{The levelwise problem can conceptually be formulated at the level of the left exact
 completion of the category of sets, where objects are pairs $(X,R)$, and $R$ being a ``proof-relevant'' equivalence relation on the set $X$.
 In general, if $x_0\sim x_1$ means that the set $R(x_0,x_1)$ is inhabited, then the pair $(X,R)$ is not equivalent to the pair $(X/\sim,=)$.
 This is closely connected to the discussion in the introduction of \cite{shulman21}.}
 about models of equational theories in cubical sets. Let $T$
-be a (first-order) equational theory. Let $E$ be the set of closed terms, and, for $t,u$ in $E$, let $Der(t,u)$ be the set
+be a (first-order) equational theory. Let $E$ be the set of closed terms, and, for $t,u$ in $E$, let $\Der(t,u)$ be the set
 of equational proofs of equality of $t$ and $u$ in the theory $T$. The initial term model, in {\em sets}, is the quotient of $E$
-by the equivalence relation $t\sim u$, which states that there exists an element in $Der(t,u)$.
+by the equivalence relation $t\sim u$, which states that there exists an element in $\Der(t,u)$.
 
 % DEFINE WHAT NORMAL FORM FUNCTION IS
 
 \begin{lemma}\label{norm}
   If there is a normal form function\footnote{This means that $nf$ is an idempotent function on the set $E$ such that
-  $t\sim u$ if, and only if, $nf(t) = nf(u)$.} $nf:E\rightarrow E$ and a section\footnote{Given this function, we get a choice
-  function which, from $t\sim u$, extracts an element of $Der(t,u).$} $\Pi_{t:E}Der(t,nf(t))$ then the constant cubical
+  $t\sim u$ if, and only if, $\nf(t) = \nf(u)$.} $\nf:E\rightarrow E$ and a section\footnote{Given this function, we get a choice
+  function which, from $t\sim u$, extracts an element of $\Der(t,u).$} $\Pi_{t:E}\Der(t,\nf(t))$ then the constant cubical
   set $\Delta(E/\sim)$ is the initial (h)set term model of $T$ in the cubical model.
 \end{lemma}
 
 \begin{proof}
 Notice that, in this case, we don't need quotient
 in the set theory to form $E/\sim$ since it can be built as the subset $N$ of $E$ of terms in normal forms, with a function
-$nf:E\rightarrow N$. If $A$ is a (h)set model of the theory $T$ there is an evaluation function $ev:\Delta(E)\rightarrow T$, which
-satisfies $ev(t) =_A ev(u)$ as a {\em path equality} given an element of $Der(t,u)$.
-This gives the initial map $i:\Delta(N)\rightarrow A$ which satisfies $i\circ \Delta(nf) = ev$ as a path equality given the section
-$Der(t,nf(t))$.
+$\nf:E\rightarrow N$. If $A$ is a (h)set model of the theory $T$ there is an evaluation function $ev:\Delta(E)\rightarrow T$, which
+satisfies $ev(t) =_A ev(u)$ as a {\em path equality} given an element of $\Der(t,u)$.
+This gives the initial map $i:\Delta(N)\rightarrow A$ which satisfies $i\circ \Delta(\nf) = ev$ as a path equality given the section
+$\Der(t,\nf(t))$.
 \end{proof}
 
-To have a section $\Pi_{t:E}Der(t,nf(t))$ can be seen as a constructive requirement: we not only should have $t\sim nf(t)$ but also
-an explicit derivation $Der(t,nf(t))$ in order to produce a path equality between $ev(t)$ and $ev(nf(t))$ in $A$.
+To have a section $\Pi_{t:E}\Der(t,\nf(t))$ can be seen as a constructive requirement: we not only should have $t\sim \nf(t)$ but also
+an explicit derivation $\Der(t,\nf(t))$ in order to produce a path equality between $ev(t)$ and $ev(\nf(t))$ in $A$.
 
 % comment of why it is enough L decidable equality
 % "setoid"
@@ -299,16 +303,15 @@ an explicit derivation $Der(t,nf(t))$ in order to produce a path equality betwee
 Using this, we can follow the argument in \cite{draft}, Section 8.1.2. We now work in the presheaf
 model over $\CC$, relativised by the cobar modality.
 We use the presheaf of ``finite presentations'' which is internally the type
-\(\Sigma_{n:\mathbb{N}}\Sigma_{m:\mathbb{N}}R[X_{1},\ldots,X_{n}]^{m}\) and externally the type
+\(\Sigma_{n:\mathbb{N}}\Sigma_{m:\mathbb{N}}\RR[X_{1},\ldots,X_{n}]^{m}\) and externally the type
 \[
 \FP(L) = \Sigma_{n:\nats}\Sigma_{m:\nats}\Delta (L[X_1,\dots,X_n]^m).
 \]
 (note that this type is cobar modal).
 We can now define the 
 dependent presheaf which, to any presentation
-$\xi = (n,m,q_1,\dots,q_m)$, associates the $R$-algebra $A(\xi) = R[X_1,\dots,X_n]/(q_1,\dots,q_m)$.
-Externally, we define it as the presheaf on the category of elements of $\FP$ given by
-by
+$\xi = (n,m,q_1,\dots,q_m)$, associates the $\RR$-algebra $A(\xi) = \RR[X_1,\dots,X_n]/(q_1,\dots,q_m)$.
+Externally, we define it as the presheaf
 \[
 A(L,\xi) = \Delta (L[X_1,\dots,X_n]/(q_1,\dots,q_m)) = (\Delta L)[X_1,\dots,X_n]/(q_1,\dots,q_m)
 \]
@@ -330,5 +333,6 @@ in a crucial way in the work \cite{weaver20}.
 
 
 \end{document}
+
 
 
