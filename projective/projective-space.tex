@@ -1,11 +1,10 @@
 We follow the notations and setting for Synthetic Algebraic Geometry \cite{draft}.
 In particular, $R$ denotes the generic local ring and $R^\times$ is the multiplicative group of units of $R$.
 
-In Synthetic Algebraic Geometry, a scheme is defined as a set satisfying some property \cite{draft}. In particular
+In Synthetic Algebraic Geometry, a scheme is defined as a set satisfying some property \cite[Definiton 5.1.1]{draft}. In particular
 the projective space $\bP^n$ can be defined to be the quotient of $R^{n+1}\setminus\{0\}$ by the
-equivalence relation $a\sim b$ which expresses that $a$ and $b$ are proportional, %i.e. $a_ib_j=a_jb_i$,
-which is equal to $\Sigma_{r:R^\times}ar = b$. We can then prove \cite{draft}
-that this set is a scheme. This definition goes back to \cite{Kock74}.
+equivalence relation $a\sim b$ which expresses that $a$ and $b$ are proportional, i.e.\ $a_ib_j=a_jb_i$. This proportionality is a closed proposition which is equal to $\Sigma_{r:R^\times}ar = b$.
+We can then prove \cite[Theorem 6.1.5]{draft} that this set is a scheme. This definition goes back to \cite{Kock74}.
 
  In this setting, a map of schemes is simply an arbitrary set theoretic map. An application of this work is to show
  that the maps $\bP^n\rightarrow \bP^m$ are given by $m+1$ homogeneous polynomials of the same degree in $n+1$ variables.
@@ -13,7 +12,7 @@ that this set is a scheme. This definition goes back to \cite{Kock74}.
 \medskip
 
 
-There is another definition of $\bP^n$ which uses ``higher'' notions. Let $\KR$ be the delooping
+There is another definition of $\bP^n$ which uses ``higher'' notions. Let $\KR= K(R^\times,1)$ be the delooping
 of $R^\times$. It can be defined as the type of lines $\Sigma_{M:\Mod{R}}\|{M=R^1}\|$. Over $\KR$ we have the
 family of sets
 $$E_n(l) = l^{n+1}\setminus\{0\}$$
@@ -23,9 +22,13 @@ An equivalent definition of $\bP^n$ is then
 $$
 \bP^n = \sum_{l:\KR}E_n(l)
 $$
-That is, we replaced the quotient, here a set of orbits for a free group action, by a sum type over the delooping of this group
-\cite{Sym}.
-More explicitly, we will use the following identifications:
+This is a general construction of the \emph{homotopy} quotient of a type by a group action --
+the type in this case is $E(R^1)=R^{n+1}\setminus\{0\}$ and the action of $R^\times=\GL(1,R)=\Omega (\KR,R^1)$ is given by transporting in $E(R^1)$ along a loop $l:\Omega (\KR,R^1)$.
+One can calculate, that this transport and therefore the action corresponds to scalar multiplication.
+Since this is a free group action, the homotopy quotient, given by the sigma type above, will be a set.
+This is part of the homotopy typetheoretic view on group theory and group actions, which is explained in detail in \cite{Sym}.
+
+We will use the following constructions of $\bP^n$ and the identifications between them given below:
 \begin{remark}\label{identification-Pn}
   Projective $n$-space $\bP^n$ is given by the following equivalent constructions of which we prefer
   the first in this article:
@@ -115,9 +118,9 @@ using \Cref{invariant-implies-homogenous} with $d=1$.
 
 \medskip
 
+
 It is then a general fact that if we have a pointed connected groupoid $(A,a)$ and a family of
-sets $T(x)$ for $x:A$, then $\prod_{x:A}T(x)$ is the set of fixedpoints of $T(a)$ for the $(a=a)$ action
-\cite{Sym}.
+sets $T(x)$ for $x:A$, then $\prod_{x:A}T(x)$ is the set of fixed points of $T(a)$ for the $\Omega(A,a)$-action: If we have $f:\prod_{x:A}T(x)$, then for any $g:\Omega(A,a)$ we have $g(f_a)=f_a$ by depedent application of $f$ to $g$. And if $z:T(a)$ is a fixed point and $x:A$, the transport along a $p:a=x$ is independent of $p$, so we can construct a $z':T(x)$.
 \end{proof}
 
 We will use the following remark, proved in \cite{draft}[Remark 6.2.5].
