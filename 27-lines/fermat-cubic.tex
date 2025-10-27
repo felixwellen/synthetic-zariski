@@ -1,0 +1,78 @@
+We start with the example of the Fermat Cubic, which is given by the following equation
+\[
+  x_0^3+x_1^3+x_2^3+x_3^3=0
+\]
+which defines a closed subset $C$ of $\bP^3$.
+A line in $\bP^3$ is given by a plane in $R^4$ which is given as the span of two linearly independent vectors $u,v:R^4$.
+That means there exists a non-zero entry $u_i$ in $u$.
+Let us assume we permuted our coordinates such that $i=0$.
+By linear independence, there is a non-zero $v_j$ with $j\neq 0$. Assume $j=1$.
+We can now equivalently use $u$ and $v$ of the form:
+\[
+u=\left(\begin{array}{c} 1 \\ 0 \\ a \\ b \end{array}\right)\quad
+v=\left(\begin{array}{c} 0 \\ 1 \\ c \\ d \end{array}\right)
+\]
+
+So an arbitrary $x:R^4$ lies in the plane spanned by $u$ and $v$ if and only if
+\begin{align*}
+  x_2&=x_0\cdot a+x_1\cdot c \\
+  x_3&=x_0\cdot b+x_1\cdot d\rlap{.}
+\end{align*}
+This means we can parametrize this line $L$ with $[x_0:x_1]:\bP^1$
+as $[x_0:x_1:x_0 a+x_1 c:x_0 b+x_1 d]:\bP^3$ and up to permuting coordinates, every line is like that.
+The condition that $L$ lies on the Fermat Cubic $C$ is that for all $x_0,x_1$ we have
+\[
+  x_0^3+x_1^3+(x_0 a+x_1 c)^3+(x_0 b+x_1 d)^3=0
+\]
+To turn this into equations on $a,b,c,d$, we need the following
+
+\begin{lemma}
+  A homogenous polynomial $P:R[X_0,\dots,X_n]$ has vanishing set $\bP^n$,
+  if and only if all coefficients of $P$ are zero.
+\end{lemma}
+
+\begin{proof}
+  We look at $Q=P(1,X_1,\dots,X_n)$ assuming $V_{\bP^n}(P)=\bP^n$.
+  So as a function $R^n\to R$, $Q$ agrees with the zero-function.
+  Since we have $(R^n\to R)=R[X_1,\dots,X_n]$ by duality, we know that $Q$ must be the zero-polynomial.
+  Since all coefficients of $P$ appear as coefficients of $Q$, $P$ is the zero-polynomial as well.
+\end{proof}
+Back to the Line $L$ on $C$, calculating and using the lemma, we get the following conditions - assuming $3\neq 0$ from now on:
+\begin{align*}
+  &1+a^3+b^3=0 &a^2c+b^2d=0 \\
+  &1+c^3+d^3=0 &ac^2+bd^2=0
+\end{align*}
+Assume $abcd\neq 0$. We divide $(a^2c)^2=(-b^2d)^2$ by $ac^2=-bd^2$ to get $a^3=-b^3$.
+This is a contradiction to the first equation. So we know one of $abcd$ must be nilpotent.
+
+Let $a$ be nilpotent. Then $b$ is invertible by the first equation.
+By the upper right equation, $d$ must be nilpotent then, which means $c$ is invertible.
+Up to addition of nilpotent elements,
+this means that $-b$ and $-c$ are third roots of unity and $a$ and $d$ are zero.
+
+So let $\omega_0,\omega_1,\omega_2$ be three different roots of unity.
+Then
+\[
+   [x_0:x_1:-\omega_ix_0:-\omega_jx_1]
+\]
+describes a line on $C$ for all $i,j$.
+\rednote{TODO: Figure out if there are exactly 27 possibilities for such lines.}
+
+We have seen that there are 27 lines on $C$ and that any line on $C$ is described by parameters which are equal up to addition of nilpotent elements in $R$, to the parameters of one of the 27 lines.
+If \Cref{line-on-cubic-deformation} holds, we would have that $C$ contains exactly 27 lines. 
+
+\rednote{unclear if the following is useful}
+In preparation of an argument for the general case,
+we will show that the construction is stable under infinitesimal variation.
+Assume we have a cubic $C'$ such that each coefficient is the same as the coefficient of the Fermat Cubic up to a nilpotent in $R$. Then, for the line $L$, we get the equations
+\begin{align*}
+  &1+a^3+b^3=n_1 &a^2c+b^2d=n_2 \\
+  &1+c^3+d^3=n_3 &ac^2+bd^2=n_4
+\end{align*}
+with nilpotents $n_i:R$ - in other words, the old equations hold up to $\neg\neg$,
+which means we can reuse the argument that $abcd$ is nilpotent.
+Now the type of all $a,b,c,d$ such that these equations hold is standard étale \cite[Definition 4.3.2]{diffgeo-article}.
+Being étale entails, that this type is already inhabited,
+if it is inhabited under the assumption that finitely many nilpotents in $R$ are zero.
+This means we also have a solution in this case
+- under the same assumtions we used for the Fermat Cubic.
