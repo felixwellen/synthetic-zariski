@@ -67,6 +67,8 @@ In fact, if there is one cover, any cover will be reduced.
 
 \subsection{Reduced types}
 
+This is joint work of Hugo Moeneclaey and Felix Cherubini.
+
 For any type $X$, we write $\overline{X}$ for the formally étale replacement of $X$.
 
 \begin{definition}
@@ -281,6 +283,51 @@ as being formally étale is a lex modality.
 \begin{remark}
 We did not manage to prove that it is not equivalent to \cref{candidate-reduced}. Is it?
 \end{remark}
+
+The following theorem is joint work with Thierry Coquand.
+
+\begin{theorem}
+  \label{reduced-algebra-as-functions}
+  For any f.p.\ $R$-algebra $A$, the induced map
+  \[
+    A/\Nil(A)\to \overline{R}^{\Spec(A)}
+    \]
+    is an equivalence.
+\end{theorem}
+
+\begin{proof}\rednote{TODO: Check and add details.}
+  Using local choice and boundedness, we have that $\Nil(A)\to \Nil(R)^{\Spec(A)}$ is an equivalence.
+  So the induced map $A\to \overline{R}^{\Spec(A)}$ factors to $A/\Nil(A)\to \overline{R}^{\Spec(A)}$ and we can conclude by showing that the induced map $R^{\Spec(A)}\to \overline{R}^{\Spec(A)}$ is surjective.
+
+  So we need to lift:
+  \begin{center}
+    \begin{tikzcd}
+      & R\ar[d,->>] \\
+      \Spec(A)\ar[r]\ar[ru,dotted,"\exists?"] & \overline{R}
+    \end{tikzcd}
+  \end{center}
+  The kernel of the right map is $\Nil(R)$, so we can conclude by showing that $\Nil(R)$
+  is wqc, since that implies $H^1(\Spec(A),\Nil(R))=0$.
+  Let $r:R$. By the first argument above, we have an equivalence $\Nil(R_r)\to \Nil(R)^{\Spec(R_r)}$.
+  So we show that
+  \[\varphi:\Nil(R)_r\to \Nil(R_r)\]
+  is an equivalence.
+  
+  Let $\frac{a}{r^l}:R_r$ be nilpotent. Then $ra$ is nilpotent in $R$.
+  So $\frac{ra}{r^{l+1}}:\Nil(R)_r$ and we have $\varphi(\frac{ra}{r^{l+1}})=\frac{a}{r^l}$.
+  Now let $\varphi(\frac{a}{r^l})$ be zero in $\Nil(R_r)$.
+  Then $r^na=0$ in $R$, so $\frac{a}{r^l}$ is zero in $\Nil(R)_r$.
+\end{proof}
+
+\begin{corollary}
+  By \Cref{reduced-algebra-as-functions} and \Cref{reduced-affine}, we have a map
+  \[
+     \overline{A}\to A/\Nil(A)
+     \]
+     which is an equivalence if and only if $\Spec(A)$ is reduced.
+     As this map factors the canonical $A\to A/\Nil(A)$, we have that
+     $\Spec(A)$ is reduced, if and only if $\overline{a=0}$ and $a$ nilpotent are equivalent for all $a:A$.\rednote{Is this something we really didn't know already?}.
+\end{corollary}
 
 \subsection{Examples}
 
