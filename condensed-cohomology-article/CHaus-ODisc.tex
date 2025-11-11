@@ -1,0 +1,312 @@
+\subsection{Compact Hausdorff spaces}
+
+Recall that Stone spaces are defined as spectrum of c.p. boolean algebra, or equivalently as limits of finite types.
+
+\begin{lemma}
+A proposition is a Stone space if and only if it is closed.
+\end{lemma}
+
+\begin{proof}
+The key point is that the propositional truncation of a stone space is a closed proposition.
+\end{proof}
+
+\begin{theorem}
+We have the following:
+\begin{enumerate}[(i)]
+\item Stone spaces are stable under identity types and and sigma types.
+\item Stone spaces are stable under sequential limits.
+\item Stone spaces have local choice.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+All of this is known.
+\end{proof}
+
+\begin{definition}
+A compact Hausdorff space is a quotient of a Stone space by an equivalence relation valued in closed propositions.
+\end{definition}
+
+\begin{lemma}\label{sequential-limit-Hausdorff}
+Assume given a tower $(C_k)_{k:\N}$ of compact Hausdorff spaces. Then there exists a tower $(S_k)_{k:\N}$ of Stone spaces with maps:
+
+\begin{center}
+\begin{tikzcd}
+\cdots \ar[r]& S_1\ar[r]\ar[d] & S_0 \ar[d]\\
+\cdots \ar[r] & C_1\ar[r] & C_0 \\
+\end{tikzcd}
+\end{center}
+
+such that the map:
+\[S_0\to C_0\]
+is surjective and for all $n:\N$ the induced map:
+\[S_{n+1} \to C_{n+1}\times_{C_n} S_n\]
+is surjective.
+
+This implies that the induced map:
+\[\lim_kS_k \to \lim_k C_k\]
+is surjective.
+\end{lemma}
+
+\begin{proof}
+By definition of a Compact Hausdorff type, we can merely find a Stone space $S_0$ with a surjection:
+\[S_0\to C_0\]
+Using dependent choice, it is enough to show that we can merely extend such a tower $(S_k)_{k\leq n}$ to $(S_k)_{k\leq n+1}$.
+
+We choose a Stone space $T$ and a surjection:
+\[T \to C_{n+1} \]
+Then we define $S_{n+1}$ by the following pullback square:
+\begin{center}
+\begin{tikzcd}
+S_{n+1}\ar[d]\ar[r] & C_{n+1}\times_{C_n} S_n\ar[r]  \ar[d]& S_n\ar[d]\\
+T \ar[r] & C_{n+1}\ar[r]  & C_n
+\end{tikzcd}
+\end{center}
+And we see the map:
+\[S_{n+1} \to C_{n+1}\times_{C_n} S_n\] 
+surjective as it is a pullback of the map:
+\[T\to C_{n+1}\]
+
+This implies that the map:
+\[\lim_kS_k \to \lim_k C_k\]
+is surjective by dependent choice.
+\end{proof}
+
+\begin{theorem}
+We have the following:
+\begin{enumerate}[(i)]
+\item Compact Hausdorff spaces are stable under identity types and and sigma types.
+\item Compact Hausdorff spaces are stable under quotients by equivalence relation with value in compact Hausdorff spaces.
+\item Compact Hausdorff spaces are stable under sequential limits.
+\item Compact Hausdorff space have local choice.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We proceed as follows:
+\begin{enumerate}[(i)]
+\item For identity types this is because closed propositions are compact Hausdorff.
+
+For sigma types, assume given $C$ compact Hasudorff and $D_x$ a family of compact Hausdorff spaces depending on $x:C$. We know that closed propositions are closed under sigma types therefore identity types in $\sum_{x:C}D_x$ are closed. Using local choice for Stone spaces we find we find $S$ Stone with a surjective map:
+\[f:S\to C\]
+and for all $x:S$ a Stone space $T_x$ with a surjective map:
+\[g_x:T_x\to D_{f(x)}\]
+These combine to give a surjective map:
+\[\sum_{x:S}T_x \to \sum_{y:C}D_y\]
+and we conclude using that Stone spaces are stable under sigma types.
+
+\item Clear from the definition.
+
+\item We use \cref{sequential-limit-Hausdorff} and the fact that closed proposition are stable under sequential limits.
+
+\item From the fact that Stone spaces have local choice.
+\end{enumerate}
+\end{proof}
+
+Calling them Hausdorff is reasonable as they have closed diagonal by definition. We give two reasons why calling them compact is reasonable:
+
+\begin{lemma}\label{compact-hausdorff-compact}
+Assume given $C$ compact Hausdorff and $U\subset C$ an open subtype. Then $U=C$ is open.
+\end{lemma}
+
+\begin{proof}
+We show that $\neg(U=C)$ is closed. To do this it is enough to show that:
+\[\neg(U=C) \leftrightarrow \exists (x:C).\neg U_x\]
+but we know that $\exists (x:C).\neg U_x$ is closed and therefore $\neg\neg$-stable, we have that $U_x$ is $\neg\neg$-stable as well and we can conclude from that since we always have:
+\[\neg(\forall(x:C).\ \neg\neg U_x) \to \neg\neg(\exists(x:C).\ \neg U_x)\]
+\end{proof}
+
+\begin{lemma}\label{compact-hausforff-countable-cover}
+Assume given $C$ compact Hausdorff and a sequence of open subset of $C$ as follows:
+\[U_0\subset U_1 \subset \cdots\]
+If:
+\[\forall(x:C).\exists(i:\N). x\in U_i\]
+then:
+\[\exists(i:\N). \forall(x:C).x\in U_i\]
+\end{lemma}
+
+\begin{proof}
+By local choice we have a surjective map:
+\[ f: S \to C\]
+such that:
+\[\forall(x:S).\Sigma (i:\N). f(x)\in U_i\]
+By boundedness there is $k:\N$ such that:
+\[\forall(x:S). f(x)\in U_k\]
+and then we conclude by surjectivity.
+\end{proof}
+
+
+
+
+\subsection{Overtly discrete types}
+
+\begin{definition}
+A type $X$ is countable if there merely exists a decidable subset of $\N$ equal to $X$.
+\end{definition}
+
+\begin{definition}
+A type is overtly discrete if it is a sequential colimit of finite types.
+\end{definition}
+
+\begin{lemma}\label{overtly-discrete-colimit-finite}
+Let $X$ be a type, the following are equivalent:
+\begin{enumerate}[(i)]
+\item $X$ is overtly discrete.
+\item $X$ is a quotient of a countable type by an open equivalence relation.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{itemize}
+\item (i) implies (ii). Assume $X$ is of the form
+\[X  = (\Sigma_\N D)/R\]
+with $D$ decidable and $R$ open. Using choice for $\Sigma_\N D$ we get:
+\[\alpha : (\Sigma_\N D) \to (\Sigma_\N D)\to 2^\N\]
+such that:
+\[R(x,y) = \exists_{k:\N} \alpha(x,y,k) = 1\]
+Then we define:
+\[X_n = (\Sigma_{\mathrm{Fin}(n)} D) / L\]
+\[L(x,y) = \exists_{k:\mathrm{Fin}(n)} \alpha(x,y,k) = 1\]
+We have that $X_n$ is a finite type as it is a decidable quotient of a decidable subset of a finite type. Moreover:
+\[\mathrm{colim}_n X_n = X\]
+as sequential colimits commute with quotients by equivalence relations.
+\item (ii) implies (i). Indeed consider a sequential colimit of:
+\[f_k : \mathrm{Fin}(l_k) \to \mathrm{Fin}(l_{k+1})\]
+Then:
+\[\mathrm{colim}_k \mathrm{Fin}(l_k)  =  \left(\sum_{k:\N} \mathrm{Fin}(l_k)\right) / L\]
+where $L$ is the equivalence relation generated by $(k,x) \sim (k+1,f_k(x))$. But $\sum_{k:\N} \mathrm{Fin}(l_k)$ is countable and the equivalence relation generated by a decidable relation on such a type is open.
+\end{itemize}
+\end{proof}
+
+\begin{remark}
+A proposition is overtly discrete if and only if it is open.
+\end{remark}
+
+\begin{lemma}\label{presentation-maps-overtly-discrete}
+Assume given a tower of finite types:
+\[F_0\to F_1\to \cdots\]
+and $J$ overtly discrete with a map:
+\[f:\mathrm{colim}_iF_i\to J\]
+Then there merely exists a tower of finite types:
+\[G_0\to G_1\to \cdots\]
+with a map of towers:
+\begin{center}
+\begin{tikzcd}
+F_0\ar[d]\ar[r] & F_1\ar[d]\ar[r] & \cdots \\
+G_0\ar[r] & G_1\ar[r] & \cdots \\
+\end{tikzcd}
+\end{center}
+such that:
+\[\mathrm{colim}_jG_j = J\]
+and the induced map:
+\[\mathrm{colim}_iF_i \to \mathrm{colim}_jG_j\]
+is equal to $f$.
+\end{lemma}
+
+\begin{proof}
+We can assume $J = \mathrm{colim}_jG_j$. Then for all $k:\N$ the map:
+\[F_k\to \mathrm{colim}_iF_i \to \mathrm{colim}_jG_j\]
+merely factors through $G_{l}$ for some arbitrary large $l$. Using dependent choice we merely have a sequence $(l_k)_{k:\N}$ (that we can assume strictly increasing) such that for all $k:\N$ we have that:
+\[F_k\to \mathrm{colim}_iF_i \to \mathrm{colim}_jG_j\]
+factors through $G_{l_k}$. This gives what we want.
+\end{proof}
+
+\begin{lemma}\label{colimit-quarter-diagonal}
+Assume given a quarter plane of commutative squares:
+\begin{center}
+\begin{tikzcd}
+A_{0,0}\ar[d]\ar[r] & A_{0,1}\ar[d]\ar[r] & \cdots \\
+A_{1,0}\ar[d]\ar[r] & A_{1,1}\ar[d]\ar[r] & \cdots \\
+\vdots & \vdots & \ddots\\
+\end{tikzcd}
+\end{center}
+where all the $A_{i,j}$ are sets. Then we have that:
+\[\mathrm{colim}_{i,j} A_{i,j} = \mathrm{colim}_iA_{i,i}\]
+\end{lemma}
+
+\begin{proof}
+We define a map in:
+\[\mathrm{colim}_{i,j} A_{i,j} \to \mathrm{colim}_iA_{i,i}\]
+by sending $x:A_{i,j}$ to its image in $A_{\max(i,j),\max(i,j)}$.
+
+Given $x:A_{i,j}$ we need to check that it is send to the same element in $\mathrm{colim}_iA_{i,i}$ as its image in $A_{i+1,j}$. If $i<j$ this is immediate. If $i\geq j$ then we just need to check that the maps:
+\[A_{i,j} \to A_{i+1,j} \to A_{i+1,i+1}\]
+and:
+\[A_{i,j}\to A_{i,i}\to A_{i+1,i+1}\]
+are equal, which is straightforward.
+
+Checking that this definition respects commutation of squares is vacuous as $\mathrm{colim}_iA_{i,i}$ is a set.
+
+Now this map is clearly left inverse to the canonical map:
+\[ \mathrm{colim}_iA_{i,i}\to\mathrm{colim}_{i,j} A_{i,j} \]
+we just need to check that it is right inverse to conclude. Given $x:A_{i,j}$ we need to check that it is equal to its image in $A_{\max(i,j),\max(i,j)}$ in $\mathrm{colim}_{i,j} A_{i,j}$, which holds by definition of colimits. Since $\mathrm{colim}_{i,j} A_{i,j}$ is a set (as a sequential colimit of sequential colimits of sets), there is nothing else to check.
+\end{proof}
+
+\begin{remark}
+We conjecture the previous lemma holds even when the $A_{i,j}$ are not sets.
+\end{remark}
+
+\begin{theorem}
+We have the following:
+\begin{enumerate}[(i)]
+\item Overtly discrete types are stable under identity types and sigma types.
+\item Overtly discrete types are stable under quotients by equivalence relation with value in overtly discrete types.
+\item Overtly discrete type are stable under sequential colimits.
+\item Overtly discrete types have local choice.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{enumerate}[(i)]
+\item For stability under identity types, we use that sequential colimits commutes with identity types. 
+
+For stability under sigma types, sequential colimits commutes with sigma so that by (iii) it is enough to show that overtly discrete types are stable under finite coproduct. But sequential colimits commute with finite coproducts.
+
+\item Clear from the alternative description in \cref{overtly-discrete-colimit-finite}.
+
+\item Assume given a tower of sequential colimits of finite types. By using dependent choice with \cref{presentation-maps-overtly-discrete} repeatedly, we get a quarter plane of finite types:
+\begin{center}
+\begin{tikzcd}
+F_{0,0}\ar[d]\ar[r] & F_{0,1}\ar[d]\ar[r] & \cdots \\
+F_{1,0}\ar[d]\ar[r] & F_{1,1}\ar[d]\ar[r] & \cdots \\
+\vdots & \vdots & \ddots\\
+\end{tikzcd}
+\end{center}
+which colimit is the colimit of the assumed tower. Then we just use \cref{colimit-quarter-diagonal} to conclude that this colimit is overtly discrete.
+
+\item By \cref{overtly-discrete-colimit-finite}, we have a cover of any overtly discrete type by a countable type, which is an overtly discrete type that has choice.
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+(ii) implies that the propositional truncation of an overtly discrete type is open.
+
+(iii) implies that overtly discrete types are closed under countable coproducts.
+\end{remark}
+
+\begin{lemma}\label{equivalence-induced-by-open-is-open}
+Let $I$ be overtly discrete, and let $R$ be an open relation on $I$. Then the equivalence relation induced by $R$ is open.
+\end{lemma}
+
+\begin{proof}
+The equivalence relation $L(x,y)$ induced by $R$ is:
+\[\exists(k:\N). \exists(i_0,\cdots,i_k:I). i_0=x\land i_k=y \land (\forall l<k.\ R(i_l,i_{l+1})) \]
+which is open.
+\end{proof}
+
+\begin{lemma}
+Assume given a pushout square:
+\begin{center}
+\begin{tikzcd}
+I\ar[d]\ar[r] & K\ar[d] \\
+J\ar[r] & L  \\
+\end{tikzcd}
+\end{center}
+such that $I\to J$ is an embedding and $I,J,K$ are overtly discrete. Then $L$ is overtly discrete.
+\end{lemma}
+
+\begin{proof}
+The situation means we have an open $I\subset J$ and a map $f:I\to K$. Then $L$ is equivalent to the quotient of $J+K$ by the  equivalence relation generated by:
+\[i_0(x) \sim i_1(y)\ \mathrm{if\ we\ have\ that}\ (x\in I)\land f(x) = y\]
+It is overtly discrete by \cref{equivalence-induced-by-open-is-open}.
+\end{proof}

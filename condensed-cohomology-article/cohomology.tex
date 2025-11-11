@@ -1,37 +1,6 @@
 \subsection{First cohomology vanish for Stone spaces}
 
-First some result on \v{C}ech sequences and cohomology. It works in plain HoTT and is certainly not new.
-
-\begin{lemma}\label{cocyle-being-coboundary}
-Assume given sets $S,S'$ with a surjection:
-\[S'\to S\]
-and write $T(x)$ its fiber over $X:S$.
-
-Assume given $A:S\to \mathrm{Ab}$ with:
-\[\phi:\prod_{x:S}BA(x)\]
-and:
-\[\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}\]
-If the beginning of the \v{C}ech sequence:
-\[\prod_{x:S}A(x)^{T(x)} \to \prod_{x:S}A(x)^{T(x)^2}  \to \prod_{x:S}A(x)^{T(x)^3} \]
-is exact then $\phi=*$.
-\end{lemma}
-
-\begin{proof}
-See \cref{cech-sequence-definition} for the definition of the maps in the sequence.
-
-We define:
-\[g : \prod_{x:S}T(x)^2\to A(x)\]
-by having $g_x(y,z)$ the the element $\alpha_x(y)^{-1}\cdot\alpha_x(z)$. It is easy to check that it is a cocycle in the given sequence, so that by exactness there is $f:\prod_{x:S}T(x)\to A(x)$ such that for all $x:S$ and $y,z:T(x)$ we have that:
-\[g_x(y,z)=f_x(y)\cdot f_x(z)^{-1}\]
-Then we define:
-\[\alpha' : \prod_{x:S}(\phi(x)=*)^{T(x)}\]
-\[\alpha'_x(y) = \alpha_x(y)\cdot f_x(y)\]
-so that for all $x:S$ and $y,z:T(x)$ we have that:
-\[\alpha'_x(z)^{-1}\cdot\alpha'_x(y) = f_x(z)^{-1}\alpha_x(z)^{-1}\alpha_x(y)\cdot f_x(y) = \mathrm{refl}\]
-so that:
-\[\alpha'_x(y)=\alpha'_x(z)\]
-and this means that $\alpha'$ factors through $S$, giving a proof of $\phi=*$.
-\end{proof}
+\rednote{Should do it with a non-commutative group}
 
 We prove the \v{C}ech sequence of a map to a finite type is exact:
 
@@ -55,6 +24,8 @@ First we have that $a_{i,i}+a_{i,i}=a_{i,i}$ so that $a_{i,i}=0$. Then $a_{i,j}+
 \end{proof}
 
 We want to prove that the vanishing of the \v{C}ech sequence of Stone spaces with overtly discrete coefficients is stable under sequential limit. It will rely heavily on Scott continuity. We need an auxiliary definition:
+
+\rednote{We could bypass next definition by having a version of approximation of surjection between Stone spaces using actually finite type rather than merely finite types.}
 
 \begin{definition}
 Assume given $S = \lim_kS_k$ sequential limits of Stone and $A:S\to \mathrm{Ab}_\ODisc$. Then we define:
@@ -93,13 +64,47 @@ We conclude from this and exactness being stable under sequential colimit. We om
 
 We have that:
 \[\prod_{x:S_k}A_k(x)^{T_k(x)^l} = \prod_{x:S_k}\prod_{y:S,y|_k=x} A(y)^{T_k(x)^l} = \prod_{y:S} A(y)^{T_k(y|_k)^l}\]
-and by \cref{scott-continuity-right} we have that:
+and by \Cref{scott-continuity-right} we have that:
 \[\mathrm{colim}_k\left(\prod_{y:S} A(y)^{T_k(y|_k)^l}\right) = \prod_{y:S} \mathrm{colim}_k\left( A(y)^{T_k(y|_k)^l} \right)\]
-but by \cref{scott-continuity} we have that:
+but by \Cref{scott-continuity} we have that:
 \[\mathrm{colim}_k\left( A(y)^{T_k(y|_k)^l} \right) = A(y)^{\lim_k T_k(y|_k)^l}\]
 and we can see by commutation of limits that:
 \[\lim_k T_k(y|_k)^l = T(y)^l\]
 \end{proof}
+
+We give some result on \v{C}ech sequences and cohomology. It works in plain HoTT and is certainly not new.
+
+\begin{lemma}\label{cocyle-being-coboundary}
+Assume given sets $S,S'$ with a surjection:
+\[S'\to S\]
+and write $T(x)$ its fiber over $X:S$.
+
+Assume given $A:S\to \mathrm{Ab}$ with:
+\[\phi:\prod_{x:S}BA(x)\]
+and:
+\[\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}\]
+If the beginning of the \v{C}ech sequence:
+\[\prod_{x:S}A(x)^{T(x)} \to \prod_{x:S}A(x)^{T(x)^2}  \to \prod_{x:S}A(x)^{T(x)^3} \]
+is exact then $\phi=*$.
+\end{lemma}
+
+\begin{proof}
+See \Cref{cech-sequence-definition} for the definition of the maps in the sequence.
+
+We define:
+\[g : \prod_{x:S}T(x)^2\to A(x)\]
+by having $g_x(y,z)$ the the element $\alpha_x(y)^{-1}\cdot\alpha_x(z)$. It is easy to check that it is a cocycle in the given sequence, so that by exactness there is $f:\prod_{x:S}T(x)\to A(x)$ such that for all $x:S$ and $y,z:T(x)$ we have that:
+\[g_x(y,z)=f_x(y)\cdot f_x(z)^{-1}\]
+Then we define:
+\[\alpha' : \prod_{x:S}(\phi(x)=*)^{T(x)}\]
+\[\alpha'_x(y) = \alpha_x(y)\cdot f_x(y)\]
+so that for all $x:S$ and $y,z:T(x)$ we have that:
+\[\alpha'_x(z)^{-1}\cdot\alpha'_x(y) = f_x(z)^{-1}\alpha_x(z)^{-1}\alpha_x(y)\cdot f_x(y) = \mathrm{refl}\]
+so that:
+\[\alpha'_x(y)=\alpha'_x(z)\]
+and this means that $\alpha'$ factors through $S$, giving a proof of $\phi=*$.
+\end{proof}
+
 
 Now we just have to assemble the pieces.
 
@@ -117,11 +122,11 @@ so that by local choice there merely exists $S'$ Stone and a surjective map:
 \[q:S'\to S\]
 with fibers denoted $T(x)$ and:
 \[\alpha:\prod_{x:S'}(\phi(x)=*)^{T(x)}\]
-In order to conclude by applying \cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence:
+In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence:
 \[\prod_{x:S}A(x)^{T(x)} \to \prod_{x:S}A(x)^{T(x)^2}  \to \prod_{x:S}A(x)^{T(x)^3} \]
 is exact.
 
-By \cref{TODO} we know that any surjective map between Stone spaces is a sequential limit of surjective maps between finite types. So by applying \cref{vanishing-cech-stable-sequential-limits} we see it is enough to prove the exactness of the exact sequence for maps between finite types, and this is \cref{vanishing-cech-finite-types}.
+By \Cref{TODO} we know that any surjective map between Stone spaces is a sequential limit of surjective maps between finite types. So by applying \Cref{vanishing-cech-stable-sequential-limits} we see it is enough to prove the exactness of the exact sequence for maps between finite types, and this is \Cref{vanishing-cech-finite-types}.
 \end{proof}
 
 \subsection{Stone spaces are acyclic}
@@ -166,7 +171,7 @@ Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that
 \end{theorem}
 
 \begin{proof}
-We proceed by induction on $k$. For $k=1$ it is \cref{vanishing-1-cohomology-stone}.
+We proceed by induction on $k$. For $k=1$ it is \Cref{vanishing-1-cohomology-stone}.
 
 Assume it hold for all $0<k<n$ we want to prove it for $n$. Assume:
 \[\alpha : \prod_{x:S} K(A_x,k+1)\]
@@ -178,7 +183,7 @@ This means that the image of $\alpha$ under the diagonal map:
 \[\prod_{x:S} K(A_x,k+1) \to \prod_{x:S} K(A_x,k+1)^{T_x}\]
 merely is zero.
 
-By \cref{eilenberg-exponentials-auxiliary} it means that the image of $\alpha$ by the map:
+By \Cref{eilenberg-exponentials-auxiliary} it means that the image of $\alpha$ by the map:
 \[\prod_{x:S} K(A_x,n) \to \prod_{x:S} K(A_x^{T_x},n)\]
 merely is $0$, which means that the map:
 \[H^{n}(x:S,A_x) \to H^{n}(x:S,A_x^{T_x})\]
@@ -198,7 +203,7 @@ is an equivalence.
 \end{corollary}
 
 \begin{proof}
-From \cref{eilenberg-exponentials-auxiliary} and \cref{vanishing-cohomology-stone}.
+From \Cref{eilenberg-exponentials-auxiliary} and \Cref{vanishing-cohomology-stone}.
 \end{proof}
 
 
@@ -225,10 +230,10 @@ natural in $A$, where $L_x = A_x^{S_x}/A_x$.
 \begin{proof}
 Using the long exact sequence associated to:
 \[0\to A_x\to A_x^{S_x}\to L_x\to 0\]
-by \cref{vanishing-cohomology-stone} it is enough to prove that for all $n$ we have:
-\[H^n(x:X,A_x^{S_x}) = H^n(x:S,A_x)\]
-But by \cref{eilenberg-exponentials} we have that:
-\[\prod_{x:X}K(A_x^{S_x},n) = \prod_{x:S}K(A_x,n)\]
+by \Cref{vanishing-cohomology-stone} it is enough to prove that for all $n\geq 1$ we have:
+\[H^n(x:X,A_x^{S_x}) = 0\]
+But by \Cref{eilenberg-exponentials} we have that:
+\[\prod_{x:X}K(A_x^{S_x},n) = \prod_{x:S}K(A_x,n) = K(\prod_{x:S}A_x,n)\]
 \end{proof}
 
 \begin{definition}\label{cech-sequence-definition}
@@ -245,7 +250,7 @@ Then the \v{C}ech cohomology:
 is defined as the $k$-th homology group of the \v{C}ech complex.
 \end{definition}
 
-\begin{lemma}
+\begin{lemma}\label{long-exact-cech-cohomology}
 Assume given a \v{C}ech cover:
 \[f:S\to X\]
 If we are given a short exact sequence of overtly discrete abelian group:
@@ -256,7 +261,7 @@ Moreover this long exact sequence is natural in the short exact sequence.
 \end{lemma}
 
 \begin{proof}
-We just use the fact that all elements $\sum_{x:X} T_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact of the \v{C}ech complexes by \cref{vanishing-cohomology-stone}. Then we use well-known homological algebra.
+We just use the fact that all elements $\sum_{x:X} T_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}.
 \end{proof}
 
 \begin{lemma}\label{inductive-definition-cech-cohomology}
@@ -270,7 +275,9 @@ natural in $A$ where $L_x=A_x^{S_x}/A_x$.
 \end{lemma}
 
 \begin{proof}
-It is enough to prove $\check{H}^n(X,x\mapsto A_x^{S_x}) = 0$ for all $n\geq 1$. Indeed assume given:
+By \Cref{long-exact-cech-cohomology}, it is enough to prove $\check{H}^n(X,x\mapsto A_x^{S_x}) = 0$ 
+\rednote{maybe we could have this as an auxiliary lemma, as it does not use anything on $X$, $S$ and $A$? It can be found in Foundation I think.}
+for all $n\geq 1$. Indeed assume given:
 \[\alpha : \prod_{x:X} S_x^{n+1}\to S_x\to A_x\]
 such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $u_0,\cdots, u_{n+1},v:S_x$ we have that:
 \[\sum_{i=0}^{n+1}(-1)^i\alpha(x,u_0,\cdots,  \hat{u_i},\cdots ,u_{n+1},v) = 0\]
@@ -298,7 +305,7 @@ such that whenever $f(s)=f(t)$ we have that $\alpha(s) = \alpha(t)$ are naturall
 \[\prod_{x:X}A_x\]
 This is immediate.
 
-For the inductive step we use \cref{inductive-definition-cohomology} and \cref{inductive-definition-cech-cohomology}. Naturality comes from the naturality of the exact sequences.
+For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{inductive-definition-cech-cohomology}. Naturality comes from the naturality of the exact sequences.
 \end{proof}
 
 
