@@ -1,6 +1,25 @@
-\subsection{First cohomology vanish for Stone spaces}
+\subsection{First (non-abelian) cohomology vanish for Stone spaces}
 
-\rednote{Should do it with a non-commutative group}
+\rednote{Should check things work well with a non-commutative group}
+
+\begin{definition}
+Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,G)$ as:
+\[\prod_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^3} \]
+with:
+\[\delta_0(\alpha)_x(y_1,y_2) = \alpha_x(y_1)^{-1}\alpha_x(y_2)\]
+\[\delta_0(\beta)_x(y_1,y_2,y_3) = \beta_x(y_2,y_3)\beta_x(y_1,y_3)^{-1}\beta_x(y_1,y_2)\]
+We have that $\delta_1(\delta_0(\alpha)))_x(y_1,y_2,y_3) = 1$.
+\end{definition}
+
+\begin{lemma}
+Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. If we have a section $t:\prod_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
+\end{lemma}
+
+\begin{proof}
+As in [Foundations].
+\end{proof}
+
+\rednote{Next lemma would not be needed with the alternative totally ordered approximation.}
 
 We prove the \v{C}ech sequence of a map to a finite type is exact:
 
@@ -87,55 +106,48 @@ and we can see by commutation of limits that:
 We give some result on \v{C}ech sequences and cohomology. It works in plain HoTT and is certainly not new.
 
 \begin{lemma}\label{cocyle-being-coboundary}
-Assume given sets $S,S'$ with a surjection:
-\[S'\to S\]
-and write $T(x)$ its fiber over $X:S$.
-
-Assume given $A:S\to \mathrm{Ab}$ with:
-\[\phi:\prod_{x:S}BA(x)\]
+Assume given a set $X$ with $Y(x)$ an inhabited set depending on $x:X$. Moreover, assume given $G(x)$ a group depending on $x:X$ with:
+\[\phi:\prod_{x:X}BG(x)\]
 and:
-\[\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}\]
-If the beginning of the \v{C}ech sequence:
-\[\prod_{x:S}A(x)^{T(x)} \to \prod_{x:S}A(x)^{T(x)^2}  \to \prod_{x:S}A(x)^{T(x)^3} \]
-is exact then $\phi=*$.
+\[\psi:\prod_{x:X}(\phi(x)=*)^{Y(x)}\]
+If $\check{C}(X,Y,G)$ is exact then $\phi=*$.
 \end{lemma}
 
 \begin{proof}
-See \Cref{cech-sequence-definition} for the definition of the maps in the sequence.
-
 We define:
-\[g : \prod_{x:S}T(x)^2\to A(x)\]
-by having $g_x(y,z)$ the the element $\alpha_x(y)^{-1}\cdot\alpha_x(z)$. It is easy to check that it is a cocycle in the given sequence, so that by exactness there is $f:\prod_{x:S}T(x)\to A(x)$ such that for all $x:S$ and $y,z:T(x)$ we have that:
-\[g_x(y,z)=f_x(y)\cdot f_x(z)^{-1}\]
+\[\beta : \prod_{x:X} G(x)^{T(x)^2}\]
+by having $\beta_x(y_1,y_2) = \psi_x(y_1)^{-1} \cdot \psi_x(y_2)$. It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness there is $\alpha:\prod_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
+\[\beta_x(y_1,y_2)=\alpha_x(y_1)^{-1}\cdot \alpha_x(y_2)\]
 Then we define:
-\[\alpha' : \prod_{x:S}(\phi(x)=*)^{T(x)}\]
-\[\alpha'_x(y) = \alpha_x(y)\cdot f_x(y)\]
-so that for all $x:S$ and $y,z:T(x)$ we have that:
-\[\alpha'_x(z)^{-1}\cdot\alpha'_x(y) = f_x(z)^{-1}\alpha_x(z)^{-1}\alpha_x(y)\cdot f_x(y) = \mathrm{refl}\]
-so that:
-\[\alpha'_x(y)=\alpha'_x(z)\]
-and this means that $\alpha'$ factors through $S$, giving a proof of $\phi=*$.
+\[\psi' : \prod_{x:X}(\phi(x)=*)^{Y(x)}\]
+\[\psi'_x(y) = \psi_x(y)\cdot \alpha_x(y)^{-1}\]
+so that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
+\begin{eqnarray}
+\psi'_x(y_1)^{-1}\cdot\psi'_x(y_2) &=& \alpha_x(y_1) \cdot \psi_x(y_1)^{-1}\cdot \psi_x(y_2)\cdot \alpha_x(y_2)^{-1}\nonumber\\
+ &=&  \alpha_x(y_1) \cdot \beta_x(y_1,y_2)\cdot \alpha_x(y_2)^{-1} \nonumber\\
+ &=&  \alpha_x(y_1) \cdot\alpha_x(y_1)^{-1} \cdot\alpha_x(y_2)\cdot \alpha_x(y_2)^{-1} \nonumber\\ 
+ &=& 1 \nonumber
+ \end{eqnarray}
+This means that $\psi'_x(y_1) = \psi'(y_2)$, so that $\psi'$ factors through $S$, giving a proof of $\phi=*$.
 \end{proof}
 
 
 Now we just have to assemble the pieces.
 
 \begin{lemma}\label{vanishing-1-cohomology-stone}
-Let $S$ be Stone and $A: S\to \mathrm{Ab}_\ODisc$. Then:
-\[H^1(S,A) = 0\]
+Let $S$ be Stone and $G: S\to \mathrm{Gp}_\ODisc$. Then:
+\[H^1(S,G) = 0\]
 \end{lemma}
 
 \begin{proof}
 Assume given:
-\[\phi:\prod_{s:S}BA(x)\]
+\[\phi:\prod_{s:S}BG(x)\]
 we have that:
 \[\prod_{x:S}\propTrunc{\phi(x)=*}\]
-so that by local choice there merely exists $S'$ Stone and a surjective map:
-\[q:S'\to S\]
-with fibers denoted $T(x)$ and:
-\[\alpha:\prod_{x:S'}(\phi(x)=*)^{T(x)}\]
+so that by local choice there merely exists $T(x)$ inhabited Stone space depending on $x:S$ with
+\[\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}\]
 In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence:
-\[\prod_{x:S}A(x)^{T(x)} \to \prod_{x:S}A(x)^{T(x)^2}  \to \prod_{x:S}A(x)^{T(x)^3} \]
+\[\prod_{x:S}G(x)^{T(x)} \to \prod_{x:S}G(x)^{T(x)^2}  \to \prod_{x:S}G(x)^{T(x)^3} \]
 is exact.
 
 By \Cref{TODO} we know that any surjective map between Stone spaces is a sequential limit of surjective maps between finite types. So by applying \Cref{vanishing-cech-stable-sequential-limits} we see it is enough to prove the exactness of the exact sequence for maps between finite types, and this is \Cref{vanishing-cech-finite-types}.
@@ -143,82 +155,43 @@ By \Cref{TODO} we know that any surjective map between Stone spaces is a sequent
 
 \subsection{Stone spaces are acyclic}
 
-\rednote{Probably better phrased as simply for all A, S we have that $K(A^S,n) \simeq K(A,n)^S$ inductively, with cohomology as corollary.}
 
-We extend the previous section to the following: for all $S$ Stone,$A:S\to\mathrm{Ab}_\ODisc$ and $n>0$ we have that:
-\[H^n(S,A) = 0\]
-We (Thierry \& Hugo) follow David's proof in SAG to go from $1$ to all $n$.
-
-\begin{lemma}\label{eilenberg-exponentials-auxiliary}
-Assume for all $S$ Stone and $A:\mathrm{Ab}_\ODisc$ we have that:
-\[H^k(S,A) = 0\] 
-for all $0<k<n$. Then:
-\begin{itemize}
-\item For all $S$ Stone and $A$ overtly discrete abelian group, for all $k<n$ the map:
-\[K(A^S,k) \to K(A,k)^S\]
+\begin{theorem}\label{eilenberg-exponentials}
+Assume given $S:\Stone$ and $A:S\to \mathrm{Ab}_\ODisc$, then for all $n:\N$ we have that the canonical map:
+\[K(\prod_{x:S}A(x),n)\to \prod_{x:S}K(A(x),n)\]
 is an equivalence.
-\item For all $S$ Stone and $A$ overtly discrete abelian group, the map:
-\[K(A^S,n) \to K(A,n)^S\]
-is an embedding.
-\end{itemize}
-\end{lemma}
-
-\begin{proof}
-We proceed by induction on $n$. If $n=0$ this is clear as we always have that $K(A^S,0) = K(A,0)^S$.
-
-Assume it holds for $n$, then:
-\begin{itemize} 
-\item We need to prove that the embedding:
-\[K(A^S,n) \to K(A,n)^S\]
-is an equivalence. If $n=0$ it is immediate and otherwise by $H^n(S,A)=0$ we know that $K(A,n)^S$ is connected, so the embedding is surjective and therefore an equivalence. 
-\item We need to prove that the map:
-\[K(A^S,n+1) \to K(A,n+1)^S\]
-is an embedding, since the source is connected it is enough to prove that:
-\[\Omega K(A^S,n+1) \to \Omega (K(A,n+1)^S)\]
-is an equivalence but this is the previous bullet-point.
-\end{itemize}
-\end{proof}
-
-\begin{theorem}\label{vanishing-cohomology-stone}
-Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that:
-\[H^n(S,A) = 0\]
 \end{theorem}
 
 \begin{proof}
-We proceed by induction on $k$. For $k=1$ it is \Cref{vanishing-1-cohomology-stone}.
+We proceed by induction on $n$. If $n=0$ this is clear.
 
-Assume it hold for all $0<k<n$ we want to prove it for $n$. Assume:
-\[\alpha : \prod_{x:S} K(A_x,k+1)\]
-By local choice we have a surjective map:
-\[f:\sum_{x:S}T_x\to S\]
-with $T_x$ Stone such that we merely have:
-\[\prod_{x:S} T_x\to (\alpha(x) = *)\]
-This means that the image of $\alpha$ under the diagonal map:
-\[\prod_{x:S} K(A_x,k+1) \to \prod_{x:S} K(A_x,k+1)^{T_x}\]
-merely is zero.
+Assume the result for $n$, let us prove it for $n+1$. 
 
-By \Cref{eilenberg-exponentials-auxiliary} it means that the image of $\alpha$ by the map:
-\[\prod_{x:S} K(A_x,n) \to \prod_{x:S} K(A_x^{T_x},n)\]
-merely is $0$, which means that the map:
-\[H^{n}(x:S,A_x) \to H^{n}(x:S,A_x^{T_x})\]
-sends $\alpha$ to $0$. 
+First we prove that the map:
+\[K(\prod_{x:S}A(x),n+1) \to \prod_{x:S}K(A(x),n+1)\]
+is an embedding. Since the source is pointed and connected it is enough to prove the induced map:
+\[\Omega(K(\prod_{x:S}A(x),n+1)) \to \Omega(\prod_{x:S}K(A(x),n+1))\]
+is an equivalence, but this map is equal to the canonical map:
+\[K(\prod_{x:S}A(x),n) \to \prod_{x:S}K(A(x),n)\]
+so we conclude by induction hypothesis.
 
+Now it is enough to prove that any $H^{n+1}(S,A) = 0$ to conclude. Indeed then $\prod_{x:S}K(A(x),n+1)$ is connected, so the map is surjective and we can conclude. If $n=0$ this is the abelian version of \Cref{vanishing-1-cohomology-stone}. We can assume $n\geq 1$.
+
+Given $\alpha : H^{n+1}(S,A)$, by local choice we get $T(x)$ Stone inhabited depending on $x:S$ such that $\alpha$ is send by $0$ through the map:
+\[H^{n+1}(\Sigma_{x:S}T(x),A)\]
+Since $K(A(x)^{T(x)},n+1)\to K(A(x),n+1)^{T(x)}$ is an embedding by induction hypothesis, we get that $H^{n+1}(S,\lambda x. A(x)^{T(x)})\to H^{n+1}(\Sigma_{x:S}T(x),A)$ is injective, so that $\alpha$ is send to $0$ by the map:
+\[H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A(x)^{T(x)})\]
 Then we consider the exact sequence depending on $x:S$:
-\[0\to A_x\to A_x^{T_x}\to L_x\to 0\]
+\[0\to A_x\to A(x)^{T(x)}\to L(x)\to 0\]
 so we have an exact sequence: 
-\[H^{n-1}(x:S,L_x)\to H^n(x:S,A_x)\to H^n(x:S,A_x^{T_x})\]
-where $\alpha$ is send to $0$ in $H^n(x:S,A_x^{T_x})$. By induction we have $H^{n-1}(x:S,L_x)=0$ from which we conclude that $\alpha$ is equal to $0$ in $H^n(x:S,A_x)$.
+\[H^{n}(S,L)\to H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A(x)^{T(x)})\]
+where $\alpha:H^{n+1}(S,A)$ is send to $0$. By induction we have that $\prod_{x:S}K(L(x),n) = K(\prod_{x:S}L(x),n)$ so that $H^{n}(S,L)=0$ since $n\geq 1$. Then $\alpha = 0$ and we can conclude.
 \end{proof}
 
-\begin{corollary}\label{eilenberg-exponentials}
-For all $S$ Stone, $A:\mathrm{Ab}_\ODisc$ and $n$ we have that the map:
-\[K(A^S,n) \to K(A,n)^S\]
-is an equivalence.
+\begin{corollary}\label{vanishing-cohomology-stone}
+Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that:
+\[H^n(S,A) = 0\]
 \end{corollary}
-
-\begin{proof}
-From \Cref{eilenberg-exponentials-auxiliary} and \Cref{vanishing-cohomology-stone}.
-\end{proof}
 
 
 \subsection{\v{C}ech cohomology}
