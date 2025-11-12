@@ -1,5 +1,7 @@
 \subsection{Preliminary work}
 
+\rednote{Would be nicer to prove it for Stone spaces, and then generalise to Compact Hausdorff using abstract reasoning on quotients. This makes Lemmas 3.1.2 to 3.1.5 redundant}
+
 \begin{lemma}\label{factorisation-stone-finite}
 For any tower of Stone space $(S_k)_{k:\N}$ and $l:\N$, we have that:
 \[\left(\mathrm{lim}_kS_k\to \mathrm{Fin}(l)\right) \simeq \mathrm{colim}_k (S_k\to \mathrm{Fin}(l))\]
@@ -189,6 +191,57 @@ there merely exists $n:\N$ such that $f$ factors through:
 \[\Pi_{k:\mathrm{Fin}(n)} S_k\]
 which justifies the name.
 \end{remark}
+
+
+\subsection{Tychonov and its dual}
+
+\begin{theorem}[Tychonov]
+Assume given $I$ overtly discrete and $C_i$ compact Hausdorff depending on $i:I$. Then:
+\[\prod_{i:I}C_i\]
+is compact Hausdorff.
+\end{theorem}
+
+\begin{proof}
+We can assume $I = \mathrm{colim}_{k:\N}\mathrm{Fin}(l_k)$. Then:
+\[\prod_{i:I}C_i = \prod_{i:\mathrm{colim}_{k:\N}\mathrm{Fin}(l_k)} C_i = \lim_{k:\N} C_i^{l_k}\]
+and we can conclude using that compact Hausdorff spaces are stable under sequential limits and finite products.
+\end{proof}
+
+\begin{lemma}\label{tychonov-dual-auxiliary}
+Assume $p:C\to D$ a surjective map with $C$ and $D$ compact Hausdorff. Given $I_x$ overtly discrete depending on $x:D$, if:
+\[\prod_{x:C}I_{p(x)}\]
+is overtly discrete then so is:
+\[\prod_{x:D}I_x\]
+\end{lemma}
+
+\begin{proof}
+Since the map is surjective we have an embedding:
+\[\prod_{x:D}I_x\subset \prod_{x:C}I_{p(x)}\]
+But the fiber over $g:\prod_{x:C}I_{p(x)}$ is:
+\[\forall (x,y:C). p(x)=p(y) \to g(x)=g(y)\]
+which is open by \cref{compact-hausdorff-compact}.
+\end{proof}
+
+\begin{theorem}[Tychonov's dual]\label{tychonov-dual}
+Assume given $C$ compact Hausdorff and $I_x$ overtly discrete depending on $x:C$. Then:
+\[\prod_{x:C}I_x\]
+is overtly discrete.
+\end{theorem}
+
+\begin{proof}
+By local choice and \cref{tychonov-dual-auxiliary} we can assume that $C$ is Stone (so we denote $C$ by $S$) and that we have towers of finite types $(\mathrm{Fin}(l_{k,x}))_{k:\N}$ such that for all $x:S$ we have that:
+\[I_x = \mathrm{colim}_k\mathrm{Fin}(l_{k,x})\] 
+Then using \cref{scott-continuity-right} and the fact that overtly discrete types are stable under sequential colimits, it is enough to prove that for $S$ Stone and $l_x:\N$ depending on $x:S$ we have that:
+\[\prod_{x:S}\mathrm{Fin}(l_{x})\]
+is overtly discrete. 
+
+Using boundedness, the fact that:
+\[S_k = \left(\Sigma_{x:S} l_x = k\right)\] 
+is Stone and that overtly discrete types are stable under finite products, we just have to prove that for any $l:\N$ and $S$ Stone we have that:
+\[S\to \mathrm{Fin}(l)\]
+is overtly discrete. We can conclude using that \cref{factorisation-stone-finite} and that Stone are limits of finite types.
+\end{proof}
+
 
 \subsection{The general version of Scott continuity}
 
