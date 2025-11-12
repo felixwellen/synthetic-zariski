@@ -1,0 +1,67 @@
+\begin{remark}
+  By dependent choice, for any sequence of finite sets $(X_n)_{n:\N}$
+  we can merely find a sequence $l : \N \to \N$ such that $||X_n = Fin(l_n)||$.
+  Thus we have a surjection 
+  $$\left(\sum_{l:\N\to\N} \prod_{k:\N}\Fin(l_{k+1}) \to 
+  \Fin(l_k)\right) \twoheadrightarrow \Stone$$
+  sending a sequence 
+  $\begin{tikzcd}
+    Fin(l_0) & Fin(l_1) \arrow[l, "\gamma_0"'] & Fin (l_2) \arrow[l , "\gamma_1"'] & \cdots \arrow[l, "\gamma_2"']
+  \end{tikzcd}$
+  to it's limit. 
+
+  Note that the limit of a sequence is inhabited if and only if $l_k$ is positive 
+  for all $ k : \N$. 
+  Therefore, this above surjection restricts to a surjection 
+  $$\alpha : \left(\sum_{l:\N\to\N_+} \prod_{k:\N}\Fin(l_{k+1}) \to 
+  \Fin(l_k)\right) \twoheadrightarrow \sum_{X:\Stone}\propTrunc{X}.$$ 
+\end{remark} 
+
+
+\begin{lemma}
+For $S:\Stone$, any map $T:S\to \sum_{X:\Stone}\propTrunc{X}$ 
+merely factors through $\alpha$ above.
+\end{lemma}
+\begin{proof}
+  By Theorem 4.18 of \cite{condensed-foundations}, 
+  the total space $\Sigma_{s : S} T(s)$ is Stone. 
+  Note that as $T$ lands in inhabited Stone spaces, 
+  the projection map $\pi_S : \Sigma_{s : S} T(s) \to S$ is surjective. 
+  By Remark 3.4 of \cite{condensed-foundations} and dependent choice, 
+  we can write $\pi_S$ as sequential limits of surjections
+  $\pi_{S,n} : Fin(\alpha_n) \twoheadrightarrow Fin(\beta_n)$ for some sequences 
+  $\alpha,\beta : \N \to \N$. Write $\cdot|_n$ for the map $S \to Fin(\alpha_n)$. 
+  
+  Now fix $s:S$.
+  Note that $T(s)$ is the fiber of $\pi_S$ at $s$. 
+  Furthermore, the fiber is a limit, hence commutes with sequential limits, so 
+  $T(s)$ is the limit of the fibers of $\pi_{S,n}$ at $s|_n$.
+
+  Now the fiber of a map between finite sets is finite. 
+  Let $\beta : \N \to \N$ denote the size of $\pi_{S,n}^{-1}(s|_n)$. 
+  The order on $Fin(\alpha_n)$ induces an explicit equivalence between 
+  $\pi_{S,n}^{-1}(s|_n)$ and $Fin(\beta_n)$. 
+  We now have that $T(s) $ is the limit of $Fin(\beta_n)$.
+  As $T(s)$ is inhabited, we have that $\beta_n >0$ for all $n$, 
+  and we get the desired result. 
+\end{proof}
+  
+
+
+
+
+
+
+
+% Thus there exists sequences $t, s : \mathbb N \to \mathbb N$ with maps
+% $\Pi_{n : \N} Fin(t_{n+1}) \to Fin(t_n), 
+% \Pi_{n : \N} Fin(s_{n+1}) \to Fin(s_n), 
+% \Pi_{n : \N} Fin(t_n) \to Fin(s_n)$ 
+%  such that
+%  \begin{equation}\begin{tikzcd}
+%    Fin(t_0) \arrow[d, two heads] & Fin (t_1) \arrow[l] \arrow[d, two heads] & 
+%    \arrow[l]\cdots & \arrow[l] \arrow[d, two heads] Fin (t_n) & \cdots \arrow[l] & 
+%    \arrow[ l ] \arrow [d, two heads ]\Sigma_{s : S} T(s)\\
+%    Fin(s_0) & Fin (s_1) \arrow[l] & \cdots \arrow[l] & \arrow[l] Fin (s_n) & 
+%    \cdots \arrow[l] & \arrow[ l ] S\\
+%  \end{tikzcd}\end{equation}  
