@@ -1,109 +1,23 @@
 \subsection{First (non-abelian) cohomology vanish for Stone spaces}
 
-\rednote{Should check things work well with a non-commutative group}
-
 \begin{definition}
-Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,G)$ as:
+Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. We define its its short \v{C}ech sequence $\check{C}(X,Y,G)$ as:
 \[\prod_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^3} \]
 with:
-\[\delta_0(\alpha)_x(y_1,y_2) = \alpha_x(y_1)^{-1}\alpha_x(y_2)\]
-\[\delta_0(\beta)_x(y_1,y_2,y_3) = \beta_x(y_2,y_3)\beta_x(y_1,y_3)^{-1}\beta_x(y_1,y_2)\]
+\[\delta_0(\alpha)_x(y_1,y_2) = \alpha_x(y_1)^{-1}\cdot\alpha_x(y_2)\]
+\[\delta_0(\beta)_x(y_1,y_2,y_3) = \beta_x(y_2,y_3)\cdot\beta_x(y_1,y_3)^{-1}\cdot\beta_x(y_1,y_2)\]
 We have that $\delta_1(\delta_0(\alpha)))_x(y_1,y_2,y_3) = 1$.
 \end{definition}
 
-\begin{lemma}
-Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. If we have a section $t:\prod_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
+First we give a couple of auxiliary results on \v{C}ech short sequence, justifying there usefulness.
+
+\begin{lemma}\label{cover-with-section-exact-cech}
+Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. If we merely have a section $t:\prod_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
 \end{lemma}
 
 \begin{proof}
 As in [Foundations].
 \end{proof}
-
-\rednote{Next lemma would not be needed with the alternative totally ordered approximation.}
-
-We prove the \v{C}ech sequence of a map to a finite type is exact:
-
-\begin{lemma}\label{vanishing-cech-finite-types}
-Assume $F$ finite type with a type $X$ and a surjective map $q:X\to F$. We write $I(x)$ the fibers of $q$ over $x:F$. 
-
-Assume given $A:F\to \mathrm{Ab}$, then the \v{C}ech sequence:
-\[\prod_{x:F}A(x)^{I(x)} \to \prod_{x:F}A(x)^{I(x)^2}  \to \prod_{x:F}A(x)^{I(x)^3} \]
-is exact.
-\end{lemma}
-
-\begin{proof}
-Since $F$ is finite and exactness is stable under finite products, we can assume $F=1$, then $A$ is just an abelian group and $I$ an inhabited type, say with $0:I$. Then we are considering the sequence:
-\[A^I \to A^{I^2} \to A^{I^3}\]
-with the maps:
-\[(a_i)_{i:I} \mapsto (a_i-a_j)_{i,j:I}\]
-\[(a_{i,j})_{i,j:I} \mapsto (a_{i,j}+a_{j,k}-a_{i,k})_{i,j,k:I}\]
-Assume $(a_{i,j})_{i,j:I}$ such that for all $i,j,k:I$ we have that $a_{i,j}+a_{j,k}=a_{i,k}$. 
-
-First we have that $a_{i,i}+a_{i,i}=a_{i,i}$ so that $a_{i,i}=0$. Then $a_{i,j}+a_{j,i} = a_{i,i}$ gives that $a_{i,j} = -a_{j,i}$. Now we consider $(a_{i,0})_{i:I}$, which is sends to $(a_{i,0}-a_{j,0})_{i,j:I} = (a_{i,j})_{i,j:I}$. So the sequence is indeed exact.
-\end{proof}
-
-We want to prove that the vanishing of the \v{C}ech sequence of Stone spaces with overtly discrete coefficients is stable under sequential limit. It will rely heavily on Scott continuity. We need an auxiliary definition:
-
-\rednote{We could bypass next definition by having a version of approximation of surjection between Stone spaces using actually finite type rather than merely finite types. We would need:
-
-\begin{lemma}
-We have a surjective map $\alpha : \left(\sum_{l:\N\to\N_+} \prod_{k:\N}\Fin(l_{k+1}) \to \Fin(l_k)\right) \to \sum_{X:\Stone}\propTrunc{X}$ defined by $(l,\alpha) \mapsto \mathrm{lim}_k\Fin(l_k)$. For $S:\Stone$, any map $T:S\to \sum_{X:\Stone}\propTrunc{X}$ merely factors through $\alpha$.
-\end{lemma}
-
-\begin{proof}
-TODO use the approximation of any surjective $T\to S$ as finite types.
-\end{proof}
-
-I guess we also have that a finite cover of $S$ is the same as a map from $S$ to $\N$, meaning that $H^1(S,Aut(n)) = 0$ for all $n:\N$.
-
-}
-
-\begin{definition}
-Assume given $S = \lim_kS_k$ sequential limits of Stone and $A:S\to \mathrm{Ab}_\ODisc$. Then we define:
-\[A_k: S_k\to \mathrm{Ab}_{\ODisc}\]
-\[A_k(x) = \prod_{y:S,y|_k=x} A(y)\]
-By the dual to Tychonov, we have that $A_k(x)$ is overtly discrete. 
-
-Moreover we for all $k:\N$ and $x:S_{k+1}$ we have a map:
-\[A_k(x|_k) \to A_{k+1}(x)\]
-\end{definition}
-
-The two references in the proof are to variants of Scott continuity, in the directed univalence draft.
-
-\begin{lemma}\label{vanishing-cech-stable-sequential-limits}
-Assume given $S=\lim_kS_k$ and $S'=\lim_kS'_k$ limits of Stone spaces, and a surjective map of towers:
-\begin{center}
-\begin{tikzcd}
-S_0' \ar[d] & S_1'\ar[l]\ar[d] & S_2'\ar[d]\ar[l]& \cdots\ar[l] \\
-S_0 & S_1\ar[l] & S_2 \ar[l]& \cdots\ar[l] \\
-\end{tikzcd}
-\end{center}
-
-We denote the fibers of the induced map $S'\to S$ over $x:S$ by $T(x)$ and the fibers of the map $S_k'\to S_k$ over $x:S_k$ by $T_k(x)$.
-
-Assume given $A:S\to\mathrm{Ab}_\ODisc$ such that for all $k:\N$ the \v{C}ech sequence:
-\[\prod_{x:S_k}A_k(x)^{T_k(x)} \to \prod_{x:S_k}A_k(x)^{T_k(x)^2}  \to \prod_{x:S_k}A_k(x)^{T_k(x)^3} \]
-is exact. Then the \v{C}ech sequence:
-\[\prod_{x:S}A(x)^{T(x)} \to \prod_{x:S}A(x)^{T(x)^2}  \to \prod_{x:S}A(x)^{T(x)^3} \]
-is exact.
-\end{lemma}
-
-\begin{proof}
-We prove that for any $l:\N$ we have that:
-\[\mathrm{colim}_k \left(\prod_{x:S_k}A_k(x)^{T_k(x)^l}\right)  = \prod_{x:S}A(x)^{T(x)^l} \]
-We conclude from this and exactness being stable under sequential colimit. We omit the verification that this is compatible with maps. 
-
-We have that:
-\[\prod_{x:S_k}A_k(x)^{T_k(x)^l} = \prod_{x:S_k}\prod_{y:S,y|_k=x} A(y)^{T_k(x)^l} = \prod_{y:S} A(y)^{T_k(y|_k)^l}\]
-and by \Cref{scott-continuity-right} we have that:
-\[\mathrm{colim}_k\left(\prod_{y:S} A(y)^{T_k(y|_k)^l}\right) = \prod_{y:S} \mathrm{colim}_k\left( A(y)^{T_k(y|_k)^l} \right)\]
-but by \Cref{scott-continuity} we have that:
-\[\mathrm{colim}_k\left( A(y)^{T_k(y|_k)^l} \right) = A(y)^{\lim_k T_k(y|_k)^l}\]
-and we can see by commutation of limits that:
-\[\lim_k T_k(y|_k)^l = T(y)^l\]
-\end{proof}
-
-We give some result on \v{C}ech sequences and cohomology. It works in plain HoTT and is certainly not new.
 
 \begin{lemma}\label{cocyle-being-coboundary}
 Assume given a set $X$ with $Y(x)$ an inhabited set depending on $x:X$. Moreover, assume given $G(x)$ a group depending on $x:X$ with:
@@ -131,11 +45,39 @@ so that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
 This means that $\psi'_x(y_1) = \psi'(y_2)$, so that $\psi'$ factors through $S$, giving a proof of $\phi=*$.
 \end{proof}
 
+Now our key idea is to use finite approximation of Stone space.
+
+\begin{lemma}\label{finite-approximation-stone-surjection-cohomology}
+Assume given a Stone space and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$. Then there exists a sequence $T_k: S\to \Stone$ with $\prod_{x:S}T_{k+1}(x)\to T_k(x)$ for $k:\N$ such that:
+\begin{itemize} 
+\item For all $x:S$ we have $\mathrm{lim}_kT_k(x) = T(x)$.
+\item For all $k:\N$ we have a section in $\prod_{x:S}T_k(x)$.
+such that $T_k$ are Stone, $p_k$
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+From \cite{foundation}, we get a tower of finite types $(S_k)_{k:\N}$ with a dependent tower of merely inhabited finite types $(Q_k:S_k\to \Type)_{k:\N}$ over it such that $\mathrm{lim}_kQ_k = S$ and given $x:S$ we have that $\lim_kQ_k(x_k) = T(x)$. Since $S_k$ is finite we merely have sections in $\prod_{x:S_k}Q_k(x)$ and then defining $T_k : S\to \Stone$ as $T_k(x) = Q_k(x_k)$ works.
+\end{proof}
+
+\begin{lemma}\label{short-cech-exact}
+Assume given $S:\Stone$ and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$ with $G:S\to \mathrm{Grp}_\ODisc$. Then $\check{C}(S,T,G)$ is exact.
+\end{lemma}
+
+\begin{proof}
+We use \Cref{finite-approximation-stone-surjection-cohomology} to get a sequence of $T_k:S\to \Stone$ having sections such that $\mathrm{lim}_kT_k(x) = T(x)$ for all $x:S$, since they have section by \Cref{cover-with-section-exact-cech} we have that $\check{S,T_k,G}$ is exact for all $k:\N$, we just need to prove $\mathrm{colim}_k\check{C}(S,T,G) = \check{C}(S,T,G)$ to conclude, as a sequential colimit of exact sequence is exact. But we have that:
+\begin{eqnarray}
+\mathrm{colim}_k \prod_{x:S}G(x)^{T_k(x)^l} &=& \prod_{x:S}\mathrm{colim}_k G(x)^{T_k(x)^l}\nonumber\\
+&=& \prod_{x:S}G(x)^{\mathrm{lim}_kT_k(x)^l}\nonumber\\
+&=& \prod_{x:S}G(x)^{T(x)^l}\nonumber
+\end{eqnarray}
+where the first equality comes from \Cref{scott-continuity-right} and the second from \Cref{scott-continuity-left}.
+\end{proof}
 
 Now we just have to assemble the pieces.
 
 \begin{lemma}\label{vanishing-1-cohomology-stone}
-Let $S$ be Stone and $G: S\to \mathrm{Gp}_\ODisc$. Then:
+Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. Then:
 \[H^1(S,G) = 0\]
 \end{lemma}
 
@@ -146,11 +88,7 @@ we have that:
 \[\prod_{x:S}\propTrunc{\phi(x)=*}\]
 so that by local choice there merely exists $T(x)$ inhabited Stone space depending on $x:S$ with
 \[\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}\]
-In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence:
-\[\prod_{x:S}G(x)^{T(x)} \to \prod_{x:S}G(x)^{T(x)^2}  \to \prod_{x:S}G(x)^{T(x)^3} \]
-is exact.
-
-By \Cref{TODO} we know that any surjective map between Stone spaces is a sequential limit of surjective maps between finite types. So by applying \Cref{vanishing-cech-stable-sequential-limits} we see it is enough to prove the exactness of the exact sequence for maps between finite types, and this is \Cref{vanishing-cech-finite-types}.
+In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence $\check{S,T,G}$ is exact. But this is \Cref{short-cech-exact}.
 \end{proof}
 
 \subsection{Stone spaces are acyclic}
