@@ -1,4 +1,15 @@
 \subsection{First (non-abelian) cohomology vanish for Stone spaces}
+In this section, we generalize the cohomological results in Section 5 of \cite{synthetic-stone-duality} from Abelian groups to general groups.
+
+\begin{remark}
+  Let $G$ be a group. 
+  We write $BG$ for the delooping of $G$ 
+  \cite{hott,davidw23}. 
+  Recall that $BG$ is a type with a term 
+  $* : BG$ such that group $* = *$ is equal to $G$. 
+  Recall also that $H^1(X,G)$ 
+  is the set truncation of $X \to \B G$. 
+\end{remark} 
 
 \begin{definition}
 Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. We define its its short \v{C}ech sequence $\check{C}(X,Y,G)$ as:
@@ -16,7 +27,26 @@ Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$
 \end{lemma}
 
 \begin{proof}
-As in [Foundations].
+  Lemma 5.5 of \cite{synthetic-stone-duality} goes trough 
+
+  \rednote{Check:}
+  Assume given a cocycle $\beta: \Pi_{x : X} A_x^{T_x^2}$. 
+  Define $\alpha :\Pi_{x : X} A_x ^{T_x}$ by 
+  $\alpha_x(u) = \beta_x(t_x,u)$. Then 
+  \begin{align*}
+    \delta_0(\alpha)_x(u,v) = 
+    &\alpha_x(u)^{-1}\cdot\alpha_x(v) = \\
+    &\beta_x(t_x,u)^{-1} \cdot \beta(t_x,v)
+  \end{align*}
+  As $\beta$ is a cocycle, we have that 
+  $$\beta_x(u,v) \cdot \beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = 1,$$
+  hence
+  $$\beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = \beta_x(u,v)^{-1},$$
+  and taking inverses then gives that 
+  $$\beta_x(t_x,u)^{-1} \cdot \beta_x(t_x,v) = \beta_x(u,v),$$
+  from which we conclude that 
+  $\delta_0(\alpha)_x(u,v) = \beta_x(u,v)$, so $\beta$ is a coboundary. 
+  Hence the sequence is exact. 
 \end{proof}
 
 \begin{lemma}\label{cocyle-being-coboundary}
@@ -42,7 +72,7 @@ so that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
  &=&  \alpha_x(y_1) \cdot\alpha_x(y_1)^{-1} \cdot\alpha_x(y_2)\cdot \alpha_x(y_2)^{-1} \nonumber\\ 
  &=& 1 \nonumber
  \end{eqnarray}
-This means that $\psi'_x(y_1) = \psi'(y_2)$, so that $\psi'$ factors through $S$, giving a proof of $\phi=*$.
+This means that $\psi'_x(y_1) = \psi'(y_2)$, so that $\psi'$ factors through $X$, giving a proof of $\phi=*$.
 \end{proof}
 
 Now our key idea is to use finite approximation of Stone space.
@@ -52,12 +82,26 @@ Assume given a Stone space and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{
 \begin{itemize} 
 \item For all $x:S$ we have $\mathrm{lim}_kT_k(x) = T(x)$.
 \item For all $k:\N$ we have a section in $\prod_{x:S}T_k(x)$.
-such that $T_k$ are Stone, $p_k$
+%such that $T_k$ are Stone.%, $p_k$
 \end{itemize}
 \end{lemma}
 
+%\begin{proof}
+%From \cite{foundation}, we get a tower of finite types $(S_k)_{k:\N}$ with a dependent tower of merely inhabited finite types $(Q_k:S_k\to \Type)_{k:\N}$ over it such that $\mathrm{lim}_kQ_k = S$ and given $x:S$ we have that $\lim_kQ_k(x_k) = T(x)$. Since $S_k$ is finite we merely have sections in $\prod_{x:S_k}Q_k(x)$ and then defining $T_k : S\to \Stone$ as $T_k(x) = Q_k(x_k)$ works.
+%\end{proof}
 \begin{proof}
-From \cite{foundation}, we get a tower of finite types $(S_k)_{k:\N}$ with a dependent tower of merely inhabited finite types $(Q_k:S_k\to \Type)_{k:\N}$ over it such that $\mathrm{lim}_kQ_k = S$ and given $x:S$ we have that $\lim_kQ_k(x_k) = T(x)$. Since $S_k$ is finite we merely have sections in $\prod_{x:S_k}Q_k(x)$ and then defining $T_k : S\to \Stone$ as $T_k(x) = Q_k(x_k)$ works.
+  By assumption, the projection 
+  $\pi: \sum_{x:S} T(x) \to S$ is surjective.
+  By Theorem 4.18 of \cite{synthetic-stone-duality}, the domain is Stone.
+  Hence by Remark 3.4 of \cite{synthetic-stone-duality}, 
+  we can write $\pi$ as limit of surjections between finite sets, 
+  which we write $\pi_k : Q_k\twoheadrightarrow S_k$. 
+  As taking fibers and limits commute, we have that 
+  $T(x)$ is the limit of $\pi_k^{-1}(x|_k)=:T_k(x)$, 
+  which is a closed subset of a finite set, hence Stone by 
+  Theorem 3.11 of \cite{synthetic-stone-duality}. 
+  Furthermore, surjections of finite sets have sections, 
+  giving the required section $\Pi_{x :S} T_k(x)$. 
 \end{proof}
 
 \begin{lemma}\label{short-cech-exact}
