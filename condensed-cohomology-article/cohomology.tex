@@ -2,13 +2,19 @@
 In this section, we generalize the cohomological results in Section 5 of \cite{synthetic-stone-duality} from Abelian groups to general groups.
 
 \begin{remark}
-  Let $G$ be a group. 
-  We write $BG$ for the delooping of $G$ 
-  \cite{hott,davidw23}. 
-  Recall that $BG$ is a type with a term 
-  $* : BG$ such that group $* = *$ is equal to $G$. 
-  Recall also that $H^1(X,G)$ 
-  is the set truncation of $X \to \B G$. 
+  Let $G$ be a group,
+  we denote $K(G,n)$ for the $n$'th delooping of $G$.
+  To be precise, $K(G,0) = G$ and 
+  $K(G,n+1)$ is a pointed type with only one point
+  with loop space $K(G,n)$, 
+  and such that \cite{davidw23}.
+  To be more precise, we have $*:K(G,n+1)$, 
+  $\Pi_{x : K(G,n+1)} \propTrunc{x = *}$ and the type
+  $*=*$ is cannonically equal to $G$. 
+  The first delooping of $G$ is denoted $BG$. 
+  \\
+  For $X$ a type and $G: X \to Group$ 
+  we define $H^n(X,G) = ||\Pi_{x : X} K(G(x),n)||_0$.
 \end{remark} 
 
 \begin{definition}
@@ -33,11 +39,11 @@ Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$
   Assume given a cocycle $\beta: \Pi_{x : X} A_x^{T_x^2}$. 
   Define $\alpha :\Pi_{x : X} A_x ^{T_x}$ by 
   $\alpha_x(u) = \beta_x(t_x,u)$. Then 
-  \begin{align*}
+  $$
     \delta_0(\alpha)_x(u,v) = 
-    &\alpha_x(u)^{-1}\cdot\alpha_x(v) = \\
-    &\beta_x(t_x,u)^{-1} \cdot \beta(t_x,v)
-  \end{align*}
+    \alpha_x(u)^{-1}\cdot\alpha_x(v) =
+    \beta_x(t_x,u)^{-1} \cdot \beta(t_x,v)
+  $$
   As $\beta$ is a cocycle, we have that 
   $$\beta_x(u,v) \cdot \beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = 1,$$
   hence
@@ -58,7 +64,9 @@ If $\check{C}(X,Y,G)$ is exact then $\phi=*$.
 \end{lemma}
 
 \begin{proof}
-We define:
+  For $y_1, y_2 : T(x)$, we have 
+  $\psi_x(y_1) ^{-1} \cdot \psi_x(y_2) : * = *$, 
+  so we can define 
 \[\beta : \prod_{x:X} G(x)^{T(x)^2}\]
 by having $\beta_x(y_1,y_2) = \psi_x(y_1)^{-1} \cdot \psi_x(y_2)$. It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness there is $\alpha:\prod_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
 \[\beta_x(y_1,y_2)=\alpha_x(y_1)^{-1}\cdot \alpha_x(y_2)\]
@@ -94,14 +102,17 @@ Assume given a Stone space and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{
   $\pi: \sum_{x:S} T(x) \to S$ is surjective.
   By Theorem 4.18 of \cite{synthetic-stone-duality}, the domain is Stone.
   Hence by Remark 3.4 of \cite{synthetic-stone-duality}, 
-  we can write $\pi$ as limit of surjections between finite sets, 
-  which we write $\pi_k : Q_k\twoheadrightarrow S_k$. 
+  we can write $\pi$ as limit of surjections 
+  $\pi_k : Q_k\twoheadrightarrow S_k$
+  between finite sets.
   As taking fibers and limits commute, we have that 
   $T(x)$ is the limit of $\pi_k^{-1}(x|_k)=:T_k(x)$, 
   which is a closed subset of a finite set, hence Stone by 
   Theorem 3.11 of \cite{synthetic-stone-duality}. 
-  Furthermore, surjections of finite sets have sections, 
-  giving the required section $\Pi_{x :S} T_k(x)$. 
+  Furthermore, surjections of finite sets have sections
+  $s_k: S_k \hookrightarrow Q_k$, 
+  giving the required section 
+  $\lambda x . s_k(x|_k) : \Pi_{x :S} T_k(x)$. 
 \end{proof}
 
 \begin{lemma}\label{short-cech-exact}
