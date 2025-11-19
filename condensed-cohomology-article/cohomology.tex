@@ -147,37 +147,133 @@ In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to
 \end{proof}
 
 \subsection{Stone spaces are acyclic}
+Proof in steps: 
+\begin{itemize}
+  \item By induction on $n$: for all $A,S$, 
+    $k_n^{S,A}$ is an equivalence. 
+  \item it's embedding by induction 
+  \item use connectedness of delooping. 
+  \item (Eric Finster's talk) 
+    \begin{itemize}
+      \item Go from a sequence 
+    $A_x \to A_x^{T(x)} \to A_x^{T(x)}/Im(const)$ being exact
+    to the fiber sequence 
+    $K(A_x^{T(x)/Im(const)}, n+1) \to K(A_x,n) 
+    \to K(A_x^{T_x},n)$ being exact also. 
+      \item 
+    Then putting a $\Pi_{x:S}$ in front 
+    keeps the sequence exact. 
+    \end{itemize}  
+\end{itemize} 
+
+
+
 
 
 \begin{theorem}\label{eilenberg-exponentials}
 Assume given $S:\Stone$ and $A:S\to \mathrm{Ab}_\ODisc$, then for all $n:\N$ we have that the canonical map:
-\[K(\prod_{x:S}A(x),n)\to \prod_{x:S}K(A(x),n)\]
+\[k_n^A : K(\prod_{x:S}A(x),n)\to \prod_{x:S}K(A(x),n)\]
 is an equivalence.
 \end{theorem}
 
 \begin{proof}
-We proceed by induction on $n$. If $n=0$ this is clear.
+  We will use induction on $n$ to show that for all 
+  $A: S \to \mathrm{Ab}_\ODisc$, 
+  the map $ev_n^A$ is an equivalence
+  If $n=0$, this is the identity map. 
 
-Assume the result for $n$, let us prove it for $n+1$. 
+  Now assume for given $n$ and for all $A$ that 
+  $ev_n^A$ is an equivalence and consider $ev_{n+1}^A$.
+  We will first show it is an embedding for all $A$. 
+  and use this to show it is also surjective for all $A$. 
 
-First we prove that the map:
-\[K(\prod_{x:S}A(x),n+1) \to \prod_{x:S}K(A(x),n+1)\]
-is an embedding. Since the source is pointed and connected it is enough to prove the induced map:
+To show it's an embedding, note that the source is pointed and connected. So it is enough to prove the induced map:
 \[\Omega(K(\prod_{x:S}A(x),n+1)) \to \Omega(\prod_{x:S}K(A(x),n+1))\]
 is an equivalence, but this map is equal to the canonical map:
 \[K(\prod_{x:S}A(x),n) \to \prod_{x:S}K(A(x),n)\]
-so we conclude by induction hypothesis.
+so we conclude by induction hypothesis that $ev_n^A$ 
+is an embedding for all Stone spaces $S$, 
+and $S$-indexed Abelian groups $A$. 
 
-Now it is enough to prove that any $H^{n+1}(S,A) = 0$ to conclude. Indeed then $\prod_{x:S}K(A(x),n+1)$ is connected, so the map is surjective and we can conclude. If $n=0$ this is the abelian version of \Cref{vanishing-1-cohomology-stone}. We can assume $n\geq 1$.
+To show surjectivity, note that $\prod_{x:S}K(A(x),n+1)$ is connected, 
+so it's sufficient (\cite{HoTT, TODO}) to show that $H^{n+1}(S,A) = 0$ to conclude. 
+If $n=0$ this is the abelian version of \Cref{vanishing-1-cohomology-stone}. We can assume $n\geq 1$.
 
-Given $\alpha : H^{n+1}(S,A)$, by local choice we get $T(x)$ Stone inhabited depending on $x:S$ such that $\alpha$ is send by $0$ through the map:
-\[H^{n+1}(\Sigma_{x:S}T(x),A)\]
-Since $K(A(x)^{T(x)},n+1)\to K(A(x),n+1)^{T(x)}$ is an embedding by induction hypothesis, we get that $H^{n+1}(S,\lambda x. A(x)^{T(x)})\to H^{n+1}(\Sigma_{x:S}T(x),A)$ is injective, so that $\alpha$ is send to $0$ by the map:
-\[H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A(x)^{T(x)})\]
+%Given $\alpha : H^{n+1}(S,A)$, by local choice we get $T(x)$ Stone inhabited depending on $x:S$ such that $\alpha$ is send by $0$ through the map:
+%\[H^{n+1}(\Sigma_{x:S}T(x),A)\]
+
+Let $\alpha : \Pi_{s : S} K(A_s , n+1)$. 
+Then by definition of $K$, we have that 
+$\Pi_{s : S} || \alpha_s = *||$. 
+So by local choice, we merely have some Stone space $T$ and 
+surjection $q : T \twoheadrightarrow S$ such that 
+$\Pi_{t : T} \alpha_{qt} = *$. 
+For $x:S$, denote $T_x$ for the fiber of $q$ over $x$. 
+
+Now consider 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXFBpX3t4IDogU30gSyhBX3gsbikiXSxbMSwwLCJcXFBpX3t4IDogU30gSyhBX3hee1RfeH0sbikiXSxbMiwwLCJcXFBpX3t4OlN9SyhBX3gsbilee1RfeH0iXSxbMCwxLCJcXHdpZGV0aWxkZXtjb25zdH0iXSxbMSwyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{\Pi_{x : S} K(A_x,n)} & {\Pi_{x : S} K(A_x^{T_x},n)} & {\Pi_{x:S}K(A_x,n)^{T_x}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[hook, from=1-2, to=1-3]
+\end{tikzcd}\]
+where the second map is an embedding by the above. 
+As any $\alpha : \Pi_{x :S} K(A_x,n)$ becomes $0$ in $\Pi{x : S} K(A_x,n)^{T_x}$, by the last map being an embedding, it also becomes $0$ in $\Pi_{x : S} K(A_x^{T_x},n)$.
+
+%As $K(A(x)^{T(x)},n+1)\to K(A(x),n+1)^{T(x)}$ 
+%is an embedding by the above,
+%we get that 
+%$$H^{n+1}(S,\lambda x. A(x)^{T(x)})\to H^{n+1}(\Sigma_{x:S}T(x),A)$$ 
+%is injective, so that $\alpha$ is send to $0$ by the map:
+%\[H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A(x)^{T(x)})\]
 Then we consider the exact sequence depending on $x:S$:
-\[0\to A_x\to A(x)^{T(x)}\to L(x)\to 0\]
-so we have an exact sequence: 
-\[H^{n}(S,L)\to H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A(x)^{T(x)})\]
+\[0\to A_x\to A(x)^{T(x)}\to L(x)\to 0,\] 
+where $L(x) = A_x^{T(x)}/A_x$. 
+This induces a fiber sequence 
+
+% https://q.uiver.app/#q=WzAsMTYsWzQsMywiSyhBX3gsMCkiXSxbNCw0LCJLKEFfeF57VF94fSwwKSJdLFs1LDQsIksoTF94LDApIl0sWzUsMywiXFxidWxsZXQiXSxbMyw0LCJcXGJ1bGxldCJdLFszLDMsIksoTF94LDEpIl0sWzQsMiwiXFxidWxsZXQiXSxbMywyLCJLKEFfeF57VF94fSwxKSJdLFsyLDMsIlxcYnVsbGV0Il0sWzIsMiwiSyhBX3gsMSkiXSxbMywxLCJcXGJ1bGxldCJdLFsyLDEsImsoTF94LDIpIl0sWzEsMiwiXFxidWxsZXQiXSxbMSwxLCJcXGRkb3RzIl0sWzEsMCwiXFx2ZG90cyJdLFswLDEsIlxcY2RvdHMiXSxbMywyXSxbMCwzXSxbMCwxXSxbMSwyXSxbMCwyLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbNCwxXSxbNSw0XSxbNSwwXSxbNSwxLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbNiwwXSxbNyw1XSxbNywwLCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbNyw2XSxbOCw1XSxbOSw4XSxbOSw3XSxbOSw1LCIiLDEseyJzdHlsZSI6eyJuYW1lIjoiY29ybmVyIn19XSxbMTAsN10sWzExLDldLFsxMSwxMF0sWzExLDcsIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dLFsxMiw5XSxbMTMsMTJdLFsxMywxMV0sWzEzLDksIiIsMSx7InN0eWxlIjp7Im5hbWUiOiJjb3JuZXIifX1dLFsxNCwxM10sWzE1LDEzXV0=
+\[\begin{tikzcd}
+	& \vdots \\
+	\cdots & \ddots & {K(L_x,2)} & \bullet \\
+	& \bullet & {K(A_x,1)} & {K(A_x^{T_x},1)} & \bullet \\
+	&& \bullet & {K(L_x,1)} & {K(A_x,0)} & \bullet \\
+	&&& \bullet & {K(A_x^{T_x},0)} & {K(L_x,0)}
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-2, to=3-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=3-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-3, to=3-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-3, to=3-4]
+	\arrow[from=2-4, to=3-4]
+	\arrow[from=3-2, to=3-3]
+	\arrow[from=3-3, to=3-4]
+	\arrow[from=3-3, to=4-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-3, to=4-4]
+	\arrow[from=3-4, to=3-5]
+	\arrow[from=3-4, to=4-4]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-4, to=4-5]
+	\arrow[from=3-5, to=4-5]
+	\arrow[from=4-3, to=4-4]
+	\arrow[from=4-4, to=4-5]
+	\arrow[from=4-4, to=5-4]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=4-4, to=5-5]
+	\arrow[from=4-5, to=4-6]
+	\arrow[from=4-5, to=5-5]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=4-5, to=5-6]
+	\arrow[from=4-6, to=5-6]
+	\arrow[from=5-4, to=5-5]
+	\arrow[from=5-5, to=5-6]
+\end{tikzcd}\]
+$$\cdots \to K(L_x,n+1) \to K(A_x,n) \to K(A_x^{T_x},n) \to K(L_x,n) \to \cdots .$$ 
+As fiber sequences commute with $\Pi$ and set truncation \cite{TODO}, we have an exact sequence 
+
+$$\cdots \to H^{n+1}(S,L_x) \to H^n(S, A_x) \to H^{n}(S,A_x^{T_x}) \to H^n(S,L_x)\to \cdots.$$
+
+%so we have an exact sequence: 
+%\[H^{n}(S,L)\to H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A(x)^{T(x)})\]
+\rednote{checked untill here}
 where $\alpha:H^{n+1}(S,A)$ is send to $0$. By induction we have that $\prod_{x:S}K(L(x),n) = K(\prod_{x:S}L(x),n)$ so that $H^{n}(S,L)=0$ since $n\geq 1$. Then $\alpha = 0$ and we can conclude.
 \end{proof}
 
