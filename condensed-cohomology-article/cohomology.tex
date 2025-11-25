@@ -9,12 +9,12 @@ In this section, we generalize the cohomological results in Section 5 of \cite{s
   with loop space $K(G,n)$, 
   and such that \cite{davidw23}.
   To be more precise, we have $*:K(G,n+1)$, 
-  $\Pi_{x : K(G,n+1)} \propTrunc{x = *}$ and the type
+  $\prod_{x : K(G,n+1)} \propTrunc{x = *}$ and the type
   $*=*$ is cannonically equal to $G$. 
   The first delooping of $G$ is denoted $BG$. 
   \\
   For $X$ a type and $G: X \to Group$ 
-  we define $H^n(X,G) = ||\Pi_{x : X} K(G(x),n)||_0$.
+  we define $H^n(X,G) = ||\prod_{x : X} K(G(x),n)||_0$.
 \end{remark} 
 
 \begin{definition}
@@ -36,8 +36,8 @@ Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$
   Lemma 5.5 of \cite{synthetic-stone-duality} goes trough 
 
   \rednote{Check:}
-  Assume given a cocycle $\beta: \Pi_{x : X} A_x^{T_x^2}$. 
-  Define $\alpha :\Pi_{x : X} A_x ^{T_x}$ by 
+  Assume given a cocycle $\beta: \prod_{x : X} A_x^{T_x^2}$. 
+  Define $\alpha :\prod_{x : X} A_x ^{T_x}$ by 
   $\alpha_x(u) = \beta_x(t_x,u)$. Then 
   $$
     \delta_0(\alpha)_x(u,v) = 
@@ -112,7 +112,7 @@ Assume given a Stone space and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{
   Furthermore, surjections of finite sets have sections
   $s_k: S_k \hookrightarrow Q_k$, 
   giving the required section 
-  $\lambda x . s_k(x|_k) : \Pi_{x :S} T_k(x)$. 
+  $\lambda x . s_k(x|_k) : \prod_{x :S} T_k(x)$. 
 \end{proof}
 
 \begin{lemma}\label{short-cech-exact}
@@ -129,6 +129,26 @@ We use \Cref{finite-approximation-stone-surjection-cohomology} to get a sequence
 where the first equality comes from \Cref{scott-continuity-right} and the second from \Cref{scott-continuity-left}.
 \end{proof}
 
+\begin{lemma}\label{local-choice-delooping-trick}
+  Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. 
+  Then there merely exists some family $(T_x)_{x:S}$ of 
+  merely inhabited Stone spaces such that for all 
+  $\phi:\prod_{s:S}BG(x)$, we have 
+  $\prod_{x:S}(\phi_x = *)^{T_x}$.
+\end{lemma}
+\begin{proof}
+  Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. 
+  Then for any $\phi:\prod_{s:S}BG(x)$, 
+  we have that:
+  $\prod_{x:S}\propTrunc{\phi_x=*}$. 
+  Thus by local choice, 
+  there exists some $T:\Stone$ with surjection $q : T \twoheadrightarrow S$, 
+  such that $\prod_{t : T} \phi_{qt} = *$. 
+  Writing $T_x$ for the fiber of $q$ over $x:S$, 
+  we have that $\prod_{x : S} (T_x \to \phi_x = *)$.
+  By surjectivity each ${T_x}$ is merely inhabited. 
+\end{proof} 
+
 Now we just have to assemble the pieces.
 
 \begin{lemma}\label{vanishing-1-cohomology-stone}
@@ -137,42 +157,111 @@ Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. Then:
 \end{lemma}
 
 \begin{proof}
-Assume given:
-\[\phi:\prod_{s:S}BG(x)\]
-we have that:
-\[\prod_{x:S}\propTrunc{\phi(x)=*}\]
-so that by local choice there merely exists $T(x)$ inhabited Stone space depending on $x:S$ with
-\[\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}\]
+  Assume $\phi:\prod_{s:S}BG(x)$,
+  by \Cref{local-choice-delooping-trick}, 
+  there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces with 
+  $\prod_{x:S}||T_x||$ and  
+  $\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}.$
 In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence $\check{S,T,G}$ is exact. But this is \Cref{short-cech-exact}.
 \end{proof}
 
 \subsection{Stone spaces are acyclic}
-Proof in steps: 
-\begin{itemize}
-  \item By induction on $n$: for all $A,S$, 
-    $k_n^{S,A}$ is an equivalence. 
-  \item it's embedding by induction 
-  \item use connectedness of delooping. 
-  \item (Eric Finster's talk) 
-    \begin{itemize}
-      \item Go from a sequence 
-    $A_x \to A_x^{T(x)} \to A_x^{T(x)}/Im(const)$ being exact
-    to the fiber sequence 
-    $K(A_x^{T(x)/Im(const)}, n+1) \to K(A_x,n) 
-    \to K(A_x^{T_x},n)$ being exact also. 
-      \item 
-    Then putting a $\Pi_{x:S}$ in front 
-    keeps the sequence exact. 
-    \end{itemize}  
-\end{itemize} 
+The goal of this section is to show that for $S:\Stone$, we have 
+$H^n(S,A) = 0$ for any $A:S\to \mathrm{Ab}_\ODisc, n>0$. 
+We will actually show something stronger, 
+namely that delooping commutes with $\Stone$-indexed $\prod$-types.
+This acyclity will be used as an intermediate step. 
+To be more specific, we will show in 
+\Cref{eilenberg-exponentials} that the following map is an equivalence for all $S,A,n$:
+\begin{definition}
+  Let $S:\Stone,A:S\to \mathrm{Ab}_\ODisc,n : \N$, we denote $ev_n^{S,A}$ for the canonical map:
+  \[ev_n^{S,A} : K(\prod_{x:S}A_x,n)\to \prod_{x:S}K(A_x,n)\]
+\end{definition}
+\begin{lemma}\label{ev-eq-acyclic}
+  For any $S,A$ and $n\geq 1$, if $ev_n^{S,A}$ is an equivalence, then $H^n(S,A) = 0$. 
+\end{lemma}
+\begin{proof}
+  By definition
+  $H^n(S,A) = || \prod_{x : S} K(A_x,n) ||_0$. 
+  If $ev_n^{S,A}$ is an equivalence, it follows that the latter equals
+  $|| K(\prod_{x : S} A_x , n) ||_0$, 
+  which is $0$ if $n\geq 1$. 
+\end{proof}
+\begin{lemma}\label{ev-embedding}
+  For any $S,A,n$,
+  if $ev_n^{S,A}$ is an equivalence, then 
+  $ev_{n+1}^{S,A}$ is an embedding. 
+\end{lemma}
+\begin{proof}
+  Note that the source is pointed and connected. 
+  So it is enough to prove the induced map:
+  \[\Omega(K(\prod_{x:S}A_x,n+1)) \to \Omega(\prod_{x:S}K(A_x,n+1))\]
+  is an equivalence, but this map is equal to the canonical map:
+  \[ev_n^{S,A} : K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n),\]
+  which was an equivalence by the assumption. 
+\end{proof} 
+\begin{lemma}\label{acyclic-ev-surjective}
+  For $n\geq 1$, if $H^n(S,A) = 0$, then $ev_{n}^{S,A}$ is a surjection. 
+\end{lemma}
+\begin{proof}
+  Note that for $n\geq 1$, 
+  $K(\prod_{x:S}A_x,n)$ is $0$-connected. 
+  Therefore, it's sufficient to show that 
+  $\prod_{x : S} K(A_x,n)$ is also $0$-connected, 
+  which means exactly that $H^{n}(S,A) = || \prod_{x : S} K(A_x,n) ||_0 = 0$. 
+\end{proof} 
 
 
-
-
+\rednote{The following should be standard, we need a reference}
+\begin{lemma}\label{ExactSequenceDelooping}
+  Let $A \to B \to C\to 0$ be an exact sequence. 
+  Then we get an exact sequence 
+  $$
+  \cdots \to K(C, k-1) \to K(A,k) \to K(B,k) \to K(C,k) \to K(A,k+1) \to \cdots 
+  $$
+\end{lemma}
+\begin{proof}
+Note that $B \to C$ induces a map 
+$K(B,n) \to K(C,n)$. 
+Following definition 8.4.3 of \cite{hott}, we get the 
+following long exact sequence in $k$:
+  $$
+  \cdots \to \pi_{k+1}(C) \to 
+  \pi_{k}(F) \to \pi_{k}(K(B,n)) \to \pi_{k}(K(C,n)) \to 
+  \pi_{k-1}(F) \to \cdots ,
+  $$
+where $F$ is the fiber of $K(B,k) \to K(C,n)$. 
+Taking $k =n-1$, we have that 
+$$\pi_n(F) \to \pi_{n}K(B,n) \to \pi_nK(C,n) \to \pi_{n-1} (F) \to \pi_{n-1}K(B,n)$$
+is exact. 
+Now we use that for any group $G$, we have $\pi_{n-1}(K(G,n)) = 0, \pi_n(K(G,n)) = G$. 
+Thus $\pi_n(F) \to B \to C \to \pi_{n-1}(F) \to 0$ is exact. 
+As $B \to C \to 0$ was exact, $B \to C$ is surjective, 
+so the image of $C \to \pi_{n-1}(F)$ is the same as that of 
+$B \to \pi_{n-1}(F)$, and that image is $0$. 
+But since the kernel of $\pi_{n-1}(F) \to 0$ is all of $\pi_{n-1}(F)$, 
+we must have $\pi_{n-1}(F) = 0$.
+Thus $F$ is $n-1$-connected. 
+Also $F$ is the fiber of a map of $n$-types, which is an $n$-type. 
+So $F$ is an $n-1$-connected $n$-type.
+Thus $\pi_n(F)$ is a set and equals $A$. 
+Therefore $F = K(A,n)$. 
+We conclude that we have an exact sequence of the form
+$$\cdots\to 
+  K(A,k) \to K(B, k) \to K(C,k)
+$$
+but then also our first exact sequence also tells us that 
+there is a fiber sequence 
+$$\cdots\to 
+  K(C,k-1) \to 
+  K(A,k) \to K(B, k) \to K(C,k) \to
+  K(A,k+1) \to \cdots
+$$
+\end{proof}
 
 \begin{theorem}\label{eilenberg-exponentials}
 Assume given $S:\Stone$ and $A:S\to \mathrm{Ab}_\ODisc$, then for all $n:\N$ we have that the canonical map:
-\[ev_n^{S,A} : K(\prod_{x:S}A(x),n)\to \prod_{x:S}K(A(x),n)\]
+\[ev_n^{S,A} : K(\prod_{x:S}A_x,n)\to \prod_{x:S}K(A_x,n)\]
 is an equivalence.
 \end{theorem}
 
@@ -182,117 +271,67 @@ is an equivalence.
   A: S \to \mathrm{Ab}_\ODisc$, 
   the map $ev_n^{S,A}$ is an equivalence
   If $n=0$, this is the identity map. 
-
   Now assume for some $n:\N$ that for all $S,A$ we have
-  $ev_n^{S,A}$ is an equivalence and consider 
-  $ev_{n+1}^{S,A}$ for some $S,A$.
-  We will first show it is an embedding for all $S,A$. 
-  and use this to show it is also surjective for all $S,A$. 
+  $ev_n^{S,A}$ is an equivalence. 
+  We will show that for all $S,A$ we also have $ev_{n+1}^{S,A}$ is an equivalence. 
+  By the induction hypothesis and \Cref{ev-embedding}, 
+  $ev_{n+1}^{S,A}$ is an embedding. 
+  By Theorem 4.6.3 of \cite{hott}, 
+  we need only to show that $ev_{n+1}^{S,A}$ is surjective.
+  By \Cref{acyclic-ev-surjective}, it's sufficient to show that $H^{n+1}(S,A) = 0$. 
+  For $n=0$ this is the abelian version of \Cref{vanishing-1-cohomology-stone}. 
+  We may thus assume $n\geq 1$ for the rest of this proof. 
 
-  To show $ev_{n+1}^{S,A}$ is an embedding, 
-  note that the source is pointed and connected. 
-  So it is enough to prove the induced map:
-  \[\Omega(K(\prod_{x:S}A(x),n+1)) \to \Omega(\prod_{x:S}K(A(x),n+1))\]
-is an equivalence, but this map is equal to the canonical map:
-\[ev_n^{S,A} : K(\prod_{x:S}A(x),n) \to \prod_{x:S}K(A(x),n)\]
-so we conclude by induction hypothesis that $ev_{n+1}^{S,A}$ 
-is an embedding for all Stone spaces $S$, 
-and $S$-indexed Abelian groups $A$. 
-
-To show surjectivity, note that 
-$\prod_{x:S}K(A(x),n+1)$ is connected, 
-so it's sufficient (\cite{hott, TODO}) to show that 
-$H^{n+1}(S,A) = 0$ to conclude. 
-If $n=0$ this is the abelian version of \Cref{vanishing-1-cohomology-stone}. We can assume $n\geq 1$.
-
-%Given $\alpha : H^{n+1}(S,A)$, by local choice we get $T(x)$ Stone inhabited depending on $x:S$ such that $\alpha$ is send by $0$ through the map:
-%\[H^{n+1}(\Sigma_{x:S}T(x),A)\]
-
-Let $\alpha : \Pi_{s : S} K(A_s , n+1)$. 
-Then by definition of $K$, we have that 
-$\Pi_{s : S} || \alpha_s = *||$. 
-So by local choice, we merely have some Stone space $T$ and 
-surjection $q : T \twoheadrightarrow S$ such that 
-$\Pi_{t : T} \alpha_{qt} = *$. 
-For $x:S$, denote $T_x$ for the fiber of $q$ over $x$. 
-
-%As $K(A(x)^{T(x)},n+1)\to K(A(x),n+1)^{T(x)}$ 
-%is an embedding by the above,
-%we get that 
-%$$H^{n+1}(S,\lambda x. A(x)^{T(x)})\to H^{n+1}(\Sigma_{x:S}T(x),A)$$ 
-%is injective, so that $\alpha$ is send to $0$ by the map:
-%\[H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A(x)^{T(x)})\]
-
-For $x:X$, denote $L_x$ for $A_x^{T_x}/A_x$, that is the quotient of $A_x^{T_x}$ over the constant map $A_x \to A_x^{T_x}$. 
-
-\rednote{The following should be standard, we need a reference}
-Note that $A_x^{T_x} \to L_x$ induces a map 
-$K(A_x^{T_x},n) \to K(A_x^{T_x},n)$. 
-Following definition 8.4.3 of \cite{hott}, we get the 
-following long exact sequence in $k$:
-  $$
-  \cdots \to \pi_{k+1}(K(L_x,n)) \to 
-  \pi_{k}(F) \to \pi_{k}(K(A_x^{T_x},n)) \to \pi_{k}(K(L_x,n)) \to 
-  \pi_{k-1}F \to \cdots ,
-  $$
-where $F$ is the fiber of $K(A_x^{T_x},n) \to K(L_x,n)$. 
-
-Taking $k =n-1$, we have that 
-$$\pi_{n}K(A_x^{T_x},n) \to \pi_nK(L_x,n) \to \pi_{n-1} (F) \to \pi_{n-1}K(A_x^{T_x},n)$$
-is exact, hence 
-$\pi_n(F) \to A_x^{T_x} \to L_x \to \pi_{n-1}(F) \to 0$ is exact. 
-As $A_x^{T_x} \to L_x$ is surjective, 
-we have that $\pi_{n-1}(F) = 0$. 
-Thus $F$ is $n-1$-connected. 
-Also $F$ is an $n$-type as it's 
-the fiber of a map of $n$-types.
-Thus $\pi_n(F)$ is a set and equals $A$. 
-Therefore $F = K(A,n)$. 
-We conclude that we have an exact sequence of the form
-$$\cdots\to K(L_x,k+1) \to 
-  K(A_x^{T_x},k) \to K(A_x, k) \to K(L_x,k) \to
-  K(A_x^{T_x},k-1) \to \cdots
-$$
-Now as exact sequences commute with $\Pi$,
-we also get an exact sequence
+  By \Cref{local-choice-delooping-trick}, 
+  there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces such that 
+  for any $\alpha : \prod_{s : S} K(A_s , n+1)$, we have 
+  $\prod_{x:S} (\alpha_x = *)^{T_x}$. 
+For $x:S$, denote $L_x$ for $A_x^{T_x}/A_x$, 
+where the quotient is over the image of the constant map.
+As $A_x^{T_x} \to L_x$ is surjective, we get an exact sequence 
+$A_x \to A_x^{T_x} \to L_x \to 0$. 
+By \Cref{ExactSequenceDelooping}, we get an exact sequence
 $$\cdots\to 
-\Pi_{x:S}K(L_x,k+1) \to 
-\Pi_{x:S}K(A_x^{T_x}) \to \Pi_{x:S}K(A_x, k) \to \Pi_{x:S}K(L_x,k) \to
- \Pi_{x:S} K(A_x^{T_x}) \to \cdots
+  K(L_x,k-1) \to 
+  K(A_x,k) \to K(A_x^{T_x}, k) \to K(L_x,k) \to
+  K(A_x,k+1) \to \cdots
 $$
-And as exact sequences commute with set truncation 
-(Theorem 8.4.6 of \cite{hott}), we also get the exact sequence
-$$\cdots\to H^{n+1}(S,L) \to 
-H^{n}(S,\lambda x . A_x^{T_x})\to H^n(S,A) \to H^n(S,L)\to
-H^{n}(S,\lambda x . A_x^{T_x}) \to \cdots
+Now as $\prod$ preserves exact sequences,
+we also get an exact sequence 
+$$\cdots\to 
+\prod_{x:S}K(L_x,k-1) \to 
+ \prod_{x:S} K(A_x,k) \to \prod_{x:S}K(A_x^{T_x}, k) \to \prod_{x:S}K(L_x,k) \to
+ \prod_{x:S} K(A_x,k+1) \to \cdots
 $$
+  Consider the decomposition of 
+  $\prod_{x:S}K(A_x,n+1) \to \prod_{x:S} K(A_x,n+1)^{T_x}$ given by:
+  $$
+    {\prod_{x:S} K(A_x,n+1)} \to \prod_{x:S}  {K(A_x^{T_x},n+1)} \hookrightarrow \prod_{x:S}  {K(A_x,n+1)^{T_x}}
+  $$
+  where the second map is composition with 
+  $ev_{n+1}^{T_x,\lambda t . A_x}$, 
+  which is an embedding by the induction hypothesis and \Cref{ev-embedding}. 
+  By assumption on $T$, the composite has $0$ as image, 
+  and thus the first also has $0$ as image. 
+  As this image equals the kernel of $\prod_{x:S} K(A_x^{T_x},k) \to \prod_{x:S}K(L_x,k)$ 
+  by exactness, it follows that that the set truncation of the latter map is injective. 
 
-By the induction hypothesis, we have 
-$\Pi_{x : S} K(A_x^{T_x},n) = K(\Pi_{x:S}A_x,n)^{T_x}$, 
-hence for $n>0$, we have 
-$||\Pi_{x : S} K(A_x^{T_x},n)||_0 = 0$, 
-
-
-
-
-
-
-Now consider the following decomposition of 
-$\Pi_{x:S}K(A_x,n) \to \pi_{x:S} K(A_x,n)^{T_x}$:
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXFBpX3t4IDogU30gSyhBX3gsbikiXSxbMSwwLCJcXFBpX3t4IDogU30gSyhBX3hee1RfeH0sbikiXSxbMiwwLCJcXFBpX3t4OlN9SyhBX3gsbilee1RfeH0iXSxbMCwxLCJcXHdpZGV0aWxkZXtjb25zdH0iXSxbMSwyLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
-\[\begin{tikzcd}
-  {\Pi_{x:S} K(A_x,n)} &\Pi_{x:S}  {K(A_x^{T_x},n)} &\Pi_{x:S}  {K(A_x,n)^{T_x}}
-	\arrow[from=1-1, to=1-2]
-	\arrow[hook, from=1-2, to=1-3]
-\end{tikzcd}\]
-where the second map is composition with 
-$ev_n^{T_x,\lambda t . A_x}$), 
-which is an embedding by the above. 
-As any $\alpha : \Pi_{x :S} K(A_x,n)$ becomes $0$ in $\Pi_{x : S} K(A_x,n)^{T_x}$, by the last map being an embedding, it also becomes $0$ in $\Pi_{x : S} K(A_x^{T_x},n)$.
-
-
-\rednote{checked untill here}
-where $\alpha:H^{n+1}(S,A)$ is send to $0$. By induction we have that $\prod_{x:S}K(L(x),n) = K(\prod_{x:S}L(x),n)$ so that $H^{n}(S,L)=0$ since $n\geq 1$. Then $\alpha = 0$ and we can conclude.
+  As set truncation also preserves exact sequences (Theorem 8.4.6 of \cite{hott}), 
+  we also get the following exact sequence:
+  $$
+  \cdots\to H^{k-1}(S,L) \to 
+  H^{k}(S,A)\to H^k(S,\lambda x . A_x^{T_x}) \to H^k(S,L)\to
+  H^{k+1}(S,A) \to \cdots
+  $$
+  By induction hypothesis and \Cref{ev-eq-acyclic}, $H^n(S,L)=0$, and 
+  we have the following exact subsequence 
+  $$ 0 \to H^{n+1}(S,A) \to H^{n+1}(S, \lambda x . A_x^{T_x}) 
+  \hookrightarrow H^{n+1}(S,L).$$
+  Now as the last map is injective, it's kernel is $0$, 
+  so the image of $H^{n+1}(S,A) \to H^{n+1}(S,\lambda x . A_x^{T_x})$ is $0$, 
+  which means the kernel of the same map is the whole set, 
+  but that should also be the image of $0 \to H^{n+1}(S,A)$, which has only $*$ in the image. 
+  Thus $H^{n+1}(S,A) = 0$. 
 \end{proof}
 
 \begin{corollary}\label{vanishing-cohomology-stone}
