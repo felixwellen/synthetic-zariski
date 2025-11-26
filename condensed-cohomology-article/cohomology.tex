@@ -130,19 +130,18 @@ where the first equality comes from \Cref{scott-continuity-right} and the second
 \end{proof}
 
 \begin{lemma}\label{local-choice-delooping-trick}
-  Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. 
+  Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$, and 
+  $\phi:\prod_{s:S}BG(x)$.
   Then there merely exists some family $(T_x)_{x:S}$ of 
-  merely inhabited Stone spaces such that for all 
-  $\phi:\prod_{s:S}BG(x)$, we have 
+  merely inhabited Stone spaces such that 
   $\prod_{x:S}(\phi_x = *)^{T_x}$.
 \end{lemma}
 \begin{proof}
   Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. 
-  Then for any $\phi:\prod_{s:S}BG(x)$, 
-  we have that:
+  By definition of $BG$, we have that 
   $\prod_{x:S}\propTrunc{\phi_x=*}$. 
   Thus by local choice, 
-  there exists some $T:\Stone$ with surjection $q : T \twoheadrightarrow S$, 
+  there merely exists some $T:\Stone$ with surjection $q : T \twoheadrightarrow S$, 
   such that $\prod_{t : T} \phi_{qt} = *$. 
   Writing $T_x$ for the fiber of $q$ over $x:S$, 
   we have that $\prod_{x : S} (T_x \to \phi_x = *)$.
@@ -283,27 +282,29 @@ is an equivalence.
   For $n=0$ this is the abelian version of \Cref{vanishing-1-cohomology-stone}. 
   We may thus assume $n\geq 1$ for the rest of this proof. 
 
+  Let $\alpha : \prod_{s : S} K(A_s , n+1)$, 
+  we need to show that $\alpha = *$. 
   By \Cref{local-choice-delooping-trick}, 
   there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces such that 
-  for any $\alpha : \prod_{s : S} K(A_s , n+1)$, we have 
   $\prod_{x:S} (\alpha_x = *)^{T_x}$. 
-For $x:S$, denote $L_x$ for $A_x^{T_x}/A_x$, 
-where the quotient is over the image of the constant map.
-As $A_x^{T_x} \to L_x$ is surjective, we get an exact sequence 
-$A_x \to A_x^{T_x} \to L_x \to 0$. 
-By \Cref{ExactSequenceDelooping}, we get an exact sequence
-$$\cdots\to 
-  K(L_x,k-1) \to 
-  K(A_x,k) \to K(A_x^{T_x}, k) \to K(L_x,k) \to
-  K(A_x,k+1) \to \cdots
-$$
-Now as $\prod$ preserves exact sequences,
-we also get an exact sequence 
-$$\cdots\to 
-\prod_{x:S}K(L_x,k-1) \to 
- \prod_{x:S} K(A_x,k) \to \prod_{x:S}K(A_x^{T_x}, k) \to \prod_{x:S}K(L_x,k) \to
- \prod_{x:S} K(A_x,k+1) \to \cdots
-$$
+  For $x:S$, denote $L_x$ for $A_x^{T_x}/A_x$, 
+  where the quotient is over the image of the constant map.
+  As $A_x^{T_x} \to L_x$ is surjective, we get an exact sequence 
+  $A_x \to A_x^{T_x} \to L_x \to 0$. 
+  By \Cref{ExactSequenceDelooping}, we get an exact sequence
+  $$\cdots\to 
+    K(L_x,k-1) \to 
+    K(A_x,k) \to K(A_x^{T_x}, k) \to K(L_x,k) \to
+    K(A_x,k+1) \to \cdots
+  $$
+  Now as $\prod$ preserves exact sequences,
+  we also get an exact sequence 
+  $$
+    \cdots\to 
+    \prod_{x:S}K(L_x,k-1) \to 
+    \prod_{x:S} K(A_x,k) \to \prod_{x:S}K(A_x^{T_x}, k) \to \prod_{x:S}K(L_x,k) \to
+    \prod_{x:S} K(A_x,k+1) \to \cdots
+  $$
   Consider the decomposition of 
   $\prod_{x:S}K(A_x,n+1) \to \prod_{x:S} K(A_x,n+1)^{T_x}$ given by:
   $$
@@ -312,27 +313,14 @@ $$
   where the second map is composition with 
   $ev_{n+1}^{T_x,\lambda t . A_x}$, 
   which is an embedding by the induction hypothesis and \Cref{ev-embedding}. 
-  By assumption on $T$, the composite has $0$ as image, 
-  and thus the first also has $0$ as image. 
-  As this image equals the kernel of $\prod_{x:S} K(A_x^{T_x},k) \to \prod_{x:S}K(L_x,k)$ 
-  by exactness, it follows that that the set truncation of the latter map is injective. 
-
-  As set truncation also preserves exact sequences (Theorem 8.4.6 of \cite{hott}), 
-  we also get the following exact sequence:
-  $$
-  \cdots\to H^{k-1}(S,L) \to 
-  H^{k}(S,A)\to H^k(S,\lambda x . A_x^{T_x}) \to H^k(S,L)\to
-  H^{k+1}(S,A) \to \cdots
-  $$
-  By induction hypothesis and \Cref{ev-eq-acyclic}, $H^n(S,L)=0$, and 
-  we have the following exact subsequence 
-  $$ 0 \to H^{n+1}(S,A) \to H^{n+1}(S, \lambda x . A_x^{T_x}) 
-  \hookrightarrow H^{n+1}(S,L).$$
-  Now as the last map is injective, it's kernel is $0$, 
-  so the image of $H^{n+1}(S,A) \to H^{n+1}(S,\lambda x . A_x^{T_x})$ is $0$, 
-  which means the kernel of the same map is the whole set, 
-  but that should also be the image of $0 \to H^{n+1}(S,A)$, which has only $*$ in the image. 
-  Thus $H^{n+1}(S,A) = 0$. 
+  By assumption on $T$, the composite sends $\alpha$ to $*$,
+  and thus the first map also sends $\alpha$ to $*$.
+  Thus $\alpha$ is in the kernel of $\prod_{x:S}K(A_x,k) \to K(A_x^{T_x},k)$.
+  By exactness $\alpha$ is in the image $\prod_{x:S} K(L_x,k-1) \to \prod_{x:S}K(A_x,k)$. 
+  As $n\geq 1$, we can use the induction hypothesis and \Cref{ev-eq-acyclic} to see that $H^n(S,L)=0$.
+  Thus any $\beta:\prod_{x:S}K(L_x,k-1)$ equals $*$, 
+  so their image equals $*$ in $\prod_{x:S}K(A_x,k)$. 
+  Thus $\alpha = *$, as required. 
 \end{proof}
 
 \begin{corollary}\label{vanishing-cohomology-stone}
