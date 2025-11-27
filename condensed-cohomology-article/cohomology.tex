@@ -130,7 +130,7 @@ where the first equality comes from \Cref{scott-continuity-right} and the second
 \end{proof}
 
 \begin{lemma}\label{local-choice-delooping-trick}
-  Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$, and 
+  Let $S$ be Compact Hausdorff and $G: S\to \mathrm{Grp}_\ODisc$, and 
   $\phi:\prod_{s:S}BG(x)$.
   Then there merely exists some family $(T_x)_{x:S}$ of 
   merely inhabited Stone spaces such that 
@@ -213,8 +213,8 @@ To be more specific, we will show in
 
 \rednote{The following should be standard, we need a reference}
 \begin{lemma}\label{ExactSequenceDelooping}
-  Let $A \to B \to C\to 0$ be an exact sequence. 
-  Then we get an exact sequence 
+  Let $A \to B \to C\to 0$ be an exact sequence of abelian groups. 
+  Then we get a fiber sequence 
   $$
   \cdots \to K(C, k-1) \to K(A,k) \to K(B,k) \to K(C,k) \to K(A,k+1) \to \cdots 
   $$
@@ -223,7 +223,7 @@ To be more specific, we will show in
 Note that $B \to C$ induces a map 
 $K(B,n) \to K(C,n)$. 
 Following definition 8.4.3 of \cite{hott}, we get the 
-following long exact sequence in $k$:
+following fiber sequence in $k$:
   $$
   \cdots \to \pi_{k+1}(C) \to 
   \pi_{k}(F) \to \pi_{k}(K(B,n)) \to \pi_{k}(K(C,n)) \to 
@@ -246,7 +246,7 @@ So $F$ is an $n-1$-connected $n$-type.
 Thus $\pi_n(F)$ is a set and equals $A$. 
 Therefore $F = K(A,n)$. 
 Furthermore, the fiber of $K(A,n) \to K(B,n)$ should be $\Omega K(C,n) = K(C,n-1)$. 
-We conclude that we have an exact sequence of the form
+We conclude that we have a fiber sequence of the form
 $$\cdots\to 
   K(A,k) \to K(B, k) \to K(C,k)
 $$
@@ -283,7 +283,7 @@ is an equivalence.
   We may thus assume $n\geq 1$ for the rest of this proof. 
 
   Let $\alpha : \prod_{s : S} K(A_s , n+1)$, 
-  we need to show that $\alpha = *$. 
+  we need to show that merely $\alpha = *$. 
   By \Cref{local-choice-delooping-trick}, 
   there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces such that 
   $\prod_{x:S} (\alpha_x = *)^{T_x}$. 
@@ -291,14 +291,13 @@ is an equivalence.
   where the quotient is over the image of the constant map.
   As $A_x^{T_x} \to L_x$ is surjective, we get an exact sequence 
   $A_x \to A_x^{T_x} \to L_x \to 0$. 
-  By \Cref{ExactSequenceDelooping}, we get an exact sequence
+  By \Cref{ExactSequenceDelooping}, we get a fiber sequence
   $$\cdots\to 
     K(L_x,k-1) \to 
     K(A_x,k) \to K(A_x^{T_x}, k) \to K(L_x,k) \to
     K(A_x,k+1) \to \cdots
   $$
-  Now as $\prod$ preserves exact sequences,
-  we also get an exact sequence 
+  Now as $\prod$ preserves fiber sequences we also get a fiber sequence 
   $$
     \cdots\to 
     \prod_{x:S}K(L_x,k-1) \to 
@@ -345,17 +344,30 @@ Assume given $X$ a type with a \v{C}ech cover:
 as well as $A:X\to \mathrm{Ab}_\ODisc$.
 
 For all $n\geq 1$ we have an exact sequence:
-\[H^{n-1}(X,x\mapsto A_x^{S_x}) \to H^{n-1}(X,L)\to H^n(X,A)\to 0\]
+\[H^{n-1}(X,\lambda x.A_x^{S_x}) \to H^{n-1}(X,L)\to H^n(X,A)\to 0\]
 natural in $A$, where $L_x = A_x^{S_x}/A_x$.
 \end{lemma}
 
 \begin{proof}
-Using the long exact sequence associated to:
-\[0\to A_x\to A_x^{S_x}\to L_x\to 0\]
-by \Cref{vanishing-cohomology-stone} it is enough to prove that for all $n\geq 1$ we have:
-\[H^n(x:X,A_x^{S_x}) = 0\]
-But by \Cref{eilenberg-exponentials} we have that:
-\[\prod_{x:X}K(A_x^{S_x},n) = \prod_{x:S}K(A_x,n) = K(\prod_{x:S}A_x,n)\]
+  Applying \Cref{ExactSequenceDelooping} to the exact sequence
+  \[A_x\to A_x^{S_x}\to L_x\to 0,\]
+  and the fact that $\prod$ and set truncation commute with fiber sequences, 
+  we get a fiber sequence of the form 
+  \[ \cdots \to 
+    H^{n-1}(X,\lambda x.A_x^{S_x}) \to 
+    H^{n-1}(X,L)\to 
+    H^n(X,A)\to 
+    H^n(X,\lambda x .A_x^{S_x}) \to \cdots\]
+    We will be done if we show that 
+    $H^n(X,\lambda x .A_x^{S_x}) = 0$. 
+    By \Cref{eilenberg-exponentials}, 
+    we have $K(A_x^{S_x},n) = \prod_{t:S_x}K(A_x,n)$. 
+    But now note that as $\Sigma_{x:X} S_x = S$, we have
+    $\prod_{x:X}\prod_{t:S_x}K(A_x,n) = 
+     \prod_{s : S} K(A_{fs},n)$, 
+     and as $n\geq 1$, by \Cref{vanishing-cohomology-stone},
+     the set truncatation of the latter is indeed $0$, 
+     as required. 
 \end{proof}
 
 \begin{definition}\label{cech-sequence-definition}
