@@ -213,7 +213,7 @@ To be more specific, we will show in
 
 \rednote{The following should be standard, we need a reference}
 \begin{lemma}\label{ExactSequenceDelooping}
-  Let $A \to B \to C\to 0$ be an exact sequence of abelian groups. 
+  Let $A \to B \to C\to 0$ be a fiber sequence of abelian groups. 
   Then we get a fiber sequence 
   $$
   \cdots \to K(C, k-1) \to K(A,k) \to K(B,k) \to K(C,k) \to K(A,k+1) \to \cdots 
@@ -234,7 +234,7 @@ Taking $k =n-1$, we have that
 $$\pi_n(F) \to \pi_{n}K(B,n) \to \pi_nK(C,n) \to \pi_{n-1} (F) \to \pi_{n-1}K(B,n)$$
 is exact. 
 Now we use that for any group $G$, we have $\pi_{n-1}(K(G,n)) = 0, \pi_n(K(G,n)) = G$. 
-Thus $\pi_n(F) \to B \to C \to \pi_{n-1}(F) \to 0$ is exact. 
+Thus $\pi_n(F) \to B \to C \to \pi_{n-1}(F) \to 0$ is a fiber sequence. 
 As $B \to C \to 0$ was exact, $B \to C$ is surjective, 
 so the image of $C \to \pi_{n-1}(F)$ is the same as that of 
 $B \to \pi_{n-1}(F)$, and that image is $0$. 
@@ -358,16 +358,19 @@ natural in $A$, where $L_x = A_x^{S_x}/A_x$.
     H^{n-1}(X,L)\to 
     H^n(X,A)\to 
     H^n(X,\lambda x .A_x^{S_x}) \to \cdots\]
-    We will be done if we show that 
-    $H^n(X,\lambda x .A_x^{S_x}) = 0$. 
+    We will show that 
+    $H^n(X,\lambda x .A_x^{S_x})= 0$. 
     By \Cref{eilenberg-exponentials}, 
-    we have $K(A_x^{S_x},n) = \prod_{t:S_x}K(A_x,n)$. 
-    But now note that as $\Sigma_{x:X} S_x = S$, we have
-    $\prod_{x:X}\prod_{t:S_x}K(A_x,n) = 
-     \prod_{s : S} K(A_{fs},n)$, 
-     and as $n\geq 1$, by \Cref{vanishing-cohomology-stone},
-     the set truncatation of the latter is indeed $0$, 
-     as required. 
+    we have $K(A_x^{S_x},n) = \prod_{t:S_x}K(A_x,n)$. Thus
+    $$
+      H^n(X,\lambda x .A_x^{S_x})= 
+      ||\prod_{x:X}K(A_x^{S_x},n)||_0 = 
+      ||\prod_{x:X}\prod_{t:S_x}K(A_x,n)||_0 = 
+      ||\prod_{s : S} K(A_{fs},n)||_0 = 
+      H^n(S, \lambda s .A_{fs})
+    $$
+    and as $n\geq 1$, by \Cref{vanishing-cohomology-stone},
+    the latter is $0$ as required. 
 \end{proof}
 
 \begin{definition}\label{cech-sequence-definition}
@@ -381,7 +384,8 @@ with the boundary maps defined as expected, that is:
 \[\delta(\alpha)(x,u_0,\cdots,u_n) = \sum_{i=0}^n (-1)^i\alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n)\]
 Then the \v{C}ech cohomology:
 \[\check{H}^k(x:X,A_x)\]
-is defined as the $k$-th homology group of the \v{C}ech complex.
+is defined as the $k$-th homology group of the \v{C}ech complex, 
+so as the image of $\delta^n$ by the kernel of $\delta_{n+1}$. 
 \end{definition}
 
 \begin{lemma}\label{long-exact-cech-cohomology}
