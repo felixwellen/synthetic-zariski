@@ -1,0 +1,253 @@
+% latexmk -pvc -pdf slides.tex
+\documentclass{beamer}
+
+\beamertemplatenavigationsymbolsempty
+
+% literatur
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+
+\addbibresource{../util/literature.bib}
+
+\usepackage{../util/zariski}
+
+\usepackage{csquotes}
+\usepackage{cancel}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{cd,arrows,shapes,calc,through,backgrounds,matrix,trees,decorations.pathmorphing,positioning,automata}
+\usepackage{graphicx}
+\usepackage{color}
+
+\usepackage{mathpartir}
+\newcommand{\yields}{\vdash}
+\newcommand{\cbar}{\, | \,}
+
+\newcommand{\nop}[1]{\textcolor{bg}{#1}}
+
+
+% für tabellen
+\usepackage{booktabs}
+
+\title{Synthetic Algebraic Geometry}
+\date{December 15, 2025}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  This is the main part of a small field, containing work of the following people:
+  \begin{center}
+    \begin{tabularx}{\textwidth}{XXX}
+      Peter Arndt & Reid Barton & Ulrik Buchholtz \\
+      Ingo Blechschmidt & Felix Cherubini & Johan Commelin \\
+      Thierry Coquand & Fabian Endres & Freek Geerligs \\
+      Jonas Höfer & Tim Lichtnau & Hugo Moeneclaey \\
+      David Jaz Myers & Marc N-W & Armaan Rashid \\ 
+      Matthias Ritter & Christian Sattler & Lukas Stoll \\
+      David Wärn & Mark Williams &
+    \end{tabularx}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  The work I will describe now in more detail, was done by:
+  \vspace{.5cm}
+  \begin{center}
+    \begin{tabularx}{\textwidth}{XXX}
+      \nop{Peter Arndt} & \nop{Reid Barton} & \nop{Ulrik Buchholtz} \\
+      \nop{Ingo Blechschmidt} & Felix Cherubini & \nop{Johan Commelin} \\
+      Thierry Coquand & \nop{Fabian Endres} & \nop{Freek Geerligs} \\
+      \nop{Jonas Höfer} & \nop{Tim Lichtnau} & Hugo Moeneclaey \\
+      \nop{David Jaz Myers} & \nop{Marc N-W} & \nop{Armaan Rashid} \\ 
+      Matthias Ritter & \nop{Christian Sattler} & \nop{Lukas Stoll} \\
+      David Wärn & \nop{Mark Williams} &
+    \end{tabularx}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  A more complete overview is at \url{https://github.com/felixwellen/synthetic-zariski}:
+  \includegraphics[width=\textwidth]{repo.png}
+\end{frame}
+
+\begin{frame}
+  Functor of points approach\dots \\
+  \includegraphics[width=\textwidth]{demazure-fx.png}
+\end{frame}
+
+\begin{frame}
+  \dots allows you to pretend you are working with sets! \\
+  \includegraphics[width=\textwidth]{demazure-fx-circled.png}
+\end{frame}
+
+\begin{frame}
+  Some constructions:\\
+  \vspace{.3cm}
+    \begin{tabular}{l|l}
+      Concept & Functor of Points \\
+      \midrule
+      $\A^1$ & $A\mapsto A:\Alg{k}\to \mathrm{Set}$ \\
+      $X\to Y$ & $\eta_A:X(A)\to Y(A)$ such that \dots \\
+      $X\times_Z Y$ & $A\mapsto X(A)\times_{Z(A)} Y(A)$  \\
+      $\bP^n$ & $A\mapsto \{M\subseteq A^{n+1}\mid \text{$M$ rank 1 submodule,} \text{ $M\oplus N\cong A^{n+1}$} \}$ \\
+      $\Spec(B)$ & $A\mapsto \Hom_{\Alg{k}}(B,A)$ 
+    \end{tabular}
+    \pause
+    \vspace{.7cm}\\
+  Synthetically, we can work without the argument $A$:\\
+  \vspace{.3cm}
+    \begin{tabular}{l|l}
+      Concept & Synthetic Algebraic Geometry \\
+      \midrule
+      $\A^1$ & axiomatically given ring $R$ \\ 
+      $X\to Y$ & $f:X\to Y$ (function between sets) \\
+      $X\times_Z Y$ & Just $X\times_Z Y$  \\
+      $\bP^n$ & $\{L\subseteq R^{n+1}\mid \text{ $L$ rank 1 submodule}\}$ \\
+      $\Spec(B)$ & $\Hom_{\Alg{R}}(B,R)$
+    \end{tabular}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\textbf{Synthetic Algebraic Geometry}}
+  \pause
+  $R$ is a commutative ring. \\
+  \vspace{0.4cm}
+  \pause
+
+  $V:= \{(x,y):R^2\mid x^2+y^2=1 \}$ \\
+
+  \pause
+  Adding equations like $0=0$, $x(x^2+y^2)=x$ does not change the type $V$. \\
+  \pause
+  $V$ is determined by the $R$-algebra $A:= R[X,Y]/(X^2+Y^2-1)$.
+  \pause
+  We can recover it: $V=\Hom_{\Alg{R}}(A,R)$. \\
+  \vspace{0.4cm}
+  \pause
+  \begin{definition}
+    \begin{enumerate}[(i)]
+    \item An $R$-algebra is finitely presented (fp) if it is merely $R[X_1,\dots,X_n]/(P_1,\dots,P_l)$.
+    \item $\Spec(A):= \Hom_{\Alg{R}}(A,R)$ is the \emph{spectrum} of an fp $R$-algebra $A$.
+    \item Any $X$ such that there is an $A$ with $X=\Spec(A)$ is called \emph{affine scheme}.
+    \end{enumerate}
+  \end{definition}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The 3 Axioms of SAG}
+    \textbf{Axiom (Duality):}
+    The map
+    \begin{align*}
+      A \to R^{\Spec A} \\
+      a\mapsto (\varphi\mapsto \varphi(a))
+    \end{align*}
+    is an equivalence
+    for any finitely presented $R$-algebra $A$. \\
+  \pause
+  \vspace{5mm}
+  \textbf{Axiom (Locality):} The ring $R$ is local:
+  $1\neq 0$ and for all $x,y:R$ such that $x+y$ is invertible, $x$ is invertible or $y$ is invertible.
+  
+  \vspace{5mm}
+  \textbf{Axiom (Zariski-local choice):}\\
+  For every surjective $\pi$, there merely exist local sections $s_i$
+  with $f_1, \dots, f_n : A$ such that $(f_1,\dots,f_n)=(1)$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{\textbf{Synthetic Algebraic Geometry}}
+  A proposition $P$ is \textbf{open} if there merely are $r_1,\dots,r_n:R$
+  such that
+  \[ P \Leftrightarrow r_1\neq 0 \vee \dots \vee r_n\neq 0\]
+  \pause
+  ($r\neq 0 \Leftrightarrow r\text{ invertible}$) \\
+  \pause
+  $U\subseteq X$ is open if $x\in U$ is an open proposition for all $x:X$. \\
+  \pause
+  \textbf{Example:} $\{x:R\mid x\neq 0\}$ and $\{x:R\mid x\neq 1\}$ are open subsets. By locality, they cover $R$. \\
+  \vspace{5mm}
+  \pause
+  By Zariski-local choice every open $U\subseteq \Spec(A)$ is a finite union of subsets of the form ($f:\Spec(A)\to R$)
+  \[ D(f) := \{x:\Spec(A) \mid f(x)\neq 0 \} \] \\
+  \pause
+  A type $X$ is a \textbf{scheme} if
+  there exist open $U_1, \dots, U_n \subseteq X$
+  such that $X = \bigcup_i U_i$
+  and every $U_i$ is an affine scheme. \\
+  \vspace{5mm}
+  \pause
+  \textbf{Morphisms} of schemes are just maps between types.
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Properties of Projective Space}
+  A \textbf{line bundle} on a type $X$ is a map $\mathcal L:X\to \mathrm{Lines}$.
+  Note that $\mathrm{Lines}=K(R^\times,1)$.\\
+  \vspace{4mm}
+  \pause
+  \textbf{Theorem:} $(\bP^n\to \mathrm{Lines}) = \Z\times K(R^\times,1)$. \\
+  \pause
+  \textbf{Or:} Each line bundle on $\bP^n$ is merely one of the following:
+  \begin{enumerate}[(i)]
+  \item $\mathcal O(-1):=(([x] : \bP^n) \mapsto \text{ $R\langle x\rangle : \mathrm{Lines}$})$
+  \item $\mathcal O(-d):=\mathcal O(-1)^{\otimes d}$ for $d:\N$.
+  \item $\mathcal O(d):=(x\mapsto \Hom_{\Mod{R}}(\mathcal O(-d)_x,R))$.
+  \end{enumerate}
+  \vspace{4mm}
+  \pause
+  Any open $U\subseteq \bP^n$ is a finite union of more general
+  \[ D(f):=\{x:\bP^n\mid f(x)\neq 0 \}\]
+  with $f:(x:\bP^n)\to \mathcal O(d)_x$ for some $d:\N$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Projective Schemes}
+  \pause
+  A scheme $X$ is \textbf{projective} if it merely is a closed subset of some $\bP^n$. \\
+  \vspace{4mm}
+  \textbf{Example and tentative definition:}
+  An elliptic curve is a pointed projective scheme $C$
+  which is smooth of dimension $1$, connected and $H^1(C,R)=1$.
+  \pause
+  Assume $2\neq 0,3\neq 0$ in $R$.
+  For all $a,b:R$ such that $4a^3+27b^2\neq 0$ we have the elliptic curve
+  \[ E_{a,b}:=\{ [x,y,z] :\bP^2\mid y^2z-x^3-axz^2-bz^3=0 \}.\] \\
+  \pause
+  \textbf{Classically}, over a field $k$, there is a converse - each elliptic curve is of the above form (if $2\neq 0, 3\neq 0$ in $k$).
+  % Silverman, p. 59
+  \pause
+  There is a proof using the Riemann-Roch theorem, which can be derived from Serre-Duality.
+  The latter relies on cohomology computations on $\bP^n$.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Cohomology of Line Bundles on Projective Space}
+\begin{theorem}
+  \label{calculate-cohomology-twisting-sheaves}
+  \begin{enumerate}[(a)]
+  \item \label{calculate-cohomology-twisting-sheaves-a}
+  For all $n:\N$, $d:\Z$, there are isomorphisms $R[X_0,\dots,X_n]_d\to H^0(\bP^n,\mathcal O(d))$ of $R$-modules, inducing an isomorphism $R[X_0,\dots,X_n]\to \bigoplus_{d:\Z} H^0(\bP^n,\mathcal O(d))$ of graded $R[X_0,\dots,X_n]$-modules.
+  \item \label{calculate-cohomology-twisting-sheaves-b}
+        $H^n(\bP^n,\mathcal O(-n-1))=R$ is free of rank 1 and $H^n(\bP^n,\mathcal O(d))=0$ for $d>-n-1$.
+  \item \label{calculate-cohomology-twisting-sheaves-c}
+    The canonical map given by tensoring
+    \[
+      H^0(\bP^n,\mathcal O(d)) \times H^n(\bP^n,\mathcal O(-d-n-1))\to R
+    \]
+    is a perfect pairing of finite free $R$-modules for all $d:\Z$.
+  \item $H^i(\bP^n,\mathcal O(d))=0$ for $i\in\{1,\dots,n-1\}$ and all $d:\Z$.
+  \end{enumerate}
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    Thank you!
+  \end{center}
+\end{frame}
+\end{document}
