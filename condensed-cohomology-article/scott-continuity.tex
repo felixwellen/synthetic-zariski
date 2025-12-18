@@ -25,7 +25,7 @@ which is the propositional truncation of an overtly discrete type and therefore 
 \end{proof}
 
 \begin{lemma}\label{factorisation-image-true-factorisation}
-Assume given $S$ compact Hausdorff and for each $x:S$ a tower:
+Assume given $S$ Stone and for each $x:S$ a tower:
 \[I_0(x)\to I_1(x)\to \cdots\]
 of overtly discrete types. Given:
 \[f:\Pi_{x:S}\mathrm{colim}_i I_i(x)\]
@@ -43,10 +43,9 @@ Then we have that:
 \[\forall(x,y:T). p(x)=p(y) \to g(x) =_{\mathrm{colim}_i I_i(x)} g(y)\]
 so that:
 \[\forall(x,y:T). p(x)=p(y) \to \exists(i:\N). g(x) =_{I_i(x)} g(y)\]
-Since $\Sigma(x,y:T). p(x)=p(y)$ is compact Hausdorff we can apply \Cref{compact-hausforff-countable-cover} to get a $j:\N$ such that:
+Since $\Sigma(x,y:T). p(x)=p(y)$ is Stone we can apply \Cref{compact-hausforff-countable-cover} to get a $j:\N$ such that:
 \[\forall(x,y:T). p(x)=p(y) \to g(x) =_{I_j(x)} g(y)\]
 which gives a factorisation of $f$ through $I_j$.
-\rednote{Note that $\Sigma(x,y:T). p(x)=p(y)$ is even Stone, so here we also don't really need the result for compact Hausdorff types.}
 \end{proof}
 
 \begin{proposition}\label{scott-continuity-right}
@@ -101,14 +100,14 @@ which justifies the name.
 \rednote{Here we prove the version for compact Hausdorff as it is not more complicated than the Stone version. I think the Stone version is enough for our purpose.}
 
 \begin{theorem}[Tychonov]
-Assume given $I$ overtly discrete and $C_i$ compact Hausdorff depending on $i:I$. Then:
+Assume given $I$ overtly discrete and $C(i)$ compact Hausdorff depending on $i:I$. Then:
 \[\prod_{i:I}C_i\]
 is compact Hausdorff.
 \end{theorem}
 
 \begin{proof}
-We can assume $I = \mathrm{colim}_{k:\N}\mathrm{Fin}(l_k)$. Then:
-\[\prod_{i:I}C_i = \prod_{i:\mathrm{colim}_{k:\N}\mathrm{Fin}(l_k)} C_i = \lim_{k:\N} C_i^{l_k}\]
+We can assume $I = \mathrm{colim}_{k:\N}\, I_k$ with $I_k$ finite. Then:
+\[\prod_{i:I}C_i = \prod_{i:\mathrm{colim}_{k:\N}\, I_k} C_i = \lim_{k:\N}\, \prod_{i:I_k}C(\iota_k(i))\]
 and we can conclude using that compact Hausdorff spaces are stable under sequential limits and finite products.
 \end{proof}
 
@@ -134,14 +133,14 @@ is overtly discrete.
 \end{theorem}
 
 \begin{proof}
-By local choice and \Cref{tychonov-dual-auxiliary} we can assume that $C$ is Stone (so we denote $C$ by $S$) and that we have towers of finite types $(\mathrm{Fin}(l_{k,x}))_{k:\N}$ such that for all $x:S$ we have that:
-\[I_x = \mathrm{colim}_k\mathrm{Fin}(l_{k,x})\] 
-Then using \Cref{scott-continuity-right} and the fact that overtly discrete types are stable under sequential colimits, it is enough to prove that for $S$ Stone and $l_x:\N$ depending on $x:S$ we have that:
-\[\prod_{x:S}\mathrm{Fin}(l_{x})\]
+By local choice and \Cref{tychonov-dual-auxiliary} we can assume that $C$ is Stone (so we denote $C$ by $S$) and that we have towers of finite types $(I_k(x)))_{k:\N}$ such that for all $x:S$ we have that:
+\[I(x) = \mathrm{colim}_k\, I_k(x)\]
+Then using \Cref{scott-continuity-right} and the fact that overtly discrete types are stable under sequential colimits, it is enough to prove that we have that:
+\[\prod_{x:S} I_k(x)\]
 is overtly discrete. 
 
 Using boundedness, the fact that:
-\[S_k = \left(\Sigma_{x:S} l_x = k\right)\] 
+\[S_k = \Sigma_{x:S} \propTrunc{I(x) = \mathrm{Fin}(l)}\] TODO
 is Stone and that overtly discrete types are stable under finite products, we just have to prove that for any $l:\N$ and $S$ Stone we have that:
 \[S\to \mathrm{Fin}(l)\]
 is overtly discrete. We can conclude using that \Cref{factorisation-stone-finite} and that Stone are limits of finite types.
@@ -163,7 +162,7 @@ We consider ${\mathcal C}_\Stone$ the full subcategory where $X$ is in $\Stone$.
 
 The arrows are oriented such that we have a covariant functor $\Pi:{\mathcal C}\to \ODisc$. First we prove the general version for Stone spaces. It just comes from the two versions and some reasoning and colimits.
 
-\begin{proposition}
+\begin{proposition}\label{eine-scott-continuity-stone}
 The functor:
 \[\Pi : {\mathcal C}_\Stone \to \ODisc\]
 commutes with sequential colimits.
@@ -196,13 +195,28 @@ We omit the checking that this is indeed the canonical map.
 
 Then we extend it to compact Hausdorff spaces. This just comes from reasoning on quotients.
 
-\begin{theorem}[Die Eine Scott Continuity]
+\begin{theorem}[Scott Continuity]
 The functor:
 \[\Pi : {\mathcal C} \to \ODisc\]
 commutes with sequential colimits.
 \end{theorem}
 
 \begin{proof}
-\rednote{TODO}
+Assume given $(C_i,I_i)_{i:\N}$ a tower in $\mathcal C$. Consider $(S_i)_{i:\N}$ a tower of Stone spaces with $p_k:S_k\to C_k$ giving a level-wise surjection to the tower $(C_i)_{i:\N}$. We write $S=\mathrm{lim}_iS_i$, $C=\mathrm{lim}_iC_i$, for $x:C$ we have $I(x) = \mathrm{colim}_iI_i(x_i)$ and finally $p =\mathrm{lim}_ip_i$. Then the canonical map:
+\[\mathrm{colim}_i\, (\Pi_{x:C_i}I_i(x) ) \to \Pi_{x:C}I(x)\]
+is equal to the canonical map:
+
+\[ \left\{ \iota_i(f_i) : \mathrm{colim}_i\, \Pi_{x:S_i}\, I_i(p_i(x))\ |\ \mathrm{colim}_{j>i}\ Q_j(f_i)\right\} \to \left\{f:\Pi_{x:S}\, I(p(x))\ |\ Q(f)\right\} \]
+where we defined:
+\begin{eqnarray}
+ Q_j(f_i) &=& \Pi_{(x,y:S_j,p_j(x)=p_j(y))}\, \iota_j(f_i(\pi_i(x)))=\iota_j(f_i(\pi_i(y)))\nonumber\\
+Q(f) &=& \Pi_{(x,y:S,p(x)=p(y))}\, f(x)=f(y)\nonumber
+\end{eqnarray}
+
+Then by \Cref{eine-scott-continuity-stone} we have that the canonical map
+\[\epsilon : \mathrm{colim}_i \prod_{x:S_i}\,I_i(p_i(x)) \to \prod_{x:S}\, I(p(x))\]
+is an equivalence, by \Cref{eine-scott-continuity-stone} again we have that the canonical map
+\[Q(f) \to P(\epsilon(f))\]
+is an equivalence so we can conclude.
 \end{proof}
 
