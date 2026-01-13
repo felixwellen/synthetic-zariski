@@ -464,9 +464,9 @@ and $\Spec(A/I)$ is dense by \cref{closed-non-empty-iff-dense}.
 \end{proof}
 
 \subsection{Irreducible and reducible types}
-\rednote{This section has a contradiction: One can conclude that subtypes of irreducible types are irreducible (since sigma and propositions are). This problem was discovered by Fabian Endres.}
+\rednote{This section used to contain a contradiction: One could conclude that subtypes of irreducible types are irreducible (since sigma and propositions are). This problem was discovered by Fabian Endres. The error was to assume that non-reducible and irreducible are the same.}
 
-We start with the notion of reducible types and will then pass to the negation of this concept, to irreducible types.
+We briefly mention reducible types. Irreducible types will be not reducible.
 
 \begin{definition}
   A type is called \notion{reducible}, if there are two disjoint, inhabited open subtypes.
@@ -488,26 +488,27 @@ We start with the notion of reducible types and will then pass to the negation o
   A type $X$ is called \notion{irreducible},
   if the following equivalent propositions hold:
   \begin{enumerate}[(i)]
-  \item $X$ is not reducible.
   \item Any non-empty open $U\subseteq X$ is dense.
   \item For any open disjoint $U,V\subseteq X$ such that $U\neq\emptyset$, we have $V=\emptyset$.
+  \item For any open disjoint $U,V\subseteq X$ we have $\neg\exists x,y:X. U(x)\wedge V(y)$.
   \end{enumerate}
 \end{definition}
 
-\begin{proposition}%
-  \label{irred-double-negation-stable}
-  Being irreducible is $\neg\neg$-stable.
-\end{proposition}
+\begin{remark}
+   \label{irred-double-negation-stable}
+\begin{enumerate}[(a)]
+\item Being irreducible is $\neg\neg$-stable.
+\item Irredubible types are not reducible, the reverse does not hold.
+\end{enumerate}
+\end{remark}
 
 \begin{proof}
-  By the definition as not reducible,
-  or by \cref{dense-double-negation-stable}.
+\begin{enumerate}[(a)]
+\item By the $\neg\neg$-stability of denseness \cref{dense-double-negation-stable}.
+\item The reverse does not hold, since it would imply that propositions are irreducible and therefore that
+  subsets of irreducible types would always be irreducible, which we will see below to be wrong for $\{0,1\}\subseteq R$.
+\end{enumerate}
 \end{proof}
-
-\begin{example}
-  Every proposition is an irreducible type,
-  since any two inhabited subtypes intersect.
-\end{example}
 
 \begin{proposition}[using \axiomref{sqc}, \axiomref{loc}, \axiomref{Z-choice}]%
   \label{A1-irreducible}
@@ -600,7 +601,7 @@ It is not the case, that any open dense subtype of a connected scheme is connect
 The original version of the following proof is due to David Wärn.
 
 \begin{proof}
-  Let $U, V \subseteq X \times Y$
+  Let $U, V \subseteq (x:X) \times Y_x$
   be disjoint open subsets with $(a, b) \in U$, $(c, d) \in V$.
   Consider the subtypes
   \[ U_a \colonequiv \{\, x : X \mid (x, b) \in U \,\} \]

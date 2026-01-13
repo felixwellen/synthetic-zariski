@@ -1,4 +1,5 @@
 \subsection{First (non-abelian) cohomology vanish for Stone spaces}
+
 In this section, we generalize the cohomological results in Section 5 of \cite{synthetic-stone-duality} from Abelian groups to general groups.
 
 \begin{remark}
@@ -33,26 +34,25 @@ Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$
 \end{lemma}
 
 \begin{proof}
-  Lemma 5.5 of \cite{synthetic-stone-duality} goes trough 
-
-  \rednote{Check:}
-  Assume given a cocycle $\beta: \prod_{x : X} A_x^{T_x^2}$. 
-  Define $\alpha :\prod_{x : X} A_x ^{T_x}$ by 
-  $\alpha_x(u) = \beta_x(t_x,u)$. Then 
-  $$
-    \delta_0(\alpha)_x(u,v) = 
-    \alpha_x(u)^{-1}\cdot\alpha_x(v) =
-    \beta_x(t_x,u)^{-1} \cdot \beta(t_x,v)
-  $$
-  As $\beta$ is a cocycle, we have that 
-  $$\beta_x(u,v) \cdot \beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = 1,$$
-  hence
-  $$\beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = \beta_x(u,v)^{-1},$$
-  and taking inverses then gives that 
-  $$\beta_x(t_x,u)^{-1} \cdot \beta_x(t_x,v) = \beta_x(u,v),$$
-  from which we conclude that 
-  $\delta_0(\alpha)_x(u,v) = \beta_x(u,v)$, so $\beta$ is a coboundary. 
-  Hence the sequence is exact. 
+  The proof of Lemma 5.5 of \cite{synthetic-stone-duality} goes through.
+%PRECISE CHECK
+  %Assume given a cocycle $\beta: \prod_{x : X} A_x^{T_x^2}$. 
+  %Define $\alpha :\prod_{x : X} A_x ^{T_x}$ by 
+  %$\alpha_x(u) = \beta_x(t_x,u)$. Then 
+  %$$
+  %  \delta_0(\alpha)_x(u,v) = 
+  %  \alpha_x(u)^{-1}\cdot\alpha_x(v) =
+  %  \beta_x(t_x,u)^{-1} \cdot \beta(t_x,v)
+  %$$
+  %As $\beta$ is a cocycle, we have that 
+  %$$\beta_x(u,v) \cdot \beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = 1,$$
+  %hence
+  %$$\beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = \beta_x(u,v)^{-1},$$
+  %and taking inverses then gives that 
+  %$$\beta_x(t_x,u)^{-1} \cdot \beta_x(t_x,v) = \beta_x(u,v),$$
+  %from which we conclude that 
+  %$\delta_0(\alpha)_x(u,v) = \beta_x(u,v)$, so $\beta$ is a coboundary. 
+  %Hence the sequence is exact. 
 \end{proof}
 
 \begin{lemma}\label{cocyle-being-coboundary}
@@ -136,6 +136,7 @@ where the first equality comes from \Cref{scott-continuity-right} and the second
   merely inhabited Stone spaces such that 
   $\prod_{x:S}(\phi_x = *)^{T_x}$.
 \end{lemma}
+
 \begin{proof}
   Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. 
   By definition of $BG$, we have that 
@@ -164,7 +165,9 @@ Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. Then:
 In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence $\check{S,T,G}$ is exact. But this is \Cref{short-cech-exact}.
 \end{proof}
 
+
 \subsection{Stone spaces are acyclic}
+
 The goal of this section is to show that for $S:\Stone$, we have 
 $H^n(S,A) = 0$ for any $A:S\to \mathrm{Ab}_\ODisc, n>0$. 
 We will actually show something stronger, 
@@ -210,53 +213,55 @@ To be more specific, we will show in
   which means exactly that $H^{n}(S,A) = || \prod_{x : S} K(A_x,n) ||_0 = 0$. 
 \end{proof} 
 
+Next lemma is quite standard, although we did not find any Homotopy Type Theory reference.
 
-\rednote{The following should be standard, we need a reference}
 \begin{lemma}\label{ExactSequenceDelooping}
-  Let $A \to B \to C\to 0$ be a fiber sequence of abelian groups. 
+  Let $0\to A \to B \to C\to 0$ be an exact sequence of abelian groups.
   Then we get a fiber sequence 
   $$
   \cdots \to K(C, k-1) \to K(A,k) \to K(B,k) \to K(C,k) \to K(A,k+1) \to \cdots 
   $$
 \end{lemma}
+
 \begin{proof}
-Note that $B \to C$ induces a map 
-$K(B,n) \to K(C,n)$. 
+Note that $B \to C$ induces a pointed map 
+$K(B,n) \to K(C,n)$, let $F$ be its fiber. It is a pointed $n$-type. 
 Following definition 8.4.3 of \cite{hott}, we get the 
-following fiber sequence in $k$:
+following exact sequence:
   $$
-  \cdots \to \pi_{k+1}(C) \to 
+  \cdots \to \pi_{k+1}(K(C,n)) \to 
   \pi_{k}(F) \to \pi_{k}(K(B,n)) \to \pi_{k}(K(C,n)) \to 
   \pi_{k-1}(F) \to \cdots ,
   $$
-where $F$ is the fiber of $K(B,k) \to K(C,n)$. 
-Taking $k =n-1$, we have that 
-$$\pi_n(F) \to \pi_{n}K(B,n) \to \pi_nK(C,n) \to \pi_{n-1} (F) \to \pi_{n-1}K(B,n)$$
-is exact. 
-Now we use that for any group $G$, we have $\pi_{n-1}(K(G,n)) = 0, \pi_n(K(G,n)) = G$. 
-Thus $\pi_n(F) \to B \to C \to \pi_{n-1}(F) \to 0$ is a fiber sequence. 
-As $B \to C \to 0$ was exact, $B \to C$ is surjective, 
-so the image of $C \to \pi_{n-1}(F)$ is the same as that of 
-$B \to \pi_{n-1}(F)$, and that image is $0$. 
-But since the kernel of $\pi_{n-1}(F) \to 0$ is all of $\pi_{n-1}(F)$, 
-we must have $\pi_{n-1}(F) = 0$.
-Thus $F$ is $n-1$-connected. 
-Also $F$ is the fiber of a map of $n$-types, which is an $n$-type. 
-So $F$ is an $n-1$-connected $n$-type.
-Thus $\pi_n(F)$ is a set and equals $A$. 
-Therefore $F = K(A,n)$. 
-Furthermore, the fiber of $K(A,n) \to K(B,n)$ should be $\Omega K(C,n) = K(C,n-1)$. 
-We conclude that we have a fiber sequence of the form
-$$\cdots\to 
-  K(A,k) \to K(B, k) \to K(C,k)
-$$
-but then also our first exact sequence also tells us that 
-there is a fiber sequence 
-$$\cdots\to 
-  K(C,k-1) \to 
-  K(A,k) \to K(B, k) \to K(C,k) \to
-  K(A,k+1) \to \cdots
-$$
+  Form this plus the map $\pi_n(K(B,n))\to \pi_n(K(C,n))$ being surjective, we conclude that $F$ is $n-1$-connected and that $\pi_n(F) = A$. By unicity of deloopings we get $F=K(A,n)$.
+  
+%where $F$ is the fiber of $K(B,k) \to K(C,n)$. 
+%Taking $k =n-1$, we have that 
+%$$\pi_n(F) \to \pi_{n}K(B,n) \to \pi_nK(C,n) \to \pi_{n-1} (F) \to \pi_{n-1}K(B,n)$$
+%is exact. 
+%Now we use that for any group $G$, we have $\pi_{n-1}(K(G,n)) = 0, \pi_n(K(G,n)) = G$. 
+%Thus $\pi_n(F) \to B \to C \to \pi_{n-1}(F) \to 0$ is a fiber sequence. 
+%As $B \to C \to 0$ was exact, $B \to C$ is surjective, 
+%so the image of $C \to \pi_{n-1}(F)$ is the same as that of 
+%But since the kernel of $\pi_{n-1}(F) \to 0$ is all of $\pi_{n-1}(F)$, 
+%we must have $\pi_{n-1}(F) = 0$.
+%Thus $F$ is $n-1$-connected. 
+%Also $F$ is the fiber of a map of $n$-types, which is an $n$-type. 
+%So $F$ is an $n-1$-connected $n$-type.
+%Thus $\pi_n(F)$ is a set and equals $A$. 
+%Therefore $F = K(A,n)$. 
+%Furthermore, the fiber of $K(A,n) \to K(B,n)$ should be $\Omega K(C,n) = K(C,n-1)$. 
+%We conclude that we have a fiber sequence of the form
+%$$\cdots\to 
+%  K(A,k) \to K(B, k) \to K(C,k)
+%$$
+%but then also our first exact sequence also tells us that 
+%there is a fiber sequence 
+%$$\cdots\to 
+%  K(C,k-1) \to 
+%  K(A,k) \to K(B, k) \to K(C,k) \to
+%  K(A,k+1) \to \cdots
+%$$
 \end{proof}
 
 \begin{theorem}\label{eilenberg-exponentials}
@@ -290,7 +295,7 @@ is an equivalence.
   For $x:S$, denote $L_x$ for $A_x^{T_x}/A_x$, 
   where the quotient is over the image of the constant map.
   As $A_x^{T_x} \to L_x$ is surjective, we get an exact sequence 
-  $A_x \to A_x^{T_x} \to L_x \to 0$. 
+  $0\to A_x \to A_x^{T_x} \to L_x \to 0$. 
   By \Cref{ExactSequenceDelooping}, we get a fiber sequence
   $$\cdots\to 
     K(L_x,k-1) \to 
@@ -317,9 +322,9 @@ is an equivalence.
   Thus $\alpha$ is in the kernel of $\prod_{x:S}K(A_x,n+1) \to K(A_x^{T_x},n+1)$.
   By exactness $\alpha$ is in the image $\prod_{x:S} K(L_x,n) \to \prod_{x:S}K(A_x,n+1)$. 
   As $n\geq 1$, we can use the induction hypothesis and \Cref{ev-eq-acyclic} to see that $H^n(S,L)=0$.
-  Thus any $\beta:\prod_{x:S}K(L_x,n)$ equals $*$, 
-  so their image equals $*$ in $\prod_{x:S}K(A_x,n+1)$. 
-  Thus $\alpha = *$, as required. 
+  Thus any $\beta:\prod_{x:S}K(L_x,n)$ merely equals $*$, 
+  so their image merely equals $*$ in $\prod_{x:S}K(A_x,n+1)$. 
+  Thus we merely have $\alpha = *$, as required. 
 \end{proof}
 
 \begin{corollary}\label{vanishing-cohomology-stone}
@@ -335,6 +340,7 @@ A \v{C}ech cover for a type $X$ consists of a surjective map:
 \[f:S\to X\]
 where $S$ is Stone and for all $x:X$ the fiber $S_x$ of $f$ over $x$ is Stone.
 \end{definition}
+
 
 Next lemma show that cohomology interact well with \v{C}ech cover. It will be used later to prove that cohomology and \v{C}ech cohomology agree.
 
@@ -373,20 +379,38 @@ natural in $A$, where $L_x = A_x^{S_x}/A_x$.
     the latter is $0$ as required. 
 \end{proof}
 
-\begin{definition}\label{cech-sequence-definition}
-Assume given a \v{C}ech cover
-\[f:S\to X\]
-and $A:X\to\mathrm{Ab}_\ODisc$.
+Next definition will be used for \v{C}ech cover.
 
-Then we define the \v{C}ech complex by:
-\[\prod_{x:X}A_x^{S_x} \to \prod_{x:X}A_x^{S_x\times S_x} \to \cdots\]
-with the boundary maps defined as expected, that is:
-\[\delta^n(\alpha)(x,u_0,\cdots,u_n) = \sum_{i=0}^n (-1)^i\alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n)\]
-Then the \v{C}ech cohomology:
-\[\check{H}^k(x:X,A_x)\]
-is defined as the $k$-th homology group of the \v{C}ech complex, 
-so as the image of $\delta^n$ by the kernel of $\delta^{n+1}$. 
+\begin{definition}
+Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
+\[\prod_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{A(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
+with:
+\[\delta_n(\alpha)_x(y_0,\cdots,y_n) = \sum_{i=0}^n (-1)^i \alpha(y_0,\hdots,\hat{x_i},\hdots,y_n)\]
+We have that $\delta_{n+1} \circ \delta_n = 0$.
+
+We define its $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology of this chain complex.
 \end{definition}
+
+We prove a generic result about \v{C}ech sequence.
+
+\begin{lemma}\label{cech-coefficient-lemma}
+Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending on $x:X$. Then $\check{H}(X,Y,x\mapsto A^{Y(x)})=0$.
+\end{lemma}
+
+\begin{proof}
+Indeed assume given:
+\[\alpha : \prod_{x:X} Y(x)^{n+1}\to A(x)^{Y(x)}\]
+such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $u_0,\cdots, u_{n+1},v:Y(x)$ we have that:
+\[\sum_{i=0}^{n+1}(-1)^i\alpha(x,u_0,\cdots,  \widehat{u_i},\cdots ,u_{n+1},v) = 0\]
+Then we define:
+\[\beta : \prod_{x:X} Y(x)^{n}\to A(x)^{Y(x)}\]
+\[\beta(x,u_0,\cdots,u_{n-1},v) = (-1)^n\alpha(x,u_0,\cdots,u_{n-1},v,v)\]
+and then:
+\[\delta(\beta)(x,u_0,\cdots,u_{n},v) = (-1)^n\sum_{i=0}^{n} (-1)^i \alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n,v,v) \]
+\[= \alpha(x,u_0,\cdots,u_n,v)\]
+so $\alpha$ is indeed a coboundary.
+\end{proof}
+
 
 \begin{lemma}\label{long-exact-cech-cohomology}
 Assume given a \v{C}ech cover:
@@ -413,21 +437,11 @@ natural in $A$ where $L_x=A_x^{S_x}/A_x$.
 \end{lemma}
 
 \begin{proof}
-By \Cref{long-exact-cech-cohomology}, it is enough to prove $\check{H}^n(X,x\mapsto A_x^{S_x}) = 0$ 
-\rednote{maybe we could have this as an auxiliary lemma, as it does not use anything on $X$, $S$ and $A$? It can be found in Foundation I think.}
-for all $n\geq 1$. Indeed assume given:
-\[\alpha : \prod_{x:X} S_x^{n+1}\to S_x\to A_x\]
-such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $u_0,\cdots, u_{n+1},v:S_x$ we have that:
-\[\sum_{i=0}^{n+1}(-1)^i\alpha(x,u_0,\cdots,  \hat{u_i},\cdots ,u_{n+1},v) = 0\]
-Then we define:
-\[\beta : \prod_{x:X} S_x^{n}\to S_x\to A_x\]
-\[\beta(x,u_0,\cdots,u_{n-1},v) = (-1)^n\alpha(x,u_0,\cdots,u_{n-1},v,v)\]
-and then:
-\[\delta(\beta)(x,u_0,\cdots,u_{n},v) = (-1)^n\sum_{i=0}^{n} (-1)^i \alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n,v,v) \]
-\[= \alpha(x,u_0,\cdots,u_n,v)\]
+By \Cref{long-exact-cech-cohomology}, it is enough to prove $\check{H}^n(X,S,x\mapsto A_x^{S_x}) = 0$ 
+for all $n\geq 1$. This is \Cref{cech-coefficient-lemma}
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}\label{cech-and-sheaf-agree}
 Assume given a \v{C}ech cover:
 \[f:S\to X\]
 and $A:X\to\mathrm{Ab}_\ODisc$.
@@ -449,11 +463,43 @@ For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{i
 
 \subsection{The unit interval is acyclic}
 
-\begin{proposition}\label{vanishing-cohomology-interval}
-For all $A$ overtly discrete and all $k$ we have that:
-\[H^k(\mathbb{I},A) = 0\]
+This section closely follows Section 5.4 in \cite{foundation-synthtetic-stone-duality}.
+
+\begin{remark}\label{description-Cn-simn}
+  Recall that 
+  there is a binary relation $\sim_n$ on $2^n=:\I_n$ such that 
+  $(2^n,\sim_n)$ is equivalent to  $(\Fin(2^n),\lambda x,y.\ |x-y|\leq 1)$
+  and for $\alpha,\beta:2^\N$ we have $(cs(\alpha) = cs(\beta)) \leftrightarrow 
+  \left(\forall_{n:\N}\alpha|_n \sim_n \beta|_n\right)$. 
+\end{remark}
+
+We define $\I_n^{\sim k} = \{x_1,\hdots,x_n:\I_n\ |\ \forall(i,j).\, x_i\sim_n x_j\}$.
+
+\begin{lemma}\label{Cn-exact-sequence}
+For any $n:\N$ and $A$ an overtly discrete abelian group, we have an exact sequence:
+\[0\to A\overset{d}{\longrightarrow} A^{\I_n} \overset{d_0}{\longrightarrow} A^{\I_n^{\sim 2}} \overset{d_1}{\longrightarrow} A^{\I_n^{\sim3}} \overset{d_3}{\longrightarrow} \cdots\]
+where $d(k) = (\_\mapsto k)$ and
+\begin{eqnarray}
+ d_n(\alpha)(x_0,\hdots,x_n) &=& \sum_{i=0}^n (-1)^i\alpha(x_0,\hdots,\widehat{x_i},\hdots,x_n)\nonumber
+\end{eqnarray}
+\end{lemma}
+
+\begin{proof}
+This follows from the computations given in Stack Project Tag 01FG. \rednote{Do we need more?}
+\end{proof}
+
+\begin{proposition}\label{cohomology-I}
+Given $A$ an overtly discrete abelian group, we have that $H^0(\I,A) = A$ and $H^n(\I,A) = 0$ for $n\geq 1$.
 \end{proposition}
 
 \begin{proof}
-TODO
+Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover $T$ of $\I$ defined by: 
+\[T_x = \Sigma_{y:2^\N} (x=_\I cs(y))\]
+Then we have that $\mathrm{lim}_n\I_n^{\sim l} = \sum_{x:\I} T_x^l$. By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we have an exact sequence
+\[ 0\to A\to \mathrm{colim}_n A^{\I_n} \to \mathrm{colim}_n A^{\I_n^{\sim2}}\to \mathrm{colim}_n A^{\I_n^{\sim3}}\to \cdots\]
+By \cref{scott-continuity-left} this sequence is equivalent to
+\[ 0\to A\to \Pi_{x:\I}A^{T_x} \to  \Pi_{x:\mathbb{I}}A^{T_x^2} \to  \Pi_{x:\mathbb{I}}A^{T_x^3}\to \cdots\]
+So it being exact implies that $\check{H}^0(\I,T,A) = A$ and $\check{H}^n(\I,T,A) = 0$ for $n\geq 1$.
+We conclude by \Cref{cech-and-sheaf-agree}.
 \end{proof}
+

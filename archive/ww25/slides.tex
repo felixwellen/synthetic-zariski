@@ -1,0 +1,157 @@
+% latexmk -pvc -pdf slides.tex
+\documentclass{beamer}
+
+\beamertemplatenavigationsymbolsempty
+
+% literatur
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+
+\addbibresource{../util/literature.bib}
+
+\usepackage{../util/zariski}
+
+\usepackage{csquotes}
+\usepackage{cancel}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{cd,arrows,shapes,calc,through,backgrounds,matrix,trees,decorations.pathmorphing,positioning,automata}
+\usepackage{graphicx}
+\usepackage{color}
+
+\usepackage{mathpartir}
+\newcommand{\yields}{\vdash}
+\newcommand{\cbar}{\, | \,}
+
+\newcommand{\nop}[1]{\textcolor{bg}{#1}}
+
+
+% für tabellen
+\usepackage{booktabs}
+
+\title{Synthetic Algebraic Geometry}
+\date{December 15, 2025}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  This is the main part of a small field, containing work of the following people:
+  \begin{center}
+    \begin{tabularx}{\textwidth}{XXX}
+      Peter Arndt & Reid Barton & Ulrik Buchholtz \\
+      Ingo Blechschmidt & Felix Cherubini & Dan Christensen \\
+      Johan Commelin &Thierry Coquand & Fabian Endres \\
+      Freek Geerligs & Jonas Höfer & Tim Lichtnau \\
+      Hugo Moeneclaey & David Jaz Myers & Marc Nieper-Wiß\-kir\-chen \\ 
+      Armaan Rashid & Matthias Ritter & Christian Sattler \\
+      Lukas Stoll & Thomas Thorbjørnsen & David Wärn \\
+      Mark Williams & &
+    \end{tabularx}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  The work I will describe now in more detail, was done by:
+  \vspace{.5cm}
+  \begin{center}
+    \begin{tabularx}{\textwidth}{XXX}
+      \nop{Peter Arndt} & \nop{Reid Barton} & \nop{Ulrik Buchholtz} \\
+      \nop{Ingo Blechschmidt} & Felix Cherubini & Dan Christensen \\
+      \nop{Johan Commelin} & Thierry Coquand & \nop{Fabian Endres} \\
+      \nop{Freek Geerligs} & \nop{Jonas Höfer} & \nop{Tim Lichtnau} \\
+      Hugo Moeneclaey & \nop{David Jaz Myers} & \nop{Marc Nieper-Wißkirchen} \\ 
+      \nop{Armaan Rashid} & Matthias Ritter & \nop{Christian Sattler} \\
+      \nop{Lukas Stoll} & Thomas Thorbjørnsen & David Wärn \\
+      \nop{Mark Williams} & &
+    \end{tabularx}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  A more complete overview is at \url{https://github.com/felixwellen/synthetic-zariski}:
+  \includegraphics[width=\textwidth]{repo.png}
+\end{frame}
+
+\begin{frame}
+  Functor of points approach\dots \\
+  \includegraphics[width=\textwidth]{demazure-fx.png}
+\end{frame}
+
+\begin{frame}
+  \dots allows you to pretend you are working with sets! \\
+  \includegraphics[width=\textwidth]{demazure-fx-circled.png}
+\end{frame}
+
+\begin{frame}
+  Some constructions:\\
+  \vspace{.3cm}
+    \begin{tabular}{l|l}
+      Concept & Functor of Points \\
+      \midrule
+      $\A^1$ & $A\mapsto A:\Alg{k}\to \mathrm{Set}$ \\
+      $X\to Y$ & $\eta_A:X(A)\to Y(A)$ such that \dots \\
+      $X\times_Z Y$ & $A\mapsto X(A)\times_{Z(A)} Y(A)$  \\
+      $\bP^n$ & $A\mapsto \{M\subseteq A^{n+1}\mid \text{$M$ rank 1 submodule,} \text{ $M\oplus N\cong A^{n+1}$} \}$ \\
+      $\Spec(B)$ & $A\mapsto \Hom_{\Alg{k}}(B,A)$ 
+    \end{tabular}
+    \pause
+    \vspace{.7cm}\\
+  Synthetically, we can work without the argument $A$:\\
+  \vspace{.3cm}
+    \begin{tabular}{l|l}
+      Concept & Synthetic Algebraic Geometry \\
+      \midrule
+      $\A^1$ & axiomatically given ring $R$ \\ 
+      $X\to Y$ & $f:X\to Y$ (function between sets) \\
+      $X\times_Z Y$ & Just $X\times_Z Y$  \\
+      $\bP^n$ & $\{L\subseteq R^{n+1}\mid \text{ $L$ rank 1 submodule}\}$ \\
+      $\Spec(B)$ & $\Hom_{\Alg{R}}(B,R)$
+    \end{tabular}
+\end{frame}
+
+\begin{frame}
+  Already in the late 60s, Kock, Lawvere and others used that ``from the inside'',
+  objects in a sheaf-topos look like sets:
+  \vspace{.3cm}\\
+  \includegraphics[width=\textwidth]{topos-theoretic-methods.png}
+\end{frame}
+
+\begin{frame}
+
+\begin{itemize}
+\item  Use of Kripke-Joyal semantics started -- elementary reasoning about sets can be translated to sheaves on a site.
+  \pause
+\item Anders Kock works synthetically on Grassmannians.
+  \pause
+\item 1972, Monique Hakim finishes her thesis with Grothendieck, which reasons in a similar spirit, using topos theory.
+  \pause
+\item 2017, Ingo Blechschmidt uses a more expressive language, ``stack semantics'' to find lot's of interesting properties of the Zariski-topos $\mathrm{Sh}(\Alg{k}_{\mathrm{fp}}^{\mathrm{op}})$.
+  Language upgrades and Ingo's work, mentioning Hakim.
+\pause
+\item We use Homotopy Type Theory now. This means we use a higher sheaf topos as a model.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Some results}
+  \begin{itemize}
+  \item \(H^n(\Spec(A),M)=0\) for all \(M:\Spec(A)\to \Mod{R}_{\mathrm{wqc}}\).
+    \pause
+  \item \(H^n(X,M)\) computable with \v{C}ech-Cohomology, if \(X\) is a separated scheme.
+    \pause
+  \item \(\Aut(\bP^n)=\PGL_{n+1}(R)\).
+    \pause
+  \item \(\exists_{\text{ét}}\text{ isomorphism } X\cong \bP^n\) and \(X\) has a point, then there exists \(X\cong\bP^n\).
+    \pause
+  \item \(\Mod{R}_{\mathrm{ad}}\) is an abelian category, with self-duality through \(\Hom_{\Mod{R}}(\_,R)\), which might be a good replacement for coherent modules. \\
+    \(\Mod{R}_{\mathrm{ad}}:=\) \\ \(\{K:\Mod{R}\mid \exists f:M\to N,\text{ $M$, $N$ fp}, K=\ker{f}\}\)
+    \pause
+  \item There is a variation of synthetic algebraic geometry for a synthetic theory of light condensed sets.
+  \end{itemize}
+\end{frame}
+\end{document}
