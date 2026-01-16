@@ -1,15 +1,27 @@
-\subsection{Stone spaces}
+The goal of this section is to prove the axioms of Barton-Commelin's condensed type theory in synthetic Stone duality. Sections 
+\ref{stone-spaces} and \ref{overtly-discrete-types} contains generalities on Stone spaces and overtly discrete types, \Cref{scott-continuity-for-cohomology} contains the restricted versions of Barton-Commelin's axioms needed for our cohomoloogy computations, so it only contains results about Stone spaces. Finally \Cref{barton-commelin} contains the proof fo the axioms proper, which essentially means it extends results from \Cref{scott-continuity-for-cohomology} to compact Hausdorff spaces. This section can be skipped by readers only interested in the cohomology results. 
 
-Recall that Stone spaces are defined as spectrum of c.p. boolean algebra, or equivalently as sequential limits of finite types.
-\rednote{Lemmas 3.1 and 3.2 of \cite{synthetic-stone-duality}}
+
+
+\subsection{Stone spaces}
+\label{stone-spaces}
+
+We recall generalities about Stone spaces. Most results come from \cite{synthetic-stone-duality}. 
+
+\begin{definition}
+A Stone space is a type that is merely a sequential limit of finite types.
+\end{definition}
+
+\begin{remark}
+This is equivalent to the definition of Stone spaces as spectrum of countably presented booolean algebras given in \cite{synthetic-stone-duality} by Lemmas 3.1 and 3.2 from \cite{synthetic-stone-duality}. We use this alternative definition to emphasis the duality between Stone spaces and overtly discrete types which will be defined in \Cref{overtly-discrete-types} as sequential colimits of finite types.
+\end{remark}
 
 \begin{lemma}
 A proposition is a Stone space if and only if it is closed.
-\rednote{Corollary 3.8 of \cite{synthetic-stone-duality}}
 \end{lemma}
 
 \begin{proof}
-The key point is that the propositional truncation of a stone space is a closed proposition.
+Corollary 3.9 of \cite{synthetic-stone-duality}.
 \end{proof}
 
 \begin{theorem}
@@ -17,20 +29,24 @@ We have the following:
 \begin{enumerate}[(i)]
 \item Finite types are Stone spaces.
 \item Stone spaces are stable under identity types and and sigma types.
-  \rednote{Lemma 3.10, Theorem 4.18 of \cite{synthetic-stone-duality}}
 \item Stone spaces are stable under sequential limits.
   \rednote{Not in \cite{synthetic-stone-duality}, 
   is it a version of the quarter-plane lemma?}
-\item Stone spaces have local choice.
-  \rednote{Axiom 3 of \cite{synthetic-stone-duality}}
+%\item Stone spaces have local choice.
+ % \rednote{Axiom 3 of \cite{synthetic-stone-duality}}
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\rednote{TODO precise reference} 
+\begin{enumate}[(i)]
+\item Clear.
+\item Lemma 3.10 and Theorem 4.18 of \cite{synthetic-stone-duality}.
+\item From duality and the fact that a sequential colimit of a countably presented boolean algebra is countably presented.
+%\item This is the local choice axiom.
+\end{enumerate}
 \end{proof}
 
-We give two compactness results for Stone spaces:
+Next we give two compactness results for Stone spaces. The first one comes from synthetic topology \ref{}
 
 \begin{lemma}\label{compact-hausdorff-compact}
 Assume given $S$ Stone and $U\subset S$ an open subtype. Then $U=S$ is open.
@@ -92,8 +108,9 @@ Assume given a Stone space and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{
 \end{proof}
 
 
-\subsection{Overtly discrete types}
 
+\subsection{Overtly discrete types}
+\label{overtly-discrete-types}
 
 \begin{definition}
 A type $X$ is countable if there merely exists a decidable subset of $\N$ equal to $X$.
@@ -246,6 +263,7 @@ which colimit is the colimit of the assumed tower. Then we just use \cref{colimi
 
 
 \subsection{Scott continuity for Stone spaces}
+\label{scott-continuity-for-cohomology}
 
 \begin{lemma}\label{factorisation-stone-finite}
 For any tower of Stone space $(S_k)_{k:\N}$ and $l:\N$, we have that:
