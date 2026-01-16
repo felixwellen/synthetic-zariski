@@ -30,15 +30,14 @@ We have the following:
 \item Finite types are Stone spaces.
 \item Stone spaces are stable under identity types and and sigma types.
 \item Stone spaces are stable under sequential limits.
-  \rednote{Not in \cite{synthetic-stone-duality}, 
-  is it a version of the quarter-plane lemma?}
+  %\rednote{Not in \cite{synthetic-stone-duality}, is it a version of the quarter-plane lemma?}
 %\item Stone spaces have local choice.
  % \rednote{Axiom 3 of \cite{synthetic-stone-duality}}
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-\begin{enumate}[(i)]
+\begin{enumerate}[(i)]
 \item Clear.
 \item Lemma 3.10 and Theorem 4.18 of \cite{synthetic-stone-duality}.
 \item From duality and the fact that a sequential colimit of a countably presented boolean algebra is countably presented.
@@ -46,64 +45,58 @@ We have the following:
 \end{enumerate}
 \end{proof}
 
-Next we give two compactness results for Stone spaces. The first one comes from synthetic topology \ref{}
+Next we give two compactness results for Stone spaces. The first one is used as a definition of compactness in synthetic topology \cite{TODO}, while the second one is closer to the usual topological formulation of compactness.
 
 \begin{lemma}\label{compact-hausdorff-compact}
 Assume given $S$ Stone and $U\subset S$ an open subtype. Then $U=S$ is open.
-\rednote{Corollary 4.4 of \cite{synthetic-stone-duality}, although the proof is left implicit there.}
 \end{lemma}
 
 \begin{proof}
-We show that $\neg(U=S)$ is closed. To do this it is enough to show that:
-\[\neg(U=S) \leftrightarrow \exists (x:S).\neg U_x\]
-but we know that $\exists (x:S).\neg U_x$ is closed and therefore $\neg\neg$-stable, we have that $U_x$ is $\neg\neg$-stable as well and we can conclude from that since we always have:
-\[\neg(\forall(x:S).\ \neg\neg U_x) \to \neg\neg(\exists(x:S).\ \neg U_x)\]
+This is Corollary 4.4 of \cite{synthetic-stone-duality}.
+%We show that $\neg(U=S)$ is closed. To do this it is enough to show that:
+%\[\neg(U=S) \leftrightarrow \exists (x:S).\neg U_x\]
+%but we know that $\exists (x:S).\neg U_x$ is closed and therefore $\neg\neg$-stable, we have that $U_x$ is $\neg\neg$-stable as well and we can conclude from that since we always have:
+%\[\neg(\forall(x:S).\ \neg\neg U_x) \to \neg\neg(\exists(x:S).\ \neg U_x)\]
 \end{proof}
 
 \begin{lemma}\label{compact-hausforff-countable-cover}
-Assume given $S$ Stone and open subsets of $S$ as follows:
+Assume given $S:\Stone$ and $(U_i)_{i:\N}$ open subsets of $S$ such that:
 \[U_0\subset U_1 \subset \cdots\]
-If:
-\[\forall(x:S).\exists(i:\N). x\in U_i\]
-then:
-\[\exists(i:\N). \forall(x:S).x\in U_i\]
+%If $\forall(x:S).\exists(i:\N). x\in U_i$, then $\exists(i:\N). \forall(x:S).x\in U_i$.
+If $\cup_i U_i = S$, there there is a $k$ such that $U_k=S$
 \end{lemma}
 
 \begin{proof}
-By local choice we have a surjective map:
-\[ f: T \to S\]
-such that:
-\[\forall(x:T).\Sigma (i:\N). f(x)\in U_i\]
-By boundedness there is $k:\N$ such that:
-\[\forall(x:T). f(x)\in U_k\]
+By local choice we have a surjective map $f: T \to S$
+such that $\forall(x:T).\Sigma (i:\N). f(x)\in U_i$. By boundedness there is $k:\N$ such that $\forall(x:T). f(x)\in U_k$
 and then we conclude by surjectivity.
 \end{proof}
 
-Next we give a finite approximation results for surjections between Stone spaces, which will be key in showing the vanishing of the first cohomology groups of Stone spaces.
+Next we give a finite approximation result for surjections between Stone spaces, which will be key in showing the vanishing of the first cohomology groups of Stone spaces.
 
 \begin{lemma}\label{finite-approximation-stone-surjection-cohomology}
-Assume given a Stone space and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$. Then there exists a sequence $T_k: S\to \Stone$ with $\prod_{x:S}T_{k+1}(x)\to T_k(x)$ for $k:\N$ such that:
+Assume given a $S:\Stone$ and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$. Then there exists a family of $T_k: S\to \Stone$ for $k:\N$ with maps $d_k:\prod_{x:S}T_{k+1}(x)\to T_k(x)$ such that:
 \begin{itemize} 
 \item For all $x:S$ we have $\mathrm{lim}_kT_k(x) = T(x)$.
-\item For all $k:\N$ we have a section in $\prod_{x:S}T_k(x)$.
+\item For all $k:\N$ there exists a section of $\prod_{x:S}T_k(x)$.
 \end{itemize}
 \end{lemma}
 
 \begin{proof}
   By assumption, the projection 
   $\pi: \sum_{x:S} T(x) \to S$ is surjective.
-  By Theorem 4.18 of \cite{synthetic-stone-duality}, the domain is Stone.
-  Hence by Remark 3.4 of \cite{synthetic-stone-duality}, 
+  %By Theorem 4.18 of \cite{synthetic-stone-duality}, the domain is Stone.
+  By Remark 3.4 of \cite{synthetic-stone-duality}, 
   we can write $\pi$ as limit of surjections 
   $\pi_k : Q_k\twoheadrightarrow S_k$
   between finite sets.
   As taking fibers and limits commute, we have that 
   $T(x)$ is the limit of $\pi_k^{-1}(x|_k)=:T_k(x)$, 
-  which is a closed subset of a finite set, hence Stone by 
-  Theorem 3.11 of \cite{synthetic-stone-duality}. 
-  Furthermore, surjections of finite sets have sections
+  which is a closed subset of a finite set, hence Stone. 
+  %by Theorem 3.11 of \cite{synthetic-stone-duality}. 
+  Furthermore, surjections of finite sets merely have sections
   $s_k: S_k \hookrightarrow Q_k$, 
-  giving the required section 
+  giving the required sections
   $\lambda x . s_k(x|_k) : \prod_{x :S} T_k(x)$. 
 \end{proof}
 
