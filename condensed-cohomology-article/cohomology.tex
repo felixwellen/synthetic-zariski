@@ -1,33 +1,15 @@
 \subsection{First (non-abelian) cohomology vanish for Stone spaces}
 
-In this section, we generalize the cohomological results in Section 5 of \cite{synthetic-stone-duality} from Abelian groups to general groups.
-
-\begin{remark}
-  Let $G$ be a group,
-  we denote $K(G,n)$ for the $n$'th delooping of $G$.
-  To be precise, $K(G,0) = G$ and 
-  $K(G,n+1)$ is a pointed type with only one point
-  with loop space $K(G,n)$, 
-  and such that \cite{davidw23}.
-  To be more precise, we have $*:K(G,n+1)$, 
-  $\prod_{x : K(G,n+1)} \propTrunc{x = *}$ and the type
-  $*=*$ is cannonically equal to $G$. 
-  The first delooping of $G$ is denoted $BG$. 
-  \\
-  For $X$ a type and $G: X \to Group$ 
-  we define $H^n(X,G) = ||\prod_{x : X} K(G(x),n)||_0$.
-\end{remark} 
-
 \begin{definition}
-Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. We define its its short \v{C}ech sequence $\check{C}(X,Y,G)$ as:
-\[\prod_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^3} \]
-with:
-\[\delta_0(\alpha)_x(y_1,y_2) = \alpha_x(y_1)^{-1}\cdot\alpha_x(y_2)\]
-\[\delta_0(\beta)_x(y_1,y_2,y_3) = \beta_x(y_2,y_3)\cdot\beta_x(y_1,y_3)^{-1}\cdot\beta_x(y_1,y_2)\]
-We have that $\delta_1(\delta_0(\alpha)))_x(y_1,y_2,y_3) = 1$.
+  Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. We define its short \v{C}ech sequence $\check{C}(X,Y,G)$ as:
+  \[\prod_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^3} \]
+  with:
+  \[\delta_0(\alpha)_x(y_1,y_2) = \alpha_x(y_1)^{-1}\cdot\alpha_x(y_2)\]
+  \[\delta_1(\beta)_x(y_1,y_2,y_3) = \beta_x(y_2,y_3)\cdot\beta_x(y_1,y_3)^{-1}\cdot\beta_x(y_1,y_2)\]
+  We have that $\delta_1(\delta_0(\alpha)))_x(y_1,y_2,y_3) = 1$.
 \end{definition}
 
-First we give a couple of auxiliary results on \v{C}ech short sequence, justifying there usefulness.
+First we give a couple of auxiliary results on \v{C}ech short sequence, justifying their usefulness.
 
 \begin{lemma}\label{cover-with-section-exact-cech}
 Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. If we merely have a section $t:\prod_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
@@ -68,7 +50,7 @@ If $\check{C}(X,Y,G)$ is exact then $\phi=*$.
   $\psi_x(y_1) ^{-1} \cdot \psi_x(y_2) : * = *$, 
   so we can define 
 \[\beta : \prod_{x:X} G(x)^{T(x)^2}\]
-by having $\beta_x(y_1,y_2) = \psi_x(y_1)^{-1} \cdot \psi_x(y_2)$. It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness there is $\alpha:\prod_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
+by having $\beta_x(y_1,y_2) = \psi_x(y_1)^{-1} \cdot \psi_x(y_2)$. It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness there exists some $\alpha:\prod_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
 \[\beta_x(y_1,y_2)=\alpha_x(y_1)^{-1}\cdot \alpha_x(y_2)\]
 Then we define:
 \[\psi' : \prod_{x:X}(\phi(x)=*)^{Y(x)}\]
