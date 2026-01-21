@@ -134,16 +134,14 @@ is overtly discrete.
 
 \begin{proof}
 By local choice and \Cref{tychonov-dual-auxiliary} we can assume that $C$ is Stone (so we denote $C$ by $S$) and that we have towers of finite types $(I_k(x)))_{k:\N}$ such that for all $x:S$ we have that:
-\[I(x) = \mathrm{colim}_k\, I_k(x)\]
+\[I(x) = \mathrm{colim}_k\, \mathrm{Fin}(l_k(x))\]
 Then using \Cref{scott-continuity-right} and the fact that overtly discrete types are stable under sequential colimits, it is enough to prove that we have that:
-\[\prod_{x:S} I_k(x)\]
+\[\prod_{x:S} \mathrm{Fin}(l_k(x))\]
 is overtly discrete. 
 
-Using boundedness, the fact that:
-\[S_k = \Sigma_{x:S} \propTrunc{I(x) = \mathrm{Fin}(l)}\] TODO
-is Stone and that overtly discrete types are stable under finite products, we just have to prove that for any $l:\N$ and $S$ Stone we have that:
-\[S\to \mathrm{Fin}(l)\]
-is overtly discrete. We can conclude using that \Cref{factorisation-stone-finite} and that Stone are limits of finite types.
+Using boundedness, the fact that overtly discrete types are stable under finite coproducts, we just have to prove that for any $n:\N$ we have that:
+\[S_n \to \mathrm{Fin}(n)\]
+where $S_n = \Sigma_{x:S} (l_k(x) = n)$ is Stone. We can conclude using \Cref{factorisation-stone-finite} and that Stone are limits of finite types.
 \end{proof}
 
 
@@ -216,7 +214,7 @@ Q(f) &=& \Pi_{(x,y:S,p(x)=p(y))}\, f(x)=f(y)\nonumber
 Then by \Cref{eine-scott-continuity-stone} we have that the canonical map
 \[\epsilon : \mathrm{colim}_i \prod_{x:S_i}\,I_i(p_i(x)) \to \prod_{x:S}\, I(p(x))\]
 is an equivalence, by \Cref{eine-scott-continuity-stone} again we have that the canonical map
-\[Q(f) \to P(\epsilon(f))\]
+\[\mathrm{colim}_{j>i}Q_j(f_i) \to Q(\epsilon(\iota_i(f_i)))\]
 is an equivalence so we can conclude.
 \end{proof}
 
