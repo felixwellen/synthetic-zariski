@@ -1,5 +1,5 @@
 # Synthetic Algebraic Geometry in the Zariski-Topos
-Stay updated on synthetic algebraic geometry by [watching this repository](#watching-this-repo), joining the next [meeting](https://felix-cherubini.de/sag-meeting-4.html) or with the [mailing list](https://lists.chalmers.se/mailman/listinfo/sag).
+Stay updated on synthetic algebraic geometry by [watching this repository](#watching-this-repo), joining the next [meeting](https://felix-cherubini.de/sag-meeting-4.html) or ask [Hugo Moeneclaey](mailto:hugomo@chalmers.se) to add you to the mailing list.
 Due to a *bug* in the mailinglist-service of chalmers, it does not work to just answer to the  email-confirmation email - so use the link to confirm your email address instead. You know that you really signed up to the list, if you can login on the page linked above. 
 
 This is a latex documentation of our understanding of the synthetic theory of the Zariski-Topos
