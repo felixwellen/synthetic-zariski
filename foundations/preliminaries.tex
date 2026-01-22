@@ -44,9 +44,9 @@ We will use common notation for finite unions and intersections.
 The following formula hold:
 
 \begin{lemma}
-  Let $I$, $X$ be types, $U_i:X\to\Prop$ a subtype for any $i:I$ and $V$ subtypes of $X$.
+  Let $I$, $X$ be types, $U_i:X\to\Prop$ a subtype for any $i:I$ and $V$ a subtype of $X$.
   \begin{enumerate}[(a)]
-  \item Any subtype $P:V\to\Prop$ is a subtype of $X$ given by $(x:X)\mapsto\sum_{x:V}P(x)$.
+  \item Any subtype $P:V\to\Prop$ is a subtype of $X$ given by $(x:X)\mapsto\sum_{p:V(x)}P((x,p))$.
   \item $V\cap \bigcup_{i:I} U_i=\bigcup (V\cap U_i)$.
   \item If $\bigcup_{i:I}U_i=X$ we have $V=\bigcup_{i:I}U_i\cap V$.
   \item If $\bigcup_{i:I}U_i=\emptyset$, then $U_i=\emptyset$ for all $i:I$.
@@ -63,14 +63,14 @@ Our truncation levels start at $-2$, so $(-2)$-types are contractible, $(-1)$-ty
 
 \begin{definition}%
   Let $X$ and $I$ be types.
-  A family of propositions $U_i:X\to\Prop$ \notion{covers} $X$,
+  A family of subtypes $U_i:X\to\Prop$ \notion{covers} $X$,
   if for all $x:X$, there merely is a $i:I$ such that $U_i(x)$.
 \end{definition}
 
 \begin{lemma}%
   \label{kraus-glueing}
   Let $X$ and $I$ be types.
-  For propositions $(U_i:X \to \Prop)_{i:I}$ that cover $X$ and $P:X\to \nType{0}$, we have the following glueing property: \\
+  For subtypes $(U_i:X \to \Prop)_{i:I}$ that cover $X$ and $P:X\to \nType{0}$, we have the following gluing property: \\
   If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
   proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(x))$,
   then there is a globally defined dependent function $s:(x:X) \to P(x)$,
@@ -94,7 +94,7 @@ Similarly we can prove.
 \begin{lemma}%
   \label{kraus-glueing-1-type}
   Let $X$ and $I$ be types.
-  For propositions $(U_i:X \to \Prop)_{i:I}$ that cover $X$ 
+  For subtypes $(U_i:X \to \Prop)_{i:I}$ that cover $X$ 
   and $P:X\to \nType{1}$, we have the following glueing property: \\
   If for each $i:I$ there is a dependent function $s_i:(x:U_i)\to P(x)$ together with
   proofs of equality on intersections $p_{ij}:(x:U_i\cap U_j)\to (s_i(x)=s_j(x))$ satisfying the cocycle
@@ -167,8 +167,7 @@ Theses concepts are introduced and discussed in more detail in \cite{lombardi-qu
 \begin{definition}
   Let $A$ be a ring and $f:A$.
   Then $A_{f}$ denotes the \notion{localization} of $A$ at $f$,
-  i.e. a ring $A_f$ together with a homomorphism $A\to A_f$,
-  such that for all homomorphisms $\varphi:A\to B$ such that
+  i.e. a ring $A_f$ together with a homomorphism $A\to A_f$ such that the image of \(f\) in \(A_f\) is invertible satisfying the following universal property: For all homomorphisms $\varphi:A\to B$ such that
   $\varphi(f)$ is invertible, there is a unique homomorphism as indicated in the diagram:
   \begin{center}
     \begin{tikzcd}
@@ -245,7 +244,7 @@ The $\Spec$ construction is functorial:
   \]
 \end{definition}
 
-later, we will use the following more general and related definitions:
+Later, we will use the following more general and related definitions:
 
 \begin{definition}
   \label{open-closed-affine-subsets}
