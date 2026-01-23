@@ -1,18 +1,25 @@
-\subsection{First (non-abelian) cohomology vanish for Stone spaces}
+In this part we will use result from the previous section to compute some cohomology. In Sections \ref{vanishing-first-stone} and \ref{vanishing-stone} we will prove the vanishing of the cohomology of Stone spaces with overtly discrete coefficients (\Cref{vanishing-cohomology-stone}). In \Cref{cech-sheaf-agree-section} we use this vanishing to prove that \v{C}ech cohomology agree with the usual one for compact Hausdorff spaces  with overtly discrete coefficients (\Cref{cech-and-sheaf-agree}). The main point is that \v{C}ech cohomology is often simpler to compute. Indeed in \Cref{interval-acyclic} we apply this to proving the vanishing of the cohomology of the interval with overtly discrete coefficients (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficient is the same as countably presented coefficients.
+
+
+
+\subsection{Vanishing of the first (non-abelian) cohomology for Stone spaces}
+\label{vanishing-first-stone}
+
+In this section we will prove that for $S$ Stone and $G:S\to \mathrm{Grp}_\ODisc$, we have that $H^1(S,G)=0$. \rednote{TODO I think we should prove somewhere that abelian groups / groups / boolean algebra are overtly discrete iff they are countably presented. I am not sure where. Perhaps in the section on overtly discrete types?}
 
 \begin{definition}
   Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. We define its short \v{C}ech sequence $\check{C}(X,Y,G)$ as:
   \[\prod_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^3} \]
   with:
-  \[\delta_0(\alpha)_x(y_1,y_2) = \alpha_x(y_1)^{-1}\cdot\alpha_x(y_2)\]
-  \[\delta_1(\beta)_x(y_1,y_2,y_3) = \beta_x(y_2,y_3)\cdot\beta_x(y_1,y_3)^{-1}\cdot\beta_x(y_1,y_2)\]
-  We have that $\delta_1(\delta_0(\alpha)))_x(y_1,y_2,y_3) = 1$.
+  \[\delta_0(\alpha)_x(y_0,y_1) = \alpha_x(y_0)^{-1}\cdot\alpha_x(y_1)\]
+  \[\delta_1(\beta)_x(y_0,y_1,y_2) = \beta_x(y_1,y_2)\cdot\beta_x(y_0,y_2)^{-1}\cdot\beta_x(y_0,y_1)\]
+  We have that $\delta_1(\delta_0(\alpha)))_x(y_0,y_1,y_2) = 1$.
 \end{definition}
 
-First we give a couple of auxiliary results on \v{C}ech short sequence, justifying their usefulness.
+First we give a couple of auxiliary results on \v{C}ech short sequences, justifying their usefulness.
 
 \begin{lemma}\label{cover-with-section-exact-cech}
-Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. If we merely have a section $t:\prod_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
+Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. If we merely have $\prod_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
 \end{lemma}
 
 \begin{proof}
@@ -38,31 +45,24 @@ Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$
 \end{proof}
 
 \begin{lemma}\label{cocyle-being-coboundary}
-Assume given a set $X$ with $Y(x)$ an inhabited set depending on $x:X$. Moreover, assume given $G(x)$ a group depending on $x:X$ with:
-\[\phi:\prod_{x:X}BG(x)\]
-and:
-\[\psi:\prod_{x:X}(\phi(x)=*)^{Y(x)}\]
-If $\check{C}(X,Y,G)$ is exact then $\phi=*$.
+Assume given a set $X$ with $Y(x)$ an inhabited set depending on $x:X$. Moreover, assume given $G(x)$ a group depending on $x:X$ with $\phi:\Pi_{x:X}BG(x)$ and $\psi:\Pi_{x:X}(\phi(x)=*)^{Y(x)}$. If $\check{C}(X,Y,G)$ is exact then $\phi=*$.
 \end{lemma}
 
 \begin{proof}
-  For $y_1, y_2 : T(x)$, we have 
-  $\psi_x(y_1) ^{-1} \cdot \psi_x(y_2) : * = *$, 
-  so we can define 
-\[\beta : \prod_{x:X} G(x)^{T(x)^2}\]
-by having $\beta_x(y_1,y_2) = \psi_x(y_1)^{-1} \cdot \psi_x(y_2)$. It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness there exists some $\alpha:\prod_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
-\[\beta_x(y_1,y_2)=\alpha_x(y_1)^{-1}\cdot \alpha_x(y_2)\]
-Then we define:
-\[\psi' : \prod_{x:X}(\phi(x)=*)^{Y(x)}\]
+ Identifying $* =_{BG(x)} *$ and $G(x)$, we define $\beta : \prod_{x:X} G(x)^{T(x)^2}$ by:
+ \[\beta_x(y_1,y_2) = \psi_x(y_0)^{-1} \cdot \psi_x(y_1)\] 
+ It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness it is a coboundary, i.e. there exists some $\alpha:\prod_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have that:
+\[\beta_x(y_0,y_1)=\alpha_x(y_0)^{-1}\cdot \alpha_x(y_1)\]
+Then we define $\psi' : \prod_{x:X}(\phi(x)=*)^{Y(x)}$ by:
 \[\psi'_x(y) = \psi_x(y)\cdot \alpha_x(y)^{-1}\]
-so that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
+so that for all $x:X$ and $y_0,y_1:Y(x)$ we have that:
 \begin{eqnarray}
-\psi'_x(y_1)^{-1}\cdot\psi'_x(y_2) &=& \alpha_x(y_1) \cdot \psi_x(y_1)^{-1}\cdot \psi_x(y_2)\cdot \alpha_x(y_2)^{-1}\nonumber\\
- &=&  \alpha_x(y_1) \cdot \beta_x(y_1,y_2)\cdot \alpha_x(y_2)^{-1} \nonumber\\
- &=&  \alpha_x(y_1) \cdot\alpha_x(y_1)^{-1} \cdot\alpha_x(y_2)\cdot \alpha_x(y_2)^{-1} \nonumber\\ 
+\psi'_x(y_0)^{-1}\cdot\psi'_x(y_1) &=& \alpha_x(y_0) \cdot \psi_x(y_0)^{-1}\cdot \psi_x(y_1)\cdot \alpha_x(y_1)^{-1}\nonumber\\
+ &=&  \alpha_x(y_0) \cdot \beta_x(y_0,y_1)\cdot \alpha_x(y_1)^{-1} \nonumber\\
+ &=&  \alpha_x(y_0) \cdot\alpha_x(y_0)^{-1} \cdot\alpha_x(y_1)\cdot \alpha_x(y_1)^{-1} \nonumber\\ 
  &=& 1 \nonumber
  \end{eqnarray}
-This means that $\psi'_x(y_1) = \psi'(y_2)$, so that $\psi'$ factors through $X$, giving a proof of $\phi=*$.
+This means that $\psi'_x(y_0) = \psi'_x(y_1)$, so that $\psi'$ factors through $X$, giving a proof of $\phi=*$.
 \end{proof}
 
 \begin{lemma}\label{short-cech-exact}
@@ -70,7 +70,7 @@ Assume given $S:\Stone$ and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{T(x
 \end{lemma}
 
 \begin{proof}
-We use \Cref{finite-approximation-stone-surjection-cohomology} to get a sequence of $T_k:S\to \Stone$ having sections such that $\mathrm{lim}_kT_k(x) = T(x)$ for all $x:S$, since they have section by \Cref{cover-with-section-exact-cech} we have that $\check{S,T_k,G}$ is exact for all $k:\N$, we just need to prove $\mathrm{colim}_k\check{C}(S,T,G) = \check{C}(S,T,G)$ to conclude, as a sequential colimit of exact sequence is exact. But we have that:
+We use \Cref{finite-approximation-stone-surjection-cohomology} to get a sequence of $T_k:S\to \Stone$ having sections such that $\mathrm{lim}_kT_k(x) = T(x)$ for all $x:S$. Since each $T_k$ has a section, by \Cref{cover-with-section-exact-cech} we have that $\check{C}(S,T_k,G)$ is exact for all $k:\N$. We just need to prove $\mathrm{colim}_k\check{C}(S,T,G) = \check{C}(S,T,G)$ to conclude, as a sequential colimit of exact sequence is exact \rednote{TODO is that true?}. But we have that:
 \begin{eqnarray}
 \mathrm{colim}_k \prod_{x:S}G(x)^{T_k(x)^l} &=& \prod_{x:S}\mathrm{colim}_k G(x)^{T_k(x)^l}\nonumber\\
 &=& \prod_{x:S}G(x)^{\mathrm{lim}_kT_k(x)^l}\nonumber\\
@@ -116,7 +116,9 @@ In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to
 \end{proof}
 
 
+
 \subsection{Stone spaces are acyclic}
+\label{vanishing-stone}
 
 The goal of this section is to show that for $S:\Stone$, we have 
 $H^n(S,A) = 0$ for any $A:S\to \mathrm{Ab}_\ODisc, n>0$. 
@@ -287,7 +289,9 @@ Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that
 \end{corollary}
 
 
+
 \subsection{\v{C}ech cohomology}
+\label{cech-sheaf-agree-section}
 
 \begin{definition}
 A \v{C}ech cover for a type $X$ consists of a surjective map:
@@ -416,6 +420,7 @@ For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{i
 
 
 \subsection{The unit interval is acyclic}
+\label{interval-acyclic}
 
 This section closely follows Section 5.4 in \cite{foundation-synthtetic-stone-duality}.
 
