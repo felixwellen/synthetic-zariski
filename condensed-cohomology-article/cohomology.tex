@@ -9,7 +9,7 @@ In this section we will prove that for $S$ Stone and $G:S\to \mathrm{Grp}_\ODisc
 
 \begin{definition}
   Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. We define its short \v{C}ech sequence $\check{C}(X,Y,G)$ as:
-  \[\prod_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^3} \]
+  \[\Pi_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}G(x)^{Y(x)^3} \]
   with:
   \[\delta_0(\alpha)_x(y_0,y_1) = \alpha_x(y_0)^{-1}\cdot\alpha_x(y_1)\]
   \[\delta_1(\beta)_x(y_0,y_1,y_2) = \beta_x(y_1,y_2)\cdot\beta_x(y_0,y_2)^{-1}\cdot\beta_x(y_0,y_1)\]
@@ -19,14 +19,14 @@ In this section we will prove that for $S$ Stone and $G:S\to \mathrm{Grp}_\ODisc
 First we give a couple of auxiliary results on \v{C}ech short sequences, justifying their usefulness.
 
 \begin{lemma}\label{cover-with-section-exact-cech}
-Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. If we merely have $\prod_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
+Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. If we merely have $\Pi_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
 \end{lemma}
 
 \begin{proof}
   The proof of Lemma 5.5 of \cite{synthetic-stone-duality} goes through.
 %PRECISE CHECK
-  %Assume given a cocycle $\beta: \prod_{x : X} A_x^{T_x^2}$. 
-  %Define $\alpha :\prod_{x : X} A_x ^{T_x}$ by 
+  %Assume given a cocycle $\beta: \Pi_{x : X} A_x^{T_x^2}$. 
+  %Define $\alpha :\Pi_{x : X} A_x ^{T_x}$ by 
   %$\alpha_x(u) = \beta_x(t_x,u)$. Then 
   %$$
   %  \delta_0(\alpha)_x(u,v) = 
@@ -49,11 +49,11 @@ Assume given a set $X$ with $Y(x)$ an inhabited set depending on $x:X$. Moreover
 \end{lemma}
 
 \begin{proof}
- Identifying $* =_{BG(x)} *$ and $G(x)$, we define $\beta : \prod_{x:X} G(x)^{T(x)^2}$ by:
+ Identifying $* =_{BG(x)} *$ and $G(x)$, we define $\beta : \Pi_{x:X} G(x)^{T(x)^2}$ by:
  \[\beta_x(y_1,y_2) = \psi_x(y_0)^{-1} \cdot \psi_x(y_1)\] 
- It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness it is a coboundary, i.e. there exists some $\alpha:\prod_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have that:
+ It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness it is a coboundary, i.e. there exists some $\alpha:\Pi_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have that:
 \[\beta_x(y_0,y_1)=\alpha_x(y_0)^{-1}\cdot \alpha_x(y_1)\]
-Then we define $\psi' : \prod_{x:X}(\phi(x)=*)^{Y(x)}$ by:
+Then we define $\psi' : \Pi_{x:X}(\phi(x)=*)^{Y(x)}$ by:
 \[\psi'_x(y) = \psi_x(y)\cdot \alpha_x(y)^{-1}\]
 so that for all $x:X$ and $y_0,y_1:Y(x)$ we have that:
 \begin{eqnarray}
@@ -66,38 +66,38 @@ This means that $\psi'_x(y_0) = \psi'_x(y_1)$, so that $\psi'$ factors through $
 \end{proof}
 
 \begin{lemma}\label{short-cech-exact}
-Assume given $S:\Stone$ and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$ with $G:S\to \mathrm{Grp}_\ODisc$. Then $\check{C}(S,T,G)$ is exact.
+Assume given $S:\Stone$ and $T:S\to \Stone$ such that $\Pi_{x:S}\propTrunc{T(x)}$ with $G:S\to \mathrm{Grp}_\ODisc$. Then $\check{C}(S,T,G)$ is exact.
 \end{lemma}
 
 \begin{proof}
 We use \Cref{finite-approximation-stone-surjection-cohomology} to get a sequence of $T_k:S\to \Stone$ having sections such that $\mathrm{lim}_kT_k(x) = T(x)$ for all $x:S$. Since each $T_k$ has a section, by \Cref{cover-with-section-exact-cech} we have that $\check{C}(S,T_k,G)$ is exact for all $k:\N$. We just need to prove $\mathrm{colim}_k\check{C}(S,T,G) = \check{C}(S,T,G)$ to conclude, as a sequential colimit of exact sequence is exact \rednote{TODO is that true?}. But we have that:
 \begin{eqnarray}
-\mathrm{colim}_k \prod_{x:S}G(x)^{T_k(x)^l} &=& \prod_{x:S}\mathrm{colim}_k G(x)^{T_k(x)^l}\nonumber\\
-&=& \prod_{x:S}G(x)^{\mathrm{lim}_kT_k(x)^l}\nonumber\\
-&=& \prod_{x:S}G(x)^{T(x)^l}\nonumber
+\mathrm{colim}_k \Pi_{x:S}G(x)^{T_k(x)^l} &=& \Pi_{x:S}\mathrm{colim}_k (G(x)^{T_k(x)^l})\nonumber\\
+&=& \Pi_{x:S}G(x)^{\mathrm{lim}_kT_k(x)^l}\nonumber\\
+&=& \Pi_{x:S}G(x)^{T(x)^l}\nonumber
 \end{eqnarray}
 where the first equality comes from \Cref{scott-continuity-right} and the second from \Cref{scott-continuity-left}.
 \end{proof}
 
-\begin{lemma}\label{local-choice-delooping-trick}
-  Let $S$ be Compact Hausdorff and $G: S\to \mathrm{Grp}_\ODisc$, and 
-  $\phi:\prod_{s:S}BG(x)$.
-  Then there merely exists some family $(T_x)_{x:S}$ of 
-  merely inhabited Stone spaces such that 
-  $\prod_{x:S}(\phi_x = *)^{T_x}$.
-\end{lemma}
+%\begin{lemma}\label{local-choice-delooping-trick}
+%  Let $S$ be Compact Hausdorff and $G: S\to \mathrm{Grp}_\ODisc$, and 
+%  $\phi:\Pi_{s:S}BG(x)$.
+%  Then there merely exists some family $(T_x)_{x:S}$ of 
+%  merely inhabited Stone spaces such that 
+%  $\Pi_{x:S}(\phi_x = *)^{T_x}$.
+%\end{lemma}
 
-\begin{proof}
-  Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. 
-  By definition of $BG$, we have that 
-  $\prod_{x:S}\propTrunc{\phi_x=*}$. 
-  Thus by local choice, 
-  there merely exists some $T:\Stone$ with surjection $q : T \twoheadrightarrow S$, 
-  such that $\prod_{t : T} \phi_{qt} = *$. 
-  Writing $T_x$ for the fiber of $q$ over $x:S$, 
-  we have that $\prod_{x : S} (T_x \to \phi_x = *)$.
-  By surjectivity each ${T_x}$ is merely inhabited. 
-\end{proof} 
+%\begin{proof}
+%  Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. 
+%  By definition of $BG$, we have that 
+%  $\Pi_{x:S}\propTrunc{\phi_x=*}$. 
+%  Thus by local choice, 
+%  there merely exists some $T:\Stone$ with surjection $q : T \twoheadrightarrow S$, 
+%  such that $\Pi_{t : T} \phi_{qt} = *$. 
+%  Writing $T_x$ for the fiber of $q$ over $x:S$, 
+%  we have that $\Pi_{x : S} (T_x \to \phi_x = *)$.
+%  By surjectivity each ${T_x}$ is merely inhabited. 
+%\end{proof} 
 
 Now we just have to assemble the pieces.
 
@@ -107,12 +107,12 @@ Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. Then:
 \end{lemma}
 
 \begin{proof}
-  Assume $\phi:\prod_{s:S}BG(x)$,
-  by \Cref{local-choice-delooping-trick}, 
-  there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces with 
-  $\prod_{x:S}||T_x||$ and  
-  $\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}.$
-In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence $\check{S,T,G}$ is exact. But this is \Cref{short-cech-exact}.
+  Assume $\phi:\Pi_{s:S}BG(x)$,
+  %by \Cref{local-choice-delooping-trick}, 
+  by local choice
+  there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces with  
+  $\alpha:\Pi_{x:S}(\phi(x)=*)^{T(x)}.$
+In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence $\check{C}(S,T,G)$ is exact. But this is \Cref{short-cech-exact}.
 \end{proof}
 
 
@@ -129,7 +129,7 @@ To be more specific, we will show in
 \Cref{eilenberg-exponentials} that the following map is an equivalence for all $S,A,n$:
 \begin{definition}
   Let $S:\Stone,A:S\to \mathrm{Ab}_\ODisc,n : \N$, we denote $ev_n^{S,A}$ for the canonical map:
-  \[ev_n^{S,A} : K(\prod_{x:S}A_x,n)\to \prod_{x:S}K(A_x,n)\]
+  \[ev_n^{S,A} : K(\Pi_{x:S}A_x,n)\to \Pi_{x:S}K(A_x,n)\]
 \end{definition}
 
 \begin{lemma}\label{ev-eq-acyclic}
@@ -138,9 +138,9 @@ To be more specific, we will show in
 
 \begin{proof}
   By definition
-  $H^n(S,A) = || \prod_{x : S} K(A_x,n) ||_0$. 
+  $H^n(S,A) = || \Pi_{x : S} K(A_x,n) ||_0$. 
   If $ev_n^{S,A}$ is an equivalence, it follows that the latter equals
-  $|| K(\prod_{x : S} A_x , n) ||_0$, 
+  $|| K(\Pi_{x : S} A_x , n) ||_0$, 
   which is $0$ if $n\geq 1$. 
 \end{proof}
 
@@ -153,9 +153,9 @@ To be more specific, we will show in
 \begin{proof}
   Note that the source is pointed and connected. 
   So it is enough to prove the induced map:
-  \[\Omega(K(\prod_{x:S}A_x,n+1)) \to \Omega(\prod_{x:S}K(A_x,n+1))\]
+  \[\Omega(K(\Pi_{x:S}A_x,n+1)) \to \Omega(\Pi_{x:S}K(A_x,n+1))\]
   is an equivalence, but this map is equal to the canonical map:
-  \[ev_n^{S,A} : K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n),\]
+  \[ev_n^{S,A} : K(\Pi_{x:S}A_x,n) \to \Pi_{x:S}K(A_x,n),\]
   which was an equivalence by the assumption. 
 \end{proof} 
 \begin{lemma}\label{acyclic-ev-surjective}
@@ -163,10 +163,10 @@ To be more specific, we will show in
 \end{lemma}
 \begin{proof}
   Note that for $n\geq 1$, 
-  $K(\prod_{x:S}A_x,n)$ is $0$-connected. 
+  $K(\Pi_{x:S}A_x,n)$ is $0$-connected. 
   Therefore, it's sufficient to show that 
-  $\prod_{x : S} K(A_x,n)$ is also $0$-connected, 
-  which means exactly that $H^{n}(S,A) = || \prod_{x : S} K(A_x,n) ||_0 = 0$. 
+  $\Pi_{x : S} K(A_x,n)$ is also $0$-connected, 
+  which means exactly that $H^{n}(S,A) = || \Pi_{x : S} K(A_x,n) ||_0 = 0$. 
 \end{proof} 
 
 Next lemma is quite standard, although we did not find any Homotopy Type Theory reference.
@@ -222,7 +222,7 @@ following exact sequence:
 
 \begin{theorem}\label{eilenberg-exponentials}
 Assume given $S:\Stone$ and $A:S\to \mathrm{Ab}_\ODisc$, then for all $n:\N$ we have that the canonical map:
-\[ev_n^{S,A} : K(\prod_{x:S}A_x,n)\to \prod_{x:S}K(A_x,n)\]
+\[ev_n^{S,A} : K(\Pi_{x:S}A_x,n)\to \Pi_{x:S}K(A_x,n)\]
 is an equivalence.
 \end{theorem}
 
@@ -243,11 +243,11 @@ is an equivalence.
   For $n=0$ this is the abelian version of \Cref{vanishing-1-cohomology-stone}. 
   We may thus assume $n\geq 1$ for the rest of this proof. 
 
-  Let $\alpha : \prod_{s : S} K(A_s , n+1)$, 
+  Let $\alpha : \Pi_{s : S} K(A_s , n+1)$, 
   we need to show that merely $\alpha = *$. 
   By \Cref{local-choice-delooping-trick}, 
   there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces such that 
-  $\prod_{x:S} (\alpha_x = *)^{T_x}$. 
+  $\Pi_{x:S} (\alpha_x = *)^{T_x}$. 
   For $x:S$, denote $L_x$ for $A_x^{T_x}/A_x$, 
   where the quotient is over the image of the constant map.
   As $A_x^{T_x} \to L_x$ is surjective, we get an exact sequence 
@@ -261,25 +261,25 @@ is an equivalence.
   Now as $\prod$ preserves fiber sequences we also get a fiber sequence 
   $$
     \cdots\to 
-    \prod_{x:S}K(L_x,k-1) \to 
-    \prod_{x:S} K(A_x,k) \to \prod_{x:S}K(A_x^{T_x}, k) \to \prod_{x:S}K(L_x,k) \to
-    \prod_{x:S} K(A_x,k+1) \to \cdots
+    \Pi_{x:S}K(L_x,k-1) \to 
+    \Pi_{x:S} K(A_x,k) \to \Pi_{x:S}K(A_x^{T_x}, k) \to \Pi_{x:S}K(L_x,k) \to
+    \Pi_{x:S} K(A_x,k+1) \to \cdots
   $$
   Consider the decomposition of 
-  $\prod_{x:S}K(A_x,n+1) \to \prod_{x:S} K(A_x,n+1)^{T_x}$ given by:
+  $\Pi_{x:S}K(A_x,n+1) \to \Pi_{x:S} K(A_x,n+1)^{T_x}$ given by:
   $$
-    {\prod_{x:S} K(A_x,n+1)} \to \prod_{x:S}  {K(A_x^{T_x},n+1)} \hookrightarrow \prod_{x:S}  {K(A_x,n+1)^{T_x}}
+    {\Pi_{x:S} K(A_x,n+1)} \to \Pi_{x:S}  {K(A_x^{T_x},n+1)} \hookrightarrow \Pi_{x:S}  {K(A_x,n+1)^{T_x}}
   $$
   where the second map is composition with 
   $ev_{n+1}^{T_x,\lambda t . A_x}$, 
   which is an embedding by the induction hypothesis and \Cref{ev-embedding}. 
   By assumption on $T$, the composite sends $\alpha$ to $*$,
   and thus the first map also sends $\alpha$ to $*$.
-  Thus $\alpha$ is in the kernel of $\prod_{x:S}K(A_x,n+1) \to K(A_x^{T_x},n+1)$.
-  By exactness $\alpha$ is in the image $\prod_{x:S} K(L_x,n) \to \prod_{x:S}K(A_x,n+1)$. 
+  Thus $\alpha$ is in the kernel of $\Pi_{x:S}K(A_x,n+1) \to K(A_x^{T_x},n+1)$.
+  By exactness $\alpha$ is in the image $\Pi_{x:S} K(L_x,n) \to \Pi_{x:S}K(A_x,n+1)$. 
   As $n\geq 1$, we can use the induction hypothesis and \Cref{ev-eq-acyclic} to see that $H^n(S,L)=0$.
-  Thus any $\beta:\prod_{x:S}K(L_x,n)$ merely equals $*$, 
-  so their image merely equals $*$ in $\prod_{x:S}K(A_x,n+1)$. 
+  Thus any $\beta:\Pi_{x:S}K(L_x,n)$ merely equals $*$, 
+  so their image merely equals $*$ in $\Pi_{x:S}K(A_x,n+1)$. 
   Thus we merely have $\alpha = *$, as required. 
 \end{proof}
 
@@ -325,12 +325,12 @@ natural in $A$, where $L_x = A_x^{S_x}/A_x$.
     We will show that 
     $H^n(X,\lambda x .A_x^{S_x})= 0$. 
     By \Cref{eilenberg-exponentials}, 
-    we have $K(A_x^{S_x},n) = \prod_{t:S_x}K(A_x,n)$. Thus
+    we have $K(A_x^{S_x},n) = \Pi_{t:S_x}K(A_x,n)$. Thus
     $$
       H^n(X,\lambda x .A_x^{S_x})= 
-      ||\prod_{x:X}K(A_x^{S_x},n)||_0 = 
-      ||\prod_{x:X}\prod_{t:S_x}K(A_x,n)||_0 = 
-      ||\prod_{s : S} K(A_{fs},n)||_0 = 
+      ||\Pi_{x:X}K(A_x^{S_x},n)||_0 = 
+      ||\Pi_{x:X}\Pi_{t:S_x}K(A_x,n)||_0 = 
+      ||\Pi_{s : S} K(A_{fs},n)||_0 = 
       H^n(S, \lambda s .A_{fs})
     $$
     and as $n\geq 1$, by \Cref{vanishing-cohomology-stone},
@@ -341,7 +341,7 @@ Next definition will be used for \v{C}ech cover.
 
 \begin{definition}
 Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
-\[\prod_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{A(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
+\[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}G(x)^{A(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
 with:
 \[\delta_n(\alpha)_x(y_0,\cdots,y_n) = \sum_{i=0}^n (-1)^i \alpha(y_0,\hdots,\hat{x_i},\hdots,y_n)\]
 We have that $\delta_{n+1} \circ \delta_n = 0$.
@@ -357,11 +357,11 @@ Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending
 
 \begin{proof}
 Indeed assume given:
-\[\alpha : \prod_{x:X} Y(x)^{n+1}\to A(x)^{Y(x)}\]
+\[\alpha : \Pi_{x:X} Y(x)^{n+1}\to A(x)^{Y(x)}\]
 such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $u_0,\cdots, u_{n+1},v:Y(x)$ we have that:
 \[\sum_{i=0}^{n+1}(-1)^i\alpha(x,u_0,\cdots,  \widehat{u_i},\cdots ,u_{n+1},v) = 0\]
 Then we define:
-\[\beta : \prod_{x:X} Y(x)^{n}\to A(x)^{Y(x)}\]
+\[\beta : \Pi_{x:X} Y(x)^{n}\to A(x)^{Y(x)}\]
 \[\beta(x,u_0,\cdots,u_{n-1},v) = (-1)^n\alpha(x,u_0,\cdots,u_{n-1},v,v)\]
 and then:
 \[\delta(\beta)(x,u_0,\cdots,u_{n},v) = (-1)^n\sum_{i=0}^{n} (-1)^i \alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n,v,v) \]
@@ -410,9 +410,9 @@ Then we have a natural isomorphism:
 
 \begin{proof}
 We proceed by induction on $n$. For $n=0$ we need to prove that maps:
-\[\alpha:\prod_{s:S}A_{f(s)}\]
+\[\alpha:\Pi_{s:S}A_{f(s)}\]
 such that whenever $f(s)=f(t)$ we have that $\alpha(s) = \alpha(t)$ are naturally isomorphic to:
-\[\prod_{x:X}A_x\]
+\[\Pi_{x:X}A_x\]
 This is immediate.
 
 For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{inductive-definition-cech-cohomology}. Naturality comes from the naturality of the exact sequences.
