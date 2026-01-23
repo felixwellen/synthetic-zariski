@@ -15,7 +15,7 @@ A Stone space is a type that is merely a sequential limit of finite types.
 This is equivalent to the definition of Stone spaces as spectrum of countably presented booolean algebras given in \cite{synthetic-stone-duality} by Lemmas 3.1 and 3.2 from \cite{synthetic-stone-duality}. We use this alternative definition to emphasis the duality between Stone spaces and overtly discrete types which will be defined in \Cref{overtly-discrete-types} as sequential colimits of finite types.
 \end{remark}
 
-\begin{lemma}
+\begin{lemma}\label{closed-iff-stone}
 A proposition is a Stone space if and only if it is closed.
 \end{lemma}
 
@@ -340,9 +340,9 @@ We want to prove that the canonical map $\mathrm{colim}_i (\Pi_{x:S_i}I_i(x)) \t
 By general reasoning on colimits and Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left}, we get the following string of equivalences:
 \begin{eqnarray}
 \mathrm{colim}_i (\Pi_{x:S_i}I_i(x)) &=& \mathrm{colim}_{i,k\geq i} \Pi_{x:S_k} I_i(x_i)\nonumber\\
-&=& \mathrm{colim}_{i,k\geq i} \Pi_{x:S_i}\Pi_{y:S_k, [y]=x} \to I_i(x) \nonumber\\
-&=& \mathrm{colim}_i\Pi_{x:S_i} \mathrm{colim}_{k\geq i} \Pi_{y:S_k, [y]=x} I_i(x)\nonumber\\
-&=& \mathrm{colim}_i\Pi_{x:S_i} \Pi_{y:\mathrm{lim}_{k\geq i} S_k,[y]=x} I_i(x)\nonumber\\
+&=& \mathrm{colim}_{i,k\geq i} \Pi_{x:S_i}\Pi_{y:S_k} ([y]=x)\to I_i(x) \nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:S_i} \mathrm{colim}_{k\geq i} \Pi_{y:S_k} ([y]=x)\to I_i(x)\nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:S_i} \Pi_{y:\mathrm{lim}_{k\geq i} S_k} ([y]=x)\to I_i(x)\nonumber\\
 &=& \mathrm{colim}_i\Pi_{x:\mathrm{lim}_{k} S_k} I_i([x])\nonumber\\
 &=& \Pi_{x:\mathrm{lim}_{k} S_k} \mathrm{colim}_i I_i(x)\nonumber
 \end{eqnarray}
@@ -369,57 +369,51 @@ Scott continuity has the immediate consequence that given a sequence of Stone sp
 \subsection{Barton-Commelin axioms}
 \label{barton-commelin}
 
-We already have proven all the results needed for our cohomology results. In this section we prove the additional results needed to get all of Barton and Commelin's condensed type theory axioms. \Cref{overtly-discrete-closure} already give all the axioms assumed about overtly discrete types. Stone spaces are not closed under quotients so we have no hope of getting the same result for them, so we consider compact Hausdorff spaces which are precisely the quotients of Stone spaces by closed equivalence relations. We recall the definition.
+We already have proven all the results needed for our cohomology computations. In this section we prove the additional results needed to get all of Barton and Commelin's condensed type theory axioms. These axioms postulate two classes of types that have nice closure properties, and which interact well in the sense that they satisfy a form of Scott continuity. Our goal is to define two classes of type which satisfy all this in synthetic Stone duality. One of these class will be overtly discrete types, and \Cref{overtly-discrete-closure} already give all the desired closure property. But there is no hope of having the same properties for Stone spaces, as they are not closed under quotients. To fix this we consider compact Hausdorff spaces, which are precisely the quotients of Stone spaces by closed equivalence relations.
 
 \begin{definition}
-A type $X$ is a compact Hausdorff space of its identity types are closed and there exists a Stone space $X$ with a surjection $S\to X$.
+A type $C$ is a compact Hausdorff space of its identity types are closed and there exists a Stone space $S$ with a surjection $S\to C$.
 \end{definition}
 
-We need an auxiliary lemma to prove compact Hausdorff spaces closed under sequential limits.
+We need an auxiliary lemma to prove that compact Hausdorff spaces closed under sequential limits.
 
 \begin{lemma}\label{sequential-limit-Hausdorff}
-Assume given a tower $(C_k)_{k:\N}$ of compact Hausdorff spaces. Then there exists a tower $(S_k)_{k:\N}$ of Stone spaces with maps:
+Given a tower of compact Hausdorff spaces $(C_k)_{k:\N}$, then there exists a tower of Stone spaces $(S_k)_{k:\N}$ with a map of tower $(p_k:S_k\to C_k)_{k:\N}$ such that each $p_k$ is surjective, and the induced map $\mathrm{lim}_kp_k:\mathrm{lim}_kS_k\to \mathrm{lim}_kC_k$ is also surjective. 
 
-\begin{center}
-\begin{tikzcd}
-\cdots \ar[r]& S_1\ar[r]\ar[d] & S_0 \ar[d]\\
-\cdots \ar[r] & C_1\ar[r] & C_0 \\
-\end{tikzcd}
-\end{center}
+%\begin{center}
+%\begin{tikzcd}
+%\cdots \ar[r]& S_1\ar[r]\ar[d] & S_0 \ar[d]\\
+%\cdots \ar[r] & C_1\ar[r] & C_0 \\
+%\end{tikzcd}
+%\end{center}
 
-such that the map:
-\[S_0\to C_0\]
-is surjective and for all $n:\N$ the induced map:
-\[S_{n+1} \to C_{n+1}\times_{C_n} S_n\]
-is surjective.
+%such that the map:
+%\[S_0\to C_0\]
+%is surjective and for all $n:\N$ the induced map:
+%\[S_{n+1} \to C_{n+1}\times_{C_n} S_n\]
+%is surjective.
 
-This implies that the induced map:
-\[\lim_kS_k \to \lim_k C_k\]
-is surjective.
+%This implies that the induced map:
+%\[\lim_kS_k \to \lim_k C_k\]
+%is surjective.
 \end{lemma}
 
 \begin{proof}
-By definition of a Compact Hausdorff type, we can merely find a Stone space $S_0$ with a surjection:
-\[S_0\to C_0\]
-Using dependent choice, it is enough to show that we can merely extend such a tower $(S_k)_{k\leq n}$ to $(S_k)_{k\leq n+1}$.
+By definition of a Compact Hausdorff space, we can merely find a Stone space $S_0$ with a surjection $p_0:S_0\to C_0$. Next assume a surjection $p_k:S_k\to C_k$, and let us show there merely exists a Stone space $S_{k+1}$ with a surjection $p_{k+1}:S_{k+1}\to C_{k+1}$ making the appropriate square commutes.
+%Using dependent choice, it is enough to show that we can merely extend such a tower $(S_k)_{k\leq n}$ to $(S_k)_{k\leq n+1}$.
 
-We choose a Stone space $T$ and a surjection:
-\[T \to C_{n+1} \]
-Then we define $S_{n+1}$ by the following pullback square:
+Indeed there exists a Stone space $T$ with a surjection $q:T \to C_{k+1}$. Then we define $S_{k+1}$ by the following pullback square:
 \begin{center}
 \begin{tikzcd}
-S_{n+1}\ar[d]\ar[r] & C_{n+1}\times_{C_n} S_n\ar[r]  \ar[d]& S_n\ar[d]\\
-T \ar[r] & C_{n+1}\ar[r]  & C_n
+S_{k+1}\ar[d,swap,"\pi_1"]\ar[r] & C_{k+1}\times_{C_k} S_k\ar[r]  \ar[d]& S_k\ar[d,"p_k"]\\
+T \ar[r,swap,"q"] & C_{k+1}\ar[r]  & C_k
 \end{tikzcd}
 \end{center}
-And we see the map:
-\[S_{n+1} \to C_{n+1}\times_{C_n} S_n\] 
-surjective as it is a pullback of the map:
-\[T\to C_{n+1}\]
+We define $p_{k+1} = q\circ \pi_1$ which is indeed surjective as $\pi_1$ is the pullback of a surjection and therefore surjective. By dependent choice this gives us a tower of Stone spaces $(S_k)_{k:\N}$ and with a level-wise surjection to $(C_k)_{k:\N}$
 
-This implies that the map:
-\[\lim_kS_k \to \lim_k C_k\]
-is surjective by dependent choice.
+To check the induced map $\mathrm{lim}_kp_k:\lim_kS_k \to \lim_k C_k$ is surjective, we notice the for any $k>1$ the induced map:
+\[S_{k+1} \to C_{k+1}\times_{C_k} S_k\] 
+is surjective as it is a pullback of $q$, which implies the desired result by dependent choice.
 \end{proof}
 
 \begin{theorem}
@@ -427,9 +421,7 @@ We have the following:
 \begin{enumerate}[(i)]
 \item Finite types are compact Hausdorff spaces.
 \item Compact Hausdorff spaces are stable under identity types and and sigma types.
-  \rednote{Consequence of Corollary 3.9, and Lemma 4.11 of \cite{synthetic-stone-duality}}
 \item Compact Hausdorff spaces are stable under quotients by equivalence relation with value in compact Hausdorff spaces.
-  \rednote{One needs that compact Hausdorff propositions are closed, which follows from Lemma 4.17. }
 \item Compact Hausdorff spaces are stable under sequential limits.
 \item Compact Hausdorff space have local choice.
 \end{enumerate}
@@ -438,67 +430,61 @@ We have the following:
 \begin{proof}
 We proceed as follows:
 \begin{enumerate}[(i)]
-\item For identity types this is because closed propositions are compact Hausdorff. For sigma this is \rednote{TODO reference}
+\item Clear.
+\item By \Cref{closed-iff-stone} and Lemma 4.11 of \cite{synthetic-stone-duality}.
 
-\item Clear from the definition.
+\item Clear from the definition of compact Hausdorff space as quotients.
 
-\item We use \cref{sequential-limit-Hausdorff} and the fact that closed proposition are stable under sequential limits.
-
-\item From the fact that Stone spaces have local choice.
+\item Assume given a tower of compact Hausdorff spaces $(C_k)_{k:\N}$. Closed proposition are stable under sequential limits, so identity types in $\mathrm{lim}_kC_k$ are closed. By \cref{sequential-limit-Hausdorff} we get a surjection from a Stone space to $\mathrm{lim}_kC_k$,
+\item Because for $C$ compact Hausdorff there is a surjection $S\to C$ with $S$ Stone, and Stone spaces have local choice.
 \end{enumerate}
 \end{proof}
 
 Next we need to prove Tychonov and its dual for compact Hausdorff spaces.
 
 \begin{proposition}[Tychonov]
-Assume given $I$ overtly discrete and $C(i)$ compact Hausdorff depending on $i:I$. Then:
-\[\Pi_{i:I}C_i\]
-is compact Hausdorff.
+Assume given $I$ overtly discrete and $C(i)$ compact Hausdorff depending on $i:I$. Then $\Pi_{i:I}C(i)$ is compact Hausdorff.
 \end{proposition}
 
 \begin{proof}
-We can assume $I = \mathrm{colim}_{k:\N}\, I_k$ with $I_k$ finite. Then:
-\[\Pi_{i:I}C_i = \Pi_{i:\mathrm{colim}_{k:\N}\, I_k} C_i = \lim_{k:\N}\, \Pi_{i:I_k}C(\iota_k(i))\]
+We can assume $I = \mathrm{colim}_{k:\N}I_k$ with $I_k$ finite. Then $\Pi_{i:I}C(i) = \lim_{k:\N}\, \Pi_{i:I_k}C(\iota_k(i))$
 and we can conclude using that compact Hausdorff spaces are stable under sequential limits and finite products.
 \end{proof}
 
+Extending the dual of Tychonov from Stone spaces to compact Hausdorff spaces only require generic reasoning on quotients.
+
 \begin{proposition}[Tychonov's dual]
-Assume given $C$ compact Hausdorff and $I(x)$ overtly discrete depending on $x:C$. Then:
-\[\Pi_{x:C}I(x)\]
-is overtly discrete.
+Assume given $C$ compact Hausdorff and $I(x)$ overtly discrete depending on $x:C$. Then $\Pi_{x:C}I(x)$ is overtly discrete.
 \end{proposition}
 
 \begin{proof}
 We consider a surjection $p:S\to C$ with $S$ Stone. Then
 \[\Pi_{x:C}I(x) = \{f:\Pi_{x:S}I(p(x))\ |\ \forall(x,y:S).\, p(x)=p(y)\to f(x)=f(y)\}\]
-But $\forall(x,y:S).\, p(x)=p(y)\to f(x)=f(y)$ is open by \Cref{compact-hausdorff-compact} and $prod_{x:S}I(p(x))$ is overtly discrete by \Cref{tychonov-dual-stone}, so we can conclude.
+But $\forall(x,y:S).\, p(x)=p(y)\to f(x)=f(y)$ is open by \Cref{compact-hausdorff-compact} and $\Pi_{x:S}I(p(x))$ is overtly discrete by \Cref{tychonov-dual-stone}, so we can conclude.
 \end{proof}
 
-Finally we extend Scott continuity to compact Hausdorff spaces. We write ${\mathcal C}_\CHaus$ for ${\mathcal C}_\Stone$ as given in \Cref{category-scott-continuity} with Stone spaces replaced by compact Hausdroff spaces. As for Tychonov's dual, this just involves reasoning on quotients.
+Finally we extend Scott continuity to compact Hausdorff spaces. We write ${\mathcal C}_\CHaus$ for ${\mathcal C}_\Stone$ as given in \Cref{category-scott-continuity} with Stone spaces replaced by compact Hausdorff spaces. As for Tychonov's dual, this just involves generic reasoning on quotients.
 
 \begin{theorem}[Scott Continuity]
-The functor:
-\[\Pi : {\mathcal C}_\CHaus \to \ODisc\]
-commutes with sequential colimits.
+The functor $\Pi : {\mathcal C}_\CHaus \to \ODisc$ commutes with sequential colimits.
 \end{theorem}
 
 \begin{proof}
-Assume given $(C_i,I_i)_{i:\N}$ a tower in $\mathcal C$. By \Cref{sequential-limit-Hausdorff} we can consider $(S_i)_{i:\N}$ a tower of Stone spaces with $p_k:S_k\to C_k$ giving a level-wise surjection to the tower $(C_i)_{i:\N}$. We write $S=\mathrm{lim}_iS_i$, $C=\mathrm{lim}_iC_i$, for $x:C$ we have $I(x) = \mathrm{colim}_iI_i(x_i)$ and finally $p =\mathrm{lim}_ip_i$. Then the canonical map:
-\[\mathrm{colim}_i\, (\Pi_{x:C_i}I_i(x) ) \to \Pi_{x:C}I(x)\]
+Assume given a tower in ${\mathcal C}_\Chaus$ denoted by $(C_i,I_i)_{i:\N}$. By \Cref{sequential-limit-Hausdorff} we can consider $(S_i)_{i:\N}$ a tower of Stone spaces with $p_k:S_k\to C_k$ giving a level-wise surjection to the tower $(C_i)_{i:\N}$. We write $S=\mathrm{lim}_iS_i$ and $C=\mathrm{lim}_iC_i$, for $x:C$ we write $I(x) = \mathrm{colim}_iI_i(x_i)$ and finally we write $p =\mathrm{lim}_ip_i$. Then the canonical map:
+\[\mathrm{colim}_i (\Pi_{x:C_i}I_i(x) ) \to \Pi_{x:C}I(x)\]
 is equal to the canonical map:
 
-\[ \left\{ \iota_i(f_i) : \mathrm{colim}_i\, \Pi_{x:S_i}\, I_i(p_i(x))\ |\ \mathrm{colim}_{j>i}\ Q_j(f_i)\right\} \to \left\{f:\Pi_{x:S}\, I(p(x))\ |\ Q(f)\right\} \]
+\[ \left\{ \iota_i(f_i) : \mathrm{colim}_i\, \Pi_{x:S_i}\, I_i(p_i(x))\ |\ \mathrm{colim}_{j>i}\ Q_j(f_i)\right\} \longrightarrow \left\{f:\Pi_{x:S}\, I(p(x))\ |\ Q(f)\right\} \]
 where we defined:
 \begin{eqnarray}
- Q_j(f_i) &=& \Pi_{(x,y:S_j,p_j(x)=p_j(y))}\, \iota_j(f_i(\pi_i(x)))=\iota_j(f_i(\pi_i(y)))\nonumber\\
+ Q_j(f_i) &=& \Pi_{(x,y:S_j,p_j(x)=p_j(y))}\, \iota_j(f_i([x]))=\iota_j(f_i([y]))\nonumber\\
 Q(f) &=& \Pi_{(x,y:S,p(x)=p(y))}\, f(x)=f(y)\nonumber
 \end{eqnarray}
-
 Then by \Cref{eine-scott-continuity-stone} we have that the canonical map
 \[\epsilon : \mathrm{colim}_i \Pi_{x:S_i}\,I_i(p_i(x)) \to \Pi_{x:S}\, I(p(x))\]
-is an equivalence, by \Cref{eine-scott-continuity-stone} again we have that the canonical map
+is an equivalence, and by \Cref{eine-scott-continuity-stone} again we have that the canonical map
 \[\mathrm{colim}_{j>i}Q_j(f_i) \to Q(\epsilon(\iota_i(f_i)))\]
-is an equivalence so we can conclude.
+is an equivalence as well so we can conclude.
 \end{proof}
 
 
