@@ -191,15 +191,12 @@ This is a variant of \cite{vakil}[Theorem 17.6.2] (which might hold):
 In this section we show that any weakly quasi-coherent and finitely generated bundle on a projective space is eventually globally generated, i.e.\ we show that sufficiently high twists of that bundle are globally generated.
 
 \begin{lemma}
-  \label{wqc+fg-bundle-is-explicitly-generated}
-  Let $X=\Spec A$ be an affine scheme and let $\mathcal F : X \to \Mod{R}$ be a weakly quasi-coherent and finitely generated bundle of $R$-modules.
-  Then the proposition
+  \label{wqc+fg-bundle-is-finitely-generated}
+  Let $X=\Spec A$ be an affine scheme and let $\mathcal F : X \to \Mod{R}$ be a bundle of pointwise weakly quasi-coherent and finitely generated $R$-modules.
+  Then $\mathcal F$ is globally generated, i.e.\ there merely exists a number $N:\N$ and an exact sequence
   \[
-    \Big\Vert
-      \sum_{N:\N}\prod_{x:X}\Hom_R^\mathrm{surj}(R^N,\mathcal F_x)
-    \Big\Vert
+    \mathcal O_X^N \longrightarrow \mathcal F \longrightarrow 0\rlap{.}
   \]
-  holds. Here $\Hom_R^\mathrm{surj}$ denotes the set of surjective $R$-module morphisms.
 \end{lemma}
 
 \begin{proof}
@@ -273,15 +270,15 @@ This generalizes the above lemma by simultaneously allowing non-affine schemes, 
 \end{proposition}
 \begin{proof}
   Let $U_i = D(x_i)$ be the standard affine cover of $\bP^n$.
-  By virtue of lemma \ref{wqc+fg-bundle-is-explicitly-generated} we can find sections $s_{ij} : (x:U_i) \to \mathcal F_x$ such that $s_{i1}(x), ..., s_{im}(x)$ generate $\mathcal F_x$ for all $x:U_i$.
-  Using lemma \ref{extension-of-sections-by-twisting} we find $n:\mathbb{N}$ such that $x_i^ns_{ij}$ extends to a global section $t_{ij}:\Gamma (\bP^n,\mathcal F(n))$.
+  By virtue of lemma \ref{wqc+fg-bundle-is-finitely-generated} we can find sections $s_{ij} : (x:U_i) \to \mathcal F_x$ such that $s_{i1}(x), ..., s_{im}(x)$ generate $\mathcal F_x$ for all $x:U_i$.
+  Using lemma \ref{extension-of-sections-by-twisting} we obtain $n:\mathbb{N}$ such that $x_i^ns_{ij}$ extends to a global section $t_{ij}:\Gamma (\bP^n,\mathcal F(n))$.
   Then the sections $\{t_{ij}\}_{ij}$ generate $\mathcal F(n)$ at every point $x:\bP^n$.
 
   For the second part we use \cite[Chapter IV, 1.0 Lemma]{lombardi-quitte} to see that the kernel of a surjection from a finite free module to a finitely presented module is finitely generated.
   The claim follows from this.
 \end{proof}
 
-The following corollary might be the start of an argument showing that the cohomology modules of Adelman bundles are Adelman.
+The following corollary might be the start of an argument showing that the cohomology modules of Adelman bundles are Adelman as well.
 
 \begin{corollary}
   If $\mathcal F : \bP^n \to \Mod R$ is a bundle of finitely presented $R$-modules on $\bP^n$, then $H^n(\bP^n, \mathcal F)$ is a finitely presented $R$-module as well.
