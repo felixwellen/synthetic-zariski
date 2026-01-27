@@ -7,6 +7,8 @@ In this part we will use result from the previous section to compute some cohomo
 
 In this section we will prove that given $S$ a Stone space and $G(x)$ an overtly discrete (non-abelian) group depending on $x:S$, we have that $H^1(S,G)=0$. Recall that by \Cref{overtly-discrete-countably-presented}, we have that a group is overtly discrete if and only if it is countably presented.
 
+\rednote{TODO actually I don't think that $\Pi_{x:X}G(x)^{Y(x)}$ is normal in $\Pi_{x:X}G(x)^{Y(x)^2}$, so this is maybe not the correct definition? Or it is probably right for our purpose, as we are only interested in saying that all cocycle are cohomologous to 1? I think it is allright for vanishing, I doubt it is fine for computing $H^1(C,G)$ for $C$ compact Hausdorff.}
+
 \begin{definition}
   Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group both depending on $x:X$. We define its short \v{C}ech sequence $\check{C}(X,Y,G)$ as:
   \[\Pi_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}G(x)^{Y(x)^3} \]
@@ -293,6 +295,15 @@ Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that
 
 \rednote{TODO We also want that $\check{H}^1(C,S,G) = H^1(C,S)$ for $G$ non-abelian.}
 
+\rednote{
+\begin{theorem}\label{non-abelian-cech-and-sheaf-agree}
+Non-abelian \v{C}ech and regular cohomology agree.
+\end{theorem}
+}
+
+
+
+
 \begin{definition}
 A \v{C}ech cover for a type $X$ consists of a surjective map:
 \[f:S\to X\]
@@ -343,7 +354,7 @@ Next definition will be used for \v{C}ech cover.
 Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
 \[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}G(x)^{A(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
 with:
-\[\delta_n(\alpha)_x(y_0,\cdots,y_n) = \sum_{i=0}^n (-1)^i \alpha(y_0,\hdots,\hat{x_i},\hdots,y_n)\]
+\[\delta_n(\alpha)_x(y_0,\cdots,y_n) = \Sigma_{i=0}^n (-1)^i \alpha(y_0,\hdots,\hat{x_i},\hdots,y_n)\]
 We have that $\delta_{n+1} \circ \delta_n = 0$.
 
 We define its $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology of this chain complex.
@@ -359,12 +370,12 @@ Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending
 Indeed assume given:
 \[\alpha : \Pi_{x:X} Y(x)^{n+1}\to A(x)^{Y(x)}\]
 such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $u_0,\cdots, u_{n+1},v:Y(x)$ we have that:
-\[\sum_{i=0}^{n+1}(-1)^i\alpha(x,u_0,\cdots,  \widehat{u_i},\cdots ,u_{n+1},v) = 0\]
+\[\Sigma_{i=0}^{n+1}(-1)^i\alpha(x,u_0,\cdots,  \widehat{u_i},\cdots ,u_{n+1},v) = 0\]
 Then we define:
 \[\beta : \Pi_{x:X} Y(x)^{n}\to A(x)^{Y(x)}\]
 \[\beta(x,u_0,\cdots,u_{n-1},v) = (-1)^n\alpha(x,u_0,\cdots,u_{n-1},v,v)\]
 and then:
-\[\delta(\beta)(x,u_0,\cdots,u_{n},v) = (-1)^n\sum_{i=0}^{n} (-1)^i \alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n,v,v) \]
+\[\delta(\beta)(x,u_0,\cdots,u_{n},v) = (-1)^n\Sigma_{i=0}^{n} (-1)^i \alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n,v,v) \]
 \[= \alpha(x,u_0,\cdots,u_n,v)\]
 so $\alpha$ is indeed a coboundary.
 \end{proof}
@@ -380,7 +391,7 @@ Moreover this long exact sequence is natural in the short exact sequence.
 \end{lemma}
 
 \begin{proof}
-We just use the fact that all elements $\sum_{x:X} T_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}.
+We just use the fact that all elements $\Sigma_{x:X} T_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}.
 \end{proof}
 
 \begin{lemma}\label{inductive-definition-cech-cohomology}
@@ -433,40 +444,74 @@ This section closely follows Section 5.4 in \cite{foundation-synthtetic-stone-du
 
 We define $\I_n^{\sim k} = \{x_1,\hdots,x_n:\I_n\ |\ \forall(i,j).\, x_i\sim_n x_j\}$.
 
+\begin{lemma}\label{interval-connected}
+Given $I$ a finite type, any map from $\I$ to $I$ is constant.
+\end{lemma}
+
+\begin{proof}
+We consider the map $p : 2^\N\to\I\to I$, by \Cref{factorisation-stone-finite} it factors through $2^n$ for some $n:\N$. 
+
+Let us prove that for all $k:\N$, if the map factors through $2^{k+1}$ as $p_{k+1}$ then it factors through $2^k$. Consider $\alpha:2^k$, then since $p$ factors through $\I$ we have that $p(\alpha,1,0,0,\hdots) = p(\alpha,0,1,1,\hdots)$ so that $p_{k+1}(\alpha,0) = p_{k+1}(\alpha,1)$, and $p_{k+1}$ indeed factors through $2^k$, therefore so does $p$.
+
+From this we get that $p$ factors through $2^0$, so it is indeed constant.
+\end{proof}
+
+
+\begin{lemma}\label{non-abelian-exact-sequence}
+Given $n:\N$ and $G$ a group, we have an exact sequence:
+\[G^{\I_n} \overset{\delta_0}{\longrightarrow} G^{\I_n^{\sim 2}} \overset{\delta_1}{\longrightarrow} G^{\I_n^{\sim 2}} \]
+  where:
+  \begin{eqnarray}
+  \delta_0(\alpha)(i_0,i_1) = \alpha(i_0)^{-1}\cdot\alpha(i_1)\nonumber\\
+  \delta_1(\beta)(i_0,i_1,i_2) = \beta(i_1,i_2)\cdot\beta(i_0,i_2)^{-1}\cdot\beta(i_0,i_1)\nonumber
+  \end{eqnarray}
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
 \begin{lemma}\label{Cn-exact-sequence}
-For any $n:\N$ and $A$ an overtly discrete abelian group, we have an exact sequence:
-\[0\to A\overset{d}{\longrightarrow} A^{\I_n} \overset{d_0}{\longrightarrow} A^{\I_n^{\sim 2}} \overset{d_1}{\longrightarrow} A^{\I_n^{\sim3}} \overset{d_3}{\longrightarrow} \cdots\]
-where $d(k) = (\_\mapsto k)$ and
+Given $n:\N$ and $A$ an abelian group, we have an exact sequence:
+\[A^{\I_n} \overset{d_0}{\longrightarrow} A^{\I_n^{\sim 2}} \overset{d_1}{\longrightarrow} A^{\I_n^{\sim3}} \overset{d_3}{\longrightarrow} \cdots\]
+where:
 \begin{eqnarray}
- d_n(\alpha)(x_0,\hdots,x_n) &=& \sum_{i=0}^n (-1)^i\alpha(x_0,\hdots,\widehat{x_i},\hdots,x_n)\nonumber
+ d_k(\alpha)(x_0,\hdots,x_k) &=& \Sigma_{i=0}^k (-1)^i\alpha(x_0,\hdots,\widehat{x_i},\hdots,x_k)\nonumber
 \end{eqnarray}
 \end{lemma}
 
 \begin{proof}
-This follows from the computations given in Stack Project Tag 01FG. \rednote{Do we need more?}
+This follows from the computations given in Stack Project Tag 01FG. \rednote{TODO we need more? Maybe Serre DAC 20, proposition 2?}
 \end{proof}
 
 \begin{theorem}\label{cohomology-I}
 The unit interval is acyclic, in the sense that:
+
 \begin{enumerate}[(i)]
-\item Given $I$ an overtly discrete type, we have that the map $I\to (I^\I)$ is an equivalence.
+\item Given $I$ an overtly discrete type, any map in $\I\to I$ is constant.
 \item Given $G$ an overtly discrete group, we have that $H^1(\I,G) = 0$.
-\item Given $A$ an overtly discrete abelian group, we have that $H^n(\I,A) = 0$ for $n\geq 2$.
+\item Given $A$ an overtly discrete abelian group, we have that $H^n(\I,A) = 0$ for $n\geq 1$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-(i) TODO \rednote{the shortest way is factorisation for compact Hausdorff.}
+We prove each point as follows:
 
-(ii) TODO \rednote{need to redo computation in a non-abelian setting. One more reason to do them explitcitely}
+\begin{enumerate}[(i)]
 
-(iii) Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover $T$ of $\I$ defined by: 
-\[T_x = \Sigma_{y:2^\N} (x=_\I cs(y))\]
-Then we have that $\mathrm{lim}_n\I_n^{\sim l} = \sum_{x:\I} T_x^l$. By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we have an exact sequence
-\[ 0\to A\to \mathrm{colim}_n A^{\I_n} \to \mathrm{colim}_n A^{\I_n^{\sim2}}\to \mathrm{colim}_n A^{\I_n^{\sim3}}\to \cdots\]
+\item Given a map $p:\I\to I$, we write $I=\mathrm{colim}_jI_j$ with $I_j$ finite. By \Cref{scott-continuity-chaus} we know that $p$ factors through $I_k$ for some $k$, but by \Cref{interval-connected} any map from $\I$ to $I_k$ is constant so $p$ is indeed constant.
+
+\item Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover $T$ of $\I$ defined by: 
+\[T(x) = \Sigma_{y:2^\N} (x=_\I cs(y))\]
+Then we have that $\mathrm{lim}_n\I_n^{\sim l} = \Sigma_{x:\I} T(x)^l$. By \Cref{non-abelian-exact-sequence} and stability of exactness under sequential colimit, we have an exact sequences:
+\[ \mathrm{colim}_n G^{\I_n} \to \mathrm{colim}_n G^{\I_n^{\sim2}}\to \mathrm{colim}_n G^{\I_n^{\sim3}}\]
 By \cref{scott-continuity-left} this sequence is equivalent to
-\[ 0\to A\to \Pi_{x:\I}A^{T_x} \to  \Pi_{x:\mathbb{I}}A^{T_x^2} \to  \Pi_{x:\mathbb{I}}A^{T_x^3}\to \cdots\]
-So it being exact implies that $\check{H}^0(\I,T,A) = A$ and $\check{H}^n(\I,T,A) = 0$ for $n\geq 1$.
-We conclude by \Cref{cech-and-sheaf-agree}.
+\[\Pi_{x:\I}G^{T(x)} \to  \Pi_{x:\mathbb{I}}G^{T(x)^2} \to  \Pi_{x:\mathbb{I}}G^{T(x)^3}\]
+So it being exact implies that $\check{H}^n(\I,T,G) = 0$ for $n\geq 1$.
+We conclude by \Cref{non-abelian-cech-and-sheaf-agree}.
+
+\item Same as point (ii) using \Cref{Cn-exact-sequence} instead of \ref{non-abelian-exact-sequence} and \Cref{cech-and-sheaf-agree} instead of \ref{non-abelian-cech-and-sheaf-agree}.
+
+\end{enumerate}
 \end{proof}
 
