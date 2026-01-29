@@ -1,124 +1,184 @@
+\rednote{TODO update section summary}
+
 In this part we will use result from the previous section to compute some cohomology. In Sections \ref{vanishing-first-stone} and \ref{vanishing-stone} we will prove the vanishing of the cohomology of Stone spaces with overtly discrete coefficients (\Cref{vanishing-cohomology-stone}). In \Cref{cech-sheaf-agree-section} we use this vanishing to prove that \v{C}ech cohomology agree with the usual one for compact Hausdorff spaces  with overtly discrete coefficients (\Cref{cech-and-sheaf-agree}). The main point is that \v{C}ech cohomology is often simpler to compute. Indeed in \Cref{interval-acyclic} we apply this to proving the vanishing of the cohomology of the interval with overtly discrete coefficients (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficient is the same as countably presented coefficients.
 
 
+\subsection{Non-abelian \v{C}ech cohomology}
 
-\subsection{Vanishing of the first (non-abelian) cohomology for Stone spaces}
-\label{vanishing-first-stone}
+\rednote{TODO Are $X$ and $Y$ really an arbitrary type or did I use they were sets at some point?}
 
-In this section we will prove that given $S$ a Stone space and $G(x)$ an overtly discrete (non-abelian) group depending on $x:S$, we have that $H^1(S,G)=0$. Recall that by \Cref{overtly-discrete-countably-presented}, we have that a group is overtly discrete if and only if it is countably presented.
-
-\rednote{TODO actually I don't think that $\Pi_{x:X}G(x)^{Y(x)}$ is normal in $\Pi_{x:X}G(x)^{Y(x)^2}$, so this is maybe not the correct definition? Or it is probably right for our purpose, as we are only interested in saying that all cocycle are cohomologous to 1? I think it is allright for vanishing, I doubt it is fine for computing $H^1(C,G)$ for $C$ compact Hausdorff.}
+First a little bit on torsors. We define torsors using right actions.
 
 \begin{definition}
-  Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group both depending on $x:X$. We define its short \v{C}ech sequence $\check{C}(X,Y,G)$ as:
-  \[\Pi_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}G(x)^{Y(x)^3} \]
-  with:
-  \[\delta_0(\alpha)_x(y_0,y_1) = \alpha_x(y_0)^{-1}\cdot\alpha_x(y_1)\]
-  \[\delta_1(\beta)_x(y_0,y_1,y_2) = \beta_x(y_1,y_2)\cdot\beta_x(y_0,y_2)^{-1}\cdot\beta_x(y_0,y_1)\]
-  We have that $\delta_1(\delta_0(\alpha)))_x(y_0,y_1,y_2) = 1$.
+Assume given $G$ a group and $\alpha$ a $G$-torsor with $x,y:\alpha$. Then $x^{-1}\cdot y$ is defined as the only $g:G$ such that $x\cdot g = y$. 
 \end{definition}
 
-First we give a couple of auxiliary results on \v{C}ech short sequences, justifying their usefulness.
+Note that $(x^{-1}\cdot y)\cdot (y^{-1}\cdot z) = x^{-1}\cdot z$. Now we define non-abelian \v{C}ech cohomology
 
-\begin{lemma}\label{cover-with-section-exact-cech}
-Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group both depending on $x:X$. If we merely have $\Pi_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
+\begin{definition}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$.
+\begin{itemize}
+\item A coboundary is a $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ such that for all $x:X$ and $y_0,y_1,y_2:Y(x)$ we have $\delta_x(y_0,y_1)\cdot \delta_x(y_1,y_2) = \delta_x(y_0,y_2)$.
+\item Two coboundaries $\delta$ and $\delta'$ are called cohomologous if there exists $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have $\gamma_x(y_0)\cdot\delta_x(y_0,y_1) = \delta'_x(y_0,y_1)\cdot\gamma_x(y_1)$.
+\end{itemize}
+\end{definition}
+
+Being cohomologous in an equivalence relation. 
+
+\begin{definition}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The \v{C}ech non-abelian cohomology of $X$ with coefficient in $G$ is defined as coboundaries modulo being cohomologous. It is denoted by $\check{H}^1$(X,Y,G).
+\end{definition}
+
+We prove a first easy lemma.
+
+\begin{lemma}\label{first-cech-has-section-vanish}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If we merely have $\Pi_{x:X}Y(x)$ then $\check{H}^1(X,Y,G)$.
 \end{lemma}
 
 \begin{proof}
-  The proof of Lemma 5.5 of \cite{synthetic-stone-duality} goes through.
-%PRECISE CHECK
-  %Assume given a cocycle $\beta: \Pi_{x : X} A_x^{T_x^2}$. 
-  %Define $\alpha :\Pi_{x : X} A_x ^{T_x}$ by 
-  %$\alpha_x(u) = \beta_x(t_x,u)$. Then 
-  %$$
-  %  \delta_0(\alpha)_x(u,v) = 
-  %  \alpha_x(u)^{-1}\cdot\alpha_x(v) =
-  %  \beta_x(t_x,u)^{-1} \cdot \beta(t_x,v)
-  %$$
-  %As $\beta$ is a cocycle, we have that 
-  %$$\beta_x(u,v) \cdot \beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = 1,$$
-  %hence
-  %$$\beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = \beta_x(u,v)^{-1},$$
-  %and taking inverses then gives that 
-  %$$\beta_x(t_x,u)^{-1} \cdot \beta_x(t_x,v) = \beta_x(u,v),$$
-  %from which we conclude that 
-  %$\delta_0(\alpha)_x(u,v) = \beta_x(u,v)$, so $\beta$ is a coboundary. 
-  %Hence the sequence is exact. 
+TODO
 \end{proof}
 
-\begin{lemma}\label{cocyle-being-coboundary}
-Assume given a set $X$ with $Y(x)$ an inhabited set and $G(x)$ a group both depending on $x:X$. Assume given $\phi:\Pi_{x:X}BG(x)$ and $\psi:\Pi_{x:X}(\phi(x)=*)^{Y(x)}$. If $\check{C}(X,Y,G)$ is exact then $\phi=*$.
+Our main goal is to show that \v{C}ech cohomology corresponds to $G$-torsors over $X$ that are trivialised by $Y$. More precisely:
+
+\begin{definition}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi^*(\alpha) = 0 \}$ where $\pi$ is the projection $\Sigma_{x:X}Y(x)\to X$.
+\end{definition}
+
+Our goal is to show $H^(X,Y,G) = \check{H}^1(X,Y,G)$.
+
+\begin{lemma}\label{phi-well-defined}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Given $\alpha:\Pi_{x:X}BG(x)$ and $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$, we define $\phi(\alpha,\beta) = \lambda x,y_0,y_1.\, \beta_x(y_0)^{-1}\cdot\beta_x(y_1)$. Then $\phi(\alpha,\beta)$ is a coboundary and moreover given another $\beta':\Pi_{x:X}\alpha(x)^{Y(x)}$, we have that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous.
 \end{lemma}
 
 \begin{proof}
- Identifying $* =_{BG(x)} *$ and $G(x)$, we define $\beta : \Pi_{x:X} G(x)^{T(x)^2}$ by:
- \[\beta_x(y_1,y_2) = \psi_x(y_0)^{-1} \cdot \psi_x(y_1)\] 
- It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness it is a coboundary, i.e. there exists some $\alpha:\Pi_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have that:
-\[\beta_x(y_0,y_1)=\alpha_x(y_0)^{-1}\cdot \alpha_x(y_1)\]
-Then we define $\psi' : \Pi_{x:X}(\phi(x)=*)^{Y(x)}$ by:
-\[\psi'_x(y) = \psi_x(y)\cdot \alpha_x(y)^{-1}\]
-so that for all $x:X$ and $y_0,y_1:Y(x)$ we have that:
-\begin{eqnarray}
-\psi'_x(y_0)^{-1}\cdot\psi'_x(y_1) &=& \alpha_x(y_0) \cdot \psi_x(y_0)^{-1}\cdot \psi_x(y_1)\cdot \alpha_x(y_1)^{-1}\nonumber\\
- &=&  \alpha_x(y_0) \cdot \beta_x(y_0,y_1)\cdot \alpha_x(y_1)^{-1} \nonumber\\
- &=&  \alpha_x(y_0) \cdot\alpha_x(y_0)^{-1} \cdot\alpha_x(y_1)\cdot \alpha_x(y_1)^{-1} \nonumber\\ 
- &=& 1 \nonumber
- \end{eqnarray}
-This means that $\psi'_x(y_0) = \psi'_x(y_1)$, so that $\psi'$ factors through $X$, giving a proof of $\phi=*$.
+It is clear that $\phi(\alpha,\beta)$ is a coboundary. To show that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous, we consider $\gamma = \lambda x,y.\, \beta'_x(y)^{-1}\cdot\beta_x(y)$. Given $x:X$ and $y_0,y_1:Y(x)$ we indeed have:
+\[\phi(\alpha,\beta')_x(y_0,y_1)\cdot\gamma_x(y_1) = (\beta'_x(y_0)^{-1}\cdot \beta'_x(y_1))\cdot (\beta'_x(y_1)^{-1}\cdot\beta_x(y_1) = \beta'_x(y_0)^{-1}\cdot\beta_x(y_1)\]
+\[\gamma_x(y_0)\cdot\phi(\alpha,\beta)_x(y_0,y_1) = (\beta'_x(y_0)^{-1}\cdot \beta_x(y_0))\cdot(\beta_x(y_0)^{-1}\cdot\beta_x(y_1)) = \beta'_x(y_0)^{-1}\cdot\beta_x(y_1)\]
 \end{proof}
 
-\begin{lemma}\label{short-cech-exact}
-Assume given $S$ a Stone space with $T(x)$ an inhabited Stone space and $G(x)$ an overtly discrete group both depending on $x:S$. Then $\check{C}(S,T,G)$ is exact.
+\begin{definition}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The map induced by \Cref{phi-well-defined} is denoted by $\Phi : H^1(X,Y,G)\to \check{H}^1(X,Y,G)$.
+\end{definition}
+
+\begin{lemma}\label{psi-well-defined}
+Assume given $Y$ an inhabited type and $G$ a group, as well as $\delta:G^{Y^2}$ a coboundary. %such that for all $y_0,y_1,y_2:Y$ we have $\delta(y_0,y_1)\cdot\delta(y_1,y_2) = \delta(y_0,y_2)$. 
+Then we define $\psi(\delta) = \{\gamma:G^Y\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta(y_0,y_1)\}$. Then:
+\begin{enumerate}[(i)] 
+\item For all $x:X$, the type $\psi(\delta)$ is indeed a $G$-torsor.
+\item We have a $H:\psi(\delta)^Y$ defined by $H_x(\bar{y}) = \lambda y.\delta(y,\bar{y})$.
+\item Given $\delta$ and $\delta'$ with $\iota:G^Y$ such that for all $y_0,y_1:Y$ we have $\iota(y_0)\cdot\delta(y_0,y_1) = \delta(y_0,y_1)\cdot\iota(y_1)$, we have an equivalence $\psi(\delta)=\psi(\delta')$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-We use \Cref{finite-approximation-stone-surjection-cohomology} to get a sequence of Stone spaces $(T_k(x))_{k:\N}$ depending on $x:S$ such that $\mathrm{lim}_kT_k(x) = T(x)$ for all $x:S$ and we merely have $\Pi_{x:S}T_k(x)$ for all $k:\N$. By \Cref{cover-with-section-exact-cech} we have that $\check{C}(S,T_k,G)$ is exact for all $k:\N$. As a sequential colimit of exact sequences is exact, we just need to prove $\mathrm{colim}_k\check{C}(S,T,G) = \check{C}(S,T,G)$ to conclude. But we have that:
-\begin{eqnarray}
-\mathrm{colim}_k \Pi_{x:S}G(x)^{T_k(x)^l} &=& \Pi_{x:S}\mathrm{colim}_k (G(x)^{T_k(x)^l})\nonumber\\
-&=& \Pi_{x:S}G(x)^{\mathrm{lim}_kT_k(x)^l}\nonumber\\
-&=& \Pi_{x:S}G(x)^{T(x)^l}\nonumber
-\end{eqnarray}
-where the first equality comes from \Cref{scott-continuity-right} and the second from \Cref{scott-continuity-left}.
+We prove this as follows:
+\begin{itemize}[(i)]
+\item We define the action of $g:G$ on $\gamma:\psi(\delta)$ by $\gamma\cdot g = \lambda y. \gamma(y)\cdot g$.
+
+It is clear that the action is well-defined and free, now let us check it is transitive. Assume $\gamma,\gamma':\psi(\delta)$, then we can check that $\gamma(y)^{-1}\cdot\gamma'(y)$ does not depend on $y$, indeed $\gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta_x(y_0,y_1) = \gamma'(y_0)\cdot\gamma'(y_1)^{-1}$. Since $Y$ is inhabited this gives us an element $g:G$ such that $\gamma(y)\cdot g = \gamma'(y)$ for all $y:Y$, which is precisely what we want.
+
+The fact that $\propTrunc{\psi(\delta)}$ follows directly from $Y$ inhabited and (ii).
+
+\item We just need to check that for all $\bar{y},y_0,y_1$ we indeed have $\delta(y_0,\bar{y})\cdot\delta(y_1,\bar{y})^{-1} = \delta(y_0,y_1)$, but this follows from $\delta$ being a coboundary.
+
+\item The map $G:\psi(\delta)\to \psi(\delta')$ sending $\gamma$ to $\lambda y. \iota(y)\cdot\gamma(y)$ is clearly an equivalence.
+\end{itemize}
 \end{proof}
 
-%\begin{lemma}\label{local-choice-delooping-trick}
-%  Let $S$ be Compact Hausdorff and $G: S\to \mathrm{Grp}_\ODisc$, and 
-%  $\phi:\Pi_{s:S}BG(x)$.
-%  Then there merely exists some family $(T_x)_{x:S}$ of 
-%  merely inhabited Stone spaces such that 
-%  $\Pi_{x:S}(\phi_x = *)^{T_x}$.
-%\end{lemma}
+\begin{definition}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The map induced by \Cref{psi-well-defined} is denoted by $\Psi : \check{H}^1(X,Y,G)\to H^1(X,Y,G)$.
+\end{definition}
 
-%\begin{proof}
-%  Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. 
-%  By definition of $BG$, we have that 
-%  $\Pi_{x:S}\propTrunc{\phi_x=*}$. 
-%  Thus by local choice, 
-%  there merely exists some $T:\Stone$ with surjection $q : T \twoheadrightarrow S$, 
-%  such that $\Pi_{t : T} \phi_{qt} = *$. 
-%  Writing $T_x$ for the fiber of $q$ over $x:S$, 
-%  we have that $\Pi_{x : S} (T_x \to \phi_x = *)$.
-%  By surjectivity each ${T_x}$ is merely inhabited. 
-%\end{proof} 
+Now we just want to check that $\Phi$ and $\Psi$ are inverse to each other.
 
-Now we just have to assemble the pieces.
+\begin{lemma}\label{psi-phi-is-id}
+We have that $\Psi\circ\Phi = Id$.
+\end{lemma}
 
-\begin{proposition}\label{vanishing-1-cohomology-stone}
-Assume given $S$ a Stone space with $G(x)$ an overtly discrete type depending on $x:S$. Then $H^1(S,G) = 0$
+\begin{proof}
+It is enough to assume $\alpha:\Pi_{x:X}BG(x)$ with $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$ and prove that for all $x:X$ we have 
+\[\alpha(x) = \psi(\psi(\alpha,\beta)_x)\]
+where
+\[\psi(\phi_x(\alpha,\beta)) = \{\gamma:G(x)^{Y(x)}\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)\}\]
+
+We define $f:\alpha(x)\to \psi(\psi(\alpha,\beta)_x)$ by $f(e) = \lambda y.\, \beta_x(y)^{-1}\cdot e$. This is well defined as for all $y_0,y_1:Y(x)$ we have that:
+\[f(p,y_0)\cdot f(p,y_1)^{-1} = \beta_x(y_0)^{-1}\cdot e \cdot (\beta_x(y_1)^{-1}\cdot e)^{-1} = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)\]
+Morever this map clearly commutes with the group action so it is enough to show it is an equivalence of type to conclude.
+
+In the other direction, assume given $\gamma:\psi(\psi(\alpha,\beta)_x)$. Then we have that $\beta_x(y)\cdot\gamma(y):\alpha(x)$ does not depend on the choice of $y:Y(x)$ by the hypothesis on $\gamma$, since $Y(x)$ is inhabited this defines an element $g(\gamma):\alpha(x)$.
+
+Next we check that $g(f(e)) = e$, since we want to prove a proposition we can assume $y:Y(x)$, then we need to prove that $\beta_x(y)\cdot (\beta_x(y)^{-1}\cdot e) = e$ which is clear. Finally to check $f(g(\gamma)) = \gamma$ we need to prove that $\beta_x(y)^{-1}\cdot \beta_x(y) \cdot \gamma(y) = \gamma(y)$ which is also obvious (we used the fact that $g(\gamma)$ can be computed using any $y:Y(x)$).
+\end{proof}
+
+\begin{lemma}\label{phi-psi-is-id}
+We have that $\Phi\circ \Psi = Id$.
+\end{lemma}
+
+\begin{proof}
+It is enough to prove that given a coboundary $\delta$, for all $x:X$ with $y_0,y_1:Y(x)$ we have that $H_x(y_0)^{-1}\cdot H_x(y_1) = \delta_x(y_0,y_1)$ where $H_x : Y(x)\to \psi(\delta_x)$ is defined in \Cref{psi-well-defined}, point (ii). But recall that $H_x(\bar{y}) = \lambda y.\delta_x(y,\bar{y})$ so we need to check that $(\lambda y.\delta_x(y,y_0))\cdot\delta_x(y_0,y_1) = \lambda y.\delta_x(y,y_1)$ which is clear as the action is defined pointwise.
+\end{proof}
+
+\begin{proposition}\label{non-abelian-chech-is-sheaf-generic}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Then $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
 \end{proposition}
 
 \begin{proof}
-  Assume $\phi:\Pi_{s:S}BG(x)$,
-  %by \Cref{local-choice-delooping-trick}, 
-  by local choice
-  there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces with  
-  $\alpha:\Pi_{x:S}(\phi(x)=*)^{T(x)}.$
-In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence $\check{C}(S,T,G)$ is exact. But this is \Cref{short-cech-exact}.
+By Lemmas \ref{psi-phi-is-id} and \ref{phi-psi-is-id}.
+\end{proof}
+
+\begin{corollary}\label{non-abelian-chech-is-sheaf-generic-ayclic-cover}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If $H^1(\Sigma_{x:X}Y(x), G\circ\pi) = 0$, then $H^1(X,G) = \check{H}^1(X,Y,G)$.
+\end{corollary}
+
+
+\subsection{Non-abelian cohomology for Stone spaces and compact Hausdorff spaces}
+
+\begin{lemma}\label{first-cech-scott-continuity}
+Assume given $S$ a Stone space and $(T_k(x))_{k:\N}$ a tower of Stone spaces and $G(x)$ an overly discrete group both depending on $x:S$. Write $T(x) =\mathrm{lim}_kT_k(x)$. Then $\check(H)^1(S,T,G) = \mathrm{colim}_k \check{H}^1(S,T_k,G)$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{cech-vanishing-first-stone}
+Assume given $S$ a Stone space with $T(x)$ an inhabited Stone spaces and $G(x)$ an overtly discrete group both depending on $x:X$. Then $\check{H}^1(S,T,G) = 0$.
+\end{lemma}
+
+\begin{proof}
+By \Cref{finite-approximation-stone-surjection-cohomology} we have $(T_k(x))_{k:\N}$ a tower of Stone spaces depending on $x:S$ such that for all $x:S$ we have that $\mathrm{lim}_kT_k(x) = 0$ and we merely have $\Pi_{x:S}T_k(x)$ for all $k:\N$.
+
+Then by \Cref{first-cech-scott-continuity} we have that $\check{H}^1(S,T,G) = \mathrm{colim}_k\check{H}^1(S,T_k,G)$, and by \Cref{first-cech-has-section-vanish} we have that $\check{H}^1(S,T_k,G) = 0$ for all $k:\N$ so we can conclude.
+\end{proof}
+
+\begin{proposition}\label{vanishing-first-stone}
+Assume given $S$ a Stone space with $G(x)$ an overtly discrete group depending in $x:X$. Then $H^1(S,G) = 0$.
+\end{proposition}
+
+\begin{proof}
+Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited Stone space depending on $x:S$ such that $\pi^*(\alpha) = 0$, so that $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $H^1(S,T,G) = 0$ and $\alpha=0$.
+\end{proof}
+
+\begin{definition}
+A \v{C}ech cover for a set $X$ consists of $S(x)$ an inhabited Stone spaces depending on $x:X$ such that $\Sigma_{x:X}S(x)$ is a Stone space.
+\end{definition}
+
+\begin{remark}
+A set $X$ merely has a \v{C}ech cover if and only is it is a compact Hausdorff space. \rednote{TODO proof}
+\end{remark}
+
+\begin{proposition}
+Assume given $X$ a compact Hausdorff space with a \v{C}ech cover $S$ and $G(x)$ an overtly discrete group depending on $x:X$. Then $H^1(X,G) = \check{H}(X,S,G)$.
+\end{proposition}
+
+\begin{proof}
+From \Cref{non-abelian-chech-is-sheaf-generic-ayclic-cover} and \Cref{vanishing-first-stone}.
 \end{proof}
 
 
 
-\subsection{Stone spaces are acyclic}
+\subsection{Vanishing of higher cohomology for Stone spaces}
 \label{vanishing-stone}
 
 The goal of this section is to show that given $S$ a Stone space with $A(x)$ an overly discrete abelian group depending on $x:S$, we have that $H^n(S,A) = 0$ for all $n\geq 1$. The case $n=1$ is an immediate consequence of \Cref{vanishing-1-cohomology-stone}. To prove the general case, we proceed by induction on $n$. For this induction to go through, we have to strenghten the result, so that we actually prove that deloopings of overtly discrete abelian group commutes with Stone-indexed $\Pi$-types.
