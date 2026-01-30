@@ -26,78 +26,85 @@ Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depend
 Being cohomologous in an equivalence relation. 
 
 \begin{definition}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The \v{C}ech non-abelian cohomology of $X$ with coefficient in $G$ is defined as coboundaries modulo being cohomologous. It is denoted by $\check{H}^1$(X,Y,G).
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The \v{C}ech non-abelian cohomology of $X$ with coefficient in $G$ is defined as coboundaries modulo being cohomologous. It is denoted by $\check{H}^1(X,Y,G)$.
 \end{definition}
 
 We prove a first easy lemma.
 
 \begin{lemma}\label{first-cech-has-section-vanish}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If we merely have $\Pi_{x:X}Y(x)$ then $\check{H}^1(X,Y,G)$.
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If we merely have $\Pi_{x:X}Y(x)$ then $\check{H}^1(X,Y,G)$ is a singleton.
 \end{lemma}
 
 \begin{proof}
-TODO
+Assume given $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ a coboundary, we need to show it is cohomologous to $1$. It is enough to consider $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ defined by $\gamma_x(y) = \delta_x(t_x,y)$.
 \end{proof}
 
-Our main goal is to show that \v{C}ech cohomology corresponds to $G$-torsors over $X$ that are trivialised by $Y$. More precisely:
+Our main goal is to show that \v{C}ech cohomology $\check{H}^1(X,Y,G)$ corresponds to $G$-torsors over $X$ that are trivialised by $Y$. More precisely:
 
 \begin{definition}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi^*(\alpha) = 0 \}$ where $\pi$ is the projection $\Sigma_{x:X}Y(x)\to X$.
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi_Y^*(\alpha) = 0 \}$ where $\pi_Y$ is the projection $\Sigma_{x:X}Y(x)\to X$.
 \end{definition}
 
-Our goal is to show $H^(X,Y,G) = \check{H}^1(X,Y,G)$.
+Our goal is then to show $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
 
 \begin{lemma}\label{phi-well-defined}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Given $\alpha:\Pi_{x:X}BG(x)$ and $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$, we define $\phi(\alpha,\beta) = \lambda x,y_0,y_1.\, \beta_x(y_0)^{-1}\cdot\beta_x(y_1)$. Then $\phi(\alpha,\beta)$ is a coboundary and moreover given another $\beta':\Pi_{x:X}\alpha(x)^{Y(x)}$, we have that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous.
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Given $\alpha:\Pi_{x:X}BG(x)$ and $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$, we define $\phi(\alpha,\beta):\Pi_{x:X}G(x)^{Y(x)^2}$ by $\phi(\alpha,\beta)_x(y_0,y_1) = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)$. Then we have that:
+
+\begin{enumerate}[(i)]
+\item $\phi(\alpha,\beta)$ is a coboundary.
+\item Given another $\beta':\Pi_{x:X}\alpha(x)^{Y(x)}$, we have that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous.
+\item We have an induced map $\Phi : H^1(X,Y,G)\to \check{H}^1(X,Y,G)$ defined by $\Phi(\alpha) = \phi(\alpha,\beta)$ for any $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-It is clear that $\phi(\alpha,\beta)$ is a coboundary. To show that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous, we consider $\gamma = \lambda x,y.\, \beta'_x(y)^{-1}\cdot\beta_x(y)$. Given $x:X$ and $y_0,y_1:Y(x)$ we indeed have:
+As follows:
+
+\begin{enumerate}[(i)]
+\item Clear.
+\item To show that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous, we consider $\gamma = \lambda x,y.\, \beta'_x(y)^{-1}\cdot\beta_x(y)$. Given $x:X$ and $y_0,y_1:Y(x)$ we indeed have:
 \[\phi(\alpha,\beta')_x(y_0,y_1)\cdot\gamma_x(y_1) = (\beta'_x(y_0)^{-1}\cdot \beta'_x(y_1))\cdot (\beta'_x(y_1)^{-1}\cdot\beta_x(y_1) = \beta'_x(y_0)^{-1}\cdot\beta_x(y_1)\]
 \[\gamma_x(y_0)\cdot\phi(\alpha,\beta)_x(y_0,y_1) = (\beta'_x(y_0)^{-1}\cdot \beta_x(y_0))\cdot(\beta_x(y_0)^{-1}\cdot\beta_x(y_1)) = \beta'_x(y_0)^{-1}\cdot\beta_x(y_1)\]
+\item Since $\alpha$ is trivialised by $\pi_Y$, we know there there exists such a $\beta$. By (ii) the class of $\psi(\alpha,\beta)$ in $\check{H}^1(X,Y,G)$ does not depend on the choice of such a $\beta$.
+\end{enumerate}
 \end{proof}
-
-\begin{definition}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The map induced by \Cref{phi-well-defined} is denoted by $\Phi : H^1(X,Y,G)\to \check{H}^1(X,Y,G)$.
-\end{definition}
 
 \begin{lemma}\label{psi-well-defined}
 Assume given $Y$ an inhabited type and $G$ a group, as well as $\delta:G^{Y^2}$ a coboundary. %such that for all $y_0,y_1,y_2:Y$ we have $\delta(y_0,y_1)\cdot\delta(y_1,y_2) = \delta(y_0,y_2)$. 
-Then we define $\psi(\delta) = \{\gamma:G^Y\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta(y_0,y_1)\}$. Then:
+Then we define $\psi(\delta) = \{\gamma:G^Y\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta(y_0,y_1)\}$. Then we have that:
+
 \begin{enumerate}[(i)] 
-\item For all $x:X$, the type $\psi(\delta)$ is indeed a $G$-torsor.
-\item We have a $H:\psi(\delta)^Y$ defined by $H_x(\bar{y}) = \lambda y.\delta(y,\bar{y})$.
-\item Given $\delta$ and $\delta'$ with $\iota:G^Y$ such that for all $y_0,y_1:Y$ we have $\iota(y_0)\cdot\delta(y_0,y_1) = \delta(y_0,y_1)\cdot\iota(y_1)$, we have an equivalence $\psi(\delta)=\psi(\delta')$.
+\item We have a $H:\psi(\delta)^Y$ defined by $H(y) = \lambda y'.\, \delta(y',y)$.
+\item The type $\psi(\delta)$ is a $G$-torsor.
+\item Given $\delta$ and $\delta'$ coboundaries with $\iota:G^Y$ such that for all $y_0,y_1:Y$ we have $\iota(y_0)\cdot\delta(y_0,y_1) = \delta(y_0,y_1)\cdot\iota(y_1)$, we have $\psi(\delta)=\psi(\delta')$.
+\item We have an induced map $\Psi : \check{H}^1(X,Y,G)\to H^1(X,Y,G)$ defined by $\Psi(\delta) = \lambda x.\, \psi(\delta_x)$.
 \end{enumerate}
 \end{lemma}
 
 \begin{proof}
 We prove this as follows:
-\begin{itemize}[(i)]
-\item We define the action of $g:G$ on $\gamma:\psi(\delta)$ by $\gamma\cdot g = \lambda y. \gamma(y)\cdot g$.
+
+\begin{enumerate}[(i)]
+\item We just need to check that for all $\bar{y},y_0,y_1$ we indeed have $\delta(y_0,\bar{y})\cdot\delta(y_1,\bar{y})^{-1} = \delta(y_0,y_1)$, but this follows from $\delta$ being a coboundary.
+
+\item We define the action of $g:G$ on $\gamma:\psi(\delta)$ by $\gamma\cdot g = \lambda y.\, \gamma(y)\cdot g$.
 
 It is clear that the action is well-defined and free, now let us check it is transitive. Assume $\gamma,\gamma':\psi(\delta)$, then we can check that $\gamma(y)^{-1}\cdot\gamma'(y)$ does not depend on $y$, indeed $\gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta_x(y_0,y_1) = \gamma'(y_0)\cdot\gamma'(y_1)^{-1}$. Since $Y$ is inhabited this gives us an element $g:G$ such that $\gamma(y)\cdot g = \gamma'(y)$ for all $y:Y$, which is precisely what we want.
 
-The fact that $\propTrunc{\psi(\delta)}$ follows directly from $Y$ inhabited and (ii).
+The fact that $\propTrunc{\psi(\delta)}$ follows directly from $Y$ inhabited and (i).
 
-\item We just need to check that for all $\bar{y},y_0,y_1$ we indeed have $\delta(y_0,\bar{y})\cdot\delta(y_1,\bar{y})^{-1} = \delta(y_0,y_1)$, but this follows from $\delta$ being a coboundary.
+\item The map in $\psi(\delta)\to \psi(\delta')$ sending $\gamma$ to $\lambda y.\, \iota(y)\cdot\gamma(y)$ is clearly an equivalence of torsors.
 
-\item The map $G:\psi(\delta)\to \psi(\delta')$ sending $\gamma$ to $\lambda y. \iota(y)\cdot\gamma(y)$ is clearly an equivalence.
-\end{itemize}
+\item Given (ii) and (iii) it is clear that we get an element in $H^1(X,G)$. From $(i)$ we see that we have $\Pi_{x:X}\psi(\delta_x)^{Y(x)}$, so that $\lambda x.\, \psi(\delta_x)$ is indeed trivialised by $\pi$.
+\end{enumerate}
 \end{proof}
 
-\begin{definition}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The map induced by \Cref{psi-well-defined} is denoted by $\Psi : \check{H}^1(X,Y,G)\to H^1(X,Y,G)$.
-\end{definition}
-
-Now we just want to check that $\Phi$ and $\Psi$ are inverse to each other.
-
-\begin{lemma}\label{psi-phi-is-id}
-We have that $\Psi\circ\Phi = Id$.
-\end{lemma}
+\begin{proposition}\label{non-abelian-chech-is-sheaf-generic}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Then $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
+\end{proposition}
 
 \begin{proof}
-It is enough to assume $\alpha:\Pi_{x:X}BG(x)$ with $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$ and prove that for all $x:X$ we have 
+First we check that $\Psi\circ\Phi$ is the identity. It is enough to assume $\alpha:\Pi_{x:X}BG(x)$ with $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$ and prove that for all $x:X$ we have 
 \[\alpha(x) = \psi(\psi(\alpha,\beta)_x)\]
 where
 \[\psi(\phi_x(\alpha,\beta)) = \{\gamma:G(x)^{Y(x)}\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)\}\]
@@ -109,22 +116,8 @@ Morever this map clearly commutes with the group action so it is enough to show 
 In the other direction, assume given $\gamma:\psi(\psi(\alpha,\beta)_x)$. Then we have that $\beta_x(y)\cdot\gamma(y):\alpha(x)$ does not depend on the choice of $y:Y(x)$ by the hypothesis on $\gamma$, since $Y(x)$ is inhabited this defines an element $g(\gamma):\alpha(x)$.
 
 Next we check that $g(f(e)) = e$, since we want to prove a proposition we can assume $y:Y(x)$, then we need to prove that $\beta_x(y)\cdot (\beta_x(y)^{-1}\cdot e) = e$ which is clear. Finally to check $f(g(\gamma)) = \gamma$ we need to prove that $\beta_x(y)^{-1}\cdot \beta_x(y) \cdot \gamma(y) = \gamma(y)$ which is also obvious (we used the fact that $g(\gamma)$ can be computed using any $y:Y(x)$).
-\end{proof}
 
-\begin{lemma}\label{phi-psi-is-id}
-We have that $\Phi\circ \Psi = Id$.
-\end{lemma}
-
-\begin{proof}
-It is enough to prove that given a coboundary $\delta$, for all $x:X$ with $y_0,y_1:Y(x)$ we have that $H_x(y_0)^{-1}\cdot H_x(y_1) = \delta_x(y_0,y_1)$ where $H_x : Y(x)\to \psi(\delta_x)$ is defined in \Cref{psi-well-defined}, point (ii). But recall that $H_x(\bar{y}) = \lambda y.\delta_x(y,\bar{y})$ so we need to check that $(\lambda y.\delta_x(y,y_0))\cdot\delta_x(y_0,y_1) = \lambda y.\delta_x(y,y_1)$ which is clear as the action is defined pointwise.
-\end{proof}
-
-\begin{proposition}\label{non-abelian-chech-is-sheaf-generic}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Then $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
-\end{proposition}
-
-\begin{proof}
-By Lemmas \ref{psi-phi-is-id} and \ref{phi-psi-is-id}.
+Now we check that $\Phi\circ \Psi$ is the identity. It is enough to prove that given a coboundary $\delta$, for all $x:X$ with $y_0,y_1:Y(x)$ we have that $H_x(y_0)^{-1}\cdot H_x(y_1) = \delta_x(y_0,y_1)$ where $H_x : Y(x)\to \psi(\delta_x)$ is defined in \Cref{psi-well-defined}, point (ii). But recall that $H_x(\bar{y}) = \lambda y.\delta_x(y,\bar{y})$ so we need to check that $(\lambda y.\delta_x(y,y_0))\cdot\delta_x(y_0,y_1) = \lambda y.\delta_x(y,y_1)$ which is clear as the action is defined pointwise.
 \end{proof}
 
 \begin{corollary}\label{non-abelian-chech-is-sheaf-generic-ayclic-cover}
@@ -135,7 +128,7 @@ Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depend
 \subsection{Non-abelian cohomology for Stone spaces and compact Hausdorff spaces}
 
 \begin{lemma}\label{first-cech-scott-continuity}
-Assume given $S$ a Stone space and $(T_k(x))_{k:\N}$ a tower of Stone spaces and $G(x)$ an overly discrete group both depending on $x:S$. Write $T(x) =\mathrm{lim}_kT_k(x)$. Then $\check(H)^1(S,T,G) = \mathrm{colim}_k \check{H}^1(S,T_k,G)$.
+Assume given $S$ a Stone space with $(T_k(x))_{k:\N}$ a tower of Stone spaces and $G(x)$ an overly discrete group both depending on $x:S$. Write $T(x) =\mathrm{lim}_kT_k(x)$. Then $\check{H}^1(S,T,G) = \mathrm{colim}_k \check{H}^1(S,T_k,G)$.
 \end{lemma}
 
 \begin{proof}
@@ -165,11 +158,11 @@ A \v{C}ech cover for a set $X$ consists of $S(x)$ an inhabited Stone spaces depe
 \end{definition}
 
 \begin{remark}
-A set $X$ merely has a \v{C}ech cover if and only is it is a compact Hausdorff space. \rednote{TODO proof}
+A set $X$ merely has a \v{C}ech cover if and only is it is a compact Hausdorff space. This is because given $X$ a type with a \v{C}ech cover $S$, given $x:X$ and $y:S$ we have that $x=[y]$ if and only if $y\in f^{-1}(x)$ and any Stone subspace of a Stone space is closed.
 \end{remark}
 
-\begin{proposition}
-Assume given $X$ a compact Hausdorff space with a \v{C}ech cover $S$ and $G(x)$ an overtly discrete group depending on $x:X$. Then $H^1(X,G) = \check{H}(X,S,G)$.
+\begin{proposition}\label{non-abelian-cech-and-sheaf-agree}
+Assume given $X$ a compact Hausdorff space with a \v{C}ech cover $S$ and $G(x)$ an overtly discrete group depending on $x:X$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
 \end{proposition}
 
 \begin{proof}
@@ -350,26 +343,8 @@ Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that
 
 
 
-\subsection{\v{C}ech cohomology}
+\subsection{\v{C}ech cohomology for compact Hausdorff spaces}
 \label{cech-sheaf-agree-section}
-
-\rednote{TODO We also want that $\check{H}^1(C,S,G) = H^1(C,S)$ for $G$ non-abelian.}
-
-\rednote{
-\begin{theorem}\label{non-abelian-cech-and-sheaf-agree}
-Non-abelian \v{C}ech and regular cohomology agree.
-\end{theorem}
-}
-
-
-
-
-\begin{definition}
-A \v{C}ech cover for a type $X$ consists of a surjective map:
-\[f:S\to X\]
-where $S$ is Stone and for all $x:X$ the fiber $S_x$ of $f$ over $x$ is Stone.
-\end{definition}
-
 
 Next lemma show that cohomology interact well with \v{C}ech cover. It will be used later to prove that cohomology and \v{C}ech cohomology agree.
 
@@ -516,6 +491,7 @@ Let us prove that for all $k:\N$, if the map factors through $2^{k+1}$ as $p_{k+
 From this we get that $p$ factors through $2^0$, so it is indeed constant.
 \end{proof}
 
+\rednote{Should be rephrased properly, not talking about exact sequence}
 
 \begin{lemma}\label{non-abelian-exact-sequence}
 Given $n:\N$ and $G$ a group, we have an exact sequence:
@@ -574,4 +550,48 @@ We conclude by \Cref{non-abelian-cech-and-sheaf-agree}.
 
 \end{enumerate}
 \end{proof}
+
+We give an example of application, which justifies why we spend all the effort on the non-abelian case. Recall that a type $X$ is $\I$-local if the map $X\to X^\I$ is an equivalence.
+
+\begin{lemma}\label{delooping-I-local}
+We have the following:
+
+\begin{enumerate}[(i)]
+\item Any overtly discrete type is $\I$-local.
+\item Given $G$ an overtly discrete group, we have that $BG$ is $\I$-local.
+\item Given $A$ an overtly discrete abelian group and $n:\N$, we have that $K(A,n)$ is overtly discrete.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+As follows:
+
+\begin{enumerate}[(i)]
+\item From \Cref{cohomology-I}(i).
+\item Identity types in $BG$ are $G$-torsors, therefore they are $\I$-local by (i), so the map $BG\to BG^\I$ is an embedding. It is surjective by \Cref{cohomology-I}(ii).
+\item By induction on $n:\N$, the case $n=0$ is point (i). Assume it holds for $n\geq 0$, then identity types in $K(A,n+1)$ are $K(A,n)$-torsors, therefore they are $\I$-local by induction hypothesis, so the map $K(A,n+1)\to K(A,n+1)^\I$ is an embedding. It is surjective by \Cref{cohomology-I}(iii).
+\end{enumerate} 
+\end{proof}
+
+\begin{proposition}
+Assume given $X$ a type such that:
+
+\begin{itemize}
+\item $X$ is Postnikov complete (i.e. $\mathrm{lim}_k\propTrunc{X}_k = X$).
+\item $\propTrunc{X}_0$ is overtly discrete.
+\item For all $x:X$ and $n\geq 1$, we have that $\pi_n(X,x)$ is overtly discrete.
+\end{itemize}
+Then $X$ is $\I$-local.
+\end{proposition}
+
+\begin{proof}
+By Postnikov completion it is enough to prove that $\propTrunc{X}_n$ is $\I$-local for all $n:\N$. We proceed by induction on $n:\N$. 
+
+For $n=0$ this is \Cref{delooping-I-local}(i).
+
+For $n=1$ we have a map $\propTrunc{X}_1\to \propTrunc{X}_0$, from the $n=0$ case we just need to prove its fibers are $\I$-local. But they merely are of the form $B\pi_1(X,x)$ for some $x:X$, so we conclude by \Cref{delooping-I-local}(ii). 
+
+Assuming this holds for $n\geq 1$, we have a map $\propTrunc{X}_{n+1}\to \propTrunc{X}_n$. By the induction hypothesis we just need to prove its fibers are $\I$-local to conclude that $\propTrunc{X}_{n+1}$ is $\I$-local. But the fibers are merely of the form $K(\pi_{n+1}(X,x),n+1)$ for some $x:X$, so we conclude by \Cref{delooping-I-local}(iii). 
+\end{proof}
+
 
