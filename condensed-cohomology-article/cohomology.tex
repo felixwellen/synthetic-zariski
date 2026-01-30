@@ -1,173 +1,228 @@
-\subsection{First (non-abelian) cohomology vanish for Stone spaces}
+\rednote{TODO update section summary}
+
+In this part we will use result from the previous section to compute some cohomology. In Sections \ref{vanishing-first-stone} and \ref{vanishing-stone} we will prove the vanishing of the cohomology of Stone spaces with overtly discrete coefficients (\Cref{vanishing-cohomology-stone}). In \Cref{cech-sheaf-agree-section} we use this vanishing to prove that \v{C}ech cohomology agree with the usual one for compact Hausdorff spaces  with overtly discrete coefficients (\Cref{cech-and-sheaf-agree}). The main point is that \v{C}ech cohomology is often simpler to compute. Indeed in \Cref{interval-acyclic} we apply this to proving the vanishing of the cohomology of the interval with overtly discrete coefficients (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficient is the same as countably presented coefficients.
+
+
+\subsection{Non-abelian \v{C}ech cohomology}
+
+\rednote{TODO Are $X$ and $Y$ really an arbitrary type or did I use they were sets at some point?}
+
+First a little bit on torsors. We define torsors using right actions.
 
 \begin{definition}
-  Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. We define its short \v{C}ech sequence $\check{C}(X,Y,G)$ as:
-  \[\prod_{x:X}G(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}G(x)^{Y(x)^3} \]
-  with:
-  \[\delta_0(\alpha)_x(y_1,y_2) = \alpha_x(y_1)^{-1}\cdot\alpha_x(y_2)\]
-  \[\delta_1(\beta)_x(y_1,y_2,y_3) = \beta_x(y_2,y_3)\cdot\beta_x(y_1,y_3)^{-1}\cdot\beta_x(y_1,y_2)\]
-  We have that $\delta_1(\delta_0(\alpha)))_x(y_1,y_2,y_3) = 1$.
+Assume given $G$ a group and $\alpha$ a $G$-torsor with $x,y:\alpha$. Then $x^{-1}\cdot y$ is defined as the only $g:G$ such that $x\cdot g = y$. 
 \end{definition}
 
-First we give a couple of auxiliary results on \v{C}ech short sequence, justifying their usefulness.
+Note that $(x^{-1}\cdot y)\cdot (y^{-1}\cdot z) = x^{-1}\cdot z$. Now we define non-abelian \v{C}ech cohomology
 
-\begin{lemma}\label{cover-with-section-exact-cech}
-Assume given a type $X$ with $Y(x)$ a type and $G(x)$ a group depending on $x:X$. If we merely have a section $t:\prod_{x:X}Y(x)$, then $\check{C}(X,Y,G)$ is exact.
+\begin{definition}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$.
+\begin{itemize}
+\item A cocycle is a $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ such that for all $x:X$ and $y_0,y_1,y_2:Y(x)$ we have $\delta_x(y_0,y_1)\cdot \delta_x(y_1,y_2) = \delta_x(y_0,y_2)$.
+\item Two cocycles $\delta$ and $\delta'$ are called cohomologous if there exists $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have $\gamma_x(y_0)\cdot\delta_x(y_0,y_1) = \delta'_x(y_0,y_1)\cdot\gamma_x(y_1)$.
+\end{itemize}
+\end{definition}
+
+Being cohomologous in an equivalence relation. 
+
+\begin{definition}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The \v{C}ech non-abelian cohomology of $X$ with coefficient in $G$ is defined as cocycles modulo being cohomologous. It is denoted by $\check{H}^1(X,Y,G)$.
+\end{definition}
+
+We prove a first easy lemma.
+
+\begin{lemma}\label{first-cech-has-section-vanish}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If we merely have $\Pi_{x:X}Y(x)$ then $\check{H}^1(X,Y,G)$ is a singleton.
 \end{lemma}
 
 \begin{proof}
-  The proof of Lemma 5.5 of \cite{synthetic-stone-duality} goes through.
-%PRECISE CHECK
-  %Assume given a cocycle $\beta: \prod_{x : X} A_x^{T_x^2}$. 
-  %Define $\alpha :\prod_{x : X} A_x ^{T_x}$ by 
-  %$\alpha_x(u) = \beta_x(t_x,u)$. Then 
-  %$$
-  %  \delta_0(\alpha)_x(u,v) = 
-  %  \alpha_x(u)^{-1}\cdot\alpha_x(v) =
-  %  \beta_x(t_x,u)^{-1} \cdot \beta(t_x,v)
-  %$$
-  %As $\beta$ is a cocycle, we have that 
-  %$$\beta_x(u,v) \cdot \beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = 1,$$
-  %hence
-  %$$\beta_x(t_x,v)^{-1} \cdot \beta_x(t_x,u) = \beta_x(u,v)^{-1},$$
-  %and taking inverses then gives that 
-  %$$\beta_x(t_x,u)^{-1} \cdot \beta_x(t_x,v) = \beta_x(u,v),$$
-  %from which we conclude that 
-  %$\delta_0(\alpha)_x(u,v) = \beta_x(u,v)$, so $\beta$ is a coboundary. 
-  %Hence the sequence is exact. 
+Assume given $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ a cocycle, we need to show it is cohomologous to $1$. It is enough to consider $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ defined by $\gamma_x(y) = \delta_x(t_x,y)$.
 \end{proof}
 
-\begin{lemma}\label{cocyle-being-coboundary}
-Assume given a set $X$ with $Y(x)$ an inhabited set depending on $x:X$. Moreover, assume given $G(x)$ a group depending on $x:X$ with:
-\[\phi:\prod_{x:X}BG(x)\]
-and:
-\[\psi:\prod_{x:X}(\phi(x)=*)^{Y(x)}\]
-If $\check{C}(X,Y,G)$ is exact then $\phi=*$.
+Our main goal is to show that \v{C}ech cohomology $\check{H}^1(X,Y,G)$ corresponds to $G$-torsors over $X$ that are trivialised by $Y$. More precisely:
+
+\begin{definition}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi_Y^*(\alpha) = 0 \}$ where $\pi_Y$ is the projection $\Sigma_{x:X}Y(x)\to X$.
+\end{definition}
+
+Our goal is then to show $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
+
+\begin{lemma}\label{phi-well-defined}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Given $\alpha:\Pi_{x:X}BG(x)$ and $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$, we define $\phi(\alpha,\beta):\Pi_{x:X}G(x)^{Y(x)^2}$ by $\phi(\alpha,\beta)_x(y_0,y_1) = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)$. Then we have that:
+
+\begin{enumerate}[(i)]
+\item $\phi(\alpha,\beta)$ is a cocycle.
+\item Given another $\beta':\Pi_{x:X}\alpha(x)^{Y(x)}$, we have that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous.
+\item We have an induced map $\Phi : H^1(X,Y,G)\to \check{H}^1(X,Y,G)$ defined by $\Phi(\alpha) = \phi(\alpha,\beta)$ for any $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-  For $y_1, y_2 : T(x)$, we have 
-  $\psi_x(y_1) ^{-1} \cdot \psi_x(y_2) : * = *$, 
-  so we can define 
-\[\beta : \prod_{x:X} G(x)^{T(x)^2}\]
-by having $\beta_x(y_1,y_2) = \psi_x(y_1)^{-1} \cdot \psi_x(y_2)$. It is easy to check that it is a cocycle in the given sequence (meaning $\delta_1(\beta) = 1$), so that by exactness there exists some $\alpha:\prod_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
-\[\beta_x(y_1,y_2)=\alpha_x(y_1)^{-1}\cdot \alpha_x(y_2)\]
-Then we define:
-\[\psi' : \prod_{x:X}(\phi(x)=*)^{Y(x)}\]
-\[\psi'_x(y) = \psi_x(y)\cdot \alpha_x(y)^{-1}\]
-so that for all $x:X$ and $y_1,y_2:Y(x)$ we have that:
-\begin{eqnarray}
-\psi'_x(y_1)^{-1}\cdot\psi'_x(y_2) &=& \alpha_x(y_1) \cdot \psi_x(y_1)^{-1}\cdot \psi_x(y_2)\cdot \alpha_x(y_2)^{-1}\nonumber\\
- &=&  \alpha_x(y_1) \cdot \beta_x(y_1,y_2)\cdot \alpha_x(y_2)^{-1} \nonumber\\
- &=&  \alpha_x(y_1) \cdot\alpha_x(y_1)^{-1} \cdot\alpha_x(y_2)\cdot \alpha_x(y_2)^{-1} \nonumber\\ 
- &=& 1 \nonumber
- \end{eqnarray}
-This means that $\psi'_x(y_1) = \psi'(y_2)$, so that $\psi'$ factors through $X$, giving a proof of $\phi=*$.
+As follows:
+
+\begin{enumerate}[(i)]
+\item Clear.
+\item To show that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous, we consider $\gamma = \lambda x,y.\, \beta'_x(y)^{-1}\cdot\beta_x(y)$. Given $x:X$ and $y_0,y_1:Y(x)$ we indeed have:
+\[\phi(\alpha,\beta')_x(y_0,y_1)\cdot\gamma_x(y_1) = (\beta'_x(y_0)^{-1}\cdot \beta'_x(y_1))\cdot (\beta'_x(y_1)^{-1}\cdot\beta_x(y_1) = \beta'_x(y_0)^{-1}\cdot\beta_x(y_1)\]
+\[\gamma_x(y_0)\cdot\phi(\alpha,\beta)_x(y_0,y_1) = (\beta'_x(y_0)^{-1}\cdot \beta_x(y_0))\cdot(\beta_x(y_0)^{-1}\cdot\beta_x(y_1)) = \beta'_x(y_0)^{-1}\cdot\beta_x(y_1)\]
+\item Since $\alpha$ is trivialised by $\pi_Y$, we know there there exists such a $\beta$. By (ii) the class of $\psi(\alpha,\beta)$ in $\check{H}^1(X,Y,G)$ does not depend on the choice of such a $\beta$.
+\end{enumerate}
 \end{proof}
 
-\begin{lemma}\label{short-cech-exact}
-Assume given $S:\Stone$ and $T:S\to \Stone$ such that $\prod_{x:S}\propTrunc{T(x)}$ with $G:S\to \mathrm{Grp}_\ODisc$. Then $\check{C}(S,T,G)$ is exact.
+\begin{lemma}\label{psi-well-defined}
+Assume given $Y$ an inhabited type and $G$ a group, as well as $\delta:G^{Y^2}$ a cocycle. %such that for all $y_0,y_1,y_2:Y$ we have $\delta(y_0,y_1)\cdot\delta(y_1,y_2) = \delta(y_0,y_2)$. 
+Then we define $\psi(\delta) = \{\gamma:G^Y\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta(y_0,y_1)\}$. Then we have that:
+
+\begin{enumerate}[(i)] 
+\item We have a $H:\psi(\delta)^Y$ defined by $H(y) = \lambda y'.\, \delta(y',y)$.
+\item The type $\psi(\delta)$ is a $G$-torsor.
+\item Given $\delta$ and $\delta'$ cocycles with $\iota:G^Y$ such that for all $y_0,y_1:Y$ we have $\iota(y_0)\cdot\delta(y_0,y_1) = \delta(y_0,y_1)\cdot\iota(y_1)$, we have $\psi(\delta)=\psi(\delta')$.
+\item We have an induced map $\Psi : \check{H}^1(X,Y,G)\to H^1(X,Y,G)$ defined by $\Psi(\delta) = \lambda x.\, \psi(\delta_x)$.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-We use \Cref{finite-approximation-stone-surjection-cohomology} to get a sequence of $T_k:S\to \Stone$ having sections such that $\mathrm{lim}_kT_k(x) = T(x)$ for all $x:S$, since they have section by \Cref{cover-with-section-exact-cech} we have that $\check{S,T_k,G}$ is exact for all $k:\N$, we just need to prove $\mathrm{colim}_k\check{C}(S,T,G) = \check{C}(S,T,G)$ to conclude, as a sequential colimit of exact sequence is exact. But we have that:
-\begin{eqnarray}
-\mathrm{colim}_k \prod_{x:S}G(x)^{T_k(x)^l} &=& \prod_{x:S}\mathrm{colim}_k G(x)^{T_k(x)^l}\nonumber\\
-&=& \prod_{x:S}G(x)^{\mathrm{lim}_kT_k(x)^l}\nonumber\\
-&=& \prod_{x:S}G(x)^{T(x)^l}\nonumber
-\end{eqnarray}
-where the first equality comes from \Cref{scott-continuity-right} and the second from \Cref{scott-continuity-left}.
+We prove this as follows:
+
+\begin{enumerate}[(i)]
+\item We just need to check that for all $\bar{y},y_0,y_1$ we indeed have $\delta(y_0,\bar{y})\cdot\delta(y_1,\bar{y})^{-1} = \delta(y_0,y_1)$, but this follows from $\delta$ being a cocycle.
+
+\item We define the action of $g:G$ on $\gamma:\psi(\delta)$ by $\gamma\cdot g = \lambda y.\, \gamma(y)\cdot g$.
+
+It is clear that the action is well-defined and free, now let us check it is transitive. Assume $\gamma,\gamma':\psi(\delta)$, then we can check that $\gamma(y)^{-1}\cdot\gamma'(y)$ does not depend on $y$, indeed $\gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta_x(y_0,y_1) = \gamma'(y_0)\cdot\gamma'(y_1)^{-1}$. Since $Y$ is inhabited this gives us an element $g:G$ such that $\gamma(y)\cdot g = \gamma'(y)$ for all $y:Y$, which is precisely what we want.
+
+The fact that $\propTrunc{\psi(\delta)}$ follows directly from $Y$ inhabited and (i).
+
+\item The map in $\psi(\delta)\to \psi(\delta')$ sending $\gamma$ to $\lambda y.\, \iota(y)\cdot\gamma(y)$ is clearly an equivalence of torsors.
+
+\item Given (ii) and (iii) it is clear that we get an element in $H^1(X,G)$. From $(i)$ we see that we have $\Pi_{x:X}\psi(\delta_x)^{Y(x)}$, so that $\lambda x.\, \psi(\delta_x)$ is indeed trivialised by $\pi$.
+\end{enumerate}
 \end{proof}
 
-\begin{lemma}\label{local-choice-delooping-trick}
-  Let $S$ be Compact Hausdorff and $G: S\to \mathrm{Grp}_\ODisc$, and 
-  $\phi:\prod_{s:S}BG(x)$.
-  Then there merely exists some family $(T_x)_{x:S}$ of 
-  merely inhabited Stone spaces such that 
-  $\prod_{x:S}(\phi_x = *)^{T_x}$.
+\begin{proposition}\label{non-abelian-chech-is-sheaf-generic}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Then $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
+\end{proposition}
+
+\begin{proof}
+First we check that $\Psi\circ\Phi$ is the identity. It is enough to assume $\alpha:\Pi_{x:X}BG(x)$ with $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$ and prove that for all $x:X$ we have 
+\[\alpha(x) = \psi(\psi(\alpha,\beta)_x)\]
+where
+\[\psi(\phi_x(\alpha,\beta)) = \{\gamma:G(x)^{Y(x)}\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)\}\]
+
+We define $f:\alpha(x)\to \psi(\psi(\alpha,\beta)_x)$ by $f(e) = \lambda y.\, \beta_x(y)^{-1}\cdot e$. This is well defined as for all $y_0,y_1:Y(x)$ we have that:
+\[f(p,y_0)\cdot f(p,y_1)^{-1} = \beta_x(y_0)^{-1}\cdot e \cdot (\beta_x(y_1)^{-1}\cdot e)^{-1} = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)\]
+Morever this map clearly commutes with the group action so it is enough to show it is an equivalence of type to conclude.
+
+In the other direction, assume given $\gamma:\psi(\psi(\alpha,\beta)_x)$. Then we have that $\beta_x(y)\cdot\gamma(y):\alpha(x)$ does not depend on the choice of $y:Y(x)$ by the hypothesis on $\gamma$, since $Y(x)$ is inhabited this defines an element $g(\gamma):\alpha(x)$.
+
+Next we check that $g(f(e)) = e$, since we want to prove a proposition we can assume $y:Y(x)$, then we need to prove that $\beta_x(y)\cdot (\beta_x(y)^{-1}\cdot e) = e$ which is clear. Finally to check $f(g(\gamma)) = \gamma$ we need to prove that $\beta_x(y)^{-1}\cdot \beta_x(y) \cdot \gamma(y) = \gamma(y)$ which is also obvious (we used the fact that $g(\gamma)$ can be computed using any $y:Y(x)$).
+
+Now we check that $\Phi\circ \Psi$ is the identity. It is enough to prove that given a cocycle $\delta$, for all $x:X$ with $y_0,y_1:Y(x)$ we have that $H_x(y_0)^{-1}\cdot H_x(y_1) = \delta_x(y_0,y_1)$ where $H_x : Y(x)\to \psi(\delta_x)$ is defined in \Cref{psi-well-defined}, point (ii). But recall that $H_x(\bar{y}) = \lambda y.\delta_x(y,\bar{y})$ so we need to check that $(\lambda y.\delta_x(y,y_0))\cdot\delta_x(y_0,y_1) = \lambda y.\delta_x(y,y_1)$ which is clear as the action is defined pointwise.
+\end{proof}
+
+\begin{corollary}\label{non-abelian-chech-is-sheaf-generic-ayclic-cover}
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If $H^1(\Sigma_{x:X}Y(x), G\circ\pi) = 0$, then $H^1(X,G) = \check{H}^1(X,Y,G)$.
+\end{corollary}
+
+
+\subsection{Non-abelian cohomology for Stone spaces and compact Hausdorff spaces}
+
+\begin{lemma}\label{first-cech-scott-continuity}
+Assume given $S$ a Stone space with $(T_k(x))_{k:\N}$ a tower of Stone spaces and $G(x)$ an overly discrete group both depending on $x:S$. Write $T(x) =\mathrm{lim}_kT_k(x)$. Then $\check{H}^1(S,T,G) = \mathrm{colim}_k \check{H}^1(S,T_k,G)$.
 \end{lemma}
 
 \begin{proof}
-  Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. 
-  By definition of $BG$, we have that 
-  $\prod_{x:S}\propTrunc{\phi_x=*}$. 
-  Thus by local choice, 
-  there merely exists some $T:\Stone$ with surjection $q : T \twoheadrightarrow S$, 
-  such that $\prod_{t : T} \phi_{qt} = *$. 
-  Writing $T_x$ for the fiber of $q$ over $x:S$, 
-  we have that $\prod_{x : S} (T_x \to \phi_x = *)$.
-  By surjectivity each ${T_x}$ is merely inhabited. 
-\end{proof} 
+TODO
+\end{proof}
 
-Now we just have to assemble the pieces.
-
-\begin{lemma}\label{vanishing-1-cohomology-stone}
-Let $S$ be Stone and $G: S\to \mathrm{Grp}_\ODisc$. Then:
-\[H^1(S,G) = 0\]
+\begin{lemma}\label{cech-vanishing-first-stone}
+Assume given $S$ a Stone space with $T(x)$ an inhabited Stone spaces and $G(x)$ an overtly discrete group both depending on $x:X$. Then $\check{H}^1(S,T,G) = 0$.
 \end{lemma}
 
 \begin{proof}
-  Assume $\phi:\prod_{s:S}BG(x)$,
-  by \Cref{local-choice-delooping-trick}, 
-  there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces with 
-  $\prod_{x:S}||T_x||$ and  
-  $\alpha:\prod_{x:S}(\phi(x)=*)^{T(x)}.$
-In order to conclude by applying \Cref{cocyle-being-coboundary}, it is enough to prove that the \v{C}ech sequence $\check{S,T,G}$ is exact. But this is \Cref{short-cech-exact}.
+By \Cref{finite-approximation-stone-surjection-cohomology} we have $(T_k(x))_{k:\N}$ a tower of Stone spaces depending on $x:S$ such that for all $x:S$ we have that $\mathrm{lim}_kT_k(x) = 0$ and we merely have $\Pi_{x:S}T_k(x)$ for all $k:\N$.
+
+Then by \Cref{first-cech-scott-continuity} we have that $\check{H}^1(S,T,G) = \mathrm{colim}_k\check{H}^1(S,T_k,G)$, and by \Cref{first-cech-has-section-vanish} we have that $\check{H}^1(S,T_k,G) = 0$ for all $k:\N$ so we can conclude.
+\end{proof}
+
+\begin{proposition}\label{vanishing-first-stone}
+Assume given $S$ a Stone space with $G(x)$ an overtly discrete group depending in $x:X$. Then $H^1(S,G) = 0$.
+\end{proposition}
+
+\begin{proof}
+Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited Stone space depending on $x:S$ such that $\pi^*(\alpha) = 0$, so that $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $H^1(S,T,G) = 0$ and $\alpha=0$.
+\end{proof}
+
+\begin{definition}
+A \v{C}ech cover for a set $X$ consists of $S(x)$ an inhabited Stone spaces depending on $x:X$ such that $\Sigma_{x:X}S(x)$ is a Stone space.
+\end{definition}
+
+\begin{remark}
+A set $X$ merely has a \v{C}ech cover if and only is it is a compact Hausdorff space. This is because given $X$ a type with a \v{C}ech cover $S$, given $x:X$ and $y:S$ we have that $x=[y]$ if and only if $y\in f^{-1}(x)$ and any Stone subspace of a Stone space is closed.
+\end{remark}
+
+\begin{proposition}\label{non-abelian-cech-and-sheaf-agree}
+Assume given $X$ a compact Hausdorff space with a \v{C}ech cover $S$ and $G(x)$ an overtly discrete group depending on $x:X$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
+\end{proposition}
+
+\begin{proof}
+From \Cref{non-abelian-chech-is-sheaf-generic-ayclic-cover} and \Cref{vanishing-first-stone}.
 \end{proof}
 
 
-\subsection{Stone spaces are acyclic}
 
-The goal of this section is to show that for $S:\Stone$, we have 
-$H^n(S,A) = 0$ for any $A:S\to \mathrm{Ab}_\ODisc, n>0$. 
-We will actually show something stronger, 
-namely that delooping commutes with $\Stone$-indexed $\prod$-types.
-This acyclity will be used as an intermediate step. 
+\subsection{Vanishing of higher cohomology for Stone spaces}
+\label{vanishing-stone}
+
+The goal of this section is to show that given $S$ a Stone space with $A(x)$ an overly discrete abelian group depending on $x:S$, we have that $H^n(S,A) = 0$ for all $n\geq 1$. The case $n=1$ is an immediate consequence of \Cref{vanishing-1-cohomology-stone}. To prove the general case, we proceed by induction on $n$. For this induction to go through, we have to strenghten the result, so that we actually prove that deloopings of overtly discrete abelian group commutes with Stone-indexed $\Pi$-types.
+%This acyclity will be used as an intermediate step. 
+
 To be more specific, we will show in 
-\Cref{eilenberg-exponentials} that the following map is an equivalence for all $S,A,n$:
+\Cref{eilenberg-exponentials} that the following maps $\epsilon_n^{S,A}$ is an equivalence:
 \begin{definition}
-  Let $S:\Stone,A:S\to \mathrm{Ab}_\ODisc,n : \N$, we denote $ev_n^{S,A}$ for the canonical map:
-  \[ev_n^{S,A} : K(\prod_{x:S}A_x,n)\to \prod_{x:S}K(A_x,n)\]
+  Assume given $S$ a Stone space with $A(x)$ an overtly discrete abelian group depending on $x:S$ and $n:\N$. We write $\epsilon_n^{S,A}$ for the canonical map from $K(\Pi_{x:S}A_x,n)$ to $\Pi_{x:S}K(A_x,n)$.
 \end{definition}
 
+\rednote{TODO is next lemma really necessary? We would need to change the definition to be able to state it.}
 \begin{lemma}\label{ev-eq-acyclic}
-  For any $S,A$ and $n\geq 1$, if $ev_n^{S,A}$ is an equivalence, then $H^n(S,A) = 0$. 
+  Assume given $X$ a type, $A(x)$ an abelian group depending on $x:X$ and $n\geq 1$. If $\epsilon_n^{S,A}$ is an equivalence, then $H^n(S,A) = 0$. 
 \end{lemma}
 
 \begin{proof}
   By definition
-  $H^n(S,A) = || \prod_{x : S} K(A_x,n) ||_0$. 
-  If $ev_n^{S,A}$ is an equivalence, it follows that the latter equals
-  $|| K(\prod_{x : S} A_x , n) ||_0$, 
+  $H^n(S,A) = || \Pi_{x : S} K(A_x,n) ||_0$. 
+  If $\epsilon_n^{S,A}$ is an equivalence, it follows that the latter equals
+  $|| K(\Pi_{x : S} A_x , n) ||_0$, 
   which is $0$ if $n\geq 1$. 
 \end{proof}
 
 \begin{lemma}\label{ev-embedding}
-  For any $S,A,n$,
-  if $ev_n^{S,A}$ is an equivalence, then 
-  $ev_{n+1}^{S,A}$ is an embedding. 
+  Assume given $S,A,n$,
+  if $\epsilon_n^{S,A}$ is an equivalence, then 
+  $\epsilon_{n+1}^{S,A}$ is an embedding. 
 \end{lemma}
 
 \begin{proof}
   Note that the source is pointed and connected. 
   So it is enough to prove the induced map:
-  \[\Omega(K(\prod_{x:S}A_x,n+1)) \to \Omega(\prod_{x:S}K(A_x,n+1))\]
+  \[\Omega(K(\Pi_{x:S}A_x,n+1)) \to \Omega(\Pi_{x:S}K(A_x,n+1))\]
   is an equivalence, but this map is equal to the canonical map:
-  \[ev_n^{S,A} : K(\prod_{x:S}A_x,n) \to \prod_{x:S}K(A_x,n),\]
+  \[\epsilon_n^{S,A} : K(\Pi_{x:S}A_x,n) \to \Pi_{x:S}K(A_x,n),\]
   which was an equivalence by the assumption. 
 \end{proof} 
 \begin{lemma}\label{acyclic-ev-surjective}
-  For $n\geq 1$, if $H^n(S,A) = 0$, then $ev_{n}^{S,A}$ is a surjection. 
+  For $n\geq 1$, if $H^n(S,A) = 0$, then $\epsilon_{n}^{S,A}$ is a surjection. 
 \end{lemma}
 \begin{proof}
   Note that for $n\geq 1$, 
-  $K(\prod_{x:S}A_x,n)$ is $0$-connected. 
+  $K(\Pi_{x:S}A_x,n)$ is $0$-connected. 
   Therefore, it's sufficient to show that 
-  $\prod_{x : S} K(A_x,n)$ is also $0$-connected, 
-  which means exactly that $H^{n}(S,A) = || \prod_{x : S} K(A_x,n) ||_0 = 0$. 
+  $\Pi_{x : S} K(A_x,n)$ is also $0$-connected, 
+  which means exactly that $H^{n}(S,A) = || \Pi_{x : S} K(A_x,n) ||_0 = 0$. 
 \end{proof} 
 
-Next lemma is quite standard, although we did not find any Homotopy Type Theory reference.
+
+\rednote{TODO I think we should save ourselves some trouble by just using the long exact cohomology sequence.} Next lemma is quite standard, although we did not find any Homotopy Type Theory reference.
 
 \begin{lemma}\label{ExactSequenceDelooping}
   Let $0\to A \to B \to C\to 0$ be an exact sequence of abelian groups.
@@ -220,7 +275,7 @@ following exact sequence:
 
 \begin{theorem}\label{eilenberg-exponentials}
 Assume given $S:\Stone$ and $A:S\to \mathrm{Ab}_\ODisc$, then for all $n:\N$ we have that the canonical map:
-\[ev_n^{S,A} : K(\prod_{x:S}A_x,n)\to \prod_{x:S}K(A_x,n)\]
+\[\epsilon_n^{S,A} : K(\Pi_{x:S}A_x,n)\to \Pi_{x:S}K(A_x,n)\]
 is an equivalence.
 \end{theorem}
 
@@ -228,24 +283,24 @@ is an equivalence.
   We will use induction on $n$ to show that for all 
   $S:\Stone,
   A: S \to \mathrm{Ab}_\ODisc$, 
-  the map $ev_n^{S,A}$ is an equivalence
+  the map $\epsilon_n^{S,A}$ is an equivalence
   If $n=0$, this is the identity map. 
   Now assume for some $n:\N$ that for all $S,A$ we have
-  $ev_n^{S,A}$ is an equivalence. 
-  We will show that for all $S,A$ we also have $ev_{n+1}^{S,A}$ is an equivalence. 
+  $\epsilon_n^{S,A}$ is an equivalence. 
+  We will show that for all $S,A$ we also have $\epsilon_{n+1}^{S,A}$ is an equivalence. 
   By the induction hypothesis and \Cref{ev-embedding}, 
-  $ev_{n+1}^{S,A}$ is an embedding. 
+  $\epsilon_{n+1}^{S,A}$ is an embedding. 
   By Theorem 4.6.3 of \cite{hott}, 
-  we need only to show that $ev_{n+1}^{S,A}$ is surjective.
+  we need only to show that $\epsilon_{n+1}^{S,A}$ is surjective.
   By \Cref{acyclic-ev-surjective}, it's sufficient to show that $H^{n+1}(S,A) = 0$. 
   For $n=0$ this is the abelian version of \Cref{vanishing-1-cohomology-stone}. 
   We may thus assume $n\geq 1$ for the rest of this proof. 
 
-  Let $\alpha : \prod_{s : S} K(A_s , n+1)$, 
+  Let $\alpha : \Pi_{s : S} K(A_s , n+1)$, 
   we need to show that merely $\alpha = *$. 
   By \Cref{local-choice-delooping-trick}, 
   there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces such that 
-  $\prod_{x:S} (\alpha_x = *)^{T_x}$. 
+  $\Pi_{x:S} (\alpha_x = *)^{T_x}$. 
   For $x:S$, denote $L_x$ for $A_x^{T_x}/A_x$, 
   where the quotient is over the image of the constant map.
   As $A_x^{T_x} \to L_x$ is surjective, we get an exact sequence 
@@ -259,25 +314,25 @@ is an equivalence.
   Now as $\prod$ preserves fiber sequences we also get a fiber sequence 
   $$
     \cdots\to 
-    \prod_{x:S}K(L_x,k-1) \to 
-    \prod_{x:S} K(A_x,k) \to \prod_{x:S}K(A_x^{T_x}, k) \to \prod_{x:S}K(L_x,k) \to
-    \prod_{x:S} K(A_x,k+1) \to \cdots
+    \Pi_{x:S}K(L_x,k-1) \to 
+    \Pi_{x:S} K(A_x,k) \to \Pi_{x:S}K(A_x^{T_x}, k) \to \Pi_{x:S}K(L_x,k) \to
+    \Pi_{x:S} K(A_x,k+1) \to \cdots
   $$
   Consider the decomposition of 
-  $\prod_{x:S}K(A_x,n+1) \to \prod_{x:S} K(A_x,n+1)^{T_x}$ given by:
+  $\Pi_{x:S}K(A_x,n+1) \to \Pi_{x:S} K(A_x,n+1)^{T_x}$ given by:
   $$
-    {\prod_{x:S} K(A_x,n+1)} \to \prod_{x:S}  {K(A_x^{T_x},n+1)} \hookrightarrow \prod_{x:S}  {K(A_x,n+1)^{T_x}}
+    {\Pi_{x:S} K(A_x,n+1)} \to \Pi_{x:S}  {K(A_x^{T_x},n+1)} \hookrightarrow \Pi_{x:S}  {K(A_x,n+1)^{T_x}}
   $$
   where the second map is composition with 
-  $ev_{n+1}^{T_x,\lambda t . A_x}$, 
+  $\epsilon_{n+1}^{T_x,\lambda t . A_x}$, 
   which is an embedding by the induction hypothesis and \Cref{ev-embedding}. 
   By assumption on $T$, the composite sends $\alpha$ to $*$,
   and thus the first map also sends $\alpha$ to $*$.
-  Thus $\alpha$ is in the kernel of $\prod_{x:S}K(A_x,n+1) \to K(A_x^{T_x},n+1)$.
-  By exactness $\alpha$ is in the image $\prod_{x:S} K(L_x,n) \to \prod_{x:S}K(A_x,n+1)$. 
+  Thus $\alpha$ is in the kernel of $\Pi_{x:S}K(A_x,n+1) \to K(A_x^{T_x},n+1)$.
+  By exactness $\alpha$ is in the image $\Pi_{x:S} K(L_x,n) \to \Pi_{x:S}K(A_x,n+1)$. 
   As $n\geq 1$, we can use the induction hypothesis and \Cref{ev-eq-acyclic} to see that $H^n(S,L)=0$.
-  Thus any $\beta:\prod_{x:S}K(L_x,n)$ merely equals $*$, 
-  so their image merely equals $*$ in $\prod_{x:S}K(A_x,n+1)$. 
+  Thus any $\beta:\Pi_{x:S}K(L_x,n)$ merely equals $*$, 
+  so their image merely equals $*$ in $\Pi_{x:S}K(A_x,n+1)$. 
   Thus we merely have $\alpha = *$, as required. 
 \end{proof}
 
@@ -287,137 +342,98 @@ Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that
 \end{corollary}
 
 
-\subsection{\v{C}ech cohomology}
 
-\begin{definition}
-A \v{C}ech cover for a type $X$ consists of a surjective map:
-\[f:S\to X\]
-where $S$ is Stone and for all $x:X$ the fiber $S_x$ of $f$ over $x$ is Stone.
-\end{definition}
-
+\subsection{\v{C}ech cohomology for compact Hausdorff spaces}
+\label{cech-sheaf-agree-section}
 
 Next lemma show that cohomology interact well with \v{C}ech cover. It will be used later to prove that cohomology and \v{C}ech cohomology agree.
 
 \begin{lemma}\label{inductive-definition-cohomology}
-Assume given $X$ a type with a \v{C}ech cover:
-\[f:S\to X\]
-as well as $A:X\to \mathrm{Ab}_\ODisc$.
-
-For all $n\geq 1$ we have an exact sequence:
-\[H^{n-1}(X,\lambda x.A_x^{S_x}) \to H^{n-1}(X,L)\to H^n(X,A)\to 0\]
-natural in $A$, where $L_x = A_x^{S_x}/A_x$.
+Assume given $X$ a type with a \v{C}ech cover $S$ and $A(x)$ an overtly discrete abelian group depending on $x:X$. Then for all $n:\N$ we have an exact sequence:
+\[H^{n}(X,\lambda x.A(x)^{S(x)}) \to H^{n}(X,L)\to H^{n+1}(X,A)\to 0\]
+natural in $A$, where $L(x) = A(x)^{S(x)}/A(x)$.
 \end{lemma}
 
 \begin{proof}
-  Applying \Cref{ExactSequenceDelooping} to the exact sequence
-  \[A_x\to A_x^{S_x}\to L_x\to 0,\]
-  and the fact that $\prod$ and set truncation commute with fiber sequences, 
-  we get a fiber sequence of the form 
-  \[ \cdots \to 
-    H^{n-1}(X,\lambda x.A_x^{S_x}) \to 
-    H^{n-1}(X,L)\to 
-    H^n(X,A)\to 
-    H^n(X,\lambda x .A_x^{S_x}) \to \cdots\]
-    We will show that 
-    $H^n(X,\lambda x .A_x^{S_x})= 0$. 
-    By \Cref{eilenberg-exponentials}, 
-    we have $K(A_x^{S_x},n) = \prod_{t:S_x}K(A_x,n)$. Thus
-    $$
-      H^n(X,\lambda x .A_x^{S_x})= 
-      ||\prod_{x:X}K(A_x^{S_x},n)||_0 = 
-      ||\prod_{x:X}\prod_{t:S_x}K(A_x,n)||_0 = 
-      ||\prod_{s : S} K(A_{fs},n)||_0 = 
-      H^n(S, \lambda s .A_{fs})
-    $$
-    and as $n\geq 1$, by \Cref{vanishing-cohomology-stone},
-    the latter is $0$ as required. 
+From the long exact cohomology sequence we just need to prove that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = 0$. But by \Cref{eilenberg-exponentials} we have that $\Pi_{x:X}K(A(x)^{S(x)},n+1) = \Pi_{x:X}K(A(x),n+1)^{S(x)}$ so that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = H^{n+1}(\Sigma_{x:X}S(x),A\circ \pi_S)$ so it is $0$ by \Cref{vanishing-cohomology-stone}.
 \end{proof}
 
 Next definition will be used for \v{C}ech cover.
 
 \begin{definition}
-Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
-\[\prod_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \prod_{x:X}G(x)^{A(x)^2} \overset{\delta_1}{\longrightarrow} \prod_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
+Assume given a type $X$ with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
+\[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
 with:
-\[\delta_n(\alpha)_x(y_0,\cdots,y_n) = \sum_{i=0}^n (-1)^i \alpha(y_0,\hdots,\hat{x_i},\hdots,y_n)\]
+\[\delta_n(\alpha)_x(y_0,\cdots,y_n) = \Sigma_{i=0}^n (-1)^i \alpha(y_0,\hdots,\hat{x_i},\hdots,y_n)\]
 We have that $\delta_{n+1} \circ \delta_n = 0$.
 
-We define its $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology of this chain complex.
+We define its $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology group of this chain complex.
 \end{definition}
 
 We prove a generic result about \v{C}ech sequence.
 
 \begin{lemma}\label{cech-coefficient-lemma}
-Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending on $x:X$. Then $\check{H}(X,Y,x\mapsto A^{Y(x)})=0$.
+Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group both depending on $x:X$. Then $\check{H}^n(X,Y,\lambda x.\, A(x)^{Y(x)})=0$ for all $n\geq 1$.
 \end{lemma}
 
 \begin{proof}
 Indeed assume given:
-\[\alpha : \prod_{x:X} Y(x)^{n+1}\to A(x)^{Y(x)}\]
-such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $u_0,\cdots, u_{n+1},v:Y(x)$ we have that:
-\[\sum_{i=0}^{n+1}(-1)^i\alpha(x,u_0,\cdots,  \widehat{u_i},\cdots ,u_{n+1},v) = 0\]
+\[\alpha : \Pi_{x:X} Y(x)^{n+1}\to A(x)^{Y(x)}\]
+such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $y_0,\hdots, y_{n+1},y:Y(x)$ we have that:
+\[\Sigma_{i=0}^{n+1}(-1)^i\alpha(x,y_0,\hdots,\widehat{y_i},\hdots ,y_{n+1},y) = 0\]
 Then we define:
-\[\beta : \prod_{x:X} Y(x)^{n}\to A(x)^{Y(x)}\]
-\[\beta(x,u_0,\cdots,u_{n-1},v) = (-1)^n\alpha(x,u_0,\cdots,u_{n-1},v,v)\]
+\[\beta : \Pi_{x:X} Y(x)^{n}\to A(x)^{Y(x)}\]
+\[\beta(x,y_0,\hdots,y_{n-1},y) = (-1)^n\alpha(x,y_0,\hdots,y_{n-1},y,y)\]
 and then:
-\[\delta(\beta)(x,u_0,\cdots,u_{n},v) = (-1)^n\sum_{i=0}^{n} (-1)^i \alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n,v,v) \]
-\[= \alpha(x,u_0,\cdots,u_n,v)\]
-so $\alpha$ is indeed a coboundary.
+\[\delta(\beta)(x,y_0,\hdots,y_{n},y) = (-1)^n\Sigma_{i=0}^{n} (-1)^i \alpha(x,y_0,\hdots,\hat{y_i},\hdots,y_n,y,y) \]
+\[= \alpha(x,y_0,\hdots,y_n,y)\]
+so $\delta(\alpha) = 0$.
 \end{proof}
 
-
 \begin{lemma}\label{long-exact-cech-cohomology}
-Assume given a \v{C}ech cover:
-\[f:S\to X\]
-If we are given a short exact sequence of overtly discrete abelian group:
-\[0\to A_x\to B_x\to C_x\to 0\]
-depending on $x:X$, there is a long exact sequence of \v{C}ech cohomology groups:
+Assume given $X$ a type with $S$ a \v{C}ech cover and a short exact sequence of overtly discrete abelian group:
+\[0\to A(x)\to B(x)\to C(x)\to 0\]
+depending on $x:X$. Then there is a long exact sequence of \v{C}ech cohomology groups:
 \[\check{H}^0(X,A) \to\check{H}^0(X,B) \to\check{H}^0(X,C) \to\check{H}^1(X,A) \to\check{H}^1(X,B) \to\check{H}^1(X,C) \to\cdots \]
 Moreover this long exact sequence is natural in the short exact sequence.
 \end{lemma}
 
 \begin{proof}
-We just use the fact that all elements $\sum_{x:X} T_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}.
+We just use the fact that all elements $\Sigma_{x:X} T_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact sequence of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}, and then we use the long exact cohomology sequence induced by such a short exact sequence of complexes.
 \end{proof}
 
 \begin{lemma}\label{inductive-definition-cech-cohomology}
-Assume given a \v{C}ech cover:
-\[f:S\to X\]
-and $A:X\to\mathrm{Ab}_\ODisc$.
+Assume given $X$ a type with $S$ a \v{C}ech cover and $A(x)$ an overtly discrete abelian group depending on $x:X$.
 
-For all $n\geq 1$ we have an exact sequence:
-\[\check{H}^{n-1}(X,x\mapsto A_x^{S_x}) \to \check{H}^{n-1}(X,L)\to \check{H}^n(X,A)\to 0\]
-natural in $A$ where $L_x=A_x^{S_x}/A_x$.
+Then for all $n:\N$ we have an exact sequence:
+\[\check{H}^{n}(X,\lambda x.\, A(x)^{S(x)}) \to \check{H}^{n}(X,L)\to \check{H}^{n+1}(X,A)\to 0\]
+natural in $A$ where $L(x)=A(x)^{S(x)}/A(x)$.
 \end{lemma}
 
 \begin{proof}
-By \Cref{long-exact-cech-cohomology}, it is enough to prove $\check{H}^n(X,S,x\mapsto A_x^{S_x}) = 0$ 
-for all $n\geq 1$. This is \Cref{cech-coefficient-lemma}
+By \Cref{long-exact-cech-cohomology}, it is enough to prove $\check{H}^{n+1}(X,\lambda x.\, A(x)^{S(x)}) = 0$. This is \Cref{cech-coefficient-lemma}.
 \end{proof}
 
 \begin{theorem}\label{cech-and-sheaf-agree}
-Assume given a \v{C}ech cover:
-\[f:S\to X\]
-and $A:X\to\mathrm{Ab}_\ODisc$.
+Assume given $X$ a type with $S$ a \v{C}ech cover and $A(x)$ an overtly discrete abelian group depending on $x:X$.
 
-Then we have a natural isomorphism:
-\[H^n(X,A) = \check{H}^n(X,A)\]
+Then we have a natural isomorphism $H^n(X,A) = \check{H}^n(X,S,A)$
 \end{theorem}
 
 \begin{proof}
-We proceed by induction on $n$. For $n=0$ we need to prove that maps:
-\[\alpha:\prod_{s:S}A_{f(s)}\]
-such that whenever $f(s)=f(t)$ we have that $\alpha(s) = \alpha(t)$ are naturally isomorphic to:
-\[\prod_{x:X}A_x\]
-This is immediate.
+We proceed by induction on $n$. For $n=0$ we need to prove that the type of maps:
+\[\{\alpha:\Pi_{x:X}A(x)^{S(x)}\ |\ \forall x,s_0,s_1.\, \alpha_x(s_0)=\alpha_x(s_1)\}\]
+is naturally isomorphic to $\Pi_{x:X}A(x)$. This is immediate from $S(x)$ being inhabited sets.
 
-For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{inductive-definition-cech-cohomology}. Naturality comes from the naturality of the exact sequences.
+For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{inductive-definition-cech-cohomology}. Naturality comes from the naturality of the long exact sequences.
 \end{proof}
 
 
-\subsection{The unit interval is acyclic}
 
-This section closely follows Section 5.4 in \cite{foundation-synthtetic-stone-duality}.
+\subsection{The unit interval is acyclic}
+\label{interval-acyclic}
+
+This section extends Section 5.4 in \cite{foundation-synthtetic-stone-duality}.
 
 \begin{remark}\label{description-Cn-simn}
   Recall that 
@@ -429,40 +445,119 @@ This section closely follows Section 5.4 in \cite{foundation-synthtetic-stone-du
 
 We define $\I_n^{\sim k} = \{x_1,\hdots,x_n:\I_n\ |\ \forall(i,j).\, x_i\sim_n x_j\}$.
 
+\begin{lemma}\label{interval-connected}
+Given $I$ a finite type, any map from $\I$ to $I$ is constant.
+\end{lemma}
+
+\begin{proof}
+We consider the map $p : 2^\N\to\I\to I$, by \Cref{factorisation-stone-finite} it factors through $2^n$ for some $n:\N$. 
+
+Let us prove that for all $k:\N$, if the map factors through $2^{k+1}$ as $p_{k+1}$ then it factors through $2^k$. Consider $\alpha:2^k$, then since $p$ factors through $\I$ we have that $p(\alpha,1,0,0,\hdots) = p(\alpha,0,1,1,\hdots)$ so that $p_{k+1}(\alpha,0) = p_{k+1}(\alpha,1)$, and $p_{k+1}$ indeed factors through $2^k$, therefore so does $p$.
+
+From this we get that $p$ factors through $2^0$, so it is indeed constant.
+\end{proof}
+
+\rednote{Should be rephrased properly, not talking about exact sequence}
+
+\begin{lemma}\label{non-abelian-exact-sequence}
+Given $n:\N$ and $G$ a group, we have an exact sequence:
+\[G^{\I_n} \overset{\delta_0}{\longrightarrow} G^{\I_n^{\sim 2}} \overset{\delta_1}{\longrightarrow} G^{\I_n^{\sim 2}} \]
+  where:
+  \begin{eqnarray}
+  \delta_0(\alpha)(i_0,i_1) = \alpha(i_0)^{-1}\cdot\alpha(i_1)\nonumber\\
+  \delta_1(\beta)(i_0,i_1,i_2) = \beta(i_1,i_2)\cdot\beta(i_0,i_2)^{-1}\cdot\beta(i_0,i_1)\nonumber
+  \end{eqnarray}
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
 \begin{lemma}\label{Cn-exact-sequence}
-For any $n:\N$ and $A$ an overtly discrete abelian group, we have an exact sequence:
-\[0\to A\overset{d}{\longrightarrow} A^{\I_n} \overset{d_0}{\longrightarrow} A^{\I_n^{\sim 2}} \overset{d_1}{\longrightarrow} A^{\I_n^{\sim3}} \overset{d_3}{\longrightarrow} \cdots\]
-where $d(k) = (\_\mapsto k)$ and
+Given $n:\N$ and $A$ an abelian group, we have an exact sequence:
+\[A^{\I_n} \overset{d_0}{\longrightarrow} A^{\I_n^{\sim 2}} \overset{d_1}{\longrightarrow} A^{\I_n^{\sim3}} \overset{d_3}{\longrightarrow} \cdots\]
+where:
 \begin{eqnarray}
- d_n(\alpha)(x_0,\hdots,x_n) &=& \sum_{i=0}^n (-1)^i\alpha(x_0,\hdots,\widehat{x_i},\hdots,x_n)\nonumber
+ d_k(\alpha)(x_0,\hdots,x_k) &=& \Sigma_{i=0}^k (-1)^i\alpha(x_0,\hdots,\widehat{x_i},\hdots,x_k)\nonumber
 \end{eqnarray}
 \end{lemma}
 
 \begin{proof}
-This follows from the computations given in Stack Project Tag 01FG. \rednote{Do we need more?}
+This follows from the computations given in Stack Project Tag 01FG. \rednote{TODO we need more? Maybe Serre DAC 20, proposition 2?}
 \end{proof}
 
 \begin{theorem}\label{cohomology-I}
 The unit interval is acyclic, in the sense that:
+
 \begin{enumerate}[(i)]
-\item Given $I$ an overtly discrete type, we have that the map $I\to (I^\I)$ is an equivalence.
+\item Given $I$ an overtly discrete type, any map in $\I\to I$ is constant.
 \item Given $G$ an overtly discrete group, we have that $H^1(\I,G) = 0$.
-\item Given $A$ an overtly discrete abelian group, we have that $H^n(\I,A) = 0$ for $n\geq 2$.
+\item Given $A$ an overtly discrete abelian group, we have that $H^n(\I,A) = 0$ for $n\geq 1$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-(i) TODO \rednote{the shortest way is factorisation for compact Hausdorff.}
+We prove each point as follows:
 
-(ii) TODO \rednote{need to redo computation in a non-abelian setting. One more reason to do them explitcitely}
+\begin{enumerate}[(i)]
 
-(iii) Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover $T$ of $\I$ defined by: 
-\[T_x = \Sigma_{y:2^\N} (x=_\I cs(y))\]
-Then we have that $\mathrm{lim}_n\I_n^{\sim l} = \sum_{x:\I} T_x^l$. By \cref{Cn-exact-sequence} and stability of exactness under sequential colimit, we have an exact sequence
-\[ 0\to A\to \mathrm{colim}_n A^{\I_n} \to \mathrm{colim}_n A^{\I_n^{\sim2}}\to \mathrm{colim}_n A^{\I_n^{\sim3}}\to \cdots\]
+\item Given a map $p:\I\to I$, we write $I=\mathrm{colim}_jI_j$ with $I_j$ finite. By \Cref{scott-continuity-chaus} we know that $p$ factors through $I_k$ for some $k$, but by \Cref{interval-connected} any map from $\I$ to $I_k$ is constant so $p$ is indeed constant.
+
+\item Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover $T$ of $\I$ defined by: 
+\[T(x) = \Sigma_{y:2^\N} (x=_\I cs(y))\]
+Then we have that $\mathrm{lim}_n\I_n^{\sim l} = \Sigma_{x:\I} T(x)^l$. By \Cref{non-abelian-exact-sequence} and stability of exactness under sequential colimit, we have an exact sequences:
+\[ \mathrm{colim}_n G^{\I_n} \to \mathrm{colim}_n G^{\I_n^{\sim2}}\to \mathrm{colim}_n G^{\I_n^{\sim3}}\]
 By \cref{scott-continuity-left} this sequence is equivalent to
-\[ 0\to A\to \Pi_{x:\I}A^{T_x} \to  \Pi_{x:\mathbb{I}}A^{T_x^2} \to  \Pi_{x:\mathbb{I}}A^{T_x^3}\to \cdots\]
-So it being exact implies that $\check{H}^0(\I,T,A) = A$ and $\check{H}^n(\I,T,A) = 0$ for $n\geq 1$.
-We conclude by \Cref{cech-and-sheaf-agree}.
+\[\Pi_{x:\I}G^{T(x)} \to  \Pi_{x:\mathbb{I}}G^{T(x)^2} \to  \Pi_{x:\mathbb{I}}G^{T(x)^3}\]
+So it being exact implies that $\check{H}^n(\I,T,G) = 0$ for $n\geq 1$.
+We conclude by \Cref{non-abelian-cech-and-sheaf-agree}.
+
+\item Same as point (ii) using \Cref{Cn-exact-sequence} instead of \ref{non-abelian-exact-sequence} and \Cref{cech-and-sheaf-agree} instead of \ref{non-abelian-cech-and-sheaf-agree}.
+
+\end{enumerate}
 \end{proof}
+
+We give an example of application, which justifies why we spend all the effort on the non-abelian case. Recall that a type $X$ is $\I$-local if the map $X\to X^\I$ is an equivalence.
+
+\begin{lemma}\label{delooping-I-local}
+We have the following:
+
+\begin{enumerate}[(i)]
+\item Any overtly discrete type is $\I$-local.
+\item Given $G$ an overtly discrete group, we have that $BG$ is $\I$-local.
+\item Given $A$ an overtly discrete abelian group and $n:\N$, we have that $K(A,n)$ is overtly discrete.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+As follows:
+
+\begin{enumerate}[(i)]
+\item From \Cref{cohomology-I}(i).
+\item Identity types in $BG$ are $G$-torsors, therefore they are $\I$-local by (i), so the map $BG\to BG^\I$ is an embedding. It is surjective by \Cref{cohomology-I}(ii).
+\item By induction on $n:\N$, the case $n=0$ is point (i). Assume it holds for $n\geq 0$, then identity types in $K(A,n+1)$ are $K(A,n)$-torsors, therefore they are $\I$-local by induction hypothesis, so the map $K(A,n+1)\to K(A,n+1)^\I$ is an embedding. It is surjective by \Cref{cohomology-I}(iii).
+\end{enumerate} 
+\end{proof}
+
+\begin{proposition}
+Assume given $X$ a type such that:
+
+\begin{itemize}
+\item $X$ is Postnikov complete (i.e. $\mathrm{lim}_k\propTrunc{X}_k = X$).
+\item $\propTrunc{X}_0$ is overtly discrete.
+\item For all $x:X$ and $n\geq 1$, we have that $\pi_n(X,x)$ is overtly discrete.
+\end{itemize}
+Then $X$ is $\I$-local.
+\end{proposition}
+
+\begin{proof}
+By Postnikov completion it is enough to prove that $\propTrunc{X}_n$ is $\I$-local for all $n:\N$. We proceed by induction on $n:\N$. 
+
+For $n=0$ this is \Cref{delooping-I-local}(i).
+
+For $n=1$ we have a map $\propTrunc{X}_1\to \propTrunc{X}_0$, from the $n=0$ case we just need to prove its fibers are $\I$-local. But they merely are of the form $B\pi_1(X,x)$ for some $x:X$, so we conclude by \Cref{delooping-I-local}(ii). 
+
+Assuming this holds for $n\geq 1$, we have a map $\propTrunc{X}_{n+1}\to \propTrunc{X}_n$. By the induction hypothesis we just need to prove its fibers are $\I$-local to conclude that $\propTrunc{X}_{n+1}$ is $\I$-local. But the fibers are merely of the form $K(\pi_{n+1}(X,x),n+1)$ for some $x:X$, so we conclude by \Cref{delooping-I-local}(iii). 
+\end{proof}
+
 
