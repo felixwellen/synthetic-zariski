@@ -18,15 +18,15 @@ Note that $(x^{-1}\cdot y)\cdot (y^{-1}\cdot z) = x^{-1}\cdot z$. Now we define 
 \begin{definition}
 Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$.
 \begin{itemize}
-\item A coboundary is a $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ such that for all $x:X$ and $y_0,y_1,y_2:Y(x)$ we have $\delta_x(y_0,y_1)\cdot \delta_x(y_1,y_2) = \delta_x(y_0,y_2)$.
-\item Two coboundaries $\delta$ and $\delta'$ are called cohomologous if there exists $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have $\gamma_x(y_0)\cdot\delta_x(y_0,y_1) = \delta'_x(y_0,y_1)\cdot\gamma_x(y_1)$.
+\item A cocycle is a $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ such that for all $x:X$ and $y_0,y_1,y_2:Y(x)$ we have $\delta_x(y_0,y_1)\cdot \delta_x(y_1,y_2) = \delta_x(y_0,y_2)$.
+\item Two cocycles $\delta$ and $\delta'$ are called cohomologous if there exists $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have $\gamma_x(y_0)\cdot\delta_x(y_0,y_1) = \delta'_x(y_0,y_1)\cdot\gamma_x(y_1)$.
 \end{itemize}
 \end{definition}
 
 Being cohomologous in an equivalence relation. 
 
 \begin{definition}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The \v{C}ech non-abelian cohomology of $X$ with coefficient in $G$ is defined as coboundaries modulo being cohomologous. It is denoted by $\check{H}^1(X,Y,G)$.
+Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The \v{C}ech non-abelian cohomology of $X$ with coefficient in $G$ is defined as cocycles modulo being cohomologous. It is denoted by $\check{H}^1(X,Y,G)$.
 \end{definition}
 
 We prove a first easy lemma.
@@ -36,7 +36,7 @@ Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depend
 \end{lemma}
 
 \begin{proof}
-Assume given $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ a coboundary, we need to show it is cohomologous to $1$. It is enough to consider $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ defined by $\gamma_x(y) = \delta_x(t_x,y)$.
+Assume given $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ a cocycle, we need to show it is cohomologous to $1$. It is enough to consider $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ defined by $\gamma_x(y) = \delta_x(t_x,y)$.
 \end{proof}
 
 Our main goal is to show that \v{C}ech cohomology $\check{H}^1(X,Y,G)$ corresponds to $G$-torsors over $X$ that are trivialised by $Y$. More precisely:
@@ -51,7 +51,7 @@ Our goal is then to show $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
 Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Given $\alpha:\Pi_{x:X}BG(x)$ and $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$, we define $\phi(\alpha,\beta):\Pi_{x:X}G(x)^{Y(x)^2}$ by $\phi(\alpha,\beta)_x(y_0,y_1) = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)$. Then we have that:
 
 \begin{enumerate}[(i)]
-\item $\phi(\alpha,\beta)$ is a coboundary.
+\item $\phi(\alpha,\beta)$ is a cocycle.
 \item Given another $\beta':\Pi_{x:X}\alpha(x)^{Y(x)}$, we have that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous.
 \item We have an induced map $\Phi : H^1(X,Y,G)\to \check{H}^1(X,Y,G)$ defined by $\Phi(\alpha) = \phi(\alpha,\beta)$ for any $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$.
 \end{enumerate}
@@ -70,13 +70,13 @@ As follows:
 \end{proof}
 
 \begin{lemma}\label{psi-well-defined}
-Assume given $Y$ an inhabited type and $G$ a group, as well as $\delta:G^{Y^2}$ a coboundary. %such that for all $y_0,y_1,y_2:Y$ we have $\delta(y_0,y_1)\cdot\delta(y_1,y_2) = \delta(y_0,y_2)$. 
+Assume given $Y$ an inhabited type and $G$ a group, as well as $\delta:G^{Y^2}$ a cocycle. %such that for all $y_0,y_1,y_2:Y$ we have $\delta(y_0,y_1)\cdot\delta(y_1,y_2) = \delta(y_0,y_2)$. 
 Then we define $\psi(\delta) = \{\gamma:G^Y\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta(y_0,y_1)\}$. Then we have that:
 
 \begin{enumerate}[(i)] 
 \item We have a $H:\psi(\delta)^Y$ defined by $H(y) = \lambda y'.\, \delta(y',y)$.
 \item The type $\psi(\delta)$ is a $G$-torsor.
-\item Given $\delta$ and $\delta'$ coboundaries with $\iota:G^Y$ such that for all $y_0,y_1:Y$ we have $\iota(y_0)\cdot\delta(y_0,y_1) = \delta(y_0,y_1)\cdot\iota(y_1)$, we have $\psi(\delta)=\psi(\delta')$.
+\item Given $\delta$ and $\delta'$ cocycles with $\iota:G^Y$ such that for all $y_0,y_1:Y$ we have $\iota(y_0)\cdot\delta(y_0,y_1) = \delta(y_0,y_1)\cdot\iota(y_1)$, we have $\psi(\delta)=\psi(\delta')$.
 \item We have an induced map $\Psi : \check{H}^1(X,Y,G)\to H^1(X,Y,G)$ defined by $\Psi(\delta) = \lambda x.\, \psi(\delta_x)$.
 \end{enumerate}
 \end{lemma}
@@ -85,7 +85,7 @@ Then we define $\psi(\delta) = \{\gamma:G^Y\ |\ \forall y_0,y_1.\, \gamma(y_0)\c
 We prove this as follows:
 
 \begin{enumerate}[(i)]
-\item We just need to check that for all $\bar{y},y_0,y_1$ we indeed have $\delta(y_0,\bar{y})\cdot\delta(y_1,\bar{y})^{-1} = \delta(y_0,y_1)$, but this follows from $\delta$ being a coboundary.
+\item We just need to check that for all $\bar{y},y_0,y_1$ we indeed have $\delta(y_0,\bar{y})\cdot\delta(y_1,\bar{y})^{-1} = \delta(y_0,y_1)$, but this follows from $\delta$ being a cocycle.
 
 \item We define the action of $g:G$ on $\gamma:\psi(\delta)$ by $\gamma\cdot g = \lambda y.\, \gamma(y)\cdot g$.
 
@@ -117,7 +117,7 @@ In the other direction, assume given $\gamma:\psi(\psi(\alpha,\beta)_x)$. Then w
 
 Next we check that $g(f(e)) = e$, since we want to prove a proposition we can assume $y:Y(x)$, then we need to prove that $\beta_x(y)\cdot (\beta_x(y)^{-1}\cdot e) = e$ which is clear. Finally to check $f(g(\gamma)) = \gamma$ we need to prove that $\beta_x(y)^{-1}\cdot \beta_x(y) \cdot \gamma(y) = \gamma(y)$ which is also obvious (we used the fact that $g(\gamma)$ can be computed using any $y:Y(x)$).
 
-Now we check that $\Phi\circ \Psi$ is the identity. It is enough to prove that given a coboundary $\delta$, for all $x:X$ with $y_0,y_1:Y(x)$ we have that $H_x(y_0)^{-1}\cdot H_x(y_1) = \delta_x(y_0,y_1)$ where $H_x : Y(x)\to \psi(\delta_x)$ is defined in \Cref{psi-well-defined}, point (ii). But recall that $H_x(\bar{y}) = \lambda y.\delta_x(y,\bar{y})$ so we need to check that $(\lambda y.\delta_x(y,y_0))\cdot\delta_x(y_0,y_1) = \lambda y.\delta_x(y,y_1)$ which is clear as the action is defined pointwise.
+Now we check that $\Phi\circ \Psi$ is the identity. It is enough to prove that given a cocycle $\delta$, for all $x:X$ with $y_0,y_1:Y(x)$ we have that $H_x(y_0)^{-1}\cdot H_x(y_1) = \delta_x(y_0,y_1)$ where $H_x : Y(x)\to \psi(\delta_x)$ is defined in \Cref{psi-well-defined}, point (ii). But recall that $H_x(\bar{y}) = \lambda y.\delta_x(y,\bar{y})$ so we need to check that $(\lambda y.\delta_x(y,y_0))\cdot\delta_x(y_0,y_1) = \lambda y.\delta_x(y,y_1)$ which is clear as the action is defined pointwise.
 \end{proof}
 
 \begin{corollary}\label{non-abelian-chech-is-sheaf-generic-ayclic-cover}
@@ -349,125 +349,91 @@ Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that
 Next lemma show that cohomology interact well with \v{C}ech cover. It will be used later to prove that cohomology and \v{C}ech cohomology agree.
 
 \begin{lemma}\label{inductive-definition-cohomology}
-Assume given $X$ a type with a \v{C}ech cover:
-\[f:S\to X\]
-as well as $A:X\to \mathrm{Ab}_\ODisc$.
-
-For all $n\geq 1$ we have an exact sequence:
-\[H^{n-1}(X,\lambda x.A_x^{S_x}) \to H^{n-1}(X,L)\to H^n(X,A)\to 0\]
-natural in $A$, where $L_x = A_x^{S_x}/A_x$.
+Assume given $X$ a type with a \v{C}ech cover $S$ and $A(x)$ an overtly discrete abelian group depending on $x:X$. Then for all $n:\N$ we have an exact sequence:
+\[H^{n}(X,\lambda x.A(x)^{S(x)}) \to H^{n}(X,L)\to H^{n+1}(X,A)\to 0\]
+natural in $A$, where $L(x) = A(x)^{S(x)}/A(x)$.
 \end{lemma}
 
 \begin{proof}
-  Applying \Cref{ExactSequenceDelooping} to the exact sequence
-  \[A_x\to A_x^{S_x}\to L_x\to 0,\]
-  and the fact that $\prod$ and set truncation commute with fiber sequences, 
-  we get a fiber sequence of the form 
-  \[ \cdots \to 
-    H^{n-1}(X,\lambda x.A_x^{S_x}) \to 
-    H^{n-1}(X,L)\to 
-    H^n(X,A)\to 
-    H^n(X,\lambda x .A_x^{S_x}) \to \cdots\]
-    We will show that 
-    $H^n(X,\lambda x .A_x^{S_x})= 0$. 
-    By \Cref{eilenberg-exponentials}, 
-    we have $K(A_x^{S_x},n) = \Pi_{t:S_x}K(A_x,n)$. Thus
-    $$
-      H^n(X,\lambda x .A_x^{S_x})= 
-      ||\Pi_{x:X}K(A_x^{S_x},n)||_0 = 
-      ||\Pi_{x:X}\Pi_{t:S_x}K(A_x,n)||_0 = 
-      ||\Pi_{s : S} K(A_{fs},n)||_0 = 
-      H^n(S, \lambda s .A_{fs})
-    $$
-    and as $n\geq 1$, by \Cref{vanishing-cohomology-stone},
-    the latter is $0$ as required. 
+From the long exact cohomology sequence we just need to prove that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = 0$. But by \Cref{eilenberg-exponentials} we have that $\Pi_{x:X}K(A(x)^{S(x)},n+1) = \Pi_{x:X}K(A(x),n+1)^{S(x)}$ so that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = H^{n+1}(\Sigma_{x:X}S(x),A\circ \pi_S)$ so it is $0$ by \Cref{vanishing-cohomology-stone}.
 \end{proof}
 
 Next definition will be used for \v{C}ech cover.
 
 \begin{definition}
-Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
-\[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}G(x)^{A(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
+Assume given a type $X$ with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
+\[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
 with:
 \[\delta_n(\alpha)_x(y_0,\cdots,y_n) = \Sigma_{i=0}^n (-1)^i \alpha(y_0,\hdots,\hat{x_i},\hdots,y_n)\]
 We have that $\delta_{n+1} \circ \delta_n = 0$.
 
-We define its $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology of this chain complex.
+We define its $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology group of this chain complex.
 \end{definition}
 
 We prove a generic result about \v{C}ech sequence.
 
 \begin{lemma}\label{cech-coefficient-lemma}
-Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group depending on $x:X$. Then $\check{H}(X,Y,x\mapsto A^{Y(x)})=0$.
+Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group both depending on $x:X$. Then $\check{H}^n(X,Y,\lambda x.\, A(x)^{Y(x)})=0$ for all $n\geq 1$.
 \end{lemma}
 
 \begin{proof}
 Indeed assume given:
 \[\alpha : \Pi_{x:X} Y(x)^{n+1}\to A(x)^{Y(x)}\]
-such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $u_0,\cdots, u_{n+1},v:Y(x)$ we have that:
-\[\Sigma_{i=0}^{n+1}(-1)^i\alpha(x,u_0,\cdots,  \widehat{u_i},\cdots ,u_{n+1},v) = 0\]
+such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $y_0,\hdots, y_{n+1},y:Y(x)$ we have that:
+\[\Sigma_{i=0}^{n+1}(-1)^i\alpha(x,y_0,\hdots,\widehat{y_i},\hdots ,y_{n+1},y) = 0\]
 Then we define:
 \[\beta : \Pi_{x:X} Y(x)^{n}\to A(x)^{Y(x)}\]
-\[\beta(x,u_0,\cdots,u_{n-1},v) = (-1)^n\alpha(x,u_0,\cdots,u_{n-1},v,v)\]
+\[\beta(x,y_0,\hdots,y_{n-1},y) = (-1)^n\alpha(x,y_0,\hdots,y_{n-1},y,y)\]
 and then:
-\[\delta(\beta)(x,u_0,\cdots,u_{n},v) = (-1)^n\Sigma_{i=0}^{n} (-1)^i \alpha(x,u_0,\cdots,\hat{u_i},\cdots,u_n,v,v) \]
-\[= \alpha(x,u_0,\cdots,u_n,v)\]
-so $\alpha$ is indeed a coboundary.
+\[\delta(\beta)(x,y_0,\hdots,y_{n},y) = (-1)^n\Sigma_{i=0}^{n} (-1)^i \alpha(x,y_0,\hdots,\hat{y_i},\hdots,y_n,y,y) \]
+\[= \alpha(x,y_0,\hdots,y_n,y)\]
+so $\delta(\alpha) = 0$.
 \end{proof}
 
 \begin{lemma}\label{long-exact-cech-cohomology}
-Assume given a \v{C}ech cover:
-\[f:S\to X\]
-If we are given a short exact sequence of overtly discrete abelian group:
-\[0\to A_x\to B_x\to C_x\to 0\]
-depending on $x:X$, there is a long exact sequence of \v{C}ech cohomology groups:
+Assume given $X$ a type with $S$ a \v{C}ech cover and a short exact sequence of overtly discrete abelian group:
+\[0\to A(x)\to B(x)\to C(x)\to 0\]
+depending on $x:X$. Then there is a long exact sequence of \v{C}ech cohomology groups:
 \[\check{H}^0(X,A) \to\check{H}^0(X,B) \to\check{H}^0(X,C) \to\check{H}^1(X,A) \to\check{H}^1(X,B) \to\check{H}^1(X,C) \to\cdots \]
 Moreover this long exact sequence is natural in the short exact sequence.
 \end{lemma}
 
 \begin{proof}
-We just use the fact that all elements $\Sigma_{x:X} T_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}.
+We just use the fact that all elements $\Sigma_{x:X} T_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact sequence of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}, and then we use the long exact cohomology sequence induced by such a short exact sequence of complexes.
 \end{proof}
 
 \begin{lemma}\label{inductive-definition-cech-cohomology}
-Assume given a \v{C}ech cover:
-\[f:S\to X\]
-and $A:X\to\mathrm{Ab}_\ODisc$.
+Assume given $X$ a type with $S$ a \v{C}ech cover and $A(x)$ an overtly discrete abelian group depending on $x:X$.
 
-For all $n\geq 1$ we have an exact sequence:
-\[\check{H}^{n-1}(X,x\mapsto A_x^{S_x}) \to \check{H}^{n-1}(X,L)\to \check{H}^n(X,A)\to 0\]
-natural in $A$ where $L_x=A_x^{S_x}/A_x$.
+Then for all $n:\N$ we have an exact sequence:
+\[\check{H}^{n}(X,\lambda x.\, A(x)^{S(x)}) \to \check{H}^{n}(X,L)\to \check{H}^{n+1}(X,A)\to 0\]
+natural in $A$ where $L(x)=A(x)^{S(x)}/A(x)$.
 \end{lemma}
 
 \begin{proof}
-By \Cref{long-exact-cech-cohomology}, it is enough to prove $\check{H}^n(X,S,x\mapsto A_x^{S_x}) = 0$ 
-for all $n\geq 1$. This is \Cref{cech-coefficient-lemma}
+By \Cref{long-exact-cech-cohomology}, it is enough to prove $\check{H}^{n+1}(X,\lambda x.\, A(x)^{S(x)}) = 0$. This is \Cref{cech-coefficient-lemma}.
 \end{proof}
 
 \begin{theorem}\label{cech-and-sheaf-agree}
-Assume given a \v{C}ech cover:
-\[f:S\to X\]
-and $A:X\to\mathrm{Ab}_\ODisc$.
+Assume given $X$ a type with $S$ a \v{C}ech cover and $A(x)$ an overtly discrete abelian group depending on $x:X$.
 
-Then we have a natural isomorphism:
-\[H^n(X,A) = \check{H}^n(X,A)\]
+Then we have a natural isomorphism $H^n(X,A) = \check{H}^n(X,S,A)$
 \end{theorem}
 
 \begin{proof}
-We proceed by induction on $n$. For $n=0$ we need to prove that maps:
-\[\alpha:\Pi_{s:S}A_{f(s)}\]
-such that whenever $f(s)=f(t)$ we have that $\alpha(s) = \alpha(t)$ are naturally isomorphic to:
-\[\Pi_{x:X}A_x\]
-This is immediate.
+We proceed by induction on $n$. For $n=0$ we need to prove that the type of maps:
+\[\{\alpha:\Pi_{x:X}A(x)^{S(x)}\ |\ \forall x,s_0,s_1.\, \alpha_x(s_0)=\alpha_x(s_1)\}\]
+is naturally isomorphic to $\Pi_{x:X}A(x)$. This is immediate from $S(x)$ being inhabited sets.
 
-For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{inductive-definition-cech-cohomology}. Naturality comes from the naturality of the exact sequences.
+For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{inductive-definition-cech-cohomology}. Naturality comes from the naturality of the long exact sequences.
 \end{proof}
+
 
 
 \subsection{The unit interval is acyclic}
 \label{interval-acyclic}
 
-This section closely follows Section 5.4 in \cite{foundation-synthtetic-stone-duality}.
+This section extends Section 5.4 in \cite{foundation-synthtetic-stone-duality}.
 
 \begin{remark}\label{description-Cn-simn}
   Recall that 
