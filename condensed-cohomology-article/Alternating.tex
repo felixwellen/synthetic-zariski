@@ -1,69 +1,101 @@
-In cohomology, instead of the \v Cech complex, sometimes the alternating and ordered variants are used. There is a standard proof that the alternating and ordered \v Cech cohomology agree with the standard \v Cech cohomology. In this section, we adapt the standard proof (as in for example \cite{stacks-project}{Section 01FG} \rednote{This proof actually ommits some details, maybe another reference might be better}) to work in our setting. Note that we do not require a well-order on our fibers, but only a linear order. The order we define is linear because of LLPO. 
+In cohomology, instead of the \v Cech complex, sometimes the alternating and ordered variants are used. There is a standard proof that the alternating and ordered \v Cech cohomology agree with the standard \v Cech cohomology. 
+In this note, we sketch out the standard proof (as in for example \cite{stacks-project}{Section 01FG}). We do not claim these results translate to HoTT in general, but we sketch out why our application is still correct. 
 
 \begin{definition}
   Let $q: S \twoheadrightarrow X$ be a \v Cech cover and $A: X \to Ab$. 
-  We define the \textbf{alternating \v Cech sequence} $\check C_{alt} (X,q,A)$ as 
-  $$
-  \Sigma_{\alpha : \prod_{x:X} A_x^{q_x}}is-alt_1(\alpha) 
-  \to 
-  \Sigma_{\alpha : \prod_{x:X} A_x^{q_x^2}}is-alt_2(\alpha) 
-  \to 
-  \Sigma_{\alpha : \prod_{x:X} A_x^{q_x^3}}is-alt_3(\alpha) 
-  \to 
-  \cdots 
-  \to 
-  \Sigma_{\alpha : \prod_{x:X} A_x^{q_x^n}}is-alt_n(\alpha) 
-  $$
-  where $is-alt_n(\alpha)= \Pi_{\sigma: S_n} \left(\alpha(s_i) = sgn(\sigma) \cdot \alpha(s_{\sigma(i)})\right)$. 
-\end{definition}
-\begin{lemma}
-  Let $S$ be a Stone space. Then there merely exists a linear order $\leq$ on $S$. 
-\end{lemma}
-\begin{proof}
-  Note that every Stone space can merely be seen as subset of $2^\N$, so it's sufficient to define a linear order or $2^\N$. 
-  For $\alpha,\beta :2^\N$, define 
-  $$
-  \alpha<\beta:= \exists_{n:\N} \big(
-    (\alpha_n < \beta_n)  \wedge 
-    (\forall_{k<n} \alpha_k=\beta_k)\big)
-  $$
-  Thus $\alpha<\beta$ if there exists some first index $n$ such that $\alpha_n,\beta_n$ differ, and at this index $\alpha_n =0,\beta_n = 1$. 
-  Then define $\alpha \leq \beta := \neg \beta < \alpha$. 
-  Note that $<$ is an open relation, and hence $\leq$ is closed and $\alpha < \beta \leftrightarrow \neg (\beta \leq \alpha)$.
-  
-  We leave proofs of reflexivity and transitivity and antisymmetry of $\leq$ as an exercise to the reader. 
-
-  We claim that $(\alpha \leq \beta) \vee (\beta \leq \alpha)$. By LLPO and Markov, it's sufficient to prove the double negation. So assume $(\alpha < \beta) \wedge (\beta < \alpha)$, note that there now exist two indices $n,m$ which are minimal so that $\alpha,\beta$ differ. By minimality, they are equal, but now both $\alpha_n,\beta_n$ have to be $0$, which means that they don't differ, which is the contradiction we require. 
-\end{proof}  
-\begin{remark}
-  Note that totality of the order defined above implies LLPO. We conjecture that the existence of a linear order on Cantor space is equivalent to LLPO. 
+  For $n:\N$ and $\alpha: \prod_{x:X} A_x^{(q_x)^n}$, we call $\alpha$ \textbf{alternating} if for any $x:X$, any $n$-tuple $(s_i)_{1\leq i \leq n}:(q_x)^n$ and any $n$-permutation $\sigma: Fin_n = Fin_n$, we have that 
+  $$\alpha_x((s_{\sigma(i)})_{1\leq i \leq n}) = sgn(\sigma) \cdot \alpha_x( (s_{i})_{1\leq i \leq n}).$$
+  In this case, we write $\mathrm{alt}(\alpha)$. 
+\end{definition} 
+\begin{remark} 
+  To check whether a function is alternating, it's sufficient to do so for $2$-permutations.
 \end{remark}
+\begin{lemma}
+  If we restrict the groups in the \v Cech sequence to the group of alternating functions in $\prod_{x:X} A_x^{(q_x)^n}$, the resulting sequence is still exact. 
+\end{lemma} 
+\begin{proof}
+  
+\end{proof}
+\begin{definition}
+  We call the resulting sequence the alternating Cech sequence.
+\end{definition}
+
+\begin{definition} Let $q: S \twoheadrightarrow X$ be a \v Cech cover and $A: X \to Ab$. Let $<$ be a strict order on $S$. 
+  We define an $n$-tuple $(s_i)_{1 \leq i \leq n} : (q_x)^n$ to be \textbf{ordered} iff $s_1 < s_1 < \cdots < s_n$. 
+  We write $\mathrm{ord}(s)$ if this is the case. 
+\end{definition} 
+\begin{lemma}
+  If we restrict the functions in the \v Cech sequence to only work on ordered fibers, the resulting sequence is still exact.  
+\end{lemma}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{definition}
-  Let $q: S \twoheadrightarrow X$ be a \v Cech cover and $A: X \to Ab$. Let $\leq$ be a linear order on $S$. 
-  We define the \textbf{$\leq$-ordered \v Cech sequence} $\check C_{\leq} (X,q,A)$ as 
+  We define the relations $<,\leq$ on $2^\N$ as follows:
+  Given $\alpha,\beta:2^\N$, define for each $n:\N$ the relation 
+  expressing that $n$ is the first index where $\alpha,\beta$ differ and 
+  $\alpha_n< \beta_n$. So 
+  $$\alpha<_n\beta:= 
+    (\alpha_n < \beta_n)  \wedge 
+    (\forall_{k<n} \alpha_k=\beta_k)
   $$
-  \prod_{x:X} A_x^{q_x}
-  \to 
-  \prod_{x:X} A_x^{\Sigma_{s: q_x^2 } is-ord^\leq_2(s)}
-  \to 
-  \prod_{x:X} A_x^{\Sigma_{s: q_x^3 } is-ord^\leq_3(s)}
-  \to 
-  \cdots 
-  \to 
-  \prod_{x:X} A_x^{\Sigma_{s: q_x^n } is-ord^\leq_n(s)}
-  $$
-  where $is-ord^\leq_n(s_i)$ means that $s_1 \leq s_2 \leq \cdots \leq s_n$
-  \rednote{TODO come up with better notation}
+  Then define $\alpha<\beta:= \exists_{n:\N} \alpha<_n \beta$.
+  We also define $\alpha \leq \beta := \neg (\beta < \alpha)$.
 \end{definition}
+\begin{remark}
+  One can check that $<_k$ is decidable for all $k$, 
+  hence $<$ is open and $\leq$ is closed. 
+  One can also check that both are transitive, and $\leq$ is symmetric. 
+  Finally, one can show that if $\alpha<_k\beta$, then $k$ is unique with this proprty and $\neg (\beta<_l \alpha)$ for any $l:\N$.
+  It follows in particular that $<$ is antisymmetric. 
+\end{remark}
 \begin{lemma}
-  Let $q: S \twoheadrightarrow X$ be a \v Cech cover and $A: X \to Ab$. Let $\leq$ be a linear order on $S$. 
-  Then there exists an isomorphism of sequences between the \v Cech sequence $\check C(X,q,A)$ and the $\leq$-ordered chech sequence $\check C_{\leq}(X , q, A)$. 
+  $\leq$ defined above is linear if and only if LLPO holds. 
 \end{lemma}
-\begin{proof} 
-  We define a retraction of the embedding
-  $
-  Sigma_{s:(q_x)^n} is-ord_n^\leq(s) \hookrightarrow (q_x)^n
-  $ 
-  Given any sequence $s:(q_x)^n$, using the linear order and induction on $n$, we can define an ordered sequence $o(s)$ with the same terms as $s$. This induces a retraction on 
+\begin{proof}
+  To show that LLPO implies linearity, let $\alpha,\beta:2^\N$. 
+  Define $\gamma:2^\N$ as follows:
+  $$
+  \gamma_{2k} = 
+  \begin{cases}
+    1 \text{ if } \alpha <_k \beta_k
+    0 \text{ otherwise} 
+  \end{cases}, 
+  \gamma_{2k+1} = 
+  \begin{cases}
+    1 \text{ if } \beta <_l \alpha_l
+    0 \text{ otherwise} 
+  \end{cases}, 
+  $$
+  Note that by the uniqueness discussed in the above remark, $\gamma$ hits $1$ at most once, hence lives in $\N_\infty\subseteq 2^\N$. 
+  Using LLPO, we can deduce that $\gamma$ is $0$ on all evens or all odds. 
+  Now note that if $\gamma_{2n} = 0$ for all $n$, then $\beta \leq \alpha$, 
+  and if $\gamma_{2n+1} = 0$ for all $n$, then $\alpha \leq \beta$. 
+
+  For the converse direction, let $\gamma:\N_\infty$. 
+  Define $\alpha,\beta:2^\N$ with $\alpha_n = \gamma_{2n}, \beta_n = \gamma_{2n+1}$. If $\alpha\leq \beta$, then $\gamma_{2n} = 0$ for all $n:\N$, and if $\beta\leq \alpha$, then $\gamma_{2n+1} = 0$ for all $n:\N$. 
 \end{proof}
+\begin{remark}
+  We conjecture the existence of any linear $(\leq)$-order on Cantor space implies LLPO. 
+\end{remark}
+\begin{corollary}
+  Let $S$ be a Stone space. Then there merely exists a linear order $\leq$ on $S$. 
+\end{corollary}
+\begin{proof}
+  Note that every Stone space can merely be seen as subset of $2^\N$, so it's sufficient to define a linear order or $2^\N$, which we have by the above. 
+\end{proof} 
+
+
+
+
