@@ -1,5 +1,5 @@
 
-The goal of this section is to prove a duality similar to Barton-Commelin axiom between Stone spaces and  higher overtly discrete types (aka countable homotopical cell complex). We assume hypercompletness.
+The goal of this section is to prove a duality similar to Barton-Commelin axiom between Stone spaces and  higher overtly discrete types (aka countable homotopical cell complex). We assume hypercompletness. Reid Barton helped me (Hugo Moeneclaey) for the proofs.
 
 
 \subsection{Higher overtly discrete types}
@@ -44,6 +44,22 @@ As folows:
 
 We will need the following:
 
+\begin{lemma}\label{higher-truncation-surjection}
+Assume $S$ a Stone space and $I(x)$ an overly discrete type depending on $x:S$. For $n\geq 0$, the map:
+\[\Pi_{x:S}I(x)\to \Pi_{x:S}\propTrunc{I(x)}_n\]
+is surjective.
+\end{lemma}
+
+\begin{proof}
+We have that any map $\Pi_{x:S}\propTrunc{I(x)}_{n+1}\to \Pi_{x:S}\propTrunc{I(x)}_n$ for $n\geq 0$ is surjective by the vanishing of cohomology. Using dependent choice and hypercompleteness, we conclude that the composite:
+\begin{eqnarray}
+\Pi_{x:S}I(x) &=& \Pi_{x:S}\mathrm{lim}_{k}\propTrunc{I(x)}_k\nonumber\\
+&=& \mathrm{lim}_k\Pi_{x:S}\propTrunc{I(x)}_k\nonumber\\
+&\to& \Pi_{x:S}\propTrunc{I(x)}_n\nonumber
+\end{eqnarray}
+is surjective. 
+\end{proof}
+
 \begin{lemma}\label{truncation-stone-product-commutes}
 Assume $S$ a Stone space and $I(x)$ an overly discrete type depending on $x:S$, as well as $n\geq -1$. Then the canonical map:
 \[\propTrunc{\Pi_{x:S}I(x)}_n\to \Pi_{x:S}\propTrunc{I(x)}_n\]
@@ -51,7 +67,18 @@ is an equivalence.
 \end{lemma}
 
 \begin{proof}
-TODO
+We start by proving the case $n=-1$ and $I(x)$ a set. Take $S=\mathrm{lim}_kS_k$ with $S_k$ finite. We define $I_k(x) = \Pi_{y:S} Y(y)^{y_k=x}$ for $x:S_k$. Then for $x:S$, we have that $\mathrm{colim}_kI_k(x_k) = I(x)$ and:
+\begin{eqnarray}
+\Pi_{x:S}\propTrunc{I(x)} &=& \Pi_{x:\mathrm{lim}_kS_k}\mathrm{colim}_i\propTrunc{I_i(x_i)}\nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:S_i}\propTrunc{I_i(x)} \nonumber\\
+&=& \propTrunc{\mathrm{colim}_i\Pi_{x:S_i}I_i(x)}\nonumber\\
+&=& \propTrunc{\Pi_{x:S}I(x)}\nonumber
+\end{eqnarray}
+We conclude the case of an arbitrary $I(x)$ by using the surjection $\Pi_{x:S}I(x)\to \Pi_{x:S}\propTrunc{I(x)}_0$ from \Cref{higher-truncation-surjection}.
+
+Now we proceed by induction on $n$, for $n\geq 0$. By induction hypothesis the map:
+\[\propTrunc{\Pi_{x:S}I(x)}_n\to \Pi_{x:S}\propTrunc{I(x)}_n\]
+is an embedding. It is surjective by \Cref{higher-truncation-surjection}.
 \end{proof}
 
 
@@ -80,7 +107,7 @@ is an equivalence.
 \begin{proof}
 For any $T:K(A(x),n)$ we have that $T = (T =_{K(A(x),n)} 0)$, the map we are considering is in fact the map:
 \[[\alpha] =_{\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n)} 0 \to \alpha\circ\pi_k =_{\Pi_{x:\mathrm{lim}_iS_i}K(A(x_k),n)} 0\]
-But by \Cref{higher-scott-continuity-canonical-torsors} the map:
+But by \Cref{higher-scott-continuity-canonical-torsors-left} the map:
 \[\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n) \to \Pi_{x:\mathrm{lim}_iS_i}K(A(x_k),n)\]
 is an embedding so we can conclude.
 \end{proof}
