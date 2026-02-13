@@ -306,11 +306,46 @@ The following lemma will eventually imply that finitely co-presented $R$-modules
   Then we can reuse the same argument to show the statement of the remark.
 \end{proof}
 
+\begin{lemma}
+  \label{H1-on-adelman-module}
+  \rednote{Beweis leider Quatsch}
+  Let $K:\Mod{R}_{\mathrm{ad}}$ and $M:K\to \Mod{R}_\mathrm{wqc}$ then
+  \[
+    H^1(K,M)=0
+  \]
+\end{lemma}
+
+\begin{proof}
+  Let first $K:\Mod{R}$ be in an exact sequence:
+  \begin{center}
+    \begin{tikzcd}
+      F\ar[r,"e"] & K\ar[r]\ar[l,bend left,"s",dotted] & 0
+    \end{tikzcd}
+  \end{center}
+  with $F:\Mod{R}_\mathrm{fcp}$ and $M:K\to\Mod{R}_{\mathrm{wqc}}$ and $s$ exists because $K$ is Adelman using \Cref{maps-into-coherent-lift}.
+  Then we have $H^1(F,M\circ e)=0$, meaning that for any $\chi:(x:K)\to K(M_x,1)$ there exists $t:(y:F)\to \chi_{e(y)}=\ast$. Then $t\circ s:(x:K)\to \chi_x=\ast$, so $H^1(K,M)=0$.
+\end{proof}
+
+\begin{lemma}
+  \rednote{TODO: This is just an idea}.
+  Let
+  \[
+    0\to M \to N \to L \to 0
+  \]
+  be an exact sequence and $M,L:\Mod{R}_{\mathrm{ad}}$.
+  Then $N$ is Adelman.
+\end{lemma}
+
+\begin{proof}
+  By \Cref{H1-on-adelman-module} we have $H^1(L,M)=0$ and therefore a not necessarily linear section $s:L\to N$.
+  
+\end{proof}
+
 \paragraph{Questions:}
 \begin{enumerate}
 \item Is dualization an antiequivalence of Adelman modules?
 \item Are Adelman modules closed under extension?
-\item Are Adelman modules closed under $\Hom$?
+\item\label{ad-hom-closed} Are Adelman modules closed under $\Hom$?
 \item Are Adelman modules closed under $\_\otimes\_$?
 \item Does exponentiating with closed propositions preserves Adelman?
 \item\label{finite-exp-closed} Are projective/proper/finite-scheme products of Adelman modules Adelman?
@@ -325,7 +360,7 @@ The following lemma will eventually imply that finitely co-presented $R$-modules
 \end{enumerate}
 \item None so far
 \item Yes, \cref{hom-closure}.
-\item It could be possible to just use the result for finitely presented modules, by extending the extension properties above to bilinear maps.
+\item Yes, by \cref{ad-hom-closed} and \(A\otimes B^\ast=\Hom(B,A)\).
 \item Yes, by partial answer to \cref{finite-exp-closed}.
 \item Partial answer:
 \begin{enumerate}[(i)]
