@@ -75,5 +75,38 @@ Now we will use the preparation from the example of the Fermat Curve, that the e
   \(D(X_i)\cap V\). But then we already have \(D(X_i)\subseteq V\) and by \Cref{topological-properties-lines-on-cubics} (c) we have \(\neg V=\emptyset\).
 \end{proof}
 
-We expect/hope, that for smooth cubics, this result can be strengethend to étale existence of lines,
-since the fibers of \(\beta\) over smooth cubics are expected to be étale.
+Over a smooth cubic, we can say more about the fibers.
+We hope/expect that the following leads to a synthetic version of the classic result that the fibers of \(\beta\) over smooth cubics are finite sets.
+We start by showing that \(\beta\) is unramified over smooth cubics, which together with smoothness will imply that \(\beta\) is étale over smooth cubics. Classically, it is possible to conclude that \(\beta\) is a finite morphism over smooth cubics, but we do not yet know a synthetic proof of this.
+
+\begin{lemma}
+  \(\beta\) is unramified over smooth cubics.
+\end{lemma}
+
+\begin{proof}
+  Equivalently, we show that the type of lines on a smooth cubic has an étale identity type.
+  So let \(C\) be a smooth cubic and \(\mathcal L,\mathcal L^\prime\) be lines on \(C\). By applying an automorphism of \(\bP^3\),
+  we can assume that \(\mathcal L\) is the line \([t:s]\mapsto [0:0:t:s]\).
+  
+  Now we show that \(\mathcal L=\mathcal L^\prime\) is étale using the following characterization: For all \(\epsilon:R\) such that \(\epsilon^2=0\) and \(\mathcal L=\mathcal L^\prime\) if \(\epsilon=0\), we already have \(\mathcal L=\mathcal L^\prime\).
+  In particular, we can assume that \(\mathcal L\) and \(\mathcal L^\prime\) are not not equal.
+  Let \(\mathcal L^\prime\) be given by two different points \([a_0:a_1:a_2:a_3],[b_0:b_1:b_2:b_3]:\bP^3\), i.e.\ \[
+    \mathcal L^\prime\colonequiv[t:s]\mapsto [a_0\cdot t+b_0\cdot s:\dots : a_3\cdot t+b_3\cdot s]
+  \]
+  When showing a negation, we can assume \(\mathcal L=\mathcal L^\prime\) and therefore
+  \([0:0:1:0]\in\mathcal L^\prime\).
+  This means that \(a_2\) or \(b_2\) has to be invertible.
+  Without loss of generality, assume \(a_2=1\) and \(b_2=0\).
+  We will now show \(b_3\) is invertible. So assume \(b_3=0\).
+  We have \([0:0:0:1]=\mathcal L^\prime([t_0:s_0])\) for some \(t_0:s_0\),
+  so \(t_0=0\) and \(a_3t_0=1\), which is a contradiction.
+  So we can assume  \(b_3=1\) and \(a_3=0\) without loss of generality.
+  So, in fact we can write \(\mathcal L^\prime\) as follows:
+  \[
+    \mathcal L^\prime\colonequiv[t:s]\mapsto [a_0t+b_0 s:a_1 t+b_1 s : t : s]
+  \]
+  with \(a_0,b_0,a_1,b_1:R\).
+
+  Now we will show that for the ideal \(I\colonequiv(a_0,b_0,a_1,b_1) \) we have \(I^2=0\).
+  \rednote{TODO: finish writing proof}
+\end{proof}
