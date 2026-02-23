@@ -78,6 +78,46 @@ Now we will use the preparation from the example of the Fermat Curve, that the e
 Over a smooth cubic, we can say more about the fibers.
 We hope/expect that the following leads to a synthetic version of the classic result that the fibers of \(\beta\) over smooth cubics are finite sets.
 We start by showing that \(\beta\) is unramified over smooth cubics, which together with smoothness will imply that \(\beta\) is étale over smooth cubics. Classically, it is possible to conclude that \(\beta\) is a finite morphism over smooth cubics, but we do not yet know a synthetic proof of this.
+The following lemma is a preparation.
+
+\begin{lemma}
+  \label{quadratic-forms-injective}
+  Let \(A,B\) be quadratic forms without common zeros, i.e.\ \(D(A)\cup D(B)=\bP^1\).
+  Then \((u,v)\mapsto uA+vB\) for linear \(u,v\) is injective.
+\end{lemma}
+
+\begin{proof}
+  We will construct a map \(\mathcal O(1)^{\oplus 2}\to \mathcal O(3)\) on \(\bP^1\)
+  such that the global sections of the kernel of this map are the pairs \((u,v)\)
+  such that \(uQ_0+vQ_1=0\). Then we identify the kernel with \(\mathcal O(-1)\),
+  to conclude that the only such global section is zero.
+  
+  Let \(\bar{x}:\bP^1\) be the line through \(x=(x_0,x_1):R^2\setminus\{0\}\) and \(sx:\mathcal O(-1)_{\bar{x}}\).
+  \begin{align*}
+    \psi_{u,\bar{x}}(sx):\mathcal O(-1)_{\bar{x}}&\colonequiv tx \mapsto tsB(x) \\
+    \psi_{v,\bar{x}}(sx):\mathcal O(-1)_{\bar{x}}&\colonequiv tx \mapsto -tsA(x) 
+  \end{align*}
+  Together, \(\psi_u,\psi_v\) define a map \(\psi:\mathcal O(-1)\to \mathcal O(1)^{\oplus 2}\).
+
+  Similarly, we define \(\varphi:\mathcal O(1)^{\oplus 2}\to \mathcal O(3)\) pointwise by
+  \begin{align*}
+    \varphi_{\bar{x}}\ &:\  R(x_0,x_1)^\ast\oplus R(x_0,x_1)^\ast \to R(x_0^3,x_0^2x_1,x_0x_1^2,x_1^3)^\ast \\
+    \varphi_{\bar{x}}&\colonequiv (u\oplus v)\mapsto \left(t(x_0^3,x_0^2x_1,x_0x_1^2,x_1^3)\mapsto u(t(x_0,x_1))A(x_0,x_1)+v(t(x_0,x_1))B(x_0,x_1)\right)\rlap{.}
+  \end{align*}
+  It remains to show that \(\psi\) is the kernel of \(\varphi\), which can be done pointwise.
+  So let \(u(tx)A(x)+v(tx)B(x)=0\) for all \(t:R\).
+  One of \(A(x),B(x)\) has to be invertible.
+  Let us first assume \(A(x)\) is invertible and let \(s^\prime_x:R\) be its inverse.
+  Then we have \[
+    u(tx)=-s^\prime_x tv(x)B(x)
+  \]
+  So with \(s_{0,x}\colonequiv s^\prime_x v(x) \), we have \(u(tx)=-s_{0,x}tB(x)\) and \(\frac{s_{0,x}}{\lambda}=s_{0,\lambda x}\) for all \(x\in R^\times\).
+  Note that \(s_{0}\) defines a section of \(\mathcal O(-1)\) on \(D(A)\).
+  Likewise, we get \(v(tx)=s_{1,x}tA(x)\) whenever \(B(x)\) is invertible
+  and \(s_{0,x}=s_{1,x}\) whenever both are invertible.
+  Since the non-vanishing sets of \(A\) and \(B\) cover \(\bP^1\), we get a section \(s\) of
+  \(s:(\bar{x}:\bP^1)\to \mathcal O(-1)\), such that \(\psi(s)=u\oplus v\).
+\end{proof}
 
 \begin{lemma}
   \(\beta\) is unramified over smooth cubics.
@@ -91,7 +131,7 @@ We start by showing that \(\beta\) is unramified over smooth cubics, which toget
   Now we show that \(\mathcal L=\mathcal L^\prime\) is étale using the following characterization: For all \(\epsilon:R\) such that \(\epsilon^2=0\) and \(\mathcal L=\mathcal L^\prime\) if \(\epsilon=0\), we already have \(\mathcal L=\mathcal L^\prime\).
   In particular, we can assume that \(\mathcal L\) and \(\mathcal L^\prime\) are not not equal.
   Let \(\mathcal L^\prime\) be given by two different points \([a_0:a_1:a_2:a_3],[b_0:b_1:b_2:b_3]:\bP^3\), i.e.\ \[
-    \mathcal L^\prime\colonequiv[t:s]\mapsto [a_0\cdot t+b_0\cdot s:\dots : a_3\cdot t+b_3\cdot s]
+    \mathcal L^\prime\colonequiv[t:s]\mapsto [a_0t+b_0s:\dots : a_3t+b_3s]
   \]
   When showing a negation, we can assume \(\mathcal L=\mathcal L^\prime\) and therefore
   \([0:0:1:0]\in\mathcal L^\prime\).
@@ -116,8 +156,21 @@ We start by showing that \(\beta\) is unramified over smooth cubics, which toget
   \begin{align*}
     &\sum_{\alpha:\N^4, \sum_\alpha=3}c_\alpha (a_0t+b_0s)^{\alpha_0}(a_1t+b_1s)^{\alpha_1}t^{\alpha_2}s^{\alpha_3}\\
     =&\sum_{\alpha:\N^4, \sum_\alpha=3,\alpha_0+\alpha_1=1}c_\alpha (a_0t+b_0s)^{\alpha_0}(a_1t+b_1s)^{\alpha_1}t^{\alpha_2}s^{\alpha_3} \\
-    =& (a_0t+b_0s)X_0(c_{(1,0,2,0)}X_2^2+c_{(1,0,1,1)}X_2X_3+c_{(1,0,0,2)}X_3^2)+ \\
-      &(a_1t+b_1s)X_1(c_{(0,1,2,0)}X_2^2+c_{(0,1,1,1)}X_2X_3+c_{(0,1,0,2)}X_3^2)
+    =& (a_0t+b_0s)(c_{(1,0,2,0)}t^2+c_{(1,0,1,1)}ts+c_{(1,0,0,2)}s^2)+ \\
+      &(a_1t+b_1s)(c_{(0,1,2,0)}t^2+c_{(0,1,1,1)}ts+c_{(0,1,0,2)}s^2)
   \end{align*}
-  \rednote{TODO: finish writing proof}
+
+  We will use that \(C\) is smooth to show that the quadratic forms on \(\bP^1\) 
+  \begin{align*}
+    Q_0(t,s)&\colonequiv c_{(1,0,2,0)}t^2+c_{(1,0,1,1)}ts+c_{(1,0,0,2)}s^2 \\
+    Q_1(t,s)&\colonequiv c_{(0,1,2,0)}t^2+c_{(0,1,1,1)}ts+c_{(0,1,0,2)}s^2
+  \end{align*}
+  do not have common zeros, i.e.\ \(D(Q_0)\cup D(Q_1)=\bP^1\).
+  From that we can conclude \(\mathcal L=\mathcal L^\prime\) with \Cref{quadratic-forms-injective}.
+
+  If we pass to charts, we can compute the derivative of the cubic form for \(C\).
+  In the direction of \(\mathcal L\), the cubic form is constantly zero and has therefore derivative zero in that direction.
+  If we pass to the chart with \(s=1\) or \(t=1\), this means that one of the derivatives in the direction of the first two variables has to be non-zero at all points which lie in \(C\).
+  In particular, if we look at derivatives by the first two variables on \(\mathcal L\),
+  we get precisely \(Q_0\) and \(Q_1\), so they cannot have common zeros.
 \end{proof}
