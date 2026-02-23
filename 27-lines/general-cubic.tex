@@ -2,20 +2,21 @@
 \rednote{It is not clear yet, if the general case is provable in the generality of SAG. The following is just a collection of results that might help.}
 
 For $z:\bP^{19}$, let $C_z$ be the cubic given by using the components of $z$ as coefficients for a cubic form on $\bP^3$.
-Then the type of lines in $C_z$ is projective. Let $\mathrm{Lines}(3)$ denote the type of lines in $\bP^3$ and
-let \[Z\colonequiv\sum_{z:\bP^{19}}\sum_{l:\mathrm{Lines}(3)}l\subseteq C_z\rlap{.} \]
+Then the type of lines in $C_z$ is projective. Let $\Gr(2,4)$ denote the type of rank \(2\) submodules of \(R^4\), which is equivalent to the type of lines in $\bP^3$ and
+let \[Z\colonequiv\sum_{z:\bP^{19}}\sum_{l:\Gr(2,4)}l\subseteq C_z\rlap{.} \]
 be the type of lines on cubics. As a closed subset of a product of projective spaces, \(Z\) is projective.
 We have a span:
 \begin{center}
 \begin{tikzcd}
   & Z\ar[rd,"\alpha"]\ar[ld,"\beta",swap] & \\
-  \bP^{19} & & \mathrm{Lines}(3)
+  \bP^{19} & & \Gr(2,4)
 \end{tikzcd}
 \end{center}
 where $\beta$ is the projection onto the first factor and $\alpha$ maps a tuple to its line.
 
 \begin{lemma}
-  The subtype $\{ z:\bP^{19} \;|\; C_z \;\text{is smooth} \}$ is open.
+  \label{smooth-cubics-open}
+  The subtype $S\colonequiv \{ z:\bP^{19} \;|\; C_z \;\text{is smooth} \}$ is open.
 \end{lemma}
 
 \begin{proof}
@@ -28,14 +29,15 @@ where $\beta$ is the projection onto the first factor and $\alpha$ maps a tuple 
 \end{proof}
 
 \begin{lemma}
-  For all \(l:\mathrm{Lines}(3)\) we have
+  \label{p15-bundle}
+  For all \(l:\Gr(2,4)\) we have
   \[
   \|\fib_\alpha(l)=\bP^{15}\|
   \]
 \end{lemma}
 
 \begin{proof}
-For two lines \(l,l^\prime:\mathrm{Lines}(3)\) there merely is \(T:\PGL_{4}(R)\) such that \(T(l)=l^\prime\)\rednote{TODO: prove}.
+For two lines \(l,l^\prime:\Gr(2,4)\) there merely is \(T:\PGL_{4}(R)\) such that \(T(l)=l^\prime\)\rednote{TODO: prove}.
 Any such \(T\) induces an equivalence of fibers \(\fib_\alpha(l)=\fib_\alpha(l^\prime)\).
 So we can conclude by showing \(\fib_\alpha(l)=\bP^{15}\) for a fixed line \(l\).
 Let \(l=V(X_0,X_1)\subseteq\bP^3\). Then \[\fib_\alpha(l)=\left(\sum_{z:\bP^{19}}\prod_{x_2,x_3:R}C_z(0,0,x_2,x_3)=0\right)=\bP^{15}\rlap{.}\]
@@ -120,7 +122,8 @@ The following lemma is a preparation.
 \end{proof}
 
 \begin{lemma}
-  \(\beta\) is unramified over smooth cubics.
+  \label{beta-unramified}
+  \(\beta:Z\to S\) is unramified.
 \end{lemma}
 
 \begin{proof}
@@ -173,4 +176,29 @@ The following lemma is a preparation.
   If we pass to the chart with \(s=1\) or \(t=1\), this means that one of the derivatives in the direction of the first two variables has to be non-zero at all points which lie in \(C\).
   In particular, if we look at derivatives by the first two variables on \(\mathcal L\),
   we get precisely \(Q_0\) and \(Q_1\), so they cannot have common zeros.
+\end{proof}
+
+\begin{lemma}
+  \label{smooth-dim-19}
+  \(Z\) is smooth of dimension \(19\).
+\end{lemma}
+
+\begin{proof}
+  By \Cref{p15-bundle}, the fibers of \(\alpha:Z\to \Gr(2,4)\) are merely \(\bP^{^15}\) and therefore smooth of dimension \(15\). \(\Gr(2,4)\) itsself is smooth of dimension \(4\).
+  So \(Z\), the total space of \(\alpha\), must be smooth of dimension \(19\).
+\end{proof}
+
+\begin{theorem}
+  \(\beta:Z\to S\) is étale.
+\end{theorem}
+
+\begin{proof}
+  We show now that \(\beta\) is smooth.
+  By \cite{diffgeo-article}[Lemma 2.2.7] the kernel of \(d\beta_x:T_xZ\to T_{\beta(x)}S\)
+  is given by the tangent space \(T_{(x,\refl)}\fib_\beta(\beta(x))\).
+  By \Cref{beta-unramified}, we know that this fiber is an unramified scheme, so all its tangent spaces  are \(\{0\}\).
+  By \Cref{smooth-dim-19}, \(T_xZ\) is free of rank 19 and \(T_{\beta(x)}S\) is also free of rank 19,
+  since \(S\) is an open subset of \(\bP^{19}\) by \Cref{smooth-cubics-open}, so the inclusion is étale and induces an isomorphism on tangent spaces.
+
+  So \(\beta\) is unramified and smooth and therefore étale.
 \end{proof}
