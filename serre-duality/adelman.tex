@@ -326,6 +326,164 @@ The following lemma will eventually imply that finitely co-presented $R$-modules
   Then we have $H^1(F,M\circ e)=0$, meaning that for any $\chi:(x:K)\to K(M_x,1)$ there exists $t:(y:F)\to \chi_{e(y)}=\ast$. Then $t\circ s:(x:K)\to \chi_x=\ast$, so $H^1(K,M)=0$.
 \end{proof}
 
+\begin{proposition}
+  \label{fp-extension-adelman}
+  Let
+  \[
+    0\to M \to N \to L \to 0
+  \]
+  be an exact sequence such that $M :\Mod{R}_{\mathrm{ad}}$, and $L : \Mod{R}_{\mathrm{fp}}$.
+  Then $N$ is Adelman.
+\end{proposition}
+
+\begin{proof}
+  This proof is parallel to the horseshoe lemma.
+  Let $R^{n_2} \rightarrow R^{n_1} \twoheadrightarrow L$ be a presentation of $L$.
+  Let also $P_2 \rightarrow P_1 \twoheadrightarrow M$ be a presentation of $M$ by fcp-modules.
+  Because $R^{n_1}$ is projective, we can lift the morphism $R^{n_1} \rightarrow L$ along $N \twoheadrightarrow L$.
+  This yields a map of short exact sequences.
+  \begin{center}
+    \begin{tikzcd}
+      P_1 \ar[hook]{r} \ar[two heads]{d} & P_1 \oplus R^{n_1} \ar[two heads]{r} \ar[dashed, two heads]{d} \ar[phantom]{rd}[very near end]{\ulcorner} & R^{n_1} \ar[two heads]{d} \ar[dashed]{ld} \\
+      M \ar[hook]{r} & N \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+  One can show that the map $P_1 \oplus R^{n_1} \rightarrow N$ is epi with a diagram chase.
+  The lower rightmost square is also a pushout, since the maps on the kernels is epic.
+  Therefore taking kernels of the vertical epimorphisms yields another exact sequence, and we repeat the above argument to conclude.
+  \begin{center}
+    \begin{tikzcd}
+      P_2 \ar[hook]{r} \ar[two heads]{d} & P_2 \oplus R^{n_2} \ar[two heads]{r} \ar[dashed, two heads]{d} & R^{n_2} \ar[dashed]{ld} \ar[two heads]{d} \\
+      K_M \ar[hook]{r} & K_N \ar[two heads]{r} & K_L
+    \end{tikzcd}
+  \end{center}
+  Thus we get a presentation $P_2 \oplus R^{n_2} \rightarrow P_1 \oplus R^{n_1} \twoheadrightarrow N$ of $N$ by fcp-modules.
+\end{proof}
+
+\begin{corollary}
+  Every short exact sequence
+  \begin{center}
+    \begin{tikzcd}[cramped]
+      I_1 \ar[hook]{r} & E \ar[two heads]{r} & I_2
+    \end{tikzcd}
+  \end{center}
+  with $I_i$ fp-modules is split.
+  Consequently $\textup{Ext}^1_R(I_2,I_1) = 0$.
+\end{corollary}
+
+\begin{proof}
+  From \Cref{fp-extension-adelman}, $E$ is an Adelman-module.
+  By \Cref{fcp-projective-fp-injective}, the inclusion $I_1 \rightarrow E$ splits, so $E = I_1 \oplus I_2$.
+\end{proof}
+
+\begin{lemma}
+  \label{adelman-ext-pb-red}
+  Suppose we have a commutative diagram
+  \begin{center}
+    \begin{tikzcd}
+      B \ar[equal]{d} \ar[hook]{r} & p^*E \ar[two heads]{r} \ar[two heads]{d} \ar[phantom]{rd}[very near start]{\lrcorner}[very near end]{\ulcorner} & P \ar[two heads]{d}{p} \\
+      B \ar[hook]{r} & E \ar[two heads]{r} & A
+    \end{tikzcd}
+  \end{center}
+  in which $B$, $A$ and $P$ are Adelman modules.
+  Then $E$ is Adelman if and only if $p^*E$ is so.
+\end{lemma}
+
+\begin{proof}
+  Suppose that $E$ is Adelman.
+  Since $p^*E$ is a pullback of Adelman modules, it is itself Adelman.
+
+  Now assume that $p^*E$ is Adelman.
+  By the third isomorphism theorem we can prove that $E$ is Adelman.
+  In the following diagram, the objects $0^*_Ap^*E$ is the kernel of $p^*E \rightarrow E$, $0^*_AE$ is the kernel of $E \rightarrow A$, and $0^*_Ep^*E$ is the kernel of $p^*E \rightarrow E$.
+  \begin{center}
+    \begin{tikzcd}
+      0^*_Ep^*E \ar[equal]{r} \ar[hook]{d} & 0^*_Ep^*E \ar[hook]{d} \\
+      0^*_Ap^*E \ar[hook]{r} \ar[two heads]{d} & p^*E \ar[two heads]{r} \ar[two heads]{d} & A \ar[equal]{d} \\
+      B \ar[hook]{r} & E \ar[two heads]{r} & A
+    \end{tikzcd}
+  \end{center}
+  Chasing around this diagram we can see that $0^*_Ap^*E$ is Adelman, because $p^*E$ is.
+  Furthermore, $0^*_Ep^*E$ is Adelman, because $0^*_Ap^*E$ is Adelman.
+  It then follows that $N$ is Adelman, because it is the cokernel of two Adelman modules.
+\end{proof}
+
+\begin{proposition}
+  \label{adelman-ext-problem-red}
+  Adelman modules are closed under extension if and only if for any fcp-module $P$ and fp-module $I$, $\textup{Ext}^1_R(P,I) = 0$.
+\end{proposition}
+
+\begin{proof}
+  Assume that Adelman modules are closed under extensions.
+  Then it is clear that any extension by $I$ and $P$ is split, as $I$ is injective among the Adelman modules \Cref{fcp-projective-fp-injective}.
+
+  Assume now that $\textup{Ext}^1(P,I) = 0$ for any such modules $P$ and $I$.
+  Consider an extension problem
+  \begin{center}
+    \begin{tikzcd}
+      M \ar[hook]{r} & N \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+  where $M$ is Adelman and is copresented by $M \hookrightarrow I_1 \rightarrow I_2$, and $L$ is Adelman and is presented by $P_2 \rightarrow P_1 \twoheadrightarrow L$.
+  By \Cref{adelman-ext-pb-red}, we can take the pullback of the extension along $p : P_1 \twoheadrightarrow L$, we get another associated extension.
+  \begin{center}
+    \begin{tikzcd}
+      M \ar[equal]{d} \ar[hook]{r} & p^*N \ar[two heads]{d} \ar[two heads]{r} \ar[phantom]{rd}[very near start]{\lrcorner} & P_1 \ar[two heads]{d} \\
+      M \ar[hook]{r} & N \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+  Now $N$ is Adelman if and only if $p^*N$ is so.
+
+  Dually, we can take a pushout of $M \hookrightarrow p^*N \twoheadrightarrow P_1$  to obtain the diagram.
+  \begin{center}
+    \begin{tikzcd}
+      M \ar[hook]{r} \ar[hook]{d} \ar[phantom]{rd}[very near end]{\ulcorner} & p^*N \ar[two heads]{r} \ar[hook]{d} & P_1 \ar[equal]{d} \\
+      I_1 \ar[hook]{r} & i_*p^*N \ar[two heads]{r} & P_1
+    \end{tikzcd}
+  \end{center}
+  In this case $p^*N$ is Adelman if and only if $i_*p^*N$ is Adelman.
+
+  Now, since we assumed that $\textup{Ext}^1_R(P_1,I_1) = 0$, it is necessary that $i_*p^*N = I_1 \oplus P_1$, which is Adelman.
+  Thus, $N$ is Adelman as desired.
+\end{proof}
+
+\rednote{We do not know how to compute these extension groups yet.}
+
+An idea that might be useful is to apply dimension shift. Let
+\begin{center}
+  \begin{tikzcd}
+    P \ar[hook]{r} & R^{n_2} \ar{r} & R^{n_1} \ar[two heads]{r} & I_P
+  \end{tikzcd}
+\end{center}
+be a two-step projective resolution of $I_P$.
+By dimension shift, we get an isomorphism $\textup{Ext}^1(P,M) = \textup{Ext}^3(I_P,M)$ for any $R$-module $M$.
+
+Using \Cref{adelman-ext-pb-red}, we can deduce a stronger result than \Cref{fp-extension-adelman}.
+
+\begin{proposition}
+  \label{fg-extension-adelman}
+  Let
+  \begin{center}
+    \begin{tikzcd}
+      0 \ar{r} & M \ar[hook]{r} & N \ar[two heads]{r} & L \ar{r} & 0
+    \end{tikzcd}
+  \end{center}
+  be an exact sequence such that $M,L : \Mod{R}_{\textup{ad}}$ and $L$ is fg.
+  Then $N$ is Adelman.
+\end{proposition}
+
+\begin{proof}
+  Consider the pullback
+  \begin{center}
+    \begin{tikzcd}
+      M \ar[equal]{d} \ar[hook]{r} & p^*N \ar[two heads]{d} \ar[two heads]{r} & R^n \ar[two heads]{d} \\
+       M \ar[hook]{r} & N \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+  Since the epi $p^*N \twoheadrightarrow R^n$ splits, $p^*N$ is an Adelman module.
+  By \Cref{adelman-ext-pb-red}, $N$ is Adelman as well.
+\end{proof}
+
 \begin{lemma}
   \rednote{TODO: This is just an idea}.
   Let
@@ -338,7 +496,6 @@ The following lemma will eventually imply that finitely co-presented $R$-modules
 
 \begin{proof}
   By \Cref{H1-on-adelman-module} we have $H^1(L,M)=0$ and therefore a not necessarily linear section $s:L\to N$.
-  
 \end{proof}
 
 \paragraph{Questions:}
@@ -358,9 +515,9 @@ The following lemma will eventually imply that finitely co-presented $R$-modules
 \item \begin{enumerate}[(i)]
 \item Yes.
 \end{enumerate}
-\item None so far
+\item If the quotient module is also finitely generated, then yes.
 \item Yes, \cref{hom-closure}.
-\item Yes for finitely generated (?) \(B\), by \cref{ad-hom-closed} and \(A\otimes B^\ast=\Hom(B,A)\).
+\item Yes for finite free \(B\), by \cref{ad-hom-closed} and \(A\otimes B^\ast=\Hom(B,A)\).
 \item Yes, by partial answer to \cref{finite-exp-closed}.
 \item Partial answer:
 \begin{enumerate}[(i)]
