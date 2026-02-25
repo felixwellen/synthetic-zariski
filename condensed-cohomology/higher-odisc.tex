@@ -1,5 +1,5 @@
 
-The goal of this section is to prove a duality similar to Barton-Commelin axiom between Stone spaces and  higher overtly discrete types (aka countable homotopical cell complex). We assume hypercompletness. Reid Barton helped me (Hugo Moeneclaey) for the proofs.
+The goal of this section is to prove a duality similar to Barton-Commelin axiom between Stone spaces and  higher overtly discrete types (aka countable homotopical cell complex). We assume hypercompletness. Reid Barton helped me (Hugo Moeneclaey) for some proofs.
 
 
 \subsection{Higher overtly discrete types}
@@ -40,7 +40,7 @@ As folows:
 \end{proof}
 
 
-\subsection{A key lemma}
+\subsection{The dual to Tychonov}
 
 We will need the following:
 
@@ -81,13 +81,27 @@ Now we proceed by induction on $n$, for $n\geq 0$. By induction hypothesis the m
 is an embedding. It is surjective by \Cref{higher-truncation-surjection}.
 \end{proof}
 
+\begin{proposition}
+Assume given $S$ a Stone space and $I(x)$ an overtly discrete type depending on $x:X$. Then $\Pi_{x:S}I(x)$ is overly discrete.
+\end{proposition}
+
+\begin{proof}
+Firstly, by \Cref{truncation-stone-product-commutes} we have that $\propTrunc{\Pi_{x:S}I(x)}_0 = \Pi_{x:S}\propTrunc{I(x)}_0$, so it is indeed overtly discrete. Similarly given $f:\Pi_{x:S}I(x)$, we have that: 
+\begin{eqnarray}
+\pi_{n}(\Pi_{x:S}I(x),f) &=& \propTrunc{\Omega^n(\Pi_{x:S}I(x),f)}_0 \nonumber\\
+&=& \Pi_{x:S}\propTrunc{\Omega^n(I(x),f(x))}_0 \nonumber\\
+&=& \Pi_{x:S}\pi_n(I(x),f(x))\nonumber
+\end{eqnarray}
+So it is indeed overly discrete.
+\end{proof}
+
 
 \subsection{Scott continuity on the left}
 
 First we show the commutation for canonical torsor, by induction on the dimension.
 
 \begin{lemma}\label{higher-scott-continuity-canonical-torsors-left}
-Assume given $(S_i)_{i:\N}$ a tower of Stone spaces, and $I(x)$ an overtly discrete discrete type depending on $x:S_k$. Then for all $n:\N$ the map:
+Assume given $(S_i)_{i:\N}$ a tower of Stone spaces, and $A(x)$ an overtly discrete discrete abelian group depending on $x:S_k$. Then for all $n:\N$ the map:
 \[\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n) \to \Pi_{x:\mathrm{lim}_iS_i} K(A(x_k),n) \]
 is an equivalence.
 \end{lemma}
@@ -105,11 +119,13 @@ is an equivalence.
 \end{lemma}
 
 \begin{proof}
-For any $T:K(A(x),n)$ we have that $T = (T =_{K(A(x),n)} 0)$, the map we are considering is in fact the map:
-\[[\alpha] =_{\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n)} 0 \to \alpha\circ\pi_k =_{\Pi_{x:\mathrm{lim}_iS_i}K(A(x_k),n)} 0\]
-But by \Cref{higher-scott-continuity-canonical-torsors-left} the map:
-\[\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n) \to \Pi_{x:\mathrm{lim}_iS_i}K(A(x_k),n)\]
-is an embedding so we can conclude.
+Since $H^n(S_k,A) = 0$, we merely have that $T = 0$. Since we want to prove a proposition we can assume $T=0$, and then this is \Cref{higher-scott-continuity-canonical-torsors-left}.
+
+%For any $T:K(A(x),n)$ we have that $T = (T =_{K(A(x),n)} 0)$, the map we are considering is in fact the map:
+%\[[T] =_{\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n)} 0 \to T\circ\pi_k =_{\Pi_{x:\mathrm{lim}_iS_i}K(A(x_k),n)} 0\]
+%But by \Cref{higher-scott-continuity-canonical-torsors-left} the map:
+%\[\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n) \to \Pi_{x:\mathrm{lim}_iS_i}K(A(x_k),n)\]
+%is an embedding so we can conclude.
 \end{proof}
 
 %\begin{lemma}\label{higher-scott-continuity-truncated}
@@ -142,7 +158,7 @@ is an equivalence.
 We proceed by induction on $n:\N$. For $n\leq 0$ it is known. For the inductive step, consider the commutative square:
 \[\begin{tikzcd}
 \mathrm{colim}_i(S_i\to \propTrunc{I}_{n+1})\ar[r]\ar[d] & \mathrm{lim}_iS_i\to \propTrunc{I}_{n+1}\ar[d]\\
-\mathrm{colim}_i(S_i\to \propTrunc{I}_{n})\ar[r] &  \mathrm{lim}_iS_i\to \propTrunc{I}_{n}\\
+\mathrm{colim}_i(S_i\to \propTrunc{I}_{n})\ar[r] &  \mathrm{lim}_iS_i\to \propTrunc{I}_{n}
 \end{tikzcd}\]
 By inductive hypothesis the bottom map is an equivalence. We write $T(x):\Pi_{y:\propTrunc{I(x)}_n} K(\pi_{n+1}(I(x),y),n+2)$ the torsor induced by taking the fiber of the map $\propTrunc{I(x)}_{n+1}\to \propTrunc{I(x)}_n$ Since taking fiber commutes with arbitrary products and sequential colimits, then the map between fibers over $f:S_k\to \propTrunc{I}_{n}$ is:
 \[\mathrm{colim}_{i\geq k}(\Pi_{x:S_i}T(f(x_k)) \to \Pi_{x:\mathrm{lim}_iS_i} T(f(x_k))\]
@@ -173,28 +189,36 @@ We use the case $n=0$ and the fact that delooping commutes with filtered colimit
 \end{proof}
 
 \begin{lemma}\label{higher-scott-continuity-torsors-right}
-Assume given $S$ a Stone space, $n\geq 1$ and $(A_i(x))_{i:\N}$ a tower of overtly discrete abelian groups depending on $x:S$ with $(T_i(x))_{i:\N}$ a tower of torsors in $K(A_i(x),n)$. Then the map:
+Assume given $S$ a Stone space, $n\geq 1$ and $(A_i(x))_{i:\N}$ overtly discrete abelian groups depending on $x:S$ with $(T_i(x))_{i:\N}$ a tower of torsors in $K(A_i(x),n)$. Then the map:
 \[\mathrm{colim}_{i}\Pi_{x:S}T_i(x)\to \Pi_{x:S}\mathrm{colim}_iT_i(x)\]
 is an equivalence.
 \end{lemma}
 
 \begin{proof}
-Comes from the embedding given by \Cref{higher-scott-continuity-canonical-torsors-right} TODO details?
+Since $H^n(S,A_0) = 0$, we merely have $T_0 = 0$. Since we want to prove a proposition, we assume $T_0=0$, but then since we have $\alpha_k:\Pi_{x:S}T_k(x)\to T_{k+1}(x)$ we have that $T_k = 0$ implies $T_{k+1} = 0$ and the map $K(A_k(x),n-1)\to K(A_{k+1}(x),n-1)$ induced by $\alpha_k(x)$ is pointed. Then we conclude by \Cref{higher-scott-continuity-canonical-torsors-right}.
+%Alternative: Proceed by induction on $n:\N$.
 \end{proof}
 
 \begin{lemma}\label{higher-scott-continuity-truncated-right}
 Assume given $S$ a Stone space, $n:\N$ and $(I_i(x))_{i:\N}$ a tower of overtly discrete types depending on $x:S$. Then the map:
-\[\mathrm{colim}_{i}\Pi_{x:S}\propTrunc{I_i(x)}_n\to \Pi_{x:S}\mathrm{colim}_i\propTrunc{I_i(x)}_n)\]
+\[\mathrm{colim}_{i}\Pi_{x:S}\propTrunc{I_i(x)}_n\to \Pi_{x:S}\mathrm{colim}_i\propTrunc{I_i(x)}_n\]
 is an equivalence.
 \end{lemma}
 
 \begin{proof}
-TODO exactly the same as \Cref{higher-scott-continuity-truncated-left}
+This is very similar to \Cref{higher-scott-continuity-truncated-left}. Indeed we proceed by induction on $n:\N$. For $n\leq 0$ it is known. For the inductive step, consider the commutative square:
+\[\begin{tikzcd}
+\mathrm{colim}_i(\Pi_{x:S}\propTrunc{I_i(x)}_{n+1})\ar[r]\ar[d] & \Pi_{x:S}\mathrm{colim}_i\propTrunc{I_i(x)}_{n+1}\ar[d]\\
+\mathrm{colim}_i(\Pi_{x:S}\propTrunc{I_i(x)}_{n})\ar[r] &  \Pi_{x:X}\mathrm{colim}_i\propTrunc{I_i(x)}_{n}
+\end{tikzcd}\]
+By inductive hypothesis the bottom map is an equivalence. For $i:\N$, we write $T_i(x):\Pi_{y:\propTrunc{I_i(x)}_n} K(\pi_{n+1}(I_i(x),y),n+2)$ the torsor induced by taking the fiber of the map $\propTrunc{I_i(x)}_{n+1}\to \propTrunc{I_i(x)}_n$. Since taking fiber commutes with arbitrary products and sequential colimits, then the map between fibers over $f:\Pi_{x:S} \propTrunc{I_k(x)}_{n}$ is:
+\[\mathrm{colim}_{i\geq k}(\Pi_{x:S}T_i(f(x)) \to \Pi_{x:S} \mathrm{colim}_{i\geq k} T_i(f(x))\]
+which is an equivalence by \Cref{higher-scott-continuity-torsors-right}.
 \end{proof}
 
 \begin{lemma}\label{higher-scott-continuity-right}
 Assume given $S$ a Stone space and $(I_i(x))_{i:\N}$ a tower of overtly discrete types depending on $x:S$. Then the canonical map:
-\[\mathrm{colim}_{i}\Pi_{x:S}I_i(x)\to \Pi_{x:S}\mathrm{colim}_iI_i(x))\]
+\[\mathrm{colim}_{i}\Pi_{x:S}I_i(x)\to \Pi_{x:S}\mathrm{colim}_iI_i(x)\]
 is $\infty$-connected. So it is an equivalence by hypercompletness.
 \end{lemma}
 
@@ -203,19 +227,47 @@ We prove it is $\infty$-connected. For all $n:\N$, we apply $\propTrunc{\_}_n$ o
 \end{proof}
 
 
-\subsection{The dual of Tychonov}
+\subsection{Scott continuity: the general case}
 
-TODO
+\rednote{Could be replaced by a remark that it works exactly the same as for overtly discrete types as for overtly discrete sets.}
+
+We define ${\mathcal C}_\Stone$ as for overtly discrete sets, i.e.\ as the category with objects the pairs of $X$ Stone and $I(x)$ an overtly discrete type depending on $x:X$, and morphisms such that $\Pi: {\mathcal C}_\Stone \to \ODisc_\infty$ is a functor. It should be noted that since $\ODisc_\infty$ is not a $1$-category, but morally an $\infty$-category, we cannot really define what a functor is. Our technical fix is that we work with wild categories, i.e.\ we ignore higher coherences. the proof is exactly the same as for overtly discrete sets.
+
+\begin{theorem}[Scott continuity]\label{eine-higher-scott-continuity-stone}
+The functor $\Pi : {\mathcal C}_\Stone \to \ODisc$ commutes with sequential colimits.
+\end{theorem}
+
+\begin{proof}
+We assume given a tower in ${\mathcal C}_\Stone$, i.e. we assume a tower:
+\[S_0 \overset{p_0}{\leftarrow} S_1 \overset{p_0}{\leftarrow} S_2 \overset{p_2}{\leftarrow}\cdots \]
+in $\Stone$ with for all $k:\N$ a dependent type $I_k:S_k\to \ODisc_\infty$ and $q_k : \Pi_{x:S_{k+1}}I_k(p_k(x))\to I_{k+1}(x)$.
+We want to prove that the canonical map $\mathrm{colim}_i (\Pi_{x:S_i}I_i(x)) \to \Pi_{x:\mathrm{lim}_kS_k}\mathrm{colim}_i I_i(x_i)$ is an equivalence. 
+
+By general reasoning on colimits and Propositions \ref{higher-scott-continuity-right} and \ref{higher-scott-continuity-left}, we get the following string of equivalences:
+\begin{eqnarray}
+\mathrm{colim}_i (\Pi_{x:S_i}I_i(x)) &=& \mathrm{colim}_{i,k\geq i} \Pi_{x:S_k} I_i(x_i)\nonumber\\
+&=& \mathrm{colim}_{i,k\geq i} \Pi_{x:S_i}\Pi_{y:S_k} ([y]=x)\to I_i(x) \nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:S_i} \mathrm{colim}_{k\geq i} \Pi_{y:S_k} ([y]=x)\to I_i(x)\nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:S_i} \Pi_{y:\mathrm{lim}_{k\geq i} S_k} ([y]=x)\to I_i(x)\nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:\mathrm{lim}_{k} S_k} I_i([x])\nonumber\\
+&=& \Pi_{x:\mathrm{lim}_{k} S_k} \mathrm{colim}_i I_i(x)\nonumber
+\end{eqnarray}
+%We know that the source is equivalent to:
+%\[\mathrm{colim}_{i,k\geq i} \Pi_{x:S_k} I_i(x_i)\]
+%which is the same as:
+%\[\mathrm{colim}_{i,k\geq i} \Pi_{x:S_i}\Pi_{y:S_k} y_k=x \to I_i(x)\]
+%which by \Cref{scott-continuity-right} is in turn equal to:
+%\[\mathrm{colim}_i\Pi_{x:S_i} \mathrm{colim}_{k\geq i} \Pi_{y:S_k} y_i = x \to I_i(x)\]
+%which by \Cref{scott-continuity-left} is equal to:
+%\[\mathrm{colim}_i\Pi_{x:S_i} \Pi_{y:\mathrm{lim}_{k\geq i} S_k} y_i=x \to I_i(x)\]
+%which is immediately seen as:
+%\[\mathrm{colim}_i\Pi_{x:\mathrm{lim}_{k} S_k} I_i(x_i)\]
+%which by \Cref{scott-continuity-right} is equal to:
+%\[\Pi_{x:\mathrm{lim}_{k} S_k} \mathrm{colim}_i I_i(x_k)\]
+We omit the verification that this is indeed the canonical map.
+\end{proof}
 
 
-\subsection{Scott continuity}
-
-TODO
-
-
-\subsection{Tychonov}
-
-TODO
 
 
 
