@@ -269,6 +269,70 @@ We omit the verification that this is indeed the canonical map.
 
 
 
+%\section{Extending the higher duality from Stone to compact Hausdorff}
+
+%We are not too sure what is doable. This is a very rough draft.
+
+
+\subsection{Tychonov's dual for compact Hausdorff spaces and overtly discrete $n$-types}
+
+In this section we prove that for $X:\CHaus$ and $I:X\to \ODisc_n$, we have that $\Pi_{x:X}I(x):\ODisc_n$. Our first lemma is very easy, but somehow counterintuitive.
+
+\begin{lemma}\label{assume-inhabited-to-prove-odisc}
+Assume given $I$ a type such that $\propTrunc{I}$ is open and $\propTrunc{I}$ implies $I$ overtly discrete. Then $I$ is overtly discrete.
+\end{lemma}
+
+\begin{proof}
+We have that $I = \propTrunc{I}\times I = \Sigma_{\_:\propTrunc{I}}I$ and overtly discrete types are closed under $\Sigma$.
+\end{proof}
+
+\begin{lemma}\label{dual-tychonov-chaus-torsor-proposition}
+Assume given $X$ a compact Hausdorff space with $A(x)$ an overtly discrete abelian group depending on $x:X$ with $n\geq 1$ and $T:X\to K(A(x),n)$. Then $\propTrunc{\Pi_{x:X}T(x)}$ is an open proposition.
+\end{lemma}
+
+\begin{proof}
+Using \v{C}ech cohomlogy, we see that $H^n(X,A)$ is an overtly discrete set. But $\propTrunc{\Pi_{x:X}T(x)}$ is equivalent to $T=_{H^n(X,A)} 0$.
+\end{proof}
+
+\begin{lemma}\label{dual-tychonov-chaus-torsor-set}
+Assume given $X$ a compact Hausdorff space with $A(x)$ an overtly discrete abelian group depending on $x:X$ with $n\geq 1$ and $T:X\to K(A(x),n)$. Then $\propTrunc{\Pi_{x:X}T(x)}_0$ is an overtly discrete set.
+\end{lemma}
+
+\begin{proof}
+By \Cref{assume-inhabited-to-prove-odisc,dual-tychonov-chaus-torsor-proposition} we can assume $\Pi_{x:X}T(x)$. Bu then we merely have $\propTrunc{\Pi_{x:X}T(x)}_0 = H^{n-1}(X,A)$ and we conclude using \v{C}ech cohomology.
+\end{proof}
+
+\begin{lemma}\label{dual-tychonov-chaus-torsor}
+Assume given $X$ a compact Hausdorff space with $A(x)$ an overtly discrete abelian group depending on $x:X$ with $n\geq 1$ and $T:X\to K(A(x),n)$. Then $\Pi_{x:X}T(x)$ is overtly discrete.
+\end{lemma}
+
+\begin{proof}
+We proceed by induction on $n\geq 1$. If $n=1$ this is already known. Assume it holds for $n\geq 1$, consider $T:X\to K(A(x),n+1)$. By induction hypothesis, we see that identity types in $\Pi_{x:X}T(x)$ are overtly discrete. So we just need to prove that $\propTrunc{\Pi_{x:X}T(x)}_0$ is overtly discrete. This is \Cref{dual-tychonov-chaus-torsor-set}.
+\end{proof}
+
+\begin{proposition}
+Assume given $X$ a compact Hausdorff space and $I(x)$ an overtly discrete $n$-type depending on $x:X$. Then $\Pi_{x:X}I(x)$ is an overtly discrete $n$-type.
+\end{proposition}
+
+\begin{proof}
+We proceed by induction on $n:\N$. For $n=0$ this is known. Assume it holds for $n$, and $I(x)$ is an overtly discrete $n+1$-type depending on $x:X$. By induction hypothesis $\Pi_{x:X}\propTrunc{I(x)}_n$ is an overtly discrete type, so it is enough to prove that the fibers of the map $\Pi_{x:X}I(x)\to \Pi_{x:X}\propTrunc{I(x)}_n$ are overtly discrete to conclude. We can apply \Cref{dual-tychonov-chaus-torsor}.
+\end{proof}
+
+\begin{remark}
+Assume $X$ is an $n$-dimensional compact Hausdorff space, i.e. we have that $H^k(X,A) = 0$ for all $A(x)$ overtly discrete abelian group depending on $x:X$ and $k>n$. Then for $I(x)$ an overtly discrete type depending on $X$ we have that $\Pi_{x:X}I(x) = \Pi_{x:X}\propTrunc{I(x)}_n$ and therefore the general dual to Tychonov. We expect it to not work for infinite dimensional compact Hausdorff spaces.
+\end{remark}
+
+
+%\subsection{Tychonov's dual for finite dimensional compact Hausdorff spaces and overtly discrete types}
+
+%\begin{lemma}
+%Assume given $X$ a compact Hausdorff space such that 
+%\end{lemma}
+
+%\begin{remark}
+%TODO find $X$ infinite dimensional compact Hausdorff space and $I(x)$ untruncated overtly discrete type such that $\Pi_{x:X}I(x)$ is not overtly discrete.
+%\end{remark}
+
 
 
 
