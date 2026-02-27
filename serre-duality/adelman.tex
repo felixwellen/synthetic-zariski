@@ -564,6 +564,52 @@ where $\nabla(n,m) = i_n(m) - m$.
   By \Cref{H1-on-adelman-module} we have $H^1(L,M)=0$ and therefore a not necessarily linear section $s:L\to N$.
 \end{proof}
 
+\rednote{The following can be written out in more detail. Here the Tor-groups are defined purely in terms of resolutions. All results about exact sequences should be recovered from the horseshoe lemma and the snake lemma.}
+Adelman modules are also closed under tensor products.
+Let $M$ and $N$ be two Adelman modules that are presented by $P_1, P_2$ and $Q_1, Q_2$ respectively.
+Because the tensor product is right exact, it preserves presentations.
+Consider the following commutative square
+\begin{center}
+  \begin{tikzcd}
+    P_2 \otimes Q_2 \ar{r} \ar{d} & P_2 \otimes Q_1 \ar{d} \\
+    P_1 \otimes Q_2 \ar{r} & P_1 \otimes Q_1
+  \end{tikzcd}
+\end{center}
+By the characterization of pushout squares in abelian categories we obtain an exact sequence
+\begin{center}
+  \begin{tikzcd}
+    P_1 \otimes Q_2 \oplus P_2 \otimes Q_1 \ar{r} & P_1 \otimes Q_1 \ar[two heads]{r} & M \otimes N
+  \end{tikzcd}
+\end{center}
+If the first two terms of this sequence are Adelman, then so is the last one.
+Thus it suffices to show that the tensor of finitely copresented modules is Adelman to show that all Adelman modules are closed under tensor products.
+
+\begin{lemma}
+  Let $P$ and $Q$ be fcp modules.
+  Then $P \otimes Q$ is fcp as well.
+\end{lemma}
+
+\begin{proof}
+  Let $Q \hookrightarrow R^{n_1} \rightarrow R^{n_2}$ be a copresentation of $Q$.
+  It suffices to show that the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic, because $P \otimes R^{n_i}$ is fcp for $i = 0$, or $1$.
+
+  Let $M$ be the image of the map $R^{n_1} \rightarrow R^{n_2}$.
+  Since both $Q$ and $R^{n_1}$ are projective in the Adelman category, the short exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      Q \ar[hook]{r} & R^{n_1} \ar[two heads]{r} & M
+    \end{tikzcd}
+  \end{center}
+  is a projective resolution.
+  Since the tensor product is right exact we get an exact sequence after applying $P \otimes (\cdot)$
+  \begin{center}
+    \begin{tikzcd}
+      \textup{Tor}_1(P,M) \ar[hook]{r} & P \otimes Q \ar{r} & P \otimes R^{n_1} \ar[two heads]{r} & P \otimes M
+    \end{tikzcd}
+  \end{center}
+  As $\textup{Tor}_1(\cdot, \cdot)$ is balanced, we can compute it starting from $P$, but then we see that $\textup{Tor}_1(P,M) \subseteq 0$, so the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic.
+\end{proof}
+
 \paragraph{Questions:}
 \begin{enumerate}
 \item Is dualization an antiequivalence of Adelman modules?
