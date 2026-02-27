@@ -496,6 +496,60 @@ Using \Cref{adelman-ext-pb-red}, we can deduce a stronger result than \Cref{fp-e
   By \Cref{adelman-ext-pb-red}, $N$ is Adelman as well.
 \end{proof}
 
+The following method is an idea to extend the current results beyond finitely generated Adelman modules to countably generated ones.
+In order to make this work we will assume the axiom of dependent choice, but it is not known if we can get around this.
+Supoose that $M$ is a countably generated Adelman module, and let $g : R[\mathbb{N}] \twoheadrightarrow M$ be the generating map.
+The following sequence of submodules $M_n := \underset{0 \leq i \leq n}{\bigcup} \langle g(i) \rangle$ with the canonical injections $i_n : M_n \hookrightarrow M_{n+1}$ has $M$ as its colimit.
+We can then express the colimit by the following diagram
+\begin{center}
+  \begin{tikzcd}
+    \underset{n : \mathbb{N}}{\bigoplus} M_n \ar[hook]{r}{\nabla} & \underset{n : \mathbb{N}}{\bigoplus} M_n \ar[two heads]{r} & M
+  \end{tikzcd}
+\end{center}
+where $\nabla(n,m) = i_n(m) - m$.
+
+\begin{proposition}
+  Assume that dependent choice holds.
+  Let $M$ be a countably generated Adelman module.
+  Then for any finitely presented module $I$, $\textup{Ext}^1(M,I)=0$.
+\end{proposition}
+
+\begin{proof}
+  By applying $\textup{Hom}(\cdot, I)$ to the above short exact sequence yields a long exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      \textup{Hom}(M,I) \ar[hook]{r} & \underset{n : \mathbb{N}}{\prod} \textup{Hom}(M_n, I) \ar{r}{\Delta} & \underset{n : \mathbb{N}}{\prod} \textup{Hom}(M_n, I) \ar[looseness = 1, out = -10, in = 170]{dll} \\
+      \textup{Ext}^1(M,I) \ar{r} & \underset{n : \mathbb{N}}{\prod} \textup{Ext}^1(M_n, I) \ar{r} & \underset{n : \mathbb{N}}{\prod} \textup{Ext}^1(M_n, I)
+    \end{tikzcd}
+  \end{center}
+  where $\Delta = \nabla^*$.
+  By \Cref{fg-extension-adelman}, we know that $\textup{Ext}^1(M_n, I) = 0$ for all $n : \mathbb{N}$.
+  Thus, $\textup{Ext}^1(M,I) = 0$ if and only if $\Delta$ is epic.
+
+  We prove that $\Delta$ is epic using dependent choice.
+  Let $\Delta_k : \underset{0 \leq i \leq k + 1}{\prod} \textup{Hom}(M_i, I) \rightarrow \underset{0 \leq i \leq k}{\prod} \textup{Hom}(M_i, I)$ be the restriction of $\Delta$ to the $k+1$-st factors, and we set $\Delta_{-1}$ to be the terminal map.
+  First we need to show that each $\Delta_k$ is epi.
+  Let $g : \underset{0 \leq i \leq k}{\prod} \textup{Hom}(M_i, I)$ be a sequence of homomorphisms.
+  The map $\textup{Hom}(M_k+1,I) \rightarrow \textup{Hom}(M_k, I)$ is epi, because $I$ is injective among the Adelman modules, \Cref{fcp-projective-fp-injective}.
+  For our lift, let $f_0 : M_0 \rightarrow I$ be some map, say the $0$-map.
+  Then we inductively make each lift $f_{i+1}$ by lifting $g_i-f_i$ for each $i \leq k$.
+  \rednote{I believe that since this induction is finite, we can commute out the pi of the propositional truncation and proceed with the induction as I described.}
+
+  We now need to show that for any $k$, the map into the following pullback
+  \begin{center}
+    \begin{tikzcd}
+      \underset{0 \leq i \leq k + 2}{\prod}\textup{Hom}(M_i, I) \ar[two heads, bend right, looseness = 0.5]{ddr} \ar[two heads,bend left, looseness = 1, out = 15]{rrd}{\Delta_{k+1}} \ar[dashed]{rd} \\
+      & \textup{PB} \ar[two heads]{d} \ar[two heads]{r} \ar[phantom]{rd}[very near start]{\lrcorner} & \underset{0 \leq i \leq k + 1}{\prod} \textup{Hom}(M_i, I) \ar[two heads]{d} \\
+      & \underset{0 \leq i \leq k + 1}{\prod} \textup{Hom}(M_i, I) \ar[two heads]{r} & \underset{0 \leq i \leq k}{\prod} \textup{Hom}(M_i, I)
+    \end{tikzcd}
+  \end{center}
+  is epi.
+  Any element of the pullback are two sequences $(f,g)$ such that $\Delta_k(f)_i = g_i$ for all $i \leq k$.
+  Thus the sequence $f$ determines a valid lift, only missing the $k+1$-st component.
+  We set $f_{k+1}$ to be a lift of $f_k - g_k$ along $i_k$.
+  This puts us in a position where we can use dependent choice, so $\Delta$ is epic.
+\end{proof}
+
 \begin{lemma}
   \rednote{TODO: This is just an idea}.
   Let
