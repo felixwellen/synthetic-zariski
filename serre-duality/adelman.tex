@@ -498,9 +498,9 @@ Using \Cref{adelman-ext-pb-red}, we can deduce a stronger result than \Cref{fp-e
 
 The following method is an idea to extend the current results beyond finitely generated Adelman modules to countably generated ones.
 In order to make this work we will assume the axiom of dependent choice, but it is not known if we can get around this.
-Supoose that $M$ is a countably generated Adelman module, and let $g : R[\mathbb{N}] \twoheadrightarrow M$ be the generating map.
-The following sequence of submodules $M_n := \underset{0 \leq i \leq n}{\bigcup} \langle g(i) \rangle$ with the canonical injections $i_n : M_n \hookrightarrow M_{n+1}$ has $M$ as its colimit.
-We can then express the colimit by the following diagram
+Suppose that $M$ is a countably generated Adelman module, and let $g : R[\mathbb{N}] \twoheadrightarrow M$ be the generating map.
+The following sequence of submodules $M_n := \langle g(0), \ldots, g(n) \rangle$ with the canonical injections $i_n : M_n \hookrightarrow M_{n+1}$ has $M$ as its colimit.
+We can then express the colimit by the following short exact sequence
 \begin{center}
   \begin{tikzcd}
     \underset{n : \mathbb{N}}{\bigoplus} M_n \ar[hook]{r}{\nabla} & \underset{n : \mathbb{N}}{\bigoplus} M_n \ar[two heads]{r} & M
@@ -515,7 +515,7 @@ where $\nabla(n,m) = i_n(m) - m$.
 \end{proposition}
 
 \begin{proof}
-  By applying $\textup{Hom}(\cdot, I)$ to the above short exact sequence yields a long exact sequence
+  Applying $\textup{Hom}(\cdot, I)$ to the above short exact sequence yields a long exact sequence
   \begin{center}
     \begin{tikzcd}
       \textup{Hom}(M,I) \ar[hook]{r} & \underset{n : \mathbb{N}}{\prod} \textup{Hom}(M_n, I) \ar{r}{\Delta} & \underset{n : \mathbb{N}}{\prod} \textup{Hom}(M_n, I) \ar[looseness = 1, out = -10, in = 170]{dll} \\
@@ -527,10 +527,11 @@ where $\nabla(n,m) = i_n(m) - m$.
   Thus, $\textup{Ext}^1(M,I) = 0$ if and only if $\Delta$ is epic.
 
   We prove that $\Delta$ is epic using dependent choice.
-  Let $\Delta_k : \underset{0 \leq i \leq k + 1}{\prod} \textup{Hom}(M_i, I) \rightarrow \underset{0 \leq i \leq k}{\prod} \textup{Hom}(M_i, I)$ be the restriction of $\Delta$ to the $k+1$-st factors, and we set $\Delta_{-1}$ to be the terminal map.
-  First we need to show that each $\Delta_k$ is epi.
+  Let $\Delta_k : \underset{0 \leq i \leq k + 1}{\prod} \textup{Hom}(M_i, I) \rightarrow \underset{0 \leq i \leq k}{\prod} \textup{Hom}(M_i, I)$ be the restriction of $\Delta$ to the indicated factors, and set $\Delta_{-1}$ to be the terminal map.
+  \rednote{I think the subscripts on the products need to be the same, since one of the components of $\nabla$ is $-\textup{id}$.  Unless you mean to co-restrict in the codomain as well?}
+  First we show that each $\Delta_k$ is epi.
   Let $g : \underset{0 \leq i \leq k}{\prod} \textup{Hom}(M_i, I)$ be a sequence of homomorphisms.
-  The map $\textup{Hom}(M_k+1,I) \rightarrow \textup{Hom}(M_k, I)$ is epi, because $I$ is injective among the Adelman modules, \Cref{fcp-projective-fp-injective}.
+  The map $\textup{Hom}(M_{k+1},I) \rightarrow \textup{Hom}(M_k, I)$ is epi, because $I$ is injective among the Adelman modules, using \Cref{fcp-projective-fp-injective}.
   For our lift, let $f_0 : M_0 \rightarrow I$ be some map, say the $0$-map.
   Then we inductively make each lift $f_{i+1}$ by lifting $g_i-f_i$ for each $i \leq k$.
   \rednote{I believe that since this induction is finite, we can commute out the pi of the propositional truncation and proceed with the induction as I described.}
@@ -544,10 +545,14 @@ where $\nabla(n,m) = i_n(m) - m$.
     \end{tikzcd}
   \end{center}
   is epi.
-  Any element of the pullback are two sequences $(f,g)$ such that $\Delta_k(f)_i = g_i$ for all $i \leq k$.
-  Thus the sequence $f$ determines a valid lift, only missing the $k+1$-st component.
+  \rednote{I don't understand what this pullback has to do with our goal.}
+  An element of the pullback is given by two sequences $(f,g)$ such that $\Delta_k(f)_i = g_i$ for all $i \leq k$.
+  Thus the sequence $f$ determines a valid lift, only missing the $(k+1)$-st component.
   We set $f_{k+1}$ to be a lift of $f_k - g_k$ along $i_k$.
   This puts us in a position where we can use dependent choice, so $\Delta$ is epic.
+
+  \rednote{Can't we just show directly that $\Delta$ is epic using the method in the second-last paragraph?
+  We start with $g : \Prod_i \textup{Hom}(M_i, I)$, and define $f$ by making a sequence of choices?}
 \end{proof}
 
 \begin{lemma}
@@ -566,7 +571,7 @@ where $\nabla(n,m) = i_n(m) - m$.
 
 \rednote{The following can be written out in more detail. Here the Tor-groups are defined purely in terms of resolutions. All results about exact sequences should be recovered from the horseshoe lemma and the snake lemma.}
 Adelman modules are also closed under tensor products.
-Let $M$ and $N$ be two Adelman modules that are presented by $P_1, P_2$ and $Q_1, Q_2$ respectively.
+Let $M$ and $N$ be two Adelman modules that are presented by the finitely copresented modules $P_1, P_2$ and $Q_1, Q_2$, respectively.
 Because the tensor product is right exact, it preserves presentations.
 Consider the following commutative square
 \begin{center}
@@ -575,10 +580,11 @@ Consider the following commutative square
     P_1 \otimes Q_2 \ar{r} & P_1 \otimes Q_1
   \end{tikzcd}
 \end{center}
+\rednote{Can you explain how the next sentence follows from the previous diagram?  Which pushout square are you talking about?}
 By the characterization of pushout squares in abelian categories we obtain an exact sequence
 \begin{center}
   \begin{tikzcd}
-    P_1 \otimes Q_2 \oplus P_2 \otimes Q_1 \ar{r} & P_1 \otimes Q_1 \ar[two heads]{r} & M \otimes N
+    (P_1 \otimes Q_2) \oplus (P_2 \otimes Q_1) \ar{r} & P_1 \otimes Q_1 \ar[two heads]{r} & M \otimes N
   \end{tikzcd}
 \end{center}
 If the first two terms of this sequence are Adelman, then so is the last one.
@@ -587,11 +593,13 @@ Thus it suffices to show that the tensor of finitely copresented modules is Adel
 \begin{lemma}
   Let $P$ and $Q$ be fcp modules.
   Then $P \otimes Q$ is fcp as well.
+  \rednote{Should ``fcp'' be ``Adelman'' here?}
 \end{lemma}
 
 \begin{proof}
   Let $Q \hookrightarrow R^{n_1} \rightarrow R^{n_2}$ be a copresentation of $Q$.
-  It suffices to show that the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic, because $P \otimes R^{n_i}$ is fcp for $i = 0$, or $1$.
+  It suffices to show that the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic, because $P \otimes R^{n_i}$ is fcp for $i = 0$ and $1$.
+  \rednote{I don't follow.  This would show that $P \otimes Q$ is the kernel of a map between finitely \textbf{co}presented modules.  But don't we need it to be the kernel of a map between finitely presented modules, or the \textbf{co}kernel of a map between finitely copresented modules?}
 
   Let $M$ be the image of the map $R^{n_1} \rightarrow R^{n_2}$.
   Since both $Q$ and $R^{n_1}$ are projective in the Adelman category, the short exact sequence
@@ -607,7 +615,7 @@ Thus it suffices to show that the tensor of finitely copresented modules is Adel
       \textup{Tor}_1(P,M) \ar[hook]{r} & P \otimes Q \ar{r} & P \otimes R^{n_1} \ar[two heads]{r} & P \otimes M
     \end{tikzcd}
   \end{center}
-  As $\textup{Tor}_1(\cdot, \cdot)$ is balanced, we can compute it starting from $P$, but then we see that $\textup{Tor}_1(P,M) \subseteq 0$, so the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic.
+  As $\textup{Tor}_1(\cdot, \cdot)$ is balanced, we can compute it starting from $P$, but then we see that $\textup{Tor}_1(P,M) \subseteq 0$, so the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic. \rednote{Why ``$\subseteq$'' and not ``=''?}
 \end{proof}
 
 \paragraph{Questions:}
