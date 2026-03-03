@@ -1,22 +1,21 @@
-\rednote{TODO update section summary}
-
-In this part we will use result from the previous section to compute some cohomology. In Sections \ref{vanishing-first-stone} and \ref{vanishing-stone} we will prove the vanishing of the cohomology of Stone spaces with overtly discrete coefficients (\Cref{vanishing-cohomology-stone}). In \Cref{cech-sheaf-agree-section} we use this vanishing to prove that \v{C}ech cohomology agree with the usual one for compact Hausdorff spaces  with overtly discrete coefficients (\Cref{cech-and-sheaf-agree}). The main point is that \v{C}ech cohomology is often simpler to compute. Indeed in \Cref{interval-acyclic} we apply this to proving the vanishing of the cohomology of the interval with overtly discrete coefficients (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficient is the same as countably presented coefficients.
+In this part we will use result from the previous section to compute some cohomology. In \Cref{non-abelian-cech}, we work in plain HoTT and give an explicit description for torsors over a type $X$ trivialised by a given cover in terms of cocycles for this cover. In \Cref{first-cohomology-stone-chaus} we leverage this description to study non-abelian cohomology with overtly discrete coefficients. We show it vanishes for Stone spaces, and explain how this description can be used to compute it for compact Hausdorff spaces. In \Cref{vanishing-stone} and \Cref{cech-and-sheaf-agree} we show how to extend these results to higher cohomology of Stone spaces and compact Hausdorff spaces with overtly discrete coefficients. Then in \Cref{interval-acyclic} we apply this to proving the vanishing of the cohomology of the interval with overtly discrete coefficients (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficient is the same as countably presented coefficients.
 
 
 \subsection{Non-abelian \v{C}ech cohomology}
+\label{non-abelian-cech}
 
 \rednote{TODO Are $X$ and $Y$ really an arbitrary type or did I use they were sets at some point?}
 
-First a little bit on torsors. We define torsors using right actions.
+In this section we work in plain HoTT and study non-abelian torsors over an arbitrary type $X$. Our goal is to describe non-abelian torsors over $X$ trivialised by a given cover in terms of cocycles for this cover. Recall that given a group $G$, a $G$-pseudotorsor is a type with a transitive and free right action of $G$ on $X$, and a $G$-torsor is an inhabited $G$-pseudotorsor.
 
 \begin{definition}
 Assume given $G$ a group and $\alpha$ a $G$-torsor with $x,y:\alpha$. Then $x^{-1}\cdot y$ is defined as the only $g:G$ such that $x\cdot g = y$. 
 \end{definition}
 
-Note that $(x^{-1}\cdot y)\cdot (y^{-1}\cdot z) = x^{-1}\cdot z$. Now we define non-abelian \v{C}ech cohomology
+Note that $(x^{-1}\cdot y)\cdot (y^{-1}\cdot z) = x^{-1}\cdot z$. Now we define non-abelian \v{C}ech cohomology.
 
 \begin{definition}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$.
+Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$.
 \begin{itemize}
 \item A cocycle is a $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ such that for all $x:X$ and $y_0,y_1,y_2:Y(x)$ we have $\delta_x(y_0,y_1)\cdot \delta_x(y_1,y_2) = \delta_x(y_0,y_2)$.
 \item Two cocycles $\delta$ and $\delta'$ are called cohomologous if there exists $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have $\gamma_x(y_0)\cdot\delta_x(y_0,y_1) = \delta'_x(y_0,y_1)\cdot\gamma_x(y_1)$.
@@ -26,29 +25,29 @@ Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depend
 Being cohomologous in an equivalence relation. 
 
 \begin{definition}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. The \v{C}ech non-abelian cohomology of $X$ with coefficient in $G$ is defined as cocycles modulo being cohomologous. It is denoted by $\check{H}^1(X,Y,G)$.
+Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. We define the non-abelian cover cohomology $\check{H}^1(X,Y,G)$ as the quotient of cocycles by being cohomologous.
 \end{definition}
 
 We prove a first easy lemma.
 
 \begin{lemma}\label{first-cech-has-section-vanish}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If we merely have $\Pi_{x:X}Y(x)$ then $\check{H}^1(X,Y,G)$ is a singleton.
+Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If we merely have $\Pi_{x:X}Y(x)$ then $\check{H}^1(X,Y,G)$ is a singleton.
 \end{lemma}
 
 \begin{proof}
 Assume given $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ a cocycle, we need to show it is cohomologous to $1$. It is enough to consider $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ defined by $\gamma_x(y) = \delta_x(t_x,y)$.
 \end{proof}
 
-Our main goal is to show that \v{C}ech cohomology $\check{H}^1(X,Y,G)$ corresponds to $G$-torsors over $X$ that are trivialised by $Y$. More precisely:
+Our main goal is now to show that the cover cohomology $\check{H}^1(X,Y,G)$ corresponds to $G$-torsors over $X$ that are trivialised by $Y$. We state this precisely using the following auxiliary definition.
 
 \begin{definition}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi_Y^*(\alpha) = 0 \}$ where $\pi_Y$ is the projection $\Sigma_{x:X}Y(x)\to X$.
+Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi_X^*(\alpha) = 0 \}$ where $\pi_X$ is the projection $\Sigma_{x:X}Y(x)\to X$.
 \end{definition}
 
-Our goal is then to show $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
+Our goal is then to show $H^1(X,Y,G) = \check{H}^1(X,Y,G)$. First we define a map from $H^1(X,Y,G)$ to $\check{H}^1(X,Y,G)$.
 
 \begin{lemma}\label{phi-well-defined}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Given $\alpha:\Pi_{x:X}BG(x)$ and $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$, we define $\phi(\alpha,\beta):\Pi_{x:X}G(x)^{Y(x)^2}$ by $\phi(\alpha,\beta)_x(y_0,y_1) = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)$. Then we have that:
+Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Given $\alpha:\Pi_{x:X}BG(x)$ and $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$, we define $\phi(\alpha,\beta):\Pi_{x:X}G(x)^{Y(x)^2}$ by $\phi(\alpha,\beta)_x(y_0,y_1) = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)$. Then we have that:
 
 \begin{enumerate}[(i)]
 \item $\phi(\alpha,\beta)$ is a cocycle.
@@ -65,9 +64,11 @@ As follows:
 \item To show that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous, we consider $\gamma = \lambda x,y.\, \beta'_x(y)^{-1}\cdot\beta_x(y)$. Given $x:X$ and $y_0,y_1:Y(x)$ we indeed have:
 \[\phi(\alpha,\beta')_x(y_0,y_1)\cdot\gamma_x(y_1) = (\beta'_x(y_0)^{-1}\cdot \beta'_x(y_1))\cdot (\beta'_x(y_1)^{-1}\cdot\beta_x(y_1) = \beta'_x(y_0)^{-1}\cdot\beta_x(y_1)\]
 \[\gamma_x(y_0)\cdot\phi(\alpha,\beta)_x(y_0,y_1) = (\beta'_x(y_0)^{-1}\cdot \beta_x(y_0))\cdot(\beta_x(y_0)^{-1}\cdot\beta_x(y_1)) = \beta'_x(y_0)^{-1}\cdot\beta_x(y_1)\]
-\item Since $\alpha$ is trivialised by $\pi_Y$, we know there there exists such a $\beta$. By (ii) the class of $\psi(\alpha,\beta)$ in $\check{H}^1(X,Y,G)$ does not depend on the choice of such a $\beta$.
+\item Since $\alpha$ is trivialised by $\pi_X$, we know that there there exists such a $\beta$. By (ii) the class of $\psi(\alpha,\beta)$ in $\check{H}^1(X,Y,G)$ does not depend on the choice of such a $\beta$.
 \end{enumerate}
 \end{proof}
+
+Now we define a map from $\check{H}^1(X,Y,G)$ to $H^1(X,Y,G)$.
 
 \begin{lemma}\label{psi-well-defined}
 Assume given $Y$ an inhabited type and $G$ a group, as well as $\delta:G^{Y^2}$ a cocycle. %such that for all $y_0,y_1,y_2:Y$ we have $\delta(y_0,y_1)\cdot\delta(y_1,y_2) = \delta(y_0,y_2)$. 
@@ -93,27 +94,29 @@ It is clear that the action is well-defined and free, now let us check it is tra
 
 The fact that $\propTrunc{\psi(\delta)}$ follows directly from $Y$ inhabited and (i).
 
-\item The map in $\psi(\delta)\to \psi(\delta')$ sending $\gamma$ to $\lambda y.\, \iota(y)\cdot\gamma(y)$ is clearly an equivalence of torsors.
+\item The map in $\psi(\delta)\to \psi(\delta')$ sending $\gamma$ to $\lambda y.\, \iota(y)\cdot\gamma(y)$ is an equivalence of torsors.
 
 \item Given (ii) and (iii) it is clear that we get an element in $H^1(X,G)$. From $(i)$ we see that we have $\Pi_{x:X}\psi(\delta_x)^{Y(x)}$, so that $\lambda x.\, \psi(\delta_x)$ is indeed trivialised by $\pi$.
 \end{enumerate}
 \end{proof}
 
+Now we prove the two maps are inverse to each other.
+
 \begin{proposition}\label{non-abelian-chech-is-sheaf-generic}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Then $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
+Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Then $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
 \end{proposition}
 
 \begin{proof}
 First we check that $\Psi\circ\Phi$ is the identity. It is enough to assume $\alpha:\Pi_{x:X}BG(x)$ with $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$ and prove that for all $x:X$ we have 
-\[\alpha(x) = \psi(\psi(\alpha,\beta)_x)\]
+\[\alpha(x) = \psi(\phi(\alpha,\beta)_x)\]
 where
 \[\psi(\phi_x(\alpha,\beta)) = \{\gamma:G(x)^{Y(x)}\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)\}\]
 
-We define $f:\alpha(x)\to \psi(\psi(\alpha,\beta)_x)$ by $f(e) = \lambda y.\, \beta_x(y)^{-1}\cdot e$. This is well defined as for all $y_0,y_1:Y(x)$ we have that:
+We define $f:\alpha(x)\to \psi(\phi(\alpha,\beta)_x)$ by $f(e) = \lambda y.\, \beta_x(y)^{-1}\cdot e$. This is well defined as for all $y_0,y_1:Y(x)$ we have that:
 \[f(p,y_0)\cdot f(p,y_1)^{-1} = \beta_x(y_0)^{-1}\cdot e \cdot (\beta_x(y_1)^{-1}\cdot e)^{-1} = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)\]
 Morever this map clearly commutes with the group action so it is enough to show it is an equivalence of type to conclude.
 
-In the other direction, assume given $\gamma:\psi(\psi(\alpha,\beta)_x)$. Then we have that $\beta_x(y)\cdot\gamma(y):\alpha(x)$ does not depend on the choice of $y:Y(x)$ by the hypothesis on $\gamma$, since $Y(x)$ is inhabited this defines an element $g(\gamma):\alpha(x)$.
+In the other direction, assume given $\gamma:\psi(\phi(\alpha,\beta)_x)$. Then we have that $\beta_x(y)\cdot\gamma(y):\alpha(x)$ does not depend on the choice of $y:Y(x)$ by the hypothesis on $\gamma$, and since $Y(x)$ is inhabited this defines an element $g(\gamma):\alpha(x)$.
 
 Next we check that $g(f(e)) = e$, since we want to prove a proposition we can assume $y:Y(x)$, then we need to prove that $\beta_x(y)\cdot (\beta_x(y)^{-1}\cdot e) = e$ which is clear. Finally to check $f(g(\gamma)) = \gamma$ we need to prove that $\beta_x(y)^{-1}\cdot \beta_x(y) \cdot \gamma(y) = \gamma(y)$ which is also obvious (we used the fact that $g(\gamma)$ can be computed using any $y:Y(x)$).
 
@@ -121,18 +124,19 @@ Now we check that $\Phi\circ \Psi$ is the identity. It is enough to prove that g
 \end{proof}
 
 \begin{corollary}\label{non-abelian-chech-is-sheaf-generic-ayclic-cover}
-Assume given $X$ a type, $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If $H^1(\Sigma_{x:X}Y(x), G\circ\pi) = 0$, then $H^1(X,G) = \check{H}^1(X,Y,G)$.
+Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If $H^1(\Sigma_{x:X}Y(x), G\circ\pi_X) = 0$, then $H^1(X,G) = \check{H}^1(X,Y,G)$.
 \end{corollary}
 
 
 \subsection{Non-abelian cohomology for Stone spaces and compact Hausdorff spaces}
+\label{first-cohomology-stone-chaus}
 
 \begin{lemma}\label{first-cech-scott-continuity}
 Assume given $S$ a Stone space with $(T_k(x))_{k:\N}$ a tower of Stone spaces and $G(x)$ an overly discrete group both depending on $x:S$. Write $T(x) =\mathrm{lim}_kT_k(x)$. Then $\check{H}^1(S,T,G) = \mathrm{colim}_k \check{H}^1(S,T_k,G)$.
 \end{lemma}
 
 \begin{proof}
-TODO
+We use Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left} repeatedly to show e.g.\ that $\Pi_{x:S}G(x)^{T(x)^2} = \mathrm{colim}_k \Pi_{x:S}G(x)^{T_k(x)^2}$. We omit the details. 
 \end{proof}
 
 \begin{lemma}\label{cech-vanishing-first-stone}
@@ -150,7 +154,7 @@ Assume given $S$ a Stone space with $G(x)$ an overtly discrete group depending i
 \end{proposition}
 
 \begin{proof}
-Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited Stone space depending on $x:S$ such that $\pi^*(\alpha) = 0$, so that $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $H^1(S,T,G) = 0$ and $\alpha=0$.
+Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited Stone space depending on $x:S$ such that $\pi_S^*(\alpha) = 0$, so that $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $H^1(S,T,G) = 0$ and $\alpha=0$.
 \end{proof}
 
 \begin{definition}
@@ -158,7 +162,7 @@ A \v{C}ech cover for a set $X$ consists of $S(x)$ an inhabited Stone spaces depe
 \end{definition}
 
 \begin{remark}
-A set $X$ merely has a \v{C}ech cover if and only is it is a compact Hausdorff space. This is because given $X$ a type with a \v{C}ech cover $S$, given $x:X$ and $y:S$ we have that $x=[y]$ if and only if $y\in f^{-1}(x)$ and any Stone subspace of a Stone space is closed.
+A set $X$ merely has a \v{C}ech cover if and only is it is a compact Hausdorff space. We just need to prove that identity types in an $X$ with a \v{C}ech cover $S$ are closed, but given $y,y':\Sigma_{x:X}S(x)$ we have that $\pi_X(y)=\pi_X(y')$ if and only if $y'\in \pi_X^{-1}(\pi_X(y))$ and any Stone subspace of a Stone space is closed.
 \end{remark}
 
 \begin{proposition}\label{non-abelian-cech-and-sheaf-agree}
