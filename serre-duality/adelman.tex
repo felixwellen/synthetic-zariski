@@ -40,8 +40,81 @@ The work in this section profited from discussions with Hugo Moeneclaey and Moha
   By linear extension: For a standard basis vector $e_i:R^m$ we merely have $y:R^n$ such that $\pi_N(y)=f(\pi_M(e_i))$. By exactness, we also get $R^{m'}\to R^{n'}$ by linear extension.
 \end{proof}
 
+From every commutative square we can extract some exact sequences.
+These will be in particular useful to show that finitely presented $R$-modules are closed under cokernels, and finitely copresented $R$-modules are closed under kernels.
+We will also use these sequences to show that Adelman modules are closed under tensor products.
+
 \begin{lemma}
-  \label{kernel-fp-is-cok-fcp}       
+  \label{diff-ker-is-ker}
+  Suppose we have a commutative square:
+  \begin{center}
+    \begin{tikzcd}
+      A \ar{r}{u} \ar{d}{f} & B \ar{d}{g} \\
+      C \ar{r}{v} & D
+    \end{tikzcd}
+  \end{center}
+  The difference kernel $K = \mathrm{Ker}(u) \cap \mathrm{Ker}(f)$ is the kernel of the induced map $ \mathrm{Ker}(u) \rightarrow \mathrm{Ker}(v)$.
+\end{lemma}
+
+\begin{proof}
+  Observe that $\mathrm{Ker}(u) \subseteq \mathrm{Ker}(gu)$.
+  Thus $\mathrm{Ker}(u) = \mathrm{Ker}(u) \cap \mathrm{Ker}(gu)$.
+  Therefore we obtain this result by the third isomorphism theorem:
+  \begin{center}
+    \begin{tikzcd}
+      K \ar[equal]{r} \ar[hook]{d} & K \ar[hook]{d} \\
+      \mathrm{Ker}(u) \ar{d} \ar[hook]{r} & A \ar{d}{(u,f)} \ar{r}{(u,gu)} & B \oplus D \ar[equal]{d} \\
+      \mathrm{Ker}(v) \ar[hook]{r} & B \oplus C \ar{r}{\mathrm{id} \oplus v} & B \oplus D
+    \end{tikzcd}
+  \end{center}
+  \hfill{\phantom{.}}
+\end{proof}
+
+\begin{proposition}
+  \label{exact-seq-comm-sq}
+  Given a commutative square as above, there is an exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      0 \ar{r} & K \ar[hook]{r} & A \ar{r} & B \oplus C \ar[two heads]{r} & B \underset{A}{\oplus} C \ar{r} & 0
+    \end{tikzcd}
+  \end{center}
+\end{proposition}
+
+\begin{proof}
+  This is an immediate consequence of \Cref{diff-ker-is-ker}.
+\end{proof}
+
+\begin{remark}
+We also get a dual exact sequence
+\begin{center}
+  \begin{tikzcd}
+    0 \ar{r} & B \underset{D}{\times} C \ar[hook]{r} & B \oplus C \ar{r} & D \ar[two heads]{r} & L \ar{r} & 0
+  \end{tikzcd}
+\end{center}
+where $L$ is the cokernel of the induced map $\mathrm{Cok}(u) \rightarrow \mathrm{Cok}(v)$.
+\end{remark}
+
+\begin{proposition}
+  \label{fcp-kernel-closure}
+Finitely copresented modules are closed under kernels.
+Dually, finitely presented modules are closed under cokernels.
+\end{proposition}
+
+\begin{proof}
+  Suppose that $K$ is the kernel of a map $M \rightarrow N$, where $M$ and $N$ are finitely copresented.
+  By \Cref{presentation-extension}, we can find a linear extension
+  \begin{center}
+    \begin{tikzcd}
+      K \ar[hook]{d} \\
+      M \ar{d} \ar[hook]{r} & R^{m_1} \ar{r} \ar{d} & R^{m_2} \ar{d} \\
+      N \ar[hook]{r} & R^{n_1} \ar{r} & R^{n_2}
+    \end{tikzcd}
+  \end{center}
+  By \Cref{exact-seq-comm-sq}, $K$ is also the kernel of the map $R^{m_1} \rightarrow R^{m_2 + n_1}$.
+\end{proof}
+
+\begin{lemma}
+  \label{kernel-fp-is-cok-fcp}
   Let $f:M\to N$ be a map of finitely presented $R$-modules, then $\ker f$ is the cokernel of a map between finitely copresented $R$-modules.
 \end{lemma}
 
@@ -580,8 +653,7 @@ Consider the following commutative square
     P_1 \otimes Q_2 \ar{r} & P_1 \otimes Q_1
   \end{tikzcd}
 \end{center}
-\rednote{Can you explain how the next sentence follows from the previous diagram?  Which pushout square are you talking about?}
-By the characterization of pushout squares in abelian categories we obtain an exact sequence
+By \Cref{exact-seq-comm-sq}, we obtain the following exact sequence
 \begin{center}
   \begin{tikzcd}
     (P_1 \otimes Q_2) \oplus (P_2 \otimes Q_1) \ar{r} & P_1 \otimes Q_1 \ar[two heads]{r} & M \otimes N
@@ -589,6 +661,7 @@ By the characterization of pushout squares in abelian categories we obtain an ex
 \end{center}
 If the first two terms of this sequence are Adelman, then so is the last one.
 Thus it suffices to show that the tensor of finitely copresented modules is Adelman to show that all Adelman modules are closed under tensor products.
+We will prove something slightly stronger, namely that the tensor of fcp modules are themselves fcp.
 
 \begin{lemma}
   Let $P$ and $Q$ be fcp modules.
