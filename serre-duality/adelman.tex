@@ -690,7 +690,132 @@ We will prove something slightly stronger, namely that the tensor of fcp modules
   As $\textup{Tor}_1(\cdot, \cdot)$ is balanced, we can compute it starting from $P$, but then we see that $\textup{Tor}_1(P,M) = 0$, so the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic.
 \end{proof}
 
-\paragraph{Questions:}
+\subsection{Strange modules}\label{strange-modules}
+
+Given a type $U$, one can form the following modules:
+\begin{equation}\label{eq:strange-sup}
+  \begin{tikzcd}
+    0 \ar[r] & K^U \ar[r,hook] & R \ar[rr,"c"] \ar[rd,->>] && R^U \\
+             &                  &            & R/K^U \ar[ru]
+  \end{tikzcd}
+\end{equation}
+where $c$ sends $r$ to the constant function with value $r$,
+$K^U$ is defined to be the kernel of $c$, and $R/K^U$ is the image of $c$.
+Since $c$ is a ring homomorphism, $K^U$ is an ideal, and $R/K^U$ is also a ring.
+
+We can also form
+\begin{equation}\label{eq:strange-sub}
+  \begin{tikzcd}
+    0 \ar[r] & R_U \ar[r,hook] & R \ar[r,->>] & R/R_U \ar[r] & 0
+  \end{tikzcd}
+\end{equation}
+where $R_U$ is the submodule defined by the predicate sending
+$x : R$ to $(x = 0) \lor \propTrunc{U}$.
+For this sequence, we may as well assume that $U$ is a proposition.
+Again, I think $R_U$ is an ideal and the quotient is a ring.
+
+In total, this gives five modules that depend on a type $U$,
+three of which are rings.
+
+There is a relationship between \eqref{eq:strange-sub} for $\lnot U$
+(top row in the following diagram)
+and \eqref{eq:strange-sup} for $U$ (bottom row):
+\begin{equation}\label{eq:strange-compare}
+  \begin{tikzcd}
+    0 \ar[r] & R_{\lnot U} := \sum_{x : R} (x = 0) \lor \lnot U \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>] \ar[d,equal] & R/R_{\lnot U} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^U \ar[r,hook]
+    & R \ar[r,->>] & R/K^U \ar[r] & 0
+  \end{tikzcd}
+\end{equation}
+The downwards inclusion on the left is easy to check:  Let $x : R$.  If $x = 0$,
+then $x$ is clearly in the submodule $K^U$, and if $\lnot U$, then $R^U = 0$, so $K^U$ is all
+of $R$, so $x$ is in $K^U$.
+This map is a monomorphism, since it factors one.
+The epimorphism on the right follows formally.
+
+Specializing \eqref{eq:strange-sub} to $U = V(r) = \Spec R/(r) = (r = 0)$,
+for a chosen $r : R$, gives the top row of this diagram,
+which is related to the kernel-image exact sequence coming from the
+map $\varphi_r : R \to R$ that multiplies by $r$:
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & R_{V(r)} := \sum_{x : R} (x = 0) \lor (r = 0) \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>] \ar[d,equal] & R/R_{V(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & \ker \varphi_r := \sum_{x : R} (xr = 0) \ar[r,hook]
+    & R \ar[r,->>] & \im \varphi_r \ar[r] & 0
+  \end{tikzcd}
+\end{equation*}
+The downwards inclusion on the left is easy to see, and the downwards
+epimorphism on the right follows formally.
+(This is not a special case of \eqref{eq:strange-compare}.)
+
+Recall that $D(r) = \lnot V(r) = (r \neq 0) = \inv(r) = \Spec R[1/r]$, so
+\eqref{eq:strange-compare} with $U = V(r)$ involves $V(r)$ and $D(r)$:
+\begin{equation}\label{eq:compare-Vr}
+  \begin{tikzcd}
+    0 \ar[r] & R_{D(r)} := \sum_{x : R} (x = 0) \lor (r \neq 0) \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>,"q"] \ar[d,equal] & R/R_{D(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^{V(r)} := (r) \ar[r,hook]
+    & R \ar[r,->>,"c"] & R^{V(r)} = R/(r) \ar[r] & 0
+  \end{tikzcd}
+\end{equation}
+Here note that $R^{V(r)} = R/(r)$ since $V(r) = \Spec R/(r)$, and so the kernel of $c$ is $(r)$.
+Also, the map $c$ is epi in this case, so $R^{V(r)}= R/K^{V(r)}$.
+
+The map $q$ in the previous diagram has the property that $\lnot (q(r) \neq 0)$.
+Indeed, assume that $q(r) \neq 0$.  Then $r \neq 0$, and therefore $R/R_{D(r))} = 0$,
+so $q(r) = 0$, a contradiction.
+\textbf{Questions:}
+Does this mean that $q(r)$ is nilpotent in the ring $R/R_{D(r)}$?
+Or does the relationship between not non-zero and nilpotence only work for the ring $R$?
+Is $q$ the universal map for which $\lnot (q(r) \neq 0)$?
+
+Next we can consider \eqref{eq:strange-compare} with $U := D(r)$, so
+$\lnot U = \lnot (r \neq 0)$.  We get
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & R_{\lnot D(r)} := \sum_{x : R} (x = 0) \lor \lnot (r \neq 0) \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>] \ar[d,equal] & R/R_{\lnot D(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^{D(r)} := \sum_{x : R} \exists_n (r^n x = 0)  \ar[r,hook]
+    & R \ar[r,->>] & R/K^{D(r)} \ar[r] & 0
+  \end{tikzcd}
+\end{equation*}
+where $R/K^{D(r)}$ is the image of $R$ in $R^{D(r)} = R[1/r]$.
+\rednote{Need to say a few words about why $K^{D(r)}$ has that description, or cite something.}
+
+Finally, consider \eqref{eq:strange-compare} with $U := \lnot D(r)$, noting that
+$\lnot \lnot D(r) = D(r)$ (since $D(r)$ is already a negation):
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & R_{D(r)} := \sum_{x : R} (x = 0) \lor (r \neq 0) \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>,"q"] \ar[d,equal] & R/R_{D(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^{\lnot D(r)} \ar[r,hook]
+    & R \ar[r,->>,"q'"] & R/K^{\lnot D(r)} \ar[r] & 0
+  \end{tikzcd}
+\end{equation*}
+This has the same top row as \eqref{eq:compare-Vr}.
+\textbf{I haven't thought about the bottom row here.}
+Does it have a nice description?
+How does it compare to the bottom row of \eqref{eq:compare-Vr}?
+Is the map $c : R \to R^{\lnot D(r)}$ epic in this case?
+Is $c(r)$ nilpotent?
+
+Altogether there are approximately 15 modules above, five for each of
+$V(r)$, $D(r)$ and $\lnot D(r)$.
+(A couple turn out to be equal, and a couple were introduced that don't
+come from the general construction.)
+
+\textbf{Can we show that some of these are not Adelman, or have other bad properties?}
+(Presumably by proving statements like: $\lnot (\text{for all $r : R$, $R_{D(r)}$ is Adelman})$.)
+The technique in Theorem 3.2.1 of the topology draft might be helpful.
+Note that the map $\varphi_r$ that appears above also appears there.
+
+When $V$ is a closed proposition, such as $V(r)$, we know that
+$R^V$ is Adelman, which implies that $K^V$ and $R/K^V$ are as well.
+\rednote{Citation?}
+
+\subsection{Questions (and some answers)}
 \begin{enumerate}
 \item Is dualization an antiequivalence of Adelman modules?
 
@@ -730,9 +855,5 @@ We will prove something slightly stronger, namely that the tensor of fcp modules
       $R^\mathbb{N}$.  A direct sum of countable copies of $R$.  (Citations/proofs?)
 
 Are there some that are ``smaller'' in some sense?
-
-What about $R^U$ where $U$ is a proposition that isn't closed, and also the kernel $K^U$ of the natural map $R \to R^{U}$?
-And the quotient $R/K^U$?
-What about the submodule $R_U$ of $R$ containing $x$ if merely ($x = 0$ or $U$),
-as well as the quotient $R/R_U$, where $U$ is any proposition?
+What about the ones mentioned in \cref{strange-modules}?
 \end{enumerate}
