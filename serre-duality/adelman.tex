@@ -790,12 +790,13 @@ $\lnot U = \lnot (r \neq 0)$.  We get
   \begin{tikzcd}
     0 \ar[r] & R_{\lnot D(r)} := \sum_{x : R} (x = 0) \lor \lnot (r \neq 0) \ar[r,hook] \ar[d,hook]
     & R \ar[r,->>] \ar[d,equal] & R/R_{\lnot D(r)} \ar[r] \ar[d,->>] & 0 \\
-    0 \ar[r] & K^{D(r)} := \sum_{x : R} \exists_n (r^n x = 0)  \ar[r,hook]
+    0 \ar[r] & K^{D(r)} = \sum_{x : R} \exists_n (r^n x = 0)  \ar[r,hook]
     & R \ar[r,->>] & R/K^{D(r)} \ar[r] & 0
   \end{tikzcd}
 \end{equation*}
 where $R/K^{D(r)}$ is the image of $R$ in $R^{D(r)} = R[1/r]$.
-\rednote{Need to say a few words about why $K^{D(r)}$ has that description, or cite something.}
+The displayed description of $K^{D(r)}$ follows from the construction of $R[1/r]$
+using equivalence classes of fractions.  \rednote{Citation?}
 
 Finally, consider \eqref{eq:strange-compare} with $U := \lnot D(r)$, noting that
 $\lnot \lnot D(r) = D(r)$ (since $D(r)$ is already a negation):
@@ -807,10 +808,23 @@ $\lnot \lnot D(r) = D(r)$ (since $D(r)$ is already a negation):
     & R \ar[r,->>,"q'"] & R/K^{\lnot D(r)} \ar[r] & 0
   \end{tikzcd}
 \end{equation*}
-This has the same top row as \eqref{eq:compare-Vr}.
-\textbf{I haven't thought about the bottom row here.}
-Does it have a nice description?
-How does it compare to the bottom row of \eqref{eq:compare-Vr}?
+This has the same top row as \eqref{eq:compare-Vr}, and in fact, since we
+have a map $V(r) \to \lnot D(r)$, that diagram factors through this one:
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & R_{D(r)} := \sum_{x : R} (x = 0) \lor (r \neq 0) \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>,"q"] \ar[d,equal] & R/R_{D(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^{\lnot D(r)} \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>,"q'"] \ar[d,equal] & R/K^{\lnot D(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^{V(r)} := (r) \ar[r,hook]
+    & R \ar[r,->>,"c"] & R^{V(r)} = R/(r) \ar[r] & 0
+  \end{tikzcd}
+\end{equation*}
+\textbf{It would be nice to understand the middle row better.}
+Thomas suggested that $R^{\lnot D(r)} = \lim_k R/\langle r^k \rangle$,
+using the theory of infinitesimal neighbourhoods, but I'm not sure it applies here.
+If true, that $K^{\lnot D(r)} = \cap_k \langle r^k \rangle$.
+Other questions:
 Is the map $c : R \to R^{\lnot D(r)}$ epic in this case?
 Is $c(r)$ nilpotent?
 
@@ -818,11 +832,24 @@ Altogether there are approximately 15 modules above, five for each of
 $V(r)$, $D(r)$ and $\lnot D(r)$.
 (A couple turn out to be equal, and a couple were introduced that don't
 come from the general construction.)
+One can also take kernels or cokernels of the various vertical maps.
 
 \textbf{Can we show that some of these are not Adelman, or have other bad properties?}
 (Presumably by proving statements like: $\lnot (\text{for all $r : R$, $R_{D(r)}$ is Adelman})$.)
 The technique in Theorem 3.2.1 of the topology draft might be helpful.
 Note that the map $\varphi_r$ that appears above also appears there.
+
+Methods for showing that an $R$-module $M$ is not Adelman:
+\begin{itemize}
+\item Show that the map $M \to M^{\ast\ast}$ is not an equivalence.
+\item Show that $M$ is not wqc.
+\item Show that there exists an epi $e : C \to M$ and a map $f : A \to M$,
+with $A$ and $C$ finitely co-presented, such that $f$ does not lift through $e$.
+(See \Cref{maps-into-coherent-lift}.)
+\item Show that there exists a mono $i : M \to C$ and a map $f : M \to A$,
+with $A$ and $C$ finitely presented, such that $f$ does not extend over $i$.
+(The dual of \Cref{maps-into-coherent-lift}.)
+\end{itemize}
 
 When $V$ is a closed proposition, such as $V(r)$, we know that
 $R^V$ is Adelman, which implies that $K^V$ and $R/K^V$ are as well.
