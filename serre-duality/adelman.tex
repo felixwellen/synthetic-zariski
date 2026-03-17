@@ -53,16 +53,19 @@ We will also use these sequences to show that Adelman modules are closed under t
       C \ar{r}{v} & D
     \end{tikzcd}
   \end{center}
-  The difference kernel $K = \mathrm{Ker}(u) \cap \mathrm{Ker}(f)$ is the kernel of the induced map $ \mathrm{Ker}(u) \rightarrow \mathrm{Ker}(v)$.
+  The kernel $K$ of the induced map $\mathrm{Ker}(u) \rightarrow \mathrm{Ker}(v)$ is equivalent to the kernel $K$ of $(u, f) : A \to B \oplus C$.
 \end{lemma}
+\rednote{Is ``difference kernel'' the right name?  I see no subtraction here.  I removed it.}
+\rednote{I got rid of intersections, as they create an extra (missing) step, to show that
+they are the same as kernels of maps into coproducts.}
 
 \begin{proof}
   Observe that $\mathrm{Ker}(u) \subseteq \mathrm{Ker}(gu)$.
-  Thus $\mathrm{Ker}(u) = \mathrm{Ker}(u) \cap \mathrm{Ker}(gu)$.
+  Thus $\mathrm{Ker}(u) = \mathrm{Ker}((u, gu) : A \to B \oplus D)$.
   Therefore we obtain this result by the third isomorphism theorem:
   \begin{center}
     \begin{tikzcd}
-      K \ar[equal]{r} \ar[hook]{d} & K \ar[hook]{d} \\
+      K \ar[equal]{r} \ar[hook]{d} & K' \ar[hook]{d} \\
       \mathrm{Ker}(u) \ar{d} \ar[hook]{r} & A \ar{d}{(u,f)} \ar{r}{(u,gu)} & B \oplus D \ar[equal]{d} \\
       \mathrm{Ker}(v) \ar[hook]{r} & B \oplus C \ar{r}{\mathrm{id} \oplus v} & B \oplus D
     \end{tikzcd}
@@ -81,8 +84,15 @@ We will also use these sequences to show that Adelman modules are closed under t
 \end{proposition}
 
 \begin{proof}
-  This is an immediate consequence of \Cref{diff-ker-is-ker}.
+  By \Cref{diff-ker-is-ker} we can replace $K$ with $K'$, in which case the sequence is immediate.
 \end{proof}
+
+\rednote{As \Cref{exact-seq-comm-sq} was stated before (using the other kernel) it was trivial and didn't require \Cref{diff-ker-is-ker}.
+In fact, it didn't depend on $g$, $v$ or $D$ at all.
+I've now stated it with the other kernel.
+Looking at uses, we never actually use the last term in the sequence, so in fact we don't
+need this result at all and instead can just use \Cref{diff-ker-is-ker}.  So should we delete this?
+(Thomas, delete these comments when read and handled.)}
 
 \begin{remark}
 We also get a dual exact sequence
@@ -101,8 +111,8 @@ Dually, finitely presented modules are closed under cokernels.
 \end{proposition}
 
 \begin{proof}
-  Suppose that $K$ is the kernel of a map $M \rightarrow N$, where $M$ and $N$ are finitely copresented.
-  By \Cref{presentation-extension}, we can find a linear extension
+  Suppose that $K$ is the kernel of a map $f : M \rightarrow N$, where $M$ and $N$ are finitely copresented.
+  By \Cref{presentation-extension}, we can find a linear extension of $f$ to copresentations of $M$ and $N$:
   \begin{center}
     \begin{tikzcd}
       K \ar[hook]{d} \\
@@ -110,7 +120,7 @@ Dually, finitely presented modules are closed under cokernels.
       N \ar[hook]{r} & R^{n_1} \ar{r} & R^{n_2}
     \end{tikzcd}
   \end{center}
-  By \Cref{exact-seq-comm-sq}, $K$ is also the kernel of the map $R^{m_1} \rightarrow R^{m_2 + n_1}$.
+  By \Cref{diff-ker-is-ker}, $K$ is also the kernel of the map $R^{m_1} \rightarrow R^{m_2 + n_1}$.
 \end{proof}
 
 \begin{lemma}
@@ -653,7 +663,7 @@ Consider the following commutative square
     P_1 \otimes Q_2 \ar{r} & P_1 \otimes Q_1
   \end{tikzcd}
 \end{center}
-By \Cref{exact-seq-comm-sq}, we obtain the following exact sequence
+By the dual of \Cref{diff-ker-is-ker}, we obtain the following exact sequence
 \begin{center}
   \begin{tikzcd}
     (P_1 \otimes Q_2) \oplus (P_2 \otimes Q_1) \ar{r} & P_1 \otimes Q_1 \ar[two heads]{r} & M \otimes N
