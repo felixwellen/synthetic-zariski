@@ -791,9 +791,25 @@ have a map $V(r) \to \lnot D(r)$, that diagram factors through this one:
   \end{tikzcd}
 \end{equation*}
 \textbf{It would be nice to understand the middle row better.}
-Thomas suggested that $R^{\lnot D(r)} = \lim_k R/\langle r^k \rangle$,
-using the theory of infinitesimal neighbourhoods, but I'm not sure it applies here.
-If true, that $K^{\lnot D(r)} = \cap_k \langle r^k \rangle$.
+Observe that $\lnot D(r) = \lnot \lnot (r = 0)$ and $(r = 0) = \Spec(R/\langle r \rangle)$ is a closed subtype of $\Spec(R)$, so by Lemma 1.1.2 of Topology of Synthetic Schemes draft we say that $\lnot D(r)$ is the formal neighbourhood of $(r = 0)$.
+\rednote{This notion of formal neighbourhood is different than the one presented in Differential Geometry of Synthetic Schemes draft.}
+Again, by Lemma 1.1.2, we get that $\lnot D(r) = \bigcup{k : \mathbb{N}}(r^k = 0)$.
+\rednote{This description of $\lnot D(r)$ is probably derivable directly from $\lnot D(r)$ being the proposition that $r$ is nilpotent.}
+Using continuity of the exponential and duality we can compute $R^{\lnot D(r)} = R^{\bigcup{k : \mathbb{N}}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k R/\langle r^k \rangle = \widehat{R_r}$.
+It follows that $K^{\lnot D(r)} = \bigcap_k \langle r^k \rangle$.
+Given some $r : R$ that is either invertible or nilpotent, we can deduce that $R^{\lnot D(r)}$ and $K^{\lnot D(r)}$ are Adelman.
+The following proposition tells us that we cannot assert this for a general $r : R$.
+
+\begin{proposition}
+  It is impossible to prove that for every $r : R$ the module $R^{\lnot D(r)}$ is wqc.
+\end{proposition}
+
+\begin{proof}
+  Assume that for any $r : R$ we know that $R^{\lnot D(r)}$ is wqc.
+  The global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module: $R[[x]] = \prod_{r : R} R^{\lnot D(r)}$ \rednote{Citation needed}.
+  By Lemma 7.1.10 of A Foundation for Synthetic Algebraic Geometry, we can deduce that $R[[x]]$ is wqc, which is a contradiction.
+\end{proof}
+
 Other questions:
 Is the map $c : R \to R^{\lnot D(r)}$ epic in this case?
 Is $c(r)$ nilpotent?
