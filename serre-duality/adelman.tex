@@ -58,6 +58,7 @@ We will also use these sequences to show that Adelman modules are closed under t
 \rednote{Is ``difference kernel'' the right name?  I see no subtraction here.  I removed it.}
 \rednote{I got rid of intersections, as they create an extra (missing) step, to show that
 they are the same as kernels of maps into coproducts.}
+\rednote{The difference kernel of f and g is defined as the intersection of their kernels, so the name was more appropriate with the intersections present.}
 
 \begin{proof}
   Observe that $\mathrm{Ker}(u) \subseteq \mathrm{Ker}(gu)$.
@@ -72,37 +73,6 @@ they are the same as kernels of maps into coproducts.}
   \end{center}
   \hfill{\phantom{.}}
 \end{proof}
-
-\begin{proposition}
-  \label{exact-seq-comm-sq}
-  Given a commutative square as above, there is an exact sequence
-  \begin{center}
-    \begin{tikzcd}
-      0 \ar{r} & K \ar[hook]{r} & A \ar{r} & B \oplus C \ar[two heads]{r} & B \underset{A}{\oplus} C \ar{r} & 0
-    \end{tikzcd}
-  \end{center}
-\end{proposition}
-
-\begin{proof}
-  By \Cref{diff-ker-is-ker} we can replace $K$ with $K'$, in which case the sequence is immediate.
-\end{proof}
-
-\rednote{As \Cref{exact-seq-comm-sq} was stated before (using the other kernel) it was trivial and didn't require \Cref{diff-ker-is-ker}.
-In fact, it didn't depend on $g$, $v$ or $D$ at all.
-I've now stated it with the other kernel.
-Looking at uses, we never actually use the last term in the sequence, so in fact we don't
-need this result at all and instead can just use \Cref{diff-ker-is-ker}.  So should we delete this?
-(Thomas, delete these comments when read and handled.)}
-
-\begin{remark}
-We also get a dual exact sequence
-\begin{center}
-  \begin{tikzcd}
-    0 \ar{r} & B \underset{D}{\times} C \ar[hook]{r} & B \oplus C \ar{r} & D \ar[two heads]{r} & L \ar{r} & 0
-  \end{tikzcd}
-\end{center}
-where $L$ is the cokernel of the induced map $\mathrm{Cok}(u) \rightarrow \mathrm{Cok}(v)$.
-\end{remark}
 
 \begin{proposition}
   \label{fcp-kernel-closure}
@@ -193,7 +163,7 @@ The following lemma will eventually imply that finitely co-presented $R$-modules
     \begin{center}
       \begin{tikzcd}
          & C\ar[d,->>,"e"] \\
-       A\ar[r,"f"]\ar[ru,dotted,"\exists"] & K 
+       A\ar[r,"f"]\ar[ru,dotted,"\exists"] & K
       \end{tikzcd}
     \end{center}
 \end{lemma}
