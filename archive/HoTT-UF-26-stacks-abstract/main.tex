@@ -1,0 +1,259 @@
+%latexmk -pdf -pvc main.tex
+\documentclass[letterpaper]{../../util/easychair}
+\usepackage{doc}
+\usepackage[expansion=true,protrusion=true]{microtype}
+%
+\newcommand{\easychair}{\textsf{easychair}}
+\newcommand{\miktex}{MiK{\TeX}}
+\newcommand{\texniccenter}{{\TeX}nicCenter}
+\newcommand{\makefile}{\texttt{Makefile}}
+\newcommand{\latexeditor}{LEd}
+
+% some stuff from ../util/zarisky.cls:
+\RequirePackage{amsmath,amssymb,mathtools}
+\newtheorem{axiom}{Axiom}
+
+\RequirePackage{tikz}
+\usetikzlibrary{arrows, cd, babel}
+
+% Referenzen
+\RequirePackage[backend=biber,style=alphabetic, backref, backrefstyle=none]{biblatex}
+\addbibresource{../../util/literature.bib}
+
+\newtheorem{definition}{Definition}
+
+%Numbers for axiom in abstract
+
+
+% content of ../util/zarisky.sty:
+% names for types
+% names for types
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Bool}{\mathrm{Bool}}
+\DeclareMathOperator{\Fin}{Fin}
+\newcommand{\unit}{\mathbf{1}}
+\newcommand{\two}{\mathbf{2}}
+\newcommand{\isContr}{\mathrm{isContr}}
+\newcommand{\isProp}{\mathrm{isProp}}
+\newcommand{\isSet}{\mathrm{isSet}}
+\newcommand{\isEquiv}{\mathrm{isEquiv}}
+\newcommand{\qinv}{\mathrm{qinv}}
+\newcommand{\mU}{\mathcal{U}}
+\newcommand{\Eq}[1]{\mathrm{Eq}_{#1}}
+\newcommand{\isNType}[1]{\mathrm{is}\mbox{-}{#1}\mbox{-}\mathrm{type}}
+\newcommand{\nType}[1]{#1\mbox{-}\mathrm{Type}}
+\newcommand{\Type}{\mathrm{Type}}
+\newcommand{\Prop}{\mathrm{Prop}}
+\newcommand{\Open}{\mathsf{Open}}
+\newcommand{\Susp}{\mathrm{Susp}}
+\newcommand{\propTrunc}[1]{\lVert #1 \rVert}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\Um}{\mathrm{Um}}
+\newcommand{\Boole}{\mathsf{Boole}}
+\newcommand{\Stone}{\mathsf{Stone}}
+\newcommand{\CHaus}{\mathsf{CHaus}}
+\newcommand{\Chaus}{\mathsf{CHaus}}
+\newcommand{\ODisc}{\mathsf{ODisc}}
+\newcommand{\Noo}{\N_{\infty}}
+\newcommand{\Closed}{\mathsf{Closed}}
+\newcommand{\ints}{\mathbb{Z}}
+%\newcommand{\KR}{K(R^{\times},1)}
+\newcommand{\KR}{\mathsf{Line}}
+\newcommand{\B}{\mathrm{B}}
+
+% names for terms
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\refl}{\mathrm{refl}}
+\newcommand{\pair}{\mathrm{pair}}
+\newcommand{\FunExt}{\mathrm{FunExt}}
+\newcommand{\transp}{\mathrm{tr}}
+\newcommand{\transpconst}{\mathrm{tconst}}
+\newcommand{\ua}{\mathrm{ua}}
+\newcommand{\fib}{\mathrm{fib}}
+\newcommand{\pt}{\mathrm{pt}}
+
+% category theory
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\yo}{\mathrm{y}}
+
+% algebra
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\divides}{\mathbin{|}}
+\DeclareMathOperator{\AbGroup}{Ab}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\newcommand{\Tors}[1]{#1\text{-}\mathrm{Tors}}
+\newcommand{\Mod}[1]{#1\text{-}\mathrm{Mod}}
+\newcommand{\Vect}[2]{#1\text{-}\mathrm{Vect}_{#2}}
+\newcommand{\fpMod}[1]{#1\text{-}\mathrm{Mod}_{\text{fp}}}
+\newcommand{\Alg}[1]{#1\text{-}\mathrm{Alg}}
+\newcommand{\Sym}{\mathrm{Sym}}
+
+% algebraic geometry
+\DeclareMathOperator{\Sp}{Spec}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Sch}{\mathrm{Sch}_{qc}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\Gm}{\mathbb{G}_m}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\mm}{\mathfrak{m}}
+\newcommand{\Bl}{\mathrm{Bl}}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\GL}{GL}
+\newcommand{\Pic}{\mathrm{Pic}}
+\newcommand{\Gr}{\mathrm{Gr}}
+\newcommand{\Aut}{\mathrm{Aut}}
+
+
+% misc
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\notion}[1]{\emph{#1}\index{#1}}
+\providecommand*\colonequiv{\vcentcolon\mspace{-1.2mu}\equiv}
+\newcommand{\ignore}[1]{}
+\newcommand{\rednote}[1]{{\color{red}(#1)}}
+
+% cohesion
+\DeclareMathOperator{\shape}{\textrm{\textesh}}
+
+% condensed
+\newcommand{\isSt}{\mathrm{isStone}}
+\newcommand{\bS}{\mathbb{S}}
+
+
+%
+\title{In Memory of Tim Lichtnau:\\
+Deligne-Mumford Stacks in Synthetic Algebraic Geometry
+}
+
+% Authors are joined by \and. 
+% Their affiliations are given by \inst, which indexes
+% into the list defined using \institute
+%
+\author{
+Felix Cherubini\inst{1}
+\and
+ Hugo Moeneclaey\inst{2}
+%\thanks{Speaker.}
+}
+
+% Institutes for affiliations are also joined by \and,
+\institute{
+  University of Augsburg
+  \and
+  University of Gothenburg and Chalmers University of Technology
+}
+%  \email{felix.cherubini@posteo.de}
+%% uncomment the following for multiple authors.
+%\and
+%  University of Gothenburg\\
+%  \email{Thierry.Coquand@cse.gu.se}
+%\and
+%  University of Gothenburg\\
+%  \email{geerligs@chalmers.se}
+%\and
+%  University of Gothenburg\\
+%  \email{hugomo@chalmers.se}
+%}
+
+%  \authorrunning{} has to be set for the shorter version of the authors' names;
+% otherwise a warning will be rendered in the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \authorrunning
+% will be rejected by EasyChair
+\authorrunning{Cherubini and Moeneclaey}
+
+% \titlerunning{} has to be set to either the main title or its shorter
+% version for the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \titlerunning
+% will be rejected by EasyChair
+\titlerunning{In Memory of Tim Lichtnau}
+
+\begin{document}
+\maketitle
+
+Tim Lichtnau died on the 26th of December 2024. In this talk we will pay hommage by presenting the work he was doing during his master thesis under our supervision, which was still ongoing at his time of death. He was very talented and planning to start a PhD on homotopy type theory, his passing is a great loss for the community.
+
+He was studying higher Deligne-Mumford stacks in the context of synthetic algebraic geometry. Before presenting his work we will introduce synthetic algebraic geometry and the traditional point of view on higher Deligne-Mumford stacks.
+
+
+\paragraph*{Synthetic algebraic geometry.}
+
+The main goal of algebraic geometry is to study roots of systems of polynomials over general rings. The key idea is to see the roots of such system as forming a space called an affine scheme, and then study affine schemes using geometric techniques. For this to work, we need to use a sophisticated notion of space, e.g.\ locally ringed spaces or Zariski sheaves.
+
+Tim's master thesis work was part of the synthetic algebraic geometry project, which aims to develop algebraic geometry using HoTT extended by axioms. In this alternative approach we assume a base ring $R$ in HoTT (which is assumed to be a set). The space corresponding to e.g.\ a polynomial $P:R[X]$ is simply defined as the type $\{x:R\ |\ P(x) = 0\}$, without any extra structure. This works because a type will ultimately be interpreted as a Zariski sheaves.
+
+We then assume the duality axiom, which implies e.g.\ that any map in $R\to R$ is a polynomial. We also assume that $R$ is local and that affine schemes satisfy a weakening of the axiom of choice called Zariski local choice.
+
+These axioms are satisfied by the interpretation of HoTT in the higher Zariski topos, where sets are interpreted as Zariski sheaves. So we can interpret any result about sets in synthetic algebraic as a result about Zariski sheaves. The interpretation also works for higher types, we give a quick summary of the terminology:
+
+\begin{tabular}{c|c|c}
+HoTT & Traditional name & Intuition \\
+\hline
+Sets & Zariski sheaves & Sheaves of sets on the Zariski site\\
+Groupoids & Zariski stacks & ``Sheaves'' of groupoids on the Zariski site\\
+Types & higher Zariski stacks & ``Sheaves'' of $\infty$-groupoids on the Zariski site\\
+\end{tabular}
+
+
+\paragraph*{Deligne-Mumford stacks.}
+
+While algebraic geometry starts with the study of affine schemes, it quickly demands considering more general spaces. Schemes are  defined synthetically as sets that are Zariski-locally affine. The most famous examples are the projective spaces $\bP^n$, which a synthetically just defined by $\bP^n = \{L\subset R^{n+1}\ |\ L\ \mathrm{is\ a\ line}\}$.
+
+But moduli spaces (i.e.\ spaces of spaces) rarely are schemes. For example let us consider the type of smooth cubic curves. Since some smooth cubic curves have non-trivial automorphisms, this type is not a set but rather a groupoid, so it cannot be a scheme. 
+
+To counter that the notion of Deligne-Mumford stacks was introduced. Those are étale stacks (a notion more restrictive than Zariski stack) which are in some sense not too far from being schemes. Examples include the aforementioned moduli stack of smooth cubic curves, or more interestingly the moduli stack of eliiptic curve of a given genus $g$. In synthetic algebraic geometry, being a Deligne-Mumford stack will simply be $1$-types satisfying some proposition.
+
+This was latter extended to higher Deligne-Mumford stack \cite{TODOsimpson}., which is essentially the same idea but using sheaves of $\infty$-groupoids rather than sheaves of groupoids.
+
+
+\paragraph*{Synthetic higher Deligne-Mumford stacks.}
+
+Today we will present Tim's strikingly elegant definition of higher Deligne-Mumford stacks. This presentation relies on two crucial characteristics of HoTT:
+\begin{enumerate}
+\item Lex modalitites are well behaved in HoTT, so that defining higher étale stack is no more difficult than defining étale sheaves.
+\item Types have a natural higher homotopical structure, so that defining higher Deligne-Mumford stacks is no more difficult than defining Deligne-Mumford sets (aka algebraic spaces). 
+\end{enumerate}
+
+We are now ready for the definition. 
+
+\begin{definition}
+An affine scheme $S$ is in $\mathbb{T}$ if we have $\neg\neg S$ and for all $\epsilon:R$ such that $\epsilon^2=0$, we have that $S\to S^{\epsilon=0}$ is an equivalence.
+\end{definition}
+
+\begin{definition}
+A type $X$ is an étale stack if and only if for all $S:\mathbb{T}$ we have that the map $X\to X^{\propTrunc{S}}$ is an equivalence.
+\end{definition}
+
+\begin{definition}
+The class of covering stack is the smallest class of étale stack containing $\mathbb{T}$ such that if there exists $S:\mathbb{T}$ and a map $S\to X$ which fibers are covering stacks, then $X$ is a covering stack.
+\end{definition}
+
+\begin{definition}
+An étale stack $Y$ is a Deligne-Mumford stack if there exists $S$ affine and a map $S\to X$ which fibers are covering stacks.
+\end{definition}
+
+If a Deligne-Mumford stack is covering, then it is formally étale and non-empty. We expect the converse to hold. With this definition Tim proved the following:
+\begin{enumerate}
+\item Deligne-Mumford stacks are stable under $\Sigma$ and identity types.
+\item Deligne-Mumford stacks are stable under covering quotients (i.e.\ given $Y$ an étale stack with $X$ a Deligne-Mumford stack and $p:X\to Y$ which fibers are covering stacks, we have that $Y$ is a Deligne-Mumford stack.
+\item Deligne-Mumford stacks have étale descent (i.e.\ the type of Deligne-Mumford stack is itself an étale stack).
+\end{enumerate}
+
+
+
+\paragraph*{Algebraic spaces.}
+
+Tim then turned his attention to studying examples of algebraic spaces (i.e.\ Deligne-Mumford stacks that are sets). We will present his chain of strict inclusions:
+\[\{\mathrm{Schemes}\} \subsetneq \{\mathrm{Locally\ separated\ algebraic\ spaces}\} \subsetneq \{\mathrm{Algebraic\ spaces}\}\] 
+
+
+
+
+\printbibliography
+
+\end{document}
