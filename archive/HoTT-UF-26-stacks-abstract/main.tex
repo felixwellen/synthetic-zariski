@@ -176,54 +176,67 @@ Felix Cherubini\inst{1}
 \begin{document}
 \maketitle
 
-Tim Lichtnau died on the 26th of December 2024. In this talk we will pay hommage by presenting the work he was doing during his master thesis under our supervision, which was still ongoing at his time of death. He was very talented and planning to start a PhD on homotopy type theory, his passing is a great loss for the community.
+Tim Lichtnau died on the 26th of December 2024. We were supervising his master thesis, which was still ongoing at his time of death. In this talk we will pay hommage by presenting his thesis work. Tim was very talented and planning to start a PhD on homotopy type theory, his passing is a great loss for the community.
 
-He was studying higher Deligne-Mumford stacks in the context of synthetic algebraic geometry. Before presenting his work we will introduce synthetic algebraic geometry and the traditional point of view on higher Deligne-Mumford stacks.
+He was studying higher Deligne-Mumford stacks in the context of synthetic algebraic geometry. Before presenting his work we will introduce synthetic algebraic geometry and motivate Deligne-Mumford stacks.
 
 
 \paragraph*{Synthetic algebraic geometry.}
 
-The main goal of algebraic geometry is to study roots of systems of polynomials over general rings. The key idea is to see the roots of such system as forming a space called an affine scheme, and then study affine schemes using geometric techniques. For this to work, we need to use a sophisticated notion of space, e.g.\ locally ringed spaces or Zariski sheaves.
+The main goal of algebraic geometry is to study roots of systems of polynomials over general rings. The key idea is to see the roots of such system as forming a space called an affine scheme, and then study affine schemes using geometric techniques. For this to work we need to use a sophisticated notion of space, e.g.\ locally ringed spaces or Zariski sheaves.
 
-Tim's master thesis work was part of the synthetic algebraic geometry project, which aims to develop algebraic geometry using HoTT extended by axioms. In this alternative approach we assume a base ring $R$ in HoTT (which is assumed to be a set). The space corresponding to e.g.\ a polynomial $P:R[X]$ is simply defined as the type $\{x:R\ |\ P(x) = 0\}$, without any extra structure. This works because a type will ultimately be interpreted as a Zariski sheaves.
+Tim's master thesis work was part of the synthetic algebraic geometry project \cite{draft,sag-projective}, which aims to develop algebraic geometry using HoTT extended by axioms. In this alternative approach we assume a base ring $R$ (which is assumed to be a set). The space corresponding to e.g.\ a polynomial $P:R[X]$ is simply defined as the type $\{x:R\ |\ P(x) = 0\}$, without any extra structure. This works because a type will ultimately be interpreted as a Zariski sheaf.
 
-We then assume the duality axiom, which implies e.g.\ that any map in $R\to R$ is a polynomial. We also assume that $R$ is local and that affine schemes satisfy a weakening of the axiom of choice called Zariski local choice.
+We assume the duality axiom, which implies e.g.\ that any map in $R\to R$ is a polynomial. We also assume that $R$ is local and that affine schemes satisfy a weakening of the axiom of choice called Zariski local choice.
 
-These axioms are satisfied by the interpretation of HoTT in the higher Zariski topos, where sets are interpreted as Zariski sheaves. So we can interpret any result about sets in synthetic algebraic as a result about Zariski sheaves. The interpretation also works for higher types, we give a quick summary of the terminology:
+These axioms are satisfied by the interpretation of HoTT in the higher Zariski topos, where sets are interpreted as Zariski sheaves. So we can interpret any result about sets in synthetic algebraic as a result about Zariski sheaves. The interpretation also works for higher types, which are interpreted as somewhat more exotic objects. We give a quick summary of the terminology:
 
-\begin{tabular}{c|c|c}
+\medbreak
+
+\begin{tabular}{|c|c|c|}
+\hline
 HoTT & Traditional name & Intuition \\
 \hline
 Sets & Zariski sheaves & Sheaves of sets on the Zariski site\\
-Groupoids & Zariski stacks & ``Sheaves'' of groupoids on the Zariski site\\
-Types & higher Zariski stacks & ``Sheaves'' of $\infty$-groupoids on the Zariski site\\
+Groupoids & Zariski stacks & Sheaves of groupoids on the Zariski site\\
+Types & Higher Zariski stacks & Sheaves of $\infty$-groupoids on the Zariski site\\
+\hline
 \end{tabular}
 
+\medbreak
+
+In this abstract we will also use higher étale stack, i.e.\ sheaves of $\infty$-groupoids on the étale site. They can be seen as higher Zariski sheaves (i.e.\ types) satisfying a certain proposition.
 
 \paragraph*{Deligne-Mumford stacks.}
 
-While algebraic geometry starts with the study of affine schemes, it quickly demands considering more general spaces. Schemes are  defined synthetically as sets that are Zariski-locally affine. The most famous examples are the projective spaces $\bP^n$, which a synthetically just defined by $\bP^n = \{L\subset R^{n+1}\ |\ L\ \mathrm{is\ a\ line}\}$.
+While algebraic geometry starts with the study of affine schemes, it quickly demands considering more general spaces. Schemes are  defined synthetically as sets that are Zariski-locally affine. The most famous examples are the projective spaces $\bP^n$, which are defined synthetically by $\bP^n = \{L\subset R^{n+1}\ |\ L\ \mathrm{is\ a\ line}\}$.
 
-But moduli spaces (i.e.\ spaces of spaces) rarely are schemes. For example let us consider the type of smooth cubic curves. Since some smooth cubic curves have non-trivial automorphisms, this type is not a set but rather a groupoid, so it cannot be a scheme. 
+Moduli spaces (i.e.\ spaces of spaces) are rarely schemes. For example let us consider the type of smooth cubic curves. Since some smooth cubic curves have non-trivial automorphisms, this type is not a set but rather a groupoid, so it cannot be a scheme. 
 
-To counter that the notion of Deligne-Mumford stacks was introduced. Those are étale stacks (a notion more restrictive than Zariski stack) which are in some sense not too far from being schemes. Examples include the aforementioned moduli stack of smooth cubic curves, or more interestingly the moduli stack of eliiptic curve of a given genus $g$. In synthetic algebraic geometry, being a Deligne-Mumford stack will simply be $1$-types satisfying some proposition.
+This motivated the notion of Deligne-Mumford stacks. Those are étale stacks which are in some sense not too far from being schemes. Examples include the aforementioned moduli stack of smooth cubic curves, or more interestingly the moduli stack of curves of a given genus $g$ \cite{silverman2009arithmetic,olsson2023algebraic}. In synthetic algebraic geometry, being a Deligne-Mumford stack will simply mean being a $1$-type satisfying some proposition.
 
-This was latter extended to higher Deligne-Mumford stack \cite{TODOsimpson}., which is essentially the same idea but using sheaves of $\infty$-groupoids rather than sheaves of groupoids.
+This was latter extended to higher Deligne-Mumford stacks, i.e.\ sheaves of $\infty$-groupoids on the étale site which are not too far from being schemes \cite{simpson1996algebraic}.
 
 
 \paragraph*{Synthetic higher Deligne-Mumford stacks.}
 
-Today we will present Tim's strikingly elegant definition of higher Deligne-Mumford stacks. This presentation relies on two crucial characteristics of HoTT:
+Now we will present Tim's strikingly elegant definition of higher Deligne-Mumford stacks. This presentation relies on two crucial characteristics of HoTT:
 \begin{enumerate}
 \item Lex modalitites are well behaved in HoTT, so that defining higher étale stack is no more difficult than defining étale sheaves.
 \item Types have a natural higher homotopical structure, so that defining higher Deligne-Mumford stacks is no more difficult than defining Deligne-Mumford sets (aka algebraic spaces). 
 \end{enumerate}
 
-We are now ready for the definition. 
+We will drop the ``higher'' as we consider arbitrary types by default. We are now ready for the definition. 
 
 \begin{definition}
-An affine scheme $S$ is in $\mathbb{T}$ if we have $\neg\neg S$ and for all $\epsilon:R$ such that $\epsilon^2=0$, we have that $S\to S^{\epsilon=0}$ is an equivalence.
+A type $X$ is formally étale if for all $\epsilon:R$ such that $\epsilon^2=0$, we have that $X\to X^{\epsilon=0}$ is an equivalence.
 \end{definition}
+
+\begin{definition}
+An affine scheme $S$ is in $\mathbb{T}$ if it is non-empty and formally étale.
+\end{definition}
+
+We call $\mathbb{T}$ the étale topology.
 
 \begin{definition}
 A type $X$ is an étale stack if and only if for all $S:\mathbb{T}$ we have that the map $X\to X^{\propTrunc{S}}$ is an equivalence.
@@ -234,13 +247,13 @@ The class of covering stack is the smallest class of étale stack containing $\m
 \end{definition}
 
 \begin{definition}
-An étale stack $Y$ is a Deligne-Mumford stack if there exists $S$ affine and a map $S\to X$ which fibers are covering stacks.
+An étale stack $X$ is a Deligne-Mumford stack if there exists $S$ affine and a map $S\to X$ which fibers are covering stacks.
 \end{definition}
 
-If a Deligne-Mumford stack is covering, then it is formally étale and non-empty. We expect the converse to hold. With this definition Tim proved the following:
+If a Deligne-Mumford stack is covering, then it is non-empty and formally étale. We expect the converse to hold. With this definition Tim proved the following:
 \begin{enumerate}
 \item Deligne-Mumford stacks are stable under $\Sigma$ and identity types.
-\item Deligne-Mumford stacks are stable under covering quotients (i.e.\ given $Y$ an étale stack with $X$ a Deligne-Mumford stack and $p:X\to Y$ which fibers are covering stacks, we have that $Y$ is a Deligne-Mumford stack.
+\item Deligne-Mumford stacks are stable under covering quotients (i.e.\ given $Y$ an étale stack with $X$ a Deligne-Mumford stack and $p:X\to Y$ which fibers are covering stacks, we have that $Y$ is a Deligne-Mumford stack).
 \item Deligne-Mumford stacks have étale descent (i.e.\ the type of Deligne-Mumford stack is itself an étale stack).
 \end{enumerate}
 
@@ -252,8 +265,8 @@ Tim then turned his attention to studying examples of algebraic spaces (i.e.\ De
 \[\{\mathrm{Schemes}\} \subsetneq \{\mathrm{Locally\ separated\ algebraic\ spaces}\} \subsetneq \{\mathrm{Algebraic\ spaces}\}\] 
 
 
-
-
 \printbibliography
 
 \end{document}
+
+
