@@ -685,6 +685,9 @@ Given a type $U$, one can form the following modules:
 where $c$ sends $r$ to the constant function with value $r$,
 $K^U$ is defined to be the kernel of $c$, and $R/K^U$ is the image of $c$.
 Since $c$ is a ring homomorphism, $K^U$ is an ideal, and $R/K^U$ is also a ring.
+When $U$ is a closed proposition, such as $V(r)$, we know that
+$R^U$ is Adelman, which implies that $K^U$ and $R/K^U$ are as well.
+\rednote{Citation?}
 
 We can also form
 \begin{equation}\label{eq:strange-sub}
@@ -769,17 +772,8 @@ The displayed description of $K^{D(r)}$ follows from the construction of $R[1/r]
 using equivalence classes of fractions.  \rednote{Citation?}
 
 Finally, consider \eqref{eq:strange-compare} with $U := \lnot D(r)$, noting that
-$\lnot \lnot D(r) = D(r)$ (since $D(r)$ is already a negation):
-\begin{equation*}
-  \begin{tikzcd}
-    0 \ar[r] & R_{D(r)} := \sum_{x : R} (x = 0) \lor (r \neq 0) \ar[r,hook] \ar[d,hook]
-    & R \ar[r,->>,"q"] \ar[d,equal] & R/R_{D(r)} \ar[r] \ar[d,->>] & 0 \\
-    0 \ar[r] & K^{\lnot D(r)} \ar[r,hook]
-    & R \ar[r,->>,"q'"] & R/K^{\lnot D(r)} \ar[r] & 0
-  \end{tikzcd}
-\end{equation*}
-This has the same top row as \eqref{eq:compare-Vr}, and in fact, since we
-have a map $V(r) \to \lnot D(r)$, that diagram factors through this one:
+$\lnot \lnot D(r) = D(r)$ (since $D(r)$ is already a negation).
+This gives the first two rows of
 \begin{equation*}
   \begin{tikzcd}
     0 \ar[r] & R_{D(r)} := \sum_{x : R} (x = 0) \lor (r \neq 0) \ar[r,hook] \ar[d,hook]
@@ -790,6 +784,9 @@ have a map $V(r) \to \lnot D(r)$, that diagram factors through this one:
     & R \ar[r,->>,"c"] & R^{V(r)} = R/(r) \ar[r] & 0
   \end{tikzcd}
 \end{equation*}
+The first row is the same as the first row of \eqref{eq:compare-Vr}, and in fact, since we
+have a map $V(r) \to \lnot D(r)$, that diagram factors through this one, as shown.
+
 \textbf{It would be nice to understand the middle row better.}
 Observe that $\lnot D(r) = \lnot \lnot (r = 0)$ and $(r = 0) = \Spec(R/\langle r \rangle)$ is a closed subtype of $\Spec(R)$, so by Lemma 1.1.2 of Topology of Synthetic Schemes draft we say that $\lnot D(r)$ is the formal neighbourhood of $(r = 0)$.
 \rednote{This notion of formal neighbourhood is different than the one presented in Differential Geometry of Synthetic Schemes draft.}
@@ -807,7 +804,7 @@ The following proposition tells us that we cannot assert this for a general $r :
 \begin{proof}
   Assume that for any $r : R$ we know that $R^{\lnot D(r)}$ is wqc.
   The global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module: $R[[x]] = \prod_{r : R} R^{\lnot D(r)}$ \rednote{Citation needed}.
-  By Lemma 7.1.10 of A Foundation for Synthetic Algebraic Geometry, we can deduce that $R[[x]]$ is wqc, which is a contradiction.
+  By Lemma 7.1.10 of A Foundation for Synthetic Algebraic Geometry, we can deduce that $R[[x]]$ is wqc, which contradicts Proposition A.0.5 of the same paper.
 \end{proof}
 
 Other questions:
@@ -836,10 +833,6 @@ with $A$ and $C$ finitely co-presented, such that $f$ does not lift through $e$.
 with $A$ and $C$ finitely presented, such that $f$ does not extend over $i$.
 (The dual of \Cref{maps-into-coherent-lift}.)
 \end{itemize}
-
-When $V$ is a closed proposition, such as $V(r)$, we know that
-$R^V$ is Adelman, which implies that $K^V$ and $R/K^V$ are as well.
-\rednote{Citation?}
 
 \subsection{Questions (and some answers)}
 \begin{enumerate}
