@@ -1,69 +1,235 @@
-In cohomology, instead of the \v Cech complex, sometimes the alternating and ordered variants are used. There is a standard proof that the alternating and ordered \v Cech cohomology agree with the standard \v Cech cohomology. In this section, we adapt the standard proof (as in for example \cite{stacks-project}{Section 01FG} \rednote{This proof actually ommits some details, maybe another reference might be better}) to work in our setting. Note that we do not require a well-order on our fibers, but only a linear order. The order we define is linear because of LLPO. 
+In cohomology, instead of the \v Cech complex, sometimes the alternating and ordered variants are used. There is a standard proof that the alternating and ordered \v Cech cohomology agree with the standard \v Cech cohomology. 
+In this note, we sketch out the standard proof (as in for example \cite{stacks-project}{Section 01FG}). We do not claim these results translate to HoTT in general, but we sketch out why our application is still correct. 
 
 \begin{definition}
   Let $q: S \twoheadrightarrow X$ be a \v Cech cover and $A: X \to Ab$. 
-  We define the \textbf{alternating \v Cech sequence} $\check C_{alt} (X,q,A)$ as 
-  $$
-  \Sigma_{\alpha : \prod_{x:X} A_x^{q_x}}is-alt_1(\alpha) 
-  \to 
-  \Sigma_{\alpha : \prod_{x:X} A_x^{q_x^2}}is-alt_2(\alpha) 
-  \to 
-  \Sigma_{\alpha : \prod_{x:X} A_x^{q_x^3}}is-alt_3(\alpha) 
-  \to 
-  \cdots 
-  \to 
-  \Sigma_{\alpha : \prod_{x:X} A_x^{q_x^n}}is-alt_n(\alpha) 
-  $$
-  where $is-alt_n(\alpha)= \Pi_{\sigma: S_n} \left(\alpha(s_i) = sgn(\sigma) \cdot \alpha(s_{\sigma(i)})\right)$. 
-\end{definition}
+  For $n:\N$ and $\alpha: \prod_{x:X} A_x^{(q_x)^n}$, we call $\alpha$ \textbf{alternating} if for any $x:X$, any $n$-tuple $(s_i)_{1\leq i \leq n}:(q_x)^n$ and any $n$-permutation $\sigma: Fin_n = Fin_n$, we have that 
+  \begin{align*}
+    &\alpha_x((s_{\sigma(i)})_{1\leq i \leq n}) = sgn(\sigma) \cdot \alpha_x( (s_{i})_{1\leq i \leq n}), \text{ and } \\
+    &\alpha_x( (s_{i})_{1\leq i \leq n} )=0 \text{ whenever } s_i = s_j \text{ for some } i\neq j.
+  \end{align*}  
+  If both of these conditions hold, 
+  we write $\mathrm{alt}_n(\alpha)$. 
+\end{definition} 
+\begin{remark} 
+  To check whether a function is alternating, it's sufficient to do so for $2$-permutations.
+\end{remark}
 \begin{lemma}
-  Let $S$ be a Stone space. Then there merely exists a linear order $\leq$ on $S$. 
-\end{lemma}
+  If we restrict the groups in the \v Cech sequence to the group of alternating functions in $\prod_{x:X} A_x^{(q_x)^n}$, the resulting sequence is still exact. 
+\end{lemma} 
 \begin{proof}
-  Note that every Stone space can merely be seen as subset of $2^\N$, so it's sufficient to define a linear order or $2^\N$. 
-  For $\alpha,\beta :2^\N$, define 
-  $$
-  \alpha<\beta:= \exists_{n:\N} \big(
-    (\alpha_n < \beta_n)  \wedge 
-    (\forall_{k<n} \alpha_k=\beta_k)\big)
-  $$
-  Thus $\alpha<\beta$ if there exists some first index $n$ such that $\alpha_n,\beta_n$ differ, and at this index $\alpha_n =0,\beta_n = 1$. 
-  Then define $\alpha \leq \beta := \neg \beta < \alpha$. 
-  Note that $<$ is an open relation, and hence $\leq$ is closed and $\alpha < \beta \leftrightarrow \neg (\beta \leq \alpha)$.
   
-  We leave proofs of reflexivity and transitivity and antisymmetry of $\leq$ as an exercise to the reader. 
+\end{proof}
+\begin{definition}
+  We call the resulting sequence the alternating Cech sequence.
+  We write 
+  $$\check{C}_{alt}^n(X,A,q) := \Sigma_{\alpha: \check{C}^n(X,A,q)} \mathrm{alt}_{n+1}(\alpha)$$
+\end{definition}
 
-  We claim that $(\alpha \leq \beta) \vee (\beta \leq \alpha)$. By LLPO and Markov, it's sufficient to prove the double negation. So assume $(\alpha < \beta) \wedge (\beta < \alpha)$, note that there now exist two indices $n,m$ which are minimal so that $\alpha,\beta$ differ. By minimality, they are equal, but now both $\alpha_n,\beta_n$ have to be $0$, which means that they don't differ, which is the contradiction we require. 
-\end{proof}  
+\begin{definition} 
+  Let $q: S \twoheadrightarrow X$ be a \v Cech cover and $A: X \to Ab$. Let $<$ be a strict order on $S$. 
+  We define an $n$-tuple $(s_i)_{1 \leq i \leq n} : (q_x)^n$ to be \textbf{ordered} iff $s_1 < s_1 < \cdots < s_n$. 
+  We write $\mathrm{ord}_n(s)$ if this is the case.
+\end{definition} 
+\begin{lemma}
+  If we take an extension of the \v Cech sequence to the group of functions only defined on ordered sequences, the resulting sequence is still exact. 
+\end{lemma}
+\begin{definition}
+  We call the resulting sequence the \textbf{ordered \v Cech sequence}. We denote 
+  $$\check{C}_{\mathrm{ord}}^n(A,X,q):= 
+  \prod_{x:X} A_x^{\Sigma_{ (s : q_x^{n+1}) } \mathrm{ord}_{n+1}(s)}
+  $$
+\end{definition}
+\begin{definition}
+  Recall that a strict order $<$ on a type $A$ has a trichotomy iff for all $a,b:A$, we have $$a < b \uplus a = b \uplus a > b$$
+\end{definition}
 \begin{remark}
-  Note that totality of the order defined above implies LLPO. We conjecture that the existence of a linear order on Cantor space is equivalent to LLPO. 
+  In particular, such an order is linear and implies decidability of equality in $S$. It thus does not exist for a general Stone space. It does exist for finite Stone spaces. In fact, one can show that a Stone space has decidable equality if and only if it embeds into a finite set. 
 \end{remark}
 
+\begin{lemma}
+  Let $X$ be a compact Hausdorff space with decidable equality. Then $X$ embeds into a finite set. 
+\end{lemma}
+\begin{proof}
+  If equality in $X$ is decidable, it defines a map $\_=\_: X \to (X \to 2)$, which is clearly injective. As $ \to 2$ is overtly discrete, $f$ factors over a finite set $\Fin_n$ by Scott continuity, and the resulting map $X \to \Fin_n$ must be injective. 
+\end{proof}
+\begin{corollary}
+  If a type is both overtly discrete and compact Hausdorff, it is finite. 
+\end{corollary}
+\begin{proof}
+  If $X$ is a type with decidable equality, it embeds into a finite set by the above. Let $f: X \hookrightarrow Fin_n$ be this embedding. Note that for any $k:Fin_n$, the fiber $f_k$ is a decidable subset of $X$. As $f$ is injective, the fibers are propositions. 
+  Note that decidable subsets of compact Hausdorff types are in particular compact Hausdorff, and decidable subsets of overtly discrete types are in particular overtly discrete. 
+  Thus the fibers $f_k$ are propositions that are compact Hausdorff and overtly discrete, hence they are closed and open. Thus they are decidable. We conclude that $X = \bigcup_{k:Fin_n} f_k$, which is a finite union of decidable propositions, hence finite. 
+\end{proof}
+
+\begin{remark}
+  We can not in general find an $n:\N$ with $S= \Fin_n$. Any closed proposition is a Stone space with decidable equality, and such an $n$ would witness whether such a proposition is true or false.
+\end{remark}
 \begin{definition}
-  Let $q: S \twoheadrightarrow X$ be a \v Cech cover and $A: X \to Ab$. Let $\leq$ be a linear order on $S$. 
-  We define the \textbf{$\leq$-ordered \v Cech sequence} $\check C_{\leq} (X,q,A)$ as 
-  $$
-  \prod_{x:X} A_x^{q_x}
-  \to 
-  \prod_{x:X} A_x^{\Sigma_{s: q_x^2 } is-ord^\leq_2(s)}
-  \to 
-  \prod_{x:X} A_x^{\Sigma_{s: q_x^3 } is-ord^\leq_3(s)}
-  \to 
-  \cdots 
-  \to 
-  \prod_{x:X} A_x^{\Sigma_{s: q_x^n } is-ord^\leq_n(s)}
-  $$
-  where $is-ord^\leq_n(s_i)$ means that $s_1 \leq s_2 \leq \cdots \leq s_n$
-  \rednote{TODO come up with better notation}
+  Let $q: S \twoheadrightarrow X$ be a \v Cech cover and $A: X \to Ab$. Let $<$ be a strict order with trichotomy on $S$. 
+  We can then define for each $n:\mathbb N$ a map 
+  \begin{align*}
+    c_n : \check{C}_{\mathrm{ord}}^n(A,X,q) \to \check{C}_{\mathrm{alt}}^n(A,X,q)
+  \end{align*}
+  We define $c_n(\alpha , x , (s_i)_{0\leq i \leq n})$ as follows:
+  \begin{itemize}
+    \item If $s_i = s_j$ for some $i\neq j$, we let 
+      $c_n(\alpha , x , (s_i)_{0\leq i \leq n}) = 0$.
+    \item otherwise, we can define the unique permutation $\sigma$ such that $\mathrm{ord}((s_{\sigma(i)})_{0\leq i \leq n})$. 
+      We then define $c_n(\alpha , x , (s_i)_{0\leq i \leq n}) = sgn(\sigma) \cdot ((s_{\sigma(i)})_{0\leq i \leq n})$.
+  \end{itemize}
+
 \end{definition}
 \begin{lemma}
-  Let $q: S \twoheadrightarrow X$ be a \v Cech cover and $A: X \to Ab$. Let $\leq$ be a linear order on $S$. 
-  Then there exists an isomorphism of sequences between the \v Cech sequence $\check C(X,q,A)$ and the $\leq$-ordered \v Chech sequence $\check C_{\leq}(X , q, A)$. 
+  Let $q,A,<$ be as above. 
+  The maps $c_n$ induce a map of long exact sequences. 
 \end{lemma}
-\begin{proof} 
-  We define a retraction of the embedding
-  $
-  Sigma_{s:(q_x)^n} is-ord_n^\leq(s) \hookrightarrow (q_x)^n
-  $ 
-  Given any sequence $s:(q_x)^n$, using the linear order and induction on $n$, we can define an ordered sequence $o(s)$ with the same terms as $s$. This induces a retraction on 
+\begin{proof}
+  We have the show that TFDC:
+  \begin{equation}\begin{tikzcd}
+    \check C^n_{\mathrm {ord}} \arrow[r, "c_n"]\arrow[d,"d"]& 
+    \check C^n_{\mathrm {alt}} \arrow[d,"d"] \\
+    \check C^{n+1}_{\mathrm {ord}} \arrow[r,"c_{n+1}"] & 
+    \check C^{n+1}_{\mathrm {alt}}
+  \end{tikzcd}\end{equation}
+  So assume $\alpha:\check C^n_{\mathrm{ord}}$. 
+  We wish to compare $d (c_n(\alpha))$ and $c_{n+1}(d(\alpha))$. Let $x:X, (s_i)_{0\leq i \leq n+1} : q_x^{n+2}$. 
+  We distinguish the case that two entries of $s$ are equal, which we can do because $<$ has a trichotomy. 
+  \begin{itemize}
+    \item If there exists $k\neq l$ with $s_k = s_l$, then 
+      $(c_{n+1}(d(\alpha)))_x((s_i)_{0\leq i \leq n+1}) = 0$ by definition. We shall show that $(d (c_n(\alpha)))_x((s_i)_{0\leq i \leq n+1}) = 0 $ also. 
+    Recall that 
+    $$(d (c_n(\alpha)))_x((s_i)_{0\leq i \leq n+1}) = 
+    \sum\limits_{j=0}^{n+1} (-1)^i (c_n(\alpha))_x((s_i)_{0\leq i \leq n + 1, i \neq j})$$
+    Note that for all indices $j$ with $j \neq k,l$, 
+    there are two entries equal in $ ((s_i)_{0\leq i \leq n + 1, i \neq j})$, and by design of $c_n(\alpha)$ the values of the summand for those $j$ must be $0$. 
+    Thus we are left with 
+    $$(d (c_n(\alpha)))_x((s_i)_{0\leq i \leq n+1}) = 
+    (-1)^k (c_n(\alpha))_x((s_i)_{0\leq i \leq n + 1, i \neq k}) + 
+    (-1)^l (c_n(\alpha))_x((s_i)_{0\leq i \leq n + 1, i \neq l})
+    $$
+    Now we make again a case distinction, this time on whether $|k-l|=1$. 
+    \begin{itemize}
+      \item If the difference between $k$ and $l$ is $1$, then the sequences 
+        $((s_i)_{0\leq i \leq n + 1, i \neq k})$ and 
+        $((s_i)_{0\leq i \leq n + 1, i \neq l})$ agree, 
+        and $(-1)^k = - (-1)^l$. 
+        Hence the terms cancel. 
+      \item If the difference between $k$ and $l$ is not $1$, as $k\neq l$, we may assume WLOG that $k\geq l + 1$. 
+        Note that in this case 
+        $((s_i)_{0\leq i \leq n + 1, i \neq k})$ and 
+        $((s_i)_{0\leq i \leq n + 1, i \neq l})$ differ by a permutation sending $l-1$ to $k$ and moving up all entries $i$ with $k\leq i < l-1$ up by $1$. So the cyclic permutation 
+        $\tau = (k, k+1 , \cdots , l-1)$. 
+        Using a standard induction argument with the observation $(a,\cdots,y,z) = (a, \cdots , y) (a,z)$, one can proof that the signs of cyclic permutations of length $n$ is $(-1)^{n-1}$. 
+        Thus $sgn(\tau) = (-1)^{l-1-k}$, 
+        and 
+        $((s_i)_{0\leq i \leq n + 1, i \neq k})= 
+        (s_{\sigma(i)})_{0\leq i \leq n + 1, i \neq l})$. 
+        As $c$ is alternating, it follows for 
+        $c' = c_n(\alpha) ((s_i)_{0\leq i \leq n + 1, i \neq k})$ that  
+    $$(d (c_n(\alpha)))_x((s_i)_{0\leq i \leq n+1}) = 
+    (-1)^k c'  + 
+    (-1)^l (-1)^{l-1-k} c' = 
+    ((-1)^k - (-1)^{k}) c' = 0
+    $$
+    as required. 
+    \end{itemize}
+  \item Now suppose that all entries differ. 
+    In this case, let $\sigma$ be the unique permutation ordering $(s_0 , \cdots , s_{n+1})$
+    \begin{align*} 
+      (c_{n+1}(d\alpha))_x ((s_{i})_{0 \leq i \leq n+1})
+    = 
+    sgn(\sigma) \cdot (d\alpha)_x ((s_{\sigma(i)})_{0 \leq i \leq n+1})
+    = 
+    sgn(\sigma) \cdot \sum\limits_{j=0}^{n+1} \alpha((s_{\sigma(i)})_{0 \leq i \leq n +1 , \sigma(i) \neq j})
+    \end{align*} 
+    While 
+    \begin{align*} 
+      d(c_n(\alpha))_x ((s_{i})_{0 \leq i \leq n+1}) = 
+      \sum\limits_{j=0}^{n+1} 
+      (c_n(\alpha))_x((s_{i})_{0 \leq i \leq n+1, i \neq j})
+    \end{align*}
+    We claim that the $j$'th term in the first sum agrees with the $\sigma(j)'th$ term in the second sum, thus the sums are equal.  \rednote{This argument is well-suited for a formalization attempt, it's tedious to write down and check}. 
+  \end{itemize}
 \end{proof}
+
+\begin{remark}
+  By design, $c_n$ lands in $\check{C}_{\mathrm{alt}}$. 
+  Furthermore, it is a right inverse to the canoncial map
+  $$\check C^n_{\mathrm{alt}} \to \check C^n \to \check C^n_{\mathrm{ord}}$$
+  Finally, both of those families of maps induce maps of long exact sequences 
+\end{remark}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{The following might be interesting for future work, but not for this paper}
+\begin{definition}
+  We define the relations $<,\leq$ on $2^\N$ as follows:
+  Given $\alpha,\beta:2^\N$, define for each $n:\N$ the relation 
+  expressing that $n$ is the first index where $\alpha,\beta$ differ and 
+  $\alpha_n< \beta_n$. So 
+  $$\alpha<_n\beta:= 
+    (\alpha_n < \beta_n)  \wedge 
+    (\forall_{k<n} \alpha_k=\beta_k)
+  $$
+  Then define $\alpha<\beta:= \exists_{n:\N} \alpha<_n \beta$.
+  We also define $\alpha \leq \beta := \neg (\beta < \alpha)$.
+\end{definition}
+\begin{remark}
+  One can check that $<_k$ is decidable for all $k$, 
+  hence $<$ is open and $\leq$ is closed. 
+  One can also check that both are transitive, and $\leq$ is symmetric. 
+  Finally, one can show that if $\alpha<_k\beta$, then $k$ is unique with this proprty and $\neg (\beta<_l \alpha)$ for any $l:\N$.
+  It follows in particular that $<$ is antisymmetric. 
+\end{remark}
+\begin{lemma}
+  $\leq$ defined above is linear if and only if LLPO holds. 
+\end{lemma}
+\begin{proof}
+  To show that LLPO implies linearity, let $\alpha,\beta:2^\N$. 
+  Define $\gamma:2^\N$ as follows:
+  $$
+  \gamma_{2k} = 
+  \begin{cases}
+    1 \text{ if } \alpha <_k \beta_k\\
+    0 \text{ otherwise} 
+  \end{cases}, 
+  \gamma_{2k+1} = 
+  \begin{cases}
+    1 \text{ if } \beta <_l \alpha_l\\
+    0 \text{ otherwise} 
+  \end{cases}, 
+  $$
+  Note that by the uniqueness discussed in the above remark, $\gamma$ hits $1$ at most once, hence lives in $\N_\infty\subseteq 2^\N$. 
+  Using LLPO, we can deduce that $\gamma$ is $0$ on all evens or all odds. 
+  Now note that if $\gamma_{2n} = 0$ for all $n$, then $\beta \leq \alpha$, 
+  and if $\gamma_{2n+1} = 0$ for all $n$, then $\alpha \leq \beta$. 
+
+  For the converse direction, let $\gamma:\N_\infty$. 
+  Define $\alpha,\beta:2^\N$ with $\alpha_n = \gamma_{2n}, \beta_n = \gamma_{2n+1}$. If $\alpha\leq \beta$, then $\gamma_{2n} = 0$ for all $n:\N$, and if $\beta\leq \alpha$, then $\gamma_{2n+1} = 0$ for all $n:\N$. 
+\end{proof}
+\begin{remark}
+  We conjecture the existence of any linear $(\leq)$-order on Cantor space implies LLPO. 
+  Note that the existence of an order with trichotomy implies WLPO.
+  We also might conjecture the existence of two partial orders $\leq,<$ such that $\neg (a\leq b) \to b < a$ implies MP. 
+\end{remark}
+\begin{corollary}
+  Let $S$ be a Stone space. Then there merely exists a linear order $\leq$ on $S$. 
+\end{corollary}
+\begin{proof}
+  Note that every Stone space can merely be seen as subset of $2^\N$, so it's sufficient to define a linear order or $2^\N$, which we have by the above. 
+\end{proof} 
+
+

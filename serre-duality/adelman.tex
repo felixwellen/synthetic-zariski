@@ -1,0 +1,899 @@
+
+
+Classically, there is no useful abelian category of coherent $\mathcal O_X$-modules over a general base.
+Synthetically, the category of finitely presented modules over $R$ does not have all kernels,
+since $R$ is not coherent \cite[3.2]{topology-draft}, so module bundles with values in finitely presented modules are not abelian.
+
+This section is about finding a suitable replacement category.
+This section is joint work of Felix Cherubini, Dan Christensen and Thomas Thorbjørnsen.
+The work in this section profited from discussions with Hugo Moeneclaey and Mohamed Barakat.
+\rednote{This is work in progress.}
+
+\begin{theorem}
+  For an $R$-module $M$ let $M^\ast\colonequiv \Hom_{\Mod{R}}(M,R)$ be its dual.
+  Then dualizing a finite co-presentation of $M$:
+  \[ M \hookrightarrow R^n \to R^m \]
+  yields a finite presentation:
+  \[ R^m \to R^n \twoheadrightarrow M^\ast \]
+  This induces an anti-equivalence between finitely presented $R$-modules and finitely co-presented $R$-modules. In particular, the canonical map into the double dual, $M\to M^{\ast\ast}$ is an isomorphims for finitely presented and finitely co-presented $R$-modules.
+\end{theorem}
+
+\begin{proof}
+  \cite{diffgeo-article}
+\end{proof}
+
+
+\begin{lemma}
+  \label{presentation-extension}
+  Let $M,N$ be finitely presented and $f:M\to N$.
+  Then there is an extension of this morphism to all presentations of $M$ and $N$:
+  \begin{center}
+    \begin{tikzcd}
+      R^{m'}\ar[r]\ar[d,dotted,"\exists"] & R^m\ar[->>,r,"\pi_M"]\ar[d,dotted,"\exists"] & M\ar[d, "f"] \\ 
+      R^{n'}\ar[r] & R^n\ar[->>,r,"\pi_N"] & N \\ 
+    \end{tikzcd}
+  \end{center}
+  By dualizing, the analogous statement holds for finitely co-presented modules.
+\end{lemma}
+
+\begin{proof}
+  By linear extension: For a standard basis vector $e_i:R^m$ we merely have $y:R^n$ such that $\pi_N(y)=f(\pi_M(e_i))$. By exactness, we also get $R^{m'}\to R^{n'}$ by linear extension.
+\end{proof}
+
+From every commutative square we can extract some exact sequences.
+These will be in particular useful to show that finitely presented $R$-modules are closed under cokernels, and finitely copresented $R$-modules are closed under kernels.
+We will also use these sequences to show that Adelman modules are closed under tensor products.
+
+\begin{lemma}
+  \label{diff-ker-is-ker}
+  Suppose we have a commutative square:
+  \begin{center}
+    \begin{tikzcd}
+      A \ar{r}{u} \ar{d}{f} & B \ar{d}{g} \\
+      C \ar{r}{v} & D
+    \end{tikzcd}
+  \end{center}
+  The kernel $K$ of the induced map $\mathrm{Ker}(u) \rightarrow \mathrm{Ker}(v)$ is equivalent to the kernel $K$ of $(u, f) : A \to B \oplus C$.
+\end{lemma}
+
+\begin{proof}
+  Observe that $\mathrm{Ker}(u) \subseteq \mathrm{Ker}(gu)$.
+  Thus $\mathrm{Ker}(u) = \mathrm{Ker}((u, gu) : A \to B \oplus D)$.
+  Therefore we obtain this result by the third isomorphism theorem:
+  \begin{center}
+    \begin{tikzcd}
+      K \ar[equal]{r} \ar[hook]{d} & K' \ar[hook]{d} \\
+      \mathrm{Ker}(u) \ar{d} \ar[hook]{r} & A \ar{d}{(u,f)} \ar{r}{(u,gu)} & B \oplus D \ar[equal]{d} \\
+      \mathrm{Ker}(v) \ar[hook]{r} & B \oplus C \ar{r}{\mathrm{id} \oplus v} & B \oplus D
+    \end{tikzcd}
+  \end{center}
+  \hfill{\phantom{.}}
+\end{proof}
+
+\begin{proposition}
+  \label{fcp-kernel-closure}
+Finitely copresented modules are closed under kernels.
+Dually, finitely presented modules are closed under cokernels.
+\end{proposition}
+
+\begin{proof}
+  Suppose that $K$ is the kernel of a map $f : M \rightarrow N$, where $M$ and $N$ are finitely copresented.
+  By \Cref{presentation-extension}, we can find a linear extension of $f$ to copresentations of $M$ and $N$:
+  \begin{center}
+    \begin{tikzcd}
+      K \ar[hook]{d} \\
+      M \ar{d} \ar[hook]{r} & R^{m_1} \ar{r} \ar{d} & R^{m_2} \ar{d} \\
+      N \ar[hook]{r} & R^{n_1} \ar{r} & R^{n_2}
+    \end{tikzcd}
+  \end{center}
+  By \Cref{diff-ker-is-ker}, $K$ is also the kernel of the map $R^{m_1} \rightarrow R^{m_2 + n_1}$.
+\end{proof}
+
+\begin{lemma}
+  \label{kernel-fp-is-cok-fcp}
+  Let $f:M\to N$ be a map of finitely presented $R$-modules, then $\ker f$ is the cokernel of a map between finitely copresented $R$-modules.
+\end{lemma}
+
+\begin{proof}
+  By \Cref{presentation-extension} we can assume $f$ is induced by a square and we construct finitely copresented modules $A,B$ like described below:
+  \begin{center}
+  \begin{tikzcd}
+    A\ar[r,"\pi_1"]\ar[d,"l\times\id"] & R^{m'}\ar[r,"t"]\ar[d,"l"] & R^{n'}\ar[d,"r"]   \\
+    B\ar[r,"\pi_1"]\ar[d] & R^m\ar[r,"b"]\ar[d] & R^n\ar[d] \\
+    K\ar[r] &M\ar[r,"f"] & N
+    \end{tikzcd}
+   \end{center}
+   $A:=\{(z,y):R^{m'}\times R^{n'}\mid blz=ry\}$, $B:=\{(x,y):R^{m}\times R^{n'}\mid bx=ry\}$.
+\end{proof}
+
+We name the following modules after Adelman, since it will turn out that what we construct agrees with the free abelian category on the finite free $R$-modules, and our construction is close to Adelman's general construction of the free abelian category.
+
+The idea is that they might yield an replacement of the algebro-geometric notion of coherent sheaf of modules, which would be a trivial notion over $R$.  
+
+\begin{definition}
+  Let $M$ be an $R$-module, then $M$ is an \notion{Adelman-module} if one of the following equivalent statements hold:
+  \begin{enumerate}[(i)]
+  \item $M$ is merely the kernel of a homomorphism of finitely presented $R$-modules.
+  \item $M$ is merely the cokernel of a homomorphism of finitely copresented $R$-modules.
+  \item $M$ is the image of a map from a finitely co-presented $R$-module to a finitely presented $R$-module.
+  \item $M$ is in the smallest abelian subcategory of $\Mod{R}$ that contains all finite free $R$-modules.
+  \end{enumerate}
+  We denote the type of Adelman-modules with $\Mod{R}_{\mathrm{ad}}$\index{$\Mod{R}_{\mathrm{ad}}$}, as well as the category of these modules.
+\end{definition}
+We will show the equivalence of statement (iii) and the first two in ??.
+The equivalence with (iv) will follow from \Cref{coherent-R-modules-abelian}.
+(iii) will turn out to be self-dual.
+
+\begin{remark}
+  Any Adelman-module is wqc (\cite{draft}[Definition 7.1.5]).
+\end{remark}
+
+\begin{proof}
+  By \cite{draft}[7.1.6, 7.1.13], the category of wqc $R$-modules is abelian and it contains finite free $R$-modules.
+\end{proof}
+
+\begin{lemma}
+  \label{coherent-double-dual-mono}
+  For any Adelman-module $K$, the double dualization map $K\to K^{\ast\ast}$ is a monomorphism.
+\end{lemma}
+
+\begin{proof}
+  Let $A$ and $B$ be finitely co-presented $R$-modules with a homomorphism $f:A\to B$ such that $K$ is the kernel, then we have the following diagram, which we will explain below:
+\begin{center}
+\begin{tikzcd}
+  B\ar[r,"\sim"] & B^{\ast\ast} \\   
+  A\ar[r,"\sim"]\ar[u,"f"] & A^{\ast\ast}\ar[u,"f^{\ast\ast}"] \\   
+  K\ar[r,"i"]\ar[u,hook]\ar[ur,hook] & K^{\ast\ast}\ar[u]\ar[l,dotted,bend left=20,"p"] \\   
+\end{tikzcd}
+\end{center}
+$K$ is also the kernel of $f^{\ast\ast}$ by the indicated composition.
+By the universal property of this kernel, the dotted map exists and we have $p\circ i=\id$.
+\end{proof}
+
+The following lemma will eventually imply that finitely co-presented $R$-modules are projective and, by duality, finitely presented $R$-modules are injective.
+
+\begin{lemma}
+  \label{maps-into-coherent-lift}
+  Let $A$ and $C$ be finitely co-presented $R$-modules, $K$ be a Adelman-module and $e:A\to K$ a epimorphism.
+  Then there is a lift for any homorphism $f:A\to K$.
+    \begin{center}
+      \begin{tikzcd}
+         & C\ar[d,->>,"e"] \\
+       A\ar[r,"f"]\ar[ru,dotted,"\exists"] & K
+      \end{tikzcd}
+    \end{center}
+\end{lemma}
+
+\begin{proof}
+  We will prove the lemma using the following steps:
+  \begin{enumerate}[(i)]
+  \item \label{coherent-fcp-lift-existence} There is a lift on the level of the underlying sets, i.e.\ a map $\tilde{f}$ as indicated in the commutative diagram, which is not necessarily $R$-linear:
+    \begin{center}
+      \begin{tikzcd}
+         & C\ar[d,->>,"e"] \\
+       A\ar[r,"f"]\ar[ru,dotted,"\exists \tilde{f}"] & K 
+      \end{tikzcd}
+    \end{center}
+  \item Any lift $\tilde{f}$ from \ref{coherent-fcp-lift-existence} can be decomposed into a $R$-linear part $f_L:A\to C$, and a non-linear part $f_{NL}\coloneq\tilde{f}-f_L$.
+  \item $e$ maps $f_{NL}$ to $0$, so $f_L$ is a $R$-linear lift.
+  \end{enumerate}
+  We will now prove these statements.
+  \begin{enumerate}[(i)]
+  \item Let $M$ be the kernel of $e$, then $M$ is wqc.
+  By \cite{draft}[Theorem 7.3.6] we have $H^1(A,M)=0$, since $A$, like any finitely co-presented $R$-module, is an affine scheme.
+
+  By definition, we have $H^1(A,M)=||A\to K(M,1)||_0$ and therefore that $A\to K(M,1)$ is connected.
+  For $x:K$ let $E_x$ denote the fiber of $e$ over $x$, then $E_x$ is a $M$-torsor or in other words an element of $K(M,1)$.
+  So $E\circ f:A\to K(M,1)$ and we have $|| E\circ f = (\_\mapsto M) ||$ by the connectedness noted above.
+  This means that the dependent type $E\circ f$ merely has a section, since $(\_\mapsto M)$ has a section.
+  This proves existence of the dotted map.
+  \item By \cite{diffgeo-article}, we know that the differential of $\tilde{f}$ is such a linear map,
+  but a direct computation is also possible, which we will carry out in the following.
+  
+  Let $A$ and $C$ be given by $A=\Spec R[X_1,\dots,X_n]/(P_1,\dots,P_r)$ and $C=\Spec R[Y_1,\dots,Y_m]/(Q_1,\dots,Q_s)$.
+  $\tilde{f}$ is represented by a homomorphism $\varphi$ between these $R$-algebras.
+  Choosing lifts of the finitely many $\varphi(Y_i)$ we get polynomials $N_1,\dots,N_m$
+  such that for all $j$ we have $Q_j(N_1,\dots,N_m)\in (P_1,\dots,P_r)$.
+  Let $L_1,\dots,L_m$ be given by the linear parts of $N_1,\dots,N_m$.
+  Then by analysing the degrees of the involved polynomials, we have $Q_j(L_1,\dots,L_m)\in (P_1,\dots,P_r)$, so the $L_1,\dots,L_m$ induce a homorphism
+  \[
+  \varphi_L: R[Y_1,\dots,Y_m]/(Q_1,\dots,Q_s) \to R[X_1,\dots,X_n]/(P_1,\dots,P_r)
+  \]
+  which induces a linear map $f_L:A\to C$.
+  Let us note that the difference $f_{NL}\coloneq \tilde{f}-f_L$ is given by monomials $S_i$ which are all of degree at least two.
+  \item We know that $e\circ \tilde{f}$ is a linear map, so $e\circ f_{NL}$ is linear as well.
+  Let $f_{NL}=\sum_i S_i$ be a decomposition into monomials with degrees $n_i\geq 2$ as above.
+  For all $t:R$ and $x:A$ we have
+  \[
+  \sum_i te(S_i(x))=te(\sum_i S_i(x))=e(\sum_i S_i(tx))=e(\sum_i t^{n_i}S_i(x))=\sum_i t^{n_i}e( S_i(x))
+  \]
+  So by taking the difference we have a polynomial $P(t)\coloneq \sum_i te(S_i(x))-\sum_i t^{n_i}e( S_i(x))$ in $t$ with coefficients in $K$, such that $P(t)=0$ for all $t$.
+  Since all $e(S_i(x))$ appear as coefficients of $P$, we can conclude $e\circ f_{NL}=0$, from $P$ being zero.
+
+  Let $f:K\to R$ be an arbitrary linear map, then $f(P(t)):R\to R$ has to be the zero polynomial,
+  so $f$ maps all $e(S_i(x))$ to zero.
+  This means that the double dualization $K\to K^{\ast\ast}$ maps each $e(S_i(x))$ to zero,
+  but by \Cref{coherent-double-dual-mono} it is injective, so all $e(S_i(x))$ are zero.
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  \label{coherent-kernels}
+  The cokernel of a homomorphism between Adelman-modules is Adelman.
+\end{lemma}
+
+\begin{proof}
+  Let $K,L$ be Adelman-modules and $f:K\to L$ a homomorphism.
+  Choose finitely co-presented $R$-modules $A,B,C,D$ and homomorphisms to present $K$ and $L$ as cokernles.
+  By the preceeding \Cref{maps-into-coherent-lift} there are lifts yielding this diagram:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[d]\ar[r,dotted] & C\ar[d,"r"] & \\
+      B\ar[d,->>]\ar[r,dotted,"b",swap] & D\ar[d,->>]\ar[rd,->>,"g"] & \\
+      K\ar[r,"f",swap] & L\ar[r,->>,"\mathrm{cok}",swap] & \mathrm{Cok}
+    \end{tikzcd}
+  \end{center}
+  Now we conclude by showing that the composition $g$ is the cokernel of a homorphism of the finitely co-presented $R$-modules $B\oplus C$ and $D$.
+  By diagram-chasing, $b\oplus r:B\oplus C\to D$ surjects onto the kernel of $g$.
+\end{proof}
+
+\begin{lemma}
+  \label{fp-kernel-dual-surjective}
+  Let $M,N$ be finitely presented $R$-modules, $f:M\to N$ a homomorphism and $K$ its kernel,
+  then the dual of the canonical map $K\to M$ is surjective.
+\end{lemma}
+
+\begin{proof}
+  It is possible \rednote{TODO: add construction} to construct a diagram of the following shape, where the two left columns and all rows are exact:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r,hook]\ar[d] & R^{m_1}\ar[r,"t"]\ar[d,"l"] & R^{n}\ar[d,"\id"] \\
+      B\ar[r,hook]\ar[d,->>] & R^{m_2}\ar[r,"b"]\ar[d,->>] & R^{n} \\
+      K\ar[r,hook] & M\ar[r] & N
+    \end{tikzcd}
+  \end{center}
+  Then a linear map $L:K\to R$ restricts to a map $L_1:B\to R$ which is zero on $A$.
+  By \cite{diffgeo-article}[Lemma 2.3.7] it is possible to extend $L_1$ to $L_2:R^{m_2}\to R$.
+  $L_2$ will descend to $M$, if and only if it vanishes on the image of $r$.
+  This will generally not be the case, but we can construct a linear correction $c:R^{m_2}\to R$ such that $L_2-c$ has this property.
+
+  To construct $c$, let $c_0\coloneq L_2\circ l$, note that $c_0$ vanishes on $A$ and therefore extends to the image of $t$, to a linear map $c_1:\mathrm{im}(t)\to R$.
+  By \cite{diffgeo-article}[Lemma 2.3.8], $c_1$ extends to a map $c_2:R^{n}\to R$.
+  Now $c\coloneq c_2\circ b$ is a linear map on $R^{m_2}$, that is zero on $B$,
+  so $L_2-c$ is still an extension of $L_1$ and $L_2-c$ vanishes on $A$.
+\end{proof}
+
+\begin{theorem}
+  \label{coherent-self-dual}
+  Let $K$ be a Adelman-module, then the canonical map $K\to K^{\ast\ast}$ is an isomorphism.
+  In particular, dualization is an anti-equivalence of the category of Adelman-modules.
+\end{theorem}
+
+\begin{proof}
+  We can assume $K$ is in a sequence of $R$-modules:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r,"f"] & B\ar[r,->>] & K
+    \end{tikzcd}
+  \end{center}
+  where $A,B$ are finitely co-presented and $B\to K$ is the cokernel of $f$.
+  Taking double duals and using \Cref{fp-kernel-dual-surjective} and \Cref{coherent-double-dual-mono} we end up in this situation:
+  \begin{center}
+    \begin{tikzcd}
+      A\ar[r,"f"] & B\ar[r,->>]\ar[d,"\sim"] & K\ar[d,hook] \\
+      & B^{\ast\ast} \ar[r,->>] & K^{\ast\ast} 
+    \end{tikzcd}
+  \end{center}
+  So $K\to K^{\ast\ast}$ is an isomorphism.
+\end{proof}
+
+\begin{theorem}
+  \label{coherent-R-modules-abelian}
+  The category of Adelman-modules is abelian.
+\end{theorem}
+
+\begin{proof}
+  By \Cref{coherent-kernels} Adelman-modules are closed under cokernels.
+  By the duality from \Cref{coherent-self-dual}, this also shows the closure under kernels.
+\end{proof}
+
+\begin{lemma}
+  \label{fcp-projective-fp-injective}
+  Any finitely co-presented $R$-module $A$ is projective in the category of of Adelman-modules:
+  For all surjections $K\to K'$ with $K,K':\Mod{R}_{\mathrm{ad}}$ and homomorphisms $f:A\to K'$ there exists a lift:
+  \begin{center}
+  \begin{tikzcd}
+    & K\ar[d,->>] \\
+    A\ar[r,"f",swap]\ar[ru,dotted,"\exists"] & K'
+\end{tikzcd}
+\end{center}
+  Dually, any finitely presented $R$-module is injective in $\Mod{R}_{\mathrm{ad}}$.
+\end{lemma}
+
+\begin{proof}
+   Use \Cref{maps-into-coherent-lift} and that for any Adelman-module like $K$, there is a finitely co-presented $R$-module surjecting onto it.
+\end{proof}
+
+\begin{remark}
+  By \cite[Theorem 1.15]{adelman-construction}, \Cref{fcp-projective-fp-injective} implies that the Adelman-modules are the free abelian category over the finite free $R$-modules.
+  This means the Adelman-modules have the following universal property:
+  For every abelian category $\mathcal{A}$ and all additive functors $F:\Mod{R}_{\mathrm{ff}}\to \mathcal{A}$, there exists a unique exact functor $K$ like follows:
+  \begin{center}
+  \begin{tikzcd}
+    \Mod{R}_{\mathrm{ff}}\ar[r]\ar[rd,"F",swap] & \Mod{R}_{\mathrm{ad}}\ar[d,dotted,"K"] \\
+    & \mathcal{A}
+\end{tikzcd}
+\end{center}
+\end{remark}
+
+\begin{remark}
+  \label{hom-closure}
+  For Adelman-modules $M,N$, the $R$-module $\Hom_{\Mod{R}}(M,N)$ is an Adelman-module as well.
+\end{remark}
+
+\begin{proof}
+  The proof in \cite{lombardi-quitte}[Chapter IV, 4.12] works, if ``coherent'' is replaced by ``Adelman''.
+  
+  First we use their proof to show that for finitely presented $R$-modules $M,N$ the $R$-module $\Hom_{\Mod{R}}(M,N)$ is Adelman. Morphisms $f:M\to N$ are presented by squares:
+  \begin{center}
+  \begin{tikzcd}
+        R^m \ar[r]\ar[d,"\varphi"] & R^{m'}\ar[d,"\psi"] \\
+        R^n\ar[r] & R^{n'}
+\end{tikzcd}
+\end{center}
+  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commutes.
+  This submodule $S$ is the kernel of a linear map and therefore Adelman.
+  We have a surjection $\pi:S\to \Hom_{\Mod{R}}(M,N)$, so $\Hom_{\Mod{R}}(M,N)$ is Adelman,
+  if $\pi$ is a cokernel of a map of Adelman-modules.
+  This is the case, since there is a surjection onto $\ker{\pi}$ from the finite free $R$-module of linear maps which splitting the square:
+  \begin{center}
+  \begin{tikzcd}
+        R^m \ar[r]\ar[d,"\varphi"] & R^{m'}\ar[d,"\psi"]\ar[ld,"s"] \\
+        R^n\ar[r] & R^{n'}
+\end{tikzcd}
+\end{center}
+  Then we can reuse the same argument to show the statement of the remark.
+\end{proof}
+
+\begin{lemma}
+  \label{H1-on-adelman-module}
+  \rednote{Beweis leider Quatsch}
+  Let $K:\Mod{R}_{\mathrm{ad}}$ and $M:K\to \Mod{R}_\mathrm{wqc}$ then
+  \[
+    H^1(K,M)=0
+  \]
+\end{lemma}
+
+\begin{proof}
+  Let first $K:\Mod{R}$ be in an exact sequence:
+  \begin{center}
+    \begin{tikzcd}
+      F\ar[r,"e"] & K\ar[r]\ar[l,bend left,"s",dotted] & 0
+    \end{tikzcd}
+  \end{center}
+  with $F:\Mod{R}_\mathrm{fcp}$ and $M:K\to\Mod{R}_{\mathrm{wqc}}$ and $s$ exists because $K$ is Adelman using \Cref{maps-into-coherent-lift}.
+  Then we have $H^1(F,M\circ e)=0$, meaning that for any $\chi:(x:K)\to K(M_x,1)$ there exists $t:(y:F)\to \chi_{e(y)}=\ast$. Then $t\circ s:(x:K)\to \chi_x=\ast$, so $H^1(K,M)=0$.
+\end{proof}
+
+\begin{proposition}
+  \label{fp-extension-adelman}
+  Let
+  \[
+    0\to M \to N \to L \to 0
+  \]
+  be an exact sequence such that $M :\Mod{R}_{\mathrm{ad}}$, and $L : \Mod{R}_{\mathrm{fp}}$.
+  Then $N$ is Adelman.
+\end{proposition}
+
+\begin{proof}
+  This proof is parallel to the horseshoe lemma.
+  Let $R^{n_2} \rightarrow R^{n_1} \twoheadrightarrow L$ be a presentation of $L$.
+  Let also $P_2 \rightarrow P_1 \twoheadrightarrow M$ be a presentation of $M$ by fcp-modules.
+  Because $R^{n_1}$ is projective, we can lift the morphism $R^{n_1} \rightarrow L$ along $N \twoheadrightarrow L$.
+  This yields a map of short exact sequences.
+  \begin{center}
+    \begin{tikzcd}
+      P_1 \ar[hook]{r} \ar[two heads]{d} & P_1 \oplus R^{n_1} \ar[two heads]{r} \ar[dashed, two heads]{d} \ar[phantom]{rd}[very near end]{\ulcorner} & R^{n_1} \ar[two heads]{d} \ar[dashed]{ld} \\
+      M \ar[hook]{r} & N \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+  One can show that the map $P_1 \oplus R^{n_1} \rightarrow N$ is epi with a diagram chase.
+  The lower rightmost square is also a pushout, since the maps on the kernels is epic.
+  Therefore taking kernels of the vertical epimorphisms yields another exact sequence, and we repeat the above argument to conclude.
+  \begin{center}
+    \begin{tikzcd}
+      P_2 \ar[hook]{r} \ar[two heads]{d} & P_2 \oplus R^{n_2} \ar[two heads]{r} \ar[dashed, two heads]{d} & R^{n_2} \ar[dashed]{ld} \ar[two heads]{d} \\
+      K_M \ar[hook]{r} & K_N \ar[two heads]{r} & K_L
+    \end{tikzcd}
+  \end{center}
+  Thus we get a presentation $P_2 \oplus R^{n_2} \rightarrow P_1 \oplus R^{n_1} \twoheadrightarrow N$ of $N$ by fcp-modules.
+\end{proof}
+
+\begin{corollary}
+  Every short exact sequence
+  \begin{center}
+    \begin{tikzcd}[cramped]
+      I_1 \ar[hook]{r} & E \ar[two heads]{r} & I_2
+    \end{tikzcd}
+  \end{center}
+  with $I_i$ fp-modules is split.
+  Consequently $\textup{Ext}^1_R(I_2,I_1) = 0$.
+\end{corollary}
+
+\begin{proof}
+  From \Cref{fp-extension-adelman}, $E$ is an Adelman-module.
+  By \Cref{fcp-projective-fp-injective}, the inclusion $I_1 \rightarrow E$ splits, so $E = I_1 \oplus I_2$.
+\end{proof}
+
+\begin{lemma}
+  \label{adelman-ext-pb-red}
+  Suppose we have a commutative diagram
+  \begin{center}
+    \begin{tikzcd}
+      B \ar[equal]{d} \ar[hook]{r} & p^*E \ar[two heads]{r} \ar[two heads]{d} \ar[phantom]{rd}[very near start]{\lrcorner}[very near end]{\ulcorner} & P \ar[two heads]{d}{p} \\
+      B \ar[hook]{r} & E \ar[two heads]{r} & A
+    \end{tikzcd}
+  \end{center}
+  in which $B$, $A$ and $P$ are Adelman modules.
+  Then $E$ is Adelman if and only if $p^*E$ is so.
+\end{lemma}
+
+\begin{proof}
+  Suppose that $E$ is Adelman.
+  Since $p^*E$ is a pullback of Adelman modules, it is itself Adelman.
+
+  Now assume that $p^*E$ is Adelman.
+  By the third isomorphism theorem we can prove that $E$ is Adelman.
+  In the following diagram, the objects $0^*_Ap^*E$ is the kernel of $p^*E \rightarrow E$, $0^*_AE$ is the kernel of $E \rightarrow A$, and $0^*_Ep^*E$ is the kernel of $p^*E \rightarrow E$.
+  \begin{center}
+    \begin{tikzcd}
+      0^*_Ep^*E \ar[equal]{r} \ar[hook]{d} & 0^*_Ep^*E \ar[hook]{d} \\
+      0^*_Ap^*E \ar[hook]{r} \ar[two heads]{d} & p^*E \ar[two heads]{r} \ar[two heads]{d} & A \ar[equal]{d} \\
+      B \ar[hook]{r} & E \ar[two heads]{r} & A
+    \end{tikzcd}
+  \end{center}
+  Chasing around this diagram we can see that $0^*_Ap^*E$ is Adelman, because $p^*E$ is.
+  Furthermore, $0^*_Ep^*E$ is Adelman, because $0^*_Ap^*E$ is Adelman.
+  It then follows that $E$ is Adelman, because it is the cokernel of two Adelman modules.
+\end{proof}
+
+In fact, the same proof shows:
+
+\begin{lemma}
+  \label{adelman-ext-quotient-adelman}
+  Suppose that $E$ is an extension of Adelman modules, and that there is an
+  Adelman module $P$ and an epimorphism $P \to E$.  Then $E$ is Adelman.
+\end{lemma}
+
+\begin{proof}
+Follow the same proof, with $p^*E$ replaced by $P$.
+\end{proof}
+
+\begin{proposition}
+  \label{adelman-ext-problem-red}
+  Adelman modules are closed under extension if and only if for any fcp-module $P$ and fp-module $I$, $\textup{Ext}^1_R(P,I) = 0$.
+\end{proposition}
+
+\begin{proof}
+  Assume that Adelman modules are closed under extensions.
+  Then it is clear that any extension by $I$ and $P$ is split, as $I$ is injective among the Adelman modules \Cref{fcp-projective-fp-injective}.
+
+  Assume now that $\textup{Ext}^1(P,I) = 0$ for any such modules $P$ and $I$.
+  Consider an extension problem
+  \begin{center}
+    \begin{tikzcd}
+      M \ar[hook]{r} & N \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+  where $M$ is Adelman and is copresented by $M \hookrightarrow I_1 \rightarrow I_2$, and $L$ is Adelman and is presented by $P_2 \rightarrow P_1 \twoheadrightarrow L$.
+  By \Cref{adelman-ext-pb-red}, we can take the pullback of the extension along $p : P_1 \twoheadrightarrow L$, we get another associated extension.
+  \begin{center}
+    \begin{tikzcd}
+      M \ar[equal]{d} \ar[hook]{r} & p^*N \ar[two heads]{d} \ar[two heads]{r} \ar[phantom]{rd}[very near start]{\lrcorner} & P_1 \ar[two heads]{d} \\
+      M \ar[hook]{r} & N \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+  Now $N$ is Adelman if and only if $p^*N$ is so.
+
+  Dually, we can take a pushout of $M \hookrightarrow p^*N \twoheadrightarrow P_1$  to obtain the diagram.
+  \begin{center}
+    \begin{tikzcd}
+      M \ar[hook]{r} \ar[hook]{d} \ar[phantom]{rd}[very near end]{\ulcorner} & p^*N \ar[two heads]{r} \ar[hook]{d} & P_1 \ar[equal]{d} \\
+      I_1 \ar[hook]{r} & i_*p^*N \ar[two heads]{r} & P_1
+    \end{tikzcd}
+  \end{center}
+  In this case $p^*N$ is Adelman if and only if $i_*p^*N$ is Adelman.
+
+  Now, since we assumed that $\textup{Ext}^1_R(P_1,I_1) = 0$, it is necessary that $i_*p^*N = I_1 \oplus P_1$, which is Adelman.
+  Thus, $N$ is Adelman as desired.
+\end{proof}
+
+\rednote{We do not know how to compute these extension groups yet.}
+
+An idea that might be useful is to apply dimension shift. Let
+\begin{center}
+  \begin{tikzcd}
+    P \ar[hook]{r} & R^{n_2} \ar{r} & R^{n_1} \ar[two heads]{r} & I_P
+  \end{tikzcd}
+\end{center}
+be a two-step projective resolution of $I_P$.
+By dimension shift, we get an isomorphism $\textup{Ext}^1(P,M) = \textup{Ext}^3(I_P,M)$ for any $R$-module $M$.
+
+Using \Cref{adelman-ext-pb-red}, we can deduce a stronger result than \Cref{fp-extension-adelman}.
+
+\begin{proposition}
+  \label{fg-extension-adelman}
+  Let
+  \begin{center}
+    \begin{tikzcd}
+      0 \ar{r} & M \ar[hook]{r} & N \ar[two heads]{r} & L \ar{r} & 0
+    \end{tikzcd}
+  \end{center}
+  be an exact sequence such that $M,L : \Mod{R}_{\textup{ad}}$ and $L$ is fg.
+  Then $N$ is Adelman.
+\end{proposition}
+
+\begin{proof}
+  Consider the pullback
+  \begin{center}
+    \begin{tikzcd}
+      M \ar[equal]{d} \ar[hook]{r} & p^*N \ar[two heads]{d} \ar[two heads]{r} & R^n \ar[two heads]{d} \\
+       M \ar[hook]{r} & N \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+  Since the epi $p^*N \twoheadrightarrow R^n$ splits, $p^*N$ is an Adelman module.
+  By \Cref{adelman-ext-pb-red}, $N$ is Adelman as well.
+\end{proof}
+
+The following method is an idea to extend the current results beyond finitely generated Adelman modules to countably generated ones.
+In order to make this work we will assume the axiom of dependent choice, but it is not known if we can get around this.
+Suppose that $M$ is a countably generated Adelman module, and let $g : R[\mathbb{N}] \twoheadrightarrow M$ be the generating map.
+The following sequence of submodules $M_n := \langle g(0), \ldots, g(n) \rangle$ with the canonical injections $i_n : M_n \hookrightarrow M_{n+1}$ has $M$ as its colimit.
+We can then express the colimit by the following short exact sequence
+\begin{center}
+  \begin{tikzcd}
+    \underset{n : \mathbb{N}}{\bigoplus} M_n \ar[hook]{r}{\nabla} & \underset{n : \mathbb{N}}{\bigoplus} M_n \ar[two heads]{r} & M
+  \end{tikzcd}
+\end{center}
+where $\nabla(n,m) = i_n(m) - m$.
+
+\begin{proposition}
+  Assume that dependent choice holds.
+  Let $M$ be a countably generated Adelman module.
+  Then for any finitely presented module $I$, $\textup{Ext}^1(M,I)=0$.
+\end{proposition}
+
+\begin{proof}
+  Applying $\textup{Hom}(\cdot, I)$ to the above short exact sequence yields a long exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      \textup{Hom}(M,I) \ar[hook]{r} & \underset{n : \mathbb{N}}{\prod} \textup{Hom}(M_n, I) \ar{r}{\Delta} & \underset{n : \mathbb{N}}{\prod} \textup{Hom}(M_n, I) \ar[looseness = 1, out = -10, in = 170]{dll} \\
+      \textup{Ext}^1(M,I) \ar{r} & \underset{n : \mathbb{N}}{\prod} \textup{Ext}^1(M_n, I) \ar{r} & \underset{n : \mathbb{N}}{\prod} \textup{Ext}^1(M_n, I)
+    \end{tikzcd}
+  \end{center}
+  where $\Delta = \nabla^*$.
+  By \Cref{fg-extension-adelman}, we know that $\textup{Ext}^1(M_n, I) = 0$ for all $n : \mathbb{N}$.
+  Thus, $\textup{Ext}^1(M,I) = 0$ if and only if $\Delta$ is epic.
+
+  We prove that $\Delta$ is epic using dependent choice.
+  Let $\Delta_k : \underset{0 \leq i \leq k + 1}{\prod} \textup{Hom}(M_i, I) \rightarrow \underset{0 \leq i \leq k}{\prod} \textup{Hom}(M_i, I)$ be the restriction of $\Delta$ to the indicated factors, and set $\Delta_{-1}$ to be the terminal map.
+  \rednote{I think the subscripts on the products need to be the same, since one of the components of $\nabla$ is $-\textup{id}$.  Unless you mean to co-restrict in the codomain as well?}
+  First we show that each $\Delta_k$ is epi.
+  Let $g : \underset{0 \leq i \leq k}{\prod} \textup{Hom}(M_i, I)$ be a sequence of homomorphisms.
+  The map $\textup{Hom}(M_{k+1},I) \rightarrow \textup{Hom}(M_k, I)$ is epi, because $I$ is injective among the Adelman modules, using \Cref{fcp-projective-fp-injective}.
+  For our lift, let $f_0 : M_0 \rightarrow I$ be some map, say the $0$-map.
+  Then we inductively make each lift $f_{i+1}$ by lifting $g_i-f_i$ for each $i \leq k$.
+  \rednote{I believe that since this induction is finite, we can commute out the pi of the propositional truncation and proceed with the induction as I described.}
+
+  We now need to show that for any $k$, the map into the following pullback
+  \begin{center}
+    \begin{tikzcd}
+      \underset{0 \leq i \leq k + 2}{\prod}\textup{Hom}(M_i, I) \ar[two heads, bend right, looseness = 0.5]{ddr} \ar[two heads,bend left, looseness = 1, out = 15]{rrd}{\Delta_{k+1}} \ar[dashed]{rd} \\
+      & \textup{PB} \ar[two heads]{d} \ar[two heads]{r} \ar[phantom]{rd}[very near start]{\lrcorner} & \underset{0 \leq i \leq k + 1}{\prod} \textup{Hom}(M_i, I) \ar[two heads]{d} \\
+      & \underset{0 \leq i \leq k + 1}{\prod} \textup{Hom}(M_i, I) \ar[two heads]{r} & \underset{0 \leq i \leq k}{\prod} \textup{Hom}(M_i, I)
+    \end{tikzcd}
+  \end{center}
+  is epi.
+  \rednote{I don't understand what this pullback has to do with our goal.}
+  An element of the pullback is given by two sequences $(f,g)$ such that $\Delta_k(f)_i = g_i$ for all $i \leq k$.
+  Thus the sequence $f$ determines a valid lift, only missing the $(k+1)$-st component.
+  We set $f_{k+1}$ to be a lift of $f_k - g_k$ along $i_k$.
+  This puts us in a position where we can use dependent choice, so $\Delta$ is epic.
+
+  \rednote{Can't we just show directly that $\Delta$ is epic using the method in the second-last paragraph?
+  We start with $g : \prod_i \textup{Hom}(M_i, I)$, and define $f$ by making a sequence of choices?}
+\end{proof}
+
+\begin{lemma}
+  \rednote{TODO: This is just an idea}.
+  Let
+  \[
+    0\to M \to N \to L \to 0
+  \]
+  be an exact sequence and $M,L:\Mod{R}_{\mathrm{ad}}$.
+  Then $N$ is Adelman.
+\end{lemma}
+
+\begin{proof}
+  By \Cref{H1-on-adelman-module} we have $H^1(L,M)=0$ and therefore a not necessarily linear section $s:L\to N$.
+\end{proof}
+
+\rednote{The following can be written out in more detail. Here the Tor-groups are defined purely in terms of resolutions. All results about exact sequences should be recovered from the horseshoe lemma and the snake lemma.}
+Adelman modules are also closed under tensor products.
+Let $M$ and $N$ be two Adelman modules that are presented by the finitely copresented modules $P_1, P_2$ and $Q_1, Q_2$, respectively.
+Because the tensor product is right exact, it preserves presentations.
+Consider the following commutative square
+\begin{center}
+  \begin{tikzcd}
+    P_2 \otimes Q_2 \ar{r} \ar{d} & P_2 \otimes Q_1 \ar{d} \\
+    P_1 \otimes Q_2 \ar{r} & P_1 \otimes Q_1
+  \end{tikzcd}
+\end{center}
+By the dual of \Cref{diff-ker-is-ker}, we obtain the following exact sequence
+\begin{center}
+  \begin{tikzcd}
+    (P_1 \otimes Q_2) \oplus (P_2 \otimes Q_1) \ar{r} & P_1 \otimes Q_1 \ar[two heads]{r} & M \otimes N
+  \end{tikzcd}
+\end{center}
+If the first two terms of this sequence are Adelman, then so is the last one.
+Thus it suffices to show that the tensor of finitely copresented modules is Adelman to show that all Adelman modules are closed under tensor products.
+We will prove something slightly stronger, namely that the tensor of fcp modules are themselves fcp.
+
+\begin{lemma}
+  Let $P$ and $Q$ be fcp modules.
+  Then $P \otimes Q$ is fcp as well.
+\end{lemma}
+
+\begin{proof}
+  Let $Q \hookrightarrow R^{n_1} \rightarrow R^{n_2}$ be a copresentation of $Q$.
+  It suffices to show that the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic, because $P \otimes R^{n_i}$ is fcp for $i = 0$ and $1$.
+  (This uses that fcp modules are closed under kernels.)
+
+  Let $M$ be the image of the map $R^{n_1} \rightarrow R^{n_2}$.
+  Since both $Q$ and $R^{n_1}$ are projective in the Adelman category, the short exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      Q \ar[hook]{r} & R^{n_1} \ar[two heads]{r} & M
+    \end{tikzcd}
+  \end{center}
+  is a projective resolution.
+  Since the tensor product is right exact we get an exact sequence after applying $P \otimes (\cdot)$
+  \begin{center}
+    \begin{tikzcd}
+      \textup{Tor}_1(P,M) \ar[hook]{r} & P \otimes Q \ar{r} & P \otimes R^{n_1} \ar[two heads]{r} & P \otimes M
+    \end{tikzcd}
+  \end{center}
+  As $\textup{Tor}_1(\cdot, \cdot)$ is balanced, we can compute it starting from $P$, but then we see that $\textup{Tor}_1(P,M) = 0$, so the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic.
+\end{proof}
+
+\subsection{Strange modules}\label{strange-modules}
+
+\rednote{These are meant to be ideas/WIP that might not appear in a final draft.}
+
+Given a type $U$, one can form the following modules:
+\begin{equation}\label{eq:strange-sup}
+  \begin{tikzcd}
+    0 \ar[r] & K^U \ar[r,hook] & R \ar[rr,"c"] \ar[rd,->>] && R^U \\
+             &                  &            & R/K^U \ar[ru]
+  \end{tikzcd}
+\end{equation}
+where $c$ sends $r$ to the constant function with value $r$,
+$K^U$ is defined to be the kernel of $c$, and $R/K^U$ is the image of $c$.
+Note that $K^U = \sum_{x:R} (U \to (x=0))$.
+Since $c$ is a ring homomorphism, $K^U$ is an ideal, and $R/K^U$ is also a ring.
+When $U$ is affine, $R^U$ is wqc, and therefore so are $K^U$ and $R/K^U$.
+When $U$ is a closed proposition, such as $V(r)$, we know that
+$R^U$ is Adelman, which implies that $K^U$ and $R/K^U$ are as well.
+\rednote{Citation?}
+
+We can also form
+\begin{equation}\label{eq:strange-sub}
+  \begin{tikzcd}
+    0 \ar[r] & R_U \ar[r,hook] & R \ar[r,->>] & R/R_U \ar[r] & 0
+  \end{tikzcd}
+\end{equation}
+where $R_U$ is the submodule defined by the predicate sending
+$x : R$ to $(x = 0) \lor \propTrunc{U}$.
+For this sequence, we may as well assume that $U$ is a proposition.
+Again, I think $R_U$ is an ideal and the quotient is a ring.
+
+In total, this gives five modules that depend on a type $U$,
+three of which are rings.
+When $U$ is a proposition, all five are not not Adelman, since they
+are Adelman when $U$ is true or false.
+
+There is a relationship between \eqref{eq:strange-sub} for $\lnot U$
+(top row in the following diagram)
+and \eqref{eq:strange-sup} for $U$ (bottom row):
+\begin{equation}\label{eq:strange-compare}
+  \begin{tikzcd}
+    0 \ar[r] & R_{\lnot U} := \sum_{x : R} (x = 0) \lor \lnot U \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>] \ar[d,equal] & R/R_{\lnot U} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^U := \sum_{x : R} (U \to (x = 0)) \ar[r,hook]
+    & R \ar[r,->>] & R/K^U \ar[r] & 0
+  \end{tikzcd}
+\end{equation}
+The downwards inclusion on the left is easy to check:  Let $x : R$.  If $x = 0$,
+then $x$ is clearly in the submodule $K^U$, and if $\lnot U$, then $R^U = 0$, so $K^U$ is all
+of $R$, so $x$ is in $K^U$.
+This map is a monomorphism, since it factors one.
+The epimorphism on the right follows formally.
+Note that the modules on the left have the same non-zero elements, and therefore
+in the cokernel $K^U / R_{\lnot U}$ every element is not not zero.
+Also note that this cokernel is equivalent to the kernel of the right-hand epimorphism,
+by the snake lemma.
+
+Specializing \eqref{eq:strange-sub} to $U = V(r) = \Spec R/(r) = (r = 0)$,
+for a chosen $r : R$, gives the top row of this diagram,
+which is related to the kernel-image exact sequence coming from the
+map $\varphi_r : R \to R$ that multiplies by $r$:
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & R_{V(r)} := \sum_{x : R} (x = 0) \lor (r = 0) \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>] \ar[d,equal] & R/R_{V(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & \ker \varphi_r := \sum_{x : R} (xr = 0) \ar[r,hook]
+    & R \ar[r,->>] & \im \varphi_r = (r) \ar[r] & 0
+  \end{tikzcd}
+  \tag{$\ast$}
+\end{equation*}
+The downwards inclusion on the left is easy to see, and the downwards
+epimorphism on the right follows formally.
+(This is not a special case of \eqref{eq:strange-compare}.)
+Note that $\ker \varphi_r$ is finitely copresented, and so is Adelman.
+Therefore, $\im \varphi_r$ is Adelman as well.
+
+Recall that $D(r) = \lnot V(r) = (r \neq 0) = \inv(r) = \Spec R[1/r]$, so
+\eqref{eq:strange-compare} with $U = V(r)$ involves $V(r)$ and $D(r)$:
+\begin{equation}\label{eq:compare-Vr}
+  \begin{tikzcd}
+    0 \ar[r] & R_{D(r)} := \sum_{x : R} (x = 0) \lor (r \neq 0) \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>,"q"] \ar[d,equal] & R/R_{D(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^{V(r)} := (r) \ar[r,hook]
+    & R \ar[r,->>,"c"] & R^{V(r)} = R/(r) \ar[r] & 0
+  \end{tikzcd}
+\end{equation}
+Here note that $R^{V(r)} = R/(r)$ since $V(r) = \Spec R/(r)$, and so the kernel of $c$ is $(r)$.
+Also, the map $c$ is epi in this case, so $R^{V(r)}= R/K^{V(r)}$.
+Since $V(r)$ is closed, the modules in the bottom row are Adelman.
+(This is also easy to see directly in this case, as $R/(r)$ is finitely presented.)
+
+For each $r : R$, $r$ is in the submodule $K^{V(r)} = (r)$.  But the statement that
+for each $r$, $r$ is in the submodule $R_{D(r)}$ is equivalent to the statement that
+$R$ has decidable equality, which contradicts duality.  \rednote{Is this precisely
+written somewhere?}  Therefore, it is not the case that the inclusion map is an
+equivalence for every $r : R$.
+
+The map $q$ in the previous diagram has the property that $\lnot (q(r) \neq 0)$.
+Indeed, assume that $q(r) \neq 0$.  Then $r \neq 0$, and therefore $R/R_{D(r))} = 0$,
+so $q(r) = 0$, a contradiction.
+\textbf{Questions:}
+Does this mean that $q(r)$ is nilpotent in the ring $R/R_{D(r)}$?
+Or does the relationship between not non-zero and nilpotence only work for the ring $R$?
+Is $q$ the universal map for which $\lnot (q(r) \neq 0)$?
+
+Next we can consider \eqref{eq:strange-compare} with $U := D(r)$, so
+$\lnot U = \lnot (r \neq 0)$.  We get
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & R_{\lnot D(r)} := \sum_{x : R} (x = 0) \lor \lnot (r \neq 0) \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>] \ar[d,equal] & R/R_{\lnot D(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^{D(r)} = \sum_{x : R} \exists_n (r^n x = 0)  \ar[r,hook]
+    & R \ar[r,->>] & R/K^{D(r)} \ar[r] & 0
+  \end{tikzcd}
+  \tag{$\ast$}
+\end{equation*}
+where $R/K^{D(r)}$ is the image of $R$ in $R^{D(r)} = R[1/r]$.
+The displayed description of $K^{D(r)}$ follows from the construction of $R[1/r]$
+using equivalence classes of fractions.  \rednote{Citation?}
+The modules in the bottom row are wqc, since $D(r)$ is affine.
+
+Finally, consider \eqref{eq:strange-compare} with $U := \lnot D(r)$, noting that
+$\lnot \lnot D(r) = D(r)$ (since $D(r)$ is already a negation).
+This gives the first two rows of
+\begin{equation*}
+  \begin{tikzcd}
+    0 \ar[r] & R_{D(r)} := \sum_{x : R} (x = 0) \lor (r \neq 0) \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>,"q"] \ar[d,equal] & R/R_{D(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^{\lnot D(r)} \ar[r,hook] \ar[d,hook]
+    & R \ar[r,->>,"q'"] \ar[d,equal] & R/K^{\lnot D(r)} \ar[r] \ar[d,->>] & 0 \\
+    0 \ar[r] & K^{V(r)} := (r) \ar[r,hook]
+    & R \ar[r,->>,"c"] & R^{V(r)} = R/(r) \ar[r] & 0
+  \end{tikzcd}
+  \tag{$\ast$}
+\end{equation*}
+The first row is the same as the first row of \eqref{eq:compare-Vr}, and in fact, since we
+have a map $V(r) \to \lnot D(r)$, that diagram factors through this one, as shown.
+
+\textbf{It would be nice to understand the middle row better.}
+Observe that $\lnot D(r) = \lnot \lnot (r = 0)$ and $(r = 0) = \Spec(R/\langle r \rangle)$ is a closed subtype of $\Spec(R)$, so by Lemma 1.1.2 of Topology of Synthetic Schemes draft we say that $\lnot D(r)$ is the formal neighbourhood of $(r = 0)$.
+\rednote{This notion of formal neighbourhood is different than the one presented in Differential Geometry of Synthetic Schemes draft.}
+Again, by Lemma 1.1.2, we get that $\lnot D(r) = \bigcup{k : \mathbb{N}}(r^k = 0)$.
+\rednote{This description of $\lnot D(r)$ is probably derivable directly from $\lnot D(r)$ being the proposition that $r$ is nilpotent.}
+Using continuity of the exponential and duality we can compute $R^{\lnot D(r)} = R^{\bigcup{k : \mathbb{N}}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k R/\langle r^k \rangle = \widehat{R_r}$.
+It follows that $K^{\lnot D(r)} = \bigcap_k \langle r^k \rangle$.
+Given some $r : R$ that is either invertible or nilpotent, we can deduce that $R^{\lnot D(r)}$ and $K^{\lnot D(r)}$ are Adelman.
+The following proposition tells us that we cannot assert that $R^{\lnot D(r)}$ is Adelman for all $r : R$.
+
+\begin{proposition}
+  It is impossible to prove that for every $r : R$ the module $R^{\lnot D(r)}$ is wqc.
+\end{proposition}
+
+\begin{proof}
+  Assume that for any $r : R$ we know that $R^{\lnot D(r)}$ is wqc.
+  The global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module: $R[[x]] = \prod_{r : R} R^{\lnot D(r)}$ \rednote{Citation needed}.
+  By Lemma 7.1.10 of A Foundation for Synthetic Algebraic Geometry, we can deduce that $R[[x]]$ is wqc, which contradicts Proposition A.0.5 of the same paper.
+\end{proof}
+
+Other questions:
+Is the map $c : R \to R^{\lnot D(r)}$ epic in this case?
+Is $c(r)$ nilpotent?
+
+Altogether there are approximately 15 modules above, five for each of
+$V(r)$, $D(r)$ and $\lnot D(r)$.
+(A couple turn out to be equal, and a couple were introduced that don't
+come from the general construction.)
+One can also take kernels or cokernels of the various vertical maps.
+
+\textbf{Can we show that some of these are not Adelman, or have other bad properties?}
+(Presumably by proving statements like: $\lnot (\text{for all $r : R$, $R_{D(r)}$ is Adelman})$.)
+The technique in Theorem 3.2.1 of the topology draft might be helpful.
+Note that the map $\varphi_r$ that appears above also appears there.
+
+Methods for showing that an $R$-module $M$ is not Adelman:
+\begin{itemize}
+\item Show that the map $M \to M^{\ast\ast}$ is not an equivalence.
+\item Show that $M$ is not wqc.
+\item Show that there exists an epi $e : C \to M$ and a map $f : A \to M$,
+with $A$ and $C$ finitely co-presented, such that $f$ does not lift through $e$.
+(See \Cref{maps-into-coherent-lift}.)
+\item Show that there exists a mono $i : M \to C$ and a map $f : M \to A$,
+with $A$ and $C$ finitely presented, such that $f$ does not extend over $i$.
+(The dual of \Cref{maps-into-coherent-lift}.)
+\item Adelman implies not not finite-free \rednote{Citation?},
+so it suffices to prove that $M$ is not finite free.
+To show $\lnot (\text{for all $r : R$, $M_r$ is Adelman})$ for a family $M_r$,
+I think you need to prove\\ $\lnot (\text{for all $r : R$, not not $M_r$ is finite-free})$.
+\end{itemize}
+
+\subsection{Questions (and some answers)}
+\begin{enumerate}
+\item Is dualization an antiequivalence of Adelman modules?
+
+      Yes.
+\item Are Adelman modules closed under extension?
+
+      If the quotient module is also finitely generated, then yes.
+\item\label{ad-hom-closed} Are Adelman modules closed under $\Hom$?
+
+      Yes, \cref{hom-closure}.
+\item Are Adelman modules closed under $\_\otimes\_$?
+
+      Yes, for finite free \(B\), by \cref{ad-hom-closed} and \(A\otimes B^\ast=\Hom(B,A)\).
+\item Does exponentiating with closed propositions preserve Adelman?
+
+      Yes, by partial answer to \cref{finite-exp-closed}.
+\item\label{finite-exp-closed} Are projective/proper/finite-scheme products of Adelman modules Adelman?
+
+      Partial answer:
+      \begin{enumerate}[(i)]
+      \item Let $X$ be a finite scheme, i.e. $X$ an affine scheme such that $R^X$ is a finitely presented $R$-module.
+      For any Adelman-module $M:X\to\Mod{R}_{\mathrm{ad}}$ on $X$, $(x:X)\to M_x$ is Adelman: We can exponentiate the diagram witnessing that it is an Adelman-module and we can globalize the presentations of pointwise fp modules.
+      Exponentiating is left exact and since $M$ is wqc and $X$ affine, it is also right exact.
+      \end{enumerate}
+
+\item Are the cohomology groups of Adelman module bundles on projective schemes Adelman?
+
+      None so far. It seems a bit much to ask, but it would be really great for Serre-Duality, so it should be worth it to try to adapt e.g.\ \cite[19.1.3]{vakil}.
+
+\item Is any Adelman-module strongly quasi-coherent?
+
+      No. The kernel $K$ of $2\cdot\_:R\to R$ can not be strongly quasi-coherent in general.
+      So far there is only an external argument: \url{https://www.youtube.com/watch?v=mdjq91Gc6Lo} around 1:10:00 states that strongly quasi-coherent modules are invariant under pullback. But in general $K$ can change between trivial and non-trivial on different stages.
+\item Does being Adelman depend only on the underlying type?  Maybe related to being an fppf sheaf?
+\item What are examples of non-Adelman modules?
+
+      $R^\mathbb{N}$.  A direct sum of countable copies of $R$.  (Citations/proofs?)
+
+Are there some that are ``smaller'' in some sense?
+What about the ones mentioned in \cref{strange-modules}?
+\end{enumerate}

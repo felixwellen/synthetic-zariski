@@ -38,7 +38,7 @@ We will see below, that the second, equivalent definition is small.
   \label{projective-space-as-space-of-lines}
   \begin{enumerate}[(a)]
   \item A \notion{line} in an $R$-vector space $V$ is a subtype $L:V\to \Prop$,
-    such that there exists an $x:V\setminus\{0\}$ with
+    such that there merely is an $x:V\setminus\{0\}$ with
     \[ \prod_{y:V}\left(L (y) \Leftrightarrow \exists c:R.y=c\cdot x\right)\]
   \item The space of all lines in a fixed $n$-dimensional vector space $V$ is the \notion{projectivization} of $V$:
     \[ \bP(V)\colonequiv \sum_{L:V\to \Prop} L \text{ is a line}  \]
@@ -242,7 +242,7 @@ We start with the case $n = 1$.
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
   \label{functions-on-projective-line-constant}
-  All functions $\bP^1 \to R$ are constant.
+  The inclusion of constant functions into $\bP^1 \to R$ is an equivalence.
 \end{lemma}
 
 \begin{proof}
@@ -275,13 +275,14 @@ We start with the case $n = 1$.
   Now it is an algebraic computation,
   understanding the elements of $R[X, Y]/(1 - XY)$ as Laurent polynomials,
   to see that the pullback is the algebra $R$,
-  so we have $R^{\bP^1} = R$ as desired.
+  with inclusion of constant polynomials as projections.
+  This shows that the inclusion of constant functions $R\simeq R^{\bP^1} $ is an equivalence.
 \end{proof}
 
 \begin{lemma}[using \axiomref{loc}, \axiomref{sqc}]%
   \label{parametrized-line-through-two-points-in-projective-space}
   Let $p \neq q \in \bP^n$ be given.
-  Then there exists a map $f : \bP^1 \to \bP^n$
+  Then there merely is a map $f : \bP^1 \to \bP^n$
   such that $f([0 : 1]) = p$, $f([1 : 0]) = q$.
 \end{lemma}
 
@@ -324,8 +325,9 @@ We start with the case $n = 1$.
 \begin{theorem}[using \axiomref{loc}, \axiomref{sqc}]%
   \label{functions-on-projective-space-constant}
   All functions $\bP^n \to R$ are constant,
-  that is,
-  \[ H^0(\bP^n, R) \colonequiv (\bP^n \to R) = R \rlap{.} \]
+  that is, the inclusion of constants
+  \[ R \to  (\bP^n \to R) \eqqcolon H^0(\bP^n, R) \]
+  is an equivalence.
 \end{theorem}
 
 \begin{proof}
@@ -378,7 +380,7 @@ We start with the case $n = 1$.
   ${R[X_0, \dots, X_n]}_{X_0 \dots X_n}$,
   for example
   $(U_0 \to R) = R[\frac{X_1}{X_0}, \dots, \frac{X_n}{X_0}]$.
-  Then the limit can be computed to be $R$.
+  Then the limit can be computed to be the constant functions.
 \end{remark}
 
 
@@ -578,7 +580,7 @@ We now transfer this result to line bundles on $\bP^1$.
 \begin{proof}
   Let $\mathcal{L}:\bP^1\to \Mod{R}$ be a line bundle on $\bP^1$.
   By pushout recursion, $\mathcal{L}$ is given by two line bundles $\mathcal L_0,\mathcal L_1:\A^1\to\Mod{R}$
-  and a glueing function $g:(x:\A^1\setminus\{0\})\to \mathcal L_0(x)=\mathcal L_1(\frac{1}{x})$.
+  and a gluing function $g:(x:\A^1\setminus\{0\})\to \mathcal L_0(x)=\mathcal L_1(\frac{1}{x})$.
   Since we are proving a double negation, we can assume identifications $p_0:(x:\A^1)\to \mathcal L_0=R^1$
   and $p_1:(x:\A^1)\to \mathcal L_1=R^1$ by \Cref{line-bundle-A1-notnot-trivial}.
 
@@ -588,10 +590,10 @@ We now transfer this result to line bundles on $\bP^1$.
   We can assume $\alpha=1$, since this just amounts to concatenating
   our final equality with the automorphism of line bundles given by $\alpha^{-1}$ at all points.
 
-  By explicit calculation, the tautological bundle $\mathcal O_{\bP^1}(-1)$ on $\bP^1$ is given by glueing trivial line bundles along
-  a glueing function $g_{-1}:(x:\A^1\setminus\{0\})\to R^1=R^1$ with $g_{-1}(x)\colonequiv \lambda\mapsto x\cdot \lambda$.
-  Note that an arbitrary choice of sign is involved, made by choosing the direction of the glueing function.
+  By explicit calculation, the tautological bundle $\mathcal O_{\bP^1}(-1)$ on $\bP^1$ is given by gluing trivial line bundles along
+  a gluing function $g_{-1}:(x:\A^1\setminus\{0\})\to R^1=R^1$ with $g_{-1}(x)\colonequiv \lambda\mapsto x\cdot \lambda$.
+  Note that an arbitrary choice of sign is involved, made by choosing the direction of the gluing function.
   Sticking with the same choice, calculation shows $g_1(x)\colonequiv \lambda\mapsto \frac{1}{x}\cdot \lambda$
-  is a glueing function for the dual of the tautological bundle $\mathcal O_{\bP^1}(1)$
+  is a gluing function for the dual of the tautological bundle $\mathcal O_{\bP^1}(1)$
   and the tensor product of line bundles corresponds to multiplication.
 \end{proof}

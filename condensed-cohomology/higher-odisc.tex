@@ -1,0 +1,340 @@
+
+The goal of this section is to prove a duality similar to Barton-Commelin axiom between Stone spaces and  higher overtly discrete types (aka countable homotopical cell complex). We assume hypercompletness. Reid Barton helped me (Hugo Moeneclaey) for some proofs.
+
+
+\subsection{Higher overtly discrete types}
+
+\begin{definition}
+A higher overtly discrete type is a type $X$ such that $\pi_0(X)$ is overtly discrete and for all $x:X$ and $n>0$ we have that $\pi_n(X,x)$ is overtly discrete.
+\end{definition}
+
+We denote the type of higher overly discrete types by $\ODisc_\infty$. In this section we just say $X$ overtly discrete, omitting the higher. We sometimes refer to overtly discrete sets.
+
+\begin{remark}
+At least in the presence of hypercompletness, given $X$ a type we expect the the following to be equvialent:
+\begin{itemize}
+\item $X$ is an overtly discrete type.
+\item $X$ is a countable homotopical cell complex.
+\item $X$ is a sequential colimit of finite cell complexes.
+\end{itemize}
+\end{remark}
+
+\begin{proposition}
+We have the following:
+\begin{enumerate}[(i)]
+\item Overtly discrete types are stable under $\Sigma$ and identity types.
+\item Overtly discrete types are stable under sequential colimits.
+\item Overtly discrete types are stable under quotients, meaning that given $X$ with overtly discrete identity types and given a surjection $Y\to X$ with $Y$ overtly discrete, we have that $X$ is overtly discrete.
+\item Overtly discrete types are stable under pushouts.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+As folows:
+\begin{enumerate}[(i)]
+\item Clear from the same stability for overtly discrete sets.
+\item Same.
+\item It is clear that $\pi_n(Y,x)$ is overtly discrete since identity types in $Y$ are overly discrete, and we have that $\pi_0(X)$ is the quotient of $\pi_0(Y)$ by the overtly discrete equivalence relation $[x],[y] \mapsto \propTrunc{x=y}$.
+\item By (ii) it is enough to prove that identity types in the pushout are overtly discrete, which follows from (i) and the zig zag construction.
+\end{enumerate}
+\end{proof}
+
+
+\subsection{The dual to Tychonov}
+
+We will need the following:
+
+\begin{lemma}\label{higher-truncation-surjection}
+Assume $S$ a Stone space and $I(x)$ an overly discrete type depending on $x:S$. For $n\geq 0$, the map:
+\[\Pi_{x:S}I(x)\to \Pi_{x:S}\propTrunc{I(x)}_n\]
+is surjective.
+\end{lemma}
+
+\begin{proof}
+We have that any map $\Pi_{x:S}\propTrunc{I(x)}_{n+1}\to \Pi_{x:S}\propTrunc{I(x)}_n$ for $n\geq 0$ is surjective by the vanishing of cohomology. Using dependent choice and hypercompleteness, we conclude that the composite:
+\begin{eqnarray}
+\Pi_{x:S}I(x) &=& \Pi_{x:S}\mathrm{lim}_{k}\propTrunc{I(x)}_k\nonumber\\
+&=& \mathrm{lim}_k\Pi_{x:S}\propTrunc{I(x)}_k\nonumber\\
+&\to& \Pi_{x:S}\propTrunc{I(x)}_n\nonumber
+\end{eqnarray}
+is surjective. 
+\end{proof}
+
+\begin{lemma}\label{truncation-stone-product-commutes}
+Assume $S$ a Stone space and $I(x)$ an overly discrete type depending on $x:S$, as well as $n\geq -1$. Then the canonical map:
+\[\propTrunc{\Pi_{x:S}I(x)}_n\to \Pi_{x:S}\propTrunc{I(x)}_n\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+We start by proving the case $n=-1$ and $I(x)$ a set. Take $S=\mathrm{lim}_kS_k$ with $S_k$ finite. We define $I_k(x) = \Pi_{y:S} Y(y)^{y_k=x}$ for $x:S_k$. Then for $x:S$, we have that $\mathrm{colim}_kI_k(x_k) = I(x)$ and:
+\begin{eqnarray}
+\Pi_{x:S}\propTrunc{I(x)} &=& \Pi_{x:\mathrm{lim}_kS_k}\mathrm{colim}_i\propTrunc{I_i(x_i)}\nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:S_i}\propTrunc{I_i(x)} \nonumber\\
+&=& \propTrunc{\mathrm{colim}_i\Pi_{x:S_i}I_i(x)}\nonumber\\
+&=& \propTrunc{\Pi_{x:S}I(x)}\nonumber
+\end{eqnarray}
+We conclude the case of an arbitrary $I(x)$ by using the surjection $\Pi_{x:S}I(x)\to \Pi_{x:S}\propTrunc{I(x)}_0$ from \Cref{higher-truncation-surjection}.
+
+Now we proceed by induction on $n$, for $n\geq 0$. By induction hypothesis the map:
+\[\propTrunc{\Pi_{x:S}I(x)}_n\to \Pi_{x:S}\propTrunc{I(x)}_n\]
+is an embedding. It is surjective by \Cref{higher-truncation-surjection}.
+\end{proof}
+
+\begin{proposition}
+Assume given $S$ a Stone space and $I(x)$ an overtly discrete type depending on $x:X$. Then $\Pi_{x:S}I(x)$ is overly discrete.
+\end{proposition}
+
+\begin{proof}
+Firstly, by \Cref{truncation-stone-product-commutes} we have that $\propTrunc{\Pi_{x:S}I(x)}_0 = \Pi_{x:S}\propTrunc{I(x)}_0$, so it is indeed overtly discrete. Similarly given $f:\Pi_{x:S}I(x)$, we have that: 
+\begin{eqnarray}
+\pi_{n}(\Pi_{x:S}I(x),f) &=& \propTrunc{\Omega^n(\Pi_{x:S}I(x),f)}_0 \nonumber\\
+&=& \Pi_{x:S}\propTrunc{\Omega^n(I(x),f(x))}_0 \nonumber\\
+&=& \Pi_{x:S}\pi_n(I(x),f(x))\nonumber
+\end{eqnarray}
+So it is indeed overly discrete.
+\end{proof}
+
+
+\subsection{Scott continuity on the left}
+
+First we show the commutation for canonical torsor, by induction on the dimension.
+
+\begin{lemma}\label{higher-scott-continuity-canonical-torsors-left}
+Assume given $(S_i)_{i:\N}$ a tower of Stone spaces, and $A(x)$ an overtly discrete discrete abelian group depending on $x:S_k$. Then for all $n:\N$ the map:
+\[\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n) \to \Pi_{x:\mathrm{lim}_iS_i} K(A(x_k),n) \]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+We use the case $n=0$ and the fact that delooping commutes with filtered colimits and product indexed by a Stone space to conclude.
+\end{proof}
+
+Then we deduce the commutation for arbitrary torsors, using the fact that any torsor is equivalent to an identity type in a canonical torsor.
+
+\begin{lemma}\label{higher-scott-continuity-torsors-left}
+Assume given $(S_i)_{i:\N}$ a tower of Stone spaces, $n\geq 1$ and $A(x)$ an overtly discrete discrete abelian group and $T(x)$ an element of $K(A(x),n)$ depending on $x:S_k$. Then for all $n:\N$ the map:
+\[\mathrm{colim}_{i\geq k} \Pi_{x:S_i}T(x_k) \to \Pi_{x:\mathrm{lim}_iS_i}T(x_k) \]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Since $H^n(S_k,A) = 0$, we merely have that $T = 0$. Since we want to prove a proposition we can assume $T=0$, and then this is \Cref{higher-scott-continuity-canonical-torsors-left}.
+
+%For any $T:K(A(x),n)$ we have that $T = (T =_{K(A(x),n)} 0)$, the map we are considering is in fact the map:
+%\[[T] =_{\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n)} 0 \to T\circ\pi_k =_{\Pi_{x:\mathrm{lim}_iS_i}K(A(x_k),n)} 0\]
+%But by \Cref{higher-scott-continuity-canonical-torsors-left} the map:
+%\[\mathrm{colim}_{i\geq k} \Pi_{x:S_i} K(A(x_k),n) \to \Pi_{x:\mathrm{lim}_iS_i}K(A(x_k),n)\]
+%is an embedding so we can conclude.
+\end{proof}
+
+%\begin{lemma}\label{higher-scott-continuity-truncated}
+%Assume given $(S_i)_{i:\N}$ a tower of Stone spaces, and $I(x)$ an overtly discrete discrete type depending on $x:S_k$. Then for all $n:\N$ the map:
+%\[\mathrm{colim}_{i\geq k} \Pi_{x:S_i} \propTrunc{I(x_k)}_n\to \Pi_{x:\mathrm{lim}_iS_i} \propTrunc{I(x_k)}_n \]
+%is an equivalence.
+%\end{lemma}
+
+%\begin{proof}
+%We proceed by induction on $n:\N$. The case $n=0$ is known. Assume it holds for $n$, then we write $T(x):\Pi_{y:\propTrunc{I(x)}_n} K(\pi_{n+1}(I(x),y),n+2)$ the torsor induced by taking the fiber of the map $\propTrunc{I(x)}_{n+1}\to \propTrunc{I(x)}_n$. Then we have:
+%\begin{eqnarray}
+%\mathrm{colim}_{i\geq k} \Pi_{x:S_i} \propTrunc{I(x_k)}_{n+1} &=& \mathrm{colim}_{i\geq k} ((f:\Pi_{x:S_i}\propTrunc{I(x_k)}_n) \times \Pi_{x:S_i}T(x_k,f(x))) \nonumber\\
+%&=&([f] : \mathrm{colim}_{i\geq k} \Pi_{x:S_i}\propTrunc{I(x_k)}_n)\times \mathrm{colim}_{j\geq l}\Pi_{x:S_j}T(x_k,f(x_l)) \nonumber\\
+%&=& ([f] : \mathrm{colim}_{i\geq k} \Pi_{x:S_i}\propTrunc{I(x_k)}_n)\times \Pi_{x:\mathrm{lim}_jS_j} T(x_k,f(x_l))\nonumber\\
+%&=& (f:\Pi_{x:\mathrm{lim}_iS_i}\propTrunc{T(x_k)}_n)\times \Pi_{x:\mathrm{lim}_jS_j} T(x_k,f(x))%\nonumber\\
+%&=& \Pi_{x:\mathrm{lim}_iS_i}\propTrunc{T(x_k)}_{n+1}\nonumber
+%\end{eqnarray}
+%where the third line is the induction hypothesis and the fourth line is \Cref{higher-scott-continuity-torsors-left}.
+%\end{proof}
+
+%\rednote{We give an alternative proof, of a completely non-dependent case}
+
+\begin{lemma}\label{higher-scott-continuity-truncated-left}
+Assume given $(S_i)_{i:\N}$ a tower of Stone spaces, and $I$ an overtly discrete discrete type. Then for all $n$ the map:
+\[\mathrm{colim}_{i} (S_i\to\propTrunc{I}_n)\to (\mathrm{lim}_iS_i\to \propTrunc{I}_n) \]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+We proceed by induction on $n:\N$. For $n\leq 0$ it is known. For the inductive step, consider the commutative square:
+\[\begin{tikzcd}
+\mathrm{colim}_i(S_i\to \propTrunc{I}_{n+1})\ar[r]\ar[d] & \mathrm{lim}_iS_i\to \propTrunc{I}_{n+1}\ar[d]\\
+\mathrm{colim}_i(S_i\to \propTrunc{I}_{n})\ar[r] &  \mathrm{lim}_iS_i\to \propTrunc{I}_{n}
+\end{tikzcd}\]
+By inductive hypothesis the bottom map is an equivalence. We write $T(x):\Pi_{y:\propTrunc{I(x)}_n} K(\pi_{n+1}(I(x),y),n+2)$ the torsor induced by taking the fiber of the map $\propTrunc{I(x)}_{n+1}\to \propTrunc{I(x)}_n$ Since taking fiber commutes with arbitrary products and sequential colimits, then the map between fibers over $f:S_k\to \propTrunc{I}_{n}$ is:
+\[\mathrm{colim}_{i\geq k}(\Pi_{x:S_i}T(f(x_k)) \to \Pi_{x:\mathrm{lim}_iS_i} T(f(x_k))\]
+which is an equivalence by \Cref{higher-scott-continuity-torsors-left}.
+\end{proof}
+
+\begin{lemma}\label{higher-scott-continuity-left}
+Assume given $(S_i)_{i:\N}$ a tower of Stone spaces, and $I$ an overtly discrete type. Then the canonical map:
+\[\mathrm{colim}_{i} (S_i\to I)\to (\mathrm{lim}_iS_i\to I) \]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+We prove it is $\infty$-connected. For all $n:\N$, we apply $\propTrunc{\_}_n$ on both sides, use the fact that truncation and sequential colimit as well as \Cref{truncation-stone-product-commutes} to get the truncation inside, and then apply \Cref{higher-scott-continuity-truncated-left}. We use hypercompletness to conclude.
+\end{proof}
+
+
+\subsection{Scott continuity on the right}
+
+\begin{lemma}\label{higher-scott-continuity-canonical-torsors-right}
+Assume given $S$ a Stone space, $n:\N$ and $(A_i(x))_{i:\N}$ a tower of overtly discrete abelian groups depending on $x:S$. Then the map:
+\[\mathrm{colim}_{i}\Pi_{x:S}K(A_i(x),n)\to \Pi_{x:S}\mathrm{colim}_iK(A_i(x),n)\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+We use the case $n=0$ and the fact that delooping commutes with filtered colimits and product indexed by a Stone space to conclude.
+\end{proof}
+
+\begin{lemma}\label{higher-scott-continuity-torsors-right}
+Assume given $S$ a Stone space, $n\geq 1$ and $(A_i(x))_{i:\N}$ overtly discrete abelian groups depending on $x:S$ with $(T_i(x))_{i:\N}$ a tower of torsors in $K(A_i(x),n)$. Then the map:
+\[\mathrm{colim}_{i}\Pi_{x:S}T_i(x)\to \Pi_{x:S}\mathrm{colim}_iT_i(x)\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Since $H^n(S,A_0) = 0$, we merely have $T_0 = 0$. Since we want to prove a proposition, we assume $T_0=0$, but then since we have $\alpha_k:\Pi_{x:S}T_k(x)\to T_{k+1}(x)$ we have that $T_k = 0$ implies $T_{k+1} = 0$ and the map $K(A_k(x),n-1)\to K(A_{k+1}(x),n-1)$ induced by $\alpha_k(x)$ is pointed. Then we conclude by \Cref{higher-scott-continuity-canonical-torsors-right}.
+%Alternative: Proceed by induction on $n:\N$.
+\end{proof}
+
+\begin{lemma}\label{higher-scott-continuity-truncated-right}
+Assume given $S$ a Stone space, $n:\N$ and $(I_i(x))_{i:\N}$ a tower of overtly discrete types depending on $x:S$. Then the map:
+\[\mathrm{colim}_{i}\Pi_{x:S}\propTrunc{I_i(x)}_n\to \Pi_{x:S}\mathrm{colim}_i\propTrunc{I_i(x)}_n\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+This is very similar to \Cref{higher-scott-continuity-truncated-left}. Indeed we proceed by induction on $n:\N$. For $n\leq 0$ it is known. For the inductive step, consider the commutative square:
+\[\begin{tikzcd}
+\mathrm{colim}_i(\Pi_{x:S}\propTrunc{I_i(x)}_{n+1})\ar[r]\ar[d] & \Pi_{x:S}\mathrm{colim}_i\propTrunc{I_i(x)}_{n+1}\ar[d]\\
+\mathrm{colim}_i(\Pi_{x:S}\propTrunc{I_i(x)}_{n})\ar[r] &  \Pi_{x:X}\mathrm{colim}_i\propTrunc{I_i(x)}_{n}
+\end{tikzcd}\]
+By inductive hypothesis the bottom map is an equivalence. For $i:\N$, we write $T_i(x):\Pi_{y:\propTrunc{I_i(x)}_n} K(\pi_{n+1}(I_i(x),y),n+2)$ the torsor induced by taking the fiber of the map $\propTrunc{I_i(x)}_{n+1}\to \propTrunc{I_i(x)}_n$. Since taking fiber commutes with arbitrary products and sequential colimits, then the map between fibers over $f:\Pi_{x:S} \propTrunc{I_k(x)}_{n}$ is:
+\[\mathrm{colim}_{i\geq k}(\Pi_{x:S}T_i(f(x)) \to \Pi_{x:S} \mathrm{colim}_{i\geq k} T_i(f(x))\]
+which is an equivalence by \Cref{higher-scott-continuity-torsors-right}.
+\end{proof}
+
+\begin{lemma}\label{higher-scott-continuity-right}
+Assume given $S$ a Stone space and $(I_i(x))_{i:\N}$ a tower of overtly discrete types depending on $x:S$. Then the canonical map:
+\[\mathrm{colim}_{i}\Pi_{x:S}I_i(x)\to \Pi_{x:S}\mathrm{colim}_iI_i(x)\]
+is $\infty$-connected. So it is an equivalence by hypercompletness.
+\end{lemma}
+
+\begin{proof}\
+We prove it is $\infty$-connected. For all $n:\N$, we apply $\propTrunc{\_}_n$ on both sides, use the fact that truncation and sequential colimit as well as \Cref{truncation-stone-product-commutes} to get the truncation inside, and then apply \Cref{higher-scott-continuity-truncated-right}. We use hypercompletness to conclude.
+\end{proof}
+
+
+\subsection{Scott continuity: the general case}
+
+\rednote{Could be replaced by a remark that it works exactly the same as for overtly discrete types as for overtly discrete sets.}
+
+We define ${\mathcal C}_\Stone$ as for overtly discrete sets, i.e.\ as the category with objects the pairs of $X$ Stone and $I(x)$ an overtly discrete type depending on $x:X$, and morphisms such that $\Pi: {\mathcal C}_\Stone \to \ODisc_\infty$ is a functor. It should be noted that since $\ODisc_\infty$ is not a $1$-category, but morally an $\infty$-category, we cannot really define what a functor is. Our technical fix is that we work with wild categories, i.e.\ we ignore higher coherences. the proof is exactly the same as for overtly discrete sets.
+
+\begin{theorem}[Scott continuity]\label{eine-higher-scott-continuity-stone}
+The functor $\Pi : {\mathcal C}_\Stone \to \ODisc$ commutes with sequential colimits.
+\end{theorem}
+
+\begin{proof}
+We assume given a tower in ${\mathcal C}_\Stone$, i.e. we assume a tower:
+\[S_0 \overset{p_0}{\leftarrow} S_1 \overset{p_0}{\leftarrow} S_2 \overset{p_2}{\leftarrow}\cdots \]
+in $\Stone$ with for all $k:\N$ a dependent type $I_k:S_k\to \ODisc_\infty$ and $q_k : \Pi_{x:S_{k+1}}I_k(p_k(x))\to I_{k+1}(x)$.
+We want to prove that the canonical map $\mathrm{colim}_i (\Pi_{x:S_i}I_i(x)) \to \Pi_{x:\mathrm{lim}_kS_k}\mathrm{colim}_i I_i(x_i)$ is an equivalence. 
+
+By general reasoning on colimits and Propositions \ref{higher-scott-continuity-right} and \ref{higher-scott-continuity-left}, we get the following string of equivalences:
+\begin{eqnarray}
+\mathrm{colim}_i (\Pi_{x:S_i}I_i(x)) &=& \mathrm{colim}_{i,k\geq i} \Pi_{x:S_k} I_i(x_i)\nonumber\\
+&=& \mathrm{colim}_{i,k\geq i} \Pi_{x:S_i}\Pi_{y:S_k} ([y]=x)\to I_i(x) \nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:S_i} \mathrm{colim}_{k\geq i} \Pi_{y:S_k} ([y]=x)\to I_i(x)\nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:S_i} \Pi_{y:\mathrm{lim}_{k\geq i} S_k} ([y]=x)\to I_i(x)\nonumber\\
+&=& \mathrm{colim}_i\Pi_{x:\mathrm{lim}_{k} S_k} I_i([x])\nonumber\\
+&=& \Pi_{x:\mathrm{lim}_{k} S_k} \mathrm{colim}_i I_i(x)\nonumber
+\end{eqnarray}
+%We know that the source is equivalent to:
+%\[\mathrm{colim}_{i,k\geq i} \Pi_{x:S_k} I_i(x_i)\]
+%which is the same as:
+%\[\mathrm{colim}_{i,k\geq i} \Pi_{x:S_i}\Pi_{y:S_k} y_k=x \to I_i(x)\]
+%which by \Cref{scott-continuity-right} is in turn equal to:
+%\[\mathrm{colim}_i\Pi_{x:S_i} \mathrm{colim}_{k\geq i} \Pi_{y:S_k} y_i = x \to I_i(x)\]
+%which by \Cref{scott-continuity-left} is equal to:
+%\[\mathrm{colim}_i\Pi_{x:S_i} \Pi_{y:\mathrm{lim}_{k\geq i} S_k} y_i=x \to I_i(x)\]
+%which is immediately seen as:
+%\[\mathrm{colim}_i\Pi_{x:\mathrm{lim}_{k} S_k} I_i(x_i)\]
+%which by \Cref{scott-continuity-right} is equal to:
+%\[\Pi_{x:\mathrm{lim}_{k} S_k} \mathrm{colim}_i I_i(x_k)\]
+We omit the verification that this is indeed the canonical map.
+\end{proof}
+
+
+
+%\section{Extending the higher duality from Stone to compact Hausdorff}
+
+%We are not too sure what is doable. This is a very rough draft.
+
+
+\subsection{Tychonov's dual for compact Hausdorff spaces and overtly discrete $n$-types}
+
+In this section we prove that for $X:\CHaus$ and $I:X\to \ODisc_n$, we have that $\Pi_{x:X}I(x):\ODisc_n$. Our first lemma is very easy, but somehow counterintuitive.
+
+\begin{lemma}\label{assume-inhabited-to-prove-odisc}
+Assume given $I$ a type such that $\propTrunc{I}$ is open and $\propTrunc{I}$ implies $I$ overtly discrete. Then $I$ is overtly discrete.
+\end{lemma}
+
+\begin{proof}
+We have that $I = \propTrunc{I}\times I = \Sigma_{\_:\propTrunc{I}}I$ and overtly discrete types are closed under $\Sigma$.
+\end{proof}
+
+\begin{lemma}\label{dual-tychonov-chaus-torsor-proposition}
+Assume given $X$ a compact Hausdorff space with $A(x)$ an overtly discrete abelian group depending on $x:X$ with $n\geq 1$ and $T:X\to K(A(x),n)$. Then $\propTrunc{\Pi_{x:X}T(x)}$ is an open proposition.
+\end{lemma}
+
+\begin{proof}
+Using \v{C}ech cohomlogy, we see that $H^n(X,A)$ is an overtly discrete set. But $\propTrunc{\Pi_{x:X}T(x)}$ is equivalent to $T=_{H^n(X,A)} 0$.
+\end{proof}
+
+\begin{lemma}\label{dual-tychonov-chaus-torsor-set}
+Assume given $X$ a compact Hausdorff space with $A(x)$ an overtly discrete abelian group depending on $x:X$ with $n\geq 1$ and $T:X\to K(A(x),n)$. Then $\propTrunc{\Pi_{x:X}T(x)}_0$ is an overtly discrete set.
+\end{lemma}
+
+\begin{proof}
+By \Cref{assume-inhabited-to-prove-odisc,dual-tychonov-chaus-torsor-proposition} we can assume $\Pi_{x:X}T(x)$. Bu then we merely have $\propTrunc{\Pi_{x:X}T(x)}_0 = H^{n-1}(X,A)$ and we conclude using \v{C}ech cohomology.
+\end{proof}
+
+\begin{lemma}\label{dual-tychonov-chaus-torsor}
+Assume given $X$ a compact Hausdorff space with $A(x)$ an overtly discrete abelian group depending on $x:X$ with $n\geq 1$ and $T:X\to K(A(x),n)$. Then $\Pi_{x:X}T(x)$ is overtly discrete.
+\end{lemma}
+
+\begin{proof}
+We proceed by induction on $n\geq 1$. If $n=1$ this is already known. Assume it holds for $n\geq 1$, consider $T:X\to K(A(x),n+1)$. By induction hypothesis, we see that identity types in $\Pi_{x:X}T(x)$ are overtly discrete. So we just need to prove that $\propTrunc{\Pi_{x:X}T(x)}_0$ is overtly discrete. This is \Cref{dual-tychonov-chaus-torsor-set}.
+\end{proof}
+
+\begin{proposition}
+Assume given $X$ a compact Hausdorff space and $I(x)$ an overtly discrete $n$-type depending on $x:X$. Then $\Pi_{x:X}I(x)$ is an overtly discrete $n$-type.
+\end{proposition}
+
+\begin{proof}
+We proceed by induction on $n:\N$. For $n=0$ this is known. Assume it holds for $n$, and $I(x)$ is an overtly discrete $n+1$-type depending on $x:X$. By induction hypothesis $\Pi_{x:X}\propTrunc{I(x)}_n$ is an overtly discrete type, so it is enough to prove that the fibers of the map $\Pi_{x:X}I(x)\to \Pi_{x:X}\propTrunc{I(x)}_n$ are overtly discrete to conclude. We can apply \Cref{dual-tychonov-chaus-torsor}.
+\end{proof}
+
+\begin{remark}
+Assume $X$ is an $n$-dimensional compact Hausdorff space, i.e. we have that $H^k(X,A) = 0$ for all $A(x)$ overtly discrete abelian group depending on $x:X$ and $k>n$. Then for $I(x)$ an overtly discrete type depending on $X$ we have that $\Pi_{x:X}I(x) = \Pi_{x:X}\propTrunc{I(x)}_n$ and therefore the general dual to Tychonov. We expect it to not work for infinite dimensional compact Hausdorff spaces.
+\end{remark}
+
+
+%\subsection{Tychonov's dual for finite dimensional compact Hausdorff spaces and overtly discrete types}
+
+%\begin{lemma}
+%Assume given $X$ a compact Hausdorff space such that 
+%\end{lemma}
+
+%\begin{remark}
+%TODO find $X$ infinite dimensional compact Hausdorff space and $I(x)$ untruncated overtly discrete type such that $\Pi_{x:X}I(x)$ is not overtly discrete.
+%\end{remark}
+
+
+
+
+
+
