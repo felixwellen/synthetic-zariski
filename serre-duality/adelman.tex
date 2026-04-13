@@ -604,6 +604,242 @@ where $\nabla(n,m) = i_n(m) - m$.
   We start with $g : \prod_i \textup{Hom}(M_i, I)$, and define $f$ by making a sequence of choices?}
 \end{proof}
 
+Using concepts like microlinearity, we can show that Adelman modules are closed under extensions.
+Recall from \cite{diffgeo-article} that for any fintely presented $R$-module $M$, the disk of $M$ is the affine variety $\mathbb{D}(M) = \Spec (R \oplus M)$, where $R \oplus M$ is the square zero extension algebra.
+We will also write $\mathbb{D}(n) = \mathbb{D}(R^n) = \Spec (R[X_i]_{1\leq i \leq n}/(X_i^2)_{1 \leq i \leq n})$.
+The $n$-disk admits a simpler description: $\mathbb{D}(n) = \{ x : R^n \mid xx^T = 0\}$.
+For any $m,n : \mathbb{N}$ we define the following inclusions
+\begin{align*}
+  \mathrm{inl}_{m,n} : \mathbb{D}(m) & \rightarrow \mathbb{D}(m + n) \\
+  \varepsilon & \mapsto (\varepsilon,0)
+\end{align*}
+\begin{align*}
+  \mathrm{inr}_{m,n} : \mathbb{D}(n) & \rightarrow \mathbb{D}(m + n) \\
+  \varepsilon & \mapsto (0,\varepsilon)
+\end{align*}
+\begin{align*}
+  \mathrm{inc}_{m,n} : \mathbb{D}(m) \underset{\ast}{\coprod} \mathbb{D}(n) & \rightarrow \mathbb{D}(m+n) \\
+  \mathrm{inl}(\varepsilon) & \mapsto \mathrm{inl}_{m,n}(\varepsilon) \\
+  \mathrm{inr}(\varepsilon) & \mapsto \mathrm{inr}_{m,n}(\varepsilon)
+\end{align*}
+We can also define a diagonal on the $1$-disk
+\begin{align*}
+  D : \mathbb{D}(1) & \rightarrow \mathbb{D}(2) \\
+  \varepsilon & \mapsto (\varepsilon,\varepsilon)
+\end{align*}
+For brevity, we introduce the following notation for pointed mapping spaces: $(Y,y)^{(X,x)} := (X,x) \rightarrow_\ast (Y,y)$. If the pointing of $(X,x)$ is understood from context, we write $(Y,y)^X$ instead.
+
+\begin{definition}
+  Let $X$ be a type and $x : X$ a point of $X$.
+  $X$ is \notion{infinitesimally linear at $x$} if for every $m, n : \mathbb{N}$ the induced map
+  \begin{align*}
+    \mathrm{inc}_{m,n}^* : (X,x)^{\mathbb{D}(m+n)} \rightarrow (X,x)^{\mathbb{D}(m) \underset{*}{\coprod} \mathbb{D}(n)}
+  \end{align*}
+  is an equivalence.
+\end{definition}
+
+Any scheme is infinitesimally linear at all of its points \cite{diffgeo-article}.
+In particular, finite free $R^n$ and finitely copresented $P$ modules are infinitesimally linear at any point.
+
+\begin{proposition}[5.0.1. \cite{david-orbifolds}]
+  Infinitesimally linear types are closed under limits.
+  If $X$ is infinitesimally linear at $x : X$, then $X^A$ is infinitesimally linear at $\mathrm{const}_x$ for any type $A$.
+\end{proposition}
+
+The converse of the above result is not true in general.
+For $R$-modules, we can show that cokernels of infinitesimally linear types at $0$, are themselves infinitesimally linear.
+To do so we will need to talk about infinitesimal varieties.
+
+\begin{definition}[\cite{etale-draft}]
+  \phantom{M} \\
+  \begin{enumerate}[(a)]
+  \item A \notion{Weil algebra} over $R$ is a finitely presented $R$-algebra $W$ together with a homomorphism $\pi : W \to R$, such that the kernel of $\pi$ is a nilpotent ideal.
+  \item An \notion{infinitesimal variety} is a pointed type $D$, such that $D = (\Spec W, \pi)$ for a Weil algebra $(W, \pi)$.
+  \end{enumerate}
+\end{definition}
+
+Given a finitely presented $R$-module $M$, then its disk $\mathbb{D}(M)$ is an infinitesimal variety.
+
+\begin{lemma}[Lemma 10.0.1 \cite{etale-draft}]
+  Let $X$ be an infinitesimal variety.
+  Then $X$ is projective among types.
+\end{lemma}
+
+\begin{proposition}
+  Let $(X,x)$ be a pointed object which is projective among types.
+  Then the functor $(\underline{\phantom{Y}})^{(X,x)}$ is exact for $R$-modules.
+\end{proposition}
+
+\begin{proof}
+  Let $M \rightarrow N$ be an epimorphism of $R$-modules, and suppose we have a pointed map $f : (X,x) \rightarrow_\ast (N,0)$.
+  We merely get a lift $\hat{g} : X \rightarrow M$ of $f$ along the epi.
+  The map $g = \hat{g} - g(0)$ is a pointed lift $f$, as we desired.
+\end{proof}
+
+For every $n : \mathbb{N}$ the type $\mathbb{D}(n)$ is an infinitesimal variety.
+We can thus deduce by the results above that for any $m,n : \mathbb{N}$ the functors $(\underline{\phantom{Y}})^{\mathbb{D}(m+n)}$ and $(\underline{\phantom{Y}})^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)} = (\underline{\phantom{Y}})^{\mathbb{D}(m)} \times (\underline{\phantom{Y}})^{\mathbb{D}(n)}$ are exact.
+
+\begin{proposition}
+  Cokernels and extensions of infinitesimally linear $R$-modules at $0$ are themselves infinitesimally linear at $0$.
+\end{proposition}
+
+\begin{proof}
+  This follows by exactness of the functors $(\underline{\phantom{Y}})^{\mathbb{D}(m+n)}$ and $(\underline{\phantom{Y}})^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)}$.
+  In both cases, just apply the $5$-lemma to deduce that $\mathrm{inc}_{m,n}^\ast$ is an equivalence, as illustrated in the diagrams below.
+  \begin{center}
+    \begin{tikzcd}
+      A^{\mathbb{D}(m+n)} \ar{d} \ar{r}[above]{\simeq}[below]{\mathrm{inc}_{m,n}^\ast} & A^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)} \ar{d} \\
+      B^{\mathbb{D}(m+n)} \ar{r}[above]{\simeq}[below]{\mathrm{inc}_{m,n}^\ast} \ar[two heads]{d} & B^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)} \ar[two heads]{d} \\
+      C^{\mathbb{D}(m+n)} \ar[dashed]{r}[above]{}[below]{\exists !} & C^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)}
+    \end{tikzcd}
+    \qquad
+    \begin{tikzcd}
+      A^{\mathbb{D}(m+n)} \ar[hook]{d} \ar{r}[above]{\simeq}[below]{\mathrm{inc}_{m,n}^\ast} & A^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)} \ar[hook]{d} \\
+      B^{\mathbb{D}(m+n)} \ar{r}[above]{}[below]{\mathrm{inc}_{m,n}^\ast} \ar[two heads]{d} & B^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)} \ar[two heads]{d} \\
+      C^{\mathbb{D}(m+n)} \ar[]{r}[above]{\simeq}[below]{\mathrm{inc}_{m,n}^\ast} & C^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)}
+    \end{tikzcd}
+  \end{center}
+  \phantom{M}
+\end{proof}
+
+\begin{corollary}
+  Adelman modules and their extensions are infinitesimally linear at $0$.
+\end{corollary}
+
+\begin{proof}
+  This is immediate by the above proposition, as Adelman modules are kernels of cokernels of infinitesimally linear $R$-modules at $0$.
+\end{proof}
+
+Recall that the \notion{tangent space} of a type $X$ at the point $x : X$ is the type of pointed maps $(X,x)^{\mathbb{D}(1)}$.
+This defines a functor, where a map $f : X \rightarrow Y$ is taken to its derivative $df_x : (X,x) \rightarrow (Y,f(x))$.
+It is clear that this functor is exact on modules, since $\mathbb{D}(1)$ is an infinitesimal variety.
+
+Let $M$ be an $R$-module.
+The tanget space $\mathrm{T}_0M$ admits an $R$-module structure by taking pointwise addition and scalar multiplication on the tangent vectors.
+This module structure is called the pointwise module structure on $\mathrm{T}_0M$.
+We define a map $\mathrm{can} : M \rightarrow \mathrm{T}_0M$ by $m \mapsto (r \mapsto r \cdot m)$, and call this the canonical map.
+It is clear that the canonical map is $R$-linear.
+
+\begin{proposition}
+  The family of maps $\mathrm{can} : M \rightarrow \mathrm{T}_0M$ is natural on the $R$-linear maps. \hfill\square
+\end{proposition}
+
+\begin{proposition}
+  The map $\mathrm{can} : R^n \rightarrow \mathrm{T}_0R^n$ is an equivalence of types.
+\end{proposition}
+
+\begin{proof}
+  By duality, the tanget space $\mathrm{T}_0R^n$ consists of those polynomials in $p(x) : R[x]/(x^2)$ such that $p(0)=0$.
+  These polynomials are precisely those on the form $\mathrm{can}_r$ for any $r : R$.
+\end{proof}
+
+\begin{corollary}
+    The map $\mathrm{can} : M \rightarrow \mathrm{T}_0M$ is an equivalence on Adelman modules and their extensions.
+\end{corollary}
+
+\begin{proof}
+  Since $\mathrm{T}_0$ is an exact functor we can conclude with the above proposition and the $5$-lemma.
+\end{proof}
+
+\begin{theorem}[Thm 1.1.10 \cite{etale-draft}]
+  Let $X$ be an infinitesimally linear type at $x : X$.
+  Then the tangent space $\mathrm{T}_xX$ admits an $R$-module structure.
+  This module structure will be called the microlinear module structure on $\mathrm{T}_xX$. \hfill\square
+\end{theorem}
+
+We can describe the relevant binary operations of the microlinear module structure.
+Suppose we are given two tangent vectors $\upsilon, \nu : \mathrm{T}_0M$, then $\upsilon \boxplus \nu$ (the microlinear addition) is defined by the composite $(\mathrm{inc}_{1,1}^\ast)^{-1}[\upsilon,\nu] \circ D$.
+In other words, we obtain this map by lifting in the following diagram
+\begin{center}
+  \begin{tikzcd}
+    & \mathbb{D}(1) \underset{*}{\coprod} \mathbb{D}(1) \ar{rd}{[\upsilon,\nu]} \ar{d}{\mathrm{inc}_{1,1}} \\
+    \mathbb{D}(1) \ar{r}{D} \ar[bend right]{rr}{\upsilon \boxplus \nu} & \mathbb{D}(2) \ar[dashed]{r}{\exists !} & M
+  \end{tikzcd}
+\end{center}
+Scalar multiplication by $r : R$ is defined by $(r \cdot \upsilon)(\varepsilon) = \upsilon(r\varepsilon)$ for any $\varepsilon : \mathbb{D}(1)$.
+
+If $f : X \rightarrow Y$ is a map of infinitesimally linear types, then the derivative $df_x$ is $R$-linear with respect to the microlinear module structure.
+
+\begin{theorem}
+  Suppose that $M$ is an infinitesimally linear $R$-module at $0$. Then the map ${\mathrm{can} : M \rightarrow \mathrm{T}_0M}$ is $R$-linear for the microlinear module structure on $\mathrm{T}_0M$.
+\end{theorem}
+
+\begin{proof}
+  It is clear that for any $r : R$ the maps $r\cdot \mathrm{can}(m)$ and $\mathrm{can}(rm)$ are the same.
+  For any $\varepsilon : \mathbb{D}(1)$ we get $(r\cdot\mathrm{can}(m))(\varepsilon) = \mathrm{can}(m)(r\varepsilon) = r\varepsilon m = \varepsilon rm = \mathrm{can}(rm)(\varepsilon)$.
+
+  Because $\mathrm{can}$ is $R$-linear for $\mathrm{T}_0M$ with the pointwise module structure, it suffices to show that the microlinear and pointwise addition on $\mathrm{T}_0M$ are the same.
+  The following argument uses Eckmann-Hilton to do so.
+  It is clear that the identity for both of these $R$-module structures is the map constant on $0$, so it remains to argue that the maps are compatible.
+  Let $+$ denote the addition on $M$, and we use the same symbol for the pointwise module structure on $\mathrm{T}_0M$.
+  Let $\boxplus$ denote the microlinear addition on $\mathrm{T}_0M$.
+  Our goal is to show that for any $\alpha, \beta, \gamma, \delta : \mathrm{T}_0M$, $(\alpha + \gamma) \boxplus (\beta + \delta) = (\alpha \boxplus \beta) + (\gamma \boxplus \delta)$ holds.
+
+  The map $(\alpha + \gamma) \boxplus (\beta + \delta)$ is given by lifting in the following diagram
+  \begin{center}
+    \begin{tikzcd}
+      & \mathbb{D}(1) \underset{*}{\coprod} \mathbb{D}(1) \ar{d}{\mathrm{inc}_{1,1}} \ar{r}{[\Delta,\Delta]} & \mathbb{D}(1)^2 \underset{*}{\coprod} \mathbb{D}(1)^2 \ar{rr}{[\alpha \times \gamma, \beta \times \delta]} & & M^2 \ar{d}{+} \\
+      \mathbb{D}(1) \ar{r}{D} \ar[bend right, looseness = 0.5]{rrrr}{(\alpha + \gamma) \boxplus (\beta + \delta)} & \mathbb{D}(2) \ar[dashed]{rrr}{\exists !} & & & M
+    \end{tikzcd}
+  \end{center}
+  We get $(\alpha \boxplus \beta) + (\gamma \boxplus \delta)$ by lifting in the following diagram
+  \begin{center}
+    \begin{tikzcd}
+      & & (\mathbb{D}(1) \underset{*}{\coprod} \mathbb{D}(1))^2 \ar{d}{\mathrm{inc}_{1,1}\times \mathrm{inc}_{1,1}} \ar[bend left]{rd}{[\alpha,\beta] \times [\gamma,\delta]} \\
+      \mathbb{D}(1) \ar{r}{\Delta} \ar[bend right, looseness = 0.5]{rrrr}{(\alpha \boxplus \beta) + (\gamma \boxplus \delta)} & \mathbb{D}(1)^2 \ar{r}{D \times D} & \mathbb{D}(2)^2 \ar[dashed]{r}{\exists} & M^2 \ar{r}{+} & M
+    \end{tikzcd}
+  \end{center}
+  By using the naturality square involving $\Delta$ and $D$ we can glue the lower parts of the diagrams together.
+  \begin{center}
+    \begin{tikzcd}
+      \mathbb{D}(1) \ar{r}{D} \ar{d}{\Delta} & \mathbb{D}(2) \ar[dashed, bend left, looseness = 0.5]{rrd}{\exists !} \ar{d}{\Delta}\\
+      \mathbb{D}(1)^2 \ar{r}{D \times D} & \mathbb{D}(2)^2 \ar[dashed]{r}{\exists} & M^2 \ar{r}{+} & M
+    \end{tikzcd}
+  \end{center}
+  The maps $(\alpha + \gamma) \boxplus (\beta + \delta)$ and $(\alpha \boxplus \beta) + (\gamma \boxplus \delta)$ are equal if the triangle on the right above commutes.
+  Since $M$ is infinitesimally linear, this is the case iff pre-composing with $\mathrm{inc}_{1,1}$ makes the triangle commute.
+  Using the naturality square involving $\Delta$ and $\mathrm{inc}_{1,1}$, this happens if the outer arrows of the following diagram commutes
+  \begin{center}
+    \begin{tikzcd}
+      \mathbb{D}(1) \underset{*}{\coprod} \mathbb{D}(1) \ar{r}{\Delta} \ar{d}{\mathrm{inc}_{1,1}} & (\mathbb{D}(1) \underset{*}{\coprod} \mathbb{D}(1))^2 \ar{d}{\mathrm{inc}_{1,1}\times \mathrm{inc}_{1,1}} \ar[bend left]{rd}{[\alpha,\beta] \times [\gamma,\delta]} \\
+      \mathbb{D}(2) \ar{r}{\Delta} \ar[dashed, bend right, looseness = 0.5]{rrr}{\exists !} & \mathbb{D}(2)^2 \ar[dashed]{r}{\exists} & M^2 \ar{r}{+} & M
+    \end{tikzcd}
+  \end{center}
+  One can now observe that this square commutes because the following square does
+  \begin{center}
+    \begin{tikzcd}
+      \mathbb{D}(1) \underset{*}{\coprod} \mathbb{D}(1) \ar{r}{[\Delta, \Delta]} \ar{d}{\Delta} & (\mathbb{D}(1) \underset{*}{\coprod} \mathbb{D}(1))^2 \ar{d}{[\alpha, \beta]\times [\gamma,\delta]} \\
+      \mathbb{D}(1)^2 \underset{*}{\coprod} \mathbb{D}(1)^2 \ar{r}{[\alpha\times \gamma, \beta\times \delta]} & M^2
+    \end{tikzcd}
+  \end{center}
+  From this we conclude that $(\alpha + \gamma) \boxplus (\beta + \delta) = (\alpha \boxplus \beta) + (\gamma \boxplus \delta)$ holds, and the binary operations are the same.
+\end{proof}
+
+We are now ready to prove that Adelman modules are closed under extension.
+
+\begin{theorem}
+  Suppose that $I \hookrightarrow E \overset{p}{\twoheadrightarrow} P$ is a short exact sequence, with $P$ finitely copresented and $I$ Adelman.
+  Then $E$ is Adelman as well.
+\end{theorem}
+
+The following strategy was first proposed by Felix Cherubini, but the linearizing trick was not known at that point. David Wärn independently discovered this together with an idea on how to linearize the maps.
+
+\begin{proof}
+  Our goal is to split $E$ as $I \oplus P$, i.e. finding a linear section of $p$.
+  It then follows that $E$ is Adelman, as Adelman-modules are closed under direct sums.
+
+  Since $I$ is Adelman, it is also wqc.
+  Therefore $p$ admits a section $s$ by the same argument of (i) in \cref{maps-into-coherent-lift}.
+  consider the diagram by glueing the derivative of $s$ to the naturality square of $\mathrm{can}$ against the linear map $p$.
+  \begin{center}
+    \begin{tikzcd}
+      \mathrm{T}_0E \ar[bend left]{d}{dp_0} & E \ar{d}{p} \ar{l}[above]{\simeq}[below]{\mathrm{can}} \\
+      \mathrm{T}_0P \ar[bend left]{u}{ds_0} & P \ar{l}[above]{\simeq}[below]{\mathrm{can}}
+    \end{tikzcd}
+  \end{center}
+  We obtain a linear section of $p$ by taking $\mathrm{can}^{-1}\circ ds_0 \circ \mathrm{can}$.
+\end{proof}
+
 \begin{lemma}
   \rednote{TODO: This is just an idea}.
   Let
