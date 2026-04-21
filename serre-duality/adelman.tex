@@ -605,9 +605,13 @@ where $\nabla(n,m) = i_n(m) - m$.
 \end{proof}
 
 Using concepts like microlinearity, we can show that Adelman modules are closed under extensions.
-Recall from \cite{diffgeo-article} that for any fintely presented $R$-module $M$, the disk of $M$ is the affine variety $\mathbb{D}(M) = \Spec (R \oplus M)$, where $R \oplus M$ is the square zero extension algebra.
-We will also write $\mathbb{D}(n) = \mathbb{D}(R^n) = \Spec (R[X_i]_{1\leq i \leq n}/(X_i^2)_{1 \leq i \leq n})$.
-The $n$-disk admits a simpler description: $\mathbb{D}(n) = \{ x : R^n \mid xx^T = 0\}$.
+Recall from \cite{diffgeo-article} that for any finitely presented $R$-module $M$, the disk of $M$ is the affine variety $\mathbb{D}(M) = \Spec (R \oplus M)$, where $R \oplus M$ is the square zero extension algebra.
+Note that 
+$\mathbb{D}(R^n) = \Spec (R[X_i]_{1\leq i \leq n}/(X_i X_j)_{1 \leq i \leq j \leq n})$.
+This is also equivalent to the $n$-disk, which we define to be
+$\mathbb{D}(n) = \{ x : R^n \mid xx^T = 0\}$,
+where $x$ is thought of as a column vector, so $x x^T$ denotes the outer product.
+
 For any $m,n : \mathbb{N}$ we define the following inclusions
 \begin{align*}
   \mathrm{inl}_{m,n} : \mathbb{D}(m) & \rightarrow \mathbb{D}(m + n) \\
@@ -653,6 +657,7 @@ In particular, finite free modules and finitely copresented modules are infinite
 \end{example}
 
 The converse of the above result is not true in general.
+\rednote{I'm not sure which statement you are considering the converse of.}
 For $R$-modules, we can show that cokernels of infinitesimally linear types at $0$, are themselves infinitesimally linear.
 To do so, we will need to talk about infinitesimal varieties.
 
@@ -666,12 +671,12 @@ To do so, we will need to talk about infinitesimal varieties.
 
 Given a finitely presented $R$-module $M$, then its disk $\mathbb{D}(M)$ is an infinitesimal variety.
 
-\begin{lemma}[Lemma 10.0.1 \cite{etale-draft}]
+\begin{lemma}[Lemma 10.0.1 \cite{etale-draft}]\label{infinitesimal-projective}
   Let $X$ be an infinitesimal variety.
   Then $X$ is projective among types.
 \end{lemma}
 
-\begin{proposition}
+\begin{proposition}\label{projective-exact}
   Let $(X,x)$ be a pointed object which is projective among types.
   Then the functor $(\underline{\phantom{Y}})^{(X,x)}$ is exact for $R$-modules.
 \end{proposition}
@@ -679,7 +684,7 @@ Given a finitely presented $R$-module $M$, then its disk $\mathbb{D}(M)$ is an i
 \begin{proof}
   Let $M \rightarrow N$ be an epimorphism of $R$-modules, and suppose we have a pointed map $f : (X,x) \rightarrow_\ast (N,0)$.
   We merely get a lift $\hat{g} : X \rightarrow M$ of $f$ along the epi.
-  The map $g = \hat{g} - g(0)$ is a pointed lift $f$, as we desired.
+  The map $g = \hat{g} - \hat{g}(0)$ is a pointed lift of $f$, as desired.
 \end{proof}
 
 For every $n : \mathbb{N}$ the type $\mathbb{D}(n)$ is an infinitesimal variety.
@@ -694,9 +699,9 @@ We can thus deduce by the results above that for any $m,n : \mathbb{N}$ the func
   In both cases, just apply the $5$-lemma to deduce that $\mathrm{inc}_{m,n}^\ast$ is an equivalence, as illustrated in the diagrams below.
   \begin{center}
     \begin{tikzcd}
-      A^{\mathbb{D}(m+n)} \ar{d} \ar{r}[above]{\simeq}[below]{\mathrm{inc}_{m,n}^\ast} & A^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)} \ar{d} \\
+      A^{\mathbb{D}(m+n)} \ar[hook]{d} \ar{r}[above]{\simeq}[below]{\mathrm{inc}_{m,n}^\ast} & A^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)} \ar[hook]{d} \\
       B^{\mathbb{D}(m+n)} \ar{r}[above]{\simeq}[below]{\mathrm{inc}_{m,n}^\ast} \ar[two heads]{d} & B^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)} \ar[two heads]{d} \\
-      C^{\mathbb{D}(m+n)} \ar[dashed]{r}[above]{}[below]{\exists !} & C^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)}
+      C^{\mathbb{D}(m+n)} \ar{r}[above]{}[below]{\mathrm{inc}_{m,n}^\ast} & C^{\mathbb{D}(m)\underset{\ast}{\coprod}\mathbb{D}(n)}
     \end{tikzcd}
     \qquad
     \begin{tikzcd}
@@ -716,9 +721,11 @@ We can thus deduce by the results above that for any $m,n : \mathbb{N}$ the func
   This is immediate by the above proposition, as Adelman modules are kernels of cokernels of infinitesimally linear $R$-modules at $0$.
 \end{proof}
 
-Recall that the \notion{tangent space} of a type $X$ at the point $x : X$ is the type of pointed maps $(X,x)^{\mathbb{D}(1)}$.
-This defines a functor, where a map $f : X \rightarrow Y$ is taken to its derivative $df_x : (X,x) \rightarrow (Y,f(x))$.
-It is clear that this functor is exact on modules, since $\mathbb{D}(1)$ is an infinitesimal variety.
+Recall that the \notion{tangent space} $\mathrm{T}_x X$ of a type $X$ at the point $x : X$ is the type of pointed maps $(X,x)^{\mathbb{D}(1)}$.
+This defines a functor, where a map $f : (X, x) \rightarrow (Y, y)$ is taken to its derivative $df_x : \mathrm{T}_xX \rightarrow \mathrm{T}_y Y$ which is defined by post-composition of pointed maps.
+% To be a functor, I think we need the input map to be pointed.
+By \Cref{infinitesimal-projective} and \Cref{projective-exact},
+the functor $\mathrm{T}_0$ is exact on modules and $R$-linear maps, since $\mathbb{D}(1)$ is an infinitesimal variety.
 
 Let $M$ be an $R$-module.
 The tangent space $\mathrm{T}_0M$ admits an $R$-module structure by taking pointwise addition and scalar multiplication on the tangent vectors.
@@ -739,7 +746,7 @@ It is clear that the canonical map is $R$-linear.
   These polynomials are precisely those of the form $\mathrm{can}_r$ for any $r : R$.
 \end{proof}
 
-\begin{corollary}
+\begin{corollary}\label{can-equiv}
     The map $\mathrm{can} : M \rightarrow \mathrm{T}_0M$ is an equivalence on Adelman modules and their extensions.
 \end{corollary}
 
@@ -824,26 +831,30 @@ If $f : X \rightarrow Y$ is a map of infinitesimally linear types, then the deri
 We are now ready to prove that Adelman modules are closed under extension.
 
 \begin{theorem}
-  Suppose that $I \hookrightarrow E \overset{p}{\twoheadrightarrow} P$ is a short exact sequence, with $P$ finitely copresented and $I$ Adelman.
-  Then $E$ is Adelman as well.
+  Adelman modules are closed under extension.
 \end{theorem}
 
 The following strategy was first proposed by Felix Cherubini, but the linearizing trick was not known at that point. David Wärn independently discovered this together with an idea on how to linearize the maps.
 
 \begin{proof}
-  Our goal is to split $E$ as $I \oplus P$, i.e. finding a linear section of $p$.
-  It then follows that $E$ is Adelman, as Adelman-modules are closed under direct sums.
+  By \Cref{adelman-ext-problem-red}, it suffices to show that 
+  $\textup{Ext}^1_R(P,I) = 0$ when $P$ is finitely copresented and $I$ is finitely presented.
+  In fact, we'll show this just assuming that $I$ is Adelman.
+  So suppose that $I \hookrightarrow E \overset{p}{\twoheadrightarrow} P$ is a short exact sequence, with $P$ finitely copresented and $I$ Adelman.
+  Our goal is to split $E$ as $I \oplus P$, i.e.\ to find a linear section of $p$.
 
   Since $I$ is Adelman, it is also wqc.
-  Therefore $p$ admits a section $s$ by the same argument of (i) in \cref{maps-into-coherent-lift}.
-  consider the diagram by glueing the derivative of $s$ to the naturality square of $\mathrm{can}$ against the linear map $p$.
+  Therefore $p$ admits a (possibly non-linear) section $s$ by the same argument as (i) in \Cref{maps-into-coherent-lift}.
+  Consider the diagram involving the derivative of $s$ and the naturality square of $\mathrm{can}$ for the linear map $p$:
   \begin{center}
     \begin{tikzcd}
       \mathrm{T}_0E \ar[bend left]{d}{dp_0} & E \ar{d}{p} \ar{l}[above]{\simeq}[below]{\mathrm{can}} \\
       \mathrm{T}_0P \ar[bend left]{u}{ds_0} & P \ar{l}[above]{\simeq}[below]{\mathrm{can}}
     \end{tikzcd}
   \end{center}
-  We obtain a linear section of $p$ by taking $\mathrm{can}^{-1}\circ ds_0 \circ \mathrm{can}$.
+  By \Cref{can-equiv}, the top map is an equivalence.
+  Since $s$ is a section of $p$, $ds_0$ is a section of $dp_0$, so
+  we obtain a linear section of $p$ by taking $\mathrm{can}^{-1}\circ ds_0 \circ \mathrm{can}$.
 \end{proof}
 
 \begin{lemma}
