@@ -14,7 +14,7 @@ Assume given $G$ a group and $\alpha$ a $G$-torsor with $x,y:\alpha$. Then $x^{-
 
 Note that $(x^{-1}\cdot y)\cdot (y^{-1}\cdot z) = x^{-1}\cdot z$. Now we define non-abelian \v{C}ech cohomology.
 
-\begin{definition}
+\begin{definition}\label{dfnCocycle}
 Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$.
 \begin{itemize}
 \item A cocycle is a $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ such that for all $x:X$ and $y_0,y_1,y_2:Y(x)$ we have $\delta_x(y_0,y_1)\cdot \delta_x(y_1,y_2) = \delta_x(y_0,y_2)$.
@@ -447,7 +447,21 @@ This section extends Section 5.4 in \cite{foundation-synthtetic-stone-duality}.
   \left(\forall_{n:\N}\alpha|_n \sim_n \beta|_n\right)$. 
 \end{remark}
 
-We define $\I_n^{\sim k} = \{x_1,\hdots,x_n:\I_n\ |\ \forall(i,j).\, x_i\sim_n x_j\}$.
+We define $\I_n^{\sim k} = \{x_1,\hdots,x_k:\I_n\ |\ \forall(i,j).\, x_i\sim_n x_j\}$, so $k$-tuples in $2^n$ of terms that are related by $\sim_n$. 
+Note that 
+$$\Sigma_{x : \mathbb I} (cs^{-1}(x))^k = \lim_{n} \mathbb I_n^{\sim k}$$
+\rednote{Now doubled, I think it makes sense to present it earlier to motivate $\mathbb I_n^{sim k}$.}
+
+\begin{lemma}\Cref{LemmaInverseCsAtMostSize2}
+  Let $n:\mathbb N$, and $a,b,c : 2^n$ be such that $a\sim_n b , b \sim_n c$, and $a\sim_n c$. 
+  Then $a = b \vee b = c \vee a = c$. 
+\end{lemma}
+\begin{proof}
+  Suppose for $x,y,z: Fin(2^n)$, that $|x-y| \leq 1,|y-z| \leq 1 , |x-z|\leq 1$.  
+  We cannot have all of $x\neq y, x \neq z , y \neq z$.
+  As equality is decidable in $Fin(2^n)$, we get that $x = y \vee x = z \vee y = z$. 
+  Under the equivalence in \Cref{description-Cn-simn}, we conclude. 
+\end{proof}
 
 \begin{lemma}\label{interval-connected}
 Given $I$ a finite type, any map from $\I$ to $I$ is constant.
@@ -456,26 +470,49 @@ Given $I$ a finite type, any map from $\I$ to $I$ is constant.
 \begin{proof}
 We consider the map $p : 2^\N\to\I\to I$, by \Cref{factorisation-stone-finite} it factors through $2^n$ for some $n:\N$. 
 
-Let us prove that for all $k:\N$, if the map factors through $2^{k+1}$ as $p_{k+1}$ then it factors through $2^k$. Consider $\alpha:2^k$, then since $p$ factors through $\I$ we have that $p(\alpha,1,0,0,\hdots) = p(\alpha,0,1,1,\hdots)$ so that $p_{k+1}(\alpha,0) = p_{k+1}(\alpha,1)$, and $p_{k+1}$ indeed factors through $2^k$, therefore so does $p$.
+Let us prove that for all $k:\N$, if the map factors through $2^{k+1}$ as $p_{k+1}$ then it factors through $2^k$. Consider $\alpha:2^k$, then since $p$ factors through $\I$, it respects $\sim_{k}$. So we have that $p(\alpha,1,0,0,\hdots) = p(\alpha,0,1,1,\hdots)$ so that $p_{k+1}(\alpha,0) = p_{k+1}(\alpha,1)$, and $p_{k+1}$ indeed factors through $2^k$, therefore so does $p$.
 
 From this we get that $p$ factors through $2^0$, so it is indeed constant.
 \end{proof}
 
-\rednote{Should be rephrased properly, not talking about exact sequence}
-
 \begin{lemma}\label{non-abelian-exact-sequence}
-Given $n:\N$ and $G$ a group, we have an exact sequence:
-\[G^{\I_n} \overset{\delta_0}{\longrightarrow} G^{\I_n^{\sim 2}} \overset{\delta_1}{\longrightarrow} G^{\I_n^{\sim 2}} \]
-  where:
-  \begin{eqnarray}
-  \delta_0(\alpha)(i_0,i_1) = \alpha(i_0)^{-1}\cdot\alpha(i_1)\nonumber\\
-  \delta_1(\beta)(i_0,i_1,i_2) = \beta(i_1,i_2)\cdot\beta(i_0,i_2)^{-1}\cdot\beta(i_0,i_1)\nonumber
-  \end{eqnarray}
+%TODO change label name 
+\rednote{ This theorem statement is not very nice, I wanted something of the form every cocycle is cohomologous in some cover (as in \Cref{dfnCocycle}), but that's not exactly the thing. We could reformulate the start of 3.1 or present $\I_n^{\sim k}$ with some first element fixed. Now I just change $\I_n^{\sim_k}$ to also involve an $x$ somewhere, but that shouldn't be called $\I_n^{\sim k}$, the $k$ has nothing to do with the $\sim$, but with the dimension of the tuple, and the $x$ is important. also lot's of other cleanup TODO}
+  For $x:\I$, define $\mathbb I_{x, n}^{\sim k}$ to be those terms $\alpha : \mathbb I_n^{\sim k}$ such that 
+  $|cs_n(\alpha) - x | \leq \frac1{2^n}$. Alternatively, these are $\alpha: 2^n$ that have an extension to an infinite sequence that converges to $X$. These are defined so that $(cs^{-1}(x))^k = lim \mathbb I_{x,n}^{\sim k}$. 
+
+  Let $G$ be a group. 
+  Let $\delta : G^{\I_{x,n}^{\sim 2}}$ be 
+  such that $\delta(a,b) \cdot \delta(b,c) = \delta(a,c)$
+  for all $a,b,c : \I_n$.
+  Then there is some $\gamma : G^{I_{x,n}^{\sim 1}}$ such that 
+  $\gamma(a) \cdot  \delta(a,b) = \gamma(b)$ 
+  for all $x,y:\I_n$.
+%Consider 
+%\[G^{\I_n} \overset{\delta_0}{\longrightarrow} G^{\I_n^{\sim 2}} \overset{\delta_1}{\longrightarrow} G^{\I_n^{\sim 3}} \]
+%  where:
+%  \begin{eqnarray}
+%  \delta_0(\alpha)(i_0,i_1) = \alpha(i_0)^{-1}\cdot\alpha(i_1)\nonumber\\
+%  \delta_1(\beta)(i_0,i_1,i_2) = \beta(i_1,i_2)\cdot\beta(i_0,i_2)^{-1}\cdot\beta(i_0,i_1)\nonumber
+%  \end{eqnarray}
 \end{lemma}
 
 \begin{proof}
-TODO
+  Since $x\in \mathbb I$ and $cs:2^\mathbb N \to \I$ is surjective, 
+  there exists some $\alpha :2^\mathbb N$ with $cs(\alpha) = x$. 
+  Let $t = \alpha |_n$. 
+  Take $\gamma(a) = \delta(t,a)$. Then as required, we have
+  $$
+   \gamma(a)   \cdot \delta(a,b) = 
+   \delta(t,a) \cdot \delta(a,b) = 
+   \delta(t,b) = \gamma(b).
+  $$
 \end{proof}
+
+
+
+
+
 
 \begin{lemma}\label{Cn-exact-sequence}
 Given $n:\N$ and $A$ an abelian group, we have an exact sequence:
@@ -487,7 +524,8 @@ where:
 \end{lemma}
 
 \begin{proof}
-This follows from the computations given in Stack Project Tag 01FG. \rednote{TODO we need more? Maybe Serre DAC 20, proposition 2?}
+  Exactness at $k=2$ is above. For $k\geq2$, by \Cref{LemmaInverseCsAtMostSize2}, $d_k$ is surjective, from which exactness follows. \rednote{TODO read with fresh eyes}
+%This follows from the computations given in Stack Project Tag 01FG. \rednote{TODO we need more? Maybe Serre DAC 20, proposition 2?}
 \end{proof}
 
 \begin{theorem}\label{cohomology-I}
