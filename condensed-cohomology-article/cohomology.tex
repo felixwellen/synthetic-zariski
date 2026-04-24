@@ -24,7 +24,7 @@ Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both de
 
 Being cohomologous in an equivalence relation. 
 
-\begin{definition}
+\begin{definition}\label{dfnCechCohomology}
 Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. We define the non-abelian cover cohomology $\check{H}^1(X,Y,G)$ as the quotient of cocycles by being cohomologous.
 \end{definition}
 
@@ -364,7 +364,7 @@ From the long exact cohomology sequence we just need to prove that $H^{n+1}(X,\l
 
 Next definition will be used for \v{C}ech cover.
 
-\begin{definition}
+\begin{definition}\label{dfnCech}
 Assume given a type $X$ with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
 \[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
 with:
@@ -524,7 +524,9 @@ where:
 \end{lemma}
 
 \begin{proof}
-  Exactness at $k=1$ is above. For $k\geq2$, note that by \Cref{LemmaInverseCsAtMostSize2}, for any tuple $t : \I_{x,n}^{\sim k}$, there are at least 2 entries of $t$ which are equal. Now we refer to Stacks Tag 01FG or Serre DAC 20, proposition 2. These give proofs that the cohomology we defined agrees with an alternating \v Cech cohomology. As $I_{x,n}^{\sim k}$ is a finite set, we can assign to it an order with trichotomy, and the proofs in these references go trough. Now an alternating \v Cech cohomology must be 0 if two of the same entries occur. Therefore, the sequence is exact. 
+  Exactness at $k=1$ is above. For $k\geq2$, note that by \Cref{LemmaInverseCsAtMostSize2}, for any tuple $t : \I_{x,n}^{\sim k}$, there are at least 2 entries of $t$ which are equal. Now we refer to Stacks Tag 01FG or Serre DAC 20, proposition 2. These give proofs that the cohomology we defined in \Cref{dfnCech} agrees with an alternating \v Cech cohomology. 
+  As $I_{x,n}^{\sim k}$ is a finite set, we can assign to it an order with trichotomy, and the proofs in these references go trough. \rednote{TODO this we should explain in more detail}
+  Now an alternating \v Cech cohomology must be 0 if two of the same entries occur. Therefore, the sequence is exact. 
 %This follows from the computations given in Stack Project Tag 01FG. \rednote{TODO we need more? Maybe Serre DAC 20, proposition 2?}
 \end{proof}
 
