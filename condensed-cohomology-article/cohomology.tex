@@ -436,6 +436,21 @@ For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{i
 
 \subsection{The unit interval is acyclic}
 \label{interval-acyclic}
+\begin{definition}
+  Fix $n:\mathbb N$. Consider the simplicial complex $\mathbb I_n^\sim$ whose vertices are elements of $Fin(2^n)$ and only contains simplices of numbers whose pairwise distance is $\leq 1$. 
+
+  We denote $\mathbb I_n^{\sim k}$ for the elementary $k$-chains of $\mathbb I_n^\sim$ as in \cite{EilenbergSteenrod, Definition VI.2.1}.
+\end{definition}   
+\begin{remark}
+  Any face of $\mathbb I_n^\sim$ contains at most 2 vertices. Therefore, any elementary $k$-chain of $\mathbb I_n^{\sim}$ is degenerate for $k >2$. 
+\end{remark}
+\begin{lemma}
+  For any group $G$, we have that 
+  $G^{\mathbb I_n^{\sim k}}$ TODO write exactness at $k > 2$. 
+\end{lemma}
+\begin{lemma}
+\end{lemma}
+
 
 This section extends Section 5.4 in \cite{foundation-synthtetic-stone-duality}.
 
@@ -510,62 +525,50 @@ From this we get that $p$ factors through $2^0$, so it is indeed constant.
 \end{proof}
 
 
-\begin{remark}
-  In this remark, $\mathbb I_{x,n} = \{a : 2^n | (x-cs_n(\alpha)) \leq \frac1{2^n}\}$. 
-%  Note that for each $n:\mathbb N, x : \mathbb I$, 
-%  $\mathbb I_{x,n}$ is a finite set with at most two elements and has an order with tricohtomy.
-  \rednote{I don't know how we can transform this proof to use $\mathbb I_n^{\sim k}$ instead of $(\mathbb I_{x,n})^k$. 
-  The proof of \cite{EilenbergSteenrod} works when the chain complex is of the form $G^{F^k}$ where $F$ is some finite set. Note that $\mathbb I_n^{\sim k}$ is not of such a form.}
-
-
-  Recall the notions of chain complex, and alternating chain complex, associated to a finite set (Definitions VI.2.1 and VI.6.8 of \cite{EilenbergSteenrod}).
-  The chain complex is the sequence $\cdots \to C_{k+1}\to C_k \to C_{k-1} \to \cdots$ where $C_{k}$ is the free group with generators tuples from $(\mathbb I_{x,n})^{k+1}$ and the maps $d_k: C_{k+1}\to C_k$ is induced by sending $(c_0, \cdots , c_k) \mapsto \sum\limits_{0\leq i \leq k} (c_0, \cdots, \widehat{c_i} , \cdots , c_k)$. 
-  The alternating chain complex is the sequence $D_{k+1}\to D_k \to D_{k-1}$ where 
-  $D_k$ is the quotient of $C_k$ by it's degenerate elements. 
-  The definition of degenerate elements (VI.6.1) I won't repeat for now, but important is that if two entries in a generator $(c_0, \cdots c_k)$ are repeated, then that generator is degenerate (VI.6.6). 
-
-
-  As $\mathbb I_{x,n}$ is finite, the proof of Theorem VI,6.10 of \cite{EilenbergSteenrod} goes trough constructively and there is a homotopy equivalence between the chain complex and the alternating chain complex. Transporting this equivalence along the functor $Hom(-,G) : Grp \to Grp$ gives us a homotopy equivalence between the sequences $[G,{D_{k+1}}] \leftarrow [G,{D_k}] \leftarrow [G,{D_{k-1}}]$ and $[G,{C_{k+1}}] \leftarrow [G,{C_k}] \leftarrow [G,{C_{k-1}}]$. 
-
-
-  As $\mathbb I_{x,n}$ has at most 2 elements, for $k\geq 2$, any element of $(\mathbb I_{x,n})^{k+1}$ is degenerate as generator in $C_k$. 
-  Thus $D_k$ is the trivial group $0$, and so is $[G,{D_k}]$.
-  Note by the way that by the universal properties of freely generated groups, we have $[G,C_k] = G^{(\mathbb I_{x,n})^k}$.
-
-
-\end{remark}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{remark}
-  Recall that for any simplicial complex $K$, we 
-  can define the free group on the $q+1$-tuples of vertices of $K$, denoted 
-  $C_q(K_0)$. 
-  We have maps $\partial: C_q(K_0) \to C_{q-1}(K_0)$ on generators by 
-  $\partial_q(k_0, \cdots k_q) = 
-  \sum_{i = 0}^q (-1)^{i} (k_0 , \cdots , \widehat{k_i} , \cdots k_q$.
-
-
-  Following theorem 6.10 of \cite{EilenbergSteenrod}, for the simplicial complex given by $V = \mathbb I_n^{\sim k}$, we can show that \rednote{TODO}
-\end{remark}
+%  \rednote{
+%  In this remark, $\mathbb I_{x,n} = \{a : 2^n | (x-cs_n(\alpha)) \leq \frac1{2^n}\}$. 
+%    I don't know how we can transform this proof to use $\mathbb I_n^{\sim k}$ instead of $(\mathbb I_{x,n})^k$.  
+%  The proof of \cite{EilenbergSteenrod} works when the chain complex is of the form $G^{F^k}$ where $F$ is some set on which we can place a trichotomy (a strict order st $x < y \vee x = y \vee x > y)$, which I've now called a strict linear order. Note that $\mathbb I_n^{\sim k}$ is not of such a form. $\mathbb I_{x,n}$ works for $F$, but note it is not a finite set, as we cannot decide whether it's size 1 or 2. 
+%}
+%
+%  \begin{lemma}
+%    For each group $G$, $x:\mathbb I, n,k : \mathbb N$ with $k\geq 2$, the sequence 
+%    \begin{equation*}
+%      \begin{tikzcd}
+%        G^{\mathbb I_{x,n}^{k}} \arrow[r,"d_{k}"] &
+%        G^{\mathbb I_{x,n}^{k+1}} \arrow[r,"d_{k+1}"] &
+%        G^{\mathbb I_{x,n}^{k+2}}  
+%      \end{tikzcd}
+%    \end{equation*}
+%    with $d_{k}(f)(a_0,\cdots , a_k) = \sum\limits_{i=0}^{k+1} 
+%    f(a_0, \cdots , \widehat{a_i}, \cdots , a_k)$, is exact. 
+%  \end{lemma}
+%
+%  \begin{remark}
+%%  Recall the notions of chain complex, and alternating chain complex, associated to a finite set (Definitions VI.2.1 and VI.6.8 of \cite{EilenbergSteenrod}).
+%%  The chain complex is the sequence $\cdots \to C_{k+1}\to C_k \to C_{k-1} \to \cdots$ where $C_{k}$ is the free group with generators tuples from $(\mathbb I_{x,n})^{k+1}$ and the maps $d_k: C_{k+1}\to C_k$ is induced by sending $(c_0, \cdots , c_k) \mapsto \sum\limits_{0\leq i \leq k} (c_0, \cdots, \widehat{c_i} , \cdots , c_k)$. 
+%%  The alternating chain complex is the sequence $D_{k+1}\to D_k \to D_{k-1}$ where 
+%%  $D_k$ is the quotient of $C_k$ by it's degenerate elements. 
+%%  The definition of degenerate elements (VI.6.1) I won't repeat for now, but important is that if two entries in a generator $(c_0, \cdots c_k)$ are repeated, then that generator is degenerate (VI.6.6). 
+%    Note that for all $x:\mathbb I$, the type $\mathbb I_{x,n}$ has a strict linear order. 
+%    Therefore the proof of \cite{EilenbergSteenrod, Theorem VI.6.10} goes trough for the chain complex associated to $\mathbb I_{x,n}$. 
+%    So for $C_k$ the free group on $(\mathbb I_{x,n})^{k+1}$, 
+%    turning into a chain complex $C$ under the canonical boundary maps \cite{EilenbergSteenrod, Definition VI.2.1}, there is a homotopy equivalence between $C$ and the same sequence quotiented out by degenerate chains \cite{EilenbergSteenrod, Definition VI.6.8}.
+%    As $\mathbb I_{x,n}$ has at most two elements, any element of $C_k$ is degenerate for $k\geq 2$ \cite{EilenbergSteenrod, Lemma VI.6.6}.
+%
+%
+%    Transporting this equivalence 
+%
+%  Thus there is a homotopy equivalence between the chain complex and the alternating chain complex. Transporting this equivalence along the functor $Hom(-,G) : Grp \to Grp$ gives us a homotopy equivalence between the sequences $[G,{D_{k+1}}] \leftarrow [G,{D_k}] \leftarrow [G,{D_{k-1}}]$ and $[G,{C_{k+1}}] \leftarrow [G,{C_k}] \leftarrow [G,{C_{k-1}}]$. 
+%
+%  
+%
+%
+%\end{remark}
+%
 
 
 
