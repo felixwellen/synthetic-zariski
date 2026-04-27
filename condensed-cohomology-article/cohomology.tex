@@ -436,48 +436,80 @@ For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{i
 
 \subsection{The unit interval is acyclic}
 \label{interval-acyclic}
+This section extends Section 5.4 in \cite{synthetic-stone-duality}.
+
 \begin{definition}
   Fix $n:\mathbb N$. Consider the simplicial complex $\mathbb I_n^\sim$ whose vertices are elements of $Fin(2^n)$ and only contains simplices of numbers whose pairwise distance is $\leq 1$. 
-
-  We denote $\mathbb I_n^{\sim k}$ for the elementary $k$-chains of $\mathbb I_n^\sim$ as in \cite{EilenbergSteenrod, Definition VI.2.1}.
+  We denote $\mathbb I_n^{\sim k}$ for the elementary $k$-chains of $\mathbb I_n^\sim$ as in Definition VI.2.1 of \cite{EilenbergSteenrod}.
 \end{definition}   
-\begin{remark}
-  Any face of $\mathbb I_n^\sim$ contains at most 2 vertices. Therefore, any elementary $k$-chain of $\mathbb I_n^{\sim}$ is degenerate for $k >2$. 
-\end{remark}
-\begin{lemma}
-  For any group $G$, we have that 
-  $G^{\mathbb I_n^{\sim k}}$ TODO write exactness at $k > 2$. 
-\end{lemma}
-\begin{lemma}
-\end{lemma}
-
-
-This section extends Section 5.4 in \cite{foundation-synthtetic-stone-duality}.
 
 \begin{remark}\label{description-Cn-simn}
-  Recall that 
-  there is a binary relation $\sim_n$ on $2^n=:\I_n$ such that 
-  $(2^n,\sim_n)$ is equivalent to  $(\Fin(2^n),\lambda x,y.\ |x-y|\leq 1)$
-  and for $\alpha,\beta:2^\N$ we have $(cs(\alpha) = cs(\beta)) \leftrightarrow 
-  \left(\forall_{n:\N}\alpha|_n \sim_n \beta|_n\right)$. 
+  Note that $\mathbb I_n^{\sim k}$ is in equivalence with 
+  the type of $k+1$-tuples of binary sequences in $2^n$ such that for any $a,b:2^n$ in the tuple, we have 
+  $|cs_n (a) -cs_n(b) |\leq\frac1{2^n}$, meaning $a \sim_n b$. 
+  There are at most two such sequences, so $I_n^{\sim}$ is 2-dimensional. 
+  Also note that for $cs : 2^\mathbb N \twoheadrightarrow \mathbb I$, we have 
+  $$\Sigma_{x : \mathbb I} (cs^{-1}(x))^{k+1} = \lim_{n} \mathbb I_n^{\sim k}$$
 \end{remark}
 
-We define $\I_n^{\sim k} = \{x_1,\hdots,x_k:\I_n\ |\ \forall(i,j).\, x_i\sim_n x_j\}$, so $k$-tuples in $2^n$ of terms that are related by $\sim_n$. 
-Note that 
-$$\Sigma_{x : \mathbb I} (cs^{-1}(x))^k = \lim_{n} \mathbb I_n^{\sim k}$$
-\rednote{Now doubled, I think it makes sense to present it earlier to motivate $\mathbb I_n^{sim k}$.}
 
-\begin{lemma}\Cref{LemmaInverseCsAtMostSize2}
-  Let $n:\mathbb N$, and $a,b,c : 2^n$ be such that $a\sim_n b , b \sim_n c$, and $a\sim_n c$. 
-  Then $a = b \vee b = c \vee a = c$. 
+
+
+\begin{lemma}%\label{LemmaIntervalExactnessforkabove2}
+  Fix a group $G$ and natural number $n$. 
+  Consider the sequence
+  \begin{equation}\label{EqSequence}
+    \begin{tikzcd}
+      0 \to G \to G^{\mathbb I_n^{\sim 0}  } \arrow [r , "d_0"]     & 
+      \cdots                     \arrow [r , "d_{k-2}"] & 
+      G^{\mathbb I_n^{\sim k-1}} \arrow [r , "d_{k-1}"] & 
+      G^{\mathbb I_n^{\sim k  }} \arrow [r , "d_k"]     & 
+      G^{\mathbb I_n^{\sim k+1}} \arrow [r , "d_{k+1}"] & 
+      \cdots
+    \end{tikzcd}
+  \end{equation}
+  with $d_k(f)(a_0, \cdots , a_k) = \sum\limits_{i=0}^k (-1)^i f(a_0 , \cdots, \widehat {a_i} , \cdots, a_k)$. 
+  This sequence is exact at $G^{\mathbb I_n^{\sim k}}$ for $k\geq 2$. 
 \end{lemma}
 \begin{proof}
-  Suppose for $x,y,z: Fin(2^n)$, that $|x-y| \leq 1,|y-z| \leq 1 , |x-z|\leq 1$.  
-  We cannot have all of $x\neq y, x \neq z , y \neq z$.
-  As equality is decidable in $Fin(2^n)$, we get that $x = y \vee x = z \vee y = z$. 
-  Under the equivalence in \Cref{description-Cn-simn}, we conclude. 
+  In this proof we make use of results from chapter VI of \cite{EilenbergSteenrod} and the references are to that chapter of that book. 
+  Note that the above sequence is $Hom(-,G)$ applied to the ordered chain complex (Definition 2.3) corresponding to $\mathbb I_n^\sim$. 
+  By Theorem 6.10, the ordered chain complex is homotopy equivalent to the alternating chain complex corresponding to $\mathbb I_n^\sim$.
+  So to show exactness of the above sequence, it's sufficient to show exactness of the sequence $Hom(D_k,G)$, where 
+$D_k$ is the quotient of the free group on $\mathbb I_n^{\sim k}$ by the degenerate simplices. 
+  Now as $I_n^\sim$ is 2-dimensional, by Lemma 6.6, any $k$-simplex with $k\geq 2$ is degenerate, hence $D_k$ is trivial, and so is $Hom(D_k,G)$. In particular, for $k\geq 2$, the sequence is exact at $Hom(D_k,G)$ as required. 
+\end{proof}
+\begin{lemma}
+  If $G$ is abelian and overtly discrete, the sequence in \Cref{EqSequence} is exact. 
+\end{lemma}
+\begin{proof}
+  As $\mathbb I_n$ is inhabited, $G \to G^{\mathbb I_n^{\sim0}}$ is injective, thus we have exactness at $G$. 
+  
+  If $\alpha : \mathbb I_n \to G$ is such that 
+  $\alpha(b) -\alpha(a) = 0$ whenever $ a \sim_n b$, 
+  then $\alpha$ respects  $\sim_n$. 
+  By \rednote{TODO, is now presented later}, any map $\mathbb I_n \to G$ respecting $\sim_n$ is constant. Thus we have exactness at $G^{\mathbb I_n^{\sim 0}}$. 
+
+  If $\alpha : \mathbb I_n^{\sim 1} \to G$ is such that 
+  $\alpha(b,c) -\alpha(a,c) + \alpha (a,b) = 0$, then define 
+  $\beta : \mathbb I_n \to G$ by 
+  $\beta(a) = \alpha (a,a-1) + \alpha (a-1,a-2) + \cdots + \alpha (1,0)$. 
+  Then, for $b = a + 1$, we have 
+  $\beta(b) -\beta(a) = \alpha(b,a)$. 
+  For $b = a$, we have $\beta(b) -\beta(a) = 0 =?? \beta(b,a)$ \rednote{TODO I think this argument works in the alternating case in general, not requiring abelian stuff. check after sleep}
+  For $b = a -1$, we have $\beta(b) - \beta (a) = - \alpha (a,b)$
 \end{proof}
 
+
+%\begin{lemma}\label{Cn-exact-sequence}
+%Given $n:\N$ and $A$ an abelian group, we have an exact sequence:
+%\[A^{\I_n} \overset{d_0}{\longrightarrow} A^{\I_n^{\sim 2}} \overset{d_1}{\longrightarrow} A^{\I_n^{\sim3}} \overset{d_3}{\longrightarrow} \cdots\]
+%where:
+%\begin{eqnarray}
+% d_k(\alpha)(x_0,\hdots,x_k) &=& \Sigma_{i=0}^k (-1)^i\alpha(x_0,\hdots,\widehat{x_i},\hdots,x_k)\nonumber
+%\end{eqnarray}
+%\end{lemma}
+%
 \begin{lemma}\label{interval-connected}
 Given $I$ a finite type, any map from $\I$ to $I$ is constant.
 \end{lemma}
@@ -490,109 +522,9 @@ Let us prove that for all $k:\N$, if the map factors through $2^{k+1}$ as $p_{k+
 From this we get that $p$ factors through $2^0$, so it is indeed constant.
 \end{proof}
 
-\begin{lemma}\label{non-abelian-exact-sequence}
-%TODO change label name 
-\rednote{ This theorem statement is not very nice, I wanted something of the form every cocycle is cohomologous in some cover (as in \Cref{dfnCocycle}), but that's not exactly the thing. We could reformulate the start of 3.1 or present $\I_n^{\sim k}$ with some first element fixed. Now I just change $\I_n^{\sim_k}$ to also involve an $x$ somewhere, but that shouldn't be called $\I_n^{\sim k}$, the $k$ has nothing to do with the $\sim$, but with the dimension of the tuple, and the $x$ is important. also lot's of other cleanup TODO}
-  For $x:\I$, define $\mathbb I_{x, n}^{\sim k}$ to be those terms $\alpha : \mathbb I_n^{\sim k}$ such that 
-  $|cs_n(\alpha) - x | \leq \frac1{2^n}$. Alternatively, these are $\alpha: 2^n$ that have an extension to an infinite sequence that converges to $X$. These are defined so that $(cs^{-1}(x))^k = lim \mathbb I_{x,n}^{\sim k}$. 
-
-  Let $G$ be a group. 
-  Let $\delta : G^{\I_{x,n}^{\sim 2}}$ be 
-  such that $\delta(a,b) \cdot \delta(b,c) = \delta(a,c)$
-  for all $a,b,c : \I_n$.
-  Then there is some $\gamma : G^{I_{x,n}^{\sim 1}}$ such that 
-  $\gamma(a) \cdot  \delta(a,b) = \gamma(b)$ 
-  for all $x,y:\I_n$.
-%Consider 
-%\[G^{\I_n} \overset{\delta_0}{\longrightarrow} G^{\I_n^{\sim 2}} \overset{\delta_1}{\longrightarrow} G^{\I_n^{\sim 3}} \]
-%  where:
-%  \begin{eqnarray}
-%  \delta_0(\alpha)(i_0,i_1) = \alpha(i_0)^{-1}\cdot\alpha(i_1)\nonumber\\
-%  \delta_1(\beta)(i_0,i_1,i_2) = \beta(i_1,i_2)\cdot\beta(i_0,i_2)^{-1}\cdot\beta(i_0,i_1)\nonumber
-%  \end{eqnarray}
-\end{lemma}
-
-\begin{proof}
-  Since $x\in \mathbb I$ and $cs:2^\mathbb N \to \I$ is surjective, 
-  there exists some $\alpha :2^\mathbb N$ with $cs(\alpha) = x$. 
-  Let $t = \alpha |_n$. 
-  Take $\gamma(a) = \delta(t,a)$. Then as required, we have
-  $$
-   \gamma(a)   \cdot \delta(a,b) = 
-   \delta(t,a) \cdot \delta(a,b) = 
-   \delta(t,b) = \gamma(b).
-  $$
-\end{proof}
 
 
 
-
-
-%  \rednote{
-%  In this remark, $\mathbb I_{x,n} = \{a : 2^n | (x-cs_n(\alpha)) \leq \frac1{2^n}\}$. 
-%    I don't know how we can transform this proof to use $\mathbb I_n^{\sim k}$ instead of $(\mathbb I_{x,n})^k$.  
-%  The proof of \cite{EilenbergSteenrod} works when the chain complex is of the form $G^{F^k}$ where $F$ is some set on which we can place a trichotomy (a strict order st $x < y \vee x = y \vee x > y)$, which I've now called a strict linear order. Note that $\mathbb I_n^{\sim k}$ is not of such a form. $\mathbb I_{x,n}$ works for $F$, but note it is not a finite set, as we cannot decide whether it's size 1 or 2. 
-%}
-%
-%  \begin{lemma}
-%    For each group $G$, $x:\mathbb I, n,k : \mathbb N$ with $k\geq 2$, the sequence 
-%    \begin{equation*}
-%      \begin{tikzcd}
-%        G^{\mathbb I_{x,n}^{k}} \arrow[r,"d_{k}"] &
-%        G^{\mathbb I_{x,n}^{k+1}} \arrow[r,"d_{k+1}"] &
-%        G^{\mathbb I_{x,n}^{k+2}}  
-%      \end{tikzcd}
-%    \end{equation*}
-%    with $d_{k}(f)(a_0,\cdots , a_k) = \sum\limits_{i=0}^{k+1} 
-%    f(a_0, \cdots , \widehat{a_i}, \cdots , a_k)$, is exact. 
-%  \end{lemma}
-%
-%  \begin{remark}
-%%  Recall the notions of chain complex, and alternating chain complex, associated to a finite set (Definitions VI.2.1 and VI.6.8 of \cite{EilenbergSteenrod}).
-%%  The chain complex is the sequence $\cdots \to C_{k+1}\to C_k \to C_{k-1} \to \cdots$ where $C_{k}$ is the free group with generators tuples from $(\mathbb I_{x,n})^{k+1}$ and the maps $d_k: C_{k+1}\to C_k$ is induced by sending $(c_0, \cdots , c_k) \mapsto \sum\limits_{0\leq i \leq k} (c_0, \cdots, \widehat{c_i} , \cdots , c_k)$. 
-%%  The alternating chain complex is the sequence $D_{k+1}\to D_k \to D_{k-1}$ where 
-%%  $D_k$ is the quotient of $C_k$ by it's degenerate elements. 
-%%  The definition of degenerate elements (VI.6.1) I won't repeat for now, but important is that if two entries in a generator $(c_0, \cdots c_k)$ are repeated, then that generator is degenerate (VI.6.6). 
-%    Note that for all $x:\mathbb I$, the type $\mathbb I_{x,n}$ has a strict linear order. 
-%    Therefore the proof of \cite{EilenbergSteenrod, Theorem VI.6.10} goes trough for the chain complex associated to $\mathbb I_{x,n}$. 
-%    So for $C_k$ the free group on $(\mathbb I_{x,n})^{k+1}$, 
-%    turning into a chain complex $C$ under the canonical boundary maps \cite{EilenbergSteenrod, Definition VI.2.1}, there is a homotopy equivalence between $C$ and the same sequence quotiented out by degenerate chains \cite{EilenbergSteenrod, Definition VI.6.8}.
-%    As $\mathbb I_{x,n}$ has at most two elements, any element of $C_k$ is degenerate for $k\geq 2$ \cite{EilenbergSteenrod, Lemma VI.6.6}.
-%
-%
-%    Transporting this equivalence 
-%
-%  Thus there is a homotopy equivalence between the chain complex and the alternating chain complex. Transporting this equivalence along the functor $Hom(-,G) : Grp \to Grp$ gives us a homotopy equivalence between the sequences $[G,{D_{k+1}}] \leftarrow [G,{D_k}] \leftarrow [G,{D_{k-1}}]$ and $[G,{C_{k+1}}] \leftarrow [G,{C_k}] \leftarrow [G,{C_{k-1}}]$. 
-%
-%  
-%
-%
-%\end{remark}
-%
-
-
-
-\begin{lemma}\label{Cn-exact-sequence}
-Given $n:\N$ and $A$ an abelian group, we have an exact sequence:
-\[A^{\I_n} \overset{d_0}{\longrightarrow} A^{\I_n^{\sim 2}} \overset{d_1}{\longrightarrow} A^{\I_n^{\sim3}} \overset{d_3}{\longrightarrow} \cdots\]
-where:
-\begin{eqnarray}
- d_k(\alpha)(x_0,\hdots,x_k) &=& \Sigma_{i=0}^k (-1)^i\alpha(x_0,\hdots,\widehat{x_i},\hdots,x_k)\nonumber
-\end{eqnarray}
-\end{lemma}
-
-\begin{proof}
-  Exactness at $k=1$ is above. For $k\geq2$, note that by \Cref{LemmaInverseCsAtMostSize2}, for any tuple $t : \I_{x,n}^{\sim k}$, there are at least 2 entries of $t$ which are equal. 
-
-
-
-
-  Now we refer to Stacks Tag 01FG or Serre DAC 20, proposition 2. These give proofs that the cohomology we defined in \Cref{dfnCech} agrees with an alternating \v Cech cohomology. 
-  \rednote{Add Eilenberg Steenrod 6.10}
-  As $I_{x,n}^{\sim k}$ is a finite set, we can assign to it an order with trichotomy, and the proofs in these references go trough. \rednote{TODO this we should explain in more detail}
-  Now an alternating \v Cech cohomology must be 0 if two of the same entries occur. Therefore, the sequence is exact. 
-%This follows from the computations given in Stack Project Tag 01FG. \rednote{TODO we need more? Maybe Serre DAC 20, proposition 2?}
-\end{proof}
 
 \begin{theorem}\label{cohomology-I}
 The unit interval is acyclic, in the sense that:
