@@ -451,16 +451,18 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
   Also note that for $cs : 2^\mathbb N \twoheadrightarrow \mathbb I$, we have 
   $$\Sigma_{x : \mathbb I} (cs^{-1}(x))^{k+1} = \lim_{n} \mathbb I_n^{\sim k}$$
 \end{remark}
+%\begin{remark}\label{RmkConstantIfRespsimn}
+%  Recall that the transitive closure of $\sim_n$ relates all the elements of $2^n$. Therefore, any map out of $2^n$ respecting $\sim_n$ is constant. 
+%\end{remark}
 
-
-
-
-\begin{lemma}%\label{LemmaIntervalExactnessforkabove2}
+\begin{lemma}\label{LemmaExactnessAbove2}
   Fix a group $G$ and natural number $n$. 
   Consider the sequence
   \begin{equation}\label{EqSequence}
     \begin{tikzcd}
-      0 \to G \to G^{\mathbb I_n^{\sim 0}  } \arrow [r , "d_0"]     & 
+      0 \arrow[r]& G \arrow[r]& 
+      G^{\mathbb I_n^{\sim 0}  } \arrow [r , "d_0"]     & 
+      G^{\mathbb I_n^{\sim 1}  } \arrow [r , "d_1"]     & 
       \cdots                     \arrow [r , "d_{k-2}"] & 
       G^{\mathbb I_n^{\sim k-1}} \arrow [r , "d_{k-1}"] & 
       G^{\mathbb I_n^{\sim k  }} \arrow [r , "d_k"]     & 
@@ -481,23 +483,30 @@ $D_k$ is the quotient of the free group on $\mathbb I_n^{\sim k}$ by the degener
 \end{proof}
 \begin{lemma}
   If $G$ is abelian and overtly discrete, the sequence in \Cref{EqSequence} is exact. 
+\rednote{I'm not sure I actually need abelian and overtly discrete?. We needed overtly discrete to make the cohomology agree with the cech cohomology, but the argument below doesn't use commutativity I think}
 \end{lemma}
 \begin{proof}
-  As $\mathbb I_n$ is inhabited, $G \to G^{\mathbb I_n^{\sim0}}$ is injective, thus we have exactness at $G$. 
-  
-  If $\alpha : \mathbb I_n \to G$ is such that 
-  $\alpha(b) -\alpha(a) = 0$ whenever $ a \sim_n b$, 
-  then $\alpha$ respects  $\sim_n$. 
-  By \rednote{TODO, is now presented later}, any map $\mathbb I_n \to G$ respecting $\sim_n$ is constant. Thus we have exactness at $G^{\mathbb I_n^{\sim 0}}$. 
-
-  If $\alpha : \mathbb I_n^{\sim 1} \to G$ is such that 
-  $\alpha(b,c) -\alpha(a,c) + \alpha (a,b) = 0$, then define 
-  $\beta : \mathbb I_n \to G$ by 
-  $\beta(a) = \alpha (a,a-1) + \alpha (a-1,a-2) + \cdots + \alpha (1,0)$. 
-  Then, for $b = a + 1$, we have 
-  $\beta(b) -\beta(a) = \alpha(b,a)$. 
-  For $b = a$, we have $\beta(b) -\beta(a) = 0 =?? \beta(b,a)$ \rednote{TODO I think this argument works in the alternating case in general, not requiring abelian stuff. check after sleep}
-  For $b = a -1$, we have $\beta(b) - \beta (a) = - \alpha (a,b)$
+As $\mathbb I_n$ is inhabited, $G \to G^{\mathbb I_n^{\sim0}}$ is injective, thus we have exactness at $G$. 
+%
+Suppose $\alpha : \mathbb I_n \to G$ is a cocycle. 
+  Then $\alpha(a) = \alpha(b)$ whenever $|a - b|\leq 1$. 
+%  By \Cref{RmkConstantIfRespsimn}, $\alpha$ is constant.
+  But as all elements of $Fin(2^n)$ are related by steps of size $1$, $\alpha$ is constant.
+  Thus we have exactness at $G^{\mathbb I_n^{\sim 0}}$. 
+%
+  If $\alpha : \mathbb I_n^{\sim 1} \to G$ is a cocycle, then 
+  $\alpha(a,a) = 0$ and $\alpha(a,b) = -\alpha(b,a)$ for all 
+  $a,b: 2^n$. 
+  Now define 
+  $\beta : \mathbb I_n^{\sim 0} \to G$ by 
+ $$\beta(a) = \alpha(a-1,a) +  \alpha (a-2,a-1) + \cdots + \alpha(0,1).$$
+  Then $\beta(a) - \beta(a) = 0 = \alpha(a,a)$, 
+  and $\beta(a+1) - \beta(a) = \alpha(a,a+1)$, and hence 
+  $\beta(a)-\beta(a+1) = -\alpha(a,a+1) = \alpha(a+1,a)$. 
+  Thus $d_0(\beta) $ and $ \beta$ on all possible inputs of $\mathbb I_n^{\sim 1}$
+  and we have exactness at $G^{\mathbb I_n^{\sim1}}$.
+%
+  By \Cref{LemmaExactnessAbove2}, we have exactness at all other objects in the sequence. 
 \end{proof}
 
 
