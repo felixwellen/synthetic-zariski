@@ -447,18 +447,12 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
   Note that $\mathbb I_n^{\sim k}$ is in equivalence with 
   the type of $k+1$-tuples of binary sequences in $2^n$ such that for any $a,b:2^n$ in the tuple, we have 
   $|cs_n (a) -cs_n(b) |\leq\frac1{2^n}$, meaning $a \sim_n b$. 
-  There are at most two such sequences, so $I_n^{\sim}$ is 2-dimensional. 
+  There are at most two such sequences, so $I_n^{\sim}$ is 1-dimensional. 
   Also note that for $cs : 2^\mathbb N \twoheadrightarrow \mathbb I$, we have 
   $$\Sigma_{x : \mathbb I} (cs^{-1}(x))^{k+1} = \lim_{n} \mathbb I_n^{\sim k}$$
 \end{remark}
-%\begin{remark}\label{RmkConstantIfRespsimn}
-%  Recall that the transitive closure of $\sim_n$ relates all the elements of $2^n$. Therefore, any map out of $2^n$ respecting $\sim_n$ is constant. 
-%\end{remark}
-
-\begin{lemma}\label{LemmaExactnessIntervalApprox}
-  Fix a group $G$ and natural number $n$. 
-  Consider the sequence
-  \begin{equation}\label{EqSequence}
+Now for a given group $G$ and natural number $n$, we are interested in the following sequence:
+\begin{equation}\label{EqSequence}
     \begin{tikzcd}
       0 \arrow[r]& G \arrow[r]& 
       G^{\mathbb I_n^{\sim 0}  } \arrow [r , "d_0"]     & 
@@ -470,8 +464,11 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
       \cdots
     \end{tikzcd}
   \end{equation}
-  with $d_k(f)(a_0, \cdots , a_k) = \sum\limits_{i=0}^k (-1)^i f(a_0 , \cdots, \widehat {a_i} , \cdots, a_k)$. 
-  This sequence is exact. %at $G^{\mathbb I_n^{\sim k}}$ for $k\geq 2$. 
+  with $d_k(f)(a_0, \cdots , a_k) = \sum\limits_{i=0}^k (-1)^i f(a_0 , \cdots, \widehat {a_i} , \cdots, a_k)$. Note that in general, this sequence is a sequence of pointed sets. If $G$ is an Abelian group, this is a sequence of 
+
+
+\begin{lemma}\label{LemmaExactnessIntervalApproxFirstTerms}
+  For any group $G$, the sequence in \Cref{EqSequence} is exact up to $G^{\mathbb I_n^{\sim 1}}$.
 \end{lemma}
 \begin{proof}
   We will deal with exactness at first objects of this sequence individually, and then deal with exactness at $G^{\mathbb I_n^{\sim k}}$ for all $k\geq 2$. 
@@ -499,13 +496,19 @@ Suppose $\alpha : \mathbb I_n \to G$ is a cocycle.
   Thus $d_0(\beta) $ and $ \beta$ agree on all possible inputs of $\mathbb I_n^{\sim 1}$
   and we have exactness at $G^{\mathbb I_n^{\sim1}}$.
 %
-\item  In the rest of this proof we make use of results from chapter VI of \cite{EilenbergSteenrod} and the references are to that chapter of that book. 
-  Note that the above sequence is $Hom(-,G)$ applied to the ordered chain complex (Definition 2.3) corresponding to $\mathbb I_n^\sim$. 
+\end{itemize}
+\end{proof}
+ \begin{lemma}\label{LemmaExactnessIntervalApproxLaterTerms}
+   For any abelian group $G$, the sequence in \Cref{EqSequence} is exact at $G^{\mathbb I_n^{\sim k}}$
+  for $k\geq 2$. 
+\end{lemma} 
+\begin{proof}
+ We make use of results from chapter VI of \cite{EilenbergSteenrod} and the references are to that chapter of that book. As all the constructions are on finite sets, these results are constructive. 
+ Note that the above sequence is $Hom_{Ab}(-,G)$ applied to the ordered chain complex (Definition 2.3) corresponding to $\mathbb I_n^\sim$. 
   By Theorem 6.10, the ordered chain complex is homotopy equivalent to the alternating chain complex corresponding to $\mathbb I_n^\sim$.
   So to show exactness, it's sufficient to show exactness of the sequence whose objects are of the form $Hom(D_k,G)$, for
-$D_k$ a quotient of the free group on $\mathbb I_n^{\sim k}$ by the degenerate simplices. 
-  Now as $I_n^\sim$ is 2-dimensional, by Lemma 6.6, any $k$-simplex with $k\geq 2$ is degenerate, hence $D_k$ is trivial, and so is $Hom(D_k,G)$. In particular, for $k\geq 2$, the sequence is exact at $Hom(D_k,G)$ as required. 
-\end{itemize}
+  $D_k$ a quotient of the free abelian\footnote{Note that in the reference definition 2.1, the word "abelian" is omitted, but otherwise the proof in 2.2 wouldn't make sense. \rednote{TODO check with fresh eyes and how to say this}} group on $\mathbb I_n^{\sim k}$ by the degenerate simplices. 
+  Now as $I_n^\sim$ is 1-dimensional, by Lemma 6.6, any $k$-simplex with $k\geq 2$ is degenerate, hence $D_k$ is trivial, and so is $Hom(D_k,G)$. In particular, for $k\geq 2$, the sequence is exact at $Hom(D_k,G)$ as required. 
 \end{proof}
 
 
@@ -545,14 +548,14 @@ We prove each point as follows:
 
 \item Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover $T$ of $\I$ defined by: 
 \[T(x) = \Sigma_{y:2^\N} (x=_\I cs(y))\]
-Then we have that $\mathrm{lim}_n\I_n^{\sim l} = \Sigma_{x:\I} T(x)^l$. By \Cref{LemmaExactnessIntervalApprox} and stability of exactness under sequential colimit, we have an exact sequences:
+Then we have that $\mathrm{lim}_n\I_n^{\sim l} = \Sigma_{x:\I} T(x)^l$. By \Cref{LemmaExactnessIntervalApproxFirstTerms} and stability of exactness under sequential colimit, we have an exact sequences:
 \[ \mathrm{colim}_n G^{\I_n} \to \mathrm{colim}_n G^{\I_n^{\sim2}}\to \mathrm{colim}_n G^{\I_n^{\sim3}}\]
 By \cref{scott-continuity-left} this sequence is equivalent to
 \[\Pi_{x:\I}G^{T(x)} \to  \Pi_{x:\mathbb{I}}G^{T(x)^2} \to  \Pi_{x:\mathbb{I}}G^{T(x)^3}\]
 So it being exact implies that $\check{H}^n(\I,T,G) = 0$ for $n\geq 1$.
 We conclude by \Cref{non-abelian-cech-and-sheaf-agree}.
 
-\item Same as point (ii) using \Cref{cech-and-sheaf-agree} instead of \ref{non-abelian-cech-and-sheaf-agree}.
+\item Same as point (ii) using \Cref{cech-and-sheaf-agree} instead of \ref{non-abelian-cech-and-sheaf-agree} and \Cref{LemmaExactnessIntervalApproxLaterTerms} in addition to \ref{LemmaExactnessIntervalApproxFirstTerms}. 
 
 \end{enumerate}
 \end{proof}
