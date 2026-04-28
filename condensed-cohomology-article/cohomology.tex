@@ -455,7 +455,7 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
 %  Recall that the transitive closure of $\sim_n$ relates all the elements of $2^n$. Therefore, any map out of $2^n$ respecting $\sim_n$ is constant. 
 %\end{remark}
 
-\begin{lemma}\label{LemmaExactnessAbove2}
+\begin{lemma}\label{LemmaExactnessIntervalApprox}
   Fix a group $G$ and natural number $n$. 
   Consider the sequence
   \begin{equation}\label{EqSequence}
@@ -471,54 +471,45 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
     \end{tikzcd}
   \end{equation}
   with $d_k(f)(a_0, \cdots , a_k) = \sum\limits_{i=0}^k (-1)^i f(a_0 , \cdots, \widehat {a_i} , \cdots, a_k)$. 
-  This sequence is exact at $G^{\mathbb I_n^{\sim k}}$ for $k\geq 2$. 
+  This sequence is exact. %at $G^{\mathbb I_n^{\sim k}}$ for $k\geq 2$. 
 \end{lemma}
 \begin{proof}
-  In this proof we make use of results from chapter VI of \cite{EilenbergSteenrod} and the references are to that chapter of that book. 
-  Note that the above sequence is $Hom(-,G)$ applied to the ordered chain complex (Definition 2.3) corresponding to $\mathbb I_n^\sim$. 
-  By Theorem 6.10, the ordered chain complex is homotopy equivalent to the alternating chain complex corresponding to $\mathbb I_n^\sim$.
-  So to show exactness of the above sequence, it's sufficient to show exactness of the sequence $Hom(D_k,G)$, where 
-$D_k$ is the quotient of the free group on $\mathbb I_n^{\sim k}$ by the degenerate simplices. 
-  Now as $I_n^\sim$ is 2-dimensional, by Lemma 6.6, any $k$-simplex with $k\geq 2$ is degenerate, hence $D_k$ is trivial, and so is $Hom(D_k,G)$. In particular, for $k\geq 2$, the sequence is exact at $Hom(D_k,G)$ as required. 
-\end{proof}
-\begin{lemma}
-  If $G$ is abelian and overtly discrete, the sequence in \Cref{EqSequence} is exact. 
-\rednote{I'm not sure I actually need abelian and overtly discrete?. We needed overtly discrete to make the cohomology agree with the cech cohomology, but the argument below doesn't use commutativity I think}
-\end{lemma}
-\begin{proof}
-As $\mathbb I_n$ is inhabited, $G \to G^{\mathbb I_n^{\sim0}}$ is injective, thus we have exactness at $G$. 
+  We will deal with exactness at first objects of this sequence individually, and then deal with exactness at $G^{\mathbb I_n^{\sim k}}$ for all $k\geq 2$. 
+  \begin{itemize}
+    \item
+  As $\mathbb I_n$ is inhabited, $G \to G^{\mathbb I_n^{\sim0}}$ is injective, thus we have exactness at $G$. 
 %
+\item 
 Suppose $\alpha : \mathbb I_n \to G$ is a cocycle. 
   Then $\alpha(a) = \alpha(b)$ whenever $|a - b|\leq 1$. 
 %  By \Cref{RmkConstantIfRespsimn}, $\alpha$ is constant.
   But as all elements of $Fin(2^n)$ are related by steps of size $1$, $\alpha$ is constant.
   Thus we have exactness at $G^{\mathbb I_n^{\sim 0}}$. 
 %
+\item
   If $\alpha : \mathbb I_n^{\sim 1} \to G$ is a cocycle, then 
   $\alpha(a,a) = 0$ and $\alpha(a,b) = -\alpha(b,a)$ for all 
   $a,b: 2^n$. 
-  Now define 
+  Define 
   $\beta : \mathbb I_n^{\sim 0} \to G$ by 
  $$\beta(a) = \alpha(a-1,a) +  \alpha (a-2,a-1) + \cdots + \alpha(0,1).$$
   Then $\beta(a) - \beta(a) = 0 = \alpha(a,a)$, 
   and $\beta(a+1) - \beta(a) = \alpha(a,a+1)$, and hence 
   $\beta(a)-\beta(a+1) = -\alpha(a,a+1) = \alpha(a+1,a)$. 
-  Thus $d_0(\beta) $ and $ \beta$ on all possible inputs of $\mathbb I_n^{\sim 1}$
+  Thus $d_0(\beta) $ and $ \beta$ agree on all possible inputs of $\mathbb I_n^{\sim 1}$
   and we have exactness at $G^{\mathbb I_n^{\sim1}}$.
 %
-  By \Cref{LemmaExactnessAbove2}, we have exactness at all other objects in the sequence. 
+\item  In the rest of this proof we make use of results from chapter VI of \cite{EilenbergSteenrod} and the references are to that chapter of that book. 
+  Note that the above sequence is $Hom(-,G)$ applied to the ordered chain complex (Definition 2.3) corresponding to $\mathbb I_n^\sim$. 
+  By Theorem 6.10, the ordered chain complex is homotopy equivalent to the alternating chain complex corresponding to $\mathbb I_n^\sim$.
+  So to show exactness, it's sufficient to show exactness of the sequence whose objects are of the form $Hom(D_k,G)$, for
+$D_k$ a quotient of the free group on $\mathbb I_n^{\sim k}$ by the degenerate simplices. 
+  Now as $I_n^\sim$ is 2-dimensional, by Lemma 6.6, any $k$-simplex with $k\geq 2$ is degenerate, hence $D_k$ is trivial, and so is $Hom(D_k,G)$. In particular, for $k\geq 2$, the sequence is exact at $Hom(D_k,G)$ as required. 
+\end{itemize}
 \end{proof}
 
 
-%\begin{lemma}\label{Cn-exact-sequence}
-%Given $n:\N$ and $A$ an abelian group, we have an exact sequence:
-%\[A^{\I_n} \overset{d_0}{\longrightarrow} A^{\I_n^{\sim 2}} \overset{d_1}{\longrightarrow} A^{\I_n^{\sim3}} \overset{d_3}{\longrightarrow} \cdots\]
-%where:
-%\begin{eqnarray}
-% d_k(\alpha)(x_0,\hdots,x_k) &=& \Sigma_{i=0}^k (-1)^i\alpha(x_0,\hdots,\widehat{x_i},\hdots,x_k)\nonumber
-%\end{eqnarray}
-%\end{lemma}
-%
+
 \begin{lemma}\label{interval-connected}
 Given $I$ a finite type, any map from $\I$ to $I$ is constant.
 \end{lemma}
@@ -554,14 +545,14 @@ We prove each point as follows:
 
 \item Consider $cs:2^\N\to\I$ and the associated \v{C}ech cover $T$ of $\I$ defined by: 
 \[T(x) = \Sigma_{y:2^\N} (x=_\I cs(y))\]
-Then we have that $\mathrm{lim}_n\I_n^{\sim l} = \Sigma_{x:\I} T(x)^l$. By \Cref{non-abelian-exact-sequence} and stability of exactness under sequential colimit, we have an exact sequences:
+Then we have that $\mathrm{lim}_n\I_n^{\sim l} = \Sigma_{x:\I} T(x)^l$. By \Cref{LemmaExactnessIntervalApprox} and stability of exactness under sequential colimit, we have an exact sequences:
 \[ \mathrm{colim}_n G^{\I_n} \to \mathrm{colim}_n G^{\I_n^{\sim2}}\to \mathrm{colim}_n G^{\I_n^{\sim3}}\]
 By \cref{scott-continuity-left} this sequence is equivalent to
 \[\Pi_{x:\I}G^{T(x)} \to  \Pi_{x:\mathbb{I}}G^{T(x)^2} \to  \Pi_{x:\mathbb{I}}G^{T(x)^3}\]
 So it being exact implies that $\check{H}^n(\I,T,G) = 0$ for $n\geq 1$.
 We conclude by \Cref{non-abelian-cech-and-sheaf-agree}.
 
-\item Same as point (ii) using \Cref{Cn-exact-sequence} instead of \ref{non-abelian-exact-sequence} and \Cref{cech-and-sheaf-agree} instead of \ref{non-abelian-cech-and-sheaf-agree}.
+\item Same as point (ii) using \Cref{cech-and-sheaf-agree} instead of \ref{non-abelian-cech-and-sheaf-agree}.
 
 \end{enumerate}
 \end{proof}
