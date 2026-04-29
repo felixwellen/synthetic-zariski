@@ -6,15 +6,23 @@ We will also develop infinitesimally linear types in SAG, following Myers \cite{
   We define \notion{the $n$-th order neighbourhood around $x$} as the subtype $\hood{X,x}{n} \defeq \setbuild{x' : X}{\exists I \substack{\subseteq \\ \mathrm{fg.ideal}} R, I^{n+1} = 0, I = 0 \rightarrow x' = x}$.
 \end{definition}
 
-Observe that there is a natural inclusion $i : \hood{X,x}{n} \hookrightarrow X$.
+Taking $n$-th order neighbourhoods defines a functor $\hood{\argmhole}{n} : \pType \rightarrow \pType$.
+The action on maps $f : (X,x) \rightarrow_\ast (Y,y)$ is given by $\hood{f}{n} \defeq f\mid_{\hood{X,x}{n}}$.
 
-Let $f : (X,x) \rightarrow_\ast (Y,y)$ be a pointed map.
-Restricting $f$ to the $n$-th order neighbourhood of $X$ around $x$ yields a map $f\mid_{\hood{X,x}{n}} : \hood{X,x}{n} \rightarrow_\ast \hood{Y,y}{n}$.
-This gives a functor $\hood{\argmhole}{n} : \pType \rightarrow \pType$ which preserves embeddings.
+\begin{proposition}\label{prp:hood-fun-welldef}
+  $\hood{\argmhole}{n}$ is a well-defined functor.
+\end{proposition}
+
+\begin{proof}
+  We need to show that for any $x' \in \hood{X,x}{n}$ that $f(x) \in \hood{Y,y}{n}$.
+  By assumption, we merely have a finitely generated ideal $I \subseteq R$ such that $I^{n+1} = 0$ and if $I = 0$ then $x' = x$.
+  It follows that $f(x') \in \hood{Y,y}{n}$, as if $I = 0$, then $f(x') = f(x) = y$ by applying $f$ to $x' = x$ and by $f$ being pointed.
+\end{proof}
+
+Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ natural in $(X,x)$.
 
 \begin{definition}\label{def:hood}
-  \rednote{Is there a better definition for this that does not depend on $x$?}
-  A type $X$ is an \notion{$n$-th order neighbourhood around $x : X$} if the inclusion $i : \hood{X,x}{n} \hookrightarrow X$ is an equivalence of types.
+  A type $X$ is an \notion{$n$-th order neighbourhood around $x : X$} if the inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ is an equivalence of types.
 \end{definition}
 
 \begin{example}\label{ex:R[x]/(x^{n+1})}
@@ -55,9 +63,8 @@ Taking tangent spaces is a local construction in the following sense.
 \end{lemma}
 
 \begin{proof}
-  Let $x' : X$.
-  Since $X$ is an $n$-th order neighbourhood around $x$, we merely have a finitely generated ideal $I \subseteq R$ such that $I^{n+1} = 0$ and if $I = 0$ then $x' = x$.
-  It follows that $f(x') \in \hood{Y,y}{n}$, as if $I = 0$, then $f(x') = f(x) = y$ by applying $f$ to $x' = x$ and by $f$ being pointed.
+  This is immediate by functoriality of $\hood{\argmhole}{n}$, \Cref{prp:hood-fun-welldef}, as $f$ factors into $i_y \circ \hood{f}{n} \circ i_x^{-1}$.
+  This factorization is unique, since $i_y$ is an inclusion.
 \end{proof}
 
 \begin{remark}\label{rem:tangent-factorization}
