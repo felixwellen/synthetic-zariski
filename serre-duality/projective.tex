@@ -184,11 +184,35 @@ This is a variant of \cite{vakil}[Theorem 17.6.2] (which might hold):
   \]
 \end{proof}
 
-\subsection{Eventually Globally Generated Bundles}
 
-\rednote{TODO: Check and streamline proofs. Unify notation.}
+\subsection{Finitely Presented Bundels}
 
-In this section we show that any weakly quasi-coherent and finitely generated bundle on a projective space is eventually globally generated, i.e.\ we show that sufficiently high twists of that bundle are globally generated.
+In this section we study the structure and cohomology of finitely presented bundles on $\bP^n$.
+As expected, the cohomology of such bundles is not usually finitely presented.
+This already fails for global sections on $\bP^1$, as the following example illustrates.
+\rednote{We instead would hope to show that the cohomology is finitely adequate but had no luck so far.}
+
+\begin{example}
+  Consider the exact sequence
+  \[
+    0 \to \mathcal O(-2) \to \mathcal O(-2) \oplus \mathcal O(-1) \oplus \mathcal O(-1) \to \mathcal F_t \to 0,
+  \]
+  where the first map is given by multiplication with $(t,x,y)$ for $t : R$ and $x,y : H^0(\bP^1,\mathcal O(1))$ the canonical basis.
+  The bundle $\mathcal F_t$ is the cokernel of this map and is pointwise free of rank $2$:
+  At the point $(\ell,p) : \bP^1$ it is given by the cokernel of the map
+  \[
+    \ell^{\otimes -2} \to \ell^{\otimes -2} \oplus \ell^{\otimes -1} \oplus \ell^{\otimes -1}, \;
+    \varphi\otimes\psi \mapsto (t\varphi\otimes\psi, \varphi (p_0)\psi, \psi(p_1)\varphi),
+  \]
+  which is free of rank $2$ since $p_0 \neq 0 \lor p_1 \neq 0$.
+  Then from the long exact sequence of cohomology we see that $H^0(\bP^1, \mathcal F_t)$ is the kernel of
+  \[
+    R = H^1(\bP^1, \mathcal O(-2)) \to H^1(\bP^1, \mathcal O(-2) \oplus \mathcal O(-1) \oplus \mathcal O(-1)) = R \oplus 0 \oplus 0,
+  \]
+  which is just the map $R \to R, r \mapsto rt$.
+  For one, this implies that it is not true that $H^0(\bP^1,\mathcal F_t)$ is finitely presented for all $t:R$.
+  Interestingly enough, this also shows that is not true that all vector bundles on $\bP^1$ split into line bundles, since then $H^0(\bP^1, \mathcal F_t)$ would need to be finite free for all $t:R$.
+\end{example}
 
 \begin{lemma}
   \label{wqc+fg-bundle-is-finitely-generated}
@@ -278,9 +302,9 @@ This generalizes the above lemma by simultaneously allowing non-affine schemes, 
   The claim follows from this.
 \end{proof}
 
-The following corollary might be the start of an argument showing that the cohomology modules of Adelman bundles are Adelman as well.
+The following corollary might be the start of an argument showing that the cohomology modules of finitely adqeuate bundles are finitely adequate as well.
 
-\begin{corollary}
+\begin{corollary}\label{top-cohomology-of-fp-bundle-is-fp}
   If $\mathcal F : \bP^n \to \Mod R$ is a bundle of finitely presented $R$-modules on $\bP^n$, then $H^n(\bP^n, \mathcal F)$ is a finitely presented $R$-module as well.
   Dually, if $\mathcal F$ is pointwise finitely copresented, then $H^0(\bP^n, \mathcal F)$ is a finitely copresented $R$-module.
 \end{corollary}
@@ -296,3 +320,48 @@ The following corollary might be the start of an argument showing that the cohom
 
   For the second part note that since dualizing is an involution, we may find an exact sequence $0 \to \mathcal F \to \mathcal O(-q)^{\oplus m} \to \mathcal O(-p)^{\oplus l}$. We then may finish the proof by arguing dually to the first part.
 \end{proof}
+
+
+\subsection{Vector Bundles}
+
+If we restrict our attention from finitely presented bundles to vector bundles, we can improve some of the results from the previous section.
+Recall that a vector bundle $\mathcal E : \bP^n \to \Mod R$ is a bundle of pointwise finite-free $R$-modules.
+Since $\bP^n$ is connected --- meaning that $\Bool \to \Bool^{\bP^n}$ is an equivalence --- the vector spaces $\mathcal E_x$ all have the same dimension.
+As we are working over a local ring, a lot of the classical theorems and their proofs still apply mostly unchanged.
+
+\begin{proposition}
+  Given a vector bundle $\mathcal E : \bP^n \to \Mod R$ the following holds.
+
+  \begin{enumerate}[i)]
+    \item The $R$-modules $H^p(\bP^n,\mathcal E)$ are finitely adequate for all $p \geq 0$.
+    \item There merely is a $d_0 : \mathbb{Z}$ such that for all $d \geq d_0$ and $p > 0$  we have
+      \[
+        H^p(\bP^n,\mathcal E(d)) = 0.
+      \]
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Choose a surjection $\mathcal O(e)^{\oplus m} \to \mathcal E$.
+  At any point $x:\bP^n$ its kernel $\mathcal K$ merely fits in an exact sequence $0 \to \mathcal K_x \to R^m \to R^l \to 0$ and since $R^l$ is projective, $\mathcal K_x$ is a direct summand of $R^m$ and therefore projective as well.
+  As $R$ is local, we thus see that $\mathcal K$ is itself a vector bundle.
+  Now we can follow the classical proofs presented in \cite{Hartshorne}:
+
+  For the first part we reason by descending induction over $p$.
+  For $p \geq n$ we already know the claim by lemma \ref{top-cohomology-of-fp-bundle-is-fp} and if $p < n$ we get an exact excerpt:
+  \[
+    \dots \to H^p(\bP^n,\mathcal O(e)^{\oplus m}) \to H^p(\bP^n, \mathcal E) \to H^{p+1}(\bP^n, \mathcal K) \to H^{p+1}(\bP^n,\mathcal O(e)^{\oplus m}) \to\dotsi\rlap{.}
+  \]
+  Note that the first module is zero and hence $H^p(\bP^n,\mathcal E)$ is the kernel of $H^{p+1}(\bP^n, \mathcal K) \to H^{p+1}(\bP^n,\mathcal O(e)^{\oplus m})$.
+  These two modules are finitely adequate by induction hypothesis, hence so is the kernel.
+
+  For the second part, we once again argue by descending induction over $p$. Similar to the first part, we know the claim for $p>n$.
+  Consider the long exact sequence
+  \[
+    \dots \to H^p(\bP^n,\mathcal O(e+d)^{\oplus m}) \to H^p(\bP^n, \mathcal E(d)) \to H^{p+1}(\bP^n, \mathcal K(d)) \to \dotsi\rlap{.}
+  \]
+  for $p > 0$.
+  If $e+d>0$, then $H^p(\bP^n,\mathcal O(e+d)^{\oplus m}) = 0$ and by induction hypothesis also $H^{p+1}(\bP^n,\mathcal K(e+d)) = 0$ for $d >> 0$.
+  Hence also $H^p(\bP^n, \mathcal E(d)) = 0$ for $d >> 0$.
+\end{proof}
+

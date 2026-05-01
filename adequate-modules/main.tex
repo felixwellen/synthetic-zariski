@@ -1,0 +1,113 @@
+% latexmk -pdf -pvc main.tex
+\documentclass{../util/zariski-small}
+
+
+\title{Synthetic Adequate Modules}
+\author{Felix Cherubini, J. Dan Christensen, Fabian Endres, Thomas Thorbjørnsen}
+\date{\today}
+
+% --- Macros --- %
+\newcommand{\earlyqed}{\hfill$\square$}
+\newcommand{\lra}       {\longrightarrow}
+\newcommand{\llra}[1]   {\stackrel{#1}{\lra}}  % labelled long right arrow
+
+\newcommand{\hood}[2]{\mathcal{N}_{#2}(#1)}
+
+\renewcommand{\fib}{\mathsf{fib}}
+\newcommand{\susp}{\mathsf{\Sigma}}
+\newcommand{\ap}{\mathsf{ap}}
+\newcommand{\UU}{\mathcal{U}}
+\renewcommand{\Prop}{\mathsf{Prop}}
+\renewcommand{\refl}{\mathsf{refl}}
+\renewcommand{\id}{\mathsf{id}}
+\newcommand{\pr}{\mathsf{pr}}
+\newcommand{\tot}{\mathsf{tot}}
+\newcommand{\defeq}{:\equiv}
+\newcommand{\sbt}{{\,\begin{picture}(-1,1)(-1,-3)\circle*{3}\end{picture}\ } }
+\newcommand{\pto}{\to_{\sbt}}
+\newcommand{\IsEquiv}{\mathsf{IsEquiv}}
+
+\newcommand{\mcal}[1]{\mathcal{#1}} % Shorthand for calligraphic font
+\newcommand{\mcalbf}[1]{\mathbf{\mcal{#1}}} % Caligraphic bold math
+\newcommand{\op}{\textup{op}} % Opposite category
+\newcommand{\sigmatype}[1]{\underset{#1}{\Sigma}} % Sigma type
+\newcommand{\pitype}[1]{\underset{#1}{\Pi}} % Pi type
+\newcommand{\argmhole}{\ \cdot\ } % Hole
+\newcommand{\set}[1]{\{#1\}} % Sets
+\newcommand{\setbuild}[2]{\{#1 \mid #2\}} % Set-builder
+\newcommand{\ideal}[1]{\langle #1 \rangle}
+\newcommand{\quot}[2]{#1/#2}
+\newcommand{\tangent}[2]{\mathrm{T}_{#2}#1}
+\newcommand{\der}[2]{d#1_#2}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\inl}{\mathrm{inl}}
+\newcommand{\inr}{\mathrm{inr}}
+\newcommand{\inc}{\mathrm{inc}}
+\newcommand{\ev}{\mathrm{ev}}
+
+\newcommand{\sSet}{\textup{sSet}}
+\newcommand{\Kan}{\textup{Kan}}
+\newcommand{\Ab}{\textup{Ab}}
+\newcommand{\modcat}[1]{\textup{Mod}_{#1}} % Category of R-modules
+\newcommand{\finfree}{\modcat{R}^{\mathrm{fin.free}}}
+\newcommand{\adeq}{\modcat{R}^{\mathrm{adeq}}} % Category of adequate $R$-modules
+\newcommand{\finadeq}{\modcat{R}^{\mathrm{fin.adeq}}} % Category of finitely adequate
+\newcommand{\LEM}{\textup{LEM}}
+\newcommand{\AC}{\textup{AC}}
+\newcommand{\pType}{\Type_\ast}
+
+% --- Redeclare math operators --- %
+% https://tex.stackexchange.com/questions/175251/how-to-redefine-a-command-using-declaremathoperator
+\makeatletter
+\newcommand\RedeclareMathOperator{%
+  \@ifstar{\def\rmo@s{m}\rmo@redeclare}{\def\rmo@s{o}\rmo@redeclare}%
+}
+% this is taken from \renew@command
+\newcommand\rmo@redeclare[2]{%
+  \begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
+  \expandafter\@ifundefined\@gtempa
+     {\@latex@error{\noexpand#1undefined}\@ehc}%
+     \relax
+  \expandafter\rmo@declmathop\rmo@s{#1}{#2}}
+% This is just \@declmathop without \@ifdefinable
+\newcommand\rmo@declmathop[3]{%
+  \DeclareRobustCommand{#2}{\qopname\newmcodes@#1{#3}}%
+}
+\@onlypreamble\RedeclareMathOperator
+\makeatother
+
+% \DeclareMathOperator{\Hom}{Hom}
+% \DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Cok}{Cok}
+\RedeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Coim}{Coim}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\tableofcontents
+
+\section*{Introduction}
+\input{overview.tex}
+\paragraph{Contribution and organization of the article.}
+\input{contributions.tex}
+\paragraph{Acknowledgements.}
+\input{acknowledgements.tex}
+
+\section{Infinitesimally Linear Types}
+\input{infinitesimally-linear.tex}
+
+\section{Adequate Modules}
+\input{adequate.tex}
+
+\printbibliography
+
+\end{document}
