@@ -440,7 +440,7 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
 
 \begin{definition}
   Fix $n:\mathbb N$. Consider the simplicial complex $\mathbb I_n^\sim$ whose vertices are elements of $Fin(2^n)$ and only contains simplices of numbers whose pairwise distance is $\leq 1$. 
-  We denote $\mathbb I_n^{\sim k}$ for the elementary $k$-chains of $\mathbb I_n^\sim$ as in Definition VI.2.1 of \cite{EilenbergSteenrod}.
+  We denote $\mathbb I_n^{\sim k}$ for the set of elementary $k$-chains of $\mathbb I_n^\sim$ as in Definition VI.2.1 of \cite{EilenbergSteenrod}.
 \end{definition}   
 
 \begin{remark}\label{description-Cn-simn}
@@ -454,7 +454,7 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
 Now for a given group $G$ and natural number $n$, we are interested in the following sequence:
 \begin{equation}\label{EqSequence}
     \begin{tikzcd}
-      0 \arrow[r]& G \arrow[r]& 
+      0 \arrow[r,"d_{-2}"]& G \arrow[r,"d_{-1}"]& 
       G^{\mathbb I_n^{\sim 0}  } \arrow [r , "d_0"]     & 
       G^{\mathbb I_n^{\sim 1}  } \arrow [r , "d_1"]     & 
       \cdots                     \arrow [r , "d_{k-2}"] & 
@@ -464,14 +464,14 @@ Now for a given group $G$ and natural number $n$, we are interested in the follo
       \cdots
     \end{tikzcd}
   \end{equation}
-  with $d_k(f)(a_0, \cdots , a_k) = \sum\limits_{i=0}^k (-1)^i f(a_0 , \cdots, \widehat {a_i} , \cdots, a_k)$. Note that in general, this sequence is a sequence of pointed sets. If $G$ is an Abelian group, this is a sequence of 
+  with $d_k(f)(a_0, \cdots , a_k) = \sum\limits_{i=0}^k (-1)^i f(a_0 , \cdots, \widehat {a_i} , \cdots, a_k)$. Note that in general, this sequence is a sequence of pointed sets. If $G$ is an abelian group, this is a sequence of group morphisms. 
 
 
 \begin{lemma}\label{LemmaExactnessIntervalApproxFirstTerms}
-  For any group $G$, the sequence in \Cref{EqSequence} is exact up to $G^{\mathbb I_n^{\sim 1}}$.
+  For any group $G$, the sequence in \Cref{EqSequence} is exact at 
+  $G,G^{\mathbb I_n^{\sim 0}},$ and $G^{\mathbb I_n^{\sim 1}}$.
 \end{lemma}
 \begin{proof}
-  We will deal with exactness at first objects of this sequence individually, and then deal with exactness at $G^{\mathbb I_n^{\sim k}}$ for all $k\geq 2$. 
   \begin{itemize}
     \item
   As $\mathbb I_n$ is inhabited, $G \to G^{\mathbb I_n^{\sim0}}$ is injective, thus we have exactness at $G$. 
@@ -507,7 +507,7 @@ Suppose $\alpha : \mathbb I_n \to G$ is a cocycle.
  Note that the above sequence is $Hom_{Ab}(-,G)$ applied to the ordered chain complex (Definition 2.3) corresponding to $\mathbb I_n^\sim$. 
   By Theorem 6.10, the ordered chain complex is homotopy equivalent to the alternating chain complex corresponding to $\mathbb I_n^\sim$.
   So to show exactness, it's sufficient to show exactness of the sequence whose objects are of the form $Hom(D_k,G)$, for
-  $D_k$ a quotient of the free abelian\footnote{Note that in the reference definition 2.1, the word "abelian" is omitted, but otherwise the proof in 2.2 wouldn't make sense. \rednote{TODO check with fresh eyes and how to say this}} group on $\mathbb I_n^{\sim k}$ by the degenerate simplices. 
+  $D_k$ a quotient of the free abelian\footnote{Note that in the reference definition 2.1, the word "abelian" is omitted, but otherwise the proof in 2.2 wouldn't make sense.} group on $\mathbb I_n^{\sim k}$ by the degenerate simplices. 
   Now as $I_n^\sim$ is 1-dimensional, by Lemma 6.6, any $k$-simplex with $k\geq 2$ is degenerate, hence $D_k$ is trivial, and so is $Hom(D_k,G)$. In particular, for $k\geq 2$, the sequence is exact at $Hom(D_k,G)$ as required. 
 \end{proof}
 
