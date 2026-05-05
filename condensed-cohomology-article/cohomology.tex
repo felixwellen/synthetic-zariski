@@ -447,7 +447,7 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
   Note that $\mathbb I_n^{\sim k}$ is in equivalence with 
   the type of $k+1$-tuples of binary sequences in $2^n$ such that for any $a,b:2^n$ in the tuple, we have 
   $|cs_n (a) -cs_n(b) |\leq\frac1{2^n}$, meaning $a \sim_n b$. 
-  There are at most two such sequences, so $I_n^{\sim}$ is 1-dimensional. 
+  There are at most two such sequences, which means the simplicial complex $I_n^{\sim}$ is 1-dimensional in the sense of Definition II.3.2 of \cite{EilenbergSteenrod}. 
   Also note that for $cs : 2^\mathbb N \twoheadrightarrow \mathbb I$, we have 
   $$\Sigma_{x : \mathbb I} (cs^{-1}(x))^{k+1} = \lim_{n} \mathbb I_n^{\sim k}$$
 \end{remark}
@@ -503,12 +503,10 @@ Suppose $\alpha : \mathbb I_n \to G$ is a cocycle.
   for $k\geq 2$. 
 \end{lemma} 
 \begin{proof}
- We make use of results from chapter VI of \cite{EilenbergSteenrod} and the references are to that chapter of that book. As all the constructions are on finite sets, these results are constructive. 
- Note that the above sequence is $Hom_{Ab}(-,G)$ applied to the ordered chain complex (Definition 2.3) corresponding to $\mathbb I_n^\sim$. 
-  By Theorem 6.10, the ordered chain complex is homotopy equivalent to the alternating chain complex corresponding to $\mathbb I_n^\sim$.
-  So to show exactness, it's sufficient to show exactness of the sequence whose objects are of the form $Hom(D_k,G)$, for
-  $D_k$ a quotient of the free abelian\footnote{Note that in the reference definition 2.1, the word "abelian" is omitted, but otherwise the proof in 2.2 wouldn't make sense.} group on $\mathbb I_n^{\sim k}$ by the degenerate simplices. 
-  Now as $I_n^\sim$ is 1-dimensional, by Lemma 6.6, any $k$-simplex with $k\geq 2$ is degenerate, hence $D_k$ is trivial, and so is $Hom(D_k,G)$. In particular, for $k\geq 2$, the sequence is exact at $Hom(D_k,G)$ as required. 
+ We make use of results from chapter VI of \cite{EilenbergSteenrod} and all the references in this proof are to that chapter of that book. We note that the reasoning in that chapter is fully constructive; it makes use of an order with trichotomy, but this order is assigned to a finite set. 
+The sequence we are considering is given by applying $Hom_{Ab}(-,G)$ applied to the ordered chain complex (Definition 2.3) corresponding to $\mathbb I_n^\sim$, which had as $k$'th object the free abelian\footnote{Note that in the reference definition 2.1, the word "abelian" is omitted, but otherwise the proof in 2.2 wouldn't make sense.} group on generators from $\mathbb I_n^{\sim k}$, which we denote $C_k$. 
+  By Theorem 6.10, this ordered chain complex is homotopy equivalent to the alternating chain complex where the objects $D_k$ are given by quotienting out the degenerate simplices from $C_k$. 
+  Now as $I_n^\sim$ is 1-dimensional, by Lemma 6.6, any $k$-simplex of $C_k$ with $k\geq 2$ is degenerate, hence $D_k$ is trivial, and so is $Hom_{Ab}(D_k,G)$. In particular, for $k\geq 2$, the sequence is exact at $Hom_{Ab}(D_k,G)$, and thus the required sequence is exact at $G^{\mathbb I_n^{\sim k}}$.
 \end{proof}
 
 
