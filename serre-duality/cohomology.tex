@@ -1,3 +1,5 @@
+\subsection{Introduction}
+
 We use the synthetic algebro-geometric notions of \cite{draft}
 and recollect some results of \cite{cech-draft}.
 This entails that we use a pullback $f_\ast$ and push-forward $f^\ast$ which arguably deviates somewhat from the usual notion and is more of a pointwise nature.
@@ -27,7 +29,7 @@ Note that pointwise exactness is a strictly stronger requirement than local exac
 
 \begin{theorem}
   \begin{enumerate}[(a)]
-  \item Let $A,B,C:X\to \AbGroup$ and 
+  \item Let $A,B,C:X\to \AbGroup$ and
     \[
     0\to A\to B\to C\to 0
     \]
@@ -36,7 +38,7 @@ Note that pointwise exactness is a strictly stronger requirement than local exac
       \begin{tikzcd}
         & \dots\ar[r]& H^{n-1}(X,C)\ar[dll]\\
         H^n(X,A)\ar[r] & H^n(X,B)\ar[r] & H^n(X,C)\ar[lld] \\
-        H^{n+1}(X,A)\ar[r] & H^{n+1}(X,B)\ar[r] & \dots        
+        H^{n+1}(X,A)\ar[r] & H^{n+1}(X,B)\ar[r] & \dots
       \end{tikzcd}
     \end{center}
   \item Let $A,B,C:X\to \Mod{R}_{\mathrm{wqc}}$ and
@@ -93,3 +95,124 @@ from \cite[Chapter III]{Hartshorne}:
 
 
 Following \cite[Chapter 19]{vakil}.
+
+
+
+\subsection{Delta Functors}
+
+
+{\color{red} TODO: Write down quick introduction/definition into/of delta functors. Point out differences/similarities to cech-draft}.
+
+Let $\mathcal A$ be an exact category and $\mathcal B$ an abelian category.
+However, we really are only interested in the geometric case where $\mathcal A$ is an additive subcategory of $\bP^n \to \Mod R$ and $\mathcal B$ is the category of $R$-modules.
+Note that in this case $\mathcal A$ is automatically exact.
+
+\begin{definition}
+  A $\delta$-functor $T = (T^i)_{i\geq 0}$ from $\mathcal A$ to $\mathcal B$ is \emph{coherently effaceable} if the following two items hold.
+  \begin{enumerate}
+    \item[i)] For all $M \in \mathcal A$ there merely is an exact sequence
+      \[
+        0 \to M \overset{m}{\to} E \to C \to 0
+      \]
+      such that $T^i(m) = 0$. We say that $m$ \emph{resolves} $M$ (with respect to $T$).
+    \item[ii)] For any two resolutions $0 \to M \to E \to C \to 0$ and $0 \to N \to E' \to C' \to 0$ that resolve $M$ and $N$ respectively and for any morphism $f : M \to N$, there merely is another resolution $0 \to N \to E'' \to C'' \to 0$ of $N$ such that there is a commutative diagram:
+      \[
+      \begin{tikzcd}
+        0 \ar[r] & M \ar[d, "f"]\ar[r] & E \ar[r]\ar[d] & C \ar[d]\ar[r] & 0\\
+        0 \ar[r] & N \ar[d, equal]\ar[r] & E'' \ar[r] &  C'' \ar[r] & 0\\
+        0 \ar[r] & N \ar[r] & E' \ar[r]\ar[u] & C' \ar[u]\ar[r] & 0
+      \end{tikzcd}
+      \]
+  \end{enumerate}
+  We say that $T$ is \emph{coherently coeffaceable} if the dual conditions are met.
+\end{definition}
+
+\begin{theorem}\label{coherently-effaceable-implies-universal}
+  Let $T=(T^i)$ an exact $\delta$-functor from $\mathcal A$ to $\mathcal B$ that is coherently effaceable. Then $T$ is universal.
+\end{theorem}
+
+  We give a constructive adaption of Grothendieck's original proof {\color{red} CITE}.
+  Our definition of \emph{coherently effaceable} is stronger than his corresponding definition of \emph{effaceable} and allows us to avoid using the axiom of choice whenever he invokes it.
+
+\begin{proof}
+  Say $S = (S^i)_{i \geq 0}$ is another $\delta$-functor together with a transformation $t^0 : T^0 \to S^0$.
+  We want to uniquely extend this to a map $t : T \to S$ of $\delta$-functors.
+  Suppose by induction that $t^0, ..., t^{i-1}$ have all already been constructed in a unique way.
+  For any $M \in \mathcal A$ fix a resolution
+  \[
+    \mathcal S = ( 0 \to M \to E \to C \to 0 ),
+  \]
+  and consider
+  \[
+    \begin{tikzcd}
+      T^{i-1}(E) \ar[d, "t^{i-1}(E)"]\ar[r] & T^{i-1}(C) \ar[d, "t^{i-1}(C)"]\ar[r] & T^i(M) \ar[d, "t^i_{\mathcal S}(M)", dashed]\ar[r, "0"] & T^i(E) \\
+      S^{i-1}(E) \ar[r] & S^{i-1}(C) \ar[r] & S^i(M) &
+    \end{tikzcd}
+  \]
+  where $t^i_{\mathcal S}(M)$ is uniquely induced by the universal property of cokernels.
+  We wish to show that this map is independent of $\mathcal S$, so choose another resolution $\mathcal S' = ( 0 \to M \to E' \to C' \to 0 )$ of $M$.
+  Since $T$ is coherently effaceable, we merely obtain a third resolution $\mathcal S''$ dominating $\mathcal S$ and $\mathcal S'$:
+  \[
+  \begin{tikzcd}
+    0 \ar[r] & M \ar[d, "f"]\ar[r] & E \ar[r]\ar[d] & C \ar[d]\ar[r] & 0\\
+    0 \ar[r] & N \ar[d, equal]\ar[r] & E'' \ar[r] &  C'' \ar[r] & 0\\
+    0 \ar[r] & N \ar[r] & E' \ar[r]\ar[u] & C' \ar[u]\ar[r] & 0
+  \end{tikzcd}
+  \]
+  then we get an induced array of commutative cubes:
+  \[
+  \begin{tikzcd}[column sep=0.2pt, row sep=25pt]
+    T^{i-1}(E)      \ar[rrr]\ar[ddd]\ar[rd] & & &                         T^{i-1}(C) \ar[rrr]\ar[ddd]\ar[rd] & & &           T^i(M) \ar[dr, "T^i(f)" description]\ar[ddd, "t^i_{\mathcal S}(M)" description, dashed] & & \\
+    & T^{i-1}(E'')  \ar[rrr, crossing over] & & &                         T^{i-1}(C'') \ar[rrr, crossing over]\ar[ddd] & & & T^i(N) \ar[ddd, "t^i_{\mathcal S''}(N)" description, dashed] & \\
+    & & T^{i-1}(E') \ar[rrr, crossing over]\ar[lu] & & &                  T^{i-1}(C') \ar[rrr, crossing over]\ar[lu] & & &   T^i(N) \ar[ul, equal]\ar[ddd, "t^i_{\mathcal S'}(N)" description, dashed] \\
+    S^{i-1}(E)      \ar[rrr]\ar[rd] & & & S^{i-1}(C)\ar[rrr]\ar[rd] & & & S^i(M) \ar[dr, "S^i(f)" description] & & \\
+    & S^{i-1}(E'')  \ar[from=uuu, crossing over]\ar[rrr] & & &            S^{i-1}(C'') \ar[rrr] & & &                        S^i(N) & \\
+    & & S^{i-1}(E') \ar[from=uuu, crossing over]\ar[rrr]\ar[lu] & & &     S^{i-1}(C') \ar[from=uuu, crossing over]\ar[rrr]\ar[lu] & & & S^i(N) \ar[ul, equal]
+  \end{tikzcd}
+  \]
+  In case $M \equiv N$ and $f \equiv id_M$ we obtain $t^i_{\mathcal S}(M) = t^i_{\mathcal S''}(M) = t^i_{\mathcal S'}(M)$.
+  Thus see that $t^i(M) :\equiv t^i_{\mathcal S}(M)$ is independent of $\mathcal S$.
+  In the general case for an arbitrary $f : M \to N$, we see that $S^i(f) \circ t^i(M) = t^i(N) \circ T^i(f)$ and thus the morphisms $t^i(-)$ organize into a natural transformation $T^i \to S^i$.
+  Therefore we have constructed a unique morphism $t : T \to S$ of $\delta$-functors.
+\end{proof}
+
+We will use the following lemma to show that the functors appearing in Serre-duality are coherently coeffaceable.
+
+\begin{lemma}\label{vector-bundles-can-be-coherently-resolved}
+  Suppose we have two exact sequences
+  \[
+    0 \to \mathcal C \to \mathcal O(e)^{\oplus m} \overset{\alpha}{\to} \mathcal M \to 0
+  \]
+  \[
+    0 \to \mathcal C' \to \mathcal O(e')^{\oplus m'} \overset{\alpha'}{\to} \mathcal N \to 0
+  \]
+  of vector bundles on $\bP^n$ where $e,e' < 0$, $m,m' \geq 0$ and let $f : \mathcal N \to \mathcal M$ be any morphism.
+  Then there merely are $d' < 0$, $k' \geq 0$ and dashed arrows in the below diagram such that it commutes and the middle row is exact:
+  \[
+  \begin{tikzcd}
+    0 \ar[r] & \mathcal C \ar[r] & \mathcal O(e)^{\oplus m} \ar[r] & \mathcal M \ar[r] & 0\\
+    0 \ar[r] & \mathcal C'' \ar[r, dashed] \ar[u, dashed]\ar[d, dashed]
+      & \mathcal O(e'')^{\oplus m''} \ar[r, dashed]\ar[u, dashed]\ar[d, dashed]
+      & \mathcal N \ar[r]\ar[u, "f"]
+      & 0\\
+    0 \ar[r] & \mathcal C' \ar[r]
+      & \mathcal O(e')^{\oplus m'} \ar[r]
+      & \mathcal N \ar[r]\ar[u, equal]
+      & 0
+  \end{tikzcd}
+  \]
+  The dual statement is true as well.
+\end{lemma}
+
+\begin{proof}
+  Set
+  $
+    \mathcal P :\equiv \mathcal O(e)^{\oplus m} \times_{\mathcal M} \mathcal O(e')^{\oplus m'}
+    =
+    \ker \big((-\alpha, f\circ\alpha') : \mathcal O(e)^{\oplus m} \oplus \mathcal O(e')^{\oplus m'} \to \mathcal M \big).
+  $
+  As $(-\alpha, f\circ\alpha')$ is surjective we see that $\mathcal P$ is a vector bundle again.
+  Choose a surjection $p : \mathcal O(e'')^{\oplus m''} \to \mathcal P$ and set $\mathcal C'' : \equiv \ker (\alpha' \circ \pi_2 \circ p)$, which is again a vector bundle for the same reason.
+  Then the universal properties of these kernels yield the dashed arrows above. {\color{red} TODO: Make this proof more readable.}
+
+\end{proof}
