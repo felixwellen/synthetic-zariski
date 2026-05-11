@@ -446,11 +446,22 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
 \begin{remark}\label{description-Cn-simn}
   Note that $\mathbb I_n^{\sim k}$ is in equivalence with 
   the type of $k+1$-tuples of binary sequences in $2^n$ such that for any $a,b:2^n$ in the tuple, we have 
-  $|cs_n (a) -cs_n(b) |\leq\frac1{2^n}$, meaning $a \sim_n b$. 
-  There are at most two such sequences, which means the simplicial complex $I_n^{\sim}$ is 1-dimensional in the sense of Definition II.3.2 of \cite{EilenbergSteenrod}. 
+  $|cs_n (a) -cs_n(b) |\leq\frac1{2^n}$, meaning $a \sim_n b$ (Definition 4.19 of \cite{synthetic-stone-duality}). 
+  Note that there are at most two such sequences.
   Also note that for $cs : 2^\mathbb N \twoheadrightarrow \mathbb I$, we have 
   $$\Sigma_{x : \mathbb I} (cs^{-1}(x))^{k+1} = \lim_{n} \mathbb I_n^{\sim k}$$
 \end{remark}
+\begin{definition}
+  We recall from Definition VI.2.3 of \cite{EilenbergSteenrod} that there is a ordered chain complex $C_k$ associated to $\mathbb I_n^{\sim}$. For each $k$, the group $C_k$ is given by the free abelian group on $\mathbb I_n^{\sim k}$, and the map $\partial_k: C_k\to C_{k-1}$ is induced by 
+  $$\partial_k(a_0,\cdots , a_k) = \sum\limits_{i=0}^k (-1)^i(a_0,\cdots \widehat{a_i},\cdots a_k).$$
+
+  We also recall from Definition VI.6.8 of \cite{EilenbergSteenrod} that there is an alternating chain complex $D_k$ associated to $\mathbb I_n^\sim$, which for each $k$ has the group $D_k$ given by quotienting out degenerate elements from $C_k$. 
+\end{definition}
+\begin{remark}\label{RmkTrivialDk}
+  As $\mathbb I_n^{\sim k}$ contains at most 2 sequences, by Lemma VI.6.6 of \cite{EilenbergSteenrod}, for $k\geq 2$ all simplices of $C_k$ are degenerate, and hence $D_k$ is trivial. 
+\end{remark}
+
+
 Now for a given group $G$ and natural number $n$, we are interested in the following sequence:
 \begin{equation}\label{EqSequence}
     \begin{tikzcd}
@@ -503,10 +514,9 @@ Suppose $\alpha : \mathbb I_n \to G$ is a cocycle.
   for $k\geq 2$. 
 \end{lemma} 
 \begin{proof}
- We make use of results from chapter VI of \cite{EilenbergSteenrod} and all the references in this proof are to that chapter of that book. We note that the reasoning in that chapter is fully constructive; it makes use of an order with trichotomy, but this order is assigned to a finite set. 
-The sequence we are considering is given by applying $Hom_{Ab}(-,G)$ applied to the ordered chain complex (Definition 2.3) corresponding to $\mathbb I_n^\sim$, which had as $k$'th object the free abelian\footnote{Note that in the reference definition 2.1, the word "abelian" is omitted, but otherwise the proof in 2.2 wouldn't make sense.} group on generators from $\mathbb I_n^{\sim k}$, which we denote $C_k$. 
-  By Theorem 6.10, this ordered chain complex is homotopy equivalent to the alternating chain complex where the objects $D_k$ are given by quotienting out the degenerate simplices from $C_k$. 
-  Now as $I_n^\sim$ is 1-dimensional, by Lemma 6.6, any $k$-simplex of $C_k$ with $k\geq 2$ is degenerate, hence $D_k$ is trivial, and so is $Hom_{Ab}(D_k,G)$. In particular, for $k\geq 2$, the sequence is exact at $Hom_{Ab}(D_k,G)$, and thus the required sequence is exact at $G^{\mathbb I_n^{\sim k}}$.
+  The sequence in \Cref{EqSequence} is given by applying $Hom_{Ab}(-,G)$ to the ordered chain complex $C_k$.
+  By Theorem VI.6.10 of \cite{EilenbergSteenrod}, this ordered chain complex is homotopy equivalent to the alternating chain complex $D_k$. As $D_k$ was trivial for $k\geq 2$ by \Cref{RmkTrivialDk}, $Hom_{Ab}(D_k,G)$ is also trivial.
+  We conclude that the sequence in \Cref{EqSequence} is exact at $G^{\mathbb I_n^{\sim k}}$.
 \end{proof}
 
 
