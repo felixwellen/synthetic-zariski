@@ -35,11 +35,21 @@ TODO
 \end{proof}
 
 \begin{lemma}\label{delta-is-open}
-Assume given $P,Q:R[X]$ with $P$ monic non-constant. Then if $\psi(P,Q)$ \rednote{not sure it is necessary}, we have that $\delta(P,Q)$ is open.
+Assume given $P,Q:R[X]$ with $P$ monic non-constant. Then $\delta(P,Q)$ is open.
 \end{lemma}
 
 \begin{proof}
-TODO
+  Following \cite{lombardi-quitte}[III.4], let \(\Adu_{R,P}\) be the universal splitting algebra and let \(x_1,\dots,x_n:\Adu_{R,P}\) be the roots of \(P\).
+  Then \(D_{P,Q}\colonequiv Q(x_1)\neq 0 \vee\dots\vee Q(x_n)\neq 0\) is open since \(\Adu_{R,P}\) is finite free as an \(R\)-module (\cite{lombardi-quitte}[III.4.4]).
+  
+  To show that \(\delta(R,Q)\) is open, we will show that it is equivalent to \(D_{P,Q}\).
+  We first show \(\neg\neg\Std(P,Q)\to D_{P,Q}\).
+  By being open, \(D_{P,Q}\) is double negation stable, so we can assume \(x:\Std(P,Q)\) and show \(D_{P,Q}\). We get a homomorphism \(\Adu_{P,Q}\to (R[X]/P)_Q\) by sending all the \(x_i\) to \(x\).
+  Assume \(Q(x_1)=0\wedge\dots\wedge Q(x_n)=0\), then we have \(Q(x)=0\), which is a contradiction.
+
+  We conclude by showing \(\neg\Std(P,Q) \to \neg D_{P,Q}\).
+  So assume \(\Std(P,Q)=\emptyset\) and therefore that for \(x:R[X]/P\), \(Q(x)\) is nilpotent.
+  For any \(x_i:\Adu_{P,Q}\) we can look at the map \(R[X]/P\to \Adu_{P,Q}\) given by mapping \(x\) to \(x_i\). So any \(Q(x_i)\) is nilpotent and we get \(\neg D_{P,Q}\).
 \end{proof}
 
 
