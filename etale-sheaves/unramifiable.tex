@@ -97,7 +97,7 @@ But if $P'(x)=0$ then let's prove that for all $\epsilon:R$ such that $\epsilon^
 
 Now we are ready to prove that the standard \'etale scheme that are in the topology are inhabited under the \'etale monic sheafification, i.e.\ they are inhabited assuming unramifiable polynomials have roots.
 
-\begin{lemma}
+\begin{lemma}\label{standard-etale-are-etale-monic}
 Assume given $P,Q:R[X]$ with $P$ monic non-constant, if $\psi(P,Q)$ and $\delta(P,Q)$ then $\propTrunc{\Std(P,Q)}_{\mathrm{EtMon}}$.
 \end{lemma}
 
@@ -111,7 +111,7 @@ If $P$ is of degree at least $2$, by \Cref{psi-delta-imples-unramifiable} we hav
 
 We can extend to arbitrary elements in the topology.
 
-\begin{lemma}
+\begin{lemma}\label{etale-monic-contractibility}
 Assume given $S$ in the \'etale topology (i.e.\ $S$ affine, formally \'etale and non-empty), then $\propTrunc{S}_{\mathrm{EtMon}}$
 \end{lemma}
 
@@ -120,12 +120,15 @@ By \Cref{local-structure-etale-scheme} we get $I$ finite with for all $i:I$ some
 \[S = \cup_{i:I}\Std(P_i,Q_i)\]
 so that
 \[S \to \lor_{i:I}\delta(P_i,Q_i)\]
-but by \Cref{delta-is-open} the left hand side is $\neg\neg$-stable and since $\neg\neg S$ we get some $i:I$ so that TODO
+but by \Cref{delta-is-open} the left hand side is $\neg\neg$-stable and since $\neg\neg S$ we get some $i:I$ so that $\delta(P_i,Q_i)$ holds, and then we apply \Cref{standard-etale-are-etale-monic} to conclude.
 \end{proof}
 
-\begin{corollary}
+\begin{theorem}\label{etale-characterisation-monic}
 A type is an \'etale sheaf if and only if it is an \'etale monic sheaf.
-\end{corollary}
+\end{theorem}
 
+\begin{proof}
+By \Cref{etale-monic-contractibility} we know that for any \'etale monic sheaf is an \'etale sheaf. For the other direction we need to prove that for any $P$ monic unramifiable we have $\propTrunc{\Spec(R[X]/P)}_{\mathrm{Et}}$, but by \Cref{remark-unramifiable-polynomial} we have $\propTrunc{\Std(P,P')}_{\mathrm{Et}}$ which is stronger. 
+\end{proof}
 
 
