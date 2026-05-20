@@ -75,6 +75,8 @@ We collect some useful results.
 
 \subsection{Étale-overtness}
 
+\rednote{This section is a sketch}
+
 The following consequences were discovered in a slightly different context in a discussion with Matthias Ritter, Andrej Bauer and Martín Escardó at a Dagstuhl meeting \cite{Dagstuhl-reference}.
 A type \(X\) is said to be \notion{overt}, if for any open \(U\subseteq X\), the proposition that \(U\) is inhabited, \(\|U\|\) is open. It can be thought of as a dual to compactness.
 
@@ -88,6 +90,7 @@ A type \(X\) is said to be \notion{overt}, if for any open \(U\subseteq X\), the
     where \((\_)_{\et}\) denotes étale sheafification.
   \item Let \(U\subseteq R\). Then \((\|U\|\text{ is open})_{\et}\).
   \item Let \(U\subseteq R^n\). Then \((\|U\|\text{ is open})_{\et}\).
+  \item Let \(U\subseteq \bP^n\). Then \((\|U\|\text{ is open})_{\et}\).
   \end{enumerate}
 \end{proposition}
 
@@ -128,6 +131,7 @@ A type \(X\) is said to be \notion{overt}, if for any open \(U\subseteq X\), the
     due to the pairwise different \(x_i\).
   \item By closure of open propositions under finite disjunction.
   \item Using \((\exists x:R^n. U(x)) = (\exists x_1:R. \dots \exists x_n:R. U((x_1,\dots,x_n)))\).
+  \item By closure of open propositions under finite disjunction.
   \end{enumerate}
 \end{proof}
 
@@ -144,4 +148,30 @@ A type \(X\) is said to be \notion{overt}, if for any open \(U\subseteq X\), the
 
   \(\|U\|\) is equivalent to the existence of a hyperplane that avoids \(C\).
   By the previous proposition, \(\|U\|_\et\) is implied by \(\neg\neg U\).
+\end{proof}
+
+\begin{proposition}
+  Let \(S\) be separated étale, then \(\neg\neg(\exists n:\N. S=\{1,\dots,n\})\).
+\end{proposition}
+
+\begin{proof}
+  \(S\) is covered by standard étale schemes \(U_i=\Spec((R[X]/P_i)_{G_i})\).
+  Up to \(\neg\neg\) we can factor each \(P_i=(X-x_1)^{e_1}\cdots(X-x_n)^{e_n}\) with pairwise different \(x_j\) and decide wether \(G_i(x_j)\) is zero, so every \(U_i\) is a finite set.
+  Since equality in an separated étale scheme is decidable,
+  we can remove duplicates and get that \(S\) is a finite set.
+\end{proof}
+
+\begin{theorem}
+  Let \(S\) be étale and projective, then \(S\) is affine.
+\end{theorem}
+
+\begin{proof}
+  First we show that there \(\neg\neg\) is a hyperplane avoiding \(S\).
+  Let \(x_{ij}\) be such that the \([x_{i0}:\cdots:x_{in}]\) are the points of \(S\).
+  Then we want an anti-zero \(a=(a_0,\dots,a_n)\) of \(F(a)=\prod_i (a_0x_{i0}+\dots +a_nx_{in})\).
+  We know there is a non-zero coefficient of \(F\), so \(D(F)\neq \emptyset\), but then it is inhabited.
+  This shows there are \(a_0,\dots,a_n\) with the needed property.
+
+  By previous propositions, this proves étale existence of a hyperplane avoiding \(S\),
+  which shows \(S\) is affine, since that proposition is an étale sheaf.
 \end{proof}
