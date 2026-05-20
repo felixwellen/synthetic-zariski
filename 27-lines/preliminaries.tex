@@ -72,3 +72,76 @@ We collect some useful results.
   Then \(x_i\neq x_j\) for \(j\neq i\) because \(x_i=x_j\) 
   for primes \(p,q\) with \(x_i^p=1\) and \(x_j^q=1\) there are \(l,k:\N\) with \(1=lp+kq\) so that we have \(x_i^1=x_i^{lp+kq}=1\).
 \end{proof}
+
+\subsection{Étale-overtness}
+
+The following consequences were discovered in a slightly different context in a discussion with Matthias Ritter, Andrej Bauer and Martín Escardó at a Dagstuhl meeting \cite{Dagstuhl-reference}.
+A type \(X\) is said to be \notion{overt}, if for any open \(U\subseteq X\), the proposition that \(U\) is inhabited, \(\|U\|\) is open. It can be thought of as a dual to compactness.
+
+\begin{proposition}
+  \begin{enumerate}[(a)]
+  \item Let \(f:R[X]\). The proposition \(\|D(f)\|\), that \(f\) has an anti-zero,
+    is open up to étale-sheafification, i.e.\ we have
+    \[
+      (\|D(f)\| \text{ is open})_{\et}
+    \]
+    where \((\_)_{\et}\) denotes étale sheafification.
+  \item Let \(U\subseteq R\). Then \((\|U\|\text{ is open})_{\et}\).
+  \item Let \(U\subseteq R^n\). Then \((\|U\|\text{ is open})_{\et}\).
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  \begin{enumerate}[(a)]
+  \item We work under étale sheafification.
+    Let \(f=\sum_{i=0}^na_iX^i\) and \(x_0,\dots,x_n:R\) pairwise different.
+    Then we have \(U\colonequiv f(x_0)\neq 0\vee\dots\vee f(x_n)\neq 0\) implies \(\|D(f)\|\).
+    
+    If we have \(\|D(f)\|\) we know \(f\neq 0\) and therefore that one of the \(a_i\) must be non-zero.
+    We can conclude \(U\) from that.
+    Assume \(f(x_0)=0\wedge\dots\wedge f(x_n)=0\) which means
+    \[
+      \left(
+        \begin{array}{cccc}
+          1 & x_0^1 & \cdots & x_0^n \\
+          \vdots & \vdots & \vdots & \vdots  \\
+          1 & x_n^1 & \cdots & x_n^n 
+        \end{array}
+      \right) \cdot
+      \left(
+        \begin{array}{c}
+          a_0 \\
+          \vdots \\
+          a_n
+        \end{array}
+      \right) =
+      \left(
+        \begin{array}{c}
+          0 \\
+          \vdots \\
+          0
+        \end{array}
+      \right)
+    \]
+    which is a contradiction to some \(a_i\) being non-zero
+    and the (Vandermonde) determinant of the matrix being invertible,
+    due to the pairwise different \(x_i\).
+  \item By closure of open propositions under finite disjunction.
+  \item Using \((\exists x:R^n. U(x)) = (\exists x_1:R. \dots \exists x_n:R. U((x_1,\dots,x_n)))\).
+  \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+  Let \(C\subseteq \bP^n\) be closed.
+  Then étale existence of a hyperplane that avoids \(C\)
+  is equivalent to \(\neg\neg\)-existence of such a hyperplane.
+\end{proposition}
+
+\begin{proof}
+  A hyperplane that avoids \(C\) is given by \(a=(a_0,\dots,a_n):R^{n+1}\)
+  such that for all \([x_0 : \dots : x_n]\) in \(C\) we have \(a_0x_0+\dots+a_nx_n\neq 0\).
+  Since \(C\) is compact, \(V_a\colonequiv \forall [x_0 : \dots : x_n]\in C. a_0x_0+\dots+a_nx_n\neq 0\) is an open proposition. This defines an open subset \(U\subseteq R^{n+1}\), by mapping \(a_0,\dots,a_n\) to \(V_a\).
+
+  \(\|U\|\) is equivalent to the existence of a hyperplane that avoids \(C\).
+  By the previous proposition, \(\|U\|_\et\) is implied by \(\neg\neg U\).
+\end{proof}
