@@ -47,3 +47,28 @@ We collect some useful results.
 \begin{proof}
   \rednote{TODO: add argument using affine cone and local character of smoothness}
 \end{proof}
+
+\begin{proposition}
+  For any \(n:\N\), there étale-merely are \(x_1,\dots,x_n:R\) such that \(x_i\neq x_j\) whenever \(i\neq j\).
+\end{proposition}
+
+\begin{proof}
+  For a prime \(p:\N\), the \(p\)-th cyclotomic polynomial \(\phi_p\) has the form
+  \[
+    \phi_p=\frac{X^p-1}{X-1}=X^p+\dots+X^1+1\rlap{.}
+  \]
+  If \(p\neq 0\) in \(R\), we have \(\phi_p(1)\neq 0\)
+  and therefore for any root \(x:R\) of \(\phi_p\) we have \(x\neq 1\).
+  We compute:
+  \[
+    \phi_p^\prime:=\frac{\partial}{\partial X}\phi_p = \frac{pX^{p-1}(X-1)-(X^p-1)}{(X-1)^2}
+  \]
+  so \(\phi_p^\prime(x)\neq 0\) for any root \(x\) of \(\phi_p\).
+
+  For given \(n:\N\), we take primes \(p_i,q_i\) such that \(p_1<q_1<\dots <p_n < q_n\).
+  For each \(i\) there are \(k,l:\N\) such that \(1=kp_i+lq_i\) so \(p_i\neq_R 0\vee q_i\neq_R 0\).
+  Then we étale merely have \(x_i:R\) such that \(x_i^{p_i}=1\) or \(x_i^{q_i}=1\) and \(x_i\neq 1\).
+  
+  Then \(x_i\neq x_j\) for \(j\neq i\) because \(x_i=x_j\) 
+  for primes \(p,q\) with \(x_i^p=1\) and \(x_j^q=1\) there are \(l,k:\N\) with \(1=lp+kq\) so that we have \(x_i^1=x_i^{lp+kq}=1\).
+\end{proof}
