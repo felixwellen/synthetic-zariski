@@ -1,0 +1,153 @@
+\subsection{Deligne-Mumford stacks}
+
+\begin{definition}
+We define inductively:
+\[\CS_0 = \Et\]
+\[\CS_{n+1} = \{X:\Type_\Et\ |\ \exists_{S:\Et}\, S\to X\ \mathrm{with\ fibers\ in}\ \CS_n\}\]
+\end{definition}
+
+\begin{remark}
+We clearly have that $\CS_n\subset \CS_{n+1}$ and that $\CS_n\subset\{n-\mathrm{types}\}$, but beware that an $n$-type might be is e.g. $\CS_{n+1}$ but not $\CS_n$.
+\end{remark}
+
+\begin{definition}
+We define:
+\[\DM_0 = \Aff\]
+\[\DM_{n+1} = \{X:\Type_\Et\ |\ \exists_{S:\Aff}\, S\to X\ \mathrm{with\ fibers\ in}\ \CS_n\}\]
+\end{definition}
+
+\begin{remark}
+We clearly have $\CS_n\subset\DM_n$ and $\DM_n\subset \DM_{n+1}$.
+\end{remark}
+
+\begin{lemma}\label{CSn-DMn-stability}
+Assume given $n:\N$, then:
+
+\begin{enumerate}[(i)]
+\item We have that $\DM_n$ (resp.\ $\CS_n$) is stable under $\Sigma$-type.
+\item We have étale descent for $\DM_n$ (resp.\ $\CS_n$), meaning that given $X$ an étale sheaf, we have that $X\in \DM_n$ (resp.\ $X\in\CS_n$) is itself an étale sheaf.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+As follows:
+
+\begin{enumerate}[(i)]
+\item By induction on $n:\N$. For $n=0$ this is \Cref{etale-stable-sigma}.
+
+Assume $\CS_n$ stable under $\Sigma$-types, with $X:\DM_{n+1}$ and $Y:X\to \DM_{n+1}$ (resp.\ $X:\CS_{n+1}$ and $Y:X\to \CS_{n+1}$). By definition we have $S:\Aff$ (resp. $S:\Et$) with a map $p:S'\to X$ which fibers are in $\CS_{n}$, then by local choice we get $q:S\to S'$ with fibers in the Zariski topology and $T:S\to \Aff$ (resp. $T:S\to\Et$) with:
+\[r:\Pi_{x:S} T(x)\to Y(p(q(x)))\]
+such that for each $x:S$ the fibers of $r_x$ are in $\CS_n$.
+
+Then by induction $p\circ q$ has fibers in $\CS_n$, so that the map $(p\circ q, r) : \Sigma_ST\to \Sigma_XY$ has fibers in $\CS_n$ as well and we can conclude.
+\item For $n=0$ this is \Cref{etale-sheaf-construction}.
+
+Assume $n\geq 1$, and assume $X$ an étale sheaf such that $\propTrunc{X\in \DM_{n+1}}_\Et$ (resp.\, $\propTrunc{X\in \CS_{n+1}}_\Et$). Then by \Cref{etale-truncation-description} there exists $S\in \CS_0$ with $T:S\to \Aff$ (resp.\ $T:S\to \mathsf{Et}$) and $r:\Pi_{x:S}T(x)\to X$ such that the fibers of $r_x$ are in $\CS_n$ for each $x:S$. Then consider the map $(\Sigma_{x:S}T(x)) \to X$ sending $(x,y)$ to $r_x(Y)$. The fibers of this map are a $\Sigma$ type of $S:\Et$ and a family of types in $\CS_n$, so that they are in $\CS_n$ by (i) and since $\Sigma_{x:S}T(x)$ is affine (resp.\ in $\Et$), we have that $X\in \CS_{n+1}$.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+An étale sheaf $X$ is called a covering stack if there exists $n:\N$ such that $X\in \CS_n$.
+\end{definition}
+
+\begin{definition}
+An étale sheaf is called a Deligne-Mumford stacks if there exists $n:\N$ such that $X\in\DM_n$.
+\end{definition}
+
+It is clear that covering stacks are Deligne-Mumford stacks. We give a key lemma:
+
+\begin{lemma}\label{DM-boundedness}
+Assume $X$ such that there exists $S$ affine and $p:S\to X$ an étale surjection, with $P:X\to\N\to \Prop_\Et$ such that $\Pi_{x:X,n:\N} P(x,n)\to P(x,n+1)$. Assume that:
+\[\forall(x:X)\exists(n:\N).\, P(x,n)\]
+Then:
+\[\exists(n:\N)\forall(x:X).\, P(x,n)\]
+\end{lemma}
+
+\begin{proof}
+By boundedness for affine schemes we get that there exists $n:\N$ such that $\Pi_{x:S}P(p(x),n)$. We conclude that $\Pi_{x:X}P(x,n)$ using étale-surjectiveness and that $P$ takes value in étale sheaves.
+\end{proof}
+
+%\begin{remark}
+%It is an immediate consequence of \Cref{CSn-descent} and \Cref{DM-boundedness} given an étale sheaf $X$ with $S$ affine and a map $S\to X$ with fibers in $\CS$, we have that $X\in \DM$.
+%\end{remark}
+
+\begin{lemma}\label{DM-family-bounded}
+Assume given $X:\DM$ (resp. $X:\CS$) and $Y:X\to \DM$ (resp.\ $Y:X\to \CS$), there exists $n:\N$ such that $X:\DM_n$ (resp. $X:\CS_n$) and $Y:X\to \DM_n$ (resp.\ $Y:X\to \CS_n$).
+\end{lemma}
+
+\begin{proof}
+Direct application of \Cref{DM-boundedness}, using \Cref{CSn-DMn-stability}.
+\end{proof}
+
+\begin{proposition}\label{DM-stack-stability}
+We have the following:
+
+\begin{enumerate}[(i)]
+\item Deligne-Mumford (resp. covering) stacks are stable under $\Sigma$-types.
+\item Deligne-Mumford (resp. covering) stacks are stable under covering quotients, meaning that given $Y$ an étale sheaf with $X:\DM$ (resp.\ $X:\CS$) and $p:X\to Y$ with fibers in $\CS$, we have that $Y:\DM$ (resp.\ $Y:\CS$).
+\item Deligne-Mumford (resp. covering) stacks have étale descent.
+\item Deligne-Mumford stacks are stable under identity types.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+As follows:
+
+\begin{enumerate}[(i)]
+\item From \Cref{DM-family-bounded} and \Cref{CSn-DMn-stability}.
+\item Given such a $p:X\to Y$, by \Cref{DM-boundedness} we know that there is some $n:\N$ such that the fibers of $p$ are in $\CS_n$ and there exists $S:\Aff$ (resp.\ $S:\Et$) with $q:S\to X$ with fibers in $\CS_k$. We conclude by considering $p\circ q:S\to Y$ which has fibers in $\CS_{\max(n,k)}$.
+\item By \Cref{CSn-DMn-stability} and \Cref{etale-proposition-union}.
+\item Consider $X$ in a Deligne-Mumford stack with $S:\Aff$ and $p:S\to X$ which fibers are in $\CS$. Given $y,y':Y$, we consider $\Sigma_{x:S_y}\Sigma_{x':S_{y'}}\, x=_Sx' \to y=y'$. Its fibers are of the form $S_y$ and therefore covering stacks, and by (i) the source is a Deligne-Mumford stack, therefore by (ii) we have that $y=y'$ is a Deligne-Mumford stack.
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+Covering stacks are not stable under identity types, indeed this already fails for $\CS_0$, as identity types in say $2$ can be $\bot$, which cannot be a covering stack as it is not étale-inhabited.
+\end{remark}
+
+
+\subsection{Algebraic spaces}
+
+\begin{definition}
+Algebraic spaces are Deligne-Mumford stacks that are sets.
+\end{definition}
+
+\begin{remark}
+Tradition asks for the identity types to be schemes. I don't know whether this is implied by our definition.
+
+If both are equivalent then any $\propTrunc{S}_{\mathrm{Et}}$ for $S$ affine formally étale would a scheme. Indeed we see that the étale sheafification of $\Sigma(\propTrunc{S}_{\mathrm{Et}})$ is an algebraic space by \Cref{algebraic-space-as-quotient}, and equality between the pole in this type is $\propTrunc{S}_{\mathrm{Et}}$.
+
+If need be we could switch to $\DM_0 = \{\mathrm{Algebraic\ spaces}\}$.
+\end{remark}
+
+\begin{definition}
+A an equivalence relation $\sim$ on a set $X$ that is an étale sheaf is called covering if:
+\begin{itemize}
+\item For all $x,y:X$, we have that $x=y$ is an étale sheaf.
+\item For all $x:X$, the type $\Sigma_{y:X}x\sim y$ is a covering stack.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}\label{algebraic-space-as-quotient}
+Let $X$ be a set that is an étale sheaf, then the following are equivalent:
+\begin{enumerate}[(i)]
+\item $X$ is an algebraic space.
+\item There exists $S$ affine and $p:S\to X$ such that for all $s:S$, the type $\mathrm{fib}_p(p(s))$ is a covering stack.
+\item There exists $S$ affine and $\sim$ a covering equivalence relation on $S$ such that $X = \mathrm{Sh}_\mathrm{Et}(S/R)$. 
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{itemize}
+\item (i) implies (ii). Consider $X$ an algebraic space, with $S$ affine and $p:S\to X$ which fibers are covering stacks. Then define $R$ the equivalence relation determined by $x\sim y = (p(x)=p(y))$. It is clearly covering. Now we have to check that the induced map $S/\sim \to X$ is actually étale sheafification. It is étale surjective because $p$ is étale surjective, so we just need to check it is injective. But to do this we just need to check that for all $x,y:S$, if $p(x)=p(y)$ then $[x]=_{S/\sim}[y]$, but $([x]=_{S/\sim}[y]) = (x\sim y) = (p(x)=p(y))$.
+\item (ii) implies (i). We need to show that the fibers of the map $S\to \mathrm{Sh}_\mathrm{Et}(S/\sim)$ are covering stacks. The fibers are étale sheaves, so by étale descent for covering stacks we just need to prove for all $x:S$, the fiber over $[p(x)]$ is a covering stack. Then the fiber is $\Sigma_{y:S}[p(x)] = [p(y)]$ which is equivalent to $\Sigma_{y:S} x\sim y$ and we conclude since the relation $R$ is covering.
+\end{itemize}
+\end{proof}
+
+
+
+
+
+
+
+
