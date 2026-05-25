@@ -31,6 +31,7 @@ where $R_U$ is the submodule defined by the predicate sending
 $x : R$ to $(x = 0) \lor \propTrunc{U}$.
 For this sequence, we may as well assume that $U$ is a proposition.
 Again, I think $R_U$ is an ideal and the quotient is a ring.
+We show below that $R_U$ and $R/R_U$ are tangential.
 
 In total, this gives five modules that depend on a type $U$,
 three of which are rings.
@@ -167,6 +168,52 @@ Other questions:
 Is the map $c : R \to R^{\lnot D(r)}$ epic in this case?
 Is $c(r)$ nilpotent?
 
+\begin{lemma}\label{forall-distributes-over-lor}
+Let $X$ be projective type such that every map to $\Bool$ is constant.
+Let $P, Q : X \to \Prop$ be predicates.
+Then $\forall x : X, P(x) \lor Q(x)$ is equivalent to $(\forall x, P(x)) \lor (\forall x, Q(x))$.
+\end{lemma}
+
+\begin{proof}
+Since the two types are proposition, it suffices to give implications in both directions.
+There is an obvious implication from right to left, so we are left to prove that
+$\forall x : X, P(x) \lor Q(x)$ implies $(\forall x, P(x)) \lor (\forall x, Q(x))$.
+So assume $\forall x : X, P(x) \lor Q(x)$.
+Since $\lor$ is the propositional truncation of the coproduct, the fact that $X$ is projective
+means that we merely have a map in $\prod_x P(x) + Q(x)$.
+Since we are proving a proposition, we can drop the ``merely''.
+The gives us a map $X \to \Bool$, which by assumption must be constant.
+This implies that we have either $\prod_x P(x)$ or $\prod_x Q(x)$, as required.
+\end{proof}
+
+\begin{proposition}
+For any type $U$, the modules $R_U$ and $R/R_U$ are tangential.
+\end{proposition}
+
+\begin{proof}
+We first consider $R_U \defeq \sum_{x : R} (x = 0) \lor U$.
+The type $\tangent{(R_U)}{0}$ is equivalent to
+\[
+  \sum_{f : \D(1) \rightarrow_\ast R} \forall \epsilon : \D(1), (f(\epsilon) = 0) \lor U .
+\]
+Since $\D(1)$ is projective (\cref{lem:disk-projective}) and all maps $\D(1) \to \Bool$
+are constant (\rednote{Citation?}), we can apply \cref{forall-distributes-over-lor} to
+get an equivalence to
+\[
+  \sum_{f : \D(1) \rightarrow_\ast R} (f = 0) \lor U ,
+\]
+where we have replaced $\forall \epsilon : \D(1), f(\epsilon) = 0$ with $f = 0$
+and have used that $\D(1)$ is pointed to replace $\D(1) \to U$ with $U$.
+Since $R$ is tangential, we can replace $\D(1) \rightarrow_\ast R$ with $R$,
+giving
+\[
+  \sum_{x : R} (x = 0) \lor U .
+\]
+It is not hard to check that the resulting equivalence is homotopic to the canonical map.
+
+It follows from \cref{prp:lim-col-ext-tangential} that $R/R_U$ is tangential as well.
+\end{proof}
+
 Altogether there are approximately 15 modules above, five for each of
 $V(r)$, $D(r)$ and $\lnot D(r)$.
 (A couple turn out to be equal, and a couple were introduced that don't
@@ -182,7 +229,9 @@ Methods for showing that an $R$-module $M$ is not finitely adequate:
 \begin{itemize}
 \item Show that the map $M \to M^{\ast\ast}$ is not an equivalence.
 \item Show that $M$ is not wqc.
-\item Show that the map $\mathrm{can} : M \rightarrow \mathrm{T}_0M$ is not an equivalence.
+\item Show that $M$ is not tangential.
+Unfortunately, for any $U$, the five modules associated to $U$
+are all tangential, so this method won't work for them.
 \item Show that there exists an epi $e : C \to M$ and a map $f : A \to M$,
 with $A$ and $C$ finitely co-presented, such that $f$ does not lift through $e$.
 (See \Cref{maps-into-coherent-lift}.)
