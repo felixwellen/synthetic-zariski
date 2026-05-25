@@ -80,25 +80,30 @@ We collect some useful results.
 The following consequences were discovered in a slightly different context in a discussion with Matthias Ritter, Andrej Bauer and Martín Escardó at a Dagstuhl meeting \cite{Dagstuhl-reference}.
 A type \(X\) is said to be \notion{overt}, if for any open \(U\subseteq X\), the proposition that \(U\) is inhabited, \(\|U\|\) is open. It can be thought of as a dual to compactness.
 
-\rednote{Maybe the following is better formulated as \(\neg\neg U\to \|U\|_\et\)}
+In the following we use \((\_)_{\et}\) to denote étale sheafification.
 
-\begin{proposition}
-  \begin{enumerate}[(a)]
-  \item Let \(f:R[X]\). The proposition \(\|D(f)\|\), that \(f\) has an anti-zero,
-    is open up to étale-sheafification, i.e.\ we have
-    \[
-      (\|D(f)\| \text{ is open})_{\et}
-    \]
-    where \((\_)_{\et}\) denotes étale sheafification.
-  \item Let \(U\subseteq R\). Then \((\|U\|\text{ is open})_{\et}\).
-  \item Let \(U\subseteq R^n\). Then \((\|U\|\text{ is open})_{\et}\).
-  \item Let \(U\subseteq \bP^n\). Then \((\|U\|\text{ is open})_{\et}\).
-  \end{enumerate}
-\end{proposition}
+\begin{definition}
+  A type \(X\) is called \notion{étale-overt} if for any open subset \(U\subseteq X\)
+  the proposition \(\|U\|_\et\) is open.
+\end{definition}
+
+\begin{example}
+  \label{finite-sum-open-etale-overt}
+  Finite sums of open propositions.
+\end{example}
+
+\begin{lemma}
+  For \(f:R[X]\) the proposition \(\|D(f)\|_\et\) is open.
+\end{lemma}
 
 \begin{proof}
-  \begin{enumerate}[(a)]
-  \item We work under étale sheafification.
+  Let \(f:R[X]\).
+  We first show that the proposition, that \(f\) has an anti-zero, \(\|D(f)\|\),
+  is open up to étale-sheafification, i.e.\ we have
+  \[
+    (\|D(f)\| \text{ is open})_{\et}\rlap{.}
+  \]
+  We work under étale sheafification.
     Let \(f=\sum_{i=0}^na_iX^i\) and \(x_0,\dots,x_n:R\) pairwise different.
     Then we have \(U\colonequiv f(x_0)\neq 0\vee\dots\vee f(x_n)\neq 0\) implies \(\|D(f)\|\).
     
@@ -131,11 +136,51 @@ A type \(X\) is said to be \notion{overt}, if for any open \(U\subseteq X\), the
     which is a contradiction to some \(a_i\) being non-zero
     and the (Vandermonde) determinant of the matrix being invertible,
     due to the pairwise different \(x_i\).
-  \item By closure of open propositions under finite disjunction.
-  \item Using \((\exists x:R^n. U(x)) = (\exists x_1:R. \dots \exists x_n:R. U((x_1,\dots,x_n)))\).
-  \item By closure of open propositions under finite disjunction.
+    This shows \((\|D(f)\| \text{ is open})_{\et}\).
+
+    We also have \((\|D(f)\|_\et \text{ is open})_{\et}\),
+    since open propositions are étale sheaves.
+    From this we conclude \(\|D(f)\|_\et\),
+    since a proposition being open is an étale sheaf.
+\end{proof}
+
+\begin{corollary}
+  \(R^n\) is étale-overt.
+\end{corollary}
+
+\begin{proof}
+  We first show, that for \(U=D(f_1,\dots,f_k)\subseteq R^n\) we have that \(\|U\|_\et\) is open.
+  Since it is open and therefore an étale sheaf we have
+  \(\|D(f_1)\|_\et\vee\dots\vee\|D(f_n)\|_\et=\|U\|_\et\).
+    
+  Then we use \((\exists x:R^n. U(x)) = (\exists x_1:R. \dots \exists x_n:R. U((x_1,\dots,x_n)))\).
+\end{proof}
+
+\begin{lemma}
+  \begin{enumerate}[(a)]
+  \item A type is étale-overt, if it admits a surjection from an étale-overt type.
+  \item Open subtypes of étale-overt types are étale-overt.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}[(a)]
+  \item Let \(f:X\to Y\) be surjective with \(X\) étale-overt.
+    For any open \(U\subseteq Y\) we have the preimage \(U\circ f\subseteq X\) and
+    \(\|U\circ f\|_\et=\|U\|_\et\).
+  \item For open \(U\subseteq X\), we have that any open \(V\subseteq U\) is open in \(X\).
   \end{enumerate}
 \end{proof}
+
+\begin{proposition}
+ \(\bP^n\) is étale-overt.
+\end{proposition}
+
+\begin{proof}
+  By lemma.
+\end{proof}
+
+\subsection{Étale projective schemes}
 
 \begin{proposition}
   Let \(C\subseteq \bP^n\) be closed.
