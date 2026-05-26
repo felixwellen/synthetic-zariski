@@ -1,0 +1,216 @@
+In this section we prove there is a strict chain of inclusions:
+\[\{\mathrm{Schemes}\} \subsetneq \{\mathrm{Locally\ separated\ algebraic\ spaces}\} \subsetneq \{\mathrm{Algebraic\ spaces}\}\]
+
+Tim's next master thesis goal was to add $\{\mathrm{Separated\ algebraic\ spaces}\}$ to the chain of strict inclusions.
+
+\begin{lemma}
+Any scheme is an algebraic space.
+\end{lemma}
+
+\begin{proof}
+Consider an affine cover $(U_i)$ of the scheme $X$ by principal opens. Then the fibers of the map $\Sigma_iU_i\to X$ are in the étale topology and therefore covering stacks, so that $X$ is an algebraic space.
+\end{proof}
+
+
+\subsection{Locally closed proposition and locally separated types}
+
+\begin{definition}
+A proposition is locally closed if it merely is of the form $\Sigma_UC$ for $U$ open and $C(x)$ closed depending on $x:U$. A type is locally separated if its identity types are locally closed. 
+\end{definition}
+
+Since affine schemes are separated, we get that schemes are locally separated. Latter we will build an algebraic space that is not locally separated so that it cannot be a scheme.
+
+\begin{lemma}\label{factorisation-locally-closed-embedding}
+Assume $X\subset Y$ a locally closed embedding with $Y$ having Zariski local choice. Then it factors as a closed embedding followed by an open embedding.
+\end{lemma}
+
+\begin{proof}
+By Zariski local choice we get an open cover $(U_i)$ with $U_i'\subset U_i$ open and $C_i\subset U_i'$ closed such that if $x\in U_i$ then $x\in X$ iff $x\in U_i'$ and $x\in C_i$. Consider the open $U = \sup_iU_i'$ and $C\subset U$ closed obtained by gluing the $C_i$ (if $x\in U_i'\cap U_j'$, then $x\in C_i$ iff $x\in Z$ iff $x\in C_j$). Then $Z = \cup_i(U_i\cap Z) = \cup_i(\Sigma_{U_i'}C_i') = \Sigma_UC$. 
+\end{proof}
+
+\begin{lemma}\label{locally-closed-sigma-stable}
+Locally closed proposition are stable under $\Sigma$, and therefore so are locally separated types.
+\end{lemma}
+
+\begin{proof}
+First let us prove that a closed embedding followed by an open embedding is locally closed, i.e.\ that given $C$ a closed proposition and $U\subset C$ open, we have that $\Sigma_CU$ is locally closed. It follows immediately from the fact that given $C$ an open proposition and $U\subset C$ open, there exists $U'$ an open proposition such that $U = C\times U'$. \rednote{I can't find the proof so let me sketch it: Assume given $I$ a f.g.\ ideal in $R$ and $U\subset I=0$ open. Then we get $f_1,\hdots,f_n:R/I$ such that given $p:I=0$ then $p\in U$ if and only if $\lor_i f_1\not=0$. Choose any antecedent $f_1',\hdots,f'_n:R$, then the open proposition $U'=\lor_if_i'\not=0$ works.}
+
+Now assume $L_1$ a locally closed proposition and $L_2\subset L_1$ a locally closed embedding. Then by \Cref{factorisation-locally-closed-embedding} we can factor $L_2\subset 1$ as $u_1\circ c_1\circ u_2\circ c_2$ with the $u_i$ open embeddings and the $c_i$ closed embeddings. By the previous point and \Cref{factorisation-locally-closed-embedding}, we can write $c_1\circ u_2$ as $u'\circ c'$ with $u'$ an open embedding and $c'$ a closed embedding. Then we conclude since open and closed embeddings are stable by composition.
+\end{proof}
+
+Now to build a type that is not locally separated, we have to prove not every proposition is locally closed. As usual in synthetic algebraic geometry, it is not possible to exhibit a concrete counter-example, so we give a family of counter examples.
+
+\begin{lemma}\label{zero-or-invertible-not-locally-closed}
+The embedding $\{0\}+\{x:R\ |\ x\not=0\} \subset R$ is not locally closed.
+\end{lemma}
+
+\begin{proof}
+Assume it is locally closed. Then by \Cref{factorisation-locally-closed-embedding} we get $\{0\}+R^\times = C \subset U \subset R$ with $U$ open in $R$ and $C$ closed in $U$. First we show $U=R$. Indeed assume $x:R$, it is enough to prove $\neg\neg(x\in U)$. If $x\not\in U$, then $\neg(x=0\lor x\not=0)$, a contradiction. Then let us prove that $C=R$, indeed we will even prove that if $R^\times \subset C\subset R$ with $C$ closed, then $C=R$. Indeed we can write $C = \Spec(R[X]/(P_1,\hdots,P_n)) \subset \Spec(R[X])$ then for all $i$ we have that $P_i = 0$ in $R[X]_X$, so $P_i=0$ and $C=R$. Now we have that $\{0\}+R^\times = R$, which is known to be contradictory.
+\end{proof}
+
+
+\subsection{An algebraic space which not locally separated}
+
+Now we build the counter example. We will use $\mu_l = \{x:R\ |\ x^l=1\}$ and $\mu_l^* = \mu_l-\{1\}$. 
+
+\begin{lemma}\label{basics-mul}
+Assume $l$ an invertible prime, then: 
+\begin{enumerate}[(i)]
+\item $\mu_l$ is étale, therefore its identity types are decidable.
+\item We have $\neg\neg(\mu_l^*)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) is known. For (ii), under a $\neg\neg$ we have that $X^l -1 = \prod_i(X-x_i)$, then we need $x_1\not=1\lor\hdots \lor x_n\not=1$, but since $l > 1$ we have that $\prod_i(X-1) = X^l-1$ implies $l=0$, a contradiction.
+\end{proof}
+
+\begin{lemma}
+Assume $l$ an invertible prime. Then the equivalence relation $\sim$ on $R$ defined by:
+\[(x\sim y) :=  (x=y) \lor ((x,y\in R^\times) \land \Sigma_{g:\mu_l} gx=y)\]
+is covering. Therefore we have an algebraic space $\mathrm{H}_l = \mathrm{Sh}_{\mathrm{Et}}(R/\sim)$.
+\end{lemma}
+
+\begin{proof}
+First note that $x\sim y$ is equivalent to $x=y + (x,y\in R^\times) \land \Sigma_{g:\mu_l^*} gx=y$, using decidability of equality in $\mu_l$. This is a scheme, and therefore an étale sheaf. Now let us check that given $x:R$, we have that $\Sigma_{y:R}x\sim y$ is a covering stack. But:
+\[\Sigma_{y:R}x\sim y = (\Sigma_{y:R}\, x=y) + \Sigma_{x\not=0}\Sigma_{y:R^\times} \Sigma_{g:\mu_l^*}gx=y\]
+\[ = 1 + (x\not=0)\times \mu_l^*\]
+But this is in the étale toplogy, and therefore a covering stack.
+\end{proof}
+
+\begin{proposition}\label{non-locally-separated-algebraic-space}
+Assume $l$ an invertible prime, then the algebraic space $\mathrm{H}_l$ is not locally separated. Therefore, it is not a scheme.
+\end{proposition}
+
+\begin{proof}
+Assume $\mathrm{H}_l$ locally separated, since we want to prove a contradiction we can assume given a $g:\mu_l^*$ by \Cref{basics-mul}. Let us show that for all $y:R$ the type $[y]=_{\mathrm{H}_l} [gy]$ is equivalent to $y=0\lor y\not=0$, from which we can conclude using the local separatedness and \Cref{zero-or-invertible-not-locally-closed}. By generalities on lex modality, we have that $[y]=_{\mathrm{H}_l} [gy]$ is equivalent to $y\sim gy$, then we have that:
+\[y\sim gy = (y=gy) + \Sigma_{y\not= 0,gy\not=0}\Sigma_{h:\mu_l^*}hy=gy\]
+But $y=gy$ iff $(1-g)y=0$ iff $y=0$ as we assumed $g\not=1$. Moreover $y\not=0$ implies that $gy\not=0$, and then $hy=gy$ implies $h=g$ so that the right hand side is equivalent to $y\not=0$.
+\end{proof}
+
+\begin{corollary}
+Not all algebraic space are locally separated. Therefore not all algebraic space are schemes.
+\end{corollary}
+
+\begin{proof}
+By locality either $2\not=0$ or $3\not=0$. Then we use \Cref{non-locally-separated-algebraic-space} with $l=2$ or $l=3$.
+\end{proof}
+
+
+\subsection{The line with two origins}
+
+\begin{lemma}
+Given $x:R$, we have that $\mathrm{Susp}(x\not=0) = 2^{x=0}$.
+\end{lemma}
+
+\begin{proof}
+We write $N$ for the north pole of the suspension and $S$ for the south pole.
+
+We define $\psi : \mathrm{Susp}(x\not=0)\to 2^{x=0}$ by sending the $N$ to $1$ and the $S$ to $0$. If $x\not=0$ then $2^{x=0}$ is contractible so this is well defined.
+
+We define $\phi : 2^{x=0}\to \mathrm{Susp}(x\not=0)$ by sedning $f:2^{x=0}$ by considering the idempotent element $f':R/x$, by locality we have that $f'=1$ or $f'=0$. We send $1$ to $N$ and $0$ to $S$. If $f'=0$ and $f'=1$, then $0=1$ in $R/x$ so $x$ is invertible and we identified $N$ and $S$.
+
+These maps are clearly inverse to each other.
+\end{proof}
+
+This means the line with two origins is equivalent to $\Sigma_{x:R}\, 2^{x=0}$. Now we give the key needed result on the line with two origins.
+
+\begin{lemma}\label{zero-is-regular}
+Assume given $V\subset R$ open such that $0\in R$, and $f_1,f_2:V\to R$ such that for all $x:R$, if $x\not=0$ then $f_1(x)=f_2(x)$. Then $f_1=f_2$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{no-affine-neighborhood-of-two-origins}
+Assume $U$ open in the line with two origins such that the two origins belong to $U$. Then $U$ is not affine.
+\end{lemma}
+
+\begin{proof}
+Let us write $L$ for the line with two origins and $p:L\to R$. Assume $U\subset L$ open such that $(0,N)$ and $(0,S)$ are in $U$. First let us show that there exists $V\subset R$ such that $U=p^{-1}(V)$. For this it is enough to show that for all $x:R$, we have that $(x,N)\in U$ iff $(x,S)\in U$. Assume $(x,N)\in U$, then since $(x,S)\in U$ is $\neg\neg$-stable we can assume $x=0$ or $x\not=0$. If $x\not=0$ then $(x,N)=(x,S)$ so $(x,S)\in U$. If $x=0$ then we know that $(0,N)$ and $(0,S)$ are both in $U$.
+
+Now we have such a $V\subset R$ such that $0\in V$. Let us show that any map $f:U\to R$ sends the two origins to the same value. Indeed we get two maps $f_1,f_2$ from $V\to R$ by $f_1(x) = f(x,N)$ and $f_2=f(x,S)$. If $x\not=0$ then $f_1(x)=f_2(x)$, so that by \Cref{zero-is-regular} we have that $f_1=f_2$, so that $f(0,N)=f(0,S)$.
+
+If $U$ is affine, this implies $(0,N) = (0,S)$, a contradiction.
+\end{proof}
+
+
+\subsection{A locally separated algebraic spaces that is not a scheme \rednote{assuming $2\not=0$}}
+
+From now on we assume $2\not=0$ \rednote{Can we do if $3\not=0$?}
+
+\begin{definition}
+For $x:R^\times$, we define $C_x = \Spec(R[X]/X^2-x)$, and we define $D_x = \Sigma_{y:R}C_x^{y=0}$.
+\end{definition}
+
+Our is to prove that $\Sigma_{x:R}D_x$ is a locally separated algebraic space that is not a scheme. The key intermediary result is that $D_x$ is a scheme if and only if $\propTrunc{C_x}$.
+
+\begin{lemma}\label{structure-of-roots}
+For $x:R^\times$, we have that $C_x = (C_x = 2)$.
+\end{lemma}
+
+\begin{proof}
+Assume $y:R$ such that $y^2=x$, then consider the map $2\to C_x$ sending $1$ to $y$ and $0$ to $-y$. 
+\begin{itemize}
+\item The map is injective since $y\not=0$ and we assumed $2\not=0$, so that $y\not=-y$.
+\item The map is surjective, i.e.\ for all $z:C_x$ we have $z=y$ or $z=-y$. Indeed $(y+z)(y-z) = y^2-z^2 = 0$ and since $y$ in invertible we know $y+z$ invertible or $y-z$ invertible so we can conclude.
+\end{itemize}
+This gives a map $C_x\to (2=C_x)$. To prove the map $(2=C_x)\to C_x$ sending $f$ to $f(1)$ is an inverse, it is enough to check that for all $f:2=C_x$, we have that $f(0) = -f(1)$. By the surjectivity in the previous proof we have that $f(0)=f(1)$ or $f(0)=-f(1)$, but $f$ is an equivalence so $f(0)\not=f(1)$.
+\end{proof}
+
+\begin{lemma}\label{open-in-roots-is-constant}
+Assume $U\subset C_x$ open such that $\neg (U=C_x)$. Then $\{y:C_x\ |\ y\in U\}$ is an open proposition.
+\end{lemma}
+
+\begin{proof}
+We have that $\{y:C_x\ |\ y\in U\}$ is an étale sheaf, so when proving it is an open proposition by \Cref{structure-of-roots} we can assume $C_x=2$. Then the situation is equivalent to having $U_0$ and $U_1$ open propositions such that $\neg(U_0\land U_1)$, and trying to prove $U_0+U_1$ is an open proposition. This is clear.
+\end{proof}
+
+\begin{proposition}\label{equivalence-root-scheme}
+Given $x:R^\times$, we have that $D_x$ is a scheme if and only if $\propTrunc{C_x}$.
+\end{proposition}
+
+\begin{proof}
+If $\propTrunc{C_x}$, then by \Cref{structure-of-roots} we have that $\propTrunc{C_x=2}$ so that $D_x$ is the line with two origins. So it is a scheme.
+
+Now assume $D_x$ is a scheme. Let us consider $(U_i)$ an affine open cover of $D_x$, then since $C_x\subset D_x$ is closed, the restriction $(V_i)$ of $(U_i)$ to $C_x$ is an affine open cover of $C_x$. Let us prove that $\neg (C_x=V_i)$. Since we want to prove a negation, we can assume $D_x$ is the line with two origins, and then we conclude by \Cref{no-affine-neighborhood-of-two-origins}.
+
+By \Cref{open-in-roots-is-constant}, for all $i$ we have that $W_i = \{y:C_x\ |\ y\in V_i\}$ is an open proposition, so that $\propTrunc{C_x} = \lor_iW_i$. But open propositions are étale sheaf so we conclude $\propTrunc{C_x}$.
+\end{proof}
+
+\begin{corollary}\label{no-descent-for-old-scheme}
+For all $x:R$, we have that:
+\begin{itemize}
+\item $D_x$ is an algebraic space.
+\item Up to étale sheafification, $D_x$ is a scheme.
+\end{itemize}
+\end{corollary}
+
+\begin{proof}
+Since we want to prove an étale sheaf, we can assume $\propTrunc{C_x}$, and then by \Cref{structure-of-roots} we have that $D_x$ is the line with two origins, which is indeed a scheme. We conclude using the fact that $D_x$ is an étale sheaf and étale descent for algebraic spaces (\Cref{DM-stack-stability}).
+\end{proof}
+
+\begin{proposition}
+If $2\not=0$, the type $\Sigma_{x:R}D_x$ is a locally separated algebraic space that is not a scheme. Moreover we don't have étale descent for schemes.
+\end{proposition}
+
+\begin{proof}
+To prove it is an algebraic space, it is enough to use \Cref{no-descent-for-old-scheme} and the stability of algebraic space under $\Sigma$. By \Cref{locally-closed-sigma-stable} it is enough to prove $C_x^{y=0}$ locally separated to conclude that $\Sigma_{x:R}D_x$ is locally separated. But since identity types in $C_x$ are decidable, identity types in $C_x^{y=0}$ are open.
+
+If it was a scheme, then for all $x:R^\times$ we would have that $D_x$ is a scheme, so that by \Cref{equivalence-root-scheme} we would have $\propTrunc{C_x}$ and the square map $R^\times\to R^\times$ would be surjective and this is known to be a contradiction.
+
+If schemes had étale descent, by \Cref{no-descent-for-old-scheme} we would get that $D_x$ is a scheme for all $x:R$, so that $\Sigma_{x:R}D_x$ would be a scheme, which is a contradiction by the previous paragraph.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+

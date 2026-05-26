@@ -47,3 +47,259 @@ We collect some useful results.
 \begin{proof}
   \rednote{TODO: add argument using affine cone and local character of smoothness}
 \end{proof}
+
+\begin{proposition}
+  For any \(n:\N\), there étale-merely are \(x_1,\dots,x_n:R\) such that \(x_i\neq x_j\) whenever \(i\neq j\).
+\end{proposition}
+
+\begin{proof}
+  For a prime \(p:\N\), the \(p\)-th cyclotomic polynomial \(\phi_p\) has the form
+  \[
+    \phi_p=X^p+\dots+X^1+1 \quad \text{ and } \quad (X-1)\phi_p=(X^p-1) \rlap{.}
+  \]
+  If \(p\neq 0\) in \(R\), we have \(\phi_p(1)\neq 0\) by the first equation
+  and therefore for any root \(x:R\) of \(\phi_p\) we have \(x\neq 1\).
+  We compute with the second equation:
+  \[
+    \phi_p^\prime:=\frac{\partial}{\partial X}\phi_p = \frac{pX^{p-1}-\phi_p}{X-1}
+  \]
+  so \(\phi_p^\prime(x)\neq 0\) for any root \(x\) of \(\phi_p\).
+
+  For given \(n:\N\), we take primes \(p_i,q_i\) such that \(p_1<q_1<\dots <p_n < q_n\).
+  For each \(i\) there are \(k,l:\N\) such that \(1=kp_i+lq_i\) so \(p_i\neq_R 0\vee q_i\neq_R 0\).
+  Then we étale merely have \(x_i:R\) such that \(x_i^{p_i}=1\) or \(x_i^{q_i}=1\) and \(x_i\neq 1\).
+
+  Then \(x_i\neq x_j\) for \(j\neq i\) because \(x_i=x_j\)
+  for primes \(p,q\) with \(x_i^p=1\) and \(x_j^q=1\) there are \(l,k:\N\) with \(1=lp+kq\) so that we have \(x_i^1=x_i^{lp+kq}=1\).
+\end{proof}
+
+\subsection{Étale-overtness}
+
+\rednote{This section is a sketch}
+
+The following consequences were discovered in a slightly different context in a discussion with Matthias Ritter, Andrej Bauer and Martín Escardó at a Dagstuhl meeting \cite{Dagstuhl-reference}.
+A type \(X\) is said to be \notion{overt}, if for any open \(U\subseteq X\), the proposition that \(U\) is inhabited, \(\|U\|\) is open. It can be thought of as a dual to compactness.
+
+In the following we use \((\_)_{\et}\) to denote étale sheafification. In particular, $\|X\|_\et$ is the étale sheafification of the propositional truncation of $X$.
+
+\begin{definition}
+  A type \(X\) is called \notion{étale-overt} if for any open subset \(U\subseteq X\)
+  the proposition \(\|U\|_\et\) is open.
+\end{definition}
+
+\begin{example}
+  \begin{enumerate}[i)]
+    \item All open propositions are étale-overt.
+    \item It is not the case that all closed propositions are étale-overt.
+      Indeed, assume the family of propositions $r=0$ is étale-overt for all $r:R$.
+      Then $r=0$ would also be an open propositon and we thus would have $\neg\neg(r=0) \to (r=0)$, showing that any nilpotent element of $R$ is zero. This violates duality.
+  \end{enumerate}
+\end{example}
+
+\begin{lemma}
+  \label{étale-overt-is-sigma-closed}
+  Étale-overt types are closed under dependent sums.
+\end{lemma}
+
+\begin{proof}
+  Let $Y_x$ be a family of étale-overt types indexed by another étale-overt type $X$
+  Suppose $U \subseteq \sum_{x:X} Y$ is open.
+  Writing $U = \sum_{x:X}U_x$ for open subsets $U_x \subseteq Y_x$ we obtain
+  \[
+    \|U\|_\et = \Big\|\sum_{x:X} \|U_x\|_\et\Big\|_\et\rlap{.}
+  \]
+  Indeed, the universal properties of propositional truncation and étale-sheafification immediately give a map from left to right. The same argument twice, together with currying the dependent sum after the first application, gives a map from right to left.
+  Since $\sum_{x:X} \|U_x\|_\et$ is an open subtype of the étale-overt type $X$, we see that $\|U\|_\et$ is open.
+\end{proof}
+
+\begin{lemma}
+  \label{R-is-étale-overt-for-standard-opens}
+  For \(f:R[X]\) the proposition \(\|D(f)\|_\et\) is open.
+\end{lemma}
+
+\begin{proof}
+  Let \(f:R[X]\).
+  We first show that the proposition, that \(f\) has an anti-zero, \(\|D(f)\|\),
+  is open up to étale-sheafification, i.e.\ we have
+  \[
+    (\|D(f)\| \text{ is open})_{\et}\rlap{.}
+  \]
+  We work under étale sheafification.
+    Let \(f=\sum_{i=0}^na_iX^i\) and \(x_0,\dots,x_n:R\) pairwise different.
+    Then we have \(U\colonequiv f(x_0)\neq 0\vee\dots\vee f(x_n)\neq 0\) implies \(\|D(f)\|\).
+
+    If we have \(\|D(f)\|\) we know \(f\neq 0\) and therefore that one of the \(a_i\) must be non-zero.
+    We can conclude \(U\) from that:
+    Assume \(f(x_0)=0\wedge\dots\wedge f(x_n)=0\) which means
+    \[
+      \left(
+        \begin{array}{cccc}
+          1 & x_0^1 & \cdots & x_0^n \\
+          \vdots & \vdots & \vdots & \vdots  \\
+          1 & x_n^1 & \cdots & x_n^n
+        \end{array}
+      \right) \cdot
+      \left(
+        \begin{array}{c}
+          a_0 \\
+          \vdots \\
+          a_n
+        \end{array}
+      \right) =
+      \left(
+        \begin{array}{c}
+          0 \\
+          \vdots \\
+          0
+        \end{array}
+      \right)
+    \]
+    which is a contradiction to some \(a_i\) being non-zero
+    and the (Vandermonde) determinant of the matrix being invertible,
+    due to the pairwise different \(x_i\).
+    This shows \((\|D(f)\| \text{ is open})_{\et}\).
+
+    We also have \((\|D(f)\|_\et \text{ is open})_{\et}\),
+    since open propositions are étale sheaves.
+    From this we conclude \(\|D(f)\|_\et\),
+    since a proposition being open is an étale sheaf.
+\end{proof}
+
+\begin{corollary}
+  \(R^n\) is étale-overt.
+\end{corollary}
+
+\begin{proof}
+  By virtue of \Cref{étale-overt-is-sigma-closed} we see that étale-overt types are closed under binary products.
+  Hence it is enough to show that $R$ is étale-overt.
+  Suppose that $U \subseteq R$ is open.
+  Then we know that there merely are functions $f_1,\dots,f_k : R \to R$ such that \(U=D(f_1,\dots,f_k)\).
+  \Cref{R-is-étale-overt-for-standard-opens} tells us that \(\|D(f_j)\|_\et\) is open and thus also an étale sheaf.
+  Therefore we finish the proof by observing that
+  \[
+    \|D(f_1)\|_\et\vee\dots\vee\|D(f_n)\|_\et=\|U\|_\et\rlap{.}
+  \]
+\end{proof}
+
+\begin{lemma}
+  \begin{enumerate}[(a)]
+  \item Let $f : X \to Y$ be a map from an étale-overt type $X$ and suppose that is étale-surjective, i.e.\ we have the étale sheafification of the propositional truncation of the fibers of $f$.
+    Then $Y$ is also étale-overt.
+  \item Open subtypes of étale-overt types are étale-overt.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \begin{enumerate}[(a)]
+  \item For any open \(U\subseteq Y\) we have the preimage \(U\circ f\subseteq X\) and
+    \(\|U\circ f\|_\et=\|U\|_\et\).
+  \item For open \(U\subseteq X\), we have that any open \(V\subseteq U\) is open in \(X\).
+  \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+ \(\bP^n\) is étale-overt.
+\end{proposition}
+
+\begin{proof}
+  By lemma.
+\end{proof}
+
+\subsection{Étale projective schemes}
+
+\begin{proposition}
+  Let \(C\subseteq \bP^n\) be closed.
+  Then étale existence of a hyperplane that avoids \(C\)
+  is equivalent to \(\neg\neg\)-existence of such a hyperplane.
+\end{proposition}
+
+\begin{proof}
+  A hyperplane that avoids \(C\) is given by \(a=(a_0,\dots,a_n):R^{n+1}\)
+  such that for all \([x_0 : \dots : x_n]\) in \(C\) we have \(a_0x_0+\dots+a_nx_n\neq 0\).
+  Since \(C\) is compact, \(V_a\colonequiv \forall [x_0 : \dots : x_n]\in C. a_0x_0+\dots+a_nx_n\neq 0\) is an open proposition. This defines an open subset \(U\subseteq R^{n+1}\), by mapping \(a_0,\dots,a_n\) to \(V_a\).
+
+  \(\|U\|\) is equivalent to the existence of a hyperplane that avoids \(C\).
+  By the previous proposition, \(\|U\|_\et\) is implied by \(\neg\neg U\).
+\end{proof}
+
+\begin{proposition}
+  Let \(S\) be separated étale, then \(\neg\neg(\exists n:\N. S=\{1,\dots,n\})\).
+\end{proposition}
+
+\begin{proof}
+  \(S\) is covered by standard étale schemes \(U_i=\Spec((R[X]/P_i)_{G_i})\).
+  Up to \(\neg\neg\) we can factor each \(P_i=(X-x_1)^{e_1}\cdots(X-x_n)^{e_n}\) with pairwise different \(x_j\) and decide wether \(G_i(x_j)\) is zero, so every \(U_i\) is a finite set.
+  Since equality in an separated étale scheme is decidable,
+  we can remove duplicates and get that \(S\) is a finite set.
+\end{proof}
+
+\begin{theorem}
+  Let \(S\) be étale and projective, then \(S\) is affine.
+\end{theorem}
+
+\begin{proof}
+  First we show that there \(\neg\neg\) is a hyperplane avoiding \(S\).
+  Let \(x_{ij}\) be such that the \([x_{i0}:\cdots:x_{in}]\) are the points of \(S\).
+  Then we want an anti-zero \(a=(a_0,\dots,a_n)\) of \(F(a)=\prod_i (a_0x_{i0}+\dots +a_nx_{in})\).
+  We know there is a non-zero coefficient of \(F\), so \(D(F)\neq \emptyset\), but then it is inhabited.
+  This shows there are \(a_0,\dots,a_n\) with the needed property.
+
+  By previous propositions, this proves étale existence of a hyperplane avoiding \(S\),
+  which shows \(S\) is affine, since that proposition is an étale sheaf.
+\end{proof}
+
+\subsection{Irreducible types}
+
+\rednote{We repeat relevant material from \href{https://felix-cherubini.de/topology.pdf}{https://felix-cherubini.de/topology.pdf}, section 1.6}
+
+\begin{definition}
+  A subtype $A\subseteq X$ is called \notion{dense},
+  if for all open subtypes $V\subseteq X$ such that $V\cap A=\emptyset$, we have $V=\emptyset$.
+\end{definition}
+
+\begin{remark}
+  \(D(f_1,\dots,f_n)\subseteq R\) is dense, if and only if \(\exists i. f_i\neq 0\).
+\end{remark}
+
+\begin{definition}%
+  \label{irred}
+  A type $X$ is called \notion{irreducible},
+  if the following equivalent propositions hold:
+  \begin{enumerate}[(i)]
+  \item Any non-empty open $U\subseteq X$ is dense.
+  \item For any open disjoint $U,V\subseteq X$ such that $U\neq\emptyset$, we have $V=\emptyset$.
+  \item For any open disjoint $U,V\subseteq X$ we have $\neg\exists x,y:X. U(x)\wedge V(y)$.
+  \end{enumerate}
+\end{definition}
+
+Being irreducible is \(\neg\neg\)-stable.
+
+\begin{remark}
+  \label{R-irreducible}
+  $R$ is irreducible.
+\end{remark}
+
+\begin{lemma}
+  \begin{enumerate}[(a)]
+  \item Open subtypes of irreducible types are irreducible.
+  \item Let $X$ be irreducible and $Y:X\to\Sch$ be a family of irreducible types.
+  Then $(x:X) \times Y_x$ is irreducible.
+  \item Let $X$ be irreducible and $f:X\to Y$ be surjective,
+  then $Y$ is irreducible.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  Can be found in \href{https://felix-cherubini.de/topology.pdf}{https://felix-cherubini.de/topology.pdf}, section 1.6.
+\end{proof}
+
+\begin{remark}
+  Inhabited irreducible types are connected, i.e.\ functions to \(2\) are constant.
+\end{remark}
+
+\begin{remark}
+  Any open in \(\bP^n\) is irreducible.
+  And any inhabited open in \(\bP^n\) is connected.
+\end{remark}
+
+
