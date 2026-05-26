@@ -18,9 +18,9 @@ When $U$ is a closed proposition, such as $V(r)$, we know that
 $R^U$ is finitely adequate, which implies that $K^U$ and $R/K^U$ are as well.
 \rednote{Citation?}
 
-For any $U$, it's easy to see that the canonical map $R^U \to T_0(R^U)$ is an
-equivalence, and therefore this follows for $K^U$ and $R/K^U$ as well.
-(This is tentatively called being ``tangential''.)
+For any $U$, $R^U$ is tangential by \cref{prp:exp-tangential},
+and therefore this follows for $K^U$ and $R/K^U$ as well using \cref{prp:lim-col-ext-tangential}.
+By the same argument, all three are infinitesimally linear, using \cref{prp:lim-inf-lin,prp:cok-ext-inf-lin}.
 
 We can also form
 \begin{equation}\label{eq:strange-sub}
@@ -32,11 +32,14 @@ where $R_U$ is the submodule defined by the predicate sending
 $x : R$ to $(x = 0) \lor \propTrunc{U}$.
 For this sequence, we may as well assume that $U$ is a proposition.
 Again, I think $R_U$ is an ideal and the quotient is a ring.
+We show below that $R_U$ and $R/R_U$ are tangential.
+\textbf{Are they infinitesimally linear?}
 
 In total, this gives five modules that depend on a type $U$,
 three of which are rings.
 When $U$ is a proposition, all five are not not finitely adequate, since they
 are finitely adequate when $U$ is true or false.
+In fact, all five are not not finite free.
 
 There is a relationship between \eqref{eq:strange-sub} for $\lnot U$
 (top row in the following diagram)
@@ -100,7 +103,7 @@ written somewhere?}  Therefore, it is not the case that the inclusion map is an
 equivalence for every $r : R$.
 
 The map $q$ in the previous diagram has the property that $\lnot (q(r) \neq 0)$.
-Indeed, assume that $q(r) \neq 0$.  Then $r \neq 0$, and therefore $R/R_{D(r))} = 0$,
+Indeed, assume that $q(r) \neq 0$.  Then $r \neq 0$, and therefore $R/R_{D(r)} = 0$,
 so $q(r) = 0$, a contradiction.
 \textbf{Questions:}
 Does this mean that $q(r)$ is nilpotent in the ring $R/R_{D(r)}$?
@@ -167,11 +170,65 @@ Other questions:
 Is the map $c : R \to R^{\lnot D(r)}$ epic in this case?
 Is $c(r)$ nilpotent?
 
+\begin{lemma}\label{forall-distributes-over-lor}
+Let $X$ be projective type such that every map to $\Bool$ is constant.
+Let $P, Q : X \to \Prop$ be predicates.
+Then $\forall x : X, P(x) \lor Q(x)$ is equivalent to $(\forall x, P(x)) \lor (\forall x, Q(x))$.
+\end{lemma}
+
+\begin{proof}
+Since the two types are proposition, it suffices to give implications in both directions.
+There is an obvious implication from right to left, so we are left to prove that
+$\forall x : X, P(x) \lor Q(x)$ implies $(\forall x, P(x)) \lor (\forall x, Q(x))$.
+So assume $\forall x : X, P(x) \lor Q(x)$.
+Since $\lor$ is the propositional truncation of the coproduct, the fact that $X$ is projective
+means that we merely have a map in $\prod_x P(x) + Q(x)$.
+Since we are proving a proposition, we can drop the ``merely''.
+The gives us a map $X \to \Bool$, which by assumption must be constant.
+This implies that we have either $\prod_x P(x)$ or $\prod_x Q(x)$, as required.
+\end{proof}
+
+\begin{proposition}
+For any type $U$, the modules $R_U$ and $R/R_U$ are tangential.
+\end{proposition}
+
+\begin{proof}
+We first consider $R_U \defeq \sum_{x : R} (x = 0) \lor U$.
+The type $\tangent{(R_U)}{0}$ is equivalent to
+\[
+  \sum_{f : \D(1) \rightarrow_\ast R} \forall \epsilon : \D(1), (f(\epsilon) = 0) \lor U .
+\]
+Since $\D(1)$ is projective (\cref{lem:disk-projective}) and all maps $\D(1) \to \Bool$
+are constant (\rednote{Citation?}), we can apply \cref{forall-distributes-over-lor} to
+get an equivalence to
+\[
+  \sum_{f : \D(1) \rightarrow_\ast R} (f = 0) \lor U ,
+\]
+where we have replaced $\forall \epsilon : \D(1), f(\epsilon) = 0$ with $f = 0$
+and have used that $\D(1)$ is pointed to replace $\D(1) \to U$ with $U$.
+Since $R$ is tangential, we can replace $\D(1) \rightarrow_\ast R$ with $R$,
+giving
+\[
+  \sum_{x : R} (x = 0) \lor U .
+\]
+It is not hard to check that the resulting equivalence is homotopic to the canonical map.
+
+It follows from \cref{prp:lim-col-ext-tangential} that $R/R_U$ is tangential as well.
+\end{proof}
+
 Altogether there are approximately 15 modules above, five for each of
 $V(r)$, $D(r)$ and $\lnot D(r)$.
 (A couple turn out to be equal, and a couple were introduced that don't
 come from the general construction.)
 One can also take kernels or cokernels of the various vertical maps.
+
+There are also some variations.  For example, we can consider $R_U'$, defined
+using the predicate \mbox{$\lnot \lnot (x = 0) \lor U$} instead of $(x = 0) \lor U$.
+When $U$ is false, this already produces a submodule that is not tangential
+and is therefore not finitely adequate.
+As $U$ varies, this gives more potential examples.
+Similarly, we could define ${K^U}' := \sum_{x : R} (U \to \lnot \lnot (x = 0))$,
+a slightly larger version of $K^U$.
 
 \textbf{Can we show that some of these are not finitely adequate, or have other bad properties?}
 (Presumably by proving statements like: $\lnot (\text{for all $r : R$, $R_{D(r)}$ is finitely adequate})$.)
@@ -182,17 +239,22 @@ Methods for showing that an $R$-module $M$ is not finitely adequate:
 \begin{itemize}
 \item Show that the map $M \to M^{\ast\ast}$ is not an equivalence.
 \item Show that $M$ is not wqc.
-\item Show that the map $\mathrm{can} : M \rightarrow \mathrm{T}_0M$ is not an equivalence.
+\item Show that $M$ is not tangential.
+Unfortunately, for any $U$, the five modules associated to $U$
+are all tangential, so this method won't work for them.
+\item Show that $M$ is not infinitesimally linear.
 \item Show that there exists an epi $e : C \to M$ and a map $f : A \to M$,
 with $A$ and $C$ finitely co-presented, such that $f$ does not lift through $e$.
 (See \Cref{maps-into-coherent-lift}.)
 \item Show that there exists a mono $i : M \to C$ and a map $f : M \to A$,
 with $A$ and $C$ finitely presented, such that $f$ does not extend over $i$.
 (The dual of \Cref{maps-into-coherent-lift}.)
-\item finitely adequate implies not not finite-free \rednote{Citation?},
+\item Finitely adequate implies not not finite-free \rednote{Citation?},
 so it suffices to prove that $M$ is not finite free.
 To show $\lnot (\text{for all $r : R$, $M_r$ is finitely adequate})$ for a family $M_r$,
-I think you need to prove\\ $\lnot (\text{for all $r : R$, not not $M_r$ is finite-free})$.
+I think you need to prove $\lnot (\text{for all $r : R$, not not $M_r$ is finite-free})$.
+Unfortunately, when $U$ is a proposition, the five modules associated to $U$
+are all not not finite free, so this method won't work for them.
 \end{itemize}
 
 \subsection{Questions (and some answers)}

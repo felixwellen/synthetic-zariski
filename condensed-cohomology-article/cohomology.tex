@@ -452,15 +452,21 @@ This section extends Section 5.4 in \cite{synthetic-stone-duality}.
   $$\Sigma_{x : \mathbb I} (cs^{-1}(x))^{k+1} = \lim_{n} \mathbb I_n^{\sim k}$$
 \end{remark}
 \begin{definition}
-  Define the ordered chain complex \parencite[Def VI.2.3]{EilenbergSteenrod} $C_k$ associated to $\mathbb I_n^{\sim}$. For each $k$, the group $C_k$ is given by the free abelian group on $\mathbb I_n^{\sim k}$, and the map $\partial_k: C_k\to C_{k-1}$ is induced by 
+  We define the ordered chain complex \parencite[Def VI.2.3]{EilenbergSteenrod} $C_k$ associated to $\mathbb I_n^{\sim}$ as follows: for each $k$, the group $C_k$ is given by the free abelian group on $\mathbb I_n^{\sim k}$, and the map $\partial_k: C_k\to C_{k-1}$ is induced by 
   $$\partial_k(a_0,\cdots , a_k) = \sum\limits_{i=0}^k (-1)^i(a_0,\cdots \widehat{a_i},\cdots a_k).$$
 
-  Define also the alternating chain complex \parencite[Def VI.6.8]{EilenbergSteenrod} $D_k$ associated to $\mathbb I_n^\sim$, which for each $k$ has the group $D_k$ given by quotienting out degenerate elements from $C_k$. 
+  We define also the alternating chain complex $D_k$ associated to $\mathbb I_n^\sim$: for each $k$, the group $D_k$ is obtained as quotient of $C_k$ by setting
+  \begin{align*}
+    (a_0, \cdots a_k) - sgn(\sigma) (a_{\sigma(0)} , \cdots a_{\sigma(k)})=0 &\text{ for all permutations } \sigma \text{ on } \mathbb N_{\leq k} \\
+    (a_0, \cdots a_k) = 0 &\text{ whenever } a_i = a_j \text{ for some } i\neq j
+  \end{align*}
+  Where $sgn(\sigma)$ is the sign of the permutation $\sigma$. 
 \end{definition}
-\begin{remark}\label{RmkTrivialDk}
-As $\mathbb I_n^{\sim k}$ contains at most 2 sequences, by \parencite[Lemma VI.6.6]{EilenbergSteenrod}, for $k\geq 2$ all simplices of $C_k$ are degenerate, and hence $D_k$ is trivial. 
-\end{remark}
+Using \parencite[Lemmas VI.6.5 and VI.6.6]{EilenbergSteenrod}, one can see that the alternating chain complex defined above agrees with the one defined in \parencite[Def VI.6.8]{EilenbergSteenrod},  
 
+\begin{remark}\label{RmkTrivialDk}
+As $\mathbb I_n^{\sim k}$ contains at most 2 sequences, for $k\geq 2$, $D_k$ is trivial. 
+\end{remark}
 
 Now for a given group $G$ and natural number $n$, we are interested in the following sequence:
 \begin{equation}\label{EqSequence}
