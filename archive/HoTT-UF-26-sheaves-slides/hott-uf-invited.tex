@@ -1,0 +1,599 @@
+\documentclass[proof]{beamer}
+\usetheme{default}
+
+\usecolortheme{rose}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+ \usepackage{amssymb}
+ \usepackage{latexsym}
+ \usepackage{amsmath}
+ \usepackage{amssymb}
+ \usepackage{tikz}
+ \usepackage{tikz-cd}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{forest}
+\usepackage{color}
+\usepackage[all,cmtip]{xy}
+
+\usepackage{pgfplots}
+\usepackage{array}
+    \newcolumntype{C}{>{\centering\arraybackslash}c}
+
+
+
+\definecolor{qbblue}{RGB}{43,126,128}
+%\definecolor{qbblue}{RGB}{43,126,204}
+\definecolor{qborange}{RGB}{242,151,36}
+\definecolor{qblight}{RGB}{210,210,210}
+\definecolor{qbdark}{RGB}{180,180,180}
+\definecolor{qbred}{RGB}{184,13,72}
+
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{block title}{bg=qblight,fg=black}
+\setbeamercolor{frametitle}{bg=qblight,fg=black}
+\setbeamercolor{section in head/foot}{bg=black}
+\setbeamertemplate{itemize item}{\color{qbdark}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{qbdark}$\blacktriangleright$}
+%\setbeamercolor*{palette tertiary}{bg=black}
+\setbeamercolor{local structure}{fg=black}
+
+\usepackage[style=verbose,backend=biber]{biblatex}
+\addbibresource{biblio.bib}
+
+\renewcommand{\_}{\rule{.6em}{.5pt}\hspace{0.023cm}}
+
+\newcommand{\bloc}[2]{\begin{block}{#1}\setlength\abovedisplayskip{0pt}#2\end{block}}
+
+\setbeamertemplate{navigation symbols}{} 
+\addtobeamertemplate{footline}{\hfill{\tiny \insertframenumber}\hspace{2em} \vspace{1em}}
+
+\newcommand{\red}[1]{\textcolor{qbred}{#1}}
+\newcommand{\blue}[1]{\textcolor{qbblue}{#1}}
+\newcommand{\orange}[1]{\textcolor{qborange}{#1}}
+
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\propTrunc}[1]{\lVert #1 \rVert}
+\newcommand{\eqspace}{\vspace{0.32cm}}
+
+\newcommand{\SB}{\text{SB}}
+\newcommand{\AZ}{\text{AZ}}
+\newcommand{\LI}{\Phi}
+\newcommand{\B}{\text{B}}
+\newcommand{\Et}{\text{\'Et}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\PGL}{\text{PGL}}
+\newcommand{\U}{\text{U}}
+\newcommand{\Spec}{\text{Spec}}
+\renewcommand{\lim}{\text{lim}}
+\newcommand{\M}{\text{M}}
+
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Set}{\text{Set}}
+\newcommand{\N}{\mathbb{N}}
+
+\def\mhyphen{{\hbox{-}}}
+
+%\newcommand{\trunc}[1]{|| #1 ||}
+
+\AtBeginSection[]
+{
+ \begin{frame}<beamer>
+ \frametitle{Outline}
+ \tableofcontents[currentsection]
+ \end{frame}
+}
+
+\begin{document}
+
+
+%\abovedisplayskip=0.0cm
+%\abovedisplayshortskip=-0.3cm
+%\belowdisplayskip=0.6cm
+
+
+\title{\red{Sheaves in HoTT \\
+with applications to synthetic algebraic geometry}}
+\author{Hugo Moeneclaey,\\
+\vspace{0.16cm}
+Gothenburg Universtity and Chalmers University of Technology\\
+}
+\date{\blue{HoTT/UF 2026}\\
+Aarhus}
+
+
+
+\frame{\titlepage}
+
+
+\frame{\frametitle{Overview}
+
+TODO
+
+}
+
+
+ \begin{frame}<beamer>
+ \frametitle{Outline}
+ \tableofcontents
+ \end{frame}
+ 
+ 
+ 
+ \section{Introduction to synthetic geometry}
+ 
+ 
+ \frame{\frametitle{Synthetic geometries}
+ 
+Say we want to work with some geometric object.
+
+(e.g.\ differential manifolds, sequential spaces, schemes...)
+ 
+ \bloc{Core idea (type theoretic version)}{
+ \begin{enumerate}
+ \item Embeds these objects in a suitable topos.
+ \item Interpret MLTT + UIP in this topos.
+\item Look for new axioms \red{(and modalities)} validated by this interpretation.
+\item Work in MLTT + UIP + these axioms \red{(+ modalities)}.
+\end{enumerate}
+ }
+ 
+ }
+ 
+ 
+  \frame{\frametitle{What should we expect?}
+ 
+ The objects of interest are types satisfying some proposition.
+ 
+ \bloc{Slogan}{
+ \begin{itemize}
+ \item All types come with a topology/differential structure/etc.
+ \item All maps are continuous/differentiable/etc.
+ \end{itemize}
+ }
+
+This means we have to abandon LEM and AC.
+ 
+ }
+
+ 
+ 
+ \frame{\frametitle{Examples of synthetic geometries}
+ 
+%\begin{itemize}
+%\item Synthetic differential geometry \footnote{[Kock 77], [Dubuc 79], etc.}
+%\[\{Smooth\ loci\} \subset \{Smooth\ manifolds\} \subset \{`Generalised\ smooth\ spaces'\}\]
+%\item Synthetic domain theory\footnote{[Hyland 91], [Fiore, Plotkin 96], etc.}
+%\item Synthetic topology \footnote{[Escard\'o 04], [Le\v{s}nik 10], etc.} 
+%\[\{1,\N_\infty\} \subset \{Sequential\ spaces\} \subset \{\}\]
+%\item Synthetic algebraic geometry\footnote{[Bleschmidt 17], [Cheribini, Coquand, Hutzler 24], etc.} 
+%\[Schemes \subset\]
+%\end{itemize}
+ 
+\begin{tabular}{|c|c|}
+\hline
+ Name & Objects of interests  \\
+ \hline
+Synthetic differential geometry\footnote{[Kock 77], [Dubuc 79], etc.} & Differential manifolds \\
+\hline
+Synthetic domain theory\footnote{[Hyland 91], [Fiore, Plotkin 96], etc.} & Domains \\
+\hline
+Synthetic topology\footnote{[Escard\'o 04], [Le\v{s}nik 10], etc.} & Sequential spaces \\
+\hline
+Synthetic algebraic geometry\footnote{[Bleschmidt 17], [Cheribini, Coquand, Hutzler 24], etc.} & Schemes \\
+\hline
+Condensed type theory\footnote{Barton, Commelin 24?}/ & Compact Hausdorff spaces, \\
+Synthetic Stone duality\footnote{[Cherubini, Coquand, Geerlings, Moeneclaey 24]} & condensed sets\\
+\hline
+\end{tabular}
+ 
+ }
+  
+ 
+ \frame{\frametitle{How to look for such a topos?}
+
+It is not an easy task.
+
+\bloc{Core method}{
+\begin{enumerate}
+\item Identify basic building blocks, the representables.
+\item Identify a topology on them.
+\item Use the associated topos of sheaves.
+\end{enumerate}
+} 
+
+Examples: 
+
+affine schemes + Zariski topology
+
+TODO
+ 
+}
+ 
+ 
+ \frame{\frametitle{Synthetic homotopy theory}
+ 
+ HoTT
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Doing both}
+ 
+ Why? How?
+ 
+ }
+ 
+ \frame{\frametitle{Examples}
+ 
+ Real-cohesive homotopy type theory
+ 
+ Synthetic algebraic geometry
+ 
+ Synthetic Stone duality / Condensed type theory
+ 
+ Synthetic higher category / Triangulated type theory 
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Another big idea: the geometry/algebra duality}
+ 
+ TODO
+ 
+ Affine scheme / Algebra (Zariski duality)
+ 
+ Stone Space / Boolean algebras (Stone duality)
+ 
+ Compact Hausdorff space / Commutative $C^*$-algebras (Gelfand duality)
+ 
+ Locale/Frame
+ 
+ Topos/Logos
+ 
+ }
+ 
+ 
+\frame{\frametitle{In this talk}
+
+Present ideas developed during the quest for models of 
+
+Synthetic algebraic geometry
+ 
+ and
+ 
+Synthetic Stone duality
+
+(
+
+which can be applied to 
+ Synthetic higher category / Triangulated type theory 
+(to which extent a bit unclear)
+
+)
+
+}
+ 
+ 
+ \section{Presheaf models}
+ 
+ 
+ \frame{\frametitle{Goal}
+ 
+ Assume given an algebraic theory $\T$, giving the local model for the space we want to study. 
+ 
+For SAG we take $\T$ to be the theory of rings.
+ 
+ \bloc{Goal}{
+ We want to work synthetically in the classifying (higher) topos for $\T$.
+ 
+ This is the topos of presheaf over $Alg_{\T}^{f.p.}$.
+ }
+ 
+ Idea: representables are dual to the algebras, and therefore model the affines.
+ 
+ }
+ 
+ 
+ \frame{\frametitle{The generic object}
+ 
+ We have a presheaf sending any $A:\T\mhyphen Alg_{f.p.}$ to its underlying set.
+ 
+ It is a $\T$-algebra in $PSh(\T\mhyphen Alg_{f.p.})$.
+ 
+ \bloc{Axiom 1 (Generic object)}{
+ There is a set $\G$ with a $\T$-algebra.
+ }
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Representables}
+ 
+ \bloc{Definition}{
+ A $\G$-algebra is a $\T$-algebra $A$ with a morphism $\G\to A$
+ }
+ 
+ \bloc{Definition}{
+ Given $A:\G\mhyphen-Alg_{f.p.}$, we define:
+ \[\Spec(A) = \Hom_\G(A,\G)\]
+ }
+ 
+ \bloc{Example (SAG)}{
+ We have a ring $R$. Then:
+ \[\Spec(R[X]) = \Hom_R(R[X],R) = R\]
+ Given $P:R[X]$, then:
+ \[\Spec(R[X]/P) = \Hom_{R\mhyphen Alg}(R[X]/P,R) = \{x:R\ |\ P(x)=0\}\]
+ }
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Duality axiom}
+ 
+ \bloc{Axiom 2 (Duality)}{
+ Assume given $A:\G\mhyphen Alg_{f.p.}$, then the map:
+ \[ A \to R^{\Spec(A)}\]
+ is an equivalence.
+ }
+ 
+ \bloc{Corollary}{
+ The map:
+ \[\Spec : \G\mhyphen Alg_{f.p.}\to \Set\]
+ is an an embedding.
+ }
+ 
+ The set in the image of $\Spec$ are called the representables. In SAG they are called affine schemes
+ 
+ \bloc{Corollary}{
+ Given $A,B:\G\mhyphen Alg_{f.p.}$, we have that:
+ \[(\Spec(B)\to \Spec(A)) = \Hom_{\G\mhyphen Alg}(A,B)\]
+ }
+ 
+ \bloc{Example (SAG)}{
+ \[(R \to R) = \Hom_{R\mhyphen Alg}(R[X],R[X]) = R[X]\]
+ }
+ 
+ Kind of like Yoneda I guess?
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Choice for representable}
+ 
+ We know that representable in $PSh(\T\mhyphen Alg)$ are projective.
+ 
+ \bloc{Axiom 3 (Choice for representable)}{
+ Given $A:\G\mhyphen Alg_{f.p.}$, the type $\Spec(A)$ has choice.
+ }
+ 
+ Here we can already say some relatively interesting stuff.
+ 
+ \bloc{Corollary}{
+ Given $A:\G\mhyphen Alg_{f.p.}$, the map:
+ \[(A\mhyphen Alg_{f.p.}) \to (\Spec(A)\to \G\mhyphen Alg_{f.p.})\]
+ TODO does this even make sense?
+ }
+ 
+ }
+ 
+ 
+ \frame{\frametitle{MAYBE Digression on qc modules}
+ 
+ }
+ 
+ 
+ \frame{\frametitle{$\N$ is constant}
+ 
+ We interpret the type $\N$ as the constant presheaf sending $A:\G\mhyphen Alg_{f.p.}$ to $\N$.
+ 
+ \bloc{Axiom bonus ($\N$ constant)}{
+ For any $A:\G\mhyphen Alg_{f.p.}$, the map
+ \[\N\to \N^{\Spec(A)}\]
+ is an equivalence.
+ }
+ 
+ }
+ 
+ 
+ \frame{\frametitle{The presheaf axioms}
+ 
+ \bloc{Theorem [Jonas etc...]}{
+ Given $\T$ an algebraic theory, there exists a model of HoTT plus:
+ \begin{itemize}
+ \item There is $\G$ a $\T$-algebra.
+ \item For all $A:\G\mhyphen Alg_{f.p.}$, the map $A\to \G^{\Spec(A)}$ is an equivalence.
+ \item For all $A:\G\mhyphen Alg_{f.p.}$, the set $\Spec(A)$ has choice.
+ \end{itemize}
+ }
+ 
+ }
+ 
+ 
+ \section{Sheaf models from internal topologies}
+
+
+\frame{\frametitle{Let's work internally}
+
+We want to work with sheaves instead of presheaves. But thats painful.
+
+\bloc{Idea}{
+Forget about higher category theory, let's do it in HoTT! 
+}
+
+}
+
+
+ \frame{\frametitle{Internal topologies}
+ 
+ \bloc{Definition}{
+ TODO
+ }
+ 
+ This is reasonable as: TODO
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Internal sheaves}
+
+\bloc{Definiton}{
+TODO
+}
+
+Lex modality [ref].
+
+\bloc{Corollary}{
+TODO
+}
+ 
+ }
+ 
+ \frame{\frametitle{Why is this reasonable?}
+ 
+ TODO
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Higher sheaves (aka stacks)}
+ 
+ $1$-type case.
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Lex modalities and submodel}
+ 
+ Lex modalities correspond to nice subtopoi (TODO check)
+ 
+ Similarly in HoTT:
+ 
+ \bloc{Definition}{
+ interpretation
+ }
+ 
+ \bloc{Theorem [TODO ref?]}{
+ The axioms of HoTT are validated by this interpretation.
+ }
+ 
+ }
+ 
+ 
+ \frame{\frametitle{The sheaf axioms: generic object}
+ 
+ What do we preserve about the sheaf axioms?
+ 
+ \bloc{Definition}{
+ A topology is subcanonical if...
+ }
+ 
+ \bloc{Corollary (Generic sheaf object)}{
+ We have a $\mathbb{T}$-algebra in the sheaf model.
+ 
+ Moreover the interpretation of
+ 
+ TODO
+ 
+ is satisfied in the sheaf model.
+ }
+ 
+ }
+ 
+ 
+ \frame{\frametitle{The sheaf axiom: duality}
+ 
+  \bloc{Corollary}{
+ If $E$ is subcanonical, then any representable is a sheaf, any fp algebra as well.
+ }
+
+ \bloc{Lemma (sheaf duality)}{
+ If $E$ is subcanonical, then the sheaf modal satisfy duality. 
+ }
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Local choice}
+ 
+ \bloc{Lemma (local choice)}{
+In the sheaf model, TODO
+ }
+ 
+ }
+
+
+\frame{\frametitle{Summary for sheaf model}
+
+ \bloc{Proposition}{
+ Given a subcanonical topology $E$, the sheafification interpretation satisfy the following.
+\begin{itemize}
+\item Generic object
+\item Duality
+\item Local choice
+\end{itemize}
+}
+
+}
+
+ 
+\section{Application: models synthetic algebraic geometry and variants}
+
+
+\frame{\frametitle{Zariski topology}
+
+\bloc{Definition}{
+TODO
+}
+
+}
+
+
+\frame{\frametitle{Etale topology}
+
+\bloc{Definition}{
+TODO
+}
+
+\bloc{Proposition}{
+unramifiable
+}
+
+}
+
+
+\frame{\frametitle{Fppf topology}
+
+\bloc{Definition}{
+TODO
+}
+
+\bloc{Conjecture}{
+monic non-constant
+}
+
+}
+ 
+ 
+ \frame{\frametitle{The four models compared}
+ 
+ TODO
+ 
+ }
+ 
+ 
+ \section{Perspective?}
+ 
+ \frame{\frametitle{SSD and variant}}
+ 
+ \frame{\frametitle{Triangulated TT}}
+ 
+ \frame{\frametitle{Maybe an overview of SSD and SAG results}}
+ 
+
+\end{document}

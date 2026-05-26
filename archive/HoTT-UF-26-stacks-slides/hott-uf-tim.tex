@@ -1,0 +1,477 @@
+\documentclass[proof]{beamer}
+\usetheme{default}
+
+\usecolortheme{rose}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+ \usepackage{amssymb}
+ \usepackage{latexsym}
+ \usepackage{amsmath}
+ \usepackage{amssymb}
+ \usepackage{tikz}
+ \usepackage{tikz-cd}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{forest}
+\usepackage{color}
+\usepackage[all,cmtip]{xy}
+
+\usepackage{pgfplots}
+\usepackage{array}
+    \newcolumntype{C}{>{\centering\arraybackslash}c}
+
+
+
+\definecolor{qbblue}{RGB}{43,126,128}
+%\definecolor{qbblue}{RGB}{43,126,204}
+\definecolor{qborange}{RGB}{242,151,36}
+\definecolor{qblight}{RGB}{210,210,210}
+\definecolor{qbdark}{RGB}{180,180,180}
+\definecolor{qbred}{RGB}{184,13,72}
+
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{block title}{bg=qblight,fg=black}
+\setbeamercolor{frametitle}{bg=qblight,fg=black}
+\setbeamercolor{section in head/foot}{bg=black}
+\setbeamertemplate{itemize item}{\color{qbdark}$\blacktriangleright$}
+\setbeamertemplate{itemize subitem}{\color{qbdark}$\blacktriangleright$}
+%\setbeamercolor*{palette tertiary}{bg=black}
+\setbeamercolor{local structure}{fg=black}
+
+\usepackage[style=verbose,backend=biber]{biblatex}
+\addbibresource{biblio.bib}
+
+\renewcommand{\_}{\rule{.6em}{.5pt}\hspace{0.023cm}}
+
+\newcommand{\bloc}[2]{\begin{block}{#1}\setlength\abovedisplayskip{0pt}#2\end{block}}
+
+\setbeamertemplate{navigation symbols}{} 
+\addtobeamertemplate{footline}{\hfill{\tiny \insertframenumber}\hspace{2em} \vspace{1em}}
+
+\newcommand{\red}[1]{\textcolor{qbred}{#1}}
+\newcommand{\blue}[1]{\textcolor{qbblue}{#1}}
+\newcommand{\orange}[1]{\textcolor{qborange}{#1}}
+
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\propTrunc}[1]{\lVert #1 \rVert}
+\newcommand{\eqspace}{\vspace{0.32cm}}
+
+\newcommand{\SB}{\text{SB}}
+\newcommand{\AZ}{\text{AZ}}
+\newcommand{\LI}{\Phi}
+\newcommand{\B}{\text{B}}
+\newcommand{\Et}{\text{\'Et}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\PGL}{\text{PGL}}
+\newcommand{\U}{\text{U}}
+\newcommand{\Spec}{\text{Spec}}
+\renewcommand{\lim}{\text{lim}}
+\newcommand{\M}{\text{M}}
+
+\def\mhyphen{{\hbox{-}}}
+
+%\newcommand{\trunc}[1]{|| #1 ||}
+
+\AtBeginSection[]
+{
+ \begin{frame}<beamer>
+ \frametitle{Outline}
+ \tableofcontents[currentsection]
+ \end{frame}
+}
+
+\begin{document}
+
+
+%\abovedisplayskip=0.0cm
+%\abovedisplayshortskip=-0.3cm
+%\belowdisplayskip=0.6cm
+
+
+\title{\red{In Memory of Tim Lichtnau:\\
+Deligne-Mumford Stacks in Synthetic Algebraic Geometry}}
+\author{Felix Cherubini and Hugo Moeneclaey,\\
+\vspace{0.16cm}
+after Tim Lichtnau's master thesis notes\\
+}
+\date{\blue{HoTT/UF 2026}\\
+Aarhus}
+
+
+
+\frame{\titlepage}
+
+
+
+
+\frame{\frametitle{Tim Lichtnau}
+
+Tim died on the 26th of December 2024.
+
+PICTURE HERE
+
+In this talk I will present work from his unfinished master thesis.
+
+}
+
+
+\frame{\frametitle{Overview}
+
+TODO
+
+}
+
+
+ \begin{frame}<beamer>
+ \frametitle{Outline}
+ \tableofcontents
+ \end{frame}
+ 
+
+\section{From affine schemes to Deligne-Mumford stacks}
+
+
+%\frame{\frametitle{Affine schemes}
+
+%We want to study roots of system of polynomials over an arbitrary ring.
+
+%\bloc{Key idea}{
+%Given a polynomial $P$, we construct a space of its roots, called an affine scheme.
+%}
+
+%\bloc{Traditional approach (over a given base ring $k$)}{
+%Define it as the Zariski sheaf sending a $k$-algebra $A$ to $\{x:A\ |\ P(x)=0\}$.
+
+%This embeds $k$-algebras in Zariski sheaves.
+%}
+
+%\bloc{Synthetic approach (over the generic ring $R$)}{
+%Define it as the set $\{x:R\ |\ P(x)=0\}$.
+
+%This embeds finitely presented $R$-algebras in sets.
+%}
+
+%}
+
+\frame{\frametitle{A reminder: affine schemes}
+
+\bloc{Reminder}{
+An affine scheme is a type merely of the form:
+\[\{x_1,\hdots,x_n:R\ |\ P_1(x)=0, \hdots, P_m(x)=0\}\]
+for some $P_1,\hdots,P_m:R[X_1,\hdots,X_n]$.
+}
+
+\bloc{Duality axiom}{
+We have an equivalence:
+\[\{f.p.\ R-algebra\} \simeq \{Affine schemes\}\]
+\[A \mapsto Hom_{R-Alg}(A,R)\]
+\[R^X \mapsto X\]
+}
+
+So when dealing with affine scheme, algebra and geometry match up perfectly.
+
+}
+
+
+%\frame{\frametitle{Schemes}
+
+%\bloc{Definition (Traditional)}{
+%A scheme is a Zariski sheaf that has an open cover by affine pieces.
+%}
+
+%\bloc{Definition (Synthetic)}{
+%A scheme is a set that has a finite open cover by affine pieces.
+%}
+
+%\bloc{Example}{
+%Given $n:\mathbb{N}$, the type $\bP^n = \{Lines in R^{n+1} going through 0\}$ is a scheme.
+%}
+
+%Core idea: locally we can use algebra
+
+%}
+
+
+\frame{\frametitle{But not everything is affine}
+
+\bloc{Definition}{
+We define the projective space $\bP^n$ by:
+\[\bP^n = \{Lines in R^{n+1} going through 0\}\]
+}
+
+Any map in $\bP^n\to R$ is constant, so $\bP^n$ cannot be affine for $n>0$.
+
+\bloc{Definition}{
+A scheme is a set that has a finite open cover by affine pieces.
+}
+
+$\bP^n$ is a scheme.
+
+}
+
+
+\frame{\frametitle{But not everything is a scheme}
+
+\bloc{Definition}{
+A cubic surface is a scheme $X$ such that there exists a $P:R[X_0,\cdots,X_3]$ homogeneous of degree $3$ with $X = \{x:\bP^3\ |\ P(x)=0\}$.
+}
+
+Consider the type of smooth cubic surfaces.
+
+We have a surjective map $\bP^{19}\to \{Cubic surfaces\}$. Smoothness is an open condition.
+
+\bloc{Block}{
+The type of smooth cubics surfaces cannot be a scheme, it is not even a set!
+}
+
+}
+
+
+\frame{\frametitle{27 lines}
+
+\bloc{Theorem (over $k$ an algebraically closed field)}{
+Any smooth cubic surface contains precisely 27 lines.
+}
+
+PICTURE HERE
+
+\bloc{What about it?}{
+This gives a tight control on automorphisms groups of smooth cubics.
+}
+
+}
+
+
+\frame{\frametitle{Deligne-Mumford stacks}
+
+Deligne-Mumford stacks is an appropriate generalisation of schemes to $1$-types, covering such moduli spaces.
+
+\bloc{Intuition}{
+A Deligne-Mumford stack is a $1$-type that is:
+\begin{itemize} 
+\item An étale sheaf.
+\item \'Etale-locally affine.
+\end{itemize}
+}
+
+\bloc{Why \'etale locally?}{
+A type that is Zariski-locally affine is a set.
+}
+
+\bloc{Higher Deligne-Mumford stacks [Simpson 96]}{
+Moduli spaces of Deligne-Mumford stacks are usually $2$-types, etc...
+}
+
+}
+
+
+%\frame{\frametitle{Why do it synthetically?}
+
+%\bloc{Traditional approach}{
+%A Deligne-Mumford $n$-stack is a presheaf of $n$-groupoids on the \'etale site such that:
+%\begin{itemize}
+%\item It is a stack (i.e.\ a sheaf of $n$-groupoids).
+%\item It is \'etale locally affine.
+%\end{itemize}
+%}
+
+%\bloc{Synthetic approach}{
+%A Deligne-Mumford $n$-stack is an $n$-type such that:
+%\begin{itemize}
+%\item It is an \'etale sheaf (i.e.\ it is modal, same as for sets).
+%\item It is \'etale locally affine.
+%\end{itemize}
+%}
+
+%}
+
+
+\frame{\frametitle{Why synthetically?}
+
+\bloc{Traditionally}{
+We end up having to deal with sheaves of $n$-groupoids (aka $n$-stack) on the \'etale site.
+
+$\to$ a lot of technical machinery is needed.
+}
+
+\bloc{Synthetically}{
+\begin{itemize}
+\item Sheaves of $n$-groupoids on the Zariski site are just $n$-types. 
+\item \'Etale sheaves are just the modal types for some accessible lex modality.
+\end{itemize}
+}
+
+}
+
+
+
+\section{Synthetic Deligne-Mumford stacks}
+
+\frame{\frametitle{Formally \'etale types}
+
+\bloc{Definition}{
+A type is $X$ is formally \'etale if given any $\epsilon:R$ such that $\epsilon^2=0$, the map:
+\[X\to X^{x=0}\]
+is an equivalence.
+}
+
+Intuitively, 
+\begin{itemize}
+\item $\epsilon^2=0$ means $\epsilon$ infinitesimal.
+\item $X$ formally \'etale means $X$ discrete.
+\end{itemize}
+
+}
+
+\frame{\frametitle{\'Etale sheaves}
+
+\bloc{Definition}{
+The we define $\mathbb{T}$ the \'etale topology by:
+\[\mathbb{T} = \{S Affine\ |\ S formally etale, not not S\}\]
+}
+
+\bloc{Definition}{
+A type $X$ is an \'etale sheaf if for all $S:\mathbb{T}$, we have that:
+\[X\to X^{\propTrunc{S}}\]
+is an equivalence.
+}
+
+}
+
+\frame{\frametitle{Deligne-Mumford stacks}
+
+
+
+\bloc{Definition}{
+We define the class $CS$ of covering stacks the smallest $CS\subset etale sheaves$ such that:
+\begin{itemize}
+\item $\mathbb{T}\subset CS$.
+\item If $S:\mathbb{T}$ and $p:S\to X$ whose fibers are in $CS$, then $X\in CS$.
+\end{itemize}
+}
+
+\bloc{Definition}{
+A Deligne-Mumford stack is an étale sheaf $X$ such that there exists $S$ affine and $p:S\to X$ whose fibers are in CS.
+}
+
+\bloc{Intuition}{
+Given $X$ a Deligne-Mumford stack,
+\[X\in CS iff X formally and not not X\]
+}
+
+}
+
+\frame{\frametitle{Stability properties}
+
+\bloc{Proposition}{
+Deligne-Mumford stacks are stable under the following:
+\begin{itemize}
+\item $\Sigma$ and identity types.
+\item Covering quotients.
+\end{itemize}
+}
+
+\bloc{Proposition (Descent for Deligne-Mumford stacks)}{
+The type of Deligne-Mumford stacks is an \'etale sheaf.
+}
+
+}
+
+
+\section{Algebraic spaces that are not schemes}
+
+
+\frame{\frametitle{Algebraic spaces}
+
+\bloc{Definition}{
+An algebraic space is a set which is a Deligne-Mumford stack.
+}
+
+\bloc{Warning!}{
+Tradition requires identity types to be schemes
+}
+
+\bloc{Intuition}{
+A scheme is a set that is Zariski locally affine.
+
+An algebraic space is a set that is \'etale locally affine.
+}
+
+}
+
+
+\frame{\frametitle{A chain of strict inclusions}
+
+\[\{Schemes\} \subsetneq \{Locally separated algebraic space\} \subseteq \{Algebraic space\}\]
+
+}
+
+
+%\frame{\frametitle{A non-locally separated algebraic space}
+
+%Assume $2$ an invertible prime, $\mu_l = \{x:R\ |\ x^l=1\}$ acts on $R$.
+
+%\bloc{Lemma}{
+%For $x,y:R$, define:
+%\[(x\sim y) = (x=y)\lor (x\not=0)\land (y\not=0)\land \exists(g:\mu^l) gx=y\]
+%}
+
+%\bloc{Lemma}{
+%$R/\sim$ is an algebraic space that is not locally separated.
+%}
+
+%}
+
+
+\frame{\frametitle{A non-locally separated algebraic space}
+
+Assume $2$ invertible in $R$.
+
+\bloc{Lemma}{
+For $x,y:R$, define:
+\[(x\sim y) = (x=y)\lor (x\not=0)\land (y\not=0)\land (x=-y)\]
+}
+
+\bloc{Lemma}{
+$R/\sim$ is an algebraic space that is not locally separated.
+}
+
+}
+
+
+\frame{\frametitle{A locally separated algebraic space that is not a scheme}
+
+Assume $2$ invertible in $R$.
+
+\bloc{Definition}{
+Given $x:R^\times$, we define:
+\[C_x = \{z:R\ |\ z^2 = x\}\]
+\[D_x = \Sigma_{y:R} C_x^{y=0}\]
+}
+
+We have $p:D_x\to R$ such that its fiber of $y=0$ is $C_x$, its fiber over $y\not=0$ is $1$.
+
+\bloc{Lemma}{
+Consider $H=\Sigma_{x:R^\times} D_x$, then:
+\begin{itemize}
+\item $H$ is a locally separated algebraic space.
+\item $H$ is not a scheme.
+\end{itemize}
+}
+
+Is there a separated algebraic space that is not a scheme?
+
+}
+
+
+\frame{\frametitle{Where next?}
+
+...
+
+}
+
+
+\end{document}
