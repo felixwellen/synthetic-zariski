@@ -1,0 +1,133 @@
+\subsection{The \'etale topology is formally \'etale}
+
+We will work with $P$ an arbitrary proposition.
+
+Recall that given $A\subseteq \Type$, we say it has $P$-local descent if any $X:\Type$ in $A$ is $P$-local, and given $X:\Type_P$ we have that the proposition $``X\in A''$ is itself $P$-local. Next lemma should be contrasted with the proof of schemes being \'etale sheaves. 
+
+\begin{lemma}\label{descent-for-gluing}
+Assume $P$ a proposition having choice and $A\subseteq \Type$ such that:
+\begin{itemize}
+\item $\N$ is $P$-local
+\item Open propositions are $P$-local.
+\item We have $P$-descent for $A$.
+\end{itemize}
+
+Then we have $P$-descent for types that have a Zariski open cover with pieces in $A$.
+\end{lemma}
+
+\begin{proof}
+Let us call $H$ the class of types that have a Zariski open cover with pieces in $A$. Recall that when $P$ has choice, to prove that $X$ is $P$-local it is enough to prove $X$ is $P$-separated and give a surjection from a $P$-local type to $X$. So we have that $2$ is $P$-local and $P$-local types are stable by finite sums.
+
+Assume $X\in H$. Given that types in $A$ are $P$-separated, we have that any $X$ is locally $P$-separated, which implies $P$-separated because open propositions are $P$-local. Then we have a surjection from $U_1+\cdots +U_n$ to $X$, the source is $P$-local.
+
+Given $X$, we want to prove the proposition $``X\in H''$ is $P$-local. As a proposition it is $P$-separated, and we have a surjection from:
+\[\Sigma_{n:\N} \{U_1,...,U_n:X\to \mathrm{Open}\ |\ \cup_iU_i = X \land \forall_i\, U_i\in A\]
+and the source is $P$-local.
+\end{proof}
+
+\begin{lemma}\label{descent-standard-etale}
+The type of standard \'etale schemes is formally \'etale.
+\end{lemma}
+
+\begin{proof}
+It is known that standard \'etale scheme are formally \'etale. So it is enough to assume given $C$ and a map $C:\to\mathrm{StdEt}$ and merely produce a factorisation through $1$. By choice for $C$, and formal étaleness of $\N$, we get $P,G:R/\epsilon[X]$ with $P$ monic and for all $x:R/\epsilon$, if $P(x)= 0$ and $P'(x)=0$ then $G(x)\not=0$. We choose any lift $\bar{P}$ of $P$ and $\bar{G}$ of $G$ to $R$, we get that $\bar{P}$ is monic and for all $x:R$ if $\bar{P}(x)=0$ and $\bar{P}'(x)=0$, then $\bar{G}(x)\not=0$. So $\Spec((R[X]/\bar{P})_{\bar{G}})$ is standard \'etale, but $(R[X]/\bar{P})_{\bar{G}}\otimes R/\epsilon = (R[X]/P)_{G}$ and this is indeed a lift. \rednote{Check precisely?}
+\end{proof}
+
+\begin{proposition}\label{etale-topology-is-formally-etale}
+The \'etale topology seen as a type is formally \'etale.
+\end{proposition}
+
+\begin{proof}
+We show that a type is a formally \'etale scheme if and only if it has a Zariski cover by standard \'etale scheme. So by \Cref{descent-for-gluing} and \Cref{descent-standard-etale} we have that the type of formally \'etale schemes is itself formally \'etale. But a scheme being non-empty is formally \'etale.
+
+\rednote{TODO WHAT ABOUT AFFINENESS? Perhaps prove that if $X$ is a formally \'etale scheme, then $\Spec(R^X)$ is formally \'etale?}
+\end{proof}
+
+
+
+\subsection{\'Etale-sheaf quotient preserve formal \'etalness}
+
+%\begin{lemma}\label{factorisation-proposition-unramified}
+%Assume given $P$ a proposition and $Y$ a $P$-separated and $\phi:S\to Y$ such that if $P$ we have an explicit factorisation of $\phi$ through $1$. Then we have a factorisation of $\phi$ though $\propTrunc{S}$.
+%\end{lemma}
+
+%\begin{proof}
+%TODO
+%\end{proof}
+
+Next proposition rely crucially use the iterated modality setup: starting from closed dense proposition we get formally \'etale, from which we get \'etale sheaf. It could probably be formulated more abstractly, starting from a family of propositions having chocie, but we don't bother. 
+
+\begin{proposition}\label{formally-etale-stability-quotient}
+Assume given $X,Y$ \'etale sheaves and $f:X\to Y$ such that: 
+\begin{itemize}
+\item $X$ is formally \'etale.
+\item $Y$ is an $n$-type.
+\item $f:X\to Y$ is formally \'etale and \'etale surjective.
+\end{itemize}
+Then $Y$ is formally \'etale.
+\end{proposition}
+
+\begin{proof}
+We proceed by induction on $n$. We start at $n=-2$, i.e.\ $Y$ contractible, so the base case is trivial.
+
+Assume this is true for $n$-types and $Y$ is an $n+1$-type. By the same argument as in \Cref{DM-stack-stability} (iv) and induction hypothesis, we get that $Y$ is formally unramified.
+
+We assume given $C$ closed dense and a map $\phi:C\to Y$, we want to merely factor $\phi$ through $1$. By the induction hypothesis we are trying to prove a proposition, and since $Y$ is an \'etale sheaf this proposition is an \'etale sheaf.
+
+By choice for $C$ and \'etale surjectivity of $f$, we get $S:C\to \Et$ with a pullback square:
+
+  \begin{center}
+    \begin{tikzcd}
+      \Sigma_{C}S\ar[r]\ar[d] & X\ar[d,"p"] \\
+      C\ar[r,swap,"\phi"] & Y
+    \end{tikzcd}
+  \end{center}
+
+But then by \Cref{etale-topology-is-formally-etale} we get $\bar{S}:\Et$ with the pullback square:
+
+  \begin{center}
+    \begin{tikzcd}
+      C\times \bar{S}\ar[r,"\psi"]\ar[d] & X\ar[d,"p"] \\
+      C\ar[r,swap,"\phi"] & Y
+    \end{tikzcd}
+  \end{center}
+
+Recall that our goal is an \'etale sheaf and a proposition so we can assume $s:\bar{S}$. Then we consider the map $p\mapsto \psi(p,s):C\to X$. Since $X$ is formally \'etale we get $\bar{x}:X$ such that $\prod_{p:C}\, \bar{x} = \psi(p,s)$ and then $f(\bar{x})$ gives us the desired lift.
+\end{proof}
+
+\begin{remark}
+This gives us saturation of the topology, and a simplification of the proof gives us that given $X$ formally \'etale, $Y$ an $n$-type and $f:X\to Y$ formally \'etale and surjective we have that $Y$ is formally \'etale.
+\end{remark}
+
+
+\subsection{Alternative definition for Deligne-Mumford stacks}
+
+\begin{proposition}\label{covering-stacks-are-formally-etale}
+We have that $\CS_n = \{X:\DM_n\ |\ X\ \text{formally\ etale\ and\ non-empty}\}$.
+\end{proposition}
+
+\begin{proof}
+First let us prove that covering stacks are formally \'etale and non-empty. Non-emptyness follow immediately from $S\in\Et$ implying $\neg\neg S$. We prove $X\in\CS_n$ implies $X$ formally \'etale by induction on $n$, the base case is true by definition and in the inductive case we use \Cref{formally-etale-stability-quotient}.
+
+For the converse assume given $X:\DM_n$. If $n=0$ this holds by definition, if $n>0$ consider any $S$ affine and $p:S\to X$ with fibers in $\CS_{n-1}$. The by the direct case we get that the fibers of $p$ are formally \'etale and non-empty, so that $S\in\Et$ and $X$ is indeed in $\CS_n$.
+\end{proof}
+
+\begin{definition}
+Let us define $\DM'_n$ inductively by: 
+\[\DM'_0 = \Aff\]
+\[\DM'_{n+1} = \{X:\Type_\Et\ |\ \exists_{S:\Aff}\, S\to X\ \mathrm{with\ fibers\ formally\ etale,\ non-empty\ and\ in}\ \DM'_n\}\]
+\end{definition}
+
+\begin{proposition}
+For all $n:\N$ we have that $\DM_n=\DM'_n$.
+\end{proposition}
+
+\begin{proof}
+Follows from \Cref{covering-stacks-are-formally-etale} by induction on $n$.
+\end{proof}
+
+\begin{remark}
+It would be interesting to check out what happens if we take $\DM'$ as a definition for Deligne-Mumford stack.
+\end{remark}
+
+

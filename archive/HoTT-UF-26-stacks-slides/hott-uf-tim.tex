@@ -16,6 +16,7 @@
 \usepackage{forest}
 \usepackage{color}
 \usepackage[all,cmtip]{xy}
+\usepackage{stmaryrd}
 
 \usepackage{pgfplots}
 \usepackage{array}
@@ -72,6 +73,13 @@
 \newcommand{\M}{\text{M}}
 
 \def\mhyphen{{\hbox{-}}}
+
+\newcommand{\Alg}{\text{Alg}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Set}{\text{Set}}
+\newcommand{\N}{\mathbb{N}}
 
 %\newcommand{\trunc}[1]{|| #1 ||}
 
@@ -156,22 +164,31 @@ TODO
 
 %}
 
-\frame{\frametitle{A reminder: affine schemes}
+\frame{\frametitle{Affine schemes}
 
-\bloc{Reminder}{
-An affine scheme is a type merely of the form:
-\[\{x_1,\hdots,x_n:R\ |\ P_1(x)=0, \hdots, P_m(x)=0\}\]
-for some $P_1,\hdots,P_m:R[X_1,\hdots,X_n]$.
-}
+%\bloc{Reminder}{
+%An affine scheme is a type merely of the form:
+%\[\{x_1,\hdots,x_n:R\ |\ P_1(x)=0, \hdots, P_m(x)=0\}\]
+%for some $P_1,\hdots,P_m:R[X_1,\hdots,X_n]$.
+%}
+
+%\bloc{Reminder}{
+%An affine schemes are defined as the set of roots of some system of polynomials
+%}
 
 \bloc{Duality axiom}{
 We have an equivalence:
-\[\{f.p.\ R-algebra\} \simeq \{Affine schemes\}\]
-\[A \mapsto Hom_{R-Alg}(A,R)\]
-\[R^X \mapsto X\]
+
+\begin{center}
+\begin{tabular}{ccc}
+$R\mhyphen \Alg_{f.p.}$ & $\simeq$ & $\{\text{Affine\ schemes}\}$ \\
+$A$ & $\mapsto$ &  $\Hom_{R\mhyphen\Alg}(A,R)$\\
+$R^X$ & $\mapsfrom$ & $X$
+\end{tabular}
+\end{center}
 }
 
-So when dealing with affine scheme, algebra and geometry match up perfectly.
+For affines, algebra and geometry match up perfectly.
 
 }
 
@@ -197,12 +214,15 @@ So when dealing with affine scheme, algebra and geometry match up perfectly.
 
 \frame{\frametitle{But not everything is affine}
 
+Assume $n>0$.
+
 \bloc{Definition}{
 We define the projective space $\bP^n$ by:
-\[\bP^n = \{Lines in R^{n+1} going through 0\}\]
+
+\[\bP^n = \{\text{Lines\ in}\ R^{n+1}\ \text{going\ through}\ 0\}.\]
 }
 
-Any map in $\bP^n\to R$ is constant, so $\bP^n$ cannot be affine for $n>0$.
+Any map in from $\bP^n$ to $R$ is constant, so $\bP^n$ cannot be affine.
 
 \bloc{Definition}{
 A scheme is a set that has a finite open cover by affine pieces.
@@ -216,21 +236,25 @@ $\bP^n$ is a scheme.
 \frame{\frametitle{But not everything is a scheme}
 
 \bloc{Definition}{
-A cubic surface is a scheme $X$ such that there exists a $P:R[X_0,\cdots,X_3]$ homogeneous of degree $3$ with $X = \{x:\bP^3\ |\ P(x)=0\}$.
+A cubic surface is a scheme $X$ such that there exists $P:R[X_0,\cdots,X_3]$ homogeneous of degree $3$ with 
+
+\[X = \{x:\bP^3\ |\ P(x)=0\}.\]
 }
 
-Consider the type of smooth cubic surfaces.
-
-We have a surjective map $\bP^{19}\to \{Cubic surfaces\}$. Smoothness is an open condition.
-
-\bloc{Block}{
-The type of smooth cubics surfaces cannot be a scheme, it is not even a set!
+\bloc{Remark}{
+The type of smooth cubic surfaces is nice:
+\begin{itemize}
+\item We have a surjection $\bP^{19}\to \{\text{Cubic\ surfaces}\}$.
+\item Being smooth is an open condition.
+\end{itemize}
 }
 
+It cannot be a scheme, it is not even a set!
+
 }
 
 
-\frame{\frametitle{27 lines}
+\frame{\frametitle{Smooth cubic surfaces and the 27 lines}
 
 \bloc{Theorem (over $k$ an algebraically closed field)}{
 Any smooth cubic surface contains precisely 27 lines.
@@ -238,16 +262,14 @@ Any smooth cubic surface contains precisely 27 lines.
 
 PICTURE HERE
 
-\bloc{What about it?}{
-This gives a tight control on automorphisms groups of smooth cubics.
-}
+Gives a tight control on automorphisms groups of smooth cubics.
 
 }
 
 
 \frame{\frametitle{Deligne-Mumford stacks}
 
-Deligne-Mumford stacks is an appropriate generalisation of schemes to $1$-types, covering such moduli spaces.
+The notion of DM stack captures this intuition. 
 
 \bloc{Intuition}{
 A Deligne-Mumford stack is a $1$-type that is:
@@ -257,7 +279,7 @@ A Deligne-Mumford stack is a $1$-type that is:
 \end{itemize}
 }
 
-\bloc{Why \'etale locally?}{
+\bloc{Why \'etale-locally?}{
 A type that is Zariski-locally affine is a set.
 }
 
@@ -289,20 +311,22 @@ Moduli spaces of Deligne-Mumford stacks are usually $2$-types, etc...
 %}
 
 
-\frame{\frametitle{Why synthetically?}
+\frame{\frametitle{What to expect synthetically?}
 
-\bloc{Traditionally}{
-We end up having to deal with sheaves of $n$-groupoids (aka $n$-stack) on the \'etale site.
-
-$\to$ a lot of technical machinery is needed.
+\bloc{Traditional approach}{
+Use sheaves of $n$-groupoids (aka $n$-stack) on the \'etale site.
 }
 
-\bloc{Synthetically}{
+$\Rightarrow$ A lot of technical machinery need.
+
+\bloc{Synthetic approach}{
 \begin{itemize}
 \item Sheaves of $n$-groupoids on the Zariski site are just $n$-types. 
-\item \'Etale sheaves are just the modal types for some accessible lex modality.
+\item \'Etale sheaves are modal types for some accessible lex modality.
 \end{itemize}
 }
+
+$\Rightarrow$ Simpler and more direct development.
 
 }
 
@@ -313,31 +337,41 @@ $\to$ a lot of technical machinery is needed.
 \frame{\frametitle{Formally \'etale types}
 
 \bloc{Definition}{
-A type is $X$ is formally \'etale if given any $\epsilon:R$ such that $\epsilon^2=0$, the map:
-\[X\to X^{x=0}\]
+A type is $X$ is formally \'etale if given any $\epsilon:R$ nilpotent, the map:
+
+\[X\to X^{\epsilon=0}\]
 is an equivalence.
 }
 
-Intuitively, 
+\bloc{Intuition}{
 \begin{itemize}
-\item $\epsilon^2=0$ means $\epsilon$ infinitesimal.
+\item $\epsilon$ nilpotent means $\epsilon$ infinitesimal.
+%\item $X$ formally \'etale means $X$ thinks infinitesimal are $0$.
+%\item $X$ formally \'etale means infinitesimal don't matter when working in $X$
 \item $X$ formally \'etale means $X$ discrete.
 \end{itemize}
+}
 
 }
 
 \frame{\frametitle{\'Etale sheaves}
 
 \bloc{Definition}{
-The we define $\mathbb{T}$ the \'etale topology by:
-\[\mathbb{T} = \{S Affine\ |\ S formally etale, not not S\}\]
+The \'etale topology $\mathbb{E}$ consists of formally \'etale and non-empty affine schemes.
+
+%\subseteq \{\text{Affine}\}$ by
+
+%\[(S\in\mathbb{E}) \leftrightarrow S\ \text{is\ formally\ \'etale\ and\ non-empty}\] 
 }
 
 \bloc{Definition}{
-A type $X$ is an \'etale sheaf if for all $S:\mathbb{T}$, we have that:
+A type $X$ is an \'etale sheaf if for all $S:\mathbb{E}$, we have that
+
 \[X\to X^{\propTrunc{S}}\]
 is an equivalence.
 }
+
+TODO some intuition
 
 }
 

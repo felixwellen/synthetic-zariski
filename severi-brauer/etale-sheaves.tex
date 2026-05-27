@@ -47,27 +47,24 @@ If $R$ is modal, then so is $\mathrm{Hom}(A,R)$ for any $R$-algebra $A$ by gener
 \begin{lemma}\label{scheme-are-sheaf-from-affine}
 Assume given a proposition $P$ such that:
 \begin{itemize}
-\item The type $R$ is $P$-local.
 \item Any open proposition is $P$-local.
 \item The type of open propositions is $P$-local.
 \end{itemize}
-Then any scheme is $P$-local.
+Then any type that has a Zariski cover by $P$-local pieces is $P$-local.
 \end{lemma}
 
 \begin{proof}
-Since $R$ is $P$-local, all affine schemes are $P$-local as explained in \Cref{R-modal-subcanonical}.
+First identity type in such an $X$ are locally $P$-local, i.e. are of the form $\Sigma_US$ with $U$ open and $S$ $P$-local. Since open propositions are $P$-local, we get that $X$ is $P$ separated
 
-We check that for all scheme $X$, any map:
+Now we check that for all such type $X$, any map:
 \[f:P\to X\]
-merely factors through $1$. Take $(U_i)_{i:I}$ a finite cover of $X$ by affine scheme. Then for any $i:I$ we have that $f^{-1}(U_i)$ is an in $P$, so since the type of open is $P$-local, we merely have an open proposition $V_i$ such that for all $x:P$, we have:
+merely factors through $1$. Take $(U_i)_{i:I}$ a Zariski cover of $X$ by $P$-local pieces. Then for any $i:I$ we have that $f^{-1}(U_i)$ is an in $P$, so since the type of open is $P$-local, we merely have an open proposition $V_i$ such that for all $x:P$, we have:
 \[(x\in f^{-1}(U_i) )\leftrightarrow V_i\]
 Since the $f^{-1}(U_i)$ cover $P$, we have that:
 \[P\to \lor_{i:I} V_i\]
 But open propositions are assumed to be $P$-local, so we have that:
 \[ \lor_{i:I} V_i\]
-Assume $k:I$ such that $V_k$ holds. Then $f^{-1}(U_k) = P$ and the map $f$ factors through the affine scheme $U_k$. Since affine schemes are $P$-local, we merely have a lift for $f$.
-
-Now we conclude that any scheme is $P$-local by proving that its identity types are $P$-local. Indeed they are schemes, so the previous point implies they are $P$-local.
+Assume $k:I$ such that $V_k$ holds. Then $f^{-1}(U_k) = P$ and the map $f$ factors through a $P$-local piece $U_k$. So we merely have a lift for $f$.
 \end{proof}
 
 \rednote{Next lemma surely has a more direct, algebraic proof. TODO}
@@ -103,7 +100,7 @@ Any scheme is an \'etale sheaf.
 \begin{proof}
 Assume given $g:R[X]$ monic, we can apply \Cref{scheme-are-sheaf-from-affine} because:
 \begin{itemize}
-\item The type $R$ is an \'etale sheaf by \Cref{etale-subcanonical}.
+\item The type $R$ is an \'etale sheaf by \Cref{etale-subcanonical}, so that any affine scheme is $P$-local.
 \item Any open proposition $U$ is an \'etale sheaf because if:
 \[\propTrunc{\Spec(R[X]/g)}\to U\]
 then since $\neg\neg\Spec(R[X]/g)$ we have $\neg\neg U$, which implies $U$.
