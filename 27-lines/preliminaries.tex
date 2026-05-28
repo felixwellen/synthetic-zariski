@@ -80,7 +80,7 @@ We collect some useful results.
 The following consequences were discovered in a slightly different context in a discussion with Matthias Ritter, Andrej Bauer and Martín Escardó at a Dagstuhl meeting \cite{Dagstuhl-reference}.
 A type \(X\) is said to be \notion{overt}, if for any open \(U\subseteq X\), the proposition that \(U\) is inhabited, \(\|U\|\) is open. It can be thought of as a dual to compactness.
 
-In the following we use \((\_)_{\et}\) to denote étale sheafification. In particular, $\|X\|_\et$ is the étale sheafification of the propositional truncation of $X$.
+In the following we use \((\_)_{\et}\) to denote étale sheafification, which is the localization at those types $\|X\|$, where $X$ an affine, formally étale and non-empty scheme. In particular, $\|X\|_\et$ is the étale sheafification of the propositional truncation of $X$.
 
 \begin{definition}
   A type \(X\) is called \notion{étale-overt} if for any open subset \(U\subseteq X\)
@@ -181,9 +181,10 @@ In the following we use \((\_)_{\et}\) to denote étale sheafification. In parti
   \]
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{image-and-subtypes-of-étale-overt-types}
   \begin{enumerate}[(a)]
-  \item Let $f : X \to Y$ be a map from an étale-overt type $X$ and suppose that is étale-surjective, i.e.\ we have the étale sheafification of the propositional truncation of the fibers of $f$.
+    \item
+      Let $f : X \to Y$ be a map from an étale-overt type $X$ and suppose that is étale-surjective, i.e.\ we have the étale sheafification of the propositional truncation of the fibers of $f$.
     Then $Y$ is also étale-overt.
   \item Open subtypes of étale-overt types are étale-overt.
   \end{enumerate}
@@ -201,7 +202,19 @@ In the following we use \((\_)_{\et}\) to denote étale sheafification. In parti
   Any étale scheme is étale-overt.
 \end{lemma}
 
+\begin{proof}
+  Being étale-overt is a local property and étale schemes are locally standard étale, so it is enough to show that any standard étale scheme $X$ is étale-overt.
+  Since even any open $U \subseteq X$ is étale again, the same argument shows that it is enough to prove that $\|X\|_\et$ is open.
+  In \cite[Lemma 1.1.7]{étale-sheaves-compendium} it is proven that $\neg\neg X$ is open, so we are done once we verify that
+  \[
+    \neg\neg X = \|X\|_\et\rlap{.}
+  \]
+  As open propositions are étale sheaves, we immediately get a map from right to left. For the opposite direction note that once we assume $\neg\neg X$, $\|X\|$ becomes part of the étale topology and hence
+  $\|X\| \to \|X\|_\et$ implies $\|X\|_\et$, but the former proposition is clearly true.
+\end{proof}
+
 \begin{theorem}
+  \label{smooth-schemes-are-étale-overt}
   Any smooth scheme is étale-overt.
 \end{theorem}
 
@@ -211,7 +224,7 @@ By proposition 6.7.6 in the notes \href{https://felix-cherubini.de/diffgeo.pdf}{
 \begin{center}
   \begin{tikzcd}
     & C\ar[rd,"p"]\ar[ld,"i",swap] & \\
-    R^k & & X 
+    R^k & & X
   \end{tikzcd}
 \end{center}
 where $i$ is étale and $p$ is étale and surjective.
@@ -222,7 +235,7 @@ We have $\|U\|_\et=\|V\|_\et$ and the latter is open.
 \end{proof}
 
 \begin{remark}
- \(\bP^n\) is étale-overt.
+  Both \Cref{image-and-subtypes-of-étale-overt-types} and \Cref{smooth-schemes-are-étale-overt} show that \(\bP^n\) is étale-overt.
 \end{remark}
 
 \subsection{Étale projective schemes}
