@@ -197,6 +197,38 @@ In the following we use \((\_)_{\et}\) to denote étale sheafification, which is
   \end{enumerate}
 \end{proof}
 
+The following claim was first proven in \cite[Lemma 1.1.7]{étale-sheaves-compendium}.
+We present a different proof using Cayley-Hamilton.\footnote{The Cayley-Hamilton Theorem and the 27 Lines on a cubic have in common that they both were discovered (in part) by Arthur Cayley.}
+
+\begin{lemma}
+  \label{notnot-Spec(R[X]/P)_G-is-open}
+  Let $P,Q:R[x]$ such that $P$ is monic and non-constant and set $X \equiv \Spec (R[x]/P)_G$.
+  Then $\neg\neg X$ is an open proposition.
+\end{lemma}
+
+\begin{proof}
+  Let $M :\equiv R[X]/P$ and note that this is a finite free $R$-module of rank $n \equiv \deg P$.
+  Define an $R$-linear endomorphism $f : M \to M , m \mapsto G \cdot m$ and denote by
+  \[
+    \chi(\lambda) = \lambda^n + c_1\lambda^{n-1} + \dots + c_n : R[\lambda]
+  \]
+  its characteristic polynomial.
+  Cayley-Hamilton establishes that $\chi (f) = 0$ and thus in particular
+  \[
+    0 = \chi (f(1)) = G^n + c_1G^{n-1} + \dots + c_n : M\rlap{.}
+  \]
+  For $D :\equiv c_1 \neq 0 \lor \dots \lor c_n \neq 0$ we now claim that $D = \neg\neg X$.
+  To see $\neg\neg X \to D$ we can assume that we have $x:X$ such that $P(x) = 0$ and $G(x)\neq 0$ and thus get a well-defined equation
+  \[
+    0 \neq G(x)^n = -c_1G(x)^{n-1} - \dots - c_n
+  \]
+  in $R$, showing that some $c_j$ must be invertible.
+  For the converse direction $D \to \neg\neg X$ we show $\neg X \to \neg D$.
+  If $X$ is empty, then $G$ is nilpotent in $M$ and hence $f : M \to M$ is a nilpotent endomorphism, say $f^{m+1}=0$.
+  Then we have $(id - \lambda f)(id + \lambda f + ... + \lambda^m f^m) = id$ and it follows that $\det(id - \lambda f) = c_n\lambda^n + \dots c_1 \lambda + 1$ is invertible in $R[\lambda]$.
+  Thus the coefficients $c_1,\dots,c_n$ are nilpotent as well, which is to say that $\neg D$.
+\end{proof}
+
 \begin{lemma}
   Any étale scheme is étale-overt.
 \end{lemma}
@@ -204,7 +236,7 @@ In the following we use \((\_)_{\et}\) to denote étale sheafification, which is
 \begin{proof}
   Being étale-overt is a local property and étale schemes are locally standard étale, so it is enough to show that any standard étale scheme $X$ is étale-overt.
   Since even any open $U \subseteq X$ is étale again, the same argument shows that it is enough to prove that $\|X\|_\et$ is open.
-  In \cite[Lemma 1.1.7]{étale-sheaves-compendium} it is proven that $\neg\neg X$ is open, so we are done once we verify that
+  From \Cref{notnot-Spec(R[X]/P)_G-is-open} we know that $\neg\neg X$ is open, so we are done once we verify that
   \[
     \neg\neg X = \|X\|_\et\rlap{.}
   \]
