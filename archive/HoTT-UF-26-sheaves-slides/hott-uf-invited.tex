@@ -77,6 +77,8 @@
 \newcommand{\Hom}{\text{Hom}}
 \newcommand{\Set}{\text{Set}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\PSh}{\text{PSh}}
+\newcommand{\Sh}{\text{Sh}}
 
 \def\mhyphen{{\hbox{-}}}
 
@@ -129,15 +131,15 @@ TODO
  \section{Introduction to synthetic geometry}
  
  
- \frame{\frametitle{Synthetic geometries}
+ \frame{\frametitle{Synthetic geometry}
  
-Say we want to work with some geometric object.
+Say we want to work with some geometric objects,
 
-(e.g.\ differential manifolds, sequential spaces, schemes...)
+e.g.\ differential manifolds, sequential spaces, schemes...
  
- \bloc{Core idea (type theoretic version)}{
+ \bloc{Core idea}{
  \begin{enumerate}
- \item Embeds these objects in a suitable topos.
+ \item Embeds objects of interests in a topos.
  \item Interpret MLTT + UIP in this topos.
 \item Look for new axioms \red{(and modalities)} validated by this interpretation.
 \item Work in MLTT + UIP + these axioms \red{(+ modalities)}.
@@ -176,6 +178,7 @@ This means we have to abandon LEM and AC.
 %\[Schemes \subset\]
 %\end{itemize}
  
+ \begin{center}
 \begin{tabular}{|c|c|}
 \hline
  Name & Objects of interests  \\
@@ -188,14 +191,79 @@ Synthetic topology\footnote{[Escard\'o 04], [Le\v{s}nik 10], etc.} & Sequential 
 \hline
 Synthetic algebraic geometry\footnote{[Bleschmidt 17], [Cheribini, Coquand, Hutzler 24], etc.} & Schemes \\
 \hline
-Condensed type theory\footnote{Barton, Commelin 24?}/ & Compact Hausdorff spaces, \\
-Synthetic Stone duality\footnote{[Cherubini, Coquand, Geerlings, Moeneclaey 24]} & condensed sets\\
+Condensed type theory\footnote{Barton, Commelin 24}/ & Stone spaces, \\
+Synthetic Stone duality\footnote{[Cherubini, Coquand, Geerlings, Moeneclaey 24]} & locally compact Hausdorff spaces\\
 \hline
 \end{tabular}
+\end{center}
  
  }
-  
  
+ 
+ \frame{\frametitle{Synthetic homotopy theory}
+ 
+ Say we want to work with homotopy types / $\infty$-groupoids.
+ 
+\bloc{Core idea}{
+\begin{enumerate}
+\item MLTT can be interpreted in $\infty$-groupoids.
+\item This validates HoTT (= univalence + HITs).
+\item Work in HoTT.
+\end{enumerate}
+}
+ 
+ }
+ 
+ 
+ \frame{\frametitle{We can do both!}
+ 
+ \bloc{Core idea}{
+ \begin{enumerate}
+ \item Embeds objects of interest in an $\infty$-topos.
+ \item Interpret HoTT in this topos.
+\item Look for new axioms \red{(and modalities)} validated by this interpretation.
+\item Work in HoTT + these axioms \red{(+ modalities)}.
+\end{enumerate}
+ }
+
+ \bloc{Why do this?}{
+ \begin{itemize}
+ \item Objects of interests have $\infty$-groupoid-like structure.
+ \item We want to use some homotopy theory (e.g.\ cohomology).
+ \item For the convenience of univalence and HITs.
+ \end{itemize}
+ }
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Examples}
+ 
+ I give examples where HoTT/UF features are central\footnote{There are HoTT-based version for many synthetic geometries.}.
+
+ \begin{center}
+ \begin{tabular}{|c|c|}
+\hline
+ Name & Objects of interests  \\
+ \hline
+ Real-cohesive & Locally contractible topological spaces \\
+ homotopy type theory\footnote{[Shulman 18]} & and their homotopy types \\
+\hline
+Synthetic algebraic geometry\footnote{[Bleschmidt 17], [Cheribini, Coquand, Hutzler 24], etc.} & Schemes \\
+\hline
+Condensed type theory\footnote{[Barton, Commelin 24]}/ & Stone spaces, \\
+Synthetic Stone duality\footnote{[Cherubini, Coquand, Geerlings, Moeneclaey 24]} & condensed sets\\
+\hline
+Simplicial type theory\footnote{[Riehl, Shulman 17], etc.}/ & Higher \\
+Triangulated type theory\footnote{[Gratzer, Weinberger, Buchholtz 24]} & categories\\
+\hline
+\end{tabular}
+\end{center}
+ 
+ }
+ 
+ 
+   \note{MAYBE UNNECESSARY SLIDE?}
  \frame{\frametitle{How to look for such a topos?}
 
 It is not an easy task.
@@ -204,79 +272,58 @@ It is not an easy task.
 \begin{enumerate}
 \item Identify basic building blocks, the representables.
 \item Identify a topology on them.
-\item Use the associated topos of sheaves.
+\item Use the associated $\infty$-topos of sheaves.
 \end{enumerate}
 } 
 
-Examples: 
+%\bloc{Example: synthetic algebraic geometry}{
+%\begin{itemize}
+%\item TODO
+%\item TODO
+%\end{itemize}
+%}
 
-affine schemes + Zariski topology
-
-TODO
- 
 }
  
  
- \frame{\frametitle{Synthetic homotopy theory}
+ \frame{\frametitle{Another big idea: the algebra/geometry duality}
  
- HoTT
+Dualities between algebraic and geometric objects is a recurring theme.
  
- }
- 
- 
- \frame{\frametitle{Doing both}
- 
- Why? How?
- 
- }
- 
- \frame{\frametitle{Examples}
- 
- Real-cohesive homotopy type theory
- 
- Synthetic algebraic geometry
- 
- Synthetic Stone duality / Condensed type theory
- 
- Synthetic higher category / Triangulated type theory 
- 
- }
- 
- 
- \frame{\frametitle{Another big idea: the geometry/algebra duality}
- 
- TODO
- 
- Affine scheme / Algebra (Zariski duality)
- 
- Stone Space / Boolean algebras (Stone duality)
- 
- Compact Hausdorff space / Commutative $C^*$-algebras (Gelfand duality)
- 
- Locale/Frame
- 
- Topos/Logos
+ \begin{center}
+ \begin{tabular}{|ccc|}
+ \hline
+ Name & Algebra & Geometry\\
+ \hline
+ Zariski duality & Algebras & Affine schemes\\
+ Stone Duality & Boolean algebras & Stone spaces\\
+ Gelfand duality & Comm. $C^*$-algebras & Compact Hausdorff spaces\\
+ Stone duality & Spatial frames & Sober spaces\\
+ \vdots & \vdots & \vdots\\
+ \hline
+\end{tabular}
+ \end{center}
  
  }
  
  
 \frame{\frametitle{In this talk}
 
-Present ideas developed during the quest for models of 
+Present machinery developed during the quest for models of synthetic algebraic geometry and synthetic Stone duality.
 
-Synthetic algebraic geometry
- 
- and
- 
-Synthetic Stone duality
+\bloc{Idea}{
+Use the fact that basic building blocks (affine schemes or Stone spaces) 
 
-(
+have an algebra/geometry duality (with algebras or boolean algebras).
+}
 
-which can be applied to 
- Synthetic higher category / Triangulated type theory 
-(to which extent a bit unclear)
+\bloc{Method}{
+\begin{enumerate}
+\item Identifies axioms that holds in the appropriate presheaf models.
+\item Sheafify internally to these models.
+\end{enumerate}
+}
 
-)
 
 }
  
@@ -286,117 +333,136 @@ which can be applied to
  
  \frame{\frametitle{Goal}
  
- Assume given an algebraic theory $\T$, giving the local model for the space we want to study. 
+This section present results from [Coquand, Höfer, Sattler 26].
  
-For SAG we take $\T$ to be the theory of rings.
+ Assume given an algebraic theory $\T$, modelling our building blocks. 
+ 
+For SAG, $\T$ is the theory of rings.
  
  \bloc{Goal}{
- We want to work synthetically in the classifying (higher) topos for $\T$.
- 
- This is the topos of presheaf over $Alg_{\T}^{f.p.}$.
+ Work synthetically in the classifying $\infty$-topos for $\T$.
  }
  
- Idea: representables are dual to the algebras, and therefore model the affines.
+ This is the topos of presheaf over $\T\mhyphen\Alg_{f.p.}$.
+ 
+ \bloc{Idea}{
+ Representables are dual to the algebras, and therefore model the basic building blocks.
+ }
  
  }
  
  
  \frame{\frametitle{The generic object}
  
- We have a presheaf sending any $A:\T\mhyphen Alg_{f.p.}$ to its underlying set.
+ We have a presheaf sending any $A:\T\mhyphen\Alg_{f.p.}$ to its underlying set.
  
- It is a $\T$-algebra in $PSh(\T\mhyphen Alg_{f.p.})$.
+ It is a $\T$-algebra in $\PSh(\T\mhyphen\Alg_{f.p.})$.
  
  \bloc{Axiom 1 (Generic object)}{
- There is a set $\G$ with a $\T$-algebra.
+ There is a set $\G$ with a $\T$-algebra structure.
  }
  
  }
  
  
- \frame{\frametitle{Representables}
+ \frame{\frametitle{The spectrum construction}
  
  \bloc{Definition}{
- A $\G$-algebra is a $\T$-algebra $A$ with a morphism $\G\to A$
+ A $\G$-algebra is a $\T$-algebra $A$ with a morphism from $\G$ to $A$.
  }
  
  \bloc{Definition}{
- Given $A:\G\mhyphen-Alg_{f.p.}$, we define:
- \[\Spec(A) = \Hom_\G(A,\G)\]
+ Given $A:\G\mhyphen\Alg_{f.p.}$, we define
+ 
+ \[\Spec(A) = \Hom_{\G\mhyphen\Alg}(A,\G).\]
  }
  
  \bloc{Example (SAG)}{
- We have a ring $R$. Then:
- \[\Spec(R[X]) = \Hom_R(R[X],R) = R\]
- Given $P:R[X]$, then:
- \[\Spec(R[X]/P) = \Hom_{R\mhyphen Alg}(R[X]/P,R) = \{x:R\ |\ P(x)=0\}\]
+% We have a ring $R$. Then
+ 
+% \[\Spec(R[X]) = \Hom_R(R[X],R) = R.\]
+ Given $P:R[X]$, then
+ 
+ \[\Spec(R[X]/P) = \Hom_{R\mhyphen Alg}(R[X]/P,R) = \{x:R\ |\ P(x)=0\}.\]
  }
  
  }
  
  
- \frame{\frametitle{Duality axiom}
+ \frame{\frametitle{Duality axiom and representable}
  
  \bloc{Axiom 2 (Duality)}{
- Assume given $A:\G\mhyphen Alg_{f.p.}$, then the map:
- \[ A \to R^{\Spec(A)}\]
+ Assume given $A:\G\mhyphen\Alg_{f.p.}$, then the map
+ 
+ \[A \to R^{\Spec(A)}\]
  is an equivalence.
  }
  
  \bloc{Corollary}{
- The map:
- \[\Spec : \G\mhyphen Alg_{f.p.}\to \Set\]
+ The map
+ 
+ \[\Spec : \G\mhyphen\Alg_{f.p.}\to \Set\]
  is an an embedding.
  }
  
- The set in the image of $\Spec$ are called the representables. In SAG they are called affine schemes
+The sets in the image of $\Spec$ are called the representables. 
  
- \bloc{Corollary}{
- Given $A,B:\G\mhyphen Alg_{f.p.}$, we have that:
- \[(\Spec(B)\to \Spec(A)) = \Hom_{\G\mhyphen Alg}(A,B)\]
+In SAG they are called affine schemes.
+ 
+ }
+ 
+ 
+ \frame{\frametitle{Duality: easy consequences}
+ 
+  \bloc{Corollary}{
+ Given $A,B:\G\mhyphen Alg_{f.p.}$, we have that
+ 
+ \[(\Spec(B)\to \Spec(A)) = \Hom_{\G\mhyphen\Alg}(A,B).\]
  }
  
  \bloc{Example (SAG)}{
- \[(R \to R) = \Hom_{R\mhyphen Alg}(R[X],R[X]) = R[X]\]
+ \[(R \to R) = \Hom_{R\mhyphen\Alg}(R[X],R[X]) = R[X]\]
  }
- 
- Kind of like Yoneda I guess?
  
  }
  
  
  \frame{\frametitle{Choice for representable}
  
- We know that representable in $PSh(\T\mhyphen Alg)$ are projective.
+ We know that representables in a presheaf category are projective.
  
  \bloc{Axiom 3 (Choice for representable)}{
- Given $A:\G\mhyphen Alg_{f.p.}$, the type $\Spec(A)$ has choice.
- }
- 
- Here we can already say some relatively interesting stuff.
- 
- \bloc{Corollary}{
- Given $A:\G\mhyphen Alg_{f.p.}$, the map:
- \[(A\mhyphen Alg_{f.p.}) \to (\Spec(A)\to \G\mhyphen Alg_{f.p.})\]
- TODO does this even make sense?
+ Given $A:\G\mhyphen\Alg_{f.p.}$, the type $\Spec(A)$ has choice.
  }
  
  }
  
  
- \frame{\frametitle{MAYBE Digression on qc modules}
+% \frame{\frametitle{MAYBE Digression on qc modules}
  
- }
+% }
  
  
+  \note{PERHAPS NOT NECESSARY}
  \frame{\frametitle{$\N$ is constant}
  
- We interpret the type $\N$ as the constant presheaf sending $A:\G\mhyphen Alg_{f.p.}$ to $\N$.
+ $\N$ is interpreted in $\PSh(\T\mhyphen\Alg_{f.p.})$ as the constant presheaf.
  
- \bloc{Axiom bonus ($\N$ constant)}{
+ \bloc{Axiom 4 ($\N$ constant)}{
  For any $A:\G\mhyphen Alg_{f.p.}$, the map
+ 
  \[\N\to \N^{\Spec(A)}\]
  is an equivalence.
+ }
+ 
+ \note{IS THIS REALLY TRUE (TODO)}
+ So family of algebraic objects over $\Spec(A)$ are well-behaved.
+ 
+ \bloc{Proposition}{
+ Given $B:\G\mhyphen\Alg_{f.p.}$, the map
+ 
+ \[(B\mhyphen\Alg_{f.p.}) \to (\Spec(B)\to \G\mhyphen\Alg_{f.p.})\]
+is an equivalence.
  }
  
  }
@@ -404,16 +470,18 @@ For SAG we take $\T$ to be the theory of rings.
  
  \frame{\frametitle{The presheaf axioms}
  
- \bloc{Theorem [Jonas etc...]}{
+ \bloc{Theorem [Coquand, Höfer, Sattler 26]}{
  Given $\T$ an algebraic theory, there exists a model of HoTT plus:
  \begin{itemize}
- \item There is $\G$ a $\T$-algebra.
- \item For all $A:\G\mhyphen Alg_{f.p.}$, the map $A\to \G^{\Spec(A)}$ is an equivalence.
- \item For all $A:\G\mhyphen Alg_{f.p.}$, the set $\Spec(A)$ has choice.
+ \item There is a $\T$-algebra $\G$.
+ \item For all $A:\G\mhyphen\Alg_{f.p.}$, the map $A\to \G^{\Spec(A)}$ is an equivalence.
+ \item For all $A:\G\mhyphen\Alg_{f.p.}$, the set $\Spec(A)$ has choice.
+ \item For all $A:\G\mhyphen\Alg_{f.p.}$, the map $\N\to\N^{\Spec(A)}$ is an equivalence.
  \end{itemize}
  }
  
  }
+ 
  
  
  \section{Sheaf models from internal topologies}
