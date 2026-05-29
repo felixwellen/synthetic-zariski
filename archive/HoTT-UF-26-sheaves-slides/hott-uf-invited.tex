@@ -16,6 +16,7 @@
 \usepackage{forest}
 \usepackage{color}
 \usepackage[all,cmtip]{xy}
+\usepackage{stmaryrd}
 
 \usepackage{pgfplots}
 \usepackage{array}
@@ -79,6 +80,8 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\PSh}{\text{PSh}}
 \newcommand{\Sh}{\text{Sh}}
+\newcommand{\J}{\mathbb{J}}
+\newcommand{\Type}{\text{Type}}
 
 \def\mhyphen{{\hbox{-}}}
 
@@ -114,11 +117,11 @@ Aarhus}
 \frame{\titlepage}
 
 
-\frame{\frametitle{Overview}
+%\frame{\frametitle{Overview}
 
-TODO
+%TODO
 
-}
+%}
 
 
  \begin{frame}<beamer>
@@ -137,7 +140,7 @@ Say we want to work with some geometric objects,
 
 e.g.\ differential manifolds, sequential spaces, schemes...
  
- \bloc{Core idea}{
+ \bloc{Core idea (an ahistorical type-theoretic reframing)}{
  \begin{enumerate}
  \item Embeds objects of interests in a topos.
  \item Interpret MLTT + UIP in this topos.
@@ -189,10 +192,10 @@ Synthetic domain theory\footnote{[Hyland 91], [Fiore, Plotkin 96], etc.} & Domai
 \hline
 Synthetic topology\footnote{[Escard\'o 04], [Le\v{s}nik 10], etc.} & Sequential spaces \\
 \hline
-Synthetic algebraic geometry\footnote{[Bleschmidt 17], [Cheribini, Coquand, Hutzler 24], etc.} & Schemes \\
+Synthetic algebraic geometry\footnote{[Bleschmidt 17], [Cherubini, Coquand, Hutzler 24], etc.} & Schemes \\
 \hline
-Condensed type theory\footnote{Barton, Commelin 24}/ & Stone spaces, \\
-Synthetic Stone duality\footnote{[Cherubini, Coquand, Geerlings, Moeneclaey 24]} & locally compact Hausdorff spaces\\
+Condensed type theory\footnote{[Barton, Commelin 24]}/ & Stone spaces, \\
+Synthetic Stone duality\footnote{[Cherubini, Coquand, Geerlings, Moeneclaey 24]} & compact Hausdorff spaces...\\
 \hline
 \end{tabular}
 \end{center}
@@ -246,7 +249,7 @@ Synthetic Stone duality\footnote{[Cherubini, Coquand, Geerlings, Moeneclaey 24]}
 \hline
  Name & Objects of interests  \\
  \hline
- Real-cohesive & Locally contractible topological spaces \\
+ Real-cohesive & Locally contractible spaces \\
  homotopy type theory\footnote{[Shulman 18]} & and their homotopy types \\
 \hline
 Synthetic algebraic geometry\footnote{[Bleschmidt 17], [Cheribini, Coquand, Hutzler 24], etc.} & Schemes \\
@@ -309,20 +312,24 @@ Dualities between algebraic and geometric objects is a recurring theme.
  
 \frame{\frametitle{In this talk}
 
-Present machinery developed during the quest for models of synthetic algebraic geometry and synthetic Stone duality.
+Present machinery developed during the quest for constructive models of synthetic algebraic geometry and synthetic Stone duality.
 
 \bloc{Idea}{
-Use the fact that basic building blocks (affine schemes or Stone spaces) 
-
-have an algebra/geometry duality (with algebras or boolean algebras).
+Use that our representables have an algebra/geometry duality.
 }
 
-\bloc{Method}{
-\begin{enumerate}
-\item Identifies axioms that holds in the appropriate presheaf models.
-\item Sheafify internally to these models.
-\end{enumerate}
-}
+\begin{itemize}
+\item \vspace{0cm} [Kock 80] for external duality used in $1$-topoi. 
+\item \vspace{0cm} [Bleschmidt 17] for internal duality in $1$-topoi.
+\item \vspace{0cm} [Coquand, Höfer, Sattler 26] for internal duality in $\infty$-topoi.
+\end{itemize}
+
+%\bloc{Method}{
+%\begin{enumerate}
+%\item Identifies axioms that holds in the appropriate presheaf models.
+%\item Sheafify internally to these models.
+%\end{enumerate}
+%}
 
 
 }
@@ -337,7 +344,7 @@ This section present results from [Coquand, Höfer, Sattler 26].
  
  Assume given an algebraic theory $\T$, modelling our building blocks. 
  
-For SAG, $\T$ is the theory of rings.
+For SAG, $\T$ is the theory of commutative rings.
  
  \bloc{Goal}{
  Work synthetically in the classifying $\infty$-topos for $\T$.
@@ -405,7 +412,7 @@ For SAG, $\T$ is the theory of rings.
  is an an embedding.
  }
  
-The sets in the image of $\Spec$ are called the representables. 
+The sets in the image of $\Spec$ are called the affines. 
  
 In SAG they are called affine schemes.
  
@@ -431,6 +438,8 @@ In SAG they are called affine schemes.
  
  We know that representables in a presheaf category are projective.
  
+ \note{TODO recall choice}
+ 
  \bloc{Axiom 3 (Choice for representable)}{
  Given $A:\G\mhyphen\Alg_{f.p.}$, the type $\Spec(A)$ has choice.
  }
@@ -443,29 +452,27 @@ In SAG they are called affine schemes.
 % }
  
  
-  \note{PERHAPS NOT NECESSARY}
- \frame{\frametitle{$\N$ is constant}
+% \frame{\frametitle{$\N$ is constant}
  
- $\N$ is interpreted in $\PSh(\T\mhyphen\Alg_{f.p.})$ as the constant presheaf.
+% $\N$ is interpreted in $\PSh(\T\mhyphen\Alg_{f.p.})$ as the constant presheaf.
  
- \bloc{Axiom 4 ($\N$ constant)}{
- For any $A:\G\mhyphen Alg_{f.p.}$, the map
+% \bloc{Axiom 4 ($\N$ constant)}{
+% For any $A:\G\mhyphen Alg_{f.p.}$, the map
  
- \[\N\to \N^{\Spec(A)}\]
- is an equivalence.
- }
+% \[\N\to \N^{\Spec(A)}\]
+% is an equivalence.
+% }
  
- \note{IS THIS REALLY TRUE (TODO)}
- So family of algebraic objects over $\Spec(A)$ are well-behaved.
+% So family of algebraic objects over $\Spec(A)$ are well-behaved.
  
- \bloc{Proposition}{
- Given $B:\G\mhyphen\Alg_{f.p.}$, the map
+% \bloc{Proposition}{
+% Given $B:\G\mhyphen\Alg_{f.p.}$, the map
  
- \[(B\mhyphen\Alg_{f.p.}) \to (\Spec(B)\to \G\mhyphen\Alg_{f.p.})\]
-is an equivalence.
- }
+% \[(B\mhyphen\Alg_{f.p.}) \to (\Spec(B)\to \G\mhyphen\Alg_{f.p.})\]
+%is an equivalence.
+% }
  
- }
+% }
  
  
  \frame{\frametitle{The presheaf axioms}
@@ -476,7 +483,7 @@ is an equivalence.
  \item There is a $\T$-algebra $\G$.
  \item For all $A:\G\mhyphen\Alg_{f.p.}$, the map $A\to \G^{\Spec(A)}$ is an equivalence.
  \item For all $A:\G\mhyphen\Alg_{f.p.}$, the set $\Spec(A)$ has choice.
- \item For all $A:\G\mhyphen\Alg_{f.p.}$, the map $\N\to\N^{\Spec(A)}$ is an equivalence.
+ %\item For all $A:\G\mhyphen\Alg_{f.p.}$, the map $\N\to\N^{\Spec(A)}$ is an equivalence.
  \end{itemize}
  }
  
@@ -487,11 +494,15 @@ is an equivalence.
  \section{Sheaf models from internal topologies}
 
 
-\frame{\frametitle{Let's work internally}
+\frame{\frametitle{Toward sheaves}
 
-We want to work with sheaves instead of presheaves. But thats painful.
+We want to work with sheaves instead of presheaves.
 
-\bloc{Idea}{
+\bloc{External approach}{
+Redo [Coquand, Höfer, Sattler 26] with sheaves...
+}
+
+\bloc{Internal approach}{
 Forget about higher category theory, let's do it in HoTT! 
 }
 
@@ -501,10 +512,26 @@ Forget about higher category theory, let's do it in HoTT!
  \frame{\frametitle{Internal topologies}
  
  \bloc{Definition}{
- TODO
+A topology consists of a class of finite sums of affines $\J$ stable under $\Sigma$ and $1$.
  }
  
- This is reasonable as: TODO
+ \bloc{Definition}{
+ A $\J$-cover is a map with fibers in $\J$.
+ }
+ 
+ %\bloc{Remark}{
+ Given $S$ affine, any $\J$-cover is merely of the form
+ 
+ \[U_1+\cdots+U_n \to S\]
+ with each $U_i$ representable.
+% }
+
+\bloc{Lemma}{
+\begin{itemize}
+\item Isomorphisms are $\J$-cover.
+\item $\J$-covers are stable under pullback and composition.
+\end{itemize}
+}
  
  }
  
@@ -512,86 +539,118 @@ Forget about higher category theory, let's do it in HoTT!
  \frame{\frametitle{Internal sheaves}
 
 \bloc{Definiton}{
-TODO
+A type $X$ is a $\J$-sheaf is for all $S:\J$, the map
+
+\[X\to X^{\propTrunc{S}}\]
+is an equivalence.
 }
 
-Lex modality [ref].
+This means being a $\J$-sheaf is a lex modality in HoTT [Rijke, Shulman, Spitters 20].
 
 \bloc{Corollary}{
-TODO
+\begin{itemize}
+\item $\J$-sheaves are stable under $\Sigma$ and identity types.
+\item $\J$-sheaves are stable under $\Pi_X$ for any type $X$.
+\item We have a $\J$-sheafification.
+\item The type of $\J$-sheaves is a itself a $\J$-sheaf. 
+\end{itemize}
 }
  
  }
  
  \frame{\frametitle{Why is this reasonable?}
- 
- TODO
+
+How does this match up with $\J$-sheaves in the usual sense?
+
+\pause
+
+\bloc{Lemma}{
+Let $T\to S$ be a $\J$-cover and $X$ be set that is a $\J$-sheaf. Then the map
+
+\vspace{-0.2cm}
+\[X^S\to \lim(X^T\rightrightarrows X^{T\times_ST})\]
+is an equivalence.
+}
+
+\bloc{Remark}{
+The is a version for $n$-types based on iterated joins [Williams 25].
+}
  
  }
  
+
  
- \frame{\frametitle{Higher sheaves (aka stacks)}
  
- $1$-type case.
+ \frame{\frametitle{Lex modalities and submodels of HoTT}
  
+ Lex modalities correspond to $\infty$-subtopoi.
+ 
+So $\J$-sheaves should form a model of HoTT.
+ 
+ \bloc{Theorem [Quirin 16]}{
+Given a lex modality $L$, we have an interpretation $\llbracket\_\rrbracket$ of HoTT into $L$-modal types where
+\begin{center}
+\begin{tabular}{ccc}
+$\llbracket \Type \rrbracket$ & $=$ & $\Type_L$ \\
+$\llbracket \Sigma_XY \rrbracket$ & $=$ & $\Sigma_{\llbracket X\rrbracket} \llbracket Y \rrbracket$ \\
+$\llbracket \Pi_XY \rrbracket$ & $=$ & $\Pi_{\llbracket X\rrbracket} \llbracket Y \rrbracket$ \\
+$\llbracket x=_Xy \rrbracket$ & $=$ & $[x]=_{\llbracket X\rrbracket} [y]$\\
+$\llbracket \propTrunc{X} \rrbracket$ & $=$ & $L\propTrunc{\llbracket X\rrbracket}$\\
+\end{tabular}
+\end{center}
  }
  
- 
- \frame{\frametitle{Lex modalities and submodel}
- 
- Lex modalities correspond to nice subtopoi (TODO check)
- 
- Similarly in HoTT:
- 
- \bloc{Definition}{
- interpretation
- }
- 
- \bloc{Theorem [TODO ref?]}{
- The axioms of HoTT are validated by this interpretation.
- }
+So we have a $\J$-sheaf model of HoTT. 
  
  }
  
  
  \frame{\frametitle{The sheaf axioms: generic object}
  
- What do we preserve about the sheaf axioms?
+ What do the $\J$-sheaf model preserve from the presheaf axioms?
+ 
+ We want that $\G$ is a $\J$-sheaf, giving a generic $\mathbb{T}$-algebra in the $\J$-sheaf model.
  
  \bloc{Definition}{
- A topology is subcanonical if...
+ A topology $\J$ is subcanonical if $\G$ is a $\J$-sheaf.
  }
  
- \bloc{Corollary (Generic sheaf object)}{
- We have a $\mathbb{T}$-algebra in the sheaf model.
+ \bloc{Remark}{
+ By duality, this implies any representable is a $\J$-sheaf.
+ }
  
- Moreover the interpretation of
+ From now on we assume $\J$ subcanonical.
  
- TODO
- 
- is satisfied in the sheaf model.
+ \bloc{Lemma (Generic object in sheaves)}{
+ In the sheaf model, we have that $\propTrunc{S}$ for all $S:\J$.
  }
  
  }
  
  
  \frame{\frametitle{The sheaf axiom: duality}
- 
-  \bloc{Corollary}{
- If $E$ is subcanonical, then any representable is a sheaf, any fp algebra as well.
- }
 
- \bloc{Lemma (sheaf duality)}{
- If $E$ is subcanonical, then the sheaf modal satisfy duality. 
+ \bloc{Lemma (Duality for sheaves)}{
+Duality holds in the $\J$-sheaf model.
  }
  
  }
  
  
- \frame{\frametitle{Local choice}
+ \frame{\frametitle{The sheaf axioms: local choice}
  
- \bloc{Lemma (local choice)}{
-In the sheaf model, TODO
+ \bloc{Definition}{
+ A type $X$ has $\J$-local choice if given a surjection $Y\twoheadrightarrow X$, there exists a type $U$ and the dotted arrows in
+ 
+ \[\xymatrix{
+ && Y\ar@{->>}[d]\\
+U \ar@{-->}[rru]\ar@{-->}[rr]_{\J\mhyphen\text{cover}} && X 
+}\]
+
+ }
+ 
+ \bloc{Lemma (Local choice)}{
+ In the sheaf model, we have that representable have $\J$-local choice
  }
  
  }
@@ -599,51 +658,167 @@ In the sheaf model, TODO
 
 \frame{\frametitle{Summary for sheaf model}
 
- \bloc{Proposition}{
- Given a subcanonical topology $E$, the sheafification interpretation satisfy the following.
+ \bloc{Theorem}{
+ Assume given:
+ \begin{itemize} 
+ \item $\T$ an algebraic theory 
+ \item $\J$ a subcanonical topology in HoTT + presheaf axioms.
+\end{itemize}
+Then there exists a $\J$-sheaf model of HoTT where:
+ \begin{itemize}
+ \item There is a $\T$-algebra $\G$ such that for all $S:\J$ we have $\propTrunc{S}$.
+ \item For all $A:\G\mhyphen\Alg_{f.p.}$, the map $A\to \G^{\Spec(A)}$ is an equivalence.
+ \item For all $A:\G\mhyphen\Alg_{f.p.}$, the set $\Spec(A)$ has $\J$-local choice.
+ %\item For all $A:\G\mhyphen\Alg_{f.p.}$, the map $\N\to\N^{\Spec(A)}$ is an equivalence.
+ \end{itemize}
+ }
+
+}
+
+ 
+\section{Sheaf models for synthetic algebraic geometry and variants}
+
+
+\frame{\frametitle{The presheaf model}
+
+Ring and algebras over them are assumed commutative.
+
+\bloc{Proposition}{
+We have a model of HoTT where:
 \begin{itemize}
-\item Generic object
-\item Duality
-\item Local choice
+\item There is a ring $R$.
+\item For all $A:R\mhyphen\Alg_{f.p.}$ the map $A\to R^{\Spec(A)}$ is an equivalence.
+ \item For all $A:R\mhyphen\Alg_{f.p.}$ the set $\Spec(A)$ has choice.
 \end{itemize}
 }
 
 }
 
- 
-\section{Application: models synthetic algebraic geometry and variants}
-
-
 \frame{\frametitle{Zariski topology}
 
 \bloc{Definition}{
-TODO
+The Zariski topology consists of types of the form
+
+\[r_1\ \text{inv}+\cdots+r_n\ \text{inv} \]
+where $(r_1,\cdots,r_n)=1$ in $R$.
+}
+
+%\bloc{Definition}{
+%An open proposition is a proposition of the form 
+
+%\[r_1\ \text{inv}\lor\cdots\lor r_n\ \text{inv} \]
+%where $$ in $r_1,\hdots,r_n:R$.
+%}
+
+\bloc{Remark}{
+We have $\propTrunc{S}$ for all $S:\text{Zar}$ if and only if $R$ is local.
 }
 
 }
 
 
-\frame{\frametitle{Etale topology}
+\frame{\frametitle{The Zariski sheaf model}
+
+\bloc{Proposition}{
+We have a model of HoTT where:
+\begin{itemize}
+\item There is a local ring $R$.
+\item For all $A:R\mhyphen\Alg_{f.p.}$ the map $A\to R^{\Spec(A)}$ is an equivalence.
+ \item For all $A:R\mhyphen\Alg_{f.p.}$ the set $\Spec(A)$ has Zariski-local choice.
+\end{itemize}
+}
+
+}
+
+
+\frame{\frametitle{An interlude: sheafifying in a sheaf model}
+
+\bloc{Remark}{
+We considered topologies internal to presheaves.
+
+The same story works for topologies internal to sheaves.
+}
+
+\bloc{Remark}{
+In the Zariski sheaf model, finite sums of affines are affines.
+
+So we can replace finite sums of affines by affines in the definition of topology.
+}
+
+Now we work in the Zariski sheaf model.
+
+}
+
+
+\frame{\frametitle{\'Etale topology}
 
 \bloc{Definition}{
-TODO
+A type $X$ is formally \'etale if for all $\epsilon:R$ nilpotent, the map
+
+\[X\to X^{\epsilon=0}\]
+is an equivalence.
+}
+
+\bloc{Definition}{
+The \'etale topology consists of formally \'etale non-empty affines.
 }
 
 \bloc{Proposition}{
-unramifiable
+A type $X$ is an \'etale sheaf if and only if for all $P$ monic unramifiable, the map 
+
+\[X\to X^{\Spec(R[X]/P)}\]
+is an equivalence.
 }
 
 }
 
 
-\frame{\frametitle{Fppf topology}
+\frame{\frametitle{The \'etale sheaf model}
+
+\bloc{Proposition}{
+We have a model of HoTT where:
+\begin{itemize}
+\item There is a local ring $R$ such that any monic unramifiable polynomial has a root.
+\item For all $A:R\mhyphen\Alg_{f.p.}$ the map $A\to R^{\Spec(A)}$ is an equivalence.
+ \item For all $A:R\mhyphen\Alg_{f.p.}$ the set $\Spec(A)$ has \'etale-local choice.
+\end{itemize}
+}
+
+}
+
+
+\frame{\frametitle{The fppf topology}
 
 \bloc{Definition}{
-TODO
+An $A:R\mhyphen\Alg_f.p.$ is flat if the functor $A\otimes_R\_$ is exact.
 }
 
-\bloc{Conjecture}{
-monic non-constant
+\bloc{Definition}{
+The fppf topology consists of flat non-empty affines.
+}
+
+\bloc{Remark}{
+Given $P$ monic non-constant, $R[X]/P$ is flat non-empty, 
+
+so in fppf sheaves monic non-constant have roots .
+}
+
+\bloc{Remark}{
+Formally \'etale affines are flat, so fppf sheaves are \'etale sheaves.
+}
+
+}
+
+
+\frame{\frametitle{The fppf sheaf model}
+
+\bloc{Proposition}{
+We have a model of HoTT where:
+\begin{itemize}
+\item There is a local ring $R$ such that any monic non-constant polynomial has a root.
+\item For all $A:R\mhyphen\Alg_{f.p.}$ the map $A\to R^{\Spec(A)}$ is an equivalence.
+ \item For all $A:R\mhyphen\Alg_{f.p.}$ the set $\Spec(A)$ has flat-local choice.
+\end{itemize}
 }
 
 }
@@ -651,18 +826,53 @@ monic non-constant
  
  \frame{\frametitle{The four models compared}
  
- TODO
+ %\begin{center}
+ %\begin{tabular}{ccc}
+ % & Ring $R$ & Choice for affines \\
+ %Presheaves & Arbitrary & Full choice \\
+ %Zariski sheaves & Local & Zariski-local choice \\ 
+ %\'Etale sheaves & Local and monic unramifiable have roots & \'Etale local choice\\
+ %Fppf sheaves & Local and monic non-constant have roots & Flat local choice \\
+ %\end{tabular}
+ %\end{center}
+ 
+  \begin{center}
+ \begin{tabular}{c|c}
+   & \\
+  The ring $R$ is: & Affines have: \\
+  & \\
+  \hline
+    & \\
+arbitrary & full choice \\
+  & \\
+local & Zariski-local choice \\ 
+  & \\
+\begin{tabular}{c} local + monic unramifiable\\ have roots\end{tabular} & \'etale-local choice\\
+  & \\
+\begin{tabular}{c} local + monic non-constant\\ have roots\end{tabular} & flat-local choice \\
+  & \\
+ \end{tabular}
+ \end{center}
+
  
  }
  
  
- \section{Perspective?}
+ \section{Perspective}
  
- \frame{\frametitle{SSD and variant}}
+ \frame{\frametitle{Synthetic Stone duality}
  
- \frame{\frametitle{Triangulated TT}}
+ \bloc{Remark}{
  
- \frame{\frametitle{Maybe an overview of SSD and SAG results}}
+ }
+ 
+ }
+ 
+ \frame{\frametitle{Triangulated type theory}
+ 
+ }
+ 
+% \frame{\frametitle{Maybe an overview of SSD and SAG results}}
  
 
 \end{document}
