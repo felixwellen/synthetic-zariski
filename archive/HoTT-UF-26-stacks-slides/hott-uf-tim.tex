@@ -46,7 +46,7 @@
 
 \renewcommand{\_}{\rule{.6em}{.5pt}\hspace{0.023cm}}
 
-\newcommand{\bloc}[2]{\begin{block}{#1}\setlength\abovedisplayskip{0pt}#2\end{block}}
+\newcommand{\bloc}[2]{\begin{block}{#1}\setlength\abovedisplayskip{0pt}#2\vspace{0.1cm}\end{block}}
 
 \setbeamertemplate{navigation symbols}{} 
 \addtobeamertemplate{footline}{\hfill{\tiny \insertframenumber}\hspace{2em} \vspace{1em}}
@@ -81,6 +81,10 @@
 \newcommand{\Set}{\text{Set}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\DM}{\text{DM}}
+
+\newcommand{\spacebefore}{\vspace{0.3cm}}
+\newcommand{\spaceafter}{\vspace{-0.2cm}}
+\newcommand{\spaceend}{\vspace{-0.4cm}}
 
 %\newcommand{\trunc}[1]{|| #1 ||}
 
@@ -129,34 +133,34 @@ In this talk I will present work from his unfinished master thesis.
 }
 
 
-\frame{\frametitle{Overview}
+%\frame{\frametitle{Overview}
 
-Tim's master thesis was about Deligne-Mumford stacks in synthetic algebraic geometry.
+%Tim worked on Deligne-Mumford stacks in SAG.
 
-\bloc{Intuition}{
-Deligne-Mumford stacks are $1$-types which are ``nice'' quotients of schemes.
-}
+%\bloc{Intuition}{
+%Deligne-Mumford stacks are $1$-types which are ``nice'' quotients of schemes.
+%}
 
-Tim gave an extension to $n$-types, based on [Simpson 96].
+%Tim gave an extension to $n$-types, based on [Simpson 96].
 
-\begin{center}
-``In this paper we simply \emph{assume} that a theory of $n$-stacks\footnote{aka sheaves of $n$-groupoids} of groupoids exists.''
-\end{center}
+%\begin{center}
+%``In this paper we simply \emph{assume} that a theory of $n$-stacks\footnote{aka sheaves of $n$-groupoids} of groupoids exists.''
+%\end{center}
 
-\bloc{HoTT gives such a theory!}{
-\begin{itemize} 
-\item The $n$-groupoid structure can be modelled using $n$-types.
-\item Sheafification is an accessible lex modality.
-\end{itemize}
-}
+%\bloc{HoTT gives such a theory!}{
+%\begin{itemize} 
+%\item Presheaves of $n$-groupoids are modelled as $n$-types.
+%\item Being a sheaf is an accessible lex modality.
+%\end{itemize}
+%}
 
-}
+%}
 
 
-% \begin{frame}<beamer>
-% \frametitle{Outline}
-% \tableofcontents
-% \end{frame}
+ \begin{frame}<beamer>
+ \frametitle{Outline}
+ \tableofcontents
+ \end{frame}
  
 
 \section{From affine schemes to Deligne-Mumford stacks}
@@ -198,19 +202,12 @@ Tim gave an extension to $n$-types, based on [Simpson 96].
 
 \bloc{Duality axiom}{
 We have an equivalence
-
-\[R\mhyphen \Alg_{\mathrm{f.p.}}  \simeq \{\text{Affine\ schemes}\}.\]
-
-%\begin{center}
-%\begin{tabular}{ccc}
-%$R\mhyphen \Alg_{f.p.}$ & $\simeq$ & $\{\text{Affine\ schemes}\}$. \\
-%$A$ & $\mapsto$ &  $\Hom_{R\mhyphen\Alg}(A,R)$\\
-%$R^X$ & $\mapsfrom$ & $X$
-%\end{tabular}
-%\end{center}
+\spacebefore
+\[R\mhyphen\Alg_{fp}  \simeq \{\text{Affine\ schemes}\}.\]
+\spaceend
 }
 
-For affine schemes, algebra and geometry match up perfectly.
+For affine schemes, \red{algebra and geometry match up perfectly}.
 
 }
 
@@ -239,20 +236,27 @@ For affine schemes, algebra and geometry match up perfectly.
 Assume $n>0$.
 
 \bloc{Definition}{
-We define the projective space $\bP^n$ by
-
+We define the \red{projective space $\bP^n$} by
+\spacebefore
 \[\bP^n = \{\text{Lines\ in}\ R^{n+1}\ \text{going\ through}\ 0\}.\]
+\spaceend
 }
 
-Any map in from $\bP^n$ to $R$ is constant, so $\bP^n$ cannot be affine.
+Any map from $\bP^n$ to $R$ is constant, so \red{$\bP^n$ cannot be affine}.
+
+\pause
 
 \bloc{Definition}{
-A scheme is a set that has a finite open cover by affine pieces.
+A \red{scheme} is a set that has a finite open cover by affine pieces.
 }
 
-\bloc{Example}{
+\pause
+
 $\bP^n$ is a scheme.
-}
+
+%\bloc{Example}{
+%$\bP^n$ is a scheme.
+%}
 
 }
 
@@ -260,10 +264,13 @@ $\bP^n$ is a scheme.
 \frame{\frametitle{But not everything is a scheme}
 
 \bloc{Definition}{
-A cubic surface is a scheme $X$ such that there exists $P:R[X_0,\cdots,X_3]$ homogeneous of degree $3$ with 
-
+A \red{cubic surface} is a scheme $X$ such that there exists $P:R[X_0,\cdots,X_3]$ homogeneous of degree $3$ with 
+\spacebefore
 \[X = \{x:\bP^3\ |\ P(x)=0\}.\]
+\spaceend
 }
+
+\pause
 
 \bloc{Remark}{
 The type of smooth cubic surfaces is nice:
@@ -273,12 +280,16 @@ The type of smooth cubic surfaces is nice:
 \end{itemize}
 }
 
+\pause
+
+\begin{center}
 But it cannot be a scheme, it is not even a set!
+\end{center}
 
 }
 
 
-\frame{\frametitle{Smooth cubic surfaces and the 27 lines}
+\frame{\frametitle{Automorphisms of cubic surfaces}
 
 \bloc{Theorem (over $k$ an algebraically closed field)}{
 Any smooth cubic surface contains precisely 27 lines.
@@ -295,23 +306,34 @@ This gives a tight control on automorphisms of these surfaces.
 
 \frame{\frametitle{Deligne-Mumford stacks}
 
-The notion of DM stack captures this intuition. 
+\note{TODO}
+The notion of Deligne-Mumford stack models this situation. 
 
 \bloc{Intuition}{
-A Deligne-Mumford stack is a $1$-type that is:
+A \red{Deligne-Mumford stack} is a $1$-type that is:
 \begin{itemize} 
-\item An étale sheaf.
-\item \'Etale-locally affine.
+\item an étale sheaf.
+\item \'etale-locally affine.
 \end{itemize}
 }
 
-\bloc{Why \'etale-locally?}{
+\pause
+
 A type that is Zariski-locally affine is a set.
+
+\pause
+
+\bloc{Remark}{
+[Simpson 96] gave an extension to $n$-types.
 }
 
-\bloc{Higher Deligne-Mumford stacks [Simpson 96]}{
-Moduli spaces of Deligne-Mumford stacks are usually $2$-types, etc...
-}
+Tim worked on a synthetic version of this extended version.
+
+%Tim gave an extension to $n$-types, based on [Simpson 96].
+
+%\bloc{Higher Deligne-Mumford stacks [Simpson 96]}{
+%Types of Deligne-Mumford stacks are usually $2$-types, etc.
+%}
 
 }
 
@@ -337,22 +359,24 @@ Moduli spaces of Deligne-Mumford stacks are usually $2$-types, etc...
 %}
 
 
-\frame{\frametitle{What to expect synthetically?}
+\frame{\frametitle{Why do it synthetically?}
 
 \bloc{Traditional approach}{
-Use sheaves of $n$-groupoids (aka $n$-stack) on the \'etale site.
+Use sheaves of $n$-groupoids (aka $n$-stacks) on the \'etale site.
 }
 
-<<<<<<< HEAD
-$\Rightarrow$ A lot of technical machinery needed.
-=======
-$\Rightarrow$ A lot of technical machinery is needed.
->>>>>>> 70288afb7d12974ec1b352ef784f1588100ffe41
+$\Rightarrow$ A lot of technical machinery is needed. \pause From [Simpson 96]:
+
+\begin{center}
+``In this paper we simply \emph{assume} that a theory of $n$-stacks of groupoids exists.''
+\end{center}
+
+\pause
 
 \bloc{Synthetic approach}{
 \begin{itemize}
 \item Sheaves of $n$-groupoids on the Zariski site are just $n$-types. 
-\item \'Etale sheaves are modal types for some accessible lex modality.
+\item Being an \'etale sheaf is an accessible lex modality.
 \end{itemize}
 }
 
@@ -367,8 +391,8 @@ $\Rightarrow$ We expect a more direct and elegant development.
 \frame{\frametitle{Formally \'etale types}
 
 \bloc{Definition}{
-A type $X$ is formally \'etale if given any $\epsilon:R$ nilpotent, the map:
-
+A type $X$ is \red{formally \'etale} if given any $\epsilon:R$ nilpotent, the map:
+\spacebefore
 \[X\to X^{\epsilon=0}\]
 is an equivalence.
 }
@@ -376,8 +400,6 @@ is an equivalence.
 \bloc{Intuition}{
 \begin{itemize}
 \item $\epsilon$ nilpotent means $\epsilon$ infinitesimal.
-%\item $X$ formally \'etale means $X$ thinks infinitesimal are $0$.
-%\item $X$ formally \'etale means infinitesimal don't matter when working in $X$
 \item $X$ formally \'etale means $X$ discrete.
 \end{itemize}
 }
@@ -388,27 +410,31 @@ is an equivalence.
 \frame{\frametitle{\'Etale sheaves}
 
 \bloc{Definition}{
-An \'etale cover is a map whose fibers are formally \'etale and non-empty.
-}
-
-\bloc{Definition}{
-A type $X$ is an \'etale sheaf if for all $S$ affine, formally \'etale and non-empty, we have that
-
+A type $X$ is an \red{\'etale sheaf} if for all $S$ affine, formally \'etale and non-empty, we have that
+\spacebefore
 \[X\to X^{\propTrunc{S}}\]
 is an equivalence.
 }
 
-\bloc{Intuition}{
-\begin{itemize}
-\item \'Etale sheaves ``see'' affine \'etale covers as surjections.
-\item If we have a goal which is an  \'etale sheaf, we can assume e.g.\ that separable polynomials have roots. 
-\end{itemize}
-}
+%\bloc{Recall}{
+If our goal is an \'etale sheaf, we can assume e.g.\ $X^2+1$ has a root\footnote{If $2$ is invertible in $R$.}.
+%}
+
+%\bloc{Intuition}{
+%\begin{itemize}
+%\item \'Etale sheaves ``see'' affine \'etale covers as surjections.
+%\item If we have a goal which is an  \'etale sheaf, we can assume e.g.\ that separable polynomials have roots. 
+%\end{itemize}
+%}
 
 }
 
 
 \frame{\frametitle{Deligne-Mumford stacks}
+
+\bloc{Definition}{
+An \red{\'etale cover} is a map whose fibers are formally \'etale and non-empty.
+}
 
 %\bloc{Definition}{
 %We define the class $CS$ of covering stacks the smallest $CS\subset etale sheaves$ such that:
@@ -418,13 +444,17 @@ is an equivalence.
 %\end{itemize}
 %}
 
-Now we define the class of Deligne-Mumford stacks.
+\pause
+
+We give Tim's definition of the \red{class of Deligne-Mumford stacks}.
+
+\pause
 
 \bloc{Definition}{
 $\DM$ is the smallest class of \'etale sheaves such that:
 \begin{itemize}
 \item $S$ affine $\Rightarrow S\in\DM$.
-\item $S$ affine, $p:S\to X$ \'etale cover with fibers in $\DM$\ \ $\Rightarrow X\in\DM$.
+\item ($S$ affine, $p:S\to X$ \'etale cover whose fibers are in $\DM$) $\Rightarrow X\in\DM$.
 \end{itemize}
 }
 
@@ -440,16 +470,18 @@ $\DM$ is the smallest class of \'etale sheaves such that:
 }
 
 
-\frame{\frametitle{Stability properties for Deligne-Mumford stacks}
+\frame{\frametitle{General properties of Deligne-Mumford stacks}
 
 \bloc{Proposition}{
 \begin{itemize}
 \item $\DM$ is stable under $\Sigma$ and identity types.
 %\item $(X\in \DM,Y:X\to\DM) \Rightarrow \Sigma_XY\in\DM$
 %\item $(X\in\DM, x,y:X) \Rightarrow x=_Xy\in \DM$.
-\item Given $Y$ an \'etale sheaf with $X\in \DM$ and $p:X\to Y$ an \'etale cover with fibers in $\DM$, we have that $Y\in \DM$.
+\item $\DM$ is stable under \'etale quotients\footnote{Meaning given $Y$ an \'etale sheaf with $X\in \DM$ and $p:X\to Y$ an \'etale cover with fibers in $\DM$, we have that $Y\in \DM$.}.
 \end{itemize}
 }
+
+\pause
 
 \bloc{Proposition}{
 The type of Deligne-Mumford stacks is an \'etale sheaf.
@@ -466,12 +498,10 @@ Traditionally called \'etale descent for Deligne-Mumford stacks.
 \frame{\frametitle{Algebraic spaces}
 
 \bloc{Definition}{
-An algebraic space is a Deligne-Mumford stack which is a set\footnote{Traditionally, identity types in algebraic spaces are required to be schemes.}.
+An \red{algebraic space} is a Deligne-Mumford stack which is a set\footnote{Traditionally, identity types in algebraic spaces are required to be schemes.}.
 }
 
-%\bloc{Warning!}{
-%Traditionally we would require its identity types to be schemes.
-%}
+\pause
 
 \bloc{Intuition}{
 \begin{itemize}
@@ -480,7 +510,9 @@ An algebraic space is a Deligne-Mumford stack which is a set\footnote{Traditiona
 \end{itemize}
 }
 
-We want interesting examples of those.
+\pause
+
+We want \red{non-trivial} examples of algebraic spaces.
 
 }
 
@@ -519,14 +551,15 @@ $\subsetneq$ & $\left\{\text{Algebraic\ spaces}\right\}$\\
 %}
 
 
-\frame{\frametitle{A non-locally separated algebraic space}
+\frame{\frametitle{An algebraic space that is not locally separated}
 
 Assume $2$ invertible in $R$.
 
 \bloc{Lemma}{
-For $x,y:R$, define:
-
-\[(x\sim y) = (x=y)\lor (x\not=0)\land (y\not=0)\land (x=-y)\]
+For $x,y:R$, we define
+\spacebefore
+\[(x\sim y) = (x=y)\lor \big((x\not=0)\land (y\not=0)\land (x=-y)\big).\]
+\spaceend
 }
 
 \bloc{Lemma}{
@@ -540,21 +573,27 @@ $R/\sim$ is an algebraic space that is not locally separated.
 
 Assume $2$ invertible in $R$.
 
+%\bloc{Definition}{
+%Given $r:R^\times$, we define:
+
+%\[D_r = \{x:R,\, y:R/x\ |\ y^2 = r\ \text{mod}\ x\}\]
+%}
+
 \bloc{Definition}{
-Given $r:R^\times$, we define:
-
-\[D_r = \{x:R,\, y:R/x\ |\ y^2 = r\ \text{mod}\ x\}\]
+We define
+\spacebefore
+\[H = \{r:R^\times,\, x:R,\, y:R/x\ |\ y^2 = r\ \text{mod}\ x\}.\]
+\spaceend
 }
 
-\bloc{Intuition}{
-\begin{itemize}
-\item $D_1$ is the line with two origins.
-\item $D_r$ is the line with the square roots of $r$ as origins.
-\end{itemize}
-}
+%\bloc{Intuition}{
+%\begin{itemize}
+%\item $D_1$ is the line with two origins.
+%\item $D_r$ is the line with the square roots of $r$ as origins.
+%\end{itemize}
+%}
 
-\bloc{Lemma}{
-Consider $H=\Sigma_{r:R^\times} D_r$, then:
+\bloc{Proposition}{
 \begin{itemize}
 \item $H$ is a locally separated algebraic space.
 \item $H$ is not a scheme.
@@ -566,9 +605,22 @@ Consider $H=\Sigma_{r:R^\times} D_r$, then:
 }
 
 
-\frame{\frametitle{Where next?}
+\frame{
 
-...
+\begin{figure}
+\includegraphics[width=0.5\textwidth]{images/tim.png}
+\end{figure}
+
+}
+
+
+\frame{\frametitle{The future of Tim's work}
+
+\begin{itemize}
+\item A synthetic proof of smooth cubic surfaces forming a Deligne-Mumford $1$-stack has never been closer\footnote{Ongoing work with Felix Cherubini, Thierry Coquand, Fabian Endres, Jonas Höfer and Marc Nieper-Wi{\ss}kirchen}.
+\item I am working on generalising Tim's definition to abstract sheaf models.
+\item Tim's work is foundational for \'etale synthetic algebraic geometry.
+\end{itemize}
 
 }
 
