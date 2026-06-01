@@ -123,19 +123,23 @@ Aarhus}
 
 \frame{\frametitle{Overview}
 
-We present the machinery developed to build constructive models of synthetic algebraic geometry and synthetic Stone duality.
+We present the machinery used to build constructive models for synthetic algebraic geometry and synthetic Stone duality.
 
-\bloc{When to consider using it?}{
+\pause
+
+\bloc{What makes it work?}{
 \begin{itemize}
-\item You want to do some sort of synthetic geometry.
-\item Your spaces of interest are build by gluing some basic spaces\footnote{More precisely, they are sheaves on the category of basic spaces.}.
+\item We want to study some spaces synthetically.
+\item Our spaces of interest are build by gluing some basic spaces\footnote{More precisely, they are sheaves on the category of basic spaces.}.
 \item These basic spaces have an algebra/geometry duality.
 \end{itemize}
 }
 
+\pause
+
 %More precisely, you want to work in an $\infty$-topos of sheaf on the opposite of some category of algebras.
 
-\bloc{Can you use it?}{
+\bloc{What prerequisite to use it?}{
 \begin{itemize}
 \item You don't need technical $\infty$-categories know-how.
 \item You do need familiarity with HoTT and its lex modalities.
@@ -146,10 +150,10 @@ We present the machinery developed to build constructive models of synthetic alg
 
 
 
- \begin{frame}<beamer>
- \frametitle{Outline}
- \tableofcontents
- \end{frame}
+ %\begin{frame}<beamer>
+ %\frametitle{Outline}
+ %\tableofcontents
+ %\end{frame}
  
  
  
@@ -158,32 +162,47 @@ We present the machinery developed to build constructive models of synthetic alg
  
  \frame{\frametitle{Synthetic geometry}
  
-We want to work with some geometric objects of interest
+We want to study some spaces synthetically
 
 (e.g.\ smooth manifolds, sequential spaces, schemes).
  
- \bloc{Method\footnote{This is an ahistorical type-theoretic reframing.}}{
+ \pause
+ 
+ \bloc{Method}{
  \begin{enumerate}
- \item Embed the objects of interest in a topos.
+ \item Embed the spaces of interest in a topos.
+ \pause
  \item Interpret MLTT + UIP in this topos.
-\item Find new axioms validated by this interpretation.
-\item Work in MLTT + UIP + these axioms.
+ \pause
+\item Find \red{new axioms} validated by this interpretation.
+\pause
+\item Work in MLTT + UIP + \red{these axioms}.
 \end{enumerate}
  }
  
+ \pause
+ 
+ \bloc{Remark}{
+Historical approaches didn't use MLTT.
+ }
+ 
  }
  
  
-  \frame{\frametitle{What should we expect?}
+  \frame{\frametitle{What do we get?}
  
   \bloc{Slogan}{
  \begin{itemize}
- \item All types come with a topology/differential structure/etc.
- \item All maps are continuous/differentiable/etc.
+ \item All types come with a topology/smooth structure/etc.
+ \item All maps are continuous/smooth/etc.
  \end{itemize}
  }
  
- The objects of interest are then types satisfying some proposition.
+ \pause
+ 
+ The spaces of interest are then types satisfying some proposition.
+
+\pause
 
 \bloc{Remark}{
 This means we have to abandon LEM and AC.
@@ -200,9 +219,9 @@ This means we have to abandon LEM and AC.
  \begin{center}
 \begin{tabular}{|c|c|}
 \hline
- Name & Objects of interest  \\
+ Name & Spaces of interest  \\
  \hline
-Synthetic differential geometry\footnote{[Lawvere 67], [Kock 77], [Dubuc 79], etc.} & Differential manifolds \\
+Synthetic differential geometry\footnote{[Lawvere 67], [Kock 77], [Dubuc 79], etc.} & Smooth manifolds \\
 \hline
 Synthetic domain theory\footnote{[Hyland 91], [Fiore, Plotkin 96], etc.} & Domains \\
 \hline
@@ -226,34 +245,12 @@ Synthetic algebraic geometry\footnote{[Bleschmidt 17], [Cherubini, Coquand, Hutz
 \end{tabular}
 \end{center}
  
- \note{
-  \begin{center}
-\begin{tabular}{c|c}
- Name & Objects of interest  \\
-  &\\
- \hline
- &\\
-Synthetic differential geometry\footnote{[Lawvere 67], [Kock 77], [Dubuc 79], etc.} & Differential manifolds \\
- &\\
-Synthetic domain theory\footnote{[Hyland 91], [Fiore, Plotkin 96], etc.} & Domains \\
- &\\
-Synthetic topology\footnote{[Escard\'o 04], [Le\v{s}nik 10], etc.} & Sequential spaces \\
- &\\
-Synthetic algebraic geometry\footnote{[Bleschmidt 17], [Cherubini, Coquand, Hutzler 24], etc.} & Schemes \\
- &\\
-Condensed type theory\footnote{[Barton, Commelin 24]}/ & Stone spaces, \\
-Synthetic Stone duality\footnote{[Cherubini, Coquand, Geerlings, Moeneclaey 24]} & compact Hausdorff spaces...\\
- &\\
-\end{tabular}
-\end{center}
-}
- 
  }
  
  
  \frame{\frametitle{Synthetic homotopy theory}
  
-We want to work with homotopy types / $\infty$-groupoids.
+We want to study $\infty$-groupoids (aka homotopy types) synthetically.
  
 \bloc{Method}{
 \begin{enumerate}
@@ -270,17 +267,21 @@ We want to work with homotopy types / $\infty$-groupoids.
  
  \bloc{Method}{
  \begin{enumerate}
- \item Embed the objects of interest in an $\infty$-topos.
+ \item Embed the spaces of interest in an $\infty$-topos.
  \item Interpret HoTT in this $\infty$-topos.
-\item Find new axioms validated by this interpretation.
-\item Work in HoTT + these axioms.
+\item Find \red{new axioms} validated by this interpretation.
+\item Work in HoTT + \red{these axioms}.
 \end{enumerate}
  }
+ 
+ The spaces of interest are then \red{sets} satisfying some proposition.
+ 
+ \pause
 
  \bloc{Why do this?}{
  \begin{itemize}
  %\item Some objects of interest have an $\infty$-groupoid structure.
- \item To use some homotopy theory (e.g.\ cohomology).
+ \item To use some homotopy theory (e.g.\ shape or cohomology).
  \item For the convenience of univalence and HITs.
  \end{itemize}
  }
@@ -296,7 +297,7 @@ We want to work with homotopy types / $\infty$-groupoids.
  \begin{center}
  \begin{tabular}{|c|c|}
 \hline
- Name & Objects of interest  \\
+ Name & Spaces of interest  \\
  \hline
   \renewcommand{\arraystretch}{1}
  \begin{tabular}{c}
@@ -336,17 +337,32 @@ Higher categories\\
  
  
    \note{MAYBE UNNECESSARY SLIDE?}
- \frame{\frametitle{How to find for such a topos?}
+ \frame{\frametitle{How to build new synthetic geometries?}
+ 
+ We want to study some spaces synthetically.
 
-It is not an easy task.
-
-\bloc{Core idea}{
+\bloc{How to find a suitable $\infty$-topos?}{
 \begin{enumerate}
-\item Identify basic building blocks, the representables.
-\item Identify a topology on them.
-\item Use the corresponding sheaf ($\infty$-)topos.
+\pause
+\item Identify the spaces of interest as gluing of basic spaces.
+\pause
+\item Find a topology on the category of basic spaces.
+\pause
+\item Use the corresponding sheaf $\infty$-topos.
 \end{enumerate}
 } 
+
+\pause
+
+\bloc{How to find the new axioms?}{
+Need axioms that are:
+\begin{itemize}
+\item Validated by the interpretation of HoTT into this topos.
+\item Enough to define and study our spaces of interest.
+\end{itemize}
+}
+
+This is usually very challenging.
 
 }
  
@@ -361,10 +377,10 @@ It is not an easy task.
  \hline
  Zariski duality & Rings & Affine schemes\\
  Stone duality & Boolean algebras & Stone spaces\\
+ // & Distributive lattices & Coherent spaces\\
  Gelfand duality & $C^*$-algebras & Compact Hausdorff spaces\\
- Stone duality & Spatial frames & Sober spaces\\
  \vdots & \vdots & \vdots\\
- \hline
+
 \end{tabular}
  \end{center}
  
@@ -373,13 +389,21 @@ It is not an easy task.
  
 \frame{\frametitle{Back to our goal}
 
-\bloc{Recall}{
-We want models for synthetic algebraic geometry and synthetic Stone duality.
+Let's focus on synthetic algebraic geometry.
+
+\bloc{Goal}{
+We want to work synthetically with schemes.
 }
 
+Basic spaces are affine schemes.
+
+\pause
+
 \bloc{Core idea}{
-We use that our representables have an algebra/geometry duality.
+Leverage the rings/affine schemes duality to get nice axioms validated by the relevant topoi.
 }
+
+\pause
 
 \begin{itemize}
 \item \vspace{0cm} [Kock 80] for external duality used in $1$-topoi. 
@@ -405,22 +429,24 @@ We use that our representables have an algebra/geometry duality.
  
 This section presents results from [Coquand, Höfer, Sattler 26].
 
+\pause
+
  \vspace{0.25cm}
  We assume given $\T$ an algebraic theory.
  
- \bloc{Intuition}{
-$\T$ models the duals to our basic building blocks.
+ \bloc{Idea}{
+$\T$ models the duals to our basic spaces.
  }
  
-For SAG, $\T$ is the theory of commutative rings.
+For synthetic algebraic geometry, $\T$ is the theory of rings.
+
+\pause
  
- \bloc{Goal}{
+ \bloc{Intermediary goal}{
  Work synthetically in the $\infty$-topos of presheaves on $(\T\mhyphen\Alg_{fp})^{op}$.
  }
  
- \bloc{Method}{
-Find axioms satisfied by the interpretation of HoTT in this topos.
- }
+Need axioms satisfied by the interpretation of HoTT in this topos.
  
 % \bloc{Idea}{
 % Representables are dual to the algebras, and therefore model the basic building blocks.
@@ -433,13 +459,17 @@ Find axioms satisfied by the interpretation of HoTT in this topos.
  
  We have a presheaf sending any $A:\T\mhyphen\Alg_{fp}$ to its underlying set.
  
- It is a $\T$-algebra in $\PSh(\T\mhyphen\Alg_{fp})$.
+ It is a $\T$-algebra in $\PSh((\T\mhyphen\Alg_{fp})^{op})$.
+ 
+ \pause
  
  \bloc{Axiom 1 (Generic object)}{
  There is a set $\G$ with a $\T$-algebra structure.
  }
  
- For SAG, we have a commutative ring $R$.
+ \pause
+ 
+ For synthetic algebraic geometry, we have a ring $R$.
  
  }
  
@@ -447,8 +477,10 @@ Find axioms satisfied by the interpretation of HoTT in this topos.
  \frame{\frametitle{The spectrum construction}
  
  \bloc{Definition}{
- A $\G$-algebra is a $\T$-algebra $A$ with a morphism from $\G$ to $A$.
+ A \red{$\G$-algebra} is a $\T$-algebra $A$ with a morphism from $\G$ to $A$.
  }
+ 
+ \pause
  
  \bloc{Definition}{
  Given $A:\G\mhyphen\Alg_{fp}$, we define
@@ -457,10 +489,9 @@ Find axioms satisfied by the interpretation of HoTT in this topos.
  \spaceend
  }
  
- \bloc{Example (SAG)}{
-% We have a ring $R$. Then
+ \pause
  
-% \[\Spec(R[X]) = \Hom_R(R[X],R) = R.\]
+ \bloc{Example from synthetic algebraic geometry}{
  Given $P:R[X]$, then
   \spacebefore
  \[\Spec(R[X]/P) = \Hom_{R\mhyphen\Alg}(R[X]/P,R) = \{x:R\ |\ P(x)=0\}.\]
@@ -479,6 +510,8 @@ Find axioms satisfied by the interpretation of HoTT in this topos.
  is an equivalence.
  }
  
+ \pause
+ 
  \bloc{Corollary}{
  The map
   \spacebefore
@@ -486,8 +519,10 @@ Find axioms satisfied by the interpretation of HoTT in this topos.
  is an an embedding.
  }
  
+ \pause
+ 
  \bloc{Definition}{
-Sets in the image of $\Spec$ are called affines. 
+Sets in the image of $\Spec$ are called \red{affines}. 
  }
  
  }
@@ -502,7 +537,9 @@ Sets in the image of $\Spec$ are called affines.
    \spaceend
  }
  
- \bloc{Example (SAG)}{
+ \pause
+ 
+ \bloc{Example from synthetic algebraic geometry}{
  \vspace{-0.2cm}
  \[(R \to R) = \Hom_{R\mhyphen\Alg}(R[X],R[X]) = R[X]\]
     \spaceend
@@ -519,11 +556,13 @@ Sets in the image of $\Spec$ are called affines.
  
  We know that representables in a presheaf category are projective.
  
+ \pause
+ 
  \bloc{Axiom 3 (Choice for affines)}{
  Given $A:\G\mhyphen\Alg_{fp}$, the set $\Spec(A)$ has choice.
  }
  
- This means that any surjection to $\Spec(A)$ merely has a section.
+ %This means that any surjection to $\Spec(A)$ merely has a section.
  
  }
  
@@ -559,7 +598,7 @@ Sets in the image of $\Spec$ are called affines.
  \frame{\frametitle{Presheaf models summarized}
  
  \bloc{Theorem [Coquand, Höfer, Sattler 26]}{
- Given $\T$ an algebraic theory, there exists a model of HoTT plus:
+ Given $\T$ an algebraic theory, there exists a model of HoTT where:
  \begin{itemize}
  \item There is a $\T$-algebra $\G$.
  \item For all $A:\G\mhyphen\Alg_{fp}$, the map $A\to \G^{\Spec(A)}$ is an equivalence.
@@ -572,7 +611,7 @@ Sets in the image of $\Spec$ are called affines.
  
  
  
- \section{Sheaf models from internal topologies}
+ \section{Sheaf models}
 
 
 \frame{\frametitle{Toward sheaves}
@@ -583,7 +622,11 @@ We want to work with sheaves instead of presheaves.
 Redo [Coquand, Höfer, Sattler 26] with sheaves.
 }
 
+\pause
+
 Forget about higher category theory, we can do it in HoTT!
+
+\pause
 
 \bloc{Internal approach}{
 We define sheaves in (HoTT + presheaf axioms).
@@ -595,26 +638,28 @@ We define sheaves in (HoTT + presheaf axioms).
  \frame{\frametitle{Internal topologies}
  
  \bloc{Definition}{
-A topology consists of $\J \subseteq \{\text{Finite\ sum\ of\ affines}\}$ such that $1\in\J$ and $\J$ is stable under $\Sigma$,
-%\begin{itemize} 
-%\item $1\in\J$. 
-%\item $\J$ is stable under $\Sigma$.
-%\end{itemize}
+A \red{topology} consists of a class $\J$ of finite sums of affines such that $1\in\J$ and $\J$ is stable under $\Sigma$.
  }
+ 
+ \pause
  
  \bloc{Definition}{
- A $\J$-cover is a map with fibers in $\J$.
+ A \red{$\J$-cover} is a map with fibers in $\J$.
  }
  
- Given $S$ affine, any $\J$-cover is merely of the form
+ \pause
+ 
+ Given $S$ affine, any $\J$-cover over $S$ is merely of the form
  \spacebefore
  \[U_1+\cdots+U_n \to S\]
  with each $U_i$ affine.
+ 
+ \pause
 
 \bloc{Lemma}{
 \begin{itemize}
 \item Isomorphisms are $\J$-cover.
-\item $\J$-covers are stable under pullback and composition.
+\item $\J$-covers are stable under pullbacks and composition.
 \end{itemize}
 }
  
@@ -624,13 +669,33 @@ A topology consists of $\J \subseteq \{\text{Finite\ sum\ of\ affines}\}$ such t
  \frame{\frametitle{Internal sheaves}
 
 \bloc{Definiton}{
-A type $X$ is a $\J$-sheaf if for all $S:\J$, the map
+A type $X$ is a \red{$\J$-sheaf} if for all $S\in\J$, the map
 \spacebefore
 \[X\to X^{\propTrunc{S}}\]
 is an equivalence.
 }
 
-So being a $\J$-sheaf is a lex modality.
+\pause
+
+\bloc{Lemma}{
+Given a $\J$-cover $T\to S$ and a set $X$ that is a $\J$-sheaf, the map
+\spacebefore
+\[X^S\to \lim(X^T\rightrightarrows X^{T\times_ST})\]
+is an equivalence.
+}
+
+\pause
+
+\bloc{Remark}{
+There is a version for $n$-types based on iterated joins [Williams 25].
+\vspace{-0.4cm}
+}
+
+ }
+ 
+ \frame{\frametitle{Internal sheaves}
+
+Note that being a $\J$-sheaf is an accessible lex modality.
 
 \bloc{Corollary [Rijke, Shulman, Spitters 20]}{
 \begin{itemize}
@@ -640,23 +705,7 @@ So being a $\J$-sheaf is a lex modality.
 \item The type of $\J$-sheaves is a itself a $\J$-sheaf. 
 \end{itemize}
 }
- 
- }
- 
- \frame{\frametitle{How does this match up with the usual sheaves?}
-
-\bloc{Lemma}{
-Given a $\J$-cover $T\to S$ and a set $X$ that is a $\J$-sheaf, the map
-\spacebefore
-\[X^S\to \lim(X^T\rightrightarrows X^{T\times_ST})\]
-is an equivalence.
-}
-
-\bloc{Remark}{
-There is a version for $n$-types based on iterated joins [Williams 25].
-\vspace{-0.4cm}
-}
- 
+  
  }
  
 
@@ -667,19 +716,23 @@ There is a version for $n$-types based on iterated joins [Williams 25].
  Lex modalities correspond to $\infty$-subtopoi.
  
 So $\J$-sheaves should form a model of HoTT.
+
+\pause
  
  \bloc{Theorem [Quirin 16]}{
-Given a lex modality $L$, we have an interpretation $\llbracket\_\rrbracket$ of HoTT into $L$-modal types where
+Given an accessible lex modality $L$, we have an interpretation $\llbracket\_\rrbracket$ of HoTT into $L$-modal types where:
 \begin{center}
 \begin{tabular}{ccc}
 $\llbracket \Type \rrbracket$ & $=$ & $\Type_L$ \\
 $\llbracket \Sigma_XY \rrbracket$ & $=$ & $\Sigma_{\llbracket X\rrbracket} \llbracket Y \rrbracket$ \\
 $\llbracket \Pi_XY \rrbracket$ & $=$ & $\Pi_{\llbracket X\rrbracket} \llbracket Y \rrbracket$ \\
-$\llbracket x=_Xy \rrbracket$ & $=$ & $[x]=_{\llbracket X\rrbracket} [y]$\\
+$\llbracket x=_Xy \rrbracket$ & $=$ & $\llbracket x\rrbracket =_{\llbracket X\rrbracket} \llbracket y\rrbracket$\\
 $\llbracket \propTrunc{X} \rrbracket$ & $=$ & $L(\propTrunc{\llbracket X\rrbracket})$\\
 \end{tabular}
 \end{center}
  }
+ 
+ \pause
  
 So we have a $\J$-sheaf model of HoTT. 
  
@@ -690,26 +743,18 @@ So we have a $\J$-sheaf model of HoTT.
  
  What does the $\J$-sheaf model preserve from the presheaf axioms?
  
-% We want that $\G$ is a $\J$-sheaf, giving a generic $\mathbb{T}$-algebra in the $\J$-sheaf model.
+\pause
  
  \bloc{Definition}{
- A topology $\J$ is subcanonical if $\G$ is a $\J$-sheaf.
+ A topology $\J$ is \red{subcanonical} if $\G$ is a $\J$-sheaf.
  }
  
  From now on we assume $\J$ subcanonical.
  
-% \bloc{Remark}{
-% By duality, this implies any representable is a $\J$-sheaf.
-% }
-
-\bloc{Definition}{
-A topology is simply defined if $\llbracket X\in\J\rrbracket_\J$ implies $L_\J(X\in\J)$.
-}
+\pause
  
- From now on we assume $\J$ subcanonical
- 
-  \bloc{Lemma (Generic object in sheaves)}{
- In the sheaf model, there is a $\T$-algebra $\G$ such that for all $S:\J$ we have $\propTrunc{S}$. 
+ \bloc{Lemma (Generic object in sheaves)}{
+ In the $\J$-sheaf model, there is a $\T$-algebra $\G$. 
  }
  
  }
@@ -717,20 +762,24 @@ A topology is simply defined if $\llbracket X\in\J\rrbracket_\J$ implies $L_\J(X
  
  \frame{\frametitle{The sheaf axioms: generic object}
  
- So we have $\G$ in the sheaf model. Now we want to have $\J$.
+ So we have $\G$ in the $\J$-sheaf model. Now we want to have $\J$.
+ 
+ \pause
  
  \bloc{Definition}{
-A topology is simply defined if:
+A topology is \red{simply defined} if:
 \begin{itemize}
-\item $\J$ can be defined from $\G$ without using choice for representables.
+\item $\J$ can be defined from (HoTT + there is $\G$ a $\T$-algebra).
 \item $\llbracket X\in\J\rrbracket_\J$ implies $L_\J(X\in\J)$.
 \end{itemize}
 }
 
 From now on we assume $\J$ simply defined.
 
+\pause
+
 \bloc{Lemma}{
-In the sheaf model, for all $S\in\J$ we have $\propTrunc{S}$.
+In the $\J$-sheaf model, for all $S\in\J$ we have $\propTrunc{S}$.
 }
  
 }
@@ -738,8 +787,8 @@ In the sheaf model, for all $S\in\J$ we have $\propTrunc{S}$.
  
  \frame{\frametitle{The sheaf axioms: duality}
 
- \bloc{Lemma (Duality for sheaves)}{
-Duality holds in the $\J$-sheaf model.
+ \bloc{Lemma (Duality in sheaves)}{
+In the $\J$-sheaf model, duality holds.
  }
  
  }
@@ -748,17 +797,19 @@ Duality holds in the $\J$-sheaf model.
  \frame{\frametitle{The sheaf axioms: local choice}
  
  \bloc{Definition}{
- A type $X$ has $\J$-local choice if given a surjection $Y\twoheadrightarrow X$, there exists a type $U$ and the dotted arrows in
+ A type $X$ has \red{$\J$-local choice} if given a surjection $Y\twoheadrightarrow X$, there exists a type $\J$-cover $p:U\to X$ with a dotted arrow
  \spacebefore
  \[\xymatrix{
- && Y\ar@{->>}[d]\\
-U \ar@{-->}[rru]\ar@{-->}[rr]_{\J\mhyphen\text{cover}} && X 
+ & Y\ar@{->>}[d]\\
+U \ar@{-->}[ru]\ar@{->}[r]_{p} & X 
 }\]
 \spaceend
  }
  
+ \pause
+ 
  \bloc{Lemma (Local choice)}{
- In the sheaf model, affines have $\J$-local choice.
+ In the $\J$-sheaf model, affines have $\J$-local choice.
  }
  
  }
@@ -774,7 +825,7 @@ U \ar@{-->}[rru]\ar@{-->}[rr]_{\J\mhyphen\text{cover}} && X
 \end{itemize}
 Then there exists a $\J$-sheaf model of HoTT where:
  \begin{itemize}
- \item There is a $\T$-algebra $\G$ such that for all $S:\J$ we have $\propTrunc{S}$.
+ \item There is a $\T$-algebra $\G$ such that for all $S\in\J$ we have $\propTrunc{S}$.
  \item For all $A:\G\mhyphen\Alg_{fp}$, the map $A\to \G^{\Spec(A)}$ is an equivalence.
  \item For all $A:\G\mhyphen\Alg_{fp}$, the set $\Spec(A)$ has $\J$-local choice.
  %\item For all $A:\G\mhyphen\Alg_{fp}$, the map $\N\to\N^{\Spec(A)}$ is an equivalence.
@@ -784,12 +835,12 @@ Then there exists a $\J$-sheaf model of HoTT where:
 }
 
  
-\section{Sheaf models for synthetic algebraic geometry and variants}
+\section{Applications to synthetic algebraic geometry}
 
 
 \frame{\frametitle{The presheaf model}
 
-Ring and algebras over them are assumed commutative.
+%Ring and algebras over them are assumed commutative.
 
 \bloc{Proposition}{
 We have a model of HoTT where:
@@ -805,21 +856,14 @@ We have a model of HoTT where:
 \frame{\frametitle{Zariski topology}
 
 \bloc{Definition}{
-The Zariski topology consists of types of the form
+The Zariski topology consists of the types merely of the form
 \spacebefore
-\[r_1\ \text{inv}+\cdots+r_n\ \text{inv} \]
-where $(r_1,\cdots,r_n)=1$ in $R$.
+\[x_1\ \text{inv}+\cdots+x_n\ \text{inv} \]
+where $(x_1,\cdots,x_n)=1$ in $R$.
 }
 
-%\bloc{Definition}{
-%An open proposition is a proposition of the form 
-% \spacebefore
-%\[r_1\ \text{inv}\lor\cdots\lor r_n\ \text{inv} \]
-%where $$ in $r_1,\hdots,r_n:R$.
-%}
-
 \bloc{Remark}{
-Having $\propTrunc{S}$ for all $S\in\text{Zar}$ means that $R$ is local.
+$R$ is local if and only if for all $S\in\text{Zar}$ we have $\propTrunc{S}$.
 }
 
 }
@@ -847,9 +891,13 @@ We considered a topology internal to presheaves.
 The same story works for a topology internal to sheaves.
 }
 
+\pause
+
 \bloc{Remark}{
 In Zariski sheaves, affines are stable under finite sums.
 }
+
+\pause
 
 Now we work in Zariski sheaves and replace finite sums of affines by affines in the definition of topology.
 
@@ -865,9 +913,14 @@ A type $X$ is formally \'etale if for all $\epsilon:R$ nilpotent, the map
 is an equivalence.
 }
 
+\pause
+
 \bloc{Definition}{
-The \'etale topology consists of formally \'etale non-empty affines.
+The \'etale topology consists of the non-empty formally \'etale affines.
+\vspace{-0.4cm}
 }
+
+\pause
 
 \bloc{Proposition}{
 A type $X$ is an \'etale sheaf if and only if the map 
@@ -884,7 +937,7 @@ is an equivalence for all $P$ monic unramifiable.
 \bloc{Proposition}{
 We have a model of HoTT where:
 \begin{itemize}
-\item There is a local ring $R$ such that any $P:R[X]$ monic and unramifiable has a root.
+\item There is a local ring $R$ such that any monic unramifiable polynomial in $R$ has a root.
 \item For all $A:R\mhyphen\Alg_{fp}$ the map $A\to R^{\Spec(A)}$ is an equivalence.
  \item For all $A:R\mhyphen\Alg_{fp}$ the set $\Spec(A)$ has \'etale-local choice.
 \end{itemize}
@@ -900,13 +953,15 @@ A affine $\Spec(A)$ is flat if the functor $A\otimes_R\_$ is exact.
 }
 
 \bloc{Definition}{
-The fppf topology consists of flat non-empty affines.
+The fppf topology consists of the non-empty flat affines.
 }
 
-\bloc{Remark}{
-Given $P$ monic non-constant, $\Spec(R[X]/P)$ is flat non-empty.
+\pause
 
-So in fppf sheaves monic non-constant have roots .
+\bloc{Remark}{
+Given $P$ monic non-constant, $\Spec(R[X]/P)$ is non-empty and flat.
+
+So in fppf sheaves, monic non-constant polynomials have roots.
 }
 
 \bloc{Remark}{
@@ -921,7 +976,7 @@ Formally \'etale affines are flat, so fppf sheaves are \'etale sheaves.
 \bloc{Proposition}{
 We have a model of HoTT where:
 \begin{itemize}
-\item There is a local ring $R$ such that any $P:R[X]$ monic non-constant has a root.
+\item There is a local ring $R$ such that any monic non-constant polynomial in $R$ has a root.
 \item For all $A:R\mhyphen\Alg_{fp}$ the map $A\to R^{\Spec(A)}$ is an equivalence.
  \item For all $A:R\mhyphen\Alg_{fp}$ the set $\Spec(A)$ has flat-local choice.
 \end{itemize}
@@ -932,7 +987,7 @@ We have a model of HoTT where:
  
  \frame{\frametitle{The four models compared}
  
- They all have duality for finitely presented $R$-algebras. Moreover:
+% They all have duality for finitely presented $R$-algebras. Moreover:
  
  %\begin{center}
  %\begin{tabular}{ccc}
@@ -945,20 +1000,20 @@ We have a model of HoTT where:
  %\end{center}
  
   \begin{center}
- \begin{tabular}{c|c}
-   & \\
-  The ring $R$ is & Affines have \\
-  & \\
+ \begin{tabular}{c|c|c}
+ & & \\
+ Topology & The ring $R$ is & Affines have \\
+ & & \\
   \hline
-    & \\
-arbitrary & full choice \\
-  & \\
-local & Zariski-local choice \\ 
-  & \\
-\begin{tabular}{c} local + monic unramifiable\\ have roots\end{tabular} & \'etale-local choice\\
-  & \\
-\begin{tabular}{c} local + monic non-constant\\ have roots\end{tabular} & flat-local choice \\
-  & \\
+ & & \\
+- & arbitrary & full choice \\
+ & & \\
+Zariski & local & Zariski-local choice \\ 
+&  & \\
+\'Etale & \begin{tabular}{c} local + monic unramifiable\\ have roots\end{tabular} & \'etale-local choice\\
+&  & \\
+Fppf & \begin{tabular}{c} local + monic non-constant\\ have roots\end{tabular} & flat-local choice \\
+ & & \\
  \end{tabular}
  \end{center}
 
@@ -972,13 +1027,19 @@ local & Zariski-local choice \\
  
  We take $\mathbb{T}$ the theory of boolean algebra. %, or equivalently the theory of boolean rings\footnote{}.
 
+\pause
+
 \bloc{Remark}{
 The story we told with finitely presented algebras works similarly with countably presented algebras.
 }
 
+\pause
+
 Since boolean algebras are equivalent to boolean rings, 
 
 we can reuse the Zariski, \'etale and fppf topology as is.
+
+\pause
 
 \bloc{Simplifications}{
 \begin{itemize}
@@ -1009,7 +1070,7 @@ We have a model of HoTT where:
  
  \frame{\frametitle{Triangulated type theory\footnote{[Gratzer, Weinberger, Buchholtz 24]}}
  
-Take $\T$ the theory of distributive lattice.
+Let $\T$ be the theory of distributive lattice.
 
 Let $\mathbb{L}$ be the generic such lattice.
 
@@ -1021,6 +1082,8 @@ Consider the topology generated by:
 \end{itemize}
 }
 
+\pause
+
 We should get a model of HoTT with:
 \begin{itemize}
 \item $\mathbb{L}$ a totally ordered bounded set.
@@ -1030,6 +1093,30 @@ We should get a model of HoTT with:
 
 %See [Williams 25] for preliminary investigations.
  
+ }
+ 
+ 
+ \frame{\frametitle{Summary}
+ 
+ Given \red{spaces of interests} build by \red{gluing basic spaces} such that:
+ \begin{itemize}
+ \item These basic spaces enjoy a \red{duality} with $\T$-algebras.
+ \item The topology $\J$ encoding the gluing can be defined internally.
+ \item $\J$ is subcanonical and simply defined.
+ \end{itemize}
+ 
+Then we have a model of HoTT where:
+\begin{itemize}
+\item We have a $\T$-algebra $\G$.
+\item $\J$-covers are surjective.
+\item We have a \red{duality} between f.p. $\G$-algebras and affines.
+\item Affines have $\J$-local choice.
+\end{itemize}
+
+\pause
+
+In SAG and SSD, these axioms are enough for substantial results.
+  
  }
  
 % \frame{\frametitle{Maybe an overview of SSD and SAG results}}
