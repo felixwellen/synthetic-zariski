@@ -271,9 +271,19 @@ We have $\|U\|_\et=\|V\|_\et$ and the latter is open.
   Both \Cref{image-and-subtypes-of-étale-overt-types} and \Cref{smooth-schemes-are-étale-overt} show that \(\bP^n\) is étale-overt.
 \end{remark}
 
+\begin{remark}
+  \label{etale-overt-irreducible-open-intersection}
+  Let \(X\) be étale-overt and irreducible.
+  For open \(U,V\subseteq X\) we have:
+  \[
+    \|U\|_\et\wedge\|V\|_\et=\|U\cap V\|_\et
+  \]
+\end{remark}
+
 \subsection{Étale projective schemes}
 
 \begin{proposition}
+  \label{notnot-hyperplane-equivalent-etale-exists}
   Let \(C\subseteq \bP^n\) be closed.
   Then étale existence of a hyperplane that avoids \(C\)
   is equivalent to \(\neg\neg\)-existence of such a hyperplane.
@@ -308,12 +318,14 @@ The following proof profited from discussion with Ingo Blechschmidt, who helped 
 \begin{proof}
   First we show that there \(\neg\neg\) is a hyperplane avoiding \(S\).
   Let \(x_{ij}\) be such that the \([x_{i0}:\cdots:x_{in}]\) are the points of \(S\).
-  Then we want an anti-zero \(a=(a_0,\dots,a_n)\) of \(F(a)=\prod_i (a_0x_{i0}+\dots +a_nx_{in})\).
-  We know there is a non-zero coefficient of \(F\), so \(D(F)\neq \emptyset\), but then it is inhabited.
-  This shows there are \(a_0,\dots,a_n\) with the needed property.
+  Let \(U_i\subseteq \bP^n\) be the open set of \([\alpha_0:\dots:\alpha_n]:\bP^n\) such that \(a_0x_{i0}+\dots +a_nx_{in}\neq 0\).
+  We think of \(U_i\) as candidate coefficients of a linear form describing a hyperplane that avoids \(x_i\).
+  \(U_i\) is non-empty, so by \Cref{etale-overt-irreducible-open-intersection}
+  we have \(\|\bigcap_i U_i\|_\et\)
+  This shows there is a linear-form \(F\) given by \(a_0,\dots,a_n\), describing a hyperplane which avoids all \(x_i\).
 
-  By previous propositions, this proves étale existence of a hyperplane avoiding \(S\),
-  which shows \(S\) is affine, since that proposition is an étale sheaf.
+  So by \Cref{notnot-hyperplane-equivalent-etale-exists} we étale-merely have \(F\) such that \(S\subseteq D(F)\subseteq \bP^n\).
+  So \(S\) is affine because it is a closed subset of the affine scheme \(D(F)\). Since the proposition that a scheme is affine is an étale sheaf, we have that \(S\) is affine.
 \end{proof}
 
 \subsection{Irreducible types}
