@@ -1,0 +1,39 @@
+The following was improved in discussion with Ingo Blechschmidt and Marc Nieper-Wißkirchen.
+
+\begin{lemma}
+  Let $X$ be an étale-overt irreducible scheme, $Y$ a connected smooth scheme such that $\|Y\|_\et$ and $f:X\to Y$ unramified separated.
+  Then any two sections of $f$ are equal.
+\end{lemma}
+
+\begin{proof}
+  Let $s,t:Y\to X$ be sections of $f$.
+  Using that a map between smooth schemes is smooth if and only if
+  all differentials are surjective, we conclude that $s$ and $t$ are smooth.
+  Therefore, $s$ and $t$ are also étale-open, i.e.\ the étale image of any open in $Y$ is open in $X$.
+  In particular $U\colonequiv \im_\et(s,Y)\colonequiv \sum_{x:X}\exists_\et y:Y.s(y)=x$ and $V\colonequiv \im_\et(t,Y)$ are open in $X$.
+  By irreducibility and étale-overtness of $X$, we have $\|U\cap V\|_\et$
+  and therefore, we have étale-merely a $u:Y$ such that $s(u)=t(u)$.
+  
+  To show $s=t$ which is an étale-sheaf and a proposition,
+  we can assume $u:Y$ with $s(u)=t(u)$.
+  For any $y:Y$, the proposition $s(y)=t(y)$ is decidable by $Y$ being unramified separated.
+  Since $Y$ is connected, $s(y)=t(y)$ has to be constant on all of $Y$ and we know $s(u)=t(u)$.
+\end{proof}
+
+\begin{proposition}
+  Let $X$ be separated, irreducible and smooth and $Y$ a scheme.
+  Any unramified surjective map $f:X\to Y$ is an equivalence.
+\end{proposition}
+
+\begin{proof}
+  By Zariski-local choice, there are local sections which glue to a unique global section $s:Y\to X$ using the lemma.
+  By smoothness of $s$, the étale image of $Y$ is an open $U\subseteq X$.
+  Assume $x\notin U$, then we know it is different from $x^\prime\colonequiv s(f(x))$.
+  But $V\colonequiv \{u:X\mid u\neq x\}$ is open and $f_{\mid V}$ is onto $Y$,
+  so we can apply the lemma again to get a new section $s^\prime:Y\to V\subseteq X$.
+  By uniqueness we have $s=s^\prime$, so $x\in U$.
+
+  Let $x:X$. We show that the fiber $\fib_s(x)$ is contractible.
+  This proposition is an étale-sheaf,
+  so we can assume that the fiber is inhabited and we already know it is a proposition.
+\end{proof}
