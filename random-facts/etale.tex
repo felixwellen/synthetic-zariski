@@ -1,41 +1,36 @@
 The following is a significant improvement due to a discussion with Ingo Blechschmidt and Marc Nieper-Wißkirchen, on the original observation that formally étale surjective maps between smooth irreducible separated schemes always have a section.
 
 \begin{lemma}
-  Let $X$ be an étale-overt irreducible scheme, $Y$ a connected smooth scheme such that $\|Y\|_\et$ and $f:X\to Y$ unramified separated.
+  Let $X$ be an étale-overt irreducible type whose identity types are étale-sheaves, $Y$ a connected type such that $\|Y\|_\et$ and $f:X\to Y$ unramified separated
+  \footnote{i.e. all fibers are unramified separated schemes -- we could just say map with decidable fibers here as well}.
   Then any two sections of $f$ are equal.
 \end{lemma}
 
 \begin{proof}
   Let $s,t:Y\to X$ be sections of $f$.
-  Using that a map between smooth schemes is smooth if and only if
-  all differentials are surjective, we conclude that $s$ and $t$ are smooth.
-  Therefore, $s$ and $t$ are also étale-open, i.e.\ the étale image of any open in $Y$ is open in $X$.
-  In particular $U\colonequiv \im_\et(s,Y)\colonequiv \sum_{x:X}\exists_\et y:Y.s(y)=x$ and $V\colonequiv \im_\et(t,Y)$ are open in $X$.
-  By irreducibility and étale-overtness of $X$, we have $\|U\cap V\|_\et$
-  and therefore, we have étale-merely a $u:Y$ such that $s(u)=t(u)$.
-  
+  The propositions $S(x)\colonequiv s(f(x))=x$ and $T(x)\colonequiv t(f(x))=x$
+  are equivalent to $x\in\im(s)$ and $x\in\im(t)$ for all $x:X$.
+  As $s(f(x))$ and $x$ are both in $\fib_f(f(x))$,
+  $S(x)$ is equivalent to an identity in this fiber and therefore decidable,
+  since the fibers of $f$ are unramified separated schemes.
+  The same holds for $T(x)$ which means that $\im(s)$ and $\im(t)$ are open in $X$ (and closed).
+  By irreducibility and étale-overtness, we have $\|\im(s)\cap\im(t)\|_\et$.
+
   To show $s=t$ which is an étale-sheaf and a proposition,
   we can assume $u:Y$ with $s(u)=t(u)$.
-  For any $y:Y$, the proposition $s(y)=t(y)$ is decidable by $Y$ being unramified separated.
+  For any $y:Y$, the proposition $s(y)=t(y)$ is decidable.
   Since $Y$ is connected, $s(y)=t(y)$ has to be constant on all of $Y$ and we know $s(u)=t(u)$.
 \end{proof}
 
-\rednote{The following proof is wrong...}
-
 \begin{proposition}
-  Let $X$ be separated, irreducible and étale-overt and $Y$ a smooth scheme.
-  Any unramified surjective map $f:X\to Y$ is an equivalence.
+  Let $X$ be irreducible étale-overt scheme and $Y$ a scheme.
+  Any unramified separated surjective map $f:X\to Y$ is an equivalence.
 \end{proposition}
 
 \begin{proof}
   By Zariski-local choice, there are local sections which glue to a unique global section $s:Y\to X$ using the lemma.
-  By smoothness of $s$, the étale image of $Y$ is an open $U\subseteq X$.
-  Assume $x\notin U$, then we know it is different from $x^\prime\colonequiv s(f(x))$.
-  But $V\colonequiv \{u:X\mid u\neq x\}$ is open and $f_{\mid V}$ is onto $Y$,
-  so we can apply the lemma again to get a new section $s^\prime:Y\to V\subseteq X$.
-  By uniqueness we have $s=s^\prime$, so $x\in U$.
-
-  Let $x:X$. We show that the fiber $\fib_s(x)$ is contractible.
-  This proposition is an étale-sheaf,
-  so we can assume that the fiber is inhabited and we already know it is a proposition.
+  As in the lemma, the image of $s$ is an open $U\subseteq X$, which is also closed.
+  Assume $x\notin U$, then we know it is different from $x^\prime\colonequiv s(f(x))$ and lies in the open complement of $U$, but by irreducibility, this complement has to be empty.
+  By double-negation stability of opens, $s$ is therefore surjective.
+  This means $s$ is an equivalence and therefore its one-sided inverse $f$.
 \end{proof}
