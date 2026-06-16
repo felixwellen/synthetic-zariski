@@ -1,0 +1,236 @@
+\subsection{Morita equivalences}
+
+In this section we do not assume anything about $R$ besides being a commutative ring, it is a compilation of very basic algebras results and definitions.
+
+We write $R-\Alg_{nc}$ for the type of not necessarily commutative $R$-algebras.
+
+Given  $A,B:R-\Alg_{nc}$ we write $\Mod{A}{B}$ for the type of $A\otimes B^{op}$-modules, or equivalently $R$-modules with compatible left $A$-action and right $B$-action.
+
+Given $A,B:R-\Alg_{nc}$ and $M:\Mod{A}{B}$ with $N:\Mod{B}{C}$, we have $M\otimes_BN:\Mod{A}{C}$.
+
+\begin{definition}
+Given $A,B:R-\Alg_{nc}$ and $M:\Mod{A}{B}$. We say that $M$ is invertible if there exists $N:\Mod{B}{A}$ such that $M\otimes_B N = A$ and $N\otimes_B M = B$.
+\end{definition}
+
+\begin{remark}
+Given $A,B:R-\Alg_{nc}$ and $M:\Mod{A}{B}$, the type:
+\[\Sigma_{N:\Mod{B}{A}}N\otimes_AM=B \times \Sigma_{N':\Mod{B}{A}} M\otimes_BN = A\]
+is a proposition, equivalent to $M$ being invertible. \rednote{TODO, we didn't check.}
+\end{remark}
+
+\begin{lemma}
+TODO
+\end{lemma}
+
+\begin{definition}
+Given $A,B:R-\Alg_{nc}$, the type $\Mor(A,B)$ of Morita equivalence from $A$ to $B$ is defined as the type of invertible in $\Mod{B}{A}$.
+\end{definition}
+
+\begin{lemma}
+Given $A,B:R-\Alg_{nc}$, the map:
+\[\Mod{A}{B} \to \Hom_{\Cat}(\Mod{B}{},\Mod{A}{})\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+\rednote{TODO, we didn't check.}
+\end{proof}
+
+\begin{corollary}
+Given $A,B:R-\Alg_{nc}$, the map:
+\[\Mor(A,B) \to (\Mod{A}{}=_{\mathrm{Cat}}\Mod{B}{})\]
+is an equivalence.
+\end{corollary}
+
+Next we prove that $A$ and $M_n(A)$ are Morita equivalent.
+
+\begin{lemma}\label{matrix-morita-equivalence}
+The module $A^n:\Mod{M_n(A)}{A}$ is invertible. Therefore we have $\Mor(A,M_n(A))$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+Next the big Morita result. First we define progenerator.
+
+\begin{definition}
+Given $A:R-\Alg_{nc}$ and $M:\Mod{A}{}$, then 
+\begin{itemize}
+\item $M$ is a generator if $\Hom_A(M,\_):\Mod{A}{}\to \Mod{R}{}$ is faithful.
+\item $M$ is a progenerator if it is a generator and finitely generated projective in $\Mod{A}{}$.
+\end{itemize}
+We have a similar definition for right module.
+\end{definition}
+
+\begin{theorem}\label{morita-main-theorem}
+Given $A:R-\Alg_{nc}$ and $M:\mod{A}{B}$, TFAE
+\begin{enumerate}[(i)]
+\item $M$ is invertible.
+\item $M$ is a progenerator in $\Mod{A}{}$ and the induced map $B^{op}\to \End_A(M)$ is an equivalence.
+\item $M$ is a progenerator in $\Mod{}{B}$ and the induced map $A\to \End_B(M)$ is an equivalence. 
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\rednote{TODO This is a classic Morita result, I didn't check it works constructively.}
+\end{proof}
+
+
+
+\subsection{A remark on invertible modules}
+
+%A key property we will need is that given $A,B:R-\Alg_{nc}$ that are finite free as $R$-module, $\Mor(A,B)$ is an \'etale sheaf.
+
+\begin{corollary}
+The type $\B R^\times$ is an \'etale sheaf.
+\end{corollary}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{invertible-R-module-free-rank-1}
+Let $L$ be an $R$-module. TFAE:
+\begin{enumerate}[(i)]
+\item $L$ is free of rank $1$.
+\item The map $L\otimes L^*\to R$ is an equivalence.
+\item $L$ is invertible.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The implications $(i)\Rightarrow (ii)\Rightarrow(iii)$ are obvious. Assume $(iii)$, then we have $N$ with $\alpha:M\otimes N = R$. This gives us $\sum_i m_i\otimes n_i$ such that $\sum_i \alpha(m_i\otimes n_i) = 1$, which by locality and rescaling give us $m:M$ and $n:N$ such that $\psi(m\otimes n) = 1$. Then using the map $\bar{\psi} N\to M^*$ we get an element $f:M^*$ such that $f(x) = 1$.
+
+Then $f:M^*$ is clearly surjective, let us prove it is injective. Assume $y:M$ such that $f(y) = 0$, then $y\otimes m = 0$ and therefore $y\otimes f = 0$. Then consider the map $M\otimes M^*\to M$ sending $y\otimes f$ to $z\mapsto f(z)y$, since $y\otimes f = 0$ we get $f(z)y = 0$ for all $z:R$. For $z=x$ we get $y=0$ as we wanted.
+\end{proof}
+
+\rednote{Maybe we have something similar with arbitrary bimodules?}
+
+
+
+\subsection{Characterising Morita equivalence for Azumaya algebra}
+
+\begin{definition}
+Given $A:\Az$, we define $\psi(A) = \{V:\Mod{R}{}\ |\ M\ \text{finite\ free\ of\ rank}\ \geq 1 \mathrm{and}\ A=\End_R(V)\}$.
+\end{definition}
+
+\begin{lemma}\label{psi-equivalent-mor}
+Given $A:\Az$, we have $\psi(A) = \Mor(A,R)$.
+\end{lemma}
+
+\begin{proof}
+This is a direct application of \Cref{morita-main-theorem}. Perhaps there is a simpler proof for this specific case.
+\end{proof}
+
+Given $Y$ a pointed type, recall that a type $X$ is an \'etale $Y$-torsor if:
+\begin{itemize}
+\item It is a $Y$-pseudotorsor, i.e.\ for all $x:X$ we have an equivalence $(X,x) = (Y,*)$. Beware that this is a structure and not a proposition,
+\item $X$ is an \'etale sheaf and we have $\propTrunc{X}_{\Et}$.
+\end{itemize}
+
+\begin{corollary}
+Given $A:\Az$, the type $\psi(A)$ is an \'etale $\B R^\times$-torsor.
+\end{corollary}
+
+\begin{proof}
+By \Cref{psi-equivalent-mor}, we have that $\psi(A)$ is equivalent to $\Mor(A,R)$, which is a $\Mor(R,R)$-pseudotorsor since Morita equivalences compose in the expected way. Then by \Cref{invertible-R-module-free-rank-1} we have $\Mor(R,R) = \B R^\times$, so we get a $\B R^\times$-pseudotorsor. 
+
+Now $\psi(A)$ is an \'etale sheaf, as $A$ and the type of finite free module are an \'etale sheaves. When checking $\propTrunc{\psi(A)}_{\Et}$ we can assume $A=M_{n+1}(R)$ for some $n:\N$, and then $V=R^{n+1}$ works.
+\end{proof}
+
+\begin{corollary}
+We have a fiber sequence of pointed types:
+\[\B R^\times \to \{M\ \text{finite\ free\ of\ rank}\ \geq 1\} \to \Az\to \B_{\Et}^2 R^\times\]
+\end{corollary}
+
+\begin{proof}
+The fiber of $\psi:\Az\to \B_{\Et}\B R^\times$ over $*$ is $\Sigma_{A:\Az}\psi(A)=*$, which in turn is equivalent to $\Sigma_{A:\Az}\psi(A)$ as proving a torsor trivial is the same as giving a point in it.  By the singleton principle this the expected type. Then we can extend the sequence by $\Omega \B_{\Et}\B R^\times$, which is indeed $\B R^\times$.
+\end{proof}
+
+\begin{lemma}\label{torsor-morita-invariant}
+Given $A,B:\Az$, we have a map $\phi : \Mor(A,B)\to \psi(A) = \psi(B)$ which sends the composition of Morita equivalences to composition of path.
+\end{lemma}
+
+\begin{proof}
+\rednote{TODO using that $\psi(A) = \Mor(A,R)$, this is just the fact that Morita equivalences compose appropriately.}
+\end{proof}
+
+\begin{corollary}
+Given $A,B:\Az$, we merely have $\Mor(A,B)$ if and only if there exists $k,l$ such that $M_k(A)=M_l(B)$.
+\end{corollary}
+
+\begin{proof}
+Assume $\Mor(A,B)$, then by \Cref{torsor-morita-invariant} we have $\psi(A) = \psi(B)$ \rednote{TODO, we need something like that $\psi(A\otimes B) = \psi(A)+\psi(A')$.} 
+\end{proof}
+
+
+\subsection{SHOULD BE REDONE Injecting the Brauer group in the cohomological Brauer group}
+
+\rednote{Next section is outdated, it is trying to say that assuming for any two Azumaya algebras $A,B$, the type $\Mor(A,B)$ is an \'etale sheaf, then $\Az/\Mor = \B_{\Et}^2R^\times$. Maybe this follows without this assumption on $\Mor(A,B)$, using the \'etale sheaf quotient?}
+
+
+Next definition is very ad-hoc, but will simplify writing down this section and clarify what we use. 
+
+\begin{definition}
+A Brauer structure consists of:
+\begin{itemize}
+\item A $1$-type $A$ that is an \'etale sheaf.
+\item An $a:\N\to A$ such that for all $x:A$ there is $n:\N$ such that $\propTrunc{x=a_n}_{\Et}$.
+\item A $2$-groupoid structure $\sim$ on $A$ such that for all $n:\N$ we have $a_n\sim a_0$.
+\end{itemize}
+\end{definition}
+
+\begin{lemma}\label{canonical-brauer-structure}
+We have a canonical Brauer structure where:
+\begin{itemize}
+\item $A$ is the type of Azumaya algebras.
+\item $a_n = M_n(R)$.
+\item $A\sim B$ is defined as $\Mor(A,B)$ the type of Morita equivalence, which is an \'etale sheaf by \Cref{TODO}.
+\item We have $\Mor(R,M_n(R))$ for all $n:\N$ by \Cref{matrix-morita-equivalence}.
+\end{itemize}
+\end{lemma}
+
+\begin{lemma}\label{defining-brauer-torsor}
+Given a Brauer structure $(A,a,\sim)$, we have a map of $2$-groupoid:
+\[\psi : (A,\sim)\to (\mathrm{Tors}_{\Et}(a_0\sim a_0), = )\]
+with:
+\[\psi_0(x) = x\sim a_0\]
+\[\psi_1(m) = (n\mapsto m^{-1}\otimes n)\]
+\end{lemma}
+
+\begin{proof}
+Most of this is very similar to the proof that given $X$ pointed \'etale-connected \'etale sheaf, we have a map $X\to \mathrm{Tors}_\Et(*=*)$ given by sending $x$ to $x=*$. 
+
+A crucial point is that for all $x:A$ we have $\propTrunc{x\sim a_0}_\Et$, indeed we \'etale merely have an $n:\N$ such that $x= a_n$ and we conclude using that $a_n\sim a_0$.
+\end{proof}
+
+\begin{proposition}\label{brauer-torsor-injection}
+Given a Brauer structure $(A,a,\sim)$, for all $x,y:A$ the map
+\[\phi : x\sim y \to \psi(x)=\psi(y)\]
+is an equivalence.
+\end{proposition}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{remark}
+This means we have an embedding $A/\sim \subseteq \mathrm{Tors}_\Et(a_0\sim a_0)$.
+\end{remark}
+
+\begin{corollary}
+We have an embedding $\Az/\Mor \subseteq B^2_{\Et}R^\times$.
+\end{corollary}
+
+\begin{proof}
+Just apply \Cref{defining-brauer-torsor} and \Cref{brauer-torsor-injection} to the canonical Brauer structure from \Cref{canonical-brauer-structure}. We then just need to check that $\Tors_{\Et}(a_0\sim a_0)$ is $B^2_{\Et}R^\times$. Indeed TODO
+\end{proof}
+
+
+
+
+
+
+
+
