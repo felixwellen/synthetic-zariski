@@ -1,5 +1,5 @@
 In this section we will recall infinitesimal types and tangent spaces as developed by Cherubini et al. \cite{diffgeo-article}.
-We will also develop infinitesimally linear types in SAG, following Myers \cite{david-orbifolds}.
+We will also develop infinitesimally linear types in SAG, inspired by Myers \cite{david-orbifolds}.
 
 \begin{definition}\label{def:hood-res}
   Let $(X,x)$ be a pointed type.
@@ -39,8 +39,8 @@ Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ natura
 \end{example}
 
 In the preceding example, we will give a notation for the case $n=1$.
-We define the \notion{$m$-dimensional infinitesimal disk}, or just the \notion{$m$-disk}, as the type $\D(m) \defeq \Spec(\quot{R[x_1,\dots, x_m]}{\ideal{x_1,\dots,x_m}^2})$.
-The $m$-disk is a $1$-st order neighbourhood around $0$.
+We define the \notion{$m$-dimensional first order infinitesimal disk}, or just the \notion{$m$-disk}, as the type $\D(m) \defeq \Spec(\quot{R[x_1,\dots, x_m]}{\ideal{x_1,\dots,x_m}^2})$.
+The $m$-disk is a first order neighbourhood around $0$.
 Thus, whenever we consider $\D (m)$ as a pointed type, we will always mean the pointed type $(\D (m), 0)$.
 
 We will now introduce some notation.
@@ -88,15 +88,16 @@ It is clear that the canonical map is $R$-linear with respect to the pointwise m
 \end{proposition}
 
 \begin{definition}\label{def:tangential}
-  \rednote{this name should be debated.  One alternative is ``geometric''.}
   An $R$-module $M$ is \notion{tangential} if $\can : M \rightarrow \tangent{M}{0}$ is an equivalence.
 \end{definition}
-
-\rednote{What's an example of a non-tangential module?  Fabian gives $\mathrm{Nil}(M)$ as an example.}
 
 \begin{example}\label{ex:R-lin-flat}
   The $R$-modules $R^n$ are tangential \cite{diffgeo-article}[Lemma 2.2.3].
 \end{example}
+
+The nilradical $\mathrm{Nil}(R)$ is {\em not} tangential.
+Since there is a proper inclusion $\mathbb{D}(1) \subset \mathrm{Nil}(R)$, we know that the tangent space $\tangent{\Nil(R)}{0}$ is equivalent to $\tangent{R}{0} = R$.
+In fact, the general principle goes like this: if there is a chain of proper inclusions $\hood{M_m}{0} \subset M_0 \subset M_1 \subset \dots \subset M_n$, then at most one of the $R$-modules $M_i$ can be tangential.
 
 \begin{proposition}\label{prp:exp-tangential}
   Let $M$ be a tangential $R$-module.
@@ -159,6 +160,9 @@ Infinitesimal linearity is a local property in the following sense.
   By \cref{prp:hood-factorization} any map $\D (n) \rightarrow_\ast (X,x)$ factors uniquely through $\hood{X,x}{1}$.
   Thus, we have the desired lifting property for $(X,x)$ if and only if we have it for $\hood{X,x}{1}$.
 \end{proof}
+
+From \cref{prp:inf-lin-hood}, we can extract the following principle: if there is a chain of inclusions $\hood{M_n}{0} \subseteq M_0 \subseteq \dots \subseteq M_n$ then if at least one of these modules is infinitesimally linear at 0, then all of them are.
+Thus we can deduce that $\mathrm{Nil}(R)$ is infinitesimally linear at 0.
 
 % Why doesn't this work?  It does in other LaTeX documents.
 % \begin{proposition}[{\cite[5.0.1]{david-orbifolds}}]

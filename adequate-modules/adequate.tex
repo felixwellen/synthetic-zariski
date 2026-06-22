@@ -14,12 +14,12 @@ There is an evaluation map
   m \otimes a & \mapsto (f \mapsto f(a)m)
 \end{align*}
 
-\rednote{Figure out what terminology to use here. Use only quasi-coherence. }
-
 \begin{definition}\label{def:quasi-coherent}
   Let $M$ be an $R$-module.
-  $M$ is \notion{(synthetically/strong) quasi-coherent} if for any fp $R$-algebra $A$ the map $\ev$ is an equivalence.
-\end{definition}Classically, there is no useful abelian category of coherent $\mathcal O_X$-modules over a general base.
+  $M$ is \notion{quasi-coherent} if for any fp $R$-algebra $A$ the map $\ev$ is an equivalence.
+\end{definition}
+
+Classically, there is no useful abelian category of coherent $\mathcal O_X$-modules over a general base.
 
 We can show that quasi-coherent $R$-modules $Q$ are tangent-like by a direct computation.
 
@@ -434,7 +434,7 @@ Since the category of finitely adequate modules is a subcategory of $\modcat{R}$
     \end{tikzcd}
   \end{center}
   So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commutes.
-  This submodule $S$ is the kernel of a linear map and therefore Adelman.
+  This submodule $S$ is the kernel of a linear map and therefore finitely adequate.
   We have a surjection $\pi : S \to \Hom_R(M,N)$, so $\Hom_R(M,N)$ is finitely adequate if $\pi$ is a cokernel of a map of finitely adequate $R$-modules.
   This is the case, since there is a surjection onto $\Ker{\pi}$ from the finite free $R$-module of linear maps which split the square:
   \begin{center}
@@ -523,10 +523,8 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
   It then follows that $E$ is finitely adequate, because it is the cokernel of two finitely adequate $R$-modules.
 \end{proof}
 
-\rednote{Should one either introduce Ext with a reference to Dan and Jarl's paper, or should we write out this? We are not using any special properties, it is just a convenient way to phrase things...}
-
 \begin{lemma}\label{lem:fin-adeq-ext-red}
-  Finitely adequate $R$-modules are closed under extension if and only if for any linearly adequate $R$-module $L$ and finitely adequate $R$-module $B$, $\textup{Ext}^1_R(L,B) = 0$.
+  Finitely adequate $R$-modules are closed under extension if and only if for any linearly adequate $R$-module $L$ and finitely adequate $R$-module $B$, any exact sequence $0 \to B \to E \to L \to 0$ splits.
 \end{lemma}
 
 \begin{proof}
@@ -550,7 +548,7 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
   \end{center}
   Now $E$ is finitely adequate if and only if $p^*E$ is so.
 
-  Since we assumed that $\textup{Ext}^1_R(L_1,B) = 0$, it is necessary that $p^*B = B \oplus L_1$, which is finitely adequate.
+  Since we assumed that any exact sequence on the form $0 \to B \to E \to L_1 \to 0$ splits, it is necessary that $p^*B = B \oplus L_1$, which is finitely adequate.
   Thus, $E$ is finitely adequate as desired.
 \end{proof}
 
@@ -559,7 +557,7 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
 \end{theorem}
 
 \begin{proof}
-  By \Cref{lem:fin-adeq-ext-red} it is sufficient to show that $\Ext^1_R(L,B)$ for any finitely adequate $B$ and linearly adequate $L$.
+  By \Cref{lem:fin-adeq-ext-red} it is sufficient to show that any exact sequence on the form $0 \to B \to E \to L \to 0$ splits for any finitely adequate $B$ and linearly adequate $L$.
   This amounts to showing that any lifting problem
   \begin{center}
     \begin{tikzcd}
