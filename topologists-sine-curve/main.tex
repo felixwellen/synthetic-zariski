@@ -3,35 +3,27 @@
 
 \begin{document}
 In this note we show that the topologists sine curve $Y$ can be defined in the setting of 
-synthetic Stone duality as introduced in \cite{synthetic-stone-duality}. 
+synthetic Stone duality (SSD) as introduced in \cite{synthetic-stone-duality}. 
 We show, using Markov's principle, that $Y$ is not path-connected. 
-We will also show that it is $\mathbb I$-contractible. 
+We will also show that $Y$ is $\mathbb I$-contractible. 
 Note that anything that is path-connected is $\mathbb I$-contractible 
 (Lemma 5.24 of \cite{synthetic-stone-duality}) but the converse thus does not hold. 
 
 
 \begin{remark}[on notation]
-  We will denote $\mathbb I$ and $[0,1]$ for the same object, the interval as defined in \cite{synthetic-stone-duality}. 
-  We will use $\mathbb I$ as the domain of a path, and $[0,1]$ for the induced closed subobject of $\mathbb R$. 
+  We will denote $\mathbb I$ for the interval as defined in \cite{synthetic-stone-duality}. 
+  We will use $[0,1]$ for the closed subobject of $\mathbb R$ that corresponds to the interval. 
   Furthermore, we will use $\pi_1 : [0,1] \times [-1,1] \to [0,1] $ and $\pi_2: [0,1] \times [-1,1] \to [-1,1]$ 
   for the canoncical projection maps. 
 \end{remark}
 
-\begin{lemma}
-  In the setting of \cite{synthetic-stone-duality}, 
-  for each $k:\mathbb N$, we can define the function 
-  $t:[\frac1k, 1] \to [-1,1]$ by $t(r) = \sin(\frac1r)$.
-\end{lemma}
-\begin{proof}
-  For each $r:[\frac1k , 1]$, we can define a Cauchy sequence approximating $\sin(\frac1r)$. 
-  Recall also that the Cauchy reals agree with our reals by LLPO and dependent choice, thus for each $r$, we can define $t(r)$. Thus we can define $t$. 
-\end{proof}
-\begin{lemma}
-  In the same setting, we can define for each $n:\mathbb N$ the standard metric $d:\mathbb R^n \times \mathbb R^n \to \mathbb R_{\geq 0}$.
-\end{lemma}
-\begin{proof}
-  Similar as above. 
-\end{proof}
+\begin{remark}
+  By LLPO and dependent choice, the Cauchy reals agree with the reals in the setting of SSD. Thus we can define any function which comes with a Cauchy sequence. In particular, in the setting of SSD, we can define the following functions:
+  \begin{itemize}
+    \item For each $k:\mathbb N$, we can define $t_k: [\frac1k , 1] \to [-1,1]$ by $t_k(r) = \sin(\frac1r)$. 
+    \item We can define for each $n:\mathbb N$ the standard metric $d:\mathbb R^n \times \mathbb R^n \to \mathbb R_{\geq 0}$. 
+  \end{itemize}
+\end{remark}
 
 \begin{lemma}
   For $A\subseteq X$ a closed subset of a compact Hausdorff space and 
@@ -45,23 +37,23 @@ Note that anything that is path-connected is $\mathbb I$-contractible
 \end{proof}
 \begin{definition}[The topologist's sine curve]
   For each $k:\mathbb N$, define $Y_k \subset [0,1] \times [-1,1]$ by 
-  $$Y_k = ([0, \frac1k] \times [-1,1]) \cup graph(t)$$
+  $$Y_k = ([0, \frac1k] \times [-1,1]) \cup graph(t_k)$$
   Then define $Y = \bigcap_{k:\mathbb N} Y_k$. 
-  The inclusion maps are called $\iota_k : Y_k \to [0,1] \times [-1,1]$ 
-  and $\iota:Y \to [0,1] \times [-1,1]$. 
+  We denote $\iota_k : Y_k \to [0,1] \times [-1,1]$ 
+  and $\iota:Y \to [0,1] \times [-1,1]$ for the inclusion maps. 
 \end{definition}
 \begin{remark}
   $Y_k$ is a closed for each $k:\mathbb N$, 
   as it's the union of two closed subsets. 
-  It follows that $Y$ is closed also. 
+  It follows that $Y$ is closed also, as it's a countable intersection of closed subsets. 
 \end{remark}
 
-\begin{lemma}\label{postiveNumbersCharacter}
-  For $x:\mathbb I$ with $x\neq 0$ there exists some $k:\mathbb N$ with $x>\frac1k$. 
-\end{lemma}
-\begin{proof}
-  This follows from Markov's principle.
-\end{proof}
+\begin{remark}\label{postiveNumbersCharacter}
+  Recall that Markov's principle is equivalent to the fact that for $x:\mathbb I$ with $x\neq 0$ there exists some $k:\mathbb N$ with $\frac1k<x$. 
+\end{remark}
+\begin{corollary}\label{NonZeroOnGraph}
+  By the above, if for some $x:[0,1] \times [-1,1]$ we have $x\in Y$ and $\pi_1(x)\neq 0$, there must be some $k\in\mathbb N$ with $x \in graph(t_k)$. 
+\end{corollary}
 
 \section{The curve is not path-connected}
 \begin{lemma}[uniform continuity of maps $\mathbb I \to \mathbb R^n$]\label{uniformContinuity}
@@ -74,7 +66,7 @@ Note that anything that is path-connected is $\mathbb I$-contractible
   if $d(x,y)<\frac1n$, then $d((f(x), f(y)))<\epsilon$. 
   By local choice, we get a Stone space $S$ with a surjection $a:S\twoheadrightarrow \mathbb I$ 
   and a map $b:S\to \mathbb N$ such that if $d(x,a(s))<\frac1{b(s)}$, then $d(f(x), f(a(s)))<\epsilon$. 
-  By Lemma 3.1.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
+  By Lemma 3.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
   Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
 \end{proof}
 \begin{lemma}\label{sinCharacter}
@@ -83,7 +75,7 @@ Note that anything that is path-connected is $\mathbb I$-contractible
   $\sin(\frac1s) = y$. 
 \end{lemma}
 \begin{proof}
-  By the intermediate value theorem (Theorem 6.5.7 of \cite{synthetic-stone-duality}), 
+  By the intermediate value theorem (Theorem 5.29 of \cite{synthetic-stone-duality}), 
   it's sufficient to show this for $y \in \{-1,1\}$. 
   We will do this proof for $y = 1$, as the other case is similar. 
   We know that for any natural number $k:\mathbb N$ we have that 
@@ -93,16 +85,16 @@ Note that anything that is path-connected is $\mathbb I$-contractible
   which is given to us by \Cref{postiveNumbersCharacter}.
 \end{proof}
 \begin{lemma}
-  Let $a:[-1,1]$. 
-  Suppose $f:\mathbb I \to Y$ is such that $\pi_1(f(0)) > 0$
-  If there is some $r:\mathbb I$ with $\pi_1(f(r)) = 0$, 
-  there is also some $r':\mathbb I$ with $\pi_2(f(r')) = a$. 
+  Suppose $f:\mathbb I \to Y$ is such that $\pi_1(f(0)) > 0$.
+  Assume there is some $r:\mathbb I$ with $\pi_1(f(r)) = 0$. 
+  Then for any $a:[-1,1]$, 
+  there is some $r':\mathbb I$ with $\pi_2(f(r')) = a$. 
 \end{lemma}
 \begin{proof}
   By \Cref{sinCharacter}, there is some $s:[0,1]$ with $0<s<\pi_1(f(0))$ with $\sin(\frac1s) = a$. 
-  Suppose now an $r:\mathbb I$ with $\pi_1(f(r)) = 0$. 
+%  Suppose now an $r:\mathbb I$ with $\pi_1(f(r)) = 0$. 
   By the intermediate value theorem, there must then exist an $r':\mathbb I$ with $\pi_1(f(r')) = s$. 
-  As $0<s$, the only such point $f(r')$ must equal $(s, a)$.
+  As $0<s$, by \Cref{NonZeroOnGraph} the only such point $f(r')$ must equal $(s, a)$.
   Hence $\pi_2(f(r')) = a$. 
 \end{proof}  
 \begin{corollary}\label{topologistsSineCurveWillHitInfinitelyManyTimes}
