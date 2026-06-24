@@ -170,6 +170,64 @@ Other questions:
 Is the map $c : R \to R^{\lnot D(r)}$ epic in this case?
 Is $c(r)$ nilpotent?
 
+We can also show similar results for $R/R_{D(r)}$ and $R_{D(r)}$.
+
+% This is almost entirely due to Claude, with a bit of guidance from jdc.
+% jdc also edited the writing.
+\begin{proposition}\label{prp:quot-RDr-not-wqc}
+  It is impossible to prove that for every $r : R$ the module $R/R_{D(r)}$ is weakly
+  quasi-coherent.  In particular, it is impossible to prove that for every $r : R$ the
+  module $R/R_{D(r)}$ is finitely adequate.
+\end{proposition}
+
+\begin{proof}
+  The second statement follows from the first, since finitely adequate modules are
+  weakly quasi-coherent (\cref{prp:fin-adeq-adeq}).
+
+  For the first, assume that $R/R_{D(r)}$ is weakly quasi-coherent for every $r : R$.
+  Fix $r : R$, and recall that $D(r) := (r \neq 0)$ is a proposition and that
+  $R_{D(r)} = \sum_{x : R} (x = 0) \lor (r \neq 0)$.
+
+  By weak quasi-coherence, the canonical map
+  % TODO: once this paper has its own definition of weak quasi-coherence, point this
+  % reference at it (via \cref) instead of \cite{draft}.
+  $(R/R_{D(r)})[1/r] \to (R/R_{D(r)})^{D(r)}$ is an equivalence \cite{draft}.
+  We claim that $(R/R_{D(r)})^{D(r)} = 0$.  Indeed, if $r \neq 0$, then the
+  predicate $(x = 0) \lor (r \neq 0)$ holds for every $x : R$, so $R_{D(r)} = R$ and
+  hence $R/R_{D(r)} = 0$.  This gives a proof of $(r \neq 0) \to (R/R_{D(r)} = 0)$,
+  and so every element of $(R/R_{D(r)})^{D(r)}$ is zero.
+
+  It follows that $(R/R_{D(r)})[1/r] = 0$.
+  In particular, the class of $1$ is annihilated by a power of
+  $r$: there merely exists $k : \N$ with $r^k \in R_{D(r)}$, that is,
+  $(r^k = 0) \lor (r \neq 0)$.
+  This is equivalent to $(\exists k,\ r^k = 0) \lor (r \neq 0)$, and as a nilpotent
+  element $r$ satisfies $\lnot\lnot(r = 0)$, we obtain
+  $\lnot\lnot(r = 0) \lor \lnot(r = 0)$.
+  As $r : R$ was arbitrary, we deduce that
+  $\prod_{r : R} \big(\lnot\lnot(r = 0) \lor \lnot(r = 0)\big)$, a form of weak excluded
+  middle.  The two disjuncts are mutually exclusive,
+  so the truncation in $\lor$ can be dropped.  Recording which disjunct holds defines
+  a function $\chi : R \to \Bool$, which takes different values at $r = 0$ and $r = 1$.
+  Thus $\chi$ is not constant,
+  which contradicts the connectedness of $R$ \cite[Proposition 1.2.2]{topology-draft}.
+\end{proof}
+
+% jdc
+\begin{corollary}\label{cor:RDr-not-fin-adeq}
+  It is impossible to prove that for every $r : R$ the module $R_{D(r)}$ is finitely
+  adequate.
+\end{corollary}
+
+\begin{proof}
+  This follows from \cref{prp:quot-RDr-not-wqc} and the fact that
+  finitely adequate modules are closed under cokernels
+  (\cref{prp:fin-adeq-cok-closure}).
+\end{proof}
+
+Next we prove that some of the modules defined above are tangential.
+We'll make use of the following lemma.
+
 \begin{lemma}\label{forall-distributes-over-lor}
 Let $X$ be projective type such that every map to $\Bool$ is constant.
 Let $P, Q : X \to \Prop$ be predicates.
@@ -209,8 +267,9 @@ and have used that $\D(1)$ is pointed to replace $\D(1) \to U$ with $U$.
 Since $R$ is tangential, we can replace $\D(1) \rightarrow_\ast R$ with $R$,
 giving
 \[
-  \sum_{x : R} (x = 0) \lor U .
+  \sum_{x : R} (x = 0) \lor U ,
 \]
+which equals $R_U$.
 It is not hard to check that the resulting equivalence is homotopic to the canonical map.
 
 It follows from \cref{prp:lim-col-ext-tangential} that $R/R_U$ is tangential as well.
@@ -230,8 +289,12 @@ As $U$ varies, this gives more potential examples.
 Similarly, we could define ${K^U}' := \sum_{x : R} (U \to \lnot \lnot (x = 0))$,
 a slightly larger version of $K^U$.
 
-\textbf{Can we show that some of these are not finitely adequate, or have other bad properties?}
-(Presumably by proving statements like: $\lnot (\text{for all $r : R$, $R_{D(r)}$ is finitely adequate})$.)
+We showed above that the families $R^{\lnot D(r)}$, $R/R_{D(r)}$, and $R_{D(r)}$ are not all
+finitely adequate.
+(It's also trivial that the family $R_{D(r)}'$ is not all finitely adequate, since
+$R_{D(0)}'$ is not finitely adequate.)
+\textbf{Can we show the same for the remaining families (such as $R/K^{D(r)}$, $R_{\lnot D(r)}$,
+or $R_{V(r)}$), or that some of them have other bad properties?}
 The technique in Theorem 3.2.1 of the topology draft might be helpful.
 Note that the map $\varphi_r$ that appears above also appears there.
 
