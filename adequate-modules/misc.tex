@@ -362,6 +362,67 @@ are all not not finite free, so this method won't work for them.
       Are there some that are ``smaller'' in some sense?
       What about the ones mentioned in \cref{strange-modules}?
 
+      {\rednote{Is the following example of a reflexive but not f.aq. module correct?}}
+      \begin{lemma}
+        \label{perfect-pairing-powerseries-polynomials}
+        The pairing
+        \[
+          R^{\oplus\mathbb{N}} \times R^{\mathbb{N}} \to R, \;\;
+          (a,b) \mapsto \langle a,b \rangle :\equiv \sum a_jb_j
+        \]
+        is perfect.
+      \end{lemma}
+
+      % For a proof we give a constructivized version of the one given in \cite[Proposition 3.2]{conner2021inverselimitslendergroups}, which seems to be folklore.
+      % The proof in loc.cit.\ works over $\mathbb Z$ and makes use the prime factorization, which we replace by a neat degree-counting argument using duality.
+
+      \begin{proof}
+      It is enough to show that the induced map
+        \[
+          \theta:
+          R^{\oplus\mathbb{N}} \to \Hom_R(R^{\mathbb{N}},R), \;\;
+          a \mapsto \left(b \mapsto \langle a,b \rangle\right)
+        \]
+        is an equivalence.
+        For it is clearly injective, we only verify surjectivity.
+        Let $\lambda : R^{\mathbb{N}} \to R$ be an arbitrary $R$-linear map and define a sequence $a :\equiv (n \mapsto \lambda(e^n))$, where $e^n$ is the sequence given by $j \mapsto \delta_{nj}.$
+        We will show that $a_n = 0$ for $n>>0$ and then finish the proof by verifying $\lambda = \langle a, - \rangle$.
+        Define further a map
+        \[
+          f : R \to R, \;\;
+          r \mapsto \lambda(1,r,r^2,r^3,\dots)\rlap{.}
+        \]
+        Duality tells us that $f$ is a polynomial.
+        As we want to show a proposition, we may assume that $\deg f \leq d$ for some $d$.
+        By linearity of $\lambda$ and for all $N:\mathbb{N}$ we have
+        \[
+          f(r) = a_0 + a_1r + a_2r^2 + \dots + a_{N-1}r^{N-1} + t^N\lambda(0,\dots,0,1,r,r^2,\dots)\rlap{,}
+        \]
+        where exactly the first $N$ entries in $\lambda(0,\dots,0,1,r,r^2,\dots)$ are zero.
+        As our goal is a proposition and $f$ a polynomial, we may suppose that $\deg f_0 \leq d$ for some $d \geq 0$.
+        Comparing coefficients, we see that $a_N=0$ for $N \geq d+2$, hence $a$ is an element of $R^{\oplus\mathbb{N}}$.
+        So it remains to check that $\varphi : \equiv \lambda - \langle a,- \rangle = 0$.
+        For this let $b:R^{\mathbb{N}}$ be arbitrary and set
+        \[
+          g:R \to R, \;\;
+          r \mapsto \varphi(b_0,b_1r,b_2r^2,\dots)\rlap{.}
+        \]
+        Since $\varphi(e^n)=0$, we can repeat the argument just applied to $f$ and see that all of the polynomials $x^n$ divide $g$.
+        But then $g=0$ and in particular $0 = g(1) = \varphi(b) = \lambda(b) - \langle a,b \rangle$.
+      \end{proof}
+
+      \begin{corollary}
+        The $R$-module $R^{\mathbb{N}}$ of sequences in $R$ is reflexive but not weakly quasi-coherent.
+        Hence it also fails to be finitely adequate.
+      \end{corollary}
+
+
+      \begin{proof}
+        We already know that $R^{\mathbb{N}}$ is not weakly quasi-coherent.
+        By the previous lemma we see that it is not reflexive.
+        \rednote{TODO: Re-check that the above pairing really induces the double-dual map.}
+      \end{proof}
+
 \item What are examples of modules that are not infinitesimally linear/tangential?
 
       $\mathrm{Nil}(R)$ is infinitesimally linear but not tangential.
