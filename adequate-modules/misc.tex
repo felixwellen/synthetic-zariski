@@ -363,6 +363,7 @@ are all not not finite free, so this method won't work for them.
       What about the ones mentioned in \cref{strange-modules}?
 
       {\rednote{Is the following example of a reflexive but not f.aq. module correct?}}
+
       \begin{lemma}
         \label{perfect-pairing-powerseries-polynomials}
         The pairing
@@ -373,13 +374,13 @@ are all not not finite free, so this method won't work for them.
         is perfect.
       \end{lemma}
 
-      % For a proof we give a constructivized version of the one given in \cite[Proposition 3.2]{conner2021inverselimitslendergroups}, which seems to be folklore.
-      % The proof in loc.cit.\ works over $\mathbb Z$ and makes use the prime factorization, which we replace by a neat degree-counting argument using duality.
+      % We give a constructivized, but adapted, version of the proof given in \cite[Proposition 3.2]{conner2021inverselimitslendergroups} (I have not yet added this reference), which seems to be folklore.
+      % The proof in loc.cit.\ works over $\mathbb Z$ and makes use of the prime factorization, which we replace by a neat degree-counting argument using duality.
 
       \begin{proof}
-      It is enough to show that the induced map
+      It is clear that $\vartheta':R^{\mathbb{N}} \to \Hom_R(R^{\oplus\mathbb{N}},R), b \mapsto (a \mapsto \langle a,b \rangle)$ is an equivalence and we only explain that the second induced map
         \[
-          \theta:
+          \vartheta:
           R^{\oplus\mathbb{N}} \to \Hom_R(R^{\mathbb{N}},R), \;\;
           a \mapsto \left(b \mapsto \langle a,b \rangle\right)
         \]
@@ -390,16 +391,15 @@ are all not not finite free, so this method won't work for them.
         Define further a map
         \[
           f : R \to R, \;\;
-          r \mapsto \lambda(1,r,r^2,r^3,\dots)\rlap{.}
+          r \mapsto \lambda(1,r,r^2,r^3,\dots)\rlap{,}
         \]
         Duality tells us that $f$ is a polynomial.
         As we want to show a proposition, we may assume that $\deg f \leq d$ for some $d$.
-        By linearity of $\lambda$ and for all $N:\mathbb{N}$ we have
+        By linearity of $\lambda$ and for all $N:\mathbb{N}$, we have
         \[
-          f(r) = a_0 + a_1r + a_2r^2 + \dots + a_{N-1}r^{N-1} + t^N\lambda(0,\dots,0,1,r,r^2,\dots)\rlap{,}
+          f(r) = a_0 + a_1r + a_2r^2 + \dots + a_{N-1}r^{N-1} + r^N\lambda(0,\dots,0,1,r,r^2,\dots)\rlap{,}
         \]
         where exactly the first $N$ entries in $\lambda(0,\dots,0,1,r,r^2,\dots)$ are zero.
-        As our goal is a proposition and $f$ a polynomial, we may suppose that $\deg f_0 \leq d$ for some $d \geq 0$.
         Comparing coefficients, we see that $a_N=0$ for $N \geq d+2$, hence $a$ is an element of $R^{\oplus\mathbb{N}}$.
         So it remains to check that $\varphi : \equiv \lambda - \langle a,- \rangle = 0$.
         For this let $b:R^{\mathbb{N}}$ be arbitrary and set
@@ -410,17 +410,24 @@ are all not not finite free, so this method won't work for them.
         Since $\varphi(e^n)=0$, we can repeat the argument just applied to $f$ and see that all of the polynomials $x^n$ divide $g$.
         But then $g=0$ and in particular $0 = g(1) = \varphi(b) = \lambda(b) - \langle a,b \rangle$.
       \end{proof}
-
       \begin{corollary}
-        The $R$-module $R^{\mathbb{N}}$ of sequences in $R$ is reflexive but not weakly quasi-coherent.
-        Hence it also fails to be finitely adequate.
+        The $R$-modules $R^{\mathbb{N}}$ and $R^{\oplus\mathbb{N}}$ are reflexive.
       \end{corollary}
 
+        Since we know that $R^{\mathbb{N}}$ is not finitely adequate, we now know that the class of reflexive and finitely adequate $R$-modules are different.
 
       \begin{proof}
-        We already know that $R^{\mathbb{N}}$ is not weakly quasi-coherent.
-        By the previous lemma we see that it is not reflexive.
-        \rednote{TODO: Re-check that the above pairing really induces the double-dual map.}
+        We have a commutative diagram
+        \[
+        \begin{tikzcd}
+          R^{\mathbb{N}} \arrow[r,"t"] \arrow[dr,"\vartheta'"'] & (R^{\mathbb{N}})^{\ast\ast} \arrow[d,"\vartheta^\ast"]
+          \\
+          & (R^{\oplus\mathbb{N}})^\ast
+        \end{tikzcd}
+        \]
+        with $t$ the canonical double dual map and $\vartheta$, $\vartheta'$ as in the proof of \Cref{perfect-pairing-powerseries-polynomials}.
+        As is shown there, these two maps are equivalences, implying that $t$ is as well.
+        A similar argument works for $R^{\oplus\mathbb{N}}$.
       \end{proof}
 
 \item What are examples of modules that are not infinitesimally linear/tangential?
