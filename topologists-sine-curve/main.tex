@@ -13,29 +13,18 @@
 
 
 \begin{document}
-\title{Using the topologist's sine curve to separate path-connectedness and $\mathbb I$-contractibility}
-\maketitle
+\section{Uniform continuity}
+\input{Uniformity.tex}
+
+\section{The topologist's sine curve}
+
 In this note we show that the topologists sine curve $Y$ can be defined in the setting of 
 synthetic Stone duality (SSD) as introduced in \cite{synthetic-stone-duality}. 
 We show that $Y$ is not path-connected. 
 We will also show that $Y$ is $\mathbb I$-contractible. 
 Note that any path-connected space is $\mathbb I$-contractible 
 (Lemma 5.24 of \cite{synthetic-stone-duality}) but the converse thus does not hold. 
-\input{Picture.tex}
-
-\begin{remark}[on notation]
-  We will denote $\mathbb I$ for the interval as defined in \cite{synthetic-stone-duality}. 
-  We will use $[0,1]$ for the closed subobject of $\mathbb R$ that corresponds to the interval. 
-  Furthermore, we will use $\pi_1 : [0,1] \times [-1,1] \to [0,1] $ and $\pi_2: [0,1] \times [-1,1] \to [-1,1]$ 
-  for the canoncical projection maps. 
-\end{remark}
-\begin{remark}
-  By LLPO and dependent choice, the Cauchy reals agree with the reals in the setting of SSD. Thus we can define any function which comes with a Cauchy sequence. In particular, in the setting of SSD, we can define the following functions:
-  \begin{itemize}
-    \item For each $k:\mathbb N$, we can define $t_k: [\frac1k , 1] \to [-1,1]$ by $t_k(r) = \sin(\frac1r)$. 
-    \item We can define for each $n:\mathbb N$ the standard metric $d:\mathbb R^n \times \mathbb R^n \to \mathbb R_{\geq 0}$. 
-  \end{itemize}
-\end{remark}
+%\input{Picture.tex}
 
 \begin{lemma}
   For $A\subseteq X$ a closed subset of a compact Hausdorff space and 
@@ -60,7 +49,7 @@ Note that any path-connected space is $\mathbb I$-contractible
   It follows that $Y$ is closed also, as it's a countable intersection of closed subsets. 
 \end{remark}
 
-\begin{remark}\label{postiveNumbersCharacter}
+\begin{remark}\label{positiveNumbersCharacter}
   Recall that Markov's principle is equivalent to the fact that for $x:\mathbb I$ with $x\neq 0$ there exists some $k:\mathbb N$ with $\frac1k<x$. 
 \end{remark}
 \begin{corollary}\label{NonZeroOnGraph}
@@ -68,64 +57,35 @@ Note that any path-connected space is $\mathbb I$-contractible
 \end{corollary}
 
 \section{The curve is not path-connected}
-\begin{lemma}[uniform continuity of maps $\mathbb I \to \mathbb R^n$]\label{uniformContinuity}
-  For any map $f:\mathbb I \to [0,1] \times [-1,1]$, and for every $\epsilon:\mathbb R$ with $\epsilon>0$, 
-  there exists a $\delta>0$ such that for any $x,y:\mathbb I$ with $d(x,y)<\delta$, we have
-  that $d(f(x) , f(y))<\epsilon$.
+\begin{remark}\label{topbottomSeq}
+  For each $k:\N$, denote $t_k = \frac1{(2k+\frac12) \pi}$ and  $b_n = \frac1{(2k+\frac32) \pi}$. 
+  Note that for all $k:\N$ we have $\sin(\frac1{b_k})=-1, \sin(\frac1{t_k})=1$ and
+  $1>t_k>b_k>t_{k+1}>b_{k+1}>0$. 
+\end{remark}
+\begin{lemma}\label{cofinaltbseq}
+  Given $r:[0,1]$ with $r>0$, there are some $k:\N$ with $t_k,b_k<r$.  
 \end{lemma}
 \begin{proof}
-  Because $f$ is continuous, for each $x:\mathbb I$ there exists some $n:\mathbb N$ such that 
-  if $d(x,y)<\frac1n$, then $d((f(x), f(y)))<\epsilon$. 
-  By local choice, we get a Stone space $S$ with a surjection $a:S\twoheadrightarrow \mathbb I$ 
-  and a map $b:S\to \mathbb N$ such that if $d(x,a(s))<\frac1{b(s)}$, then $d(f(x), f(a(s)))<\epsilon$. 
-  By Lemma 3.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
-  Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
+  By \Cref{positiveNumbersCharacter}, there is some $k:\N$ with $\frac1k<r$. As $(2k+\frac12)\pi>k$, this $k$ suffices, it follows that $t_k<r$, and as $b_k<t_k$ we have $b_k<r$ also. 
 \end{proof}
-\begin{lemma}\label{sinCharacter}
-  Given $r:[0,1]$ with $r>0$ and 
-  $y:[-1,1]$, there is some $s:[0,1]$ with $0<s<r$ such that 
-  $\sin(\frac1s) = y$. 
+\begin{lemma}\label{SineWillHitTopBot}
+  Let $\gamma:[0,1] \to Y$. 
+  Assume that $\pi_1(\gamma(0)) = 0$ and $\pi_1(\gamma(r))>0$ for some $r:[0,1]$. 
+  Then there exist some $u,v:[0,1]$ with $0<u,v<r$ such that $\pi_2(\gamma(u)) = 1$, and $\pi_2(\gamma(v)) = -1$. 
 \end{lemma}
 \begin{proof}
-  By the intermediate value theorem (Theorem 5.29 of \cite{synthetic-stone-duality}), 
-  it's sufficient to show this for $y \in \{-1,1\}$. 
-  We will do this proof for $y = 1$, as the other case is similar. 
-  We know that for any natural number $k:\mathbb N$ we have that 
-  $\sin( (2 k + \frac12)\cdot \pi) = 1$. 
-  It's thus sufficient to provide some $k:\mathbb N$ such that $\frac1{(2k+\frac12)\cdot \pi}<r$. 
-  As $(2k+\frac12)\cdot \pi>k$, it's sufficient to provide some $k:\mathbb N$ with $\frac1k<r$, 
-  which is given to us by \Cref{postiveNumbersCharacter}.
 \end{proof}
-\begin{lemma}
-  Suppose $f:\mathbb I \to Y$ is such that $\pi_1(f(0)) > 0$.
-  Assume there is some $r:\mathbb I$ with $\pi_1(f(r)) = 0$. 
-  Then for any $a:[-1,1]$, 
-  there is some $r':\mathbb I$ with $\pi_2(f(r')) = a$. 
-\end{lemma}
-\begin{proof}
-  By \Cref{sinCharacter}, there is some $s:[0,1]$ with $0<s<\pi_1(f(0))$ with $\sin(\frac1s) = a$. 
-%  Suppose now an $r:\mathbb I$ with $\pi_1(f(r)) = 0$. 
-  By the intermediate value theorem, there must then exist an $r':\mathbb I$ with $\pi_1(f(r')) = s$. 
-  As $0<s$, by \Cref{NonZeroOnGraph} the only such point $f(r')$ must equal $(s, a)$.
-  Hence $\pi_2(f(r')) = a$. 
-\end{proof}  
-\begin{corollary}\label{topologistsSineCurveWillHitInfinitelyManyTimes}
-  Let $a:[-1,1]$ and let $f:\mathbb I \to Y$ satisfy $f(1) = (0,0)$, 
-  and let $r:\mathbb I$ be such that $\pi_1(f(r))>0$, 
-  then there is some $r':\mathbb I$ with $r<r'<1$ with $f(r') = a$. 
-\end{corollary}
-
 \begin{theorem}[The topologist's sine curve is not path-connected]
-  There is no map $f:\mathbb I \to Y$ such that $f(0) = (1,sin(1))$ and $f(1) = (0,0)$. 
+  There is no map $\gamma:\mathbb I \to Y$ such that $\gamma(0) = (1,sin(1))$ and $\gamma(1) = (0,0)$. 
 \end{theorem}
 \begin{proof}
-  By applying countable dependent choice to \Cref{topologistsSineCurveWillHitInfinitelyManyTimes}, 
-  we can find increasing sequences $t_i,b_i,~i:\mathbb N$ such that $\pi_2(f(t_i)) = 1, \pi_2(f(b_i)) = -1$ and 
-  $t_{i+1}>b_{i+1}>t_i>b_i$ for all $i:\mathbb N$. 
-  By \Cref{uniformContinuity} for $\epsilon = 2$, there is some $\delta:\mathbb I$ with $\delta>0$ such that 
-  $d(b_i, t_j)\geq \delta$ for any $i,j:\mathbb N$. 
-  Therefore, the sequence $t_i$ is increasing with steps of at least size $2\delta>0$. 
-  But this means that for $N>\frac1{2\delta}$, we have $t_{N}>1$, while $t_N :\mathbb I$, which is a contradiction. 
+  By applying dependent choice to \Cref{SineWillHitTopBot}, 
+  we can find increasing sequences $u_i,v_i,~i:\N$ such that $\pi_2(\gamma(u_i)) = 1, \pi_2(\gamma(v_i)) = -1$ and 
+  $u_{i+1}>v_{i+1}>u_i>v_i$ for all $i:\mathbb N$. 
+  By \Cref{uniformContinuity} for $\epsilon = 2$, there is some $\delta:[0,1]$ with $\delta>0$ such that 
+  $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$. 
+  Therefore, the sequence $u_i$ is increasing with steps of at least size $2\delta>0$. 
+  But this means that for $N>\frac1{2\delta}$, we have $u_{N}>1$, while $u_N :[0,1]$, which is a contradiction. 
 \end{proof}
 
 \begin{remark}

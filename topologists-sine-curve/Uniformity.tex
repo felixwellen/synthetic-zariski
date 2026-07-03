@@ -1,0 +1,41 @@
+In this section, we proof that all maps $\mathbb I \to \mathbb I$ are uniformly continuous. We will show this in two ways. One is a proof using that all maps are continuous in $\epsilon-\delta$ sense, which follows from the result that the synthetic topology on $\mathbb I$ agrees with the $\epsilon-\delta$ topology. The other is a direct proof of uniform continuity using the notion of uniform spaces as by Andre Weil. 
+
+We will also show that all uniformly continuous functions can be defined. 
+\begin{remark}
+  By LLPO and dependent choice, the Cauchy reals agree with the reals in the setting of SSD. Thus we can define any function which comes with a Cauchy sequence. In particular, in the setting of SSD, we can define the following functions:
+  \begin{itemize}
+    \item For each $k:\mathbb N$, we can define $t_k: [\frac1k , 1] \to [-1,1]$ by $t_k(r) = \sin(\frac1r)$. 
+    \item We can define for each $n:\mathbb N$ the standard metric $d:\mathbb R^n \times \mathbb R^n \to \mathbb R_{\geq 0}$. 
+  \end{itemize}
+\end{remark}
+
+
+The following is a proof using the topology on $\mathbb I$. 
+\begin{lemma}[uniform continuity of maps $\mathbb I \to \mathbb R^n$]\label{uniformContinuity}
+  For any map $f:\mathbb I \to [0,1] \times [-1,1]$, and for every $\epsilon:\mathbb R$ with $\epsilon>0$, 
+  there exists a $\delta>0$ such that for any $x,y:\mathbb I$ with $d(x,y)<\delta$, we have
+  that $d(f(x) , f(y))<\epsilon$.
+\end{lemma}
+\begin{proof}
+  Because $f$ is continuous, for each $x:\mathbb I$ there exists some $n:\mathbb N$ such that 
+  if $d(x,y)<\frac1n$, then $d((f(x), f(y)))<\epsilon$. 
+  By local choice, we get a Stone space $S$ with a surjection $a:S\twoheadrightarrow \mathbb I$ 
+  and a map $b:S\to \mathbb N$ such that if $d(x,a(s))<\frac1{b(s)}$, then $d(f(x), f(a(s)))<\epsilon$. 
+  By Lemma 3.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
+  Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
+\end{proof}
+
+
+\begin{definition}
+Let $S$ be the limit of a sequence of sets $S_n$. 
+Denote $\pi_n$ for the limit projection map $S \to S_n$. 
+We define the relation $\sim_n$ on $S$ by $s \sim_n t$ iff $\pi_n(s) = \pi_n(t)$. 
+\end{definition}
+\begin{remark}
+  We claim this defines a nearness relation in the sense of Andre Weil (uniform spaces)
+\end{remark}
+
+\begin{definition}
+  Let $S \twoheadrightarrow X$ be a surjection, and let $\sim_n$ be an indexed nearness relation on $S$. 
+  We define an indexed nearness relation on $X$ as $x\sim_n^k y$ iff there exists some sequence $s_1,\cdots,s_k$ such that $s_1\sim_n \cdots \sim_n s_k$, and $q(s_1) = x, q(s_k) = y$. 
+\end{definition}
