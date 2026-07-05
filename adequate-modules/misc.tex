@@ -500,4 +500,165 @@ are all not not finite free, so this method won't work for them.
         A similar statement holds for linearly adequate.
       \end{remark}
 
+      \begin{lemma}
+        \label{identification-hom-tensor-for-fp-algebras}
+        Let $M$ be a reflexive and quasi-coherent $R$-module.
+        Then for every finitely presented $R$-algebra $A$ the map
+        \[
+          M \otimes A \to \Hom_R(M^\ast, A), \;\;
+          m \otimes a \mapsto (\lambda \mapsto \lambda(m)a)
+        \]
+        is an equivalence which is natural in $A$.
+        In the hom-set we forget the algebra structure of $A$ and consider it as an $R$-module.
+      \end{lemma}
+
+      \begin{proof}
+        Consider the following chain of equivalences:
+        \begin{align*}
+          M \otimes A &\to M^{\Spec A} \\
+                      &\to (M^{\ast\ast})^{\Spec A} \\
+                      &\to \Hom_R(M^\ast, R^{\Spec A}) \\
+                      &\to \Hom_R(M^\ast, A)
+        \end{align*}
+        The first is due to quasi-coherence, the second to reflexivity and the last to duality.
+        The penultimate equality follows by currying since $R^{\Spec A}$ carries the pointwise module structure.
+        We omit the verification that this composition agrees with the stated map of the lemma.
+      \end{proof}
+
+      Next we show that an $R$-module is finitely adequate and quasi-coherent if and only if it is finitely presented.
+
+      \begin{corollary}
+        \label{identification-hom-tensor-for-fp-modules}
+        Let $M$ be a reflexive and quasi-coherent $R$-module.
+        Then for every finitely presented $R$-module $N$ the map
+        \[
+          M \otimes N \to \Hom_R(M^\ast, N), \;\;
+          m \otimes n \mapsto (\lambda \mapsto \lambda(m)n)
+        \]
+        is an equivalence which is natural in $N$.
+      \end{corollary}
+
+      {\color{red} The following could (probably should) be put into more elegant terms by using $\mathbb D(N) = \Spec (R \oplus N) = N_1(N^\ast)$ and explaing how it maps SES to fiber sequences.}
+
+      \begin{proof}
+        Consider the trivial square-zero extension $R \oplus N$ of $N$, which is a finitely presented $R$-algebra and fits into an exact sequence
+        \[
+          0 \to N \to R \oplus N \overset{\pi}{\to} R \to 0\rlap{.}
+        \]
+        This sequence is split exact as a sequence of $R$-modules, hence any additive functor will preserve its exactness.
+        The previous lemma now gives a commutative diagram
+        \[
+        \begin{tikzcd}
+          0 \ar[d] & 0 \ar[d] \\
+          M \otimes N \ar[d]\ar[r, "(1)"] & \Hom_R(M^\ast,N) \ar[d] \\
+          M\otimes (R\oplus N) \ar[r,"(2)"] \ar[d,"M \otimes \pi"'] & \operatorname{Hom}_R(M^\ast,R\oplus N) \ar[d,"\pi_\ast"] \\
+          M \otimes R \ar[d]\ar[r,"(3)"] & \operatorname{Hom}_R(M^\ast,R) \ar[d] \\
+          0 & 0
+        \end{tikzcd}
+      \]
+      with exact columns.
+      The map $(2)$ is an equivalence by \Cref{identification-hom-tensor-for-fp-algebras} and map $(3)$ is one by the reflexivity of $M$.
+      By the $5$-lemma we see that $(1)$ is an equivalence as well.
+      \end{proof}
+
+      \begin{remark}
+        Beware that the equivalence of \Cref{identification-hom-tensor-for-fp-modules} does not generalize to all finitely adequate $R$-modules $N$, even if we specialize to a finitely presented $M$.
+        Indeed, this would imply that $M \otimes (-)$ and $\Hom_R(M^\ast,-)$ are exact functors.
+        For $\Hom_R(M^\ast,-)$ this is fine, as in this case $M^\ast$ is a projective module, but for $M \otimes (-)$ this cannot be:
+
+        Consider $M \equiv R/(r)$ and the monomorphism $(r) \lhook\joinrel\to R$.
+        It induces the zero map $R/(r) \otimes (r) \to R/(r) \otimes R$, but it not the case that for all $r:R$ we have $R/(r) \otimes (r) = (r)/(r^2) = 0$, as this would imply the mere existence of an $a:R$ such that $r=ar^2$.
+        Since $R$ is local we have $(ar \neq 0) \lor (1-ar \neq 0)$ and a simple case analysis would give $(r=0) \lor (r \neq 0)$ for all $r:R$.
+      \end{remark}
+
+      \begin{proposition}
+        Let $M$ be an $R$-module that is finitely adequate and quasi-coherent.
+        Then $\Hom_R(M^\ast,-)$ is exact when restricted to the category of finitely adequate $R$-modules.
+        In particular, $M$ is finitely presented.
+      \end{proposition}
+
+      {\color{red} I also have a proof of this fact using the universal property of finitely adequate modules as a free abelian category.
+        I haven't yet fully retraced Adelman's argument for this, so I will keep this (ugly) version of the proof for now.
+      The relevant fact for other proof is that if an additive functor $F: \Mod R_{f.aq.} \to \Mod R$ is exact on fp modules and left exact on all f.aq. modules, then it must be naturally isomorphic to the exact continuation $K$ of $R^n \mapsto F(R^n)$.}
+
+      \begin{proof}
+        The second claim follows from the first together with the fact that the finitely presented modules are exactly the duals of the projectives in the category of finitely adequate modules.
+        Thus it remains to show the first part.
+        Suppose that $0 \to A \to B \to C \to 0$ is an exact sequence of finitely adequate modules.
+        Choose finitely presented resolution $0 \to A \to P^0 \to P^1 \to P^2 \to 0$ and $0 \to C \to Q^0 \to Q^1 \to Q^2 \to 0$.
+        Using the injectivity of $P_i$, we obtain a diagram
+        \[
+        \begin{tikzcd}
+          & 0 \ar[d]
+          & 0 \ar[d]
+          & 0 \ar[d]
+          \\
+          0 \ar[r]
+          & A \ar[r] \ar[d]
+          & B \ar[r] \ar[d]
+          & C \ar[r] \ar[d]
+          & 0
+          \\
+          0 \ar[r]
+          & P^0 \ar[r] \ar[d]
+          & P^0 \oplus Q^0 \ar[r] \ar[d]
+          & Q^0 \ar[r] \ar[d]
+          & 0
+          \\
+          0 \ar[r]
+          & P^1 \ar[r] \ar[d]
+          & P^1 \oplus Q^1 \ar[r] \ar[d]
+          & Q^1 \ar[r] \ar[d]
+          & 0
+          \\
+          0 \ar[r]
+          & P^2 \ar[r] \ar[d]
+          & P^2 \oplus Q^2 \ar[r] \ar[d]
+          & Q^2 \ar[r] \ar[d]
+          & 0
+          \\
+          & 0
+          & 0
+          & 0
+        \end{tikzcd}
+        \]
+        Applying $H$ preserves the exactness of the vertical sequences because of \Cref{identification-hom-tensor-for-fp-modules} together with the left exactness of $H$ and also preserves the exactness of split exact sequences, hence we get a diagram
+        \[
+        \begin{tikzcd}
+          & 0 \ar[d]
+          & 0 \ar[d]
+          & 0 \ar[d]
+          \\
+          0 \ar[r]
+          & H(A) \ar[r] \ar[d]
+          & H(B) \ar[r] \ar[d]
+          & H(C) \ar[r, "?", dashed] \ar[d]
+          & 0
+          \\
+          0 \ar[r]
+          & H(P^0) \ar[r] \ar[d]
+          & H(P^0 \oplus Q^0) \ar[r] \ar[d]
+          & H(Q^0) \ar[r] \ar[d]
+          & 0
+          \\
+          0 \ar[r]
+          & H(P^1) \ar[r] \ar[d]
+          & H(P^1 \oplus Q^1) \ar[r] \ar[d]
+          & H(Q^1) \ar[r] \ar[d]
+          & 0
+          \\
+          0 \ar[r]
+          & H(P^2) \ar[r] \ar[d]
+          & H(P^2 \oplus Q^2) \ar[r] \ar[d]
+          & H(Q^2) \ar[r] \ar[d]
+          & 0
+          \\
+          & 0
+          & 0
+          & 0
+        \end{tikzcd}
+        \]
+        The snake lemma gives an exact sequence $H(B) \to H(C) \to H(P^2) \to H(P^2 \oplus Q^2)$.
+        Since $H(P^2) \to H(P^2 \oplus Q^2)$ is injective, the map $H(B) \to H(C)$ is surjective.
+      \end{proof}
 \end{enumerate}
