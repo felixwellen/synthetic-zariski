@@ -13,8 +13,16 @@
 
 
 \begin{document}
+\section{Results we use}
+We recall some results from \cite{synthetic-stone-duality} we will use within this note. 
+\begin{remark}\label{IntermediateValue}
+  The intermediate value theorem as stated in Theorem 5.29 of \cite{synthetic-stone-duality} has the following consequence: If $f : [0,1] \to [0,1]$ is such that for some $x<y, a<b$ we have $f(x) = a, f(y) = b$, then for all $c$ with $a<c<b$ there exists some $z$ with $x<z<y$ such that $f(z) = c$. 
+\end{remark}
+
 \section{Uniform continuity}
 \input{Uniformity.tex}
+
+
 
 \section{The topologist's sine curve}
 
@@ -53,7 +61,7 @@ Note that any path-connected space is $\mathbb I$-contractible
   Recall that Markov's principle is equivalent to the fact that for $x:\mathbb I$ with $x\neq 0$ there exists some $k:\mathbb N$ with $\frac1k<x$. 
 \end{remark}
 \begin{corollary}\label{NonZeroOnGraph}
-  By the above, if for some $x:[0,1] \times [-1,1]$ we have $x\in Y$ and $\pi_1(x)\neq 0$, there must be some $k\in\mathbb N$ with $x \in graph(t_k)$. 
+  By the above, if for some $x:[0,1] \times [-1,1]$ we have $x\in Y$ and $\pi_1(x)\neq 0$, there must be some $k\in\mathbb N$ with $x \in graph(t_k)$ and hence $\pi_2(x) =\sin(\frac1{\pi_1(x)})$. 
 \end{corollary}
 
 \section{The curve is not path-connected}
@@ -63,29 +71,33 @@ Note that any path-connected space is $\mathbb I$-contractible
   $1>t_k>b_k>t_{k+1}>b_{k+1}>0$. 
 \end{remark}
 \begin{lemma}\label{cofinaltbseq}
-  Given $r:[0,1]$ with $r>0$, there are some $k:\N$ with $t_k,b_k<r$.  
+  Given $r:[0,1]$ with $r>0$, there exists some $k:\N$ with $t_k,b_k<r$.  
 \end{lemma}
 \begin{proof}
-  By \Cref{positiveNumbersCharacter}, there is some $k:\N$ with $\frac1k<r$. As $(2k+\frac12)\pi>k$, this $k$ suffices, it follows that $t_k<r$, and as $b_k<t_k$ we have $b_k<r$ also. 
+  By \Cref{positiveNumbersCharacter}, there is some $k:\N$ with $\frac1k<r$. As $(2k+\frac32)\pi,(2k+\frac12)\pi>k$, this $k$ suffices.
 \end{proof}
 \begin{lemma}\label{SineWillHitTopBot}
   Let $\gamma:[0,1] \to Y$. 
   Assume that $\pi_1(\gamma(0)) = 0$ and $\pi_1(\gamma(r))>0$ for some $r:[0,1]$. 
-  Then there exist some $u,v:[0,1]$ with $0<u,v<r$ such that $\pi_2(\gamma(u)) = 1$, and $\pi_2(\gamma(v)) = -1$. 
+  Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_2(\gamma(u)) = 1$, and $\pi_2(\gamma(v)) = -1$. 
 \end{lemma}
 \begin{proof}
+  We apply the intermediate value theorem (\Cref{IntermediateValue}) to $\pi_1\circ \gamma : [0,1] \to [0,1]$. 
+  By \Cref{cofinaltbseq}, there exists some $v:[0,1]$ such that $\pi_1(\gamma(v)) = b_k$. 
+  As $b_k>0$, by \Cref{NonZeroOnGraph}, we may conclude that $\pi_2(\gamma(v)) = -1$. 
+  The case for $u$ is similar. 
 \end{proof}
 \begin{theorem}[The topologist's sine curve is not path-connected]
-  There is no map $\gamma:\mathbb I \to Y$ such that $\gamma(0) = (1,sin(1))$ and $\gamma(1) = (0,0)$. 
+  There is no map $\gamma:\mathbb I \to Y$ such that $\gamma(0) = (0,0)$ and $\gamma(1) = (1,sin(1))$. 
 \end{theorem}
 \begin{proof}
   By applying dependent choice to \Cref{SineWillHitTopBot}, 
-  we can find increasing sequences $u_i,v_i,~i:\N$ such that $\pi_2(\gamma(u_i)) = 1, \pi_2(\gamma(v_i)) = -1$ and 
-  $u_{i+1}>v_{i+1}>u_i>v_i$ for all $i:\mathbb N$. 
-  By \Cref{uniformContinuity} for $\epsilon = 2$, there is some $\delta:[0,1]$ with $\delta>0$ such that 
-  $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$. 
-  Therefore, the sequence $u_i$ is increasing with steps of at least size $2\delta>0$. 
-  But this means that for $N>\frac1{2\delta}$, we have $u_{N}>1$, while $u_N :[0,1]$, which is a contradiction. 
+  we can find sequences $u_i,v_i,~i:\N$ such that $\pi_2(\gamma(u_i)) = 1, \pi_2(\gamma(v_i)) = -1$ and 
+  $u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\mathbb N$. 
+  We now apply uniform continuity (\Cref{uniformContinuity}). 
+  For $\epsilon = 2$, there is some $\delta:[0,1]$ with $\delta>0$ such that $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$ as  $d(\gamma(u_i), \gamma(v_j)) > 2$. 
+  Therefore, the sequence $u_i$ is decreasing with steps of at least size $2\delta>0$. 
+  But this means that for $N>\frac1{2\delta}$, we have $u_{N}<0$, while $u_N :[0,1]$, which is a contradiction. 
 \end{proof}
 
 \begin{remark}
