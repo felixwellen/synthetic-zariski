@@ -185,6 +185,169 @@ This is a variant of \cite{vakil}[Theorem 17.6.2] (which might hold):
 \end{proof}
 
 
+
+
+\subsection{Finitely Adequate Bundles}
+
+
+{\color{red} Some loose notes on f.aq. bundles. This is very incomplete as of now and might not ever be useful.
+The roadmap for showing that f.aq. bundles on $X = \bP^n$ have f.aq cohomology is (unclear if it works):
+
+1. Show that $H^p(X,\mathcal F)$ is an fppf sheaf. (DONE)
+
+2. The proposition "$H^p(X,\mathcal F)$ is f.aq." is an fppf sheaf.
+
+3. Work under this modal assumption to construct a hyperplane section $s: \mathcal O(1)$ such that there is an exact sequence $0 \to \mathcal F(-1) \to \mathcal F \to \mathcal F^{s=0} \to 0$ (probably only affine-locally instead of pointwise).
+
+4. Induct over dimension of X.}
+
+
+The following lemma was suggested to me by Hugo.
+
+\begin{lemma}
+For any $R$-module $M$ the dual $M^\ast$ is an fppf sheaf. In particular, any reflexive module is an fppf sheaf.
+\end{lemma}
+
+\begin{proof}
+If $M$ is any $R$-module, then
+\[
+  M^\ast = \sum_{f : M \to R} \prod_{n,m:M}\prod_{r:R} f(n+rm)=f(n)+rf(m)
+\]
+is an fppf sheaf since the equality type is one and modalities are closed under sums and products.
+\end{proof}
+
+{\color{red} Probably Hugo and Thierry know some of the following already and have better proofs. Need to ask them.}
+
+\begin{definition}
+An $R$-module $M$ is called \emph{fppf-quasi-coherent} {\color{red}(open for better names)} if for every faithfully flat and finitely presented $R$-algebra $A$ the canonical map $M \otimes A \to M^{\Spec A}$ is an equivalence.
+\end{definition}
+
+Every quasi-coherent module is fppf-quasi-coherent and hence so are finitely presented modules.
+Using flatness and the $5$-lemma we see that kernels of $R$-linear maps of fppf-quasi-coherent modules are fppf-quasi-coherent again.
+In particular, so are (finitely) adequate modules.
+This is a key property that makes this notion better behaved than quasi-coherence.
+In fact, we will see that the category of fppf-quasi-coherent modules is Abelian and closed under extensions.
+
+\begin{lemma}
+\label{fppf-qc-implies-wqc}
+Any fppf-quasi-coherent module is weakly quasi-coherent.
+\end{lemma}
+
+\begin{proof}
+Let $M$ be a fppf-quasi-coherent $R$-module.
+Let $r:R$.
+The finitely presented $R$-algebra $A :\equiv R \times R[r^{-1}]$ is faithfully flat and the canonical map $M \otimes A \to M^{\Spec A}$ can be identified with the map $id \times \Delta: M \times M[r^{-1}] \to M \times M^{D(r)}$.
+By assumption this is an equivalence, hence so is $\Delta$.
+\end{proof}
+
+\begin{lemma}
+\label{fppf-qc-closed-under-dependent-prod}
+Let $A$ be a faithfully flat and finitely presented $R$-algebra.
+Let $M_x$ be an fppf-quasi-coherent $R$-module for every $x:\Spec A$.
+Then $\prod_{x:\Spec A}M_x$ is also fppf-quasi-coherent.
+\end{lemma}
+
+The same proof that shows that quasi-coherent $R$-modules are closed under $\Spec A$-indexed dependent products also works for fppf-quasi-coherent.
+
+\begin{proof}
+Let $\Spec B$ be the spectrum of a faithfully flat and finitely presented $R$-algebra.
+The only non-trivial part of the proof is verifying that the map
+\[
+  \Big( \prod_{x:\Spec A}M_x \Big) \otimes B \longrightarrow \prod_{x:\Spec A}M_x \otimes B
+\]
+is an equivalence.
+Choose a presentation $R[x_1,\dots,x_n] \to R[y_1,\dots,y_m] \to B \to 0$.
+Observe that $(-)\otimes B$ and $\prod_{x:\Spec A}(-)$ are right exact in this situation.
+Thus, using the $5$-lemma, we may reduce to the case $B = R[x_1,\dots,x_n]$.
+The result now follows from an application of Zariski-local choice and boundedness. {\color{red} This can use more detail.}
+\end{proof}
+
+\begin{lemma}
+\label{Amitsur-exactness}
+Let $M$ be a fppf-quasi-coherent $R$-module and let $A$ be a faithfully flat $R$-algebra.
+Denote $Y \equiv \Spec A$.
+Then the complex
+\[
+  0 \to M \to M^Y \to M^{Y \times Y} \to M^{Y \times Y \times Y} \to ...\rlap{,}
+\]
+equipped with the obvious differentials, is exact.
+\end{lemma}
+
+\begin{proof}
+By definition, this complex is isomorphic to the \emph{Amitsur complex}
+\[
+  0 \to M \to M \otimes A \to M \otimes A \otimes A \to M \otimes A \otimes A \otimes A \to ...\rlap{.}
+\]
+The exactness of this complex for faithfully flat algebras is a folklore result.
+\end{proof}
+
+\begin{corollary}
+Every fppf-quasi-coherent module is an fppf sheaf.
+\end{corollary}
+
+\begin{proof}
+Let $Y \equiv \Spec A$ be the spectrum of a faithfully flat $R$-algebra $A$.
+The truncation $\|Y\|$ is the set-coequalizer of the projections $Y \times Y \rightrightarrows Y$ and thus $0 \to M^{\|Y\|} \to M^Y \to M^{Y \times Y}$ is a kernel diagram.
+By virtue of the exactness at the first three entries of the complex of \Cref{Amitsur-exactness}, this means that the diagonal map $M \to M^{\|Y\|}$ is an equivalence.
+\end{proof}
+
+\begin{proposition}
+The category of fppf-quasi-coherent $R$-modules is Abelian and closed under extensions.
+\end{proposition}
+
+\begin{proof}
+Let $Y \equiv \Spec A$ be the spectrum of a finitely presented and faithfully flat $R$-algebra.
+Let $f : M \to N$ be a morphism of fppf-quasi-coherent $R$-modules.
+We already observed that $\ker(f)$ is fppf-quasi-coherent.
+To see that $\im(f)$ is fppf-quasi-coherent, consider the following diagram with exact rows.
+\[
+\begin{tikzcd}
+  0 \arrow[r] & \ker(f) \otimes A \ar[r] \ar[d] & M \otimes A \ar[r] \ar[d] & \im(f) \otimes A \arrow[r] \arrow[d] & 0              \\
+  0 \arrow[r] & \ker(f)^Y \arrow[r]      & M^Y \arrow[r]      & \im(f)^Y \arrow[r]      & {H^1(Y, \ker(f))}
+\end{tikzcd}
+\]
+From \Cref{fppf-qc-implies-wqc} we know that $H^1(Y,\ker(f))=0$, hence by the $5$-lemma $\im(f)$ if fppf-quasi-coherent.
+A similar argument shows that $\coker(f)$ is in our category and that it is closed under extensions.
+\end{proof}
+
+\begin{corollary}
+Let
+\[
+  ... \to C^{n-1} \overset{d^{n-1}}{\to} C^n \overset{d^{n}}{\to} C^{n+1} \to ...
+\]
+be a complex of fppf-quasi-coherent $R$-modules.
+Then $H^p(C^\bullet)$ is fppf-quasi-coherent and inparticular an fppf sheaf.
+$\hfill\square$
+\end{corollary}
+
+\begin{corollary}
+Let $X$ be a separated scheme and $\mathcal F : X \to \Mod R$ a bundle of pointwise fppf-quasi-coherent $R$-modules.
+Then all cohomology groups $H^p(X, \mathcal F)$ are fppf-quasi-coherent modules and are in particular fppf sheaves.
+\end{corollary}
+
+\begin{proof}
+Combine the previous corollary with \Cref{fppf-qc-closed-under-dependent-prod}.
+\end{proof}
+
+{\color{red} Probably the detour over Cech cohomology is not necessary, if we formulate the previous stuff in the correct generality.}
+
+
+\begin{lemma}
+{\color{red} Unclear.}
+If $M$ is a fppf-quasi-coherent $R$-module, then the proposition "$M$ is finitely adquate" is an fppf sheaf.
+\end{lemma}
+
+\begin{corollary}
+{\color{red} Unclear.}
+Let $\mathcal F : \bP^n \to \Mod R$ be a finitely adequate bundle.
+Then there fppf-merely is a hyperplane section $s : H^0(\bP^n,\mathcal O(1))$ such that
+\[
+  0 \to \mathcal F(-1) \overset{\cdot s}{\to} \mathcal F \to \mathcal F^{s=0}\to 0
+\]
+is affine-locally exact.
+\end{corollary}
+
+
 \subsection{Finitely Presented Bundles}
 
 In this section we study the structure and cohomology of finitely presented bundles on $\bP^n$.
