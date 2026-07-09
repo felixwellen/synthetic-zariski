@@ -13,11 +13,33 @@
 
 
 \begin{document}
-\section{Results we use}
-We recall some results from \cite{synthetic-stone-duality} we will use within this note. 
+\section{Introduction}
+In this note, we extend some of the results from synthetic Stone duality (SSD, \cite{synthetic-stone-duality}) to talk about uniform continuity of functions between compact Hausdorff spaces. We will then define the topologists sine curve as a compact Hausdorff space in the setting of SSD. We will show that the topologists sine curve is not path-connect, but it is $[0,1]$-contractible. We will recall that any path-connected space is $[0,1]$-contractible, but thus conclude the converse cannot hold. 
+
+
+\section{Preliminaries}
+In \cite{synthetic-stone-duality}, the axioms of synthetic Stone duality were introduced. Within that system, one could prove Markov's principle and the lesser limited principle of omniscience (LLPO). We could also define a synthetic topology on any type. These principles and topology worked well together, and we will recall and extend some results below in order to make this note self-contained. 
+
 \begin{remark}\label{IntermediateValue}
   The intermediate value theorem as stated in Theorem 5.29 of \cite{synthetic-stone-duality} has the following consequence: If $f : [0,1] \to [0,1]$ is such that for some $x<y, a<b$ we have $f(x) = a, f(y) = b$, then for all $c$ with $a<c<b$ there exists some $z$ with $x<z<y$ such that $f(z) = c$. 
 \end{remark}
+\begin{definition}
+  Closed subset, proposition
+\end{definition} 
+\begin{remark}
+  Closed propositions are double negation stable and closed under disjunction and countable intersection. 
+\end{remark}
+\begin{remark}
+  Fix the statement of $\Sigma(x \sim y) $ vs $\exists(x\sim y)$ for $x\sim y$ the path relation. 
+\end{remark}
+\begin{remark}
+
+\end{remark}
+\begin{remark}
+  Cauchy reals agree with set quotient of $2^\mathbb N$ by $\sim_n$. 
+  Conclude from this which functions one can definitely define on $\mathbb R^n \to \mathbb R^m$. 
+\end{remark}
+
 
 \section{Uniform continuity}
 \input{Uniformity.tex}
@@ -26,12 +48,6 @@ We recall some results from \cite{synthetic-stone-duality} we will use within th
 
 \section{The topologist's sine curve}
 
-In this note we show that the topologists sine curve $Y$ can be defined in the setting of 
-synthetic Stone duality (SSD) as introduced in \cite{synthetic-stone-duality}. 
-We show that $Y$ is not path-connected. 
-We will also show that $Y$ is $\mathbb I$-contractible. 
-Note that any path-connected space is $\mathbb I$-contractible 
-(Lemma 5.24 of \cite{synthetic-stone-duality}) but the converse thus does not hold. 
 %\input{Picture.tex}
 
 \begin{lemma}
@@ -95,7 +111,7 @@ Note that any path-connected space is $\mathbb I$-contractible
   we can find sequences $u_i,v_i,~i:\N$ such that $\pi_2(\gamma(u_i)) = 1, \pi_2(\gamma(v_i)) = -1$ and 
   $u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\mathbb N$. 
   We now apply uniform continuity (\Cref{uniformContinuity}). 
-  For $\epsilon = 2$, there is some $\delta:[0,1]$ with $\delta>0$ such that $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$ as  $d(\gamma(u_i), \gamma(v_j)) > 2$. 
+  For $\epsilon = 2$, there is some $\delta>0$ such that $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$ as  $d(\gamma(u_i), \gamma(v_j)) > 2$. 
   Therefore, the sequence $u_i$ is decreasing with steps of at least size $2\delta>0$. 
   But this means that for $N>\frac1{2\delta}$, we have $u_{N}<0$, while $u_N :[0,1]$, which is a contradiction. 
 \end{proof}

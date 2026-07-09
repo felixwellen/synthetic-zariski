@@ -1,13 +1,6 @@
-In this section, we proof that all maps $\mathbb I \to \mathbb I$ are uniformly continuous. We will show this in two ways. One is a proof using that all maps are continuous in $\epsilon-\delta$ sense, which follows from the result that the synthetic topology on $\mathbb I$ agrees with the $\epsilon-\delta$ topology. The other is a direct proof of uniform continuity using the notion of uniform spaces as by Andre Weil. 
+In \cite{synthetic-stone-duality}, we show that all functions on the unit interval are continuous in the $\epsilon-\delta$ sense. In this section, we will extend these results to uniform continuity. We will do so in two ways. One way is to show that continuity implies uniform continuity. The other way is to use the notion of uniform space, as in \parencite[Ch2]{BourbakiTopologyCh1To4}. 
 
-We will also show that all uniformly continuous functions can be defined. 
-\begin{remark}
-  By LLPO and dependent choice, the Cauchy reals agree with the reals in the setting of SSD. Thus we can define any function which comes with a Cauchy sequence. In particular, in the setting of SSD, we can define the following functions:
-  \begin{itemize}
-    \item For each $k:\mathbb N$, we can define $t_k: [\frac1k , 1] \to [-1,1]$ by $t_k(r) = \sin(\frac1r)$. 
-    \item We can define for each $n:\mathbb N$ the standard metric $d:\mathbb R^n \times \mathbb R^n \to \mathbb R_{\geq 0}$. 
-  \end{itemize}
-\end{remark}
+
 
 
 The following is a proof using the topology on $\mathbb I$. 
@@ -25,17 +18,70 @@ The following is a proof using the topology on $\mathbb I$.
   Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
 \end{proof}
 
+\subsection{Uniform spaces in SSD} 
+Uniform spaces were invented by Andre Weil. They are a generalization of topological spaces were one can talk about uniform continuity. Instead of a neighbourhood, which assings to each point a notion of being close to that point, the notion of an entourage is used, which gives a notion of closeness for all points at the same time. Entourages are subsets of the product space, and hence we must first take a small detour about the topology of a product. 
+
+\rednote{Recall Prop 2.59 van Lesnik's thesis en kijk of het applied}
+
+
+\begin{lemma}\label{ClassificationTopologyProductStone}
+  Let $S,T:\Stone$. A decidable subset $D \subseteq S \times T$ can be written as finite union of subsets of the form $A \times B$ where $A,B$ are decidable subsets of $S,T$ respectively. 
+\end{lemma}
+\begin{proof}
+  Recall from \parencite[Dfn 1.3]{synthetic-stone-duality} that a Boolean algebra $B$ is countably presented if there are some countable sets $G_B$, $R_B$ and a function $f_B : R_B \to 2[G_B]$, where $2[G_B]$ denotes the free Boolean algebra with generators $G_B$, such that $B = 2[G_B]/(f_Br)_{r:R_B}$. 
+%
+  It follows that if $B,C$ are two countably presented Boolean algebras, their coproduct is represented by
+  $$B+ C = 2[G_B \uplus G_C] / (f_{B,C}r)_{r : R_B \uplus R_C},$$
+  where $\uplus$ denotes the disjoint sum of countable sets and $f_{B,C}$ denotes the canonical map $R_B \uplus R_C \to 2[G_B \uplus G_C]$ sending each expression to itself. 
+%
+  By a disjunctive normal form argument, one can thus show that every term of $B+C$ is thus a finite disjunction of terms of the form $b \wedge c$ where $b:B,c:C$. Under Stone duality, this translates exactly to the desired statement for Stone spaces. 
+\end{proof}
+\begin{corollary}
+  Let $X,Y:\CHaus$. Any open subset of $X \times Y$ can be written as countable union of products of open subsets from $X,Y$. 
+\end{corollary}
+\begin{proof}
+  Let $q:S \twoheadrightarrow X , p : T \twoheadrightarrow Y$ be Stone covers. Then $p\times q : S \times T \to X \times Y$ is a Stone cover also. Any open in $X\times Y$ is by \parencite[Cor 4.7]{synthetic-stone-duality} of the form $\bigcup_{n:\mathbb N} \neg (p\times q)(D_n)$ where each $D_n$ is a decidable subset of $S \times T$. 
+
+
+
+
+  By \Cref{ClassificationTopologyProductStone}, such decidable subsets are finite unions of those of the form $D_S \times D_T$, and now note that $\neg (p \times q)(D_S \times D_T)$
+\end{proof}
+
+
 
 \begin{definition}
-Let $S$ be the limit of a sequence of sets $S_n$. 
-Denote $\pi_n$ for the limit projection map $S \to S_n$. 
-We define the relation $\sim_n$ on $S$ by $s \sim_n t$ iff $\pi_n(s) = \pi_n(t)$. 
+  Let $X:\CHaus$. An \textbf{entourage} of $X$ is an open subset $U\subseteq X \times X$ such that for all $x:X$ we have $(x,x) \in U$. 
 \end{definition}
-\begin{remark}
-  We claim this defines a nearness relation in the sense of Andre Weil (uniform spaces)
+\begin{remark}\label{EntourageClassical}
+  In \cite{BourbakiTopologyCh1To4}, a uniformity on a set $X$ is defined a subset of $\mathcal P(X \times X)$, satisfying certain axioms. The elements of a uniformity are called entourages. Any uniformity induces a topological structure. If that topological structure is compact, then a base for the underlying entourages is given exactly by the opens containing the diagonal (\parencite[Thm 2.4.1.1]{BourbakiTopologyCh1To4}. Thus the above definition is only classically correct for compact spaces. 
 \end{remark}
 
-\begin{definition}
-  Let $S \twoheadrightarrow X$ be a surjection, and let $\sim_n$ be an indexed nearness relation on $S$. 
-  We define an indexed nearness relation on $X$ as $x\sim_n^k y$ iff there exists some sequence $s_1,\cdots,s_k$ such that $s_1\sim_n \cdots \sim_n s_k$, and $q(s_1) = x, q(s_k) = y$. 
-\end{definition}
+\begin{remark}
+  It follows immediately that for any $f:Y \to X$, the pre-image of $f \times f$ of any entourage of $X$ is an entourage of $Y$, and thus contains an entourage of $Y$. In this sense, any map is uniformly continuous in the sense of \parencite[Dfn 2.2.1.1]{BourbakiTopologyCh1To4}.
+\end{remark}
+\begin{lemma}\label{EntourageIntervalDeltaSphere}
+  Let $U$ be an entourage of $[0,1]$. Then there exists some $\delta>0$ such that $\{(x,y) | |x-y|<\delta\}\subseteq U$. 
+\end{lemma}
+\begin{proof}
+  By \Cref{ClassificationTopologyProductStone}
+\end{proof}
+\begin{corollary}
+  For any $f:[0,1] \to [0,1]$ and any $\epsilon>0$, there exists some $\delta>0$ such that for all $x,y$ with $|x-y|<\delta$, we have $|f(x)-f(y)| < \epsilon$. 
+\end{corollary}
+\begin{proof}
+  Note that $\{(x,y) \in [0,1]\times [0,1] | |x - y| <\epsilon\}$ is an entourage of $[0,1]$, hence it's inverse image of $f\times f$ is an entourage on $[0,1]$ by \Cref{EntourageClassical}, and by \Cref{EntourageIntervalDeltaSphere}, there is a $\delta$ as required. 
+\end{proof}
+
+
+
+\subsection{Functions we can define}
+\rednote{This doesn't have a place yet}
+We will also show that all uniformly continuous functions can be defined. 
+\begin{remark}
+  By LLPO and dependent choice, the Cauchy reals agree with the reals in the setting of SSD. Thus we can define any function which comes with a Cauchy sequence. In particular, in the setting of SSD, we can define the following functions:
+  \begin{itemize}
+    \item For each $k:\mathbb N$, we can define $t_k: [\frac1k , 1] \to [-1,1]$ by $t_k(r) = \sin(\frac1r)$. 
+    \item We can define for each $n:\mathbb N$ the standard metric $d:\mathbb R^n \times \mathbb R^n \to \mathbb R_{\geq 0}$. 
+  \end{itemize}
+\end{remark}
