@@ -583,52 +583,87 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
   Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}.
 \end{proof}
 
-\rednote{The following can be written out in more detail. Here the Tor-groups are defined purely in terms of resolutions. All results about exact sequences should be recovered from the horseshoe lemma and the snake lemma.}
-\rednote{The following needs more work}
-Finitely adequate $R$-modules are also closed under tensor products.
-Let $M$ and $N$ be finitely adequate $R$-modules that are presented by the linearly adequate $R$-modules $P_1, P_2$ and $Q_1, Q_2$, respectively.
-Because the tensor product is right exact, it preserves presentations.
-Consider the following commutative square
+We do not know whether taking the tensor product $M \otimes N$ yields a finitely adequate module, where $M$ and $N$ are finitely adequate modules.
+In the case when $M$ is finitely presented (or similarly for $N$ finitely presented), this is the case as $M \otimes N$ is a cokernel of a map between finite sums of $N$.
+To bypass this problem, we define the {\bf double dual tensor} $M \dbldualtensor N \coloneq (M \otimes N)^{\ast\ast}$.
+It is clear that the double dual tensor is closed in $\finadeq$, since $M \dbldualtensor N = \Hom_R(M,N^\ast)^\ast$, and the latter is the dual of a finitely adequate module.
+To show that the double dual tensor is the tensor in $\finadeq$, we will show that any map $A \otimes B \rightarrow C$ factors uniquely through the evaluation map $\ev_{A \otimes B} : A \otimes B \rightarrow A \dbldualtensor B$.
+Observe that any linear map $f : A \otimes B \rightarrow C$ factors through the evaluation map by its naturality square as in the diagram below
 \begin{center}
   \begin{tikzcd}
-    P_2 \otimes Q_2 \ar{r} \ar{d} & P_2 \otimes Q_1 \ar{d} \\
-    P_1 \otimes Q_2 \ar{r} & P_1 \otimes Q_1
+    A \otimes B \ar{r}{f} \ar{d}{\ev_{A \otimes B}} & C \ar{d}{\ev_C}[left]{\simeq} \\
+    A \dbldualtensor B \ar{r}{f^{\ast\ast}} & C^{\ast\ast}
   \end{tikzcd}
 \end{center}
-By the dual of \Cref{lem:diff-ker-is-ker}, we obtain the following exact sequence
-\begin{center}
-  \begin{tikzcd}
-    (P_1 \otimes Q_2) \oplus (P_2 \otimes Q_1) \ar{r} & P_1 \otimes Q_1 \ar[two heads]{r} & M \otimes N
-  \end{tikzcd}
-\end{center}
-If the first two terms of this sequence are finitely adequate, then so is the last one.
-Thus it suffices to show that the tensor product of linearly adequate $R$-modules is finitely adequate to show that all finitely adequate $R$-modules are closed under tensors.
-We will prove something slightly stronger, namely that the tensor of linearly adequate $R$-modules are themselves linearly adequate.
+The right hand map is an isomorphism as $C$ is finitely adequate.
+To see that this factorization is unique, it remains to prove that the evaluation map $\ev_{A \otimes B} : A \otimes B \rightarrow A \dbldualtensor B$ is epic.
 
-\begin{lemma}
-  Let $P$ and $Q$ be linearly adequate $R$-modules.
-  Then $P \otimes Q$ is linearly adequate as well.
+\begin{lemma}\label{lem:lin-adeq-dbl-dual-tensor-map-epi}
+  Let $K$ and $L$ be linearly adequate modules. Then the evaluation map $\ev_{K \otimes L} : K \otimes L \rightarrow K \dbldualtensor L$ is epic.
 \end{lemma}
 
 \begin{proof}
-  Let $Q \hookrightarrow R^{n_1} \rightarrow R^{n_2}$ be a copresentation of $Q$.
-  It suffices to show that the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic, because $P \otimes R^{n_i}$ is linearly adequate for $i = 1$ and $2$.
-  (This uses that linearly adequate $R$-modules are closed under kernels.)
+  Let $K \xrightarrow{k} R^{k_1} \to R^{k_2}$ and $L \xrightarrow{l} R^{l_1} \to R^{l_2}$ be copresentations.
+  We can factor $k \otimes l$ using the following naturality square associated to the evaluation maps
+  \begin{center}
+    \begin{tikzcd}
+      K \otimes L \ar{r}{k \otimes l} \ar{d}{\ev_{K \otimes L}} & R^{k_1} \otimes R^{l_1} \ar{d}{\ev_{R^{k_1} \otimes R^{l_1}}}[left]{\simeq} \\
+      K \dbldualtensor L \ar{r}{k \dbldualtensor l} & R^{k_1} \dbldualtensor R^{l_1}
+    \end{tikzcd}
+  \end{center}
 
-  Let $M$ be the image of the map $R^{n_1} \rightarrow R^{n_2}$.
-  Since both $Q$ and $R^{n_1}$ are projective in $\finadeq$, the short exact sequence
+  By \cref{identification-hom-tensor-for-fp-modules}, we can identify $K \dbldualtensor L = \Hom_R(K,L^\ast)^\ast = (K^\ast \otimes L^\ast)^\ast$ since both $K^\ast$ and $L^\ast$ are finitely presented.
+The map $k^\ast \otimes l^\ast$ is epic, since both $k^\ast$ and $l^\ast$ are.
+  Furthermore, by the dual of \Cref{lem:diff-ker-is-ker}, we obtain the following exact sequence
   \begin{center}
     \begin{tikzcd}
-      Q \ar[hook]{r} & R^{n_1} \ar[two heads]{r} & M
+      R_{k_1} \otimes R_{l_2} \oplus R_{k_2} \otimes R_{l_1} \ar{r} & R_{k_1} \otimes R_{l_1} \ar[two heads]{r}{k^\ast \otimes l^\ast} & K^\ast \otimes L^\ast
     \end{tikzcd}
   \end{center}
-  is a projective resolution.
-  Since the tensor product is right exact we get an exact sequence after applying $P \otimes (\cdot)$
+  In particular, we learn that $k \dbldualtensor l$ is monic.
+  By using the above identification $K \dbldualtensor L = (K^\ast \otimes L^\ast)^\ast$ and dualizing the sequence, we obtain the exact sequence
   \begin{center}
     \begin{tikzcd}
-      \textup{Tor}_1(P,M) \ar[hook]{r} & P \otimes Q \ar{r} & P \otimes R^{n_1} \ar[two heads]{r} & P \otimes M
+      K \dbldualtensor L \ar[hook]{r}{k \dbldualtensor l} & R^{k_1} \otimes R^{l_1} \ar{r} & R^{k_2} \otimes R^{l_1} \oplus R^{k_1} \otimes R^{l_2}
     \end{tikzcd}
   \end{center}
-  As $\textup{Tor}_1(\cdot, \cdot)$ is balanced, we can compute it starting from $P$, but then we see that $\textup{Tor}_1(P,M) = 0$, so the map $P \otimes Q \rightarrow P \otimes R^{n_1}$ is monic.
+  From this sequence we can realize $K \dbldualtensor L$ as the pullback in the diagram
+  \begin{center}
+    \begin{tikzcd}
+      K \dbldualtensor L \ar[phantom]{rd}[very near start]{\lrcorner} \ar[hook]{r} \ar[hook]{d} & K \otimes R^{l_1} \ar[hook]{d} \ar{r} & K \otimes R^{l_2} \ar[hook]{d} \\
+      R^{k_1} \otimes L \ar[hook]{r} & R^{k_1} \otimes R^{l_1} \ar{r} & R^{k_1} \otimes R^{l_2}
+    \end{tikzcd}
+  \end{center}
+  where both rows are exact.
+  The evaluation map factors $K \otimes l$ in the following manner
+  \begin{center}
+    \begin{tikzcd}
+      K \otimes L \ar{rd}{K \otimes l} \ar{d}[pos = 0.75]{\ev_{K \otimes L}} \\
+      K \dbldualtensor L \ar[hook]{r}{k \dbldualtensor l} & K \otimes R^{l_1} \ar{r} & K \otimes R^{l_2}
+    \end{tikzcd}
+  \end{center}
+  As the tensor product is half exact, the upper row is exact.
+  Therefore $K \dbldualtensor L$ is the image of the evaluation map, meaning the evaluation map is epic.
 \end{proof}
 
+\begin{proposition}\label{prop:fin-adeq-dbl-dual-tensor-map-epi}
+  Let $M$ and $N$ be finitely adequate modules. Then the evaluation map $\ev_{M \otimes N} : M \otimes N \rightarrow M \dbldualtensor N$ is epic.
+\end{proposition}
+
+\begin{proof}
+  Let $\pi_M : K \twoheadrightarrow M$ and $\pi_N : L \twoheadrightarrow N$ be covers of $M$ and $N$ by linearly adequate modules.
+  Consider then the naturality square
+  \begin{center}
+    \begin{tikzcd}
+      K \otimes L \ar[two heads]{r}{\pi_M \otimes \pi_N} \ar{d}{\ev_{K \otimes L}} & M \otimes N \ar{d}{\ev_{M \otimes N}} \\
+      K \dbldualtensor L \ar{r}{\pi_M \dbldualtensor \pi_N} & M \dbldualtensor N
+    \end{tikzcd}
+  \end{center}
+  The map $\ev_{K \otimes L}$ is epic by \Cref{lem:lin-adeq-dbl-dual-tensor-map-epi}, and $\pi_M \dbldualtensor \pi_N$ is epic since taking double duals in this manner preserves epimorphisms.
+  The map $\ev_{M \otimes N} \circ (\pi_M \otimes \pi_N)$ is the last factor of the composite $\pi_M \dbldualtensor \pi_N \circ \ev_{K \otimes L}$, so it is epic.
+\end{proof}
+
+\begin{corollary}
+  Let $M$ be a finitely adequate module. 
+  The functor $M \dbldualtensor (\argmhole) : \finadeq \to \finadeq$ is left adjoint to $\Hom_R(M,\argmhole) : \finadeq \to \finadeq$. \earlyqed
+\end{corollary}
