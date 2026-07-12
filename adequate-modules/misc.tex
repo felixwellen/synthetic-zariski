@@ -278,31 +278,38 @@ This implies that we have either $\prod_x P(x)$ or $\prod_x Q(x)$, as required.
 \end{proof}
 
 \begin{proposition}
-For any type $U$, the modules $R_U$ and $R/R_U$ are tangential.
+For any proposition $U$, the modules $R_U$ and $R/R_U$ are tangent-like.
 \end{proposition}
 
 \begin{proof}
 We first consider $R_U \defeq \sum_{x : R} (x = 0) \lor U$.
-The type $\tangent{(R_U)}{0}$ is equivalent to
+The type $(R_U,0)^{\D(n)}$ is equivalent to
 \[
-  \sum_{f : \D(1) \rightarrow_\ast R} \forall \epsilon : \D(1), (f(\epsilon) = 0) \lor U .
+  \sum_{f : \D(n) \rightarrow_\ast R} \forall \epsilon : \D(n), (f(\epsilon) = 0) \lor U .
 \]
-Since $\D(1)$ is projective (\cref{lem:disk-projective}) and all maps $\D(1) \to \Bool$
+Since $\D(n)$ is projective (\cref{lem:disk-projective}) and all maps $\D(n) \to \Bool$
 are constant (\rednote{Citation?}), we can apply \cref{forall-distributes-over-lor} to
 get an equivalence to
 \[
-  \sum_{f : \D(1) \rightarrow_\ast R} (f = 0) \lor U ,
+  \sum_{f : \D(n) \rightarrow_\ast R} (f = 0) \lor U ,
 \]
-where we have replaced $\forall \epsilon : \D(1), f(\epsilon) = 0$ with $f = 0$
-and have used that $\D(1)$ is pointed to replace $\D(1) \to U$ with $U$.
-Since $R$ is tangential, we can replace $\D(1) \rightarrow_\ast R$ with $R$,
+where we have replaced $\forall \epsilon : \D(n), f(\epsilon) = 0$ with $f = 0$
+and have used that $\D(n)$ is pointed to replace $\D(n) \to U$ with $U$.
+Since $R^n$ is tangential, we can replace $\D(n) \rightarrow_\ast R$ with $R^n$,
 giving
 \[
-  \sum_{x : R} (x = 0) \lor U ,
+  \sum_{x : R^n} (x = 0) \lor U ,
 \]
-which equals $R_U$.
-It is not hard to check that the resulting equivalence is homotopic to the canonical map.
-
+which equals $(R_U)^n$.
+It is not hard to check that the resulting equivalence is homotopic to the canonical map $(R_U)^n \to (R_U,0)^{\D(n)}$.
+For $n=1$ this implies that $R_U$ is tangential and considering the commutativity of the diagram
+\[
+  \begin{tikzcd}
+    (R_U)^{n+m} \ar[r, "\simeq"]\ar[d, "id"] & (R_U,0)^{\D(n+m)} \ar[d] \\
+    (R_U)^n \times (R_U)^m \ar[r, "\simeq"] & (R_U,0)^{\D(n)} \times (R_U,0)^{\D(m)}
+  \end{tikzcd}
+\]
+we see that $R_U$ is infinitesimally linear and hence tangent-like.
 It follows from \cref{prp:lim-col-ext-tangential} that $R/R_U$ is tangential as well.
 \end{proof}
 
@@ -533,7 +540,7 @@ are all not not finite free, so this method won't work for them.
       \end{proof}
 
       \begin{remark}
-        This lemma cannot be improved. There is no finitely adequate $R$-module $M$ that is not finitely presented.
+        This lemma cannot be improved in the sense that here is no finitely adequate $R$-module $M$ that is not finitely presented.
         Indeed, if $M$ were not finitely presented, then it would be not finite free.
         But finitely adequate modules are \emph{not not} finite free.
         A similar statement holds for linearly adequate.
@@ -557,7 +564,7 @@ are all not not finite free, so this method won't work for them.
           M \otimes A &\to M^{\Spec A} \\
                       &\to (M^{\ast\ast})^{\Spec A} \\
                       &\to \Hom_R(M^\ast, R^{\Spec A}) \\
-                      &\to \Hom_R(M^\ast, A)
+                      &\leftarrow \Hom_R(M^\ast, A)
         \end{align*}
         The first is due to quasi-coherence, the second to reflexivity and the last to duality.
         The penultimate equality follows by currying since $R^{\Spec A}$ carries the pointwise module structure.
@@ -661,7 +668,7 @@ are all not not finite free, so this method won't work for them.
           & 0
         \end{tikzcd}
         \]
-        Applying $H$ preserves the exactness of the vertical sequences because of \Cref{identification-hom-tensor-for-fp-modules} together with the left exactness of $H$ and also preserves the exactness of split exact sequences, hence we get a diagram
+        Applying $H :\equiv \Hom_R(M^\ast,-)$ preserves the exactness of the vertical sequences because of \Cref{identification-hom-tensor-for-fp-modules} together with the left exactness of $H$ and also preserves the exactness of split exact sequences, hence we get a diagram
         \[
         \begin{tikzcd}
           & 0 \ar[d]

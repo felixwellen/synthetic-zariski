@@ -1,14 +1,17 @@
+A finitely presented module is described by finitely many generators and relations.
+These modules can be investigated by methods of Linear Algebra and play a central role in Algebraic Geometry.
+When the base ring is coherent, this notion coincides with coherent modules, and this is usually the generality one restricts to classically.
 
-Synthetically, the category of finitely presented $R$-modules does not have all kernels,
-since $R$ is not coherent \cite[3.2]{topology-draft}.
-Therefore, module bundles with values in finitely presented modules are not abelian.
-This section is about finding a suitable replacement category.
+Synthetically however, our base ring $R$ is provably not coherent \cite[3.2]{topology-draft} and these two notions diverge.
+As it turns out, both are not well behaved in our setting.
+The category of finitely presented $R$-modules lacks kernels and the category of coherent $R$-modules, while always being abelian, is much to small as it already does not contain crucial modules like $R^n$.
+In this section we study a bigger category of \notion{finitely adequate} modules as a suitable replacement, and whose objects still retain a certain sense of finiteness.
+This notion is not completely novel and has already been studied externally in \cite[Chapter 06Z1]{stacks-project}.
+
 The work in this section profited from discussions with Hugo Moeneclaey, Mohamed Barakat, and Marc Nieper-Wißkirchen.
 
-\rednote{Reference Ingo's PhD-thesis for quasi-coherence, which he called synthetic quasi-coherence.}
-We recall quasi-coherence from ??? % \cite{foundation-sag}. This key makes everything crash for some reason....
-Let $M$ be an $R$-module and $A$ an fp $R$-algebra.
-There is an evaluation map
+Let us begin by recounting the notion of quasi-coherence, introduced by Ingo Blechschmid \cite{ingo-thesis}.
+For this recall first, that for an $R$-module $M$ and a finitely presented $R$-algebra $A$ there is an evaluation map
 \begin{align*}
   \ev : M \otimes A & \rightarrow M^{\Spec A} \\
   m \otimes a & \mapsto (f \mapsto f(a)m)
@@ -17,9 +20,8 @@ There is an evaluation map
 \begin{definition}\label{def:quasi-coherent}
   Let $M$ be an $R$-module.
   $M$ is \notion{quasi-coherent} if for any fp $R$-algebra $A$ the map $\ev$ is an equivalence.
+  We say $M$ is \notion{weakly quasi-coherent} if this map is an equivalence for algebras of the form $R[r^{-1}]$, with $r:R$.
 \end{definition}
-
-Classically, there is no useful abelian category of coherent $\mathcal O_X$-modules over a general base.
 
 We can show that quasi-coherent $R$-modules $Q$ are tangent-like by a direct computation.
 
@@ -27,14 +29,14 @@ We can show that quasi-coherent $R$-modules $Q$ are tangent-like by a direct com
 
 \begin{lemma}\label{lem:disk-qc}
   Let $Q$ be a quasi-coherent $R$-module.
-  A pointed map $p : (Q,0)^{\D (n)}$ is a polynomial in $Q$ of degree $1$ and constant term $0$.
+  A pointed map $p : (Q,0)^{\D (n)}$ is a $n$-variate linear monomial with coefficients in $Q$.
 \end{lemma}
 
 \begin{proof}
   By quasi-coherence, we have the following equivalence $Q^{\D (n)} \simeq Q \otimes \quot{R[x_1,\dots,x_n]}{\ideal{x_ix_j}} \simeq Q^{n+1}$.
-  We can thus identify the maps $\D (n) \rightarrow Q$ with multivariate polynomials in $Q$ of degree $1$.
+  We can thus identify the maps $\D (n) \rightarrow Q$ with $n$-variate polynomials with coefficients in $Q$ and which are of degree $\leq 1$.
   Let $p(x_1, \dots, x_n)$ be such a polynomial, then the canonical evaluation map acts like $\ev (p(x_1, \dots, x_n))(\varepsilon_1, \dots, \varepsilon_n) = p(\varepsilon_1, \dots, \varepsilon_n)$, where $\varepsilon_i : \D (n)$.
-  It is clear that whenever $p$ represents a pointed map, we have $p(0,\dots,0) = p_0 = 0$.
+  Whenever $p$ represents a pointed map, we have $p(0,\dots,0) = p_0 = 0$.
 \end{proof}
 
 \begin{proposition}\label{prp:tangential-qc}
@@ -43,7 +45,7 @@ We can show that quasi-coherent $R$-modules $Q$ are tangent-like by a direct com
 \end{proposition}
 
 \begin{proof}
-  By the above lemma, \cref{lem:disk-qc}, we identity $\tangent{Q}{0}$ with $1$-variable polynomials in $Q$ of degree 1 and constant term $0$.
+  By the above lemma, \cref{lem:disk-qc}, we identity $\tangent{Q}{0}$ with univariate polynomials in $Q$ of degree 1 and constant term $0$.
   Let $q : Q$ be a point in $Q$.
   Then $\can(q)(\varepsilon) = q\varepsilon$, where $\varepsilon : \D (1)$.
   We deduce that $\can(q) = qx$, so $\can$ is an equivalence by assumption.
@@ -73,10 +75,10 @@ We collect the above results in the following corollary.
 
 \begin{definition}\label{def:adeq}
   Let $M$ be an $R$-module.
-  $M$ is \notion{adequate} if it is the kernel of a linear map $f : P \rightarrow Q$ between quasi-coherent $R$-modules $P$ and $Q$.
+  $M$ is \notion{adequate} if it merely is the kernel of a linear map $f : P \rightarrow Q$ between quasi-coherent $R$-modules $P$ and $Q$.
 \end{definition}
 
-Since adequate modules are defined as kernels of quasi-coherent ones, they enjoy the following properties.
+Adequate modules, being defined as kernels, immediately inherit the following properties from quasi-coherent modules.
 
 \begin{proposition}\label{prp:tangent-adeq}
   Adequate $R$-modules are tangent-like.
@@ -90,18 +92,19 @@ Since adequate modules are defined as kernels of quasi-coherent ones, they enjoy
   Adequate $R$-modules are weakly quasi-coherent. \earlyqed
 \end{proposition}
 
-We will restrict our attention to a subclass of adequate modules that enjoy some nice finiteness properties.
+For the remainder of this section we will restrict our attention to a subtype of adequate modules that enjoy some nice finiteness properties.
+We will construct the members of this type using the following notion as a building block.
 
 \begin{definition}\label{def:lin-adeq}
   Let $L$ be an $R$-module.
   $L$ is called \notion{linearly adequate} if it is the kernel of a linear map $f : R^m \rightarrow R^n$.
+  We refer to the map $f$ as a \notion{linear copresentation} of $L$.
 \end{definition}
 
-In the above definition, we will refer to the map $f$ as a \notion{linear copresentation} of $L$.
 
 \begin{remark}\label{rem:lin-adeq}
   In the article \cite{diffgeo-article}, linearly adequate modules went under the name finitely copresented modules.
-  We decided to change the name here as linearly adequate is the name of the external concept \cite{stacks-project}{[Chapter 46]}.
+  We decided to change the name here as linearly adequate is the name of the external concept \cite[Chapter 06Z1]{stacks-project}.
 \end{remark}
 
 \begin{definition}\label{def:dual}
@@ -664,6 +667,6 @@ The map $k^\ast \otimes l^\ast$ is epic, since both $k^\ast$ and $l^\ast$ are.
 \end{proof}
 
 \begin{corollary}
-  Let $M$ be a finitely adequate module. 
+  Let $M$ be a finitely adequate module.
   The functor $M \dbldualtensor (\argmhole) : \finadeq \to \finadeq$ is left adjoint to $\Hom_R(M,\argmhole) : \finadeq \to \finadeq$. \earlyqed
 \end{corollary}
