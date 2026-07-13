@@ -1,0 +1,83 @@
+In this section, we recall and rephrase some results from synthetic Stone duality (SSD, \cite{synthetic-stone-duality}) and synthetic topology \cite{SyntheticTopologyEscardo,SyntheticTopologyLesnik,abstractstone,faissole2017synthetic,vickers2007locales} for the purposes of this note.  
+
+List of stuff we use, to complete later
+\begin{itemize}
+  \item Open and Closed propositions and subsets. 
+  \item Countably presented algebras and some of their closure properties. 
+  \item Compact Hausdorff spaces. (Not sure we need ODisc in this note). 
+  \item All the axioms (Local choice phrased in terms of CHaus). 
+  \item Definition of a basis ala Lesnik.
+  \item Point out what is a basis of CHaus spaces. 
+  \item Local compactness of CHaus
+  \item Product topology. 
+  \item Interval, Cauchy completeness, LLPO and MP as interval results. 
+  \item Intermediate value theorem. 
+\end{itemize}
+\subsection{SSD}
+\begin{definition}
+\item A proposition $P$ is called \textbf{open} if there exists some sequence $\alpha:2^\mathbb N$ such that $P\leftrightarrow \exists_{n:\N} \alpha n = 1$. \parencite[Dfn 1.19]{synthetic-stone-duality}
+    \item A proposition $P$ is called \textbf{closed} if there exists some sequence $\alpha:2^\mathbb N$ such that $P\leftrightarrow \forall_{n:\N} \alpha n = 0$. \parencite[Dfn 1.19]{synthetic-stone-duality}
+    \item We denote $\Open, \Closed$ for the types of open and closed propositions respectively. \parencite[Dfn 1.19]{synthetic-stone-duality}
+  \item For $X$ a set, an \textbf{open subset} of $X$ is a map $X \to \Open$. \parencite[Dfn 1.25]{synthetic-stone-duality}
+    \item For $X$ a set, a \textbf{closed subset} of $X$ is a map $X \to \Closed$. \parencite[Dfn 1.25]{synthetic-stone-duality}
+    \item A type is \textbf{countable} iff it is merely equivalent to a decidable subset of $\mathbb N$. \parencite[Dfn 1.2]{synthetic-stone-duality}.
+    \item A type is \textbf{overtly discrete} if there is the quotient of a countable set by an open equivalence relation. \parencite[Dfn 2.1, Lem 2.12]{synthetic-stone-duality}.
+\end{definition}
+
+\subsection{Topology}
+
+\begin{definition}
+\item A map $f: A \to B$ is overt if for all $U : B \to \Open$, the statement $\exists_{a:A}.U(f(a))$ is open \parencite[Dfn 2.39]{lesnik2021synthetictopologyconstructivemetric}.
+\item A map $f:A \to B$ is compact if for all $U : B \to \Open$, the statement $\forall_{a:A} U(f(a))$ is open \parencite[Dfn 2.39]{lesnik2021synthetictopologyconstructivemetric}. 
+\item A subset is subovert/subcompact iff the inclusion map is. 
+\item Let $X$ be a set. A \textbf{weak basis} for $X$ is a map $b: \mathcal B\to (X \to \Open)$ such that for any open subset $U\subseteq X$ there merely exists a set $I$ and map $u:I \to \mathcal B$ such that $U = \bigcup_{i: I} b(u_i)$. \parencite[Dfn 2.55]{lesnik2021synthetictopologyconstructivemetric}. 
+\item Such a weak basis is called a \textbf{basis} if $u$ can always be taken to be an overt map. 
+\item Let $X$ be a set. If there exists a basis of $X$ such that $\mathcal B$ is overtly discrete,
+  % and $I$ can always be taken to be $\mathbb N$,
+  we call $X$ a \textbf{second countable} space.
+\end{definition}
+\begin{remark}
+  If $A$ is overt or compact, so are all maps out of $A$. In particular, and closed subset of a compact Hausdorff space is subcompact. 
+\end{remark}
+\begin{lemma}
+  Let $X:\Chaus$ with presentation $q:S \twoheadrightarrow X$. 
+  Then the map $b:2^S \to (X \to \Open)$ given by $b(D) = \neg q(D)$ forms a basis of $X$. 
+  For this basis, one can always take $I= \mathbb N$. 
+\end{lemma}
+\begin{proof}
+  By \parencite[Cor 4.7]{synthetic-stone-duality} and the observation that $\mathbb N$ is overt, and any map from an overt space is overt. 
+\end{proof}
+\begin{definition}
+  Let $X$ be a type. $X$ is \textbf{locally compact} if for any $U\subseteq X$ open and $x\in U$, there exists an open $V\subseteq X$ and subcompact $K\subseteq X$ such that $x \in V\subseteq K \subseteq U$. \parencite[p59]{lesnik2021synthetictopologyconstructivemetric}
+\end{definition}  
+\begin{lemma}
+  If $X$ is locally compact, then $X\times Y$ has a weak basis given by 
+  $(X \to \Open) \times (Y \to \Open)\to (X \times Y) \to \Open$ sending $U\subseteq X , V \subseteq Y$ to $U\times V$. 
+  \parencite[Prop 2.58]{lesnik2021synthetictopologyconstructivemetric}.
+\end{lemma}
+\begin{corollary}
+  If $X,Y$ both have a basis and $X$ is locally compact, then 
+\end{corollary}
+
+\subsection{Analysis}
+
+
+
+
+\begin{remark}\label{IntermediateValue}
+  The intermediate value theorem as stated in Theorem 5.29 of \cite{synthetic-stone-duality} has the following consequence: If $f : [0,1] \to [0,1]$ is such that for some $x<y, a<b$ we have $f(x) = a, f(y) = b$, then for all $c$ with $a<c<b$ there exists some $z$ with $x<z<y$ such that $f(z) = c$. 
+\end{remark}
+\begin{remark}
+  Closed propositions are double negation stable and closed under disjunction and countable intersection. 
+\end{remark}
+\begin{remark}
+  Fix the statement of $\Sigma(x \sim y) $ vs $\exists(x\sim y)$ for $x\sim y$ the path relation. 
+\end{remark}
+\begin{remark}
+  Cauchy reals agree with set quotient of $2^\mathbb N$ by $\sim_n$. 
+  Conclude from this which functions one can definitely define on $\mathbb R^n \to \mathbb R^m$. 
+\end{remark}
+
+\begin{remark}
+  Let $X:\CHaus$ be represented by $q:S\twoheadrightarrow X$. Lemma \parencite[TODO]{synthetic-stone-duality} says that any open $U\subseteq X$ can be written as $\bigcup_{n:\mathbb N} \neg q(D_n)$ where $D : \mathbb N \to 2^S$ is some $\mathbb N$-indexed collection of decidable subsets of $S$. 
+\end{remark}
