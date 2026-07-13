@@ -38,30 +38,45 @@ List of stuff we use, to complete later
   % and $I$ can always be taken to be $\mathbb N$,
   we call $X$ a \textbf{second countable} space.
 \end{definition}
+
 \begin{remark}
-  If $A$ is overt or compact, so are all maps out of $A$. In particular, and closed subset of a compact Hausdorff space is subcompact. 
+\item If $A$ is overt or compact, so are all maps out of $A$. In particular, and closed subset of a compact Hausdorff space is subcompact. 
+\item If $X$ has a weak basis and there exists a map $c:\mathcal C \to \mathcal B$ such that for each open $B \in \mathcal B$, 
+  there exists some $v:J \to \mathcal C$ such that $B = \bigcup_{j\in J} c(v(j))$, then $b \circ c$ is also a weak basis for $X$. 
+\item Moreover, if the weak basis was a basis and $v$ was overt, $b\circ c$ is a basis. 
 \end{remark}
 
 \begin{definition}
-  Let $X$ be a type. $X$ is called \textbf{strongly locally compact} \parencite[p59]{lesnik2021synthetictopologyconstructivemetric} if there exists some overt $\mathcal B$ 
-  and map $b = (b_O,b_K) : \mathcal B \to ((X \to \Open) \times (Comp(X)))$ such that:
+  Let $X$ be a type. A \textbf{local compactness structure} on $X$ consists of a map 
+  $b = (b_O,b_K) : \mathcal B \to ((X \to \Open) \times (Comp(X)))$ such that:
   \begin{itemize}
+    \item $\mathcal B$ is overt. 
     \item For all $j:\mathcal B$, $b_O(j) \subseteq b_K(j)$. 
     \item For all $U\subseteq X$ open and $x\in U$, there exists some $j\in\mathcal B$ such that $x \in b_O(j)\subseteq b_K(j) \subseteq U$. 
   \end{itemize}
 \end{definition} 
+\begin{remark}
+In \parencite[p59]{lesnik2021synthetictopologyconstructivemetric}, a type is called \textbf{strongly locally compact} if it merely has a local compactness structure. 
+In \parencite[Prop 2.59]{lesnik2021synthetictopologyconstructivemetric} it is shown that for a local compactness structure $b$, $b_O$ forms a canonical basis. 
+Moreover, it is shown that given two types $X,Y$ with local compactness structures $b,c$, then $b \times c$ forms a local compactness structure on $X \times Y$, and hence $b_O\times c_O$ a canonical basis. 
+\end{remark}
+
 \begin{lemma}
-  Compact Hausdorff spaces are strongly locally compact. 
+  Compact Hausdorff spaces have a local compactness strucutre. 
 \end{lemma}
 \begin{proof}
   Let $q:S \twoheadrightarrow X$ represent a compact Hausdorff space. 
   Following \parencite[Cor 4.7]{synthetic-stone-duality}, every open subset of $X$ can be written as $\bigcup_{n:\mathbb N} \neg q(D_n)$ for some family $D_\bullet : \mathbb N \to 2^S$. 
   Hence we can take $\mathcal B = 2^S$, $b_O(D) = \neg q(D)$ and $b_K(D) = q(\neg D_n)$. 
 \end{proof}
-\begin{corollary}
-  By \parencite[Prop 2.59]{lesnik2021synthetictopologyconstructivemetric}, it follows that compact Hausdorff spaces have a canoncical basis and that if $X,Y:\CHaus$, with presentations $q:S \twoheadrightarrow X, p:T \twoheadrightarrow Y$, then $X\times Y$ has the canonical product topology with $\mathcal B = 2^S \times 2^T$ and $b(D, E) = (\neg q(D)) \times (\neg p(E))$. 
-\end{corollary}
 
+\begin{remark}
+  Denote $2^*$ for the set of finite binary sequences. 
+  Recall from \parencite[Lemma 4.27]{synthetic-stone-duality} that there is a basis of the unit interval $[0,1]$ given by the map $b_O:2^* \times 2^* \to ([0,1] \to \Open)$ sending $(\alpha, \beta)$ to the open interval $\Sigma_{x : [0,1]} cs(\alpha)< x <cs(\beta)$, where $cs$ denotes the binary expansion $\alpha:2^n$ to $\sum_{i:\mathbb N_{\leq n}} \frac{\alpha_i}{2^{i+1}}$. 
+  Note that together with the map 
+  $b_K:2^* \times 2^* \to ([0,1] \to \Closed)$ sending $(\alpha, \beta)$ to the closed interval $\Sigma_{x : [0,1]} cs(\alpha)\leq x \leq cs(\beta)$, we get a local compactness structure on $[0,1]$. 
+  A corollary is that $[0,1]\times [0,1]$ has a basis indexed by four finite binary sequences $\alpha,\beta,\gamma,\delta$ corresponding to the open square $(cs(\alpha), cs(\beta)) \times (cs(\gamma) , cs(\delta))$. 
+\end{remark}
 
 
 \subsection{Analysis}
