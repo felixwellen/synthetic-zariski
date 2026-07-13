@@ -30,8 +30,10 @@ List of stuff we use, to complete later
 \item A map $f: A \to B$ is overt if for all $U : B \to \Open$, the statement $\exists_{a:A}.U(f(a))$ is open \parencite[Dfn 2.39]{lesnik2021synthetictopologyconstructivemetric}.
 \item A map $f:A \to B$ is compact if for all $U : B \to \Open$, the statement $\forall_{a:A} U(f(a))$ is open \parencite[Dfn 2.39]{lesnik2021synthetictopologyconstructivemetric}. 
 \item A subset is subovert/subcompact iff the inclusion map is. 
+\item We denote $Comp(X)$ for the subcompacta of $X$. 
 \item Let $X$ be a set. A \textbf{weak basis} for $X$ is a map $b: \mathcal B\to (X \to \Open)$ such that for any open subset $U\subseteq X$ there merely exists a set $I$ and map $u:I \to \mathcal B$ such that $U = \bigcup_{i: I} b(u_i)$. \parencite[Dfn 2.55]{lesnik2021synthetictopologyconstructivemetric}. 
 \item Such a weak basis is called a \textbf{basis} if $u$ can always be taken to be an overt map. 
+\item Such a basis is called \textbf{canonical} if there is a function that assigns to each $U\subseteq X$ a set and map $I,u$ as above. 
 \item Let $X$ be a set. If there exists a basis of $X$ such that $\mathcal B$ is overtly discrete,
   % and $I$ can always be taken to be $\mathbb N$,
   we call $X$ a \textbf{second countable} space.
@@ -39,25 +41,28 @@ List of stuff we use, to complete later
 \begin{remark}
   If $A$ is overt or compact, so are all maps out of $A$. In particular, and closed subset of a compact Hausdorff space is subcompact. 
 \end{remark}
+
+\begin{definition}
+  Let $X$ be a type. $X$ is called \textbf{strongly locally compact} \parencite[p59]{lesnik2021synthetictopologyconstructivemetric} if there exists some overt $\mathcal B$ 
+  and map $b = (b_O,b_K) : \mathcal B \to ((X \to \Open) \times (Comp(X)))$ such that:
+  \begin{itemize}
+    \item For all $j:\mathcal B$, $b_O(j) \subseteq b_K(j)$. 
+    \item For all $U\subseteq X$ open and $x\in U$, there exists some $j\in\mathcal B$ such that $x \in b_O(j)\subseteq b_K(j) \subseteq U$. 
+  \end{itemize}
+\end{definition} 
 \begin{lemma}
-  Let $X:\Chaus$ with presentation $q:S \twoheadrightarrow X$. 
-  Then the map $b:2^S \to (X \to \Open)$ given by $b(D) = \neg q(D)$ forms a basis of $X$. 
-  For this basis, one can always take $I= \mathbb N$. 
+  Compact Hausdorff spaces are strongly locally compact. 
 \end{lemma}
 \begin{proof}
-  By \parencite[Cor 4.7]{synthetic-stone-duality} and the observation that $\mathbb N$ is overt, and any map from an overt space is overt. 
+  Let $q:S \twoheadrightarrow X$ represent a compact Hausdorff space. 
+  Following \parencite[Cor 4.7]{synthetic-stone-duality}, every open subset of $X$ can be written as $\bigcup_{n:\mathbb N} \neg q(D_n)$ for some family $D_\bullet : \mathbb N \to 2^S$. 
+  Hence we can take $\mathcal B = 2^S$, $b_O(D) = \neg q(D)$ and $b_K(D) = q(\neg D_n)$. 
 \end{proof}
-\begin{definition}
-  Let $X$ be a type. $X$ is \textbf{locally compact} if for any $U\subseteq X$ open and $x\in U$, there exists an open $V\subseteq X$ and subcompact $K\subseteq X$ such that $x \in V\subseteq K \subseteq U$. \parencite[p59]{lesnik2021synthetictopologyconstructivemetric}
-\end{definition}  
-\begin{lemma}
-  If $X$ is locally compact, then $X\times Y$ has a weak basis given by 
-  $(X \to \Open) \times (Y \to \Open)\to (X \times Y) \to \Open$ sending $U\subseteq X , V \subseteq Y$ to $U\times V$. 
-  \parencite[Prop 2.58]{lesnik2021synthetictopologyconstructivemetric}.
-\end{lemma}
 \begin{corollary}
-  If $X,Y$ both have a basis and $X$ is locally compact, then 
+  By \parencite[Prop 2.59]{lesnik2021synthetictopologyconstructivemetric}, it follows that compact Hausdorff spaces have a canoncical basis and that if $X,Y:\CHaus$, with presentations $q:S \twoheadrightarrow X, p:T \twoheadrightarrow Y$, then $X\times Y$ has the canonical product topology with $\mathcal B = 2^S \times 2^T$ and $b(D, E) = (\neg q(D)) \times (\neg p(E))$. 
 \end{corollary}
+
+
 
 \subsection{Analysis}
 
