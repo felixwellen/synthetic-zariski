@@ -1,0 +1,43 @@
+\begin{definition}
+  A subset $K\subseteq X$ is \textbf{subcompact} if that for all open subsets $U\subseteq X$ we have that $K\subseteq U$ open. 
+  Denote $Comp(X)$ for the subcompact spaces of $X$. 
+\end{definition}
+\begin{remark}
+  Closed subspaces of compact Hausdorff spaces are subcompact. 
+\end{remark}
+
+\begin{definition}
+  Let $X$ be a type. A \textbf{local compactness structure} on $X$ consists of a map 
+  $b = (b_O,b_K) : \mathcal B \to ((X \to \Open) \times (Comp(X)))$ such that:
+  \begin{itemize}
+    \item $\mathcal B$ is overt. 
+    \item For all $j:\mathcal B$, $b_O(j) \subseteq b_K(j)$. 
+    \item For all $U\subseteq X$ open and $x\in U$, there exists some $j\in\mathcal B$ such that $x \in b_O(j)\subseteq b_K(j) \subseteq U$. 
+  \end{itemize}
+\end{definition} 
+
+\begin{lemma}
+  Let $X$ be a type and $b$ be a local compactness structure on $X$. 
+  Then for all $U$ entourage of $X$, $U^2$ is open. 
+\end{lemma}
+\begin{proof}
+  Consider
+  $$
+  B = \Sigma_{i,j,k:\mathcal B} (b_K(i) \times b_K(j) \subseteq W) \wedge (b_K(j) \times b_K(k) \subseteq W).
+  $$
+  Note that $B$ is an open subset of an overt space, hence overt. 
+  Therefore, for $x,z:X$, the statement $\bigcup_{(i,j,k):B} b_O(i) \wedge b_O(k)$ is open. 
+  We claim that
+  $$
+  W^2(x,z) = \bigcup_{(i,j,k):B} b_O(i,x) \wedge b_O(k,z).
+  $$
+
+  Let $x,z:X$ be such that $W^2(x,z)$. 
+  Then there exists some $y\in X$ with $W(x,y) \wedge W(y,z)$. 
+  The set of such $y:X$ is open, hence there exists some $j\in \mathcal B$ with 
+  $$y \in b_O(j) \subseteq b_K(j) \subseteq \Sigma_{y:X} W(x,y) \wedge W(y,z).$$
+  But now as the $x\in \Sigma_{x':X}W(x',y)$, we also have some $i:\mathcal B$ with 
+  $x\in b_O(i)\subseteq b_K(i)\subseteq W(-,y)$. 
+  
+
+\end{proof}
