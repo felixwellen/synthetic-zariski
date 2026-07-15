@@ -591,88 +591,132 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
   $B$ is also wqc by \Cref{prp:wqc-adeq}.
   Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}.
 \end{proof}
+By \cref{rem:tensor-not-closed}, the tensor product $M \otimes N$ is not necessarily linearly adequate when $M$ and $N$ are linearly adequate.
+This contrasts with the case where $M$ is finitely presented (or, similarly, when $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite sums of $N$, which is finitely presented.
+Somewhat surprisingly, the internal hom still has a left adjoint in the subcategory of finitely adequate modules.
+To this end, we will show that the {\bf double dual tensor product} $M \dbldualtensor N \coloneq (M \otimes N)^{\ast\ast}$ is the internal tensor product in $\finadeq$.
+By the hom-tensor adjunction, it is sufficient to prove that $\Hom_R(A \otimes B, C) \simeq \Hom_R(A \dbldualtensor B, C)$ for any finitely adequate modules $A$, $B$, and $C$.
+We will show that any morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 
-We do not know whether taking the tensor product $M \otimes N$ yields a finitely adequate module, where $M$ and $N$ are finitely adequate modules.
-In the case when $M$ is finitely presented (or similarly for $N$ finitely presented), this is the case as $M \otimes N$ is a cokernel of a map between finite sums of $N$.
-To bypass this problem, we define the {\bf double dual tensor} $M \dbldualtensor N \coloneq (M \otimes N)^{\ast\ast}$.
-It is clear that the double dual tensor is closed in $\finadeq$, since $M \dbldualtensor N = \Hom_R(M,N^\ast)^\ast$, and the latter is the dual of a finitely adequate module.
-To show that the double dual tensor is the tensor in $\finadeq$, we will show that any map $A \otimes B \rightarrow C$ factors uniquely through the evaluation map $\ev_{A \otimes B} : A \otimes B \rightarrow A \dbldualtensor B$.
-Observe that any linear map $f : A \otimes B \rightarrow C$ factors through the evaluation map by its naturality square as in the diagram below
-\begin{center}
-  \begin{tikzcd}
-    A \otimes B \ar{r}{f} \ar{d}{\ev_{A \otimes B}} & C \ar{d}{\ev_C}[left]{\simeq} \\
-    A \dbldualtensor B \ar{r}{f^{\ast\ast}} & C^{\ast\ast}
-  \end{tikzcd}
-\end{center}
-The right hand map is an isomorphism as $C$ is finitely adequate.
-To see that this factorization is unique, it remains to prove that the evaluation map $\ev_{A \otimes B} : A \otimes B \rightarrow A \dbldualtensor B$ is epic.
+We can carry out this factorization in the general setting of monads.
+Let $F \dashv G : \mathcal{C} \to \mathcal{D}$ be an adjunction, with unit $\eta : 1 \to G F$ and counit $\varepsilon : F G \to 1$.
+The monad on $\mathcal{C}$ associated with the adjunction is $M \coloneq G F$, with multiplication $\mu \coloneq G \varepsilon_F$ and unit $\eta$.
 
-\begin{lemma}\label{lem:lin-adeq-dbl-dual-tensor-map-epi}
-  Let $K$ and $L$ be linearly adequate modules. Then the evaluation map $\ev_{K \otimes L} : K \otimes L \rightarrow K \dbldualtensor L$ is epic.
+\begin{definition}\label{def:monad-reflexive}
+  Let $X$ be an object of $\mathcal{C}$. We say that $X$ is:
+  \begin{itemize}
+    \item {\bf $M$-torsionless} if the unit $\eta_X$ is a monomorphism,
+    \item {\bf $M$-reflexive} if the unit $\eta_X$ is an isomorphism,
+    \item {\bf $M$-idempotent} if the multiplication $\mu_X$ is an isomorphism.
+  \end{itemize}
+\end{definition}
+
+\begin{remark}\label{rmk:monad-reflexive-idempotent}
+  By the unitality condition, we have $\mu_X \circ \eta_{MX} = \id_{MX}$, so $\mu_X$ is an isomorphism if and only if $\eta_{MX}$ is an isomorphism.
+  It thus follows that $X$ is $M$-idempotent if and only if $MX$ is $M$-reflexive.
+\end{remark}
+
+\begin{lemma}\label{lem:monad-app-torsionless}
+  Let $X$ be an object of $\mathcal{C}$. Then $MX$ is $M$-torsionless.
 \end{lemma}
 
 \begin{proof}
-  Let $K \xrightarrow{k} R^{k_1} \to R^{k_2}$ and $L \xrightarrow{l} R^{l_1} \to R^{l_2}$ be copresentations.
-  We can factor $k \otimes l$ using the following naturality square associated to the evaluation maps
-  \begin{center}
-    \begin{tikzcd}
-      K \otimes L \ar{r}{k \otimes l} \ar{d}{\ev_{K \otimes L}} & R^{k_1} \otimes R^{l_1} \ar{d}{\ev_{R^{k_1} \otimes R^{l_1}}}[left]{\simeq} \\
-      K \dbldualtensor L \ar{r}{k \dbldualtensor l} & R^{k_1} \dbldualtensor R^{l_1}
-    \end{tikzcd}
-  \end{center}
-
-  By \cref{identification-hom-tensor-for-fp-modules}, we can identify $K \dbldualtensor L = \Hom_R(K,L^\ast)^\ast = (K^\ast \otimes L^\ast)^\ast$ since both $K^\ast$ and $L^\ast$ are finitely presented.
-The map $k^\ast \otimes l^\ast$ is epic, since both $k^\ast$ and $l^\ast$ are.
-  Furthermore, by the dual of \Cref{lem:diff-ker-is-ker}, we obtain the following exact sequence
-  \begin{center}
-    \begin{tikzcd}
-      R_{k_1} \otimes R_{l_2} \oplus R_{k_2} \otimes R_{l_1} \ar{r} & R_{k_1} \otimes R_{l_1} \ar[two heads]{r}{k^\ast \otimes l^\ast} & K^\ast \otimes L^\ast
-    \end{tikzcd}
-  \end{center}
-  In particular, we learn that $k \dbldualtensor l$ is monic.
-  By using the above identification $K \dbldualtensor L = (K^\ast \otimes L^\ast)^\ast$ and dualizing the sequence, we obtain the exact sequence
-  \begin{center}
-    \begin{tikzcd}
-      K \dbldualtensor L \ar[hook]{r}{k \dbldualtensor l} & R^{k_1} \otimes R^{l_1} \ar{r} & R^{k_2} \otimes R^{l_1} \oplus R^{k_1} \otimes R^{l_2}
-    \end{tikzcd}
-  \end{center}
-  From this sequence we can realize $K \dbldualtensor L$ as the pullback in the diagram
-  \begin{center}
-    \begin{tikzcd}
-      K \dbldualtensor L \ar[phantom]{rd}[very near start]{\lrcorner} \ar[hook]{r} \ar[hook]{d} & K \otimes R^{l_1} \ar[hook]{d} \ar{r} & K \otimes R^{l_2} \ar[hook]{d} \\
-      R^{k_1} \otimes L \ar[hook]{r} & R^{k_1} \otimes R^{l_1} \ar{r} & R^{k_1} \otimes R^{l_2}
-    \end{tikzcd}
-  \end{center}
-  where both rows are exact.
-  The evaluation map factors $K \otimes l$ in the following manner
-  \begin{center}
-    \begin{tikzcd}
-      K \otimes L \ar{rd}{K \otimes l} \ar{d}[pos = 0.75]{\ev_{K \otimes L}} \\
-      K \dbldualtensor L \ar[hook]{r}{k \dbldualtensor l} & K \otimes R^{l_1} \ar{r} & K \otimes R^{l_2}
-    \end{tikzcd}
-  \end{center}
-  As the tensor product is half exact, the upper row is exact.
-  Therefore $K \dbldualtensor L$ is the image of the evaluation map, meaning the evaluation map is epic.
+  By unitality, we have $\mu_X \circ \eta_{MX} = \id_{MX}$, so $\eta_{MX}$ is a split monomorphism.
 \end{proof}
 
-\begin{proposition}\label{prop:fin-adeq-dbl-dual-tensor-map-epi}
-  Let $M$ and $N$ be finitely adequate modules. Then the evaluation map $\ev_{M \otimes N} : M \otimes N \rightarrow M \dbldualtensor N$ is epic.
+\begin{proposition}[\cite{Borceux_1994_II}{[4.3.2]}]\label{prp:monad-idempotent-well-pointedness}
+  Let $X$ be an object of $\mathcal{C}$. Then $X$ is $M$-idempotent if and only if $M\eta_X = \eta_{MX}$. \earlyqed
+\end{proposition}
+
+\begin{definition}\label{def:rel-epi}
+  Let $\mathfrak{C}$ be a class of objects in $\mathcal{C}$. A map $f : X \to Y$ is {\bf $\mathfrak{C}$-epic} if for any $Z$ in $\mathfrak{C}$ and morphisms $g, h : Y \rightarrow Z$ such that $g \circ f = h \circ f$, we have $g = h$.
+\end{definition}
+
+\begin{proposition}\label{prp:monad-well-pointedness-torsionless-epi}
+  Let $X$ be an object of $\mathcal{C}$. The following are equivalent:
+  \begin{enumerate}[noitemsep]
+    \item $M\eta_X = \eta_{MX}$,
+    \item $\varepsilon_{FX}$ is a monomorphism,
+    \item $F\eta_X$ is an epimorphism,
+    \item $\eta_X$ is $M$-torsionless-epic.
+  \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  Let $\pi_M : K \twoheadrightarrow M$ and $\pi_N : L \twoheadrightarrow N$ be covers of $M$ and $N$ by linearly adequate modules.
-  Consider then the naturality square
-  \begin{center}
-    \begin{tikzcd}
-      K \otimes L \ar[two heads]{r}{\pi_M \otimes \pi_N} \ar{d}{\ev_{K \otimes L}} & M \otimes N \ar{d}{\ev_{M \otimes N}} \\
-      K \dbldualtensor L \ar{r}{\pi_M \dbldualtensor \pi_N} & M \dbldualtensor N
-    \end{tikzcd}
-  \end{center}
-  The map $\ev_{K \otimes L}$ is epic by \Cref{lem:lin-adeq-dbl-dual-tensor-map-epi}, and $\pi_M \dbldualtensor \pi_N$ is epic since taking double duals in this manner preserves epimorphisms.
-  The map $\ev_{M \otimes N} \circ (\pi_M \otimes \pi_N)$ is the last factor of the composite $\pi_M \dbldualtensor \pi_N \circ \ev_{K \otimes L}$, so it is epic.
+  \leavevmode
+  \begin{description}[leftmargin=3.5em, labelwidth=3em, labelsep=0.5em, align=left]
+    \item[$1.\Rightarrow 2.$] Applying the naturality of $\varepsilon$ to $F\eta_X$ and using the triangle identity, we obtain the following commutative squares:
+    \begin{center}
+      \begin{tikzcd}
+        FMX \ar{r}{\varepsilon_{FX}} \ar{d}{FM\eta_X} & FX \ar{d}{F\eta_X} \\
+        FGFMX \ar{r}{\varepsilon_{FMX}} & FMX
+      \end{tikzcd}
+      \qquad
+      \begin{tikzcd}
+        FGFMX \ar{r}{\varepsilon_{FMX}} & FMX \\
+        FMX \ar{u}{F\eta_{MX}} \ar[equal]{ru}
+      \end{tikzcd}
+    \end{center}
+    By assumption, $FGF\eta_X = FM\eta_X = F\eta_{MX}$.
+    Thus, we get the following chain of equalities:
+    $F\eta_{X} \circ \varepsilon_{FX} = \varepsilon_{FMX} \circ FM\eta_{X} = \varepsilon_{FMX} \circ F\eta_{MX} = \id_{FMX}$.
+    Thus, $\varepsilon_{FX}$ has a left inverse, so it is a split monomorphism.
+
+    \item[$2.\Rightarrow 3.$] Since $F\eta_X$ is a right inverse to $\varepsilon_{FX}$ by the triangle identity, it follows that $F\eta_X$ is an epimorphism if $\varepsilon_{FX}$ is a monomorphism.
+    \item[$3.\Rightarrow 4.$] Let $Y$ be an $M$-torsionless object, and let $f, g : MX \rightarrow Y$ be maps such that $f \circ \eta_X = g \circ \eta_X$.
+    Applying $F$ to these maps yields $Ff \circ F\eta_X = Fg \circ F\eta_X$.
+    Since $F\eta_X$ is epic, we have $Ff = Fg$.
+    Using the naturality of $\eta$, we obtain the following commutative diagram:
+    \begin{center}
+      \begin{tikzcd}
+        MX \ar{r}{\eta_{MX}} \ar[xshift = -.5ex]{d}[left]{f} \ar[xshift = .5ex]{d}{g} & M^2X \ar{d}{Mf = Mg} \\ 
+        Y \ar[hook]{r}{\eta_Y} & MY
+      \end{tikzcd}
+    \end{center}
+    From this diagram, we see that $\eta_Y \circ f = \eta_Y \circ g$.
+    As $Y$ is $M$-torsionless, $\eta_Y$ is a monomorphism, so $f = g$.
+
+    \item[$4.\Rightarrow 1.$] By \cref{lem:monad-app-torsionless}, $M^2X$ is $M$-torsionless.
+    From the naturality of $\eta$ applied to $\eta_X$, we get that $\eta_{MX} \circ \eta_X = M\eta_X \circ \eta_X$.
+    Since $\eta_X$ is $M$-torsionless-epic by assumption, we conclude that $M\eta_X = \eta_{MX}$.
+  \end{description}
 \end{proof}
 
-\begin{corollary}
+
+\begin{proposition}\label{prp:monad-factorization}
+  Let $f : X \to Y$ be a morphism in $\mathcal{C}$. Then $f$ factors uniquely through $\eta_X$ if $X$ is $M$-idempotent and $Y$ is $M$-reflexive.
+\end{proposition}
+
+\begin{proof}
+  Consider the naturality square of $\eta$ applied to $f$:
+\begin{center}
+  \begin{tikzcd}
+    X \ar{r}{f} \ar{d}{\eta_X} & Y \ar{d}{\eta_Y}[left]{\simeq} \\
+    M X \ar{r}{M f} & M Y
+  \end{tikzcd}
+\end{center}
+Since $\eta_Y$ is an isomorphism, we have $f = \eta_Y^{-1} \circ M f \circ \eta_X$.
+Now, assume there exist two factorizations of $f$, namely $f', f'' : MX \to Y$, such that $f' \circ \eta_X = f'' \circ \eta_X$.
+By \cref{prp:monad-idempotent-well-pointedness} and \cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $M$-torsionless-epic, which yields $f' = f''$.
+\end{proof}
+
+Let us apply the above discussion to the contravariant functor $(\argmhole)^\ast$.
+This functor is mutually right adjoint to itself (i.e., self-adjoint), meaning that $\Hom_R(A, B^\ast) \simeq \Hom_R(B,A^\ast)$.
+The unit is given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
+Thus, the associated monad is $M \coloneq (\argmhole)^{\ast\ast}$, with multiplication $\mu_A \coloneq (\ev_{A^\ast})^\ast$.
+With this setup, the notions of torsionless and reflexive coincide with $M$-torsionless and $M$-reflexive, respectively.
+
+\begin{proposition}\label{prp:dbl-dual-tensor-factorization}
+  Let $A$, $B$, and $C$ be finitely adequate modules. Then any map $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
+\end{proposition}
+
+\begin{proof}
+  By \cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if $A \otimes B$ is $M$-idempotent and $C$ is reflexive.
+  The module $C$ is reflexive by \cref{thm:can-dual-iso}, as it is finitely adequate.
+  The tensor product $A \otimes B$ is $M$-idempotent because $A \dbldualtensor B = \Hom_R(A \otimes B, R)^\ast \simeq \Hom_R(A, B^\ast)^\ast$, which is reflexive by \cref{thm:can-dual-iso} and \cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
+\end{proof}
+
+\begin{corollary}\label{cor:dbl-dual-tensor-adjunction}
   Let $M$ be a finitely adequate module.
   The functor $M \dbldualtensor (\argmhole) : \finadeq \to \finadeq$ is left adjoint to $\Hom_R(M,\argmhole) : \finadeq \to \finadeq$. \earlyqed
 \end{corollary}
