@@ -1,4 +1,16 @@
 \begin{definition}
+  A type $X$ is 
+  \begin{itemize}
+    \item \textbf{overt} if for all $U\subseteq X$ open, the statement $\exists_{x:X} U(x)$ is open
+    \item \textbf{compact} if for all $U\subseteq X$ open, the statement $\forall_{x:X} U(x)$ is open. 
+    \item \textbf{condensed} if for all $C\subseteq X$ closed, the statement $\exists_{x:X} C(x)$ is closed. 
+    \item \textbf{discrete} if equality is open. 
+    \item \textbf{Hausdorff} if equality is closed. 
+  \end{itemize}
+\end{definition}
+Recall that compact Hausdorff spaces are compact, Hausdorff and condensed, and overtly discrete spaces overt and discrete. 
+
+\begin{definition}
   A subset $K\subseteq X$ is \textbf{subcompact} if that for all open subsets $U\subseteq X$ we have that $K\subseteq U$ open. 
   Denote $Comp(X)$ for the subcompact spaces of $X$. 
 \end{definition}
@@ -16,6 +28,20 @@
   \end{itemize}
 \end{definition} 
 
+Wishlist
+\begin{itemize}
+  \item If $U,V\subseteq X\times X$ open, then $U\circ V$ open. 
+  \item If $U,V\subseteq X \times X$ closed, then $U \circ V$ closed. 
+  \begin{itemize}
+      \item This is true in SSD, and can be split in synthetic topology:
+      \item If $U,V$ both condensed $(\exists x . C(x)$ is closed for all $C$ closed subsets), then so is $U\circ V$. 
+      \item If $U,V$ both condensed and compact ($C$ is compact if $C\subseteq U$ is open for any $U$ open), then also $U\circ V$ compact. 
+    \end{itemize}
+  \item If $U$ entourage there exists some $V$ entourage with $V\circ V \subseteq U$. 
+  \item All other parts of the classical definition of (basis for) entourage (it's easily checked that entourages are closed under taking inverses, intersections and all entourages contian diagonal). 
+  \item We denote $W(-,x)$ and $W(x,-)$ for blablabla.
+\end{itemize}
+
 \begin{lemma}
   Let $X$ be a type and $b$ be a local compactness structure on $X$. 
   Then for all $U$ entourage of $X$, $U^2$ is open. 
@@ -23,14 +49,18 @@
 \begin{proof}
   Consider
   $$
-  B = \Sigma_{i,j,k:\mathcal B} (b_K(i) \times b_K(j) \subseteq W) \wedge (b_K(j) \times b_K(k) \subseteq W).
+  B = \Sigma_{i,j,k:\mathcal B} 
+  %\|b_K(j)\| \wedge 
+  (b_K(i) \times b_K(j) \subseteq W) \wedge (b_K(j) \times b_K(k) \subseteq W).
   $$
+  \rednote{Won't work, note that there could be some $j\in B$ with $b_K(j) = \emptyset$. For this $j$, all $i,k$ satisfy the above condition, and the thing below will thus contain all $x,z\in X \times X$, so add the condition that $b_K(j)$ merely  inhabited. OHNO that's not open either, that's closed. }  
+
   Note that $B$ is an open subset of an overt space, hence overt. 
-  Therefore, for $x,z:X$, the statement $\bigcup_{(i,j,k):B} b_O(i) \wedge b_O(k)$ is open. 
   We claim that
   $$
-  W^2(x,z) = \bigcup_{(i,j,k):B} b_O(i,x) \wedge b_O(k,z).
+  W^2(x,z) = \exists_{(i,j,k):B} b_O(i,x) \wedge b_O(k,z).
   $$
+  The latter is open, hence proving this equality of propositions is sufficient. 
 
   Let $x,z:X$ be such that $W^2(x,z)$. 
   Then there exists some $y\in X$ with $W(x,y) \wedge W(y,z)$. 
@@ -38,6 +68,13 @@
   $$y \in b_O(j) \subseteq b_K(j) \subseteq \Sigma_{y:X} W(x,y) \wedge W(y,z).$$
   But now as the $x\in \Sigma_{x':X}W(x',y)$, we also have some $i:\mathcal B$ with 
   $x\in b_O(i)\subseteq b_K(i)\subseteq W(-,y)$. 
+  We claim that $b_K(i) \times b_K(j) \subseteq W$. 
+  Let $x'\in B_K(i), y' \in b_K(j)$. We wish to show that $(x',y') \in W$. 
+  By assumption $W(x',y)$ and $W(x,y')$. 
+
+  Conversely, let $x,z:X$ be such that there are $i,j,k:B$ with $b_O(i,x)$ and $b_O(k,z)$. 
+  It is sufficient to prove there exists some $y \in b_K(j)$. 
+
   
 
 \end{proof}
