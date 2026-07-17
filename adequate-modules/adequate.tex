@@ -712,15 +712,26 @@ This functor is mutually right adjoint to itself (i.e., self-adjoint), meaning t
 The unit is given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
 Thus, the associated monad is $M \coloneq (\argmhole)^{\ast\ast}$, with multiplication $\mu_A \coloneq (\ev_{A^\ast})^\ast$.
 With this setup, the notions of torsionless and reflexive coincide with $M$-torsionless and $M$-reflexive, respectively.
+We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} to the case of $(\argmhole)^\ast \vdash (\argmhole)^\ast : \modcat{R}^{\op} \to \modcat{R}$.
+
+\begin{corollary}\label{cor:dbl-dual-reflexive-iss-dual-reflexive}
+  Let $A$ be an $R$-module. The following are equivalent:
+  \begin{enumerate}[noitemsep]
+    \item $A^{\ast\ast}$ is reflexive
+    \item $A^\ast$ is reflexive
+    \item $\ev_A$ is torsionless-epic. \earlyqed
+  \end{enumerate}
+\end{corollary}
 
 \begin{proposition}\label{prp:dbl-dual-tensor-factorization}
   Let $A$, $B$, and $C$ be finitely adequate modules. Then any map $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 \end{proposition}
 
 \begin{proof}
-  By \cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if $A \otimes B$ is $M$-idempotent and $C$ is reflexive.
+  By \cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if $A \otimes B$ is $(\argmhole)^{\ast\ast}$-idempotent and $C$ is reflexive.
   The module $C$ is reflexive by \cref{thm:can-dual-iso}, as it is finitely adequate.
-  The tensor product $A \otimes B$ is $M$-idempotent because $A \dbldualtensor B = \Hom_R(A \otimes B, R)^\ast \simeq \Hom_R(A, B^\ast)^\ast$, which is reflexive by \cref{thm:can-dual-iso} and \cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
+  The tensor product $A \otimes B$ is $(\argmhole)^{\ast\ast}$-idempotent if $(A \otimes B)^\ast$ is reflexive by \cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
+  Now, $(A \otimes B)^* = \Hom_R(A \otimes B, R) \simeq \Hom_R(A, B^\ast)$, which is reflexive by \cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
 \end{proof}
 
 \begin{corollary}\label{cor:dbl-dual-tensor-adjunction}
