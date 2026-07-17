@@ -470,8 +470,6 @@ In this subsection we collect some properties of finitely adequate $R$-modules.
 
 Taking the $1$-st order neighbourhood of finitely adequate modules yields a fully faithful functor.
 
-\rednote{I cannot quite remember how to prove this statement, so I don't quite remember how general it is. @Felix, can you look at this?}
-
 \begin{lemma}\label{lem:hood-module-prs-surj}
   Let $f : M \rightarrow N$ be an epimorphism of $R$-modules.
   Then $\hood{f,0}{1}$ is surjective.
@@ -487,34 +485,49 @@ Taking the $1$-st order neighbourhood of finitely adequate modules yields a full
   But $r$ is nilpotent, hence $r-1$ invertible and this would mean $\varepsilon = 0$, which cannot be for all $\varepsilon$.
 \end{proof}
 
-\begin{theorem}\label{thm:hood-module-ff}
-  The functor $\hood{\argmhole}{1} : \finadeq \rightarrow \pType$ is fully faithful.
-\end{theorem}
+\begin{proposition}\label{prop:hood-faithful}
+  The functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$ is faithful when restricted to the subcategory of tangential $R$-modules.
+\end{proposition}
 
 \begin{proof}
-  It is immediate to see that it is faithful, as the action on the map is given by restriction, i.e. $\hood{f,0}{1} \defeq f\mid_{\hood{\argmhole}{1}}$.
-  To see that it is full, let $M$ and $N$ be finitely adequate $R$-modules, and let $f : \hood{M,0}{1} \rightarrow_\ast \hood{N,0}{1}$ be a pointed map.
-  Because $M$ and $N$ are finitely adequate, we can find linearly adequate $R$-modules $K_1$, $K_2$, $L_1$, and $L_2$ together with presentations $K_1 \rightarrow K_2 \twoheadrightarrow M$ and $L_1 \rightarrow L_2 \twoheadrightarrow N$.
-  By ???, $\hood{K_i,0}{1}$ and $\hood{L_i,0}{1}$ are projective types.
-  Using this property, we can lift the map $f$ to a commutative square by \Cref{lem:hood-module-prs-surj}
-  \begin{center}
-    \begin{tikzcd}
-      \hood{K_1,0}{1} \ar{d} \ar[dashed]{r} & \hood{L_1,0}{1} \ar{d} \\
-      \hood{K_2,0}{1} \ar[two heads]{d} \ar[dashed]{r} & \hood{L_2,0}{1} \ar[two heads]{d} \\
-      \hood{M,0}{1} \ar{r}{f} & \hood{N,0}{1}
-    \end{tikzcd}
-  \end{center}
-  By \cite{diffgeo-article}[Lemma 2.1.4] and \Cref{thm:lin-adeq-dual}, the morphisms in the top square extend to modules.
-  By taking cokernels we get an induced map
-  \begin{center}
-    \begin{tikzcd}
-      K_1 \ar{r} \ar{d} & L_1 \ar{d} \\
-      K_2 \ar[two heads]{d} \ar{r} & L_2 \ar[two heads]{d} \\
-      M \ar{r}{f'} & N
-    \end{tikzcd}
-  \end{center}
-  It is clear that $f'\mid_{\hood{M,0}{1}} = f$.
+  Let $f,g : M \rightrightarrows N$ be two linear maps between tangential $R$-modules with $\hood{f,0}{1} = \hood{g,0}{1}$.
+  Then $d_0f=d_0g$ and by naturality of the map $\can$ the claim follows.
+  % This is immediate, as the action on the map is given by restriction, i.e. $\hood{f,0}{1} \defeq f\mid_{\hood{\argmhole}{1}}$.
+  % To see that it is full, let $M$ and $N$ be finitely adequate $R$-modules, and let $f : \hood{M,0}{1} \rightarrow_\ast \hood{N,0}{1}$ be a pointed map.
+  % Because $M$ and $N$ are finitely adequate, we can find linearly adequate $R$-modules $K_1$, $K_2$, $L_1$, and $L_2$ together with presentations $K_1 \rightarrow K_2 \twoheadrightarrow M$ and $L_1 \rightarrow L_2 \twoheadrightarrow N$.
+  % By ???, $\hood{K_i,0}{1}$ and $\hood{L_i,0}{1}$ are projective types.
+  % Using this property, we can lift the map $f$ to a commutative square by \Cref{lem:hood-module-prs-surj}
+  % \begin{center}
+  %   \begin{tikzcd}
+  %     \hood{K_1,0}{1} \ar{d} \ar[dashed]{r} & \hood{L_1,0}{1} \ar{d} \\
+  %     \hood{K_2,0}{1} \ar[two heads]{d} \ar[dashed]{r} & \hood{L_2,0}{1} \ar[two heads]{d} \\
+  %     \hood{M,0}{1} \ar{r}{f} & \hood{N,0}{1}
+  %   \end{tikzcd}
+  % \end{center}
+  % By \cite{diffgeo-article}[Lemma 2.1.4] and \Cref{thm:lin-adeq-dual}, the morphisms in the top square extend to modules.
+  % By taking cokernels we get an induced map
+  % \begin{center}
+  %   \begin{tikzcd}
+  %     K_1 \ar{r} \ar{d} & L_1 \ar{d} \\
+  %     K_2 \ar[two heads]{d} \ar{r} & L_2 \ar[two heads]{d} \\
+  %     M \ar{r}{f'} & N
+  %   \end{tikzcd}
+  % \end{center}
+  % It is clear that $f'\mid_{\hood{M,0}{1}} = f$.
 \end{proof}
+\newcommand{\Ne}{22}
+\begin{remark}
+  The functor $\hood{\argmhole}{1}$ of the previous proposition is full when restricted even further to linearly adequate $R$-modules \rednote{cite}.
+  In the stated generality however, this is no longer true.
+  {
+    \renewcommand{\Ne}{\ensuremath{N_\varepsilon}}
+
+    Indeed, for $\varepsilon:\D(1)$ and $\Ne : \equiv R/\ker(R\overset{\cdot \varepsilon}{\to}R)$ we have that $\Ne = \hood{\Ne,0}{1}$, since for every $n:\Ne$ we have $(\varepsilon=0)\to(n=0)$.
+    Hence it suffices to show that it is not the case, that for all $\varepsilon:\D(1)$ the well-defined map $\alpha_\varepsilon : \Ne \to \Ne, [r] \mapsto [r^2]$ is $R$-linear.
+    From $\alpha_\varepsilon([1])=[1]$ and assuming linearity, we would get $[r]=[r^2]$ which implies that $\varepsilon(r^2-r)=0$ for every $r:R$.
+    Using duality and comparing coefficients, we see that $\varepsilon=0$, which cannot be.
+  }
+\end{remark}
 
 \rednote{It would be nice to characterize the image above as some special kind of first order neighbourhoods. Then linear maps between finitely adequate modules would correspond to pointed maps between such modules.}
 
@@ -676,7 +689,7 @@ The monad on $\mathcal{C}$ associated with the adjunction is $M \coloneq G F$, w
     Using the naturality of $\eta$, we obtain the following commutative diagram:
     \begin{center}
       \begin{tikzcd}
-        MX \ar{r}{\eta_{MX}} \ar[xshift = -.5ex]{d}[left]{f} \ar[xshift = .5ex]{d}{g} & M^2X \ar{d}{Mf = Mg} \\ 
+        MX \ar{r}{\eta_{MX}} \ar[xshift = -.5ex]{d}[left]{f} \ar[xshift = .5ex]{d}{g} & M^2X \ar{d}{Mf = Mg} \\
         Y \ar[hook]{r}{\eta_Y} & MY
       \end{tikzcd}
     \end{center}
