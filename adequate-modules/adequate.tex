@@ -471,18 +471,22 @@ In this subsection we collect some properties of finitely adequate $R$-modules.
 Taking the $1$-st order neighbourhood of finitely adequate modules yields a fully faithful functor.
 
 \begin{lemma}\label{lem:hood-module-prs-surj}
-  Let $f : M \rightarrow N$ be an epimorphism of $R$-modules.
+  Let $f : M \rightarrow N$ be an epimorphism of $R$-modules with $M$ linearly adequate
+  and $N$ finitely adequate.
   Then $\hood{f,0}{1}$ is surjective.
 \end{lemma}
 
 \begin{proof}
   \rednote{This is not correct. A counterexample:}
   Let $\varepsilon : \D(1)$ be arbitrary.
-  Then the quotient map $\pi_\varepsilon : R \to N :\equiv R/\ker(R \overset{\cdot \varepsilon}{\to}R)$ does not satisfy the claim for all $\varepsilon$:
-
-  Note that $\pi_\varepsilon(1) \in \hood{N,0}{1}$ since $(\varepsilon)=0 \to \pi_\varepsilon(1)=0$.
-  Now if $\pi_\varepsilon$ is surjective and $r:\D(1) (= \hood{R,0}{1})$ were a lift of $\pi_\varepsilon(1)$, then $\pi_\varepsilon(r-1)=0$, i.e.\ $\varepsilon(r-1)=0$.
-  But $r$ is nilpotent, hence $r-1$ invertible and this would mean $\varepsilon = 0$, which cannot be for all $\varepsilon$.
+  Consider the map $\pi_\varepsilon : R \to \varepsilon R$ which multiplies by $\varepsilon$.
+  Note that $R$ is linearly adequate and $\varepsilon R$ is finitely adequate
+  by \Cref{thm:fin-adeq-class}.
+  We will show that $\pi_\varepsilon$ does not satisfy the claim for all $\varepsilon$.
+  Indeed, assume that $\hood{\pi_{\varepsilon}, 0}{1}$ is surjective for all $\varepsilon$.
+  Note that $\pi_\varepsilon(1) = \varepsilon \in \hood{\varepsilon R,0}{1}$ since $(\varepsilon)=0 \to \varepsilon=0$.
+  Let $r:\D(1) = \hood{R,0}{1}$ be a lift of $\varepsilon$. Then $\pi_\varepsilon(r-1)=0$, i.e., $\varepsilon(r-1)=0$.
+  But $r$ is nilpotent, hence $r-1$ invertible and this would mean $\varepsilon = 0$, which cannot be true for all $\varepsilon$.
 \end{proof}
 
 \begin{proposition}\label{prop:hood-faithful}
