@@ -612,30 +612,25 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
   $B$ is also wqc by \Cref{prp:wqc-adeq}.
   Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}.
 \end{proof}
+
+
 By \cref{rem:tensor-not-closed}, the tensor product $M \otimes N$ is not necessarily linearly adequate when $M$ and $N$ are linearly adequate.
-This contrasts with the case where $M$ is finitely presented (or, similarly, when $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite sums of $N$, which is finitely presented.
+This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite sums of $N$, and is therefore finitely presented.
 Somewhat surprisingly, the internal hom still has a left adjoint in the subcategory of finitely adequate modules.
 To this end, we will show that the {\bf double dual tensor product} $M \dbldualtensor N \coloneq (M \otimes N)^{\ast\ast}$ is the internal tensor product in $\finadeq$.
 By the hom-tensor adjunction, it is sufficient to prove that $\Hom_R(A \otimes B, C) \simeq \Hom_R(A \dbldualtensor B, C)$ for any finitely adequate modules $A$, $B$, and $C$.
 We will show that any morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 
 We can carry out this factorization in the general setting of monads.
-Let $F \dashv G : \mathcal{C} \to \mathcal{D}$ be an adjunction, with unit $\eta : 1 \to G F$ and counit $\varepsilon : F G \to 1$.
-The monad on $\mathcal{C}$ associated with the adjunction is $M \coloneq G F$, with multiplication $\mu \coloneq G \varepsilon_F$ and unit $\eta$.
+Let $M$ be a monad on $\mathcal{C}$ with multiplication $\mu$ and unit $\eta$.
 
 \begin{definition}\label{def:monad-reflexive}
   Let $X$ be an object of $\mathcal{C}$. We say that $X$ is:
   \begin{itemize}
-    \item {\bf $M$-torsionless} if the unit $\eta_X$ is a monomorphism,
-    \item {\bf $M$-reflexive} if the unit $\eta_X$ is an isomorphism,
-    \item {\bf $M$-idempotent} if the multiplication $\mu_X$ is an isomorphism.
+    \item \notion{M-torsionless} if the unit $\eta_X$ is a monomorphism,
+    \item \notion{M-reflexive} if the unit $\eta_X$ is an isomorphism.
   \end{itemize}
 \end{definition}
-
-\begin{remark}\label{rmk:monad-reflexive-idempotent}
-  By the unitality condition, we have $\mu_X \circ \eta_{MX} = \id_{MX}$, so $\mu_X$ is an isomorphism if and only if $\eta_{MX}$ is an isomorphism.
-  It thus follows that $X$ is $M$-idempotent if and only if $MX$ is $M$-reflexive.
-\end{remark}
 
 \begin{lemma}\label{lem:monad-app-torsionless}
   Let $X$ be an object of $\mathcal{C}$. Then $MX$ is $M$-torsionless.
@@ -645,67 +640,52 @@ The monad on $\mathcal{C}$ associated with the adjunction is $M \coloneq G F$, w
   By unitality, we have $\mu_X \circ \eta_{MX} = \id_{MX}$, so $\eta_{MX}$ is a split monomorphism.
 \end{proof}
 
-\begin{proposition}[\cite{Borceux_1994_II}{[4.3.2]}]\label{prp:monad-idempotent-well-pointedness}
-  Let $X$ be an object of $\mathcal{C}$. Then $X$ is $M$-idempotent if and only if $M\eta_X = \eta_{MX}$. \earlyqed
-\end{proposition}
-
 \begin{definition}\label{def:rel-epi}
-  Let $\mathfrak{C}$ be a class of objects in $\mathcal{C}$. A map $f : X \to Y$ is {\bf $\mathfrak{C}$-epic} if for any $Z$ in $\mathfrak{C}$ and morphisms $g, h : Y \rightarrow Z$ such that $g \circ f = h \circ f$, we have $g = h$.
+  Let $\mathfrak{C}$ be a class of objects in $\mathcal{C}$. A map $f : X \to Y$ is \textbf{$\mathfrak{C}$-epic} if for any $Z$ in $\mathfrak{C}$ and any morphisms $g, h : Y \to Z$ such that $g \circ f = h \circ f$, we have $g = h$.
 \end{definition}
+
+The monad $M$ is said to be \notion{well-pointed} if $M\eta_X = \eta_{MX}$ for every object $X$ of $\mathcal{C}$.
+We will not discuss well-pointed monads in this global sense, but rather focus on the local notion.
+For a treatment of well-pointed monads, we refer the reader to Chapter 4.2 of Borceux's book \cite{Borceux_1994_II}.
+The next result is similar to Proposition 4.2.3 of Borceux \cite{Borceux_1994_II}, but we do not assume that $M$ is well-pointed, which forces us to give a different proof.
 
 \begin{proposition}\label{prp:monad-well-pointedness-torsionless-epi}
   Let $X$ be an object of $\mathcal{C}$. The following are equivalent:
-  \begin{enumerate}[noitemsep]
+  \begin{enumerate}[(i), noitemsep]
+    \item $MX$ is $M$-reflexive,
     \item $M\eta_X = \eta_{MX}$,
-    \item $\varepsilon_{FX}$ is a monomorphism,
-    \item $F\eta_X$ is an epimorphism,
     \item $\eta_X$ is $M$-torsionless-epic.
   \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  \leavevmode
-  \begin{description}[leftmargin=3.5em, labelwidth=3em, labelsep=0.5em, align=left]
-    \item[$1.\Rightarrow 2.$] Applying the naturality of $\varepsilon$ to $F\eta_X$ and using the triangle identity, we obtain the following commutative diagrams:
-    \begin{center}
-      \begin{tikzcd}
-        FMX \ar{r}{\varepsilon_{FX}} \ar{d}{FM\eta_X} & FX \ar{d}{F\eta_X} \\
-        FGFMX \ar{r}{\varepsilon_{FMX}} & FMX
-      \end{tikzcd}
-      \qquad
-      \begin{tikzcd}
-        FGFMX \ar{r}{\varepsilon_{FMX}} & FMX \\
-        FMX \ar{u}{F\eta_{MX}} \ar[equal]{ru}
-      \end{tikzcd}
-    \end{center}
-    By assumption, $FGF\eta_X = FM\eta_X = F\eta_{MX}$.
-    Thus, we get the following chain of equalities:
-    $F\eta_{X} \circ \varepsilon_{FX} = \varepsilon_{FMX} \circ FM\eta_{X} = \varepsilon_{FMX} \circ F\eta_{MX} = \id_{FMX}$.
-    Thus, $\varepsilon_{FX}$ has a left inverse, so it is a split monomorphism.
-
-    \item[$2.\Rightarrow 3.$] Since $F\eta_X$ is a right inverse to $\varepsilon_{FX}$ by the triangle identity, it follows that $F\eta_X$ is an epimorphism if $\varepsilon_{FX}$ is a monomorphism.
-    \item[$3.\Rightarrow 4.$] Let $Y$ be an $M$-torsionless object, and let $f, g : MX \rightarrow Y$ be maps such that $f \circ \eta_X = g \circ \eta_X$.
-    Applying $F$ to these maps yields $Ff \circ F\eta_X = Fg \circ F\eta_X$.
-    Since $F\eta_X$ is epic, we have $Ff = Fg$.
-    Using the naturality of $\eta$, we obtain the following commutative diagram:
-    \begin{center}
-      \begin{tikzcd}
-        MX \ar{r}{\eta_{MX}} \ar[xshift = -.5ex]{d}[left]{f} \ar[xshift = .5ex]{d}{g} & M^2X \ar{d}{Mf = Mg} \\
-        Y \ar[hook]{r}{\eta_Y} & MY
-      \end{tikzcd}
-    \end{center}
-    From this diagram, we see that $\eta_Y \circ f = \eta_Y \circ g$.
-    As $Y$ is $M$-torsionless, $\eta_Y$ is a monomorphism, so $f = g$.
-
-    \item[$4.\Rightarrow 1.$] By \cref{lem:monad-app-torsionless}, $M^2X$ is $M$-torsionless.
-    From the naturality of $\eta$ applied to $\eta_X$, we get that $\eta_{MX} \circ \eta_X = M\eta_X \circ \eta_X$.
-    Since $\eta_X$ is $M$-torsionless-epic by assumption, we conclude that $M\eta_X = \eta_{MX}$.
-  \end{description}
+  (i) $\Rightarrow$ (iii): Assume that $MX$ is $M$-reflexive, i.e. $\eta_{MX}$ is an isomorphism.
+  Then $M\eta_X$ is an isomorphism as well, since both $M\eta_X$ and $\eta_{MX}$ are sections of $\mu_X$.
+  Consider two morphisms $f,g : MX \to Y$, where $Y$ is $M$-torsionless and $f \circ \eta_X = g \circ \eta_X$.
+  By applying $M$ to the equality, we have $Mf \circ M\eta_X = Mg \circ M\eta_X$.
+  Thus $Mf = Mg$ since $M\eta_X$ is a monomorphism.
+  By naturality of $\eta$, we have $\eta_Y \circ f = Mf \circ \eta_{MX} = Mg \circ \eta_{MX} = \eta_Y \circ g$.
+  Since $Y$ is $M$-torsionless, $\eta_Y$ is a monomorphism and thus $f = g$.
+  
+  (iii) $\Rightarrow$ (ii): By \cref{lem:monad-app-torsionless}, $MX$ is $M$-torsionless.
+  By naturality of $\eta$, we have $\eta_{MX} \circ \eta_X = M\eta_X \circ \eta_X$. 
+  Thus $M\eta_X = \eta_{MX}$, since $\eta_X$ is $M$-torsionless-epic.
+  
+  (ii) $\Rightarrow$ (i): By unitality we already know that $\mu_X \circ M\eta_X = \id_{MX}$.
+  By unitality, and using $M\eta_X = \eta_{MX}$, we get $$\id_{M^2X} = \mu_{MX} \circ M\eta_{MX} = \mu_{MX} \circ M^2\eta_{X}$$
+  From the naturality square of $\mu$ applied to $\eta_X$, we get the following commutative square:
+  \begin{center}
+    \begin{tikzcd}
+      M^2X \ar{d}{\mu_X} \ar{r}{M^2\eta_{X}} & M^3X \ar{d}{\mu_{MX}} \\
+      MX \ar{r}{M\eta_{X}} & M^2X
+    \end{tikzcd}
+  \end{center}
+  Combining these two facts, we deduce that $M\eta_X \circ \mu_X = \id_{M^2X}$, so $M\eta_X$ is an isomorphism.  
 \end{proof}
 
 
 \begin{proposition}\label{prp:monad-factorization}
-  Let $f : X \to Y$ be a morphism in $\mathcal{C}$. Then $f$ factors uniquely through $\eta_X$ if $X$ is $M$-idempotent and $Y$ is $M$-reflexive.
+  Let $f : X \to Y$ be a morphism in $\mathcal{C}$. Then $f$ factors uniquely through $\eta_X$ if $MX$ is $M$-reflexive and $Y$ is $M$-reflexive.
 \end{proposition}
 
 \begin{proof}
@@ -718,15 +698,45 @@ The monad on $\mathcal{C}$ associated with the adjunction is $M \coloneq G F$, w
 \end{center}
 Since $\eta_Y$ is an isomorphism, we have $f = \eta_Y^{-1} \circ M f \circ \eta_X$.
 Now, assume there exist two factorizations of $f$, namely $f', f'' : MX \to Y$, such that $f' \circ \eta_X = f'' \circ \eta_X$.
-By \cref{prp:monad-idempotent-well-pointedness} and \cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $M$-torsionless-epic, which yields $f' = f''$.
+By \cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $M$-torsionless-epic, which yields $f' = f''$.
+\end{proof}
+
+Let $F \vdash G : \mathcal{C} \to \mathcal{D}$ be an adjoint pair, with unit $\eta : \id_{\mathcal{C}} \to GF$ and counit $\epsilon : FG \to \id_{\mathcal{D}}$.
+The associated monad is $M \coloneq GF$, with multiplication $\mu \coloneq G \varepsilon_F$ and unit $\eta$.
+In the case where the monad is induced from an adjunction, we can make a slight improvement to \cref{prp:monad-well-pointedness-torsionless-epi}.
+
+\begin{proposition}\label{prp:monad-adjunction-well-pointed-improvement}
+  Let $X$ be an object of $\mathcal{C}$.
+  Then $GF\eta_X = \eta_{GFX}$ if and only if $F\eta_X$ is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+  Assume first that $GF\eta_X = \eta_{GFX}$.
+  This part of the proof is completely analogous to the implication (ii) $\Rightarrow$ (i) in \cref{prp:monad-well-pointedness-torsionless-epi}, but we write it out for completeness.
+  From the triangle identity we know that $\varepsilon_{FX} \circ F\eta_X = \id_{FX}$.
+  Consider the naturality square of $\varepsilon$ applied to $F\eta_X$:
+  \begin{center}
+    \begin{tikzcd}
+      FGFX \ar{r}{FGF\eta_X} \ar{d}{\varepsilon_{FX}} & FGFGFX \ar{d}{\varepsilon_{FGFX}} \\
+      FX \ar{r}{F\eta_X} & FGFX
+    \end{tikzcd}
+  \end{center}
+  Combining this with the assumption $GF\eta_X = \eta_{GFX}$, we get that $F\eta_X \circ \varepsilon_{FX} = \varepsilon_{FGFX} \circ FGF\eta_X = \varepsilon_{FGFX} \circ F\eta_{GFX} = \id_{FGFX}$, where the last equality is given by the triangle identity.
+  Thus $F\eta_X$ is an isomorphism, with inverse $\varepsilon_{FX}$.
+
+  Now assume $F\eta_X$ is an isomorphism.
+  By functoriality, $GF\eta_X$ is also an isomorphism with inverse $\mu_X$.
+  Since $\eta_{GFX}$ also has $\mu_X$ as inverse, we get that $GF\eta_X = \eta_{GFX}$ by uniqueness of inverses.
 \end{proof}
 
 Let us apply the above discussion to the contravariant functor $(\argmhole)^\ast$.
-This functor is right adjoint to itself (i.e., self-adjoint), meaning that $\Hom_R(A, B^\ast) \simeq \Hom_R(B,A^\ast)$.
-The unit is given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
+This functor is mutually right adjoint to itself (i.e., self-adjoint), meaning that $\Hom_R(A, B^\ast) \simeq \Hom_R(B,A^\ast)$.
+The unit of this adjunction is given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
+Indeed, this adjunction only has units, since it is contravariant.
 Thus, the associated monad is $M \coloneq (\argmhole)^{\ast\ast}$, with multiplication $\mu_A \coloneq (\ev_{A^\ast})^\ast$.
-With this setup, the notions of torsionless and reflexive coincide with $M$-torsionless and $M$-reflexive, respectively.
-We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} to the case of $(\argmhole)^\ast \vdash (\argmhole)^\ast : \modcat{R}^{\op} \to \modcat{R}$.
+A module $X$ is now $M$-torsionless if $\ev_X$ is a monomorphism, which is equivalent to being torsionless in the sense of H. Bass \cite{bass1960}.
+$X$ is $M$-reflexive if $\ev_X$ is an isomorphism, which is equivalent to $X$ being reflexive.
+We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} with the improvement from \cref{prp:monad-adjunction-well-pointed-improvement} to the case of $(\argmhole)^\ast \vdash (\argmhole)^\ast : \modcat{R}^{\op} \to \modcat{R}$.
 
 \begin{corollary}\label{cor:dbl-dual-reflexive-iss-dual-reflexive}
   Let $A$ be an $R$-module. The following are equivalent:
@@ -742,13 +752,13 @@ We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} to the case 
 \end{proposition}
 
 \begin{proof}
-  By \cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if $A \otimes B$ is $(\argmhole)^{\ast\ast}$-idempotent and $C$ is reflexive.
+  By \cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if $A \dbldualtensor B$ is reflexive and $C$ is reflexive.
   The module $C$ is reflexive by \cref{thm:can-dual-iso}, as it is finitely adequate.
-  The tensor product $A \otimes B$ is $(\argmhole)^{\ast\ast}$-idempotent if $(A \otimes B)^\ast$ is reflexive by \cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
+  The double dual tensor product $A \dbldualtensor B$ is reflexive if $(A \otimes B)^\ast$ is reflexive by \cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
   Now, $(A \otimes B)^* = \Hom_R(A \otimes B, R) \simeq \Hom_R(A, B^\ast)$, which is reflexive by \cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
 \end{proof}
 
 \begin{corollary}\label{cor:dbl-dual-tensor-adjunction}
   Let $M$ be a finitely adequate module.
-  The functor $M \dbldualtensor (\argmhole) : \finadeq \to \finadeq$ is left adjoint to $\Hom_R(M,\argmhole) : \finadeq \to \finadeq$. \earlyqed
+  The functor $(\argmhole) \dbldualtensor M : \finadeq \to \finadeq$ is left adjoint to $\Hom_R(M,\argmhole) : \finadeq \to \finadeq$. \earlyqed
 \end{corollary}
