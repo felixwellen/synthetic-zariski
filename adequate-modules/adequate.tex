@@ -632,8 +632,8 @@ will be the double-dual operation.
 \begin{definition}\label{def:monad-reflexive}
   Let $X$ be an object of $\mathcal{C}$. We say that $X$ is:
   \begin{itemize}
-    \item \notion{M-torsionless} if the unit $\eta_X$ is a monomorphism,
-    \item \notion{M-reflexive} if the unit $\eta_X$ is an isomorphism.
+    \item \notion{$M$-torsionless} if the unit $\eta_X$ is a monomorphism,
+    \item \notion{$M$-reflexive} if the unit $\eta_X$ is an isomorphism.
   \end{itemize}
 \end{definition}
 
@@ -711,7 +711,8 @@ The next result is similar to Proposition 4.2.3 of Borceux \cite{Borceux_1994_II
   By \cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $M$-torsionless-epic, which yields $f' = f''$.
 \end{proof}
 
-Let $F \vdash G : \mathcal{C} \to \mathcal{D}$ be an adjoint pair, with unit $\eta : \id_{\mathcal{C}} \to GF$ and counit $\epsilon : FG \to \id_{\mathcal{D}}$.
+Now we specialize to a monad coming from an adjoint pair
+$F \dashv G$ with $F : \mathcal{C} \to \mathcal{D}$, $G : \mathcal{D} \to \mathcal{C}$, unit $\eta : \id_{\mathcal{C}} \to GF$ and counit $\epsilon : FG \to \id_{\mathcal{D}}$.
 The associated monad is $M \coloneq GF$, with multiplication $\mu \coloneq G \varepsilon_F$ and unit $\eta$.
 In the case where the monad is induced from an adjunction, we can make a slight improvement to \cref{prp:monad-well-pointedness-torsionless-epi}.
 
@@ -740,13 +741,16 @@ In the case where the monad is induced from an adjunction, we can make a slight 
 \end{proof}
 
 Let us apply the above discussion to the contravariant functor $(\argmhole)^\ast$.
-This functor is mutually right adjoint to itself (i.e., self-adjoint), meaning that $\Hom_R(A, B^\ast) \simeq \Hom_R(B,A^\ast)$.
-The unit of this adjunction is given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
-Indeed, this adjunction only has units, since it is contravariant.
-Thus, the associated monad is $M \coloneq (\argmhole)^{\ast\ast}$, with multiplication $\mu_A \coloneq (\ev_{A^\ast})^\ast$.
-A module $X$ is now $M$-torsionless if $\ev_X$ is a monomorphism, which is equivalent to being torsionless in the sense of H. Bass \cite{bass1960}.
-$X$ is $M$-reflexive if $\ev_X$ is an isomorphism, which is equivalent to $X$ being reflexive.
-We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} with the improvement from \cref{prp:monad-adjunction-well-pointed-improvement} to the case of $(\argmhole)^\ast \vdash (\argmhole)^\ast : \modcat{R}^{\op} \to \modcat{R}$.
+This functor is right adjoint to itself, since $\Hom_R(A, B^\ast) \simeq \Hom_R(B,A^\ast)$.
+To fit this into the above discussion, we take $F = (\argmhole)^\ast : \modcat{R} \to \modcat{R}^{\op}$
+and $G = (\argmhole)^\ast : \modcat{R}^{\op} \to \modcat{R}$.
+The unit and counit of this adjunction are both given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
+Thus the associated monad is $M \coloneq (\argmhole)^{\ast\ast}$, with multiplication $\mu_A \coloneq (\ev_{A^\ast})^\ast$.
+A module $X$ is $M$-reflexive if $\ev_X$ is an isomorphism, which is equivalent to $X$ being reflexive.
+We say that a module $X$ is \notion{torsionless} if it is $M$-torsionless for this $M$,
+i.e., if $\ev_X$ is a monomorphism.
+This is equivalent to being torsionless in the sense of H. Bass \cite{bass1960}, and motivates the name.
+We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} with the improvement from \cref{prp:monad-adjunction-well-pointed-improvement} to this situation.
 
 \begin{corollary}\label{cor:dbl-dual-reflexive-iss-dual-reflexive}
   Let $A$ be an $R$-module. The following are equivalent:
