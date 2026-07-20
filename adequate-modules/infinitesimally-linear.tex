@@ -1,6 +1,8 @@
 In this section we will expand upon the theory of tangent spaces that has been developed by Cherubini et al. \cite{diffgeo-article}.
 We will define a notion of infinitesimally linear types in SAG, taking a route inspired by Myers \cite{david-orbifolds}.
 
+\subsection{Infinitesimal Types and Tangent Spaces}
+
 \begin{definition}\label{def:hood-res}
   Let $(X,x)$ be a pointed type.
   The \notion{$n$-th order neighbourhood around $x$} is the subtype $\hood{X,x}{n} \defeq \setbuild{x' : X}{\exists I \substack{\subseteq \\ \mathrm{fg.ideal}} R, I^{n+1} = 0, I = 0 \rightarrow x' = x}$.
@@ -40,6 +42,7 @@ Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ natura
 
 In the preceding example, we will give a notation for the case $n=1$.
 We define the \notion{$m$-dimensional first order infinitesimal disk}, or just the \notion{$m$-disk}, as the type $\D(m) \defeq \Spec(\quot{R[x_1,\dots, x_m]}{\ideal{x_1,\dots,x_m}^2})$.
+By duality, we can identify $\D(m)$ with the type $\{ x : R^n \mid x_ix_j = 0 \text{ for all } i,j \}$.
 The $m$-disk is a first order neighbourhood around $0$.
 Thus, whenever we consider $\D (m)$ as a pointed type, we will always mean the pointed type $(\D (m), 0)$.
 
@@ -72,8 +75,10 @@ Taking tangent spaces is a local construction in the following sense.
   Thus, $\tangent{X}{x} = \tangent{\hood{X,x}{1}}{x}$.
 \end{remark}
 
-Note that $\D(1) = \Spec(\quot{R[x]}{\ideal{x}^2})$ can be identified with $\sum_{x:R} x^2 = 0$, namely the square-zero elements of $R$.
-We make use of this in the following construction.
+% Note that $\D(1) = \Spec(\quot{R[x]}{\ideal{x}^2})$ can be identified with $\sum_{x:R} x^2 = 0$, namely the square-zero elements of $R$.
+% We make use of this in the following construction.
+
+\subsection{Tangential Modules}
 
 Let $M$ be an $R$-module.
 The tangent space $\tangent{M}{0}$ admits an $R$-module structure, given by taking pointwise addition and pointwise scalar multiplication.
@@ -92,7 +97,7 @@ It is clear that the canonical map is $R$-linear with respect to the pointwise m
 
 The nilradical $\mathrm{Nil}(R)$ is \emph{not} tangential.
 Since there is a proper inclusion $\mathbb{D}(1) \subset \mathrm{Nil}(R)$, we know that the tangent space $\tangent{\Nil(R)}{0}$ is equivalent to $\tangent{R}{0} = R$.
-In fact, the general principle goes like this: if there is a chain of proper inclusions $\hood{M_n,0}{1} \subset M_0 \subset M_1 \subset \dots \subset M_n$, then at most one of the $R$-modules $M_i$ can be tangential.
+The general principle goes like this: if there is a chain of proper inclusions $\hood{M_n,0}{1} \subset M_0 \subset M_1 \subset \dots \subset M_n$, then at most one of the $R$-modules $M_i$ can be tangential.
 If $R$ is a ring with positive characteristic $p$, then $\hood{R,0}{p-1}$ is a submodule of $R$. Since $\hood{R,0}{1} \subset \hood{R,0}{p-1} \subset R$ is a chain of proper inclusions, $\hood{R,0}{p-1}$ is not tangential.
 
 \begin{proposition}\label{prp:exp-tangential}
@@ -112,6 +117,36 @@ If $R$ is a ring with positive characteristic $p$, then $\hood{R,0}{p-1}$ is a s
     The modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are tangential.
     Remark that $R[[x]]$ is not wqc.
 \end{example}
+
+There is a family of canonical maps $\can^k : M^k \to (M,0)^{\D(k)}$ for all $k \geq 1$, defined by
+\[
+\can^k (m_1, \dots, m_k) (\varepsilon_1, \dots, \varepsilon_k) = \sum_{i=1}^k \varepsilon_i m_i .
+\]
+
+\begin{proposition}\label{prp:tangential-implies-gen-can-equiv}
+  Let $M$ be an $R$-module. If $M$ is tangential, then $\can^k$ is an equivalence for all $k \geq 1$.
+\end{proposition}
+
+\begin{proof}
+  We will show this by induction.
+  The base case $k=1$ is trivial by assumption.
+  Now, assume the statement holds for $k \ge 1$.
+  Let $f : \D(k+1) \to M$ be a pointed map.
+  Since $M$ is tangential, the map $\delta \mapsto f(0, \dots, 0, \delta)$ is of the form $\delta m_{k+1}$ for a unique $m_{k+1} : M$.
+  Consider the pointed map $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) \defeq f(\varepsilon_1, \dots, \varepsilon_k, \delta) - \delta m_{k+1}$, which satisfies $\hat{f}(0, \dots, 0, \delta) = 0$.
+  For any $\delta : \D(1)$, the map $(\varepsilon_1, \dots, \varepsilon_k) \mapsto \hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta)$ is a pointed map $\D(k) \to M$.
+  By the induction hypothesis, this map is uniquely of the form $\sum_{i=1}^k \varepsilon_i g_i(\delta)$ for some functions $g_i : \D(1) \to M$.
+  Define $\hat{g_i}(\delta) \defeq g_i(\delta) - m_i$ where $m_i \defeq g_i(0)$.
+  Since $M$ is tangential, the maps $\hat{g_i} : \D(1) \to M$ are uniquely of the form $\delta m'_i$ for some $m'_i : M$.
+  Thus we have $g_i(\delta) = m_i + \hat{g_i}(\delta) = m_i + \delta m_i'$.
+  We can then compute:
+  \[ \hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i (m_i + \delta m'_i) = \sum_{i=1}^k \varepsilon_i m_i + \sum_{i=1}^k \varepsilon_i \delta m'_i. \]
+  Since $(\varepsilon_1, \dots, \varepsilon_k, \delta) : \D(k+1)$, we have that $\varepsilon_i \delta = 0$ for all $i$.
+  Therefore, the second term vanishes, yielding $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i m_i$, which shows that $f(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^{k+1} \varepsilon_i m_i$ for unique $m_1, \dots, m_{k+1} : M$.
+  Thus $\can^{k+1}$ is an equivalence.
+\end{proof}
+
+\subsection{Infinitesimal Linear Types}
 
 Even if a type $X$ is not an $R$-module, the tangent space $\tangent{X}{x}$ may have an $R$-module structure.
 The condition under which this occurs is formulated using maps between infinitesimal disks, which we will now define.
@@ -141,8 +176,10 @@ We will also define the diagonal map of the $1$-disk as
   In particular, the finite free $R$-modules $R^n$ are infinitesimally linear at any point.
 \end{example}
 
-\rednote{What's an example of a type that is not infinitesimally linear at a point?
-Is there a module that's not infinitesimally linear at $0$?}
+\rednote{Change next example to a proposition, and include the pentagon that shows that $\inc_{m,n}^*$ is an equivalence.}
+\begin{example}\label{ex:tangential-inf-lin}
+  By \cref{prp:tangential-implies-gen-can-equiv} any tangential $R$-module is infinitesimally linear at $0$.
+\end{example}
 
 Infinitesimal linearity is a local property in the following sense.
 
@@ -169,6 +206,15 @@ As an example, $\mathrm{Nil}(R)$ is infinitesimally linear at 0 since it contain
 \begin{example}\label{ex:power-series-inf-lin}
   The $R$-modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are infinitesimally linear at the constant function $0$. Since automorphisms of the underlying types act transitively, they are infinitesimally linear at any point.
 \end{example}
+
+A module which is not infinitesimally linear at $0$ is the following quotient of free modules:
+\[
+  M \defeq R[\D(2)]/R[\D(1) \vee \D(1)]
+\]
+To see why this is not infinitesimally linear at $0$, let $\eta : \D(2) \to R[\D(2)]$ be the unit map and $p : R[\D(2)] \to M$ the projection map.
+The composite $p \circ \eta : \D(2) \to M$ is pointed and satisfies $(p \circ \eta)|_{\{0\} \vee \D(1)} = 0$ and $(p \circ \eta)|_{\D(1) \vee \{0\}} = 0$.
+However, since $\D(1) \vee \D(1) \to \D(2)$ is provably not surjective, we see that $p \circ \eta \neq 0$.
+Thus the canonical map $(M,0)^{\D(2)} \to (M,0)^{\D(1)} \times (M,0)^{\D(1)}$ is not injective.
 
 % It is not true in general that infinitesimally linear types are closed under colimits.
 For $R$-modules, we can show that {\em cokernels} of infinitesimally linear types at $0$ are themselves infinitesimally linear at $0$.
@@ -263,65 +309,18 @@ The (microlinear) scalar multiplication by $r : R$ is defined by $(r \boxdot \up
   Then the pointwise and microlinear addition on $\tangent{M}{0}$ are the same.
 \end{theorem}
 
-\begin{proof}[Version without Eckmann-Hilton?]
-  Let $\upsilon,\nu : \tangent M 0$ and denote by $\upsilon \boxplus \nu$ and $\upsilon + \nu$ the microlinear and pointwise addition respectively.
-  Set $g : \D(2) \to M, (\varepsilon,\delta) \mapsto \upsilon(\varepsilon) + \nu(\delta)$.
-  By virtue of the uniqeness of the lift $\D(2) \to M$ defining $\upsilon \boxplus \delta$ it is enough to see that $g$ itself is such a lift, as this would imply that $\upsilon + \nu = \Delta \circ g = \upsilon \boxplus \nu$.
-  But this is clear since by construction we have $g|_{\D(1) \times \{0\}}=\upsilon$ and $g|_{\{0\} \times \D(1)}=\nu$.
-\end{proof}
-
 \begin{proof}
-  We will use Eckmann-Hilton to prove this theorem.
-  It is clear that the identity for both of these $R$-module structures is the map constant on $0$, so it remains to argue that the additions are compatible.
-  Let $+$ denote the addition on $M$, and we use the same symbol for the pointwise addition on $\tangent{M}{0}$.
-  Let $\boxplus$ denote the microlinear addition on $\tangent{M}{0}$.
-  Our goal is to show that for any $\alpha, \beta, \gamma, \delta : \tangent{M}{0}$, $(\alpha + \gamma) \boxplus (\beta + \delta) = (\alpha \boxplus \beta) + (\gamma \boxplus \delta)$ holds.
-
-  The map $(\alpha + \gamma) \boxplus (\beta + \delta)$ is given by lifting in the following diagram
-  \begin{center}
-    \begin{tikzcd}
-      & D (1) \vee D (1) \ar{d}{\inc_{1,1}} \ar{r}{[\Delta,\Delta]} & D (1)^2 \underset{*}{\coprod} D (1)^2 \ar{rr}{[\alpha \times \gamma, \beta \times \delta]} & & M^2 \ar{d}{+} \\
-      D (1) \ar{r}{D} \ar[bend right, looseness = 0.5]{rrrr}{(\alpha + \gamma) \boxplus (\beta + \delta)} & D (2) \ar[dashed]{rrr}{\exists !} & & & M
-    \end{tikzcd}
-  \end{center}
-  We get $(\alpha \boxplus \beta) + (\gamma \boxplus \delta)$ by lifting in the following diagram
-  \begin{center}
-    \begin{tikzcd}
-      & & (D (1) \underset{*}{\coprod} D (1))^2 \ar{d}{\inc_{1,1}\times \inc_{1,1}} \ar[bend left]{rd}{[\alpha,\beta] \times [\gamma,\delta]} \\
-      D (1) \ar{r}{\Delta} \ar[bend right, looseness = 0.5]{rrrr}{(\alpha \boxplus \beta) + (\gamma \boxplus \delta)} & D (1)^2 \ar{r}{D \times D} & D (2)^2 \ar[dashed]{r}{\exists} & M^2 \ar{r}{+} & M
-    \end{tikzcd}
-  \end{center}
-  By using the naturality square involving $\Delta$ and $D$ we can glue the lower parts of the diagrams together.
-  \begin{center}
-    \begin{tikzcd}
-      D (1) \ar{r}{D} \ar{d}{\Delta} & D (2) \ar[dashed, bend left, looseness = 0.5]{rrd}{\exists !} \ar{d}{\Delta}\\
-      D (1)^2 \ar{r}{D \times D} & D (2)^2 \ar[dashed]{r}{\exists} & M^2 \ar{r}{+} & M
-    \end{tikzcd}
-  \end{center}
-  The maps $(\alpha + \gamma) \boxplus (\beta + \delta)$ and $(\alpha \boxplus \beta) + (\gamma \boxplus \delta)$ are equal if the triangle on the right above commutes.
-  Since $M$ is infinitesimally linear, this is the case iff pre-composing with $\inc_{1,1}$ makes the triangle commute.
-  Using the naturality square involving $\Delta$ and $\inc_{1,1}$, this happens if the outer arrows of the following diagram commute
-  \begin{center}
-    \begin{tikzcd}
-      D (1) \underset{*}{\coprod} D (1) \ar{r}{\Delta} \ar{d}{\inc_{1,1}} & (D (1) \vee D (1))^2 \ar{d}{\inc_{1,1}\times \inc_{1,1}} \ar[bend left]{rd}{[\alpha,\beta] \times [\gamma,\delta]} \\
-      D (2) \ar{r}{\Delta} \ar[dashed, bend right, looseness = 0.5]{rrr}{\exists !} & D (2)^2 \ar[dashed]{r}{\exists} & M^2 \ar{r}{+} & M
-    \end{tikzcd}
-  \end{center}
-  One can now observe that the outer arrows commute because the following square does
-  \begin{center}
-    \begin{tikzcd}
-      D (1) \underset{*}{\coprod} D (1) \ar{r}{[\Delta, \Delta]} \ar{d}{\Delta} & (D (1) \underset{*}{\coprod} D (1))^2 \ar{d}{[\alpha, \beta]\times [\gamma,\delta]} \\
-      D (1)^2 \underset{*}{\coprod} D (1)^2 \ar{r}{[\alpha\times \gamma, \beta\times \delta]} & M^2
-    \end{tikzcd}
-  \end{center}
-  From this we conclude that $(\alpha + \gamma) \boxplus (\beta + \delta) = (\alpha \boxplus \beta) + (\gamma \boxplus \delta)$ holds, and the binary operations are the same.
+  Let $\upsilon,\nu : \tangent{M}{0}$.
+  Define $g : \D(2) \to M$ by $(\varepsilon,\delta) \mapsto \upsilon(\varepsilon) + \nu(\delta)$.
+  By virtue of the uniqueness of the lift $\D(2) \to M$ defining $\upsilon \boxplus \delta$ it is enough to see that $g$ lifts $[\upsilon,\nu]$.
+  This is clear since $g|_{\D(1) \vee \{0\}}=\upsilon$ and $g|_{\{0\} \vee \D(1)}=\nu$.
 \end{proof}
 
 \begin{remark}\label{rem:ptw-micro-scalar}
   In general, the scalar multiplication given by the pointwise and microlinear module structures differs.
   Let $\nu : \tangent{M}{0}$ be a tangent vector on $M$, $r : R$, and $\varepsilon : \D (1)$.
   Then $(r\boxdot \nu)(\varepsilon) = \nu(r\varepsilon)$ and $(r \cdot \nu)(\varepsilon) = r\nu(\varepsilon)$.
-  We can observe that $r\boxdot\nu = r\cdot \nu$ only whenever $\nu$ respects scalar multiplication.
+  We can observe that $r\boxdot\nu = r\cdot \nu$ holds if and only if $\nu$ respects scalar multiplication.
 \end{remark}
 
 \begin{corollary}\label{cor:can-nat-inf-lin}
@@ -350,9 +349,6 @@ We collect the definitions developed in this section under a single umbrella.
   Let $M$ be an $R$-module.
   We say that $M$ is \notion{tangent-like} if it is both infinitesimally linear at $0$ and tangential.
 \end{definition}
-
-\rednote{Fabian shows that $\mathrm{Nil}(R)$ is infinitesimally linear but not tangential.
-Is there any chance that tangential implies infinitesimally linear?}
 
 \begin{proposition}\label{prp:lim-col-ext-tangent-like}
   Tangent-like $R$-modules are closed under biproducts, kernels, cokernels, extensions, and exponentials.

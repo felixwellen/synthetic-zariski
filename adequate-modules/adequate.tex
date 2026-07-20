@@ -4,14 +4,17 @@ When the base ring is coherent, this notion coincides with coherent modules, and
 
 Synthetically however, our base ring $R$ is provably not coherent \cite[3.2]{topology-draft} and these two notions diverge.
 As it turns out, both are not well behaved in our setting.
-The category of finitely presented $R$-modules lacks kernels and the category of coherent $R$-modules, while always being abelian, is much to small as it already does not contain crucial modules like $R^n$.
+The category of finitely presented $R$-modules lacks kernels and the category of coherent $R$-modules, while always being abelian, is much too small as it already does not contain crucial modules like $R^n$.
 In this section we study a bigger category of \notion{finitely adequate} modules as a suitable replacement, and whose objects still retain a certain sense of finiteness.
 This notion is not completely novel and has already been studied externally in \cite[Chapter 06Z1]{stacks-project}.
 
 The work in this section profited from discussions with Hugo Moeneclaey, Mohamed Barakat, and Marc Nieper-Wißkirchen.
 
-Let us begin by recounting the notion of quasi-coherence, introduced by Ingo Blechschmid \cite{ingo-thesis}.
-For this recall first, that for an $R$-module $M$ and a finitely presented $R$-algebra $A$ there is an evaluation map
+\subsection{Finitely Adequate Modules Form an Abelian Category}
+
+In this subsection we will show that the category of finitely adequate $R$-modules, denoted by $\finadeq$, is abelian.
+We begin by recounting the notion of quasi-coherence, introduced by Ingo Blechschmid \cite{ingo-thesis}.
+For this recall that for an $R$-module $M$ and a finitely presented $R$-algebra $A$ there is an evaluation map
 \begin{align*}
   \ev : M \otimes A & \rightarrow M^{\Spec A} \\
   m \otimes a & \mapsto (f \mapsto f(a)m)
@@ -34,7 +37,7 @@ We can show that quasi-coherent $R$-modules $Q$ are tangent-like by a direct com
 
 \begin{proof}
   By quasi-coherence, we have the following equivalence $Q^{\D (n)} \simeq Q \otimes \quot{R[x_1,\dots,x_n]}{\ideal{x_ix_j}} \simeq Q^{n+1}$.
-  We can thus identify the maps $\D (n) \rightarrow Q$ with $n$-variate polynomials with coefficients in $Q$ and which are of degree $\leq 1$.
+  We can thus identify the maps $\D (n) \rightarrow Q$ with $n$-variate polynomials with coefficients in $Q$ and which are of degree at most $1$.
   Let $p(x_1, \dots, x_n)$ be such a polynomial, then the canonical evaluation map acts like $\ev (p(x_1, \dots, x_n))(\varepsilon_1, \dots, \varepsilon_n) = p(\varepsilon_1, \dots, \varepsilon_n)$, where $\varepsilon_i : \D (n)$.
   Whenever $p$ represents a pointed map, we have $p(0,\dots,0) = p_0 = 0$.
 \end{proof}
@@ -422,6 +425,10 @@ Since the category of finitely adequate modules is a subcategory of $\modcat{R}$
   Consequently, the data needed to specify an exact functor $K$ is an assignment $KR$ of $R$ in $\mathcal{A}$ and a group homomorphism $\Hom_R(R,R) \rightarrow \mathcal{A}(KR,KR)$.
 \end{remark}
 
+\subsection{Properties of Finitely Adequate Modules}
+
+In this subsection we collect some properties of finitely adequate $R$-modules.
+
 \begin{proposition}
   Let $A$ be a closed submodule of a finitely adequate module $M$. Then $A$ is finitely adequate if $A$ is tangential.
 \end{proposition}
@@ -461,55 +468,69 @@ Since the category of finitely adequate modules is a subcategory of $\modcat{R}$
   Then we can reuse the same argument to show the statement of the proposition.
 \end{proof}
 
-Taking the $1$-st order neighbourhood of finitely adequate modules yields a fully faithful functor.
+\rednote{This could maybe move to the appendix.  Not sure if we need it in the final paper.}
 
-\rednote{I cannot quite remember how to prove this statement, so I don't quite remember how general it is. @Felix, can you look at this?}
+\begin{remark}\label{rem:hood-module-prs-surj}
+  If $f : M \rightarrow N$ be an epimorphism of $R$-modules with $M$ linearly adequate
+  and $N$ finitely adequate,
+  it does not follow that $\hood{f,0}{1}$ is surjective.
+  Here is an example.
 
-\begin{lemma}\label{lem:hood-module-prs-surj}
-  Let $f : M \rightarrow N$ be an epimorphism of $R$-modules.
-  Then $\hood{f,0}{1}$ is surjective.
-\end{lemma}
-
-\begin{proof}
-  \rednote{This is not correct. A counterexample:}
   Let $\varepsilon : \D(1)$ be arbitrary.
-  Then the quotient map $\pi_\varepsilon : R \to N :\equiv R/\ker(R \overset{\cdot \varepsilon}{\to}R)$ does not satisfy the claim for all $\varepsilon$:
+  Consider the map $\pi_\varepsilon : R \to \varepsilon R$ which multiplies by $\varepsilon$.
+  Note that $R$ is linearly adequate and $\varepsilon R$ is finitely adequate
+  by \Cref{thm:fin-adeq-class}.
+  We will show that $\pi_\varepsilon$ does not satisfy the claim for all $\varepsilon$.
+  Indeed, assume that $\hood{\pi_{\varepsilon}, 0}{1}$ is surjective for all $\varepsilon$.
+  Note that $\pi_\varepsilon(1) = \varepsilon \in \hood{\varepsilon R,0}{1}$ since $(\varepsilon)=0 \to \varepsilon=0$.
+  Let $r:\D(1) = \hood{R,0}{1}$ be a lift of $\varepsilon$. Then $\pi_\varepsilon(r-1)=0$, i.e., $\varepsilon(r-1)=0$.
+  But $r$ is nilpotent, hence $r-1$ invertible and this would mean $\varepsilon = 0$, which cannot be true for all $\varepsilon$.
+\end{remark}
 
-  Note that $\pi_\varepsilon(1) \in \hood{N,0}{1}$ since $(\varepsilon)=0 \to \pi_\varepsilon(1)=0$.
-  Now if $\pi_\varepsilon$ is surjective and $r:\D(1) (= \hood{R,0}{1})$ were a lift of $\pi_\varepsilon(1)$, then $\pi_\varepsilon(r-1)=0$, i.e.\ $\varepsilon(r-1)=0$.
-  But $r$ is nilpotent, hence $r-1$ invertible and this would mean $\varepsilon = 0$, which cannot be for all $\varepsilon$.
-\end{proof}
-
-\begin{theorem}\label{thm:hood-module-ff}
-  The functor $\hood{\argmhole}{1} : \finadeq \rightarrow \pType$ is fully faithful.
-\end{theorem}
+\begin{proposition}\label{prop:hood-faithful}
+  The functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$ is faithful when restricted to the subcategory of tangential $R$-modules.
+\end{proposition}
 
 \begin{proof}
-  It is immediate to see that it is faithful, as the action on the map is given by restriction, i.e. $\hood{f,0}{1} \defeq f\mid_{\hood{\argmhole}{1}}$.
-  To see that it is full, let $M$ and $N$ be finitely adequate $R$-modules, and let $f : \hood{M,0}{1} \rightarrow_\ast \hood{N,0}{1}$ be a pointed map.
-  Because $M$ and $N$ are finitely adequate, we can find linearly adequate $R$-modules $K_1$, $K_2$, $L_1$, and $L_2$ together with presentations $K_1 \rightarrow K_2 \twoheadrightarrow M$ and $L_1 \rightarrow L_2 \twoheadrightarrow N$.
-  By ???, $\hood{K_i,0}{1}$ and $\hood{L_i,0}{1}$ are projective types.
-  Using this property, we can lift the map $f$ to a commutative square by \Cref{lem:hood-module-prs-surj}
-  \begin{center}
-    \begin{tikzcd}
-      \hood{K_1,0}{1} \ar{d} \ar[dashed]{r} & \hood{L_1,0}{1} \ar{d} \\
-      \hood{K_2,0}{1} \ar[two heads]{d} \ar[dashed]{r} & \hood{L_2,0}{1} \ar[two heads]{d} \\
-      \hood{M,0}{1} \ar{r}{f} & \hood{N,0}{1}
-    \end{tikzcd}
-  \end{center}
-  By \cite{diffgeo-article}[Lemma 2.1.4] and \Cref{thm:lin-adeq-dual}, the morphisms in the top square extend to modules.
-  By taking cokernels we get an induced map
-  \begin{center}
-    \begin{tikzcd}
-      K_1 \ar{r} \ar{d} & L_1 \ar{d} \\
-      K_2 \ar[two heads]{d} \ar{r} & L_2 \ar[two heads]{d} \\
-      M \ar{r}{f'} & N
-    \end{tikzcd}
-  \end{center}
-  It is clear that $f'\mid_{\hood{M,0}{1}} = f$.
+  Let $f,g : M \rightrightarrows N$ be two linear maps between tangential $R$-modules with $\hood{f,0}{1} = \hood{g,0}{1}$.
+  Then $d_0f=d_0g$ and by naturality of the map $\can$ the claim follows.
+  % This is immediate, as the action on the map is given by restriction, i.e. $\hood{f,0}{1} \defeq f\mid_{\hood{\argmhole}{1}}$.
+  % To see that it is full, let $M$ and $N$ be finitely adequate $R$-modules, and let $f : \hood{M,0}{1} \rightarrow_\ast \hood{N,0}{1}$ be a pointed map.
+  % Because $M$ and $N$ are finitely adequate, we can find linearly adequate $R$-modules $K_1$, $K_2$, $L_1$, and $L_2$ together with presentations $K_1 \rightarrow K_2 \twoheadrightarrow M$ and $L_1 \rightarrow L_2 \twoheadrightarrow N$.
+  % By ???, $\hood{K_i,0}{1}$ and $\hood{L_i,0}{1}$ are projective types.
+  % Using this property, we can lift the map $f$ to a commutative square by \Cref{lem:hood-module-prs-surj}
+  % \begin{center}
+  %   \begin{tikzcd}
+  %     \hood{K_1,0}{1} \ar{d} \ar[dashed]{r} & \hood{L_1,0}{1} \ar{d} \\
+  %     \hood{K_2,0}{1} \ar[two heads]{d} \ar[dashed]{r} & \hood{L_2,0}{1} \ar[two heads]{d} \\
+  %     \hood{M,0}{1} \ar{r}{f} & \hood{N,0}{1}
+  %   \end{tikzcd}
+  % \end{center}
+  % By \cite{diffgeo-article}[Lemma 2.1.4] and \Cref{thm:lin-adeq-dual}, the morphisms in the top square extend to modules.
+  % By taking cokernels we get an induced map
+  % \begin{center}
+  %   \begin{tikzcd}
+  %     K_1 \ar{r} \ar{d} & L_1 \ar{d} \\
+  %     K_2 \ar[two heads]{d} \ar{r} & L_2 \ar[two heads]{d} \\
+  %     M \ar{r}{f'} & N
+  %   \end{tikzcd}
+  % \end{center}
+  % It is clear that $f'\mid_{\hood{M,0}{1}} = f$.
 \end{proof}
 
-\rednote{It would be nice to characterize the image above as some special kind of first order neighbourhoods. Then linear maps between finitely adequate modules would correspond to pointed maps between such modules.}
+\begin{remark}
+  The functor $\hood{\argmhole}{1}$ of the previous proposition is full when restricted even further to linearly adequate $R$-modules \rednote{cite}.
+  This, however, already fails on finitely adequate $R$-modules.
+
+  To see this, consider the maps $\alpha_\varepsilon : R\varepsilon \to R\varepsilon, r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$.
+  These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$.
+  Since for every $n:R\varepsilon$ we have $(\varepsilon=0)\to(n=0)$, we conclude that $R\varepsilon = \hood{R\varepsilon,0}{1}$.
+  Note that $\hood{\argmhole}{1}$ is the identity functor on those $R$-modules that are their own first order neighbourhood.
+  Thus it suffices to show that it is not the case that all $\alpha_\varepsilon$ are $R$-linear.
+  Assume they are.
+  Then $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence also $(r^2-r)\varepsilon=0$ for all $r:R$.
+  Using duality and comparing coefficients, we see that $\varepsilon=0$ for every $\varepsilon:\D(1)$, which cannot be.
+\end{remark}
 
 Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
 
@@ -591,30 +612,25 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
   $B$ is also wqc by \Cref{prp:wqc-adeq}.
   Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}.
 \end{proof}
+
+
 By \cref{rem:tensor-not-closed}, the tensor product $M \otimes N$ is not necessarily linearly adequate when $M$ and $N$ are linearly adequate.
-This contrasts with the case where $M$ is finitely presented (or, similarly, when $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite sums of $N$, which is finitely presented.
+This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite sums of $N$, and is therefore finitely presented.
 Somewhat surprisingly, the internal hom still has a left adjoint in the subcategory of finitely adequate modules.
 To this end, we will show that the {\bf double dual tensor product} $M \dbldualtensor N \coloneq (M \otimes N)^{\ast\ast}$ is the internal tensor product in $\finadeq$.
 By the hom-tensor adjunction, it is sufficient to prove that $\Hom_R(A \otimes B, C) \simeq \Hom_R(A \dbldualtensor B, C)$ for any finitely adequate modules $A$, $B$, and $C$.
 We will show that any morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 
 We can carry out this factorization in the general setting of monads.
-Let $F \dashv G : \mathcal{C} \to \mathcal{D}$ be an adjunction, with unit $\eta : 1 \to G F$ and counit $\varepsilon : F G \to 1$.
-The monad on $\mathcal{C}$ associated with the adjunction is $M \coloneq G F$, with multiplication $\mu \coloneq G \varepsilon_F$ and unit $\eta$.
+Let $M$ be a monad on $\mathcal{C}$ with multiplication $\mu$ and unit $\eta$.
 
 \begin{definition}\label{def:monad-reflexive}
   Let $X$ be an object of $\mathcal{C}$. We say that $X$ is:
   \begin{itemize}
-    \item {\bf $M$-torsionless} if the unit $\eta_X$ is a monomorphism,
-    \item {\bf $M$-reflexive} if the unit $\eta_X$ is an isomorphism,
-    \item {\bf $M$-idempotent} if the multiplication $\mu_X$ is an isomorphism.
+    \item \notion{M-torsionless} if the unit $\eta_X$ is a monomorphism,
+    \item \notion{M-reflexive} if the unit $\eta_X$ is an isomorphism.
   \end{itemize}
 \end{definition}
-
-\begin{remark}\label{rmk:monad-reflexive-idempotent}
-  By the unitality condition, we have $\mu_X \circ \eta_{MX} = \id_{MX}$, so $\mu_X$ is an isomorphism if and only if $\eta_{MX}$ is an isomorphism.
-  It thus follows that $X$ is $M$-idempotent if and only if $MX$ is $M$-reflexive.
-\end{remark}
 
 \begin{lemma}\label{lem:monad-app-torsionless}
   Let $X$ be an object of $\mathcal{C}$. Then $MX$ is $M$-torsionless.
@@ -624,67 +640,52 @@ The monad on $\mathcal{C}$ associated with the adjunction is $M \coloneq G F$, w
   By unitality, we have $\mu_X \circ \eta_{MX} = \id_{MX}$, so $\eta_{MX}$ is a split monomorphism.
 \end{proof}
 
-\begin{proposition}[\cite{Borceux_1994_II}{[4.3.2]}]\label{prp:monad-idempotent-well-pointedness}
-  Let $X$ be an object of $\mathcal{C}$. Then $X$ is $M$-idempotent if and only if $M\eta_X = \eta_{MX}$. \earlyqed
-\end{proposition}
-
 \begin{definition}\label{def:rel-epi}
-  Let $\mathfrak{C}$ be a class of objects in $\mathcal{C}$. A map $f : X \to Y$ is {\bf $\mathfrak{C}$-epic} if for any $Z$ in $\mathfrak{C}$ and morphisms $g, h : Y \rightarrow Z$ such that $g \circ f = h \circ f$, we have $g = h$.
+  Let $\mathfrak{C}$ be a class of objects in $\mathcal{C}$. A map $f : X \to Y$ is \textbf{$\mathfrak{C}$-epic} if for any $Z$ in $\mathfrak{C}$ and any morphisms $g, h : Y \to Z$ such that $g \circ f = h \circ f$, we have $g = h$.
 \end{definition}
+
+The monad $M$ is said to be \notion{well-pointed} if $M\eta_X = \eta_{MX}$ for every object $X$ of $\mathcal{C}$.
+We will not discuss well-pointed monads in this global sense, but rather focus on the local notion.
+For a treatment of well-pointed monads, we refer the reader to Chapter 4.2 of Borceux's book \cite{Borceux_1994_II}.
+The next result is similar to Proposition 4.2.3 of Borceux \cite{Borceux_1994_II}, but we do not assume that $M$ is well-pointed, which forces us to give a different proof.
 
 \begin{proposition}\label{prp:monad-well-pointedness-torsionless-epi}
   Let $X$ be an object of $\mathcal{C}$. The following are equivalent:
-  \begin{enumerate}[noitemsep]
+  \begin{enumerate}[(i), noitemsep]
+    \item $MX$ is $M$-reflexive,
     \item $M\eta_X = \eta_{MX}$,
-    \item $\varepsilon_{FX}$ is a monomorphism,
-    \item $F\eta_X$ is an epimorphism,
     \item $\eta_X$ is $M$-torsionless-epic.
   \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  \leavevmode
-  \begin{description}[leftmargin=3.5em, labelwidth=3em, labelsep=0.5em, align=left]
-    \item[$1.\Rightarrow 2.$] Applying the naturality of $\varepsilon$ to $F\eta_X$ and using the triangle identity, we obtain the following commutative squares:
-    \begin{center}
-      \begin{tikzcd}
-        FMX \ar{r}{\varepsilon_{FX}} \ar{d}{FM\eta_X} & FX \ar{d}{F\eta_X} \\
-        FGFMX \ar{r}{\varepsilon_{FMX}} & FMX
-      \end{tikzcd}
-      \qquad
-      \begin{tikzcd}
-        FGFMX \ar{r}{\varepsilon_{FMX}} & FMX \\
-        FMX \ar{u}{F\eta_{MX}} \ar[equal]{ru}
-      \end{tikzcd}
-    \end{center}
-    By assumption, $FGF\eta_X = FM\eta_X = F\eta_{MX}$.
-    Thus, we get the following chain of equalities:
-    $F\eta_{X} \circ \varepsilon_{FX} = \varepsilon_{FMX} \circ FM\eta_{X} = \varepsilon_{FMX} \circ F\eta_{MX} = \id_{FMX}$.
-    Thus, $\varepsilon_{FX}$ has a left inverse, so it is a split monomorphism.
-
-    \item[$2.\Rightarrow 3.$] Since $F\eta_X$ is a right inverse to $\varepsilon_{FX}$ by the triangle identity, it follows that $F\eta_X$ is an epimorphism if $\varepsilon_{FX}$ is a monomorphism.
-    \item[$3.\Rightarrow 4.$] Let $Y$ be an $M$-torsionless object, and let $f, g : MX \rightarrow Y$ be maps such that $f \circ \eta_X = g \circ \eta_X$.
-    Applying $F$ to these maps yields $Ff \circ F\eta_X = Fg \circ F\eta_X$.
-    Since $F\eta_X$ is epic, we have $Ff = Fg$.
-    Using the naturality of $\eta$, we obtain the following commutative diagram:
-    \begin{center}
-      \begin{tikzcd}
-        MX \ar{r}{\eta_{MX}} \ar[xshift = -.5ex]{d}[left]{f} \ar[xshift = .5ex]{d}{g} & M^2X \ar{d}{Mf = Mg} \\ 
-        Y \ar[hook]{r}{\eta_Y} & MY
-      \end{tikzcd}
-    \end{center}
-    From this diagram, we see that $\eta_Y \circ f = \eta_Y \circ g$.
-    As $Y$ is $M$-torsionless, $\eta_Y$ is a monomorphism, so $f = g$.
-
-    \item[$4.\Rightarrow 1.$] By \cref{lem:monad-app-torsionless}, $M^2X$ is $M$-torsionless.
-    From the naturality of $\eta$ applied to $\eta_X$, we get that $\eta_{MX} \circ \eta_X = M\eta_X \circ \eta_X$.
-    Since $\eta_X$ is $M$-torsionless-epic by assumption, we conclude that $M\eta_X = \eta_{MX}$.
-  \end{description}
+  (i) $\Rightarrow$ (iii): Assume that $MX$ is $M$-reflexive, i.e. $\eta_{MX}$ is an isomorphism.
+  Then $M\eta_X$ is an isomorphism as well, since both $M\eta_X$ and $\eta_{MX}$ are sections of $\mu_X$.
+  Consider two morphisms $f,g : MX \to Y$, where $Y$ is $M$-torsionless and $f \circ \eta_X = g \circ \eta_X$.
+  By applying $M$ to the equality, we have $Mf \circ M\eta_X = Mg \circ M\eta_X$.
+  Thus $Mf = Mg$ since $M\eta_X$ is a monomorphism.
+  By naturality of $\eta$, we have $\eta_Y \circ f = Mf \circ \eta_{MX} = Mg \circ \eta_{MX} = \eta_Y \circ g$.
+  Since $Y$ is $M$-torsionless, $\eta_Y$ is a monomorphism and thus $f = g$.
+  
+  (iii) $\Rightarrow$ (ii): By \cref{lem:monad-app-torsionless}, $MX$ is $M$-torsionless.
+  By naturality of $\eta$, we have $\eta_{MX} \circ \eta_X = M\eta_X \circ \eta_X$. 
+  Thus $M\eta_X = \eta_{MX}$, since $\eta_X$ is $M$-torsionless-epic.
+  
+  (ii) $\Rightarrow$ (i): By unitality we already know that $\mu_X \circ M\eta_X = \id_{MX}$.
+  By unitality, and using $M\eta_X = \eta_{MX}$, we get $$\id_{M^2X} = \mu_{MX} \circ M\eta_{MX} = \mu_{MX} \circ M^2\eta_{X}$$
+  From the naturality square of $\mu$ applied to $\eta_X$, we get the following commutative square:
+  \begin{center}
+    \begin{tikzcd}
+      M^2X \ar{d}{\mu_X} \ar{r}{M^2\eta_{X}} & M^3X \ar{d}{\mu_{MX}} \\
+      MX \ar{r}{M\eta_{X}} & M^2X
+    \end{tikzcd}
+  \end{center}
+  Combining these two facts, we deduce that $M\eta_X \circ \mu_X = \id_{M^2X}$, so $M\eta_X$ is an isomorphism.  
 \end{proof}
 
 
 \begin{proposition}\label{prp:monad-factorization}
-  Let $f : X \to Y$ be a morphism in $\mathcal{C}$. Then $f$ factors uniquely through $\eta_X$ if $X$ is $M$-idempotent and $Y$ is $M$-reflexive.
+  Let $f : X \to Y$ be a morphism in $\mathcal{C}$. Then $f$ factors uniquely through $\eta_X$ if $MX$ is $M$-reflexive and $Y$ is $M$-reflexive.
 \end{proposition}
 
 \begin{proof}
@@ -697,26 +698,67 @@ The monad on $\mathcal{C}$ associated with the adjunction is $M \coloneq G F$, w
 \end{center}
 Since $\eta_Y$ is an isomorphism, we have $f = \eta_Y^{-1} \circ M f \circ \eta_X$.
 Now, assume there exist two factorizations of $f$, namely $f', f'' : MX \to Y$, such that $f' \circ \eta_X = f'' \circ \eta_X$.
-By \cref{prp:monad-idempotent-well-pointedness} and \cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $M$-torsionless-epic, which yields $f' = f''$.
+By \cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $M$-torsionless-epic, which yields $f' = f''$.
+\end{proof}
+
+Let $F \vdash G : \mathcal{C} \to \mathcal{D}$ be an adjoint pair, with unit $\eta : \id_{\mathcal{C}} \to GF$ and counit $\epsilon : FG \to \id_{\mathcal{D}}$.
+The associated monad is $M \coloneq GF$, with multiplication $\mu \coloneq G \varepsilon_F$ and unit $\eta$.
+In the case where the monad is induced from an adjunction, we can make a slight improvement to \cref{prp:monad-well-pointedness-torsionless-epi}.
+
+\begin{proposition}\label{prp:monad-adjunction-well-pointed-improvement}
+  Let $X$ be an object of $\mathcal{C}$.
+  Then $GF\eta_X = \eta_{GFX}$ if and only if $F\eta_X$ is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+  Assume first that $GF\eta_X = \eta_{GFX}$.
+  This part of the proof is completely analogous to the implication (ii) $\Rightarrow$ (i) in \cref{prp:monad-well-pointedness-torsionless-epi}, but we write it out for completeness.
+  From the triangle identity we know that $\varepsilon_{FX} \circ F\eta_X = \id_{FX}$.
+  Consider the naturality square of $\varepsilon$ applied to $F\eta_X$:
+  \begin{center}
+    \begin{tikzcd}
+      FGFX \ar{r}{FGF\eta_X} \ar{d}{\varepsilon_{FX}} & FGFGFX \ar{d}{\varepsilon_{FGFX}} \\
+      FX \ar{r}{F\eta_X} & FGFX
+    \end{tikzcd}
+  \end{center}
+  Combining this with the assumption $GF\eta_X = \eta_{GFX}$, we get that $F\eta_X \circ \varepsilon_{FX} = \varepsilon_{FGFX} \circ FGF\eta_X = \varepsilon_{FGFX} \circ F\eta_{GFX} = \id_{FGFX}$, where the last equality is given by the triangle identity.
+  Thus $F\eta_X$ is an isomorphism, with inverse $\varepsilon_{FX}$.
+
+  Now assume $F\eta_X$ is an isomorphism.
+  By functoriality, $GF\eta_X$ is also an isomorphism with inverse $\mu_X$.
+  Since $\eta_{GFX}$ also has $\mu_X$ as inverse, we get that $GF\eta_X = \eta_{GFX}$ by uniqueness of inverses.
 \end{proof}
 
 Let us apply the above discussion to the contravariant functor $(\argmhole)^\ast$.
 This functor is mutually right adjoint to itself (i.e., self-adjoint), meaning that $\Hom_R(A, B^\ast) \simeq \Hom_R(B,A^\ast)$.
-The unit is given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
+The unit of this adjunction is given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
+Indeed, this adjunction only has units, since it is contravariant.
 Thus, the associated monad is $M \coloneq (\argmhole)^{\ast\ast}$, with multiplication $\mu_A \coloneq (\ev_{A^\ast})^\ast$.
-With this setup, the notions of torsionless and reflexive coincide with $M$-torsionless and $M$-reflexive, respectively.
+A module $X$ is now $M$-torsionless if $\ev_X$ is a monomorphism, which is equivalent to being torsionless in the sense of H. Bass \cite{bass1960}.
+$X$ is $M$-reflexive if $\ev_X$ is an isomorphism, which is equivalent to $X$ being reflexive.
+We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} with the improvement from \cref{prp:monad-adjunction-well-pointed-improvement} to the case of $(\argmhole)^\ast \vdash (\argmhole)^\ast : \modcat{R}^{\op} \to \modcat{R}$.
+
+\begin{corollary}\label{cor:dbl-dual-reflexive-iss-dual-reflexive}
+  Let $A$ be an $R$-module. The following are equivalent:
+  \begin{enumerate}[noitemsep]
+    \item $A^{\ast\ast}$ is reflexive
+    \item $A^\ast$ is reflexive
+    \item $\ev_A$ is torsionless-epic. \earlyqed
+  \end{enumerate}
+\end{corollary}
 
 \begin{proposition}\label{prp:dbl-dual-tensor-factorization}
   Let $A$, $B$, and $C$ be finitely adequate modules. Then any map $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 \end{proposition}
 
 \begin{proof}
-  By \cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if $A \otimes B$ is $M$-idempotent and $C$ is reflexive.
+  By \cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if $A \dbldualtensor B$ is reflexive and $C$ is reflexive.
   The module $C$ is reflexive by \cref{thm:can-dual-iso}, as it is finitely adequate.
-  The tensor product $A \otimes B$ is $M$-idempotent because $A \dbldualtensor B = \Hom_R(A \otimes B, R)^\ast \simeq \Hom_R(A, B^\ast)^\ast$, which is reflexive by \cref{thm:can-dual-iso} and \cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
+  The double dual tensor product $A \dbldualtensor B$ is reflexive if $(A \otimes B)^\ast$ is reflexive by \cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
+  Now, $(A \otimes B)^* = \Hom_R(A \otimes B, R) \simeq \Hom_R(A, B^\ast)$, which is reflexive by \cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
 \end{proof}
 
 \begin{corollary}\label{cor:dbl-dual-tensor-adjunction}
   Let $M$ be a finitely adequate module.
-  The functor $M \dbldualtensor (\argmhole) : \finadeq \to \finadeq$ is left adjoint to $\Hom_R(M,\argmhole) : \finadeq \to \finadeq$. \earlyqed
+  The functor $(\argmhole) \dbldualtensor M : \finadeq \to \finadeq$ is left adjoint to $\Hom_R(M,\argmhole) : \finadeq \to \finadeq$. \earlyqed
 \end{corollary}
