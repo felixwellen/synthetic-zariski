@@ -1,7 +1,11 @@
-In this section we will expand upon the theory of tangent spaces that has been developed by Cherubini et al. \cite{diffgeo-article}.
-We will define a notion of infinitesimally linear types in SAG, taking a route inspired by Myers \cite{david-orbifolds}.
+In this section, we build on the theory of tangent spaces developed by Cherubini et al.~\cite{diffgeo-article}.
+We introduce and compare two coexisting $R$-module structures on the tangent space of an infinitesimally linear type: the pointwise structure and the microlinear structure.
+Finally, we conclude the section with a linearization principle: we show that under suitable conditions on the modules, any pointed lifting problem in a commutative square can be solved linearly, provided a non-linear pointed solution exists.
 
 \subsection{Infinitesimal Types and Tangent Spaces}
+
+In synthetic algebraic geometry, tangent spaces are defined in terms of pointed maps out of the first-order neighbourhood of $0$ in the ring $R$.
+This subsection introduces the concept of $n$-th order neighbourhoods around a point, which we use to recall the definition of tangent spaces from \cite{diffgeo-article}.
 
 \begin{definition}\label{def:hood-res}
   Let $(X,x)$ be a pointed type.
@@ -16,7 +20,7 @@ The action on maps $f : (X,x) \rightarrow_\ast (Y,y)$ is given by $\hood{f}{n} \
 \end{proposition}
 
 \begin{proof}
-  We need to show that for any $x' \in \hood{X,x}{n}$ that $f(x) \in \hood{Y,y}{n}$.
+  We need to show that for any $x' \in \hood{X,x}{n}$, we have $f(x') \in \hood{Y,y}{n}$.
   By assumption, we merely have a finitely generated ideal $I \subseteq R$ such that $I^{n+1} = 0$ and if $I = 0$ then $x' = x$.
   It follows that $f(x') \in \hood{Y,y}{n}$, as if $I = 0$, then $f(x') = f(x) = y$ by applying $f$ to $x' = x$ and by $f$ being pointed.
 \end{proof}
@@ -40,10 +44,10 @@ Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ natura
   If $I = 0$, then each $r_i=0$, implying that $f = 0$.
 \end{example}
 
-In the preceding example, we will give a notation for the case $n=1$.
-We define the \notion{$m$-dimensional first order infinitesimal disk}, or just the \notion{$m$-disk}, as the type $\D(m) \defeq \Spec(\quot{R[x_1,\dots, x_m]}{\ideal{x_1,\dots,x_m}^2})$.
-By duality, we can identify $\D(m)$ with the type $\{ x : R^n \mid x_ix_j = 0 \text{ for all } i,j \}$.
-The $m$-disk is a first order neighbourhood around $0$.
+For the case $n=1$ in the preceding example, we introduce a special notation.
+We define the \notion{$m$-dimensional first-order infinitesimal disk}, or just the \notion{$m$-disk}, as the type $\D(m) \defeq \Spec(\quot{R[x_1,\dots, x_m]}{\ideal{x_1,\dots,x_m}^2})$.
+By duality, we can identify $\D(m)$ with the type $\{ x : R^m \mid x_ix_j = 0 \text{ for all } i,j \}$.
+The $m$-disk is a first-order neighbourhood around $0$.
 Thus, whenever we consider $\D (m)$ as a pointed type, we will always mean the pointed type $(\D (m), 0)$.
 
 Let $(X,x)$ and $(Y,y)$ be pointed types.
@@ -78,47 +82,184 @@ Taking tangent spaces is a local construction in the following sense.
 % Note that $\D(1) = \Spec(\quot{R[x]}{\ideal{x}^2})$ can be identified with $\sum_{x:R} x^2 = 0$, namely the square-zero elements of $R$.
 % We make use of this in the following construction.
 
+\subsection{Module Structures on Tangent Spaces}
+
+Let $(X,x)$ be a pointed type.
+If $X$ is an $R$-module and $x = 0$, then we will describe the pointwise $R$-module structure on the tangent space $\tangent{X}{x}$.
+In the case that $(X,x)$ is infinitesimally linear (to be defined in \Cref{def:inf-lin}), we can equip $\tangent{X}{x}$ with a second $R$-module structure.
+In this subsection, we will compare these module structures when $M$ is an $R$-module such that $(M,0)$ is infinitesimally linear.
+
+
+We begin by defining the pointwise module structure on the tangent space $\tangent{M}{0}$ of an $R$-module $M$.
+Let $\upsilon, \nu$ be tangent vectors in $\tangent{M}{0}$.
+The pointwise addition is given by $(\upsilon + \nu)(\varepsilon) = \upsilon (\varepsilon) + \nu (\varepsilon)$ for all $\varepsilon : \D (1)$.
+The scalar multiplication is given by $(r \cdot \upsilon)(\varepsilon) = r \cdot \upsilon (\varepsilon)$ for all $r \in R$ and $\varepsilon : \D (1)$.
+It is clear that these operations are well-defined and define a module structure on $\tangent{M}{0}$.
+
+\begin{remark}
+  Let $M$ and $N$ be $R$-modules.
+  Taking the derivative of a pointed map $f : M \to_\ast N$ yields a pointed map $\der{f}{0} : \tangent{M}{0} \to_\ast \tangent{N}{0}$.
+  It is only when $f$ is linear that $\der{f}{0}$ is linear with respect to the pointwise module structures.
+\end{remark}
+
+We define the \notion{canonical map} $\can : M \rightarrow \tangent{M}{0}$ by $m \mapsto (\varepsilon \mapsto \varepsilon \cdot m)$.
+It is clear that $\can$ is $R$-linear with respect to the pointwise module structure and natural with respect to $R$-linear maps.
+
+So far, we have only considered the tangent spaces of types that are already $R$-modules.
+However, the tangent space $\tangent{X}{x}$ of a general pointed type $(X,x)$ can also carry a natural $R$-module structure.
+The condition under which this occurs, known as \notion{infinitesimal linearity}, is formulated using certain canonical maps between infinitesimal disks.
+
+For any $m,n : \N$, we define the following inclusion:
+\begin{align*}
+  \inc_{m,n} : \D(m) \vee \D(n) & \rightarrow \D(m+n) \\
+  \inl (\varepsilon) & \mapsto (\varepsilon, 0) \\
+  \inr (\varepsilon) & \mapsto (0, \varepsilon)
+\end{align*}
+The diagonal of the $1$-disk is defined as:
+\begin{align*}
+  D : \D (1) & \rightarrow \D (2) \\
+  \varepsilon & \mapsto (\varepsilon,\varepsilon)
+\end{align*}
+
+\begin{definition}\label{def:inf-lin}
+  Let $(X,x)$ be a pointed type.
+  $(X,x)$ is \notion{infinitesimally linear} if for every $m, n : \N$ the induced map
+  \begin{align*}
+    \inc_{m,n}^* : (X,x)^{\D (m+n)} \rightarrow (X,x)^{\D(m) \vee \D(n)}
+  \end{align*}
+  is an equivalence.
+\end{definition}
+
+Infinitesimal linearity is a local property in the following sense:
+
+\begin{proposition}\label{prp:inf-lin-hood}
+  Let $(X,x)$ be a pointed type.
+  $X$ is infinitesimally linear at $x$ if and only if $\hood{X,x}{1}$ is infinitesimally linear at $x$.
+\end{proposition}
+
+\begin{proof}
+  By \cref{prp:hood-factorization} any map $\D (n) \rightarrow_\ast (X,x)$ factors uniquely through $\hood{X,x}{1}$.
+  Thus, we have the desired lifting property for $(X,x)$ if and only if we have it for $\hood{X,x}{1}$.
+\end{proof}
+
+Let $(X,x)$ be infinitesimally linear.
+The tangent space $\tangent{X}{x}$ carries an $R$-module structure, which we call the microlinear module structure.
+Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$.
+The microlinear addition $\upsilon \boxplus \nu$ is defined by the composite $(\inc_{1,1}^\ast)^{-1}[\upsilon,\nu] \circ D$.
+In other words, we obtain this map by lifting in the following diagram
+\begin{center}
+  \begin{tikzcd}
+    & \D (1) \vee \D (1) \ar{rd}{[\upsilon,\nu]} \ar{d}{\inc_{1,1}} \\
+    \D (1) \ar{r}{D} \ar[bend right]{rr}{\upsilon \boxplus \nu} & \D (2) \ar[dashed]{r}{\exists !} & X
+  \end{tikzcd}
+\end{center}
+The microlinear scalar multiplication is defined by $(r \boxdot \upsilon)(\varepsilon) = \upsilon(r\varepsilon)$ for all $r : R$ and $\varepsilon : \D (1)$.
+Indeed, to prove that this defines a module structure, one can adapt the proof of \cite[Theorem 4.2.19]{david-orbifolds}.
+We will give a direct proof.
+
+\begin{theorem}\label{thm:tangent-inf-lin}
+  Let $(X,x)$ be infinitesimally linear.
+  Then the microlinear module structure on $\tangent{X}{x}$ is well-defined. \earlyqed
+\end{theorem}
+
+\begin{proof}
+  We need to verify the axioms to have an $R$-module structure.
+  
+  Unitality is clear by definition.
+  
+  Associativity follows from infinitesimal linearity.
+  Let $\phi : \D(m) \to X$ and $\psi : \D(n) \to X$ be two different sums of tangent vectors.
+  We let $\phi_i$ and $\psi_j$ denote the restrictions to the $i$-th and $j$-th components of $\phi$ and $\psi$, respectively.
+  The sum $\phi \boxplus \psi : \D(m+n) \to X$ is uniquely given by $[\phi_1,\dots,\phi_m,\psi_1,\dots,\psi_n]$.
+  Thus $\phi \boxplus \psi = \phi_1 \boxplus \dots \boxplus \phi_m \boxplus \psi_1 \boxplus \dots \boxplus \psi_n$, as desired.
+
+  Distributivity is also clear.
+  Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$, and $r$ be an arbitrary element of $R$.
+  Then $((r\boxdot\upsilon)\boxplus(r\boxdot\nu))(\varepsilon)$ is given by $[r \boxdot \upsilon, r \boxdot \nu]$.
+  Likewise, $(r \boxdot (\upsilon \boxplus \nu))(\varepsilon)$ evaluates to $(\upsilon \boxplus \nu)(r\varepsilon)$ for each $\varepsilon$ in $\D(1)$.
+  Thus the second tangent vector is also given by $[r \boxdot \upsilon, r \boxdot \nu]$, as desired.
+\end{proof}
+
+The microlinear module structure is natural in the sense that the derivative of any pointed map between infinitesimally linear types is linear.
+The following proposition generalizes \cite[Lemma 2.2.6]{diffgeo-article} to this setting.
+
+\begin{proposition}\label{prp:derivative-inf-lin}
+  Let $f : (X,x) \rightarrow_\ast (Y,y)$ be a pointed map between infinitesimally linear types.
+  Then $\der{f}{x}$ is $R$-linear with respect to the microlinear module structure.
+\end{proposition}
+
+\begin{proof}
+  Let $\upsilon$ be a tangent vector in $\tangent{X}{x}$.
+  Then we have $f(r\boxdot\upsilon)(\varepsilon) = f(\upsilon)(r\varepsilon) = (r \boxdot f(\upsilon))(\varepsilon)$ for each $\varepsilon$ in $\D(1)$.
+  Thus, $\der{f}{x}(r\boxdot\upsilon) = r \boxdot \der{f}{x}(\upsilon)$, as desired.
+
+  Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$.
+  Then both triangles in the diagram
+  \begin{center}
+    \begin{tikzcd}
+      & \D(1) \vee \D(1) \ar{rd}{[f(\upsilon),f(\nu)]} \ar{d}{\inc_{1,1}} \\
+      \D(1) \ar{r}{D} \ar[bend right]{rr}{f(\upsilon \boxplus \nu)} & \D(2) \ar[dashed]{r}{\exists !} & X
+    \end{tikzcd}
+  \end{center}
+  commute, because $f \circ [\upsilon,\nu] = [f(\upsilon),f(\nu)]$.
+  Thus $\der{f}{x}(\upsilon \boxplus \nu) = \der{f}{x}(\upsilon) \boxplus \der{f}{x}(\nu)$, as desired.
+\end{proof}
+
+If $M$ is an infinitesimally linear $R$-module, its tangent space $\tangent{M}{0}$ carries two potentially different $R$-module structures: the pointwise structure and the microlinear structure. We now compare these two structures.
+
+\begin{theorem}\label{thm:tangent-ptw-micro-add}
+  Suppose that $M$ is an infinitesimally linear $R$-module.
+  Then the pointwise and microlinear addition on $\tangent{M}{0}$ are the same.
+\end{theorem}
+
+\begin{proof}
+  Let $\upsilon,\nu : \tangent{M}{0}$.
+  The pointwise addition $\upsilon + \nu$ factors through $\D(2)$ by $(\varepsilon,\delta) \mapsto \upsilon(\varepsilon) + \nu(\delta)$.
+  It is clear that this map is given by $[\upsilon,\nu]$.
+  Thus $\upsilon + \nu = \upsilon \boxplus \nu$.
+\end{proof}
+
+\begin{remark}\label{rem:ptw-micro-scalar}
+  In general, the scalar multiplication given by the pointwise and microlinear module structures differs.
+  Let $\nu : \tangent{M}{0}$ be a tangent vector on $M$, $r : R$, and $\varepsilon : \D (1)$.
+  Then $(r\boxdot \nu)(\varepsilon) = \nu(r\varepsilon)$ and $(r \cdot \nu)(\varepsilon) = r\nu(\varepsilon)$.
+  We can observe that $r\boxdot\nu = r\cdot \nu$ holds if and only if $\nu$ respects scalar multiplication.
+\end{remark}
+
+This comparison allows us to show that the canonical map is also linear with respect to the microlinear structure:
+
+\begin{corollary}\label{cor:can-nat-inf-lin}
+  Let $(M,0)$ be an infinitesimally linear $R$-module.
+  Then the map ${\can : M \rightarrow \tangent{M}{0}}$ is $R$-linear with respect to the microlinear module structure.
+\end{corollary}
+
+\begin{proof}
+  The map $\can$ is $R$-linear with respect to the pointwise module structure on $\tangent{M}{0}$.
+
+  Firstly, $\can$ respects the microlinear addition.
+  To see this, let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{M}{0}$.
+  By \cref{thm:tangent-ptw-micro-add}, we have $\can(\upsilon \boxplus \nu) = \can(\upsilon + \nu) = \can(\upsilon) + \can(\nu) + \can(\upsilon) \boxplus \can(\nu)$. 
+
+  Secondly, $\can$ respects the microlinear scalar multiplication.
+  Let $m : M$, $\varepsilon : \mathbb{D}(1)$ and $r : R$.
+  Then we have $(r\boxdot\mathrm{can}(m))(\varepsilon) = \mathrm{can}(m)(r\varepsilon) = r\varepsilon m = \varepsilon rm = \mathrm{can}(rm)(\varepsilon)$.
+\end{proof}
+
+\begin{remark}
+  The pointwise and microlinear module structures on $\tangent{M}{0}$ agree if $\can$ is surjective.
+\end{remark}
+
 \subsection{Tangential Modules}
 
-Let $M$ be an $R$-module.
-The tangent space $\tangent{M}{0}$ admits an $R$-module structure, given by taking pointwise addition and pointwise scalar multiplication.
-We call this the \notion{pointwise module structure} on $\tangent{M}{0}$.
-Taking the derivative of any linear map $f : M \rightarrow N$ yields a linear map $\der{f}{0} : \tangent{M}{0} \rightarrow \tangent{N}{0}$.
-We define a map $\can : M \rightarrow \tangent{M}{0}$ by $m \mapsto (r \mapsto r \cdot m)$, and we call this the \notion{canonical map}.
-It is clear that the canonical map is $R$-linear with respect to the pointwise module structure, natural with respect to $R$-linear maps.
+In this subsection, we study tangential modules (\Cref{def:tangential}).
+We show that this class of modules is closed under standard operations like finite limits and finite colimits.
+We then conclude this subsection by showing that pointed maps between such modules admit a linearization.
 
 \begin{definition}\label{def:tangential}
   An $R$-module $M$ is \notion{tangential} if $\can : M \rightarrow \tangent{M}{0}$ is an equivalence.
 \end{definition}
 
-\begin{example}\label{ex:R-lin-flat}
-  The $R$-modules $R^n$ are tangential \cite{diffgeo-article}[Lemma 2.2.3].
-\end{example}
-
-The nilradical $\mathrm{Nil}(R)$ is \emph{not} tangential.
-Since there is a proper inclusion $\mathbb{D}(1) \subset \mathrm{Nil}(R)$, we know that the tangent space $\tangent{\Nil(R)}{0}$ is equivalent to $\tangent{R}{0} = R$.
-The general principle goes like this: if there is a chain of proper inclusions $\hood{M_n,0}{1} \subset M_0 \subset M_1 \subset \dots \subset M_n$, then at most one of the $R$-modules $M_i$ can be tangential.
-If $R$ is a ring with positive characteristic $p$, then $\hood{R,0}{p-1}$ is a submodule of $R$. Since $\hood{R,0}{1} \subset \hood{R,0}{p-1} \subset R$ is a chain of proper inclusions, $\hood{R,0}{p-1}$ is not tangential.
-
-\begin{proposition}\label{prp:exp-tangential}
-  Let $M$ be a tangential $R$-module.
-  Then for any type $U$, the $R$-module $M^U$ is tangential.
-\end{proposition}
-
-\begin{proof}
-  % One of the mapping spaces is pointed, so there's a tiny thing to check.
-  It is straightforward to check that $\tangent{(M^U)}{0} = (\tangent{M}{0})^U$.
-  The latter type is equivalent to $M^U$ by assumption,
-  and since the module structure on $M^U$ is pointwise, it follows that the
-  resulting equivalence $M^U \to \tangent{(M^U)}{0}$ is homotopic to the canonical map.
-\end{proof}
-
-\begin{example}\label{ex:power-series-tangential}
-    The modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are tangential.
-    Remark that $R[[x]]$ is not wqc.
-\end{example}
-
-There is a family of canonical maps $\can^k : M^k \to (M,0)^{\D(k)}$ for all $k \geq 1$, defined by
+We can generalize $\can$ to a family of canonical maps $\can^k : M^k \to (M,0)^{\D(k)}$ for all $k \geq 1$, defined by
 \[
 \can^k (m_1, \dots, m_k) (\varepsilon_1, \dots, \varepsilon_k) = \sum_{i=1}^k \varepsilon_i m_i .
 \]
@@ -146,79 +287,45 @@ There is a family of canonical maps $\can^k : M^k \to (M,0)^{\D(k)}$ for all $k 
   Thus $\can^{k+1}$ is an equivalence.
 \end{proof}
 
-\subsection{Infinitesimal Linear Types}
+\begin{corollary}\label{cor:tangential-inf-lin}
+  Let $M$ be a tangential $R$-module. Then $(M,0)$ is infinitesimally linear.
+\end{corollary}
 
-Even if a type $X$ is not an $R$-module, the tangent space $\tangent{X}{x}$ may have an $R$-module structure.
-The condition under which this occurs is formulated using maps between infinitesimal disks, which we will now define.
-For any $m,n : \N$ we define the following inclusion
-\begin{align*}
-  \inc_{m,n} : \D(m) \vee \D(n) & \rightarrow \D(m+n) \\
-  \inl (\varepsilon) & \mapsto (\varepsilon, 0) \\
-  \inr (\varepsilon) & \mapsto (0, \varepsilon)
-\end{align*}
-We will also define the diagonal map of the $1$-disk as
-\begin{align*}
-  D : \D (1) & \rightarrow \D (2) \\
-  \varepsilon & \mapsto (\varepsilon,\varepsilon)
-\end{align*}
+\begin{proof}
+  We have the following chain of equivalences factoring $\inc_{m,n}$:
+  \begin{center}
+    \begin{tikzcd}
+      M^{\D(m+n)} \ar{r}{\inc_{m,n}} & M^{\D(m)\vee\D(n)} \ar{rd}[right, below]{\simeq} \\
+      & & M^{\D(m)}\times M^{\D(n)} \\
+      M^{m+n} \ar{uu}{\can^{m+n}}[right]{\simeq} \ar{r}[below]{\simeq} & M^m \times M^n \ar{ru}{\can^m \times \can^n}[right, below]{\simeq}
+    \end{tikzcd}
+  \end{center}
+  The maps $\can^{m+n}$ and $\can^m \times \can^n$ are equivalences by \cref{prp:tangential-implies-gen-can-equiv}.
+\end{proof}
 
-\begin{definition}\label{def:inf-lin}
-  Let $(X,x)$ be a pointed type.
-  $X$ is \notion{infinitesimally linear at $x$} if for every $m, n : \N$ the induced map
-  \begin{align*}
-    \inc_{m,n}^* : (X,x)^{\D (m+n)} \rightarrow (X,x)^{\D(m) \vee \D(n)}
-  \end{align*}
-  is an equivalence.
-\end{definition}
+The properties of being tangential and infinitesimally linear are closed under many common categorical constructions.
+This will be important to prove that various modules are themselves tangential.
+For instance, we will use this in \cref{ex:power-series-tangential} to show that the polynomial ring $R[x]$ and power series ring $R[[x]]$ are tangential.
 
-\begin{example}\label{ex:sch-inf-lin}
-  By \cite[Lemma 2.2.5]{diffgeo-article}, any scheme is infinitesimally linear at all of its points.
-  In particular, the finite free $R$-modules $R^n$ are infinitesimally linear at any point.
-\end{example}
+\begin{proposition}[{{\cite[Proposition 5.0.1]{david-orbifolds}}}]\label{prp:lim-inf-lin}
+  Infinitesimally linear types are closed under limits.
+  If $(X,x)$ is infinitesimally linear, then $(X^A, \mathrm{const}_x)$ is infinitesimally linear for every type $A$.
+\end{proposition}
 
-\rednote{Change next example to a proposition, and include the pentagon that shows that $\inc_{m,n}^*$ is an equivalence.}
-\begin{example}\label{ex:tangential-inf-lin}
-  By \cref{prp:tangential-implies-gen-can-equiv} any tangential $R$-module is infinitesimally linear at $0$.
-\end{example}
-
-Infinitesimal linearity is a local property in the following sense.
-
-\begin{proposition}\label{prp:inf-lin-hood}
-  Let $(X,x)$ be a pointed type.
-  $X$ is infinitesimally linear at $x$ if and only if $\hood{X,x}{1}$ is infinitesimally linear at $x$.
+\begin{proposition}\label{prp:exp-tangential}
+  Let $M$ be a tangential $R$-module.
+  Then for any type $U$, the $R$-module $M^U$ is tangential.
 \end{proposition}
 
 \begin{proof}
-  By \cref{prp:hood-factorization} any map $\D (n) \rightarrow_\ast (X,x)$ factors uniquely through $\hood{X,x}{1}$.
-  Thus, we have the desired lifting property for $(X,x)$ if and only if we have it for $\hood{X,x}{1}$.
+  % One of the mapping spaces is pointed, so there's a tiny thing to check.
+  It is straightforward to check that $\tangent{(M^U)}{0} = (\tangent{M}{0})^U$.
+  The latter type is equivalent to $M^U$ by assumption,
+  and since the module structure on $M^U$ is pointwise, it follows that the
+  resulting equivalence $M^U \to \tangent{(M^U)}{0}$ is homotopic to the canonical map.
 \end{proof}
 
-From \cref{prp:inf-lin-hood}, we can extract the following principle: if there is a chain of inclusions $\hood{M}{0} \subseteq N \subseteq M$, then $M$ is infinitesimally linear at 0 if and only if $N$ is.
-As an example, $\mathrm{Nil}(R)$ is infinitesimally linear at 0 since it contains $\hood{R}{0} = \D(1)$.
-
-% Why doesn't this work?  It does in other LaTeX documents.
-% \begin{proposition}[{\cite[5.0.1]{david-orbifolds}}]
-\begin{proposition}[{{\cite[Proposition 5.0.1]{david-orbifolds}}}]\label{prp:lim-inf-lin}
-  Infinitesimally linear types are closed under limits.
-  If $X$ is infinitesimally linear at $x : X$, then $X^A$ is infinitesimally linear at $\mathrm{const}_x$ for any type $A$.
-\end{proposition}
-
-\begin{example}\label{ex:power-series-inf-lin}
-  The $R$-modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are infinitesimally linear at the constant function $0$. Since automorphisms of the underlying types act transitively, they are infinitesimally linear at any point.
-\end{example}
-
-A module which is not infinitesimally linear at $0$ is the following quotient of free modules:
-\[
-  M \defeq R[\D(2)]/R[\D(1) \vee \D(1)]
-\]
-To see why this is not infinitesimally linear at $0$, let $\eta : \D(2) \to R[\D(2)]$ be the unit map and $p : R[\D(2)] \to M$ the projection map.
-The composite $p \circ \eta : \D(2) \to M$ is pointed and satisfies $(p \circ \eta)|_{\{0\} \vee \D(1)} = 0$ and $(p \circ \eta)|_{\D(1) \vee \{0\}} = 0$.
-However, since $\D(1) \vee \D(1) \to \D(2)$ is provably not surjective, we see that $p \circ \eta \neq 0$.
-Thus the canonical map $(M,0)^{\D(2)} \to (M,0)^{\D(1)} \times (M,0)^{\D(1)}$ is not injective.
-
-% It is not true in general that infinitesimally linear types are closed under colimits.
-For $R$-modules, we can show that {\em cokernels} of infinitesimally linear types at $0$ are themselves infinitesimally linear at $0$.
-To do so, we will need the following lemmas about projectivity.
+To show that tangential and infinitesimally linear $R$-modules are closed under finite limits and finite colimits, we need some lemmas regarding projectivity.
 
 \begin{lemma}\label{lem:disk-projective}
   For any $m : \N$ the types $\D(m)$ are projective among types.
@@ -248,13 +355,16 @@ To do so, we will need the following lemmas about projectivity.
   Immediate by \cref{lem:disk-projective} and \cref{lem:projective-exact}.
 \end{proof}
 
-\begin{proposition}\label{prp:cok-ext-inf-lin}
-  Infinitesimally linear $R$-modules at $0$ are closed under cokernels and extensions.
+\begin{proposition}\label{prp:op-closure-inf-lin-tangential}
+  Infinitesimally linear $R$-modules at $0$ are closed under finite colimits and extensions.
+  Tangential $R$-modules are closed under finite limits, finite colimits and extensions.
 \end{proposition}
 
 \begin{proof}
   This follows from \cref{prp:tangent-exact}.
-  In both cases, just apply the $5$-lemma to deduce that $\inc_{m,n}^\ast$ is an equivalence, as illustrated in the diagrams below.
+  All cases follow the same pattern.
+  We will show how to prove this for the case of infinitesimally linear $R$-modules. An analogous proof works for the other cases.
+  The key idea is to use the $5$-lemma to deduce that $\inc_{m,n}^\ast$ is an equivalence, as illustrated in the diagrams below.
   \begin{center}
     \begin{tikzcd}
       A^{\D (m+n)} \ar[hook]{d} \ar{r}[above]{\simeq}[below]{\inc_{m,n}^\ast} & A^{\D (m)\vee\D (n)} \ar[hook]{d} \\
@@ -271,108 +381,16 @@ To do so, we will need the following lemmas about projectivity.
   \phantom{M} % This is a hack to get the QED square to get on almost the correct line, but is there a better way?
 \end{proof}
 
-\begin{proposition}\label{prp:lim-col-ext-tangential}
-  Tangential $R$-modules are closed under finite limits, finite colimits and extensions.
-\end{proposition}
-
-\begin{proof}
-  This proof is analogous to the proof of \cref{prp:cok-ext-inf-lin}.
-  Conclude by applying \cref{prp:tangent-exact} and the $5$-lemma.
-\end{proof}
-
-\rednote{The following statement only appears in a draft.}
-
-\begin{theorem}[{{\cite[Theorem 1.1.10]{etale-draft}}}]\label{thm:tangent-inf-lin}
-  Let $X$ be an infinitesimally linear type at $x : X$.
-  Then the tangent space $\tangent{X}{x}$ admits an $R$-module structure.
-  This module structure will be called the \notion{microlinear module structure} on $\tangent{X}{x}$. \earlyqed
-\end{theorem}
-
-We can describe the relevant binary operations of the microlinear module structure.
-Suppose we are given two tangent vectors $\upsilon, \nu : \tangent{M}{0}$, then $\upsilon \boxplus \nu$ (the microlinear addition) is defined by the composite $(\inc_{1,1}^\ast)^{-1}[\upsilon,\nu] \circ D$.
-In other words, we obtain this map by lifting in the following diagram
-\begin{center}
-  \begin{tikzcd}
-    & \D (1) \vee \D (1) \ar{rd}{[\upsilon,\nu]} \ar{d}{\inc_{1,1}} \\
-    \D (1) \ar{r}{D} \ar[bend right]{rr}{\upsilon \boxplus \nu} & \D (2) \ar[dashed]{r}{\exists !} & M
-  \end{tikzcd}
-\end{center}
-The (microlinear) scalar multiplication by $r : R$ is defined by $(r \boxdot \upsilon)(\varepsilon) = \upsilon(r\varepsilon)$ for any $\varepsilon : \D (1)$.
-
-\begin{proposition}[{{\cite[Lemma 2.2.6]{diffgeo-article}}}]\label{prp:derivative-inf-lin}
-  Let $f : (X,x) \rightarrow_\ast (Y,y)$ be a pointed map between infinitesimally linear types.
-  Then $\der{f}{x}$ is $R$-linear with respect to the microlinear module structure. \earlyqed
-\end{proposition}
-
-\begin{theorem}\label{thm:tangent-ptw-micro-add}
-  Suppose that $M$ is an infinitesimally linear $R$-module at $0$.
-  Then the pointwise and microlinear addition on $\tangent{M}{0}$ are the same.
-\end{theorem}
-
-\begin{proof}
-  Let $\upsilon,\nu : \tangent{M}{0}$.
-  Define $g : \D(2) \to M$ by $(\varepsilon,\delta) \mapsto \upsilon(\varepsilon) + \nu(\delta)$.
-  By virtue of the uniqueness of the lift $\D(2) \to M$ defining $\upsilon \boxplus \delta$ it is enough to see that $g$ lifts $[\upsilon,\nu]$.
-  This is clear since $g|_{\D(1) \vee \{0\}}=\upsilon$ and $g|_{\{0\} \vee \D(1)}=\nu$.
-\end{proof}
-
-\begin{remark}\label{rem:ptw-micro-scalar}
-  In general, the scalar multiplication given by the pointwise and microlinear module structures differs.
-  Let $\nu : \tangent{M}{0}$ be a tangent vector on $M$, $r : R$, and $\varepsilon : \D (1)$.
-  Then $(r\boxdot \nu)(\varepsilon) = \nu(r\varepsilon)$ and $(r \cdot \nu)(\varepsilon) = r\nu(\varepsilon)$.
-  We can observe that $r\boxdot\nu = r\cdot \nu$ holds if and only if $\nu$ respects scalar multiplication.
-\end{remark}
-
-\begin{corollary}\label{cor:can-nat-inf-lin}
-  Let $M$ be an infinitesimally linear $R$-module at $0$.
-  Then the map ${\can : M \rightarrow \tangent{M}{0}}$ is $R$-linear with respect to the microlinear module structure on $\mathrm{T}_0M$.
-  % In particular, the naturality square below
-  % \begin{center}
-  %   \begin{tikzcd}
-  %     M \ar{d}{f} \ar{r}{\can} & \tangent{M}{0} \ar{d}{\der{f}{0}} \\
-  %     N \ar{r}{\can} & \tangent{N}{0}
-  %   \end{tikzcd}
-  % \end{center}
-  % is a square of $R$-modules with $R$-linear maps whenever $M$ and $N$ are infinitesimally linear $R$-modules at $0$ and $f$ is an $R$-linear homomorphism.
-\end{corollary}
-
-\begin{proof}
-  The map $\can$ is $R$-linear when we equip $\tangent{M}{0}$ with the pointwise module structure.
-  Thus, by \cref{thm:tangent-ptw-micro-add} the map $\can$ respects the microlinear addition.
-  It remains to show that $\can$ respects the microlinear scalar multiplication.
-  Let $m : M$, $\varepsilon : \mathbb{D}(1)$ and $r : R$, then we compute $(r\boxdot\mathrm{can}(m))(\varepsilon) = \mathrm{can}(m)(r\varepsilon) = r\varepsilon m = \varepsilon rm = \mathrm{can}(rm)(\varepsilon)$.
-\end{proof}
-
-We collect the definitions developed in this section under a single umbrella.
-
-\begin{definition}\label{def:tangent-like-module}
-  Let $M$ be an $R$-module.
-  We say that $M$ is \notion{tangent-like} if it is both infinitesimally linear at $0$ and tangential.
-\end{definition}
-
-\begin{proposition}\label{prp:lim-col-ext-tangent-like}
-  Tangent-like $R$-modules are closed under biproducts, kernels, cokernels, extensions, and exponentials.
-\end{proposition}
-
-\begin{proof}
-  This follows from \cref{prp:exp-tangential}, \cref{prp:lim-inf-lin}, \cref{prp:cok-ext-inf-lin}, and \cref{prp:lim-col-ext-tangential}.
-\end{proof}
-
-\begin{example}\label{ex:tangent-like-module}
-  The $R$-modules $R^n$, $R[x]$, and $R[[x]]$ are tangent-like.
-\end{example}
-
-Tangent-like $R$-modules admit a powerful linearization trick.
+We will end this section by showing that tangential modules admit a powerful linearization trick.
 
 \begin{theorem}\label{thm:linearize-lift}
-  Suppose we have the following square of $R$-modules
+  Suppose we have the following square of tangential $R$-modules
   \begin{center}
     \begin{tikzcd}
       A \ar{r}{u} \ar{d}{m} & X \ar{d}{e} \\
       B \ar{r}{v} & Y
     \end{tikzcd}
   \end{center}
-  where $A$ and $Y$ are tangential, and $B$ and $X$ are tangent-like.
   If there merely exists a non-linear but pointed solution $h':(B,0) \rightarrow_\ast (X,0)$ to the lifting problem above, then there merely exists a linear solution as well.
 \end{theorem}
 
@@ -385,3 +403,39 @@ Tangent-like $R$-modules admit a powerful linearization trick.
 \begin{remark}
   Explicitly, the linear solution that the above proof produces is $h \coloneq \can^{-1} \circ \der{h'}{0} \circ \can$.
 \end{remark}
+
+\subsection{Examples and Counterexamples (to be moved)}
+
+\begin{example}\label{ex:sch-inf-lin}
+  By \cite[Lemma 2.2.5]{diffgeo-article}, any scheme is infinitesimally linear at all of its points.
+  In particular, the finite free $R$-modules $R^n$ are infinitesimally linear at any point.
+\end{example}
+
+\begin{example}\label{ex:R-lin-flat}
+  The $R$-modules $R^n$ are tangential \cite[Lemma 2.2.3]{diffgeo-article}.
+\end{example}
+
+From \cref{prp:inf-lin-hood}, we can extract the following principle: if there is a chain of inclusions $\hood{M}{0} \subseteq N \subseteq M$, then $M$ is infinitesimally linear at $0$ if and only if $N$ is.
+As an example, $\mathrm{Nil}(R)$ is infinitesimally linear at $0$ since it contains $\hood{R}{0} = \D(1)$.
+
+A module that is not infinitesimally linear at $0$ is the following quotient of free modules:
+\[
+  M \defeq R[\D(2)]/R[\D(1) \vee \D(1)]
+\]
+To see why this is not infinitesimally linear at $0$, let $\eta : \D(2) \to R[\D(2)]$ be the unit map and $p : R[\D(2)] \to M$ the projection map.
+The composite $p \circ \eta : \D(2) \to M$ is pointed and satisfies $(p \circ \eta)|_{\{0\} \vee \D(1)} = 0$ and $(p \circ \eta)|_{\D(1) \vee \{0\}} = 0$.
+However, since $\D(1) \vee \D(1) \to \D(2)$ is provably not surjective, we see that $p \circ \eta \neq 0$.
+Thus the canonical map $(M,0)^{\D(2)} \to (M,0)^{\D(1)} \times (M,0)^{\D(1)}$ is not injective.
+
+
+The nilradical $\mathrm{Nil}(R)$ is \emph{not} tangential.
+Since there is a proper inclusion $\mathbb{D}(1) \subset \mathrm{Nil}(R)$, we know that the tangent space $\tangent{\Nil(R)}{0}$ is equivalent to $\tangent{R}{0} = R$.
+The general principle goes like this: if there is a chain of proper inclusions $\hood{M_n,0}{1} \subset M_0 \subset M_1 \subset \dots \subset M_n$, then at most one of the $R$-modules $M_i$ can be tangential.
+If $R$ is a ring with positive characteristic $p$, then $\hood{R,0}{p-1}$ is a submodule of $R$. Since $\hood{R,0}{1} \subset \hood{R,0}{p-1} \subset R$ is a chain of proper inclusions, $\hood{R,0}{p-1}$ is not tangential.
+
+\begin{example}\label{ex:power-series-tangential}
+  The modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are tangential.
+  By \cref{cor:tangential-inf-lin}, these modules are also infinitesimally linear.
+  Since automorphisms of the underlying types act transitively, they are infinitesimally linear at any point.
+  Remark that $R[[x]]$ is not wqc.
+\end{example}
