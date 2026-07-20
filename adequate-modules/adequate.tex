@@ -618,11 +618,15 @@ By \cref{rem:tensor-not-closed}, the tensor product $M \otimes N$ is not necessa
 This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite sums of $N$, and is therefore finitely presented.
 Somewhat surprisingly, the internal hom still has a left adjoint in the subcategory of finitely adequate modules.
 To this end, we will show that the {\bf double dual tensor product} $M \dbldualtensor N \coloneq (M \otimes N)^{\ast\ast}$ is the internal tensor product in $\finadeq$.
-By the hom-tensor adjunction, it is sufficient to prove that $\Hom_R(A \otimes B, C) \simeq \Hom_R(A \dbldualtensor B, C)$ for any finitely adequate modules $A$, $B$, and $C$.
-We will show that any morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
+By the hom-tensor adjunction, it is sufficient to prove that $\Hom_R(A \otimes B, C) \simeq \Hom_R(A \dbldualtensor B, C)$ for all finitely adequate modules $A$, $B$, and $C$.
+\rednote{The previous sentence is not correct, since you need the evaluation map to induce the equivalence.  The next sentence is the real goal.  Clarify, and maybe explain why?}
+We will show that every morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 
-We can carry out this factorization in the general setting of monads.
+We first carry out this factorization in the general setting of monads.
 Let $M$ be a monad on $\mathcal{C}$ with multiplication $\mu$ and unit $\eta$.
+In our situation, $\mathcal{C}$ will be the category of $R$-modules and $M$
+will be the double-dual operation.
+\rednote{Maybe we should switch from $M$ to $T$, since $M$ is also the name we give to an $R$-module.}
 
 \begin{definition}\label{def:monad-reflexive}
   Let $X$ be an object of $\mathcal{C}$. We say that $X$ is:
@@ -641,7 +645,7 @@ Let $M$ be a monad on $\mathcal{C}$ with multiplication $\mu$ and unit $\eta$.
 \end{proof}
 
 \begin{definition}\label{def:rel-epi}
-  Let $\mathfrak{C}$ be a class of objects in $\mathcal{C}$. A map $f : X \to Y$ is \textbf{$\mathfrak{C}$-epic} if for any $Z$ in $\mathfrak{C}$ and any morphisms $g, h : Y \to Z$ such that $g \circ f = h \circ f$, we have $g = h$.
+  Let $\mathfrak{C}$ be a class of objects in $\mathcal{C}$. A map $f : X \to Y$ is \textbf{$\mathfrak{C}$-epic} if for every $Z$ in $\mathfrak{C}$ and all morphisms $g, h : Y \to Z$ such that $g \circ f = h \circ f$, we have $g = h$.
 \end{definition}
 
 The monad $M$ is said to be \notion{well-pointed} if $M\eta_X = \eta_{MX}$ for every object $X$ of $\mathcal{C}$.
@@ -659,20 +663,25 @@ The next result is similar to Proposition 4.2.3 of Borceux \cite{Borceux_1994_II
 \end{proposition}
 
 \begin{proof}
-  (i) $\Rightarrow$ (iii): Assume that $MX$ is $M$-reflexive, i.e. $\eta_{MX}$ is an isomorphism.
-  Then $M\eta_X$ is an isomorphism as well, since both $M\eta_X$ and $\eta_{MX}$ are sections of $\mu_X$.
+  (i) $\Rightarrow$ (iii): Assume that $MX$ is $M$-reflexive, i.e., that $\eta_{MX}$ is an isomorphism.
+  Then $M\eta_X$ is an isomorphism as well, since $M\eta_X$ is a section of $\mu_X$.
   Consider two morphisms $f,g : MX \to Y$, where $Y$ is $M$-torsionless and $f \circ \eta_X = g \circ \eta_X$.
   By applying $M$ to the equality, we have $Mf \circ M\eta_X = Mg \circ M\eta_X$.
-  Thus $Mf = Mg$ since $M\eta_X$ is a monomorphism.
+  Thus $Mf = Mg$ since $M\eta_X$ is an epimorphism.
   By naturality of $\eta$, we have $\eta_Y \circ f = Mf \circ \eta_{MX} = Mg \circ \eta_{MX} = \eta_Y \circ g$.
   Since $Y$ is $M$-torsionless, $\eta_Y$ is a monomorphism and thus $f = g$.
   
-  (iii) $\Rightarrow$ (ii): By \cref{lem:monad-app-torsionless}, $MX$ is $M$-torsionless.
+  (iii) $\Rightarrow$ (ii):  Assume that $\eta_X$ is $M$-torsionless-epic.
   By naturality of $\eta$, we have $\eta_{MX} \circ \eta_X = M\eta_X \circ \eta_X$. 
-  Thus $M\eta_X = \eta_{MX}$, since $\eta_X$ is $M$-torsionless-epic.
+  Thus $M\eta_X = \eta_{MX}$, since $MX$ is $M$-torsionless, by \cref{lem:monad-app-torsionless}.
   
-  (ii) $\Rightarrow$ (i): By unitality we already know that $\mu_X \circ M\eta_X = \id_{MX}$.
-  By unitality, and using $M\eta_X = \eta_{MX}$, we get $$\id_{M^2X} = \mu_{MX} \circ M\eta_{MX} = \mu_{MX} \circ M^2\eta_{X}$$
+  (ii) $\Rightarrow$ (i): Assume that $M\eta_X = \eta_{MX}$.
+  Our goal is to show that $\eta_{MX}$ is an isomorphism, so it suffices to show that $M\eta_X$ is an isomorphism.
+  By unitality, we have that $\mu_X \circ M\eta_X = \id_{MX}$, so it remains to check the other composite.
+  By unitality, and using $M\eta_X = \eta_{MX}$, we have
+  \[
+    \id_{M^2X} = \mu_{MX} \circ M\eta_{MX} = \mu_{MX} \circ M^2\eta_{X} .
+  \]
   From the naturality square of $\mu$ applied to $\eta_X$, we get the following commutative square:
   \begin{center}
     \begin{tikzcd}
@@ -680,25 +689,25 @@ The next result is similar to Proposition 4.2.3 of Borceux \cite{Borceux_1994_II
       MX \ar{r}{M\eta_{X}} & M^2X
     \end{tikzcd}
   \end{center}
-  Combining these two facts, we deduce that $M\eta_X \circ \mu_X = \id_{M^2X}$, so $M\eta_X$ is an isomorphism.  
+  Combining these two facts, we deduce that $M\eta_X \circ \mu_X = \id_{M^2X}$, so $M\eta_X$ is an isomorphism.
 \end{proof}
 
 
 \begin{proposition}\label{prp:monad-factorization}
-  Let $f : X \to Y$ be a morphism in $\mathcal{C}$. Then $f$ factors uniquely through $\eta_X$ if $MX$ is $M$-reflexive and $Y$ is $M$-reflexive.
+  Let $f : X \to Y$ be a morphism in $\mathcal{C}$. Then $f$ factors uniquely through $\eta_X$ if $MX$ and $Y$ are $M$-reflexive.
 \end{proposition}
 
 \begin{proof}
-  Consider the naturality square of $\eta$ applied to $f$:
+  The naturality square of $\eta$ applied to $f$
 \begin{center}
   \begin{tikzcd}
     X \ar{r}{f} \ar{d}{\eta_X} & Y \ar{d}{\eta_Y}[left]{\simeq} \\
     M X \ar{r}{M f} & M Y
   \end{tikzcd}
 \end{center}
-Since $\eta_Y$ is an isomorphism, we have $f = \eta_Y^{-1} \circ M f \circ \eta_X$.
-Now, assume there exist two factorizations of $f$, namely $f', f'' : MX \to Y$, such that $f' \circ \eta_X = f'' \circ \eta_X$.
-By \cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $M$-torsionless-epic, which yields $f' = f''$.
+  yields a factorization $f = \eta_Y^{-1} \circ M f \circ \eta_X$ of $f$ through $\eta_X$.
+  For uniqueness, assume given $f', f'' : MX \to Y$ such that $f' \circ \eta_X = f'' \circ \eta_X$.
+  By \cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $M$-torsionless-epic, which yields $f' = f''$.
 \end{proof}
 
 Let $F \vdash G : \mathcal{C} \to \mathcal{D}$ be an adjoint pair, with unit $\eta : \id_{\mathcal{C}} \to GF$ and counit $\epsilon : FG \to \id_{\mathcal{D}}$.
@@ -748,7 +757,7 @@ We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} with the imp
 \end{corollary}
 
 \begin{proposition}\label{prp:dbl-dual-tensor-factorization}
-  Let $A$, $B$, and $C$ be finitely adequate modules. Then any map $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
+  Let $A$, $B$, and $C$ be finitely adequate modules. Then every map $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 \end{proposition}
 
 \begin{proof}
