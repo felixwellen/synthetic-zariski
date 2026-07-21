@@ -293,24 +293,45 @@ We will first characterize the projective and injective objects in $\finadeq$.
 \end{lemma}
 
 \begin{proof}
-  It is possible \rednote{TODO: add construction} to construct a diagram of the following shape, where the two left columns and all rows are exact:
+  By \Cref{prp:fin-adeq-cok-closure}, the cokernel $N \defeq \Cok(m)$ is finitely adequate.
+  Thus, there exists a monomorphism $n : N \hookrightarrow Q$ such that $Q$ is finitely presented.
+  Let $f : P \rightarrow Q$ be the map induced by $n$.
+  Now, $m$ is the kernel of $f$.
+  By \Cref{lem:ker-fp-is-cok-lin-adeq}, we obtain an analysis of $M$:
   \begin{center}
     \begin{tikzcd}
-      A\ar[r,hook]\ar[d] & R^{m_1}\ar[r,"t"]\ar[d,"l"] & R^{n}\ar[d,"\id"] \\
-      B\ar[r,hook]\ar[d,->>] & R^{m_2}\ar[r,"b"]\ar[d,->>] & R^{n} \\
-      K\ar[r,hook] & M\ar[r] & N
+      K \ar{d}{p \times \id} \ar[hook]{r} & R^{m_1} \ar{r}{f_1} \ar{d}{p} & R^{n_1} \ar{d}{q} \\
+      L \ar[two heads]{d} \ar[hook]{r} & R^{m_2} \ar{r}{f_2} \ar[two heads]{d} & R^{n_2} \ar[two heads]{d} \\
+      M \ar[hook]{r}{m} & P \ar{r}{f} & Q
     \end{tikzcd}
   \end{center}
-  Then a linear map $L:K\to R$ restricts to a map $L_1:B\to R$ which is zero on $A$.
-  By \cite[Lemma 2.3.7]{diffgeo-article} it is possible to extend $L_1$ to $L_2:R^{m_2}\to R$.
-  $L_2$ will descend to $M$ if and only if it vanishes on the image of $r$.
-  Although this is not generally the case, we can construct a linear correction $c : R^{m_2} \to R$ such that $L_2 - c$ has this property.
+  In the diagram above, we have $P = \Cok(p)$, $Q = \Cok(q)$, $K = R^{m_1} \underset{R^{n_2}}{\times} R^{n_1}$, and $L = R^{m_2} \underset{R^{n_2}}{\times} R^{n_1}$.
+  Let $t$ be the composite $f_2 \circ p = q \circ f_1$.
+  
+  In the above analysis, only the columns are exact.
+  We will alter this diagram so that every column and row becomes exact.
+  \begin{center}
+    \begin{tikzcd}
+      K \ar{d}{p \times \id} \ar[hook]{r} & R^{m_1 + n_1} \ar{r}{t + q} \ar{d}{p \times \id} & R^{n_2} \ar[equal]{d} \\
+      L \ar[two heads]{d} \ar[hook]{r} & R^{m_2 + n_1} \ar{r}{f_2 + q} \ar[two heads]{d} & R^{n_2} \\
+      M \ar[hook]{r}{m} & P
+    \end{tikzcd}
+  \end{center}
 
-  To construct $c$, let $c_0 \coloneq L_2 \circ l$.
-  Note that $c_0$ vanishes on $A$ and therefore extends to a linear map $c_1 : \mathrm{im}(t) \to R$ on the image of $t$.
-  By \cite[Lemma 2.3.8]{diffgeo-article}, $c_1$ extends to a map $c_2 : R^{n} \to R$.
-  Now $c \coloneq c_2 \circ b$ is a linear map on $R^{m_2}$ that is zero on $B$,
-  so $L_2 - c$ is still an extension of $L_1$ that vanishes on $A$.
+  The linear map $u : M \to R$ restricts to a map $l_1 : L \to R$ that is zero on $K$.
+  By~\cite[Lemma 2.3.7]{diffgeo-article}, it is possible to extend $l_1$ to $l_2 : R^{m_2+n_1} \to R$.
+  $l_2$ will descend to $M$ if and only if it vanishes on the image of $p \times \id$.
+  Although this is not generally the case, we can construct a linear correction $c : R^{m_2} \to R$ such that $l_2 - c$ has this property.
+
+  To construct $c$, let $c_0 \coloneq l_2 \circ (p \times \id)$.
+  Note that $c_0$ vanishes on $K$ and therefore descends to a linear map $c_1 : \Im(t + q) \to R$.
+  By \cite[Lemma 2.3.8]{diffgeo-article}, $c_1$ extends to a map $c_2 : R^{n_2} \to R$.
+  Now, $c \coloneq c_2 \circ (f_2 + q)$ is a linear map on $R^{m_2 + n_1}$ that is zero on $K$,
+  so $l_2 - c$ vanishes on the image of $p \times \id$.
+  Therefore, $l_2 - c$ descends to a map $l : P \to R$.
+
+  Finally, note that $l$ restricts to $l_1$ on $L$.
+  Thus we have $u = l \circ m$.
 \end{proof}
 
 Let $M$ be an $R$-module.
