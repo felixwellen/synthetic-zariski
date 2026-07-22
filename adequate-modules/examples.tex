@@ -1,6 +1,6 @@
 In this section, we investigate examples and counterexamples for the various concepts defined in this article.
 We hope this section highlights the non-trivial nature of finitely adequate modules.
-So far, the most effective method for finding counterexamples is not to construct a specific non finitely adequate module, but instead to show that, within a given family of modules, not all the members are finitely adequate.
+So far, the most effective method for finding counterexamples is not to construct a specific module that is not finitely adequate, but instead to show that, within a given family of modules, not all the members are finitely adequate.
 
 We begin by discussing various infinitesimally linear and tangential modules.
 These properties are weaker than finite adequacy, and they serve as a good starting point to build intuition for the kinds of modules we are interested in.
@@ -21,7 +21,9 @@ Schemes provide a natural starting point for this discussion.
 
 \begin{remark}
   If $M$ is both an $R$-module and a scheme, then $\tangent{M}{0}$ is linearly adequate by \cite[Lemma 2.3.8]{diffgeo-article}.
-  In particular, every such $M$ is tangential if and only if it is finitely adequate.
+  In particular, such an $M$ is tangential if and only if it is finitely adequate.
+  \rednote{Why does tangential imply finitely adequate in this case?
+  For the converse, cite the result in this paper.}
 \end{remark}
 
 Consider \Cref{prp:inf-lin-hood}, from which we can extract the following principle: if there is a chain of inclusions $\hood{M}{0} \subseteq N \subseteq M$, then $M$ is infinitesimally linear at $0$ if and only if $N$ is.
@@ -29,11 +31,13 @@ Consider \Cref{prp:inf-lin-hood}, from which we can extract the following princi
 \begin{example}
   As an example, $\mathrm{Nil}(R)$ is infinitesimally linear at $0$ since it contains $\hood{R}{0} = \D(1)$.
 \end{example}
+\rednote{Should $\hood{X}{0}$ be $\hood{X}{1}$ above and below?  Also, be consistent about whether the point $0$ is included, as in $\hood{X,0}{1}$.  Maybe we can always skip it for a pointed type?}
 
 On the other hand, the above principle behaves very differently when we consider tangential modules.
 Suppose there is a chain of proper inclusions $\hood{M_n,0}{1} \subset M_0 \subset M_1 \subset \dots \subset M_n$.
 Then, by \Cref{prp:hood-factorization}, we have $\tangent{M_i}{0} = \tangent{M_n}{0}$ for all $i \leq n$.
 Thus, at most one of the $R$-modules $M_i$ can be tangential.
+\rednote{This is equally strong with just two modules $N$ and $M$, so better to state it that way as then it parallels the previous comment about infinitesimal linearity.}
 
 \begin{counterexample}\label{cex:nil-not-tangential}
   The nilradical $\Nil(R)$ is not tangential.
@@ -67,12 +71,14 @@ However, not every module satisfies this condition; we present a counterexample 
 
 Most modules considered so far are submodules of finitely presented modules.
 Nevertheless, infinitely generated modules can also be tangential.
+\rednote{The previous two sentences don't contrast each other correctly, since a submodule of a finitely presented module isn't necessarily finitely generated (I think).}
 We present two such examples below.
 
 \begin{example}\label{ex:power-series-tangential}
   By \Cref{prp:exp-tangential}, the modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are tangential.
   By \Cref{cor:tangential-inf-lin}, these modules are also infinitesimally linear.
   Since automorphisms of the underlying types act transitively, they are infinitesimally linear at any point.
+  \rednote{Is the previous sentence worth mentioning here?  It's true for any $R$-module (or abelian group), right?  So we should say it once when infinitesimal linearity is introduced.}
   Note that $R[[x]]$ is not adequate, as it is not weakly quasi-coherent.
 \end{example}
 
@@ -101,6 +107,9 @@ For the first case, $U = V(r)$, we obtain an example of a finitely adequate modu
 \begin{example}\label{ex:exp-Vr-fin-adeq}
   Let $r : R$.
   The module $R^{V(r)} = \quot{R}{\ideal{r}}$ is finitely adequate by \Cref{ex:fin-gen-ideal}.
+\rednote{Also cite closure under cokernels.}
+\rednote{We should be consistent about the notation for ideals.  Round brackets are used a lot,
+including in \Cref{ex:fin-gen-ideal}.}
 \end{example}
 
 For the second family, $U = D(r)$, the module is the localization $R^{D(r)} = R[r^{-1}]$ by \cite[Proposition 2.2.3]{draft}.
@@ -140,7 +149,7 @@ If $r$ is either invertible or nilpotent, then $\widehat{R_r}$ is finitely adequ
 Our next counterexample follows the same strategy as the preceding one.
 
 \begin{counterexample}\label{cex:exp-not-Dr-wqc}
-  It is impossible to prove that the module $R^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
+  It is not the case that the module $R^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
   For the sake of contradiction, assume that $R^{\lnot D(r)}$ is weakly quasi-coherent for all $r : R$.
   By virtue of duality, the global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module:
   \[
@@ -148,10 +157,12 @@ Our next counterexample follows the same strategy as the preceding one.
   \]
   By \cite[Lemma 7.1.10]{draft}, we can deduce that $R[[x]]$ is weakly quasi-coherent since it is the global sections of a family of weakly quasi-coherent modules.
   However, $R[[x]]$ is not finitely adequate by \cite[Proposition A.0.5]{draft}, which is a contradiction.
+\rednote{Why does the last sentence say ``finitely adequate''?}
+\rednote{Should we add that it follows that it is not the case that $R^{\lnot D(r)}$ is finitely adequate for all $r$?}
 \end{counterexample}
 
 For every proposition $U$, we define the type $R_U \defeq \sigmatype{x : R} (x = 0) \lor U$.
-We first show that these modules are tangential.
+We first show that these modules are tangential, and for this we need a lemma.
 
 \begin{lemma}\label{lem:forall-distributes-over-or}
 Let $X$ be a projective type such that every map to $\Bool$ is constant.
@@ -207,6 +218,8 @@ we see that $R_U$ is infinitesimally linear and hence tangential.
 It follows from \Cref{prp:op-closure-inf-lin-tangential} that $R/R_U$ is tangential as well.
 \end{proof}
 
+% This is almost entirely due to Claude, with a bit of guidance from jdc.
+% The writing has been edited.
 \begin{counterexample}\label{cex:R_Dr-not-wqc}
   We want to show that $R_{D(r)}$ can not be weakly quasi-coherent for all $r : R$.
   Indeed, if it were, then the quotient $\quot{R}{R_{D(r)}}$ would also be weakly quasi-coherent, since $R$ is weakly quasi-coherent and the quotient of a weakly quasi-coherent module by a weakly quasi-coherent submodule is weakly quasi-coherent \cite[Proposition 7.1.13]{draft}.
@@ -303,7 +316,7 @@ While Specker's proof uses prime factorization in $\Z$, we replace this with a n
   The $R$-modules $R[[x]]$ and $R[x]$ are reflexive.
 \end{corollary}
 
-Since $R[[x]]$ is not finitely adequate, we see that the class of reflexive $R$-modules and the class of finitely adequate $R$-modules are different.
+Since $R[[x]]$ is not finitely adequate, we see that not every reflexive $R$-module is finitely adequate.
 
 \begin{proof}
   We have a commutative diagram
@@ -322,12 +335,12 @@ Since $R[[x]]$ is not finitely adequate, we see that the class of reflexive $R$-
 
 \subsection{Tensor products}
 
-In this subsection, we show that the tensor product of two linearly adequate modules is not linearly adequate.
-This shows that the double dual tensor is the appropriate left adjoint to consider for the internal hom of $\finadeq$.
+In this subsection, we show that the tensor product of two linearly adequate modules can fail to be linearly adequate.
+This shows that the double dual tensor is the appropriate left adjoint to consider for the internal hom of $\finadeq$ (\Cref{cor:dbl-dual-tensor-adjunction}).
 
 \begin{lemma}
   \label{tensor-gamma-commute-on-affines}
-  Let $X$ be an affine scheme and suppose $\mathcal F, \mathcal G : X \to \Mod R$ are weakly quasi-coherent bundles.
+  Let $X$ be an affine scheme and suppose that $\mathcal F, \mathcal G : X \to \Mod R$ are weakly quasi-coherent bundles.
   Then the canonical map
   \[
     \Gamma(X,\mathcal F) \otimes_{R^X}\Gamma(X,\mathcal G) \to \Gamma(X,\mathcal F \otimes \mathcal G), \;\;
@@ -340,7 +353,7 @@ This shows that the double dual tensor is the appropriate left adjoint to consid
   \rednote{TODO.}
 \end{proof}
 
-\begin{remark}\label{rem:tensor-not-closed}
+\begin{counterexample}\label{cex:tensor-not-closed}
   Finitely adequate modules are not closed under tensor products.
   Indeed, let $\varepsilon : \D(1)$ be arbitrary and consider the annihilator $M_\varepsilon :\equiv \ker(R\overset{\cdot \varepsilon}{\to}R)$.
   We show that $N_\varepsilon :\equiv M_\varepsilon \otimes M_\varepsilon$ cannot be reflexive for all $\varepsilon : \D(1)$.
@@ -360,4 +373,4 @@ This shows that the double dual tensor is the appropriate left adjoint to consid
   where $A :\equiv R[x]/(x^2)$ and $I :\equiv \ker(A \overset{\cdot x}{\to} A) = (x)/(x^2)$.
   Note that the zero-section $(\varepsilon \mapsto \varepsilon \otimes \varepsilon) : \Gamma(\D(1),N)$ corresponds to $x \otimes x$ under these maps.
   As this element is not zero, we obtain a contradiction.
-\end{remark}
+\end{counterexample}
