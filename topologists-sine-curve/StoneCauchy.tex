@@ -1,0 +1,40 @@
+\begin{lemma}
+  For any entourage $E$ of $\mathbb N\infty$, there exists a cofinite set $C$ such that $C \times C \subseteq E$. 
+\end{lemma} 
+\begin{proof}
+  By the basis theorem for products and the observation that $(\infty,\infty) \in E$, there must be some open subset $U\subseteq \Noo$ such that $(\infty, \infty) \in U \times U \subseteq E$. And as the decidables form a basis for a Stone space, there is some decidable $D\subseteq \Noo$ containing $\infty$ with $D\subseteq U$. And as $\infty \in D$, $D$ is cofinite, and $D\times D \subseteq E$.
+\end{proof}
+
+\begin{lemma}
+  Let $S:\Stone$ and $x:\mathbb N \to S$ be such that %(relatively uniformly continuous w.r.t. \Noo)
+  for all $E\subseteq S \times S$ entourage there merely exists some $N:\mathbb N$ such that whenever $n,m\geq N$, we have $(x_n,x_m) \in E$. 
+  Then there merely exists a map $y : \Noo \to S$ extending $x$. 
+\end{lemma}
+
+\begin{proof}
+  We will create a map $2^S \to B_\infty$. 
+  Let $D\subseteq S$ decidable. Consider $f_D = \{n : \mathbb N | x_n \in D\}$. We claim that $f_D$ is finite or cofinite. 
+  Consider
+  $$
+  (D \times D) \bigcup (\neg D \times \neg D)\subseteq S \times S
+  $$
+  Note that the above subset contains the diagonal: as $D$ was decidable, we have for each $x\in X$ that $x\in D \vee x \in \neg D$. Hence it is an entourage of $S$. 
+  Therefore, by assumption there merely exists some $N:\mathbb N$ such that $n,m\geq N$ implies 
+  $x_n,x_m \in (D \times D) \bigcup (\neg D \times \neg D)$. 
+  Note that if $x_N \in D$, it follows for all $n>N$ that $(x_N,x_n) \in D\times D$, hence $x_n\in D$, thus $f_D$ is cofinite. 
+  Similarly, if $x_N \in \neg D$, it follows that $f_D$ is finite. 
+  As $D$ is decidable, we conclude that $f_D$ is in $B_\infty$. 
+  Hence $f$ defines a function $2^S \to B_\infty$, and dualizes to a function $\Noo \to S$. One should now check that this function extends $x$. TODO BUT FIRST LUNCH
+\end{proof}
+\begin{corollary}
+
+\end{corollary}
+
+\begin{definition}
+  Let $Q\subseteq S$ be any subset of a Stone space.
+  And let $f : Q \to T$ be any map into another Stone space. 
+  Then $f$ is called \textbf{relatively uniformly continuous} if for all entourages $E$ of $T$, there exists an entourage $F$ of $S$ such that whenever $x \in F \cap Q$, we have $f(x) \in E$. 
+\end{definition}
+\begin{conjecture}
+  Any relatively uniformly continuous function from a dense subset of a Stone space can be extended to a function. 
+\end{conjecture}
