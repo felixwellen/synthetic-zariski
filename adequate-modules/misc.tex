@@ -156,7 +156,6 @@ The following proposition tells us that we cannot assert that $R^{\lnot D(r)}$ i
 \begin{proposition}
   It is impossible to prove that for every $r : R$ the module $R^{\lnot D(r)}$ is wqc.
 \end{proposition}
-
 \begin{proof}
   Assume that for any $r : R$ we know that $R^{\lnot D(r)}$ is wqc.
   By virtue of duality, the global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module:
@@ -164,6 +163,34 @@ The following proposition tells us that we cannot assert that $R^{\lnot D(r)}$ i
     R[[x]] = \lim_n R[x]/(x^n) = R^{\mathrm{colim}_n \Spec R[x]/(x^n)}= R^{\{r:R | \lnot\lnot(r=0)\}} = \prod_{r : R} R^{\lnot D(r)}\rlap{.}
   \]
   By Lemma 7.1.10 of A Foundation for Synthetic Algebraic Geometry, we can deduce that $R[[x]]$ is wqc, which contradicts Proposition A.0.5 of the same paper.
+\end{proof}
+
+% The following proposition is essentially Fabian's result. Is there a more general pattern to follow here?
+
+\begin{proposition}\label{prp:K-not-Dr-not-wqc}
+  It is impossible to prove that for every $r : R$ the module $K^{\lnot D(r)}$ is weakly
+  quasi-coherent. In particular, it is impossible to prove that for every $r : R$ the
+  module $K^{\lnot D(r)}$ is finitely adequate.
+\end{proposition}
+
+\begin{proof}
+  Suppose that for every $r : R$, the module $K^{\lnot D(r)} = \bigcap_k \langle r^k \rangle$ is weakly quasi-coherent.
+  Then for any $r : R$, the canonical map
+  \[
+    \phi : (K^{\lnot D(r)})[1/r] \to (K^{\lnot D(r)})^{D(r)}
+  \]
+  is an equivalence.
+  Since $D(r)$ is the proposition $r \neq 0$, under this assumption $r$ is invertible, so $K^{\lnot D(r)} = R$, which implies $(K^{\lnot D(r)})^{D(r)} \cong R^{D(r)} = R[1/r]$.
+  Thus, $\phi$ is an equivalence of $R[1/r]$-modules.
+  In particular, the element $1 \in R[1/r]$ must have a preimage under $\phi$, which is represented by some fraction $a/r^n$ for $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
+  The relation $\phi(a/r^n) = 1$ in $R[1/r]$ means there exists $k : \mathbb{N}$ such that $r^k(a - r^n) = 0$, so $r^k a = r^{k+n}$.
+  Since $a \in K^{\lnot D(r)} = \bigcap_m \langle r^m \rangle$, we can write $a = r^{k+n+1}b$ for some $b : R$.
+  Substituting this back yields $r^{2k+n+1}b = r^{k+n}$.
+  Letting $N \defeq k+n$, we have $r^N(r^{k+1}b - 1) = 0$.
+  Since $R$ is local and $r^{k+1}b + (1 - r^{k+1}b) = 1$, we constructively have $(1 - r^{k+1}b \text{ is invertible}) \lor (r^{k+1}b \text{ is invertible})$.
+  If $1 - r^{k+1}b$ is invertible, then $r^N = 0$, so $r$ is nilpotent.
+  If $r^{k+1}b$ is invertible, then $r$ is invertible.
+  This gives $(r \text{ is nilpotent}) \lor (r \text{ is invertible})$ for every $r : R$, which contradicts the connectedness of $R$ as in \Cref{cex:R_Dr-not-wqc}.
 \end{proof}
 
 Other questions:
