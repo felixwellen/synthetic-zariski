@@ -1,0 +1,376 @@
+In this section, we investigate examples and counterexamples for the various concepts defined in this article.
+We hope this section highlights the non-trivial nature of finitely adequate modules.
+So far, the most effective method for finding counterexamples is not to construct a specific module that is not finitely adequate, but instead to show that, within a given family of modules, not all the members are finitely adequate.
+
+We begin by discussing various infinitesimally linear and tangential modules.
+These properties are weaker than finite adequacy, and they serve as a good starting point to build intuition for the kinds of modules we are interested in.
+
+\subsection{Infinitesimally Linear and Tangential Modules}
+In this subsection, we discuss various infinitesimally linear and tangential modules, as well as modules that fail to satisfy these properties.
+We also show that the implication from tangentiality to infinitesimal linearity is strict.
+Schemes provide a natural starting point for this discussion.
+
+\begin{example}\label{ex:sch-inf-lin}
+  By \cite[Lemma 2.2.5]{diffgeo-article}, any scheme is infinitesimally linear at all of its points.
+  In particular, the finite free $R$-modules $R^n$ are infinitesimally linear at any point.
+\end{example}
+
+\begin{example}\label{ex:R-lin-flat}
+  The $R$-modules $R^n$ are tangential \cite[Lemma 2.2.3]{diffgeo-article}.
+\end{example}
+
+\begin{remark}
+  If $M$ is both an $R$-module and a scheme, then $\tangent{M}{0}$ is linearly adequate by \cite[Lemma 2.3.8]{diffgeo-article}.
+  In particular, such an $M$ is tangential if and only if it is finitely adequate.
+  \rednote{Why does tangential imply finitely adequate in this case?
+  For the converse, cite the result in this paper.}
+\end{remark}
+
+Consider \Cref{prp:inf-lin-hood}, from which we can extract the following principle: if there is a chain of inclusions $\hood{M}{0} \subseteq N \subseteq M$, then $M$ is infinitesimally linear at $0$ if and only if $N$ is.
+
+\begin{example}
+  As an example, $\mathrm{Nil}(R)$ is infinitesimally linear at $0$ since it contains $\hood{R}{0} = \D(1)$.
+\end{example}
+\rednote{Should $\hood{X}{0}$ be $\hood{X}{1}$ above and below?  Also, be consistent about whether the point $0$ is included, as in $\hood{X,0}{1}$.  Maybe we can always skip it for a pointed type?}
+
+On the other hand, the above principle behaves very differently when we consider tangential modules.
+Suppose there is a chain of proper inclusions $\hood{M_n,0}{1} \subset M_0 \subset M_1 \subset \dots \subset M_n$.
+Then, by \Cref{prp:hood-factorization}, we have $\tangent{M_i}{0} = \tangent{M_n}{0}$ for all $i \leq n$.
+Thus, at most one of the $R$-modules $M_i$ can be tangential.
+\rednote{This is equally strong with just two modules $N$ and $M$, so better to state it that way as then it parallels the previous comment about infinitesimal linearity.}
+
+\begin{counterexample}\label{cex:nil-not-tangential}
+  The nilradical $\Nil(R)$ is not tangential.
+  There is a chain of proper inclusions $\D(1) \subset \Nil(R) \subset R$.
+  Therefore, $\Nil(R)$ cannot be tangential, since $R$ is.
+\end{counterexample}
+
+\begin{counterexample}\label{cex:hood-p-not-tangential}
+  Suppose that $R$ is a ring with positive characteristic $p > 0$. 
+  Then we have a chain of proper inclusions $\hood{R,0}{1} \subset \hood{R,0}{p-1} \subset R$. 
+  Therefore, $\hood{R,0}{p-1}$ cannot be tangential, since $R$ is.
+\end{counterexample}
+
+\begin{remark}
+  By \Cref{cex:nil-not-tangential}, we see that being tangential is a strictly stronger condition than being infinitesimally linear.
+\end{remark}
+
+So far, all modules we have considered are infinitesimally linear.
+However, not every module satisfies this condition; we present a counterexample below.
+
+\begin{counterexample}
+  The following quotient of free modules is not infinitesimally linear at $0$:
+  \[
+    M \defeq R[\D(2)]/R[\D(1) \vee \D(1)]
+  \]
+  To see why this is not infinitesimally linear at $0$, let $\eta : \D(2) \to R[\D(2)]$ be the unit map and $p : R[\D(2)] \to M$ the projection map.
+  The composite map $p \circ \eta : \D(2) \to M$ is pointed and satisfies $(p \circ \eta)|_{\{0\} \vee \D(1)} = 0$ and $(p \circ \eta)|_{\D(1) \vee \{0\}} = 0$.
+  However, since $\D(1) \vee \D(1) \to \D(2)$ is provably not surjective, we see that $p \circ \eta \neq 0$.
+  Thus, the canonical map $(M,0)^{\D(2)} \to (M,0)^{\D(1)} \times (M,0)^{\D(1)}$ is not injective.
+\end{counterexample}
+
+Most modules considered so far are submodules of finitely presented modules.
+Nevertheless, infinitely generated modules can also be tangential.
+\rednote{The previous two sentences don't contrast each other correctly, since a submodule of a finitely presented module isn't necessarily finitely generated (I think).}
+We present two such examples below.
+
+\begin{example}\label{ex:power-series-tangential}
+  By \Cref{prp:exp-tangential}, the modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are tangential.
+  By \Cref{cor:tangential-inf-lin}, these modules are also infinitesimally linear.
+  Since automorphisms of the underlying types act transitively, they are infinitesimally linear at any point.
+  \rednote{Is the previous sentence worth mentioning here?  It's true for any $R$-module (or abelian group), right?  So we should say it once when infinitesimal linearity is introduced.}
+  Note that $R[[x]]$ is not adequate, as it is not weakly quasi-coherent.
+\end{example}
+
+\subsection{Finitely Adequate Modules}
+
+In this subsection, we present examples of finitely adequate modules, as well as counterexamples.
+We are particularly interested in finding counterexamples among modules that satisfy several of the following conditions: being weakly quasi-coherent, infinitesimally linear, tangential, reflexive, or not-not finite free.
+We begin by investigating finitely generated ideals of $R$.
+
+\begin{example}\label{ex:fin-gen-ideal}
+  Let $I$ be a finitely generated ideal of $R$.
+  Then $I$ is finitely adequate.
+  Indeed, if $r_1, \dots, r_n$ generate $I$, then $I$ is the image of the map $R^n \to R$ given by $(x_1, \dots, x_n) \mapsto \sum_{i} r_i x_i$. The result then follows from \Cref{thm:fin-adeq-class}.
+\end{example}
+
+We can construct interesting examples and counterexamples using three families of propositions.
+For each $r \in R$, we define the propositions $V(r) \defeq (r = 0)$, $D(r) \defeq (r \neq 0)$, and $\neg D(r) \defeq \neg (r \neq 0)$.
+Although one could also consider finite sequences of elements $r_1, \dots, r_n$ in $R$ and their joint propositions, it is sufficient to consider a single element to obtain our main counterexamples.
+
+Let $U$ be a proposition.
+The module $R^U$ is tangential by \Cref{prp:exp-tangential}, but it is not always finitely adequate.
+We analyze $R^U$ as $U$ ranges over the three families defined above.
+Observe that if $U$ is either $V(r)$ or $D(r)$, then $R^U$ is a finitely presented algebra by \cite[Definition 4.1.1]{draft} and \cite[Proposition 3.1.6]{draft}; consequently, these modules are quasi-coherent.
+For the first case, $U = V(r)$, we obtain an example of a finitely adequate module.
+
+\begin{example}\label{ex:exp-Vr-fin-adeq}
+  Let $r : R$.
+  The module $R^{V(r)} = \quot{R}{\ideal{r}}$ is finitely adequate by \Cref{ex:fin-gen-ideal}.
+\rednote{Also cite closure under cokernels.}
+\rednote{We should be consistent about the notation for ideals.  Round brackets are used a lot,
+including in \Cref{ex:fin-gen-ideal}.}
+\end{example}
+
+For the second family, $U = D(r)$, the module is the localization $R^{D(r)} = R[r^{-1}]$ by \cite[Proposition 2.2.3]{draft}.
+Rather than constructing a specific counterexample, the next result shows that $R[r^{-1}]$ cannot be finitely adequate for all $r : R$.
+
+\begin{counterexample}\label{cex:exp-Dr-not-fin-adeq}
+  It is not the case that $R^{D(r)}$ is finitely adequate for all $r : R$.
+  For the sake of contradiction, suppose that $R^{D(r)}$ is finitely adequate for all $r : R$.
+  Then
+  \[
+    R[r^{-1}]^\ast = \{ a=(a_0,a_1,\dots) : R^{\N} \;|\; \forall k \geq 1.\; a_{k-1} = ra_k \}
+  \]
+  is also finitely adequate, and is thus weakly quasi-coherent.
+  We now have a commutative square
+  \[
+  \begin{tikzcd}
+    (R[r^{-1}]^\ast)[r^{-1}] \ar[d, "\simeq"]\ar[r] & R[r^{-1}], \ar[d, "\simeq"] &[-25pt] \frac{a}{r^n} \mapsto \frac{a_0}{r^n} \\
+    (R[r^{-1}]^\ast)^{D(r)} \ar[r, "\simeq"] & R^{D(r)}, & f \mapsto f_0
+  \end{tikzcd}
+  \]
+  where the lower horizontal map is an equivalence with inverse
+  \[
+    b \mapsto (p \mapsto (b(p),r^{-1}b(p),\dots))\rlap{.}
+  \]
+  This is well-defined because $p$ witnesses that $r$ is invertible.
+  Accordingly, the upper horizontal map is an equivalence.
+  The preimage of $\frac{1}{1}:R[r^{-1}]$ along this map is represented by an element $\frac{a}{r^n}$ such that $r^k(a_0-r^n)=r^k(r^{n+1}a_{n+1}-r^n)=r^{k+n}(ra_{n+1}-1)=0$ for some $k$.
+  Since $R$ is local, we have $(ra_{n+1} \neq 0) \lor (ra_{n+1}-1 \neq 0)$, which readily implies that $(r \neq 0) \lor (r^{k+n} = 0)$.
+  But then any element $r:R$ would either be invertible or nilpotent, contradicting the fact that $R$ is connected.
+\end{counterexample}
+
+For the third family, we consider $R^{\neg D(r)}$.
+First, observe that, by \cite[Proposition 2.2.3]{draft}, $\neg D(r)$ is the proposition that $r$ is nilpotent.
+Equivalently, $\neg D(r) = \bigcup_{n : \N} (r^n = 0)$. 
+Using continuity of the exponential and duality, we obtain $R^{\lnot D(r)} = R^{\bigcup_{k : \N}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k \quot{R}{\ideal{r^k}} = \widehat{R_r}$; i.e., $R^{\neg D(r)}$ is the $r$-adic completion of $R$.
+If $r$ is either invertible or nilpotent, then $\widehat{R_r}$ is finitely adequate.
+Our next counterexample follows the same strategy as the preceding one.
+
+\begin{counterexample}\label{cex:exp-not-Dr-wqc}
+  It is not the case that the module $R^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
+  For the sake of contradiction, assume that $R^{\lnot D(r)}$ is weakly quasi-coherent for all $r : R$.
+  By virtue of duality, the global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module:
+  \[
+    R[[x]] = \lim_n R[x]/(x^n) = R^{\mathrm{colim}_n \Spec R[x]/(x^n)}= R^{\{r:R | \lnot\lnot(r=0)\}} = \prod_{r : R} R^{\lnot D(r)}\rlap{.}
+  \]
+  By \cite[Lemma 7.1.10]{draft}, we can deduce that $R[[x]]$ is weakly quasi-coherent since it is the global sections of a family of weakly quasi-coherent modules.
+  However, $R[[x]]$ is not finitely adequate by \cite[Proposition A.0.5]{draft}, which is a contradiction.
+\rednote{Why does the last sentence say ``finitely adequate''?}
+\rednote{Should we add that it follows that it is not the case that $R^{\lnot D(r)}$ is finitely adequate for all $r$?}
+\end{counterexample}
+
+For every proposition $U$, we define the type $R_U \defeq \sigmatype{x : R} (x = 0) \lor U$.
+We first show that these modules are tangential, and for this we need a lemma.
+
+\begin{lemma}\label{lem:forall-distributes-over-or}
+Let $X$ be a projective type such that every map to $\Bool$ is constant.
+Let $P, Q : X \to \Prop$ be predicates.
+Then $\forall x : X, P(x) \lor Q(x)$ is equivalent to $(\forall x, P(x)) \lor (\forall x, Q(x))$.
+\end{lemma}
+
+\begin{proof}
+Since the two types are propositions, it suffices to give implications in both directions.
+There is an obvious implication from right to left, so we are left to prove that
+$\forall x : X, P(x) \lor Q(x)$ implies $(\forall x, P(x)) \lor (\forall x, Q(x))$.
+So assume $\forall x : X, P(x) \lor Q(x)$.
+Since $\lor$ is the propositional truncation of the coproduct, the fact that $X$ is projective
+means that we merely have a map in $\prod_x P(x) + Q(x)$.
+Since we are proving a proposition, we can drop the ``merely''.
+This gives us a map $X \to \Bool$, which by assumption must be constant.
+This implies that we have either $\prod_x P(x)$ or $\prod_x Q(x)$, as required.
+\end{proof}
+
+\begin{proposition}\label{prp:R_U-tangential}
+For any proposition $U$, the modules $R_U$ and $R/R_U$ are tangential.
+\end{proposition}
+
+\begin{proof}
+We first consider $R_U \defeq \sum_{x : R} (x = 0) \lor U$.
+The type $(R_U,0)^{\D(n)}$ is equivalent to
+\[
+  \sum_{f : \D(n) \rightarrow_\ast R} \forall \epsilon : \D(n), (f(\epsilon) = 0) \lor U .
+\]
+Since $\D(n)$ is projective (\Cref{lem:disk-projective}) and all maps $\D(n) \to \Bool$
+are constant (\cite[Proposition 1.3.4]{diffgeo-article}), we can apply \Cref{lem:forall-distributes-over-or} to
+get an equivalence to
+\[
+  \sum_{f : \D(n) \rightarrow_\ast R} (f = 0) \lor U ,
+\]
+where we have replaced $\forall \epsilon : \D(n), f(\epsilon) = 0$ with $f = 0$
+and have used that $\D(n)$ is pointed to replace $\D(n) \to U$ with $U$.
+Since $R^n$ is tangential, we can replace $\D(n) \rightarrow_\ast R$ with $R^n$,
+giving
+\[
+  \sum_{x : R^n} (x = 0) \lor U ,
+\]
+which equals $(R_U)^n$.
+It is not hard to check that the resulting equivalence is homotopic to the canonical map $(R_U)^n \to (R_U,0)^{\D(n)}$.
+For $n=1$, this implies that $R_U$ is tangential, and considering the commutativity of the diagram
+\[
+  \begin{tikzcd}
+    (R_U)^{n+m} \ar[r, "\simeq"]\ar[d, "id"] & (R_U,0)^{\D(n+m)} \ar[d] \\
+    (R_U)^n \times (R_U)^m \ar[r, "\simeq"] & (R_U,0)^{\D(n)} \times (R_U,0)^{\D(m)}
+  \end{tikzcd}
+\]
+we see that $R_U$ is infinitesimally linear and hence tangential.
+It follows from \Cref{prp:op-closure-inf-lin-tangential} that $R/R_U$ is tangential as well.
+\end{proof}
+
+% This is almost entirely due to Claude, with a bit of guidance from jdc.
+% The writing has been edited.
+\begin{counterexample}\label{cex:R_Dr-not-wqc}
+  We want to show that $R_{D(r)}$ can not be weakly quasi-coherent for all $r : R$.
+  Indeed, if it were, then the quotient $\quot{R}{R_{D(r)}}$ would also be weakly quasi-coherent, since $R$ is weakly quasi-coherent and the quotient of a weakly quasi-coherent module by a weakly quasi-coherent submodule is weakly quasi-coherent \cite[Proposition 7.1.13]{draft}.
+  Thus, it is sufficient to show that it can not be the case that $\quot{R}{R_{D(r)}}$ is weakly quasi-coherent for all $r : R$.
+
+  Now, for the sake of contradiction, assume that $R/R_{D(r)}$ is weakly quasi-coherent for every $r : R$.
+  Fix $r : R$, and recall that $D(r) \defeq (r \neq 0)$ is a proposition and that
+  $R_{D(r)} = \sum_{x : R} (x = 0) \lor (r \neq 0)$.
+
+  By weak quasi-coherence, the canonical map
+  $(R/R_{D(r)})[1/r] \to (R/R_{D(r)})^{D(r)}$ is an equivalence by \Cref{def:quasi-coherent}.
+  We claim that $(R/R_{D(r)})^{D(r)} = 0$.  Indeed, if $r \neq 0$, then the
+  predicate $(x = 0) \lor (r \neq 0)$ holds for every $x : R$, so $R_{D(r)} = R$ and
+  hence $R/R_{D(r)} = 0$.  This implies $(r \neq 0) \to (R/R_{D(r)} = 0)$,
+  and so every element of $(R/R_{D(r)})^{D(r)}$ is zero.
+
+  It follows that $(R/R_{D(r)})[1/r] = 0$.
+  In particular, the class of $1$ is annihilated by a power of
+  $r$: there merely exists $k : \N$ with $r^k \in R_{D(r)}$, that is,
+  $(r^k = 0) \lor (r \neq 0)$.
+  This is equivalent to $(\exists k.\ r^k = 0) \lor (r \neq 0)$.
+  Since any nilpotent element satisfies $\lnot\lnot(r = 0)$, and $r \neq 0$ is equivalent to $\lnot(r = 0)$, we obtain $\lnot\lnot(r = 0) \lor \lnot(r = 0)$.
+  As $r : R$ was arbitrary, we deduce that
+  $\prod_{r : R} \big(\lnot\lnot(r = 0) \lor \lnot(r = 0)\big)$, a form of weak excluded
+  middle.  The two disjuncts are mutually exclusive,
+  so the truncation in $\lor$ can be dropped.  Recording which disjunct holds defines
+  a function $\chi : R \to \Bool$, which takes different values at $r = 0$ and $r = 1$.
+  Thus $\chi$ is not constant,
+  which contradicts the connectedness of $R$ \cite[Proposition 1.2.2]{topology-draft}.
+\end{counterexample}
+
+\begin{remark}\label{rmk:R^U-R_U-not-not-fin-adeq}
+  Let $U$ be a proposition.
+  The modules $R^U$ and $R_U$, which provide the counterexamples considered above, are not-not finitely adequate.
+  Indeed, these modules are finitely adequate when $U$ is either true or false.
+  Since $\lnot\lnot(U \lor \lnot U)$ holds, the claim follows by double-negation elimination.
+\end{remark}
+
+We conclude this section by presenting examples of reflexive modules that are not finitely adequate.
+
+\begin{counterexample}\label{cex:polynomial-power-series-not-fin-adeq}
+  Neither $R[x]$ nor $R[[x]]$ is finitely adequate.
+  In fact, they are not finite free, and thus cannot be not-not finite free, which is required for finitely adequate modules.
+\end{counterexample}
+
+\begin{lemma}\label{lem:perfect-pairing-powerseries-polynomials}
+  The pairing
+  \[
+    R[x] \times R[[x]] \to R, \;\;
+    (a,b) \mapsto \langle a,b \rangle :\equiv \sum_j a_jb_j
+  \]
+  is perfect.
+\end{lemma}
+
+For the proof, we present a constructive and adapted version of the one given in \cite[Satz 1]{Specker1950}.
+This is a folklore theorem due to Ernst Specker, and the proof in loc.\ cit.\ shows, in particular, that $\Z[x]$ is isomorphic to $\Hom_{\Z}(\Z^\N, \Z)$.
+While Specker's proof uses prime factorization in $\Z$, we replace this with a neat degree-counting argument using duality.
+
+\begin{proof}
+  It is clear that the map $\vartheta' : R[[x]] \to \Hom_R(R[x],R)$ defined by $b \mapsto (a \mapsto \langle a,b \rangle)$ is an equivalence. Thus, we only need to show that the second induced map
+  \[
+    \vartheta:
+    R[x] \to \Hom_R(R[[x]],R), \;\;
+    a \mapsto \left(b \mapsto \langle a,b \rangle\right)
+  \]
+  is an equivalence.
+  Since $\vartheta$ is clearly injective, we only need to verify its surjectivity.
+  Let $\lambda : R[[x]] \to R$ be an arbitrary $R$-linear map and define a sequence $a \defeq (n \mapsto \lambda(e^n))$, where $e^n$ is the sequence given by $j \mapsto \delta_{nj}$.
+  We will show that $a_n = 0$ for $n \gg 0$, and then finish the proof by verifying $\lambda = \langle a, \argmhole \rangle$.
+  Define further a map
+  \[
+    f : R \to R, \;\;
+    r \mapsto \lambda(1,r,r^2,r^3,\dots)\rlap{,}
+  \]
+  Duality tells us that $f$ is a polynomial.
+  Since we are proving a proposition, we may assume that $\deg f \leq d$ for some $d$.
+  By the linearity of $\lambda$, for any $N : \N$, we have
+  \[
+    f(r) = a_0 + a_1r + a_2r^2 + \dots + a_{N-1}r^{N-1} + r^N\lambda(0,\dots,0,1,r,r^2,\dots)\rlap{,}
+  \]
+  where exactly the first $N$ entries in $\lambda(0,\dots,0,1,r,r^2,\dots)$ are zero.
+  Comparing coefficients, we see that $a_N=0$ for $N \geq d+2$, hence $a$ is an element of $R[x]$.
+  So it remains to check that $\varphi : \equiv \lambda - \langle a,- \rangle = 0$.
+  To this end, let $b : R[[x]]$ be arbitrary and set
+  \[
+    g:R \to R, \;\;
+    r \mapsto \varphi(b_0,b_1r,b_2r^2,\dots)\rlap{.}
+  \]
+  Since $\varphi(e^n) = 0$, we can repeat the argument just applied to $f$ and see that all polynomials $x^n$ divide $g$.
+  But then $g=0$, and in particular $0 = g(1) = \varphi(b) = \lambda(b) - \langle a,b \rangle$.
+\end{proof}
+
+\begin{corollary}
+  The $R$-modules $R[[x]]$ and $R[x]$ are reflexive.
+\end{corollary}
+
+Since $R[[x]]$ is not finitely adequate, we see that not every reflexive $R$-module is finitely adequate.
+
+\begin{proof}
+  We have a commutative diagram
+  \[
+  \begin{tikzcd}
+    R[[x]]\arrow{r}{\ev_{R[[x]]}} \arrow{dr}{\vartheta'} & R[[x]]^{\ast\ast} \arrow{d}{\vartheta^\ast}
+    \\
+    & R[x]^\ast
+  \end{tikzcd}
+  \]
+  where $\vartheta$ and $\vartheta'$ are as in the proof of \Cref{lem:perfect-pairing-powerseries-polynomials}.
+  As shown there, these two maps are equivalences, which implies that $\ev_{R[[x]]}$ is as well.
+  Consequently, $R[x]$ is reflexive by \Cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
+\end{proof}
+
+
+\subsection{Tensor products}
+
+In this subsection, we show that the tensor product of two linearly adequate modules can fail to be linearly adequate.
+This shows that the double dual tensor is the appropriate left adjoint to consider for the internal hom of $\finadeq$ (\Cref{cor:dbl-dual-tensor-adjunction}).
+
+\begin{lemma}
+  \label{tensor-gamma-commute-on-affines}
+  Let $X$ be an affine scheme and suppose that $\mathcal F, \mathcal G : X \to \Mod R$ are weakly quasi-coherent bundles.
+  Then the canonical map
+  \[
+    \Gamma(X,\mathcal F) \otimes_{R^X}\Gamma(X,\mathcal G) \to \Gamma(X,\mathcal F \otimes \mathcal G), \;\;
+    f \otimes g \mapsto (x \mapsto f_x \otimes g_x)
+  \]
+  is an $R^X$-linear isomorphism.
+\end{lemma}
+
+\begin{proof}
+  \rednote{TODO.}
+\end{proof}
+
+\begin{counterexample}\label{cex:tensor-not-closed}
+  Finitely adequate modules are not closed under tensor products.
+  Indeed, let $\varepsilon : \D(1)$ be arbitrary and consider the annihilator $M_\varepsilon :\equiv \ker(R\overset{\cdot \varepsilon}{\to}R)$.
+  We show that $N_\varepsilon :\equiv M_\varepsilon \otimes M_\varepsilon$ cannot be reflexive for all $\varepsilon : \D(1)$.
+
+  Since dualizing is exact, we have $M_\varepsilon^\ast = R/(\varepsilon)$.
+  Then we have
+  \[
+    N_\varepsilon^\ast = \Hom_R(M_\varepsilon,R/(\varepsilon)) = \coker(M_\varepsilon^\ast \overset{\cdot \varepsilon}{\to} M_\varepsilon^\ast) = R/(\varepsilon)\rlap{,}
+  \]
+  where, for the penultimate equivalence, we use that $\Hom_R(M_\varepsilon,\argmhole)$ is right exact by \Cref{identification-hom-tensor-for-fp-modules}.
+  In particular, $N_\varepsilon^{\ast\ast} = M_\varepsilon$, and under this identification the evaluation map $\ev : N_\varepsilon \to M_\varepsilon$ is the multiplication $s \otimes t \mapsto st$.
+  Hence $\ev(\varepsilon\otimes\varepsilon)=0$ and thus even $\varepsilon \otimes \varepsilon = 0$ by virtue of our assumption.
+  Now, using \Cref{tensor-gamma-commute-on-affines}, compute
+  \[
+    \Gamma(\D(1),N) = \Gamma(\D(1),M) \otimes_A \Gamma(\D(1),M) = I \otimes_A I = I \otimes_R I \rlap{,}
+  \]
+  where $A :\equiv R[x]/(x^2)$ and $I :\equiv \ker(A \overset{\cdot x}{\to} A) = (x)/(x^2)$.
+  Note that the zero-section $(\varepsilon \mapsto \varepsilon \otimes \varepsilon) : \Gamma(\D(1),N)$ corresponds to $x \otimes x$ under these maps.
+  As this element is not zero, we obtain a contradiction.
+\end{counterexample}

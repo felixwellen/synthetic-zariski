@@ -1,20 +1,20 @@
 A finitely presented module is described by finitely many generators and relations.
-These modules can be investigated by methods of Linear Algebra and play a central role in Algebraic Geometry.
-When the base ring is coherent, this notion coincides with coherent modules, and this is usually the generality one restricts to classically.
+These modules can be investigated by methods of linear algebra and play a central role in algebraic geometry.
+When the base ring is coherent, this notion coincides with that of coherent modules, which is usually the generality one restricts to classically.
 
-Synthetically however, our base ring $R$ is provably not coherent \cite[3.2]{topology-draft} and these two notions diverge.
-As it turns out, both are not well behaved in our setting.
-The category of finitely presented $R$-modules lacks kernels and the category of coherent $R$-modules, while always being abelian, is much too small as it already does not contain crucial modules like $R^n$.
-In this section we study a bigger category of \notion{finitely adequate} modules as a suitable replacement, and whose objects still retain a certain sense of finiteness.
-This notion is not completely novel and has already been studied externally in \cite[Chapter 06Z1]{stacks-project}.
+Synthetically, however, our base ring $R$ is provably not coherent~\cite[3.2]{topology-draft} and these two notions diverge.
+As it turns out, neither is well-behaved in our setting.
+The category of finitely presented $R$-modules lacks kernels, and the category of coherent $R$-modules, while always abelian, is much too small as it does not even contain crucial modules like $R^n$.
+In this section, we study a larger category of finitely adequate modules~(\Cref{def:fin-adeq}) as a suitable replacement whose objects still retain a certain sense of finiteness.
+This notion is not completely novel and has already been studied externally in~\cite[Chapter 06Z1]{stacks-project}.
 
 The work in this section profited from discussions with Hugo Moeneclaey, Mohamed Barakat, and Marc Nieper-Wißkirchen.
 
 \subsection{Finitely Adequate Modules Form an Abelian Category}
 
-In this subsection we will show that the category of finitely adequate $R$-modules, denoted by $\finadeq$, is abelian.
-We begin by recounting the notion of quasi-coherence, introduced by Ingo Blechschmid \cite{ingo-thesis}.
-For this recall that for an $R$-module $M$ and a finitely presented $R$-algebra $A$ there is an evaluation map
+In this subsection, we will show that the category of finitely adequate $R$-modules, denoted by $\finadeq$, is abelian.
+We begin by recounting the notion of quasi-coherence, introduced by Ingo Blechschmid~\cite{ingo-thesis}.
+For this, recall that for an $R$-module $M$ and a finitely presented $R$-algebra $A$, there is an evaluation map:
 \begin{align*}
   \ev : M \otimes A & \rightarrow M^{\Spec A} \\
   m \otimes a & \mapsto (f \mapsto f(a)m)
@@ -22,23 +22,23 @@ For this recall that for an $R$-module $M$ and a finitely presented $R$-algebra 
 
 \begin{definition}\label{def:quasi-coherent}
   Let $M$ be an $R$-module.
-  $M$ is \notion{quasi-coherent} if for any fp $R$-algebra $A$ the map $\ev$ is an equivalence.
-  We say $M$ is \notion{weakly quasi-coherent} if this map is an equivalence for algebras of the form $R[r^{-1}]$, with $r:R$.
+  $M$ is \notion{quasi-coherent (qc)} if for every finitely presented $R$-algebra $A$, the map $\ev$ is an equivalence.
+  We say that $M$ is \notion{weakly quasi-coherent (wqc)} if this map is an equivalence for algebras of the form $R[r^{-1}]$, for each $r : R$.
 \end{definition}
 
-We can show that quasi-coherent $R$-modules $Q$ are tangent-like by a direct computation.
+We can show that quasi-coherent $R$-modules $Q$ are tangential by a direct computation.
 
 % \rednote{These pointed maps are already linear. Does linearity make sense when the domain is $\D (n)$? Respects scalar multiplication and addition whenever it exists.}
 
 \begin{lemma}\label{lem:disk-qc}
   Let $Q$ be a quasi-coherent $R$-module.
-  A pointed map $p : (Q,0)^{\D (n)}$ is a $n$-variate linear monomial with coefficients in $Q$.
+  A pointed map $p : (Q,0)^{\D (n)}$ is an $n$-variate linear monomial with coefficients in $Q$.
 \end{lemma}
 
 \begin{proof}
   By quasi-coherence, we have the following equivalence $Q^{\D (n)} \simeq Q \otimes \quot{R[x_1,\dots,x_n]}{\ideal{x_ix_j}} \simeq Q^{n+1}$.
   We can thus identify the maps $\D (n) \rightarrow Q$ with $n$-variate polynomials with coefficients in $Q$ and which are of degree at most $1$.
-  Let $p(x_1, \dots, x_n)$ be such a polynomial, then the canonical evaluation map acts like $\ev (p(x_1, \dots, x_n))(\varepsilon_1, \dots, \varepsilon_n) = p(\varepsilon_1, \dots, \varepsilon_n)$, where $\varepsilon_i : \D (n)$.
+  Let $p(x_1, \dots, x_n)$ be such a polynomial; then the canonical evaluation map acts like $\ev (p(x_1, \dots, x_n))(\varepsilon_1, \dots, \varepsilon_n) = p(\varepsilon_1, \dots, \varepsilon_n)$, where $\varepsilon_i : \D (n)$.
   Whenever $p$ represents a pointed map, we have $p(0,\dots,0) = p_0 = 0$.
 \end{proof}
 
@@ -48,55 +48,39 @@ We can show that quasi-coherent $R$-modules $Q$ are tangent-like by a direct com
 \end{proposition}
 
 \begin{proof}
-  By the above lemma, \cref{lem:disk-qc}, we identity $\tangent{Q}{0}$ with univariate polynomials in $Q$ of degree 1 and constant term $0$.
+  By the above lemma, \Cref{lem:disk-qc}, we identify $\tangent{Q}{0}$ with univariate polynomials in $Q$ of degree $1$ and constant term $0$.
   Let $q : Q$ be a point in $Q$.
   Then $\can(q)(\varepsilon) = q\varepsilon$, where $\varepsilon : \D (1)$.
   We deduce that $\can(q) = qx$, so $\can$ is an equivalence by assumption.
 \end{proof}
 
-\begin{proposition}\label{prp:inf-lin-qc}
+\begin{corollary}\label{cor:inf-lin-qc}
   Let $Q$ be a quasi-coherent $R$-module.
   Then $Q$ is infinitesimally linear at $0$.
-\end{proposition}
-
-\begin{proof}
-  This is clear from the following commutative diagram
-  \begin{center}
-    \begin{tikzcd}
-      (Q,0)^{\D (m+n)} \ar{d}{\inc_{m,n}} & Q \otimes \quot{R[x_1,\dots,x_m,x_{m+1},\dots,x_{m+n}]}{\ideal{x_ix_j}} \ar{l}[above]{\ev}[below]{\simeq} \ar{d}{\simeq} \\
-      (Q,0)^{\D (m)} \oplus (Q,0)^{\D (n)} & Q \otimes \quot{R[x_1,\dots,x_m]}{\ideal{x_ix_j}} \oplus Q \otimes \quot{R[x_{m+1},\dots,x_{m+n}]}{\ideal{x_ix_j}} \ar{l}[above]{\ev}[below]{\simeq}
-    \end{tikzcd}
-  \end{center}
-  together with \cref{lem:disk-qc}.
-\end{proof}
-
-We collect the above results in the following corollary.
-
-\begin{corollary}\label{cor:tangent-like-qc}
-  Quasi-coherent $R$-modules are tangent-like. \earlyqed
 \end{corollary}
 
-\begin{definition}\label{def:adeq}
-  Let $M$ be an $R$-module.
-  $M$ is \notion{adequate} if it merely is the kernel of a linear map $f : P \rightarrow Q$ between quasi-coherent $R$-modules $P$ and $Q$.
+\begin{proof}
+  This follows immediately from \Cref{prp:tangential-qc} and \Cref{cor:tangential-inf-lin}.
+\end{proof}
+
+Since quasi-coherent modules are tangential, they form the basis of a well-behaved category of modules.
+As tangentiality is preserved by finite limits and finite colimits, we will be especially interested in the kernel closure of this category.
+
+\begin{definition}\label{def:adequate}
+  An $R$-module $M$ is \notion{adequate} if it is the kernel of a linear map $f : P \rightarrow Q$ where $P$ and $Q$ are quasi-coherent $R$-modules.
 \end{definition}
 
-Adequate modules, being defined as kernels, immediately inherit the following properties from quasi-coherent modules.
-
-\begin{proposition}\label{prp:tangent-adeq}
-  Adequate $R$-modules are tangent-like.
-\end{proposition}
-
-\begin{proof}
-  By \cref{prp:lim-col-ext-tangent-like} and \cref{cor:tangent-like-qc}.
-\end{proof}
+Adequate $R$-modules enjoy the following properties as they form the kernel closure of quasi-coherent modules.
 
 \begin{proposition}\label{prp:wqc-adeq}
   Adequate $R$-modules are weakly quasi-coherent. \earlyqed
 \end{proposition}
 
-For the remainder of this section we will restrict our attention to a subtype of adequate modules that enjoy some nice finiteness properties.
-We will construct the members of this type using the following notion as a building block.
+\begin{proposition}\label{prp:adeq-tangential}
+  Adequate $R$-modules are tangential. \earlyqed
+\end{proposition}
+
+For the remainder of this section, we restrict our attention to a subcategory of adequate modules that satisfy certain finiteness conditions. We will construct the objects of this subcategory by first introducing their basic building blocks:
 
 \begin{definition}\label{def:lin-adeq}
   Let $L$ be an $R$-module.
@@ -104,10 +88,9 @@ We will construct the members of this type using the following notion as a build
   We refer to the map $f$ as a \notion{linear copresentation} of $L$.
 \end{definition}
 
-
 \begin{remark}\label{rem:lin-adeq}
   In the article \cite{diffgeo-article}, linearly adequate modules went under the name finitely copresented modules.
-  We decided to change the name here as linearly adequate is the name of the external concept \cite[Chapter 06Z1]{stacks-project}.
+  We decided to change the name here as linearly adequate matches the name of the external concept \cite[Chapter 06Z1]{stacks-project}.
 \end{remark}
 
 \begin{definition}\label{def:dual}
@@ -115,33 +98,33 @@ We will construct the members of this type using the following notion as a build
   We define the \notion{dual} of $M$ to be the module $M^\ast \defeq \Hom_R(M,R)$.
 \end{definition}
 
-\begin{theorem}[\cite{diffgeo-article}{[Lemma 2.3.9, Corollary 2.3.10]}]\label{thm:lin-adeq-dual}
+\begin{theorem}[{{\cite[Lemma 2.3.9, Corollary 2.3.10]{diffgeo-article}}}]\label{thm:lin-adeq-dual}
   Dualization restricts to an anti-equivalence between linearly adequate modules and finitely presented ones.
-  In other words, dualizing a linear copresentation of $L$
+  In other words, dualizing a linear copresentation of $L$,
   \[ M \hookrightarrow R^n \to R^m \]
   yields a finite presentation of $L^\ast$
   \[ R^m \to R^n \twoheadrightarrow L^\ast \]
-  Moreover, the canonical map into the double dual, $L\to L^{\ast\ast}$, is an isomorphism for finitely presented and linearly adequate $R$-modules. \earlyqed
+  Moreover, the canonical map into the double dual, $\ev : L \to L^{\ast\ast}$, is an isomorphism for finitely presented and linearly adequate $R$-modules. \earlyqed
 \end{theorem}
 
 \begin{lemma}\label{lem:fp-lift}
   Let $M$ and $N$ be finitely presented $R$-modules and $f: M \to N$ a linear map.
-  Then there is an extension of this morphism to all presentations of $M$ and $N$:
+  Then, there is an extension of this morphism to all presentations of $M$ and $N$:
   \begin{center}
     \begin{tikzcd}
       R^{m'}\ar[r]\ar[d,dotted,"\exists"] & R^m\ar[->>,r,"\pi_M"]\ar[d,dotted,"\exists"] & M\ar[d, "f"] \\
       R^{n'}\ar[r] & R^n\ar[->>,r,"\pi_N"] & N \\
     \end{tikzcd}
   \end{center}
-  By dualizing, the analogous statement holds for linearly adequate modules.
+  By duality, the analogous statement holds for linearly adequate modules.
 \end{lemma}
 
 \begin{proof}
   This is immediate since finite free $R$-modules are projective in $\modcat{R}$.
 \end{proof}
 
-From every commutative square we can extract some exact sequences.
-These will be particularly useful to show that finitely presented $R$-modules are closed under cokernels, and linearly adequate $R$-modules are closed under kernels.
+From every commutative square, we can extract some exact sequences.
+These will be particularly useful to show that finitely presented $R$-modules are closed under cokernels and linearly adequate $R$-modules are closed under kernels.
 
 \begin{lemma}\label{lem:diff-ker-is-ker}
   Suppose we have a commutative square:
@@ -151,18 +134,18 @@ These will be particularly useful to show that finitely presented $R$-modules ar
       C \ar{r}{v} & D
     \end{tikzcd}
   \end{center}
-  The kernel $K$ of the induced map $\mathrm{Ker}(u) \rightarrow \mathrm{Ker}(v)$ is equivalent to the kernel $K'$ of $(u, f) : A \to B \oplus C$.
+  The kernel $K$ of the induced map $\Ker(u) \rightarrow \Ker(v)$ is equivalent to the kernel $K'$ of $(u, f) : A \to B \oplus C$.
 \end{lemma}
 
 \begin{proof}
-  Observe that $\mathrm{Ker}(u) \subseteq \mathrm{Ker}(gu)$.
-  Thus $\mathrm{Ker}(u) = \mathrm{Ker}((u, gu) : A \to B \oplus D)$.
-  Therefore we obtain this result by the third isomorphism theorem:
+  Observe that $\Ker(u) \subseteq \Ker(gu)$.
+  Thus $\Ker(u) = \Ker((u, gu) : A \to B \oplus D)$.
+  Therefore, we obtain this result by the third isomorphism theorem:
   \begin{center}
     \begin{tikzcd}
       K \ar{r}{\simeq} \ar[hook]{d} & K' \ar[hook]{d} \\
-      \mathrm{Ker}(u) \ar{d} \ar[hook]{r} & A \ar{d}{(u,f)} \ar{r}{(u,gu)} & B \oplus D \ar[equal]{d} \\
-      \mathrm{Ker}(v) \ar[hook]{r} & B \oplus C \ar{r}{\mathrm{id} \oplus v} & B \oplus D
+      \Ker(u) \ar{d} \ar[hook]{r} & A \ar{d}{(u,f)} \ar{r}{(u,gu)} & B \oplus D \ar[equal]{d} \\
+      \Ker(v) \ar[hook]{r} & B \oplus C \ar{r}{\mathrm{id} \oplus v} & B \oplus D
     \end{tikzcd}
   \end{center}
   \hfill{\phantom{.}}
@@ -174,7 +157,7 @@ Dually, finitely presented $R$-modules are closed under cokernels.
 \end{proposition}
 
 \begin{proof}
-  Suppose that $K$ is the kernel of a map $f : M \rightarrow N$, where $M$ and $N$ are linearly adequate.
+  Suppose that $K$ is the kernel of a linear map $f : M \rightarrow N$, where $M$ and $N$ are linearly adequate.
   By the dual of \Cref{lem:fp-lift}, we can find a linear extension of $f$ to copresentations of $M$ and $N$:
   \begin{center}
     \begin{tikzcd}
@@ -183,15 +166,15 @@ Dually, finitely presented $R$-modules are closed under cokernels.
       N \ar[hook]{r} & R^{n_1} \ar{r} & R^{n_2}
     \end{tikzcd}
   \end{center}
-  By \Cref{lem:diff-ker-is-ker}, $K$ is also the kernel of the map $R^{m_1} \rightarrow R^{m_2 + n_1}$, so it is itself linearly adequate.
+  By \Cref{lem:diff-ker-is-ker}, $K$ is also the kernel of a map $R^{m_1} \rightarrow R^{m_2 + n_1}$, so it is itself linearly adequate.
 \end{proof}
 
 \begin{lemma}\label{lem:ker-fp-is-cok-lin-adeq}
-  Let $f:M\to N$ be a map of finitely presented $R$-modules, then $\ker f$ is the cokernel of a map between linearly adequate $R$-modules.
+  If $f : M \to N$ is a map of finitely presented $R$-modules, then $\ker f$ is the cokernel of a map between linearly adequate $R$-modules.
 \end{lemma}
 
 \begin{proof}
-  By \Cref{lem:fp-lift}, we can assume $f$ is induced by a square of morphisms between finite free $R$-modules, and we construct the linearly adequate modules $A$ and $B$ as described below:
+  By \Cref{lem:fp-lift}, we can assume that $f$ is induced by a square of morphisms between finite free $R$-modules and construct the linearly adequate modules $A$ and $B$ as described below:
   \begin{center}
   \begin{tikzcd}
     A\ar[r,"\pi_1"]\ar[d,"l\times\id"] & R^{m'}\ar[r,"t"]\ar[d,"l"] & R^{n'}\ar[d,"r"]   \\
@@ -207,46 +190,46 @@ Dually, finitely presented $R$-modules are closed under cokernels.
 The modules in the kernel-cokernel closure of the finite free $R$-modules might yield a replacement of the algebro-geometric notion of coherent sheaf of modules, which would be a trivial notion over $R$.
 
 \begin{definition}\label{def:fin-adeq}
-  Let $M$ be an $R$-module, then $M$ is a \notion{finitely adequate $R$-module} if one of the following equivalent statements holds:
-  \begin{enumerate}[(i)]
-    \item $M$ is merely the kernel of a homomorphism of finitely presented $R$-modules.
-    \item $M$ is merely the cokernel of a homomorphism of linearly adequate $R$-modules.
+  Let $M$ be an $R$-module. Then $M$ is a \notion{finitely adequate $R$-module} if one of the following equivalent statements holds:
+  \begin{enumerate}[(i), noitemsep]
+    \item $M$ is merely the kernel of a homomorphism between finitely presented $R$-modules.
+    \item $M$ is merely the cokernel of a homomorphism between linearly adequate $R$-modules.
   \end{enumerate}
   We denote the type of finitely adequate modules with $\finadeq$\index{$\finadeq$}, as well as the category of these modules.
 \end{definition}
 
 \begin{proposition}\label{prp:fin-adeq-adeq}
-  Any finitely adequate $R$-module is adequate.
-  In particular, finitely adequate $R$-modules are also tangent-like and wqc.
+  Every finitely adequate $R$-module is adequate.
+  In particular, finitely adequate $R$-modules are also tangential and wqc.
 \end{proposition}
 
 \begin{proof}
-  Any finitely presented $R$-module is quasi-coherent.
-  Since any finitely adequate $R$-module is merely the kernel of a map between quasi-coherent modules, it is itself adequate.
-  The rest follows from \Cref{prp:tangent-adeq} and \Cref{prp:wqc-adeq}.
+  Every finitely presented $R$-module is quasi-coherent.
+  Since every finitely adequate $R$-module is merely the kernel of a map between quasi-coherent modules, it is itself adequate.
+  The rest follows from \Cref{prp:tangential-qc} and \Cref{prp:wqc-adeq}.
 \end{proof}
 
 We will first characterize the projective and injective objects in $\finadeq$.
 
 \begin{lemma}\label{lem:lin-adeq-lift}
   Let $L$ be a linearly adequate $R$-module.
-  Any lifting problem
+  Every lifting problem
   \begin{center}
     \begin{tikzcd}
       & A \ar[two heads]{d}{e} \\
       L \ar{r}{v} & B
     \end{tikzcd}
   \end{center}
-  merely has a linear solution when $B$ is tangential, $A$ is tangent-like, and $M \defeq \Ker e$ is wqc.
+  merely has a linear solution when $A$ and $B$ are tangential and $M \defeq \Ker e$ is wqc.
 \end{lemma}
 
 \begin{proof}
-  By \cite{draft}[Theorem 7.3.6] we have $H^1(L,M)=0$, since $L$, like any linearly adequate $R$-module, is an affine scheme \rednote{Say why lin. adeq. implies scheme}.
+  By \cite[Theorem 7.3.6]{draft} we have $H^1(L,M)=0$, since $L$, like any linearly adequate $R$-module, is an affine scheme. Indeed, as the kernel of a linear map $f : R^m \to R^n$, the module $L$ is equivalent to $\Spec(\quot{R[x_1, \dots, x_m]}{\langle f(x_1), \dots, f(x_n) \rangle})$.
 
-  By definition, we have $H^1(L,M)=||L \to K(M,1)||_0$ and therefore that $L\to K(M,1)$ is connected.
-  For any $b:B$ we let $E_b$ denote the fiber of $e$ over $b$.
+  By definition, we have $H^1(L,M)=||L \to K(M,1)||_0$ and therefore $L \to K(M,1)$ is connected.
+  For any $b : B$, we let $E_b$ denote the fiber of $e$ over $b$.
   Then $E_b$ is an $M$-torsor, or in other words an element of $K(M,1)$.
-  So $E\circ v: L \to K(M,1)$ and we have $||E \circ v = (\argmhole \mapsto M)||$ by the connectedness noted above.
+  So $E \circ v$ defines a map $L \to K(M,1)$, and we have $||E \circ v = (\argmhole \mapsto M)||$ by the connectedness noted above.
   This means that the dependent type $E \circ v$ merely has a section, since $(\argmhole \mapsto M)$ has a section.
   Let $h'' : L \rightarrow A$ denote the section after projecting onto $A$.
   The map $h' \defeq h'' - h''(0)$ is now a pointed map of type $(L,0) \rightarrow_\ast (A,0)$.
@@ -256,12 +239,12 @@ We will first characterize the projective and injective objects in $\finadeq$.
 
 \begin{theorem}\label{thm:lin-adeq-proj}
   Let $M$ be a finitely adequate module.
-  Then, $M$ is projective in $\finadeq$ if and only if $M$ is linearly adequate.
+  Then $M$ is projective in $\finadeq$ if and only if $M$ is linearly adequate.
 \end{theorem}
 
 \begin{proof}
   Assume first that $M$ is linearly adequate.
-  We need to merely solve any lifting problem on the form
+  We need to merely solve any lifting problem of the form
   \begin{center}
     \begin{tikzcd}
       & A \ar[two heads]{d}{e} \\
@@ -269,16 +252,16 @@ We will first characterize the projective and injective objects in $\finadeq$.
     \end{tikzcd}
   \end{center}
   where $A$ and $B$ are finitely adequate.
-  Such a solution follows from \Cref{lem:lin-adeq-lift}, since $A$ and $B$ are tangent-like and wqc by \Cref{prp:fin-adeq-adeq}.
+  Such a solution follows from \Cref{lem:lin-adeq-lift}, since $A$ and $B$ are tangential and wqc by \Cref{prp:fin-adeq-adeq}.
 
   Assume now that $M$ is projective.
   Let $L_1 \xrightarrow{p} L_2 \twoheadrightarrow M$ be a presentation of $M$ by linearly adequate modules, and let $M' \defeq \Im p$.
   Since $M$ is assumed projective, the epimorphism $L_2 \twoheadrightarrow M$ splits.
-  It follows that the inclusion $M' \hookrightarrow L_2$ splits as well, and $M'$ is a direct summand of $L_2$.
+  It follows that the inclusion $M' \hookrightarrow L_2$ splits as well and $M'$ is a direct summand of $L_2$.
   Since $L_2$ is linearly adequate, it is projective, thus $M'$ is projective as well.
   Since $M'$ is projective, the canonical map $L_1 \twoheadrightarrow M'$ splits.
-  This gives us a map $L_2 \rightarrow L_1$, such that $M$ is its kernel.
-  $M$ is now linearly adequate by \Cref{prp:lin-adeq-ker-closure}, as it is a kernel of linear adequate $R$-modules.
+  This gives us a map $L_2 \rightarrow L_1$ such that $M$ is its kernel.
+  $M$ is now linearly adequate by \Cref{prp:lin-adeq-ker-closure}, as it is the kernel of a map between linearly adequate $R$-modules.
 \end{proof}
 
 \begin{lemma}\label{lem:fin-adeq-lift}
@@ -310,23 +293,45 @@ We will first characterize the projective and injective objects in $\finadeq$.
 \end{lemma}
 
 \begin{proof}
-  It is possible \rednote{TODO: add construction} to construct a diagram of the following shape, where the two left columns and all rows are exact:
+  By \Cref{prp:fin-adeq-cok-closure}, the cokernel $N \defeq \Cok(m)$ is finitely adequate.
+  Thus, there exists a monomorphism $n : N \hookrightarrow Q$ such that $Q$ is finitely presented.
+  Let $f : P \rightarrow Q$ be the map induced by $n$.
+  Now, $m$ is the kernel of $f$.
+  By \Cref{lem:ker-fp-is-cok-lin-adeq}, we obtain an analysis of $M$:
   \begin{center}
     \begin{tikzcd}
-      A\ar[r,hook]\ar[d] & R^{m_1}\ar[r,"t"]\ar[d,"l"] & R^{n}\ar[d,"\id"] \\
-      B\ar[r,hook]\ar[d,->>] & R^{m_2}\ar[r,"b"]\ar[d,->>] & R^{n} \\
-      K\ar[r,hook] & M\ar[r] & N
+      K \ar{d}{p \times \id} \ar[hook]{r} & R^{m_1} \ar{r}{f_1} \ar{d}{p} & R^{n_1} \ar{d}{q} \\
+      L \ar[two heads]{d} \ar[hook]{r} & R^{m_2} \ar{r}{f_2} \ar[two heads]{d} & R^{n_2} \ar[two heads]{d} \\
+      M \ar[hook]{r}{m} & P \ar{r}{f} & Q
     \end{tikzcd}
   \end{center}
-  Then a linear map $L:K\to R$ restricts to a map $L_1:B\to R$ which is zero on $A$.
-  By \cite{diffgeo-article}[Lemma 2.3.7] it is possible to extend $L_1$ to $L_2:R^{m_2}\to R$.
-  $L_2$ will descend to $M$, if and only if it vanishes on the image of $r$.
-  This will generally not be the case, but we can construct a linear correction $c:R^{m_2}\to R$ such that $L_2-c$ has this property.
+  In the diagram above, we have $P = \Cok(p)$, $Q = \Cok(q)$, $K = R^{m_1} \underset{R^{n_2}}{\times} R^{n_1}$, and $L = R^{m_2} \underset{R^{n_2}}{\times} R^{n_1}$.
+  Let $t$ be the composite $f_2 \circ p = q \circ f_1$.
+  
+  In the above analysis, only the columns are exact.
+  We will alter this diagram so that every column and row becomes exact.
+  \begin{center}
+    \begin{tikzcd}
+      K \ar{d}{p \times \id} \ar[hook]{r} & R^{m_1 + n_1} \ar{r}{t + q} \ar{d}{p \times \id} & R^{n_2} \ar[equal]{d} \\
+      L \ar[two heads]{d} \ar[hook]{r} & R^{m_2 + n_1} \ar{r}{f_2 + q} \ar[two heads]{d} & R^{n_2} \\
+      M \ar[hook]{r}{m} & P
+    \end{tikzcd}
+  \end{center}
 
-  To construct $c$, let $c_0\coloneq L_2\circ l$; note that $c_0$ vanishes on $A$ and therefore extends to the image of $t$, to a linear map $c_1:\mathrm{im}(t)\to R$.
-  By \cite{diffgeo-article}[Lemma 2.3.8], $c_1$ extends to a map $c_2:R^{n}\to R$.
-  Now $c\coloneq c_2\circ b$ is a linear map on $R^{m_2}$, that is zero on $B$,
-  so $L_2-c$ is still an extension of $L_1$ and $L_2-c$ vanishes on $A$.
+  The linear map $u : M \to R$ restricts to a map $l_1 : L \to R$ that is zero on $K$.
+  By~\cite[Lemma 2.3.7]{diffgeo-article}, it is possible to extend $l_1$ to $l_2 : R^{m_2+n_1} \to R$.
+  $l_2$ will descend to $M$ if and only if it vanishes on the image of $p \times \id$.
+  Although this is not generally the case, we can construct a linear correction $c : R^{m_2} \to R$ such that $l_2 - c$ has this property.
+
+  To construct $c$, let $c_0 \coloneq l_2 \circ (p \times \id)$.
+  Note that $c_0$ vanishes on $K$ and therefore descends to a linear map $c_1 : \Im(t + q) \to R$.
+  By \cite[Lemma 2.3.8]{diffgeo-article}, $c_1$ extends to a map $c_2 : R^{n_2} \to R$.
+  Now, $c \coloneq c_2 \circ (f_2 + q)$ is a linear map on $R^{m_2 + n_1}$ that is zero on $K$,
+  so $l_2 - c$ vanishes on the image of $p \times \id$.
+  Therefore, $l_2 - c$ descends to a map $l : P \to R$.
+
+  Finally, note that $l$ restricts to $l_1$ on $L$.
+  Thus we have $u = l \circ m$.
 \end{proof}
 
 Let $M$ be an $R$-module.
@@ -340,7 +345,7 @@ There is a natural map $\ev : M \rightarrow M^{\ast\ast}$ that sends a term $m$ 
 \begin{proof}
   We will prove this by exploiting two different naturality squares involving $\ev$.
 
-  Since $M$ is finitely adequate it merely embeds into a finitely presented $R$-module $P$.
+  Since $M$ is finitely adequate, it merely embeds into a finitely presented $R$-module $P$.
   This yields the naturality square
   \begin{center}
     \begin{tikzcd}
@@ -348,11 +353,11 @@ There is a natural map $\ev : M \rightarrow M^{\ast\ast}$ that sends a term $m$ 
       M^{\ast\ast} \ar{r} & P^{\ast\ast}
     \end{tikzcd}
   \end{center}
-  Since the composite $M \rightarrow P^{\ast\ast}$ is a monomorphism, so $\ev : M \rightarrow M^{\ast\ast}$ must also be as well.
+  Since the composite $M \rightarrow P^{\ast\ast}$ is a monomorphism, so $\ev : M \rightarrow M^{\ast\ast}$ must be a monomorphism as well.
 
-  Since $M$ is finitely adequate it is merely covered by a linearly adequate $R$-module $L$.
-  Observe that taking the dual of the cover $M^{\ast} \hookrightarrow L^{\ast}$ is a mono.
-  Taking the dual again yields an epi $L^{\ast\ast} \twoheadrightarrow M^{\ast\ast}$, since $L^{\ast}$ is finitely presented by \Cref{thm:lin-adeq-dual} and \Cref{lem:dual-exact-fp-inc}.
+  Since $M$ is finitely adequate, it is merely covered by a linearly adequate $R$-module $L$.
+  Observe that the dual of the cover, $M^\ast \hookrightarrow L^\ast$, is a monomorphism.
+  Taking the dual again yields an epimorphism $L^{\ast\ast} \twoheadrightarrow M^{\ast\ast}$, since $L^{\ast}$ is finitely presented by \Cref{thm:lin-adeq-dual} and \Cref{lem:dual-exact-fp-inc}.
   This yields the naturality square
   \begin{center}
     \begin{tikzcd}
@@ -360,7 +365,7 @@ There is a natural map $\ev : M \rightarrow M^{\ast\ast}$ that sends a term $m$ 
       L^{\ast\ast} \ar[two heads]{r} & M^{\ast\ast}
     \end{tikzcd}
   \end{center}
-  Since the composite $L \rightarrow M^{\ast\ast}$ is an epi, so has $\ev : M \rightarrow M^{\ast\ast}$ to be.
+  Since the composite $L \rightarrow M^{\ast\ast}$ is an epimorphism, $\ev : M \rightarrow M^{\ast\ast}$ has to be an epimorphism as well.
 \end{proof}
 
 \begin{corollary}\label{cor:dual-equiv}
@@ -396,7 +401,7 @@ Since the category of finitely adequate modules is a subcategory of $\modcat{R}$
 \begin{theorem}\label{thm:fin-adeq-class}
   Let $M$ be an $R$-module.
   The following are equivalent:
-  \begin{enumerate}[(i)]
+  \begin{enumerate}[(i), noitemsep]
     \item $M$ is finitely adequate.
     \item $M$ is the image of a map from a linearly adequate $R$-module to a finitely presented $R$-module.
     \item $M$ is in the smallest abelian subcategory of $\modcat{R}$ that contains all finite free $R$-modules.
@@ -435,9 +440,9 @@ In this subsection we collect some properties of finitely adequate $R$-modules.
 
 \begin{proof}
   Let $M$ be presented by the linearly adequate modules $K \to L \twoheadrightarrow M$. Consider the pullback $L' \coloneq A \times_M L$.
-  Since pullbacks of $R$-modules are taken as pullbacks on the underlying sets, we have that $L'$ is a closed submodule of $L$, and is therefore a scheme by \cite{draft}[Proposition 5.4.3].
-  Therefore the tangent space $\tangent{L'}{0}$ is a linearly adequate module by \cite{diffgeo-article}[Lemma 2.2.8].
-  Since tangential modules are closed under limits \cref{prp:lim-col-ext-tangential}, $L'$ is also tangential, and therefore also linearly adequate.
+  Since pullbacks of $R$-modules are taken as pullbacks on the underlying sets, we have that $L'$ is a closed submodule of $L$, and is therefore a scheme by \cite[Proposition 5.4.3]{draft}.
+  Therefore the tangent space $\tangent{L'}{0}$ is a linearly adequate module by \cite[Lemma 2.2.8]{diffgeo-article}.
+  Since tangential modules are closed under limits \Cref{prp:op-closure-inf-lin-tangential}, $L'$ is also tangential, and therefore also linearly adequate.
   The sequence $K \to L' \twoheadrightarrow A$ presents $A$ as a cokernel of a map of linearly adequate modules, so $A$ is finitely adequate.
 \end{proof}
 
@@ -446,7 +451,7 @@ In this subsection we collect some properties of finitely adequate $R$-modules.
 \end{proposition}
 
 \begin{proof}
-  The proof in \cite{lombardi-quitte}[Chapter IV, 4.12] works, if ``coherent'' is replaced by ``finitely adequate''.
+  The proof in \cite[Chapter IV, 4.12]{lombardi-quitte} works, if ``coherent'' is replaced by ``finitely adequate''.
 
   First we use their proof to show that for finitely presented $R$-modules $M$ and $N$, the $R$-module $\Hom_R(M,N)$ is finitely adequate. Morphisms $f: M \to N$ are presented by squares:
   \begin{center}
@@ -468,32 +473,13 @@ In this subsection we collect some properties of finitely adequate $R$-modules.
   Then we can reuse the same argument to show the statement of the proposition.
 \end{proof}
 
-\rednote{This could maybe move to the appendix.  Not sure if we need it in the final paper.}
-
-\begin{remark}\label{rem:hood-module-prs-surj}
-  If $f : M \rightarrow N$ be an epimorphism of $R$-modules with $M$ linearly adequate
-  and $N$ finitely adequate,
-  it does not follow that $\hood{f,0}{1}$ is surjective.
-  Here is an example.
-
-  Let $\varepsilon : \D(1)$ be arbitrary.
-  Consider the map $\pi_\varepsilon : R \to \varepsilon R$ which multiplies by $\varepsilon$.
-  Note that $R$ is linearly adequate and $\varepsilon R$ is finitely adequate
-  by \Cref{thm:fin-adeq-class}.
-  We will show that $\pi_\varepsilon$ does not satisfy the claim for all $\varepsilon$.
-  Indeed, assume that $\hood{\pi_{\varepsilon}, 0}{1}$ is surjective for all $\varepsilon$.
-  Note that $\pi_\varepsilon(1) = \varepsilon \in \hood{\varepsilon R,0}{1}$ since $(\varepsilon)=0 \to \varepsilon=0$.
-  Let $r:\D(1) = \hood{R,0}{1}$ be a lift of $\varepsilon$. Then $\pi_\varepsilon(r-1)=0$, i.e., $\varepsilon(r-1)=0$.
-  But $r$ is nilpotent, hence $r-1$ invertible and this would mean $\varepsilon = 0$, which cannot be true for all $\varepsilon$.
-\end{remark}
-
 \begin{proposition}\label{prop:hood-faithful}
   The functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$ is faithful when restricted to the subcategory of tangential $R$-modules.
 \end{proposition}
 
 \begin{proof}
   Let $f,g : M \rightrightarrows N$ be two linear maps between tangential $R$-modules with $\hood{f,0}{1} = \hood{g,0}{1}$.
-  Then $d_0f=d_0g$ and by naturality of the map $\can$ the claim follows.
+  Then $df_0=dg_0$ and by naturality of the map $\can$ the claim follows.
   % This is immediate, as the action on the map is given by restriction, i.e. $\hood{f,0}{1} \defeq f\mid_{\hood{\argmhole}{1}}$.
   % To see that it is full, let $M$ and $N$ be finitely adequate $R$-modules, and let $f : \hood{M,0}{1} \rightarrow_\ast \hood{N,0}{1}$ be a pointed map.
   % Because $M$ and $N$ are finitely adequate, we can find linearly adequate $R$-modules $K_1$, $K_2$, $L_1$, and $L_2$ together with presentations $K_1 \rightarrow K_2 \twoheadrightarrow M$ and $L_1 \rightarrow L_2 \twoheadrightarrow N$.
@@ -506,7 +492,7 @@ In this subsection we collect some properties of finitely adequate $R$-modules.
   %     \hood{M,0}{1} \ar{r}{f} & \hood{N,0}{1}
   %   \end{tikzcd}
   % \end{center}
-  % By \cite{diffgeo-article}[Lemma 2.1.4] and \Cref{thm:lin-adeq-dual}, the morphisms in the top square extend to modules.
+  % By \cite[Lemma 2.1.4]{diffgeo-article} and \Cref{thm:lin-adeq-dual}, the morphisms in the top square extend to modules.
   % By taking cokernels we get an induced map
   % \begin{center}
   %   \begin{tikzcd}
@@ -522,14 +508,34 @@ In this subsection we collect some properties of finitely adequate $R$-modules.
   The functor $\hood{\argmhole}{1}$ of the previous proposition is full when restricted even further to linearly adequate $R$-modules \rednote{cite}.
   This, however, already fails on finitely adequate $R$-modules.
 
-  To see this, consider the maps $\alpha_\varepsilon : R\varepsilon \to R\varepsilon, r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$.
+  To see this, consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$.
   These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$.
-  Since for every $n:R\varepsilon$ we have $(\varepsilon=0)\to(n=0)$, we conclude that $R\varepsilon = \hood{R\varepsilon,0}{1}$.
+  Since for every $n:(\varepsilon)$ we have $(\varepsilon=0)\to(n=0)$, we conclude that $(\varepsilon) = \hood{(\varepsilon),0}{1}$.
   Note that $\hood{\argmhole}{1}$ is the identity functor on those $R$-modules that are their own first order neighbourhood.
   Thus it suffices to show that it is not the case that all $\alpha_\varepsilon$ are $R$-linear.
   Assume they are.
   Then $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence also $(r^2-r)\varepsilon=0$ for all $r:R$.
   Using duality and comparing coefficients, we see that $\varepsilon=0$ for every $\varepsilon:\D(1)$, which cannot be.
+\end{remark}
+
+\rednote{The next remark could maybe move to the appendix.  Not sure if we need it in the final paper.}
+
+\begin{remark}\label{rem:hood-module-prs-surj}
+  If $f : M \rightarrow N$ be an epimorphism of $R$-modules with $M$ linearly adequate
+  and $N$ finitely adequate,
+  it does not follow that $\hood{f,0}{1}$ is surjective.
+  Here is an example.
+
+  Let $\varepsilon : \D(1)$ be arbitrary.
+  Consider the map $\pi_\varepsilon : R \to (\varepsilon)$ which sends $r$ to $r \varepsilon$.
+  Note that $R$ is linearly adequate and $(\varepsilon)$ is finitely adequate
+  by \Cref{thm:fin-adeq-class}.
+  We will show that $\pi_\varepsilon$ does not satisfy the claim for all $\varepsilon$.
+  Indeed, assume that $\hood{\pi_{\varepsilon}, 0}{1}$ is surjective for all $\varepsilon$.
+  Note that $\varepsilon \in \hood{(\varepsilon), 0}{1} = (\varepsilon)$.
+  Let $r:\D(1) = \hood{R,0}{1}$ be a lift of $\varepsilon$.
+  Since $\pi_\varepsilon(1) = \varepsilon$, $\pi_\varepsilon(r-1)=0$, i.e., $(r-1)\varepsilon=0$.
+  But $r$ is nilpotent, hence $r-1$ invertible and this would mean $\varepsilon = 0$, which cannot be true for all $\varepsilon$.
 \end{remark}
 
 Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
@@ -608,102 +614,113 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
     \end{tikzcd}
   \end{center}
   where $L$ is finitely adequate and $B \defeq \Ker (p)$ is finitely adequate, merely has a linear solution.
-  Observe that $E$ is tangent-like by \Cref{prp:lim-col-ext-tangent-like}, since $B$ and $L$ are tangent like by \Cref{cor:tangent-like-qc}.
+  Observe that $E$ is tangential by \Cref{prp:op-closure-inf-lin-tangential}, since $B$ and $L$ are tangential by \Cref{prp:adeq-tangential}.
   $B$ is also wqc by \Cref{prp:wqc-adeq}.
   Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}.
 \end{proof}
 
 
-By \cref{rem:tensor-not-closed}, the tensor product $M \otimes N$ is not necessarily linearly adequate when $M$ and $N$ are linearly adequate.
-This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite sums of $N$, and is therefore finitely presented.
-Somewhat surprisingly, the internal hom still has a left adjoint in the subcategory of finitely adequate modules.
-To this end, we will show that the {\bf double dual tensor product} $M \dbldualtensor N \coloneq (M \otimes N)^{\ast\ast}$ is the internal tensor product in $\finadeq$.
-By the hom-tensor adjunction, it is sufficient to prove that $\Hom_R(A \otimes B, C) \simeq \Hom_R(A \dbldualtensor B, C)$ for any finitely adequate modules $A$, $B$, and $C$.
-We will show that any morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
+By \Cref{rem:tensor-not-closed}, the tensor product $M \otimes N$ is not necessarily linearly adequate when $M$ and $N$ are linearly adequate.
+This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely presented.
+Somewhat surprisingly, the internal hom still has a left adjoint in $\finadeq$.
+We will show that the \notion{double dual tensor product} $M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}$ is this left adjoint.
+By the hom-tensor adjunction, there is already a natural isomorphism $\Hom_R(A, \Hom_R(B, C)) \simeq \Hom_R(A \otimes B, C)$.
+Thus, it is sufficient to prove that $\ev_{A \otimes B}^\ast : \Hom_R(A \dbldualtensor B, C) \rightarrow \Hom_R(A \otimes B, C)$ is a natural isomorphism for all finitely adequate modules $A$, $B$, and $C$.
+The composite of these natural isomorphisms yields the natural isomorphism $\Hom_R(A \dbldualtensor B, C) \simeq \Hom_R(A, \Hom_R(B, C))$.
+It is clear that $\ev_{A \otimes B}^\ast$ is natural in all three arguments.
+Now, $\ev_{A \otimes B}^\ast$ is an isomorphism precisely when every morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 
-We can carry out this factorization in the general setting of monads.
-Let $M$ be a monad on $\mathcal{C}$ with multiplication $\mu$ and unit $\eta$.
+We first carry out this factorization in the general setting of monads.
+Let $T$ be a monad on $\mathcal{C}$ with multiplication $\mu$ and unit $\eta$.
+In our situation, $\mathcal{C}$ will be the category of $R$-modules and $T$
+will be the double-dual operation.
 
 \begin{definition}\label{def:monad-reflexive}
   Let $X$ be an object of $\mathcal{C}$. We say that $X$ is:
   \begin{itemize}
-    \item \notion{M-torsionless} if the unit $\eta_X$ is a monomorphism,
-    \item \notion{M-reflexive} if the unit $\eta_X$ is an isomorphism.
+    \item \notion{$T$-torsionless} if the unit $\eta_X$ is a monomorphism,
+    \item \notion{$T$-reflexive} if the unit $\eta_X$ is an isomorphism.
   \end{itemize}
 \end{definition}
 
 \begin{lemma}\label{lem:monad-app-torsionless}
-  Let $X$ be an object of $\mathcal{C}$. Then $MX$ is $M$-torsionless.
+  Let $X$ be an object of $\mathcal{C}$. Then $TX$ is $T$-torsionless.
 \end{lemma}
 
 \begin{proof}
-  By unitality, we have $\mu_X \circ \eta_{MX} = \id_{MX}$, so $\eta_{MX}$ is a split monomorphism.
+  By unitality, we have $\mu_X \circ \eta_{TX} = \id_{TX}$, so $\eta_{TX}$ is a split monomorphism.
 \end{proof}
 
 \begin{definition}\label{def:rel-epi}
-  Let $\mathfrak{C}$ be a class of objects in $\mathcal{C}$. A map $f : X \to Y$ is \textbf{$\mathfrak{C}$-epic} if for any $Z$ in $\mathfrak{C}$ and any morphisms $g, h : Y \to Z$ such that $g \circ f = h \circ f$, we have $g = h$.
+  Let $\mathfrak{C}$ be a class of objects in $\mathcal{C}$. A map $f : X \to Y$ is \textbf{$\mathfrak{C}$-epic} if for every $Z$ in $\mathfrak{C}$ and all morphisms $g, h : Y \to Z$ such that $g \circ f = h \circ f$, we have $g = h$.
 \end{definition}
 
-The monad $M$ is said to be \notion{well-pointed} if $M\eta_X = \eta_{MX}$ for every object $X$ of $\mathcal{C}$.
+The monad $T$ is said to be \notion{well-pointed} if $T\eta_X = \eta_{TX}$ for every object $X$ of $\mathcal{C}$.
 We will not discuss well-pointed monads in this global sense, but rather focus on the local notion.
-For a treatment of well-pointed monads, we refer the reader to Chapter 4.2 of Borceux's book \cite{Borceux_1994_II}.
-The next result is similar to Proposition 4.2.3 of Borceux \cite{Borceux_1994_II}, but we do not assume that $M$ is well-pointed, which forces us to give a different proof.
+For a treatment of well-pointed monads, we refer the reader to Chapter 4.2 of Borceux's book~\cite{Borceux_1994_II}.
+The next result is similar to Proposition 4.2.3 of Borceux~\cite{Borceux_1994_II}, but we do not assume that $T$ is well-pointed, which forces us to give a different proof.
 
 \begin{proposition}\label{prp:monad-well-pointedness-torsionless-epi}
   Let $X$ be an object of $\mathcal{C}$. The following are equivalent:
   \begin{enumerate}[(i), noitemsep]
-    \item $MX$ is $M$-reflexive,
-    \item $M\eta_X = \eta_{MX}$,
-    \item $\eta_X$ is $M$-torsionless-epic.
+    \item $TX$ is $T$-reflexive,
+    \item $T\eta_X = \eta_{TX}$,
+    \item $\eta_X$ is $T$-torsionless-epic.
   \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  (i) $\Rightarrow$ (iii): Assume that $MX$ is $M$-reflexive, i.e. $\eta_{MX}$ is an isomorphism.
-  Then $M\eta_X$ is an isomorphism as well, since both $M\eta_X$ and $\eta_{MX}$ are sections of $\mu_X$.
-  Consider two morphisms $f,g : MX \to Y$, where $Y$ is $M$-torsionless and $f \circ \eta_X = g \circ \eta_X$.
-  By applying $M$ to the equality, we have $Mf \circ M\eta_X = Mg \circ M\eta_X$.
-  Thus $Mf = Mg$ since $M\eta_X$ is a monomorphism.
-  By naturality of $\eta$, we have $\eta_Y \circ f = Mf \circ \eta_{MX} = Mg \circ \eta_{MX} = \eta_Y \circ g$.
-  Since $Y$ is $M$-torsionless, $\eta_Y$ is a monomorphism and thus $f = g$.
+  (i) $\Rightarrow$ (iii): Assume that $TX$ is $T$-reflexive, i.e., that $\eta_{TX}$ is an isomorphism.
+  Then $T\eta_X$ is an isomorphism as well, since $T\eta_X$ is a section of $\mu_X$.
+  Consider two morphisms $f, g : TX \to Y$, where $Y$ is $T$-torsionless and $f \circ \eta_X = g \circ \eta_X$.
+  By applying $T$ to this equality, we obtain $Tf \circ T\eta_X = Tg \circ T\eta_X$.
+  Thus, $Tf = Tg$ since $T\eta_X$ is an epimorphism.
+  By naturality of $\eta$, we have $\eta_Y \circ f = Tf \circ \eta_{TX} = Tg \circ \eta_{TX} = \eta_Y \circ g$.
+  Since $Y$ is $T$-torsionless, $\eta_Y$ is a monomorphism and thus $f = g$.
   
-  (iii) $\Rightarrow$ (ii): By \cref{lem:monad-app-torsionless}, $MX$ is $M$-torsionless.
-  By naturality of $\eta$, we have $\eta_{MX} \circ \eta_X = M\eta_X \circ \eta_X$. 
-  Thus $M\eta_X = \eta_{MX}$, since $\eta_X$ is $M$-torsionless-epic.
+  (iii) $\Rightarrow$ (ii):  Assume that $\eta_X$ is $T$-torsionless-epic.
+  By naturality of $\eta$, we have $\eta_{TX} \circ \eta_X = T\eta_X \circ \eta_X$. 
+  Since $TX$ is $T$-torsionless by \Cref{lem:monad-app-torsionless}, we obtain $T\eta_X = \eta_{TX}$.
   
-  (ii) $\Rightarrow$ (i): By unitality we already know that $\mu_X \circ M\eta_X = \id_{MX}$.
-  By unitality, and using $M\eta_X = \eta_{MX}$, we get $$\id_{M^2X} = \mu_{MX} \circ M\eta_{MX} = \mu_{MX} \circ M^2\eta_{X}$$
+  (ii) $\Rightarrow$ (i): Assume that $T\eta_X = \eta_{TX}$.
+  Our goal is to show that $\eta_{TX}$ is an isomorphism, so it suffices to show that $T\eta_X$ is an isomorphism.
+  By unitality, we have that $\mu_X \circ T\eta_X = \id_{TX}$, so it remains to check the other composite.
+  By unitality and using $T\eta_X = \eta_{TX}$, we have
+  \[
+    \id_{T^2X} = \mu_{TX} \circ T\eta_{TX} = \mu_{TX} \circ T^2\eta_{X} .
+  \]
   From the naturality square of $\mu$ applied to $\eta_X$, we get the following commutative square:
   \begin{center}
     \begin{tikzcd}
-      M^2X \ar{d}{\mu_X} \ar{r}{M^2\eta_{X}} & M^3X \ar{d}{\mu_{MX}} \\
-      MX \ar{r}{M\eta_{X}} & M^2X
+      T^2X \ar{d}{\mu_X} \ar{r}{T^2\eta_{X}} & T^3X \ar{d}{\mu_{TX}} \\
+      TX \ar{r}{T\eta_{X}} & T^2X
     \end{tikzcd}
   \end{center}
-  Combining these two facts, we deduce that $M\eta_X \circ \mu_X = \id_{M^2X}$, so $M\eta_X$ is an isomorphism.  
+  Combining these two facts, we deduce that $T\eta_X \circ \mu_X = \id_{T^2X}$, so $T\eta_X$ is an isomorphism.
 \end{proof}
 
 
 \begin{proposition}\label{prp:monad-factorization}
-  Let $f : X \to Y$ be a morphism in $\mathcal{C}$. Then $f$ factors uniquely through $\eta_X$ if $MX$ is $M$-reflexive and $Y$ is $M$-reflexive.
+  Let $f : X \to Y$ be a morphism in $\mathcal{C}$. Then $f$ factors uniquely through $\eta_X$ if both $TX$ and $Y$ are $T$-reflexive.
 \end{proposition}
 
 \begin{proof}
-  Consider the naturality square of $\eta$ applied to $f$:
+  The naturality square of $\eta$ applied to $f$
 \begin{center}
   \begin{tikzcd}
     X \ar{r}{f} \ar{d}{\eta_X} & Y \ar{d}{\eta_Y}[left]{\simeq} \\
-    M X \ar{r}{M f} & M Y
+    T X \ar{r}{T f} & T Y
   \end{tikzcd}
 \end{center}
-Since $\eta_Y$ is an isomorphism, we have $f = \eta_Y^{-1} \circ M f \circ \eta_X$.
-Now, assume there exist two factorizations of $f$, namely $f', f'' : MX \to Y$, such that $f' \circ \eta_X = f'' \circ \eta_X$.
-By \cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $M$-torsionless-epic, which yields $f' = f''$.
+  yields a factorization $f = \eta_Y^{-1} \circ T f \circ \eta_X$ of $f$ through $\eta_X$.
+  For uniqueness, assume we are given $f', f'' : TX \to Y$ such that $f' \circ \eta_X = f'' \circ \eta_X$.
+  By \Cref{prp:monad-well-pointedness-torsionless-epi}, $\eta_X$ is $T$-torsionless-epic, which yields $f' = f''$.
 \end{proof}
 
-Let $F \vdash G : \mathcal{C} \to \mathcal{D}$ be an adjoint pair, with unit $\eta : \id_{\mathcal{C}} \to GF$ and counit $\epsilon : FG \to \id_{\mathcal{D}}$.
-The associated monad is $M \coloneq GF$, with multiplication $\mu \coloneq G \varepsilon_F$ and unit $\eta$.
-In the case where the monad is induced from an adjunction, we can make a slight improvement to \cref{prp:monad-well-pointedness-torsionless-epi}.
+Now we specialize to a monad coming from an adjoint pair
+$F \dashv G$ with $F : \mathcal{C} \to \mathcal{D}$, $G : \mathcal{D} \to \mathcal{C}$, unit $\eta : \id_{\mathcal{C}} \to GF$ and counit $\varepsilon : FG \to \id_{\mathcal{D}}$.
+The associated monad is $T \coloneq GF$, with multiplication $\mu \coloneq G \varepsilon_F$ and unit $\eta$.
+In the case where the monad is induced from an adjunction, we can make a slight improvement to \Cref{prp:monad-well-pointedness-torsionless-epi}.
 
 \begin{proposition}\label{prp:monad-adjunction-well-pointed-improvement}
   Let $X$ be an object of $\mathcal{C}$.
@@ -712,7 +729,7 @@ In the case where the monad is induced from an adjunction, we can make a slight 
 
 \begin{proof}
   Assume first that $GF\eta_X = \eta_{GFX}$.
-  This part of the proof is completely analogous to the implication (ii) $\Rightarrow$ (i) in \cref{prp:monad-well-pointedness-torsionless-epi}, but we write it out for completeness.
+  This part of the proof is completely analogous to the implication (ii) $\Rightarrow$ (i) in \Cref{prp:monad-well-pointedness-torsionless-epi}, but we write it out for completeness.
   From the triangle identity we know that $\varepsilon_{FX} \circ F\eta_X = \id_{FX}$.
   Consider the naturality square of $\varepsilon$ applied to $F\eta_X$:
   \begin{center}
@@ -730,13 +747,16 @@ In the case where the monad is induced from an adjunction, we can make a slight 
 \end{proof}
 
 Let us apply the above discussion to the contravariant functor $(\argmhole)^\ast$.
-This functor is mutually right adjoint to itself (i.e., self-adjoint), meaning that $\Hom_R(A, B^\ast) \simeq \Hom_R(B,A^\ast)$.
-The unit of this adjunction is given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
-Indeed, this adjunction only has units, since it is contravariant.
-Thus, the associated monad is $M \coloneq (\argmhole)^{\ast\ast}$, with multiplication $\mu_A \coloneq (\ev_{A^\ast})^\ast$.
-A module $X$ is now $M$-torsionless if $\ev_X$ is a monomorphism, which is equivalent to being torsionless in the sense of H. Bass \cite{bass1960}.
-$X$ is $M$-reflexive if $\ev_X$ is an isomorphism, which is equivalent to $X$ being reflexive.
-We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} with the improvement from \cref{prp:monad-adjunction-well-pointed-improvement} to the case of $(\argmhole)^\ast \vdash (\argmhole)^\ast : \modcat{R}^{\op} \to \modcat{R}$.
+This functor is right adjoint to itself, since $\Hom_R(A, B^\ast) \simeq \Hom_R(B,A^\ast)$.
+To fit this into the above discussion, we take $F = (\argmhole)^\ast : \modcat{R} \to \modcat{R}^{\op}$
+and $G = (\argmhole)^\ast : \modcat{R}^{\op} \to \modcat{R}$.
+The unit and counit of this adjunction are both given by the evaluation map $\ev_A : A \to A^{\ast\ast}$.
+Thus the associated monad is $T \coloneq (\argmhole)^{\ast\ast}$, with multiplication $\mu_A \coloneq (\ev_{A^\ast})^\ast$.
+A module $X$ is $T$-reflexive if $\ev_X$ is an isomorphism, which is equivalent to $X$ being reflexive.
+We say that a module $X$ is \notion{torsionless} if it is $T$-torsionless for this $T$,
+i.e., if $\ev_X$ is a monomorphism.
+This is equivalent to being torsionless in the sense of H. Bass~\cite{bass1960} and motivates the name.
+We can specialize \Cref{prp:monad-well-pointedness-torsionless-epi} with the improvement from \Cref{prp:monad-adjunction-well-pointed-improvement} to this situation.
 
 \begin{corollary}\label{cor:dbl-dual-reflexive-iss-dual-reflexive}
   Let $A$ be an $R$-module. The following are equivalent:
@@ -748,14 +768,14 @@ We can specialize \cref{prp:monad-well-pointedness-torsionless-epi} with the imp
 \end{corollary}
 
 \begin{proposition}\label{prp:dbl-dual-tensor-factorization}
-  Let $A$, $B$, and $C$ be finitely adequate modules. Then any map $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
+  Let $A$, $B$, and $C$ be finitely adequate modules. Then every map $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 \end{proposition}
 
 \begin{proof}
-  By \cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if $A \dbldualtensor B$ is reflexive and $C$ is reflexive.
-  The module $C$ is reflexive by \cref{thm:can-dual-iso}, as it is finitely adequate.
-  The double dual tensor product $A \dbldualtensor B$ is reflexive if $(A \otimes B)^\ast$ is reflexive by \cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
-  Now, $(A \otimes B)^* = \Hom_R(A \otimes B, R) \simeq \Hom_R(A, B^\ast)$, which is reflexive by \cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
+  By \Cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if both $A \dbldualtensor B$ and $C$ are reflexive.
+  The module $C$ is reflexive by \Cref{thm:can-dual-iso}, as it is finitely adequate.
+  The double dual tensor product $A \dbldualtensor B$ is reflexive if $(A \otimes B)^\ast$ is reflexive by \Cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
+  Now, $(A \otimes B)^\ast = \Hom_R(A \otimes B, R) \simeq \Hom_R(A, B^\ast)$, which is reflexive by \Cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
 \end{proof}
 
 \begin{corollary}\label{cor:dbl-dual-tensor-adjunction}
