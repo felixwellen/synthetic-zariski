@@ -149,8 +149,13 @@ Our next counterexample follows the same strategy as the preceding one.
   Thus, it follows that $R^{\lnot D(r)}$ is not weakly quasi-coherent for all $r$, and so it cannot be finitely adequate either by \Cref{prp:wqc-adeq}.
 \end{counterexample}
 
-For every proposition $U$, we define the type $R_U \defeq \sigmatype{x : R} (x = 0) \lor U$.
-We first show that these modules are tangential, and for this we need a lemma.
+We will now consider two more classes of examples.
+We will see that all three classes introduced are tightly related to each other.
+Let $U$ be a proposition.
+We define the types $K^U \defeq \sigmatype{x:R}(U \to (x = 0))$ and $R_U \defeq \sigmatype{x : R} (x = 0) \lor U$.
+Observe that $K^U$ is the kernel of the map $\mathrm{const} : R \to R^U$.
+Thus $K^U$ is tangential by \Cref{prp:op-closure-inf-lin-tangential}.
+To show that $R_U$ is tangential, we need the following lemma.
 
 \begin{lemma}\label{lem:forall-distributes-over-or}
 Let $X$ be a projective type such that every map to $\Bool$ is constant.
@@ -171,7 +176,7 @@ This implies that we have either $\prod_x P(x)$ or $\prod_x Q(x)$, as required.
 \end{proof}
 
 \begin{proposition}\label{prp:R_U-tangential}
-For any proposition $U$, the modules $R_U$ and $R/R_U$ are tangential.
+For any proposition $U$, the modules $R_U$ are tangential.
 \end{proposition}
 
 \begin{proof}
@@ -208,43 +213,174 @@ It follows from \Cref{prp:op-closure-inf-lin-tangential} that $R/R_U$ is tangent
 
 % This is almost entirely due to Claude, with a bit of guidance from jdc.
 % The writing has been edited.
-\begin{counterexample}\label{cex:R_Dr-not-wqc}
-  We want to show that $R_{D(r)}$ can not be weakly quasi-coherent for all $r : R$.
-  Indeed, if it were, then the quotient $\quot{R}{R_{D(r)}}$ would also be weakly quasi-coherent, since $R$ is weakly quasi-coherent and the quotient of a weakly quasi-coherent module by a weakly quasi-coherent submodule is weakly quasi-coherent \cite[Proposition 7.1.13]{draft}.
-  Thus, it is sufficient to show that it can not be the case that $\quot{R}{R_{D(r)}}$ is weakly quasi-coherent for all $r : R$.
+% \begin{counterexample}\label{cex:R_Dr-not-wqc}
+%   We want to show that $R_{D(r)}$ can not be weakly quasi-coherent for all $r : R$.
+%   Indeed, if it were, then the quotient $\quot{R}{R_{D(r)}}$ would also be weakly quasi-coherent, since $R$ is weakly quasi-coherent and the quotient of a weakly quasi-coherent module by a weakly quasi-coherent submodule is weakly quasi-coherent \cite[Proposition 7.1.13]{draft}.
+%   Thus, it is sufficient to show that it can not be the case that $\quot{R}{R_{D(r)}}$ is weakly quasi-coherent for all $r : R$.
 
-  Now, for the sake of contradiction, assume that $R/R_{D(r)}$ is weakly quasi-coherent for every $r : R$.
-  Fix $r : R$, and recall that $D(r) \defeq (r \neq 0)$ is a proposition and that
-  $R_{D(r)} = \sum_{x : R} (x = 0) \lor (r \neq 0)$.
+%   Now, for the sake of contradiction, assume that $R/R_{D(r)}$ is weakly quasi-coherent for every $r : R$.
+%   Fix $r : R$, and recall that $D(r) \defeq (r \neq 0)$ is a proposition and that
+%   $R_{D(r)} = \sum_{x : R} (x = 0) \lor (r \neq 0)$.
 
-  By weak quasi-coherence, the canonical map
-  $(R/R_{D(r)})[1/r] \to (R/R_{D(r)})^{D(r)}$ is an equivalence by \Cref{def:quasi-coherent}.
-  We claim that $(R/R_{D(r)})^{D(r)} = 0$.  Indeed, if $r \neq 0$, then the
-  predicate $(x = 0) \lor (r \neq 0)$ holds for every $x : R$, so $R_{D(r)} = R$ and
-  hence $R/R_{D(r)} = 0$.  This implies $(r \neq 0) \to (R/R_{D(r)} = 0)$,
-  and so every element of $(R/R_{D(r)})^{D(r)}$ is zero.
+%   By weak quasi-coherence, the canonical map
+%   $(R/R_{D(r)})[1/r] \to (R/R_{D(r)})^{D(r)}$ is an equivalence by \Cref{def:quasi-coherent}.
+%   We claim that $(R/R_{D(r)})^{D(r)} = 0$.  Indeed, if $r \neq 0$, then the
+%   predicate $(x = 0) \lor (r \neq 0)$ holds for every $x : R$, so $R_{D(r)} = R$ and
+%   hence $R/R_{D(r)} = 0$.  This implies $(r \neq 0) \to (R/R_{D(r)} = 0)$,
+%   and so every element of $(R/R_{D(r)})^{D(r)}$ is zero.
 
-  It follows that $(R/R_{D(r)})[1/r] = 0$.
-  In particular, the class of $1$ is annihilated by a power of
-  $r$: there merely exists $k : \N$ with $r^k \in R_{D(r)}$, that is,
-  $(r^k = 0) \lor (r \neq 0)$.
-  This is equivalent to $(\exists k.\ r^k = 0) \lor (r \neq 0)$.
-  Since any nilpotent element satisfies $\lnot\lnot(r = 0)$, and $r \neq 0$ is equivalent to $\lnot(r = 0)$, we obtain $\lnot\lnot(r = 0) \lor \lnot(r = 0)$.
-  As $r : R$ was arbitrary, we deduce that
-  $\prod_{r : R} \big(\lnot\lnot(r = 0) \lor \lnot(r = 0)\big)$, a form of weak excluded
-  middle.  The two disjuncts are mutually exclusive,
-  so the truncation in $\lor$ can be dropped.  Recording which disjunct holds defines
-  a function $\chi : R \to \Bool$, which takes different values at $r = 0$ and $r = 1$.
-  Thus $\chi$ is not constant,
-  which contradicts the connectedness of $R$ \cite[Proposition 1.2.2]{topology-draft}.
-\end{counterexample}
+%   It follows that $(R/R_{D(r)})[1/r] = 0$.
+%   In particular, the class of $1$ is annihilated by a power of
+%   $r$: there merely exists $k : \N$ with $r^k \in R_{D(r)}$, that is,
+%   $(r^k = 0) \lor (r \neq 0)$.
+%   This is equivalent to $(\exists k.\ r^k = 0) \lor (r \neq 0)$.
+%   Since any nilpotent element satisfies $\lnot\lnot(r = 0)$, and $r \neq 0$ is equivalent to $\lnot(r = 0)$, we obtain $\lnot\lnot(r = 0) \lor \lnot(r = 0)$.
+%   As $r : R$ was arbitrary, we deduce that
+%   $\prod_{r : R} \big(\lnot\lnot(r = 0) \lor \lnot(r = 0)\big)$, a form of weak excluded
+%   middle.  The two disjuncts are mutually exclusive,
+%   so the truncation in $\lor$ can be dropped.  Recording which disjunct holds defines
+%   a function $\chi : R \to \Bool$, which takes different values at $r = 0$ and $r = 1$.
+%   Thus $\chi$ is not constant,
+%   which contradicts the connectedness of $R$ \cite[Proposition 1.2.2]{topology-draft}.
+% \end{counterexample}
 
 \begin{remark}\label{rmk:R^U-R_U-not-not-fin-adeq}
   Let $U$ be a proposition.
-  The modules $R^U$ and $R_U$, which provide the counterexamples considered above, are not-not finitely adequate.
+  The modules $R^U$, $K^U$, and $R_U$ are not-not finitely adequate.
   Indeed, these modules are finitely adequate when $U$ is either true or false.
   Since $\lnot\lnot(U \lor \lnot U)$ holds, the claim follows by double-negation elimination.
 \end{remark}
+
+\begin{example}
+  The module $K^{V(r)}$ is finitely adequate for any $r : R$.
+  By \Cref{ex:exp-Vr-fin-adeq}, $R^{V(r)} = \quot{R}{r}$.
+  Thus, $K^{V(r)} = \ideal{r}$, which is finitely adequate by \Cref{ex:fin-gen-ideal}.
+\end{example}
+
+Observe that the modules $R_U$ and $K^U$ are ideals of $R$ for every proposition $U$.
+We can use this to compute duals of these and related modules, which will be very useful going forward.
+
+\begin{lemma}\label{lem:ann-R_U-K^U}
+  Let $U$ be a proposition.
+  Then $\Ann(R_U) = K^U$.
+\end{lemma}
+
+\begin{proof}
+  We can define a map $\Ann(R_U) \to K^U$ given by $x \mapsto x$.
+  To fill out the proof that this map is well-defined, we will assume that $U$ holds, and the goal is to show that $x = 0$.
+  If $U$ holds, then $R_U = R$.
+  Thus, $\Ann(R_U) = \Ann(R) = 0$, meaning $x = 0$ as desired.
+
+  This is an injective linear map by definition, so to see that it defines an isomorphism, it suffices to check that it is surjective.
+  Let $x : K^U$ and $y : R_U$.
+  We need to show that $xy = 0$.
+  Since we're proving a proposition, we can assume that either $y = 0$ or $U$ holds by definition of $R_U$.
+  If $y = 0$ it is clear that $xy = 0$.
+  If $U$ holds, then $x = 0$, so it is again clear that $xy = 0$.
+\end{proof}
+
+\begin{lemma}\label{lem:ann-dual-quotient}
+  Let $I$ be an ideal of $R$.
+  Then $\Ann(I) = \quot{R}{I}^*$.
+\end{lemma}
+
+\begin{proof}
+  Let $f : \quot{R}{I} \to R$ be a linear map.
+  Then $f$ is uniquely determined by $f(\bar{1}) = a : R$.
+  By linearity we get that $ay = f(\bar{y}) = 0$ for any $y : I$.
+  Thus $a : \Ann(I)$.
+
+  Conversely, let $a : \Ann(I)$.
+  Define the map $f' \defeq (\argmhole) \cdot a : R \to R$.
+  Since $f'(y) = ay = 0$ for any $y : I$, $f'$ factors through $\quot{R}{I}$ as the map $f : \quot{R}{I} \to R$.
+
+  It is clear that these two operations are inverses to each other.
+  This proves that $\Ann(I) = \quot{R}{I}^*$.
+\end{proof}
+
+For the next counterexample, we will use the above observations to show the module $R_{V(r)}$ is not finitely adequate for any $r : R$.
+
+\begin{counterexample}\label{cex:R_V(r)-not-reflexive}
+  To show that $R_{V(r)}$ is not finitely adequate for all $r : R$, we will compute the double dual of $\quot{R}{R_{V(r)}}$.
+  By \Cref{lem:ann-dual-quotient}, we have $\Ann(R_{V(r)}) = (\quot{R}{R_{V(r)}})^*$.
+  Furthermore, by \Cref{lem:ann-R_U-K^U}, we have $\Ann(R_{V(r)}) = K^{V(r)} = \ideal{r}$.
+  Since $\ideal{r}$ is self-dual, we get that $(\quot{R}{R_{V(r)}})^{\ast\ast} = \ideal{r}$.
+
+  For the sake of contradiction, suppose that $R_{V(r)}$ is finitely adequate.
+  Then $\quot{R}{R_{V(r)}}$ is finitely adequate by \Cref{prp:fin-adeq-cok-closure}.
+  Since taking duals is an anti-equivalence on finitely adequate modules (\Cref{cor:dual-equiv}), we get that $(R_{V(r)})^{\ast\ast} = \Ann(r)$.
+  By assumption, $R_{V(r)}$ is finitely adequate for any $r : R$, so the evaluation map $\ev : R_{V(r)} \to \Ann(r)$ is an equivalence.
+  This means that for any $x, r : R$ such that $xr = 0$, then either $x = 0$ or $r = 0$.
+  But the ring $R$ is not an integral domain \rednote{Citation}, which gives us the desired contradiction.
+\end{counterexample}
+
+From the counterexample established below, we shall derive the remaining counterexamples for these classes of modules.
+The module $K^{\lnot D(r)}$ is the kernel of the localization map into the $r$-adic completion, $R \to \hat{R_r}$.
+Thus we have $K^{\neg D(r)} = \bigcap_k \ideal{r^k}$.
+This next counterexample will use the same strategy as \Cref{cex:exp-Dr-not-fin-adeq}.
+
+% This counterexample is made with help of Gemini.
+
+\begin{counterexample}\label{cex:K-not-Dr-not-wqc}
+  It is impossible to prove that $K^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
+  In particular, it is impossible to prove that $K^{\lnot D(r)}$ is finitely adequate for every $r : R$.
+
+  Suppose that for every $r : R$, the module $K^{\lnot D(r)} = \bigcap_k \ideal{r^k}$ is weakly quasi-coherent.
+  Then for any $r : R$, the canonical map
+  \[
+    \phi : (K^{\lnot D(r)})[1/r] \to (K^{\lnot D(r)})^{D(r)}
+  \]
+  is an equivalence.
+  Assuming $D(r)$, we get that $K^{\neg D(r)} = R$ since $R^{\neg D(r)} = 0$ whenever $r$ is invertible.
+  Thus, $(K^{\lnot D(r)})^{D(r)} \cong R^{D(r)} = R[1/r]$.
+  
+  Since $\phi$ is an equivalence, the element $1 \in R[1/r]$ must have a preimage under $\phi$, which is represented by some fraction $a/r^n$ for $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
+  The relation $\phi(a/r^n) = 1$ in $R[1/r]$ means there exists $k : \mathbb{N}$ such that $r^k(a - r^n) = 0$, so $r^k a = r^{k+n}$.
+  Since $a \in K^{\lnot D(r)} = \bigcap_m \ideal{r^m}$, we can write $a = r^{k+n+1}b$ for some $b : R$.
+  Substituting this back yields $r^{2k+n+1}b = r^{k+n}$.
+  Letting $N \defeq k+n$, we have $r^N(r^{k+1}b - 1) = 0$.
+  Since $R$ is local and $r^{k+1}b + (1 - r^{k+1}b) = 1$, we constructively have $(1 - r^{k+1}b \text{ is invertible}) \lor (r^{k+1}b \text{ is invertible})$.
+  If $1 - r^{k+1}b$ is invertible, then $r^N = 0$, so $r$ is nilpotent.
+  If $r^{k+1}b$ is invertible, then $r$ is invertible.
+  This gives $(r \text{ is nilpotent}) \lor (r \text{ is invertible})$ for every $r : R$, which contradicts the connectedness of $R$.
+\end{counterexample}
+
+Since we can express annihilators as duals, this allows us to transfer some properties of finitely adequate modules along annihilators.
+This is how we will use the above counterexample to derive more.
+
+\begin{proposition}\label{prp:ann-fin-adeq}
+  Let $I$ be a finitely adequate ideal of $R$.
+  Then $\Ann{I}$ is a finitely adequate ideal as well.
+\end{proposition}
+
+\begin{proof}
+  By \Cref{prp:fin-adeq-cok-closure}, \quot{R}{I} is finitely adequate.
+  And by \Cref{cor:dual-equiv}, $\Ann{I} = \quot{R}{I}^*$ is finitely adequate.
+\end{proof}
+
+\begin{remark}\label{rem:ann-for-cex}
+  By the contrapositive of \Cref{prp:ann-fin-adeq}, if $\Ann{I}$ is not finitely adequate, then we can deduce that $I$ is not finitely adequate.
+\end{remark}
+
+\begin{counterexample}\label{cex:R_not-Dr-not-fin-adeq}
+  The module $R_{\neg D(r)}$ is not finitely adequate for all $r : R$.
+  By \Cref{lem:ann-R_U-K^U} we have $\Ann(R_{\neg D(r)}) = K^{\neg D(r)}$.
+  By \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $R_{\neg D(r)}$ cannot be finitely adequate for all $r : R$.
+\end{counterexample}
+
+\begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
+  The module $K^{D(r)}$ is not finitely adequate for all $r : R$.
+  Since $R^{D(r)} = R[r^{-1}]$, we get that $K^{D(r)} = \bigcup_k \Ann(r^k)$.
+  By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$.
+  Moreover, it is clear that taking annihilator ideals of unions, is the same as the intersection of the annihilators.
+  Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \ideal{r^k}) = \bigcap_k \Ann(r^k) = \bigcap_k \ideal{r^k} = K^{\neg D(r)}$.
+  Now, by \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $K^{D(r)}$ cannot be finitely adequate for all $r : R$.
+\end{counterexample}
+
+\begin{counterexample}\label{cex:R_Dr-not-fin-adeq}
+  The module $R_{D(r)}$ is not finitely adequate for all $r : R$.
+  This is precisely because of \Cref{lem:ann-R_U-K^U}, \Cref{rem:ann-for-cex}, and \Cref{cex:K^Dr-not-fin-adeq}.
+\end{counterexample}
 
 We conclude this section by presenting examples of reflexive modules that are not finitely adequate.
 
