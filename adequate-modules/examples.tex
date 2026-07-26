@@ -42,8 +42,8 @@ Thus, at most one of $M$ and $N$ can be tangential.
 \end{counterexample}
 
 \begin{counterexample}\label{cex:hood-p-not-tangential}
-  Suppose that $R$ is a ring with positive characteristic $p > 0$. 
-  Then we have a chain of proper inclusions $\hood{R,0}{1} \subset \hood{R,0}{p-1} \subset R$. 
+  Suppose that $R$ is a ring with positive characteristic $p > 0$.
+  Then we have a chain of proper inclusions $\hood{R,0}{1} \subset \hood{R,0}{p-1} \subset R$.
   Therefore, $\hood{R,0}{p-1}$ cannot be tangential, since $R$ is.
 \end{counterexample}
 
@@ -132,7 +132,7 @@ Rather than constructing a specific counterexample, the next result shows that $
 
 For the third family, we consider $R^{\neg D(r)}$.
 First, observe that, by \cite[Proposition 2.2.3]{draft}, $\neg D(r)$ is the proposition that $r$ is nilpotent.
-Equivalently, $\neg D(r) = \bigcup_{n : \N} (r^n = 0)$. 
+Equivalently, $\neg D(r) = \bigcup_{n : \N} (r^n = 0)$.
 Using continuity of the exponential and duality, we obtain $R^{\lnot D(r)} = R^{\bigcup_{k : \N}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k \quot{R}{\ideal{r^k}} = \widehat{R_r}$; i.e., $R^{\neg D(r)}$ is the $r$-adic completion of $R$.
 If $r$ is either invertible or nilpotent, then $\widehat{R_r}$ is finitely adequate.
 Our next counterexample follows the same strategy as the preceding one.
@@ -333,7 +333,7 @@ This next counterexample will use the same strategy as \Cref{cex:exp-Dr-not-fin-
   is an equivalence.
   Assuming $D(r)$, we get that $K^{\neg D(r)} = R$ since $R^{\neg D(r)} = 0$ whenever $r$ is invertible.
   Thus, $(K^{\lnot D(r)})^{D(r)} \cong R^{D(r)} = R[1/r]$.
-  
+
   Since $\phi$ is an equivalence, the element $1 \in R[1/r]$ must have a preimage under $\phi$, which is represented by some fraction $a/r^n$ for $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
   The relation $\phi(a/r^n) = 1$ in $R[1/r]$ means there exists $k : \mathbb{N}$ such that $r^k(a - r^n) = 0$, so $r^k a = r^{k+n}$.
   Since $a \in K^{\lnot D(r)} = \bigcap_m \ideal{r^m}$, we can write $a = r^{k+n+1}b$ for some $b : R$.
@@ -425,7 +425,7 @@ While Specker's proof uses prime factorization in $\Z$, we replace this with a n
     f(r) = a_0 + a_1r + a_2r^2 + \dots + a_{N-1}r^{N-1} + r^N\lambda(0,\dots,0,1,r,r^2,\dots)\rlap{,}
   \]
   where exactly the first $N$ entries in $\lambda(0,\dots,0,1,r,r^2,\dots)$ are zero.
-  Comparing coefficients, we see that $a_N=0$ for $N \geq d+2$, hence $a$ is an element of $R[x]$.
+  Comparing coefficients, we see that $a_N=0$ for $N \geq d+1$, hence $a$ is an element of $R[x]$.
   So it remains to check that $\varphi : \equiv \lambda - \langle a,- \rangle = 0$.
   To this end, let $b : R[[x]]$ be arbitrary and set
   \[
@@ -468,14 +468,107 @@ This shows that the double dual tensor is the appropriate left adjoint to consid
   Then the canonical map
   \[
     \Gamma(X,\mathcal F) \otimes_{R^X}\Gamma(X,\mathcal G) \to \Gamma(X,\mathcal F \otimes \mathcal G), \;\;
-    f \otimes g \mapsto (x \mapsto f_x \otimes g_x)
+    f \otimes g \mapsto (x \mapsto f(x) \otimes g(x))
   \]
   is an $R^X$-linear isomorphism.
 \end{lemma}
 
+\begin{remark}
+  In preparation of the proof we state two observations.
+  \begin{enumerate}
+    \item[i)] Both $\Gamma(X, \mc F \otimes \mc G)$ and $\Gamma(X, \mc F) \otimes_{R^X} \Gamma(X, \mc G)$ admit evaluation maps to $\mc F_x \otimes \mc G_x$, such that the triangle
+    \[
+      \begin{tikzcd}[column sep=tiny]
+        \Gamma(X, \mc F) \otimes_{R^X} \Gamma(X,\mc G) \ar[dr, "\ev_x \otimes \ev_x"'] \ar[rr, "\vartheta_X"] && \Gamma(X,\mc F \otimes \mc G) \ar[dl, "\ev_x"] \\
+      & \mc F_x \otimes \mc G_x &
+    \end{tikzcd}
+    \]
+    commutes.
+    We will denote both of these simply by $h \mapsto h(x)$.
+    It is however worthwhile to understand that, at least as of now, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective (resp. surjective).
+
+    \item[ii)] Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
+    Then for a tensor $k = \sum_{j=1}^N m_j \otimes n_j : M \otimes_A N$ we have $k =_{M \otimes_A N} 0$ if and only if there merely exists a finitely generated submodule $M' \subseteq M$ such that $m_1,\dots,m_N \in M'$ and $k =_{M' \otimes_A N} 0$.
+    Note that $M'$ might be larger than $\langle m_1,\dots,m_N \rangle$.
+\end{enumerate}
+\end{remark}
+
 \begin{proof}
-  \rednote{TODO.}
+  Say $X = \Spec A$ and let $a:A$ be arbitrary.
+  As $\mc F$ and $\mc G$ are weakly quasi-coherent, we use \cite[Lemma 7.1.8]{draft} to see that the left vertical map in the commutative square
+  \[
+  \begin{tikzcd}[column sep=large]
+    \Gamma(X,\mc F)[a^{-1}] \otimes_{A[a^{-1}]} \Gamma(X,\mc G)[a^{-1}] \ar[d, "\simeq"]\ar[r, "\vartheta_X{[a^{-1}]}"]
+    &
+    \Gamma(X, \mc F \otimes \mc G)[a^{-1}] \ar[d]
+    \\
+    \Gamma(D(a),\mc F) \otimes_{R^{D(a)}}\Gamma(D(a),\mc G) \ar[r, "\vartheta_{D(a)}"]
+    &
+    \Gamma(D(a),\mc F \otimes \mc G)
+  \end{tikzcd}
+  \]
+  is an isomorphism.
+
+  We show injectivity of $\vartheta_X$ first.
+  Let $k:\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$ such that $\vartheta_X(k)=0$.
+  An element of a module being zero is a local property.
+  Thus it is enough to find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ such that the image of $k$ in $(\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G))[a_i^{-1}]$ is $0$.
+  Because of the square above, it is then enough to verify $k|_{D(a_i)}=0$.
+  It is for this reason that in the following we may shrink $X$ whenever applying Zariski-local choice, instead of burdening notation by refining affine covers every time.
+  In a first step we restrict to the case where $\mc F$ is pointwise finitely generated.
+  Without loss of generality we may assume that we have a surjection $\pi : \mc O_X^n \to \mc F$ of bundles, whose kernel we denote by $\iota : \mc K \to \mc O_X^n$.
+  Since $X$ is affine and all bundles are weakly quasi-coherent, by \cite[Theorem 7.3.6]{draft} we get an induced exact sequence $0 \to \Gamma(X,\mc K) \to A^n \to \Gamma(X,\mc F) \to 0$ which yields a commutative diagram
+  \[
+  \begin{tikzcd}
+    \Gamma(X,\mc K) \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\iota) \otimes 1"] & A^n \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\pi) \otimes 1"]\ar[d, "\vartheta'_X", "\simeq"'] & \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G) \ar[r]\ar[d, "\vartheta_X"] & 0 \\
+    & \Gamma(X, \mc O_X^n \otimes \mc G) \ar[r, "\Gamma(\pi \otimes 1)"]\ar[d] & \Gamma(X, \mc F \otimes \mc G) \ar[d] \\
+    \mc K_x \otimes \mc G_x \ar[r, "\iota_x \otimes 1"] & R^n \otimes \mc G_x \ar[r, "\pi_x \otimes 1"] & \mc F_x \otimes \mc G_x \ar[r] & 0
+  \end{tikzcd}
+  \]
+  with exact top and bottom row and where $\vartheta'_X$ is defined just like $\vartheta_X$.
+  The added benefit is however, that we easily see that $\vartheta'_X$ is an isomorphism.
+  Now choose a preimage $h : A^n \otimes_A \Gamma(X,\mc G)$ of $k$ along $\Gamma(\pi) \otimes 1$.
+  Then $\Gamma(\pi \otimes 1)(\vartheta'_X(h)) = \vartheta_X(k) = 0$ and thus also $(\pi_x \otimes 1)(\vartheta'_X(h)(x)) = 0$.
+  We thus merely find a preimage of $\vartheta'_X(h)(x)$ in $\mc K_x \otimes \mc G_x$ that is already given by a finite sum of elementary tensors.
+  Applying Zariski-local choice and then boundedness, we may shrink $X$ and assume that there are $k_1,\dots,k_N : \Gamma(X,\mc K)$ and $g_1,\dots,g_N : \Gamma(X,\mc G)$ such that $\vartheta'_X(h) = \vartheta'_X(\sum_{j=1}^N\iota(k_j) \otimes g_j)$.
+  As $\vartheta'_X$ is injective, we conclude that $h = \sum_{j=1}^N\iota(k_j) \otimes g_j$.
+  Consequently, we have $k = (\Gamma(\pi) \otimes 1)(h) = 0$.
+
+  Next let $\mc F$ be arbitrary.
+  We write $k = \sum_{j=1}^N f_j \otimes g_j$ for $f_j : \Gamma(X,\mc F)$ and $g_j : \Gamma(X,\mc G)$ such that $\sum_jf_j(x) \otimes g_j(x) =_{\mc F_x \otimes \mc G_x} 0$ for every $x:X$.
+  Hence there merely is a finitely generated submodule $\mc F'_x \subseteq \mc F_x$ such that $f_j(x) \in \mc F'_x$ and $\sum_jf_j(x) \otimes g_j(x) =_{\mc F'_x \otimes \mc G_x} 0$.
+  Shrinking $X$ we thus may assume that we have a pointwise finitely generated subbundle $\mc F' \subseteq \mc F$ such that $f_j \in \Gamma(X,\mc F')$.
+  Hence also $k' :\equiv \sum_j f_j \otimes g_j \in \Gamma(X, \mc F') \otimes_A \Gamma(X,\mc G)$.
+  Note that $\mc F'$ is again weakly quasi-coherent.
+  Consider the commutative square
+  \[
+  \begin{tikzcd}
+    \Gamma(X,\mc F') \otimes_A \Gamma(X,\mc G) \ar[d, "\vartheta''_X"] \ar[r] & \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G) \ar[d, "\vartheta_X"] \\
+    \Gamma(X, \mc F' \otimes \mc G) \ar[r] & \Gamma(X, \mc F \otimes \mc G)
+  \end{tikzcd}
+  \]
+  where $\vartheta''_X$ is the obvious map.
+  We know that it is an injection by the preceding case.
+  The lower horizontal map need not be injective.
+  However, by construction of $\mc F'$, it is so for the particular element $\vartheta''_X(k')$.
+  Hence $\vartheta_X(k) = 0$ implies $\vartheta''_X(k') = 0$ and then $k' = 0$.
+  Therefore also $k =_{\Gamma(X,\mc F) \otimes \Gamma(X,\mc G)} 0$.
+
+  Lastly we verify surjectivity.
+  Let $s:\Gamma(X,\mc F \otimes \mc G)$.
+  We know that $s(x) : \mc F_x \otimes \mc G_x$ merely is a finite sum of elementary tensors.
+  Applying Zariski-local choice with boundedness as per usual, we find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ together with sections $h_i : \Gamma(D(a_i), \mc F) \otimes_{R^{D(a_i)}} \Gamma(D(a_i),\mc G)$ such that $s|_{D(a_i)} = \vartheta_{D(a_i)}(h_i)$.
+  As we already know that $\vartheta_{D(a_ia_j)}$ is injective, we see $h_i|_{D(a_ia_j)} = h_j|_{D(a_ia_j)}$.
+  Using the first commutative square constructed in this proof, we can glue these to obtain a section $h : \Gamma(X, \mc F) \otimes_{R^{X}} \Gamma(X,\mc G)$ with $\vartheta_X(h) = s$.
 \end{proof}
+
+Applying this lemma to affine schemes of the form $D(r)$, we obtain the following.
+
+\begin{corollary}
+  \label{wqc-closed-under-tensorprod}
+  If $M$ and $N$ are weakly quasi-coherent $R$-modules, then so is $M \otimes N$.
+  $\hfill\square$
+\end{corollary}
 
 \begin{counterexample}\label{cex:tensor-not-closed}
   Finitely adequate modules are not closed under tensor products.
