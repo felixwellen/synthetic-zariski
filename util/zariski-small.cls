@@ -14,12 +14,8 @@
     \newtheorem{corollary}[theorem]{Corollary}
     \newtheorem{proposition}[theorem]{Proposition}
 
-%Numbered axioms
 \theoremstyle{break}
     \newtheorem{axiomNum}{Axiom}
-
-\theoremstyle{nonumberplain}
-\theoremstyle{break}
     \newtheorem*{axiom}{Axiom}
 
 \newcommand{\axiomref}[1]{\nameref{#1}}
