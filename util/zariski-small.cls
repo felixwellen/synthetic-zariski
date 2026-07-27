@@ -13,6 +13,7 @@
     \newtheorem{conjecture}[theorem]{Conjecture}
     \newtheorem{remark}[theorem]{Remark}
     \newtheorem{example}[theorem]{Example}
+    \newtheorem{counterexample}[theorem]{Counterexample}
     \newtheorem{corollary}[theorem]{Corollary}
     \newtheorem{proposition}[theorem]{Proposition}
 
