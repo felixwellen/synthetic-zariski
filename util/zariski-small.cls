@@ -1,6 +1,8 @@
 % Zariski-style for smaller drafts, with only one level "1.2" numbering instead of three "1.2.3"
 \LoadClass{../util/zariski-base}
 
+\theoremseparator{.}
+
 \theorembodyfont{}
 \theoremstyle{break}
     \newtheorem{theorem}{Theorem}[section]

@@ -1,5 +1,7 @@
 \LoadClass{../util/zariski-base}
 
+\theoremseparator{.}
+
 \theorembodyfont{}
 \theoremstyle{break}
     \newtheorem{theorem}{Theorem}[subsection]
