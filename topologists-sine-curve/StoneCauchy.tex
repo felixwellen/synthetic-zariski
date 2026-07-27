@@ -4,6 +4,14 @@ The goal for this file (StoneCauchy.tex) is to give the equivalent in SSD of the
 \end{theorem}
 I have a proof where we first approach each element of $X$ with a sequence from $q$, and work with sequences instead. I feel that should not be the final version of the proof though, which should not work with sequences (I don't like it as it uses choice, which leads to some arbitrary mere existence statement one has to work around, which is not very elegant), but with general Cauchy filters. 
 
+\begin{remark}
+  \item Recall that $B_\infty$ is given by the free Boolean algebra on the generators $(g_n)_{n:\N}$ quotiented by $(g_n \wedge g_m)_{n\neq m}$. The spectrum of $B_\infty$ is called $\Noo$, which can thus be identified with binary sequences hitting $1$ at most once. 
+  \item Recall also there is a map $\mathbb N \to \Noo$ sending $i$ to the sequence hitting $1$ at $i$, there is also the constant $0$ sequence in $\Noo$, denoted by $\infty$. 
+  \item Note that for $n\neq m$, it follows that $(\neg g_n) \wedge g_m = g_m$ and $(\neg g_n) \vee (\neg g_m) = 1$. It follows from a conjunctive normal form argument that any term in $B_\infty$ can be written either as $\bigvee_{i\in I_0} g_i$ or as $\bigwedge_{i\in I_0} \neg g_i$, such terms are called finite and cofinite respectively. We can construct an isomorphism between $B_\infty$ and the boolean algebra of finite/cofinite subsets of $\mathbb N$, sending each $g_n$ to $\{n\}$. 
+  \item Note that under this isomorphism, any term from $\mathbb N$, say $n$ sends a set $D$ to $1$ iff $n\in D$, and $\infty$ sends $D$ to $1$ iff it is cofinite. 
+\end{remark}
+
+
 \begin{lemma}
   Let $S:\Stone$ and $x:\mathbb N \to S$ be such that %(relatively uniformly continuous w.r.t. \Noo)
   for all $E\subseteq S \times S$ entourage there merely exists some $N:\mathbb N$ such that whenever $n,m\geq N$, we have $(x_n,x_m) \in E$. Then we can construct an extension $y:\Noo \to S$. 
@@ -55,7 +63,7 @@ I have a proof where we first approach each element of $X$ with a sequence from 
 \begin{proof}
   Clearly \ref{Lcofinal} and \ref{Lcofinite} are equivalent. 
   For the converse direction, note that for $y:\Noo \to S$ dual to $f:2^S\to N_{(co)fin}$, 
-  we have that $y(\infty) = s$ iff for all decidables TODO
+  we have that $y(\infty) = s$ iff for all decidable $D\subseteq S$, 
 \end{proof}
 
 Note that \Cref{BabyExtension} is an instance of \Cref{GoalThmUniformCompleteExtension}. We will use it to prove a more general case. 
@@ -63,9 +71,12 @@ Note that \Cref{BabyExtension} is an instance of \Cref{GoalThmUniformCompleteExt
 \begin{definition}
   \item Let $f:A \to B$. An \textbf{entourage of $A$ relative to $f$} is an entourage of $A$ that is of the form $(f\times f)^{-1} (E)$ for some entourage $E$ of $B$. 
 
-  \item A function $g:B \to C$ is called \textbf{relatively uniformly continuous} if for all entourages $E$ of $C$, $(g\times g)^{-1}(E)$ is an entourage of $B$ relative to $C$. 
+  \item If $f: A \to B$, a function $g:A \to C$ is called \textbf{relatively uniformly continuous} if for all entourages $E$ of $C$, $(g\times g)^{-1}(E)$ is an entourage of $A$ relative to $f$. 
   \item A subset $Q\subseteq S$ is called \textbf{dense} iff for all $U\subseteq S$ open such that there merely exists some $s:S$ with $U(s)$, there mereley exists some $q:Q$ with $U(q)$. 
 \end{definition}
+\begin{remark}\label{rmkRelativeUniformContinuousIffCauchy}
+  A sequence is Cauchy if it is relatively uniformly continuous w.r.t. the inclusion $\N \to \Noo$. 
+\end{remark}
 
 \begin{lemma}
   Let $Q\subseteq S$ be a dense subset of a Stone space.
@@ -77,24 +88,30 @@ Note that \Cref{BabyExtension} is an instance of \Cref{GoalThmUniformCompleteExt
   O_{s,n} = \bigcap_{k<n \\ s \in b_O(e_k)} b_O(e_k).
   $$
   Note that each of these countably many opens is inhabited by $s$. By density and countable choice, we can get a sequence $q_{s,n}:Q$ such that $q_{s,n} \in O_{s,n}$ for all $n:\mathbb N$. 
-  Furthermore, let $D\subseteq S$ decidable be such that $x\in D$. 
-  We claim that TODO
+  We claim that $q_s$ has $s$ as a limit. Therefore we need to show that if $s\in D$, the set $\{n \in \mathbb N | q_n \in D\}$ is cofinite. 
+  By \Cref{LocCptBasisTheorem}, there is some $N:\mathbb N$ such that $s\in b_O(e_N)\subseteq D$. And for $n>N$, we thus have $s\in O_{s,n} \subseteq D$, and hence $q_{s,n}\in O_{s,n}\subseteq D$, hence $\{n \in \mathbb N | q_n \in D\}$ is cofinite as required. 
+\end{proof}
+\begin{remark}
+  TODO By a similar proof as above, if $q_n,q'_n$ have the same limit, then so do $f(q_n)$ and $f(q'_n)$. 
+\end{remark}
 
+\begin{lemma}
+  If $q: \N \to S$ is Cauchy and $f: S \to T$, then $f \circ q : \N \to T$ is Cauchy. 
+\end{lemma}
+\begin{proof}
+  This follows directly from \Cref{rmkRelativeUniformContinuousIffCauchy}: if $E\subseteq T \times T$ is an entouage of $T$, then $(f \times f)^{-1}(E)$ is an entourage of $S$, and hence $ ((f \circ q) \times (f \circ q))^{-1}(E) = (q \times q)^{-1}(f\times f)^{-1} (E)$ must be an entourage of $\mathbb N $ relative to $\Noo$. So $f \circ q$ is relatively uniformly continuous as soon as $q$ is. 
 \end{proof}
 
 
 \begin{theorem}
-  Any relatively uniformly continuous function from an overtly discrete dense subset of a Stone space can be extended to a function. 
+  Let $S,T$ Stone, $Q\subseteq S$ dense, and $f : Q \to T$ relatively uniformly continuous. 
+  Then we can construct a map $g: S \to T$ extending $f$. 
 \end{theorem}
 \begin{proof}
-  Let $Q\subseteq S$ be overtly discrete dense and let $f:Q \to T$ be relatively uniformly continuous. 
-  Fix an enumeration $e: \mathbb N \to 2^S$ of the basis of $S$. Let $s:S$. We will show that there exists some $t_s:T$ such that 
-  \begin{itemize}
-    \item For any $q: \Noo \to Q$ such that $q_n\in Q$ for all $n:\mathbb N$ and $q_\infty = s$, 
-      we have that $f(q_n) : \mathbb N \to T$ extends to a function $\Noo \to T$ sending $\infty$ to $t_s$. 
-  \end{itemize}
-
-  Let $s:S$. Consider $\mathcal N_s = \{D:2^S | s \in D \}$, which is a decidable subset of an overtly discrete space, hence overtly discrete. It hence has an enumeration $e:\mathbb N \to \mathcal N_s$. 
+  Let $s:S$, by the above there merely exists a sequence $q_n :Q$ approximating $s$. 
+  We claim that the limit of $f(q_n)$ does not depend on the choice of $q_n$, and therefore there is an unique point $t:T$ with the property that whenever $q_n$ has $s$ as a limit, then $f(q_n)$ has $t$ as a limit. 
+  We take this unique point $t$ to be the value for $g(s)$. 
+  As any point in $q$ is approximated by the constant sequence, $g$ extends $f$. 
 \end{proof}
 
 
