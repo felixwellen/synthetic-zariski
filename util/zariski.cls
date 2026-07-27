@@ -1,5 +1,7 @@
 \LoadClass{../util/zariski-base}
 
+\theoremseparator{.}
+
 \theorembodyfont{}
 \theoremstyle{break}
     \newtheorem{theorem}{Theorem}[subsection]
@@ -10,22 +12,21 @@
     \newtheorem{conjecture}[theorem]{Conjecture}
     \newtheorem{remark}[theorem]{Remark}
     \newtheorem{example}[theorem]{Example}
+    \newtheorem{counterexample}[theorem]{Counterexample}
     \newtheorem{corollary}[theorem]{Corollary}
     \newtheorem{proposition}[theorem]{Proposition}
 
-%Numbered axioms
 \theoremstyle{break}
     \newtheorem{axiomNum}{Axiom}
-
-\theoremstyle{nonumberplain}
-\theoremstyle{break}
     \newtheorem*{axiom}{Axiom}
 
 \newcommand{\axiomref}[1]{\nameref{#1}}
 
 \theoremstyle{nonumberplain}
-\theoremsymbol{\ensuremath{\Box}}
+\theoremsymbol{\ensuremath{\quad\Box}}
     \newtheorem{proof}{Proof}
+% Revert, so future theorem environments don't get the \Box.
+\theoremsymbol{}
 
 \makeindex
 
