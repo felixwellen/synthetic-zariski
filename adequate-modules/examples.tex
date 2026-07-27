@@ -21,23 +21,19 @@ Schemes provide a natural starting point for this discussion.
 
 \begin{remark}
   If $M$ is both an $R$-module and a scheme, then $\tangent{M}{0}$ is linearly adequate by \cite[Lemma 2.3.8]{diffgeo-article}.
-  In particular, such an $M$ is tangential if and only if it is finitely adequate.
-  \rednote{Why does tangential imply finitely adequate in this case?
-  For the converse, cite the result in this paper.}
+  In particular, if such an $M$ is tangential, then it is linearly adequate.
 \end{remark}
 
-Consider \Cref{prp:inf-lin-hood}, from which we can extract the following principle: if there is a chain of inclusions $\hood{M}{0} \subseteq N \subseteq M$, then $M$ is infinitesimally linear at $0$ if and only if $N$ is.
+Consider \Cref{prp:inf-lin-hood}, from which we can extract the following principle: if $M$ and $N$ are modules such that $\hood{M,0}{1} \subseteq N \subseteq M$, then $(M,0)$ is infinitesimally linear at $0$ if and only if $(N,0)$ is.
 
 \begin{example}
-  As an example, $\mathrm{Nil}(R)$ is infinitesimally linear at $0$ since it contains $\hood{R}{0} = \D(1)$.
+  As an example, $\mathrm{Nil}(R)$ is infinitesimally linear at $0$ since it contains $\hood{R,0}{1} = \D(1)$.
 \end{example}
-\rednote{Should $\hood{X}{0}$ be $\hood{X}{1}$ above and below?  Also, be consistent about whether the point $0$ is included, as in $\hood{X,0}{1}$.  Maybe we can always skip it for a pointed type?}
 
 On the other hand, the above principle behaves very differently when we consider tangential modules.
-Suppose there is a chain of proper inclusions $\hood{M_n,0}{1} \subset M_0 \subset M_1 \subset \dots \subset M_n$.
-Then, by \Cref{prp:hood-factorization}, we have $\tangent{M_i}{0} = \tangent{M_n}{0}$ for all $i \leq n$.
-Thus, at most one of the $R$-modules $M_i$ can be tangential.
-\rednote{This is equally strong with just two modules $N$ and $M$, so better to state it that way as then it parallels the previous comment about infinitesimal linearity.}
+Suppose $M$ and $N$ are $R$-modules such that $\hood{M,0}{1} \subset N \subset M$.
+Then, by \Cref{prp:hood-factorization}, we have $\tangent{M}{0} = \tangent{N}{0}$.
+Thus, at most one of $M$ and $N$ can be tangential.
 
 \begin{counterexample}\label{cex:nil-not-tangential}
   The nilradical $\Nil(R)$ is not tangential.
@@ -46,8 +42,8 @@ Thus, at most one of the $R$-modules $M_i$ can be tangential.
 \end{counterexample}
 
 \begin{counterexample}\label{cex:hood-p-not-tangential}
-  Suppose that $R$ is a ring with positive characteristic $p > 0$. 
-  Then we have a chain of proper inclusions $\hood{R,0}{1} \subset \hood{R,0}{p-1} \subset R$. 
+  Suppose that $R$ has positive characteristic $p > 0$.
+  Then we have a chain of proper inclusions $\hood{R,0}{1} \subset \hood{R,0}{p-1} \subset R$.
   Therefore, $\hood{R,0}{p-1}$ cannot be tangential, since $R$ is.
 \end{counterexample}
 
@@ -69,16 +65,12 @@ However, not every module satisfies this condition; we present a counterexample 
   Thus, the canonical map $(M,0)^{\D(2)} \to (M,0)^{\D(1)} \times (M,0)^{\D(1)}$ is not injective.
 \end{counterexample}
 
-Most modules considered so far are submodules of finitely presented modules.
-Nevertheless, infinitely generated modules can also be tangential.
-\rednote{The previous two sentences don't contrast each other correctly, since a submodule of a finitely presented module isn't necessarily finitely generated (I think).}
-We present two such examples below.
+So far, the examples of tangential modules we have constructed are all submodules of finitely presented modules.
+We will now consider some bigger examples, in the sense that they are not sub-finitely presented.
 
 \begin{example}\label{ex:power-series-tangential}
   By \Cref{prp:exp-tangential}, the modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are tangential.
   By \Cref{cor:tangential-inf-lin}, these modules are also infinitesimally linear.
-  Since automorphisms of the underlying types act transitively, they are infinitesimally linear at any point.
-  \rednote{Is the previous sentence worth mentioning here?  It's true for any $R$-module (or abelian group), right?  So we should say it once when infinitesimal linearity is introduced.}
   Note that $R[[x]]$ is not adequate, as it is not weakly quasi-coherent.
 \end{example}
 
@@ -106,10 +98,7 @@ For the first case, $U = V(r)$, we obtain an example of a finitely adequate modu
 
 \begin{example}\label{ex:exp-Vr-fin-adeq}
   Let $r : R$.
-  The module $R^{V(r)} = \quot{R}{\ideal{r}}$ is finitely adequate by \Cref{ex:fin-gen-ideal}.
-\rednote{Also cite closure under cokernels.}
-\rednote{We should be consistent about the notation for ideals.  Round brackets are used a lot,
-including in \Cref{ex:fin-gen-ideal}.}
+  The module $R^{V(r)} = \quot{R}{\ideal{r}}$ is finitely adequate by \Cref{ex:fin-gen-ideal} and \Cref{prp:fin-adeq-cok-closure}.
 \end{example}
 
 For the second family, $U = D(r)$, the module is the localization $R^{D(r)} = R[r^{-1}]$ by \cite[Proposition 2.2.3]{draft}.
@@ -143,7 +132,7 @@ Rather than constructing a specific counterexample, the next result shows that $
 
 For the third family, we consider $R^{\neg D(r)}$.
 First, observe that, by \cite[Proposition 2.2.3]{draft}, $\neg D(r)$ is the proposition that $r$ is nilpotent.
-Equivalently, $\neg D(r) = \bigcup_{n : \N} (r^n = 0)$. 
+Equivalently, $\neg D(r) = \bigcup_{n : \N} (r^n = 0)$.
 Using continuity of the exponential and duality, we obtain $R^{\lnot D(r)} = R^{\bigcup_{k : \N}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k \quot{R}{\ideal{r^k}} = \widehat{R_r}$; i.e., $R^{\neg D(r)}$ is the $r$-adic completion of $R$.
 If $r$ is either invertible or nilpotent, then $\widehat{R_r}$ is finitely adequate.
 Our next counterexample follows the same strategy as the preceding one.
@@ -153,16 +142,20 @@ Our next counterexample follows the same strategy as the preceding one.
   For the sake of contradiction, assume that $R^{\lnot D(r)}$ is weakly quasi-coherent for all $r : R$.
   By virtue of duality, the global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module:
   \[
-    R[[x]] = \lim_n R[x]/(x^n) = R^{\mathrm{colim}_n \Spec R[x]/(x^n)}= R^{\{r:R | \lnot\lnot(r=0)\}} = \prod_{r : R} R^{\lnot D(r)}\rlap{.}
+    R[[x]] = \lim_n R[x]/\ideal{x^n} = R^{\mathrm{colim}_n \Spec R[x]/\ideal{x^n}} = R^{\{r:R | \lnot\lnot(r=0)\}} = \prod_{r : R} R^{\lnot D(r)}\rlap{.}
   \]
   By \cite[Lemma 7.1.10]{draft}, we can deduce that $R[[x]]$ is weakly quasi-coherent since it is the global sections of a family of weakly quasi-coherent modules.
-  However, $R[[x]]$ is not finitely adequate by \cite[Proposition A.0.5]{draft}, which is a contradiction.
-\rednote{Why does the last sentence say ``finitely adequate''?}
-\rednote{Should we add that it follows that it is not the case that $R^{\lnot D(r)}$ is finitely adequate for all $r$?}
+  However, $R[[x]]$ is not weakly quasi-coherent by \cite[Proposition A.0.5]{draft}, which is a contradiction.
+  Thus, it follows that $R^{\lnot D(r)}$ is not weakly quasi-coherent for all $r$, and so it cannot be finitely adequate either by \Cref{prp:wqc-adeq}.
 \end{counterexample}
 
-For every proposition $U$, we define the type $R_U \defeq \sigmatype{x : R} (x = 0) \lor U$.
-We first show that these modules are tangential, and for this we need a lemma.
+We will now consider two more classes of examples.
+We will see that all three classes introduced are tightly related to each other.
+Let $U$ be a proposition.
+We define the types $K^U \defeq \sigmatype{x:R}(U \to (x = 0))$ and $R_U \defeq \sigmatype{x : R} (x = 0) \lor U$.
+Observe that $K^U$ is the kernel of the map $\mathrm{const} : R \to R^U$.
+Thus $K^U$ is tangential by \Cref{prp:op-closure-inf-lin-tangential}.
+To show that $R_U$ is tangential, we need the following lemma.
 
 \begin{lemma}\label{lem:forall-distributes-over-or}
 Let $X$ be a projective type such that every map to $\Bool$ is constant.
@@ -183,7 +176,7 @@ This implies that we have either $\prod_x P(x)$ or $\prod_x Q(x)$, as required.
 \end{proof}
 
 \begin{proposition}\label{prp:R_U-tangential}
-For any proposition $U$, the modules $R_U$ and $R/R_U$ are tangential.
+For any proposition $U$, the modules $R_U$ are tangential.
 \end{proposition}
 
 \begin{proof}
@@ -220,43 +213,175 @@ It follows from \Cref{prp:op-closure-inf-lin-tangential} that $R/R_U$ is tangent
 
 % This is almost entirely due to Claude, with a bit of guidance from jdc.
 % The writing has been edited.
-\begin{counterexample}\label{cex:R_Dr-not-wqc}
-  We want to show that $R_{D(r)}$ can not be weakly quasi-coherent for all $r : R$.
-  Indeed, if it were, then the quotient $\quot{R}{R_{D(r)}}$ would also be weakly quasi-coherent, since $R$ is weakly quasi-coherent and the quotient of a weakly quasi-coherent module by a weakly quasi-coherent submodule is weakly quasi-coherent \cite[Proposition 7.1.13]{draft}.
-  Thus, it is sufficient to show that it can not be the case that $\quot{R}{R_{D(r)}}$ is weakly quasi-coherent for all $r : R$.
+% \begin{counterexample}\label{cex:R_Dr-not-wqc}
+%   We want to show that $R_{D(r)}$ can not be weakly quasi-coherent for all $r : R$.
+%   Indeed, if it were, then the quotient $\quot{R}{R_{D(r)}}$ would also be weakly quasi-coherent, since $R$ is weakly quasi-coherent and the quotient of a weakly quasi-coherent module by a weakly quasi-coherent submodule is weakly quasi-coherent \cite[Proposition 7.1.13]{draft}.
+%   Thus, it is sufficient to show that it can not be the case that $\quot{R}{R_{D(r)}}$ is weakly quasi-coherent for all $r : R$.
 
-  Now, for the sake of contradiction, assume that $R/R_{D(r)}$ is weakly quasi-coherent for every $r : R$.
-  Fix $r : R$, and recall that $D(r) \defeq (r \neq 0)$ is a proposition and that
-  $R_{D(r)} = \sum_{x : R} (x = 0) \lor (r \neq 0)$.
+%   Now, for the sake of contradiction, assume that $R/R_{D(r)}$ is weakly quasi-coherent for every $r : R$.
+%   Fix $r : R$, and recall that $D(r) \defeq (r \neq 0)$ is a proposition and that
+%   $R_{D(r)} = \sum_{x : R} (x = 0) \lor (r \neq 0)$.
 
-  By weak quasi-coherence, the canonical map
-  $(R/R_{D(r)})[1/r] \to (R/R_{D(r)})^{D(r)}$ is an equivalence by \Cref{def:quasi-coherent}.
-  We claim that $(R/R_{D(r)})^{D(r)} = 0$.  Indeed, if $r \neq 0$, then the
-  predicate $(x = 0) \lor (r \neq 0)$ holds for every $x : R$, so $R_{D(r)} = R$ and
-  hence $R/R_{D(r)} = 0$.  This implies $(r \neq 0) \to (R/R_{D(r)} = 0)$,
-  and so every element of $(R/R_{D(r)})^{D(r)}$ is zero.
+%   By weak quasi-coherence, the canonical map
+%   $(R/R_{D(r)})[1/r] \to (R/R_{D(r)})^{D(r)}$ is an equivalence by \Cref{def:quasi-coherent}.
+%   We claim that $(R/R_{D(r)})^{D(r)} = 0$.  Indeed, if $r \neq 0$, then the
+%   predicate $(x = 0) \lor (r \neq 0)$ holds for every $x : R$, so $R_{D(r)} = R$ and
+%   hence $R/R_{D(r)} = 0$.  This implies $(r \neq 0) \to (R/R_{D(r)} = 0)$,
+%   and so every element of $(R/R_{D(r)})^{D(r)}$ is zero.
 
-  It follows that $(R/R_{D(r)})[1/r] = 0$.
-  In particular, the class of $1$ is annihilated by a power of
-  $r$: there merely exists $k : \N$ with $r^k \in R_{D(r)}$, that is,
-  $(r^k = 0) \lor (r \neq 0)$.
-  This is equivalent to $(\exists k.\ r^k = 0) \lor (r \neq 0)$.
-  Since any nilpotent element satisfies $\lnot\lnot(r = 0)$, and $r \neq 0$ is equivalent to $\lnot(r = 0)$, we obtain $\lnot\lnot(r = 0) \lor \lnot(r = 0)$.
-  As $r : R$ was arbitrary, we deduce that
-  $\prod_{r : R} \big(\lnot\lnot(r = 0) \lor \lnot(r = 0)\big)$, a form of weak excluded
-  middle.  The two disjuncts are mutually exclusive,
-  so the truncation in $\lor$ can be dropped.  Recording which disjunct holds defines
-  a function $\chi : R \to \Bool$, which takes different values at $r = 0$ and $r = 1$.
-  Thus $\chi$ is not constant,
-  which contradicts the connectedness of $R$ \cite[Proposition 1.2.2]{topology-draft}.
-\end{counterexample}
+%   It follows that $(R/R_{D(r)})[1/r] = 0$.
+%   In particular, the class of $1$ is annihilated by a power of
+%   $r$: there merely exists $k : \N$ with $r^k \in R_{D(r)}$, that is,
+%   $(r^k = 0) \lor (r \neq 0)$.
+%   This is equivalent to $(\exists k.\ r^k = 0) \lor (r \neq 0)$.
+%   Since any nilpotent element satisfies $\lnot\lnot(r = 0)$, and $r \neq 0$ is equivalent to $\lnot(r = 0)$, we obtain $\lnot\lnot(r = 0) \lor \lnot(r = 0)$.
+%   As $r : R$ was arbitrary, we deduce that
+%   $\prod_{r : R} \big(\lnot\lnot(r = 0) \lor \lnot(r = 0)\big)$, a form of weak excluded
+%   middle.  The two disjuncts are mutually exclusive,
+%   so the truncation in $\lor$ can be dropped.  Recording which disjunct holds defines
+%   a function $\chi : R \to \Bool$, which takes different values at $r = 0$ and $r = 1$.
+%   Thus $\chi$ is not constant,
+%   which contradicts the connectedness of $R$ \cite[Proposition 1.2.2]{topology-draft}.
+% \end{counterexample}
 
 \begin{remark}\label{rmk:R^U-R_U-not-not-fin-adeq}
   Let $U$ be a proposition.
-  The modules $R^U$ and $R_U$, which provide the counterexamples considered above, are not-not finitely adequate.
+  The modules $R^U$, $K^U$, and $R_U$ are not-not finitely adequate.
   Indeed, these modules are finitely adequate when $U$ is either true or false.
   Since $\lnot\lnot(U \lor \lnot U)$ holds, the claim follows by double-negation elimination.
 \end{remark}
+
+\begin{example}
+  The module $K^{V(r)}$ is finitely adequate for any $r : R$.
+  By \Cref{ex:exp-Vr-fin-adeq}, $R^{V(r)} = \quot{R}{r}$.
+  Thus, $K^{V(r)} = \ideal{r}$, which is finitely adequate by \Cref{ex:fin-gen-ideal}.
+\end{example}
+
+Observe that the modules $R_U$ and $K^U$ are ideals of $R$ for every proposition $U$.
+We can use this to compute duals of these and related modules, which will be very useful going forward.
+
+\begin{lemma}\label{lem:ann-R_U-K^U}
+  Let $U$ be a proposition.
+  Then $\Ann(R_U) = K^U$.
+\end{lemma}
+
+\begin{proof}
+  We can define a map $\Ann(R_U) \to K^U$ given by $x \mapsto x$.
+  To fill out the proof that this map is well-defined, we will assume that $U$ holds, and the goal is to show that $x = 0$.
+  If $U$ holds, then $R_U = R$.
+  Thus, $\Ann(R_U) = \Ann(R) = 0$, meaning $x = 0$ as desired.
+
+  This is an injective linear map by definition, so to see that it defines an isomorphism, it suffices to check that it is surjective.
+  Let $x : K^U$ and $y : R_U$.
+  We need to show that $xy = 0$.
+  Since we're proving a proposition, we can assume that either $y = 0$ or $U$ holds by definition of $R_U$.
+  If $y = 0$ it is clear that $xy = 0$.
+  If $U$ holds, then $x = 0$, so it is again clear that $xy = 0$.
+\end{proof}
+
+\begin{lemma}\label{lem:ann-dual-quotient}
+  Let $I$ be an ideal of $R$.
+  Then $\Ann(I) = \quot{R}{I}^*$.
+\end{lemma}
+
+\begin{proof}
+  Let $f : \quot{R}{I} \to R$ be a linear map.
+  Then $f$ is uniquely determined by $f(\bar{1}) = a : R$.
+  By linearity we get that $ay = f(\bar{y}) = 0$ for any $y : I$.
+  Thus $a : \Ann(I)$.
+
+  Conversely, let $a : \Ann(I)$.
+  Define the map $f' \defeq (\argmhole) \cdot a : R \to R$.
+  Since $f'(y) = ay = 0$ for any $y : I$, $f'$ factors through $\quot{R}{I}$ as the map $f : \quot{R}{I} \to R$.
+
+  It is clear that these two operations are inverses to each other.
+  This proves that $\Ann(I) = \quot{R}{I}^*$.
+\end{proof}
+
+For the next counterexample, we will use the above observations to show the module $R_{V(r)}$ is not finitely adequate for any $r : R$.
+
+\begin{counterexample}\label{cex:R_V(r)-not-reflexive}
+  To show that $R_{V(r)}$ is not finitely adequate for all $r : R$, we will compute the double dual of $\quot{R}{R_{V(r)}}$.
+  By \Cref{lem:ann-dual-quotient}, we have $\Ann(R_{V(r)}) = (\quot{R}{R_{V(r)}})^*$.
+  Furthermore, by \Cref{lem:ann-R_U-K^U}, we have $\Ann(R_{V(r)}) = K^{V(r)} = \ideal{r}$.
+  Since $\ideal{r}$ is self-dual, we get that $(\quot{R}{R_{V(r)}})^{\ast\ast} = \ideal{r}$.
+
+  For the sake of contradiction, suppose that $R_{V(r)}$ is finitely adequate.
+  Then $\quot{R}{R_{V(r)}}$ is finitely adequate by \Cref{prp:fin-adeq-cok-closure}.
+  Since taking duals is an anti-equivalence on finitely adequate modules (\Cref{cor:dual-equiv}), we get that $(R_{V(r)})^{\ast\ast} = \Ann(r)$.
+  By assumption, $R_{V(r)}$ is finitely adequate for any $r : R$, so the evaluation map $\ev : R_{V(r)} \to \Ann(r)$ is an equivalence.
+  This means that for any $x, r : R$ such that $xr = 0$, then either $x = 0$ or $r = 0$.
+  By duality, not all nilpotent elements of $R$ are zero, so it is not an integral domain.
+  Hence we obtain the desired contradiction.
+\end{counterexample}
+
+From the counterexample established below, we shall derive the remaining counterexamples for these classes of modules.
+The module $K^{\lnot D(r)}$ is the kernel of the localization map into the $r$-adic completion, $R \to \hat{R_r}$.
+Thus we have $K^{\neg D(r)} = \bigcap_k \ideal{r^k}$.
+This next counterexample will use the same strategy as \Cref{cex:exp-Dr-not-fin-adeq}.
+
+% This counterexample is made with help of Gemini.
+
+\begin{counterexample}\label{cex:K-not-Dr-not-wqc}
+  It is impossible to prove that $K^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
+  In particular, it is impossible to prove that $K^{\lnot D(r)}$ is finitely adequate for every $r : R$.
+
+  Suppose that for every $r : R$, the module $K^{\lnot D(r)} = \bigcap_k \ideal{r^k}$ is weakly quasi-coherent.
+  Then for any $r : R$, the canonical map
+  \[
+    \phi : (K^{\lnot D(r)})[1/r] \to (K^{\lnot D(r)})^{D(r)}
+  \]
+  is an equivalence.
+  Assuming $D(r)$, we get that $K^{\neg D(r)} = R$ since $R^{\neg D(r)} = 0$ whenever $r$ is invertible.
+  Thus, $(K^{\lnot D(r)})^{D(r)} \cong R^{D(r)} = R[1/r]$.
+
+  Since $\phi$ is an equivalence, the element $1 \in R[1/r]$ must have a preimage under $\phi$, which is represented by some fraction $a/r^n$ for $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
+  The relation $\phi(a/r^n) = 1$ in $R[1/r]$ means there exists $k : \mathbb{N}$ such that $r^k(a - r^n) = 0$, so $r^k a = r^{k+n}$.
+  Since $a \in K^{\lnot D(r)} = \bigcap_m \ideal{r^m}$, we can write $a = r^{k+n+1}b$ for some $b : R$.
+  Substituting this back yields $r^{2k+n+1}b = r^{k+n}$.
+  Letting $N \defeq k+n$, we have $r^N(r^{k+1}b - 1) = 0$.
+  Since $R$ is local and $r^{k+1}b + (1 - r^{k+1}b) = 1$, we constructively have $(1 - r^{k+1}b \text{ is invertible}) \lor (r^{k+1}b \text{ is invertible})$.
+  If $1 - r^{k+1}b$ is invertible, then $r^N = 0$, so $r$ is nilpotent.
+  If $r^{k+1}b$ is invertible, then $r$ is invertible.
+  This gives $(r \text{ is nilpotent}) \lor (r \text{ is invertible})$ for every $r : R$, which contradicts the connectedness of $R$.
+\end{counterexample}
+
+Since we can express annihilators as duals, this allows us to transfer some properties of finitely adequate modules along annihilators.
+This is how we will use the above counterexample to derive more.
+
+\begin{proposition}\label{prp:ann-fin-adeq}
+  Let $I$ be a finitely adequate ideal of $R$.
+  Then $\Ann{I}$ is a finitely adequate ideal as well.
+\end{proposition}
+
+\begin{proof}
+  By \Cref{prp:fin-adeq-cok-closure}, \quot{R}{I} is finitely adequate.
+  And by \Cref{cor:dual-equiv}, $\Ann{I} = \quot{R}{I}^*$ is finitely adequate.
+\end{proof}
+
+\begin{remark}\label{rem:ann-for-cex}
+  By the contrapositive of \Cref{prp:ann-fin-adeq}, if $\Ann{I}$ is not finitely adequate, then we can deduce that $I$ is not finitely adequate.
+\end{remark}
+
+\begin{counterexample}\label{cex:R_not-Dr-not-fin-adeq}
+  The module $R_{\neg D(r)}$ is not finitely adequate for all $r : R$.
+  By \Cref{lem:ann-R_U-K^U} we have $\Ann(R_{\neg D(r)}) = K^{\neg D(r)}$.
+  By \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $R_{\neg D(r)}$ cannot be finitely adequate for all $r : R$.
+\end{counterexample}
+
+\begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
+  The module $K^{D(r)}$ is not finitely adequate for all $r : R$.
+  Since $R^{D(r)} = R[r^{-1}]$, we get that $K^{D(r)} = \bigcup_k \Ann(r^k)$.
+  By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$.
+  Moreover, it is clear that taking annihilator ideals of unions, is the same as the intersection of the annihilators.
+  Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \ideal{r^k}) = \bigcap_k \Ann(r^k) = \bigcap_k \ideal{r^k} = K^{\neg D(r)}$.
+  Now, by \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $K^{D(r)}$ cannot be finitely adequate for all $r : R$.
+\end{counterexample}
+
+\begin{counterexample}\label{cex:R_Dr-not-fin-adeq}
+  The module $R_{D(r)}$ is not finitely adequate for all $r : R$.
+  This is precisely because of \Cref{lem:ann-R_U-K^U}, \Cref{rem:ann-for-cex}, and \Cref{cex:K^Dr-not-fin-adeq}.
+\end{counterexample}
 
 We conclude this section by presenting examples of reflexive modules that are not finitely adequate.
 
@@ -301,7 +426,7 @@ While Specker's proof uses prime factorization in $\Z$, we replace this with a n
     f(r) = a_0 + a_1r + a_2r^2 + \dots + a_{N-1}r^{N-1} + r^N\lambda(0,\dots,0,1,r,r^2,\dots)\rlap{,}
   \]
   where exactly the first $N$ entries in $\lambda(0,\dots,0,1,r,r^2,\dots)$ are zero.
-  Comparing coefficients, we see that $a_N=0$ for $N \geq d+2$, hence $a$ is an element of $R[x]$.
+  Comparing coefficients, we see that $a_N=0$ for $N \geq d+1$, hence $a$ is an element of $R[x]$.
   So it remains to check that $\varphi : \equiv \lambda - \langle a,- \rangle = 0$.
   To this end, let $b : R[[x]]$ be arbitrary and set
   \[
@@ -341,17 +466,110 @@ This shows that the double dual tensor is the appropriate left adjoint to consid
 \begin{lemma}
   \label{tensor-gamma-commute-on-affines}
   Let $X$ be an affine scheme and suppose that $\mathcal F, \mathcal G : X \to \Mod R$ are weakly quasi-coherent bundles.
-  Then the canonical map
+  Then the map
   \[
-    \Gamma(X,\mathcal F) \otimes_{R^X}\Gamma(X,\mathcal G) \to \Gamma(X,\mathcal F \otimes \mathcal G), \;\;
-    f \otimes g \mapsto (x \mapsto f_x \otimes g_x)
+    \vartheta_X : \Gamma(X,\mathcal F) \otimes_{R^X}\Gamma(X,\mathcal G) \to \Gamma(X,\mathcal F \otimes \mathcal G), \;\;
+    f \otimes g \mapsto (x \mapsto f(x) \otimes g(x))
   \]
   is an $R^X$-linear isomorphism.
 \end{lemma}
 
+\begin{remark}
+  In preparation of the proof we state two observations.
+  \begin{enumerate}
+    \item[i)] Both $\Gamma(X, \mc F \otimes \mc G)$ and $\Gamma(X, \mc F) \otimes_{R^X} \Gamma(X, \mc G)$ admit evaluation maps to $\mc F_x \otimes \mc G_x$, such that the triangle
+    \[
+      \begin{tikzcd}[column sep=tiny]
+        \Gamma(X, \mc F) \otimes_{R^X} \Gamma(X,\mc G) \ar[dr, "\ev_x \otimes \ev_x"'] \ar[rr, "\vartheta_X"] && \Gamma(X,\mc F \otimes \mc G) \ar[dl, "\ev_x"] \\
+      & \mc F_x \otimes \mc G_x &
+    \end{tikzcd}
+    \]
+    commutes.
+    We will denote both of these simply by $h \mapsto h(x)$.
+    It is however worthwhile to understand that, at least as of now, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective (resp. surjective).
+
+    \item[ii)] Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
+    Then for a tensor $k = \sum_{j=1}^N m_j \otimes n_j : M \otimes_A N$ we have $k =_{M \otimes_A N} 0$ if and only if there merely exists a finitely generated submodule $M' \subseteq M$ such that $m_1,\dots,m_N \in M'$ and $k =_{M' \otimes_A N} 0$.
+    Note that $M'$ might be larger than $\langle m_1,\dots,m_N \rangle$.
+\end{enumerate}
+\end{remark}
+
 \begin{proof}
-  \rednote{TODO.}
+  Say $X = \Spec A$ and let $a:A$ be arbitrary.
+  As $\mc F$ and $\mc G$ are weakly quasi-coherent, we use \cite[Lemma 7.1.8]{draft} to see that the left vertical map in the commutative square
+  \[
+  \begin{tikzcd}[column sep=large]
+    \Gamma(X,\mc F)[a^{-1}] \otimes_{A[a^{-1}]} \Gamma(X,\mc G)[a^{-1}] \ar[d, "\simeq"]\ar[r, "\vartheta_X{[a^{-1}]}"]
+    &
+    \Gamma(X, \mc F \otimes \mc G)[a^{-1}] \ar[d]
+    \\
+    \Gamma(D(a),\mc F) \otimes_{R^{D(a)}}\Gamma(D(a),\mc G) \ar[r, "\vartheta_{D(a)}"]
+    &
+    \Gamma(D(a),\mc F \otimes \mc G)
+  \end{tikzcd}
+  \]
+  is an isomorphism.
+
+  We show injectivity of $\vartheta_X$ first.
+  Let $k:\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$ such that $\vartheta_X(k)=0$.
+  An element of a module being zero is a local property.
+  Thus it is enough to find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ such that the image of $k$ in $(\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G))[a_i^{-1}]$ is $0$.
+  Because of the square above, it is then enough to verify $k|_{D(a_i)}=0$.
+  It is for this reason that in the following we may shrink $X$ whenever applying Zariski-local choice, instead of burdening notation by refining affine covers every time.
+  In a first step we restrict to the case where $\mc F$ is pointwise finitely generated.
+  Without loss of generality we may assume that we have a surjection $\pi : \mc O_X^n \to \mc F$ of bundles, whose kernel we denote by $\iota : \mc K \to \mc O_X^n$.
+  Since $X$ is affine and all bundles are weakly quasi-coherent, by \cite[Theorem 7.3.6]{draft} we get an induced exact sequence $0 \to \Gamma(X,\mc K) \to A^n \to \Gamma(X,\mc F) \to 0$ which yields a commutative diagram
+  \[
+  \begin{tikzcd}
+    \Gamma(X,\mc K) \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\iota) \otimes 1"] & A^n \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\pi) \otimes 1"]\ar[d, "\vartheta'_X", "\simeq"'] & \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G) \ar[r]\ar[d, "\vartheta_X"] & 0 \\
+    & \Gamma(X, \mc O_X^n \otimes \mc G) \ar[r, "\Gamma(\pi \otimes 1)"]\ar[d] & \Gamma(X, \mc F \otimes \mc G) \ar[d] \\
+    \mc K_x \otimes \mc G_x \ar[r, "\iota_x \otimes 1"] & R^n \otimes \mc G_x \ar[r, "\pi_x \otimes 1"] & \mc F_x \otimes \mc G_x \ar[r] & 0
+  \end{tikzcd}
+  \]
+  with exact top and bottom row and where $\vartheta'_X$ is defined just like $\vartheta_X$.
+  The added benefit is however, that we easily see that $\vartheta'_X$ is an isomorphism.
+  Now choose a preimage $h : A^n \otimes_A \Gamma(X,\mc G)$ of $k$ along $\Gamma(\pi) \otimes 1$.
+  Then $\Gamma(\pi \otimes 1)(\vartheta'_X(h)) = \vartheta_X(k) = 0$ and thus also $(\pi_x \otimes 1)(\vartheta'_X(h)(x)) = 0$.
+  We thus merely find a preimage of $\vartheta'_X(h)(x)$ in $\mc K_x \otimes \mc G_x$ that is already given by a finite sum of elementary tensors.
+  Applying Zariski-local choice and then boundedness, we may shrink $X$ and assume that there are $k_1,\dots,k_N : \Gamma(X,\mc K)$ and $g_1,\dots,g_N : \Gamma(X,\mc G)$ such that $\vartheta'_X(h) = \vartheta'_X(\sum_{j=1}^N\iota(k_j) \otimes g_j)$.
+  As $\vartheta'_X$ is injective, we conclude that $h = \sum_{j=1}^N\iota(k_j) \otimes g_j$.
+  Consequently, we have $k = (\Gamma(\pi) \otimes 1)(h) = 0$.
+
+  Next let $\mc F$ be arbitrary.
+  We write $k = \sum_{j=1}^N f_j \otimes g_j$ for $f_j : \Gamma(X,\mc F)$ and $g_j : \Gamma(X,\mc G)$ such that $\sum_jf_j(x) \otimes g_j(x) =_{\mc F_x \otimes \mc G_x} 0$ for every $x:X$.
+  Hence there merely is a finitely generated submodule $\mc F'_x \subseteq \mc F_x$ such that $f_j(x) \in \mc F'_x$ and $\sum_jf_j(x) \otimes g_j(x) =_{\mc F'_x \otimes \mc G_x} 0$.
+  Shrinking $X$ we thus may assume that we have a pointwise finitely generated subbundle $\mc F' \subseteq \mc F$ such that $f_j \in \Gamma(X,\mc F')$.
+  Hence also $k' :\equiv \sum_j f_j \otimes g_j \in \Gamma(X, \mc F') \otimes_A \Gamma(X,\mc G)$.
+  Note that $\mc F'$ is again weakly quasi-coherent.
+  Consider the commutative square
+  \[
+  \begin{tikzcd}
+    \Gamma(X,\mc F') \otimes_A \Gamma(X,\mc G) \ar[d, "\vartheta''_X"] \ar[r] & \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G) \ar[d, "\vartheta_X"] \\
+    \Gamma(X, \mc F' \otimes \mc G) \ar[r] & \Gamma(X, \mc F \otimes \mc G)
+  \end{tikzcd}
+  \]
+  where $\vartheta''_X$ is the obvious map.
+  We know that it is an injection by the preceding case.
+  The lower horizontal map need not be injective.
+  However, by construction of $\mc F'$, it is so for the particular element $\vartheta''_X(k')$.
+  Hence $\vartheta_X(k) = 0$ implies $\vartheta''_X(k') = 0$ and then $k' = 0$.
+  Therefore also $k =_{\Gamma(X,\mc F) \otimes \Gamma(X,\mc G)} 0$.
+
+  Lastly we verify surjectivity.
+  Let $s:\Gamma(X,\mc F \otimes \mc G)$.
+  We know that $s(x) : \mc F_x \otimes \mc G_x$ merely is a finite sum of elementary tensors.
+  Applying Zariski-local choice with boundedness as per usual, we find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ together with sections $h_i : \Gamma(D(a_i), \mc F) \otimes_{R^{D(a_i)}} \Gamma(D(a_i),\mc G)$ such that $s|_{D(a_i)} = \vartheta_{D(a_i)}(h_i)$.
+  As we already know that $\vartheta_{D(a_ia_j)}$ is injective, we see $h_i|_{D(a_ia_j)} = h_j|_{D(a_ia_j)}$.
+  Using the first commutative square constructed in this proof, we can glue these to obtain a section $h : \Gamma(X, \mc F) \otimes_{R^{X}} \Gamma(X,\mc G)$ with $\vartheta_X(h) = s$.
 \end{proof}
+
+Applying this lemma to affine schemes of the form $D(r)$, we obtain the following.
+
+\begin{corollary}
+  \label{wqc-closed-under-tensorprod}
+  If $M$ and $N$ are weakly quasi-coherent $R$-modules, then so is $M \otimes N$.
+  $\hfill\square$
+\end{corollary}
 
 \begin{counterexample}\label{cex:tensor-not-closed}
   Finitely adequate modules are not closed under tensor products.
@@ -370,7 +588,7 @@ This shows that the double dual tensor is the appropriate left adjoint to consid
   \[
     \Gamma(\D(1),N) = \Gamma(\D(1),M) \otimes_A \Gamma(\D(1),M) = I \otimes_A I = I \otimes_R I \rlap{,}
   \]
-  where $A :\equiv R[x]/(x^2)$ and $I :\equiv \ker(A \overset{\cdot x}{\to} A) = (x)/(x^2)$.
+  where $A :\equiv R[x]/\ideal{x^2}$ and $I :\equiv \ker(A \overset{\cdot x}{\to} A) = \ideal{x}/\ideal{x^2}$.
   Note that the zero-section $(\varepsilon \mapsto \varepsilon \otimes \varepsilon) : \Gamma(\D(1),N)$ corresponds to $x \otimes x$ under these maps.
   As this element is not zero, we obtain a contradiction.
 \end{counterexample}
