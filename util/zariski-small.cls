@@ -25,8 +25,10 @@
 \newcommand{\axiomref}[1]{\nameref{#1}}
 
 \theoremstyle{nonumberplain}
-\theoremsymbol{\ensuremath{\Box}}
+\theoremsymbol{\ensuremath{\quad\Box}}
     \newtheorem{proof}{Proof}
+% Revert, so future theorem environments don't get the \Box.
+\theoremsymbol{}
 
 \makeindex
 
