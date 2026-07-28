@@ -307,7 +307,7 @@ We will first characterize the projective and injective objects in $\finadeq$.
   \end{center}
   In the diagram above, we have $P = \Cok(p)$, $Q = \Cok(q)$, $K = R^{m_1} \underset{R^{n_2}}{\times} R^{n_1}$, and $L = R^{m_2} \underset{R^{n_2}}{\times} R^{n_1}$.
   Let $t$ be the composite $f_2 \circ p = q \circ f_1$.
-  
+
   In the above analysis, only the columns are exact.
   We will alter this diagram so that every column and row becomes exact.
   \begin{center}
@@ -505,7 +505,7 @@ In this subsection we collect some properties of finitely adequate $R$-modules.
 \end{proof}
 
 \begin{remark}
-  The functor $\hood{\argmhole}{1}$ of the previous proposition is full when restricted even further to linearly adequate $R$-modules \rednote{cite}.
+  The functor $\hood{\argmhole}{1}$ of the previous proposition is full when restricted even further to linearly adequate $R$-modules.
   This, however, already fails on finitely adequate $R$-modules.
 
   To see this, consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$.
@@ -516,26 +516,6 @@ In this subsection we collect some properties of finitely adequate $R$-modules.
   Assume they are.
   Then $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence also $(r^2-r)\varepsilon=0$ for all $r:R$.
   Using duality and comparing coefficients, we see that $\varepsilon=0$ for every $\varepsilon:\D(1)$, which cannot be.
-\end{remark}
-
-\rednote{The next remark could maybe move to the appendix.  Not sure if we need it in the final paper.}
-
-\begin{remark}\label{rem:hood-module-prs-surj}
-  If $f : M \rightarrow N$ be an epimorphism of $R$-modules with $M$ linearly adequate
-  and $N$ finitely adequate,
-  it does not follow that $\hood{f,0}{1}$ is surjective.
-  Here is an example.
-
-  Let $\varepsilon : \D(1)$ be arbitrary.
-  Consider the map $\pi_\varepsilon : R \to (\varepsilon)$ which sends $r$ to $r \varepsilon$.
-  Note that $R$ is linearly adequate and $(\varepsilon)$ is finitely adequate
-  by \Cref{thm:fin-adeq-class}.
-  We will show that $\pi_\varepsilon$ does not satisfy the claim for all $\varepsilon$.
-  Indeed, assume that $\hood{\pi_{\varepsilon}, 0}{1}$ is surjective for all $\varepsilon$.
-  Note that $\varepsilon \in \hood{(\varepsilon), 0}{1} = (\varepsilon)$.
-  Let $r:\D(1) = \hood{R,0}{1}$ be a lift of $\varepsilon$.
-  Since $\pi_\varepsilon(1) = \varepsilon$, $\pi_\varepsilon(r-1)=0$, i.e., $(r-1)\varepsilon=0$.
-  But $r$ is nilpotent, hence $r-1$ invertible and this would mean $\varepsilon = 0$, which cannot be true for all $\varepsilon$.
 \end{remark}
 
 Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
@@ -619,8 +599,171 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
   Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}.
 \end{proof}
 
+We finish this section by characterizing finitely presented $R$-modules amongst all finitely adequate modules as exactly those that are quasi-coherent.
 
-By \Cref{rem:tensor-not-closed}, the tensor product $M \otimes N$ is not necessarily linearly adequate when $M$ and $N$ are linearly adequate.
+\begin{lemma}
+  \label{identification-hom-tensor-for-fp-algebras}
+  Let $M$ be a reflexive $R$-module.
+  The $M$ is quasi-coherent if and only if for every finitely presented $R$-algebra $A$ the map
+  \[
+    M \otimes A \to \Hom_R(M^\ast, A), \;\;
+    m \otimes a \mapsto (\lambda \mapsto \lambda(m)a)
+  \]
+  is an equivalence.
+  It is natural in both $M$ and $A$.
+  In the hom-set we forget the algebra structure of $A$ and consider it as an $R$-module.
+\end{lemma}
+
+\begin{proof}
+  Suppose $M$ is reflexive and consider the following composition:
+  \begin{align*}
+    M \otimes A &\longrightarrow M^{\Spec A} \\
+                &\overset{\simeq}{\longrightarrow} (M^{\ast\ast})^{\Spec A} \\
+                &\overset{\simeq}{\longrightarrow} \Hom_R(M^\ast, R^{\Spec A}) \\
+                &\overset{\simeq}{\longleftarrow} \Hom_R(M^\ast, A)
+  \end{align*}
+  The first map is the one from the definition of quasi-coherence.
+  The second map is an equivalence due to reflexivity and the last to duality.
+  The penultimate equality follows by currying since $R^{\Spec A}$ carries the pointwise module structure.
+  We omit the verification that this composition agrees with the stated map of the lemma.
+  Thus the first map is an equivalence if and only if the composition is.
+\end{proof}
+
+\begin{corollary}
+  \label{identification-hom-tensor-for-fp-modules}
+  Let $M$ be a reflexive and quasi-coherent $R$-module.
+  Then for every finitely presented $R$-module $N$ the map
+  \[
+    M \otimes N \to \Hom_R(M^\ast, N), \;\;
+    m \otimes n \mapsto (\lambda \mapsto \lambda(m)n)
+  \]
+  is an equivalence which is natural in $N$.
+\end{corollary}
+
+\begin{proof}
+  Consider the trivial square-zero extension $R \oplus N$ of $N$, which is a finitely presented $R$-algebra and fits into an exact sequence
+  \[
+    0 \to N \to R \oplus N \overset{\pi}{\to} R \to 0\rlap{.}
+  \]
+  This sequence is split exact as a sequence of $R$-modules, hence any additive functor will preserve its exactness.
+  The previous lemma now gives a commutative diagram
+  \[
+  \begin{tikzcd}
+    0 \ar[d] & 0 \ar[d] \\
+    M \otimes N \ar[d]\ar[r, "(1)"] & \Hom_R(M^\ast,N) \ar[d] \\
+    M\otimes (R\oplus N) \ar[r,"(2)"] \ar[d,"M \otimes \pi"'] & \operatorname{Hom}_R(M^\ast,R\oplus N) \ar[d,"\pi_\ast"] \\
+    M \otimes R \ar[d]\ar[r,"(3)"] & \operatorname{Hom}_R(M^\ast,R) \ar[d] \\
+    0 & 0
+  \end{tikzcd}
+\]
+with exact columns.
+The map $(2)$ is an equivalence by \Cref{identification-hom-tensor-for-fp-algebras} and map $(3)$ is one by the reflexivity of $M$.
+By the universality of kernels we then see that $(1)$ is an equivalence as well.
+\end{proof}
+
+\begin{remark}
+  The equivalence of \Cref{identification-hom-tensor-for-fp-modules} does not generalize to all finitely adequate $R$-modules $N$, even if we specialize to a finitely presented $M$.
+  Indeed, this would imply that $M \otimes (-)$ and $\Hom_R(M^\ast,-)$ are exact functors.
+  For $\Hom_R(M^\ast,-)$ this is fine, as in this case $M^\ast$ is a projective module, but for $M \otimes (-)$ this cannot be:
+
+  Consider $M \equiv R/(r)$ and the monomorphism $(r) \lhook\joinrel\to R$.
+  It induces the zero map $R/(r) \otimes (r) \to R/(r) \otimes R$, but it not the case that for all $r:R$ we have $R/(r) \otimes (r) = (r)/(r^2) = 0$, as this would imply the mere existence of an $a:R$ such that $r=ar^2$.
+  Since $R$ is local we have $(ar \neq 0) \lor (1-ar \neq 0)$ and a simple case analysis would give $(r=0) \lor (r \neq 0)$ for all $r:R$.
+\end{remark}
+
+\begin{proposition}
+  Let $M$ be an $R$-module that is finitely adequate and quasi-coherent.
+  Then $M$ is finitely presented.
+\end{proposition}
+
+\begin{proof}
+  We show that $M^\ast$ is linearly adequate.
+  Equivalently, this means that $M^\ast$ is projective, i.e.\ we need to show that $H :\equiv \Hom_R(M^\ast,-)$ is exact on the category of finitely adequate modules.
+  For this let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
+  We get an induced exact sequence $0 \to H(A) \to H(B) \to H(C) \to \Ext^1(M^\ast,A)$, where $\Ext^1$ is the first right derived functor of $H$ defined in terms of injective resolutions.
+  We finish the proof by observing that $\Ext^1(M^\ast,A)=0$ by virtue of \Cref{identification-hom-tensor-for-fp-modules}.
+  % ---- OLD PROOF ----
+  % Suppose that $0 \to A \to B \to C \to 0$ is an exact sequence of finitely adequate modules.
+  % Choose finitely presented resolution $0 \to A \to P^0 \to P^1 \to P^2 \to 0$ and $0 \to C \to Q^0 \to Q^1 \to Q^2 \to 0$.
+  % Using the injectivity of $P_i$, we obtain a diagram
+  % \[
+  % \begin{tikzcd}
+  %   & 0 \ar[d]
+  %   & 0 \ar[d]
+  %   & 0 \ar[d]
+  %   \\
+  %   0 \ar[r]
+  %   & A \ar[r] \ar[d]
+  %   & B \ar[r] \ar[d]
+  %   & C \ar[r] \ar[d]
+  %   & 0
+  %   \\
+  %   0 \ar[r]
+  %   & P^0 \ar[r] \ar[d]
+  %   & P^0 \oplus Q^0 \ar[r] \ar[d]
+  %   & Q^0 \ar[r] \ar[d]
+  %   & 0
+  %   \\
+  %   0 \ar[r]
+  %   & P^1 \ar[r] \ar[d]
+  %   & P^1 \oplus Q^1 \ar[r] \ar[d]
+  %   & Q^1 \ar[r] \ar[d]
+  %   & 0
+  %   \\
+  %   0 \ar[r]
+  %   & P^2 \ar[r] \ar[d]
+  %   & P^2 \oplus Q^2 \ar[r] \ar[d]
+  %   & Q^2 \ar[r] \ar[d]
+  %   & 0
+  %   \\
+  %   & 0
+  %   & 0
+  %   & 0
+  % \end{tikzcd}
+  % \]
+  % Applying $H :\equiv \Hom_R(M^\ast,-)$ preserves the exactness of the vertical sequences because of \Cref{identification-hom-tensor-for-fp-modules} together with the left exactness of $H$ and also preserves the exactness of split exact sequences, hence we get a diagram
+  % \[
+  % \begin{tikzcd}
+  %   & 0 \ar[d]
+  %   & 0 \ar[d]
+  %   & 0 \ar[d]
+  %   \\
+  %   0 \ar[r]
+  %   & H(A) \ar[r] \ar[d]
+  %   & H(B) \ar[r] \ar[d]
+  %   & H(C) \ar[r, "?", dashed] \ar[d]
+  %   & 0
+  %   \\
+  %   0 \ar[r]
+  %   & H(P^0) \ar[r] \ar[d]
+  %   & H(P^0 \oplus Q^0) \ar[r] \ar[d]
+  %   & H(Q^0) \ar[r] \ar[d]
+  %   & 0
+  %   \\
+  %   0 \ar[r]
+  %   & H(P^1) \ar[r] \ar[d]
+  %   & H(P^1 \oplus Q^1) \ar[r] \ar[d]
+  %   & H(Q^1) \ar[r] \ar[d]
+  %   & 0
+  %   \\
+  %   0 \ar[r]
+  %   & H(P^2) \ar[r] \ar[d]
+  %   & H(P^2 \oplus Q^2) \ar[r] \ar[d]
+  %   & H(Q^2) \ar[r] \ar[d]
+  %   & 0
+  %   \\
+  %   & 0
+  %   & 0
+  %   & 0
+  % \end{tikzcd}
+  % \]
+  % The snake lemma gives an exact sequence $H(B) \to H(C) \to H(P^2) \to H(P^2 \oplus Q^2)$.
+  % Since $H(P^2) \to H(P^2 \oplus Q^2)$ is injective, the map $H(B) \to H(C)$ is surjective.
+\end{proof}
+
+\subsection{The Symmetric Monoidal Structure}
+
+In \Cref{cex:tensor-not-closed} we will see, that the tensor product $M \otimes N$ is not necessarily finitely adequate even when $M$ and $N$ are linearly adequate.
 This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely presented.
 Somewhat surprisingly, the internal hom still has a left adjoint in $\finadeq$.
 We will show that the \notion{double dual tensor product} $M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}$ is this left adjoint.
@@ -677,11 +820,11 @@ The next result is similar to Proposition 4.2.3 of Borceux~\cite{Borceux_1994_II
   Thus, $Tf = Tg$ since $T\eta_X$ is an epimorphism.
   By naturality of $\eta$, we have $\eta_Y \circ f = Tf \circ \eta_{TX} = Tg \circ \eta_{TX} = \eta_Y \circ g$.
   Since $Y$ is $T$-torsionless, $\eta_Y$ is a monomorphism and thus $f = g$.
-  
+
   (iii) $\Rightarrow$ (ii):  Assume that $\eta_X$ is $T$-torsionless-epic.
-  By naturality of $\eta$, we have $\eta_{TX} \circ \eta_X = T\eta_X \circ \eta_X$. 
+  By naturality of $\eta$, we have $\eta_{TX} \circ \eta_X = T\eta_X \circ \eta_X$.
   Since $TX$ is $T$-torsionless by \Cref{lem:monad-app-torsionless}, we obtain $T\eta_X = \eta_{TX}$.
-  
+
   (ii) $\Rightarrow$ (i): Assume that $T\eta_X = \eta_{TX}$.
   Our goal is to show that $\eta_{TX}$ is an isomorphism, so it suffices to show that $T\eta_X$ is an isomorphism.
   By unitality, we have that $\mu_X \circ T\eta_X = \id_{TX}$, so it remains to check the other composite.
