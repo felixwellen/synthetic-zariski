@@ -1,0 +1,103 @@
+In this section, we recall and rephrase some results from synthetic Stone duality (SSD, \cite{synthetic-stone-duality}) and synthetic topology \cite{SyntheticTopologyEscardo,SyntheticTopologyLesnik,abstractstone,faissole2017synthetic,vickers2007locales} for the purposes of this note.  
+
+List of stuff we use, to complete later
+\begin{itemize}
+  \item Open and Closed propositions and subsets. 
+  \item Countably presented algebras and some of their closure properties. 
+  \item Compact Hausdorff spaces. (Not sure we need ODisc in this note). 
+  \item All the axioms (Local choice phrased in terms of CHaus). 
+  \item Definition of a basis ala Lesnik.
+  \item Point out what is a basis of CHaus spaces. 
+  \item Local compactness of CHaus
+  \item Product topology. 
+  \item Interval, Cauchy completeness, LLPO and MP as interval results. 
+  \item Intermediate value theorem. 
+\end{itemize}
+\subsection{SSD}
+\begin{definition}
+\item A proposition $P$ is called \textbf{open} if there exists some sequence $\alpha:2^\mathbb N$ such that $P\leftrightarrow \exists_{n:\N} \alpha n = 1$. \parencite[Dfn 1.19]{synthetic-stone-duality}
+    \item A proposition $P$ is called \textbf{closed} if there exists some sequence $\alpha:2^\mathbb N$ such that $P\leftrightarrow \forall_{n:\N} \alpha n = 0$. \parencite[Dfn 1.19]{synthetic-stone-duality}
+    \item We denote $\Open, \Closed$ for the types of open and closed propositions respectively. \parencite[Dfn 1.19]{synthetic-stone-duality}
+  \item For $X$ a set, an \textbf{open subset} of $X$ is a map $X \to \Open$. \parencite[Dfn 1.25]{synthetic-stone-duality}
+    \item For $X$ a set, a \textbf{closed subset} of $X$ is a map $X \to \Closed$. \parencite[Dfn 1.25]{synthetic-stone-duality}
+    \item A type is \textbf{countable} iff it is merely equivalent to a decidable subset of $\mathbb N$. \parencite[Dfn 1.2]{synthetic-stone-duality}.
+    \item A type is \textbf{overtly discrete} if there is the quotient of a countable set by an open equivalence relation. \parencite[Dfn 2.1, Lem 2.12]{synthetic-stone-duality}.
+\end{definition}
+
+\subsection{Topology}
+
+\begin{definition}
+\item A map $f: A \to B$ is overt if for all $U : B \to \Open$, the statement $\exists_{a:A}.U(f(a))$ is open \parencite[Dfn 2.39]{lesnik2021synthetictopologyconstructivemetric}.
+\item A map $f:A \to B$ is compact if for all $U : B \to \Open$, the statement $\forall_{a:A} U(f(a))$ is open \parencite[Dfn 2.39]{lesnik2021synthetictopologyconstructivemetric}. 
+\item A subset is subovert/subcompact iff the inclusion map is. 
+\item We denote $Comp(X)$ for the subcompacta of $X$. 
+\item Let $X$ be a set. A \textbf{weak basis} for $X$ is a map $b: \mathcal B\to (X \to \Open)$ such that for any open subset $U\subseteq X$ there merely exists a set $I$ and map $u:I \to \mathcal B$ such that $U = \bigcup_{i: I} b(u_i)$. \parencite[Dfn 2.55]{lesnik2021synthetictopologyconstructivemetric}. 
+\item Such a weak basis is called a \textbf{basis} if $u$ can always be taken to be an overt map. 
+\item Such a basis is called \textbf{canonical} if there is a function that assigns to each $U\subseteq X$ a set and map $I,u$ as above. 
+\item Let $X$ be a set. If there exists a basis of $X$ such that $\mathcal B$ is overtly discrete,
+  % and $I$ can always be taken to be $\mathbb N$,
+  we call $X$ a \textbf{second countable} space.
+\end{definition}
+
+\begin{remark}
+\item If $A$ is overt or compact, so are all maps out of $A$. In particular, and closed subset of a compact Hausdorff space is subcompact. 
+\item If $X$ has a weak basis and there exists a map $c:\mathcal C \to \mathcal B$ such that for each open $B \in \mathcal B$, 
+  there exists some $v:J \to \mathcal C$ such that $B = \bigcup_{j\in J} c(v(j))$, then $b \circ c$ is also a weak basis for $X$. 
+\item Moreover, if the weak basis was a basis and $v$ was overt, $b\circ c$ is a basis. 
+\end{remark}
+
+\begin{definition}
+  Let $X$ be a type. A \textbf{local compactness structure} on $X$ consists of a map 
+  $b = (b_O,b_K) : \mathcal B \to ((X \to \Open) \times (Comp(X)))$ such that:
+  \begin{itemize}
+    \item $\mathcal B$ is overt. 
+    \item For all $j:\mathcal B$, $b_O(j) \subseteq b_K(j)$. 
+    \item For all $U\subseteq X$ open and $x\in U$, there exists some $j\in\mathcal B$ such that $x \in b_O(j)\subseteq b_K(j) \subseteq U$. 
+  \end{itemize}
+\end{definition} 
+\begin{remark}
+In \parencite[p59]{lesnik2021synthetictopologyconstructivemetric}, a type is called \textbf{strongly locally compact} if it merely has a local compactness structure. 
+In \parencite[Prop 2.59]{lesnik2021synthetictopologyconstructivemetric} it is shown that for a local compactness structure $b$, $b_O$ forms a canonical basis. 
+Moreover, it is shown that given two types $X,Y$ with local compactness structures $b,c$, then $b \times c$ forms a local compactness structure on $X \times Y$, and hence $b_O\times c_O$ a canonical basis. 
+\end{remark}
+
+\begin{lemma}
+  Compact Hausdorff spaces have a local compactness strucutre. 
+\end{lemma}
+\begin{proof}
+  Let $q:S \twoheadrightarrow X$ represent a compact Hausdorff space. 
+  Following \parencite[Cor 4.7]{synthetic-stone-duality}, every open subset of $X$ can be written as $\bigcup_{n:\mathbb N} \neg q(D_n)$ for some family $D_\bullet : \mathbb N \to 2^S$. 
+  Hence we can take $\mathcal B = 2^S$, $b_O(D) = \neg q(D)$ and $b_K(D) = q(\neg D_n)$. 
+\end{proof}
+
+\begin{remark}
+  Denote $2^*$ for the set of finite binary sequences. 
+  Recall from \parencite[Lemma 4.27]{synthetic-stone-duality} that there is a basis of the unit interval $[0,1]$ given by the map $b_O:2^* \times 2^* \to ([0,1] \to \Open)$ sending $(\alpha, \beta)$ to the open interval $\Sigma_{x : [0,1]} cs(\alpha)< x <cs(\beta)$, where $cs$ denotes the binary expansion $\alpha:2^n$ to $\sum_{i:\mathbb N_{\leq n}} \frac{\alpha_i}{2^{i+1}}$. 
+  Note that together with the map 
+  $b_K:2^* \times 2^* \to ([0,1] \to \Closed)$ sending $(\alpha, \beta)$ to the closed interval $\Sigma_{x : [0,1]} cs(\alpha)\leq x \leq cs(\beta)$, we get a local compactness structure on $[0,1]$. 
+  A corollary is that $[0,1]\times [0,1]$ has a basis indexed by four finite binary sequences $\alpha,\beta,\gamma,\delta$ corresponding to the open square $(cs(\alpha), cs(\beta)) \times (cs(\gamma) , cs(\delta))$. 
+\end{remark}
+
+
+\subsection{Analysis}
+
+
+
+
+\begin{remark}\label{IntermediateValue}
+  The intermediate value theorem as stated in Theorem 5.29 of \cite{synthetic-stone-duality} has the following consequence: If $f : [0,1] \to [0,1]$ is such that for some $x<y, a<b$ we have $f(x) = a, f(y) = b$, then for all $c$ with $a<c<b$ there exists some $z$ with $x<z<y$ such that $f(z) = c$. 
+\end{remark}
+\begin{remark}
+  Closed propositions are double negation stable and closed under disjunction and countable intersection. 
+\end{remark}
+\begin{remark}
+  Fix the statement of $\Sigma(x \sim y) $ vs $\exists(x\sim y)$ for $x\sim y$ the path relation. 
+\end{remark}
+\begin{remark}
+  Cauchy reals agree with set quotient of $2^\mathbb N$ by $\sim_n$. 
+  Conclude from this which functions one can definitely define on $\mathbb R^n \to \mathbb R^m$. 
+\end{remark}
+
+\begin{remark}
+  Let $X:\CHaus$ be represented by $q:S\twoheadrightarrow X$. Lemma \parencite[TODO]{synthetic-stone-duality} says that any open $U\subseteq X$ can be written as $\bigcup_{n:\mathbb N} \neg q(D_n)$ where $D : \mathbb N \to 2^S$ is some $\mathbb N$-indexed collection of decidable subsets of $S$. 
+\end{remark}

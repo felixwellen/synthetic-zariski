@@ -34,3 +34,41 @@ The following is a significant improvement due to a discussion with Ingo Blechsc
   By double-negation stability of opens, $s$ is therefore surjective.
   This means $s$ is an equivalence and therefore its one-sided inverse $f$.
 \end{proof}
+
+A possibly related statement:
+
+\begin{proposition}
+  \label{cohom-discrete-coeff}
+  Let $X$ be an irreducible, étale-overt, pointed scheme.
+  If $G$ is a group which is an étale sheaf with decidable equality, then:
+  \[
+    H^1(X,G)=0.
+  \]
+\end{proposition}
+
+\begin{proof}
+  Let $\chi:X\to K(G,1)$.
+  By Zariski-local choice, we have an open cover $U_1,\dots,U_n$ and
+  trivializations $s_i:(x:U_i)\to \chi_x=\ast$.
+  Let $k$ such that $\ast:U_k$.
+  Then for any $x:X$ and $i$ such that $x:U_i$,
+  we have \(U_k\cap U_i\neq \emptyset\) and $\|U_k\cap U_i\|_\et$.
+  
+  Let \(D_i\colonequiv (g:G)\times ((u:U_i\cap U_k)\to gs_i(u)=s_k(u))\), still assuming \(x:U_i\).
+  \(D_i\) is an étale sheaf and using that equality in \(G\) is double negation stable and
+  \(U_k\cap U_i\neq \emptyset\), we have that \(D_i\) is a proposition.
+  We can therefore use \(y:U_k\cap U_i\) to show that \(D_i\) is inhabited,
+  but then \(g_i\) is just given as the difference of \(s_k(y)\) and \(s_i(y)\),
+  which are both elements of the same \(G\)-torsor.
+
+  Let \(\widetilde{s}_i\colonequiv g_is_i\).
+  We conclude by showing that \(\widetilde{s}_i(x)=\widetilde{s}_j(x)\) holds for \(x:U_i\cap U_j\).
+  The goal is a propositional étale sheaf and \(U_k\cap U_i\cap U_j\) is non-empty,
+  so we can assume \(y:U_k\cap U_i\cap U_j\).
+  But then we have \(s_k(y)=\widetilde{s}_i(y)=\widetilde{s}_j(y)\).
+  Now \(U_i\cap U_j\) is connected by being irreducible inhabited, so \(\widetilde{s}_i(u)=\widetilde{s}_j(u)\) holds for all \(u:U_i\cap U_j\).
+\end{proof}
+
+\begin{example}
+  \(R^n,\bP^n\) and any irreducible pointed smooth scheme can be used as ``\(X\)'' in \Cref{cohom-discrete-coeff}. Examples for the group ``\(G\)'' include \(\Z\), any finite group and if we have \(\ell\neq 0\) in \(R\), then \(\mu_\ell\colonequiv \{x:R\mid x^\ell=1\}\) is an étale group scheme and therefore an example as well.
+\end{example}
