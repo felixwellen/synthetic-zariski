@@ -286,32 +286,28 @@ We can use this to compute duals of these and related modules, which will be ver
 \end{lemma}
 
 \begin{proof}
-  Let $f : \quot{R}{I} \to R$ be a linear map.
-  Then $f$ is uniquely determined by $f(\bar{1}) = a : R$.
-  By linearity we get that $ay = f(\bar{y}) = 0$ for any $y : I$.
-  Thus $a : \Ann(I)$.
-
-  Conversely, let $a : \Ann(I)$.
-  Define the map $f' \defeq (\argmhole) \cdot a : R \to R$.
-  Since $f'(y) = ay = 0$ for any $y : I$, $f'$ factors through $\quot{R}{I}$ as the map $f : \quot{R}{I} \to R$.
-
-  It is clear that these two operations are inverses to each other.
-  This proves that $\Ann(I) = (\quot{R}{I})^*$.
+  Let $i : I \rightarrow R$ be the inclusion map. 
+  Since taking duals is left exact, we have an exact sequence:
+  \begin{equation*}
+    \begin{tikzcd}
+      (\quot{R}{I})^* \ar[hook]{r} & R^* \ar{r}{i^*} & I^*
+    \end{tikzcd}
+  \end{equation*}
+  Every term of $R^*$ is of the form $\mu_r(x) = xr$ for a unique $r : R$.
+  Since $(\quot{R}{I})^*$ is the kernel of $i^*$, it consists of every $\mu_r$ such that $i^*(\mu_r) = 0$.
+  In other words, it consists of every $r : R$ such that $xr = 0$ for every $x : I$, which is precisely $\Ann(I)$.
 \end{proof}
 
 For the next counterexample, we will use the above observations to show that it is not the case that $R_{V(r)}$ is finitely adequate for all $r : R$.
 
 \begin{counterexample}\label{cex:R_V(r)-not-reflexive}
-  To show that $R_{V(r)}$ is not finitely adequate for all $r : R$, we will compute the double dual of $\quot{R}{R_{V(r)}}$.
-  By \Cref{lem:ann-dual-quotient}, we have $\Ann(R_{V(r)}) = (\quot{R}{R_{V(r)}})^*$.
-  Furthermore, by \Cref{lem:ann-R_U-K^U}, we have $\Ann(R_{V(r)}) = K^{V(r)} = \ideal{r}$.
-  Since $\ideal{r}$ is self-dual, we get that $(\quot{R}{R_{V(r)}})^{\ast\ast} = \ideal{r}$.
+  To show that it is not the case that $R_{V(r)}$ is finitely adequate for all $r : R$, we will show that exactness of duals and reflexivity properties of finitely adequate modules will lead to a contradiction.
+  But first, by \Cref{lem:ann-dual-quotient} and \Cref{lem:ann-R_U-K^U}, we have $(\quot{R}{R_{V(r)}})^* = \Ann(R_{V(r)}) = K^{V(r)} = \ideal{r}$.
 
-  For the sake of contradiction, suppose that $R_{V(r)}$ is finitely adequate.
-  Then $\quot{R}{R_{V(r)}}$ is finitely adequate by \Cref{prp:fin-adeq-cok-closure}.
-  Since taking duals is an anti-equivalence on finitely adequate modules (\Cref{cor:dual-equiv}), we get that $(R_{V(r)})^{\ast\ast} = \Ann(r)$.
-  By assumption, $R_{V(r)}$ is finitely adequate for any $r : R$, so the evaluation map $\ev : R_{V(r)} \to \Ann(r)$ is an equivalence.
-  This means that for any $x, r : R$ such that $xr = 0$, then either $x = 0$ or $r = 0$.
+  For the sake of contradiction, suppose that $R_{V(r)}$ is finitely adequate for all $r : R$.
+  Then, since taking duals is exact by \Cref{cor:dual-equiv}, we have $(R_{V(r)})^* = \quot{R^*}{(\quot{R}{R_{V(r)}})^*} = \quot{R}{\ideal{r}}$.
+  Thus, $(R_{V(r)})^{**} = \Ann(r)$, and the evaluation map $\ev : R_{V(r)} \to \Ann(r)$ is an equivalence for all $r : R$ by \Cref{thm:can-dual-iso}.
+  Unpacking this, we get that for any $x, r : R$ satisfying $xr = 0$, either $x = 0$ or $r = 0$.
   By duality, not all nilpotent elements of $R$ are zero, so it is not an integral domain.
   Hence we obtain the desired contradiction.
 \end{counterexample}
