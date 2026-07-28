@@ -87,7 +87,7 @@ We begin by investigating finitely generated ideals of $R$.
 \end{example}
 
 We can construct interesting examples and counterexamples using three families of propositions.
-For each $r \in R$, we define the propositions $V(r) \defeq (r = 0)$, $D(r) \defeq (r \neq 0)$, and $\neg D(r) \defeq \neg (r \neq 0)$.
+For each $r : R$, we define the propositions $V(r) \defeq (r = 0)$, $D(r) \defeq (r \neq 0)$, and $\neg D(r) \defeq \neg (r \neq 0)$.
 Although one could also consider finite sequences of elements $r_1, \dots, r_n$ in $R$ and their joint propositions, it is sufficient to consider a single element to obtain our main counterexamples.
 
 Let $U$ be a proposition.
@@ -135,10 +135,10 @@ First, observe that, by \cite[Proposition 2.2.3]{draft}, $\neg D(r)$ is the prop
 Equivalently, $\neg D(r) = \bigcup_{n : \N} (r^n = 0)$.
 Using continuity of the exponential and duality, we obtain $R^{\lnot D(r)} = R^{\bigcup_{k : \N}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k \quot{R}{\ideal{r^k}} = \widehat{R_r}$; i.e., $R^{\neg D(r)}$ is the $r$-adic completion of $R$.
 If $r$ is either invertible or nilpotent, then $\widehat{R_r}$ is finitely adequate.
-Our next counterexample follows the same strategy as the preceding one.
+Our next counterexample proves that it is not the case that $R^{\neg D(r)}$ is wqc for all $r:R$, and so it is not finitely adequate for all $r:R$ by \Cref{prp:wqc-adeq}.
 
 \begin{counterexample}\label{cex:exp-not-Dr-wqc}
-  It is not the case that the module $R^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
+  It is not the case that $R^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
   For the sake of contradiction, assume that $R^{\lnot D(r)}$ is weakly quasi-coherent for all $r : R$.
   By virtue of duality, the global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module:
   \[
@@ -253,8 +253,8 @@ It follows from \Cref{prp:op-closure-inf-lin-tangential} that $R/R_U$ is tangent
 \end{remark}
 
 \begin{example}
-  The module $K^{V(r)}$ is finitely adequate for any $r : R$.
-  By \Cref{ex:exp-Vr-fin-adeq}, $R^{V(r)} = \quot{R}{r}$.
+  The module $K^{V(r)}$ is finitely adequate for every $r : R$.
+  By \Cref{ex:exp-Vr-fin-adeq}, $R^{V(r)} = \quot{R}{\ideal{r}}$.
   Thus, $K^{V(r)} = \ideal{r}$, which is finitely adequate by \Cref{ex:fin-gen-ideal}.
 \end{example}
 
@@ -274,15 +274,15 @@ We can use this to compute duals of these and related modules, which will be ver
 
   This is an injective linear map by definition, so to see that it defines an isomorphism, it suffices to check that it is surjective.
   Let $x : K^U$ and $y : R_U$.
-  We need to show that $xy = 0$.
-  Since we're proving a proposition, we can assume that either $y = 0$ or $U$ holds by definition of $R_U$.
+  We need to show that $xy = 0$ to assert that $x$ is a term of $\Ann(R_U)$.
+  Since we're proving a proposition, we can assume that either $y = 0$ or $U$ holds.
   If $y = 0$ it is clear that $xy = 0$.
   If $U$ holds, then $x = 0$, so it is again clear that $xy = 0$.
 \end{proof}
 
 \begin{lemma}\label{lem:ann-dual-quotient}
   Let $I$ be an ideal of $R$.
-  Then $\Ann(I) = \quot{R}{I}^*$.
+  Then $\Ann(I) = (\quot{R}{I})^*$.
 \end{lemma}
 
 \begin{proof}
@@ -296,10 +296,10 @@ We can use this to compute duals of these and related modules, which will be ver
   Since $f'(y) = ay = 0$ for any $y : I$, $f'$ factors through $\quot{R}{I}$ as the map $f : \quot{R}{I} \to R$.
 
   It is clear that these two operations are inverses to each other.
-  This proves that $\Ann(I) = \quot{R}{I}^*$.
+  This proves that $\Ann(I) = (\quot{R}{I})^*$.
 \end{proof}
 
-For the next counterexample, we will use the above observations to show the module $R_{V(r)}$ is not finitely adequate for any $r : R$.
+For the next counterexample, we will use the above observations to show that it is not the case that $R_{V(r)}$ is finitely adequate for all $r : R$.
 
 \begin{counterexample}\label{cex:R_V(r)-not-reflexive}
   To show that $R_{V(r)}$ is not finitely adequate for all $r : R$, we will compute the double dual of $\quot{R}{R_{V(r)}}$.
@@ -324,11 +324,11 @@ This next counterexample will use the same strategy as \Cref{cex:exp-Dr-not-fin-
 % This counterexample is made with help of Gemini.
 
 \begin{counterexample}\label{cex:K-not-Dr-not-wqc}
-  It is impossible to prove that $K^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
-  In particular, it is impossible to prove that $K^{\lnot D(r)}$ is finitely adequate for every $r : R$.
+  It is not the case that $K^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
+  In particular, it is not the case that $K^{\lnot D(r)}$ is finitely adequate for every $r : R$.
 
   Suppose that for every $r : R$, the module $K^{\lnot D(r)} = \bigcap_k \ideal{r^k}$ is weakly quasi-coherent.
-  Then for any $r : R$, the canonical map
+  Then for every $r : R$, the canonical map
   \[
     \phi : (K^{\lnot D(r)})[1/r] \to (K^{\lnot D(r)})^{D(r)}
   \]
@@ -357,7 +357,7 @@ This is how we will use the above counterexample to derive more.
 
 \begin{proof}
   By \Cref{prp:fin-adeq-cok-closure}, \quot{R}{I} is finitely adequate.
-  And by \Cref{cor:dual-equiv}, $\Ann{I} = \quot{R}{I}^*$ is finitely adequate.
+  And by \Cref{cor:dual-equiv}, $\Ann{I} = (\quot{R}{I})^*$ is finitely adequate.
 \end{proof}
 
 \begin{remark}\label{rem:ann-for-cex}
@@ -365,13 +365,13 @@ This is how we will use the above counterexample to derive more.
 \end{remark}
 
 \begin{counterexample}\label{cex:R_not-Dr-not-fin-adeq}
-  The module $R_{\neg D(r)}$ is not finitely adequate for all $r : R$.
+  It is not the case that $R_{\neg D(r)}$ is finitely adequate for all $r : R$.
   By \Cref{lem:ann-R_U-K^U} we have $\Ann(R_{\neg D(r)}) = K^{\neg D(r)}$.
   By \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $R_{\neg D(r)}$ cannot be finitely adequate for all $r : R$.
 \end{counterexample}
 
 \begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
-  The module $K^{D(r)}$ is not finitely adequate for all $r : R$.
+  It is not the case that $K^{D(r)}$ is finitely adequate for all $r : R$.
   Since $R^{D(r)} = R[r^{-1}]$, we get that $K^{D(r)} = \bigcup_k \Ann(r^k)$.
   By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$.
   Moreover, it is clear that taking annihilator ideals of unions, is the same as the intersection of the annihilators.
