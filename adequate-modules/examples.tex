@@ -252,7 +252,7 @@ It follows from \Cref{prp:op-closure-inf-lin-tangential} that $R/R_U$ is tangent
   Since $\lnot\lnot(U \lor \lnot U)$ holds, the claim follows by double-negation elimination.
 \end{remark}
 
-\begin{example}
+\begin{example}\label{ex:K^V(r)-fin-adeq}
   The module $K^{V(r)}$ is finitely adequate for every $r : R$.
   By \Cref{ex:exp-Vr-fin-adeq}, $R^{V(r)} = \quot{R}{\ideal{r}}$.
   Thus, $K^{V(r)} = \ideal{r}$, which is finitely adequate by \Cref{ex:fin-gen-ideal}.
@@ -263,52 +263,75 @@ We can use this to compute duals of these and related modules, which will be ver
 
 \begin{lemma}\label{lem:ann-R_U-K^U}
   Let $U$ be a proposition.
-  Then $\Ann(R_U) = K^U$.
+  Then $\Ann(R_U) = K^U$ as submodules of $R$.
 \end{lemma}
 
 \begin{proof}
-  We can define a map $\Ann(R_U) \to K^U$ given by $x \mapsto x$.
-  To fill out the proof that this map is well-defined, we will assume that $U$ holds, and the goal is to show that $x = 0$.
+  We need to show that the predicates are equivalent.
+  Let $x : R$ and assume that $x$ is in $\Ann(R_U)$.
+  We must show that $U$ implies that $x = 0$.
   If $U$ holds, then $R_U = R$.
-  Thus, $\Ann(R_U) = \Ann(R) = 0$, meaning $x = 0$ as desired.
+  Thus, $\Ann(R_U) = \Ann(R) = 0$, giving $x = 0$.
 
-  This is an injective linear map by definition, so to see that it defines an isomorphism, it suffices to check that it is surjective.
-  Let $x : K^U$ and $y : R_U$.
-  We need to show that $xy = 0$ to assert that $x$ is a term of $\Ann(R_U)$.
+  For the other direction, assume that $x$ is in $K^U$.
+  We need to show that $xy = 0$ for every $y : R_U$.
   Since we're proving a proposition, we can assume that either $y = 0$ or $U$ holds.
-  If $y = 0$ it is clear that $xy = 0$.
+  If $y = 0$, it is clear that $xy = 0$.
   If $U$ holds, then $x = 0$, so it is again clear that $xy = 0$.
 \end{proof}
 
 \begin{lemma}\label{lem:ann-dual-quotient}
   Let $I$ be an ideal of $R$.
-  Then $\Ann(I) = (\quot{R}{I})^*$.
+  The natural equivalence $R \simeq R^*$ restricts to an equivalence
+  $\Ann(I) \simeq (\quot{R}{I})^*$.
 \end{lemma}
 
 \begin{proof}
   Let $i : I \rightarrow R$ be the inclusion map. 
-  Since taking duals is left exact, we have an exact sequence:
+  Since taking duals is left exact, we have an exact sequence
   \begin{equation*}
     \begin{tikzcd}
-      (\quot{R}{I})^* \ar[hook]{r} & R^* \ar{r}{i^*} & I^*
+      0 \ar{r} & (\quot{R}{I})^* \ar{r} & R^* \ar{r}{i^*} & I^*
     \end{tikzcd}
   \end{equation*}
-  Every term of $R^*$ is of the form $\mu_r(x) = xr$ for a unique $r : R$.
-  Since $(\quot{R}{I})^*$ is the kernel of $i^*$, it consists of every $\mu_r$ such that $i^*(\mu_r) = 0$.
-  In other words, it consists of every $r : R$ such that $xr = 0$ for every $x : I$, which is precisely $\Ann(I)$.
+  presenting $(\quot{R}{I})^*$ as the kernel of $i^*$.
+
+  The natural equivalence $R \to R^*$ sends $r$ to $\mu_r$ defined by $\mu_r(x) = xr$.
+  An element $r : R$ is in $\Ann(I)$ if and only if $\mu_r$ vanishes on $I$,
+  i.e., if and only if $i^*(\mu_r) = 0$.
+  By the exactness above, this gives an equivalence $\Ann(I) \to (\quot{R}{I})^*$
+  that commutes with the natural map $R \to R^*$.
 \end{proof}
 
-For the next counterexample, we will use the above observations to show that it is not the case that $R_{V(r)}$ is finitely adequate for all $r : R$.
+The next counterexample will use the above observations.
 
 \begin{counterexample}\label{cex:R_V(r)-not-reflexive}
-  To show that it is not the case that $R_{V(r)}$ is finitely adequate for all $r : R$, we will show that exactness of duals and reflexivity properties of finitely adequate modules will lead to a contradiction.
-  But first, by \Cref{lem:ann-dual-quotient} and \Cref{lem:ann-R_U-K^U}, we have $(\quot{R}{R_{V(r)}})^* = \Ann(R_{V(r)}) = K^{V(r)} = \ideal{r}$.
+  It is not the case that $R_{V(r)}$ is finitely adequate for all $r : R$.
+  First note that by \Cref{lem:ann-dual-quotient}, \Cref{lem:ann-R_U-K^U} and \Cref{ex:K^V(r)-fin-adeq}, we have $(\quot{R}{R_{V(r)}})^* = \Ann(R_{V(r)}) = K^{V(r)} = \ideal{r}$.
+  The first equivalence commutes with the natural map $R \to R^*$, and the second and third commute with the inclusions into $R$.
 
   For the sake of contradiction, suppose that $R_{V(r)}$ is finitely adequate for all $r : R$.
-  Then, since taking duals is exact by \Cref{cor:dual-equiv}, we have $(R_{V(r)})^* = \quot{R^*}{(\quot{R}{R_{V(r)}})^*} = \quot{R}{\ideal{r}}$.
-  Thus, $(R_{V(r)})^{**} = \Ann(r)$, and the evaluation map $\ev : R_{V(r)} \to \Ann(r)$ is an equivalence for all $r : R$ by \Cref{thm:can-dual-iso}.
-  Unpacking this, we get that for any $x, r : R$ satisfying $xr = 0$, either $x = 0$ or $r = 0$.
+  Then, since taking duals is exact by \Cref{cor:dual-equiv}, the top row of the
+  following diagram is exact:
+  \begin{equation*}
+    \begin{tikzcd}
+      0 \ar{r} & (\quot{R}{R_{V(r)}})^* \ar{r} & R^* \ar{r}{i^*} & (R_{V(r)})^* \ar{r} & 0 \\
+      0 \ar{r} & \ideal{r} \ar{u}{\sim} \ar{r} & R \ar{u}{\sim} & & \\
+    \end{tikzcd}
+  \end{equation*}
+  The left vertical map is the equivalence described in the first paragraph,
+  and the middle vertical map is the natural equivalence.
+  By the comments in the first paragraph, the square commutes, and so it follows
+  that $(R_{V(r)})^* = \quot{R}{\ideal{r}}$.
+
+  Again using \Cref{lem:ann-dual-quotient} we see that $(R_{V(r)})^{**} = (\quot{R}{\ideal{r}})^* = \Ann(r)$.
+  Since $R_{V(r)}$ is reflexive (\Cref{{thm:can-dual-iso}}), we get that
+  $R_{V(r)} = \Ann(r)$.
+  One can check that this is an equality of submodules.
+  % It takes a few steps to check the previous sentence as far as I can see.
+  Therefore, we get that for any $x, r : R$ satisfying $xr = 0$, either $x = 0$ or $r = 0$.
   By duality, not all nilpotent elements of $R$ are zero, so it is not an integral domain.
+  \rednote{Citation for previous sentence?}
   Hence we obtain the desired contradiction.
 \end{counterexample}
 
