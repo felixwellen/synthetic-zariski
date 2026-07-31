@@ -4,7 +4,7 @@ The goal for this file (StoneCauchy.tex) is to give the equivalent in SSD of the
 \end{theorem}
 I have a proof where we first approach each element of $X$ with a sequence from $q$, and work with sequences instead. I feel that should not be the final version of the proof though, which should not work with sequences (I don't like it as it uses choice, which leads to some arbitrary mere existence statement one has to work around, which is not very elegant), but with general Cauchy filters. 
 
-\begin{remark}
+\begin{remark}\label{NooFacts}
   \item Recall that $B_\infty$ is given by the free Boolean algebra on the generators $(g_n)_{n:\N}$ quotiented by $(g_n \wedge g_m)_{n\neq m}$. The spectrum of $B_\infty$ is called $\Noo$, which can thus be identified with binary sequences hitting $1$ at most once. 
   \item Recall also there is a map $\mathbb N \to \Noo$ sending $i$ to the sequence hitting $1$ at $i$, there is also the constant $0$ sequence in $\Noo$, denoted by $\infty$. 
   \item Note that for $n\neq m$, it follows that $(\neg g_n) \wedge g_m = g_m$ and $(\neg g_n) \vee (\neg g_m) = 1$. It follows from a conjunctive normal form argument that any term in $B_\infty$ can be written either as $\bigvee_{i\in I_0} g_i$ or as $\bigwedge_{i\in I_0} \neg g_i$, such terms are called finite and cofinite respectively. We can construct an isomorphism between $B_\infty$ and the boolean algebra of finite/cofinite subsets of $\mathbb N$, sending each $g_n$ to $\{n\}$. 
@@ -50,21 +50,16 @@ I have a proof where we first approach each element of $X$ with a sequence from 
   Then we can construct an extension $\Noo \to S$. 
 \end{corollary}
 \begin{definition}
-  We denote the maps $\N \to S$ with the above property a \textbf{Cauchy sequence}. If $x$ is such a Cauchy sequence, and $y$ the above extension, we call $y$ the \textbf{extension} of $x$, and $y(\infty)$ the \textbf{limit} of $x$. 
+  We call maps $\N \to S$ with the above property a \textbf{Cauchy sequence}. If $x$ is such a Cauchy sequence, and $y$ the above extension, we call $y$ the \textbf{extension} of $x$, and $y(\infty)$ the \textbf{limit} of $x$. 
 \end{definition}
-\begin{lemma}
-  Let $x: \N \to S$ be a Cauchy sequence and $L:S$. TFAE: 
+\begin{remark}
+ Let $x: \N \to S$ be a Cauchy sequence and $L:S$.   By \Cref{NooFacts}, the following are equivalent:
   \begin{enumerate}[(i)]
     \item\label{Llimit} $x$ has the limit $L$. 
     \item\label{Lcofinite} For each $D:2^S$, the set $\{n : \N | x_n \in D\}$ is cofinite iff $L\in D$. 
     \item\label{Lcofinal} For each $D:2^S$ with $x\in D$, there exists an $N:\mathbb N$ such that if $n>N$, then $x_n \in D$. 
   \end{enumerate}
-\end{lemma}
-\begin{proof}
-  Clearly \ref{Lcofinal} and \ref{Lcofinite} are equivalent. 
-  For the converse direction, note that for $y:\Noo \to S$ dual to $f:2^S\to N_{(co)fin}$, 
-  we have that $y(\infty) = s$ iff for all decidable $D\subseteq S$, 
-\end{proof}
+\end{remark}
 
 Note that \Cref{BabyExtension} is an instance of \Cref{GoalThmUniformCompleteExtension}. We will use it to prove a more general case. 
 
@@ -91,9 +86,19 @@ Note that \Cref{BabyExtension} is an instance of \Cref{GoalThmUniformCompleteExt
   We claim that $q_s$ has $s$ as a limit. Therefore we need to show that if $s\in D$, the set $\{n \in \mathbb N | q_n \in D\}$ is cofinite. 
   By \Cref{LocCptBasisTheorem}, there is some $N:\mathbb N$ such that $s\in b_O(e_N)\subseteq D$. And for $n>N$, we thus have $s\in O_{s,n} \subseteq D$, and hence $q_{s,n}\in O_{s,n}\subseteq D$, hence $\{n \in \mathbb N | q_n \in D\}$ is cofinite as required. 
 \end{proof}
-\begin{remark}
-  TODO By a similar proof as above, if $q_n,q'_n$ have the same limit, then so do $f(q_n)$ and $f(q'_n)$. 
-\end{remark}
+\begin{lemma}
+  Let $a,b : \N \to S$ both be Cauchy and have the same limit $L$. Then the sequence $c: \N \to S$ defined by
+  $$
+  c_n = \begin{cases} 
+    a_k \text{ if } n = 2k\\
+    b_k \text{ if } n = 2k+1
+  \end{cases}
+  $$
+  is also Cauchy and has $L$ as limit. 
+\end{lemma}
+\begin{proof}
+  Let $E\subseteq S \times S$ be an entourage. Then there is some decidable subset $D\subseteq S$ with $L \in D, D \times D \subseteq E$. As $a,b$ have $L$ as limit, both $a^{-1}(D), b^{-1}(D)$ are cofinite, hence there is some $N$ such that for $n>N$ we have $c_n \in D$. Thus $c$ is Cauchy and has limit $L$. 
+\end{proof}
 
 \begin{lemma}
   If $q: \N \to S$ is Cauchy and $f: S \to T$, then $f \circ q : \N \to T$ is Cauchy. 
@@ -102,6 +107,13 @@ Note that \Cref{BabyExtension} is an instance of \Cref{GoalThmUniformCompleteExt
   This follows directly from \Cref{rmkRelativeUniformContinuousIffCauchy}: if $E\subseteq T \times T$ is an entouage of $T$, then $(f \times f)^{-1}(E)$ is an entourage of $S$, and hence $ ((f \circ q) \times (f \circ q))^{-1}(E) = (q \times q)^{-1}(f\times f)^{-1} (E)$ must be an entourage of $\mathbb N $ relative to $\Noo$. So $f \circ q$ is relatively uniformly continuous as soon as $q$ is. 
 \end{proof}
 
+\begin{lemma}
+  If $a,b:\N \to S$ both have limit $L$, and $f:S \to T$, then 
+  $f\circ a,f\circ b$ both have limit $fL$. 
+\end{lemma}
+\begin{proof}
+  Define $c$ as in \Cref{TODO}, then $f \circ c$ has a limit, which must equal both the limit of $f\circ a$ and $f\circ b$. 
+\end{proof}
 
 \begin{theorem}
   Let $S,T$ Stone, $Q\subseteq S$ dense, and $f : Q \to T$ relatively uniformly continuous. 
