@@ -1,0 +1,21 @@
+\begin{definition}
+  Let $F,B : \Boole$ and let $F \hookrightarrow B$ be a Boolean injection, so that $F\subseteq B$ is an inclusion of Boolean algebras. 
+  We say that $f:F \to 2$ is a \textbf{Cauchy filter} if for any $E\subseteq Sp(B) \times Sp(B)$ entourage, there exists some $D\in F$ with $f(D) = 1$ and $D \times D \subseteq E$. 
+\end{definition}
+This definition is inspired by that of a Cauchy filter. The intuition is that the upwards closure of $f^{-1}(1)$ defines a filter, and any filter on $B$ in the traditional sense (conjunction closed, upwards closed, contains $1_B$, but not $0_B$) can be witnessed to come from such a partial map $f$. 
+\rednote{If I replace $D$ above by $\neg q(D)$, it should work as well, and that would be also good for Compact Hausdorff spaces, but for CHaus I expect to replace $E$ by only the relative entourages.}
+
+\begin{remark}
+  Axiom 2 (propositional completeness/surjections are formal surjections) can be shown to be equivalent to the observation that any partial map of any countably presented Boolean algebra into $2$ can merely be extended to a full map. 
+\end{remark}
+
+\begin{lemma}
+  If $f$ is a Cauchy filter, there is at most one extension $B \to 2$ extending $f$. 
+\end{lemma}
+\begin{proof}
+  Let $x,y: B \to 2$ both extend $f$. We will show that $\neg \neg (x = y)$, which will be sufficient. 
+  If $x \neq y$, by \parencite{synthetic-stone-duality, TODO}, there exists some $E:B$ such that $x \in E, y \in \neg E$. 
+  Let $D \in F$ be such that $f(D) = 1 , D \times D \subseteq \#E$.
+  As $x,y$ extend $f$, we have that $x(D) = y(D) = 1$. But then $(x,y) \in D \times D\subseteq \#E$. 
+  But as $x\in E, y \in \neg E$, we cannot have $(x,y) \in \#E$, from which we derive the needed contradiction. 
+\end{proof}
