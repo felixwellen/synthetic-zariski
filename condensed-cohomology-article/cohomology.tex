@@ -61,170 +61,97 @@ From \Cref{non-abelian-chech-is-sheaf-generic-ayclic-cover} and \Cref{vanishing-
 \subsection{Vanishing of higher cohomology for Stone spaces}
 \label{vanishing-stone}
 
-The goal of this section is to extend \Cref{vanishing-first-stone} to higher cohomology groups. We proceed by induction on the cohomology index, which requires to strengthen the result to proving that taking the delooping of an overtly discrete abelian groups commutes with Stone-indexed $\Pi$-types.
+The goal of this section is to extend \Cref{vanishing-first-stone} to higher cohomology groups. We proceed by induction on the cohomology index, which requires to strengthening the result to delooping of overtly discrete abelian groups commuting with Stone-indexed $\Pi$-types. First we present some preliminary results and definitions that works in plain HoTT.
 
-To be more specific, we will show in 
-\Cref{eilenberg-exponentials} that the following maps $\epsilon_n^{S,A}$ is an equivalence:
+%To be more specific, we will show in 
+%\Cref{eilenberg-exponentials} that the following maps $\epsilon_n^{S,A}$ is an equivalence:
 \begin{definition}
-  Assume given $S$ a Stone space with $A(x)$ an overtly discrete abelian group depending on $x:S$ and $n:\N$. We write $\epsilon_n^{S,A}$ for the canonical map from $K(\Pi_{x:S}A_x,n)$ to $\Pi_{x:S}K(A_x,n)$.
+  Assume given $n:\N$ and a type $S$ with for each $x:S$ an abelian group $A(x)$. We write $\epsilon_n^{S,A}$ for the canonical map from $\K(\Pi_{x:S}A(x),n)$ to $\Pi_{x:S}\,\K(A(x),n)$.
 \end{definition}
 
-\rednote{TODO is next lemma really necessary? We would need to change the definition to be able to state it.}
+Our goal is then to show that $\epsilon_n^{S,A}$ is an equivalence when $S$ is Stone and each $A(x)$ is overtly discrete. First an easy remark.
+
 \begin{lemma}\label{ev-eq-acyclic}
-  Assume given $X$ a type, $A(x)$ an abelian group depending on $x:X$ and $n\geq 1$. If $\epsilon_n^{S,A}$ is an equivalence, then $H^n(S,A) = 0$. 
+  Assume given $n\geq 1$ and a type $S$ with for each $x:S$ an abelian group $A(x)$. If $\epsilon_n^{S,A}$ is an equivalence, then $H^n(S,A) = 0$. 
 \end{lemma}
 
 \begin{proof}
-  By definition
-  $H^n(S,A) = || \Pi_{x : S} K(A_x,n) ||_0$. 
-  If $\epsilon_n^{S,A}$ is an equivalence, it follows that the latter equals
-  $|| K(\Pi_{x : S} A_x , n) ||_0$, 
-  which is $0$ if $n\geq 1$. 
+  If $\epsilon_n^{S,A}$ is an equivalence then
+  $H^n(S,A) = \propTrunc{\Pi_{x : S}\, \K(A(x),n)}_0 = \propTrunc{\K(\Pi_{x : S} A(x) , n)}_0$
+  which is contractible because $n\geq 1$. 
 \end{proof}
 
 \begin{lemma}\label{ev-embedding}
-  Assume given $S,A,n$,
-  if $\epsilon_n^{S,A}$ is an equivalence, then 
-  $\epsilon_{n+1}^{S,A}$ is an embedding. 
+  Assume given $n:\N$ and a type $S$ with for each $x:S$ an abelian group $A(x)$. If $\epsilon_n^{S,A}$ is an equivalence, then $\epsilon_{n+1}^{S,A}$ is an embedding. 
 \end{lemma}
 
 \begin{proof}
-  Note that the source is pointed and connected. 
-  So it is enough to prove the induced map:
-  \[\Omega(K(\Pi_{x:S}A_x,n+1)) \to \Omega(\Pi_{x:S}K(A_x,n+1))\]
-  is an equivalence, but this map is equal to the canonical map:
-  \[\epsilon_n^{S,A} : K(\Pi_{x:S}A_x,n) \to \Pi_{x:S}K(A_x,n),\]
-  which was an equivalence by the assumption. 
+  The source is pointed and connected, so it is enough to prove the induced map
+  \[\Omega(\K(\Pi_{x:S}A(x),n+1)) \to \Omega(\Pi_{x:S}\, \K(A(x),n+1))\]
+  is an equivalence. But this map is equal to the canonical map
+  \[\epsilon_n^{S,A} : \K(\Pi_{x:S}A(x),n) \to \Pi_{x:S}\,\K(A(x),n)\]
+  which is assumed to be an equivalence.
 \end{proof} 
+
 \begin{lemma}\label{acyclic-ev-surjective}
-  For $n\geq 1$, if $H^n(S,A) = 0$, then $\epsilon_{n}^{S,A}$ is a surjection. 
+  Assume given $n\geq 1$ and a type $S$ with for each $x:S$ an abelian group $A(x)$. If $H^n(S,A) = 0$, then $\epsilon_{n}^{S,A}$ is a surjection.
 \end{lemma}
+
 \begin{proof}
-  Note that for $n\geq 1$, 
-  $K(\Pi_{x:S}A_x,n)$ is $0$-connected. 
-  Therefore, it's sufficient to show that 
-  $\Pi_{x : S} K(A_x,n)$ is also $0$-connected, 
-  which means exactly that $H^{n}(S,A) = || \Pi_{x : S} K(A_x,n) ||_0 = 0$. 
+  Since $\K(\Pi_{x:S}A(x),n)$ is inhabited, it is enough to show that $\Pi_{x : S}\, \K(A_x,n)$ is $0$-connected, 
+  which exactly means that $H^{n}(S,A)=0$. 
 \end{proof} 
 
+Now we are ready to prove the desired result.
 
-\rednote{TODO I think we should save ourselves some trouble by just using the long exact cohomology sequence.} Next lemma is quite standard, although we did not find any Homotopy Type Theory reference.
+%\begin{lemma}\label{ExactSequenceDelooping}
+%  Let $0\to A \to B \to C\to 0$ be an exact sequence of abelian groups.
+%  Then we get a fiber sequence 
+%  $$
+%  \cdots \to K(C, k-1) \to K(A,k) \to K(B,k) \to K(C,k) \to K(A,k+1) \to \cdots 
+%  $$
+%\end{lemma}
 
-\begin{lemma}\label{ExactSequenceDelooping}
-  Let $0\to A \to B \to C\to 0$ be an exact sequence of abelian groups.
-  Then we get a fiber sequence 
-  $$
-  \cdots \to K(C, k-1) \to K(A,k) \to K(B,k) \to K(C,k) \to K(A,k+1) \to \cdots 
-  $$
-\end{lemma}
-
-\begin{proof}
-Note that $B \to C$ induces a pointed map 
-$K(B,n) \to K(C,n)$, let $F$ be its fiber. It is a pointed $n$-type. 
-Following Theorem 8.4.6 from \cite{hott}, we get the 
-following exact sequence:
-  $$
-  \cdots \to \pi_{k+1}(K(C,n)) \to 
-  \pi_{k}(F) \to \pi_{k}(K(B,n)) \to \pi_{k}(K(C,n)) \to 
-  \pi_{k-1}(F) \to \cdots ,
-  $$
-  Form this plus the map $\pi_n(K(B,n))\to \pi_n(K(C,n))$ being surjective, we conclude that $F$ is $n-1$-connected and that $\pi_n(F) = A$. By unicity of deloopings we get $F=K(A,n)$. We can then splice the short fiber sequences $K(A,n)\to K(B,n) \to K(C,n)$ together using Lemma 8.4.4 from \cite{hott}.
-  
-%where $F$ is the fiber of $K(B,k) \to K(C,n)$. 
-%Taking $k =n-1$, we have that 
-%$$\pi_n(F) \to \pi_{n}K(B,n) \to \pi_nK(C,n) \to \pi_{n-1} (F) \to \pi_{n-1}K(B,n)$$
-%is exact. 
-%Now we use that for any group $G$, we have $\pi_{n-1}(K(G,n)) = 0, \pi_n(K(G,n)) = G$. 
-%Thus $\pi_n(F) \to B \to C \to \pi_{n-1}(F) \to 0$ is a fiber sequence. 
-%As $B \to C \to 0$ was exact, $B \to C$ is surjective, 
-%so the image of $C \to \pi_{n-1}(F)$ is the same as that of 
-%But since the kernel of $\pi_{n-1}(F) \to 0$ is all of $\pi_{n-1}(F)$, 
-%we must have $\pi_{n-1}(F) = 0$.
-%Thus $F$ is $n-1$-connected. 
-%Also $F$ is the fiber of a map of $n$-types, which is an $n$-type. 
-%So $F$ is an $n-1$-connected $n$-type.
-%Thus $\pi_n(F)$ is a set and equals $A$. 
-%Therefore $F = K(A,n)$. 
-%Furthermore, the fiber of $K(A,n) \to K(B,n)$ should be $\Omega K(C,n) = K(C,n-1)$. 
-%We conclude that we have a fiber sequence of the form
-%$$\cdots\to 
-%  K(A,k) \to K(B, k) \to K(C,k)
-%$$
-%but then also our first exact sequence also tells us that 
-%there is a fiber sequence 
-%$$\cdots\to 
-%  K(C,k-1) \to 
-%  K(A,k) \to K(B, k) \to K(C,k) \to
-%  K(A,k+1) \to \cdots
-%$$
-\end{proof}
+%\begin{proof}
+%Note that $B \to C$ induces a pointed map 
+%$K(B,n) \to K(C,n)$, let $F$ be its fiber. It is a pointed $n$-type. 
+%Following Theorem 8.4.6 from \cite{hott}, we get the 
+%following exact sequence:
+  %$$
+  %\cdots \to \pi_{k+1}(K(C,n)) \to 
+  %\pi_{k}(F) \to \pi_{k}(K(B,n)) \to \pi_{k}(K(C,n)) \to 
+  %\pi_{k-1}(F) \to \cdots ,
+  %$$
+  %Form this plus the map $\pi_n(K(B,n))\to \pi_n(K(C,n))$ being surjective, we conclude that $F$ is $n-1$-connected and that $\pi_n(F) = A$. By unicity of deloopings we get $F=K(A,n)$. We can then splice the short fiber sequences $K(A,n)\to K(B,n) \to K(C,n)$ together %using Lemma 8.4.4 from \cite{hott}.
+%\end{proof}
 
 \begin{theorem}\label{eilenberg-exponentials}
-Assume given $S:\Stone$ and $A:S\to \mathrm{Ab}_\ODisc$, then for all $n:\N$ we have that the canonical map:
-\[\epsilon_n^{S,A} : K(\Pi_{x:S}A_x,n)\to \Pi_{x:S}K(A_x,n)\]
-is an equivalence.
+Assume given $n:\N$ and a Stone space $S$ with for each $x:S$ an overtly discrete abelian group $A(x)$. Then the $\epsilon_n^{S,A}$ is an equivalence.
 \end{theorem}
 
 \begin{proof}
-  We will use induction on $n$ to show that for all 
-  $S:\Stone,
-  A: S \to \mathrm{Ab}_\ODisc$, 
-  the map $\epsilon_n^{S,A}$ is an equivalence
-  If $n=0$, this is the identity map. 
-  Now assume for some $n:\N$ that for all $S,A$ we have
-  $\epsilon_n^{S,A}$ is an equivalence. 
-  We will show that for all $S,A$ we also have $\epsilon_{n+1}^{S,A}$ is an equivalence. 
-  By the induction hypothesis and \Cref{ev-embedding}, 
-  $\epsilon_{n+1}^{S,A}$ is an embedding. 
-  By Theorem 4.6.3 of \cite{hott}, 
-  we need only to show that $\epsilon_{n+1}^{S,A}$ is surjective.
-  By \Cref{acyclic-ev-surjective}, it's sufficient to show that $H^{n+1}(S,A) = 0$. 
-  For $n=0$ this is the abelian version of \Cref{vanishing-1-cohomology-stone}. 
-  We may thus assume $n\geq 1$ for the rest of this proof. 
+  We proceed by induction on $n$. If $n=0$, this is the identity map. 
+  
+  Now assume the result holds for some $n:\N$.
+  
+  By this induction hypothesis and \Cref{ev-embedding}, we have that $\epsilon_{n+1}^{S,A}$ is an embedding. We just need to prove that it is surjective to conclude, and by \Cref{acyclic-ev-surjective}, it's sufficient to show that $H^{n+1}(S,A) = 0$. For $n=0$ this is the abelian version of \Cref{vanishing-first-stone}. 
+  
+  Now we assume $n\geq 1$. Assume given $\alpha:H^{n+1}(S,A)$, by local choice there exists a family of inhabited Stone spaces $(T(x))_{x:S}$ such that $\pi^*(\alpha) : H^{n+1}(\Sigma_{x:S}T(x), A\circ\pi)$ is $0$, where $\pi:\Sigma_{x:S}\,T(x)\to S$ is the first projection. Consider factorisation of $\pi^*$ as
+  \[ H^{n+1}(S,A)\to H^{n+1}(S,x\mapsto A(x)^{T(x)}) \to H^{n+1}(\Sigma_{x:S}T(x), A\circ\pi). \]
+  We will show that both maps are injective, which will imply $\alpha=0$.
 
-  Let $\alpha : \Pi_{s : S} K(A_s , n+1)$, 
-  we need to show that merely $\alpha = *$. 
-  By \Cref{local-choice-delooping-trick}, 
-  there merely exists some family $(T_x)_{x:S}$ of inhabited Stone spaces such that 
-  $\Pi_{x:S} (\alpha_x = *)^{T_x}$. 
-  For $x:S$, denote $L_x$ for $A_x^{T_x}/A_x$, 
-  where the quotient is over the image of the constant map.
-  As $A_x^{T_x} \to L_x$ is surjective, we get an exact sequence 
-  $0\to A_x \to A_x^{T_x} \to L_x \to 0$. 
-  By \Cref{ExactSequenceDelooping}, we get a fiber sequence
-  $$\cdots\to 
-    K(L_x,k-1) \to 
-    K(A_x,k) \to K(A_x^{T_x}, k) \to K(L_x,k) \to
-    K(A_x,k+1) \to \cdots
-  $$
-  Now as $\prod$ preserves fiber sequences we also get a fiber sequence 
-  $$
-    \cdots\to 
-    \Pi_{x:S}K(L_x,k-1) \to 
-    \Pi_{x:S} K(A_x,k) \to \Pi_{x:S}K(A_x^{T_x}, k) \to \Pi_{x:S}K(L_x,k) \to
-    \Pi_{x:S} K(A_x,k+1) \to \cdots
-  $$
-  Consider the decomposition of 
-  $\Pi_{x:S}K(A_x,n+1) \to \Pi_{x:S} K(A_x,n+1)^{T_x}$ given by:
-  $$
-    {\Pi_{x:S} K(A_x,n+1)} \to \Pi_{x:S}  {K(A_x^{T_x},n+1)} \hookrightarrow \Pi_{x:S}  {K(A_x,n+1)^{T_x}}
-  $$
-  where the second map is composition with 
-  $\epsilon_{n+1}^{T_x,\lambda t . A_x}$, 
-  which is an embedding by the induction hypothesis and \Cref{ev-embedding}. 
-  By assumption on $T$, the composite sends $\alpha$ to $*$,
-  and thus the first map also sends $\alpha$ to $*$.
-  Thus $\alpha$ is in the kernel of $\Pi_{x:S}K(A_x,n+1) \to K(A_x^{T_x},n+1)$.
-  By exactness $\alpha$ is in the image $\Pi_{x:S} K(L_x,n) \to \Pi_{x:S}K(A_x,n+1)$. 
-  As $n\geq 1$, we can use the induction hypothesis and \Cref{ev-eq-acyclic} to see that $H^n(S,L)=0$.
-  Thus any $\beta:\Pi_{x:S}K(L_x,n)$ merely equals $*$, 
-  so their image merely equals $*$ in $\Pi_{x:S}K(A_x,n+1)$. 
-  Thus we merely have $\alpha = *$, as required. 
+\begin{itemize}
+ \item For the first map, for each $x:S$ we define an abelian group $L(x)$ by the exact sequence
+  \[  0\to A(x) \to A(x)^{T(x)} \to L(x) \to 0. \]
+The long exact cohomology sequence then gives exactness of
+\[ H^n(S,L)\to H^{n+1}(S,A)\to H^{n+1}(S,x\mapsto A(x)^{T(x)}).\]
+By TODO we get that $L(x)$ is overtly discrete. So by the induction hypothesis and \Cref{ev-eq-acyclic} we have that $H^n(S,L)=0$. Then the first map in the factorisation is indeed injective.
+\item  By the induction hypothesis and \Cref{ev-embedding}, for all $x:S$ the map $\epsilon_{n+1}^{T(x),A(x)}$ is an embedding. So the second map in the factorisation is indeed injective. 
+\end{itemize}
 \end{proof}
 
 \begin{corollary}\label{vanishing-cohomology-stone}
-Let $S$ be Stone and $A:S\to\mathrm{Ab}_\ODisc$. Then for all $n>0$ we have that:
-\[H^n(S,A) = 0\]
+Assume given $n\geq 1$ and a Stone space $S$ with for each $x:S$ an overtly discrete abelian group $A(x)$. Then $H^n(S,A) = 0$.
 \end{corollary}
 
 
