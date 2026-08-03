@@ -600,18 +600,19 @@ Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
 \end{proof}
 
 We finish this section by characterizing finitely presented $R$-modules amongst all finitely adequate modules as exactly those that are quasi-coherent.
+For $R$-modules $M$ and $N$, we will make use of the $R$-module homomorphism
+  \[
+    \beta_{M,N} : M \otimes N \to \Hom_R(M^\ast, N), \quad
+    m \otimes n \mapsto (\lambda \mapsto \lambda(m)n)
+  \]
+This homomorphism is natural in $M$ and $N$.
 
 \begin{lemma}
   \label{identification-hom-tensor-for-fp-algebras}
   Let $M$ be a reflexive $R$-module.
   The $M$ is quasi-coherent if and only if for every finitely presented $R$-algebra $A$ the map
-  \[
-    M \otimes A \to \Hom_R(M^\ast, A), \;\;
-    m \otimes a \mapsto (\lambda \mapsto \lambda(m)a)
-  \]
-  is an equivalence.
-  It is natural in both $M$ and $A$.
-  In the hom-set we forget the algebra structure of $A$ and consider it as an $R$-module.
+  $\beta_{M,A}$ is an equivalence.
+  Here $A$ is regarded as an $R$-module.
 \end{lemma}
 
 \begin{proof}
@@ -623,42 +624,38 @@ We finish this section by characterizing finitely presented $R$-modules amongst 
                 &\overset{\simeq}{\longleftarrow} \Hom_R(M^\ast, A)
   \end{align*}
   The first map is the one from the definition of quasi-coherence.
-  The second map is an equivalence due to reflexivity and the last to duality.
+  The second map is an equivalence due to reflexivity of $M$ and the last due to duality.
   The penultimate equality follows by currying since $R^{\Spec A}$ carries the pointwise module structure.
-  We omit the verification that this composition agrees with the stated map of the lemma.
+  We omit the verification that this composition agrees with the map $\beta_{M,A}$.
   Thus the first map is an equivalence if and only if the composition is.
 \end{proof}
 
 \begin{corollary}
   \label{identification-hom-tensor-for-fp-modules}
   Let $M$ be a reflexive and quasi-coherent $R$-module.
-  Then for every finitely presented $R$-module $N$ the map
-  \[
-    M \otimes N \to \Hom_R(M^\ast, N), \;\;
-    m \otimes n \mapsto (\lambda \mapsto \lambda(m)n)
-  \]
-  is an equivalence which is natural in $N$.
+  Then for every finitely presented $R$-module $N$ the map $\beta_{M,N}$
+  is an equivalence.
 \end{corollary}
 
 \begin{proof}
   Consider the trivial square-zero extension $R \oplus N$ of $N$, which is a finitely presented $R$-algebra and fits into an exact sequence
   \[
-    0 \to N \to R \oplus N \overset{\pi}{\to} R \to 0\rlap{.}
+    0 \longrightarrow N \longrightarrow R \oplus N \overset{\pi}{\longrightarrow} R \longrightarrow 0\rlap{.}
   \]
   This sequence is split exact as a sequence of $R$-modules, hence any additive functor will preserve its exactness.
-  The previous lemma now gives a commutative diagram
+  Therefore, we get a commutative diagram
   \[
-  \begin{tikzcd}
+  \begin{tikzcd}[column sep=1.5cm]
     0 \ar[d] & 0 \ar[d] \\
-    M \otimes N \ar[d]\ar[r, "(1)"] & \Hom_R(M^\ast,N) \ar[d] \\
-    M\otimes (R\oplus N) \ar[r,"(2)"] \ar[d,"M \otimes \pi"'] & \operatorname{Hom}_R(M^\ast,R\oplus N) \ar[d,"\pi_\ast"] \\
-    M \otimes R \ar[d]\ar[r,"(3)"] & \operatorname{Hom}_R(M^\ast,R) \ar[d] \\
+    M \otimes N \ar[d]\ar[r, "\beta_{M,N}"] & \Hom_R(M^\ast,N) \ar[d] \\
+    M\otimes (R\oplus N) \ar[r,"\beta_{M,R \oplus N}"] \ar[d,"M \otimes \pi"'] & \operatorname{Hom}_R(M^\ast,R\oplus N) \ar[d,"\pi_\ast"] \\
+    M \otimes R \ar[d]\ar[r,"\beta_{M,R}"] & \operatorname{Hom}_R(M^\ast,R) \ar[d] \\
     0 & 0
   \end{tikzcd}
 \]
 with exact columns.
-The map $(2)$ is an equivalence by \Cref{identification-hom-tensor-for-fp-algebras} and map $(3)$ is one by the reflexivity of $M$.
-By the universality of kernels we then see that $(1)$ is an equivalence as well.
+The map $\beta_{M,R \oplus N}$ is an equivalence by \Cref{identification-hom-tensor-for-fp-algebras} and the map $\beta_{M,R}$ is an equivalence by the reflexivity of $M$.
+By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence as well.
 \end{proof}
 
 \begin{remark}
@@ -679,7 +676,7 @@ By the universality of kernels we then see that $(1)$ is an equivalence as well.
 \begin{proof}
   We show that $M^\ast$ is linearly adequate.
   Equivalently, this means that $M^\ast$ is projective, i.e.\ we need to show that $H :\equiv \Hom_R(M^\ast,-)$ is exact on the category of finitely adequate modules.
-  For this let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
+  For this, let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
   We get an induced exact sequence $0 \to H(A) \to H(B) \to H(C) \to \Ext^1(M^\ast,A)$, where $\Ext^1$ is the first right derived functor of $H$ defined in terms of injective resolutions.
   We finish the proof by observing that $\Ext^1(M^\ast,A)=0$ by virtue of \Cref{identification-hom-tensor-for-fp-modules}.
   % ---- OLD PROOF ----
