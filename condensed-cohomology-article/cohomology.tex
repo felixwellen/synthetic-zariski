@@ -1,46 +1,55 @@
-In this part we will use result from the previous section to compute some cohomology. In \Cref{non-abelian-cech}, we work in plain HoTT and give an explicit description for torsors over a type $X$ trivialised by a given cover in terms of cocycles for this cover. In \Cref{first-cohomology-stone-chaus} we leverage this description to study non-abelian cohomology with overtly discrete coefficients. We show it vanishes for Stone spaces, and explain how this description can be used to compute it for compact Hausdorff spaces. In \Cref{vanishing-stone} and \Cref{cech-and-sheaf-agree} we show how to extend these results to higher cohomology of Stone spaces and compact Hausdorff spaces with overtly discrete coefficients. Then in \Cref{interval-acyclic} we apply this to proving the vanishing of the cohomology of the interval with overtly discrete coefficients (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficient is the same as countably presented coefficients.
+This section leverage Scott continuity to compute cohomology for Stone spaces and compact Hausdorff spaces. In \Cref{first-cohomology-stone-chaus} we study the first cohomology groups with (not necessarily abelian) overtly discrete coefficients. We show they vanish for Stone spaces, and explain how they can be computed for compact Hausdorff spaces $C$ using cocycles for a given cover of $C$ by a Stone space. In \Cref{vanishing-stone} and \Cref{cech-sheaf-agree-section} we extend these results to higher cohomology groups. Then in \Cref{interval-acyclic} we prove that the interval is acyclic in the sense that its cohomology with overly discrete coefficient vanish (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficients are the same as countably presented coefficients.
 
 
 
 \subsection{Non-abelian cohomology for Stone spaces and compact Hausdorff spaces}
 \label{first-cohomology-stone-chaus}
 
+In \Cref{non-abelian-cech} we define the \v{Cech} cohomology group $\check{H}^1(X,Y,G)$ for any type $X$ with for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$. We then study these groups in the context of plain HoTT, and show they agree with regular cohomology in favorable situations. The goal of the present section is to apply these results to the cohomology of Stone spaces and compact Hausdorff spaces in synthetic Stone duality. First we extend Scott continuity from maps to \v{C}ech cohomology groups.
+
 \begin{lemma}\label{first-cech-scott-continuity}
-Assume given $S$ a Stone space with $(T_k(x))_{k:\N}$ a tower of Stone spaces and $G(x)$ an overly discrete group both depending on $x:S$. Write $T(x) =\mathrm{lim}_kT_k(x)$. Then $\check{H}^1(S,T,G) = \mathrm{colim}_k \check{H}^1(S,T_k,G)$.
+Assume given a Stone space $S$ and for each $x:S$ a tower of Stone spaces $(T_k(x))_{k:\N}$ with an overly discrete group $G(x)$. Write $T(x) =\mathrm{lim}_k\, T_k(x)$. Then $\check{H}^1(S,T,G) = \mathrm{colim}_k\, \check{H}^1(S,T_k,G)$.
 \end{lemma}
 
 \begin{proof}
-We use Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left} repeatedly to show e.g.\ that $\Pi_{x:S}G(x)^{T(x)^2} = \mathrm{colim}_k \Pi_{x:S}G(x)^{T_k(x)^2}$. We omit the details. 
+We use Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left} to show e.g.\ that $\Pi_{x:S}\, G(x)^{T(x)^2} = \mathrm{colim}_k\, \Pi_{x:S}\,G(x)^{T_k(x)^2}$. We have similar formulas for all the data used in defining cocycles and coboundaries, which allows to conclude. We omit the details.
 \end{proof}
+
+Now we can use the approximation of any surjection between Stone spaces as a limit of maps merely having section (\Cref{finite-approximation-stone-surjection-cohomology}) to conclude the vanishing of the appropriate \v{C}ech cohomology groups.
 
 \begin{lemma}\label{cech-vanishing-first-stone}
-Assume given $S$ a Stone space with $T(x)$ an inhabited Stone spaces and $G(x)$ an overtly discrete group both depending on $x:X$. Then $\check{H}^1(S,T,G) = 0$.
+Assume given a Stone space $S$ and for each $x:S$ an inhabited Stone spaces $T(x)$ with an overtly discrete group $G(x)$. Then $\check{H}^1(S,T,G) = 0$.
 \end{lemma}
 
 \begin{proof}
-By \Cref{finite-approximation-stone-surjection-cohomology} we have $(T_k(x))_{k:\N}$ a tower of Stone spaces depending on $x:S$ such that for all $x:S$ we have that $\mathrm{lim}_kT_k(x) = 0$ and we merely have $\Pi_{x:S}T_k(x)$ for all $k:\N$.
+By \Cref{finite-approximation-stone-surjection-cohomology}, we get for each $x:S$ a tower of Stone spaces $(T_k(x))_{k:\N}$ such that $\mathrm{lim}_k\,T_k(x) = T(x)$ and we merely have $\Pi_{x:S}\,T_k(x)$ for all $k:\N$.
 
-Then by \Cref{first-cech-scott-continuity} we have that $\check{H}^1(S,T,G) = \mathrm{colim}_k\check{H}^1(S,T_k,G)$, and by \Cref{first-cech-has-section-vanish} we have that $\check{H}^1(S,T_k,G) = 0$ for all $k:\N$ so we can conclude.
+Then by \Cref{first-cech-scott-continuity} we have that $\check{H}^1(S,T,G) = \mathrm{colim}_k\,\check{H}^1(S,T_k,G)$, and by \Cref{first-cech-has-section-vanish} we have that $\check{H}^1(S,T_k,G) = 0$ for all $k:\N$ so we can conclude.
 \end{proof}
 
+Now using results from \Cref{non-abelian-cech}, we conclude the vanishing of the usual cohomology groups for Stone spaces, and that \v{C}ech cohomology agree with usual cohomology for compact Hausdorff spaces.
+
 \begin{proposition}\label{vanishing-first-stone}
-Assume given $S$ a Stone space with $G(x)$ an overtly discrete group depending in $x:X$. Then $H^1(S,G) = 0$.
+Assume given a Stone space $S$ and for each $x:S$ an overtly discrete group $G(x)$. Then $H^1(S,G) = 0$.
 \end{proposition}
 
 \begin{proof}
-Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited Stone space depending on $x:S$ such that $\pi_S^*(\alpha) = 0$, so that $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $H^1(S,T,G) = 0$ and $\alpha=0$.
+Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited Stone space depending on $x:S$ such that $\pi_S^*(\alpha) = 0$, so that $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $\alpha=0$.
 \end{proof}
 
-\begin{definition}
-A \v{C}ech cover for a set $X$ consists of $S(x)$ an inhabited Stone spaces depending on $x:X$ such that $\Sigma_{x:X}S(x)$ is a Stone space.
-\end{definition}
+%\begin{definition}
+%A \v{C}ech cover for a set $X$ consists of $S(x)$ an inhabited Stone spaces depending on $x:X$ such that $\Sigma_{x:X}S(x)$ is a Stone space.
+%\end{definition}
 
-\begin{remark}
-A set $X$ merely has a \v{C}ech cover if and only is it is a compact Hausdorff space. We just need to prove that identity types in an $X$ with a \v{C}ech cover $S$ are closed, but given $y,y':\Sigma_{x:X}S(x)$ we have that $\pi_X(y)=\pi_X(y')$ if and only if $y'\in \pi_X^{-1}(\pi_X(y))$ and any Stone subspace of a Stone space is closed.
-\end{remark}
+%\begin{remark}
+%A set $X$ merely has a \v{C}ech cover if and only is it is a compact Hausdorff space. We just need to prove that identity types in an $X$ with a \v{C}ech cover $S$ are closed, but given $y,y':\Sigma_{x:X}S(x)$ we have that $\pi_X(y)=\pi_X(y')$ if and only if $y'\in \pi_X^{-1}(\pi_X(y))$ and any Stone subspace of a Stone space is closed.
+%\end{remark}
+
+%I DECIDED TO GET RID OF THE DEFINITION OF CECH COVER BUT MAYBE I'LL REVERT LATTER
 
 \begin{proposition}\label{non-abelian-cech-and-sheaf-agree}
-Assume given $X$ a compact Hausdorff space with a \v{C}ech cover $S$ and $G(x)$ an overtly discrete group depending on $x:X$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
+%Assume given a compact Hausdorff space $X$ with a \v{C}ech cover $S$ and $G(x)$ an overtly discrete group depending on $x:X$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
+Assume given a compact Hausdorff space $X$, a surjection $S\to X$ with $S$ Stone and for each $x:X$ an overtly discrete group $G(x)$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
 \end{proposition}
 
 \begin{proof}
@@ -52,8 +61,7 @@ From \Cref{non-abelian-chech-is-sheaf-generic-ayclic-cover} and \Cref{vanishing-
 \subsection{Vanishing of higher cohomology for Stone spaces}
 \label{vanishing-stone}
 
-The goal of this section is to show that given $S$ a Stone space with $A(x)$ an overly discrete abelian group depending on $x:S$, we have that $H^n(S,A) = 0$ for all $n\geq 1$. The case $n=1$ is an immediate consequence of \Cref{vanishing-1-cohomology-stone}. To prove the general case, we proceed by induction on $n$. For this induction to go through, we have to strenghten the result, so that we actually prove that deloopings of overtly discrete abelian group commutes with Stone-indexed $\Pi$-types.
-%This acyclity will be used as an intermediate step. 
+The goal of this section is to extend \Cref{vanishing-first-stone} to higher cohomology groups. We proceed by induction on the cohomology index, which requires to strengthen the result to proving that taking the delooping of an overtly discrete abelian groups commutes with Stone-indexed $\Pi$-types.
 
 To be more specific, we will show in 
 \Cref{eilenberg-exponentials} that the following maps $\epsilon_n^{S,A}$ is an equivalence:
