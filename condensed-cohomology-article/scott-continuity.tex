@@ -23,13 +23,18 @@ Propositions that are Stone are called Closed
 Corollary 3.9 of \cite{synthetic-stone-duality}.
 \end{proof}
 
-\begin{proposition}
+\begin{definition}
+  We say a class of types $\mathcal C$ has local choice if for any $X:\mathcal C$, and $P$ a family of types over $X$ with $\Pi_{x:X} \| P x\| $, there merely exists some $Y:\mathcal C$ and surjection $q: Y \twoheadrightarrow X $ such that $\| \Pi_{y:Y} P (q y)\|$. 
+\end{definition}
+
+\begin{proposition}\label{Stone-closure}
 We have the following:
 
 \begin{enumerate}[(i)]
 \item Finite types are Stone spaces.
 \item Stone spaces are stable under identity types and and $\Sigma$-types.
 \item Stone spaces are stable under sequential limits.
+\item Stone spaces have local choice
 \end{enumerate}
 \end{proposition}
 
@@ -40,6 +45,7 @@ As follows:
 \item Clear.
 \item Lemma 3.10 and Theorem 4.18 of \cite{synthetic-stone-duality}.
 \item From duality and the fact that a sequential colimit of a countably presented boolean algebra is countably presented.
+\item This is Axiom 3 of \cite{synthetic-stone-duality}. 
 \end{enumerate}
 \end{proof}
 
@@ -77,8 +83,7 @@ Assume given $S:\Stone$ and $T:S\to \Stone$ such that $\Pi_{x:S}\, \propTrunc{T(
 \end{lemma}
 
 \begin{proof}
-  By Theorem 4.18 of \cite{synthetic-stone-duality}, the total space $\Sigma_S T$ is Stone. As the projection 
-  $\pi: \Sigma_S\, T \to S$ is  assumed surjective, by Remark 3.4 of \cite{synthetic-stone-duality} 
+  By \Cref{Stone-closure}, the total space $\Sigma_S T$ is Stone. As the projection $\pi: \Sigma_S\, T \to S$ is  assumed surjective, by Remark 3.4 of \cite{synthetic-stone-duality} 
 we can write $\pi$ as a sequential limit of surjections $\pi_k : Q_k\twoheadrightarrow S_k$ between finite sets. 
 We define $T_k(x)$ as $\pi_k^{-1}(x|_k)$ which is indeed a Stone space as it is a closed subset of a finite set (Corollary 3.12 of \cite{synthetic-stone-duality}.
 %  
@@ -101,20 +106,12 @@ A type is overtly discrete if it merely is a sequential colimit of finite types.
 An overtly discrete proposition is called open. 
 \end{definition}
 \begin{remark}
-  The definition of open propositions above is equivalent to that of $\mathbb N$-indexed disjunctions of decidable propositions given in \cite{synthetic-stone-duality} by Lemma 2.8. 
+  The definition of open propositions above is equivalent to that of $\mathbb N$-indexed disjunctions of decidable propositions given in \cite{synthetic-stone-duality} by Lemma 2.8 of \cite{synthetic-stone-duality}. 
 \end{remark}
 
 \begin{definition}
 A type is countable if it merely is a decidable subset of $\N$.
 \end{definition}
-
-\begin{lemma}\label{overtly-discrete-proposition-open}
-A proposition is overtly discrete if and only if it is open.
-\end{lemma}
-
-\begin{proof}
-This is Lemma 2.8 of \cite{synthetic-stone-duality}.
-\end{proof}
 
 Next characterisation gives helpful intuitions about overtly discrete types. In some sense that are countably presented sets.
 
