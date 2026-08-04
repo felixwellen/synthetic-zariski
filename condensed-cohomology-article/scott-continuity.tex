@@ -102,7 +102,6 @@ Here we give generalities on overtly discrete types. Most results come from \cit
 
 \begin{definition}\label{dfnODisc}
 A type is overtly discrete if it merely is a sequential colimit of finite types.
-
 An overtly discrete proposition is called open. 
 \end{definition}
 \begin{remark}
@@ -113,8 +112,9 @@ An overtly discrete proposition is called open.
 A type is countable if it merely is a decidable subset of $\N$.
 \end{definition}
 
-Next characterisation gives helpful intuitions about overtly discrete types. In some sense that are countably presented sets.
-
+\begin{remark}\label{overtly-discrete-countably-presented}
+  In Corollary 2.14 of \cite{synthetic-stone-duality}, it is shown that a Boolean algebra is countably presented if and only if it is overtly discrete. Such a result holds if we replace "Boolean algebra" by any finiteary algebraic notion, such as group or Abelian group. The following Lemma gives the intuition that in general overtly discrete types are countably presented sets. 
+\end{remark}
 \begin{lemma}\label{overtly-discrete-colimit-finite}
 Let $X$ be a type, the following are equivalent:
 
@@ -150,7 +150,7 @@ As follows:
 \item This is Lemma 2.7 of \cite{synthetic-stone-duality}.
 \item This is Lemma 2.6 of \cite{synthetic-stone-duality}.
 \item This follows from \Cref{overtly-discrete-colimit-finite}.
-\item By \cref{overtly-discrete-colimit-finite}, we have a cover of any overtly discrete type by a countable type, which is an overtly discrete type that has choice.
+\item By \cref{overtly-discrete-colimit-finite}, we have a cover of any overtly discrete type by a countable type, which is an overtly discrete type that has choice by Axiom 4 of \cite{synthetic-stone-duality}.
 \end{enumerate}
 \end{proof}
 
@@ -158,29 +158,19 @@ As follows:
 %By \Cref{overtly-discrete-proposition-open} we have that closure (iv) can be rephrased as overtly discrete being stable under quotient by equivalence relations with value in overtly discrete types. This is how this condition is phrased in Barton-Commelin's axioms.
 %\end{remark}
 
-Recall that \Cref{overtly-discrete-colimit-finite} means that overtly discrete types are in some sense countably presented sets. This extends nicely to algebraic structure.
-
-\begin{lemma}\label{overtly-discrete-countably-presented}
-A boolean algebra (resp.\ group, abelian group) is overtly discrete if and only if it is countably presented.
-\end{lemma}
-
-\begin{proof}
-The case of boolean algebras is Corollary 2.14 of \cite{synthetic-stone-duality}. The case of groups and abelian groups is similar, the result actually holds for any finitary algebraic notion.
-\end{proof}
-
 
 
 \subsection{Scott continuity for Stone spaces}
 \label{scott-continuity-for-cohomology}
 
-Here we prove the results required for our cohomology computations, namely Propositions \ref{scott-continuity-right}, \ref{scott-continuity-left} and \ref{tychonov-dual-stone}. We then sum up these results nicely as \Cref{eine-scott-continuity-stone}, which is a dependent version of the following: 
+Here we prove the results required for our cohomology computations, namely Propositions \ref{scott-continuity-right}, \ref{scott-continuity-left} and \ref{tychonov-dual-stone}. We then sum up these results nicely as \Cref{eine-scott-continuity-stone}, which is a dependent version of the following statement: 
 
-\begin{goal}[Non-dependent version]
+\begin{goal}\label{GoalScottGeneralNonDependent}[Non-dependent version]
 Given a tower of Stone spaces $(S_k)_{k:\N}$ and a tower of overtly discrete types $(I_j)_{j:\N}$, we have that the canonical map $\mathrm{colim}_{k,j}(S_k\to I_j) \to (\mathrm{lim}_k S_k\to \mathrm{colim}_j I_j)$ is an equivalence.
 \end{goal}
 
 \begin{remark}
-We call this result and its generalisations Scott continuity as they immediately imply that any map in $2^\N = (\mathrm{lim}_k\, 2^k)\to \N$ factors through $2^k$ for some $k$, meaning any such map only uses a fixed finite prefix of its input.
+We call the above result and its generalisations Scott continuity. 
 \end{remark}
 
 First we deal with the case where $S_k$ is constant and the target is dependent. A key point is to show any map in $\Pi_{x:S}\, \mathrm{colim}_i\, I_i(x)$ with $S$ Stone and $I_i(x)$ overtly discrete factors through one of the $I_i$. To do this we will show it factors through $\mathrm{Im}(I_i)$ for some $i:\N$ and conclude from there. We start by an auxiliary lemma.
@@ -190,18 +180,22 @@ Given a tower of overtly discrete types $(I_i)_{i:\N}$, for any $i:\N$ we have t
 \end{lemma}
 
 \begin{proof}
-We write $I$ for $\mathrm{colim}_i\, I_i$. For any $y:I$, we have that $y\in \mathrm{Im}(I_i)$ is by definition $\propTrunc{\Sigma_{x:I_i}\, x=_{I}y}$,
+  We write $I$ for $\mathrm{colim}_i\, I_i$. For any $y:I$, we have that $y\in \mathrm{Im}(I_i)$ is by definition $\propTrunc{\Sigma_{x:I_i}\, x=_{I}y}$,
 which is the propositional truncation of an overtly discrete type and therefore open.
 \end{proof}
 
 Now we show that factoring through the image is enough.
 
 \begin{lemma}\label{factorisation-image-true-factorisation}
-Assume given a Stone space $S$ and for each $x:S$ a tower of overtly discrete types $(I_i(x))_{i:\N}$. Given $f:\Pi_{x:S}\,\mathrm{colim}_i\, I_i(x)$ which factors through $\mathrm{Im}(I_i)$ for some $i:\N$, we gave that $f$ factors through $I_j$ for some $j\geq i$.
+  Assume given a Stone space $S$ and for each $x:S$ a tower of overtly discrete types $(I_i(x))_{i:\N}$. 
+  Then the canonical map $ \mathrm{colim}_j\Pi_{x:S} I_j(x) \to 
+  \mathrm{colim}_i \Pi_{x:S} (\mathrm{Im} (I_i(x)))$ is surjective. 
+
+  %Given $f:\Pi_{x:S}\,\mathrm{colim}_i\, I_i(x)$ such that there exists some $i:\N$ such that for all $x:S$, $f$ factors through $\mathrm{Im}(I_i(x))$, we have that $f$ factors through $\Pi_{x:X}I_j(x)$ for some $j\geq i$.
 \end{lemma}
 
 \begin{proof}
-We write $I(x)$ for $\mathrm{colim}_i\, I_i(x)$. By local choice there exists a surjective map $p:T\to S$
+  We write $I(x)$ for $\mathrm{colim}_i\, I_i(x)$. Let $i:\N, f:\Pi_{x:S}(\mathrm{Im}(I_i(x)))$. By local choice there exists a surjective map $p:T\to S$
 with $g:\Pi_{x:T}\, I_i(p(x))$ such that $[g(x)] =_{I(x)} f(p(x))$ for all $x:T$.
 Then we have
 \[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I(x)} [g(y)])\]
@@ -212,19 +206,18 @@ Since $\{x,y:T\ |\ p(x)=p(y)\}$ is Stone, we can apply \Cref{compact-hausforff-c
 which gives a factorisation of $f$ through $I_j$.
 \end{proof}
 
-We can conclude in the case where the source is constant.
-
+From this, we can conclude \Cref{GoalScottGeneralNonDependent} in the case where the source $S_k$ is constant in $k$. 
 \begin{proposition}\label{scott-continuity-right}
 Assume given a Stone space $S$ and for each $x:S$ a tower of overtly discrete types $(I_i(x))_{i:\N}$. Then the canonical map $\mathrm{colim}_i (\Pi_{x:S} I_i(x)) \to \Pi_{x:S} \mathrm{colim}_i I_i(x)$ is an equivalence.
 \end{proposition}
 
 \begin{proof}
 First we check the canonical map is injective. Given $f,g:\Pi_{x:S} I_i(x)$ such that
-\[\forall(x:S).\, [f(x)] =_{\mathrm{colim}_iI_i(x)} [g(x)].\]
+\[\forall(x:S).\, f(x) =_{\mathrm{colim}_iI_i(x)} g(x).\]
 We have that
-\[\forall(x:S).\, \exists(i:\N).\, f(x) =_{I_i(x)} g(x)\]
-so by \Cref{compact-hausforff-countable-cover} there exist a $j:\N$ such that
-\[\forall(x:S).\, [f(x)] =_{I_j(x)} [g(x)].\]
+\[\forall(x:S).\, \exists(j:\N).\, f(x) =_{I_j(x)} g(x)\]
+so by \Cref{compact-hausforff-countable-cover} there exist a $k:\N$ such that
+\[\forall(x:S).\, f(x) =_{I_k(x)} g(x).\]
 This precisely means that $f=g$ in $\mathrm{colim}_i\, \Pi_{x:S} I_i(x)$.
 
 Now we check that the canonical map is surjective. Given a map $f: \Pi_{x:S}\, \mathrm{colim}_i\, I_i(x)$ we know that
@@ -248,17 +241,17 @@ Indeed we have that
 &=& \Spec(\mathrm{colim}_k\,2^{S_k})\to \Spec(2^I) \nonumber\\
 &=& \mathrm{lim}_k\,S_k\to I\nonumber
 \end{eqnarray}
-where the second line comes from the fact that $2^I$ is finitely presented. We omit the verification that this is indeed the canonical map.
+where the second line comes from the fact that $2^I$ is finitely presented, and the other lines follow from Stone Duality. We omit the verification that this is indeed the canonical map.
 \end{proof}
 
-Now we extend to the case where the target is an arbitrary overtly discrete type.
+Now we extend to the case where the target is a constant arbitrary overtly discrete type.
 
 \begin{proposition}\label{scott-continuity-left}
 Assume given a tower of Stone spaces $(S_k)_{k:\N}$ and an overtly discrete type $I$. Then canonical map $\mathrm{colim}_k\,(S_k\to I)\to \left(\mathrm{lim}_k\,S_k\to I\right)$ is an equivalence.
 \end{proposition}
 
 \begin{proof}
-There exists a tower of finite types $(I_i)_{i:\N}$ so that $I = \mathrm{colim}_i\,I_i$. By the non-dependent version of \Cref{scott-continuity-right} together with \Cref{factorisation-stone-finite} we have that
+There exists a tower of finite types $(I_i)_{i:\N}$ so that $I = \mathrm{colim}_i\,I_i$. By \Cref{scott-continuity-right} together with \Cref{factorisation-stone-finite} we have that
 \begin{eqnarray}
 \mathrm{colim}_k\,(S_k\to \mathrm{colim}_i\,I_i) &=& \mathrm{colim}_{k,i}\,(S_k\to I_i)\nonumber\\
 &=& \mathrm{colim}_i\,(\mathrm{lim}_k\,S_k\to I_i)\nonumber\\
