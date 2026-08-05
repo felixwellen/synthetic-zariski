@@ -302,19 +302,19 @@ The functor $\Pi : {\mathcal C}_\Stone \to \ODisc$ commutes with sequential coli
 \begin{proof}
   We assume given a tower in ${\mathcal C}_\Stone$.  This means we have a tower of Stone spaces $(S_k)_{k:\N}$, 
  with for all $k:\N$ a dependent type $I_k:S_k\to \ODisc$, 
- and for $k\geq i$ we have maps $\cdot^k_i: S_k \to S_i$
+ and for $k\geq i$ we have maps $\cdot_i: S_k \to S_i$
 %\[S_0 \overset{p_0}{\leftarrow} S_1 \overset{p_1}{\leftarrow} S_2 \overset{p_2}{\leftarrow}\cdots \]
-and $q^k_i : \Pi_{x:S_{k}}\big(I_i(x^k_i)\to I_{k}(x)\big).$
+and maps $\Pi_{x:S_{k}}\big(I_i(x_i)\to I_{k}(x)\big).$
 We want to prove that the canonical map $\mathrm{colim}_i\, (\Pi_{x:S_i}I_i(x)) \to \Pi_{x:\mathrm{lim}_kS_k}\mathrm{colim}_i\, I_i(x_i)$ is an equivalence. 
 
 By general reasoning on colimits and Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left}, we get
 \begin{eqnarray}
-\mathrm{colim}_i\, (\Pi_{x:S_i}\,I_i(x)) &=& \mathrm{colim}_{i,k\geq i}\, \Pi_{x:S_k}\, I_i(x^k_i)\nonumber\\
-&=& \mathrm{colim}_{i,k\geq i}\, \Pi_{x:S_i}\,\Pi_{y:S_k} (y^k_i=x)\to I_i(x) \nonumber\\
-&=& \mathrm{colim}_i\,\Pi_{x:S_i} \mathrm{colim}_{k\geq i}\, \Pi_{y:S_k} (y^k_i=x)\to I_i(x)\nonumber\\
-&=& \mathrm{colim}_i\,\Pi_{x:S_i} \mathrm{colim}_{k\geq i}\, (\{y:S_k\ |\ y^k_i=x\} \to I_i(x))\nonumber\\
-&=& \mathrm{colim}_i\,\Pi_{x:S_i} (\mathrm{lim}_{k\geq i}\, \{y:S_k\ |\ y^k_i=x\}) \to I_i(x)\nonumber\\
-&=& \mathrm{colim}_i\,\Pi_{y:\mathrm{lim}_{k}S_k}\, I_i(y^k_i)\nonumber\\
+\mathrm{colim}_i\, (\Pi_{x:S_i}\,I_i(x)) &=& \mathrm{colim}_{i,k\geq i}\, \Pi_{x:S_k}\, I_i(x_i)\nonumber\\
+&=& \mathrm{colim}_{i,k\geq i}\, \Pi_{x:S_i}\,\Pi_{y:S_k} (y_i=x)\to I_i(x) \nonumber\\
+&=& \mathrm{colim}_i\,\Pi_{x:S_i} \mathrm{colim}_{k\geq i}\, \Pi_{y:S_k} (y_i=x)\to I_i(x)\nonumber\\
+&=& \mathrm{colim}_i\,\Pi_{x:S_i} \mathrm{colim}_{k\geq i}\, (\{y:S_k\ |\ y_i=x\} \to I_i(x))\nonumber\\
+&=& \mathrm{colim}_i\,\Pi_{x:S_i} (\mathrm{lim}_{k\geq i}\, \{y:S_k\ |\ y_i=x\}) \to I_i(x)\nonumber\\
+&=& \mathrm{colim}_i\,\Pi_{y:\mathrm{lim}_{k}S_k}\, I_i(y_i)\nonumber\\
 &=& \Pi_{y:\mathrm{lim}_{k}S_k}\, \mathrm{colim}_i\, I_i(y_i).\nonumber
 \end{eqnarray}
 %We know that the source is equivalent to:
