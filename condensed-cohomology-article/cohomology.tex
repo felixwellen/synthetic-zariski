@@ -5,7 +5,33 @@ This section leverage Scott continuity to compute cohomology for Stone spaces an
 \subsection{Non-abelian cohomology for Stone spaces and compact Hausdorff spaces}
 \label{first-cohomology-stone-chaus}
 
-In \Cref{non-abelian-cech} we define the \v{Cech} cohomology group $\check{H}^1(X,Y,G)$ for any type $X$ with for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$. We then study these groups in the context of plain HoTT, and show they agree with regular cohomology in favorable situations. The goal of the present section is to apply these results to the cohomology of Stone spaces and compact Hausdorff spaces in synthetic Stone duality. First we extend Scott continuity from maps to \v{C}ech cohomology groups.
+In this section we will show the vanishing of the non-abelian cohomology groups of Stone spaces with overtly discrete coefficients, and explain how to compute these cohomology groups for compact Hausdorff spaces. Our main tool will be non-abelian \v{C}ech cohomology, which we now introduce.
+
+\begin{definition}\label{dfnCocycle}
+Assume given a type $X$  and for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$.
+\begin{itemize}
+\item A cocycle is a $\delta:\Pi_{x:X}\,G(x)^{Y(x)^2}$ such that for all $x:X$ and $y_0,y_1,y_2:Y(x)$ we have $\delta_x(y_0,y_1)\cdot \delta_x(y_1,y_2) = \delta_x(y_0,y_2)$.
+\item Two cocycles $\delta$ and $\delta'$ are called cohomologous if there exists $\gamma:\Pi_{x:X}\,G(x)^{Y(x)}$ such that for all $x:X$ and $y_0,y_1:Y(x)$ we have $\gamma_x(y_0)\cdot\delta_x(y_0,y_1) = \delta'_x(y_0,y_1)\cdot\gamma_x(y_1)$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}\label{dfnCechCohomology}
+Assume given a type $X$  and for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$. 
+\begin{itemize}
+\item We define the non-abelian \v{C}ech cohomology $\check{H}^1(X,Y,G)$ as the quotient of cocycles by being cohomologous.
+\item We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi^*(\alpha) = 0\}$ where $\pi$ is the projection $\Sigma_{x:X}\,Y(x)\to X$.
+\end{itemize}
+\end{definition}
+
+The following result justifies the interest of this non-abelian \v{C}ech cohomology. The proof can be found in \Cref{non-abelian-cech}. We did not include it in the core text as it is quite technical and works in plain HoTT, making it not so relevant to synthetic Stone duality, and of independent interest to homotopy type theorists.
+
+\begin{proposition}
+Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Then $H^1(X,Y,G)=\check{H}^1(X,Y,G)$.
+\end{proposition}
+
+Now we are ready to work with Stone spaces and overtly discrete coefficients. First we extend Scott continuity from maps to \v{C}ech cohomology groups.
+
+%In \Cref{non-abelian-cech} we define the \v{Cech} cohomology group $\check{H}^1(X,Y,G)$ for any type $X$ with for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$. We then study these groups in the context of plain HoTT, and show they agree with regular cohomology in favorable situations. The goal of the present section is to apply these results to the cohomology of Stone spaces and compact Hausdorff spaces in synthetic Stone duality. First we extend Scott continuity from maps to \v{C}ech cohomology groups.
 
 \begin{lemma}\label{first-cech-scott-continuity}
 Assume given a Stone space $S$ and for each $x:S$ a tower of Stone spaces $(T_k(x))_{k:\N}$ with an overly discrete group $G(x)$. Write $T(x) =\mathrm{lim}_k\, T_k(x)$. Then $\check{H}^1(S,T,G) = \mathrm{colim}_k\, \check{H}^1(S,T_k,G)$.
@@ -27,14 +53,14 @@ By \Cref{finite-approximation-stone-surjection-cohomology}, we get for each $x:S
 Then by \Cref{first-cech-scott-continuity} we have that $\check{H}^1(S,T,G) = \mathrm{colim}_k\,\check{H}^1(S,T_k,G)$, and by \Cref{first-cech-has-section-vanish} we have that $\check{H}^1(S,T_k,G) = 0$ for all $k:\N$ so we can conclude.
 \end{proof}
 
-Now using results from \Cref{non-abelian-cech}, we conclude the vanishing of the usual cohomology groups for Stone spaces, and that \v{C}ech cohomology agree with usual cohomology for compact Hausdorff spaces.
+Now we conclude the vanishing of the usual cohomology groups for Stone spaces, and that \v{C}ech cohomology agree with usual cohomology for compact Hausdorff spaces.
 
 \begin{proposition}\label{vanishing-first-stone}
 Assume given a Stone space $S$ and for each $x:S$ an overtly discrete group $G(x)$. Then $H^1(S,G) = 0$.
 \end{proposition}
 
 \begin{proof}
-Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited Stone space depending on $x:S$ such that $\pi_S^*(\alpha) = 0$, so that $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $\alpha=0$.
+Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited Stone space depending on $x:S$ such that $\pi^*(\alpha) = 0$, so that $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $\alpha=0$.
 \end{proof}
 
 %\begin{definition}
@@ -53,7 +79,7 @@ Assume given a compact Hausdorff space $X$, a surjection $S\to X$ with $S$ Stone
 \end{proposition}
 
 \begin{proof}
-From \Cref{non-abelian-chech-is-sheaf-generic-ayclic-cover} and \Cref{vanishing-first-stone}.
+From \Cref{vanishing-first-stone} and \Cref{non-abelian-chech-is-sheaf-generic-ayclic-cover}.
 \end{proof}
 
 
