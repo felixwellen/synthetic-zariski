@@ -27,24 +27,16 @@ Propositions that are Stone are called Closed
 We have the following:
 
 \begin{enumerate}[(i)]
-\item Finite types are Stone spaces.
-\item Stone spaces are stable under identity types and and $\Sigma$-types.
-\item Stone spaces are stable under sequential limits.
-\item Stone spaces have local choice
-\item Any map from a Stone space into $\N$ is bounded by a maximum value.
+  \item\label{Stone-finite} Finite types are Stone spaces.
+  \item\label{Stone-id-Sigma} Stone spaces are stable under identity types and and $\Sigma$-types.
+  \item\label{Stone-seqLimits} Stone spaces are stable under sequential limits.
+  \item\label{Stone-choice} Stone spaces have local choice
+  \item\label{Stone-bounded} Any map from a Stone space into $\N$ is bounded by a maximum value.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-As follows:
-
-\begin{enumerate}[(i)]
-\item Clear.
-\item Lemma 3.10 and Theorem 4.18 of \cite{synthetic-stone-duality}.
-\item From duality and the fact that a sequential colimit of a countably presented boolean algebra is countably presented.
-\item Axiom 3 of \cite{synthetic-stone-duality}. 
-\item Lemma 3.6 of \cite{synthetic-stone-duality}.
-\end{enumerate}
+  \ref{Stone-finite} is clear. \ref{Stone-id-Sigma} is Lemma 3.10 and Theorem 4.18 of \cite{synthetic-stone-duality}. \ref{Stone-seqLimits} follows from the observation that countably presented Boolean algebras are closed under sequential colimits and Stone duality. \ref{Stone-choice} and \ref{Stone-bounded} are Axiom 3 and Lemma 3.6 of \cite{synthetic-stone-duality} respectively. 
 \end{proof}
 
 Next we give two compactness results for Stone spaces. The first one is used as a definition of compactness in synthetic topology \parencite[Definition 2.5]{lesnik2021synthetictopologyconstructivemetric}, while the second one is closer to the usual topological formulation of compactness.
@@ -132,24 +124,16 @@ Now we give the stability properties enjoyed by overtly discrete types. In Barto
 We have the following:
 
 \begin{enumerate}[(i)]
-\item Finite types are overtly discrete.
-\item Overtly discrete types are stable under identity types and $\Sigma$-types.
-\item Overtly discrete type are stable under sequential colimits.
-\item Overtly discrete types are stable under quotients by open equivalence relations.
-\item Overtly discrete types have local choice.
+  \item\label{ODisc-finite} Finite types are overtly discrete.
+  \item\label{ODisc-id-sigma} Overtly discrete types are stable under identity types and $\Sigma$-types.
+  \item\label{ODisc-seqcolim} Overtly discrete type are stable under sequential colimits.
+  \item\label{ODisc-quotient} Overtly discrete types are stable under quotients by open equivalence relations.
+  \item\label{ODisc-choice} Overtly discrete types have local choice.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-As follows:
-
-\begin{enumerate}[(i)]
-\item Clear.
-\item This is Lemma 2.7 of \cite{synthetic-stone-duality}.
-\item This is Lemma 2.6 of \cite{synthetic-stone-duality}.
-\item This follows from \Cref{overtly-discrete-colimit-finite}.
-\item By \cref{overtly-discrete-colimit-finite}, we have a cover of any overtly discrete type by a countable type, which is an overtly discrete type that has choice by Axiom 4 of \cite{synthetic-stone-duality}.
-\end{enumerate}
+  \ref{ODisc-finite} is clear, \ref{ODisc-id-sigma} and \ref{ODisc-seqcolim} are Lemmas 2.7 and 2.6 of \cite{synthetic-stone-duality} respectively. \ref{ODisc-quotient} follows from \Cref{overtly-discrete-colimit-finite}. For \ref{ODisc-choice}, note that any overtly discrete type is covered by a countable type, which enjoys dependent choice by Axiom 4 of \cite{synthetic-stone-duality}.
 \end{proof}
 
 %\begin{remark}
@@ -337,9 +321,10 @@ We omit the verification that this is indeed the canonical map.
 \subsection{Barton-Commelin's condensed type theory axioms}
 \label{barton-commelin}
 
-We already have proven all the results needed for our cohomology computations. In this section complete the proof that Barton-Commelin's condensed type theory axioms hold in synthetic Stone duality. These axioms postulate two classes of types (called compact Hausdorff spaces and overtly discrete types) such that:
+We already have proven all the results needed for our cohomology computations. In this section complete the proof that Barton-Commelin's condensed type theory axioms hold in synthetic Stone duality. These axioms postulate two classes of types (called $\CHaus$ and $\ODisc$) such that:
 \begin{itemize}
-\item Both classes are closed under identity types, $\Sigma$-types, sequential limit (resp.\ colimit) and quotients.
+\item Both classes are closed under identity types, $\Sigma$-types and quotients. 
+\item $\Chaus$ is closed under sequential limits and $\ODisc$ under sequential colimits.
 \item Both classes satisfy local choice.
 \item The classes interact well in the sense that they satisfy Tychonov, its dual and Scott continuity.
 \end{itemize}
@@ -353,7 +338,7 @@ A type $C$ is a compact Hausdorff space of its identity types are closed and the
 To prove that compact Hausdorff spaces are closed under sequential limits, we need the following auxiliary lemma.
 
 \begin{lemma}\label{sequential-limit-Hausdorff}
-Assume given a tower of compact Hausdorff spaces $(C_k)_{k:\N}$. There exists a tower of Stone spaces $(S_k)_{k:\N}$ with a map of tower $(S_k\to C_k)_{k:\N}$ which is level-wise surjective, such that the induced map $\mathrm{lim}_k\,S_k\to \mathrm{lim}_k\,C_k$ is also surjective.
+Assume given a tower of compact Hausdorff spaces $(C_k)_{k:\N}$. There exists a tower of Stone spaces $(S_k)_{k:\N}$ with a map of towers $(S_k\to C_k)_{k:\N}$ which is level-wise surjective, such that the induced map $\mathrm{lim}_k\,S_k\to \mathrm{lim}_k\,C_k$ is also surjective.
 
 %\begin{center}
 %\begin{tikzcd}
@@ -374,51 +359,43 @@ Assume given a tower of compact Hausdorff spaces $(C_k)_{k:\N}$. There exists a 
 \end{lemma}
 
 \begin{proof}
-We will build a tower of Stone spaces $(S_k)_{k:\N}$ and a map of tower $(S_k\to C_k)_{k:\N}$ such that the induced maps $S_{k+1}\to C_{k+1}\times_{C_k}S_k$ are surjective, which immediately implies the map level-wise surjective by induction on $k$, and implies the induced map $\mathrm{lim}_k\,S_k\to \mathrm{lim}_k\,C_k$ surjective by dependent choice.
+We will build a tower of Stone spaces $(S_k)_{k:\N}$ and a map of towers $(p_k:S_k\to C_k)_{k:\N}$ such that the induced maps $S_{k+1}\to C_{k+1}\times_{C_k}S_k$ are surjective, which immediately implies $p_k$ level-wise surjective by induction on $k$, and implies the induced map $\mathrm{lim}_k\,S_k\to \mathrm{lim}_k\,C_k$ surjective by dependent choice.
 
-For $k=0$ we can merely find a Stone space $S_0$ with a surjection $p_0:S_0\to C_0$. 
+For $k=0$, by definition there exists a Stone space $S_0$ with a surjection $p_0:S_0\to C_0$. 
 
-Next assume a surjection $p_k:S_k\to C_k$ and shows there merely exists a Stone space $S_{k+1}$ with a map $p_{k+1}:S_{k+1}\to C_{k+1}$ making the appropriate square commutes, such that the induced map $S_{k+1}\to C_{k+1}\times_{C_k} S_k$ is a surjection (and therefore $p_{k+1}$ is a surjection).
+Next assume a surjection $p_k:S_k\to C_k$. We shall show there merely exists a Stone space $S_{k+1}$ with a map $p_{k+1}:S_{k+1}\to C_{k+1}$ making the appropriate square commute, such that the induced map $S_{k+1}\to C_{k+1}\times_{C_k} S_k$ is a surjection (and therefore $p_{k+1}$ is a surjection).
 %Using dependent choice, it is enough to show that we can merely extend such a tower $(S_k)_{k\leq n}$ to $(S_k)_{k\leq n+1}$.
 
-Indeed there exists a Stone space $T$ with a surjection $q:T \to C_{k+1}$. Then we define $S_{k+1}$ by the following pullback squares
+By definition, there exists a Stone space $T$ with a surjection $q:T \to C_{k+1}$. Then we define $S_{k+1}$ such that the following squares are pullback:
 \begin{center}
 \begin{tikzcd}
 S_{k+1}\ar[d,swap,"\pi_1"]\ar[r] & C_{k+1}\times_{C_k} S_k\ar[r]  \ar[d]& S_k\ar[d,"p_k"]\\
 T \ar[r,swap,"q"] & C_{k+1}\ar[r]  & C_k
 \end{tikzcd}
 \end{center}
+Note that $S_{k+1}$ is Stone by \Cref{Stone-closure}.
 We define $p_{k+1} = q\circ \pi_1$. The induced map in $S_{k+1}\to C_{k+1}\times_{C_k} S_k$ is a surjection as it is a pullback of the surjection $q$. 
 
-By dependent choice we get the required map of tower.
+By dependent choice we get the required map of towers and surjectivity of the induced map $\lim_kS_k \to \lim_kC_k$. 
 \end{proof}
 
-We are now ready to prove the required closure properties for compact Hausdorff spaces.
+We are now ready to prove the required closure properties for compact Hausdorff spaces:
 
 \begin{proposition}
 We have the following:
 
 \begin{enumerate}[(i)]
-\item Finite types are compact Hausdorff spaces.
-\item Compact Hausdorff spaces are stable under identity types and and $\Sigma$-types.
-\item Compact Hausdorff spaces are stable under quotients by closed equivalence relations.
-\item Compact Hausdorff spaces are stable under sequential limits.
-\item Compact Hausdorff space have local choice.
+  \item\label{CHaus-finite} Finite types are compact Hausdorff spaces.
+  \item\label{CHaus-id-sigma} Compact Hausdorff spaces are stable under identity types and and $\Sigma$-types.
+  \item\label{CHaus-quotient} Compact Hausdorff spaces are stable under quotients by closed equivalence relations.
+  \item\label{CHaus-seqlim} Compact Hausdorff spaces are stable under sequential limits.
+  \item\label{CHaus-choice} Compact Hausdorff space have local choice.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-We proceed as follows:
-
-\begin{enumerate}[(i)]
-\item Clear.
-\item By \Cref{closed-iff-stone} and Lemma 4.11 of \cite{synthetic-stone-duality}.
-
-\item Clear from the definition of compact Hausdorff spaces as quotients.
-
-\item Assume given a tower of compact Hausdorff spaces $(C_k)_{k:\N}$. Closed proposition are stable under sequential limits, so identity types in $\mathrm{lim}_k\,C_k$ are closed. By \cref{sequential-limit-Hausdorff} we get a surjection from a Stone space to $\mathrm{lim}_k\,C_k$,
-\item Given a compact Hausdorff space $C$ there is a surjection $S\to C$ with $S$ Stone, and Stone spaces have local choice.
-\end{enumerate}
+  Note that all Stone types are compact Hausdorff, and identity types of Compact Hausdorff types are Stone. Thus \ref{CHaus-finite}, \ref{CHaus-quotient}, \ref{CHaus-choice} and closure under identity types follow from \Cref{Stone-closure}. \ref{CHaus-id-sigma} then follows from Lemma 4.11 of \cite{synthetic-stone-duality}. For \ref{CHaus-seqlim}, 
+assume given a tower of compact Hausdorff spaces $(C_k)_{k:\N}$. Closed proposition are stable under sequential limits, so identity types in $\mathrm{lim}_k\,C_k$ are closed. By \cref{sequential-limit-Hausdorff} we get a surjection from a Stone space to $\mathrm{lim}_k\,C_k$,
 \end{proof}
 
 %\begin{remark}
