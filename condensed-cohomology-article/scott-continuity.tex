@@ -19,10 +19,6 @@ Propositions that are Stone are called Closed
   The definition of closed propositions above is equivalent to that of $\mathbb N$-indexed conjunctions of decidable propositions given in \cite{synthetic-stone-duality} by Corollary 3.9 of \cite{synthetic-stone-duality}. 
 \end{remark}
 
-\begin{proof}
-Corollary 3.9 of \cite{synthetic-stone-duality}.
-\end{proof}
-
 \begin{definition}
   We say a class of types $\mathcal C$ has local choice if for any $X:\mathcal C$, and $P$ a family of types over $X$ with $\Pi_{x:X} \| P x\| $, there merely exists some $Y:\mathcal C$ and surjection $q: Y \twoheadrightarrow X $ such that $\| \Pi_{y:Y} P (q y)\|$. 
 \end{definition}
@@ -35,6 +31,7 @@ We have the following:
 \item Stone spaces are stable under identity types and and $\Sigma$-types.
 \item Stone spaces are stable under sequential limits.
 \item Stone spaces have local choice
+\item Any map from a Stone space into $\N$ is bounded by a maximum value.
 \end{enumerate}
 \end{proposition}
 
@@ -45,7 +42,8 @@ As follows:
 \item Clear.
 \item Lemma 3.10 and Theorem 4.18 of \cite{synthetic-stone-duality}.
 \item From duality and the fact that a sequential colimit of a countably presented boolean algebra is countably presented.
-\item This is Axiom 3 of \cite{synthetic-stone-duality}. 
+\item Axiom 3 of \cite{synthetic-stone-duality}. 
+\item Lemma 3.6 of \cite{synthetic-stone-duality}.
 \end{enumerate}
 \end{proof}
 
@@ -241,7 +239,7 @@ Indeed we have that
 &=& \Spec(\mathrm{colim}_k\,2^{S_k})\to \Spec(2^I) \nonumber\\
 &=& \mathrm{lim}_k\,S_k\to I\nonumber
 \end{eqnarray}
-where the second line comes from the fact that $2^I$ is finitely presented, and the other lines follow from Stone Duality. We omit the verification that this is indeed the canonical map.
+where the second line comes from the fact that $2^I$ is finitely presented, and the other lines follow from Stone duality. We omit the verification that this is indeed the canonical map.
 \end{proof}
 
 Now we extend to the case where the target is a constant arbitrary overtly discrete type.
@@ -277,11 +275,11 @@ Assume given a Stone space $S$ and for each $x:S$ an overtly discrete type $I(x)
 \end{proposition}
 
 \begin{proof}
-By local choice and \Cref{tychonov-dual-auxiliary} we can assume given tower of finite types $(\mathrm{Fin}(l_{k,x}))_{k:\N}$
+By local choice and \Cref{tychonov-dual-auxiliary}, it is sufficient to show that the above holds if we assume given for each $x:S$ a tower of finite types $(\mathrm{Fin}(l_{k,x}))_{k:\N}$
 such that for all $x:S$ we have that $I(x) = \mathrm{colim}_k\, \mathrm{Fin}(l_{k,x})$.
-Then using \Cref{scott-continuity-right} and the fact that overtly discrete types are stable under sequential colimits, it is enough to prove that $\Pi_{x:S} \mathrm{Fin}(l_{k,x})$ is overtly discrete. 
+Then using \Cref{scott-continuity-right} and the fact that overtly discrete types are stable under sequential colimits, it is enough to prove that $\Pi_{x:S} \mathrm{Fin}(l_{k,x})$ is overtly discrete for any $k:\mathbb N$. 
 
-Using boundedness we have that there exists $n:\N$ such that $\Pi_{x:S} \mathrm{Fin}(l_{k,x}) = \Pi_{i<n}(S_i\to \mathrm{Fin}(i))$ where $S_i = \{x:S\ |\ l_{k,x} = i\}$. Then by \Cref{factorisation-stone-finite} we know that each $S_i\to \mathrm{Fin}(i)$ is overtly discrete, and we conclude using the fact that overtly discrete types are closed under finite products.
+Using boundedness there exists some $n:\N$ such that $\Pi_{x:S} \mathrm{Fin}(l_{k,x}) = \Pi_{i<n}(S_i\to \mathrm{Fin}(i))$ where $S_i = \{x:S\ |\ l_{k,x} = i\}$. Then by \Cref{factorisation-stone-finite} we know that each $S_i\to \mathrm{Fin}(i)$ is overtly discrete, and we conclude using the fact that overtly discrete types are closed under finite products.
 \end{proof}
 
 So far we have two versions of Scott continuity (Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left}), neither clearly implying the other. They are sufficient to derive our cohomology results. In the rest of this section we will prove a common generalisation suggested to us by Reid Barton. We start by an auxiliary definition.
@@ -303,7 +301,7 @@ The functor $\Pi : {\mathcal C}_\Stone \to \ODisc$ commutes with sequential coli
 
 \begin{proof}
 We assume given a tower in ${\mathcal C}_\Stone$.  This means we have a tower of Stone spaces
-\[S_0 \overset{p_0}{\leftarrow} S_1 \overset{p_0}{\leftarrow} S_2 \overset{p_2}{\leftarrow}\cdots \]
+\[S_0 \overset{p_0}{\leftarrow} S_1 \overset{p_1}{\leftarrow} S_2 \overset{p_2}{\leftarrow}\cdots \]
 and for all $k:\N$ a dependent type $I_k:S_k\to \ODisc$ with $q_k : \Pi_{x:S_{k+1}}I_k(p_k(x))\to I_{k+1}(x)$.
 We want to prove that the canonical map $\mathrm{colim}_i\, (\Pi_{x:S_i}I_i(x)) \to \Pi_{x:\mathrm{lim}_kS_k}\mathrm{colim}_i\, I_i(x_i)$ is an equivalence. 
 
