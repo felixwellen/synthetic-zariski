@@ -1,6 +1,14 @@
 The goal of this section is to prove that the axioms of Barton-Commelin's condensed type theory hold in synthetic Stone duality. Sections \ref{stone-spaces} and \ref{overtly-discrete-types} contain generalities on Stone spaces and overtly discrete types. \Cref{scott-continuity-for-cohomology} contains the proof of Barton-Commelin's axioms restricted to Stone spaces, which is the only case required for our cohomoloogy computations. \Cref{barton-commelin} contains the proof of the axioms proper, meaning it extends results from \Cref{scott-continuity-for-cohomology} to compact Hausdorff spaces. It can be skipped by readers only interested in the cohomology results.
 
-
+\begin{remark}[On notation]
+  We will use the phrase "tower" to both refer to an $(\N , \geq)$- and $(\N, \leq)$-indexed diagram in some category. The reader can determine which is meant depending on whether we take a limit or colimit. 
+ For $(C_n)_{n:\N}$ some tower with limit $C$, we will denote $x\mapsto x_k$ both for the projection maps $C \to C_k$ and any $C_l \to C_k$ with $l\geq k$. 
+  If $(I_n)_{n:\N}$ is some tower with colimit $I$, we may use $i\mapsto [i]$ both for the inclusion maps $I_n \to I$ and $I_n \to I_m$ with $n\leq m$. 
+  If $(C_n)_{n:\N}$ is any tower, we may denote $C$ for the limit or colimit if this is unambiguous in context. 
+  If $(C_n(x))_{n:\N}$ is any tower depending on some $x:X$, we may denote $C(x)$ for the limit or colimit if this is unambiguous in context. 
+  If $(p_k:C_k \to D_k)_{k:\N}$ is a map of towers, we may also denote $p:C \to K$ to denote the induced map between limits or colimits. 
+  If $S$ is a set and $P$ an $S$-indexed family of propositions, we may denote $\{s:S | P s\}$ for the $\Sigma$-type $\Sigma_SP$. 
+\end{remark} 
 
 \subsection{Stone spaces}
 \label{stone-spaces}
@@ -75,12 +83,12 @@ Assume given $S:\Stone$ and $T:S\to \Stone$ such that $\Pi_{x:S}\, \propTrunc{T(
 \begin{proof}
   By \Cref{Stone-closure}, the total space $\Sigma_S T$ is Stone. As the projection $\pi: \Sigma_S\, T \to S$ is  assumed surjective, by Remark 3.4 of \cite{synthetic-stone-duality} 
 we can write $\pi$ as a sequential limit of surjections $\pi_k : Q_k\twoheadrightarrow S_k$ between finite sets. 
-We define $T_k(x)$ as $\pi_k^{-1}(x|_k)$ which is indeed a Stone space as it is a closed subset of a finite set (Corollary 3.12 of \cite{synthetic-stone-duality}.
+We define $T_k(x)$ as $\pi_k^{-1}(x_k)$ which is indeed a Stone space as it is a closed subset of a finite set (Corollary 3.12 of \cite{synthetic-stone-duality}.
 %  
   Since taking fibers and limits commute we get $\lim_k\, T_k(x) = T(x)$.
 %  
   Since any $\pi_k$ is a surjection between finite sets we merely have $s_k: \Pi_{x:S_k}\, \pi_k^{-1}(x)$, 
-  from which we get $x\mapsto s_k(x|_k) : \Pi_{x :S}\, T_k(x)$. 
+  from which we get $x\mapsto s_k(x_k) : \Pi_{x :S}\, T_k(x)$. 
 \end{proof}
 
 
@@ -158,11 +166,11 @@ We call the above result and its generalisations Scott continuity.
 First we deal with the case where $S_k$ is constant and the target is dependent. A key point is to show any map in $\Pi_{x:S}\, \mathrm{colim}_i\, I_i(x)$ with $S$ Stone and $I_i(x)$ overtly discrete factors through one of the $I_i$. To do this we will show it factors through $\mathrm{Im}(I_i)$ for some $i:\N$ and conclude from there. We start by an auxiliary lemma.
 
 \begin{lemma}\label{overtly-discrete-union-open}
-Given a tower of overtly discrete types $(I_i)_{i:\N}$, for any $i:\N$ we have that $\mathrm{Im}(I_i)\subseteq\mathrm{colim}_i\, I_i$ is open. 
+Given a tower of overtly discrete types $(I_i)_{i:\N}$, for any $i:\N$ we have that $\mathrm{Im}(I_i)\subseteq I$ is open. 
 \end{lemma}
 
 \begin{proof}
-  We write $I$ for $\mathrm{colim}_i\, I_i$. For any $y:I$, we have that $y\in \mathrm{Im}(I_i)$ is by definition $\propTrunc{\Sigma_{x:I_i}\, x=_{I}y}$,
+ For any $y:I$, we have that $y\in \mathrm{Im}(I_i)$ is by definition $\propTrunc{\Sigma_{x:I_i}\, x=_{I}y}$,
 which is the propositional truncation of an overtly discrete type and therefore open.
 \end{proof}
 
@@ -177,7 +185,7 @@ Now we show that factoring through the image is enough.
 \end{lemma}
 
 \begin{proof}
-  We write $I(x)$ for $\mathrm{colim}_i\, I_i(x)$. Let $i:\N, f:\Pi_{x:S}(\mathrm{Im}(I_i(x)))$. By local choice there exists a surjective map $p:T\to S$
+  Let $i:\N, f:\Pi_{x:S}(\mathrm{Im}(I_i(x)))$. By local choice there exists a surjective map $p:T\to S$
 with $g:\Pi_{x:T}\, I_i(p(x))$ such that $[g(x)] =_{I(x)} f(p(x))$ for all $x:T$.
 Then we have
 \[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I(x)} [g(y)])\]
@@ -190,17 +198,17 @@ which gives a factorisation of $f$ through $I_j$.
 
 From this, we can conclude \Cref{GoalScottGeneralNonDependent} in the case where the source $S_k$ is constant in $k$. 
 \begin{proposition}\label{scott-continuity-right}
-Assume given a Stone space $S$ and for each $x:S$ a tower of overtly discrete types $(I_i(x))_{i:\N}$. Then the canonical map $\mathrm{colim}_i (\Pi_{x:S} I_i(x)) \to \Pi_{x:S} \mathrm{colim}_i I_i(x)$ is an equivalence.
+Assume given a Stone space $S$ and for each $x:S$ a tower of overtly discrete types $(I_i(x))_{i:\N}$. Then the canonical map $\mathrm{colim}_i (\Pi_{x:S} I_i(x)) \to \Pi_{x:S} \mathrm{colim}_i I(x)$ is an equivalence.
 \end{proposition}
 
 \begin{proof}
-First we check the canonical map is injective. Given $f,g:\Pi_{x:S} I_i(x)$ such that
-\[\forall(x:S).\, f(x) =_{\mathrm{colim}_iI_i(x)} g(x).\]
+First we check the canonical map is injective. Assume $f,g:\Pi_{x:S} I_i(x)$ such that
+\[\forall(x:S).\, f(x) =_{I(x)} g(x).\]
 We have that
 \[\forall(x:S).\, \exists(j:\N).\, f(x) =_{I_j(x)} g(x)\]
 so by \Cref{compact-hausforff-countable-cover} there exist a $k:\N$ such that
 \[\forall(x:S).\, f(x) =_{I_k(x)} g(x).\]
-This precisely means that $f=g$ in $\mathrm{colim}_i\, \Pi_{x:S} I_i(x)$.
+This precisely means that $f=g$ in $\mathrm{colim}_i\, \Pi_{x:S} I_i(x)$. Note that this is sufficient to show injectivity. 
 
 Now we check that the canonical map is surjective. Given a map $f: \Pi_{x:S}\, \mathrm{colim}_i\, I_i(x)$ we know that
 \[\forall(x:S).\, \exists(i:\N).\, f(x)\in \mathrm{Im}(I_i(x)).\]
@@ -212,18 +220,18 @@ This precisely means that $f$ factors through $\mathrm{Im}(I_j)$. We conclude by
 Now we deal with the case where target is constant and non-dependent. If the target is finite this follows from duality.
 
 \begin{lemma}\label{factorisation-stone-finite}
-Assume given a tower of Stone spaces $(S_k)_{k:\N}$ and a finite type $I$. Then the canonical map $\mathrm{colim}_k\,(S_k\to I)\to \left(\mathrm{lim}_k\,S_k\to I\right)$ is an equivalence.
+Assume given a tower of Stone spaces $(S_k)_{k:\N}$ and a finite type $F$. Then the canonical map $\mathrm{colim}_k\,(S_k\to F)\to \left(\mathrm{lim}_k\,S_k\to F\right)$ is an equivalence.
 \end{lemma}
 
 \begin{proof}
 Indeed we have that
 \begin{eqnarray}
-\mathrm{colim}_k\,(S_k\to I) &=& \mathrm{colim}_k\, \Hom(2^I, 2^{S_k})\nonumber\\
-&=& \Hom(2^I, \mathrm{colim}_k\,2^{S_k})\nonumber\\
-&=& \Spec(\mathrm{colim}_k\,2^{S_k})\to \Spec(2^I) \nonumber\\
-&=& \mathrm{lim}_k\,S_k\to I\nonumber
+\mathrm{colim}_k\,(S_k\to F) &=& \mathrm{colim}_k\, \Hom(2^F, 2^{S_k})\nonumber\\
+&=& \Hom(2^F, \mathrm{colim}_k\,2^{S_k})\nonumber\\
+&=& \Spec(\mathrm{colim}_k\,2^{S_k})\to \Spec(2^F) \nonumber\\
+&=& \mathrm{lim}_k\,S_k\to F\nonumber
 \end{eqnarray}
-where the second line comes from the fact that $2^I$ is finitely presented, and the other lines follow from Stone duality. We omit the verification that this is indeed the canonical map.
+where the second line comes from the fact that $2^F$ is finitely presented, and the other lines follow from Stone duality. We omit the verification that this is indeed the canonical map.
 \end{proof}
 
 Now we extend to the case where the target is a constant arbitrary overtly discrete type.
@@ -286,7 +294,7 @@ The functor $\Pi : {\mathcal C}_\Stone \to \ODisc$ commutes with sequential coli
 \begin{proof}
   We assume given a tower in ${\mathcal C}_\Stone$.  This means we have a tower of Stone spaces $(S_k)_{k:\N}$, 
  with for all $k:\N$ a dependent type $I_k:S_k\to \ODisc$, 
- and for $k\geq i$ we have maps $\cdot_i: S_k \to S_i$
+% and for $k\geq i$ we have maps $\cdot_i: S_k \to S_i$
 %\[S_0 \overset{p_0}{\leftarrow} S_1 \overset{p_1}{\leftarrow} S_2 \overset{p_2}{\leftarrow}\cdots \]
 and maps $\Pi_{x:S_{k}}\big(I_i(x_i)\to I_{k}(x)\big).$
 We want to prove that the canonical map $\mathrm{colim}_i\, (\Pi_{x:S_i}I_i(x)) \to \Pi_{x:\mathrm{lim}_kS_k}\mathrm{colim}_i\, I_i(x_i)$ is an equivalence. 
@@ -409,7 +417,7 @@ Assume given an overtly discrete type $I$ and for each $i:I$ a compact Hausdorff
 \end{proposition}
 
 \begin{proof}
-We can assume $I = \mathrm{colim}_{k:\N}\,I_k$ with $I_k$ finite. Then $\Pi_{i:I}\,C(i) = \lim_{k:\N}\, \Pi_{i:I_k}\,C(\iota_k(i))$
+We can assume $I = \mathrm{colim}_{k:\N}\,I_k$ with $I_k$ finite. Then $\Pi_{i:I}\,C(i) = \lim_{k:\N}\, \Pi_{j:I_k}\,C([j])$
 and we can conclude using that compact Hausdorff spaces are stable under sequential limits and finite products.
 \end{proof}
 
@@ -425,27 +433,28 @@ We consider a surjection $p:S\to C$ with $S$ Stone. Then
 But $\forall(x,y:S).(p(x)=p(y)\to f(x)=f(y))$ is open by \Cref{compact-hausdorff-compact} and $\Pi_{x:S}\,I(p(x))$ is overtly discrete by \Cref{tychonov-dual-stone}, so we can conclude.
 \end{proof}
 
-Finally we extend Scott continuity to compact Hausdorff spaces. We write ${\mathcal C}_\CHaus$ for ${\mathcal C}_\Stone$ as given in \Cref{category-scott-continuity} with Stone spaces replaced by compact Hausdorff spaces. As for Tychonov's dual, this just involves generic reasoning on quotients.
+Finally we extend Scott continuity to compact Hausdorff spaces. We write ${\mathcal C}_\CHaus$ for ${\mathcal C}_\Stone$ as given in \Cref{category-scott-continuity} with Stone spaces replaced by compact Hausdorff spaces. 
 
 \begin{theorem}[Scott Continuity]\label{scott-continuity-chaus}
 The functor $\Pi : {\mathcal C}_\CHaus \to \ODisc$ commutes with sequential colimits.
 \end{theorem}
 
 \begin{proof}
-Assume given a tower in ${\mathcal C}_\Chaus$ denoted by $(C_i,I_i)_{i:\N}$. By \Cref{sequential-limit-Hausdorff} we can consider a tower of Stone spaces $(S_i)_{i:\N}$ with a level-wise surjection $(p_i:S_i\to C_i)_{i:\N}$ to the tower $(C_i)_{i:\N}$. We write $S=\mathrm{lim}_i\,S_i$ and $C=\mathrm{lim}_i\,C_i$, for each $x:C$ we write $I(x) = \mathrm{colim}_i\,I_i(x_i)$ and finally we write $p =\mathrm{lim}_i\,p_i$. Then the canonical map
+Assume given a tower in ${\mathcal C}_\Chaus$ denoted by $(C_i,I_i)_{i:\N}$. By \Cref{sequential-limit-Hausdorff} we can consider a tower of Stone spaces $(S_i)_{i:\N}$ with a level-wise surjection $(p_i:S_i\to C_i)_{i:\N}$ to the tower $(C_i)_{i:\N}$.% We write $S=\mathrm{lim}_i\,S_i$ and $C=\mathrm{lim}_i\,C_i$, for each $x:C$ we write $I(x) = \mathrm{colim}_i\,I_i(x_i)$ and finally we write $p =\mathrm{lim}_i\,p_i$. 
+Then the canonical map
 \[\mathrm{colim}_i(\Pi_{x:C_i}\,I_i(x) ) \to \Pi_{x:C}\,I(x)\]
 is equal to the canonical map
-
-\[ \left\{ \iota_i(f_i) : \mathrm{colim}_i\, \Pi_{x:S_i}\, I_i(p_i(x))\ |\ \mathrm{colim}_{j\geq i}\, Q_j(f_i)\right\} \longrightarrow \left\{f:\Pi_{x:S}\, I(p(x))\ |\ Q(f)\right\} \]
-where we defined
+%
+\[ \left\{ [f_i] : \mathrm{colim}_i\, \Pi_{x:S_i}\, I_i(p_i(x))\ |\ \mathrm{colim}_{j\geq i}\, Q_j(f_i)\right\} \longrightarrow \left\{f:\Pi_{x:S}\, I(p(x))\ |\ Q(f)\right\} \]
+where we pattern-matched on the terms of the colimit and defined
 \begin{eqnarray}
- Q_j(f_i) &=& \forall(x,y:S_j).\, p_j(x)=p_j(y)\to \iota_j(f_i(x_i))=\iota_j(f_i(y_i))\nonumber\\
+  Q_j(f_i) &=& \forall(x,y:S_j).\, p_j(x)=p_j(y)\to [f_i(x_i)]=_{I_j}[f_i(y_i)]\nonumber\\
 Q(f) &=& \forall(x,y:S).\, p(x)=p(y)\to f(x)=f(y).\nonumber
 \end{eqnarray}
 Then by \Cref{eine-scott-continuity-stone} we have that the canonical map
 \[\epsilon : \mathrm{colim}_i(\Pi_{x:S_i}\,I_i(p_i(x))) \to \Pi_{x:S}\, I(p(x))\]
 is an equivalence, and by \Cref{eine-scott-continuity-stone} again we have that the canonical map
-\[\mathrm{colim}_{j\geq i}\,Q_j(f_i) \to Q(\epsilon(\iota_i(f_i)))\]
+\[\mathrm{colim}_{j\geq i}\,Q_j(f_i) \to Q(\epsilon[f_i])\]
 is an equivalence as well so we can conclude.
 \end{proof}
 
