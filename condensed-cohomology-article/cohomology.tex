@@ -1,5 +1,9 @@
-This section leverage Scott continuity to compute cohomology for Stone spaces and compact Hausdorff spaces. In \Cref{first-cohomology-stone-chaus} we study the first cohomology groups with (not necessarily abelian) overtly discrete coefficients. We show they vanish for Stone spaces, and explain how they can be computed for compact Hausdorff spaces $C$ using cocycles for a given cover of $C$ by a Stone space. In \Cref{vanishing-stone} and \Cref{cech-sheaf-agree-section} we extend these results to higher cohomology groups. Then in \Cref{interval-acyclic} we prove that the interval is acyclic in the sense that its cohomology with overly discrete coefficient vanish (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficients are the same as countably presented coefficients.
+In this section, we leverage Scott continuity to compute cohomology for Stone spaces and compact Hausdorff spaces. In \Cref{first-cohomology-stone-chaus} we study the first cohomology groups with (not necessarily abelian) overtly discrete coefficients. We show they vanish for Stone spaces, and explain how they can be computed for compact Hausdorff spaces $C$ using cocycles for a given cover of $C$ by a Stone space. In \Cref{vanishing-stone} and \Cref{cech-sheaf-agree-section} we extend these results to higher cohomology groups. Then in \Cref{interval-acyclic} we prove that the interval is acyclic in the sense that its cohomology with overtly discrete coefficient vanish (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficients are the same as countably presented coefficients.
 
+\begin{remark}
+  We will assume familiarity with cohomology in homotopy type theory. So for a type $X$ with for each $x:X$ a group $G(x)$ the cohomology $H^n(X,G)$ is defined as the set truncation $\|\Pi_{x:X} K(G(x),n)\|_0$. Here $K(A,n)$ refers to the $n$'th-delooping of the group $A$, that is the unique pointed type whose $n$'th loop space is $A$. Such a type exists for any group $A$ if $n=1$, and for abelian groups $A$ if $n>1$. 
+  More on the cohomology can be found in \cite{evan-master-thesis}. Other helpful references include \cite{hott, warn2024, Sym, LicataFinster}.
+\end{remark}
 
 
 \subsection{Non-abelian cohomology for Stone spaces and compact Hausdorff spaces}
@@ -19,7 +23,7 @@ Assume given a type $X$  and for each $x:X$ an inhabited type $Y(x)$ and a group
 Assume given a type $X$  and for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$. 
 \begin{itemize}
 \item We define the non-abelian \v{C}ech cohomology $\check{H}^1(X,Y,G)$ as the quotient of cocycles by being cohomologous.
-\item We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi^*(\alpha) = 0\}$ where $\pi$ is the projection $\Sigma_{x:X}\,Y(x)\to X$.
+\item We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi^*(\alpha) = 1\}$ where $\pi$ is the projection $\Sigma_{x:X}\,Y(x)\to X$.
 \end{itemize}
 \end{definition}
 
