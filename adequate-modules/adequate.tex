@@ -679,12 +679,13 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
 
 \begin{proof}
   We show that $M^\ast$ is linearly adequate.
-  Equivalently, this means that $M^\ast$ is projective, i.e.\ we need to show that $H :\equiv \Hom_R(M^\ast,-)$ is exact on the category of finitely adequate modules.
+  This is equivalent to showing that $M^\ast$ is projective, i.e.\ we need to show that $H :\equiv \Hom_R(M^\ast,-)$ is exact on the category of finitely adequate modules.
   For this let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
   We get an induced exact sequence $0 \to H(A) \to H(B) \to H(C) \to \Ext_R^1(M^\ast,A)$, where $\Ext_R^1$ is defined as in \cite[Definition 2.1.5]{ext-groups-in-hott}.
   Since finitely adequate $R$-modules are closed under extensions, $\Ext_R^1$ taken either in this category or the category of all $R$-modules is the same.
   Then the proof of \cite[Proposition 2.5.4]{ext-groups-in-hott} also shows that $\Ext_R^1(M^\ast,A)$ can be calculated using an injective resolution of $A$ in the category of finitely adequate $R$-modules.
-  Thus by virtue of \Cref{identification-hom-tensor-for-fp-modules} we have $\Ext_R^1(M^\ast,A)=0$.
+  Recall from \Cref{thm:fp-inj} that the injective modules are exactly the finitely presented modules.
+  Thus we have $\Ext_R^1(M^\ast,A)=0$, since \Cref{identification-hom-tensor-for-fp-modules} implies that $\Hom_R(M^{\ast}, -)$ is exact on the category of finitely presented modules.
 \end{proof}
 
 \subsection{The Symmetric Monoidal Structure}
@@ -881,7 +882,8 @@ In the current developement of synthetic algebraic geometry, this notion takes o
     \]
     commutes.
     We will denote both of these simply by $h \mapsto h(x)$.
-    It is however worthwhile to understand that, at least as of now, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective (resp. surjective).
+    It is however worthwhile to understand that, at least as of now, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective while those of $\Gamma(X, \mc F) \otimes_{R^X} \Gamma(X, \mc G)$ are jointly surjective.
+    \rednote{I rephrased to what I think you meant.  But doesn't it follow trivially that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly surjective as well?}
 
     \item[ii)] Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
     Then for a tensor $k = \sum_{j=1}^N m_j \otimes n_j : M \otimes_A N$ we have $k =_{M \otimes_A N} 0$ if and only if there merely exists a finitely generated submodule $M' \subseteq M$ such that $m_1,\dots,m_N \in M'$ and $k =_{M' \otimes_A N} 0$.
