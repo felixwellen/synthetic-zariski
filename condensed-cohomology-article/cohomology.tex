@@ -1,7 +1,9 @@
 In this section, we leverage Scott continuity to compute cohomology for Stone spaces and compact Hausdorff spaces. In \Cref{first-cohomology-stone-chaus} we study the first cohomology groups with (not necessarily abelian) overtly discrete coefficients. We show they vanish for Stone spaces, and explain how they can be computed for compact Hausdorff spaces $C$ using cocycles for a given cover of $C$ by a Stone space. In \Cref{vanishing-stone} and \Cref{cech-sheaf-agree-section} we extend these results to higher cohomology groups. Then in \Cref{interval-acyclic} we prove that the interval is acyclic in the sense that its cohomology with overtly discrete coefficient vanish (\Cref{cohomology-I}). Recall that by \Cref{overtly-discrete-countably-presented}, overtly discrete coefficients are the same as countably presented coefficients.
 
-\begin{remark}
-  We will assume familiarity with cohomology in homotopy type theory. So for a type $X$ with for each $x:X$ a group $G(x)$ the cohomology $H^n(X,G)$ is defined as the set truncation $\|\Pi_{x:X} K(G(x),n)\|_0$. Here $K(A,n)$ refers to the $n$'th-delooping of the group $A$, that is the unique pointed type whose $n$'th loop space is $A$. Such a type exists for any group $A$ if $n=1$, and for abelian groups $A$ if $n>1$. 
+\begin{remark}\label{familiarWithCohomology}
+  We will assume familiarity with cohomology in homotopy type theory. So for a type $X$ with for each $x:X$ a group $G(x)$ the cohomology $H^n(X,G)$ is defined as the set truncation $\|\Pi_{x:X} K(G(x),n)\|_0$. 
+  Here $K(G,n)$ refers to the $n$'th-delooping of the group $G$, that is the unique pointed type whose $n$'th loop space is $G$. Such a type exists for any group $G$ if $n=1$, and for abelian groups $G$ if $n>1$. 
+  If $n=1$, we also denote the delooping $K(G,1) = BG$, and for $\alpha:BG$, we identify silently $\alpha$ with $\alpha = 1$, which is the equivalence between $BG$ and the type of $G$-torsors. 
   More on the cohomology can be found in \cite{evan-master-thesis}. Other helpful references include \cite{hott, warn2024, Sym, LicataFinster}.
 \end{remark}
 
@@ -27,6 +29,12 @@ Assume given a type $X$  and for each $x:X$ an inhabited type $Y(x)$ and a group
 \end{itemize}
 \end{definition}
 
+\begin{lemma}\label{CechConditionEquivalentStatement}
+  Let $X,Y,G,\pi$ be as above. For $\alpha : H^1(X,G)$, we have $\pi^*(\alpha) = 1$ if and only if there exists some $\beta:\Pi_{x:X}\alpha_x^{Y(x)}$. 
+\end{lemma}
+\begin{proof}
+  Let $\alpha: \Pi_{x:X} BG(x)$. Then $\alpha \circ \pi : \Pi_{x:X} \Pi_{y:Y(x)} BG(x)$ equals $1$ iff for all $x:X, y:Y(x)$ we have $\alpha_x = 1$. In $BG$, we can identify $\alpha_x =1 $ and $\alpha_x$. 
+\end{proof}
 The following result justifies the interest of this non-abelian \v{C}ech cohomology. The proof can be found in \Cref{non-abelian-cech}. We did not include it in the core text as it is quite technical and works in plain HoTT, making it not so relevant to synthetic Stone duality, and of independent interest to homotopy type theorists.
 
 \begin{proposition}
