@@ -1,6 +1,7 @@
 \label{non-abelian-cech}
 
-\rednote{TODO Are $X$ and $Y$ really an arbitrary type or did I use they were sets at some point?}
+%\rednote{TODO Are $X$ and $Y$ really an arbitrary type or did I use they were sets at some point?}
+% No, you used a lot that torsors are sets, and that certain functions into sets existed and then a "which one you chose didn't matter" argument, but that's a propositional truncation thing, not a set thing.  
 
 In this section we work in plain HoTT and study non-abelian torsors over an arbitrary type $X$. Our goal is to describe non-abelian torsors over $X$ trivialised by a given cover in terms of cocycles for this cover. 
 
@@ -65,7 +66,7 @@ Assume given $Y$ an inhabited type and $G$ a group, as well as $\delta:G^{Y^2}$ 
 Then we define $\psi(\delta) = \{\gamma:G^Y\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta(y_0,y_1)\}$. Then we have that:
 
 \begin{enumerate}[(i)] 
-\item We can define $H:\psi(\delta)^Y$ by $H(y) = \lambda y'.\, \delta(y',y)$.
+  \item\label{Hdef} We can define $H:\psi(\delta)^Y$ by $H(y) = \lambda y'.\, \delta(y',y)$.
 \item The type $\psi(\delta)$ can be given the structure of a $G$-torsor.
 \item Given $\delta$ and $\delta'$ cocycles with $\iota:G^Y$ such that for all $y_0,y_1:Y$ we have $\iota(y_0)\cdot\delta(y_0,y_1) = \delta'(y_0,y_1)\cdot\iota(y_1)$, we have $\psi(\delta)=\psi(\delta')$.
 \item We have an induced map $\Psi : \check{H}^1(X,Y,G)\to H^1(X,Y,G)$ defined by $\Psi(\delta) = \lambda x.\, \psi(\delta_x)$.
@@ -96,7 +97,7 @@ Now we prove the two maps are inverse to each other.
   For $\Phi,\Psi$ as above, we have that $\Phi\circ \Psi$ is the identity on $\check H^1(X,Y,G)$. 
 \end{lemma}
 \begin{proof}
-It is enough to prove that given a cocycle $\delta$, for all $x:X$ with $y_0,y_1:Y(x)$ we have that $H_x(y_0)^{-1}\cdot H_x(y_1) = \delta_x(y_0,y_1)$ where $H_x : Y(x)\to \psi(\delta_x)$ is defined as in \Cref{psi-well-defined}, point (ii). But recall that $H_x(\bar{y}) = \lambda y.\delta_x(y,\bar{y})$ so we need to check that $(\lambda y.\delta_x(y,y_0))\cdot\delta_x(y_0,y_1) = \lambda y.\delta_x(y,y_1)$ which is clear as the action is defined pointwise.
+  It is enough to prove that given a cocycle $\delta$, for all $x:X$ with $y_0,y_1:Y(x)$ we have that $H_x(y_0)^{-1}\cdot H_x(y_1) = \delta_x(y_0,y_1)$ where $H_x : Y(x)\to \psi(\delta_x)$ is defined as in \ref{Hdef} of \Cref{psi-well-defined}. As $H_x(\bar{y}) = \lambda y.\delta_x(y,\bar{y})$ it is sufficient to check that $(\lambda y.\delta_x(y,y_0))\cdot\delta_x(y_0,y_1) = \lambda y.\delta_x(y,y_1)$ which is clear as the action is defined pointwise.
 \end{proof}
 \begin{lemma}\label{PSiCircPhi}
   For $\Phi,\Psi$ as above, we have that $\Psi\circ \Phi$ is the identity on $H^1(X,Y,G)$. 

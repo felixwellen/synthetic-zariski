@@ -33,9 +33,9 @@ Assume given a type $X$  and for each $x:X$ an inhabited type $Y(x)$ and a group
   Let $X,Y,G,\pi$ be as above. For $\alpha : H^1(X,G)$, we have $\pi^*(\alpha) = 1$ if and only if there exists some $\beta:\Pi_{x:X}\alpha_x^{Y(x)}$. 
 \end{lemma}
 \begin{proof}
-  Let $\alpha: \Pi_{x:X} BG(x)$. Then $\alpha \circ \pi : \Pi_{x:X} \Pi_{y:Y(x)} BG(x)$ equals $1$ iff for all $x:X, y:Y(x)$ we have $\alpha_x = 1$. In $BG$, we can identify $\alpha_x =1 $ and $\alpha_x$. 
+  Let $\alpha: \Pi_{x:X} BG(x)$. Then $\alpha \circ \pi : \Pi_{(x,y):\Sigma_XY} BG(x)$ equals $1$ iff for all $x:X, y:Y(x)$ we have $\alpha_x = 1$. In $BG$, we identify $\alpha_x =1 $ and $\alpha_x$. 
 \end{proof}
-The following result justifies the interest of this non-abelian \v{C}ech cohomology. The proof can be found in \Cref{non-abelian-cech}. We did not include it in the core text as it is quite technical and works in plain HoTT, making it not so relevant to synthetic Stone duality, and of independent interest to homotopy type theorists.
+The following result justifies the interest of this non-abelian \v{C}ech cohomology. The proof can be found as \Cref{non-abelian-chech-is-sheaf-generic} in \Cref{non-abelian-cech}. We did not include it in the core text as it is quite technical and works in plain HoTT, making it not so relevant to synthetic Stone duality, and of independent interest to homotopy type theorists.
 
 \begin{proposition}
 Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Then $H^1(X,Y,G)=\check{H}^1(X,Y,G)$.
@@ -46,33 +46,35 @@ Now we are ready to work with Stone spaces and overtly discrete coefficients. Fi
 %In \Cref{non-abelian-cech} we define the \v{Cech} cohomology group $\check{H}^1(X,Y,G)$ for any type $X$ with for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$. We then study these groups in the context of plain HoTT, and show they agree with regular cohomology in favorable situations. The goal of the present section is to apply these results to the cohomology of Stone spaces and compact Hausdorff spaces in synthetic Stone duality. First we extend Scott continuity from maps to \v{C}ech cohomology groups.
 
 \begin{lemma}\label{first-cech-scott-continuity}
-Assume given a Stone space $S$ and for each $x:S$ a tower of Stone spaces $(T_k(x))_{k:\N}$ with an overly discrete group $G(x)$. Write $T(x) =\mathrm{lim}_k\, T_k(x)$. Then $\check{H}^1(S,T,G) = \mathrm{colim}_k\, \check{H}^1(S,T_k,G)$.
+Assume given a Stone space $S$ and for each $x:S$ a tower of Stone spaces $(T_k(x))_{k:\N}$ with an overly discrete group $G(x)$. %Write $T(x) =\mathrm{lim}_k\, T_k(x)$. 
+Then $\check{H}^1(S,T,G) = \mathrm{colim}_k\, \check{H}^1(S,T_k,G)$.
 \end{lemma}
 
 \begin{proof}
 We use Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left} to show e.g.\ that $\Pi_{x:S}\, G(x)^{T(x)^2} = \mathrm{colim}_k\, \Pi_{x:S}\,G(x)^{T_k(x)^2}$. We have similar formulas for all the data used in defining cocycles and coboundaries, which allows to conclude. We omit the details.
 \end{proof}
 
-Now we can use the approximation of any surjection between Stone spaces as a limit of maps merely having section (\Cref{finite-approximation-stone-surjection-cohomology}) to conclude the vanishing of the appropriate \v{C}ech cohomology groups.
+%Now we can use the approximation of any surjection between Stone spaces as a limit of maps merely having section (\Cref{finite-approximation-stone-surjection-cohomology}) to conclude the vanishing of the appropriate \v{C}ech cohomology groups.
+
+Now we will show that the first \v Cech cohomology groups vanish for Stone spaces. 
 
 \begin{lemma}\label{cech-vanishing-first-stone}
 Assume given a Stone space $S$ and for each $x:S$ an inhabited Stone spaces $T(x)$ with an overtly discrete group $G(x)$. Then $\check{H}^1(S,T,G) = 0$.
 \end{lemma}
 
 \begin{proof}
-By \Cref{finite-approximation-stone-surjection-cohomology}, we get for each $x:S$ a tower of Stone spaces $(T_k(x))_{k:\N}$ such that $\mathrm{lim}_k\,T_k(x) = T(x)$ and we merely have $\Pi_{x:S}\,T_k(x)$ for all $k:\N$.
+  By \Cref{finite-approximation-stone-surjection-cohomology}, we get for each $x:S$ a tower of Stone spaces $(T_k(x))_{k:\N}$ such that $\mathrm{lim}_k\,T_k(x) = T(x)$ and we merely have $\Pi_{x:S}\,T_k(x)$ for all $k:\N$. By \Cref{first-cech-has-section-vanish} it follows that $\check{H}^1(S,T_k,G) = 0$ for all $k:\N$ so we can conclude by \Cref{first-cech-scott-continuity}.
 
-Then by \Cref{first-cech-scott-continuity} we have that $\check{H}^1(S,T,G) = \mathrm{colim}_k\,\check{H}^1(S,T_k,G)$, and by \Cref{first-cech-has-section-vanish} we have that $\check{H}^1(S,T_k,G) = 0$ for all $k:\N$ so we can conclude.
 \end{proof}
 
-Now we conclude the vanishing of the usual cohomology groups for Stone spaces, and that \v{C}ech cohomology agree with usual cohomology for compact Hausdorff spaces.
+Now we conclude the vanishing of the usual cohomology groups for Stone spaces. 
 
 \begin{proposition}\label{vanishing-first-stone}
 Assume given a Stone space $S$ and for each $x:S$ an overtly discrete group $G(x)$. Then $H^1(S,G) = 0$.
 \end{proposition}
 
 \begin{proof}
-Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited Stone space depending on $x:S$ such that $\pi^*(\alpha) = 0$, so that $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $\alpha=0$.
+  Let us consider $\alpha:H^1(S,G)$. By local choice there is a family $T(x)$ of inhabited Stone space depending on $x:S$ with $\|\Pi_{x:S}\Pi_{t:T(x)} (\alpha = 1) \|$, so $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $\alpha=1$.
 \end{proof}
 
 %\begin{definition}
@@ -84,10 +86,11 @@ Let us consider $\alpha:H^1(S,G)$. By local choice there is $T(x)$ an inhabited 
 %\end{remark}
 
 %I DECIDED TO GET RID OF THE DEFINITION OF CECH COVER BUT MAYBE I'LL REVERT LATTER
+Finally, we conclude that the \v{C}ech cohomology agree with usual cohomology for compact Hausdorff spaces.
 
 \begin{proposition}\label{non-abelian-cech-and-sheaf-agree}
 %Assume given a compact Hausdorff space $X$ with a \v{C}ech cover $S$ and $G(x)$ an overtly discrete group depending on $x:X$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
-Assume given a compact Hausdorff space $X$, a surjection $S\to X$ with $S$ Stone and for each $x:X$ an overtly discrete group $G(x)$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
+Assume given a compact Hausdorff space $X$, a surjection $S\twoheadrightarrow X$ with $S$ Stone and for each $x:X$ an overtly discrete group $G(x)$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
 \end{proposition}
 
 \begin{proof}
