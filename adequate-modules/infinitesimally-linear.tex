@@ -9,7 +9,7 @@ This subsection introduces the concept of $n$-th order neighbourhoods around a p
 
 \begin{definition}\label{def:hood-res}
   Let $(X,x)$ be a pointed type.
-  The \notion{$n$-th order neighbourhood around $x$} is the subtype $\hood{X,x}{n} \defeq \setbuild{x' : X}{\exists I \substack{\subseteq \\ \mathrm{fg.ideal}} R, I^{n+1} = 0, I = 0 \rightarrow x' = x}$.
+  The \notion{$n$-th order neighbourhood around $x$} is the subtype $\hood{X,x}{n} \defeq \setbuild{x' : X}{\exists I\ \mathrm{a\ f.g.\ ideal\ in}\ R\ \mathrm{with}\ I^{n+1} = 0\ \mathrm{and}\ I = 0 \rightarrow x' = x}$.
 \end{definition}
 
 Taking $n$-th order neighbourhoods defines a functor $\hood{\argmhole}{n} : \pType \rightarrow \pType$.
@@ -46,7 +46,7 @@ Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ natura
 
 For the case $n=1$ in the preceding example, we introduce a special notation.
 We define the \notion{$m$-dimensional first-order infinitesimal disk}, or just the \notion{$m$-disk}, as the type $\D(m) \defeq \Spec(\quot{R[x_1,\dots, x_m]}{\ideal{x_1,\dots,x_m}^2})$.
-By duality, we can identify $\D(m)$ with the type $\{ x : R^m \mid x_ix_j = 0 \text{ for all } i,j \}$.
+By the universal property of a quotient algebra, we can identify $\D(m)$ with the type $\{ x : R^m \mid x_ix_j = 0 \text{ for all } i,j \}$.
 The $m$-disk is a first-order neighbourhood around $0$.
 Thus, whenever we consider $\D(m)$ as a pointed type, we will always mean the pointed type $(\D(m), 0)$.
 
@@ -107,7 +107,7 @@ It is clear that $\can$ is $R$-linear with respect to the pointwise module struc
 
 So far, we have only considered the tangent spaces of types that are already $R$-modules.
 However, the tangent space $\tangent{X}{x}$ of a general pointed type $(X,x)$ can also carry a natural $R$-module structure.
-The condition under which this occurs, known as \notion{infinitesimal linearity}, is formulated using certain canonical maps between infinitesimal disks.
+A condition under which this occurs, known as \notion{infinitesimal linearity}, is formulated using certain canonical maps between infinitesimal disks.
 
 For any $m,n : \N$, we define the following inclusion:
 \begin{align*}
@@ -130,11 +130,13 @@ The diagonal of the $1$-disk is defined as:
   is an equivalence.
 \end{definition}
 
+\rednote{(Hugo) Maybe it would be best to replace the use of $(X,x)^{\D(m) \vee \D(n)}$ by $(X,x)^{\D(m)}\times (X,x)^{\D(n)}$? It seems it makes the latter proofs clearer by I haven't check everywhere yet.}
+
 Infinitesimal linearity is a local property in the following sense:
 
 \begin{proposition}\label{prp:inf-lin-hood}
   Let $(X,x)$ be a pointed type.
-  $X$ is infinitesimally linear at $x$ if and only if $\hood{X,x}{1}$ is infinitesimally linear at $x$.
+  Then $X$ is infinitesimally linear at $x$ if and only if $\hood{X,x}{1}$ is infinitesimally linear at $x$.
 \end{proposition}
 
 \begin{proof}
@@ -155,7 +157,17 @@ In other words, we obtain this map by lifting in the following diagram
 \end{center}
 The microlinear scalar multiplication is defined by $(r \boxdot \upsilon)(\varepsilon) = \upsilon(r\varepsilon)$ for all $r : R$ and $\varepsilon : \D(1)$.
 Indeed, to prove that this defines a module structure, one can adapt the proof of \cite[Theorem 4.2.19]{david-orbifolds}.
-We will give a direct proof.
+We will give a direct proof. First we give an easy but helpful lemma on the microlinear addition.
+
+\begin{lemma}\label{prp:microlinear-addition}
+Let $(X,x)$ be infinitesimally linear with $\upsilon,\nu,\xi:\tangent{X}{x}$. Then $\upsilon \boxplus \nu = \xi$ is equivalent to $\setbuild{\phi : (X,x)^{\D(2)}}{\forall (\varepsilon:\D(1)),\ \phi(\varepsilon,0) = \upsilon(\varepsilon), \phi(0,\varepsilon)=\nu(\varepsilon),\phi(\varepsilon,\varepsilon)=\xi(\varepsilon)}$. 
+\end{lemma}
+
+\begin{proof}
+Clear from the definition of the microlinear addition.
+\end{proof}
+
+\rednote{Do we really want to assume that $X$ is an arbitrary type and not a set? I feel if we use arbitrary types we should be more explicit about the equality proving pointedness, and clearer on the fact that $\tangent{X}{x}$ is only a wild $R$-module.}
 
 \begin{theorem}\label{thm:tangent-inf-lin}
   Let $(X,x)$ be infinitesimally linear.
@@ -165,7 +177,7 @@ We will give a direct proof.
 \begin{proof}
   We need to verify the axioms to have an $R$-module structure.
   
-  Unitality is clear by definition.
+  Unitality follows immediately from \Cref{prp:microlinear-addition}.
   
   Associativity follows from infinitesimal linearity.
   Let $\phi : \D(m) \to X$ and $\psi : \D(n) \to X$ be two different sums of tangent vectors.
@@ -174,10 +186,12 @@ We will give a direct proof.
   Thus $\phi \boxplus \psi = \phi_1 \boxplus \dots \boxplus \phi_m \boxplus \psi_1 \boxplus \dots \boxplus \psi_n$, as desired.
 
   Distributivity is also clear.
-  Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$, and $r$ be an arbitrary element of $R$.
-  Then $((r\boxdot\upsilon)\boxplus(r\boxdot\nu))(\varepsilon)$ is given by $[r \boxdot \upsilon, r \boxdot \nu]$.
-  Likewise, $(r \boxdot (\upsilon \boxplus \nu))(\varepsilon)$ evaluates to $(\upsilon \boxplus \nu)(r\varepsilon)$ for each $\varepsilon$ in $\D(1)$.
-  Thus the second tangent vector is also given by $[r \boxdot \upsilon, r \boxdot \nu]$, as desired.
+  Indeed let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$, and $r$ be an arbitrary element of $R$.
+  Then by \Cref{prp:microlinear-addition} we get $\phi:(X,x)^{\D(2)}$ such that for all $\varepsilon:\D(1)$ we have that $\phi(\varepsilon,0) = \upsilon(\varepsilon)$, $\phi(0,\varepsilon)=\nu(\varepsilon)$ and $\phi(\varepsilon,\varepsilon)=(\upsilon\boxplus\nu)(\varepsilon)$. Then considering $\hat{\phi}:(X,x)^{\D(2)}$ defined by $\hat{\phi}(\varepsilon_1,\varepsilon_2) = \phi(r\varepsilon_1,r\varepsilon_2)$ and applying \Cref{prp:microlinear-addition} in the other direction, we get that $(r\boxdot\upsilon)\boxplus(r\boxdot\nu) = r\boxdot(\upsilon\boxplus\nu)$.
+  
+  %Then $((r\boxdot\upsilon)\boxplus(r\boxdot\nu))(\varepsilon)$ is given by $[r \boxdot \upsilon, r \boxdot \nu]$.
+  %Likewise, $(r \boxdot (\upsilon \boxplus \nu))(\varepsilon)$ evaluates to $(\upsilon \boxplus \nu)(r\varepsilon)$ for each $\varepsilon$ in $\D(1)$.
+  %Thus the second tangent vector is also given by $[r \boxdot \upsilon, r \boxdot \nu]$, as desired.
 \end{proof}
 
 The microlinear module structure is natural in the sense that the derivative of any pointed map between infinitesimally linear types is linear.
@@ -193,16 +207,17 @@ The following proposition generalizes \cite[Lemma 2.2.6]{diffgeo-article} to thi
   Then we have $f(r\boxdot\upsilon)(\varepsilon) = f(\upsilon)(r\varepsilon) = (r \boxdot f(\upsilon))(\varepsilon)$ for each $\varepsilon$ in $\D(1)$.
   Thus, $\der{f}{x}(r\boxdot\upsilon) = r \boxdot \der{f}{x}(\upsilon)$, as desired.
 
-  Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$.
-  Then both triangles in the diagram
-  \begin{center}
-    \begin{tikzcd}
-      & \D(1) \vee \D(1) \ar{rd}{[f(\upsilon),f(\nu)]} \ar{d}{\inc_{1,1}} \\
-      \D(1) \ar{r}{D} \ar[bend right]{rr}{f(\upsilon \boxplus \nu)} & \D(2) \ar[dashed]{r}{\exists !} & X
-    \end{tikzcd}
-  \end{center}
-  commute, because $f \circ [\upsilon,\nu] = [f(\upsilon),f(\nu)]$.
-  Thus $\der{f}{x}(\upsilon \boxplus \nu) = \der{f}{x}(\upsilon) \boxplus \der{f}{x}(\nu)$, as desired.
+  Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$.  
+  Then by \Cref{prp:microlinear-addition} we get $\phi:(X,x)^{\D(2)}$ such that for all $\varepsilon:\D(1)$ we have that $\phi(\varepsilon,0) = \upsilon(\varepsilon)$, $\phi(0,\varepsilon)=\nu(\varepsilon)$ and $\phi(\varepsilon,\varepsilon)=(\upsilon\boxplus\nu)(\varepsilon)$. Then considering $\hat{\phi} = f\circ\phi$ and applying \Cref{prp:microlinear-addition} in the other direction, we get that $\der{f}{x}(\upsilon) \boxplus \der{f}{x}(\nu) = \der{f}{x}(\upsilon \boxplus \nu)$ as desired.
+%  Then both triangles in the diagram
+%  \begin{center}
+%    \begin{tikzcd}
+%      & \D(1) \vee \D(1) \ar{rd}{[f(\upsilon),f(\nu)]} \ar{d}{\inc_{1,1}} \\
+%      \D(1) \ar{r}{D} \ar[bend right]{rr}{f(\upsilon \boxplus \nu)} & \D(2) \ar[dashed]{r}{\exists !} & X
+%    \end{tikzcd}
+%  \end{center}
+%  commute, because $f \circ [\upsilon,\nu] = [f(\upsilon),f(\nu)]$.
+%  Thus $\der{f}{x}(\upsilon \boxplus \nu) = \der{f}{x}(\upsilon) \boxplus \der{f}{x}(\nu)$, as desired.
 \end{proof}
 
 If $M$ is an infinitesimally linear $R$-module, its tangent space $\tangent{M}{0}$ carries two potentially different $R$-module structures: the pointwise structure and the microlinear structure. We now compare these two structures.
@@ -215,8 +230,7 @@ If $M$ is an infinitesimally linear $R$-module, its tangent space $\tangent{M}{0
 \begin{proof}
   Let $\upsilon,\nu : \tangent{M}{0}$.
   The pointwise addition $\upsilon + \nu$ factors through $\D(2)$ by $(\varepsilon,\delta) \mapsto \upsilon(\varepsilon) + \nu(\delta)$.
-  It is clear that this map is given by $[\upsilon,\nu]$.
-  Thus $\upsilon + \nu = \upsilon \boxplus \nu$.
+  Then by \Cref{prp:microlinear-addition} we get that $\upsilon + \nu = \upsilon \boxplus \nu$.
 \end{proof}
 
 \begin{remark}\label{rem:ptw-micro-scalar}
@@ -237,8 +251,10 @@ This comparison allows us to show that the canonical map is also linear with res
   The map $\can$ is $R$-linear with respect to the pointwise module structure on $\tangent{M}{0}$.
 
   Firstly, $\can$ respects the microlinear addition.
-  To see this, let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{M}{0}$.
-  By \Cref{thm:tangent-ptw-micro-add}, we have $\can(\upsilon \boxplus \nu) = \can(\upsilon + \nu) = \can(\upsilon) + \can(\nu) + \can(\upsilon) \boxplus \can(\nu)$. 
+    To see this, let $\upsilon$ and $\nu$ be in $M$.
+  By \Cref{thm:tangent-ptw-micro-add}, we have $\can(\upsilon + \nu) = \can(\upsilon) + \can(\nu) = \can(\upsilon) \boxplus \can(\nu)$. 
+%OLD    To see this, let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{M}{0}$.
+%OLD    By \Cref{thm:tangent-ptw-micro-add}, we have $\can(\upsilon \boxplus \nu) = \can(\upsilon + \nu) = \can(\upsilon) + \can(\nu) + \can(\upsilon) \boxplus \can(\nu)$. 
 
   Secondly, $\can$ respects the microlinear scalar multiplication.
   Let $m : M$, $\varepsilon : \mathbb{D}(1)$ and $r : R$.
