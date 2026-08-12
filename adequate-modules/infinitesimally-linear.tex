@@ -102,6 +102,8 @@ It is clear that these operations are well-defined and define a module structure
   It is only when $f$ is linear that $\der{f}{0}$ is linear with respect to the pointwise module structures.
 \end{remark}
 
+\rednote{the can notation is confusing, maybe we should use $\mathrm{can}_M$?}
+
 We define the \notion{canonical map} $\can : M \rightarrow \tangent{M}{0}$ by $m \mapsto (\varepsilon \mapsto \varepsilon \cdot m)$.
 It is clear that $\can$ is $R$-linear with respect to the pointwise module structure and natural with respect to $R$-linear maps.
 
@@ -167,7 +169,7 @@ Let $(X,x)$ be infinitesimally linear with $\upsilon,\nu,\xi:\tangent{X}{x}$. Th
 Clear from the definition of the microlinear addition.
 \end{proof}
 
-\rednote{Do we really want to assume that $X$ is an arbitrary type and not a set? I feel if we use arbitrary types we should be more explicit about the equality proving pointedness, and clearer on the fact that $\tangent{X}{x}$ is only a wild $R$-module.}
+\rednote{Do we really want to assume that $X$ is an arbitrary type and not a set? I feel if we use arbitrary types we should be more explicit about the equalities proving pointedness, and clearer on the fact that $\tangent{X}{x}$ is only a wild $R$-module.}
 
 \begin{theorem}\label{thm:tangent-inf-lin}
   Let $(X,x)$ be infinitesimally linear.
@@ -285,22 +287,24 @@ We can generalize $\can$ to a family of canonical maps $\can^k : M^k \to (M,0)^{
 \end{proposition}
 
 \begin{proof}
-  We will show this by induction.
-  The base case $k=1$ is trivial by assumption.
+We start by proving the map is injective. Indeed assume $m,m':M^k$ such that for all $\varepsilon:\D(k)$ we have that $\sum_{i=1}^k\varepsilon_im_i = \sum_{i=1}^k\varepsilon_im'_i$. We get that for all $i$ and $\varepsilon:\D(1)$ we have that $\varepsilon m_i = \varepsilon m'_i$, which implies $m=m'$ since $M$ is tangential.
+
+ Now we prove the map is surjective by induction.
+  The base case $k=1$ is clear.
   Now, assume the statement holds for $k \ge 1$.
   Let $f : \D(k+1) \to M$ be a pointed map.
-  Since $M$ is tangential, the map $\delta \mapsto f(0, \dots, 0, \delta)$ is of the form $\delta m_{k+1}$ for a unique $m_{k+1} : M$.
+  Since $M$ is tangential, the map $\delta \mapsto f(0, \dots, 0, \delta)$ is of the form $\delta m_{k+1}$ for some $m_{k+1} : M$.
   Consider the pointed map $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) \defeq f(\varepsilon_1, \dots, \varepsilon_k, \delta) - \delta m_{k+1}$, which satisfies $\hat{f}(0, \dots, 0, \delta) = 0$.
   For any $\delta : \D(1)$, the map $(\varepsilon_1, \dots, \varepsilon_k) \mapsto \hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta)$ is a pointed map $\D(k) \to M$.
-  By the induction hypothesis, this map is uniquely of the form $\sum_{i=1}^k \varepsilon_i g_i(\delta)$ for some functions $g_i : \D(1) \to M$.
+  By the induction hypothesis, this map is of the form $\sum_{i=1}^k \varepsilon_i g_i(\delta)$ for some functions $g_i : \D(1) \to M$.
   Define $\hat{g_i}(\delta) \defeq g_i(\delta) - m_i$ where $m_i \defeq g_i(0)$.
-  Since $M$ is tangential, the maps $\hat{g_i} : \D(1) \to M$ are uniquely of the form $\delta m'_i$ for some $m'_i : M$.
+  Since $M$ is tangential, the maps $\hat{g_i} : \D(1) \to M$ are of the form $\delta m'_i$ for some $m'_i : M$.
   Thus we have $g_i(\delta) = m_i + \hat{g_i}(\delta) = m_i + \delta m_i'$.
   We can then compute:
   \[ \hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i (m_i + \delta m'_i) = \sum_{i=1}^k \varepsilon_i m_i + \sum_{i=1}^k \varepsilon_i \delta m'_i. \]
   Since $(\varepsilon_1, \dots, \varepsilon_k, \delta) : \D(k+1)$, we have that $\varepsilon_i \delta = 0$ for all $i$.
-  Therefore, the second term vanishes, yielding $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i m_i$, which shows that $f(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^{k+1} \varepsilon_i m_i$ for unique $m_1, \dots, m_{k+1} : M$.
-  Thus $\can^{k+1}$ is an equivalence.
+  Therefore, the second term vanishes, yielding $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i m_i$, which shows that $f(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^{k+1} \varepsilon_i m_i$ for some $m_1, \dots, m_{k+1} : M$. 
+ Thus $\can^{k+1}$ is an equivalence.
 \end{proof}
 
 \begin{corollary}\label{cor:tangential-inf-lin}
@@ -344,7 +348,7 @@ For instance, we will use this in \Cref{ex:power-series-tangential} to show that
 To show that tangential and infinitesimally linear $R$-modules are closed under finite limits and finite colimits, we need some lemmas regarding projectivity.
 
 \begin{lemma}\label{lem:disk-projective}
-  For any $m : \N$ the types $\D(m)$ are projective among types.
+  For any $m : \N$ the type $\D(m)$ is projective among types.
 \end{lemma}
 
 \begin{proof}
@@ -368,12 +372,11 @@ To show that tangential and infinitesimally linear $R$-modules are closed under 
 \end{proposition}
 
 \begin{proof}
-  Immediate by \Cref{lem:disk-projective} and \Cref{lem:projective-exact}.
+  Immediate by \Cref{lem:disk-projective} and \Cref{lem:projective-exact}. \rednote{It is not clear to me that $\D(m) \vee \D(n)$ is projective. If we avoid the use of $\D(m) \vee \D(n)$ and instead use $(X,x)\mapsto (X,x)^{\D(m)}\times (X,x)^{\D(n)}$ then the problem disappear.}
 \end{proof}
 
 \begin{proposition}\label{prp:op-closure-inf-lin-tangential}
-  Infinitesimally linear $R$-modules at $0$ are closed under finite colimits and extensions.
-  Tangential $R$-modules are closed under finite limits, finite colimits and extensions.
+  Infinitesimally linear $R$-modules at $0$ (resp.\ tangential $R$-modules) are closed under finite limits, finite colimits and extensions.
 \end{proposition}
 
 \begin{proof}
