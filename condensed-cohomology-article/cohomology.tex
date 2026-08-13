@@ -2,7 +2,7 @@ In this section, we leverage Scott continuity to compute cohomology for Stone sp
 
 \begin{remark}\label{familiarWithCohomology}
   We will assume familiarity with cohomology in homotopy type theory. So for a type $X$ with for each $x:X$ a group $G(x)$ the cohomology $H^n(X,G)$ is defined as the set truncation $\|\Pi_{x:X} K(G(x),n)\|_0$. 
-  Here $K(G,n)$ refers to the $n$'th-delooping of the group $G$, that is the unique pointed type whose $n$'th loop space is $G$. Such a type exists for any group $G$ if $n=1$, and for abelian groups $G$ if $n>1$. 
+  Here $K(G,n)$ refers to the $n$'th-delooping of the group $G$, that is the unique $n-1$-connected pointed $n$-type whose $n$'th loop space is $G$. Such a type exists for any group $G$ if $n=1$, and for abelian groups $G$ if $n>1$. 
   If $n=1$, we also denote the delooping $K(G,1) = BG$, and for $\alpha:BG$, we identify silently $\alpha$ with $\alpha = 1$, which is the equivalence between $BG$ and the type of $G$-torsors. 
   More on the cohomology can be found in \cite{evan-master-thesis}. Other helpful references include \cite{hott, warn2024, Sym, LicataFinster}.
 \end{remark}
@@ -203,6 +203,7 @@ Assume given $n\geq 1$ and a Stone space $S$ with for each $x:S$ an overtly disc
 Next lemma show that cohomology interact well with \v{C}ech cover. It will be used later to prove that cohomology and \v{C}ech cohomology agree.
 
 \begin{lemma}\label{inductive-definition-cohomology}
+  \rednote{Generalizable in \Cref{inductive-definition-cohomology-general}}
 Assume given $X$ a type with a \v{C}ech cover $S$ and $A(x)$ an overtly discrete abelian group depending on $x:X$. Then for all $n:\N$ we have an exact sequence:
 \[H^{n}(X,\lambda x.A(x)^{S(x)}) \to H^{n}(X,L)\to H^{n+1}(X,A)\to 0\]
 natural in $A$, where $L(x) = A(x)^{S(x)}/A(x)$.
@@ -215,8 +216,9 @@ From the long exact cohomology sequence we just need to prove that $H^{n+1}(X,\l
 Next definition will be used for \v{C}ech cover.
 
 \begin{definition}\label{dfnCech}
+  \rednote{General}
 Assume given a type $X$ with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
-\[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_0}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^2} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
+\[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^2} \overset{\delta_2}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
 with:
 \[\delta_n(\alpha)_x(y_0,\cdots,y_n) = \Sigma_{i=0}^n (-1)^i \alpha(y_0,\hdots,\hat{x_i},\hdots,y_n)\]
 We have that $\delta_{n+1} \circ \delta_n = 0$.
@@ -227,6 +229,7 @@ We define its $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-t
 We prove a generic result about \v{C}ech sequence.
 
 \begin{lemma}\label{cech-coefficient-lemma}
+  \rednote{General}
 Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group both depending on $x:X$. Then $\check{H}^n(X,Y,\lambda x.\, A(x)^{Y(x)})=0$ for all $n\geq 1$.
 \end{lemma}
 
@@ -241,26 +244,28 @@ Then we define:
 and then:
 \[\delta(\beta)(x,y_0,\hdots,y_{n},y) = (-1)^n\Sigma_{i=0}^{n} (-1)^i \alpha(x,y_0,\hdots,\hat{y_i},\hdots,y_n,y,y) \]
 \[= \alpha(x,y_0,\hdots,y_n,y)\]
-so $\delta(\alpha) = 0$.
+so $\delta(\beta) = \alpha$.
 \end{proof}
 
 \begin{lemma}\label{long-exact-cech-cohomology}
-Assume given $X$ a type with $S$ a \v{C}ech cover and a short exact sequence of overtly discrete abelian group:
+  \rednote{Compare to \Cref{long-exact-cech-cohomology-general}}
+Assume given $X$ a type with $S$ a \v{C}ech cover and a short exact sequence of overtly discrete abelian groups:
 \[0\to A(x)\to B(x)\to C(x)\to 0\]
 depending on $x:X$. Then there is a long exact sequence of \v{C}ech cohomology groups:
-\[\check{H}^0(X,A) \to\check{H}^0(X,B) \to\check{H}^0(X,C) \to\check{H}^1(X,A) \to\check{H}^1(X,B) \to\check{H}^1(X,C) \to\cdots \]
+\[\check{H}^0(X,S,A) \to\check{H}^0(X,S,B) \to\check{H}^0(X,S,C) \to\check{H}^1(X,S,A) \to\check{H}^1(X,S,B) \to\check{H}^1(X,S,C) \to\cdots \]
 Moreover this long exact sequence is natural in the short exact sequence.
 \end{lemma}
 
 \begin{proof}
-We just use the fact that all elements $\Sigma_{x:X} T_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact sequence of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}, and then we use the long exact cohomology sequence induced by such a short exact sequence of complexes.
+We use the fact that all elements $\Sigma_{x:X} S_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact sequence of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}, and then we use the long exact cohomology sequence induced by such a short exact sequence of complexes.
 \end{proof}
 
 \begin{lemma}\label{inductive-definition-cech-cohomology}
+  \rednote{Compare to \Cref{inductive-definition-cech-cohomology-general}}
 Assume given $X$ a type with $S$ a \v{C}ech cover and $A(x)$ an overtly discrete abelian group depending on $x:X$.
 
 Then for all $n:\N$ we have an exact sequence:
-\[\check{H}^{n}(X,\lambda x.\, A(x)^{S(x)}) \to \check{H}^{n}(X,L)\to \check{H}^{n+1}(X,A)\to 0\]
+\[\check{H}^{n}(X,S,\lambda x.\, A(x)^{S(x)}) \to \check{H}^{n}(X,S,L)\to \check{H}^{n+1}(X,S,A)\to 0\]
 natural in $A$ where $L(x)=A(x)^{S(x)}/A(x)$.
 \end{lemma}
 
@@ -270,7 +275,7 @@ By \Cref{long-exact-cech-cohomology}, it is enough to prove $\check{H}^{n+1}(X,\
 
 \begin{theorem}\label{cech-and-sheaf-agree}
 Assume given $X$ a type with $S$ a \v{C}ech cover and $A(x)$ an overtly discrete abelian group depending on $x:X$.
-
+%
 Then we have a natural isomorphism $H^n(X,A) = \check{H}^n(X,S,A)$
 \end{theorem}
 
@@ -278,6 +283,7 @@ Then we have a natural isomorphism $H^n(X,A) = \check{H}^n(X,S,A)$
 We proceed by induction on $n$. For $n=0$ we need to prove that the type of maps:
 \[\{\alpha:\Pi_{x:X}A(x)^{S(x)}\ |\ \forall x,s_0,s_1.\, \alpha_x(s_0)=\alpha_x(s_1)\}\]
 is naturally isomorphic to $\Pi_{x:X}A(x)$. This is immediate from $S(x)$ being inhabited sets.
+\rednote{This actually shows that $H^0(X,A) = \check H^0(X,S,A)$ for any $X$ with $S(x)$ inhabited and $A(x)$ dependent group. }
 
 For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{inductive-definition-cech-cohomology}. Naturality comes from the naturality of the long exact sequences.
 \end{proof}
