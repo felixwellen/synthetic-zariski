@@ -200,23 +200,8 @@ Assume given $n\geq 1$ and a Stone space $S$ with for each $x:S$ an overtly disc
 \subsection{\v{C}ech cohomology for compact Hausdorff spaces}
 \label{cech-sheaf-agree-section}
 
-Next lemma show that cohomology interact well with \v{C}ech cover. It will be used later to prove that cohomology and \v{C}ech cohomology agree.
-
-\begin{lemma}\label{inductive-definition-cohomology}
-  \rednote{Generalizable in \Cref{inductive-definition-cohomology-general}}
-Assume given $X$ a type with a \v{C}ech cover $S$ and $A(x)$ an overtly discrete abelian group depending on $x:X$. Then for all $n:\N$ we have an exact sequence:
-\[H^{n}(X,\lambda x.A(x)^{S(x)}) \to H^{n}(X,L)\to H^{n+1}(X,A)\to 0\]
-natural in $A$, where $L(x) = A(x)^{S(x)}/A(x)$.
-\end{lemma}
-
-\begin{proof}
-From the long exact cohomology sequence we just need to prove that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = 0$. But by \Cref{eilenberg-exponentials} we have that $\Pi_{x:X}K(A(x)^{S(x)},n+1) = \Pi_{x:X}K(A(x),n+1)^{S(x)}$ so that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = H^{n+1}(\Sigma_{x:X}S(x),A\circ \pi_S)$ so it is $0$ by \Cref{vanishing-cohomology-stone}.
-\end{proof}
-
 Next definition will be used for \v{C}ech cover.
-
 \begin{definition}\label{dfnCech}
-  \rednote{General}
 Assume given a type $X$ with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
 \[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^2} \overset{\delta_2}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
 with:
@@ -226,70 +211,15 @@ We have that $\delta_{n+1} \circ \delta_n = 0$.
 We define its $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology group of this chain complex.
 \end{definition}
 
-We prove a generic result about \v{C}ech sequence.
-
-\begin{lemma}\label{cech-coefficient-lemma}
-  \rednote{General}
-Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group both depending on $x:X$. Then $\check{H}^n(X,Y,\lambda x.\, A(x)^{Y(x)})=0$ for all $n\geq 1$.
-\end{lemma}
-
-\begin{proof}
-Indeed assume given:
-\[\alpha : \Pi_{x:X} Y(x)^{n+1}\to A(x)^{Y(x)}\]
-such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $y_0,\hdots, y_{n+1},y:Y(x)$ we have that:
-\[\Sigma_{i=0}^{n+1}(-1)^i\alpha(x,y_0,\hdots,\widehat{y_i},\hdots ,y_{n+1},y) = 0\]
-Then we define:
-\[\beta : \Pi_{x:X} Y(x)^{n}\to A(x)^{Y(x)}\]
-\[\beta(x,y_0,\hdots,y_{n-1},y) = (-1)^n\alpha(x,y_0,\hdots,y_{n-1},y,y)\]
-and then:
-\[\delta(\beta)(x,y_0,\hdots,y_{n},y) = (-1)^n\Sigma_{i=0}^{n} (-1)^i \alpha(x,y_0,\hdots,\hat{y_i},\hdots,y_n,y,y) \]
-\[= \alpha(x,y_0,\hdots,y_n,y)\]
-so $\delta(\beta) = \alpha$.
-\end{proof}
-
-\begin{lemma}\label{long-exact-cech-cohomology}
-  \rednote{Compare to \Cref{long-exact-cech-cohomology-general}}
-Assume given $X$ a type with $S$ a \v{C}ech cover and a short exact sequence of overtly discrete abelian groups:
-\[0\to A(x)\to B(x)\to C(x)\to 0\]
-depending on $x:X$. Then there is a long exact sequence of \v{C}ech cohomology groups:
-\[\check{H}^0(X,S,A) \to\check{H}^0(X,S,B) \to\check{H}^0(X,S,C) \to\check{H}^1(X,S,A) \to\check{H}^1(X,S,B) \to\check{H}^1(X,S,C) \to\cdots \]
-Moreover this long exact sequence is natural in the short exact sequence.
-\end{lemma}
-
-\begin{proof}
-We use the fact that all elements $\Sigma_{x:X} S_x^{k+1}$ in the \v{C}ech complex are Stone spaces, so a short exact sequence of overtly discrete abelian group induces a short exact sequence of \v{C}ech complexes by \Cref{vanishing-cohomology-stone}, and then we use the long exact cohomology sequence induced by such a short exact sequence of complexes.
-\end{proof}
-
-\begin{lemma}\label{inductive-definition-cech-cohomology}
-  \rednote{Compare to \Cref{inductive-definition-cech-cohomology-general}}
-Assume given $X$ a type with $S$ a \v{C}ech cover and $A(x)$ an overtly discrete abelian group depending on $x:X$.
-
-Then for all $n:\N$ we have an exact sequence:
-\[\check{H}^{n}(X,S,\lambda x.\, A(x)^{S(x)}) \to \check{H}^{n}(X,S,L)\to \check{H}^{n+1}(X,S,A)\to 0\]
-natural in $A$ where $L(x)=A(x)^{S(x)}/A(x)$.
-\end{lemma}
-
-\begin{proof}
-By \Cref{long-exact-cech-cohomology}, it is enough to prove $\check{H}^{n+1}(X,\lambda x.\, A(x)^{S(x)}) = 0$. This is \Cref{cech-coefficient-lemma}.
-\end{proof}
-
-\begin{theorem}\label{cech-and-sheaf-agree}
-Assume given $X$ a type with $S$ a \v{C}ech cover and $A(x)$ an overtly discrete abelian group depending on $x:X$.
-%
-Then we have a natural isomorphism $H^n(X,A) = \check{H}^n(X,S,A)$
+In \Cref{abelian-higher-cech}, we prove some technical general results about the \v Cech cohomology. Our main interest result is the following, from which it follows that any compact Hausdorff space merely comes with a way of calculating cohomologies with countably presented coefficients. 
+\begin{theorem}
+  Assume given $X:\CHaus$ with for each $x:X$ an inhabited Stone space $S(x)$ and $A(x)$ an overtly discrete abelian group. Then $H(X,A) = \check H^n(X,S,A)$. 
 \end{theorem}
-
 \begin{proof}
-We proceed by induction on $n$. For $n=0$ we need to prove that the type of maps:
-\[\{\alpha:\Pi_{x:X}A(x)^{S(x)}\ |\ \forall x,s_0,s_1.\, \alpha_x(s_0)=\alpha_x(s_1)\}\]
-is naturally isomorphic to $\Pi_{x:X}A(x)$. This is immediate from $S(x)$ being inhabited sets.
-\rednote{This actually shows that $H^0(X,A) = \check H^0(X,S,A)$ for any $X$ with $S(x)$ inhabited and $A(x)$ dependent group. }
-
-For the inductive step we use \Cref{inductive-definition-cohomology} and \Cref{inductive-definition-cech-cohomology}. Naturality comes from the naturality of the long exact sequences.
+  By \Cref{CechCoverSystemCohomologyAgree}, it is sufficient to note that by \Cref{tychonov-dual-stone}, \Cref{overtly-discrete-closure} and \Cref{vanishing-cohomology-stone}, $(S,A)$ is a \v Cech cover system for $\mathcal A$ the class of overtly discrete abelian group depending on $X$.
 \end{proof}
 
-
-
+ 
 \subsection{The unit interval is acyclic}
 \label{interval-acyclic}
 This section extends \cite[Section 5.4]{synthetic-stone-duality}. 

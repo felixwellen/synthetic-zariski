@@ -1,17 +1,50 @@
-\begin{definition}
-  Let $X$ be a type. Let $\mathcal A$ be a collection of dependent abelian groups $X \to Ab$. Let $q:S \twoheadrightarrow X$. 
-  We say $q,\mathcal A$ is \v Cech cover system if:
-  \begin{itemize}
-    \item Whenever $A:\mathcal A$, 
-      so is $\lambda x .A(x)^{S_x}/ A(x)$. 
-    \item for all $k>1$ the canonical map $K(\Pi_{x:X} A(x)^{(S_x)^k}, n)\to \Pi_{x:X}(K(A(x),n))^{(S_x)^k}$ is an equivalence. 
-  \end{itemize}
-\end{definition}  
+\label{abelian-higher-cech}
+In this section, we give a condition under which the \v Cech cohomology and the cohomology agree. 
+\begin{lemma}\label{ZeroCohomologyAgree}
+  Let $X$ be a type with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. Then there is a natural isomorphism $\check H^0(X,Y, A) = H^0(X, A)$. 
+\end{lemma}
+\begin{proof}
+We need to prove that the type of maps:
+\[\{\alpha:\Pi_{x:X}A(x)^{Y(x)}\ |\ \forall x,y_0,y_1.\, \alpha_x(y_0)=\alpha_x(y_1)\}\]
+is naturally isomorphic to $\Pi_{x:X}A(x)$. This is immediate from $Y(x)$ being inhabited sets.
+\end{proof}
 
-\begin{lemma}\label{TrivialHasVanishingCohomology}
-  If $q:S \twoheadrightarrow X$ is a \v Cech cover system with $\mathcal A$, then $H^n(S,A) = 0$ for all $A:\mathcal A, n >1$. 
+\begin{lemma}\label{cech-coefficient-lemma}
+Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group both depending on $x:X$. Then $\check{H}^n(X,Y,\lambda x.\, A(x)^{Y(x)})=0$ for all $n\geq 1$.
 \end{lemma}
 
+\begin{proof}
+Indeed assume given:
+\[\alpha : \Pi_{x:X} Y(x)^{n+1}\to A(x)^{Y(x)}\]
+such that $\delta(\alpha) = 0$, i.e. for all $x:X$ and $y_0,\hdots, y_{n+1},y:Y(x)$ we have that:
+\[\Sigma_{i=0}^{n+1}(-1)^i\alpha(x,y_0,\hdots,\widehat{y_i},\hdots ,y_{n+1},y) = 0\]
+Then we define:
+\[\beta : \Pi_{x:X} Y(x)^{n}\to A(x)^{Y(x)}\]
+\[\beta(x,y_0,\hdots,y_{n-1},y) = (-1)^n\alpha(x,y_0,\hdots,y_{n-1},y,y)\]
+and then:
+\[\delta(\beta)(x,y_0,\hdots,y_{n},y) = (-1)^n\Sigma_{i=0}^{n} (-1)^i \alpha(x,y_0,\hdots,\hat{y_i},\hdots,y_n,y,y) \]
+\[= \alpha(x,y_0,\hdots,y_n,y)\]
+so $\delta(\beta) = \alpha$.
+\end{proof}
+
+\begin{definition}
+  Let $X$ be a type, with for each $x:X$ an abelian group $A(x)$. A \v Cech cover for $X,A$ is a family of inhabited dependent sets $S(x)$ depending on $x:X$ such that for all $k\geq1$ the canonical map $$K(\Pi_{x:X} A(x)^{(S_x)^k}, n)\to \Pi_{x:X}(K(A(x),n))^{(S_x)^k}$$ is an equivalence. 
+\end{definition}
+\begin{lemma}\label{TrivialHasVanishingCohomology}
+  If $S$ is a \v Cech cover for $X,A$, then $H^n(X,\lambda x. A(x)^{S(x)^k}) = 0$ for all $n,k\geq1$. 
+  \rednote{This is equivalent to the above definition, which is now hidden in the proof of Section 3.2.} 
+\end{lemma}
+\begin{corollary}\label{cohomologyCechCoverExpVanishes}
+Assume given a type $X$ and for each $x:X$ an Abelian group $A(x)$, with a \v Cech cover $S$. Then for all $n\geq1$, we have 
+$H^{n}(X,\lambda x.A(x)^{S(x)}) = 0$.
+\end{corollary} 
+
+\begin{corollary}\label{CechExpCohomologiesAgree}
+Assume given a type $X$ and for each $x:X$ an Abelian group $A(x)$, with a \v Cech cover $S$. Then for all $n:\N$, we have a natural isomorphism
+$H^{n}(X,\lambda x.A(x)^{S(x)}) = 
+\check H^{n}(X,S,\lambda x.A(x)^{S(x)})
+$.
+\end{corollary}
 
 \begin{lemma}\label{inductive-definition-cohomology-general}
 Assume given a type $X$ and for each $x:X$ an Abelian group $A(x)$, with a \v Cech cover $S$. Then for all $n:\N$ we have an exact sequence:
@@ -20,36 +53,22 @@ natural in $A$, where $L(x) = A(x)^{S(x)}/A(x)$.
 \end{lemma}
 
 \begin{proof}
-From the long exact cohomology sequence we just need to prove that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = 0$. As $S$ was a \v Cech cover, we have that $\Pi_{x:X}K(A(x)^{S(x)},n+1) = \Pi_{x:X}K(A(x),n+1)^{S(x)}$ so that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = H^{n+1}(\Sigma_{x:X}S(x),A\circ \pi_S)$ so it is $0$ by \Cref{TrivialHasVanishingCohomology}.
+  From the long exact cohomology sequence we just need to prove that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = 0$. This is \Cref{cohomologyCechCoverExpVanishes}.
 \end{proof}
-\rednote{This actually shows that $H^n(X,\lambda x . A(x)^{S(x)} = 0$ for $n\geq 1$. 
-  For $n=0$, we don't have this result, but we do have that 
-$H^0(X,\lambda x .A(x)^{S(x)}) = \check H^0(X,S,\lambda x .A(x)^{(S(x)}$, which really is all we need. }
-
-%\begin{lemma}
-%  Assume given a type $X$ with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. 
-%  Then $$\check H^0(X,Y, \lambda x.A(x)^Y(x)) = \Pi_{x:X} A_x^{Y_x} = H^0(X, \lambda x. A(x)^Y(x)$$
-%\end{lemma}
-%\begin{proof}
-%  The latter equality follows from the cohomology definition and the observation that $A(x)$ is a set for all $x:X$. 
-%  For the first equality, note that 
-%  $$\check H^0(X,Y, \lambda x.A(x)^Y(x)) = Ker (\partial_1) = \{\alpha : \Pi_{x:X} (A_x^{Y(x)}^{Y(x)} | 
-%\end{proof}
-
-
+We will continue to show that the above sequence is also exact if we replace the cohomology with the \v Cech cohomology with a \v Cech cover. We need a helper lemma first:
 \begin{lemma}\label{long-exact-cech-cohomology-general}
 Assume given $X$ and a short exact sequence of abelian groups 
 \[0\to A(x)\to B(x)\to C(x)\to 0\]
 depending on $x:X$. 
-Also assume a surjection $q:S\twoheadrightarrow X$ giving a \v Cech cover for $X,A$. 
-
+Also assume $S$ a \v Cech cover for $X,A$. 
 Then there is a long exact sequence of \v{C}ech cohomology groups:
 \[\check{H}^0(X,S,A) \to\check{H}^0(X,S,B) \to\check{H}^0(X,S,C) \to\check{H}^1(X,S,A) \to\check{H}^1(X,S,B) \to\check{H}^1(X,S,C) \to\cdots \]
 Moreover this long exact sequence is natural in the short exact sequence.
 \end{lemma}
 
 \begin{proof}
-  As $\|\Pi_{x:X}A(x)^{S_x^k} \|_0= 0$ for all $k\geq 1$, 
+%  As $\|K(\Pi_{x:X}A(x)^{S_x^k},1) \|_0= 0$ for all $k\geq 1$, 
+  Because of \Cref{TrivialHasVanishingCohomology},
   the short exact sequence induces a short exact sequence of \v Cech complexes. 
   Then we use the long exact cohomology sequence induced by such a short exact sequence of complexes.
 \end{proof}
@@ -67,3 +86,22 @@ By \Cref{long-exact-cech-cohomology-general}, it is enough to prove $\check{H}^{
 This is \Cref{cech-coefficient-lemma}.
 \end{proof}
 
+\begin{definition}
+  Let $X$ be a type. Let $\mathcal A$ be a collection of dependent abelian groups $X \to Ab$ and let $S(x)$ be an inhabited set for each $x:X$. 
+  We say $S,\mathcal A$ is \v Cech cover system if:
+  \begin{itemize}
+    \item Whenever $A:\mathcal A$, 
+      so is $\lambda x .A(x)^{S_x}/ A(x)$. 
+    \item For each $A:\mathcal A$, $S$ is a \v Cech cover for $X,A$. 
+  \end{itemize}
+\end{definition}
+\begin{theorem}\label{CechCoverSystemCohomologyAgree}
+  If $X$ is a type with a \v Cech cover system $S,\mathcal A$, then for any $A:\mathcal A$ we have a natural isomorphism $H^n(X,A) = \check H^n(X,S,,A)$. 
+\end{theorem}
+\begin{proof}
+  We work with induction. The base case is given by \Cref{ZeroCohomologyAgree}. For the inductive case, suppose that for any $A:\mathcal A$ we have $H^n(X,A) = \check H^n(X,S,A)$. 
+  Then for each $A:\mathcal A$, we have a natural isomorphism
+  $H^n(X,L) = \check H^n(X,S,L)$ for $L = A(x)^{S(x)}/A(x)$. 
+  Furthermore, by \Cref{CechExpCohomologiesAgree}, we have $H^n(X,\lambda x.A(x)^{S(x)}) = \check H^n (X ,S,\lambda x.A(x)^{S(x)})$ natural.
+  By naturality of the sequences in \Cref{inductive-definition-cohomology-general} and \Cref{inductive-definition-cech-cohomology-general} we conclude. 
+\end{proof}
