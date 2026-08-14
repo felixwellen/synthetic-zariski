@@ -31,13 +31,11 @@ so $\delta(\beta) = \alpha$.
   Let $X$ be a type, with for each $x:X$ an abelian group $A(x)$. A \v Cech cover for $X,A$ is a family of inhabited dependent sets $S(x)$ depending on $x:X$ such that for all $k\geq1$ the canonical map $$K(\Pi_{x:X} A(x)^{(S_x)^k}, n)\to \Pi_{x:X}(K(A(x),n))^{(S_x)^k}$$ is an equivalence. 
 \end{definition}
 \begin{lemma}\label{TrivialHasVanishingCohomology}
-  If $S$ is a \v Cech cover for $X,A$, then $H^n(X,\lambda x. A(x)^{S(x)^k}) = 0$ for all $n,k\geq1$. 
-  \rednote{This is equivalent to the above definition, which is now hidden in the proof of Section 3.2.} 
+  $S$ is a \v Cech cover for $X,A$ iff $H^n(X,\lambda x. A(x)^{S(x)^k}) = 0$ for all $n,k\geq1$. 
 \end{lemma}
-\begin{corollary}\label{cohomologyCechCoverExpVanishes}
-Assume given a type $X$ and for each $x:X$ an Abelian group $A(x)$, with a \v Cech cover $S$. Then for all $n\geq1$, we have 
-$H^{n}(X,\lambda x.A(x)^{S(x)}) = 0$.
-\end{corollary} 
+\begin{proof}
+  This follows directly from \Cref{ev-eq-acyclic}, \Cref{ev-embedding} and \Cref{acyclic-ev-surjective}.
+\end{proof}
 
 \begin{corollary}\label{CechExpCohomologiesAgree}
 Assume given a type $X$ and for each $x:X$ an Abelian group $A(x)$, with a \v Cech cover $S$. Then for all $n:\N$, we have a natural isomorphism
@@ -53,7 +51,7 @@ natural in $A$, where $L(x) = A(x)^{S(x)}/A(x)$.
 \end{lemma}
 
 \begin{proof}
-  From the long exact cohomology sequence we just need to prove that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = 0$. This is \Cref{cohomologyCechCoverExpVanishes}.
+  From the long exact cohomology sequence we just need to prove that $H^{n+1}(X,\lambda x.A(x)^{S(x)}) = 0$. This is \Cref{TrivialHasVanishingCohomology}.
 \end{proof}
 We will continue to show that the above sequence is also exact if we replace the cohomology with the \v Cech cohomology with a \v Cech cover. We need a helper lemma first:
 \begin{lemma}\label{long-exact-cech-cohomology-general}
@@ -95,9 +93,9 @@ This is \Cref{cech-coefficient-lemma}.
     \item For each $A:\mathcal A$, $S$ is a \v Cech cover for $X,A$. 
   \end{itemize}
 \end{definition}
-\begin{theorem}\label{CechCoverSystemCohomologyAgree}
+\begin{proposition}\label{CechCoverSystemCohomologyAgree}
   If $X$ is a type with a \v Cech cover system $S,\mathcal A$, then for any $A:\mathcal A$ we have a natural isomorphism $H^n(X,A) = \check H^n(X,S,,A)$. 
-\end{theorem}
+\end{proposition}
 \begin{proof}
   We work with induction. The base case is given by \Cref{ZeroCohomologyAgree}. For the inductive case, suppose that for any $A:\mathcal A$ we have $H^n(X,A) = \check H^n(X,S,A)$. 
   Then for each $A:\mathcal A$, we have a natural isomorphism

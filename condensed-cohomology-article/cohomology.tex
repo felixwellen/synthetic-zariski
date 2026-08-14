@@ -56,7 +56,7 @@ We use Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left}
 
 %Now we can use the approximation of any surjection between Stone spaces as a limit of maps merely having section (\Cref{finite-approximation-stone-surjection-cohomology}) to conclude the vanishing of the appropriate \v{C}ech cohomology groups.
 
-Now we will show that the first \v Cech cohomology groups vanish for Stone spaces. 
+Now we will show that the first \v Cech cohomology groups vanishes for Stone spaces. 
 
 \begin{lemma}\label{cech-vanishing-first-stone}
 Assume given a Stone space $S$ and for each $x:S$ an inhabited Stone spaces $T(x)$ with an overtly discrete group $G(x)$. Then $\check{H}^1(S,T,G) = 0$.
@@ -77,19 +77,9 @@ Assume given a Stone space $S$ and for each $x:S$ an overtly discrete group $G(x
   Let us consider $\alpha:H^1(S,G)$. By local choice there is a family $T(x)$ of inhabited Stone space depending on $x:S$ with $\|\Pi_{x:S}\Pi_{t:T(x)} (\alpha = 1) \|$, so $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $\alpha=1$.
 \end{proof}
 
-%\begin{definition}
-%A \v{C}ech cover for a set $X$ consists of $S(x)$ an inhabited Stone spaces depending on $x:X$ such that $\Sigma_{x:X}S(x)$ is a Stone space.
-%\end{definition}
-
-%\begin{remark}
-%A set $X$ merely has a \v{C}ech cover if and only is it is a compact Hausdorff space. We just need to prove that identity types in an $X$ with a \v{C}ech cover $S$ are closed, but given $y,y':\Sigma_{x:X}S(x)$ we have that $\pi_X(y)=\pi_X(y')$ if and only if $y'\in \pi_X^{-1}(\pi_X(y))$ and any Stone subspace of a Stone space is closed.
-%\end{remark}
-
-%I DECIDED TO GET RID OF THE DEFINITION OF CECH COVER BUT MAYBE I'LL REVERT LATTER
 Finally, we conclude that the \v{C}ech cohomology agree with usual cohomology for compact Hausdorff spaces.
 
 \begin{proposition}\label{non-abelian-cech-and-sheaf-agree}
-%Assume given a compact Hausdorff space $X$ with a \v{C}ech cover $S$ and $G(x)$ an overtly discrete group depending on $x:X$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
 Assume given a compact Hausdorff space $X$, a surjection $S\twoheadrightarrow X$ with $S$ Stone and for each $x:X$ an overtly discrete group $G(x)$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
 \end{proposition}
 
@@ -177,15 +167,15 @@ Assume given $n:\N$ and a Stone space $S$ with for each $x:S$ an overtly discret
   
   By this induction hypothesis and \Cref{ev-embedding}, we have that $\epsilon_{n+1}^{S,A}$ is an embedding. We just need to prove that it is surjective to conclude, and by \Cref{acyclic-ev-surjective}, it's sufficient to show that $H^{n+1}(S,A) = 0$. For $n=0$ this is the abelian version of \Cref{vanishing-first-stone}. 
   
-  Now we assume $n\geq 1$. Assume given $\alpha:H^{n+1}(S,A)$, by local choice there exists a family of inhabited Stone spaces $(T(x))_{x:S}$ such that $\pi^*(\alpha) : H^{n+1}(\Sigma_{x:S}T(x), A\circ\pi)$ is $0$, where $\pi:\Sigma_{x:S}\,T(x)\to S$ is the first projection. Consider factorisation of $\pi^*$ as
-  \[ H^{n+1}(S,A)\to H^{n+1}(S,x\mapsto A(x)^{T(x)}) \to H^{n+1}(\Sigma_{x:S}T(x), A\circ\pi). \]
+  Now we assume $n\geq 1$. Assume given $\alpha:H^{n+1}(S,A)$, by local choice and \Cref{CechConditionEquivalentStatement} there exists a family of inhabited Stone spaces $(T(x))_{x:S}$ such that $\pi^*(\alpha) : H^{n+1}(\Sigma_{x:S}T(x), A\circ\pi)$ is $0$, where $\pi:\Sigma_{x:S}\,T(x)\to S$ is the first projection. Consider the factorisation of $\pi^*$ as
+  \[ H^{n+1}(S,A)\to H^{n+1}(S,\lambda x.A(x)^{T(x)}) \to H^{n+1}(\Sigma_{x:S}T(x), A\circ\pi). \]
   We will show that both maps are injective, which will imply $\alpha=0$.
 
 \begin{itemize}
  \item For each $x:S$ we define an abelian group $L(x)$ by the exact sequence
   \[  0\to A(x) \to A(x)^{T(x)} \to L(x) \to 0. \]
 The long exact cohomology sequence then gives exactness of
-\[ H^n(S,L)\to H^{n+1}(S,A)\to H^{n+1}(S,x\mapsto A(x)^{T(x)}).\]
+\[ H^n(S,L)\to H^{n+1}(S,A)\to H^{n+1}(S,\lambda x. A(x)^{T(x)}).\]
 By \Cref{tychonov-dual-stone} we get that $L(x)$ is a quotient of overtly discrete groups, and therefore overtly discrete. So by the induction hypothesis and \Cref{ev-eq-acyclic} we have that $H^n(S,L)=0$. Then the first map in the factorisation is indeed injective.
 \item By the induction hypothesis and \Cref{ev-embedding}, for all $x:S$ the map $\epsilon_{n+1}^{T(x),A(x)}$ is an embedding. So the second map in the factorisation is indeed injective. 
 \end{itemize}
@@ -200,23 +190,22 @@ Assume given $n\geq 1$ and a Stone space $S$ with for each $x:S$ an overtly disc
 \subsection{\v{C}ech cohomology for compact Hausdorff spaces}
 \label{cech-sheaf-agree-section}
 
-Next definition will be used for \v{C}ech cover.
 \begin{definition}\label{dfnCech}
-Assume given a type $X$ with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. We define its its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
+Assume given a type $X$ with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. We define its \v{C}ech sequence $\check{C}(X,Y,A)$ as:
 \[\Pi_{x:X}A(x)^{Y(x)} \overset{\delta_1}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^2} \overset{\delta_2}{\longrightarrow} \Pi_{x:X}A(x)^{Y(x)^3} \overset{\delta_3}{\longrightarrow} \cdots \]
 with:
 \[\delta_n(\alpha)_x(y_0,\cdots,y_n) = \Sigma_{i=0}^n (-1)^i \alpha(y_0,\hdots,\hat{x_i},\hdots,y_n)\]
 We have that $\delta_{n+1} \circ \delta_n = 0$.
-
-We define its $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology group of this chain complex.
+%
+We define the $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology group of this chain complex.
 \end{definition}
 
-In \Cref{abelian-higher-cech}, we prove some technical general results about the \v Cech cohomology. Our main interest result is the following, from which it follows that any compact Hausdorff space merely comes with a way of calculating cohomologies with countably presented coefficients. 
+In \Cref{abelian-higher-cech}, we prove some technical general results about the \v Cech cohomology. Our main interest result is the following: 
 \begin{theorem}
-  Assume given $X:\CHaus$ with for each $x:X$ an inhabited Stone space $S(x)$ and $A(x)$ an overtly discrete abelian group. Then $H(X,A) = \check H^n(X,S,A)$. 
+  Assume given $X:\CHaus$ with $q:S \twoheadrightarrow X$ a surjection from a Stone space, and $A(x)$ an overtly discrete abelian group. Then $H(X,A) = \check H^n(X,\lambda x. q^{-1}(x),A)$. 
 \end{theorem}
 \begin{proof}
-  By \Cref{CechCoverSystemCohomologyAgree}, it is sufficient to note that by \Cref{tychonov-dual-stone}, \Cref{overtly-discrete-closure} and \Cref{vanishing-cohomology-stone}, $(S,A)$ is a \v Cech cover system for $\mathcal A$ the class of overtly discrete abelian group depending on $X$.
+  By \Cref{CechCoverSystemCohomologyAgree}, it is sufficient to note that by \Cref{tychonov-dual-stone}, \Cref{overtly-discrete-closure} and \Cref{vanishing-cohomology-stone}, $(\lambda x . q^{-1}(x),A)$ is a \v Cech cover system for $\mathcal A$ the class of overtly discrete abelian group depending on $X$.
 \end{proof}
 
  
@@ -225,7 +214,7 @@ In \Cref{abelian-higher-cech}, we prove some technical general results about the
 This section extends \cite[Section 5.4]{synthetic-stone-duality}. 
 \begin{remark}
   \rednote{SSD}
-  Recall from \parencite[Section 4.4]{synthetic-stone-duality} that for each $n:\N$, we can define $cs_n: 2^n \to Q$ by $cs_n(\alpha) = \sum\limits_{i<n} \frac{\alpha(i)}{2^{i+1}}$. And for $\I = [0,1]$ the interval of Cauchy or Dedekind reals, we can define $cs: 2^\N \to \I$ by $cs(\alpha) = \lim\limits_{n\to\infty} cs_n(\alpha)|_n$. This function witnesses that $\I$ is compact Hausdorff. 
+  Recall from \parencite[Section 4.4]{synthetic-stone-duality} that for each $n:\N$, we can define $cs_n: 2^n \to Q$ by $cs_n(\alpha) = \sum\limits_{i<n} \frac{\alpha(i)}{2^{i+1}}$. And for $\I = [0,1]$ the interval of Cauchy or Dedekind reals, we can define $cs: 2^\N \to \I$ by $cs(\alpha) = \lim\limits_{n\to\infty} cs_n(\alpha|_n)$. This function witnesses that $\I$ is compact Hausdorff. 
 \end{remark}
 
 \begin{definition}
