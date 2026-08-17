@@ -103,7 +103,8 @@ It is clear that these operations are well-defined and define a module structure
 \end{remark}
 
 \begin{definition}\label{def:canonical-map}
-We define the \notion{canonical map} $\can : M \rightarrow \tangent{M}{0}$ by $m \mapsto (\varepsilon \mapsto \varepsilon \cdot m)$.
+We define the \notion{canonical map} $\can_M : M \rightarrow \tangent{M}{0}$ by $m \mapsto (\varepsilon \mapsto \varepsilon \cdot m)$.
+When $M$ is clear from context, we simply write $\can$.
 \end{definition}
 
 It is clear that $\can$ is $R$-linear with respect to the pointwise module structure and natural with respect to $R$-linear maps.
@@ -240,7 +241,7 @@ If $M$ is an infinitesimally linear $R$-module, its tangent space $\tangent{M}{0
 \end{proof}
 
 \begin{remark}\label{rem:ptw-micro-scalar}
-  In general, the scalar multiplication given by the pointwise and microlinear module structures differs.
+  In general, the scalar multiplications given by the pointwise and microlinear module structures differ.
   Let $\nu : \tangent{M}{0}$ be a tangent vector on $M$, $r : R$, and $\varepsilon : \D(1)$.
   Then $(r\boxdot \nu)(\varepsilon) = \nu(r\varepsilon)$ and $(r \cdot \nu)(\varepsilon) = r\nu(\varepsilon)$.
   We can observe that $r\boxdot\nu = r\cdot \nu$ holds if and only if $\nu$ respects scalar multiplication.
@@ -254,19 +255,14 @@ This comparison allows us to show that the canonical map is also linear with res
 \end{corollary}
 
 \begin{proof}
-  The map $\can$ is $R$-linear with respect to the pointwise module structure on $\tangent{M}{0}$.
-
-  Firstly, $\can$ respects the microlinear addition.
-  To see this, let $m$ and $m'$ be in $M$.
-  By \Cref{thm:tangent-ptw-micro-add}, we have $\can(m + m') = \can(m) + \can(m') = \can(m) \boxplus \can(m')$.
-
-  Secondly, $\can$ respects the microlinear scalar multiplication.
+  The map $\can$ respects the microlinear addition since it respects the pointwise module structure on $\tangent{M}{0}$ and the two additions agree by \Cref{thm:tangent-ptw-micro-add}.
+  It remains to show that $\can$ respects the microlinear scalar multiplication.
   Let $m : M$, $\varepsilon : \mathbb{D}(1)$ and $r : R$.
   Then we have $(r\boxdot\can(m))(\varepsilon) = \can(m)(r\varepsilon) = r\varepsilon m = \varepsilon rm = \can(rm)(\varepsilon)$.
 \end{proof}
 
 \begin{remark}
-  The pointwise and microlinear module structures on $\tangent{M}{0}$ agree if $\can$ is surjective.
+  The pointwise and microlinear module structures on $\tangent{M}{0}$ agree if $\can_M$ is surjective.
 \end{remark}
 
 \subsection{Tangential Modules}
@@ -276,16 +272,17 @@ We show that this class of modules is closed under standard operations like fini
 We then conclude this subsection by showing that pointed maps between such modules admit a linearization.
 
 \begin{definition}\label{def:tangential}
-  An $R$-module $M$ is \notion{tangential} if the canonical map $\can : M \rightarrow \tangent{M}{0}$ (see \Cref{def:canonical-map}) is an equivalence.
+  An $R$-module $M$ is \notion{tangential} if the canonical map $\can_M : M \rightarrow \tangent{M}{0}$ (see \Cref{def:canonical-map}) is an equivalence.
 \end{definition}
 
-We can generalize $\can$ to a family of canonical maps $\can^k : M^k \to (M,0)^{\D(k)}$ for $k \geq 1$, defined by
+We can generalize $\can_M$ to a family of canonical maps $\can_M^k : M^k \to (M,0)^{\D(k)}$ for $k \geq 1$, defined by
 \[
-\can^k (m_1, \dots, m_k) (\varepsilon_1, \dots, \varepsilon_k) = \sum_{i=1}^k \varepsilon_i m_i .
+\can_M^k (m_1, \dots, m_k) (\varepsilon_1, \dots, \varepsilon_k) = \sum_{i=1}^k \varepsilon_i m_i .
 \]
+As with $\can_M$, we write $\can^k$ when $M$ is clear from context.
 
 \begin{proposition}\label{prp:tangential-implies-gen-can-equiv}
-  Let $M$ be an $R$-module. If $M$ is tangential, then $\can^k$ is an equivalence for all $k \geq 1$.
+  Let $M$ be an $R$-module. If $M$ is tangential, then $\can_M^k$ is an equivalence for all $k \geq 1$.
 \end{proposition}
 
 \begin{proof}
@@ -311,7 +308,7 @@ We can generalize $\can$ to a family of canonical maps $\can^k : M^k \to (M,0)^{
   \[ \hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i (m_i + \delta m'_i) = \sum_{i=1}^k \varepsilon_i m_i + \sum_{i=1}^k \varepsilon_i \delta m'_i. \]
   Since $(\varepsilon_1, \dots, \varepsilon_k, \delta) : \D(k+1)$, we have that $\varepsilon_i \delta = 0$ for all $i$.
   Therefore, the second term vanishes, yielding $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i m_i$, which shows that $f(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i m_i + \delta m_{k+1}$ for some $m_1, \dots, m_{k+1} : M$.
-  Thus $\can^{k+1}$ is surjective.
+  Thus $\can_M^{k+1}$ is surjective.
 \end{proof}
 
 \begin{corollary}\label{cor:tangential-inf-lin}
@@ -424,10 +421,10 @@ We will end this section by showing that tangential modules admit a powerful lin
 
 \begin{proof}
   Assume we have a non-linear solution $h':B \rightarrow X$.
-  Since $\can$ is a natural isomorphism on the given square, it is sufficient to find such a linear lift on the tangent spaces.
+  Since $\can_{(\argmhole)}$ is a natural isomorphism on the given square, it is sufficient to find such a linear lift on the tangent spaces.
   By \Cref{prp:derivative-inf-lin}, $\der{h'}{0}$ is the desired linear map.
 \end{proof}
 
 \begin{remark}
-  Explicitly, the linear solution that the above proof produces is $h \coloneq \can^{-1} \circ \der{h'}{0} \circ \can$.
+  Explicitly, the linear solution that the above proof produces is $h \coloneq \can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
 \end{remark}
