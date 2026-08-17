@@ -186,35 +186,26 @@ For each proposition $U$, the module $R_U$ is tangential.
 \end{proposition}
 
 \begin{proof}
-We first consider $R_U \defeq \sum_{x : R} (x = 0) \lor U$.
-The type $(R_U,0)^{\D(n)}$ is equivalent to
+Since $R_U \defeq \sum_{x : R} (x = 0) \lor U$,
+the type $(R_U,0)^{\D(1)}$ is equivalent to
 \[
-  \sum_{f : \D(n) \rightarrow_\ast R} \forall \epsilon : \D(n), (f(\epsilon) = 0) \lor U .
+  \sum_{f : \D(1) \rightarrow_\ast R} \forall \epsilon : \D(1), ((f(\epsilon) = 0) \lor U) .
 \]
-Since $\D(n)$ is projective (\Cref{lem:disk-projective}) and all maps $\D(n) \to \Bool$
+Since $\D(1)$ is projective (\Cref{lem:disk-projective}) and all maps $\D(1) \to \Bool$
 are constant (\cite[Proposition 1.3.4]{diffgeo-article}), we can apply \Cref{lem:forall-distributes-over-or} to
 get an equivalence to
 \[
-  \sum_{f : \D(n) \rightarrow_\ast R} (f = 0) \lor U ,
+  \sum_{f : \D(1) \rightarrow_\ast R} (f = 0) \lor U ,
 \]
-where we have replaced $\forall \epsilon : \D(n), f(\epsilon) = 0$ with $f = 0$
-and have used that $\D(n)$ is pointed to replace $\D(n) \to U$ with $U$.
-Since $R^n$ is tangential, we can replace $\D(n) \rightarrow_\ast R$ with $R^n$,
+where we have replaced $\forall \epsilon : \D(1), f(\epsilon) = 0$ with $f = 0$
+and have used that $\D(1)$ is pointed to replace $\D(1) \to U$ with $U$.
+Since $R$ is tangential, we can replace $\D(1) \rightarrow_\ast R$ with $R$,
 giving
 \[
-  \sum_{x : R^n} (x = 0) \lor U ,
+  \sum_{x : R} (x = 0) \lor U ,
 \]
-which equals $(R_U)^n$.
-It is not hard to check that the resulting equivalence is homotopic to the canonical map $(R_U)^n \to (R_U,0)^{\D(n)}$.
-For $n=1$, this implies that $R_U$ is tangential, and considering the commutativity of the diagram
-\[
-  \begin{tikzcd}
-    (R_U)^{n+m} \ar[r, "\simeq"]\ar[d, "id"] & (R_U,0)^{\D(n+m)} \ar[d] \\
-    (R_U)^n \times (R_U)^m \ar[r, "\simeq"] & (R_U,0)^{\D(n)} \times (R_U,0)^{\D(m)}
-  \end{tikzcd}
-\]
-we see that $R_U$ is infinitesimally linear and hence tangential.
-It follows from \Cref{prp:op-closure-inf-lin-tangential} that $R/R_U$ is tangential as well.
+which equals $R_U$.
+It is not hard to check that the resulting equivalence is homotopic to the canonical map $R_U \to (R_U,0)^{\D(1)}$, showing that $R_U$ is tangential.
 \end{proof}
 
 % This is almost entirely due to Claude, with a bit of guidance from jdc.
