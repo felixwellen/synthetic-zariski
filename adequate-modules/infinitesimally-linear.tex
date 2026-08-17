@@ -102,9 +102,10 @@ It is clear that these operations are well-defined and define a module structure
   It is only when $f$ is linear that $\der{f}{0}$ is linear with respect to the pointwise module structures.
 \end{remark}
 
-\rednote{the can notation is confusing, maybe we should use $\mathrm{can}_M$?}
-
+\begin{definition}\label{def:canonical-map}
 We define the \notion{canonical map} $\can : M \rightarrow \tangent{M}{0}$ by $m \mapsto (\varepsilon \mapsto \varepsilon \cdot m)$.
+\end{definition}
+
 It is clear that $\can$ is $R$-linear with respect to the pointwise module structure and natural with respect to $R$-linear maps.
 
 So far, we have only considered the tangent spaces of types that are already $R$-modules.
@@ -261,7 +262,7 @@ This comparison allows us to show that the canonical map is also linear with res
 
   Secondly, $\can$ respects the microlinear scalar multiplication.
   Let $m : M$, $\varepsilon : \mathbb{D}(1)$ and $r : R$.
-  Then we have $(r\boxdot\mathrm{can}(m))(\varepsilon) = \mathrm{can}(m)(r\varepsilon) = r\varepsilon m = \varepsilon rm = \mathrm{can}(rm)(\varepsilon)$.
+  Then we have $(r\boxdot\can(m))(\varepsilon) = \can(m)(r\varepsilon) = r\varepsilon m = \varepsilon rm = \can(rm)(\varepsilon)$.
 \end{proof}
 
 \begin{remark}
@@ -270,15 +271,15 @@ This comparison allows us to show that the canonical map is also linear with res
 
 \subsection{Tangential Modules}
 
-In this subsection, we study tangential modules (\Cref{def:tangential}).
+In this subsection, we study tangential modules.
 We show that this class of modules is closed under standard operations like finite limits and finite colimits.
 We then conclude this subsection by showing that pointed maps between such modules admit a linearization.
 
 \begin{definition}\label{def:tangential}
-  An $R$-module $M$ is \notion{tangential} if $\can : M \rightarrow \tangent{M}{0}$ is an equivalence.
+  An $R$-module $M$ is \notion{tangential} if the canonical map $\can : M \rightarrow \tangent{M}{0}$ (see \Cref{def:canonical-map}) is an equivalence.
 \end{definition}
 
-We can generalize $\can$ to a family of canonical maps $\can^k : M^k \to (M,0)^{\D(k)}$ for all $k \geq 1$, defined by
+We can generalize $\can$ to a family of canonical maps $\can^k : M^k \to (M,0)^{\D(k)}$ for $k \geq 1$, defined by
 \[
 \can^k (m_1, \dots, m_k) (\varepsilon_1, \dots, \varepsilon_k) = \sum_{i=1}^k \varepsilon_i m_i .
 \]
