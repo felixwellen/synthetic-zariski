@@ -173,28 +173,31 @@ Clear from the definition of the microlinear addition.
 
 \begin{theorem}\label{thm:tangent-inf-lin}
   Let $(X,x)$ be infinitesimally linear.
-  Then the microlinear module structure on $\tangent{X}{x}$ is well-defined. \earlyqed
+  Then the microlinear module structure on $\tangent{X}{x}$ is well-defined.
 \end{theorem}
+\rednote{Are we showing that it is \emph{well-defined} or that the definitions
+\emph{satisfy the $R$-module axioms} or both?}
 
 \begin{proof}
-  We need to verify the axioms to have an $R$-module structure.
+  We need to verify the $R$-module axioms.
   
   Unitality follows immediately from \Cref{prp:microlinear-addition}.
-  
-  Associativity follows from infinitesimal linearity.
+  \rednote{Which unitality?  $1m=m$ or $0+m=m$?}
+
+  Associativity of the addition follows from infinitesimal linearity.
   Let $\phi : \D(m) \to X$ and $\psi : \D(n) \to X$ be two different sums of tangent vectors.
   We let $\phi_i$ and $\psi_j$ denote the restrictions to the $i$-th and $j$-th components of $\phi$ and $\psi$, respectively.
   The sum $\phi \boxplus \psi : \D(m+n) \to X$ is uniquely given by $[\phi_1,\dots,\phi_m,\psi_1,\dots,\psi_n]$.
   Thus $\phi \boxplus \psi = \phi_1 \boxplus \dots \boxplus \phi_m \boxplus \psi_1 \boxplus \dots \boxplus \psi_n$, as desired.
+  \rednote{The above is not exactly what associativity says.  Why not be direct?}
 
-  Distributivity is also clear.
-  Indeed let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$, and $r$ be an arbitrary element of $R$.
+  \rednote{What about associativity of the scalar multiplication?  And the other group axioms for the addition?}
+
+  We next prove distributivity of scalar multiplication over addition.
+  Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$, and $r$ be an arbitrary element of $R$.
   Then by \Cref{prp:microlinear-addition} we get $\phi:(X,x)^{\D(2)}$ such that for all $\varepsilon:\D(1)$ we have that $\phi(\varepsilon,0) = \upsilon(\varepsilon)$, $\phi(0,\varepsilon)=\nu(\varepsilon)$ and $\phi(\varepsilon,\varepsilon)=(\upsilon\boxplus\nu)(\varepsilon)$. Then considering $\hat{\phi}:(X,x)^{\D(2)}$ defined by $\hat{\phi}(\varepsilon_1,\varepsilon_2) = \phi(r\varepsilon_1,r\varepsilon_2)$ and applying \Cref{prp:microlinear-addition} in the other direction, we get that $(r\boxdot\upsilon)\boxplus(r\boxdot\nu) = r\boxdot(\upsilon\boxplus\nu)$.
-  
-  %Then $((r\boxdot\upsilon)\boxplus(r\boxdot\nu))(\varepsilon)$ is given by $[r \boxdot \upsilon, r \boxdot \nu]$.
-  %Likewise, $(r \boxdot (\upsilon \boxplus \nu))(\varepsilon)$ evaluates to $(\upsilon \boxplus \nu)(r\varepsilon)$ for each $\varepsilon$ in $\D(1)$.
-  %Thus the second tangent vector is also given by $[r \boxdot \upsilon, r \boxdot \nu]$, as desired.
 \end{proof}
+\rednote{The proof above is missing a lot, but it's all pretty easy.  Can we just skip it all?}
 
 The microlinear module structure is natural in the sense that the derivative of any pointed map between infinitesimally linear types is linear.
 The following proposition generalizes \cite[Lemma 2.2.6]{diffgeo-article} to this setting.
@@ -253,10 +256,8 @@ This comparison allows us to show that the canonical map is also linear with res
   The map $\can$ is $R$-linear with respect to the pointwise module structure on $\tangent{M}{0}$.
 
   Firstly, $\can$ respects the microlinear addition.
-    To see this, let $\upsilon$ and $\nu$ be in $M$.
-  By \Cref{thm:tangent-ptw-micro-add}, we have $\can(\upsilon + \nu) = \can(\upsilon) + \can(\nu) = \can(\upsilon) \boxplus \can(\nu)$. 
-%OLD    To see this, let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{M}{0}$.
-%OLD    By \Cref{thm:tangent-ptw-micro-add}, we have $\can(\upsilon \boxplus \nu) = \can(\upsilon + \nu) = \can(\upsilon) + \can(\nu) + \can(\upsilon) \boxplus \can(\nu)$. 
+  To see this, let $m$ and $m'$ be in $M$.
+  By \Cref{thm:tangent-ptw-micro-add}, we have $\can(m + m') = \can(m) + \can(m') = \can(m) \boxplus \can(m')$.
 
   Secondly, $\can$ respects the microlinear scalar multiplication.
   Let $m : M$, $\varepsilon : \mathbb{D}(1)$ and $r : R$.
@@ -287,15 +288,20 @@ We can generalize $\can$ to a family of canonical maps $\can^k : M^k \to (M,0)^{
 \end{proposition}
 
 \begin{proof}
-We start by proving the map is injective. Indeed assume $m,m':M^k$ such that for all $\varepsilon:\D(k)$ we have that $\sum_{i=1}^k\varepsilon_im_i = \sum_{i=1}^k\varepsilon_im'_i$. We get that for all $i$ and $\varepsilon:\D(1)$ we have that $\varepsilon m_i = \varepsilon m'_i$, which implies $m=m'$ since $M$ is tangential.
+  We start by proving the map is injective.
+  Assume we have $m, m' : M^k$ such that for all $\varepsilon:\D(k)$ we have that $\sum_{i=1}^k\varepsilon_im_i = \sum_{i=1}^k\varepsilon_im'_i$.
+  Let $1 \leq i \leq k$ and let $\varepsilon : \D(1)$.
+  Choosing $\varepsilon_i := \varepsilon$ and $\varepsilon_j := 0$ for $j \neq i$, we get that $\varepsilon m_i = \varepsilon m'_i$, which implies that $m_i = m'_i$ since $M$ is tangential.
+  Since this is true for all $i$, we get $m = m'$, as desired.
 
- Now we prove the map is surjective by induction.
+  Now we prove the map is surjective by induction.
   The base case $k=1$ is clear.
   Now, assume the statement holds for $k \ge 1$.
   Let $f : \D(k+1) \to M$ be a pointed map.
   Since $M$ is tangential, the map $\delta \mapsto f(0, \dots, 0, \delta)$ is of the form $\delta m_{k+1}$ for some $m_{k+1} : M$.
-  Consider the pointed map $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) \defeq f(\varepsilon_1, \dots, \varepsilon_k, \delta) - \delta m_{k+1}$, which satisfies $\hat{f}(0, \dots, 0, \delta) = 0$.
-  For any $\delta : \D(1)$, the map $(\varepsilon_1, \dots, \varepsilon_k) \mapsto \hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta)$ is a pointed map $\D(k) \to M$.
+  Consider the pointed map $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) \defeq f(\varepsilon_1, \dots, \varepsilon_k, \delta) - \delta m_{k+1}$.
+  Since $\hat{f}(0, \dots, 0, \delta) = 0$,
+  for any $\delta : \D(1)$, the map $(\varepsilon_1, \dots, \varepsilon_k) \mapsto \hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta)$ is a pointed map $\D(k) \to M$.
   By the induction hypothesis, this map is of the form $\sum_{i=1}^k \varepsilon_i g_i(\delta)$ for some functions $g_i : \D(1) \to M$.
   Define $\hat{g_i}(\delta) \defeq g_i(\delta) - m_i$ where $m_i \defeq g_i(0)$.
   Since $M$ is tangential, the maps $\hat{g_i} : \D(1) \to M$ are of the form $\delta m'_i$ for some $m'_i : M$.
@@ -303,8 +309,8 @@ We start by proving the map is injective. Indeed assume $m,m':M^k$ such that for
   We can then compute:
   \[ \hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i (m_i + \delta m'_i) = \sum_{i=1}^k \varepsilon_i m_i + \sum_{i=1}^k \varepsilon_i \delta m'_i. \]
   Since $(\varepsilon_1, \dots, \varepsilon_k, \delta) : \D(k+1)$, we have that $\varepsilon_i \delta = 0$ for all $i$.
-  Therefore, the second term vanishes, yielding $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i m_i$, which shows that $f(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^{k+1} \varepsilon_i m_i$ for some $m_1, \dots, m_{k+1} : M$. 
- Thus $\can^{k+1}$ is an equivalence.
+  Therefore, the second term vanishes, yielding $\hat{f}(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i m_i$, which shows that $f(\varepsilon_1, \dots, \varepsilon_k, \delta) = \sum_{i=1}^k \varepsilon_i m_i + \delta m_{k+1}$ for some $m_1, \dots, m_{k+1} : M$.
+  Thus $\can^{k+1}$ is surjective.
 \end{proof}
 
 \begin{corollary}\label{cor:tangential-inf-lin}
@@ -348,11 +354,11 @@ For instance, we will use this in \Cref{ex:power-series-tangential} to show that
 To show that tangential and infinitesimally linear $R$-modules are closed under finite limits and finite colimits, we need some lemmas regarding projectivity.
 
 \begin{lemma}\label{lem:disk-projective}
-  For any $m : \N$ the type $\D(m)$ is projective among types.
+  For each $m : \N$ the type $\D(m)$ is projective among types.
 \end{lemma}
 
 \begin{proof}
-  Let $f : X \to \D(m)$ be a surjection. The family $\fib_f : \D(m) \to \UU$ is inhabited by assumption. By Zariski local choice, there exists a unimodular vector $f_1, \dots, f_n : \quot{R[x_1,\dots,x_m]}{\langle x_1, \dots, x_m \rangle^2}$ such that each $f_i$ admits a local section $s_i : D(f_i) \to X$. Since $\quot{R[x_1,\dots,x_m]}{\langle x_1, \dots, x_m \rangle^2}$ is a local ring, at least one of the $f_i$ is a unit, say $f_k$. Then $s_k$ is a global section of $f$.
+  Let $f : X \to \D(m)$ be a surjection. The family $\fib_f : \D(m) \to \UU$ is inhabited by assumption. By Zariski local choice, there exists a unimodular vector $f_1, \dots, f_n : \quot{R[x_1,\dots,x_m]}{\langle x_1, \dots, x_m \rangle^2}$ such that there exists a local section $s_i : D(f_i) \to X$ for each $i$. Since $\quot{R[x_1,\dots,x_m]}{\langle x_1, \dots, x_m \rangle^2}$ is a local ring, at least one of the $f_i$ is a unit, say $f_k$. Then $s_k$ is a global section of $f$.
 \end{proof}
 
 \begin{lemma}\label{lem:projective-exact}
@@ -367,24 +373,26 @@ To show that tangential and infinitesimally linear $R$-modules are closed under 
 \end{proof}
 
 \begin{proposition}\label{prp:tangent-exact}
-  The functors $(\argmhole,0)^{\D(m+n)},\ (\argmhole,0)^{\D(m) \vee \D(n)}$ are exact on $\modcat{R}$.
+  The functors $(\argmhole,0)^{\D(m+n)}$ and $(\argmhole,0)^{\D(m) \vee \D(n)}$ are exact on $\modcat{R}$.
   In particular, $\tangent{}{0}$ is exact on $\modcat{R}$.
 \end{proposition}
 
 \begin{proof}
-  Immediate by \Cref{lem:disk-projective} and \Cref{lem:projective-exact}. \rednote{It is not clear to me that $\D(m) \vee \D(n)$ is projective. If we avoid the use of $\D(m) \vee \D(n)$ and instead use $(X,x)\mapsto (X,x)^{\D(m)}\times (X,x)^{\D(n)}$ then the problem disappear.}
+  That $(\argmhole,0)^{\D(m+n)}$ is exact is immediate by \Cref{lem:disk-projective,lem:projective-exact}.
+  The same follows for $(\argmhole,0)^{\D(m) \vee \D(n)}$ since $(M,0)^{\D(m) \vee \D(n)} \simeq (M,0)^{\D(m)} \times (M,0)^{\D(n)}$, and a product of exact functors is exact.
 \end{proof}
 
 \begin{proposition}\label{prp:op-closure-inf-lin-tangential}
-  Infinitesimally linear $R$-modules at $0$ (resp.\ tangential $R$-modules) are closed under finite limits, finite colimits and extensions.
+  Infinitesimally linear $R$-modules at $0$ and tangential $R$-modules are closed under finite limits, finite colimits and extensions.
 \end{proposition}
 
 \begin{proof}
   This follows from \Cref{prp:tangent-exact}.
   All cases follow the same pattern.
-  We will show how to prove this for the case of infinitesimally linear $R$-modules. An analogous proof works for the other cases.
+  We will show how to prove this for the case of infinitesimally linear $R$-modules. An analogous proof works for tangential $R$-modules.
   The key idea is to use the $5$-lemma to deduce that $\inc_{m,n}^\ast$ is an equivalence, as illustrated in the diagrams below.
-  \begin{center}
+
+  \[
     \begin{tikzcd}
       A^{\D(m+n)} \ar[hook]{d} \ar{r}[above]{\simeq}[below]{\inc_{m,n}^\ast} & A^{\D(m)\vee\D(n)} \ar[hook]{d} \\
       B^{\D(m+n)} \ar{r}[above]{\simeq}[below]{\inc_{m,n}^\ast} \ar[two heads]{d} & B^{\D(m)\vee\D(n)} \ar[two heads]{d} \\
@@ -396,9 +404,9 @@ To show that tangential and infinitesimally linear $R$-modules are closed under 
       B^{\D(m+n)} \ar{r}[above]{}[below]{\inc_{m,n}^\ast} \ar[two heads]{d} & B^{\D(m)\vee\D(n)} \ar[two heads]{d} \\
       C^{\D(m+n)} \ar[]{r}[above]{\simeq}[below]{\inc_{m,n}^\ast} & C^{\D(m)\vee\D(n)}
     \end{tikzcd}
-  \end{center}
-  \phantom{M} % This is a hack to get the QED square to get on almost the correct line, but is there a better way?
+  \]
 \end{proof}
+\rednote{The above needs more explanation.  First, explain that the diagrams show closure under cokernels and extensions.  Second, how does one get all finite colimits from this?  Third, kernels/limits need to be mentioned.}
 
 We will end this section by showing that tangential modules admit a powerful linearization trick.
 
