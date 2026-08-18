@@ -134,8 +134,6 @@ The diagonal of the $1$-disk is defined as:
   is an equivalence.
 \end{definition}
 
-\rednote{(Hugo) Maybe it would be best to replace the use of $(X,x)^{\D(m) \vee \D(n)}$ by $(X,x)^{\D(m)}\times (X,x)^{\D(n)}$? It seems it makes the latter proofs clearer by I haven't check everywhere yet.}
-
 Infinitesimal linearity is a local property in the following sense:
 
 \begin{proposition}\label{prp:inf-lin-hood}
@@ -148,9 +146,9 @@ Infinitesimal linearity is a local property in the following sense:
   Thus, we have the desired lifting property for $(X,x)$ if and only if we have it for $\hood{X,x}{1}$.
 \end{proof}
 
-Let $(X,x)$ be infinitesimally linear.
-The tangent space $\tangent{X}{x}$ carries an $R$-module structure, which we call the microlinear module structure.
-Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$.
+Let $(X,x)$ be infinitesimally linear set.
+Then the tangent space $\tangent{X}{x}$ is itself a set and carries an $R$-module structure, which we call the microlinear module structure.
+Indeed let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$.
 The microlinear addition $\upsilon \boxplus \nu$ is defined by the composite $(\inc_{1,1}^\ast)^{-1}[\upsilon,\nu] \circ D$.
 In other words, we obtain this map by lifting in the following diagram
 \begin{center}
@@ -160,8 +158,8 @@ In other words, we obtain this map by lifting in the following diagram
   \end{tikzcd}
 \end{center}
 The microlinear scalar multiplication is defined by $(r \boxdot \upsilon)(\varepsilon) = \upsilon(r\varepsilon)$ for all $r : R$ and $\varepsilon : \D(1)$.
-Indeed, to prove that this defines a module structure, one can adapt the proof of \cite[Theorem 4.2.19]{david-orbifolds}.
-We will give a direct proof. First we give an easy but helpful lemma on the microlinear addition.
+To prove that this defines a module structure, one can adapt the proof of \cite[Theorem 4.2.19]{david-orbifolds} or give a direct proof using the following easy but helpful lemma.
+%We will give a direct proof. First we give an easy but helpful lemma on the microlinear addition.
 
 \begin{lemma}\label{prp:microlinear-addition}
 Let $(X,x)$ be infinitesimally linear with $\upsilon,\nu,\xi:\tangent{X}{x}$. Then $\upsilon \boxplus \nu = \xi$ is equivalent to $\setbuild{\phi : (X,x)^{\D(2)}}{\forall (\varepsilon:\D(1)),\ \phi(\varepsilon,0) = \upsilon(\varepsilon), \phi(0,\varepsilon)=\nu(\varepsilon),\phi(\varepsilon,\varepsilon)=\xi(\varepsilon)}$. 
@@ -171,41 +169,41 @@ Let $(X,x)$ be infinitesimally linear with $\upsilon,\nu,\xi:\tangent{X}{x}$. Th
 Clear from the definition of the microlinear addition.
 \end{proof}
 
-\rednote{Do we really want to assume that $X$ is an arbitrary type and not a set? I feel if we use arbitrary types we should be more explicit about the equalities proving pointedness, and clearer on the fact that $\tangent{X}{x}$ is only a wild $R$-module.}
+%\rednote{Do we really want to assume that $X$ is an arbitrary type and not a set? I feel if we use arbitrary types we should be more explicit about the equalities proving pointedness, and clearer on the fact that $\tangent{X}{x}$ is only a wild $R$-module.}
 
-\begin{theorem}\label{thm:tangent-inf-lin}
-  Let $(X,x)$ be infinitesimally linear.
-  Then the microlinear module structure on $\tangent{X}{x}$ is well-defined.
-\end{theorem}
-\rednote{Are we showing that it is \emph{well-defined} or that the definitions
-\emph{satisfy the $R$-module axioms} or both?}
+%\begin{theorem}\label{thm:tangent-inf-lin}
+%  Let $(X,x)$ be infinitesimally linear.
+%  Then the microlinear module structure on $\tangent{X}{x}$ is well-defined.
+%\end{theorem}
+%\rednote{Are we showing that it is \emph{well-defined} or that the definitions
+%\emph{satisfy the $R$-module axioms} or both?}
 
-\begin{proof}
-  We need to verify the $R$-module axioms.
+%\begin{proof}
+%  We need to verify the $R$-module axioms.
   
-  Unitality follows immediately from \Cref{prp:microlinear-addition}.
-  \rednote{Which unitality?  $1m=m$ or $0+m=m$?}
+%  Unitality follows immediately from \Cref{prp:microlinear-addition}.
+%  \rednote{Which unitality?  $1m=m$ or $0+m=m$?}
 
-  Associativity of the addition follows from infinitesimal linearity.
-  Let $\phi : \D(m) \to X$ and $\psi : \D(n) \to X$ be two different sums of tangent vectors.
-  We let $\phi_i$ and $\psi_j$ denote the restrictions to the $i$-th and $j$-th components of $\phi$ and $\psi$, respectively.
-  The sum $\phi \boxplus \psi : \D(m+n) \to X$ is uniquely given by $[\phi_1,\dots,\phi_m,\psi_1,\dots,\psi_n]$.
-  Thus $\phi \boxplus \psi = \phi_1 \boxplus \dots \boxplus \phi_m \boxplus \psi_1 \boxplus \dots \boxplus \psi_n$, as desired.
-  \rednote{The above is not exactly what associativity says.  Why not be direct?}
+%  Associativity of the addition follows from infinitesimal linearity.
+%  Let $\phi : \D(m) \to X$ and $\psi : \D(n) \to X$ be two different sums of tangent vectors.
+%  We let $\phi_i$ and $\psi_j$ denote the restrictions to the $i$-th and $j$-th components of $\phi$ and $\psi$, respectively.
+%  The sum $\phi \boxplus \psi : \D(m+n) \to X$ is uniquely given by $[\phi_1,\dots,\phi_m,\psi_1,\dots,\psi_n]$.
+%  Thus $\phi \boxplus \psi = \phi_1 \boxplus \dots \boxplus \phi_m \boxplus \psi_1 \boxplus \dots \boxplus \psi_n$, as desired.
+%  \rednote{The above is not exactly what associativity says.  Why not be direct?}
 
-  \rednote{What about associativity of the scalar multiplication?  And the other group axioms for the addition?}
+%  \rednote{What about associativity of the scalar multiplication?  And the other group axioms for the addition?}
 
-  We next prove distributivity of scalar multiplication over addition.
-  Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$, and $r$ be an arbitrary element of $R$.
-  Then by \Cref{prp:microlinear-addition} we get $\phi:(X,x)^{\D(2)}$ such that for all $\varepsilon:\D(1)$ we have that $\phi(\varepsilon,0) = \upsilon(\varepsilon)$, $\phi(0,\varepsilon)=\nu(\varepsilon)$ and $\phi(\varepsilon,\varepsilon)=(\upsilon\boxplus\nu)(\varepsilon)$. Then considering $\hat{\phi}:(X,x)^{\D(2)}$ defined by $\hat{\phi}(\varepsilon_1,\varepsilon_2) = \phi(r\varepsilon_1,r\varepsilon_2)$ and applying \Cref{prp:microlinear-addition} in the other direction, we get that $(r\boxdot\upsilon)\boxplus(r\boxdot\nu) = r\boxdot(\upsilon\boxplus\nu)$.
-\end{proof}
-\rednote{The proof above is missing a lot, but it's all pretty easy.  Can we just skip it all?}
+%  We next prove distributivity of scalar multiplication over addition.
+%  Let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$, and $r$ be an arbitrary element of $R$.
+%  Then by \Cref{prp:microlinear-addition} we get $\phi:(X,x)^{\D(2)}$ such that for all $\varepsilon:\D(1)$ we have that $\phi(\varepsilon,0) = \upsilon(\varepsilon)$, $\phi(0,\varepsilon)=\nu(\varepsilon)$ and $\phi(\varepsilon,\varepsilon)=(\upsilon\boxplus\nu)(\varepsilon)$. Then considering $\hat{\phi}:(X,x)^{\D(2)}$ defined by $\hat{\phi}(\varepsilon_1,\varepsilon_2) = \phi(r\varepsilon_1,r\varepsilon_2)$ and applying \Cref{prp:microlinear-addition} in the other direction, we get that $(r\boxdot\upsilon)\boxplus(r\boxdot\nu) = r\boxdot(\upsilon\boxplus\nu)$.
+%\end{proof}
+%\rednote{The proof above is missing a lot, but it's all pretty easy.  Can we just skip it all?}
 
-The microlinear module structure is natural in the sense that the derivative of any pointed map between infinitesimally linear types is linear.
+The microlinear module structure is natural in the sense that the derivative of any pointed map between infinitesimally linear sets is linear.
 The following proposition generalizes \cite[Lemma 2.2.6]{diffgeo-article} to this setting.
 
 \begin{proposition}\label{prp:derivative-inf-lin}
-  Let $f : (X,x) \rightarrow_\ast (Y,y)$ be a pointed map between infinitesimally linear types.
+  Let $f : (X,x) \rightarrow_\ast (Y,y)$ be a pointed map between infinitesimally linear sets.
   Then $\der{f}{x}$ is $R$-linear with respect to the microlinear module structure.
 \end{proposition}
 
@@ -380,31 +378,24 @@ To show that tangential and infinitesimally linear $R$-modules are closed under 
   The same follows for $(\argmhole,0)^{\D(m) \vee \D(n)}$ since $(M,0)^{\D(m) \vee \D(n)} \simeq (M,0)^{\D(m)} \times (M,0)^{\D(n)}$, and a product of exact functors is exact.
 \end{proof}
 
+We say that a class of modules $\mathcal A$ enjoys the 2-out-of-3 property if for all short exact sequence of modules $0\to M \to N\to L\to 0$, if two of the modules are in $\mathcal A$ then so is the third. This implies that $\mathcal A$ is stable under finite limits and colimits.
+
 \begin{proposition}\label{prp:op-closure-inf-lin-tangential}
-  Infinitesimally linear $R$-modules at $0$ and tangential $R$-modules are closed under finite limits, finite colimits and extensions.
-\end{proposition}
+  Infinitesimally linear $R$-modules at $0$ and tangential $R$-modules enjoys the 2-out-of-3 property.
+  \end{proposition}
 
 \begin{proof}
-  This follows from \Cref{prp:tangent-exact}.
-  All cases follow the same pattern.
-  We will show how to prove this for the case of infinitesimally linear $R$-modules. An analogous proof works for tangential $R$-modules.
-  The key idea is to use the $5$-lemma to deduce that $\inc_{m,n}^\ast$ is an equivalence, as illustrated in the diagrams below.
-
-  \[
+  Assume given a short exact sequence of modules $0\to M\to N\to L\to 0$ such that two of the modules are infinitesimally linear at $0$. Then for all $m,n:\N$ consider the diagram
+      \[
     \begin{tikzcd}
-      A^{\D(m+n)} \ar[hook]{d} \ar{r}[above]{\simeq}[below]{\inc_{m,n}^\ast} & A^{\D(m)\vee\D(n)} \ar[hook]{d} \\
-      B^{\D(m+n)} \ar{r}[above]{\simeq}[below]{\inc_{m,n}^\ast} \ar[two heads]{d} & B^{\D(m)\vee\D(n)} \ar[two heads]{d} \\
-      C^{\D(m+n)} \ar{r}[above]{}[below]{\inc_{m,n}^\ast} & C^{\D(m)\vee\D(n)}
+    0 \ar{r} &  M^{\D(m+n)}\ar{d}[left]{\inc_{m,n}^\ast} \ar{r} & N^{\D(m+n)} \ar{r}\ar{d}[left]{\inc_{m,n}^\ast} & L^{\D(m+n)}\ar{r}\ar{d}[left]{\inc_{m,n}^\ast} & 0\\
+    0 \ar{r} &  M^{\D(m)\vee\D(n)} \ar{r} & N^{\D(m)\vee\D(n)} \ar{r} & L^{\D(m)\vee\D(n)}\ar{r} & 0
     \end{tikzcd}
-    \qquad
-    \begin{tikzcd}
-      A^{\D(m+n)} \ar[hook]{d} \ar{r}[above]{\simeq}[below]{\inc_{m,n}^\ast} & A^{\D(m)\vee\D(n)} \ar[hook]{d} \\
-      B^{\D(m+n)} \ar{r}[above]{}[below]{\inc_{m,n}^\ast} \ar[two heads]{d} & B^{\D(m)\vee\D(n)} \ar[two heads]{d} \\
-      C^{\D(m+n)} \ar[]{r}[above]{\simeq}[below]{\inc_{m,n}^\ast} & C^{\D(m)\vee\D(n)}
-    \end{tikzcd}
-  \]
+    \]
+    The rows are exact by \Cref{prp:tangent-exact}, and two of the vertical maps are equivalences by hypothesis. So the third vertical map is also an equivalence by the five lemma.
+    
+    The case of tangential modules is similar.
 \end{proof}
-\rednote{The above needs more explanation.  First, explain that the diagrams show closure under cokernels and extensions.  Second, how does one get all finite colimits from this?  Third, kernels/limits need to be mentioned.}
 
 We will end this section by showing that tangential modules admit a powerful linearization trick.
 
