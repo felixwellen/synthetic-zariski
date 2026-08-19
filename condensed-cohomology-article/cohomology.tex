@@ -202,10 +202,16 @@ We define the $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-t
 
 In \Cref{abelian-higher-cech}, we prove some technical general results about the \v Cech cohomology. Our main interest result is the following: 
 \begin{theorem}\label{cech-and-sheaf-agree}
-  Assume given $X:\CHaus$ with $q:S \twoheadrightarrow X$ a surjection from a Stone space, and $A(x)$ an overtly discrete abelian group. Then $H(X,A) = \check H^n(X,\lambda x. q^{-1}(x),A)$. 
+  Assume given $X:\CHaus$ with $q:S \twoheadrightarrow X$ a surjection from a Stone space, and $A(x)$ an overtly discrete abelian group. Then there is a natural isomorphism $H^n(X,A) = \check H^n(X,\lambda x. q^{-1}(x),A)$. 
 \end{theorem}
 \begin{proof}
-  By \Cref{CechCoverSystemCohomologyAgree}, it is sufficient to note that by \Cref{tychonov-dual-stone}, \Cref{overtly-discrete-closure} and \Cref{vanishing-cohomology-stone}, $(\lambda x . q^{-1}(x),A)$ is a \v Cech cover system for $\mathcal A$ the class of overtly discrete abelian group depending on $X$.
+  Denote $S(x) = q^{-1}(x)$. We work by induction on $n$. The base case is given by \Cref{ZeroCohomologyAgree}. Suppose now that we have natural isomorphisms $H^n(X,B) = \check H^n(X,S,B)$ for all $B(x)$ overtly discrete abelian groups depending on $x:X$. In particular by \Cref{tychonov-dual-stone} and \Cref{overtly-discrete-closure}, the cohomologies agree for $B(x) = A(x)^{S(x)}/A(x)=:L(x)$ and for $B(x) = A(x)^{S(x)}=:E(x)$. 
+  Now by \Cref{inductive-definition-cohomology-general} and \Cref{inductive-definition-cech-cohomology-general}, the following two sequences are exact and natural in $X,q,A$:
+  \begin{align*}
+    H^{n}(X,E) \to &H^{n}(X,L)\to H^{n+1}(X,A)\to 0\\
+    \check{H}^{n}(X,S,E) \to &\check{H}^{n}(X,S,L)\to \check{H}^{n+1}(X,S,A)\to 0
+  \end{align*}
+  from which we conclude a natural isomorphism $H^{n+1}(X,A) = \check H^{n+1}(X,S,A)$. 
 \end{proof}
 
  
