@@ -3,7 +3,7 @@
 %\rednote{TODO Are $X$ and $Y$ really an arbitrary type or did I use they were sets at some point?}
 % No, you used a lot that torsors are sets, and that certain functions into sets existed and then a "which one you chose didn't matter" argument, but that's a propositional truncation thing, not a set thing.  
 
-In this section we work in plain HoTT and study non-abelian torsors over an arbitrary type $X$. Our goal is to describe non-abelian torsors over $X$ trivialised by a given cover in terms of cocycles for this cover. 
+In this section we work in plain HoTT and study non-abelian torsors over an arbitrary type $X$. Our goal is to describe non-abelian torsors over $X$ trivialised by a given cover in terms of cocycles for this cover, i.e.\ to show that for any type $X$ with for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$, we have that $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
 
 %\begin{definition}\label{dfnCocycle}
 %Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$.
@@ -20,11 +20,11 @@ In this section we work in plain HoTT and study non-abelian torsors over an arbi
 %\end{definition}
 
 \begin{lemma}\label{first-cech-has-section-vanish}
-Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If we merely have $\Pi_{x:X}Y(x)$ then $\check{H}^1(X,Y,G)$ is a singleton.
+Assume given a type $X$ with for each $x:X$ an inhabited type $Y(x)$ and $G(x)$ a group $G(x)$. If we merely have $\Pi_{x:X}Y(x)$ then $\check{H}^1(X,Y,G)$ is a singleton.
 \end{lemma}
 
 \begin{proof}
-  Assume given $t: \Pi_{x:X} Y(x)$ and $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ a cocycle, we need to show it is cohomologous to $1$. It is enough to consider $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ defined by $\gamma_x(y) = \delta_x(t_x,y)$.
+  Assume given $t: \Pi_{x:X} Y(x)$ and $\delta:\Pi_{x:X}G(x)^{Y(x)^2}$ a cocycle, we need to show it is cohomologous to $0$. It is enough to consider $\gamma:\Pi_{x:X}G(x)^{Y(x)}$ defined by $\gamma_x(y) = \delta_x(t_x,y)$.
 \end{proof}
 
 %Our main goal is now to show that the cover cohomology $\check{H}^1(X,Y,G)$ corresponds to $G$-torsors over $X$ that are trivialised by $Y$. We state this precisely using the following auxiliary definition.
@@ -33,10 +33,10 @@ Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both de
 %Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. We define $H^1(X,Y,G)$ as $\{\alpha:H^1(X,G)\ |\ \pi_X^*(\alpha) = 0 \}$ where $\pi_X$ is the projection $\Sigma_{x:X}Y(x)\to X$.
 %\end{definition}
 
-Our goal is then to show $H^1(X,Y,G) = \check{H}^1(X,Y,G)$. First we define a map $\Phi$ from $H^1(X,Y,G)$ to $\check{H}^1(X,Y,G)$.
+We define a map $\Phi$ from $H^1(X,Y,G)$ to $\check{H}^1(X,Y,G)$.
 
 \begin{lemma}\label{phi-well-defined}
-Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Given $\alpha:\Pi_{x:X}BG(x)$ and $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$, we define $\phi(\alpha,\beta):\Pi_{x:X}G(x)^{Y(x)^2}$ by $\phi(\alpha,\beta)_x(y_0,y_1) = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)$. Then we have that:
+Assume given a type $X$ with for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$. Given $\alpha:\Pi_{x:X}\B G(x)$ and $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$, we define $\phi(\alpha,\beta):\Pi_{x:X}G(x)^{Y(x)^2}$ by $\phi(\alpha,\beta)_x(y_0,y_1) = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)$. Then we have that:
 
 \begin{enumerate}[(i)]
 \item $\phi(\alpha,\beta)$ is a cocycle.
@@ -47,6 +47,7 @@ Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both de
 
 \begin{proof}
 As follows:
+
 \begin{enumerate}[(i)]
 \item Follows from direct computation.
 \item To show that $\phi(\alpha,\beta)$ and $\phi(\alpha,\beta')$ are cohomologous, we consider $\gamma_x(y) := \beta'_x(y)^{-1}\cdot\beta_x(y)$. Given $x:X$ and $y_0,y_1:Y(x)$ we indeed have:
@@ -62,8 +63,8 @@ Recall that given a group $G$, a $G$-pseudotorsor is a type with a transitive an
 Now we will define a map $\Psi$ from $\check{H}^1(X,Y,G)$ to $H^1(X,Y,G)$.
 
 \begin{lemma}\label{psi-well-defined}
-Assume given $Y$ an inhabited type and $G$ a group, as well as $\delta:G^{Y^2}$ a cocycle. %such that for all $y_0,y_1,y_2:Y$ we have $\delta(y_0,y_1)\cdot\delta(y_1,y_2) = \delta(y_0,y_2)$. 
-Then we define $\psi(\delta) = \{\gamma:G^Y\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta(y_0,y_1)\}$. Then we have that:
+Assume given an inhabited type $Y$ and a group $G$, as well as $\delta:G^{Y^2}$ a cocycle. %such that for all $y_0,y_1,y_2:Y$ we have $\delta(y_0,y_1)\cdot\delta(y_1,y_2) = \delta(y_0,y_2)$. 
+We define $\psi(\delta) = \{\gamma:G^Y\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \delta(y_0,y_1)\}$. Then we have that:
 
 \begin{enumerate}[(i)] 
   \item\label{Hdef} We can define $H:\psi(\delta)^Y$ by $H(y) = \lambda y'.\, \delta(y',y)$.
@@ -88,22 +89,26 @@ Assume $\gamma,\gamma':\psi(\delta)$, then we claim that $g=\gamma(y)^{-1}\cdot\
 
 \item Observe that the map $\psi(\delta)\to \psi(\delta')$ sending $\gamma$ to $\lambda y.\, \iota(y)\cdot\gamma(y)$ is an equivalence of torsors.
 
-\item Given (ii) and (iii) and \Cref{familiarWithCohomology}, each $\Psi(\delta)$ is an element in $H^1(X,G)$. From (i) we see that we have $\Pi_{x:X}\psi(\delta_x)^{Y(x)}$, so by \Cref{CechConditionEquivalentStatement} we indeed get an element of $H^1(X,Y,G)$. 
+\item From (ii), we get that $\psi(\delta):\B G$. So given $\delta$ a cocycle we have that $\Psi(\delta) = \lambda x.\, \psi(\delta_x)$ indeed gives an element in $H^1(X,G)$. From (iii) we have that cohomologous cocycles give the same element. From (i) we see that we have $\Pi_{x:X}\psi(\delta_x)^{Y(x)}$, so by \Cref{CechConditionEquivalentStatement} we indeed get an element in $H^1(X,Y,G)$. 
 \end{enumerate}
 \end{proof}
 
 Now we prove the two maps are inverse to each other.
+
 \begin{lemma}\label{PhiCircPsi}
-  For $\Phi,\Psi$ as above, we have that $\Phi\circ \Psi$ is the identity on $\check H^1(X,Y,G)$. 
+  For $\Phi$ and $\Psi$ as above, we have that $\Phi\circ \Psi$ is the identity on $\check H^1(X,Y,G)$. 
 \end{lemma}
+
 \begin{proof}
   It is enough to prove that given a cocycle $\delta$, for all $x:X$ with $y_0,y_1:Y(x)$ we have that $H_x(y_0)^{-1}\cdot H_x(y_1) = \delta_x(y_0,y_1)$ where $H_x : Y(x)\to \psi(\delta_x)$ is defined as in \ref{Hdef} of \Cref{psi-well-defined}. As $H_x(\bar{y}) = \lambda y.\delta_x(y,\bar{y})$ it is sufficient to check that $(\lambda y.\delta_x(y,y_0))\cdot\delta_x(y_0,y_1) = \lambda y.\delta_x(y,y_1)$ which is clear as the action is defined pointwise.
 \end{proof}
+
 \begin{lemma}\label{PSiCircPhi}
-  For $\Phi,\Psi$ as above, we have that $\Psi\circ \Phi$ is the identity on $H^1(X,Y,G)$. 
+  For $\Phi$ and $\Psi$ as above, we have that $\Psi\circ \Phi$ is the identity on $H^1(X,Y,G)$. 
 \end{lemma}
+
 \begin{proof}
-Let $\alpha:\Pi_{x:X}BG(x)$ with $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$. We must show that for all $x:X$ we have 
+Let $\alpha:\Pi_{x:X}\B G(x)$ with $\beta:\Pi_{x:X}\alpha(x)^{Y(x)}$. We must show that for all $x:X$ we have 
 $\alpha(x) = \psi(\phi(\alpha,\beta)_x)$,
 where
 \[\psi(\phi(\alpha,\beta)_x) = \{\gamma:G(x)^{Y(x)}\ |\ \forall y_0,y_1.\, \gamma(y_0)\cdot\gamma(y_1)^{-1} = \beta_x(y_0)^{-1}\cdot\beta_x(y_1)\}\]
@@ -114,11 +119,13 @@ Also $f$ commutes with the group action. We shall show it is an equivalence to c
 
 In the other direction, assume given $\gamma:\psi(\phi(\alpha,\beta)_x)$. Then we have that $\beta_x(y)\cdot\gamma(y):\alpha(x)$ does not depend on the choice of $y:Y(x)$ by the hypothesis on $\gamma$, and since $Y(x)$ is inhabited this defines an element $g(\gamma):\alpha(x)$.
 
-Next we check that $g(f(p)) = p$, for any $p:\alpha(x)$. Since we want to prove a proposition we can assume $y:Y(x)$, then we need to prove that $\beta_x(y)\cdot (\beta_x(y)^{-1}\cdot p) = p$ which is clear. Finally to check that for any $\gamma:\psi(\phi(\alpha,\beta)_x)$, we have $f(g(\gamma)) = \gamma$, using that $g(\gamma)$ can be computed using any $y:Y(x)$, it is sufficient to prove that $\beta_x(y)^{-1}\cdot \beta_x(y) \cdot \gamma(y) = \gamma(y)$, which is indeed the case. 
+Next we check that $g(f(p)) = p$, for any $p:\alpha(x)$. Since we want to prove a proposition we can assume $y:Y(x)$, then we need to prove that $\beta_x(y)\cdot (\beta_x(y)^{-1}\cdot p) = p$ which is clear. Finally we check that for any $\gamma:\psi(\phi(\alpha,\beta)_x)$, we have $f(g(\gamma)) = \gamma$. Using that $g(\gamma)$ can be computed using any $y:Y(x)$, it is sufficient to prove that $\beta_x(y)^{-1}\cdot \beta_x(y) \cdot \gamma(y) = \gamma(y)$.
 \end{proof}
+
 \begin{corollary}\label{non-abelian-chech-is-sheaf-generic}
-Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. Then $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
+Assume given a type $X$ with for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$. Then $H^1(X,Y,G) = \check{H}^1(X,Y,G)$.
 \end{corollary}
+
 \begin{corollary}\label{non-abelian-chech-is-sheaf-generic-ayclic-cover}
-Assume given $X$ a type with $Y(x)$ an inhabited type and $G(x)$ a group both depending on $x:X$. If $H^1(\Sigma_{x:X}Y(x), G\circ\pi_X) = 0$, then $H^1(X,G) = \check{H}^1(X,Y,G)$.
+Assume given a type $X$ with for each $x:X$ an inhabited type $Y(x)$ and a group $G(x)$. If $H^1(\Sigma_{x:X}Y(x), G\circ\pi_X) = 0$, then $H^1(X,G) = \check{H}^1(X,Y,G)$.
 \end{corollary}

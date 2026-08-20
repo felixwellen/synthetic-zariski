@@ -1,16 +1,18 @@
 \label{abelian-higher-cech}
-In this section, we give a condition under which the \v Cech cohomology and the cohomology agree. 
+In this section, we give a condition under which cohomology and \v Cech cohomology agree. 
+
 \begin{lemma}\label{ZeroCohomologyAgree}
-  Let $X$ be a type with $Y(x)$ an inhabited type and $A(x)$ an abelian group both depending on $x:X$. Then there is a natural isomorphism $\check H^0(X,Y, A) = H^0(X, A)$. 
+  Assume given a type $X$ with for each $x:X$ an inhabited type $Y(x)$ and an abelian group $A(x)$. Then there is a natural isomorphism $\check H^0(X,Y, A) = H^0(X, A)$. 
 \end{lemma}
+
 \begin{proof}
 We need to prove that the type of maps:
 \[\{\alpha:\Pi_{x:X}A(x)^{Y(x)}\ |\ \forall x,y_0,y_1.\, \alpha_x(y_0)=\alpha_x(y_1)\}\]
-is naturally isomorphic to $\Pi_{x:X}A(x)$. This is immediate from $Y(x)$ being inhabited sets.
+is naturally isomorphic to $\Pi_{x:X}A(x)$. This follows from each $Y(x)$ being inhabited.
 \end{proof}
 
 \begin{lemma}\label{cech-coefficient-lemma}
-Assume given a type $X$ with $Y(x)$ a type and $A(x)$ an abelian group both depending on $x:X$. Then $\check{H}^n(X,Y,\lambda x.\, A(x)^{Y(x)})=0$ for all $n\geq 1$.
+Assume given a type $X$ with for each $x:X$ a type $Y(x)$ and an abelian group $A(x)$. Then $\check{H}^n(X,Y,\lambda x.\, A(x)^{Y(x)})=0$ for all $n\geq 1$.
 \end{lemma}
 
 \begin{proof}
@@ -28,13 +30,15 @@ so $\delta(\beta) = \alpha$.
 \end{proof}
 
 \begin{definition}
-  Let $X$ be a type, with for each $x:X$ an abelian group $A(x)$. A \v Cech cover for $X,A$ is a family of inhabited dependent sets $S(x)$ depending on $x:X$ such that for all $k\geq1$ the canonical map $$K(\Pi_{x:X} A(x)^{(S_x)^k}, n)\to \Pi_{x:X}(K(A(x),n))^{(S_x)^k}$$ is an equivalence. 
+ Assume given a type $X$ with for each $x:X$ an abelian group $A(x)$. A \v Cech cover for $X,A$ is a family of inhabited types $S(x)$ depending on $x:X$ such that for all $k\geq1$ the canonical map $$\K(\Pi_{x:X} A(x)^{S(x)^k}, n)\to \Pi_{x:X}\, \K(A(x),n)^{S(x)^k}$$ is an equivalence. 
 \end{definition}
+
 \begin{lemma}\label{TrivialHasVanishingCohomology}
-  $S$ is a \v Cech cover for $X,A$ iff $H^n(X,\lambda x. A(x)^{S(x)^k}) = 0$ for all $n,k\geq1$. 
+  $S$ is a \v Cech cover for $X,A$ if and only if $H^n(X,\lambda x. A(x)^{S(x)^k}) = 0$ for all $n,k\geq1$. 
 \end{lemma}
+
 \begin{proof}
-  This follows directly from \Cref{ev-eq-acyclic}, \Cref{ev-embedding} and \Cref{acyclic-ev-surjective}.
+  This follows directly from Lemmas \ref{ev-eq-acyclic}, \ref{ev-embedding} and \ref{acyclic-ev-surjective}.
 \end{proof}
 
 \begin{corollary}\label{CechExpCohomologiesAgree}
