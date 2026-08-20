@@ -1,0 +1,62 @@
+\begin{definition}
+  Let $B:\Boole$ and $S = Sp(B)$. We denote $\Delta : S \hookrightarrow S \times S$ for the diagonal.
+  Denote $\nabla : B \otimes B \to B$ for the dual map. 
+  Note that $\nabla$ sends $b \otimes b'$ to $b \wedge b'$.
+\end{definition}
+\begin{lemma}
+  Let $D\subseteq S \times S$ decidable. We have that $\Delta \subseteq D$ if and only if $\nabla (D) = 1$. 
+\end{lemma}
+\begin{proof}
+  Identifying $B = 2^S$, we have $\nabla D = \{x \in S | \Delta(x) \in D\}$ and $1_B = S$. 
+\end{proof}
+
+\begin{definition}
+  Let $S:\Stone$. an \textbf{entourage} of $S$ is an open subset of $S \times S$ containing the diagonal. 
+\end{definition}
+\begin{lemma}
+  Any entourage of $S$ can be written as union of decidable subsets of $S$ containing the diagonal. 
+\end{lemma}
+\begin{proof}
+  As any open is a countable union of decidables, it is sufficient to show that any entourage $E$ of $S$ contains a decidable subset $D\subseteq S \times S$ such that $\Delta \subseteq D$. 
+
+  As $\Delta \subseteq E$, $\neg E$ and $\Delta$ are disjoint. They are also closed, hence by Lemma 3.16 of \cite{synthetic-stone-duality}, there exists a decidable subset $D\subseteq S$ with $\Delta\subseteq D$ and $\neg E \subseteq \neg D$, and as $E$ was open, we may conclude $D\subseteq E$ as required. 
+\end{proof}
+
+\begin{remark}
+  Recall that for $B,C:\Boole$, $Sp(B) \times Sp(C)$ is the spectrum of the tensor product of the boolean algebras $B \otimes C$. 
+  We can denote the terms of $B \otimes C$ as union of terms of the form $\iota_0(b) \wedge \iota_1(c)$, where $\iota_0 : B \to B \otimes C, \iota_1 : C \to B \otimes C$. 
+\end{remark}
+
+\begin{lemma}\label{EntourageAsDisjointProduct}
+  For any entourage $E$ of $S$, there exists some finite set $I$ with for each $i:I$ some disjoint collection of decidable subsets $E_i\subseteq S$ such that  $\Delta\subseteq \bigcup_{i:I} (E_i \times E_i)\subseteq E$. 
+\end{lemma}
+\begin{proof}
+  By the basis theorem \Cref{TODO}, we can write $E= \bigcup_{j:J} D_j \times F_j$ for $D_j, F_j$ decidable subsets of $S$ and $J$ overtly discrete. 
+%
+  As $\Delta \subseteq E$, we have for each $s:S$ that $(s,s) \in D_j \times F_j$ for some $j:J$. Therefore, we also have that $s\in D_j \cap F_j$. Hence $(D_j\cap F_j)_{j:J}$ forms a cover of $S$, and hence has a finite subcover by \Cref{TODO}. 
+  %
+  Now note that we can refine this finite cover of decidable sets to a finite disjoint cover of decidable sets, which we take for $E_i$. 
+\end{proof}
+\begin{lemma}\label{DisjointProductSquaresToItself}
+  Let $(D_i)_{i:I}$ be a disjoint cover of $S$. Denote $V = \bigcup_{i:I} (D_i \times D_i)$. Then $V^2 = V$. 
+\end{lemma}
+\begin{proof}
+  Note that $V^2 = \{(x,z) | \exists_{y:S} V(x,y) \wedge V(y,z)$. Note that if $V(x,y)$, by disjointness, there is an unique $i:I$ with $x,y\in D_i$. Hence if $V^2(x,z)$, then $x,z\in D_i$ for the same unique $i:I$, from which $V(x,z)$ follows. Conversely as $\bigcup_{i:I}D_i = S$, we have $\Delta\subseteq V$ and hence $V\subseteq V^2$. We conclude that $V^2 = V$. 
+\end{proof}
+\begin{theorem}
+  Let $S:\Stone$. The entourages of $S$ form an uniformity in the sense that: 
+  \begin{itemize}
+    \item For $E,F$ entourages, $E\cap F$ is an entourage also.  
+    \item Every entourage $E$ contains the diagonal. 
+    \item Whenever $E$ is an entourage, so is $E^{-1}:= \{(x,y) | (y,x) \in E\}$. 
+    \item Whenever $E$ is an entourage, there is some entourage $V$ such that $V^2\subseteq E$. 
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  \begin{itemize}
+    \item Both being open and containing the diagonal are stable under binary intersection. 
+    \item By definition. 
+    \item Being open is clearly stable under taking the inverse relation, and if $E$ contains the diagonal, so does $E^{-1}$. 
+    \item Follows from \Cref{EntourageAsDisjointProduct} and \Cref{DisjointProductSquaresToItself}.
+  \end{itemize}
+\end{proof}
