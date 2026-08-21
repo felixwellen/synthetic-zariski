@@ -3,7 +3,7 @@ In this section, we leverage Scott continuity to compute cohomology for Stone sp
 \begin{remark}\label{familiarWithCohomology}
   We will assume familiarity with cohomology in homotopy type theory. We now give a quick reminder. Given a type $X$ with for each $x:X$ a group $G(x)$, the cohomology group $H^n(X,G)$ is defined as $\|\Pi_{x:X} \K(G(x),n)\|_0$. 
   Here $\K(G,n)$ refers to the $n$'th-delooping of the group $G$, which is the unique $n-1$-connected pointed $n$-type whose $n$'th loop space is $G$. Such a delooping exists for any group if $n=1$, and for abelian groups if $n\geq 1$. 
-  The first delooping $\K(G,1)$ is equivalent to the type $\B G$ of $G$-torsor, and given $\alpha:\B G$, we identify silently $\alpha$ with $\alpha = 0$ where $0$ is the trivial torsor, as giving a point in a torsor is the same as proving the torsor is trivial. 
+  The first delooping $\K(G,1)$ is equivalent to the type $\B G$ of $G$-torsors, and given $\alpha:\B G$, we silently identify $\alpha$ with $\alpha = 0$ where $0$ is the trivial torsor, as giving a point in a torsor is the same as proving the torsor is trivial. 
   More on the cohomology can be found in \cite{evan-master-thesis}. Other helpful references include \cite{hott, warn2024, Sym, LicataFinster}.
 \end{remark}
 
@@ -51,7 +51,7 @@ Then $\check{H}^1(S,T,G) = \mathrm{colim}_k\, \check{H}^1(S,T_k,G)$.
 \end{lemma}
 
 \begin{proof}
-We use Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left} to show e.g.\ that $\Pi_{x:S}\, G(x)^{T(x)^2} = \mathrm{colim}_k\, \Pi_{x:S}\,G(x)^{T_k(x)^2}$. We have similar formulas for all the data used in defining cocycles and coboundaries, which allows to conclude. We omit the details.
+We use Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left} to show e.g.\ that $\Pi_{x:S}\, G(x)^{T(x)^2} = \mathrm{colim}_k\, \Pi_{x:S}\,G(x)^{T_k(x)^2}$. We have similar formulas for all the data used in defining cocycles and coboundaries, which allows us to conclude. We omit the details.
 \end{proof}
 
 %Now we can use the approximation of any surjection between Stone spaces as a limit of maps merely having section (\Cref{finite-approximation-stone-surjection-cohomology}) to conclude the vanishing of the appropriate \v{C}ech cohomology groups.
@@ -59,7 +59,7 @@ We use Propositions \ref{scott-continuity-right} and \ref{scott-continuity-left}
 Now we will show that the first \v Cech cohomology groups vanish for Stone spaces.
 
 \begin{lemma}\label{cech-vanishing-first-stone}
-Assume given a Stone space $S$ and for each $x:S$ an inhabited Stone spaces $T(x)$ with an overtly discrete group $G(x)$. Then $\check{H}^1(S,T,G) = 0$.
+Assume given a Stone space $S$ and for each $x:S$ an inhabited Stone space $T(x)$ with an overtly discrete group $G(x)$. Then $\check{H}^1(S,T,G) = 0$.
 \end{lemma}
 
 \begin{proof}
@@ -73,10 +73,10 @@ Assume given a Stone space $S$ and for each $x:S$ an overtly discrete group $G(x
 \end{proposition}
 
 \begin{proof}
-  Let us consider $\alpha:H^1(S,G)$. By local choice there is a family $T(x)$ of inhabited Stone space depending on $x:S$ with $\|\Pi_{x:S}\Pi_{t:T(x)}\, \alpha = 0 \|$, so $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $\alpha=0$.
+  Let us consider $\alpha:H^1(S,G)$. By local choice there is a family $T(x)$ of inhabited Stone spaces depending on $x:S$ with $\|\Pi_{x:S}\Pi_{t:T(x)}\, \alpha = 0 \|$, so $\alpha$ is in $H^1(S,T,G)$. But by \Cref{non-abelian-chech-is-sheaf-generic} we have $H^1(S,T,G) = \check{H}^1(S,T,G)$ and by \Cref{cech-vanishing-first-stone} we have $\check{H}^1(S,T,G) = 0$, so that $\alpha=0$.
 \end{proof}
 
-Finally, we conclude that the \v{C}ech cohomology agree with usual cohomology for compact Hausdorff spaces.
+Finally, we conclude that \v{C}ech cohomology agrees with usual cohomology for compact Hausdorff spaces.
 
 \begin{proposition}\label{non-abelian-cech-and-sheaf-agree}
 Assume given a compact Hausdorff space $X$, a surjection $S\twoheadrightarrow X$ with $S$ Stone and for each $x:X$ an overtly discrete group $G(x)$. Then $H^1(X,G) = \check{H}^1(X,S,G)$.
@@ -91,7 +91,7 @@ From \Cref{vanishing-first-stone} and \Cref{non-abelian-chech-is-sheaf-generic-a
 \subsection{Vanishing of higher cohomology for Stone spaces}
 \label{vanishing-stone}
 
-The goal of this section is to extend \Cref{vanishing-first-stone} to higher cohomology groups. We proceed by induction on the cohomology index, which requires to strengthening the result to deloopings of overtly discrete abelian groups commuting with Stone-indexed $\Pi$-types. First we present some preliminary results and definitions that works in plain HoTT.
+The goal of this section is to extend \Cref{vanishing-first-stone} to higher cohomology groups. We proceed by induction on the cohomology index, which requires strengthening the result to deloopings of overtly discrete abelian groups commuting with Stone-indexed $\Pi$-types. First we present some preliminary results and definitions that work in plain HoTT.
 
 %To be more specific, we will show in 
 %\Cref{eilenberg-exponentials} that the following maps $\epsilon_n^{S,A}$ is an equivalence:
@@ -199,13 +199,13 @@ We have that $\delta_{n+1} \circ \delta_n = 0$.
 We define the $n$-th \v{C}ech cohomology group $\check{H}^n(X,Y,A)$ as the $n$-th cohomology group of this chain complex.
 \end{definition}
 
-In \Cref{abelian-higher-cech}, we prove some technical results about \v Cech cohomology, which are valid in plain HoTT. For the purpose if synthetic Stone duality our main result is the following: 
+In \Cref{abelian-higher-cech}, we prove some technical results about \v Cech cohomology, which are valid in plain HoTT. For the purpose of synthetic Stone duality our main result is the following:
 
 \begin{theorem}\label{cech-and-sheaf-agree}
   Assume given a compact Hausdorff space $X$ and a surjection $S \twoheadrightarrow X$ with $S$ Stone, with for each $x:X$ an overtly discrete abelian group $A(x)$. Then there is a natural isomorphism $H^n(X,A) = \check H^n(X,S,A)$. 
 \end{theorem}
 \begin{proof}
-  We use the identification $S(x) = q^{-1}(x)$, which was already implicit in the statement. We proceed by induction on $n$. The base case is given by \Cref{ZeroCohomologyAgree}. Suppose now that we have natural isomorphisms $H^n(X,B) = \check H^n(X,S,B)$ for all family of overtly discrete abelian groups $B(x)$ depending on $x:X$. In particular by \Cref{tychonov-dual-stone} and \Cref{overtly-discrete-closure}, the cohomologies agree for $B(x) = A(x)^{S(x)}/A(x)=:L(x)$ and for $B(x) = A(x)^{S(x)}=:E(x)$. 
+  We use the identification $S(x) = q^{-1}(x)$, which was already implicit in the statement. We proceed by induction on $n$. The base case is given by \Cref{ZeroCohomologyAgree}. Suppose now that we have natural isomorphisms $H^n(X,B) = \check H^n(X,S,B)$ for all families of overtly discrete abelian groups $B(x)$ depending on $x:X$. In particular by \Cref{tychonov-dual-stone} and \Cref{overtly-discrete-closure}, the cohomologies agree for $B(x) = A(x)^{S(x)}/A(x)=:L(x)$ and for $B(x) = A(x)^{S(x)}=:E(x)$. 
   Now by \Cref{vanishing-cohomology-stone} we can apply \Cref{inductive-definition-cohomology-general} and \Cref{inductive-definition-cech-cohomology-general} to get the following exact sequences
   \begin{align*}
     H^{n}(X,E) \to &H^{n}(X,L)\to H^{n+1}(X,A)\to 0\\
@@ -245,7 +245,7 @@ The following definition allows us to approximate the fibers of $cs$ by finite o
   $$\Sigma_{x : \mathbb I} (cs^{-1}(x))^{k+1} = \lim_{n} \mathbb I_n^{\sim k}.$$
 \end{definition}
 
-The relevant combinatoric properties of these approximations are presented in \Cref{combinatorialIntervalSection}.
+The relevant combinatorial properties of these approximations are presented in \Cref{combinatorialIntervalSection}.
 We will now use them to prove that the interval is acyclic. 
 
 \begin{theorem}\label{cohomology-I}
