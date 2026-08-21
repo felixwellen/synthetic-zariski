@@ -30,14 +30,11 @@ We can show that quasi-coherent $R$-modules $Q$ are tangential by a direct compu
 
 \begin{lemma}\label{lem:disk-qc}
   Let $Q$ be a quasi-coherent $R$-module.
-  A pointed map $p : (Q,0)^{\D(n)}$ is an $n$-variate linear monomial with coefficients in $Q$.
+  A pointed map $(Q,0)^{\D(n)}$ is an $n$-variate linear monomial with coefficients in $Q$. More precisely, the map $Q^n\to (Q,0)^{\D(n)}$ sending $(q_1,\dots,q_n)$ to $(\epsilon_1,\dots,\epsilon_n)\mapsto \sum_{i=0}^n\epsilon_iq_i$ is an equivalence. 
 \end{lemma}
 
 \begin{proof}
-  By quasi-coherence, we have the following equivalence $Q^{\D(n)} \simeq Q \otimes \quot{R[x_1,\dots,x_n]}{\ideal{x_ix_j}} \simeq Q^{n+1}$.
-  We can thus identify the maps $\D(n) \rightarrow Q$ with $n$-variate polynomials with coefficients in $Q$ and which are of degree at most $1$.
-  Let $p(x_1, \dots, x_n)$ be such a polynomial; then the canonical evaluation map acts like $\ev (p(x_1, \dots, x_n))(\varepsilon_1, \dots, \varepsilon_n) = p(\varepsilon_1, \dots, \varepsilon_n)$, where $\varepsilon_i : \D (n)$.
-  Whenever $p$ represents a pointed map, we have $p(0,\dots,0) = p_0 = 0$.
+  By quasi-coherence, the map $Q^{n+1}\simeq Q \otimes \quot{R[x_1,\dots,x_n]}{\ideal{x_ix_j}} \to Q^{\D(n)}$ is an equivalence. We just need to check that maps with constant coefficient $0$ on the left correspond to maps such that $p(0)=0$ on the right. But indeed given a $p:Q^{\D(n)}$ we have that the corresponding constant coefficient is $p(0)$.
 \end{proof}
 
 \begin{proposition}\label{prp:tangential-qc}
@@ -46,10 +43,7 @@ We can show that quasi-coherent $R$-modules $Q$ are tangential by a direct compu
 \end{proposition}
 
 \begin{proof}
-  By the above lemma, \Cref{lem:disk-qc}, we identify $\tangent{Q}{0}$ with univariate polynomials in $Q$ of degree $1$ and constant term $0$.
-  Let $q : Q$ be a point in $Q$.
-  Then $\can(q)(\varepsilon) = q\varepsilon$, where $\varepsilon : \D(1)$.
-  We deduce that $\can(q) = qx$, so the canonical map $\can$ is an equivalence by assumption.
+  The case $n=1$ in \Cref{lem:disk-qc} indeed give that $\can : Q\to\tangent{Q}{0}$ is an equivalence.
 \end{proof}
 
 \begin{corollary}\label{cor:inf-lin-qc}
@@ -87,7 +81,7 @@ For the remainder of this section, we restrict our attention to a subcategory of
 \end{definition}
 
 \begin{remark}\label{rem:lin-adeq}
-  In the article \cite{diffgeo-article}, linearly adequate modules went under the name finitely copresented modules.
+  In the article \cite{diffgeo-article}, linearly adequate modules are called finitely copresented modules.
   We decided to change the name here as linearly adequate matches the name of the external concept \cite[Chapter 06Z1]{stacks-project}.
 \end{remark}
 
@@ -138,6 +132,7 @@ These will be particularly useful to show that finitely presented $R$-modules ar
 \begin{proof}
   Observe that $\Ker(u) \subseteq \Ker(gu)$.
   Thus $\Ker(u) = \Ker((u, gu) : A \to B \oplus D)$.
+  \rednote{To me the third isomorphism theorem is about quotient and not kernels... Maybe say: Since the kernel of a square can be computed both column wise or row wise, the following diagram gives the desired isomorphism?}
   Therefore, we obtain this result by the third isomorphism theorem:
   \begin{center}
     \begin{tikzcd}
@@ -180,12 +175,12 @@ Dually, finitely presented $R$-modules are closed under cokernels.
     K\ar[r] &M\ar[r,"f"] & N
     \end{tikzcd}
    \end{center}
-   $A:=\{(z,y):R^{m'}\times R^{n'}\mid blz=ry\}$, $B:=\{(x,y):R^{m}\times R^{n'}\mid bx=ry\}$.
+   $A:=\{(z,y):R^{m'}\times R^{n'}\mid blz=ry\}$, $B:=\{(x,y):R^{m}\times R^{n'}\mid bx=ry\}$. One can check by direct computations that the map $B\to K$ is surjective and that its kernel is the image of $A$.
 \end{proof}
 
 % We name the following modules after Adelman, since it will turn out that what we construct agrees with the free abelian category on the finite free $R$-modules, and our construction is close to Adelman's general construction of the free abelian category.
 
-The modules in the kernel-cokernel closure of the finite free $R$-modules might yield a replacement of the algebro-geometric notion of coherent sheaf of modules, which would be a trivial notion over $R$.
+The modules in the kernel-cokernel closure of the finite free $R$-modules might yield a replacement of the algebro-geometric notion of coherent sheaf of modules, which would be a trivial notion over $R$ \rednote{Maybe this deserve more explanation?}.
 
 \begin{definition}\label{def:fin-adeq}
   Let $M$ be an $R$-module. Then $M$ is a \notion{finitely adequate $R$-module} if one of the following equivalent statements holds:
@@ -202,7 +197,7 @@ The modules in the kernel-cokernel closure of the finite free $R$-modules might 
 \end{proposition}
 
 \begin{proof}
-  Every finitely presented $R$-module is quasi-coherent.
+  Every finitely presented $R$-module is quasi-coherent \rednote{I think we should give a reference or an explanation}.
   Since every finitely adequate $R$-module is merely the kernel of a map between quasi-coherent modules, it is itself adequate.
   The rest follows from \Cref{prp:tangential-qc} and \Cref{prp:wqc-adeq}.
 \end{proof}
@@ -222,7 +217,7 @@ We will first characterize the projective and injective objects in $\finadeq$.
 \end{lemma}
 
 \begin{proof}
-  By \cite[Theorem 7.3.6]{draft} we have $H^1(L,M)=0$, since $L$, like any linearly adequate $R$-module, is an affine scheme. Indeed, as the kernel of a linear map $f : R^m \to R^n$, the module $L$ is equivalent to $\Spec(\quot{R[x_1, \dots, x_m]}{\ideal{f(x_1), \dots, f(x_n)}})$.
+  By \cite[Theorem 7.3.6]{draft} we have $H^1(L,M)=0$, since $L$, like any linearly adequate $R$-module, is an affine scheme. Indeed, it is the kernel of a linear map $f : R^m \to R^n$, and therefore the set of roots of a linear equation system.
 
   By definition, we have $H^1(L,M)=||L \to K(M,1)||_0$ and therefore $L \to K(M,1)$ is connected.
   For $b : B$, we let $E_b$ denote the fiber of $e$ over $b$.
@@ -263,7 +258,14 @@ We will first characterize the projective and injective objects in $\finadeq$.
 \end{proof}
 
 \begin{lemma}\label{lem:fin-adeq-lift}
-  Any linear map $f : M \rightarrow N$ merely lifts to a commutative square of linearly adequate modules.
+  Given any linear map $f : M \rightarrow N$ between finitely adequate modules, we merely have a diagram
+    \begin{center}
+    \begin{tikzcd}
+     M \ar[hook]{r}\ar["f"]{d} & L_1\ar{r}\ar{d} & L_2\ar{d}\\
+     N  \ar[hook]{r}& L_3\ar{r} & L_4
+    \end{tikzcd}
+  \end{center}
+ with $L_1,\dots,L_4$ linearly adequate modules.
 \end{lemma}
 
 \begin{proof}
@@ -275,7 +277,7 @@ We will first characterize the projective and injective objects in $\finadeq$.
 \end{proposition}
 
 \begin{proof}
-  This proof follows from \Cref{lem:diff-ker-is-ker} and \Cref{lem:fin-adeq-lift}, following a proof analogous to \Cref{prp:lin-adeq-ker-closure}.
+  This proof follows from \Cref{lem:diff-ker-is-ker} and \Cref{lem:fin-adeq-lift}, following a proof analogous to \Cref{prp:lin-adeq-ker-closure}. \rednote{The results cited are for kernel and not cokernel, I am confused as to what is meant exactly.}
 \end{proof}
 
 \begin{lemma}\label{lem:dual-exact-fp-inc}
@@ -355,7 +357,7 @@ We say that $M$ is \notion{reflexive} is this map is an equivalence.
 
   Since $M$ is finitely adequate, it is merely covered by a linearly adequate $R$-module $L$.
   Observe that the dual of the cover, $M^\ast \hookrightarrow L^\ast$, is a monomorphism.
-  Taking the dual again yields an epimorphism $L^{\ast\ast} \twoheadrightarrow M^{\ast\ast}$, since $L^{\ast}$ is finitely presented by \Cref{thm:lin-adeq-dual} and \Cref{lem:dual-exact-fp-inc}.
+  Taking the dual again yields an epimorphism $L^{\ast\ast} \twoheadrightarrow M^{\ast\ast}$, indeed we can apply \Cref{lem:dual-exact-fp-inc} since $L^{\ast}$ is finitely presented by \Cref{thm:lin-adeq-dual} and $M^\ast$ is finitely adequate as $M$ is the cokernel of a map between finitely presented modules, so $M^\ast$ is the kernel of a map between linearly adequate modules.
   This yields the naturality square
   \begin{center}
     \begin{tikzcd}
@@ -383,7 +385,15 @@ We get the following results following duality.
 \end{proof}
 
 \begin{corollary}\label{cor:fin-adeq-extension}
-  Any linear map $f : M \rightarrow N$ merely extends to a commutative square of finitely presented $R$-modules. \earlyqed
+  Given any linear map $f : M \rightarrow N$ between finitely adequate modules, we merely have a diagram
+\begin{center}
+    \begin{tikzcd}
+     P_1 \ar{r}\ar{d} & P_2\ar[two heads]{r}\ar{d} & M\ar{d}{f}\\
+     P_3  \ar{r}& P_4\ar[two heads]{r} & N 
+    \end{tikzcd}
+\end{center}
+with $P_1,\dots,P_4$ finitely presented modules.
+\earlyqed
 \end{corollary}
 
 \begin{corollary}\label{cor:fin-adeq-ker-closure}
