@@ -477,7 +477,7 @@ Is \Cref{prp:fin-adeq-hom-closure} better here or in the next subsection?}
       R^n \ar{r} & R^{n'}
     \end{tikzcd}
   \end{center}
-  Then we can reuse the same argument to show the statement of the proposition.
+  Then we can reuse the same argument to show the statement of the proposition. \rednote{I guess what is meant is the dual of the argument?}
 \end{proof}
 
 \begin{proposition}\label{prop:hood-faithful}
@@ -515,89 +515,41 @@ Is \Cref{prp:fin-adeq-hom-closure} better here or in the next subsection?}
   The functor $\hood{\argmhole}{1}$ of the previous proposition is full when restricted even further to linearly adequate $R$-modules.
   This, however, already fails on finitely adequate $R$-modules.
 
-  To see this, consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$.
-  These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$.
-  Since for every $n:(\varepsilon)$ we have $(\varepsilon=0)\to(n=0)$, we conclude that $(\varepsilon) = \hood{(\varepsilon),0}{1}$.
-  Note that $\hood{\argmhole}{1}$ is the identity functor on those $R$-modules that are their own first order neighbourhood.
-  Thus it suffices to show that it is not the case that all $\alpha_\varepsilon$ are $R$-linear.
-  Assume they are.
-  Then $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence also $(r^2-r)\varepsilon=0$ for all $r:R$.
-  Using duality and comparing coefficients, we see that $\varepsilon=0$ for every $\varepsilon:\D(1)$, which cannot be.
+  To see this, consider the modules $(\varepsilon)$ for every $\varepsilon:\D(1)$. We have that $(\varepsilon) = \hood{(\varepsilon),0}{1}$, so that the functor $\hood{\argmhole}{1}$ acts as identity on maps between such modules. So if $\hood{\argmhole}{1}$ is full on finitely adequate modules, then any pointed map from $((\varepsilon),0)$ to itself is linear. Let us consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$. These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$. If $\alpha_\varepsilon$ is linear then for all $r:R$ we have that $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence that $(r^2-r)\varepsilon=0$. By duality this implies that $\varepsilon=0$. So we see that every $\alpha_\varepsilon$ being linear implies $\D(1)=0$, a contradiction.
 \end{remark}
 
-Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$.
+Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$, meaning that finitely adequate modules are stable under extension. We need two auxiliary results.
 
 \begin{lemma}\label{lem:fin-adeq-ext-pb-red}
-  Suppose we have a commutative diagram
+Suppose we have a pullback diagram:
   \begin{center}
     \begin{tikzcd}
-      B \ar[equal]{d} \ar[hook]{r} & p^*E \ar[two heads]{r} \ar[two heads]{d} \ar[phantom]{rd}[very near start]{\lrcorner}[very near end]{\ulcorner} & P \ar[two heads]{d}{p} \\
-      B \ar[hook]{r} & E \ar[two heads]{r} & A
+     p^*E \ar{r} \ar{d} \ar[phantom]{rd}[very near start]{\lrcorner} & A \ar[two heads]{d}{p} \\
+      E \ar{r} & B
     \end{tikzcd}
   \end{center}
-  in which $B$, $A$ and $P$ are finitely adequate $R$-modules.
-  Then $E$ is finitely adequate if and only if $p^*E$ is so.
+  where $A$ and $B$ are finitely adequate. Then $E$ is finitely adequate if and only if $p^*E$ is finitely adequate.
 \end{lemma}
 
 \begin{proof}
   Suppose that $E$ is finitely adequate.
   Since $p^*E$ is a pullback of finitely adequate $R$-modules, it is itself finitely adequate.
 
-  Now assume that $p^*E$ is finitely adequate.
-  By the third isomorphism theorem we can prove that $E$ is finitely adequate.
-  In the following diagram, the object $0^*_Ap^*E$ is the kernel of $p^*E \rightarrow E$, $0^*_AE$ is the kernel of $E \rightarrow A$, and $0^*_Ep^*E$ is the kernel of $p^*E \rightarrow E$.
-  \begin{center}
-    \begin{tikzcd}
-      0^*_Ep^*E \ar[equal]{r} \ar[hook]{d} & 0^*_Ep^*E \ar[hook]{d} \\
-      0^*_Ap^*E \ar[hook]{r} \ar[two heads]{d} & p^*E \ar[two heads]{r} \ar[two heads]{d} & A \ar[equal]{d} \\
-      B \ar[hook]{r} & E \ar[two heads]{r} & A
-    \end{tikzcd}
-  \end{center}
-  Chasing around this diagram we can see that $0^*_Ap^*E$ is finitely adequate, because $p^*E$ is.
-  Furthermore, $0^*_Ep^*E$ is finitely adequate, because $0^*_Ap^*E$ is finitely adequate.
-  It then follows that $E$ is finitely adequate, because it is the cokernel of two finitely adequate $R$-modules.
+  Now assume that $p^*E$ is finitely adequate. As a pullback of a surjective map, the map $p^*E\to E$ is surjective, and its kernel is equivalent to $\Ker(p)$ by pullback pasting. But $\Ker(p)$ is finitely adequate by \Cref{cor:fin-adeq-ker-closure}, so that $E$ is finitely adequate by \Cref{prp:fin-adeq-cok-closure}.
 \end{proof}
 
-\begin{lemma}\label{lem:fin-adeq-ext-red}
-  Finitely adequate $R$-modules are closed under extension if and only if for any linearly adequate $R$-module $L$ and finitely adequate $R$-module $B$, any exact sequence $0 \to B \to E \to L \to 0$ splits.
+\begin{lemma}\label{prp:extension-fin-adeq-lin-adeq}
+Given $B$ finitely adequate and $L$ linearly adequate, any extension:
+    \begin{center}
+    \begin{tikzcd}
+      B \ar[hook]{r} & E \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+   splits, so that $E$ is finitely adequate.
 \end{lemma}
-\rednote{Proposal:  Change this to the statement:
-``For every linearly adequate $R$-module $L$ and finitely adequate $R$-module $B$, every exact sequence $0 \to B \to E \to L \to 0$ splits.''
-Then exchange this proof and the proof of the next theorem.
-Alternatively, just fold this result into the proof of the next theorem.}
 
 \begin{proof}
-  Assume that finitely adequate modules are closed under extensions.
-  Then it is clear that any extension by $B$ and $L$ is split, as $L$ is injective among the finitely adequate modules \Cref{thm:lin-adeq-proj}.
-
-  Assume now that $\textup{Ext}^1(L,B) = 0$ for all such modules $L$ and $B$.
-  Consider an extension problem
-  \begin{center}
-    \begin{tikzcd}
-      B \ar[hook]{r} & E \ar[two heads]{r} & A
-    \end{tikzcd}
-  \end{center}
-  where $B$ is finitely adequate, and $L$ is finitely adequate and is merely presented by $L_1 \rightarrow L_2 \overset{p}{\twoheadrightarrow} A$.
-  By \Cref{lem:fin-adeq-ext-pb-red}, we can take the pullback of the extension along $p : P_1 \twoheadrightarrow L$ to get another associated extension.
-  \begin{center}
-    \begin{tikzcd}
-      B \ar[equal]{d} \ar[hook]{r} & p^*E \ar[two heads]{d} \ar[two heads]{r} \ar[phantom]{rd}[very near start]{\lrcorner} & L_1 \ar[two heads]{d} \\
-      B \ar[hook]{r} & E \ar[two heads]{r} & A
-    \end{tikzcd}
-  \end{center}
-  Now $E$ is finitely adequate if and only if $p^*E$ is so.
-
-  Since we assumed that any exact sequence of the form $0 \to B \to E \to L_1 \to 0$ splits, it is necessary that $p^*B = B \oplus L_1$, which is finitely adequate.
-  Thus, $E$ is finitely adequate as desired.
-\end{proof}
-
-\begin{theorem}\label{thm:fin-adeq-ext-closed}
-  Finitely adequate $R$-modules are closed under extension.
-\end{theorem}
-
-\begin{proof}
-  By \Cref{lem:fin-adeq-ext-red} it is sufficient to show that every exact sequence of the form $0 \to B \to E \to L \to 0$ splits when $B$ is finitely adequate $B$ and $L$ is linearly adequate.
-  This amounts to showing that any lifting problem
+Finding a splitting amounts to showing that any lifting problem:
   \begin{center}
     \begin{tikzcd}
       & E \ar[two heads]{d}{p} \\
@@ -607,8 +559,36 @@ Alternatively, just fold this result into the proof of the next theorem.}
   where $L$ is finitely adequate and $B \defeq \Ker(p)$ is finitely adequate, merely has a linear solution.
   Observe that $E$ is tangential by \Cref{prp:op-closure-inf-lin-tangential}, since $B$ and $L$ are tangential by \Cref{prp:adeq-tangential}.
   $B$ is also wqc by \Cref{prp:wqc-adeq}.
-  Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}.
+  Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}. Once we have a splitting we get $E=B \oplus L$ which is indeed finitely adequate.
 \end{proof}
+
+\begin{theorem}\label{thm:fin-adeq-ext-closed}
+  Finitely adequate $R$-modules are stable under extension.
+\end{theorem}
+
+\begin{proof}
+ Consider an extension problem:
+  \begin{center}
+    \begin{tikzcd}
+      B \ar[hook]{r} & E \ar[two heads]{r} & A
+    \end{tikzcd}
+  \end{center}
+  where $A$ and $B$ are finitely adequate. We merely get a presentation $L' \rightarrow L \overset{p}{\twoheadrightarrow} A$ with $L$ and $L'$ linearly adequate. Consider the pullback square:
+    \begin{center}
+    \begin{tikzcd}
+     p^*E \ar{r} \ar{d} \ar[phantom]{rd}[very near start]{\lrcorner} & L \ar[two heads]{d}{p} \\
+      E \ar{r} & A
+    \end{tikzcd}
+  \end{center}
+  By \Cref{lem:fin-adeq-ext-pb-red} is is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so we have a new extension problem:
+    \begin{center}
+    \begin{tikzcd}
+      B \ar[hook]{r} & p^*E \ar[two heads]{r} & L
+    \end{tikzcd}
+  \end{center}
+ We can conclude by \Cref{prp:extension-fin-adeq-lin-adeq}.
+\end{proof}
+
 
 We finish this section by characterizing finitely presented $R$-modules amongst all finitely adequate modules as exactly those that are quasi-coherent.
 For $R$-modules $M$ and $N$, we will make use of the $R$-module homomorphism
@@ -635,8 +615,9 @@ This homomorphism is natural in $M$ and $N$.
                 &\overset{\simeq}{\longleftarrow} \Hom_R(M^\ast, A)
   \end{align*}
   The first map is the one from the definition of quasi-coherence.
-  The second map is an equivalence due to reflexivity of $M$ and the last due to duality.
-  The penultimate equality follows by currying since $R^{\Spec A}$ carries the pointwise module structure.
+  The second map is an equivalence due to reflexivity of $M$.
+  The third map is the equivalence coming from currying, since $R^{\Spec A}$ carries the pointwise module structure.
+  The last map is an equivalence by duality.
   We omit the verification that this composition agrees with the map $\beta_{M,A}$.
   Thus the first map is an equivalence if and only if the composition is.
 \end{proof}
@@ -678,9 +659,7 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
   (Note that in this case $\Hom_R(M^\ast,\argmhole)$ \emph{is} exact, since $M^\ast$ is a projective module
   when $M$ is finitely presented.)
 
-  Consider $M \equiv R/(r)$ and the monomorphism $(r) \lhook\joinrel\to R$.
-  It induces the zero map $R/(r) \otimes (r) \to R/(r) \otimes R$, but it not the case that for all $r:R$ we have $R/(r) \otimes (r) = (r)/(r^2) = 0$, as this would imply the mere existence of an $a:R$ such that $r=ar^2$.
-  Since $R$ is local we have $(ar \neq 0) \lor (1-ar \neq 0)$ and a simple case analysis would give $(r=0) \lor (r \neq 0)$ for all $r:R$.
+  Now let us assume that for all $r:R$ the functor $R/(r)\otimes(\argmhole)$ is exact on finitely adequate modules. The monomorphism $(r) \lhook\joinrel\to R$ induces the zero map $R/(r) \otimes (r) \to R/(r) \otimes R$, so by exactness we get $R/(r) \otimes (r) = (r)/(r^2) = 0$, which implies the mere existence of an $a:R$ such that $r=ar^2$. Since $R$ is local we have $(ar \neq 0) \lor (1-ar \neq 0)$ and a simple case analysis give $(r=0) \lor (r \neq 0)$, which cannot hold for all $r:R$.
 \end{remark}
 
 \begin{proposition}
@@ -690,7 +669,7 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
 
 \begin{proof}
   We show that $M^\ast$ is linearly adequate.
-  This is equivalent to showing that $M^\ast$ is projective, i.e.\ we need to show that $H :\equiv \Hom_R(M^\ast,\argmhole)$ is exact on the category of finitely adequate modules.
+  By \Cref{thm:lin-adeq-proj}, this is equivalent to showing that $M^\ast$ is projective, i.e.\ we need to show that $H :\equiv \Hom_R(M^\ast,\argmhole)$ is exact on the category of finitely adequate modules.
   For this let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
   We get an induced exact sequence $0 \to H(A) \to H(B) \to H(C) \to \Ext_R^1(M^\ast,A)$, where $\Ext_R^1$ is defined as in \cite[Definition 2.1.5]{ext-groups-in-hott}.
   Since finitely adequate $R$-modules are closed under extensions, $\Ext_R^1$ taken either in this category or the category of all $R$-modules is the same.
