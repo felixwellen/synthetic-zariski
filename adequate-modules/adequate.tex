@@ -466,33 +466,6 @@ Is \Cref{prp:fin-adeq-hom-closure} better here or in the next subsection?}
   The sequence $K \to L' \twoheadrightarrow A$ presents $A$ as a cokernel of a map of linearly adequate modules, so $A$ is finitely adequate.
 \end{proof}
 
-\begin{proposition}\label{prp:fin-adeq-hom-closure}
-  For finitely adequate $R$-modules $M$ and $N$, $\Hom_R(M,N)$ is a finitely adequate $R$-module as well.
-\end{proposition}
-
-\begin{proof}
-  The proof in \cite[Chapter IV, 4.12]{lombardi-quitte} works, if ``coherent'' is replaced by ``finitely adequate''.
-
-  First we use their proof to show that for finitely presented $R$-modules $M$ and $N$, the $R$-module $\Hom_R(M,N)$ is finitely adequate. Morphisms $f: M \to N$ are presented by squares:
-  \begin{center}
-    \begin{tikzcd}
-      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \\
-      R^n\ar{r} & R^{n'}
-    \end{tikzcd}
-  \end{center}
-  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commutes.
-  This submodule $S$ is the kernel of a linear map and therefore finitely adequate.
-  We have a surjection $\pi : S \to \Hom_R(M,N)$, so $\Hom_R(M,N)$ is finitely adequate if $\pi$ is a cokernel of a map of finitely adequate $R$-modules.
-  This is the case, since there is a surjection onto $\Ker{\pi}$ from the finite free $R$-module of linear maps which split the square:
-  \begin{center}
-    \begin{tikzcd}
-      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \ar{ld}{s} \\
-      R^n \ar{r} & R^{n'}
-    \end{tikzcd}
-  \end{center}
-  Then we can reuse the same argument to show the statement of the proposition. \rednote{I guess what is meant is the dual of the argument?}
-\end{proof}
-
 \begin{proposition}\label{prop:hood-faithful}
   The functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$ is faithful when restricted to the subcategory of tangential $R$-modules.
 \end{proposition}
@@ -693,6 +666,33 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
 \end{proof}
 
 \subsection{The Symmetric Monoidal Structure}
+
+\begin{proposition}\label{prp:fin-adeq-hom-closure}
+  For finitely adequate $R$-modules $M$ and $N$, $\Hom_R(M,N)$ is a finitely adequate $R$-module as well.
+\end{proposition}
+
+\begin{proof}
+  The proof in \cite[Chapter IV, 4.12]{lombardi-quitte} works, if ``coherent'' is replaced by ``finitely adequate''.
+
+  First we use their proof to show that for finitely presented $R$-modules $M$ and $N$, the $R$-module $\Hom_R(M,N)$ is finitely adequate. Morphisms $f: M \to N$ are presented by squares:
+  \begin{center}
+    \begin{tikzcd}
+      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \\
+      R^n\ar{r} & R^{n'}
+    \end{tikzcd}
+  \end{center}
+  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commutes.
+  This submodule $S$ is the kernel of a linear map and therefore finitely adequate.
+  We have a surjection $\pi : S \to \Hom_R(M,N)$, so $\Hom_R(M,N)$ is finitely adequate if $\pi$ is a cokernel of a map of finitely adequate $R$-modules.
+  This is the case, since there is a surjection onto $\Ker{\pi}$ from the finite free $R$-module of linear maps which split the square:
+  \begin{center}
+    \begin{tikzcd}
+      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \ar{ld}{s} \\
+      R^n \ar{r} & R^{n'}
+    \end{tikzcd}
+  \end{center}
+  Then we can reuse the same argument to show the statement of the proposition. \rednote{I guess what is meant is the dual of the argument?}
+\end{proof}
 
 In \Cref{cex:tensor-not-closed} we will see, that the tensor product $M \otimes N$ is not necessarily finitely adequate even when $M$ and $N$ are linearly adequate.
 This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely presented.
