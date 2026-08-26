@@ -1,0 +1,151 @@
+\begin{lemma}\label{seperation}
+  If $X:\CHaus$ and $C\subseteq D \subseteq X$ for $C$ closed and $D$ open. 
+  Then there exists $U,K\subseteq X$ with $U$ open and $K$ closed such that $ C\subseteq U \subseteq K \subseteq D$. 
+\end{lemma}
+\begin{proof}
+  As $C\subseteq D$, we have $\neg D, C$ disjoint and closed. By Lemma 4.9 of \cite{synthetic-stone-duality}, we have disjoint open subsets $U,V$ with $\neg D \subseteq V , C \subseteq U$. Then for $K = \neg V$ we have $U\subseteq K$ and $K \subseteq \neg \neg D$. As closed propostions are double-negation stable, we conclude $K\subseteq D$. 
+\end{proof}
+
+\begin{definition}
+  Let $(U_i)_{i:I}$ be an collection of subsets of some space $X$. 
+  We define $\widetilde U \subseteq X \times X$ as 
+  $\widetilde U = \bigcup_{i:I} U_i \times U_i$. 
+\end{definition}
+\begin{remark}
+  Note that for a collection of subsets $(U_i)_{i:I}$ of some space $X$, to cover $X$ is equivalent to asking $\Delta\subseteq \widetilde U$. 
+\end{remark}
+
+\begin{lemma}\label{openSquares}
+  Let $X:\CHaus$ and $U\subseteq X \times X$ open such that $\Delta\subseteq U$. Then there exists some finite set of opens $(P_i\subseteq X)_{i:I}$ such that $\Delta \subseteq \bigcup_{i:I} (P_i \times P_i) \subseteq U$.
+\end{lemma}
+
+\begin{definition}
+  Let $(U_i)_{i:I},(V_j)_{j:J}$ be some covers of the same type $X$. 
+  We say that $U$ $\Delta$-refines $V$ iff for every $x:X$, there is some $j:J$ such that 
+  $\bigcup\{U_i | x \in U_i\}  \subseteq V_j$. 
+\end{definition}
+\begin{lemma}
+  For $U,V$ as above, if $U$ $\Delta$-refines $V$, then $(\tilde U)^2\subseteq \tilde V$. 
+\end{lemma}
+\begin{proof}
+  Let $(x,y), (y,z) \in \widetilde U$. 
+  Then there exist $i,k:I$ such that $x,y\in U_i$ and $y,z\in U_k$. 
+  Therefore $U_i \cap U_k(y)$ and hence there is some $j:J$ such that $U_i \cup U_k \subseteq V_j$. 
+  Thus $x, z \in V_j$ and hence $(x,z) \in \widetilde V$. 
+\end{proof} 
+
+
+\begin{lemma}\label{SubsetUnion}
+  Let $X:\CHaus$ and $A\subseteq B \subseteq X$ subsets with $A$ open, $B$ closed, or the other way around. 
+  Then $X = \neg A \cup B$. 
+\end{lemma}
+
+
+\begin{lemma}\label{ClosedRefinement}
+  Let $X:\CHaus$ and $(U_i)_{i:I}$ be a finite open cover of $X$. Then there exists an $I$-indexed closed cover of $X$ $(D_i)_{i:I}$ such that $D_i \subseteq U_i$. 
+\end{lemma}
+\begin{proof}
+  Let $(U_i)_{i:I}$ be a finite open cover. 
+  Assume $I = [1,2,\cdots, n]$. 
+  We will recursively define a sequence $C_i \subseteq V_i \subseteq D_i \subseteq U_i$
+  with $C_i,D_i$ closed and $V_i$ open, such that for all $l:[1,\cdots ,n+1]$ we have 
+  \begin{equation}\label{inductionLoop}\bigcup_{i < l} V_i \cup \bigcup_{i\geq l} U_i = X.\end{equation}
+  \Cref{inductionLoop} is satsified for $l=1$, and if were to be satisfied for $l=n+1$, this gives that $\bigcup_{i:I} V_i = X$, and hence we would have $\bigcup_{i:I} D_i = X$ and $D_i \subseteq U_i$ as required. 
+%
+  Assume $C_i,V_i,D_i$ have been defined for $i<k$ and be such that \Cref{inductionLoop} is satisfied for $l<k$. 
+  Note that $(\bigcup_{i<k} V_i \cup \bigcup_{i>k} U_i)$ is open, and hence $\neg\neg$-stable, and define $C_k$ as its complement. Also, by induction hypothesis we have $C_k \subseteq P_k$. By \Cref{seperation}, we find $V_k,D_k$ open and closed respectively such that 
+  $C_k \subseteq V_k \subseteq D_k \subseteq U_k$. 
+  Now we have that 
+  $$
+  \bigcup_{i< k} V_i \cup \bigcup_{i\geq k} U_i = 
+  (\bigcup_{i<k}V_i \cup 
+  \bigcup_{i>k} U_i)
+  \cup V_k 
+  = 
+  \neg C_k \cup V_k,
+  $$
+  which equals $X$ by \Cref{SubsetUnion}. 
+  Thus \Cref{inductionLoop} holds for $l=k$, and we conclude by strong induction. 
+\end{proof}
+
+\begin{lemma}
+  Let $X:\CHaus$, $I$ a finite set and suppose we have an open and closed cover $(U_i)_{i:I}, (C_i)_{i:I}$ such that for all $i:I$ we have $C_i\subseteq U_i$. 
+  Then $(B_J)_{J:2^I}$ defined as follows:
+  $$B_J = (\bigcap_{j:J} P_j) \cap (\bigcap_{j:\neg J} \neg C_j)$$
+  gives an open cover that $\Delta$-refines $(U_i)_{i:I}$. 
+\end{lemma}
+\begin{proof}
+  First we show that $(B_J)_{J:2^I}$ is an open cover. As $2^I$ is finite, each $B_J$ is indeed open. 
+  By \Cref{SubsetUnion}, we have $X = \neg C_i \cup P_i$ for all $i:I$. Then also
+  $X = \bigcup_{i:I} ((\neg C_i) \cup P_i)$. 
+  But by distributivity, the latter equals also 
+  $
+  \bigcup_{J:2^I} ((\bigcap_{j:J} P_j) \cap (\bigcap_{j:\neg J} \neg C_j))
+  $ as required. 
+  
+  To see that $B$ star-refines $U$, let $J:2^I$. Consider any $K:2^I$ such that there exists some $y: B_J \cap B_K$. 
+  As $C$ was covering, there exists some $i:I$ with $y:C_i$. 
+  We must have $i\in J,K$. Thus 
+\end{proof}
+
+
+\begin{theorem}
+  Let $X:\CHaus$ and $U\subseteq X \times X$ open such that $\Delta\subseteq U$. Then there merely exists some open $V$ with $\Delta\subseteq V$ such that $V \times V \subseteq U$. 
+\end{theorem}
+\begin{proof}
+  By \Cref{openSquares}, we may assume $U = \bigcup_{i:I} (P_i \times P_i) $ for some finite set $I = [0,\cdots, n]$ with $\bigcup_{i:I} P_i = X$. 
+  We will recursively define a sequence of sets $F_i \subseteq V_i \subseteq C_i \subseteq P_i$ with $F_i, C_i$ closed and $V_i$ open. This sequence will be such that: 
+  \begin{itemize}
+    \item for all $k:I$ we have $\bigcup_{i\leq k} V_i \cup \bigcup_{i>k} P_i = X$. 
+  \end{itemize} 
+  by assumption this condition is satisfied for $k = -1$. 
+
+  Now let $F_k, V_k,C_k$ have been defined for $k<n$ and be such that 
+  $\bigcup_{i\leq k} V_i \cup \bigcup_{i>k} P_i = X$. 
+  Let $F_{n} = \neg (\bigcup_{k<n} V_k \cup \bigcup_{i>n} P_i)$. 
+  Note that as all involved $V_i, P_i$ are open, we have $F_n$ closed and 
+  $\neg F_n = (\bigcup_{k<n} V_k \cup \bigcup_{i>n+1} P_i)$. 
+  Also, by by assumption we have $F_n \subseteq P_n$, thus
+  by \Cref{seperation}, we find $V_n, C_n$ such that $F_n \subseteq V_n \subseteq C_n \subseteq P_n$. 
+  Now we have that 
+  $$
+  \bigcup_{i\leq n} V_i \cup \bigcup_{i>n} P_i = 
+  (\bigcup_{i<n }V_k \cup 
+  \bigcup_{i>n} P_i)
+  \cup V_n 
+  = 
+  \neg F_n \cup V_n,
+  $$
+  which equals $X$ by \Cref{SubsetUnion}. 
+  Thus the desired property holds for $n$. 
+  By strong induction we conclude. 
+  
+  Now define for any $J\subseteq I$ decidable the set $B_J = (\bigcap_{j:J} P_j) \cap (\bigcap_{j:\neg J} \neg C_j)$. 
+  Note that $B_J$ is open for any $J\subseteq I$. 
+  We claim the following:
+  \begin{itemize}
+    \item $\bigcup_{J : 2^I} B_J = X$. 
+    \item For $V = \bigcup_{J: 2^I} B_J \times B_J$, we ahve $V\circ V \subseteq U$. 
+  \end{itemize}
+
+  For the first item, consider that for each $i:I$, we have $ C_i \subseteq P_i$. Hence by \Cref{SubsetUnion} we have $X = \neg C_i \cup P_i$ for all $i:I$. Then also 
+  $$
+  X = 
+  \bigcap_{i:I} (\neg C_i \cup P_i) 
+  = 
+  \bigcup_{J:2^I} ((\bigcap_{j:J} P_j) \cap (\bigcap_{j:\neg J} \neg C_j)
+  = 
+  \bigcup_{J:2^I} B_J
+  $$
+  where the second equality comes from distributivity
+  
+  For the second item, let $(x,y) : B_J \times B_J, (y,z):B_K \times B_K$. 
+  As $\bigcup_{i:I} V_i = X$ and $V_i\subseteq C_i$, 
+  there exists some $i:I$ with $y:C_i$. 
+  We must have $i\in J,K$. Therefore $B_J,B_K\subseteq P_i$, and $(x,z) \in P_i \times P_i \subseteq U$ as needed. 
+
+\end{proof}
+
+
+
+
