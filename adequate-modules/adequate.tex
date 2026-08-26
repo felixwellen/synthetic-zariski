@@ -305,31 +305,32 @@ We will first characterize the projective and injective objects in $\finadeq$.
   Thus, there exists a monomorphism $n : N \hookrightarrow Q$ such that $Q$ is finitely presented.
   Let $f : P \rightarrow Q$ be the map induced by $n$.
   Now, $m$ is the kernel of $f$.
-  By \Cref{lem:ker-fp-is-cok-lin-adeq}, we obtain an analysis of $M$:
+  By \Cref{lem:ker-fp-is-cok-lin-adeq}, we obtain a presentation of $M$ as the cokernel of a map between linearly adequate modules, as displayed in the following commutative diagram:
   \begin{center}
     \begin{tikzcd}
-      K \ar{d}{p \times \id} \ar[hook]{r} & R^{m_1} \ar{r}{f_1} \ar{d}{p} & R^{n_1} \ar{d}{q} \\
+      K \ar{d}{(p \times \id)\mid_K} \ar[hook]{r} & R^{m_1} \ar{r}{f_1} \ar{d}{p} & R^{n_1} \ar{d}{q} \\
       L \ar[two heads]{d} \ar[hook]{r} & R^{m_2} \ar{r}{f_2} \ar[two heads]{d} & R^{n_2} \ar[two heads]{d} \\
       M \ar[hook]{r}{m} & P \ar{r}{f} & Q
     \end{tikzcd}
   \end{center}
-  In the diagram above, we have $P = \Cok(p)$, $Q = \Cok(q)$, $K = R^{m_1} \underset{R^{n_2}}{\times} R^{n_1}$, and $L = R^{m_2} \underset{R^{n_2}}{\times} R^{n_1}$.
+  In this diagram, we have $P = \Cok(p)$, $Q = \Cok(q)$, $K = R^{m_1} \underset{R^{n_2}}{\times} R^{n_1}$, and $L = R^{m_2} \underset{R^{n_2}}{\times} R^{n_1}$.
   Let $t$ be the composite $f_2 \circ p = q \circ f_1$.
 
-  In the above analysis, only the columns are exact.
-  We will alter this diagram so that every column and row becomes exact.
+  Note that in this diagram, only the columns are exact.
+  We will now construct a new diagram, using the morphisms from the above diagram, in which every column and row is exact.
   \begin{center}
     \begin{tikzcd}
-      K \ar{d}{p \times \id} \ar[hook]{r} & R^{m_1 + n_1} \ar{r}{t + q} \ar{d}{p \times \id} & R^{n_2} \ar[equal]{d} \\
+      K \ar{d}{(p \times \id)\mid_K} \ar[hook]{r} & R^{m_1 + n_1} \ar{r}{t + q} \ar{d}{p \times \id} & R^{n_2} \ar[equal]{d} \\
       L \ar[two heads]{d} \ar[hook]{r} & R^{m_2 + n_1} \ar{r}{f_2 + q} \ar[two heads]{d} & R^{n_2} \\
       M \ar[hook]{r}{m} & P
     \end{tikzcd}
   \end{center}
 
+  We will now do a diagram chase argument to show that $u : M \to R$ extends along $m :M \hookrightarrow P$.
   The linear map $u : M \to R$ restricts to a map $l_1 : L \to R$ that is zero on $K$.
   By~\cite[Lemma 2.3.7]{diffgeo-article}, it is possible to extend $l_1$ to $l_2 : R^{m_2+n_1} \to R$.
   $l_2$ will descend to $M$ if and only if it vanishes on the image of $p \times \id$.
-  Although this is not generally the case, we can construct a linear correction $c : R^{m_2} \to R$ such that $l_2 - c$ has this property.
+  Although this is not generally the case, we can construct a linear correction $c : R^{m_2 + n_1} \to R$ such that $l_2 - c$ has this property.
 
   To construct $c$, let $c_0 \coloneq l_2 \circ (p \times \id)$.
   Note that $c_0$ vanishes on $K$ and therefore descends to a linear map $c_1 : \Im(t + q) \to R$.
@@ -351,7 +352,7 @@ We say that $M$ is \notion{reflexive} is this map is an equivalence.
 \end{theorem}
 
 \begin{proof}
-  We will prove this by exploiting two different naturality squares involving $\ev$.
+  We will prove this by leveraging two different naturality squares involving $\ev$.
 
   Let $M$ be finitely adequate.  Thus it merely embeds into a finitely presented $R$-module $P$.
   This yields the naturality square
@@ -613,13 +614,14 @@ This homomorphism is natural in $M$ and $N$.
 \begin{lemma}
   \label{identification-hom-tensor-for-fp-algebras}
   Let $M$ be a reflexive $R$-module.
-  The $M$ is quasi-coherent if and only if for every finitely presented $R$-algebra $A$ the map
+  Then $M$ is quasi-coherent if and only if for every finitely presented $R$-algebra $A$ the map
   $\beta_{M,A}$ is an equivalence.
   Here $A$ is regarded as an $R$-module.
 \end{lemma}
 
 \begin{proof}
-  Suppose $M$ is reflexive and consider the following composition:
+  Suppose $M$ is reflexive.
+  We consider the following composite map:
   \begin{align*}
     M \otimes A &\longrightarrow M^{\Spec A} \\
                 &\overset{\simeq}{\longrightarrow} (M^{\ast\ast})^{\Spec A} \\
@@ -630,8 +632,8 @@ This homomorphism is natural in $M$ and $N$.
   The second map is an equivalence due to reflexivity of $M$.
   The third map is the equivalence coming from currying, since $R^{\Spec A}$ carries the pointwise module structure.
   The last map is an equivalence by duality.
-  We omit the verification that this composition agrees with the map $\beta_{M,A}$.
-  Thus the first map is an equivalence if and only if the composition is.
+  We omit the verification that this composite agrees with the map $\beta_{M,A}$.
+  Thus the first map is an equivalence if and only if the composite is an equivalence.
 \end{proof}
 
 \begin{corollary}
