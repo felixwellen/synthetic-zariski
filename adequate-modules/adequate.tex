@@ -665,7 +665,10 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
   Thus we have $\Ext_R^1(M^\ast,A)=0$, since \Cref{identification-hom-tensor-for-fp-modules} implies that $\Hom_R(M^{\ast},\argmhole)$ is exact on the category of finitely presented modules.
 \end{proof}
 
-\subsection{The Symmetric Monoidal Structure}
+\subsection{The Closed Symmetric Monoidal Structure}
+
+In this subsection, we show that the category $\finadeq$ of finitely adequate $R$-modules carries a closed symmetric monoidal structure.
+To construct this structure, we first establish that $\finadeq$ is closed under taking internal homs—that is, the module of homomorphisms between any two finitely adequate modules is itself finitely adequate.
 
 \begin{proposition}\label{prp:fin-adeq-hom-closure}
   For finitely adequate $R$-modules $M$ and $N$, $\Hom_R(M,N)$ is a finitely adequate $R$-module as well.
@@ -694,13 +697,22 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
   Then we can reuse the same argument to show the statement of the proposition. \rednote{I guess what is meant is the dual of the argument?}
 \end{proof}
 
-In \Cref{cex:tensor-not-closed} we will see, that the tensor product $M \otimes N$ is not necessarily finitely adequate even when $M$ and $N$ are linearly adequate.
+Having established that $\Hom_R(-,-)$ serves as an internal Hom for $\finadeq$, it remains to find its left adjoint monoidal product.
+In general, the ordinary tensor product $M \otimes N$ of linearly (or finitely) adequate modules fails to be finitely adequate (see \Cref{cex:tensor-not-closed}).
 This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely presented.
-Somewhat surprisingly, the internal hom still has a left adjoint in $\finadeq$.
-We will show that the \notion{double dual tensor product} $M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}$ is this left adjoint.
-By the hom-tensor adjunction, there is already a natural isomorphism $\Hom_R(A, \Hom_R(B, C)) \simeq \Hom_R(A \otimes B, C)$.
-Thus, it is sufficient to prove that $\ev_{A \otimes B}^\ast : \Hom_R(A \dbldualtensor B, C) \rightarrow \Hom_R(A \otimes B, C)$ is a natural isomorphism for all finitely adequate modules $A$, $B$, and $C$.
-The composite of these natural isomorphisms yields the natural isomorphism $\Hom_R(A \dbldualtensor B, C) \simeq \Hom_R(A, \Hom_R(B, C))$.
+
+Somewhat surprisingly, the internal hom still admits a left adjoint in $\finadeq$.
+We will show that this adjoint is given by the \notion{double-dual tensor product}
+\[
+  M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}.
+\]
+By the standard hom-tensor adjunction, there is already a natural isomorphism $\Hom_R(A, \Hom_R(B, C)) \simeq \Hom_R(A \otimes B, C)$.
+Thus, proving that $(-\dbldualtensor-)$ is the internal left adjoint reduces to verifying that the canonical evaluation map $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$ induces a natural isomorphism
+\[
+  \ev_{A \otimes B}^\ast : \Hom_R(A \dbldualtensor B, C) \xrightarrow{\;\simeq\;} \Hom_R(A \otimes B, C)
+\]
+for all finitely adequate modules $A$, $B$, and $C$.
+The composite of these natural isomorphisms yields the desired natural isomorphism $\Hom_R(A \dbldualtensor B, C) \simeq \Hom_R(A, \Hom_R(B, C))$.
 It is clear that $\ev_{A \otimes B}^\ast$ is natural in all three arguments.
 Now, $\ev_{A \otimes B}^\ast$ is an isomorphism precisely when every morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 
