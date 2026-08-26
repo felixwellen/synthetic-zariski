@@ -126,18 +126,27 @@ These will be particularly useful to show that finitely presented $R$-modules ar
       C \ar{r}{v} & D
     \end{tikzcd}
   \end{center}
-  The kernel $K$ of the induced map $\Ker(u) \rightarrow \Ker(v)$ is equivalent to the kernel $K'$ of $(u, f) : A \to B \oplus C$.
+  Then the kernel $K$ of the induced map $k_f : \Ker(u) \rightarrow \Ker(v)$ is equivalent to the kernel $K'$ of $(u, f) : A \to B \oplus C$.
 \end{lemma}
 
 \begin{proof}
-We check directly that we have a pullback square:
+  Firstly, $K'$ is given by the intersection $\Ker(u) \cap \Ker(f)$.
+  By pullback pasting, we can make $K'$ the pullback of the following outer square:
   \begin{center}
     \begin{tikzcd}
-   \Ker(u) \ar{r}\ar{d}& A\ar{d}{(u,f)}\\
-   \Ker(v) \ar{r}& B\oplus C
+      K' \ar[hook]{r} \ar[hook]{d} \ar[phantom]{dr}[very near start]{\lrcorner} & \Ker(f) \ar[hook]{d}{i_f} \ar{r} \ar[phantom]{dr}[very near start]{\lrcorner} & 0 \ar{d} \\
+      \Ker(u) \ar[hook]{r}{i_u} & A \ar{r}{f} & C
     \end{tikzcd}
   \end{center}
-Then both vertical arrows have the same kernel by pullback pasting.
+  Secondly, the induced map $k_f$ sits in the commutative square
+    \begin{center}
+      \begin{tikzcd}
+        \Ker(u) \ar[hook]{r}{i_u} \ar{d}{k_f} & A \ar{d}{f}\\
+        \Ker(v) \ar[hook]{r}{i_v} & C
+      \end{tikzcd}
+    \end{center}
+  Thus, $K'$ is the kernel of the composite $f \circ i_u = i_v \circ k_f$.
+  Since $i_v$ is a monomorphism, we deduce that $K' = \Ker(k_f) = K$, as desired.
 \end{proof}
 
 \begin{proposition}\label{prp:lin-adeq-ker-closure}
@@ -157,6 +166,13 @@ Dually, finitely presented $R$-modules are closed under cokernels.
   \end{center}
   By \Cref{lem:diff-ker-is-ker}, $K$ is also the kernel of a map $R^{m_1} \rightarrow R^{m_2 + n_1}$, so it is itself linearly adequate.
 \end{proof}
+
+\begin{corollary}\label{cor:lin-adeq-fp-thick}
+  The above proposition, \Cref{prp:lin-adeq-ker-closure}, implies that linearly adequate modules are closed under direct summands.
+  In fact, let $L$ be linearly adequate, and $M$ a summand of $L$, with projection $p : L \to M$ and inclusion $i : M \to L$.
+  Then $M$ is given by the kernel of $\id_L - i \circ p$, so it is linearly adequate as well.
+  Dually, finitely presented $R$-modules are also closed under direct summands.
+\end{corollary}
 
 \begin{lemma}\label{lem:ker-fp-is-cok-lin-adeq}
   If $f : M \to N$ is a map of finitely presented $R$-modules, then $\ker f$ is the cokernel of a map between linearly adequate $R$-modules.
@@ -243,14 +259,10 @@ We will first characterize the projective and injective objects in $\finadeq$.
   where $A$ and $B$ are finitely adequate.
   Such a solution follows from \Cref{lem:lin-adeq-lift}, since $A$ and $B$ are tangential and wqc by \Cref{prp:fin-adeq-adeq}.
 
-  Assume now that $M$ is projective.
-  Let $L_1 \xrightarrow{p} L_2 \twoheadrightarrow M$ be a presentation of $M$ by linearly adequate modules, and let $M' \defeq \Im p$.
-  Since $M$ is assumed projective, the epimorphism $L_2 \twoheadrightarrow M$ splits.
-  It follows that the inclusion $M' \hookrightarrow L_2$ splits as well and $M'$ is a direct summand of $L_2$.
-  Since $L_2$ is linearly adequate, it is projective, thus $M'$ is projective as well.
-  Since $M'$ is projective, the canonical map $L_1 \twoheadrightarrow M'$ splits.
-  This gives us a map $L_2 \rightarrow L_1$ such that $M$ is its kernel.
-  $M$ is now linearly adequate by \Cref{prp:lin-adeq-ker-closure}, as it is the kernel of a map between linearly adequate $R$-modules.
+  Assume now that $M$ is projective, and let $L$ be a linearly adequate module such that there is an epimorphism $p : L \twoheadrightarrow M$.
+  As $M$ is projective, this epimorphism has a section $i : M \to L$ such that $p \circ i = \id_M$.
+  Therefore, $M$ is a direct summand of $L$.
+  It now follows that $M$ is linearly adequate by \Cref{cor:lin-adeq-fp-thick}.
 \end{proof}
 
 \begin{lemma}\label{lem:fin-adeq-lift}
