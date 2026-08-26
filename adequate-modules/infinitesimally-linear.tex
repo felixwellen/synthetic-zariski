@@ -146,9 +146,15 @@ Infinitesimal linearity is a local property in the following sense:
   Thus, we have the desired lifting property for $(X,x)$ if and only if we have it for $\hood{X,x}{1}$.
 \end{proof}
 
-Let $(X,x)$ be infinitesimally linear set.
-Then the tangent space $\tangent{X}{x}$ is itself a set and carries an $R$-module structure, which we call the microlinear module structure.
-Indeed let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$.
+Any infinitesimally linear type $(X,x)$ carries a (coherent) $R$-module structure, which we call the microlinear module structure.
+In the context of cohesive homotopy type theory, Myers shows that this module structure exists \cite[Lemma 4.2.19]{david-orbifolds}.
+We should also remark that Myers' statement regards types $X$ such that $(X,x)$ is infinitesimally linear for all $x : X$.
+To apply this idea to our context, we need to slightly adapt the proof to account these differences.
+The goal is to show that the functor $R^n \mapsto (X,x)^{\D(n)} : \mathrm{fgFreeMod}_R^{\op} \to \Type$ preserves products, so that $\tangent{X}{x}$ is a model for the Lawvere theory of $R$-modules.
+Such a functor is product-preserving precisely when $\inc_{n,m}^\ast : (X,x)^{\D (m+n)} \to (X,x)^{\D(m) \vee \D(n)}$ is an equivalence for all $n, m : \N$, which is exactly the definition of infinitesimal linearity.
+
+Let us unfold the above-mentioned module structure.
+Indeed, let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$.
 The microlinear addition $\upsilon \boxplus \nu$ is defined by the composite $(\inc_{1,1}^\ast)^{-1}[\upsilon,\nu] \circ D$.
 In other words, we obtain this map by lifting in the following diagram
 \begin{center}
@@ -158,7 +164,7 @@ In other words, we obtain this map by lifting in the following diagram
   \end{tikzcd}
 \end{center}
 The microlinear scalar multiplication is defined by $(r \boxdot \upsilon)(\varepsilon) = \upsilon(r\varepsilon)$ for all $r : R$ and $\varepsilon : \D(1)$.
-To prove that this defines a module structure, one can adapt the proof of \cite[Theorem 4.2.19]{david-orbifolds} or give a direct proof using the following easy but helpful lemma.
+The following is an easy, but helpful lemma:
 %We will give a direct proof. First we give an easy but helpful lemma on the microlinear addition.
 
 \begin{lemma}\label{prp:microlinear-addition}
