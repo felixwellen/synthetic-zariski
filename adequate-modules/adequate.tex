@@ -24,6 +24,19 @@ For this, recall that for an $R$-module $M$ and a finitely presented $R$-algebra
   We say that $M$ is \notion{weakly quasi-coherent (wqc)} if this map is an equivalence for algebras of the form $R[r^{-1}]$, for each $r : R$.
 \end{definition}
 
+\begin{lemma}\label{lem:qc-colimits}
+  Quasi-coherent $R$-modules are closed under cokernels.
+\end{lemma}
+
+\begin{proof}
+  \rednote{Add proof here.}
+\end{proof}
+
+\begin{remark}\label{rem:fp-is-qc}
+  By \Cref{lem:qc-colimits}, every finitely presented $R$-module is quasi-coherent, as it is the cokernel of a map between finite free $R$-modules.
+\end{remark}
+
+
 We can show that quasi-coherent $R$-modules $Q$ are tangential by a direct computation.
 
 % \rednote{These pointed maps are already linear. Does linearity make sense when the domain is $\D(n)$? Respects scalar multiplication and addition whenever it exists.}
@@ -126,18 +139,27 @@ These will be particularly useful to show that finitely presented $R$-modules ar
       C \ar{r}{v} & D
     \end{tikzcd}
   \end{center}
-  The kernel $K$ of the induced map $\Ker(u) \rightarrow \Ker(v)$ is equivalent to the kernel $K'$ of $(u, f) : A \to B \oplus C$.
+  Then the kernel $K$ of the induced map $k_f : \Ker(u) \rightarrow \Ker(v)$ is equivalent to the kernel $K'$ of $(u, f) : A \to B \oplus C$.
 \end{lemma}
 
 \begin{proof}
-We check directly that we have a pullback square:
+  Firstly, $K'$ is given by the intersection $\Ker(u) \cap \Ker(f)$.
+  By pullback pasting, we can make $K'$ the pullback of the following outer square:
   \begin{center}
     \begin{tikzcd}
-   \Ker(u) \ar{r}\ar{d}& A\ar{d}{(u,f)}\\
-   \Ker(v) \ar{r}& B\oplus C
+      K' \ar[hook]{r} \ar[hook]{d} \ar[phantom]{dr}[very near start]{\lrcorner} & \Ker(f) \ar[hook]{d}{i_f} \ar{r} \ar[phantom]{dr}[very near start]{\lrcorner} & 0 \ar{d} \\
+      \Ker(u) \ar[hook]{r}{i_u} & A \ar{r}{f} & C
     \end{tikzcd}
   \end{center}
-Then both vertical arrows have the same kernel by pullback pasting.
+  Secondly, the induced map $k_f$ sits in the commutative square
+    \begin{center}
+      \begin{tikzcd}
+        \Ker(u) \ar[hook]{r}{i_u} \ar{d}{k_f} & A \ar{d}{f}\\
+        \Ker(v) \ar[hook]{r}{i_v} & C
+      \end{tikzcd}
+    \end{center}
+  Thus, $K'$ is the kernel of the composite $f \circ i_u = i_v \circ k_f$.
+  Since $i_v$ is a monomorphism, we deduce that $K' = \Ker(k_f) = K$, as desired.
 \end{proof}
 
 \begin{proposition}\label{prp:lin-adeq-ker-closure}
@@ -158,6 +180,13 @@ Dually, finitely presented $R$-modules are closed under cokernels.
   By \Cref{lem:diff-ker-is-ker}, $K$ is also the kernel of a map $R^{m_1} \rightarrow R^{m_2 + n_1}$, so it is itself linearly adequate.
 \end{proof}
 
+\begin{corollary}\label{cor:lin-adeq-fp-thick}
+  The above proposition, \Cref{prp:lin-adeq-ker-closure}, implies that linearly adequate modules are closed under direct summands.
+  In fact, let $L$ be linearly adequate, and $M$ a summand of $L$, with projection $p : L \to M$ and inclusion $i : M \to L$.
+  Then $M$ is given by the kernel of $\id_L - i \circ p$, so it is linearly adequate as well.
+  Dually, finitely presented $R$-modules are also closed under direct summands.
+\end{corollary}
+
 \begin{lemma}\label{lem:ker-fp-is-cok-lin-adeq}
   If $f : M \to N$ is a map of finitely presented $R$-modules, then $\ker f$ is the cokernel of a map between linearly adequate $R$-modules.
 \end{lemma}
@@ -176,7 +205,10 @@ Dually, finitely presented $R$-modules are closed under cokernels.
 
 % We name the following modules after Adelman, since it will turn out that what we construct agrees with the free abelian category on the finite free $R$-modules, and our construction is close to Adelman's general construction of the free abelian category.
 
-The modules in the kernel-cokernel closure of the finite free $R$-modules might yield a replacement of the algebro-geometric notion of coherent sheaf of modules, which would be a trivial notion over $R$ \rednote{Maybe this deserve more explanation?}.
+As discussed in the introduction, finding a faithful replacement for the algebro-geometric notion of coherent sheaf of modules remains an open question.
+A natural first candidate for this notion is the kernel-cokernel closure of the finite free $R$-modules.
+While it is known that this subcategory is not the replacement sought, it still exhibits many remarkable properties, and forms an important first step in this program.
+By \Cref{lem:ker-fp-is-cok-lin-adeq}, this closure can be characterized symmetrically in two equivalent ways:
 
 \begin{definition}\label{def:fin-adeq}
   Let $M$ be an $R$-module. Then $M$ is a \notion{finitely adequate $R$-module} if one of the following equivalent statements holds:
@@ -243,14 +275,10 @@ We will first characterize the projective and injective objects in $\finadeq$.
   where $A$ and $B$ are finitely adequate.
   Such a solution follows from \Cref{lem:lin-adeq-lift}, since $A$ and $B$ are tangential and wqc by \Cref{prp:fin-adeq-adeq}.
 
-  Assume now that $M$ is projective.
-  Let $L_1 \xrightarrow{p} L_2 \twoheadrightarrow M$ be a presentation of $M$ by linearly adequate modules, and let $M' \defeq \Im p$.
-  Since $M$ is assumed projective, the epimorphism $L_2 \twoheadrightarrow M$ splits.
-  It follows that the inclusion $M' \hookrightarrow L_2$ splits as well and $M'$ is a direct summand of $L_2$.
-  Since $L_2$ is linearly adequate, it is projective, thus $M'$ is projective as well.
-  Since $M'$ is projective, the canonical map $L_1 \twoheadrightarrow M'$ splits.
-  This gives us a map $L_2 \rightarrow L_1$ such that $M$ is its kernel.
-  $M$ is now linearly adequate by \Cref{prp:lin-adeq-ker-closure}, as it is the kernel of a map between linearly adequate $R$-modules.
+  Assume now that $M$ is projective, and let $L$ be a linearly adequate module such that there is an epimorphism $p : L \twoheadrightarrow M$.
+  As $M$ is projective, this epimorphism has a section $i : M \to L$ such that $p \circ i = \id_M$.
+  Therefore, $M$ is a direct summand of $L$.
+  It now follows that $M$ is linearly adequate by \Cref{cor:lin-adeq-fp-thick}.
 \end{proof}
 
 \begin{lemma}\label{lem:fin-adeq-lift}
@@ -293,31 +321,32 @@ We will first characterize the projective and injective objects in $\finadeq$.
   Thus, there exists a monomorphism $n : N \hookrightarrow Q$ such that $Q$ is finitely presented.
   Let $f : P \rightarrow Q$ be the map induced by $n$.
   Now, $m$ is the kernel of $f$.
-  By \Cref{lem:ker-fp-is-cok-lin-adeq}, we obtain an analysis of $M$:
+  By \Cref{lem:ker-fp-is-cok-lin-adeq}, we obtain a presentation of $M$ as the cokernel of a map between linearly adequate modules, as displayed in the following commutative diagram:
   \begin{center}
     \begin{tikzcd}
-      K \ar{d}{p \times \id} \ar[hook]{r} & R^{m_1} \ar{r}{f_1} \ar{d}{p} & R^{n_1} \ar{d}{q} \\
+      K \ar{d}{(p \times \id)\mid_K} \ar[hook]{r} & R^{m_1} \ar{r}{f_1} \ar{d}{p} & R^{n_1} \ar{d}{q} \\
       L \ar[two heads]{d} \ar[hook]{r} & R^{m_2} \ar{r}{f_2} \ar[two heads]{d} & R^{n_2} \ar[two heads]{d} \\
       M \ar[hook]{r}{m} & P \ar{r}{f} & Q
     \end{tikzcd}
   \end{center}
-  In the diagram above, we have $P = \Cok(p)$, $Q = \Cok(q)$, $K = R^{m_1} \underset{R^{n_2}}{\times} R^{n_1}$, and $L = R^{m_2} \underset{R^{n_2}}{\times} R^{n_1}$.
+  In this diagram, we have $P = \Cok(p)$, $Q = \Cok(q)$, $K = R^{m_1} \underset{R^{n_2}}{\times} R^{n_1}$, and $L = R^{m_2} \underset{R^{n_2}}{\times} R^{n_1}$.
   Let $t$ be the composite $f_2 \circ p = q \circ f_1$.
 
-  In the above analysis, only the columns are exact.
-  We will alter this diagram so that every column and row becomes exact.
+  Note that in this diagram, only the columns are exact.
+  We will now construct a new diagram, using the morphisms from the above diagram, in which every column and row is exact.
   \begin{center}
     \begin{tikzcd}
-      K \ar{d}{p \times \id} \ar[hook]{r} & R^{m_1 + n_1} \ar{r}{t + q} \ar{d}{p \times \id} & R^{n_2} \ar[equal]{d} \\
+      K \ar{d}{(p \times \id)\mid_K} \ar[hook]{r} & R^{m_1 + n_1} \ar{r}{t + q} \ar{d}{p \times \id} & R^{n_2} \ar[equal]{d} \\
       L \ar[two heads]{d} \ar[hook]{r} & R^{m_2 + n_1} \ar{r}{f_2 + q} \ar[two heads]{d} & R^{n_2} \\
       M \ar[hook]{r}{m} & P
     \end{tikzcd}
   \end{center}
 
+  We will now do a diagram chase argument to show that $u : M \to R$ extends along $m :M \hookrightarrow P$.
   The linear map $u : M \to R$ restricts to a map $l_1 : L \to R$ that is zero on $K$.
   By~\cite[Lemma 2.3.7]{diffgeo-article}, it is possible to extend $l_1$ to $l_2 : R^{m_2+n_1} \to R$.
   $l_2$ will descend to $M$ if and only if it vanishes on the image of $p \times \id$.
-  Although this is not generally the case, we can construct a linear correction $c : R^{m_2} \to R$ such that $l_2 - c$ has this property.
+  Although this is not generally the case, we can construct a linear correction $c : R^{m_2 + n_1} \to R$ such that $l_2 - c$ has this property.
 
   To construct $c$, let $c_0 \coloneq l_2 \circ (p \times \id)$.
   Note that $c_0$ vanishes on $K$ and therefore descends to a linear map $c_1 : \Im(t + q) \to R$.
@@ -339,7 +368,7 @@ We say that $M$ is \notion{reflexive} is this map is an equivalence.
 \end{theorem}
 
 \begin{proof}
-  We will prove this by exploiting two different naturality squares involving $\ev$.
+  We will prove this by leveraging two different naturality squares involving $\ev$.
 
   Let $M$ be finitely adequate.  Thus it merely embeds into a finitely presented $R$-module $P$.
   This yields the naturality square
@@ -451,33 +480,6 @@ Is \Cref{prp:fin-adeq-hom-closure} better here or in the next subsection?}
   Therefore the tangent space $\tangent{L'}{0}$ is a linearly adequate module by \cite[Lemma 2.2.8]{diffgeo-article}.
   Since tangential modules are closed under limits \Cref{prp:op-closure-inf-lin-tangential}, $L'$ is also tangential, and therefore also linearly adequate.
   The sequence $K \to L' \twoheadrightarrow A$ presents $A$ as a cokernel of a map of linearly adequate modules, so $A$ is finitely adequate.
-\end{proof}
-
-\begin{proposition}\label{prp:fin-adeq-hom-closure}
-  For finitely adequate $R$-modules $M$ and $N$, $\Hom_R(M,N)$ is a finitely adequate $R$-module as well.
-\end{proposition}
-
-\begin{proof}
-  The proof in \cite[Chapter IV, 4.12]{lombardi-quitte} works, if ``coherent'' is replaced by ``finitely adequate''.
-
-  First we use their proof to show that for finitely presented $R$-modules $M$ and $N$, the $R$-module $\Hom_R(M,N)$ is finitely adequate. Morphisms $f: M \to N$ are presented by squares:
-  \begin{center}
-    \begin{tikzcd}
-      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \\
-      R^n\ar{r} & R^{n'}
-    \end{tikzcd}
-  \end{center}
-  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commutes.
-  This submodule $S$ is the kernel of a linear map and therefore finitely adequate.
-  We have a surjection $\pi : S \to \Hom_R(M,N)$, so $\Hom_R(M,N)$ is finitely adequate if $\pi$ is a cokernel of a map of finitely adequate $R$-modules.
-  This is the case, since there is a surjection onto $\Ker{\pi}$ from the finite free $R$-module of linear maps which split the square:
-  \begin{center}
-    \begin{tikzcd}
-      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \ar{ld}{s} \\
-      R^n \ar{r} & R^{n'}
-    \end{tikzcd}
-  \end{center}
-  Then we can reuse the same argument to show the statement of the proposition. \rednote{I guess what is meant is the dual of the argument?}
 \end{proof}
 
 \begin{proposition}\label{prop:hood-faithful}
@@ -601,13 +603,14 @@ This homomorphism is natural in $M$ and $N$.
 \begin{lemma}
   \label{identification-hom-tensor-for-fp-algebras}
   Let $M$ be a reflexive $R$-module.
-  The $M$ is quasi-coherent if and only if for every finitely presented $R$-algebra $A$ the map
+  Then $M$ is quasi-coherent if and only if for every finitely presented $R$-algebra $A$ the map
   $\beta_{M,A}$ is an equivalence.
   Here $A$ is regarded as an $R$-module.
 \end{lemma}
 
 \begin{proof}
-  Suppose $M$ is reflexive and consider the following composition:
+  Suppose $M$ is reflexive.
+  We consider the following composite map:
   \begin{align*}
     M \otimes A &\longrightarrow M^{\Spec A} \\
                 &\overset{\simeq}{\longrightarrow} (M^{\ast\ast})^{\Spec A} \\
@@ -618,8 +621,8 @@ This homomorphism is natural in $M$ and $N$.
   The second map is an equivalence due to reflexivity of $M$.
   The third map is the equivalence coming from currying, since $R^{\Spec A}$ carries the pointwise module structure.
   The last map is an equivalence by duality.
-  We omit the verification that this composition agrees with the map $\beta_{M,A}$.
-  Thus the first map is an equivalence if and only if the composition is.
+  We omit the verification that this composite agrees with the map $\beta_{M,A}$.
+  Thus the first map is an equivalence if and only if the composite is an equivalence.
 \end{proof}
 
 \begin{corollary}
@@ -678,15 +681,54 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
   Thus we have $\Ext_R^1(M^\ast,A)=0$, since \Cref{identification-hom-tensor-for-fp-modules} implies that $\Hom_R(M^{\ast},\argmhole)$ is exact on the category of finitely presented modules.
 \end{proof}
 
-\subsection{The Symmetric Monoidal Structure}
+\subsection{The Closed Symmetric Monoidal Structure}
 
-In \Cref{cex:tensor-not-closed} we will see, that the tensor product $M \otimes N$ is not necessarily finitely adequate even when $M$ and $N$ are linearly adequate.
+In this subsection, we show that the category $\finadeq$ of finitely adequate $R$-modules carries a closed symmetric monoidal structure.
+To construct this structure, we first establish that $\finadeq$ is closed under taking internal homs—that is, the module of homomorphisms between any two finitely adequate modules is itself finitely adequate.
+
+\begin{proposition}\label{prp:fin-adeq-hom-closure}
+  For finitely adequate $R$-modules $M$ and $N$, $\Hom_R(M,N)$ is a finitely adequate $R$-module as well.
+\end{proposition}
+
+\begin{proof}
+  The proof in \cite[Chapter IV, 4.12]{lombardi-quitte} works, if ``coherent'' is replaced by ``finitely adequate''.
+
+  First we use their proof to show that for finitely presented $R$-modules $M$ and $N$, the $R$-module $\Hom_R(M,N)$ is finitely adequate. Morphisms $f: M \to N$ are presented by squares:
+  \begin{center}
+    \begin{tikzcd}
+      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \\
+      R^n\ar{r} & R^{n'}
+    \end{tikzcd}
+  \end{center}
+  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commutes.
+  This submodule $S$ is the kernel of a linear map and therefore finitely adequate.
+  We have a surjection $\pi : S \to \Hom_R(M,N)$, so $\Hom_R(M,N)$ is finitely adequate if $\pi$ is a cokernel of a map of finitely adequate $R$-modules.
+  This is the case, since there is a surjection onto $\Ker{\pi}$ from the finite free $R$-module of linear maps which split the square:
+  \begin{center}
+    \begin{tikzcd}
+      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \ar{ld}{s} \\
+      R^n \ar{r} & R^{n'}
+    \end{tikzcd}
+  \end{center}
+  Then we can reuse the same argument to show the statement of the proposition. \rednote{I guess what is meant is the dual of the argument?}
+\end{proof}
+
+Having established that $\Hom_R(-,-)$ serves as an internal Hom for $\finadeq$, it remains to find its left adjoint monoidal product.
+In general, the ordinary tensor product $M \otimes N$ of linearly (or finitely) adequate modules fails to be finitely adequate (see \Cref{cex:tensor-not-closed}).
 This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely presented.
-Somewhat surprisingly, the internal hom still has a left adjoint in $\finadeq$.
-We will show that the \notion{double dual tensor product} $M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}$ is this left adjoint.
-By the hom-tensor adjunction, there is already a natural isomorphism $\Hom_R(A, \Hom_R(B, C)) \simeq \Hom_R(A \otimes B, C)$.
-Thus, it is sufficient to prove that $\ev_{A \otimes B}^\ast : \Hom_R(A \dbldualtensor B, C) \rightarrow \Hom_R(A \otimes B, C)$ is a natural isomorphism for all finitely adequate modules $A$, $B$, and $C$.
-The composite of these natural isomorphisms yields the natural isomorphism $\Hom_R(A \dbldualtensor B, C) \simeq \Hom_R(A, \Hom_R(B, C))$.
+
+Somewhat surprisingly, the internal hom still admits a left adjoint in $\finadeq$.
+We will show that this adjoint is given by the \notion{double-dual tensor product}
+\[
+  M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}.
+\]
+By the standard hom-tensor adjunction, there is already a natural isomorphism $\Hom_R(A, \Hom_R(B, C)) \simeq \Hom_R(A \otimes B, C)$.
+Thus, proving that $(-\dbldualtensor-)$ is the internal left adjoint reduces to verifying that the canonical evaluation map $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$ induces a natural isomorphism
+\[
+  \ev_{A \otimes B}^\ast : \Hom_R(A \dbldualtensor B, C) \xrightarrow{\;\simeq\;} \Hom_R(A \otimes B, C)
+\]
+for all finitely adequate modules $A$, $B$, and $C$.
+The composite of these natural isomorphisms yields the desired natural isomorphism $\Hom_R(A \dbldualtensor B, C) \simeq \Hom_R(A, \Hom_R(B, C))$.
 It is clear that $\ev_{A \otimes B}^\ast$ is natural in all three arguments.
 Now, $\ev_{A \otimes B}^\ast$ is an isomorphism precisely when every morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 
