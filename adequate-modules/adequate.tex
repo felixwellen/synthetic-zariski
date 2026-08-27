@@ -24,12 +24,38 @@ For this, recall that for an $R$-module $M$ and a finitely presented $R$-algebra
   We say that $M$ is \notion{weakly quasi-coherent (wqc)} if this map is an equivalence for algebras of the form $R[r^{-1}]$, for each $r : R$.
 \end{definition}
 
+\begin{remark}\label{rem:wqc-abelian}
+  By \cite[Lemma 7.1.6 and Proposition 7.1.13]{draft}, wqc $R$-modules are closed under taking kernels and cokernels.
+  In particular, they form an abelian subcategory of $\modcat{R}$.
+\end{remark}
+
 \begin{lemma}\label{lem:qc-colimits}
   Quasi-coherent $R$-modules are closed under cokernels.
 \end{lemma}
 
 \begin{proof}
-  \rednote{Add proof here.}
+  Let $M$ and $N$ be quasi-coherent $R$-modules, $f : M \to N$ a linear map, $C \defeq \Cok(f)$, and $p : N \twoheadrightarrow C$ the canonical projection.
+  Our goal is to show that for any finitely presented $R$-algebra $A$, the map $\ev : C \otimes A \to C^{\Spec A}$ is an equivalence.
+  The map $\ev$ is induced by the universal property of $C \otimes A$ as a cokernel.
+  This is summarized by the following commutative diagram with exact rows:
+  \begin{center}
+    \begin{tikzcd}
+      M \otimes A \ar{r}{f \otimes A} \ar{d}{\simeq} & N \otimes A \ar{d}{\simeq} \ar[two heads]{r}{p \otimes A} & C \otimes A \ar[dashed]{d}{\ev} \\
+      M^{\Spec A} \ar{r}{f_\ast} & N^{\Spec A} \ar{r}{p_\ast} & C^{\Spec A}
+    \end{tikzcd}
+  \end{center}
+  By the universal property of the cokernel, $\ev$ is an isomorphism if and only if $p_\ast$ is an epimorphism.
+  Thus, it suffices to show that $p_\ast$ is an epimorphism.
+  
+  Let $K \defeq \Im(f)$ and $i : K \hookrightarrow N$ be the canonical inclusion.
+  Now, $K$ is wqc by \Cref{rem:wqc-abelian}.
+  Considering the modules $K$, $N$, and $C$ as dependent modules over $A$, we get the following long exact sequence by taking cohomology:
+  \begin{center}
+    \begin{tikzcd}
+      K^{\Spec A} \ar[hook]{r}{i_\ast} & N^{\Spec A} \ar{r}{p_\ast} & C^{\Spec A} \ar{r}{\partial} & \mathrm{H}^1(\Spec A, K)
+    \end{tikzcd}
+  \end{center}
+  The map $p_\ast$ is an epimorphism, since $\mathrm{H}^1(\Spec A, K) = 0$ by \cite[Theorem 7.3.6]{draft}.
 \end{proof}
 
 \begin{remark}\label{rem:fp-is-qc}
