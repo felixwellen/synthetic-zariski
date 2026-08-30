@@ -11,7 +11,7 @@ This notion is not completely novel and has already been studied externally in~\
 \subsection{Finitely Adequate Modules Form an Abelian Category}
 
 In this subsection, we will show that the category of finitely adequate $R$-modules, denoted by $\finadeq$, is abelian.
-We begin by recounting the notion of quasi-coherence, introduced by Ingo Blechschmid~\cite{ingo-thesis}.
+We begin by recounting the notion of quasi-coherence, introduced by Ingo Blechschmidt~\cite{ingo-thesis}.
 For this, recall that for an $R$-module $M$ and a finitely presented $R$-algebra $A$, there is an evaluation map:
 \begin{align*}
   \ev : M \otimes A & \rightarrow M^{\Spec A} \\
@@ -69,11 +69,11 @@ We can show that quasi-coherent $R$-modules $Q$ are tangential by a direct compu
 
 \begin{lemma}\label{lem:disk-qc}
   Let $Q$ be a quasi-coherent $R$-module.
-  A pointed map $(Q,0)^{\D(n)}$ is an $n$-variate linear monomial with coefficients in $Q$. More precisely, the map $Q^n\to (Q,0)^{\D(n)}$ sending $(q_1,\dots,q_n)$ to $(\epsilon_1,\dots,\epsilon_n)\mapsto \sum_{i=0}^n\epsilon_iq_i$ is an equivalence.
+  A pointed map $(Q,0)^{\D(n)}$ is an $n$-variate linear monomial with coefficients in $Q$. More precisely, the map $Q^n\to (Q,0)^{\D(n)}$ sending $(q_1,\dots,q_n)$ to $(\epsilon_1,\dots,\epsilon_n)\mapsto \sum_{i=1}^n\epsilon_iq_i$ is an equivalence.
 \end{lemma}
 
 \begin{proof}
-  By quasi-coherence, the map $Q^{n+1}\simeq Q \otimes \quot{R[x_1,\dots,x_n]}{\ideal{x_ix_j}} \to Q^{\D(n)}$ is an equivalence. We just need to check that maps with constant coefficient $0$ on the left correspond to maps such that $p(0)=0$ on the right. But indeed given a $p:Q^{\D(n)}$ we have that the corresponding constant coefficient is $p(0)$.
+  By quasi-coherence, the map $Q^n \simeq Q \otimes \quot{R[x_1,\dots,x_n]}{\ideal{x_ix_j}} \to Q^{\D(n)}$ is an equivalence. We just need to check that maps with constant coefficient $0$ on the left correspond to maps such that $p(0)=0$ on the right. But indeed given a $p:Q^{\D(n)}$ we have that the corresponding constant coefficient is $p(0)$.
 \end{proof}
 
 \begin{proposition}\label{prp:tangential-qc}
@@ -387,7 +387,7 @@ We will first characterize the projective and injective objects in $\finadeq$.
 
 Let $M$ be an $R$-module.
 There is a natural map $\ev : M \rightarrow M^{\ast\ast}$ that sends a term $m$ to $\ev_m(f) \defeq f(m)$.
-We say that $M$ is \notion{reflexive} is this map is an equivalence.
+We say that $M$ is \notion{reflexive} if this map is an equivalence.
 
 \begin{theorem}\label{thm:can-dual-iso}
   Every finitely adequate module is reflexive.
@@ -543,7 +543,7 @@ Is \Cref{prp:fin-adeq-hom-closure} better here or in the next subsection?}
   The functor $\hood{\argmhole}{1}$ of the previous proposition is full when restricted even further to linearly adequate $R$-modules.
   This, however, already fails on finitely adequate $R$-modules.
 
-  To see this, consider the modules $(\varepsilon)$ for every $\varepsilon:\D(1)$. We have that $(\varepsilon) = \hood{(\varepsilon),0}{1}$, so that the functor $\hood{\argmhole}{1}$ acts as identity on maps between such modules. So if $\hood{\argmhole}{1}$ is full on finitely adequate modules, then any pointed map from $((\varepsilon),0)$ to itself is linear. Let us consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$. These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$. If $\alpha_\varepsilon$ is linear then for all $r:R$ we have that $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence that $(r^2-r)\varepsilon=0$. By duality this implies that $\varepsilon=0$. So we see that every $\alpha_\varepsilon$ being linear implies $\D(1)=0$, a contradiction.
+  To see this, consider the modules $(\varepsilon)$ for every $\varepsilon:\D(1)$. We have that $(\varepsilon) = \hood{(\varepsilon),0}{1}$, so that the functor $\hood{\argmhole}{1}$ acts as the identity on maps between such modules. So if $\hood{\argmhole}{1}$ is full on finitely adequate modules, then any pointed map from $((\varepsilon),0)$ to itself is linear. Let us consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$. These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$. If $\alpha_\varepsilon$ is linear then for all $r:R$ we have that $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence that $(r^2-r)\varepsilon=0$. By duality this implies that $\varepsilon=0$. So we see that every $\alpha_\varepsilon$ being linear implies $\D(1)=0$, a contradiction.
 \end{remark}
 
 Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$, meaning that finitely adequate modules are stable under extension. We need two auxiliary results.
@@ -587,7 +587,7 @@ Finding a splitting amounts to showing that any lifting problem:
   where $L$ is finitely adequate and $B \defeq \Ker(p)$ is finitely adequate, merely has a linear solution.
   Observe that $E$ is tangential by \Cref{prp:op-closure-inf-lin-tangential}, since $B$ and $L$ are tangential by \Cref{prp:adeq-tangential}.
   $B$ is also wqc by \Cref{prp:wqc-adeq}.
-  Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}. Once we have a splitting we get $E=B \oplus L$ which is indeed finitely adequate.
+  Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}. Once we have a splitting, we get $E=B \oplus L$ which is indeed finitely adequate.
 \end{proof}
 
 \begin{theorem}\label{thm:fin-adeq-ext-closed}
@@ -608,7 +608,7 @@ Finding a splitting amounts to showing that any lifting problem:
       E \ar{r} & A
     \end{tikzcd}
   \end{center}
-  By \Cref{lem:fin-adeq-ext-pb-red} is is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so we have a new extension problem:
+  By \Cref{lem:fin-adeq-ext-pb-red} it is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so we have a new extension problem:
     \begin{center}
     \begin{tikzcd}
       B \ar[hook]{r} & p^*E \ar[two heads]{r} & L
@@ -710,7 +710,7 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
 \subsection{The Closed Symmetric Monoidal Structure}
 
 In this subsection, we show that the category $\finadeq$ of finitely adequate $R$-modules carries a closed symmetric monoidal structure.
-To construct this structure, we first establish that $\finadeq$ is closed under taking internal homs—that is, the module of homomorphisms between any two finitely adequate modules is itself finitely adequate.
+To construct this structure, we first establish that $\finadeq$ is closed under taking internal Homs—that is, the module of homomorphisms between any two finitely adequate modules is itself finitely adequate.
 
 \begin{proposition}\label{prp:fin-adeq-hom-closure}
   For finitely adequate $R$-modules $M$ and $N$, $\Hom_R(M,N)$ is a finitely adequate $R$-module as well.
@@ -741,9 +741,9 @@ To construct this structure, we first establish that $\finadeq$ is closed under 
 
 Having established that $\Hom_R(-,-)$ serves as an internal Hom for $\finadeq$, it remains to find its left adjoint monoidal product.
 In general, the ordinary tensor product $M \otimes N$ of linearly (or finitely) adequate modules fails to be finitely adequate (see \Cref{cex:tensor-not-closed}).
-This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely presented.
+This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely adequate.
 
-Somewhat surprisingly, the internal hom still admits a left adjoint in $\finadeq$.
+Somewhat surprisingly, the internal Hom still admits a left adjoint in $\finadeq$.
 We will show that this adjoint is given by the \notion{double-dual tensor product}
 \[
   M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}.
@@ -940,7 +940,7 @@ In the current developement of synthetic algebraic geometry, this notion takes o
     \]
     commutes.
     We will denote both of these simply by $h \mapsto h(x)$.
-    It is however worthwhile to understand that, at least at this point, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective and jointly surjective.
+    It is, however, worthwhile to understand that, at least at this point, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective and jointly surjective.
 
     \item[ii)] Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
     Then for a tensor $k = \sum_{j=1}^N m_j \otimes n_j : M \otimes_A N$ we have $k =_{M \otimes_A N} 0$ if and only if there merely exists a finitely generated submodule $M' \subseteq M$ such that $m_1,\dots,m_N \in M'$ and $k =_{M' \otimes_A N} 0$.
@@ -995,7 +995,7 @@ In the current developement of synthetic algebraic geometry, this notion takes o
   Shrinking $X$ we thus may assume that we have a pointwise finitely generated subbundle $\mc F' \subseteq \mc F$ such that $f_j \in \Gamma(X,\mc F')$.
   Hence also $k' :\equiv \sum_j f_j \otimes g_j \in \Gamma(X, \mc F') \otimes_A \Gamma(X,\mc G)$.
   Note that $\mc F'$ is again weakly quasi-coherent.
-  Thus the canonical map $\vartheta_X'' : \Gamma(X,\mc F') \otimes_A \Gamma(X,\mc G) \to \Gamma(X, \mc F' \otimes \mc G)$ is injective by the preceeding case.
+  Thus the canonical map $\vartheta_X'' : \Gamma(X,\mc F') \otimes_A \Gamma(X,\mc G) \to \Gamma(X, \mc F' \otimes \mc G)$ is injective by the preceding case.
   By definition, we have $\vartheta_X''(k') = 0$ and hence $k' = 0$.
   Therefore also $k =_{\Gamma(X,\mc F) \otimes \Gamma(X,\mc G)} 0$.
 

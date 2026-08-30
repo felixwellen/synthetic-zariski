@@ -22,7 +22,7 @@ The action on maps $f : (X,x) \rightarrow_\ast (Y,y)$ is given by $\hood{f}{n} \
 \begin{proof}
   We need to show that for every $x' \in \hood{X,x}{n}$, we have $f(x') \in \hood{Y,y}{n}$.
   By assumption, we merely have a finitely generated ideal $I \subseteq R$ such that $I^{n+1} = 0$ and if $I = 0$ then $x' = x$.
-  It follows that $f(x') \in \hood{Y,y}{n}$, as if $I = 0$, then $f(x') = f(x) = y$ by applying $f$ to $x' = x$ and by $f$ being pointed.
+  It follows that $f(x') \in \hood{Y,y}{n}$, because if $I = 0$, then $f(x') = f(x) = y$ by applying $f$ to $x' = x$ and using that $f$ is pointed.
 \end{proof}
 
 Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ natural in $(X,x)$.
@@ -44,7 +44,7 @@ Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ natura
   If $I = 0$, then each $r_i=0$, implying that $f = 0$.
 \end{example}
 
-For the case $n=1$ in the preceding example, we introduce a special notation.
+In the case $n=1$ of the preceding example, we introduce a special notation.
 We define the \notion{$m$-dimensional first-order infinitesimal disk}, or just the \notion{$m$-disk}, as the type
 \[
   \D(m) \defeq \Spec(\quot{R[x_1,\dots, x_m]}{\ideal{x_1,\dots,x_m}^2})\rlap{.}
@@ -72,7 +72,7 @@ Taking tangent spaces is a local construction in the following sense.
 \end{lemma}
 
 \begin{proof}
-  This is immediate by functoriality of $\hood{\argmhole}{n}$, \Cref{prp:hood-fun-welldef}, as $f$ factors into $i_y \circ \hood{f}{n} \circ i_x^{-1}$.
+  This is immediate by functoriality of $\hood{\argmhole}{n}$, \Cref{prp:hood-fun-welldef}, as $f$ factors as $i_y \circ \hood{f}{n} \circ i_x^{-1}$.
   This factorization is unique, since $i_y$ is an inclusion.
 \end{proof}
 
@@ -152,7 +152,7 @@ Infinitesimal linearity is a local property in the following sense:
 Any infinitesimally linear type $(X,x)$ carries a (coherent) $R$-module structure, which we call the microlinear module structure.
 In the context of cohesive homotopy type theory, Myers shows that this module structure exists \cite[Lemma 4.2.19]{david-orbifolds}.
 We should also remark that Myers' statement regards types $X$ such that $(X,x)$ is infinitesimally linear for all $x : X$.
-To apply this idea to our context, we need to slightly adapt the proof to account these differences.
+To apply this idea to our context, we need to slightly adapt the proof to account for these differences.
 The goal is to show that the functor $R^n \mapsto (X,x)^{\D(n)} : \mathrm{fgFreeMod}_R^{\op} \to \Type$ preserves products, so that $\tangent{X}{x}$ is a model for the Lawvere theory of $R$-modules.
 Such a functor is product-preserving precisely when $\inc_{n,m}^\ast : (X,x)^{\D (m+n)} \to (X,x)^{\D(m) \vee \D(n)}$ is an equivalence for all $n, m : \N$, which is exactly the definition of infinitesimal linearity.
 
@@ -334,7 +334,7 @@ As with $\can_M$, we write $\can^k$ when $M$ is clear from context.
   The maps $\can^{m+n}$ and $\can^m \times \can^n$ are equivalences by \Cref{prp:tangential-implies-gen-can-equiv}.
 \end{proof}
 
-The properties of being tangential and infinitesimally linear are closed under many common categorical constructions.
+Tangentiality and infinitesimal linearity are preserved under many common categorical constructions.
 This will be important to prove that various modules are themselves tangential.
 For instance, we will use this in \Cref{ex:power-series-tangential} to show that the polynomial ring $R[x]$ and power series ring $R[[x]]$ are tangential.
 
