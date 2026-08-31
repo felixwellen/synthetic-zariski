@@ -710,40 +710,61 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
 \subsection{The Closed Symmetric Monoidal Structure}
 
 In this subsection, we show that the category $\finadeq$ of finitely adequate $R$-modules carries a closed symmetric monoidal structure.
-To construct this structure, we first establish that $\finadeq$ is closed under taking internal Homs—that is, the module of homomorphisms between any two finitely adequate modules is itself finitely adequate.
+To construct this structure, we first establish that $\finadeq$ is closed under taking homs.
+Namely, we first want to show that the module of homomorphisms between any two finitely adequate modules is itself finitely adequate.
+We will start with the following lemmas.
+
+\begin{lemma}\label{lem:fp-tensor-fp}
+  Let $M$ and $N$ be finitely presented $R$-modules.
+  The module $M \otimes N$ is also finitely presented.  
+\end{lemma}
+
+\begin{proof}
+  Since we want to prove a proposition, we can let $p : R^{m_2} \to R^{m_1}$ be a linear map such that $M = \Cok(p)$.
+  By taking tensors we get that $M \otimes N$ is the cokernel of $p \otimes N : R^{m_2} \otimes N \to R^{m_1} \otimes N$.
+  The domain and codomain of $p \otimes N$ are finitely presented, so $M \otimes N$ is finitely presented as well.
+\end{proof}
+
+\begin{lemma}\label{lem:lin-adeq-fp-hom-fp}
+  Let $L$ be linearly adequate and $P$ be finitely presented.
+  The module $\Hom_R(L,P)$ is finitely presented.
+\end{lemma}
+
+\begin{proof}
+  By \Cref{identification-hom-tensor-for-fp-modules}, we have the following chain of equivalences:
+  \begin{equation*}
+    \Hom_R(L,P) \cong \Hom_R(L^{\ast\ast},P) \cong L^\ast \otimes P\textup{.}
+  \end{equation*}
+  By \Cref{lem:fp-tensor-fp}, we get that $\Hom_R(L,P)$ is finitely presented, as $L^\ast$ and $P$ are so.
+\end{proof}
 
 \begin{proposition}\label{prp:fin-adeq-hom-closure}
-  For finitely adequate $R$-modules $M$ and $N$, $\Hom_R(M,N)$ is a finitely adequate $R$-module as well.
+  Let $M$ and $N$ be finitely adequate modules.
+  The module $\Hom_R(M,N)$ is finitely adequate as well.
 \end{proposition}
 
 \begin{proof}
-  The proof in \cite[Chapter IV, 4.12]{lombardi-quitte} works, if ``coherent'' is replaced by ``finitely adequate''.
+  Since we're proving a proposition, we can let $l : L_2 \to L_1$ be a presentation of $M$, and $p : P_1 \to P_2$ be a copresentation of $N$.
+  Since hom is left-exact, we get the following diagram with exact rows and columns:
+  \begin{center}
+    \begin{tikzcd}
+      & \Hom_R(L_1,P_2) \ar{r}{l^\ast} & \Hom_R(L_2,P_2) \\
+      & \Hom_R(L_1,P_1) \ar{r}{l^\ast} \ar{u}{p_\ast} & \Hom_R(L_2,P_1) \ar{u}{p_\ast} \\
+      \Hom_R(M,N) \ar[hook]{r} & \Hom_R(L_1,N) \ar{r}{l^\ast} \ar[hook]{u} & \Hom_R(L_2,N) \ar[hook]{u}
+    \end{tikzcd}
+  \end{center}
 
-  First we use their proof to show that for finitely presented $R$-modules $M$ and $N$, the $R$-module $\Hom_R(M,N)$ is finitely adequate. Morphisms $f: M \to N$ are presented by squares:
-  \begin{center}
-    \begin{tikzcd}
-      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \\
-      R^n\ar{r} & R^{n'}
-    \end{tikzcd}
-  \end{center}
-  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commutes.
-  This submodule $S$ is the kernel of a linear map and therefore finitely adequate.
-  We have a surjection $\pi : S \to \Hom_R(M,N)$, so $\Hom_R(M,N)$ is finitely adequate if $\pi$ is a cokernel of a map of finitely adequate $R$-modules.
-  This is the case, since there is a surjection onto $\Ker{\pi}$ from the finite free $R$-module of linear maps which split the square:
-  \begin{center}
-    \begin{tikzcd}
-      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \ar{ld}{s} \\
-      R^n \ar{r} & R^{n'}
-    \end{tikzcd}
-  \end{center}
-  Then we can reuse the same argument to show the statement of the proposition. \rednote{I guess what is meant is the dual of the argument?}
+  Now, by \Cref{lem:diff-ker-is-ker}, we see that $\Hom_R(M,N)$ is the kernel of $(p_\ast, l^\ast) : \Hom_R(L_1,P_1) \to \Hom_R(L_1,P_2) \oplus \Hom_R(L_2,P_1)$.
+  The modules $\Hom_R(L_i,P_j)$ are finitely presented by \Cref{lem:lin-adeq-fp-hom-fp} for all $i,j \in \{1,2\}$. 
+  Thus, $\Hom_R(M,N)$ is finitely adequate as it is the kernel of a map between finitely presented modules.
 \end{proof}
 
-Having established that $\Hom_R(-,-)$ serves as an internal Hom for $\finadeq$, it remains to find its left adjoint monoidal product.
-In general, the ordinary tensor product $M \otimes N$ of linearly (or finitely) adequate modules fails to be finitely adequate (see \Cref{cex:tensor-not-closed}).
-This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely adequate.
+Knowing that hom is closed in the category $\finadeq$, it now remains to find the left adjoint of this functor.
+Naturally, we start by considering the tensor product of two finitely adequate modules $M$ and $N$.
+However, even taking the tensor product $M \otimes N$ of linearly adequate modules (which is a stronger condition) fails to be finitely adequate (see \Cref{cex:tensor-not-closed}).
+This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely adequate (see \Cref{lem:fp-tensor-fp} for the case where both are finitely presented).
 
-Somewhat surprisingly, the internal Hom still admits a left adjoint in $\finadeq$.
+Somewhat surprisingly, the hom functor still admits a left adjoint in $\finadeq$.
 We will show that this adjoint is given by the \notion{double-dual tensor product}
 \[
   M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}.
