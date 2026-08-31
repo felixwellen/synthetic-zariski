@@ -749,11 +749,11 @@ We will show that this adjoint is given by the \notion{double-dual tensor produc
   M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}.
 \]
 By the standard hom-tensor adjunction, there is already a natural isomorphism $\Hom_R(A, \Hom_R(B, C)) \simeq \Hom_R(A \otimes B, C)$.
-Thus, proving that $(-\dbldualtensor-)$ is the internal left adjoint reduces to verifying that the canonical evaluation map $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$ induces a natural isomorphism
+Thus, proving that $(-\dbldualtensor-)$ is the internal left adjoint reduces to verifying that given $A$ and $B$ finitely adequate, we have that $A\dbldualtensor B$ is finitely adequate and that the canonical evaluation map $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$ induces an isomorphism
 \[
   \ev_{A \otimes B}^\ast : \Hom_R(A \dbldualtensor B, C) \xrightarrow{\;\simeq\;} \Hom_R(A \otimes B, C)
 \]
-for all finitely adequate modules $A$, $B$, and $C$.
+for all finitely adequate module $C$.
 The composite of these natural isomorphisms yields the desired natural isomorphism $\Hom_R(A \dbldualtensor B, C) \simeq \Hom_R(A, \Hom_R(B, C))$.
 It is clear that $\ev_{A \otimes B}^\ast$ is natural in all three arguments.
 Now, $\ev_{A \otimes B}^\ast$ is an isomorphism precisely when every morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
@@ -802,7 +802,7 @@ The next result is similar to Proposition 4.2.3 of Borceux~\cite{Borceux_1994_II
   Then $T\eta_X$ is an isomorphism as well, since $T\eta_X$ is a section of $\mu_X$.
   Consider two morphisms $f, g : TX \to Y$, where $Y$ is $T$-torsionless and $f \circ \eta_X = g \circ \eta_X$.
   By applying $T$ to this equality, we obtain $Tf \circ T\eta_X = Tg \circ T\eta_X$.
-  Thus, $Tf = Tg$ since $T\eta_X$ is an epimorphism.
+  Thus, $Tf = Tg$ since $T\eta_X$ is an $T\eta_X$ is an isomorphism.
   By naturality of $\eta$, we have $\eta_Y \circ f = Tf \circ \eta_{TX} = Tg \circ \eta_{TX} = \eta_Y \circ g$.
   Since $Y$ is $T$-torsionless, $\eta_Y$ is a monomorphism and thus $f = g$.
 
@@ -895,15 +895,23 @@ We can specialize \Cref{prp:monad-well-pointedness-torsionless-epi} with the imp
   \end{enumerate}
 \end{corollary}
 
+\begin{lemma}\label{double-dual-tensor-finitely-adequate}
+Let $A$ and $B$ be finitely adequate modules. Then $A \dbldualtensor B$ is finitely adequate.
+\end{lemma}
+
+\begin{proof}
+By \Cref{prp:fin-adeq-hom-closure} we have that $(A \otimes B)^\ast = \Hom_R(A,\Hom_R(B,R))$ is finitely adequate, and therefore so is $A \dbldualtensor B$.
+\end{proof}
+
 \begin{proposition}\label{prp:dbl-dual-tensor-factorization}
   Let $A$, $B$, and $C$ be finitely adequate modules. Then every map $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 \end{proposition}
 
 \begin{proof}
-  By \Cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if both $A \dbldualtensor B$ and $C$ are reflexive.
-  The module $C$ is reflexive by \Cref{thm:can-dual-iso}, as it is finitely adequate.
-  The double dual tensor product $A \dbldualtensor B$ is reflexive if $(A \otimes B)^\ast$ is reflexive by \Cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
-  Now, $(A \otimes B)^\ast = \Hom_R(A \otimes B, R) \simeq \Hom_R(A, B^\ast)$, which is reflexive by \Cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
+  By \Cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if both $A \dbldualtensor B$ and $C$ are reflexive. But $A \dbldualtensor B$ is finitely adequate by \Cref{double-dual-tensor-finitely-adequate} and $C$ is assumed finitely adequate, so we can conclude by \Cref{thm:can-dual-iso}.
+%  The module $C$ is reflexive by \Cref{thm:can-dual-iso}, as it is finitely adequate.
+%  The double dual tensor product $A \dbldualtensor B$ is reflexive if $(A \otimes B)^\ast$ is reflexive by \Cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
+%  Now, $(A \otimes B)^\ast = \Hom_R(A \otimes B, R) \simeq \Hom_R(A, B^\ast)$, which is reflexive by \Cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
 \end{proof}
 
 \begin{corollary}\label{cor:dbl-dual-tensor-adjunction}
@@ -940,7 +948,7 @@ In the current developement of synthetic algebraic geometry, this notion takes o
     \]
     commutes.
     We will denote both of these simply by $h \mapsto h(x)$.
-    It is, however, worthwhile to understand that, at least at this point, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective and jointly surjective.
+    It is, however, worthwhile to understand that, at least at this point, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective and jointly surjective. \rednote{A bit confusing, I guess what is means is that it is not clear whether $\ev_x \otimes \ev_x$ is jointly injective or jointly surjective?}
 
     \item[ii)] Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
     Then for a tensor $k = \sum_{j=1}^N m_j \otimes n_j : M \otimes_A N$ we have $k =_{M \otimes_A N} 0$ if and only if there merely exists a finitely generated submodule $M' \subseteq M$ such that $m_1,\dots,m_N \in M'$ and $k =_{M' \otimes_A N} 0$.
@@ -968,11 +976,11 @@ In the current developement of synthetic algebraic geometry, this notion takes o
   Let $k:\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$ such that $\vartheta_X(k)=0$.
   An element of a module being zero is a local property.
   Thus it is enough to find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ such that the image of $k$ in $(\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G))[a_i^{-1}]$ is $0$.
-  Because of the square above, it is then enough to verify $k|_{D(a_i)}=0$.
+  Because of the square above, it is then enough to verify $k|_{D(a_i)}=0$ \rednote{I don't understand what is meant here}.
   It is for this reason that in the following we may shrink $X$ whenever applying Zariski-local choice, instead of burdening notation by refining affine covers every time.
   In a first step we restrict to the case where $\mc F$ is pointwise finitely generated.
   Without loss of generality we may assume that we have a surjection $\pi : \mc O_X^n \to \mc F$ of bundles, whose kernel we denote by $\iota : \mc K \to \mc O_X^n$.
-  Since $X$ is affine and all bundles are weakly quasi-coherent, by \cite[Theorem 7.3.6]{draft} we get an induced exact sequence $0 \to \Gamma(X,\mc K) \to A^n \to \Gamma(X,\mc F) \to 0$ which yields a commutative diagram
+  Since $X$ is affine and all bundles are weakly quasi-coherent, by \cite[Theorem 7.3.6]{draft} we get an induced exact sequence $0 \to \Gamma(X,\mc K) \to A^n \to \Gamma(X,\mc F) \to 0$ which for all $x:X$ yields a commutative diagram
   \[
   \begin{tikzcd}
     \Gamma(X,\mc K) \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\iota) \otimes 1"] & A^n \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\pi) \otimes 1"]\ar[d, "\vartheta'_X", "\simeq"'] & \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G) \ar[r]\ar[d, "\vartheta_X"] & 0 \\
