@@ -15,7 +15,7 @@
 \RequirePackage{thmtools}
 
 % Verweise + Stichwortverzeicnis
-\RequirePackage[linkcolor=black, colorlinks=true, citecolor=black]{hyperref}
+\RequirePackage[linkcolor=black, colorlinks=true, citecolor=black,hypertexnames=false]{hyperref}
 \RequirePackage[hyphenbreaks]{breakurl}
 \RequirePackage{nameref,cleveref}
 
