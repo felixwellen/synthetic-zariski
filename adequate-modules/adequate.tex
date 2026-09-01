@@ -961,83 +961,75 @@ In the current developement of synthetic algebraic geometry, this notion takes o
   is an $R^X$-linear isomorphism.
 \end{lemma}
 
-\begin{remark}
-  In preparation of the proof we state two observations.
-  \begin{enumerate}
-    \item[i)] Both $\Gamma(X, \mc F \otimes \mc G)$ and $\Gamma(X, \mc F) \otimes_{R^X} \Gamma(X, \mc G)$ admit evaluation maps to $\mc F_x \otimes \mc G_x$, such that the triangle
-    \[
-      \begin{tikzcd}[column sep=tiny]
-        \Gamma(X, \mc F) \otimes_{R^X} \Gamma(X,\mc G) \ar[dr, "\ev_x \otimes \ev_x"'] \ar[rr, "\vartheta_X"] && \Gamma(X,\mc F \otimes \mc G) \ar[dl, "\ev_x"] \\
-      & \mc F_x \otimes \mc G_x &
-    \end{tikzcd}
-    \]
-    commutes.
-    We will denote both of these simply by $h \mapsto h(x)$.
-    It is, however, worthwhile to understand that, at least at this point, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective and jointly surjective. \rednote{A bit confusing, I guess what is means is that it is not clear whether $\ev_x \otimes \ev_x$ is jointly injective or jointly surjective?}
+For the proof we need the following vanishing criterion for tensors.
 
-    \item[ii)] Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
-    Then for a tensor $k = \sum_{j=1}^N m_j \otimes n_j : M \otimes_A N$ we have $k =_{M \otimes_A N} 0$ if and only if there merely exists a finitely generated submodule $M' \subseteq M$ such that $m_1,\dots,m_N \in M'$ and $k =_{M' \otimes_A N} 0$.
-    Note that $M'$ might be larger than $\langle m_1,\dots,m_N \rangle$.
-\end{enumerate}
+\begin{remark}
+  \label{null-tensor-criterion}
+  Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
+  For a tensor $k = \sum_{j=1}^n x_j \otimes y_j : M \otimes_A N$ we have $k = 0 : M \otimes_A N$ if and only if there merely are $p \geq n$, $q \geq 0$ together with elements $x_{n+1},\hdots,x_p : M$, $z_1,\hdots,z_q : N$ and a matrix $G : A^{p \times q}$, such that with
+  \begin{align*}
+    S &\equiv (x_1 \ \cdots \ x_p) : M^{1 \times p}, \\
+    T &\equiv (y_1 \ \cdots \ y_n \; 0 \ \cdots \ 0)^T : N^{p \times 1}, \\
+    U &\equiv (z_1 \ \cdots \ z_q)^T : N^{q \times 1}
+  \end{align*}
+  we have $SG = 0 : M^{1 \times q}$ and $GU = T : N^{p \times 1}$.
 \end{remark}
 
+For finitely generated $M$, this is the null-tensor lemma \cite[Lemma IV-4.14]{lombardi-quitte}.
+The arbitrary case follows from the criterion that $k=0 : M\otimes_A N$ if and only if, merely, there is a finitely generated submodule $M'\subseteq M$ containing $x_1,\ldots,x_n$ such that $k = 0 : M' \otimes_A N$; see also \cite[Exercise IV-4]{lombardi-quitte}.
 \begin{proof}
-  Say $X = \Spec A$ and let $a:A$ be arbitrary.
+  Say $X = \Spec A$.
+  We show injectivity of $\vartheta_X$ first.
+  Let us first explain how this is a local problem.
+  From commutative algebra we know that it is enough to find $a_1,\hdots,a_m:A$ with $(a_1,\hdots,a_m) = A$ such that $\vartheta_X[a_i^{-1}]$ is injective for all $i=1,\hdots,m$.
   As $\mc F$ and $\mc G$ are weakly quasi-coherent, we use \cite[Lemma 7.1.8]{draft} to see that the left vertical map in the commutative square
-  \[
-  \begin{tikzcd}[column sep=large]
-    \Gamma(X,\mc F)[a^{-1}] \otimes_{A[a^{-1}]} \Gamma(X,\mc G)[a^{-1}] \ar[d, "\simeq"]\ar[r, "\vartheta_X{[a^{-1}]}"]
+  \[ \begin{tikzcd}[column sep=large]
+    \Gamma(X,\mc F)[a_i^{-1}] \otimes_{A[a_i^{-1}]} \Gamma(X,\mc G)[a_i^{-1}] \ar[d, "\simeq"]\ar[r, "\vartheta_X{[a_i^{-1}]}"]
     &
-    \Gamma(X, \mc F \otimes \mc G)[a^{-1}] \ar[d]
+    \Gamma(X, \mc F \otimes \mc G)[a_i^{-1}] \ar[d]
     \\
-    \Gamma(D(a),\mc F) \otimes_{R^{D(a)}}\Gamma(D(a),\mc G) \ar[r, "\vartheta_{D(a)}"]
+    \Gamma(D(a_i),\mc F) \otimes_{R^{D(a_i)}}\Gamma(D(a_i),\mc G) \ar[r, "\vartheta_{D(a_i)}"]
     &
-    \Gamma(D(a),\mc F \otimes \mc G)
+    \Gamma(D(a_i),\mc F \otimes \mc G)
   \end{tikzcd}
   \]
   is an isomorphism.
+  Hence the injectivity of all $\vartheta_{D(a_i)}$ implies the injectivity of $\vartheta_X$.
+  Together with the fact that $(a_1,\hdots,a_m) = A$ if and only if $X = D(a_1) \cup \hdots \cup D(a_m)$, this means in particular that, for a given element of the kernel of $\vartheta_X$, it is enough to prove its vanishing after replacing $X$ by the members of a finite affine cover. We shall use this when invoking Zariski-local choice below.
 
-  We show injectivity of $\vartheta_X$ first.
-  Let $k:\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$ such that $\vartheta_X(k)=0$.
-  An element of a module being zero is a local property.
-  Thus it is enough to find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ such that the image of $k$ in $(\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G))[a_i^{-1}]$ is $0$.
-  Because of the square above, it is then enough to verify $k|_{D(a_i)}=0$ \rednote{I don't understand what is meant here}.
-  It is for this reason that in the following we may shrink $X$ whenever applying Zariski-local choice, instead of burdening notation by refining affine covers every time.
-  In a first step we restrict to the case where $\mc F$ is pointwise finitely generated.
-  Without loss of generality we may assume that we have a surjection $\pi : \mc O_X^n \to \mc F$ of bundles, whose kernel we denote by $\iota : \mc K \to \mc O_X^n$.
-  Since $X$ is affine and all bundles are weakly quasi-coherent, by \cite[Theorem 7.3.6]{draft} we get an induced exact sequence $0 \to \Gamma(X,\mc K) \to A^n \to \Gamma(X,\mc F) \to 0$ which for all $x:X$ yields a commutative diagram
+  Now let $k:\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$ be such an element, i.e.\ $\vartheta_X(k)=0$.
+  Merely, we may find $f_1,\hdots,f_n : \Gamma(X,\mc F)$ and $g_1,\hdots,g_n : \Gamma(X,\mc G)$ such that $k = \sum_{j=1}^n f_j \otimes_A g_j$ and $\sum_{j=1}^n f_j(x) \otimes g_j(x) = 0  : \mc F_x \otimes \mc G_x$ for all $x:X$.
+  By virtue of \Cref{null-tensor-criterion}, we merely get the datum
   \[
-  \begin{tikzcd}
-    \Gamma(X,\mc K) \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\iota) \otimes 1"] & A^n \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\pi) \otimes 1"]\ar[d, "\vartheta'_X", "\simeq"'] & \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G) \ar[r]\ar[d, "\vartheta_X"] & 0 \\
-    & \Gamma(X, \mc O_X^n \otimes \mc G) \ar[r, "\Gamma(\pi \otimes 1)"]\ar[d] & \Gamma(X, \mc F \otimes \mc G) \ar[d] \\
-    \mc K_x \otimes \mc G_x \ar[r, "\iota_x \otimes 1"] & R^n \otimes \mc G_x \ar[r, "\pi_x \otimes 1"] & \mc F_x \otimes \mc G_x \ar[r] & 0
-  \end{tikzcd}
+    p_x \geq n, \;\;
+    q_x \geq 0, \;\;
+    S_x : \mc F_x^{1 \times p_x}, \;\;
+    T_x : \mc G_x^{p_x \times 1}, \;\;
+    U_x : \mc G_x^{q_x \times 1}, \;\;
+    G_x : R^{p_x \times q_x},
   \]
-  with exact top and bottom row and where $\vartheta'_X$ is defined just like $\vartheta_X$.
-  The added benefit is however, that we easily see that $\vartheta'_X$ is an isomorphism.
-  Now choose a preimage $h : A^n \otimes_A \Gamma(X,\mc G)$ of $k$ along $\Gamma(\pi) \otimes 1$.
-  Then $\Gamma(\pi \otimes 1)(\vartheta'_X(h)) = \vartheta_X(k) = 0$ and thus also $(\pi_x \otimes 1)(\vartheta'_X(h)(x)) = 0$.
-  We thus merely find a preimage of $\vartheta'_X(h)(x)$ in $\mc K_x \otimes \mc G_x$ that is already given by a finite sum of elementary tensors.
-  Applying Zariski-local choice and then boundedness, we may shrink $X$ and assume that there are $k_1,\dots,k_N : \Gamma(X,\mc K)$ and $g_1,\dots,g_N : \Gamma(X,\mc G)$ such that $\vartheta'_X(h) = \vartheta'_X(\sum_{j=1}^N\iota(k_j) \otimes g_j)$.
-  As $\vartheta'_X$ is injective, we conclude that $h = \sum_{j=1}^N\iota(k_j) \otimes g_j$.
-  Consequently, we have $k = (\Gamma(\pi) \otimes 1)(h) = 0$.
-
-  Next let $\mc F$ be arbitrary.
-  We write $k = \sum_{j=1}^N f_j \otimes g_j$ for $f_j : \Gamma(X,\mc F)$ and $g_j : \Gamma(X,\mc G)$ such that $\sum_jf_j(x) \otimes g_j(x) =_{\mc F_x \otimes \mc G_x} 0$ for every $x:X$.
-  Hence there merely is a finitely generated submodule $\mc F'_x \subseteq \mc F_x$ such that $f_j(x) \in \mc F'_x$ and $\sum_jf_j(x) \otimes g_j(x) =_{\mc F'_x \otimes \mc G_x} 0$.
-  Shrinking $X$ we thus may assume that we have a pointwise finitely generated subbundle $\mc F' \subseteq \mc F$ such that $f_j \in \Gamma(X,\mc F')$.
-  Hence also $k' :\equiv \sum_j f_j \otimes g_j \in \Gamma(X, \mc F') \otimes_A \Gamma(X,\mc G)$.
-  Note that $\mc F'$ is again weakly quasi-coherent.
-  Thus the canonical map $\vartheta_X'' : \Gamma(X,\mc F') \otimes_A \Gamma(X,\mc G) \to \Gamma(X, \mc F' \otimes \mc G)$ is injective by the preceding case.
-  By definition, we have $\vartheta_X''(k') = 0$ and hence $k' = 0$.
-  Therefore also $k =_{\Gamma(X,\mc F) \otimes \Gamma(X,\mc G)} 0$.
+  such that $S_xG_x = 0$ and $G_xU_x = T_x$. Here, $S_x$, $T_x$ and $U_x$ are defined as in the remark.
+  Explicitly, the first $n$ entries of $S_x$ are $f_1(x), \hdots, f_n(x)$  and the remaining are supplied datum by the remark.
+  The first $n$ entries of $T_x$ are $g_1(x), \hdots, g_n(x)$ while the trailing entries are zero.
+  Using Zariski-local choice and boundedness \cite[Theorem 3.3.3]{draft}, while shrinking $X$ if necessary as explained in the first paragraph, we get integers $p \geq n$ and $q \geq 0$ together with $S : \Gamma(X, \mc F)^{1 \times p}$, $T : \Gamma(X, \mc G)^{p \times 1}$, $U : \Gamma(X, \mc G)^{q \times 1}$ and $G : \Gamma(X, R)^{p \times q} \simeq A^{p \times q}$ such that $SG = 0$ and $GU = T$.
+  By construction, the first $n$ entries of $S$ and $T$ are given by $f_1, \hdots, f_n$ and $g_1, \hdots, g_n$ respectively and the trailing entries of $T$ are zero.
+  Therefore the reverse implication of \Cref{null-tensor-criterion} gives that $k = \sum_{j=1}^n f_j \otimes g_j = 0$\footnote{
+    Alternatively, it is perhaps enlightening to do this calculation by foot:
+    \[
+      \textstyle
+      \sum_{j=1}^n f_j \otimes g_j = \sum_{i=1}^p S_i \otimes T_i = \sum_{i,k} S_i \otimes G_{ik}U_k = \sum_k(\sum_i S_iG_{ik}) \otimes U_k = 0 \rlap{.}
+    \]
+    This is essentially the proof of the reverse implication of the remark.
+  }.
 
   Lastly we verify surjectivity.
-  Let $s:\Gamma(X,\mc F \otimes \mc G)$.
+  Let $s:\Gamma(X,\mc F \otimes \mc G)$ and set $H :\equiv \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$.
   We know that $s(x) : \mc F_x \otimes \mc G_x$ merely is a finite sum of elementary tensors.
-  Applying Zariski-local choice with boundedness as per usual, we find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ together with sections $h_i : \Gamma(D(a_i), \mc F) \otimes_{R^{D(a_i)}} \Gamma(D(a_i),\mc G)$ such that $s|_{D(a_i)} = \vartheta_{D(a_i)}(h_i)$.
-  As we already know that $\vartheta_{D(a_ia_j)}$ is injective, we see $h_i|_{D(a_ia_j)} = h_j|_{D(a_ia_j)}$.
-  Using the first commutative square constructed in this proof, we can glue these to obtain a section $h : \Gamma(X, \mc F) \otimes_{R^{X}} \Gamma(X,\mc G)$ with $\vartheta_X(h) = s$.
+  Applying Zariski-local choice with boundedness again, we find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ together with sections $h_i : \Gamma(D(a_i), \mc F) \otimes_{R^{D(a_i)}} \Gamma(D(a_i),\mc G)$ such that $s|_{D(a_i)} = \vartheta_{D(a_i)}(h_i)$.
+  As above, let us identify $H[a^{-1}] \simeq \Gamma(D(a),\mc F) \otimes_{A[a^{-1}]} \Gamma(D(a), \mc G)$ for all $a:A$.
+  Then we regard $h_i$ as an element of $H[a_i^{-1}]$ and  the map $\vartheta_{D(a_ia_j)}$ is of type $H[(a_ia_j)^{-1}] \to \Gamma(D(a_ia_j),\mc F \otimes \mc G)$.
+  We have just verified that it is injective, thus the images of $h_i$ and $h_j$ in $H[(a_ia_j)^{-1}]$ agree and glue to an element $h : H$ with $\vartheta_X(h)|_{D(a_i)} = \vartheta_{D(a_i)}(h_i) = s|_{D(a_i)}$ for all $i$.
+  Therefore also $\vartheta_X(h) = s$.
 \end{proof}
 
 \begin{corollary}
