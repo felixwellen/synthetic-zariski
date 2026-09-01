@@ -11,7 +11,7 @@ This notion is not completely novel and has already been studied externally in~\
 \subsection{Finitely Adequate Modules Form an Abelian Category}
 
 In this subsection, we will show that the category of finitely adequate $R$-modules, denoted by $\finadeq$, is abelian.
-We begin by recounting the notion of quasi-coherence, introduced by Ingo Blechschmid~\cite{ingo-thesis}.
+We begin by recounting the notion of quasi-coherence, introduced by Ingo Blechschmidt~\cite{ingo-thesis}.
 For this, recall that for an $R$-module $M$ and a finitely presented $R$-algebra $A$, there is an evaluation map:
 \begin{align*}
   \ev : M \otimes A & \rightarrow M^{\Spec A} \\
@@ -24,12 +24,38 @@ For this, recall that for an $R$-module $M$ and a finitely presented $R$-algebra
   We say that $M$ is \notion{weakly quasi-coherent (wqc)} if this map is an equivalence for algebras of the form $R[r^{-1}]$, for each $r : R$.
 \end{definition}
 
+\begin{remark}\label{rem:wqc-abelian}
+  By \cite[Lemma 7.1.6 and Proposition 7.1.13]{draft}, wqc $R$-modules are closed under taking kernels and cokernels.
+  In particular, they form an abelian subcategory of $\modcat{R}$.
+\end{remark}
+
 \begin{lemma}\label{lem:qc-colimits}
   Quasi-coherent $R$-modules are closed under cokernels.
 \end{lemma}
 
 \begin{proof}
-  \rednote{Add proof here.}
+  Let $M$ and $N$ be quasi-coherent $R$-modules, $f : M \to N$ a linear map, $C \defeq \Cok(f)$, and $p : N \twoheadrightarrow C$ the canonical projection.
+  Our goal is to show that for any finitely presented $R$-algebra $A$, the map $\ev : C \otimes A \to C^{\Spec A}$ is an equivalence.
+  The map $\ev$ is induced by the universal property of $C \otimes A$ as a cokernel.
+  This is summarized by the following commutative diagram with exact rows:
+  \begin{center}
+    \begin{tikzcd}
+      M \otimes A \ar{r}{f \otimes A} \ar{d}{\simeq} & N \otimes A \ar{d}{\simeq} \ar[two heads]{r}{p \otimes A} & C \otimes A \ar[dashed]{d}{\ev} \\
+      M^{\Spec A} \ar{r}{f_\ast} & N^{\Spec A} \ar{r}{p_\ast} & C^{\Spec A}
+    \end{tikzcd}
+  \end{center}
+  By the universal property of the cokernel, $\ev$ is an isomorphism if and only if $p_\ast$ is an epimorphism.
+  Thus, it suffices to show that $p_\ast$ is an epimorphism.
+
+  Let $K \defeq \Im(f)$ and $i : K \hookrightarrow N$ be the canonical inclusion.
+  Now, $K$ is wqc by \Cref{rem:wqc-abelian}.
+  Considering the modules $K$, $N$, and $C$ as dependent modules over $A$, we get the following long exact sequence by taking cohomology:
+  \begin{center}
+    \begin{tikzcd}
+      K^{\Spec A} \ar[hook]{r}{i_\ast} & N^{\Spec A} \ar{r}{p_\ast} & C^{\Spec A} \ar{r}{\partial} & \mathrm{H}^1(\Spec A, K)
+    \end{tikzcd}
+  \end{center}
+  The map $p_\ast$ is an epimorphism, since $\mathrm{H}^1(\Spec A, K) = 0$ by \cite[Theorem 7.3.6]{draft}.
 \end{proof}
 
 \begin{remark}\label{rem:fp-is-qc}
@@ -43,11 +69,11 @@ We can show that quasi-coherent $R$-modules $Q$ are tangential by a direct compu
 
 \begin{lemma}\label{lem:disk-qc}
   Let $Q$ be a quasi-coherent $R$-module.
-  A pointed map $(Q,0)^{\D(n)}$ is an $n$-variate linear monomial with coefficients in $Q$. More precisely, the map $Q^n\to (Q,0)^{\D(n)}$ sending $(q_1,\dots,q_n)$ to $(\epsilon_1,\dots,\epsilon_n)\mapsto \sum_{i=0}^n\epsilon_iq_i$ is an equivalence. 
+  A pointed map $(Q,0)^{\D(n)}$ is an $n$-variate linear monomial with coefficients in $Q$. More precisely, the map $Q^n \to (Q,0)^{\D(n)}$ sending $(q_1,\dots,q_n)$ to $(\epsilon_1,\dots,\epsilon_n) \mapsto \sum_{i=1}^n \epsilon_i q_i$ is an equivalence.
 \end{lemma}
 
 \begin{proof}
-  By quasi-coherence, the map $Q^{n+1}\simeq Q \otimes \quot{R[x_1,\dots,x_n]}{\ideal{x_ix_j}} \to Q^{\D(n)}$ is an equivalence. We just need to check that maps with constant coefficient $0$ on the left correspond to maps such that $p(0)=0$ on the right. But indeed given a $p:Q^{\D(n)}$ we have that the corresponding constant coefficient is $p(0)$.
+  By quasi-coherence, the map $Q^n \simeq Q \otimes \quot{R[x_1,\dots,x_n]}{\ideal{x_ix_j}} \to Q^{\D(n)}$ is an equivalence. We just need to check that maps with constant coefficient $0$ on the left correspond to maps such that $p(0)=0$ on the right. But indeed given a $p:Q^{\D(n)}$ we have that the corresponding constant coefficient is $p(0)$.
 \end{proof}
 
 \begin{proposition}\label{prp:tangential-qc}
@@ -56,7 +82,7 @@ We can show that quasi-coherent $R$-modules $Q$ are tangential by a direct compu
 \end{proposition}
 
 \begin{proof}
-  The case $n=1$ in \Cref{lem:disk-qc} indeed give that $\can : Q\to\tangent{Q}{0}$ is an equivalence.
+  Taking $n=1$ in \Cref{lem:disk-qc} gives that $\can : Q\to\tangent{Q}{0}$ is an equivalence.
 \end{proof}
 
 \begin{corollary}\label{cor:inf-lin-qc}
@@ -180,12 +206,12 @@ Dually, finitely presented $R$-modules are closed under cokernels.
   By \Cref{lem:diff-ker-is-ker}, $K$ is also the kernel of a map $R^{m_1} \rightarrow R^{m_2 + n_1}$, so it is itself linearly adequate.
 \end{proof}
 
-\begin{corollary}\label{cor:lin-adeq-fp-thick}
+\begin{remark}\label{rem:lin-adeq-fp-thick}
   The above proposition, \Cref{prp:lin-adeq-ker-closure}, implies that linearly adequate modules are closed under direct summands.
   In fact, let $L$ be linearly adequate, and $M$ a summand of $L$, with projection $p : L \to M$ and inclusion $i : M \to L$.
   Then $M$ is given by the kernel of $\id_L - i \circ p$, so it is linearly adequate as well.
   Dually, finitely presented $R$-modules are also closed under direct summands.
-\end{corollary}
+\end{remark}
 
 \begin{lemma}\label{lem:ker-fp-is-cok-lin-adeq}
   If $f : M \to N$ is a map of finitely presented $R$-modules, then $\ker f$ is the cokernel of a map between linearly adequate $R$-modules.
@@ -225,7 +251,7 @@ By \Cref{lem:ker-fp-is-cok-lin-adeq}, this closure can be characterized symmetri
 \end{proposition}
 
 \begin{proof}
-  Every finitely presented $R$-module is quasi-coherent \rednote{I think we should give a reference or an explanation}.
+  Every finitely presented $R$-module is quasi-coherent by \Cref{rem:fp-is-qc}.
   Since every finitely adequate $R$-module is merely the kernel of a map between quasi-coherent modules, it is itself adequate.
   The rest follows from \Cref{prp:tangential-qc} and \Cref{prp:wqc-adeq}.
 \end{proof}
@@ -245,7 +271,7 @@ We will first characterize the projective and injective objects in $\finadeq$.
 \end{lemma}
 
 \begin{proof}
-  By \cite[Theorem 7.3.6]{draft} we have $H^1(L,M)=0$, since $L$, like any linearly adequate $R$-module, is an affine scheme. Indeed, it is the kernel of a linear map $f : R^m \to R^n$, and therefore the set of roots of a linear equation system.
+  By \cite[Theorem 7.3.6]{draft} we have $H^1(L,M)=0$, since $L$, like any linearly adequate $R$-module, is an affine scheme. Indeed, it is the kernel of a linear map $f : R^m \to R^n$, and therefore the set of roots of a system of linear equations.
 
   By definition, we have $H^1(L,M)=||L \to K(M,1)||_0$ and therefore $L \to K(M,1)$ is connected.
   For $b : B$, we let $E_b$ denote the fiber of $e$ over $b$.
@@ -278,7 +304,7 @@ We will first characterize the projective and injective objects in $\finadeq$.
   Assume now that $M$ is projective, and let $L$ be a linearly adequate module such that there is an epimorphism $p : L \twoheadrightarrow M$.
   As $M$ is projective, this epimorphism has a section $i : M \to L$ such that $p \circ i = \id_M$.
   Therefore, $M$ is a direct summand of $L$.
-  It now follows that $M$ is linearly adequate by \Cref{cor:lin-adeq-fp-thick}.
+  It now follows that $M$ is linearly adequate by \Cref{rem:lin-adeq-fp-thick}.
 \end{proof}
 
 \begin{lemma}\label{lem:fin-adeq-lift}
@@ -361,7 +387,7 @@ We will first characterize the projective and injective objects in $\finadeq$.
 
 Let $M$ be an $R$-module.
 There is a natural map $\ev : M \rightarrow M^{\ast\ast}$ that sends a term $m$ to $\ev_m(f) \defeq f(m)$.
-We say that $M$ is \notion{reflexive} is this map is an equivalence.
+We say that $M$ is \notion{reflexive} if this map is an equivalence.
 
 \begin{theorem}\label{thm:can-dual-iso}
   Every finitely adequate module is reflexive.
@@ -414,7 +440,7 @@ We get the following results following duality.
 \begin{center}
     \begin{tikzcd}
      P_1 \ar{r}\ar{d} & P_2\ar[two heads]{r}\ar{d} & M\ar{d}{f}\\
-     P_3  \ar{r}& P_4\ar[two heads]{r} & N 
+     P_3  \ar{r}& P_4\ar[two heads]{r} & N
     \end{tikzcd}
 \end{center}
 with $P_1,\dots,P_4$ finitely presented modules.
@@ -517,7 +543,7 @@ Is \Cref{prp:fin-adeq-hom-closure} better here or in the next subsection?}
   The functor $\hood{\argmhole}{1}$ of the previous proposition is full when restricted even further to linearly adequate $R$-modules.
   This, however, already fails on finitely adequate $R$-modules.
 
-  To see this, consider the modules $(\varepsilon)$ for every $\varepsilon:\D(1)$. We have that $(\varepsilon) = \hood{(\varepsilon),0}{1}$, so that the functor $\hood{\argmhole}{1}$ acts as identity on maps between such modules. So if $\hood{\argmhole}{1}$ is full on finitely adequate modules, then any pointed map from $((\varepsilon),0)$ to itself is linear. Let us consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$. These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$. If $\alpha_\varepsilon$ is linear then for all $r:R$ we have that $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence that $(r^2-r)\varepsilon=0$. By duality this implies that $\varepsilon=0$. So we see that every $\alpha_\varepsilon$ being linear implies $\D(1)=0$, a contradiction.
+  To see this, consider the modules $(\varepsilon)$ for every $\varepsilon:\D(1)$. We have that $(\varepsilon) = \hood{(\varepsilon),0}{1}$, so that the functor $\hood{\argmhole}{1}$ acts as the identity on maps between such modules. So if $\hood{\argmhole}{1}$ is full on finitely adequate modules, then any pointed map from $((\varepsilon),0)$ to itself is linear. Let us consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$. These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$. If $\alpha_\varepsilon$ is linear then for all $r:R$ we have that $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence that $(r^2-r)\varepsilon=0$. By duality this implies that $\varepsilon=0$. So we see that every $\alpha_\varepsilon$ being linear implies $\D(1)=0$, a contradiction.
 \end{remark}
 
 Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$, meaning that finitely adequate modules are stable under extension. We need two auxiliary results.
@@ -561,7 +587,7 @@ Finding a splitting amounts to showing that any lifting problem:
   where $L$ is finitely adequate and $B \defeq \Ker(p)$ is finitely adequate, merely has a linear solution.
   Observe that $E$ is tangential by \Cref{prp:op-closure-inf-lin-tangential}, since $B$ and $L$ are tangential by \Cref{prp:adeq-tangential}.
   $B$ is also wqc by \Cref{prp:wqc-adeq}.
-  Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}. Once we have a splitting we get $E=B \oplus L$ which is indeed finitely adequate.
+  Thus the lifting problem has a solution by \Cref{lem:lin-adeq-lift}. Once we have a splitting, we get $E=B \oplus L$ which is indeed finitely adequate.
 \end{proof}
 
 \begin{theorem}\label{thm:fin-adeq-ext-closed}
@@ -582,7 +608,7 @@ Finding a splitting amounts to showing that any lifting problem:
       E \ar{r} & A
     \end{tikzcd}
   \end{center}
-  By \Cref{lem:fin-adeq-ext-pb-red} is is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so we have a new extension problem:
+  By \Cref{lem:fin-adeq-ext-pb-red} it is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so we have a new extension problem:
     \begin{center}
     \begin{tikzcd}
       B \ar[hook]{r} & p^*E \ar[two heads]{r} & L
@@ -684,50 +710,74 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
 \subsection{The Closed Symmetric Monoidal Structure}
 
 In this subsection, we show that the category $\finadeq$ of finitely adequate $R$-modules carries a closed symmetric monoidal structure.
-To construct this structure, we first establish that $\finadeq$ is closed under taking internal homs—that is, the module of homomorphisms between any two finitely adequate modules is itself finitely adequate.
+To construct this structure, we first establish that $\finadeq$ is closed under taking homs.
+Namely, we first want to show that the module of homomorphisms between any two finitely adequate modules is itself finitely adequate.
+We will start with the following lemmas.
+
+\begin{lemma}\label{lem:fp-tensor-fp}
+  Let $M$ and $N$ be finitely presented $R$-modules.
+  The module $M \otimes N$ is also finitely presented.
+\end{lemma}
+
+\begin{proof}
+  Since we want to prove a proposition, we can let $p : R^{m_2} \to R^{m_1}$ be a linear map such that $M = \Cok(p)$.
+  By taking tensors we get that $M \otimes N$ is the cokernel of $p \otimes N : R^{m_2} \otimes N \to R^{m_1} \otimes N$.
+  The domain and codomain of $p \otimes N$ are finitely presented, so $M \otimes N$ is finitely presented as well.
+\end{proof}
+
+\begin{lemma}\label{lem:lin-adeq-fp-hom-fp}
+  Let $L$ be linearly adequate and $P$ be finitely presented.
+  The module $\Hom_R(L,P)$ is finitely presented.
+\end{lemma}
+
+\begin{proof}
+  By \Cref{identification-hom-tensor-for-fp-modules}, we have the following chain of equivalences:
+  \begin{equation*}
+    \Hom_R(L,P) \cong \Hom_R(L^{\ast\ast},P) \cong L^\ast \otimes P\textup{.}
+  \end{equation*}
+  By \Cref{lem:fp-tensor-fp}, we get that $\Hom_R(L,P)$ is finitely presented, as $L^\ast$ and $P$ are so.
+\end{proof}
 
 \begin{proposition}\label{prp:fin-adeq-hom-closure}
-  For finitely adequate $R$-modules $M$ and $N$, $\Hom_R(M,N)$ is a finitely adequate $R$-module as well.
+  Let $M$ and $N$ be finitely adequate modules.
+  The module $\Hom_R(M,N)$ is finitely adequate as well.
 \end{proposition}
 
 \begin{proof}
-  The proof in \cite[Chapter IV, 4.12]{lombardi-quitte} works, if ``coherent'' is replaced by ``finitely adequate''.
+  Since we're proving a proposition, we can let $l : L_2 \to L_1$ be a presentation of $M$, and $p : P_1 \to P_2$ be a copresentation of $N$.
+  Since hom is left-exact, we get the following diagram with exact rows and columns:
+  \begin{center}
+    \begin{tikzcd}
+      & \Hom_R(L_1,P_2) \ar{r}{l^\ast} & \Hom_R(L_2,P_2) \\
+      & \Hom_R(L_1,P_1) \ar{r}{l^\ast} \ar{u}{p_\ast} & \Hom_R(L_2,P_1) \ar{u}{p_\ast} \\
+      \Hom_R(M,N) \ar[hook]{r} & \Hom_R(L_1,N) \ar{r}{l^\ast} \ar[hook]{u} & \Hom_R(L_2,N) \ar[hook]{u}
+    \end{tikzcd}
+  \end{center}
 
-  First we use their proof to show that for finitely presented $R$-modules $M$ and $N$, the $R$-module $\Hom_R(M,N)$ is finitely adequate. Morphisms $f: M \to N$ are presented by squares:
-  \begin{center}
-    \begin{tikzcd}
-      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \\
-      R^n\ar{r} & R^{n'}
-    \end{tikzcd}
-  \end{center}
-  So we have a finite free module of pairs of morphisms $(\varphi,\psi)$ and a submodule of pairs such that the square above commutes.
-  This submodule $S$ is the kernel of a linear map and therefore finitely adequate.
-  We have a surjection $\pi : S \to \Hom_R(M,N)$, so $\Hom_R(M,N)$ is finitely adequate if $\pi$ is a cokernel of a map of finitely adequate $R$-modules.
-  This is the case, since there is a surjection onto $\Ker{\pi}$ from the finite free $R$-module of linear maps which split the square:
-  \begin{center}
-    \begin{tikzcd}
-      R^m \ar{r} \ar{d}{\varphi} & R^{m'} \ar{d}{\psi} \ar{ld}{s} \\
-      R^n \ar{r} & R^{n'}
-    \end{tikzcd}
-  \end{center}
-  Then we can reuse the same argument to show the statement of the proposition. \rednote{I guess what is meant is the dual of the argument?}
+  Now, by \Cref{lem:diff-ker-is-ker}, we see that $\Hom_R(M,N)$ is the kernel of
+  \[
+    (p_\ast, l^\ast) : \Hom_R(L_1,P_1) \to \Hom_R(L_1,P_2) \oplus \Hom_R(L_2,P_1).
+  \]
+  The modules $\Hom_R(L_i,P_j)$ are finitely presented by \Cref{lem:lin-adeq-fp-hom-fp} for all $i,j \in \{1,2\}$.
+  Thus, $\Hom_R(M,N)$ is finitely adequate as it is the kernel of a map between finitely presented modules.
 \end{proof}
 
-Having established that $\Hom_R(-,-)$ serves as an internal Hom for $\finadeq$, it remains to find its left adjoint monoidal product.
-In general, the ordinary tensor product $M \otimes N$ of linearly (or finitely) adequate modules fails to be finitely adequate (see \Cref{cex:tensor-not-closed}).
-This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely presented.
+Knowing that hom is closed in the category $\finadeq$, it now remains to find the left adjoint of this functor.
+Naturally, we start by considering the tensor product of two finitely adequate modules $M$ and $N$.
+However, even taking the tensor product $M \otimes N$ of linearly adequate modules (which is a stronger condition) fails to be finitely adequate (see \Cref{cex:tensor-not-closed}).
+This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely adequate (see \Cref{lem:fp-tensor-fp} for the case where both are finitely presented).
 
-Somewhat surprisingly, the internal hom still admits a left adjoint in $\finadeq$.
+Somewhat surprisingly, the hom functor still admits a left adjoint in $\finadeq$.
 We will show that this adjoint is given by the \notion{double-dual tensor product}
 \[
   M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}.
 \]
 By the standard hom-tensor adjunction, there is already a natural isomorphism $\Hom_R(A, \Hom_R(B, C)) \simeq \Hom_R(A \otimes B, C)$.
-Thus, proving that $(-\dbldualtensor-)$ is the internal left adjoint reduces to verifying that the canonical evaluation map $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$ induces a natural isomorphism
+Thus, proving that $(-\dbldualtensor-)$ is the internal left adjoint reduces to verifying that given $A$ and $B$ finitely adequate, we have that $A\dbldualtensor B$ is finitely adequate and that the canonical evaluation map $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$ induces an isomorphism
 \[
   \ev_{A \otimes B}^\ast : \Hom_R(A \dbldualtensor B, C) \xrightarrow{\;\simeq\;} \Hom_R(A \otimes B, C)
 \]
-for all finitely adequate modules $A$, $B$, and $C$.
+for each finitely adequate module $C$.
 The composite of these natural isomorphisms yields the desired natural isomorphism $\Hom_R(A \dbldualtensor B, C) \simeq \Hom_R(A, \Hom_R(B, C))$.
 It is clear that $\ev_{A \otimes B}^\ast$ is natural in all three arguments.
 Now, $\ev_{A \otimes B}^\ast$ is an isomorphism precisely when every morphism $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
@@ -773,10 +823,11 @@ The next result is similar to Proposition 4.2.3 of Borceux~\cite{Borceux_1994_II
 
 \begin{proof}
   (i) $\Rightarrow$ (iii): Assume that $TX$ is $T$-reflexive, i.e., that $\eta_{TX}$ is an isomorphism.
-  Then $T\eta_X$ is an isomorphism as well, since $T\eta_X$ is a section of $\mu_X$.
+  Then $\mu_X$ is an isomorphism, since it is a retraction of $\eta_{TX}$,
+  and $T\eta_X$ is an isomorphism, since it is a section of $\mu_X$.
   Consider two morphisms $f, g : TX \to Y$, where $Y$ is $T$-torsionless and $f \circ \eta_X = g \circ \eta_X$.
   By applying $T$ to this equality, we obtain $Tf \circ T\eta_X = Tg \circ T\eta_X$.
-  Thus, $Tf = Tg$ since $T\eta_X$ is an epimorphism.
+  Thus, $Tf = Tg$ since $T\eta_X$ is an isomorphism.
   By naturality of $\eta$, we have $\eta_Y \circ f = Tf \circ \eta_{TX} = Tg \circ \eta_{TX} = \eta_Y \circ g$.
   Since $Y$ is $T$-torsionless, $\eta_Y$ is a monomorphism and thus $f = g$.
 
@@ -869,15 +920,23 @@ We can specialize \Cref{prp:monad-well-pointedness-torsionless-epi} with the imp
   \end{enumerate}
 \end{corollary}
 
+\begin{lemma}\label{double-dual-tensor-finitely-adequate}
+Let $A$ and $B$ be finitely adequate modules. Then $A \dbldualtensor B$ is finitely adequate.
+\end{lemma}
+
+\begin{proof}
+By \Cref{prp:fin-adeq-hom-closure} we have that $(A \otimes B)^\ast = \Hom_R(A,\Hom_R(B,R))$ is finitely adequate, and therefore so is $A \dbldualtensor B$.
+\end{proof}
+
 \begin{proposition}\label{prp:dbl-dual-tensor-factorization}
   Let $A$, $B$, and $C$ be finitely adequate modules. Then every map $f : A \otimes B \to C$ factors uniquely through $\ev_{A \otimes B} : A \otimes B \to A \dbldualtensor B$.
 \end{proposition}
 
 \begin{proof}
-  By \Cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if both $A \dbldualtensor B$ and $C$ are reflexive.
-  The module $C$ is reflexive by \Cref{thm:can-dual-iso}, as it is finitely adequate.
-  The double dual tensor product $A \dbldualtensor B$ is reflexive if $(A \otimes B)^\ast$ is reflexive by \Cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
-  Now, $(A \otimes B)^\ast = \Hom_R(A \otimes B, R) \simeq \Hom_R(A, B^\ast)$, which is reflexive by \Cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
+  By \Cref{prp:monad-factorization}, we see that $f$ factors uniquely through $\ev_{A \otimes B}$ if both $A \dbldualtensor B$ and $C$ are reflexive. But $A \dbldualtensor B$ is finitely adequate by \Cref{double-dual-tensor-finitely-adequate} and $C$ is assumed finitely adequate, so we can conclude by \Cref{thm:can-dual-iso}.
+%  The module $C$ is reflexive by \Cref{thm:can-dual-iso}, as it is finitely adequate.
+%  The double dual tensor product $A \dbldualtensor B$ is reflexive if $(A \otimes B)^\ast$ is reflexive by \Cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
+%  Now, $(A \otimes B)^\ast = \Hom_R(A \otimes B, R) \simeq \Hom_R(A, B^\ast)$, which is reflexive by \Cref{prp:fin-adeq-hom-closure} since $A$ and $B$ are finitely adequate.
 \end{proof}
 
 \begin{corollary}\label{cor:dbl-dual-tensor-adjunction}
@@ -902,83 +961,75 @@ In the current developement of synthetic algebraic geometry, this notion takes o
   is an $R^X$-linear isomorphism.
 \end{lemma}
 
-\begin{remark}
-  In preparation of the proof we state two observations.
-  \begin{enumerate}
-    \item[i)] Both $\Gamma(X, \mc F \otimes \mc G)$ and $\Gamma(X, \mc F) \otimes_{R^X} \Gamma(X, \mc G)$ admit evaluation maps to $\mc F_x \otimes \mc G_x$, such that the triangle
-    \[
-      \begin{tikzcd}[column sep=tiny]
-        \Gamma(X, \mc F) \otimes_{R^X} \Gamma(X,\mc G) \ar[dr, "\ev_x \otimes \ev_x"'] \ar[rr, "\vartheta_X"] && \Gamma(X,\mc F \otimes \mc G) \ar[dl, "\ev_x"] \\
-      & \mc F_x \otimes \mc G_x &
-    \end{tikzcd}
-    \]
-    commutes.
-    We will denote both of these simply by $h \mapsto h(x)$.
-    It is however worthwhile to understand that, at least at this point, it is only clear that the evaluations of $\Gamma(X, \mc F \otimes \mc G)$ are jointly injective and jointly surjective.
+For the proof we need the following vanishing criterion for tensors.
 
-    \item[ii)] Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
-    Then for a tensor $k = \sum_{j=1}^N m_j \otimes n_j : M \otimes_A N$ we have $k =_{M \otimes_A N} 0$ if and only if there merely exists a finitely generated submodule $M' \subseteq M$ such that $m_1,\dots,m_N \in M'$ and $k =_{M' \otimes_A N} 0$.
-    Note that $M'$ might be larger than $\langle m_1,\dots,m_N \rangle$.
-\end{enumerate}
+\begin{remark}
+  \label{null-tensor-criterion}
+  Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
+  For a tensor $k = \sum_{j=1}^n x_j \otimes y_j : M \otimes_A N$ we have $k = 0 : M \otimes_A N$ if and only if there merely are $p \geq n$, $q \geq 0$ together with elements $x_{n+1},\hdots,x_p : M$, $z_1,\hdots,z_q : N$ and a matrix $G : A^{p \times q}$, such that with
+  \begin{align*}
+    S &\equiv (x_1 \ \cdots \ x_p) : M^{1 \times p}, \\
+    T &\equiv (y_1 \ \cdots \ y_n \; 0 \ \cdots \ 0)^T : N^{p \times 1}, \\
+    U &\equiv (z_1 \ \cdots \ z_q)^T : N^{q \times 1}
+  \end{align*}
+  we have $SG = 0 : M^{1 \times q}$ and $GU = T : N^{p \times 1}$.
 \end{remark}
 
+For finitely generated $M$, this is the null-tensor lemma \cite[Lemma IV-4.14]{lombardi-quitte}.
+The arbitrary case follows from the criterion that $k=0 : M\otimes_A N$ if and only if, merely, there is a finitely generated submodule $M'\subseteq M$ containing $x_1,\ldots,x_n$ such that $k = 0 : M' \otimes_A N$; see also \cite[Exercise IV-4]{lombardi-quitte}.
 \begin{proof}
-  Say $X = \Spec A$ and let $a:A$ be arbitrary.
+  Say $X = \Spec A$.
+  We show injectivity of $\vartheta_X$ first.
+  Let us first explain how this is a local problem.
+  From commutative algebra we know that it is enough to find $a_1,\hdots,a_m:A$ with $(a_1,\hdots,a_m) = A$ such that $\vartheta_X[a_i^{-1}]$ is injective for all $i=1,\hdots,m$.
   As $\mc F$ and $\mc G$ are weakly quasi-coherent, we use \cite[Lemma 7.1.8]{draft} to see that the left vertical map in the commutative square
-  \[
-  \begin{tikzcd}[column sep=large]
-    \Gamma(X,\mc F)[a^{-1}] \otimes_{A[a^{-1}]} \Gamma(X,\mc G)[a^{-1}] \ar[d, "\simeq"]\ar[r, "\vartheta_X{[a^{-1}]}"]
+  \[ \begin{tikzcd}[column sep=large]
+    \Gamma(X,\mc F)[a_i^{-1}] \otimes_{A[a_i^{-1}]} \Gamma(X,\mc G)[a_i^{-1}] \ar[d, "\simeq"]\ar[r, "\vartheta_X{[a_i^{-1}]}"]
     &
-    \Gamma(X, \mc F \otimes \mc G)[a^{-1}] \ar[d]
+    \Gamma(X, \mc F \otimes \mc G)[a_i^{-1}] \ar[d]
     \\
-    \Gamma(D(a),\mc F) \otimes_{R^{D(a)}}\Gamma(D(a),\mc G) \ar[r, "\vartheta_{D(a)}"]
+    \Gamma(D(a_i),\mc F) \otimes_{R^{D(a_i)}}\Gamma(D(a_i),\mc G) \ar[r, "\vartheta_{D(a_i)}"]
     &
-    \Gamma(D(a),\mc F \otimes \mc G)
+    \Gamma(D(a_i),\mc F \otimes \mc G)
   \end{tikzcd}
   \]
   is an isomorphism.
+  Hence the injectivity of all $\vartheta_{D(a_i)}$ implies the injectivity of $\vartheta_X$.
+  Together with the fact that $(a_1,\hdots,a_m) = A$ if and only if $X = D(a_1) \cup \hdots \cup D(a_m)$, this means in particular that, for a given element of the kernel of $\vartheta_X$, it is enough to prove its vanishing after replacing $X$ by the members of a finite affine cover. We shall use this when invoking Zariski-local choice below.
 
-  We show injectivity of $\vartheta_X$ first.
-  Let $k:\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$ such that $\vartheta_X(k)=0$.
-  An element of a module being zero is a local property.
-  Thus it is enough to find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ such that the image of $k$ in $(\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G))[a_i^{-1}]$ is $0$.
-  Because of the square above, it is then enough to verify $k|_{D(a_i)}=0$.
-  It is for this reason that in the following we may shrink $X$ whenever applying Zariski-local choice, instead of burdening notation by refining affine covers every time.
-  In a first step we restrict to the case where $\mc F$ is pointwise finitely generated.
-  Without loss of generality we may assume that we have a surjection $\pi : \mc O_X^n \to \mc F$ of bundles, whose kernel we denote by $\iota : \mc K \to \mc O_X^n$.
-  Since $X$ is affine and all bundles are weakly quasi-coherent, by \cite[Theorem 7.3.6]{draft} we get an induced exact sequence $0 \to \Gamma(X,\mc K) \to A^n \to \Gamma(X,\mc F) \to 0$ which yields a commutative diagram
+  Now let $k:\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$ be such an element, i.e.\ $\vartheta_X(k)=0$.
+  Merely, we may find $f_1,\hdots,f_n : \Gamma(X,\mc F)$ and $g_1,\hdots,g_n : \Gamma(X,\mc G)$ such that $k = \sum_{j=1}^n f_j \otimes_A g_j$ and $\sum_{j=1}^n f_j(x) \otimes g_j(x) = 0  : \mc F_x \otimes \mc G_x$ for all $x:X$.
+  By virtue of \Cref{null-tensor-criterion}, we merely get the datum
   \[
-  \begin{tikzcd}
-    \Gamma(X,\mc K) \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\iota) \otimes 1"] & A^n \otimes_A \Gamma(X,\mc G) \ar[r, "\Gamma(\pi) \otimes 1"]\ar[d, "\vartheta'_X", "\simeq"'] & \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G) \ar[r]\ar[d, "\vartheta_X"] & 0 \\
-    & \Gamma(X, \mc O_X^n \otimes \mc G) \ar[r, "\Gamma(\pi \otimes 1)"]\ar[d] & \Gamma(X, \mc F \otimes \mc G) \ar[d] \\
-    \mc K_x \otimes \mc G_x \ar[r, "\iota_x \otimes 1"] & R^n \otimes \mc G_x \ar[r, "\pi_x \otimes 1"] & \mc F_x \otimes \mc G_x \ar[r] & 0
-  \end{tikzcd}
+    p_x \geq n, \;\;
+    q_x \geq 0, \;\;
+    S_x : \mc F_x^{1 \times p_x}, \;\;
+    T_x : \mc G_x^{p_x \times 1}, \;\;
+    U_x : \mc G_x^{q_x \times 1}, \;\;
+    G_x : R^{p_x \times q_x},
   \]
-  with exact top and bottom row and where $\vartheta'_X$ is defined just like $\vartheta_X$.
-  The added benefit is however, that we easily see that $\vartheta'_X$ is an isomorphism.
-  Now choose a preimage $h : A^n \otimes_A \Gamma(X,\mc G)$ of $k$ along $\Gamma(\pi) \otimes 1$.
-  Then $\Gamma(\pi \otimes 1)(\vartheta'_X(h)) = \vartheta_X(k) = 0$ and thus also $(\pi_x \otimes 1)(\vartheta'_X(h)(x)) = 0$.
-  We thus merely find a preimage of $\vartheta'_X(h)(x)$ in $\mc K_x \otimes \mc G_x$ that is already given by a finite sum of elementary tensors.
-  Applying Zariski-local choice and then boundedness, we may shrink $X$ and assume that there are $k_1,\dots,k_N : \Gamma(X,\mc K)$ and $g_1,\dots,g_N : \Gamma(X,\mc G)$ such that $\vartheta'_X(h) = \vartheta'_X(\sum_{j=1}^N\iota(k_j) \otimes g_j)$.
-  As $\vartheta'_X$ is injective, we conclude that $h = \sum_{j=1}^N\iota(k_j) \otimes g_j$.
-  Consequently, we have $k = (\Gamma(\pi) \otimes 1)(h) = 0$.
-
-  Next let $\mc F$ be arbitrary.
-  We write $k = \sum_{j=1}^N f_j \otimes g_j$ for $f_j : \Gamma(X,\mc F)$ and $g_j : \Gamma(X,\mc G)$ such that $\sum_jf_j(x) \otimes g_j(x) =_{\mc F_x \otimes \mc G_x} 0$ for every $x:X$.
-  Hence there merely is a finitely generated submodule $\mc F'_x \subseteq \mc F_x$ such that $f_j(x) \in \mc F'_x$ and $\sum_jf_j(x) \otimes g_j(x) =_{\mc F'_x \otimes \mc G_x} 0$.
-  Shrinking $X$ we thus may assume that we have a pointwise finitely generated subbundle $\mc F' \subseteq \mc F$ such that $f_j \in \Gamma(X,\mc F')$.
-  Hence also $k' :\equiv \sum_j f_j \otimes g_j \in \Gamma(X, \mc F') \otimes_A \Gamma(X,\mc G)$.
-  Note that $\mc F'$ is again weakly quasi-coherent.
-  Thus the canonical map $\vartheta_X'' : \Gamma(X,\mc F') \otimes_A \Gamma(X,\mc G) \to \Gamma(X, \mc F' \otimes \mc G)$ is injective by the preceeding case.
-  By definition, we have $\vartheta_X''(k') = 0$ and hence $k' = 0$.
-  Therefore also $k =_{\Gamma(X,\mc F) \otimes \Gamma(X,\mc G)} 0$.
+  such that $S_xG_x = 0$ and $G_xU_x = T_x$. Here, $S_x$, $T_x$ and $U_x$ are defined as in the remark.
+  Explicitly, the first $n$ entries of $S_x$ are $f_1(x), \hdots, f_n(x)$  and the remaining are supplied datum by the remark.
+  The first $n$ entries of $T_x$ are $g_1(x), \hdots, g_n(x)$ while the trailing entries are zero.
+  Using Zariski-local choice and boundedness \cite[Theorem 3.3.3]{draft}, while shrinking $X$ if necessary as explained in the first paragraph, we get integers $p \geq n$ and $q \geq 0$ together with $S : \Gamma(X, \mc F)^{1 \times p}$, $T : \Gamma(X, \mc G)^{p \times 1}$, $U : \Gamma(X, \mc G)^{q \times 1}$ and $G : \Gamma(X, R)^{p \times q} \simeq A^{p \times q}$ such that $SG = 0$ and $GU = T$.
+  By construction, the first $n$ entries of $S$ and $T$ are given by $f_1, \hdots, f_n$ and $g_1, \hdots, g_n$ respectively and the trailing entries of $T$ are zero.
+  Therefore the reverse implication of \Cref{null-tensor-criterion} gives that $k = \sum_{j=1}^n f_j \otimes g_j = 0$\footnote{
+    Alternatively, it is perhaps enlightening to do this calculation by foot:
+    \[
+      \textstyle
+      \sum_{j=1}^n f_j \otimes g_j = \sum_{i=1}^p S_i \otimes T_i = \sum_{i,k} S_i \otimes G_{ik}U_k = \sum_k(\sum_i S_iG_{ik}) \otimes U_k = 0 \rlap{.}
+    \]
+    This is essentially the proof of the reverse implication of the remark.
+  }.
 
   Lastly we verify surjectivity.
-  Let $s:\Gamma(X,\mc F \otimes \mc G)$.
+  Let $s:\Gamma(X,\mc F \otimes \mc G)$ and set $H :\equiv \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$.
   We know that $s(x) : \mc F_x \otimes \mc G_x$ merely is a finite sum of elementary tensors.
-  Applying Zariski-local choice with boundedness as per usual, we find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ together with sections $h_i : \Gamma(D(a_i), \mc F) \otimes_{R^{D(a_i)}} \Gamma(D(a_i),\mc G)$ such that $s|_{D(a_i)} = \vartheta_{D(a_i)}(h_i)$.
-  As we already know that $\vartheta_{D(a_ia_j)}$ is injective, we see $h_i|_{D(a_ia_j)} = h_j|_{D(a_ia_j)}$.
-  Using the first commutative square constructed in this proof, we can glue these to obtain a section $h : \Gamma(X, \mc F) \otimes_{R^{X}} \Gamma(X,\mc G)$ with $\vartheta_X(h) = s$.
+  Applying Zariski-local choice with boundedness again, we find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ together with sections $h_i : \Gamma(D(a_i), \mc F) \otimes_{R^{D(a_i)}} \Gamma(D(a_i),\mc G)$ such that $s|_{D(a_i)} = \vartheta_{D(a_i)}(h_i)$.
+  As above, let us identify $H[a^{-1}] \simeq \Gamma(D(a),\mc F) \otimes_{A[a^{-1}]} \Gamma(D(a), \mc G)$ for all $a:A$.
+  Then we regard $h_i$ as an element of $H[a_i^{-1}]$ and  the map $\vartheta_{D(a_ia_j)}$ is of type $H[(a_ia_j)^{-1}] \to \Gamma(D(a_ia_j),\mc F \otimes \mc G)$.
+  We have just verified that it is injective, thus the images of $h_i$ and $h_j$ in $H[(a_ia_j)^{-1}]$ agree and glue to an element $h : H$ with $\vartheta_X(h)|_{D(a_i)} = \vartheta_{D(a_i)}(h_i) = s|_{D(a_i)}$ for all $i$.
+  Therefore also $\vartheta_X(h) = s$.
 \end{proof}
 
 \begin{corollary}
