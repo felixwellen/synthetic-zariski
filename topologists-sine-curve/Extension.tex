@@ -1,0 +1,70 @@
+There are many classical uniformly continuous functions we would like to work with in the setting of SSD. In this section, we will show that most reasonable known uniformly continuous functions can be defined in the setting of SSD. 
+
+\begin{definition}
+  Let $i:A \to X$ and $f:A \to B$. We say that $f$ is \textbf{uniformly continuous relative to} $i$ if for any entourage $E$ of $B$ there is an entourage $F$ of $A$ such that $(i\times i)^{-1}(F) \subseteq (f \times f)^{-1}(B)$. 
+\end{definition}
+
+\begin{lemma}\label{compRelUniform}
+  If in the following diagram $f$ is uniformly continuous relative to $i$, then so is $g \circ f$:
+  \begin{equation}
+    \begin{tikzcd}
+      A \arrow[d,"i"]\arrow[r,"f"]& B \arrow[r,"g"]& C \\ 
+      X
+    \end{tikzcd}
+  \end{equation}
+\end{lemma}
+
+
+\begin{lemma}\label{EntouragesStone}
+  Let $S:\Stone$. Let $E$ be an entourage of $S$. Then there exists a finite partition $(D_i)_{i:I}$ of $S$ into decidable subsets of $S$ such that $\bigcup_{i:I}D_i \times D_i \subseteq E$. 
+\end{lemma}
+
+\subsubsection{Stone spaces}
+\begin{lemma}\label{UniformDecidableExtension}
+  Let $S:\Stone$ and $Q\subseteq S$ dense. Let $D:Q \to 2$ be relatively uniformly continuous. Then there is an extension $D' : S \to 2$ such that $D = D' \cap Q$. 
+\end{lemma}
+\begin{proof}
+  Assume $D:Q \to 2$ relatively uniformly continuous. Note that $\#D = D^{-1}(\Delta)$ and thus there is an entourage $E$ of $S$ such that $E \cap (Q \times Q) \subseteq \#D$. By \Cref{EntouragesStone}, we may assume $E = \bigcup_{i:I} E_i \times E_i$ for some finite partition of decidables $E_i:2^S$. 
+  Now we will define $D':2^S$. Let $s:S$, then there is an unique $i:I$ with $E_i(s)$. 
+  This $E_i$ is inhabited and decidable, hence open, hence intersects $Q$. 
+  Note that if $q,q':Q\cap E_i$, then $(q,q')\in E_i \times E_i \subseteq \#D$, hence $D(q) = D(q')$. 
+  Therefore we can define $D'(s) = D(q)$ for any such $q$. 
+  It is immediate that for $q:Q$, $D'(q) = D(q)$, hence $D'$ extends $Q$ as required. 
+\end{proof}
+
+\begin{lemma}\label{UniformDecidableUniqueExtension}
+  Let $S:\Stone$ and $Q\subseteq S$ be dense. Then $2^S \to 2^Q$ is injective. 
+\end{lemma}
+\begin{proof}
+  Let $D,E:2^S$ be such that $D \cap Q= E \cap Q$. We will show that $D(s)\leftrightarrow E(s)$. We will only show one direction. Assume $D(s)$ and $\neg E(s)$, it is sufficient to derive a contradiction from here. 
+  Consider $U = D \cap \neg E$. As $U$ is decidable, $U$ is open. By assumption $s\in U$ and hence $U \cap Q$ is inhabited. However $U \cap Q = D \cap Q \cap \neg E = \subseteq E \cap Q \cap \neg E$, which gives a contradiction. 
+\end{proof}
+
+\begin{theorem}
+  Let $S,T:\Stone$ and $Q\subseteq S$ dense. Then any map $f:Q \to T$ that is relatively uniformly continuous has an extension $S\to T$. 
+\end{theorem}
+\begin{proof}
+We will define a map $2^T \to 2^S$. Let $D:2^T$. Then $D \circ f: Q \to 2$ is relatively uniformly continuous by \Cref{compRelUniform}. By \Cref{UniformDecidableUniqueExtension} and \Cref{UniformDecidableUniqueExtension} there exists an unique extension $S \to 2$. Dualizing gives an extension $S \to T$ of $f$. 
+\end{proof}
+
+\subsubsection{Compact Hausdorff spaces}
+\begin{definition}
+  Let $X$ be any type and $x:\N \to X$. We call $x$ a \textbf{Cauchy sequence} if it is relatively uniformly continuous with respect to the inclusion $\N \subseteq \Noo$. 
+  
+  We say a map $x:\N \to X$ \textbf{convergent} iff there is an extension $\Noo \to X$. 
+\end{definition}
+\begin{lemma}
+  A sequence $x$ as above is Cauchy if and only if for any entourage $E$ of $X$, there exists some $N:\N$ such that whenever $n,m\geq N$ we have $(x_n,x_m)\in E$. 
+\end{lemma}
+\begin{proof}
+\end{proof}
+\begin{lemma}
+  Let $X:\Chaus$. Any Cauchy sequence is convergent. 
+\end{lemma}
+\begin{proof}
+  Let $S:\Stone$ and $q:S \twoheadrightarrow X$ surjective, and consider $x:\N \to X$ Cauchy. 
+  By dependent choice there exists \rednote{Problem: consider $2 \twoheadrightarrow 1$ and you could be stupid and lift to the alternating sequence, which is not Cauchy, so we should show that Cauchy lifts exist}.
+\end{proof}
+
+
+

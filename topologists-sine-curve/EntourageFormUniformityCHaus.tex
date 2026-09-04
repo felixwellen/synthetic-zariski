@@ -1,3 +1,5 @@
+In this section, we present a proof that the entourages of a compact Hausdorff space form an uniformity in the classical sense. The proof we present here is a refactored version of a proof suggested by claude.
+
 \begin{lemma}\label{seperation}
   If $X:\CHaus$ and $C\subseteq D \subseteq X$ for $C$ closed and $D$ open. 
   Then there exists $U,K\subseteq X$ with $U$ open and $K$ closed such that $ C\subseteq U \subseteq K \subseteq D$. 
@@ -14,8 +16,19 @@
   Assume $A$ open, $B$ closed, the other proof is similar. Then for all $x:X$ we have $\neg A (x) \vee B(x)$ is $\neg\neg$-stable, hence
   $$(\neg A (x) \vee B (x)) \leftrightarrow (A(x) \to B(x)).$$
 \end{proof}
-
-
+\begin{lemma}\label{ProductTopology}
+  Let $X,Y:\CHaus$. Any open of $X\times Y$ can be written as $\bigcup_{i:I} U_i \times V_i$ where $I$ is some overtly discrete set, and for each $i:I$, the sets $U_i,V_i$ are open subsets of $X,Y$ respectively. 
+\end{lemma}
+\begin{lemma}\label{subcover}
+  Let $X:\CHaus$ and $(U_i)_{i:I}$ be an overtly discrete indexed cover of $X$. 
+  Then there exists some finite set $I_0\subseteq I$ such that $X = \bigcup_{i:I_0} U_i$. 
+\end{lemma}
+\begin{proof}
+  \rednote{TODO rewrite}
+  As $I$ is overtly discrete, there exists a surjection $\N \to I + 1$. 
+  Sending $1$ to $\emptyset$, $U$ thus induces an open cover indexed by $\N$. 
+  The intersection of the complements is empty, hence by Lemma 4.5 of \cite{synthetic-stone-duality} there is a finite subset of $\N$ such that the intersection of the complements is empty already, which induces a finite subset of $I$ satisfying the requirement. 
+\end{proof}
 \begin{definition}
   Let $(U_i)_{i:I}$ be an collection of subsets of some space $X$. 
   We define $\widetilde U \subseteq X \times X$ as 
@@ -31,7 +44,7 @@
 \begin{proof}
   By \Cref{ProductTopology}, there exists opens $(V_j)_{j:J},(W_j)_{j:J}$ indexed by some overtly discrete set $J$ such that $U=\bigcup_{j:J} (V_j \times W_j)$. As $\Delta \subseteq U$ we have for each $x:X$ some $j:J$ such that $x\in W_j ,V_j$. 
   It follows that for $P_j = V_j \cap W_j$ that $\Delta \subseteq \widetilde P \subseteq U$. 
-  Then $P$ covers $X$ by opens and by \Cref{Lemma 4.5 of {synthetic-stone-duality} from ODisc to N} has a finite subcover as required. 
+  Then $P$ covers $X$ by opens and by \Cref{subcover} has a finite subcover as required. 
 \end{proof}
 
 \begin{definition}
@@ -77,6 +90,7 @@
   Thus \Cref{inductionLoop} holds for $l=k$, and we conclude by strong induction. 
 \end{proof}
 
+The following is Lemma 2.2 of \cite{Howes}.
 \begin{lemma}
   Let $X:\CHaus$, $I$ a finite set and two $I$-indexed covers $C,P$ of $X$ such that for each $i:I$ we have $C_i$ closed, $P_i$ open and $C_i\subseteq P_i$. 
   Then $(B_J)_{J:2^I}$ defined as follows:
