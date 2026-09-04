@@ -43,12 +43,12 @@ Thus, at most one of $M$ and $N$ can be tangential.
 
 \begin{counterexample}\label{cex:hood-p-not-tangential}
   Suppose that $p:\mathbb N$ is a prime number that is zero in $R$ and let $n > 0$ be arbitrary.
-  Then $\hood{R,0}{p^n-1}$ is a submodule of $R$ and we have a chain of inclusions $\hood{R,0}{1} \subseteq \hood{R,0}{p^n-1} \subsetneq R$.
+  Then $\hood{R,0}{p^n-1}$, which is equivalent to $\setbuild{x:R}{x^{p^n}=0}$, is a submodule of $R$ and we have a chain of inclusions $\hood{R,0}{1} \subseteq \hood{R,0}{p^n-1} \subsetneq R$.
   Therefore, $\hood{R,0}{p^n-1}$ cannot be tangential, since $R$ is.
 \end{counterexample}
 
 \begin{remark}
-  By \Cref{cex:nil-not-tangential}, we see that being tangential is a strictly stronger condition than being infinitesimally linear.
+  By \Cref{cex:nil-not-tangential} or \Cref{cex:hood-p-not-tangential}, we see that being tangential is a strictly stronger condition than being infinitesimally linear.
 \end{remark}
 
 So far, all modules we have considered are infinitesimally linear.
@@ -71,8 +71,9 @@ We will now consider some bigger examples, in the sense that they are not sub-fi
 \begin{example}\label{ex:power-series-tangential}
   By \Cref{prp:exp-tangential}, the modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are tangential.
   By \Cref{cor:tangential-inf-lin}, these modules are also infinitesimally linear.
-  Note that $R[[x]]$ is not adequate, as it is not weakly quasi-coherent.
+  Note that $R[[x]]$ is not adequate, as it is not weakly quasi-coherent. \rednote{Perhaps give a reference/explanation?}
 \end{example}
+
 
 \subsection{Finitely Adequate Modules}
 
@@ -82,8 +83,8 @@ We begin by investigating finitely generated ideals of $R$.
 
 \begin{example}\label{ex:fin-gen-ideal}
   Let $I$ be a finitely generated ideal of $R$.
-  Then $I$ is finitely adequate.
-  Indeed, if $r_1, \dots, r_n$ generate $I$, then $I$ is the image of the map $R^n \to R$ given by $(x_1, \dots, x_n) \mapsto \sum_{i} r_i x_i$. The result then follows from \Cref{thm:fin-adeq-class}.
+  Then $I$ is finitely adequate. Indeed it is the kernel of the map $R\to R/I$ with $R$ and $R/I$ finitely presented.
+  %Indeed, if $r_1, \dots, r_n$ generate $I$, then $I$ is the image of the map $R^n \to R$ given by $(x_1, \dots, x_n) \mapsto \sum_{i} r_i x_i$. The result then follows from \Cref{thm:fin-adeq-class}.
 \end{example}
 
 We can construct interesting examples and counterexamples using three families of propositions.
@@ -98,7 +99,7 @@ For the first case, $U = V(r)$, we obtain an example of a finitely adequate modu
 
 \begin{example}\label{ex:exp-Vr-fin-adeq}
   Let $r : R$.
-  The module $R^{V(r)} = \quot{R}{\ideal{r}}$ is finitely adequate by \Cref{ex:fin-gen-ideal} and \Cref{prp:fin-adeq-cok-closure}.
+  The module $R^{V(r)} = \quot{R}{\ideal{r}}$ is finitely adequate as it is finitely presented. %by \Cref{ex:fin-gen-ideal} and \Cref{prp:fin-adeq-cok-closure}.
 \end{example}
 
 For the second family, $U = D(r)$, the module is the localization $R^{D(r)} = R[r^{-1}]$ by \cite[Proposition 2.2.3]{draft}.
@@ -258,17 +259,24 @@ We can use this to compute duals of these and related modules, which will be ver
 \end{lemma}
 
 \begin{proof}
-  We need to show that the predicates are equivalent.
-  Let $x : R$ and assume that $x$ is in $\Ann(R_U)$.
-  We must show that $U$ implies that $x = 0$.
-  If $U$ holds, then $R_U = R$.
-  Thus, $\Ann(R_U) = \Ann(R) = 0$, giving $x = 0$.
+  We need to show that the predicates are equivalent. But for $x:R$ we have that
+  \begin{eqnarray}
+  x\in \Ann(R_U) &=& \forall y:R,\, (U\lor x=0) \to xy=0 \nonumber\\
+  & = & \forall y:R,\, U\to xy=0 \nonumber\\
+  & = & U\to \forall y:R,\, yx=0 \nonumber\\
+    & = & U\to x=0 \nonumber\\
+    & = & x\in K^U\nonumber
+  \end{eqnarray}
+  %  Let $x : R$ and assume that $x$ is in $\Ann(R_U)$.
+  %We must show that $U$ implies that $x = 0$.
+  %If $U$ holds, then $R_U = R$.
+  %Thus, $\Ann(R_U) = \Ann(R) = 0$, giving $x = 0$.
 
-  For the other direction, assume that $x$ is in $K^U$.
-  We need to show that $xy = 0$ for every $y : R_U$.
-  Since we're proving a proposition, we can assume that either $y = 0$ or $U$ holds.
-  If $y = 0$, it is clear that $xy = 0$.
-  If $U$ holds, then $x = 0$, so it is again clear that $xy = 0$.
+  %For the other direction, assume that $x$ is in $K^U$.
+  %We need to show that $xy = 0$ for every $y : R_U$.
+  %Since we're proving a proposition, we can assume that either $y = 0$ or $U$ holds.
+  %If $y = 0$, it is clear that $xy = 0$.
+  %If $U$ holds, then $x = 0$, so it is again clear that $xy = 0$.
 \end{proof}
 
 \begin{lemma}\label{lem:ann-dual-quotient}
@@ -278,20 +286,27 @@ We can use this to compute duals of these and related modules, which will be ver
 \end{lemma}
 
 \begin{proof}
-  Let $i : I \rightarrow R$ be the inclusion map.
-  Since taking duals is left exact, we have an exact sequence
-  \begin{equation*}
-    \begin{tikzcd}
-      0 \ar{r} & (\quot{R}{I})^* \ar{r} & R^* \ar{r}{i^*} & I^*
-    \end{tikzcd}
-  \end{equation*}
-  presenting $(\quot{R}{I})^*$ as the kernel of $i^*$.
+We have that
+  \begin{eqnarray}
+  (R/I)^\ast & = & \setbuild{x:R^\ast}{\forall y:I,\, x(y) = 0} \nonumber\\
+& = & \setbuild{x:R}{\forall y:I,\, xy = 0} \nonumber\\
+   &= & \Ann(I) \nonumber
+  \end{eqnarray}
 
-  The natural equivalence $R \to R^*$ sends $r$ to $\mu_r$ defined by $\mu_r(x) = xr$.
-  An element $r : R$ is in $\Ann(I)$ if and only if $\mu_r$ vanishes on $I$,
-  i.e., if and only if $i^*(\mu_r) = 0$.
-  By the exactness above, this gives an equivalence $\Ann(I) \to (\quot{R}{I})^*$
-  that commutes with the natural map $R \to R^*$.
+  %Let $i : I \rightarrow R$ be the inclusion map.
+  %Since taking duals is left exact, we have an exact sequence
+  %\begin{equation*}
+   % \begin{tikzcd}
+   %   0 \ar{r} & (\quot{R}{I})^* \ar{r} & R^* \ar{r}{i^*} & I^*
+   % \end{tikzcd}
+  %\end{equation*}
+  %presenting $(\quot{R}{I})^*$ as the kernel of $i^*$.
+
+  %The natural equivalence $R \to R^*$ sends $r$ to $\mu_r$ defined by $\mu_r(x) = xr$.
+  %An element $r : R$ is in $\Ann(I)$ if and only if $\mu_r$ vanishes on $I$,
+  %i.e., if and only if $i^*(\mu_r) = 0$.
+  %By the exactness above, this gives an equivalence $\Ann(I) \to (\quot{R}{I})^*$
+  %that commutes with the natural map $R \to R^*$.
 \end{proof}
 
 The next counterexample will use the above observations.
@@ -383,9 +398,9 @@ This is how we will use the above counterexample to derive more.
 \begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
   It is not the case that $K^{D(r)}$ is finitely adequate for all $r : R$.
   Since $R^{D(r)} = R[r^{-1}]$, we get that $K^{D(r)} = \bigcup_k \Ann(r^k)$.
-  By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$.
-  Moreover, it is clear that taking annihilator ideals of unions, is the same as the intersection of the annihilators.
-  Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \ideal{r^k}) = \bigcap_k \Ann(r^k) = \bigcap_k \ideal{r^k} = K^{\neg D(r)}$.
+  By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ as is the case for every annihilator.
+  Moreover, it is clear that the annihilator of a union is the same as the intersection of the annihilators.
+  Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \Ann(r^k)) = \bigcap_k \Ann(\Ann(r^k)) = \bigcap_k \ideal{r^k} = K^{\neg D(r)}$.
   Now, by \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $K^{D(r)}$ cannot be finitely adequate for all $r : R$.
 \end{counterexample}
 
@@ -397,33 +412,33 @@ This is how we will use the above counterexample to derive more.
 We conclude this section by presenting examples of reflexive modules that are not finitely adequate.
 
 \begin{counterexample}\label{cex:polynomial-power-series-not-fin-adeq}
-  Neither $R[x]$ nor $R[[x]]$ is finitely adequate.
+  Neither $R[X]$ nor $R[[X]]$ is finitely adequate.
   In fact, they are not finite free, and thus cannot be not-not finite free, which is required for finitely adequate modules.
 \end{counterexample}
 
 \begin{lemma}\label{lem:perfect-pairing-powerseries-polynomials}
   The pairing
   \[
-    R[x] \times R[[x]] \to R, \;\;
+    R[X] \times R[[X]] \to R, \;\;
     (a,b) \mapsto \langle a,b \rangle :\equiv \sum_j a_jb_j
   \]
   is perfect.
 \end{lemma}
 
 For the proof, we present a constructive and adapted version of the one given in \cite[Satz 1]{Specker1950}.
-This is a folklore theorem due to Ernst Specker, and the proof in loc.\ cit.\ shows, in particular, that $\Z[x]$ is isomorphic to $\Hom_{\Z}(\Z^\N, \Z)$.
+This is a folklore theorem due to Ernst Specker, and the proof in loc.\ cit.\ shows, in particular, that $\Z[X]$ is isomorphic to $\Hom_{\Z}(\Z^\N, \Z)$.
 While Specker's proof uses prime factorization in $\Z$, we replace this with a neat degree-counting argument using duality.
 
 \begin{proof}
-  It is clear that the map $\vartheta' : R[[x]] \to \Hom_R(R[x],R)$ defined by $b \mapsto (a \mapsto \langle a,b \rangle)$ is an equivalence. Thus, we only need to show that the second induced map
+  It is clear that the map $\vartheta' : R[[X]] \to \Hom_R(R[X],R)$ defined by $b \mapsto (a \mapsto \langle a,b \rangle)$ is an equivalence. Thus, we only need to show that the second induced map
   \[
     \vartheta:
-    R[x] \to \Hom_R(R[[x]],R), \;\;
+    R[X] \to \Hom_R(R[[X]],R), \;\;
     a \mapsto \left(b \mapsto \langle a,b \rangle\right)
   \]
   is an equivalence.
   Since $\vartheta$ is clearly injective, we only need to verify its surjectivity.
-  Let $\lambda : R[[x]] \to R$ be an arbitrary $R$-linear map and define a sequence $a \defeq (n \mapsto \lambda(e^n))$, where $e^n$ is the sequence given by $j \mapsto \delta_{nj}$.
+  Let $\lambda : R[[X]] \to R$ be an arbitrary $R$-linear map and define a sequence via $a_n = \lambda(X^n)$. % \defeq (n \mapsto \lambda(e^n))$ where $e^n$ is the sequence given by $j \mapsto \delta_{nj}$.
   We will show that $a_n = 0$ for $n \gg 0$, and then finish the proof by verifying $\lambda = \langle a, \argmhole \rangle$.
   Define further a map
   \[
@@ -437,36 +452,36 @@ While Specker's proof uses prime factorization in $\Z$, we replace this with a n
     f(r) = a_0 + a_1r + a_2r^2 + \dots + a_{N-1}r^{N-1} + r^N\lambda(0,\dots,0,1,r,r^2,\dots)\rlap{,}
   \]
   where exactly the first $N$ entries in $\lambda(0,\dots,0,1,r,r^2,\dots)$ are zero.
-  Comparing coefficients, we see that $a_N=0$ for $N \geq d+1$, hence $a$ is an element of $R[x]$.
+  Comparing coefficients, we see that $a_N=0$ for $N \geq d+1$, hence $a$ indeed gives an element of $R[X]$.
   So it remains to check that $\varphi : \equiv \lambda - \langle a, \argmhole \rangle = 0$.
-  To this end, let $b : R[[x]]$ be arbitrary and set
+  To this end, let $b : R[[X]]$ be arbitrary and set
   \[
     g:R \to R, \;\;
     r \mapsto \varphi(b_0,b_1r,b_2r^2,\dots)\rlap{.}
   \]
-  Since $\varphi(e^n) = 0$, we can repeat the argument just applied to $f$ and see that all polynomials $x^n$ divide $g$.
+  Then by duality $g$ is a polynomial, and since $\varphi(X^n) = 0$, we can repeat the argument just applied to $f$ and see that all the coefficients of $g$ are $0$.
   But then $g=0$, and in particular $0 = g(1) = \varphi(b) = \lambda(b) - \langle a,b \rangle$.
 \end{proof}
 
 \begin{corollary}
-  The $R$-modules $R[[x]]$ and $R[x]$ are reflexive.
+  The $R$-modules $R[[X]]$ and $R[X]$ are reflexive.
 \end{corollary}
 
-Since $R[[x]]$ is not finitely adequate, we see that not every reflexive $R$-module is finitely adequate.
+Since both $R[X]$ and $R[[X]]$ are not finitely adequate, we have reflexive $R$-module that are not finitely adequate.
 
-\begin{proof}
-  We have a commutative diagram
-  \[
-  \begin{tikzcd}
-    R[[x]]\arrow{r}{\ev_{R[[x]]}} \arrow{dr}{\vartheta'} & R[[x]]^{\ast\ast} \arrow{d}{\vartheta^\ast}
-    \\
-    & R[x]^\ast
-  \end{tikzcd}
-  \]
-  where $\vartheta$ and $\vartheta'$ are as in the proof of \Cref{lem:perfect-pairing-powerseries-polynomials}.
-  As shown there, these two maps are equivalences, which implies that $\ev_{R[[x]]}$ is as well.
-  Consequently, $R[x]$ is reflexive by \Cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
-\end{proof}
+%\begin{proof}
+%  We have a commutative diagram
+%  \[
+%  \begin{tikzcd}
+%    R[[x]]\arrow{r}{\ev_{R[[x]]}} \arrow{dr}{\vartheta'} & R[[x]]^{\ast\ast} \arrow{d}{\vartheta^\ast}
+%    \\
+%    & R[x]^\ast
+%  \end{tikzcd}
+%  \]
+%  where $\vartheta$ and $\vartheta'$ are as in the proof of \Cref{lem:perfect-pairing-powerseries-polynomials}.
+%  As shown there, these two maps are equivalences, which implies that $\ev_{R[[x]]}$ is as well.
+%  Consequently, $R[x]$ is reflexive by \Cref{cor:dbl-dual-reflexive-iss-dual-reflexive}.
+%\end{proof}
 
 
 \subsection{Tensor products}
