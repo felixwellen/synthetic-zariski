@@ -509,3 +509,32 @@ This shows that the double dual tensor is the appropriate left adjoint to consid
   Note that the zero-section $(\varepsilon \mapsto \varepsilon \otimes \varepsilon) : \Gamma(\D(1),N)$ corresponds to $x \otimes x$ under these maps.
   As this element is not zero, we obtain a contradiction.
 \end{counterexample}
+
+\subsection{Temporary storage for former A.1 and A.2}
+
+\begin{lemma}\label{lem:finitely-adequate-not-fp}
+  Not every finitely adequate $R$-module is either finitely presented or linearly adequate.
+  Specifically, this is not the case for the family of ideals $(r)$, for $r:R$.
+\end{lemma}
+
+\begin{proof}
+  We first show that if $(r)$ is linearly adequate, then $(r=0) \lor (r \neq 0)$. Indeed, linearly adequate modules are injective in the category of finitely adequate $R$-modules, so we get a lift
+  \[
+  \begin{tikzcd}
+  & R \ar[d, "\cdot r", twoheadrightarrow] \\
+  (r) \ar[r, "id"]\ar[ur, "\exists s", dashed] & (r)
+  \end{tikzcd}
+  \]
+  meaning that $(r)$ is a direct summand of $R$ such that $(r) = (e)$ for an idempotent $e:R$.
+  Since $R$ is local, $(e=0) \lor (e=1)$ and thus $(r=0) \lor (r \neq 0)$.
+
+  A dual argument shows that if $(r)$ is finitely presented, then also $(r=0) \lor (r \neq 0)$.
+  But assuming that all $(r)$ were to admit either one of these presentations, we would get $\prod_{r:R} (r=0) \lor (r \neq 0)$, which is false.
+\end{proof}
+
+\begin{remark}\label{rem:finitely-adequate-fp}
+  This lemma cannot be improved in the sense that here is no finitely adequate $R$-module $M$ that is not finitely presented.
+  Indeed, if $M$ were not finitely presented, then it would be not finite free.
+  But finitely adequate modules are \emph{not not} finite free.
+  A similar statement holds for linearly adequate.
+\end{remark}
