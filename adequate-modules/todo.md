@@ -6,8 +6,7 @@
 
 ## Writing
 
-- Felix: Introduction
-- Felix: Overview
+- Felix: Introduction:  done.  Is more detail needed?
 - Dan/Thomas: Section 3: Examples and Counterexamples
   In particular, reorder Section 3.2.
 - Dan: add "merely" before definitions of linearly adequate, etc.
@@ -16,8 +15,7 @@
 
 ## Proofreading
 
-- Hugo:  overall
-- Dan: intro
+- Dan (others too): intro
 - Fabian: Section 1
 - Thomas: Section 2
 - Felix:  Section 3
