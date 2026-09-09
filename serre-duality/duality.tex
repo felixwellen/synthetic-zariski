@@ -1,53 +1,80 @@
-We prove Serre-duality. For now only for vector bundles.
+We prove Serre duality. For now only for vector bundles.
 
 
-\begin{lemma}
-  \label{bundle-homs-to-dual-tensor}
-  Let $X$ be a type and $\mathcal L:X\to \Line$ a line bundle.
-  For all $\mathcal F:X\to\Mod{R}$ we have an isomorphism of $R$-module bundles:
-  \[ \HomBun_{\Mod{R}(X)}(\mathcal L,\mathcal F) \to \mathcal L^{\vee} \otimes \mathcal F\rlap{.}\]
-  (where $\HomBun_{\Mod{R}(X)}(\mathcal L,\mathcal F)= (x:X) \mapsto \Hom_{\Mod{R}}(\mathcal L_x,\mathcal F_x)$)
-  In particular, we have
-  \[\Hom_{\Mod{R}(X)}(\mathcal L,\mathcal F) \simeq H^0(X,\mathcal L^{\vee} \otimes \mathcal F)\rlap{.} \]
-\end{lemma}
+
+\subsection{Duality for Projective Space}
+
+Given a bundle $\mc F : \bP^n \to \Mod R$ there is a natural pairing
+\[
+  \Hom_X(\mc F,\omega) \times H^n(X,\mc F) \to H^n(X,\omega), \;
+  (\varphi,\xi) \mapsto H^n(\varphi)(\xi)
+  \rlap{.}
+\]
+Since $H^n(\bP^n,\omega) = R$ by \Cref{canonical-bundle-as-twist}, it induces a map
+\begin{align*}
+  \vartheta^0(\mc F) : \Hom_X(\mc F,\omega) \to H^n(X,\mc F)^\ast \\
+\end{align*}
+where $X \equiv \bP^n$.
+
+\begin{proposition}
+  If $\mc F$ is finitely presented, then $\vartheta^0(\mc F)$ is an isomorphism.
+\end{proposition}
 
 \begin{proof}
-  Let $x:X$ and choose an isomorphism of $R$-modules $\mu:\mathcal L_x\to R$.
-  Note first, that we have an isomorphism
-  \[ \psi: \Hom_{\Mod{R}}(R,\mathcal F_x) \to R^{\vee}\otimes \mathcal F_x\]
-  given by mapping $\varphi:\Hom_{\Mod{R}}(R,\mathcal F_x)$ to $\id_R\otimes \varphi(1)$.
-  So
-  \[ \mu^{\vee}\otimes \id_R \circ \psi\circ (\_\circ \mu^{-1})
-  : \Hom_{\Mod{R}}(\mathcal L_x,\mathcal F_x) \to {\mathcal L_x}^{\vee}\otimes \mathcal F_x\]
-  is a map of the desired type and by elementary calculation using linearity it is independent of the choice of $\mu$.
+  In the case $\mathcal F\simeq \mathcal O(q)$ we compute $\Hom_X(\mathcal O(q),\omega)\simeq H^0(\bP^n,\omega\otimes \mathcal O(-q))$.
+  So in this case, we can conclude as we know the cohomology of twisting sheaves.
+  By \Cref{fp-module-bundle-globally-generated}, we get an exact sequence:
+  \[ \mathcal O(p)^{\oplus n}\to\mathcal O(p')^{\oplus n'}\to \mathcal F\to 0 \]
+  and the functors $\Hom_X(-,\omega)$ and $H^n(X,-)^\ast$ both map right exact sequences to left exact sequences. So we can conclude with the 5-lemma.
 \end{proof}
 
-\begin{theorem}[Duality for $\bP^n$]
-  Let $X :\equiv \bP^n$ and let $\mathcal E : X \to \Mod{R}_{\mathrm{fp}}$ be a finitely presented bundle.
-  \begin{enumerate}
-    \item[i)] $H^n(\bP^n,\omega)=R$.
-    \item[ii)] There is a natural perfect pairing
-    \[
-      \Hom_X(\mathcal E,\omega) \times H^n(X,\mathcal E) \to H^n(X,\omega)
-    \]
-    inducing a natural isomorphism $ \theta^0(\mathcal E) : \Hom_X(\mathcal E,\omega) \to H^n(X,\mathcal E)^\vee$.
-  \item[iii)] If $\mathcal E$ is even a vector bundle then for every $i\geq 0$ there is a natural functorial isomorphism
-    \[
-      \theta^i(\mathcal E) : H^i(X, \mathcal E^\vee \otimes \omega) \to H^{n-i}(X,\mathcal E)^\vee
-    \]
-  \end{enumerate}
-\end{theorem}
+\begin{proposition}
+  If $\mathcal E : X \to \Mod R$ is a vector bundle then for every $i\geq 0$ there are natural isomorphisms
+  \[
+    \vartheta^i(\mathcal E) : H^i(X, \mathcal E^\ast \otimes \omega) \to H^{n-i}(X,\mathcal E)^\ast
+  \]
+  such that $\vartheta^0(\mc E)$ agrees with the corresponding map above.
+\end{proposition}
 
 \begin{proof}
-  \begin{enumerate}
-    \item[i)] This follows from \Cref{canonical-bundle-as-twist}.
-    \item[ii)] The pairing is given by letting $\varphi:\Hom_X(\mathcal F,\omega)$ induce a $\varphi^*:H^n(X,\mathcal F)\to H^n(X,\omega)$.
-    In the case $\mathcal F\simeq \mathcal O(q)$ we compute $\Hom_X(\mathcal O(q),\omega)\simeq H^0(\bP^n,\omega\otimes \mathcal O(-q))$.
-    So in this case, we can conclude as we know the cohomology of twisting sheaves.
-    By \ref{fp-module-bundle-globally-generated}, we get an exact sequence:
-    \[ \mathcal O(p)^{\oplus n}\to\mathcal O(p')^{\oplus n'}\to \mathcal F\to 0 \]
-    and the functors $\Hom_X(\_,\omega)$ and $H^n(X,\_)^\vee$ both map right exact sequences to left exact sequences. So we can conclude with the 5-lemma.
-  \item[iii)] Since vector bundles have finitely adequate cohomology by \Cref{vector-bundles-have-faq-cohomology-which-eventually-vanishes} we know that both $H^i(X, (\_)^\vee \otimes \omega)$ and $H^{n-i}(X,\_)^\vee$ are contravariant and exact $\delta$-functors.
+  Since vector bundles have finitely adequate cohomology by \Cref{vector-bundles-have-faq-cohomology-which-eventually-vanishes} we know that both $H^i(X, (-)^\ast \otimes \omega)$ and $H^{n-i}(X,-)^\ast$ are contravariant and exact $\delta$-functors.
     These are also both coherently coeffaceable by \Cref{vector-bundles-can-be-coherently-resolved} and thus both universal by \Cref{coherently-effaceable-implies-universal}.
-  \end{enumerate}
 \end{proof}
+
+\begin{remark}
+  Already on $\bP^1$, the map $\vartheta^0(\mc F)$ need not be an isomorphism for finitely copresented bundles.
+  In other words, the above pairing is not perfect for finitely copresented bundles (or -- by a dual argument to the one we are about to state -- for finitely presented bundles).
+  Indeed, let $\mc K, \mc C$ and $\mc I$ be respectively the kernel, cokernel and image of the map
+  \[
+    \mc O(-2) \overset{\cdot x}{\longrightarrow} \mc O(-1)
+  \]
+  on $\bP^1$.
+  Thus $\mc C(1) = \mc K^\ast \otimes \mc O(-2)$.
+  We will show that $H^0(\bP^1,\mc C(1))$ and $H^1(\bP^1,\mc K)^\ast$ are not isomorphic, violating Serre-duality.
+  Note that while $0 \to \mc O(-2) \to \mc O(-1) \to \mc C \to 0$ is not pointwise exact, it is affine-locally exact.
+  Thus, using Čech cohomology, we see that $\mc K$ has no cohomology at all, in particular $H^1(\bP^1,\mc K)^\ast = 0$.
+  Similarly we see $H^0(\bP^1, \mc C(1))=R$, thus finishing the argument.
+\end{remark}
+
+\begin{remark}
+  On $\bP^2$, Serre duality -- at least when formulated as above -- fails even for finitely presented bundles.
+  To see this, we define a finitely presented bundle $\mc C$ as the cokernel
+  \[
+    \mc O(-3) \overset{(x_0,x_1)}{\longrightarrow} \mc O(-2)^{\oplus 2} \longrightarrow \mc C \to 0 \rlap{.}
+  \]
+  Using a similar Čech cohomology calculation as in the previous remark {\color{red}TODO: Details}, we see that $H^1(\bP^2,\mc C^\ast \otimes \omega_{\bP^2}) = 0$ and $H^1(\bP^2, \mc C)^\ast = R$.
+  In particular, $\vartheta^1(\mc C)$ cannot be an isomorphism.
+\end{remark}
+
+Note that the above example works even in classical algebraic geometry.
+If one wants to generalize the statement to a bigger class of bundles, then one needs to replace $H^i(X,\mc F^\ast \otimes \omega_X)$ by a suitable notion of $\Ext^i(\mc F,\omega_X)$.
+Roughly, the problem is as follows.
+
+If one sets $\Ext^i(\mc F,\mc G) :\equiv H^i(X, \uHom(\mc F, \mc G))$ -- as was silently done in the case of vector bundles -- then the resulting spaces only classify pointwise split extensions.
+This is exactly the entrypoint of the counterexamples of the above remarks:
+The appearing sequences are not pointwise exact, hence do not constitute an element of $\Ext^1$, but are affine-locally exact.
+In both examples, the $\Ext^1$-modules vanish, while the corresponding modules, that Serre duality wants them to compare to, do not.
+In this sense, they are too small because they classify a too restictive notion of exactness.
+
+
+

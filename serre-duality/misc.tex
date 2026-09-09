@@ -1,0 +1,138 @@
+
+Some loose notes on bigger classes of bundles, in particular finitely adequate ones.
+This is very incomplete as of now and might not ever be useful.
+Amongst other things, we show that the cohomology of a finitely adequate bundle -- and in fact an even larger class of bundles we have yet to introduce -- is an fppf sheaf.
+This was originally meant as a first step in proving that the cohomology of \emph{nice enough} bundles is finitely adequate.
+This has turned out to be provably false for even finitely presented bundles on $\bP^1$, see \Cref{example-non-f-aq-cohomology}.
+
+\subsection{Cohomology Modules that are fppf Sheaves}
+
+
+\begin{definition}
+  An $R$-module $M$ is called \emph{fppf-quasi-coherent} {\color{red}(open for better names)} if for every faithfully flat and finitely presented $R$-algebra $A$ the canonical map $M \otimes A \to M^{\Spec A}$ is an equivalence.
+\end{definition}
+
+Every quasi-coherent module is fppf-quasi-coherent and hence so are finitely presented modules.
+Using flatness and the $5$-lemma we see that kernels of $R$-linear maps of fppf-quasi-coherent modules are fppf-quasi-coherent again.
+In particular, so are (finitely) adequate modules.
+This is a key property that makes this notion better behaved than quasi-coherence.
+In fact, we will see that the category of fppf-quasi-coherent modules is Abelian and closed under extensions.
+
+\begin{lemma}
+  \label{fppf-qc-implies-wqc}
+  Any fppf-quasi-coherent module is weakly quasi-coherent.
+\end{lemma}
+
+\begin{proof}
+  Let $M$ be a fppf-quasi-coherent $R$-module.
+  Let $r:R$.
+  The faithfully flat $R$-algebra $A :\equiv R \times R[r^{-1}] \cong R[x]/(x(rx-1))$ is finitely presented (the idempotent $rx$ splits the algebra) and the canonical map $M \otimes A \to M^{\Spec A}$ can be identified with the map $id \times \Delta: M \times M[r^{-1}] \to M \times M^{D(r)}$.
+  By assumption this is an equivalence, hence so is $\Delta$.
+\end{proof}
+
+\begin{lemma}
+  \label{fppf-qc-closed-under-dependent-prod}
+  Let $A$ be finitely presented $R$-algebra.
+  Let $M_x$ be an fppf-quasi-coherent $R$-module for every $x:\Spec A$.
+  Then $\prod_{x:\Spec A}M_x$ is also fppf-quasi-coherent.
+\end{lemma}
+
+\begin{proof}
+  The same proof that shows that quasi-coherent modules are closed under dependent products when indexed by affine schemes works in this case, see for instance the adequate modules draft.
+\end{proof}
+
+\begin{lemma}
+  \label{Amitsur-exactness}
+  Let $M$ be a fppf-quasi-coherent $R$-module and let $A$ be a faithfully flat and finitely presented $R$-algebra.
+  Denote $Y \equiv \Spec A$.
+  Then the complex
+  \[
+    0 \to M \to M^Y \to M^{Y \times Y} \to M^{Y \times Y \times Y} \to ...\rlap{,}
+  \]
+  equipped with the obvious differentials, is exact.
+\end{lemma}
+
+\begin{proof}
+  By definition, this complex is isomorphic to the \emph{Amitsur complex}
+  \[
+    0 \to M \to M \otimes A \to M \otimes A \otimes A \to M \otimes A \otimes A \otimes A \to ...\rlap{.}
+  \]
+  The exactness of this complex for faithfully flat algebras is a folklore result.
+\end{proof}
+
+\begin{corollary}
+  Every fppf-quasi-coherent module is an fppf sheaf.
+\end{corollary}
+
+\begin{proof}
+  Let $Y \equiv \Spec A$ be the spectrum of a faithfully flat $R$-algebra $A$.
+  The truncation $\|Y\|$ is the set-coequalizer of the projections $Y \times Y \rightrightarrows Y$ and thus $0 \to M^{\|Y\|} \to M^Y \to M^{Y \times Y}$ is a kernel diagram.
+  By virtue of the exactness at the first three entries of the complex of \Cref{Amitsur-exactness}, this means that the diagonal map $M \to M^{\|Y\|}$ is an equivalence.
+\end{proof}
+
+\begin{proposition}
+  The category of fppf-quasi-coherent $R$-modules is Abelian and closed under extensions.
+\end{proposition}
+
+\begin{proof}
+  Let $Y \equiv \Spec A$ be the spectrum of a finitely presented and faithfully flat $R$-algebra.
+  Let $f : M \to N$ be a morphism of fppf-quasi-coherent $R$-modules.
+  We already observed that $\ker(f)$ is fppf-quasi-coherent.
+  To see that $\im(f)$ is fppf-quasi-coherent, consider the following diagram.
+  \[
+  \begin{tikzcd}
+    0 \arrow[r] & \ker(f) \otimes A \ar[r] \ar[d] & M \otimes A \ar[r] \ar[d] & \im(f) \otimes A \arrow[r] \arrow[d] & 0              \\
+    0 \arrow[r] & \ker(f)^Y \arrow[r]      & M^Y \arrow[r]      & \im(f)^Y \arrow[r]      & {H^1(Y, \ker(f))}
+  \end{tikzcd}
+  \]
+  From \Cref{fppf-qc-implies-wqc} we know that $H^1(Y,\ker(f))=0$, hence by the $5$-lemma $\im(f)$ if fppf-quasi-coherent.
+  A similar argument shows that $\coker(f)$ is in our category and that it is closed under extensions.
+\end{proof}
+
+\begin{corollary}
+  Let
+  \[
+    ... \to C^{n-1} \overset{d^{n-1}}{\to} C^n \overset{d^{n}}{\to} C^{n+1} \to ...
+  \]
+  be a complex of fppf-quasi-coherent $R$-modules.
+  Then $H^p(C^\bullet)$ is fppf-quasi-coherent and in particular an fppf sheaf.
+  $\hfill\square$
+\end{corollary}
+
+\begin{corollary}
+  Let $X$ be a separated scheme and $\mathcal F : X \to \Mod R$ a bundle of pointwise fppf-quasi-coherent $R$-modules.
+  Then all cohomology groups $H^p(X, \mathcal F)$ are fppf-quasi-coherent modules and are in particular fppf sheaves.
+\end{corollary}
+
+\begin{proof}
+  Since $X$ is separated and $\mc F$ is pointwise weakly quasi-coherent by \Cref{fppf-qc-implies-wqc}, we may calculate $H^p(X,\mc F)$ using Čech cohomology.
+  Then the result follows from the previous corollary together with \Cref{fppf-qc-closed-under-dependent-prod}.
+\end{proof}
+
+\begin{lemma}
+  {\color{red} Unclear.}
+  If $M$ is a fppf-quasi-coherent $R$-module, then the proposition
+  \begin{center}
+    "$M$ is finitely adequate"
+  \end{center}
+  is an fppf sheaf.
+\end{lemma}
+
+\begin{corollary}
+  {\color{red} Unclear.}
+  Let $\mathcal F : \bP^n \to \Mod R$ be a finitely adequate bundle.
+  Then there fppf-merely is a hyperplane section $s : H^0(\bP^n,\mathcal O(1))$ such that
+  \[
+    0 \to \mathcal F(-1) \overset{\cdot s}{\to} \mathcal F \to \mathcal F^{s=0}\to 0
+  \]
+  is affine-locally exact.
+\end{corollary}
+
+
+
+
+
+\subsection{Failure of Cohomology to be Finitely Adequate}
+  \label{example-non-f-aq-cohomology}
+
+  \rednote{TODO}
