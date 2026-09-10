@@ -717,7 +717,7 @@ We will start with the following lemmas.
 
 \begin{lemma}\label{lem:fp-tensor-fp}
   Let $M$ and $N$ be finitely presented $R$-modules.
-  The module $M \otimes N$ is also finitely presented.
+  Then the module $M \otimes N$ is also finitely presented.
 \end{lemma}
 
 \begin{proof}
@@ -728,7 +728,7 @@ We will start with the following lemmas.
 
 \begin{lemma}\label{lem:lin-adeq-fp-hom-fp}
   Let $L$ be finitely copresented and $P$ be finitely presented.
-  The module $\Hom_R(L,P)$ is finitely presented.
+  Then the module $\Hom_R(L,P)$ is finitely presented.
 \end{lemma}
 
 \begin{proof}
@@ -741,7 +741,7 @@ We will start with the following lemmas.
 
 \begin{proposition}\label{prp:fin-adeq-hom-closure}
   Let $M$ and $N$ be finitely adequate modules.
-  The module $\Hom_R(M,N)$ is finitely adequate as well.
+  Then the module $\Hom_R(M,N)$ is finitely adequate as well.
 \end{proposition}
 
 \begin{proof}
@@ -763,12 +763,14 @@ We will start with the following lemmas.
   Thus, $\Hom_R(M,N)$ is finitely adequate as it is the kernel of a map between finitely presented modules.
 \end{proof}
 
-Knowing that hom is closed in the category $\finadeq$, it now remains to find the left adjoint of this functor.
-Naturally, we start by considering the tensor product of two finitely adequate modules $M$ and $N$.
-However, even taking the tensor product $M \otimes N$ of finitely copresented modules (which is a stronger condition) fails to be finitely adequate (see \Cref{cex:tensor-not-closed}).
-This contrasts with the case where $M$ is finitely presented (or, similarly, where $N$ is finitely presented), since $M \otimes N$ can then be realized as the cokernel of a map between finite direct sums of $N$, and is therefore finitely adequate (see \Cref{lem:fp-tensor-fp} for the case where both are finitely presented).
+Our next goal is to show that for each finitely adequate $M$, the functor $\Hom_R(M, \argmhole) : \finadeq \to \finadeq$
+has a left adjoint.
+A natural guess would be the tensor product functor $\argmhole \otimes M$.
+However, even the tensor product $N \otimes M$ of finitely copresented modules fails to be finitely adequate in general.  (See \Cref{cex:tensor-not-closed}.)
+In contrast, if $M$ is finitely presented, $N \otimes M$ is the cokernel of a map between finite direct sums of $N$, and is therefore finitely adequate when $N$ is. (See \Cref{lem:fp-tensor-fp} for the case where both are finitely presented.)
+A symmetrical argument works when $N$ is finitely presented.
 
-Somewhat surprisingly, the hom functor still admits a left adjoint in $\finadeq$.
+Despite this, $\Hom_R(M, \argmhole)$ still admits a left adjoint in $\finadeq$.
 We will show that this adjoint is given by the \notion{double-dual tensor product}
 \[
   M \dbldualtensor N \defeq (M \otimes N)^{\ast\ast}.
