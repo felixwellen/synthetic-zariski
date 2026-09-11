@@ -98,7 +98,7 @@ Since quasi-coherent modules are tangential, they form the basis of a well-behav
 As tangentiality is preserved by finite limits and finite colimits, we will be especially interested in the kernel closure of this category.
 
 \begin{definition}\label{def:adequate}
-  An $R$-module $M$ is \notion{adequate} if it is the kernel of a linear map $f : P \rightarrow Q$ where $P$ and $Q$ are quasi-coherent $R$-modules.
+  An $R$-module $M$ is \notion{adequate} if it is merely the kernel of a linear map $f : P \rightarrow Q$ where $P$ and $Q$ are quasi-coherent $R$-modules.
 \end{definition}
 
 Adequate $R$-modules enjoy the following properties as they form the kernel closure of quasi-coherent modules.
@@ -115,7 +115,7 @@ For the remainder of this section, we restrict our attention to adequate modules
 We will start by discussing a concept dual to being finitely presented, which was first introduced in \cite{diffgeo-article}.
 
 \begin{definition}\label{def:lin-adeq}
-  An $R$-module $L$ is called \notion{finitely copresented} if it is the kernel of a linear map $f : R^m \rightarrow R^n$.
+  An $R$-module $L$ is called \notion{finitely copresented} if it is merely the kernel of a linear map $f : R^m \rightarrow R^n$.
   We refer to the map $f$ as a \notion{finite copresentation} of $L$.
 \end{definition}
 
@@ -195,7 +195,8 @@ Dually, finitely presented $R$-modules are closed under cokernels.
 
 \begin{proof}
   Suppose that $K$ is the kernel of a linear map $f : M \rightarrow N$, where $M$ and $N$ are finitely copresented.
-  By the dual of \Cref{lem:fp-lift}, we can find a linear extension of $f$ to copresentations of $M$ and $N$:
+  Since our goal is a proposition, we can assume we have copresentations of $M$ and $N$.
+  By the dual of \Cref{lem:fp-lift}, we can find a linear extension of $f$ to these copresentations:
   \begin{center}
     \begin{tikzcd}
       K \ar[hook]{d} \\
@@ -237,7 +238,7 @@ While it is known that this subcategory is not the replacement sought, it still 
 By \Cref{lem:ker-fp-is-cok-lin-adeq}, this closure can be characterized symmetrically in two equivalent ways:
 
 \begin{definition}\label{def:fin-adeq}
-  Let $M$ be an $R$-module. Then $M$ is a \notion{finitely adequate $R$-module} if one of the following equivalent statements holds:
+  Let $M$ be an $R$-module. Then $M$ is \notion{finitely adequate} if one of the following equivalent statements holds:
   \begin{enumerate}[(i), noitemsep]
     \item $M$ is merely the kernel of a homomorphism between finitely presented $R$-modules.
     \item $M$ is merely the cokernel of a homomorphism between finitely copresented $R$-modules.
@@ -301,11 +302,11 @@ We will first characterize the projective and injective objects in $\finadeq$.
   where $A$ and $B$ are finitely adequate.
   Such a solution follows from \Cref{lem:lin-adeq-lift}, since $A$ and $B$ are tangential and wqc by \Cref{prp:fin-adeq-adeq}.
 
-  Assume now that $M$ is projective, and let $L$ be a finitely copresented module such that there is an epimorphism $p : L \twoheadrightarrow M$.
-  As $M$ is projective, this epimorphism has a section $i : M \to L$ such that $p \circ i = \id_M$.
-  Therefore, $M$ is a direct summand of $L$.
+  Assume now that $M$ is projective.
+  Since $M$ is finitely adequate and our goal is a proposition, we can assume that $M$ is the cokernel of a map between finitely copresented $R$-modules.
+  In particular, we can assume we have an epimorphism $p : L \twoheadrightarrow M$ from a finitely copresented module $L$.
+  As $M$ is projective, this epimorphism has a section $i : M \to L$, so $M$ is a direct summand of $L$.
   It now follows that $M$ is finitely copresented by \Cref{rem:lin-adeq-fp-thick}.
-  \rednote{Don't we need to \emph{show} that there is such an epi from a finitely copresented module, rather than assuming that there is?}
 \end{proof}
 
 \begin{lemma}\label{lem:fin-adeq-lift}
