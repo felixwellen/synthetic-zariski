@@ -252,6 +252,8 @@ It is not hard to check that the resulting equivalence is homotopic to the canon
 
 Observe that the modules $R_U$ and $K^U$ are ideals of $R$ for every proposition $U$.
 We can use this to compute duals of these and related modules, which will be very useful going forward.
+Recall that for an $R$-module $M$, the \notion{annihilator ideal}
+$\Ann(M)$ is defined to be $\sum_{x : R} \prod_{m : M} (xm = 0)$.
 
 \begin{lemma}\label{lem:ann-R_U-K^U}
   Let $U$ be a proposition.
@@ -260,18 +262,18 @@ We can use this to compute duals of these and related modules, which will be ver
 
 \begin{proof}
   We need to show that the predicates are equivalent. But for $x:R$ we have that
-  \begin{eqnarray}
-  x\in \Ann(R_U) &=& \forall y:R,\, (U\lor x=0) \to xy=0 \nonumber\\
-  & = & \forall y:R,\, U\to xy=0 \nonumber\\
-  & = & U\to \forall y:R,\, yx=0 \nonumber\\
-    & = & U\to x=0 \nonumber\\
-    & = & x\in K^U\nonumber
-  \end{eqnarray}
+  \begin{eqnarray*}
+    x\in \Ann(R_U) &=& \forall y:R,\, ((y=0) \lor U) \to xy=0 \\
+    & = & \forall y:R,\, U\to xy=0 \\
+    & = & U\to \forall y:R,\, xy=0 \\
+    & = & U\to x=0 \\
+    & = & x\in K^U
+  \end{eqnarray*}
   %  Let $x : R$ and assume that $x$ is in $\Ann(R_U)$.
   %We must show that $U$ implies that $x = 0$.
   %If $U$ holds, then $R_U = R$.
   %Thus, $\Ann(R_U) = \Ann(R) = 0$, giving $x = 0$.
-
+  %
   %For the other direction, assume that $x$ is in $K^U$.
   %We need to show that $xy = 0$ for every $y : R_U$.
   %Since we're proving a proposition, we can assume that either $y = 0$ or $U$ holds.
@@ -286,13 +288,14 @@ We can use this to compute duals of these and related modules, which will be ver
 \end{lemma}
 
 \begin{proof}
-We have that
-  \begin{eqnarray}
-  (R/I)^\ast & = & \setbuild{x:R^\ast}{\forall y:I,\, x(y) = 0} \nonumber\\
-& = & \setbuild{x:R}{\forall y:I,\, xy = 0} \nonumber\\
-   &= & \Ann(I) \nonumber
-  \end{eqnarray}
-
+  We have that
+  \begin{eqnarray*}
+    \Ann(I) & = & \setbuild{x:R}{\forall y:I,\, xy = 0} \\
+    & = & \setbuild{x:R^\ast}{\forall y:I,\, x(y) = 0} \\
+    & = & (R/I)^\ast
+  \end{eqnarray*}
+  and by construction this equivalence is induced by the natural equivalence $R \simeq R^*$.
+  %
   %Let $i : I \rightarrow R$ be the inclusion map.
   %Since taking duals is left exact, we have an exact sequence
   %\begin{equation*}
@@ -301,7 +304,7 @@ We have that
    % \end{tikzcd}
   %\end{equation*}
   %presenting $(\quot{R}{I})^*$ as the kernel of $i^*$.
-
+  %
   %The natural equivalence $R \to R^*$ sends $r$ to $\mu_r$ defined by $\mu_r(x) = xr$.
   %An element $r : R$ is in $\Ann(I)$ if and only if $\mu_r$ vanishes on $I$,
   %i.e., if and only if $i^*(\mu_r) = 0$.
@@ -322,7 +325,7 @@ The next counterexample will use the above observations.
   \begin{equation*}
     \begin{tikzcd}
       0 \ar{r} & (\quot{R}{R_{V(r)}})^* \ar{r} & R^* \ar{r}{i^*} & (R_{V(r)})^* \ar{r} & 0 \\
-      0 \ar{r} & \ideal{r} \ar{u}{\sim} \ar{r} & R \ar{u}{\sim} & & \\
+      0 \ar{r} & \ideal{r} \ar{u}{\sim} \ar{r} & R \ar{u}{\sim} & &
     \end{tikzcd}
   \end{equation*}
   The left vertical map is the equivalence described in the first paragraph,
@@ -467,7 +470,7 @@ While Specker's proof uses prime factorization in $\Z$, we replace this with a n
   The $R$-modules $R[[X]]$ and $R[X]$ are reflexive.
 \end{corollary}
 
-Since both $R[X]$ and $R[[X]]$ are not finitely adequate, we have reflexive $R$-module that are not finitely adequate.
+Since both $R[X]$ and $R[[X]]$ are not finitely adequate, we have reflexive $R$-modules that are not finitely adequate.
 
 %\begin{proof}
 %  We have a commutative diagram
