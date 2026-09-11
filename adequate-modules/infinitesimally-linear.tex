@@ -88,21 +88,23 @@ Taking tangent spaces is a local construction in the following sense.
 \subsection{Module Structures on Tangent Spaces}
 
 Let $(X,x)$ be a pointed type.
-If $X$ is an $R$-module and $x = 0$, then we will describe the pointwise $R$-module structure on the tangent space $\tangent{X}{x}$.
-In the case that $(X,x)$ is infinitesimally linear (to be defined in \Cref{def:inf-lin}), we can equip $\tangent{X}{x}$ with a second $R$-module structure.
-In this subsection, we will compare these module structures when $M$ is an $R$-module such that $(M,0)$ is infinitesimally linear.
+There are two cases in which we can define a module structure on the tangent space $\tangent{X}{x}$.
+First, if $X$ is an $R$-module and $x = 0$, we define a pointwise module structure in \Cref{def:pointwise-module-structure}.
+Second, if $(X,x)$ is infinitesimally linear (see \Cref{def:inf-lin}), Myers~\cite{david-orbifolds} defined a ``microlinear'' module structure on $\tangent{X}{x}$, which we recall below.
+In the case where both definitions apply, we show that the additions agree, but that the scalar multiplications may differ.
 
-
+\begin{definition}\label{def:pointwise-module-structure}
 We begin by defining the pointwise module structure on the tangent space $\tangent{M}{0}$ of an $R$-module $M$.
 Let $\upsilon, \nu$ be tangent vectors in $\tangent{M}{0}$.
 The pointwise addition is given by $(\upsilon + \nu)(\varepsilon) = \upsilon (\varepsilon) + \nu (\varepsilon)$ for all $\varepsilon : \D(1)$.
 The scalar multiplication is given by $(r \cdot \upsilon)(\varepsilon) = r \cdot \upsilon (\varepsilon)$ for all $r \in R$ and $\varepsilon : \D(1)$.
 It is clear that these operations are well-defined and define a module structure on $\tangent{M}{0}$.
+\end{definition}
 
 \begin{remark}
   Let $M$ and $N$ be $R$-modules.
   Taking the derivative of a pointed map $f : M \to_\ast N$ yields a pointed map $\der{f}{0} : \tangent{M}{0} \to_\ast \tangent{N}{0}$.
-  It is only when $f$ is linear that $\der{f}{0}$ is linear with respect to the pointwise module structures.
+  When $f$ is linear, the map $\der{f}{0}$ is linear with respect to the pointwise module structures.
 \end{remark}
 
 \begin{definition}\label{def:canonical-map}
@@ -149,14 +151,10 @@ Infinitesimal linearity is a local property in the following sense:
   Thus, we have the desired lifting property for $(X,x)$ if and only if we have it for $\hood{X,x}{1}$.
 \end{proof}
 
-Any infinitesimally linear set $(X,x)$ carries a (coherent) $R$-module structure, which we call the microlinear module structure.
-In the context of cohesive homotopy type theory, Myers shows that this module structure exists \cite[Lemma 4.2.19]{david-orbifolds}.
-We should also remark that Myers' statement regards types $X$ such that $(X,x)$ is infinitesimally linear for all $x : X$.
-To apply this idea to our context, we need to slightly adapt the proof to account for these differences.
-The goal is to show that the functor $R^n \mapsto (X,x)^{\D(n)} : \mathrm{fgFreeMod}_R^{\op} \to \Type$ preserves products, so that $\tangent{X}{x}$ is a model for the Lawvere theory of $R$-modules.
-Such a functor is product-preserving precisely when $\inc_{n,m}^\ast : (X,x)^{\D (m+n)} \to (X,x)^{\D(m) \vee \D(n)}$ is an equivalence for all $n, m : \N$, which is exactly the definition of infinitesimal linearity.
-
-Let us unfold the above-mentioned module structure.
+Assume that $(X,x)$ is an infinitesimally linear set.
+Myers shows in~\cite[Lemma 4.2.19]{david-orbifolds} that $\tangent{X}{x}$ has an $R$-module structure which we call the \notion{microlinear module structure}.
+In fact, Myers works in greater generality.  He does not assume that $X$ is a set, and shows that the type $\tangent{X}{x}$ has a wild $R$-module structure which is coherent in a precise sense.
+Another difference is that he assumes that $X$ is infinitesimally linear at every point $x$, but the argument can be adapted to our case, and we can give an explicit description of the operations.
 Indeed, let $\upsilon$ and $\nu$ be tangent vectors in $\tangent{X}{x}$.
 The microlinear addition $\upsilon \boxplus \nu$ is defined by the composite $(\inc_{1,1}^\ast)^{-1}[\upsilon,\nu] \circ D$.
 In other words, we obtain this map by lifting in the following diagram
@@ -167,7 +165,7 @@ In other words, we obtain this map by lifting in the following diagram
   \end{tikzcd}
 \end{center}
 The microlinear scalar multiplication is defined by $(r \boxdot \upsilon)(\varepsilon) = \upsilon(r\varepsilon)$ for all $r : R$ and $\varepsilon : \D(1)$.
-The following is an easy, but helpful lemma:
+The following is an easy, but helpful, lemma:
 %We will give a direct proof. First we give an easy but helpful lemma on the microlinear addition.
 
 \begin{lemma}\label{prp:microlinear-addition}
