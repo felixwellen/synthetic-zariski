@@ -17,7 +17,7 @@ In order to be a fundamental system of entourages in the sense of \parencite[170
   A map $U:I \to X^\Open$ is a cover iff $\Delta \subseteq \bigcup_{i:I} U_i \times U_i$. 
 \end{lemma}
 
-\begin{lemma}
+\begin{lemma}\label{ReduceToFinite}
   If $X:\CHaus$ and $E$ is an entourage on $X$, there exists a finite open cover $(U_i)_{i:I}$ such that 
   $\Delta \subseteq \bigcup_{i:I} U_i \times U_i \subseteq E$. 
 \end{lemma}
@@ -42,14 +42,16 @@ In order to be a fundamental system of entourages in the sense of \parencite[170
   Let $X:\CHaus$ and $(U_i)_{i:I}$ a finite open cover. Then there is a closed cover $D: I \to X^\Closed$ such that $D_i\subseteq U_i$ for all $i:I$. 
 \end{lemma}
 \begin{proof}
-  Assume $I = \mathbb N_{\leq n}$ and $U_i = \emptyset$ for $i>N$. 
-  We will recursively define a sequence $C_i \subseteq V_i \subseteq D_i \subseteq U_i$
-  with $C_i,D_i$ closed and $V_i$ open, such that for all $l:\mathbb N_{\leq n+1}$ we have 
+  Assume WLOG that $I = \mathbb N_{\leq n}$ and define $U_{n+1} = \emptyset$.
+  We will recursively define for each $i:\mathbb N_{\leq n}$ 
+  a sequence $V_i \subseteq D_i \subseteq U_i$
+  with $D_i$ closed and $V_i$ open, 
+  such that for all $l:\mathbb N_{\leq n+1}$ we have 
   \begin{equation}\label{inductionLoop}\bigcup_{i < l} V_i \cup \bigcup_{i\geq l} U_i = X.\end{equation}
   Note that \Cref{inductionLoop} is satsified for $l=0$, and if were to be satisfied for $l=n+1$, this gives that $\bigcup_{i:I} V_i = X$, and hence we would have $\bigcup_{i:I} D_i = X$ as required. 
 %
-  Assume $C_i,V_i,D_i$ have been defined for $i<k$ and be such that \Cref{inductionLoop} is satisfied for $l<k$. 
-  Note that $(\bigcup_{i<k} V_i \cup \bigcup_{i>k} U_i)$ is open, and hence $\neg\neg$-stable, and define $C_k$ as its complement. By the induction hypothesis we have $C_k \subseteq P_k$. By \Cref{seperation}, we find $V_k,D_k$ open and closed respectively such that 
+  Assume $V_i,D_i$ have been defined for $i<k$ and be such that \Cref{inductionLoop} is satisfied for $l=k$. 
+  Note that $(\bigcup_{i<k} V_i \cup \bigcup_{i>k} U_i)$ is open, and hence $\neg\neg$-stable, and define $C_k$ as its complement. By the induction hypothesis we have $C_k \subseteq U_k$. By \Cref{seperation}, we find $V_k,D_k$ open and closed respectively such that 
   $C_k \subseteq V_k \subseteq D_k \subseteq U_k$. 
   Now we have that 
   $$
@@ -63,6 +65,30 @@ In order to be a fundamental system of entourages in the sense of \parencite[170
   which equals $X$ by \Cref{SubsetUnion}. 
   Thus \Cref{inductionLoop} holds for $l=k$, and we conclude by strong induction. 
 \end{proof}
+\rednote{TODO decide which is nicer}
+\begin{proof}
+  Assume WLOG that $I = \mathbb N_{\leq n}$. We will define for each $l:\mathbb N_{\leq n+1}$ and each $0\leq i < l$ a sequence $V_i \subseteq D_i \subseteq U_i$ with $D_i$ closed and $V_i$ open, and such that
+  \begin{equation}\label{inductionLoop}\bigcup_{0 \leq i < l} V_i \cup \bigcup_{l\leq  i\leq n} U_i = X.\end{equation}
+  Note that \Cref{inductionLoop} is satsified for $l=0$, and if were to be satisfied for $l=n+1$, this gives that $\bigcup_{i:I} V_i = X$, and hence we would have $\bigcup_{i:I} D_i = X$ as required. 
+%
+  
+  Assume $V_i,D_i$ have been defined for $i<k$ and be such that \Cref{inductionLoop} is satisfied for $l=k$. 
+  Note that $\bigcup_{i<k} V_i \cup \bigcup_{k<i} U_i$ is open, and hence $\neg\neg$-stable, and define $C_k$ as its complement. By the induction hypothesis we have $C_k \subseteq U_k$. By \Cref{seperation}, we find $V_k,D_k$ open and closed respectively such that 
+  $C_k \subseteq V_k \subseteq D_k \subseteq U_k$. 
+  Now we have that 
+  $$
+  \bigcup_{0\leq i< k+1} V_i \cup \bigcup_{k+1\leq i \leq n} U_i = 
+  (\bigcup_{i<k}V_i \cup 
+  \bigcup_{k<i} U_i)
+  \cup V_k 
+  = 
+  \neg C_k \cup V_k,
+  $$
+  which equals $X$ by \Cref{SubsetUnion}. 
+  Thus \Cref{inductionLoop} holds for $l=k+1$, and we conclude by induction. 
+\end{proof}
+
+
 
 The following is Lemma 2.2 of \cite{Howes}, which is based on a proof by Morita. 
 \begin{lemma}
@@ -85,11 +111,11 @@ The following is Lemma 2.2 of \cite{Howes}, which is based on a proof by Morita.
   Then for any $J:2^I$ with $B_J(x)$, we cannot have $i \in \neg J$ and thus we have $i\in J$. But then also $B_J\subseteq U_i$.
 \end{proof}
 
-From the above lemmas we may conclude:
 \begin{theorem}\label{shrinking}
   Let $X:\CHaus$ and let $E$ an entourage of $X$. Then there exists an entourage $F$ of $X$ with $F\circ F \subseteq E$. 
 \end{theorem}
-
-\subsection{OLD}
-
+\begin{proof}
+  By \Cref{ReduceToFinite} we may assume $E = \bigcup_{i:I} U_i \times U_i$ for some finite open cover $(U_i)_{i:I}$ of $X$. 
+  By lemma \Cref{ReducesToDelta} it is sufficient 
+\end{proof}
 
