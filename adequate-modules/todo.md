@@ -15,11 +15,11 @@
   For example, \exists for mere existence; all algebraic structures are
   assumed to be sets; our global assumptions on the ring R; we follow
   HoTT book except for ...; etc.
-- Handle 14 \rednote's
+- Handle 18 \rednote's
 
 ## Proofreading
 
-- Dan (others too): intro
+- Dan (others too): intro:  one pass done, but needs more revision
 - Fabian: Section 1
 - Thomas: Section 2
 - Felix:  Section 3
