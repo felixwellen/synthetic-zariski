@@ -1,19 +1,56 @@
+\begin{lemma}\label{ProductTopology}
+  Let $X,Y:\CHaus$. Any open of $X\times Y$ can be written as $\bigcup_{i:I} U_i \times V_i$ where $I$ is some overtly discrete set, and for each $i:I$, the sets $U_i,V_i$ are open subsets of $X,Y$ respectively. 
+\end{lemma}
+\begin{corollary}\label{countableProductTopology}
+  Let $X,Y:\CHaus$. Any open of $X\times Y$ can be written as $\bigcup_{n:\N} U_n \times V_n$ where for each $n:\N$, the sets $U_n,V_n$ are open subsets of $X,Y$ respectively. 
+\end{corollary}
+
+
+\begin{lemma}
+  MP, $\neg\neg$-stability.
+\end{lemma}
 \begin{lemma}
   If $X:\CHaus$ and $C:\N \to X \to \Closed$ is a sequence of closed subsets of $X$ such that $\bigcap_{n:\N} C_n = \emptyset$, then there is an $N:\N$ with $\bigcap_{k<N}C_k = \emptyset$. 
 \end{lemma}
+\begin{lemma}\label{subcoverN} Let $X:\CHaus$ and $U:\N \to X^\Open$ be such that $\bigcup_{n:\N} U_n = X$. 
+  Then there exists some finite set $I\subseteq \N$ such that $\bigcup_{i:I} U_i = X$. 
+\end{lemma}
+\begin{corollary}\label{subcover}
+  Let $X:\CHaus$ and $U:J \to X^\Open$ be such that $\bigcup_{j:J} U_j = X$. Then there exists some finite set $I$ and map $\iota:I \to J$ such that $X = \bigcup_{i:I} U_{\iota(i)}$. 
+\end{corollary}
 
+
+Now we will present some seperation properties of compact Hausdorff spaces:
 \begin{lemma}
-  If $X:\CHaus$, then there is some $B:\Boole$ and maps $b : B \to (X \times X) \to \Open \times \Closed$ such that blablab
+  If $X:\CHaus$, then there is some $B:\Boole$ and maps $b : B \to X \to \Open \times \Closed$ such that blablab
 \end{lemma}
 
 
 \begin{lemma}
-  For $A\subseteq X$ a closed subset of a compact Hausdorff space and 
-  $f: A \to Y$ a function to a compact Hausdorff space, 
-  $graph(f) \subseteq X \times Y$ is closed. 
+  Let $X:\CHaus$ and $C\subseteq X$ closed. 
+  Then there exists some sequence of open subsets $U_n:X \to \Open$ such that $C = \bigcap_{n:\N} U_n$. 
 \end{lemma}
 \begin{proof}
-  $(x,y)$ lies in $graph(f)$ iff $A(x) \wedge f x = y$, 
-  equality in $Y$ is closed and $A$ is closed. 
-  As closed propositions are conjunction-closed, $graph(f)$ is closed. 
+  Assume a cover $q:S\twoheadrightarrow X$ with $S:\Stone$. Then $q^{-1}(C)\subseteq S$ is closed and by \parencite[TODO]{TODO}, equal to $\bigcap_{n:\N} D_n$ for some sequence of decidable subsets $D_n: S \to 2$. 
+  Consider $U_n = \neg p(\neg D_n)$. We will prove that $C = \bigcap_{n:\N} U_n$.
+  \item First we show that $C\subseteq U_n$ for any $n:\N$. If there is some $x:X$ such that $x\in C$ and $x \in q(\neg D_n)$, then by surjectivity of $q$, there is some $s:S$ with $s\in \neg D_n$ and $s\in q^{-1}(C)$, contradiciting $q^{-1}(C)= \bigcap_{n:\N} D_n$. Thus $C\subseteq \neg q(\neg D_n)$. 
+  \item Now we show that $\bigcap_{n:\N} U_n \subseteq C$. 
+    Let $x:X$ and suppose that for all $n:\N$ we have $x\in U_n$. Then for any $x:X$ and $s\in q^{-1}(x)$ we have for any $n:\N$ that $s \notin \neg D_n$, and by decidablity of $D$ hence $s\in D_n$. Thus $s\in q^{-1}(C)$ and $x\in C$ as required. 
+\end{proof}
+
+\begin{lemma}\label{seperation}
+  If $X:\CHaus$ and $C\subseteq D \subseteq X$ for $C$ closed and $D$ open. 
+  Then there exists $U,K\subseteq X$ with $U$ open and $K$ closed such that $ C\subseteq U \subseteq K \subseteq D$. 
+\end{lemma}
+\begin{proof}
+  As $C\subseteq D$, we have $\neg D, C$ disjoint and closed. By Lemma 4.9 of \cite{synthetic-stone-duality}, we have disjoint open subsets $U,V$ with $\neg D \subseteq V , C \subseteq U$. Then for $K = \neg V$ we have $U\subseteq K$ and $K \subseteq \neg \neg D$. As closed propostions are double-negation stable, we conclude $K\subseteq D$. 
+\end{proof}
+
+\begin{lemma}\label{SubsetUnion}
+  Let $X:\CHaus$ and $A, B \subseteq X$ subsets with $A$ open, $B$ closed, or the other way around. 
+  Then $X = \neg A \cup B$ if and only if $A \subseteq B$. 
+\end{lemma}
+\begin{proof}
+  Assume $A$ open, $B$ closed, the other proof is similar. Then for all $x:X$ we have $\neg A (x) \vee B(x)$ is $\neg\neg$-stable, hence
+  $$(\neg A (x) \vee B (x)) \leftrightarrow (A(x) \to B(x)).$$
 \end{proof}

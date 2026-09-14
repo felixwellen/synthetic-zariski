@@ -1,0 +1,95 @@
+Uniformity theory was introduced by Andr\'e Weil in \cite{Weil}. Other references include \cite{Tukey, BourbakiTopologyCh1To4, Howes, Isbell}. 
+Classically, to give a uniformity on a set $X$, one has to specify some set $\mathcal U \subseteq \mathcal P(X\times X)$ satisfying certain conditions. The elements of $\mathcal U$ are called entourages.  
+A classical result is that a compact Hausdorff space has a unique uniformity compatible with it's topology \parencite[Theorem II.4.1.1]{BourbakiTopologyCh1To4}. We will take this unique uniformity as definition in the setting of SSD:
+\begin{definition}\label{DfnEntourage}
+  Let $X:\CHaus$. An \textbf{entourage} of $X$ is an open subset of $X\times X$ containing the diagonal. 
+\end{definition}
+\subsection{Shrinking of entourages}
+\begin{remark}
+  We can immediately note that entourages are closed under intersection, and each entourage contains the diagonal. Furthermore, it is clear that if $E$ is an entourage, then the relational inverse $E^{-1}$ is as well. 
+\end{remark}
+In order to be a fundamental system of entourages in the sense of \parencite[170]{BourbakiTopologyCh1To4}, it remains to be shown that whenever $E$ is an entourage, we can shrink it to another entourage $F$ such that for $\circ$ relational composition, $F\circ F \subseteq E$. 
+\begin{definition}
+  For $X$ any type, a \textbf{cover} is a map $U:I \to X^\Prop$, sometimes denoted $(U_i)_{i:I}$, such that $\bigcup_{i:I} U_i = X$. 
+  If $I$ is finite, we call $U$ finite. If $U_i$ is open (resp. closed) for all $i:I$, we call $U$ open (resp. closed) also. 
+\end{definition}
+\begin{lemma}
+  A map $U:I \to X^\Open$ is a cover iff $\Delta \subseteq \bigcup_{i:I} U_i \times U_i$. 
+\end{lemma}
+
+\begin{lemma}
+  If $X:\CHaus$ and $E$ is an entourage on $X$, there exists a finite open cover $(U_i)_{i:I}$ such that 
+  $\Delta \subseteq \bigcup_{i:I} U_i \times U_i \subseteq E$. 
+\end{lemma}
+\begin{proof}
+  By \Cref{countableProductTopology}, there exist maps $V,W:\N \to X^\Open$ such that $E=\bigcup_{j:J} (V_j \times W_j)$. 
+  As $\Delta \subseteq E$ we have for each $x:X$ some $n:\N$ such that $x\in V_n \cap W_n$. 
+  It follows for $U_n = V_n \cap W_n$ that $(U_n)_{n:\N}$ is an open cover. 
+  By \Cref{subcoverN}, we can find $I\subseteq \N$ finite such that $(U_i)_{i:I}$ is our desired open cover. 
+\end{proof}
+\begin{definition}
+  Let $X$ be any type and $(U_i)_{i:I},(V_j)_{j:J}$ covers of $X$. 
+  We say that $U$ is a \textbf{$\Delta$-refinement} of $V$ if for every $x:X$ there is some $j:J$ such that $\bigcup\{U_i | x \in U_i\} \subseteq V_j$. 
+\end{definition}
+\begin{lemma}
+  Let $X$ be a type with covers $(U_i)_{i:I},(V_j)_{j:J}$. If $U$ is a $\Delta$-refinement of $V$, then 
+  $$(\bigcup_{i:I} U_i \times U_i) \circ (\bigcup_{i:I} U_i \times U_i) \subseteq \bigcup_{j:J} V_j \times V_j.$$
+\end{lemma}
+\begin{proof}
+  Let $x,y,z:X$. Suppose $x,y \in U_i$ and $y,z \in U_{i'}$ for $i,i':I$. Then there is some $j:J$ such that $U_i \cup U_{i'} \subseteq V_j$. Hence $x,z\in V_j$ as required. 
+\end{proof}
+\begin{lemma}
+  Let $X:\CHaus$ and $(U_i)_{i:I}$ a finite open cover. Then there is a closed cover $D: I \to X^\Closed$ such that $D_i\subseteq U_i$ for all $i:I$. 
+\end{lemma}
+\begin{proof}
+  Assume $I = \mathbb N_{\leq n}$ and $U_i = \emptyset$ for $i>N$. 
+  We will recursively define a sequence $C_i \subseteq V_i \subseteq D_i \subseteq U_i$
+  with $C_i,D_i$ closed and $V_i$ open, such that for all $l:\mathbb N_{\leq n+1}$ we have 
+  \begin{equation}\label{inductionLoop}\bigcup_{i < l} V_i \cup \bigcup_{i\geq l} U_i = X.\end{equation}
+  Note that \Cref{inductionLoop} is satsified for $l=0$, and if were to be satisfied for $l=n+1$, this gives that $\bigcup_{i:I} V_i = X$, and hence we would have $\bigcup_{i:I} D_i = X$ as required. 
+%
+  Assume $C_i,V_i,D_i$ have been defined for $i<k$ and be such that \Cref{inductionLoop} is satisfied for $l<k$. 
+  Note that $(\bigcup_{i<k} V_i \cup \bigcup_{i>k} U_i)$ is open, and hence $\neg\neg$-stable, and define $C_k$ as its complement. By the induction hypothesis we have $C_k \subseteq P_k$. By \Cref{seperation}, we find $V_k,D_k$ open and closed respectively such that 
+  $C_k \subseteq V_k \subseteq D_k \subseteq U_k$. 
+  Now we have that 
+  $$
+  \bigcup_{i< k} V_i \cup \bigcup_{i\geq k} U_i = 
+  (\bigcup_{i<k}V_i \cup 
+  \bigcup_{i>k} U_i)
+  \cup V_k 
+  = 
+  \neg C_k \cup V_k,
+  $$
+  which equals $X$ by \Cref{SubsetUnion}. 
+  Thus \Cref{inductionLoop} holds for $l=k$, and we conclude by strong induction. 
+\end{proof}
+
+The following is Lemma 2.2 of \cite{Howes}, which is based on a proof by Morita. 
+\begin{lemma}
+  Let $X:\CHaus$, and let $I$ a finite set indexing an open (resp. closed) cover $(U_i)_{i:I}$ and a closed (resp. open) cover $(C_i)_{i:I}$ such that $C_i \subseteq U_i$ for all $i:I$. 
+  Then $(B_J)_{J:2^I}$ defined as follows:
+  $$B_J = (\bigcap_{j:J} U_j) \cap (\bigcap_{j:\neg J} \neg C_j)$$
+  gives a finite open (resp. closed) cover that $\Delta$-refines $U$. 
+\end{lemma}
+\begin{proof}
+  We will show one case, the other is similar. 
+  As $2^I$ is finite, each $B_J$ is indeed open. 
+  By \Cref{SubsetUnion}, we have $X = U_i \cup \neg C_i$ for all $i:I$. Then also
+  $X = \bigcap_{i:I} (U_i \cup \neg C_i)$. 
+  But by distributivity, the latter equals also 
+  $
+  \bigcup_{J:2^I} ((\bigcap_{j:J} U_j) \cap (\bigcap_{j:\neg J} \neg C_j))
+  $ from which it follows that $B$ is an open cover.
+ % 
+  To see that $B$ is a $\Delta$-refinement of $U$, consider any $x:X$, then there exists some $i:I$ with $C_i(x)$. 
+  Then for any $J:2^I$ with $B_J(x)$, we cannot have $i \in \neg J$ and thus we have $i\in J$. But then also $B_J\subseteq U_i$.
+\end{proof}
+
+From the above lemmas we may conclude:
+\begin{theorem}\label{shrinking}
+  Let $X:\CHaus$ and let $E$ an entourage of $X$. Then there exists an entourage $F$ of $X$ with $F\circ F \subseteq E$. 
+\end{theorem}
+
+\subsection{OLD}
+
+

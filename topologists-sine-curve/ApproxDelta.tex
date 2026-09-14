@@ -1,15 +1,3 @@
-\begin{lemma}
-  Let $X:\CHaus$ and $C\subseteq X$ closed. 
-  Then there exists some sequence of open subsets $U_n:X \to \Open$ such that $C = \bigcap_{n:\N} U_n$. 
-\end{lemma}
-\begin{proof}
-  Assume a cover $q:S\twoheadrightarrow X$ with $S:\Stone$. Then $q^{-1}(C)\subseteq S$ is closed and by \parencite[TODO]{TODO}, equal to $\bigcap_{n:\N} D_n$ for some sequence of decidable subsets $D_n: S \to 2$. 
-  Consider $U_n = \neg p(\neg D_n)$. We will prove that $C = \bigcap_{n:\N} U_n$.
-  \item First we show that $C\subseteq U_n$ for any $n:\N$. If there is some $x:X$ such that $x\in C$ and $x \in q(\neg D_n)$, then by surjectivity of $q$, there is some $s:S$ with $s\in \neg D_n$ and $s\in q^{-1}(C)$, contradiciting $q^{-1}(C)= \bigcap_{n:\N} D_n$. Thus $C\subseteq \neg q(\neg D_n)$. 
-  \item Now we show that $\bigcap_{n:\N} U_n \subseteq C$. 
-    Let $x:X$ and suppose that for all $n:\N$ we have $x\in U_n$. Then for any $x:X$ and $s\in q^{-1}(x)$ we have for any $n:\N$ that $s \notin \neg D_n$, and by decidablity of $D$ hence $s\in D_n$. Thus $s\in q^{-1}(C)$ and $x\in C$ as required. 
-\end{proof}
-
 \begin{corollary}\label{approxDeltaByOpens}
   Let $X:\CHaus$, then there is some sequence of entourages $(U_n)_{n:\N}$ subsets of $X \times X$ such that $\bigcap_{n:\N} U_n = \Delta$. 
 \end{corollary}
