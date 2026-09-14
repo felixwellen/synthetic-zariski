@@ -1,0 +1,26 @@
+\begin{definition}
+  Let $X$ be a type. A \textbf{Cauchy sequence} in $X$ is a sequence $x:\N \to X$ such that for any $E$ entourage of $X$ there exists an $N:\N$ such that $(x_n,x_m):E$ for all $n,m\geq N$. 
+\end{definition}
+
+\begin{definition}\label{dfnCauchyFilter}
+  Let $X$ be a type. A \textbf{Cauchy filter} in $X$ is a sequence $C:\N \to (X \to \Closed)$ such that:
+  \begin{itemize}
+    \item For all $n:\N$ the finite intersection $\bigcap_{k\leq n} C_k$ is inhabited. 
+    \item For any entourage $E$ of $X$ there merely exists an $N:\N$ such that $C_k \times C_k \subseteq E$ for all $k\geq N$. 
+  \end{itemize}
+  Such a sequence is said to converge if there exists an $x:X$ such that $\bigcap_{n:\N} C_n = \{x\}$. 
+\end{definition}
+%\begin{remark}
+%  If $x$ is a Cauchy sequence, then $C_n:= \{ x_k | k> n\}$ is 
+%\end{remark}
+\begin{lemma}
+  Every Cauchy filter in a compact Hausdorff space converges. 
+\end{lemma}
+\begin{proof}
+  Let $X:\Chaus$ and $C$ be as in \Cref{dfnCauchyFilter}. We will show that $\bigcap_{n:\N} C_n$ is an inhabited proposition and hence a singleton. 
+\item To see that $\bigcap_{n:\N} C_n$ is a proposition, suppose $x,y:\bigcap_{n:\N} C_n$. As $x=y$ is closed, %and hence $\neg\neg$-stable,
+  it's sufficient to derive a contradiction from $x \neq y$. If $x \neq y$ then $E= \neg\{(x,y)\}$ is an entourage, hence there exists some $n:\N$ with $C_n \times C_n \subseteq E$, which means that $(x,y) \notin C_n \times C_n$, from which we derive the needed contradiction. 
+\item To see that $\bigcap_{n:\N} C_n$ is inhabited, note that $\exists_{x:X} \bigcap_{n:\N} C_n(x)$ is closed, hence $\neg\neg$-stable, and by \Cref{TODO} if $\bigcap_{n:\N} C_n  = \emptyset$, then there is already some $n:\N$ such that $\bigcap_{k\leq N} C_k = \emptyset$, contradicting that $C$ was a Cauchy filter. 
+\end{proof}
+
+

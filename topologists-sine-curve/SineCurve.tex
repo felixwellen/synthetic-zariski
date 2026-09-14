@@ -1,0 +1,148 @@
+\begin{definition}[The topologist's sine curve]
+  For each $k:\mathbb N$, define $t_k:[\frac1k,1] \to [-1,1]$ by $t_k(x) = \sin(\frac1x)$ and $Y_k \subset [0,1] \times [-1,1]$ by 
+  $$Y_k = ([0, \frac1k] \times [-1,1]) \cup graph(t_k)$$
+  Then define $Y = \bigcap_{k:\mathbb N} Y_k$. 
+  We denote $\iota_k : Y_k \to [0,1] \times [-1,1]$ 
+  and $\iota:Y \to [0,1] \times [-1,1]$ for the inclusion maps. 
+\end{definition}
+\begin{remark}
+  $Y_k$ is a closed for each $k:\mathbb N$, 
+  as it's the union of two closed subsets. 
+  It follows that $Y$ is closed also, as it's a countable intersection of closed subsets. 
+\end{remark}
+
+\begin{remark}\label{positiveNumbersCharacter}
+  Recall that Markov's principle is equivalent to the fact that for $x:\mathbb I$ with $x\neq 0$ there exists some $k:\mathbb N$ with $\frac1k<x$. 
+\end{remark}
+\begin{corollary}\label{NonZeroOnGraph}
+  By the above, if for some $x:[0,1] \times [-1,1]$ we have $x\in Y$ and $\pi_1(x)\neq 0$, there must be some $k\in\mathbb N$ with $x \in graph(t_k)$ and hence $\pi_2(x) =\sin(\frac1{\pi_1(x)})$. 
+\end{corollary}
+
+\section{The curve is not path-connected}
+\begin{remark}\label{topbottomSeq}
+  For each $k:\N$, denote $t_k = \frac1{(2k+\frac12) \pi}$ and  $b_n = \frac1{(2k+\frac32) \pi}$. 
+  Note that for all $k:\N$ we have $\sin(\frac1{b_k})=-1, \sin(\frac1{t_k})=1$ and
+  $1>t_k>b_k>t_{k+1}>b_{k+1}>0$. 
+\end{remark}
+\begin{lemma}\label{cofinaltbseq}
+  Given $r:[0,1]$ with $r>0$, there exists some $k:\N$ with $t_k,b_k<r$.  
+\end{lemma}
+\begin{proof}
+  By \Cref{positiveNumbersCharacter}, there is some $k:\N$ with $\frac1k<r$. As $(2k+\frac32)\pi,(2k+\frac12)\pi>k$, this $k$ suffices.
+\end{proof}
+\begin{lemma}\label{SineWillHitTopBot}
+  Let $\gamma:[0,1] \to Y$. 
+  Assume that $\pi_1(\gamma(0)) = 0$ and $\pi_1(\gamma(r))>0$ for some $r:[0,1]$. 
+  Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_2(\gamma(u)) = 1$, and $\pi_2(\gamma(v)) = -1$. 
+\end{lemma}
+\begin{proof}
+  We apply the intermediate value theorem (\Cref{IntermediateValue}) to $\pi_1\circ \gamma : [0,1] \to [0,1]$. 
+  By \Cref{cofinaltbseq}, there exists some $v:[0,1]$ such that $\pi_1(\gamma(v)) = b_k$. 
+  As $b_k>0$, by \Cref{NonZeroOnGraph}, we may conclude that $\pi_2(\gamma(v)) = -1$. 
+  The case for $u$ is similar. 
+\end{proof}
+\begin{theorem}[The topologist's sine curve is not path-connected]
+  There is no map $\gamma:\mathbb I \to Y$ such that $\gamma(0) = (0,0)$ and $\gamma(1) = (1,sin(1))$. 
+\end{theorem}
+\begin{proof}
+  By applying dependent choice to \Cref{SineWillHitTopBot}, 
+  we can find sequences $u_i,v_i,~i:\N$ such that $\pi_2(\gamma(u_i)) = 1, \pi_2(\gamma(v_i)) = -1$ and 
+  $u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\mathbb N$. 
+  We now apply uniform continuity (\Cref{uniformContinuity}). 
+  For $\epsilon = 2$, there is some $\delta>0$ such that $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$ as  $d(\gamma(u_i), \gamma(v_j)) > 2$. 
+  Therefore, the sequence $u_i$ is decreasing with steps of at least size $2\delta>0$. 
+  But this means that for $N>\frac1{2\delta}$, we have $u_{N}<0$, while $u_N :[0,1]$, which is a contradiction. 
+\end{proof}
+
+\begin{remark}
+  One could define an equivalence relation on any type $X$ such that 
+  $x\sim y$ iff there is a path from $x$ to $y$. 
+  The equivalence classes of this relation would normally be called the path-connected components. 
+  We conjecture that the space of path-connected components of $Y$ is equivalent to the type of open propositions. 
+\end{remark}
+
+\section{The shape of the curve}
+\begin{lemma}
+  $\pi_1\circ \iota : Y \to [0,1]$ is surjective.  
+\end{lemma}
+\begin{proof}
+  We shall show that for each $r:[0,1]$ the fiber $\pi_1\circ \iota^{-1}(r)$ is merely inhabited. 
+  As the fiber is closed, it's sufficient to show it's non-empty. 
+
+  Note that $\pi_1\circ \iota^{-1}(r)= \pi_1^{-1}(r) \cap Y$. 
+  By Lemma 4.1.5 of \cite{synthetic-stone-duality}, 
+  it's sufficient to show that $\pi_1^{-1}(r) \cap Y_k$ 
+  is non-empty for any $k:\mathbb N$. 
+
+  Let $k:\mathbb N$. 
+  Note that $r\leq \frac1k \vee r \geq \frac 1k$. 
+  \begin{itemize}
+    \item If $r\leq \frac1k$, we have that $(r,0) \in Y_k$. 
+    \item If $r\geq \frac1k$, $\frac1r$ is well-defined and 
+      $(r,\sin(\frac1r)) \in Y_k$. 
+  \end{itemize}
+  Hence in both cases we have that $\pi_1^{-1}(r) \cap Y_k$ is non-empty, as required. 
+\end{proof}
+
+\begin{definition}
+  A subset $X$ of $\mathbb R^n$ is called convex if 
+  for any $\alpha,\beta:\mathbb I$ with $\alpha + \beta = 1$, we have 
+  $X(y) \wedge X(y') \to X(\alpha y + \beta y')$
+\end{definition}
+\begin{lemma}
+  For each $k:\mathbb N$ and $r:[0,1]$, $Y_k\cap \pi_1^{-1}(r)$ is convex. 
+\end{lemma}
+\begin{proof}
+  Suppose that $(x,y), (x',y')$ both lie in $Y_k\cap \pi_1^{-1}(r)$. 
+  Suppose furthermore that $\alpha,\beta:\mathbb I, \alpha+ \beta = 1$. 
+  We will show that $\alpha\cdot (x,y) + \beta\cdot (x',y') $ also lies in 
+  $Y_k \cap \pi_1^{-1}(r)$. 
+
+  Recall that 
+  $Y_k = [0,\frac1k] \times [-1,1]  \cup graph(t)$. 
+  As we will show a proposition, we can make a case distinction 
+  for both $(x,y), (x',y')$ on whether they come from $[0,\frac 1k] \times [-1,1]$ or 
+  from $graph(t)$.
+  \begin{itemize}
+    \item 
+      If either comes from $[0,\frac1k] \times [-1,1]$, we must have that 
+      then $r \leq \frac1k$. 
+      Then $\pi_1^{-1}(r) = \{r\} \times [-1,1]\subseteq Y_k$. 
+      It follows that $\pi_1^{-1}(r) \cap Y_k = \{r\} \times [-1, 1]$, which is convex. 
+    \item 
+      If both come from $graph(t)$, 
+      then $x = x' = r$ and $y = y' = \sin(\frac1r)$. 
+      Hence $(x,y) = (x',y')$ and thus $\alpha(x,y) + \beta(x',y') = (x',y')$. 
+  \end{itemize}
+  In both cases we conclude that $\alpha (x,y) + \beta(x',y')$ lies in 
+  $Y_k\cap \pi_1^{-1}(r)$. 
+\end{proof}
+
+
+\begin{remark}
+  Any intersection of convex subspaces of $\mathbb R^n$ is itself convex. 
+\end{remark}
+\begin{corollary}
+  for each $r:\mathbb I$, the fiber 
+  $Y_r:=(\pi_1\circ \iota)^{-1}(r) = Y\cap \pi_1^{-1}(r)$ is convex. 
+\end{corollary}
+\begin{lemma}
+  Any convex inhabited subspace of $\mathbb R^n$ is $\mathbb I$-contractible. 
+\end{lemma} 
+\begin{proof}
+  See Lemma 5.24 of \cite{synthetic-stone-duality}. 
+  Convex spaces can shown to be path-connected.
+\end{proof}
+\begin{theorem}
+  $Y$ is $\mathbb I$-contractible. 
+\end{theorem}
+\begin{proof}
+  By the above, we can write $Y = \sum\limits_{r:\mathbb I} Y_r$, 
+  such that for all $r:\mathbb I$, we have 
+  $Y_r$ $\mathbb I$-contractible. 
+
+  Thus both the maps $\sum\limits_{r:\mathbb I} Y_r \to \mathbb I$ and 
+  $\mathbb I \to 1$ have $\mathbb I$-contractible fibers. 
+  By Lemma 1.33 of \cite{modalities}, so does their composite. 
+  It follows that $Y$ is $\mathbb I$-contractible. 
+\end{proof}

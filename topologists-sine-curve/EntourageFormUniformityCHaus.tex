@@ -21,13 +21,11 @@ In this section, we present a proof that the entourages of a compact Hausdorff s
 \end{lemma}
 \begin{lemma}\label{subcover}
   Let $X:\CHaus$ and $(U_i)_{i:I}$ be an overtly discrete indexed cover of $X$. 
-  Then there exists some finite set $I_0\subseteq I$ such that $X = \bigcup_{i:I_0} U_i$. 
+  Then there exists some finite set $I_0$ and map $r:I_0 \to I$ such that $X = \bigcup_{i:I_0} U_{r(i)}$. 
+  \rednote{The map thing is a bit annoying, but in general the image of a finite set is not finite}
 \end{lemma}
 \begin{proof}
-  \rednote{TODO rewrite}
-  As $I$ is overtly discrete, there exists a surjection $\N \to I + 1$. 
-  Sending $1$ to $\emptyset$, $U$ thus induces an open cover indexed by $\N$. 
-  The intersection of the complements is empty, hence by Lemma 4.5 of \cite{synthetic-stone-duality} there is a finite subset of $\N$ such that the intersection of the complements is empty already, which induces a finite subset of $I$ satisfying the requirement. 
+  As $I$ is overtly discrete, there exists a surjection $s:\N \to I + 1$. By sending everything in $1$ to $\emptyset$, we construct a cover $(U')_{n:\N}$ of $X$. Hence $\bigcap_{n:\N} \neg U_n = \emptyset$. By Lemma 4.5 of \cite{synthetic-stone-duality} we find some finite $N_0\subseteq \N$ such that $\bigcap_{n:N_0} \neg U_n = \emptyset$. The map $N_0 \to I$ then satisfies the requirement. 
 \end{proof}
 \begin{definition}
   Let $(U_i)_{i:I}$ be an collection of subsets of some space $X$. 
