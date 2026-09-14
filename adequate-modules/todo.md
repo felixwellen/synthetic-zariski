@@ -18,7 +18,7 @@
   - all algebraic structures are assumed to be sets;
   - our global assumptions on the ring R (SAG axioms);
   - anything else?  Any ways in which we differ from HoTT book?
-- Handle 18 \rednote's
+- Handle 16 \rednote's
 
 ## Proofreading
 

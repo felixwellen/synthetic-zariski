@@ -255,6 +255,13 @@ We can use this to compute duals of these and related modules, which will be ver
 Recall that for an $R$-module $M$, the \notion{annihilator ideal}
 $\Ann(M)$ is defined to be $\sum_{x : R} \prod_{m : M} (xm = 0)$.
 
+\begin{remark}\label{rmk:triple-Ann}
+When $I$ is an ideal in $R$, note that $I \subseteq \Ann(\Ann(I))$,
+but that they are not equal in general.
+However, it is straightforward to see that $\Ann(I) = \Ann(\Ann(\Ann(I)))$
+for every ideal $I$.
+\end{remark}
+
 \begin{lemma}\label{lem:ann-R_U-K^U}
   Let $U$ be a proposition.
   Then $\Ann(R_U) = K^U$ as submodules of $R$.
@@ -401,8 +408,7 @@ This is how we will use the above counterexample to derive more.
 \begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
   It is not the case that $K^{D(r)}$ is finitely adequate for all $r : R$.
   Since $R^{D(r)} = R[1/r]$ and the map $R \to R[1/r]$ is the localization map, the kernel consists of every element which is annihilated by some power of $r$, i.e.\ $K^{D(r)} = \bigcup_k \Ann(r^k)$.
-  By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ as is the case for every annihilator ideal.
-  \rednote{If it's the case for every annihilator, why do we give a roundabout proof?}
+  By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ by \Cref{rmk:triple-Ann}.
   Moreover, it is clear that the annihilator of a union is the same as the intersection of the annihilators.
   Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \Ann(r^k)) = \bigcap_k \Ann(\Ann(r^k)) = \bigcap_k \ideal{r^k} = K^{\neg D(r)}$.
   Now, by \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $K^{D(r)}$ cannot be finitely adequate for all $r : R$.
