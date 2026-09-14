@@ -1,34 +1,41 @@
 The first motivating question behind this article is whether synthetic algebraic geometry admits a notion similar to the coherent sheaves in classical algebraic geometry.
-Coherent sheaves share properties with finite dimensional vector spaces and appear for example in Serre-Duality.
-To prove a basic version of the Serre-Duality Theorem (following e.g.\ \cite{Hartshorne}) which covers useful examples the following properties are essential:
+Coherent sheaves share properties with finite dimensional vector spaces and appear for example in Serre duality.
+To prove a basic version of the Serre duality theorem (following e.g.\ \cite{Hartshorne}) which covers useful examples the following properties are essential:
+
 \begin{enumerate}[(i)]
 \item Coherent sheaves on a scheme $X$ form an abelian category.
 \item Locally free sheaves are coherent.
 \item There should be an abelian category $\mathcal{A}$ that contains all cohomology modules $H^i(X,\mathcal F)$ of a coherent sheaf $\mathcal F$, such that the dualization functor given by $\Hom_R(\argmhole,R)$ is exact on $\mathcal{A}$.
 \end{enumerate}
-For a non-trivial scheme (ii) can only be the case if the base is coherent (which would be a consequence of being noetherian). In synthetic algebraic geometry, we usually do not use (module-) sheaves.
+
+For a non-trivial scheme, (ii) can only be the case if the base is coherent (which would be a consequence of being noetherian). In synthetic algebraic geometry, we usually do not use (module-) sheaves.
 Instead, we work with \emph{bundles} on a type $X$ which are just maps $X\to \Mod{R}$.
-Also, we usually just restrict the target type $\Mod{R}$, to get more specific bundles.
-So a convenient solution to the problem above would be a subcategory of the category of $R$-modules, which contains at least finite free modules over the base ring $R$ and behaves well with respect to dualization.
+Also, to get more specific kinds of bundles, we usually just restrict the target type $\Mod{R}$.
+So a convenient solution to the problem above would be a subcategory of the category of $R$-modules, which contains at least the finite free modules over the base ring $R$ and behaves well with respect to dualization.
+\rednote{This paragraph seems awkwark.  For example, it's not clear why the first sentence is there or how it relates to the rest of the paragraph.}
 
 Since the base ring in synthetic algebraic geometry is not coherent, we cannot mimic the classical definition of coherent sheaves.
-It turned already out in \cite{diffgeo-article} that there is a duality between finitely presented $R$-modules and the dual concept of finitely \emph{co}presented $R$-modules. For the latter, we really just ask for the existence of the dual of a finite presentation, which amounts to asking that a module is merely the kernel of a matrix.
+It was already seen in~\cite{diffgeo-article} that there is a duality between finitely presented $R$-modules and finitely \emph{co}presented $R$-modules, where a module is finitely copresented if it merely is the kernel of a map between finite free modules.
 In this article we extend this duality to \emph{finitely adequate} $R$-modules,
 which we define as $R$-modules that are merely the kernel of a linear map between finitely presented $R$-modules.
-These finitely adequate $R$-modules turn out to form an abelian category with a lot of good and surprising properties:
+These finitely adequate $R$-modules turn out to form an abelian category $\finadeq$ with many good and surprising properties:
+
 \begin{itemize}
-\item Dualization is an anti-equivalence.
-\item The injective modules are exactly the finitely presented modules and projective modules are exactly the finitely copresented modules.
+\item The module $\Hom_R(M, N)$ is finitely adequate when $M$ and $N$ are.
+\item Dualization is an equivalence $\Hom_R(\argmhole, R) : (\finadeq)^{\op} \to \finadeq$.
+\item The injective modules are exactly the finitely presented modules and the projective modules are exactly the finitely copresented modules.
 \item Finitely adequate $R$-modules are closed under extensions (inside $\Mod{R}$).
+\item The category $\finadeq$ of finitely adequate modules is closed symmetric monoidal, with tensor product the double dual of the usual tensor product.
 \end{itemize}
-In \cite{adelman-construction} Adelman constructs the free abelian category on a given additive category. Our definition of finitely adequate $R$-modules is quite similar to this construction and satisfies a characterization of free abelian categories related to property (ii). For this reason, we considered calling finitely adequate $R$-modules ``Adelman modules'', but decided to name them after the existing notion of adequate modules \cite{stacks-project}[Chapter 46], once we were aware of it.
 
-\rednote{Decide on ``finitely copresented'' vs ``linearly adequate'', and use the same throughout.}
+In \cite{adelman-construction} Adelman constructs the free abelian category on a given additive category. Our definition of finitely adequate $R$-modules is quite similar to this construction and satisfies a characterization of free abelian categories related to property (ii). For this reason, we considered calling finitely adequate $R$-modules ``Adelman modules'', but decided to name them after the existing notion of adequate modules \cite[Chapter 46]{stacks-project}, once we were aware of it.
+\rednote{``quite similar'':  should we say that it \emph{is} the free abelian category on the finite free modules?}
 
-The original motivation mentioned in the beginning was to show that Serre-Duality holds for $R$-module bundles on $\bP^n$, which are finitely adequate at all points. From ongoing work building on this article we know that this is not possible. But it does hold that the cohomology of vector bundles on $\bP^n$ takes values in finitely adequate $R$-modules and it is possible to adapt Hartshorne's proof of Serre-Duality for this case. There is work in progress on extending this to Serre-Duality for vector bundles on general smooth projective schemes. We do not know of an existing constructive proof or any proof over a general ring.
+The original motivation mentioned in the beginning was to show that Serre duality holds for $R$-module bundles on $\bP^n$ that are finitely adequate at all points. From ongoing work building on this article we know that this is not possible. But it is true that the cohomology of vector bundles on $\bP^n$ takes values in finitely adequate $R$-modules and it is possible to adapt Hartshorne's proof of Serre duality to this situation. There is work in progress on extending this to Serre duality for vector bundles on general smooth projective schemes. We do not know of an existing constructive proof or any proof over a general ring.
 
-In \cite{diffgeo-article} a definition of tangent spaces at any point of a general type was defined. For property (iii) above, a surprising property of finitely adequate $R$-modules was used: They are always isomorphic to their own tangent space equipped with a canonical $R$-module structure. We call $R$-modules with this property \emph{tangential} and study this and the related property \emph{infinitesimally linear} in \Cref{infinitesimally-linear-section}.
+In \cite{diffgeo-article} a definition of tangent spaces at any point of a general type was defined. For property (iii) above, a surprising property of finitely adequate $R$-modules was used: They are always isomorphic to their own tangent space equipped with a canonical $R$-module structure. We call $R$-modules with this property \emph{tangential} and study this and the related property of being \emph{infinitesimally linear} in \Cref{infinitesimally-linear-section}.
+\rednote{``was used'' where?}
 
 \Cref{adequate-section} defines finitely adequate $R$-modules and shows that they have the properties mentioned above. We use that finitely adequate $R$-modules are tangential to show that they are closed under extensions.
 
-In \Cref{examples-section} we show by various examples and counter-examples how a lot of the properties of $R$-modules mentioned in this article relate to each other. We also give an answer to the natural question if the tensor product of finitely adequate $R$-modules is finitely adequate. While this is not the case in general, the double dual of such tensor products is always finitely adequate and is part of a closed symmetric monoidal structure.
+In \Cref{examples-section}, we show by various examples and counterexamples the properties of $R$-modules mentioned in this article relate to each other. We also show that the tensor product of finitely adequate $R$-modules is not always finitely adequate, explaining the need for the use of the double dualization in the symmetric monoidal structure mentioned above.

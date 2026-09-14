@@ -20,8 +20,8 @@ Schemes provide a natural starting point for this discussion.
 \end{example}
 
 \begin{remark}
-  If $M$ is both an $R$-module and a scheme, then $\tangent{M}{0}$ is linearly adequate by \cite[Lemma 2.3.8]{diffgeo-article}.
-  In particular, if such an $M$ is tangential, then it is linearly adequate.
+  If $M$ is both an $R$-module and a scheme, then $\tangent{M}{0}$ is finitely copresented by \cite[Lemma 2.3.8]{diffgeo-article}.
+  In particular, if such an $M$ is tangential, then it is finitely copresented.
 \end{remark}
 
 Consider \Cref{prp:inf-lin-hood}, from which we can extract the following principle: if $M$ and $N$ are modules such that $\hood{M,0}{1} \subseteq N \subseteq M$, then $(M,0)$ is infinitesimally linear at $0$ if and only if $(N,0)$ is.
@@ -71,7 +71,7 @@ We will now consider some bigger examples, in the sense that they are not sub-fi
 \begin{example}\label{ex:power-series-tangential}
   By \Cref{prp:exp-tangential}, the modules $R[x] = R^R$ and $R[[x]] = R^\mathbb{N}$ are tangential.
   By \Cref{cor:tangential-inf-lin}, these modules are also infinitesimally linear.
-  Note that $R[[x]]$ is not adequate, as it is not weakly quasi-coherent. \rednote{Perhaps give a reference/explanation?}
+  Note that $R[[x]]$ is not adequate, as it is not weakly quasi-coherent (see \cite{draft}[Proposition A.0.5]).
 \end{example}
 
 
@@ -252,6 +252,8 @@ It is not hard to check that the resulting equivalence is homotopic to the canon
 
 Observe that the modules $R_U$ and $K^U$ are ideals of $R$ for every proposition $U$.
 We can use this to compute duals of these and related modules, which will be very useful going forward.
+Recall that for an $R$-module $M$, the \notion{annihilator ideal}
+$\Ann(M)$ is defined to be $\sum_{x : R} \prod_{m : M} (xm = 0)$.
 
 \begin{lemma}\label{lem:ann-R_U-K^U}
   Let $U$ be a proposition.
@@ -260,18 +262,18 @@ We can use this to compute duals of these and related modules, which will be ver
 
 \begin{proof}
   We need to show that the predicates are equivalent. But for $x:R$ we have that
-  \begin{eqnarray}
-  x\in \Ann(R_U) &=& \forall y:R,\, (U\lor x=0) \to xy=0 \nonumber\\
-  & = & \forall y:R,\, U\to xy=0 \nonumber\\
-  & = & U\to \forall y:R,\, yx=0 \nonumber\\
-    & = & U\to x=0 \nonumber\\
-    & = & x\in K^U\nonumber
-  \end{eqnarray}
+  \begin{eqnarray*}
+    x\in \Ann(R_U) &=& \forall y:R,\, ((y=0) \lor U) \to xy=0 \\
+    & = & \forall y:R,\, U\to xy=0 \\
+    & = & U\to \forall y:R,\, xy=0 \\
+    & = & U\to x=0 \\
+    & = & x\in K^U
+  \end{eqnarray*}
   %  Let $x : R$ and assume that $x$ is in $\Ann(R_U)$.
   %We must show that $U$ implies that $x = 0$.
   %If $U$ holds, then $R_U = R$.
   %Thus, $\Ann(R_U) = \Ann(R) = 0$, giving $x = 0$.
-
+  %
   %For the other direction, assume that $x$ is in $K^U$.
   %We need to show that $xy = 0$ for every $y : R_U$.
   %Since we're proving a proposition, we can assume that either $y = 0$ or $U$ holds.
@@ -286,13 +288,14 @@ We can use this to compute duals of these and related modules, which will be ver
 \end{lemma}
 
 \begin{proof}
-We have that
-  \begin{eqnarray}
-  (R/I)^\ast & = & \setbuild{x:R^\ast}{\forall y:I,\, x(y) = 0} \nonumber\\
-& = & \setbuild{x:R}{\forall y:I,\, xy = 0} \nonumber\\
-   &= & \Ann(I) \nonumber
-  \end{eqnarray}
-
+  We have that
+  \begin{eqnarray*}
+    \Ann(I) & = & \setbuild{x:R}{\forall y:I,\, xy = 0} \\
+    & = & \setbuild{x:R^\ast}{\forall y:I,\, x(y) = 0} \\
+    & = & (R/I)^\ast
+  \end{eqnarray*}
+  and by construction this equivalence is induced by the natural equivalence $R \simeq R^*$.
+  %
   %Let $i : I \rightarrow R$ be the inclusion map.
   %Since taking duals is left exact, we have an exact sequence
   %\begin{equation*}
@@ -301,7 +304,7 @@ We have that
    % \end{tikzcd}
   %\end{equation*}
   %presenting $(\quot{R}{I})^*$ as the kernel of $i^*$.
-
+  %
   %The natural equivalence $R \to R^*$ sends $r$ to $\mu_r$ defined by $\mu_r(x) = xr$.
   %An element $r : R$ is in $\Ann(I)$ if and only if $\mu_r$ vanishes on $I$,
   %i.e., if and only if $i^*(\mu_r) = 0$.
@@ -322,7 +325,7 @@ The next counterexample will use the above observations.
   \begin{equation*}
     \begin{tikzcd}
       0 \ar{r} & (\quot{R}{R_{V(r)}})^* \ar{r} & R^* \ar{r}{i^*} & (R_{V(r)})^* \ar{r} & 0 \\
-      0 \ar{r} & \ideal{r} \ar{u}{\sim} \ar{r} & R \ar{u}{\sim} & & \\
+      0 \ar{r} & \ideal{r} \ar{u}{\sim} \ar{r} & R \ar{u}{\sim} & &
     \end{tikzcd}
   \end{equation*}
   The left vertical map is the equivalence described in the first paragraph,
@@ -397,8 +400,9 @@ This is how we will use the above counterexample to derive more.
 
 \begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
   It is not the case that $K^{D(r)}$ is finitely adequate for all $r : R$.
-  Since $R^{D(r)} = R[r^{-1}]$, we get that $K^{D(r)} = \bigcup_k \Ann(r^k)$.
-  By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ as is the case for every annihilator.
+  Since $R^{D(r)} = R[1/r]$ and the map $R \to R[1/r]$ is the localization map, the kernel consists of every element which is annihilated by some power of $r$, i.e.\ $K^{D(r)} = \bigcup_k \Ann(r^k)$.
+  By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ as is the case for every annihilator ideal.
+  \rednote{If it's the case for every annihilator, why do we give a roundabout proof?}
   Moreover, it is clear that the annihilator of a union is the same as the intersection of the annihilators.
   Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \Ann(r^k)) = \bigcap_k \Ann(\Ann(r^k)) = \bigcap_k \ideal{r^k} = K^{\neg D(r)}$.
   Now, by \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $K^{D(r)}$ cannot be finitely adequate for all $r : R$.
@@ -413,6 +417,7 @@ We conclude this section by presenting examples of reflexive modules that are no
 
 \begin{counterexample}\label{cex:polynomial-power-series-not-fin-adeq}
   Neither $R[X]$ nor $R[[X]]$ is finitely adequate.
+  \rednote{Hugo, why the switch to capital variables?  The rest of the paper uses lower case.}
   In fact, they are not finite free, and thus cannot be not-not finite free, which is required for finitely adequate modules.
 \end{counterexample}
 
@@ -467,7 +472,7 @@ While Specker's proof uses prime factorization in $\Z$, we replace this with a n
   The $R$-modules $R[[X]]$ and $R[X]$ are reflexive.
 \end{corollary}
 
-Since both $R[X]$ and $R[[X]]$ are not finitely adequate, we have reflexive $R$-module that are not finitely adequate.
+Since both $R[X]$ and $R[[X]]$ are not finitely adequate, we have reflexive $R$-modules that are not finitely adequate.
 
 %\begin{proof}
 %  We have a commutative diagram
@@ -484,9 +489,9 @@ Since both $R[X]$ and $R[[X]]$ are not finitely adequate, we have reflexive $R$-
 %\end{proof}
 
 
-\subsection{Tensor products}
+\subsection{Tensor Products}
 
-We now prove that the tensor product of two linearly adequate modules can fail to be linearly adequate.
+We now prove that the tensor product of two finitely copresented modules can fail to be finitely copresented.  \rednote{Should this be ``fail to be finitely adequate''?}
 This shows that the double dual tensor is the appropriate left adjoint to consider for the internal Hom of $\finadeq$ (\Cref{cor:dbl-dual-tensor-adjunction}).
 
 \begin{counterexample}\label{cex:tensor-not-closed}
@@ -509,3 +514,32 @@ This shows that the double dual tensor is the appropriate left adjoint to consid
   Note that the zero-section $(\varepsilon \mapsto \varepsilon \otimes \varepsilon) : \Gamma(\D(1),N)$ corresponds to $x \otimes x$ under these maps.
   As this element is not zero, we obtain a contradiction.
 \end{counterexample}
+
+\subsection{Temporary storage for former A.1 and A.2}
+
+\begin{lemma}\label{lem:finitely-adequate-not-fp}
+  Not every finitely adequate $R$-module is either finitely presented or finitely copresented.
+  Specifically, this is not the case for the family of ideals $(r)$, for $r:R$.
+\end{lemma}
+
+\begin{proof}
+  We first show that if $(r)$ is finitely copresented, then $(r=0) \lor (r \neq 0)$. Indeed, finitely copresented modules are injective in the category of finitely adequate $R$-modules, so we get a lift
+  \[
+  \begin{tikzcd}
+  & R \ar[d, "\cdot r", twoheadrightarrow] \\
+  (r) \ar[r, "id"]\ar[ur, "\exists s", dashed] & (r)
+  \end{tikzcd}
+  \]
+  meaning that $(r)$ is a direct summand of $R$ such that $(r) = (e)$ for an idempotent $e:R$.
+  Since $R$ is local, $(e=0) \lor (e=1)$ and thus $(r=0) \lor (r \neq 0)$.
+
+  A dual argument shows that if $(r)$ is finitely presented, then also $(r=0) \lor (r \neq 0)$.
+  But assuming that all $(r)$ were to admit either one of these presentations, we would get $\prod_{r:R} (r=0) \lor (r \neq 0)$, which is false.
+\end{proof}
+
+\begin{remark}\label{rem:finitely-adequate-fp}
+  This lemma cannot be improved in the sense that here is no finitely adequate $R$-module $M$ that is not finitely presented.
+  Indeed, if $M$ were not finitely presented, then it would be not finite free.
+  But finitely adequate modules are \emph{not not} finite free.
+  A similar statement holds for finitely copresented.
+\end{remark}
