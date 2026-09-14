@@ -7,14 +7,17 @@
 ## Writing
 
 - Felix: Introduction:  Dan thinks it needs a lot more detail.
-- Paper is a jumble of results.  Can we tell a story?
+- Paper is a jumble of results.  Can we tell a story?  Improve all section intros.
 - Dan/Thomas: Section 3: Examples and Counterexamples
   In particular, reorder Section 3.2, and merge former A.1 and A.2
   to an appropriate spot.
-- Add a subsection on notations on conventions, e.g. at end of intro.
-  For example, \exists for mere existence; all algebraic structures are
-  assumed to be sets; our global assumptions on the ring R; we follow
-  HoTT book except for ...; etc.
+- Add a subsection on notations on conventions, e.g. at end of intro:
+  - we follow HoTT book except for ...
+  - including \exists for mere existence;
+    \forall as a synonym for \Pi, used for propositions;
+  - all algebraic structures are assumed to be sets;
+  - our global assumptions on the ring R (SAG axioms);
+  - anything else?  Any ways in which we differ from HoTT book?
 - Handle 18 \rednote's
 
 ## Proofreading
@@ -30,10 +33,9 @@
 
 ## Typesetting
 
-- \prod_x vs \forall x
 - use align(ed), not eqnarray, for aligned equations
 - why is there no \Box after displayed equations, e.g. proof of lem:ann-R_U-K^U in examples.tex?
 - R[X] and R[[X]] notation, e.g. in Counterexample 3.27:
   - capital X?  We use lowercase, e.g. in Example 1.4 and everywhere
-  - conflict with R[D(2)] notation in Counterexample 3.8
+  - conflict with R[D(2)] notation in Counterexample 3.8; use \langle \rangle
 - get rid of latex warnings and bad boxes
