@@ -5,13 +5,15 @@
   Let $X,Y:\CHaus$. Any open of $X\times Y$ can be written as $\bigcup_{n:\N} U_n \times V_n$ where for each $n:\N$, the sets $U_n,V_n$ are open subsets of $X,Y$ respectively. 
 \end{corollary}
 
-
 \begin{lemma}
   MP, $\neg\neg$-stability.
 \end{lemma}
 \begin{lemma}
-  Equality in $X:\CHaus$ is closed. 
+  Equality in $X:\CHaus$ is closed. Has been used silently
 \end{lemma}
+\begin{axiom}
+  Dependent choice. Has been used silently. 
+\end{axiom}
 
 \begin{lemma}
   If $X:\CHaus$ and $C:\N \to X \to \Closed$ is a sequence of closed subsets of $X$ such that $\bigcap_{n:\N} C_n = \emptyset$, then there is an $N:\N$ with $\bigcap_{k<N}C_k = \emptyset$. 
@@ -50,6 +52,13 @@ Now we will present some seperation properties of compact Hausdorff spaces:
   As $C\subseteq D$, we have $\neg D, C$ disjoint and closed. By Lemma 4.9 of \cite{synthetic-stone-duality}, we have disjoint open subsets $U,V$ with $\neg D \subseteq V , C \subseteq U$. Then for $K = \neg V$ we have $U\subseteq K$ and $K \subseteq \neg \neg D$. As closed propostions are double-negation stable, we conclude $K\subseteq D$. 
 \end{proof}
 
+\begin{lemma}\label{Tychonov}
+  If $I:\ODisc$ and $C:I \to \CHaus$, then $\Pi_{i:I} C_i$ is compact Hausdorff. 
+\end{lemma}
+\begin{proof}
+  See Theorem 2.4.4 of \cite{condensed-cohomology}.
+\end{proof}
+
 \begin{lemma}\label{SubsetUnion}
   Let $X:\CHaus$ and $A, B \subseteq X$ subsets with $A$ open, $B$ closed, or the other way around. 
   Then $X = \neg A \cup B$ if and only if $A \subseteq B$. 
@@ -58,3 +67,5 @@ Now we will present some seperation properties of compact Hausdorff spaces:
   Assume $A$ open, $B$ closed, the other proof is similar. Then for all $x:X$ we have $\neg A (x) \vee B(x)$ is $\neg\neg$-stable, hence
   $$(\neg A (x) \vee B (x)) \leftrightarrow (A(x) \to B(x)).$$
 \end{proof}
+
+

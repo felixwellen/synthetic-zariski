@@ -1,0 +1,34 @@
+\begin{definition}
+  Let $i:A \to X$ and $f:A \to B$. We say that $f$ is \textbf{uniformly continuous relative to} $i$ if for any entourage $E$ of $B$ there is an entourage $F$ of $A$ such that $(i\times i)^{-1}(F) \subseteq (f \times f)^{-1}(B)$. 
+\end{definition}
+%\begin{remark}
+%  Note that any map is uniformly continuous relative to the identity map. In this sense, any map one can define in SSD is uniformly continuous. 
+%\end{remark}
+% Above remark should go into Interval section. 
+\begin{definition}
+  Let $X$ be a type and $Y\subseteq X$ a subset. $Y$ is called \textbf{dense} if for any inhabited open subset $U\subseteq X$, the set $Q \cap Y$ is also inhabited. 
+\end{definition}
+\begin{lemma}
+  Let $X,Y:\CHaus$ and let $\subseteq X$ be dense. Then whenever $f,g:X \to Y$ agree on $Z$, we have $f = g$.
+\end{lemma}
+\begin{proof}
+ Consider the open subset $U = \{x:X | f(x) \neq g(x)\}$. If $U$ is inhabited, then so is $U \cap Z$, which gives a contradiction. As equality in $Y$ is closed, hence $\neg\neg$-stable, we conclude. 
+\end{proof}
+
+\begin{theorem}\label{ExtensionCHaus}
+  Let $X,Y:\CHaus$ and $Z:\ODisc$, and let $iota:Z\subseteq X$ be a dense inclusion. Then for any $f:Z\to Y$ uniformly continuous relative to $\iota$ there exists an extension $g:X \to Y$. 
+\end{theorem}
+\begin{proof}
+  By \Cref{ClosedApproxByOpenIntersection}, there is a sequence of entourages $E_n$ of $Y$ such that $\Delta_Y = \bigcap_{n:\N} E_n$. Now we will use dependent choice to define some helper sets. Let $n:\N$. 
+  By \Cref{shrinking}, we can find an entourage $F_n$ of $Y$ such that $F_n \circ F_n \subseteq E_n$. By \Cref{seperation}, we can find an open $G_n$ and a closed $C_n$ such that $\Delta_Y \subseteq G_n \subseteq C_n \subseteq F_n$. 
+  By relative uniform continuity, there is an entourage $U_n$ of $X$ such that $(f \times f)\left(U_n \cap \left(Z \times Z\right)\right) \subseteq G_n$. Without loss of generality, we may assume that all of $U_n,C_n,F_n$ are symmetric. 
+  Now we have defined these helper sets, define for each $x:X$ the set 
+  $$D_n(x):=  \{y:Y | \Pi_{z:Z} .U(x,\iota(z)) \to C(f(z),y)\}. $$
+  As $C$ is closed, $U$ is open and $Z$ overtly discrete, by \Cref{Tychonov}, each $D_n(x)$ is closed. 
+  We claim now that $D$ forms a Cauchy filter. 
+
+\end{proof}
+
+
+
+\subsection{OLD}
