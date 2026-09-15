@@ -13,9 +13,9 @@ In order to be a fundamental system of entourages in the sense of \parencite[170
   For $X$ any type, a \textbf{cover} is a map $U:I \to X^\Prop$, sometimes denoted $(U_i)_{i:I}$, such that $\bigcup_{i:I} U_i = X$. 
   If $I$ is finite, we call $U$ finite. If $U_i$ is open (resp. closed) for all $i:I$, we call $U$ open (resp. closed) also. 
 \end{definition}
-\begin{lemma}
-  A map $U:I \to X^\Open$ is a cover iff $\Delta \subseteq \bigcup_{i:I} U_i \times U_i$. 
-\end{lemma}
+\begin{remark}
+  Note that a map $U:I \to X^\Open$ is a cover if and only if $\Delta \subseteq \bigcup_{i:I} U_i \times U_i$. 
+\end{remark}
 
 \begin{lemma}\label{ReduceToFinite}
   If $X:\CHaus$ and $E$ is an entourage on $X$, there exists a finite open cover $(U_i)_{i:I}$ such that 
@@ -33,7 +33,7 @@ In order to be a fundamental system of entourages in the sense of \parencite[170
 \end{definition}
 \begin{lemma}\label{ReducesToDelta}
   Let $X$ be a type with covers $(U_i)_{i:I},(V_j)_{j:J}$. If $U$ is a $\Delta$-refinement of $V$, then 
-  $$(\bigcup_{i:I} U_i \times U_i) \circ (\bigcup_{i:I} U_i \times U_i) \subseteq \bigcup_{j:J} V_j \times V_j.$$
+  $$\left(\bigcup_{i:I} U_i \times U_i\right) \circ \left(\bigcup_{i:I} U_i \times U_i\right) \subseteq \bigcup_{j:J} V_j \times V_j.$$
 \end{lemma}
 \begin{proof}
   Let $x,y,z:X$. Suppose $x,y \in U_i$ and $y,z \in U_{i'}$ for $i,i':I$. Then there is some $j:J$ such that $U_i \cup U_{i'} \subseteq V_j$. Hence $x,z\in V_j$ as required. 
@@ -42,15 +42,14 @@ In order to be a fundamental system of entourages in the sense of \parencite[170
   Let $X:\CHaus$ and $(U_i)_{i:I}$ a finite open cover. Then there is a closed cover $D: I \to X^\Closed$ such that $D_i\subseteq U_i$ for all $i:I$. 
 \end{lemma}
 \begin{proof}
-  Assume WLOG that $I = \mathbb N_{\leq n}$. We will define for each $l:\mathbb N_{\leq n+1}$ and each $0\leq i < l$ a sequence $V_i \subseteq D_i \subseteq U_i$ with $D_i$ closed and $V_i$ open, and such that
+  We may assume that $I = \mathbb N_{\leq n}$. We will define for each $l:\mathbb N_{\leq n+1}$ and each $0\leq i < l$ a sequence $V_i \subseteq D_i \subseteq U_i$ with $D_i$ closed and $V_i$ open, and such that
   \begin{equation}\label{inductionLoop}\bigcup_{0 \leq i < l} V_i \cup \bigcup_{l\leq  i\leq n} U_i = X.\end{equation}
   Note that \Cref{inductionLoop} is satsified for $l=0$, and if were to be satisfied for $l=n+1$, this gives that $\bigcup_{i:I} V_i = X$, and hence we would have $\bigcup_{i:I} D_i = X$ as required. 
 %
-  
   Assume $V_i,D_i$ have been defined for $i<k$ and be such that \Cref{inductionLoop} is satisfied for $l=k$. 
   Note that $\bigcup_{i<k} V_i \cup \bigcup_{k<i} U_i$ is open, and hence $\neg\neg$-stable, and define $C_k$ as its complement. By the induction hypothesis we have $C_k \subseteq U_k$. By \Cref{seperation}, we find $V_k,D_k$ open and closed respectively such that 
   $C_k \subseteq V_k \subseteq D_k \subseteq U_k$. 
-  Now we have that 
+  Now
   $$
   \bigcup_{0\leq i< k+1} V_i \cup \bigcup_{k+1\leq i \leq n} U_i = 
   (\bigcup_{i<k}V_i \cup 
@@ -63,24 +62,24 @@ In order to be a fundamental system of entourages in the sense of \parencite[170
   Thus \Cref{inductionLoop} holds for $l=k+1$, and we conclude by induction. 
 \end{proof}
 
-
-
 The following is Lemma 2.2 of \cite{Howes}, which is based on a proof by Morita. 
 \begin{lemma}\label{Morita}
   Let $X:\CHaus$, and let $I$ a finite set indexing an open (resp. closed) cover $(U_i)_{i:I}$ and a closed (resp. open) cover $(C_i)_{i:I}$ such that $C_i \subseteq U_i$ for all $i:I$. 
   Then $(B_J)_{J:2^I}$ defined as follows:
-  $$B_J = (\bigcap_{j:J} U_j) \cap (\bigcap_{j:\neg J} \neg C_j)$$
+  $$B_J = \bigcap_{j:J} U_j \cap \bigcap_{j:\neg J} \neg C_j$$
   gives a finite open (resp. closed) cover that $\Delta$-refines $U$. 
 \end{lemma}
 \begin{proof}
   As $2^I$ is finite, each $B_J$ is indeed open (resp. closed). 
   By \Cref{SubsetUnion}, we have $X = U_i \cup \neg C_i$ for all $i:I$. Then also
   $X = \bigcap_{i:I} (U_i \cup \neg C_i)$. 
-  But by distributivity, the latter equals also 
+  But by distributivity of conjunction and disjunction, this also equals
+%  $\bigcup_{J:2^I} B_J$,
   $
-  \bigcup_{J:2^I} ((\bigcap_{j:J} U_j) \cap (\bigcap_{j:\neg J} \neg C_j))
-  $ from which it follows that $B$ is an open (resp. closed) cover.
- % 
+  \bigcup_{J:2^I} \left(\bigcap_{j:J} U_j \cap \bigcap_{j:\neg J} \neg C_j\right),
+  $
+  from which it follows that $B$ is an open (resp. closed) cover.
+  % 
   To see that $B$ is a $\Delta$-refinement of $U$, consider any $x:X$, then there exists some $i:I$ with $C_i(x)$. 
   Then for any $J:2^I$ with $B_J(x)$, we cannot have $i \in \neg J$ and thus we have $i\in J$. But then also $B_J\subseteq U_i$.
 \end{proof}
