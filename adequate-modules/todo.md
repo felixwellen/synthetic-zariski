@@ -14,6 +14,7 @@
 - Add a subsection on notations on conventions, e.g. at end of intro:
   - we follow HoTT book except for ...
   - including \exists for mere existence;
+    P \lor Q as merely (P + Q);
     \forall as a synonym for \Pi, used for propositions;
   - all algebraic structures are assumed to be sets;
   - our global assumptions on the ring R (SAG axioms);
