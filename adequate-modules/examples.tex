@@ -398,27 +398,28 @@ This is how we will use the above counterexample to derive more.
 \end{proof}
 
 \begin{remark}\label{rem:ann-for-cex}
-  By the contrapositive of \Cref{prp:ann-fin-adeq}, if $\Ann{I}$ is not finitely adequate, then we can deduce that $I$ is not finitely adequate.
+  If $K^U$ is not finitely adequate, then $R_U$ is not finitely adequate.
+  Indeed, by \Cref{lem:ann-R_U-K^U}, $K^U = \Ann{R_U}$, so this follows from
+  the contrapositive of \Cref{prp:ann-fin-adeq}.
 \end{remark}
 
 \begin{counterexample}\label{cex:R_not-Dr-not-fin-adeq}
   It is not the case that $R_{\neg D(r)}$ is finitely adequate for all $r : R$.
-  By \Cref{lem:ann-R_U-K^U} we have $\Ann(R_{\neg D(r)}) = K^{\neg D(r)}$.
-  By \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $R_{\neg D(r)}$ cannot be finitely adequate for all $r : R$.
+  This follows from \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc}.
 \end{counterexample}
 
 \begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
   It is not the case that $K^{D(r)}$ is finitely adequate for all $r : R$.
   Since $R^{D(r)} = R[1/r]$ and the map $R \to R[1/r]$ is the localization map, the kernel consists of every element which is annihilated by some power of $r$, i.e.\ $K^{D(r)} = \bigcup_k \Ann(r^k)$.
-  By \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ by \Cref{rmk:triple-Ann}.
+  By \Cref{ex:K^V(r)-fin-adeq} and \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = K^{V(r^k)} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ by \Cref{rmk:triple-Ann}.
   Moreover, it is clear that the annihilator of a union is the same as the intersection of the annihilators.
   Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \Ann(r^k)) = \bigcap_k \Ann(\Ann(r^k)) = \bigcap_k \ideal{r^k} = K^{\neg D(r)}$.
-  Now, by \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc} we know that $K^{D(r)}$ cannot be finitely adequate for all $r : R$.
+  Now, by \Cref{prp:ann-fin-adeq} and \Cref{cex:K-not-Dr-not-wqc} we know that $K^{D(r)}$ cannot be finitely adequate for all $r : R$.
 \end{counterexample}
 
 \begin{counterexample}\label{cex:R_Dr-not-fin-adeq}
   The module $R_{D(r)}$ is not finitely adequate for all $r : R$.
-  This is precisely because of \Cref{lem:ann-R_U-K^U}, \Cref{rem:ann-for-cex}, and \Cref{cex:K^Dr-not-fin-adeq}.
+  This follows from \Cref{rem:ann-for-cex} and \Cref{cex:K^Dr-not-fin-adeq}.
 \end{counterexample}
 
 We conclude this section by presenting examples of reflexive modules that are not finitely adequate.
