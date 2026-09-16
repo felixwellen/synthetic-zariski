@@ -7,7 +7,8 @@
 \theoremstyle{break}
     \newtheorem{theorem}{Theorem}[section]
 
-\theoremstyle{definition}
+% Note that there is no theoremstyle named "definition" by default.
+\theoremstyle{plain}
     \newtheorem{lemma}[theorem]{Lemma}
     \newtheorem{definition}[theorem]{Definition}
     \newtheorem{conjecture}[theorem]{Conjecture}
@@ -21,8 +22,6 @@
 \theoremstyle{break}
     \newtheorem{axiomNum}{Axiom}
 
-\theoremstyle{nonumberplain}
-\theoremstyle{break}
     \newtheorem*{axiom}{Axiom}
 
 \newcommand{\axiomref}[1]{\nameref{#1}}

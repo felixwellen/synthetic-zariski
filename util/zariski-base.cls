@@ -14,6 +14,26 @@
 \RequirePackage[amsmath, thmmarks]{ntheorem}
 \RequirePackage{thmtools}
 
+% There is a bug involving the interaction between ntheorem and thmtools,
+% tracked at https://github.com/muzimuzhi/thmtools/issues/77
+% Without the patch below, you need to redo the \theoremstyle command before
+% *every* \newtheorem command.  For \newtheorem*, the result is worse, resulting
+% in a hard error if \theoremstyle isn't redone.
+%
+% The reason is that thmtools re-issues the current theorem style after every
+% \newtheorem, but passes the *unexpanded* token \thmt@outerstyle to ntheorem,
+% which stores it in the \theorem@style token register.  This causes the style
+% to be resolved at *use* time rather than at definition time, so every
+% environment not immediately preceded by a \theoremstyle command silently ends
+% up with whatever style was declared last.  Expanding the name here makes the
+% style stick at definition time.
+\@ifundefined{thmt@originalthmstyle}{}{%
+  \let\zariski@orig@thmstyle\thmt@originalthmstyle
+  \def\thmt@originalthmstyle#1{%
+    \edef\zariski@tmp@style{#1}%
+    \expandafter\zariski@orig@thmstyle\expandafter{\zariski@tmp@style}}%
+}
+
 % Verweise + Stichwortverzeicnis
 \RequirePackage[linkcolor=black, colorlinks=true, citecolor=black,hypertexnames=false]{hyperref}
 \RequirePackage[hyphenbreaks]{breakurl}
