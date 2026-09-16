@@ -518,31 +518,38 @@ This shows that the double dual tensor is the appropriate left adjoint to consid
   As this element is not zero, we obtain a contradiction.
 \end{counterexample}
 
-\subsection{Temporary storage for former A.1 and A.2}
+\subsection{Not every finitely adequate module is finitely (co)presented}
+
+In this short section, we show that finitely adequate modules are more
+general than the subcategory of modules that are finitely presented or
+finitely copresented.
 
 \begin{lemma}\label{lem:finitely-adequate-not-fp}
-  Not every finitely adequate $R$-module is either finitely presented or finitely copresented.
+  Not every finitely adequate $R$-module is finitely presented or finitely copresented.
   Specifically, this is not the case for the family of ideals $(r)$, for $r:R$.
 \end{lemma}
 
 \begin{proof}
-  We first show that if $(r)$ is finitely copresented, then $(r=0) \lor (r \neq 0)$. Indeed, finitely copresented modules are projective in the category of finitely adequate $R$-modules, so we get a lift
-  \[
-  \begin{tikzcd}
-  & R \ar[d, "\cdot r", twoheadrightarrow] \\
-  (r) \ar[r, "\id"]\ar[ur, "\exists s", dashed] & (r)
-  \end{tikzcd}
-  \]
-  meaning that $(r)$ is a direct summand of $R$ such that $(r) = (e)$ for an idempotent $e:R$.
+  Let $r : R$.
+  We first show that if $(r)$ is finitely copresented, then $(r=0) \lor (r \neq 0)$.
+  Indeed, finitely copresented modules are projective in the category of finitely adequate $R$-modules,
+  so the epimorphism $r : R \to (r)$ splits.
+  Thus $(r)$ is a direct summand of $R$ such that $(r) = (e)$ for an idempotent $e:R$.
   Since $R$ is local, $(e=0) \lor (e=1)$ and thus $(r=0) \lor (r \neq 0)$.
+  % e(1-e) = 0, and at least one of e and 1-e is invertible since e + (1-e) is.
+  % If e is invertible, then 1-e = 0 so e = 1, and if 1-e is invertible, then e = 0.
 
   A dual argument shows that if $(r)$ is finitely presented, then also $(r=0) \lor (r \neq 0)$.
-  But assuming that all $(r)$ were to admit either one of these presentations, we would get $\prod_{r:R} (r=0) \lor (r \neq 0)$, which is false.
+
+  So if ($(r)$ is finitely copresented) $\lor$ ($(r)$ is finitely presented), then
+  $(r=0) \lor (r \neq 0)$.
+  But it is known that this is not true for every $r : R$ (\cite[Corollary~1.2.4]{topology-draft}).
 \end{proof}
 
 \begin{remark}\label{rem:finitely-adequate-fp}
-  This lemma cannot be improved in the sense that here is no finitely adequate $R$-module $M$ that is not finitely presented.
-  Indeed, if $M$ were not finitely presented, then it would be not finite free.
-  But finitely adequate modules are \emph{not not} finite free.
-  A similar statement holds for finitely copresented.
+  This lemma cannot be improved upon in the sense that there is no finitely adequate $R$-module that is not finitely presented.
+  Indeed, if a module is not finitely presented, then it is not finite free.
+  But finitely adequate modules are \emph{not not} finite free, so it is
+  impossible for a module to be finitely adequate and not finitely presented.
+  A similar argument shows that there is no finitely adequate $R$-module that is not finitely copresented.
 \end{remark}
