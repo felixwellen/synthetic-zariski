@@ -14,12 +14,9 @@
 \begin{proof}
  Consider the open subset $U = \{x:X | f(x) \neq g(x)\}$. If $U$ is inhabited, then so is $U \cap Z$, which gives a contradiction. As equality in $Y$ is closed, hence $\neg\neg$-stable, we conclude. 
 \end{proof}
-\begin{remark}
-  Let $X$ be a type and $E\subseteq X \times X$ be such that $\Delta\subseteq E$. Then $F:= E \cap E^{-1} \subseteq E$ is a symmetric subset contained in $E$. If $E$ is open (resp. closed), then so is $F$. We will use this silently to freely assume that some constructions of subsets of $X\times X$ can be made to be symmetric. 
-\end{remark}
 The following technical lemma shows an application of \Cref{shrinking}:
 \begin{lemma}\label{technicalExtension}
-  Let $X,Y:\CHaus$ and $\iota: Z\subseteq X$ be a dense subset inclusion. And let $f:Y\to Z$ be a uniformly continuous relative to $\iota$. Then for any entourage $E$ of $X$, we can find a closed $C\subseteq Y \times Y$ such that $C\circ C\subseteq E$ and an entourage $V$ of $X$ such that $\Pi_{q,z:Z} (V \circ V)(\iota q,\iota z) \to C (f(q),f(z))$. Furthermore, we can find these such that both $V,C$ are symmetric. 
+  Let $X,Y:\CHaus$ and $\iota: Z\subseteq X$ be a dense subset inclusion. And let $f:Y\to Z$ be a uniformly continuous relative to $\iota$. Then for any entourage $E$ of $X$, we can find a symmetric closed relation $C$ on $Y$ such that $C\circ C\subseteq E$ and a symmetric entourage $V$ of $X$ such that $\Pi_{q,z:Z} (V \circ V)(\iota q,\iota z) \to C (f(q),f(z))$. 
 \end{lemma}
 \begin{proof}
   By \Cref{shrinking}, we can find an entourage $F$ of $Y$ such that $F \circ F \subseteq E$. By \Cref{seperation}, we can find an open $G$ and a closed $C$, both symmetric, such that $\Delta_Y \subseteq G \subseteq C \subseteq F$. Note that $C\circ C \subseteq F \circ F \subseteq E$. 
@@ -27,20 +24,18 @@ The following technical lemma shows an application of \Cref{shrinking}:
 \end{proof}
 
 \begin{theorem}\label{ExtensionCHausAlt}
-  Let $X,Y:\CHaus$ and $Z:\ODisc$, and let $\iota:Z\subseteq X$ be a dense inclusion. Then for any $f:Z\to Y$ uniformly continuous relative to $\iota$ there exists an extension $g:X \to Y$. 
+  Let $X,Y:\CHaus$ and $Z:\ODisc$, and let $\iota:Z\subseteq X$ be a dense inclusion. Then for any $f:Z\to Y$ uniformly continuous relative to $\iota$ there exists an extension $X \to Y$. 
 \end{theorem} 
 \begin{proof}
-  By \Cref{ClosedApproxByOpenIntersection}, there is a sequence of entourages $E_n$ of $Y$ such that $\Delta_Y = \bigcap_{n:\N} E_n$. By dependent choice, we can apply \Cref{technicalExtension} to get for each $n:\N$ the sets $V_n \subseteq X \times X $ open and $C_n \subseteq Y \times Y$ closed with $C_n \circ C_n \subseteq E_n$ and  
-$\Pi_{q,z:Z} (V_n \circ V_n)(\iota q,\iota z) \to C_n (f(q),f(z))$.
+  By \Cref{ClosedApproxByOpenIntersection}, there is a sequence of entourages $E_n$ of $Y$ such that $\Delta_Y = \bigcap_{n:\N} E_n$. By dependent choice, for each $n:\N$ we can find $C_n,V_n$ as in \Cref{technicalExtension} for each $E_n$. 
   Now let $x:X$ and define 
-  $$D_n(x):=  \{y:Y | \Pi_{z:Z} V_n(x,\iota(z)) \to C_n(f(z),y)\}. $$
+  $$D_n(x):=  \{y:Y | \Pi_{z:Z} V_n(x,\iota z) \to C_n(f(z),y)\}. $$
   As each $C_n$ is closed, each $V_n$ is open and $Z$ is overtly discrete, by \Cref{Tychonov}, each $D_n(x)$ is closed. 
   We claim that $\bigcap_{n:\N}D_n(x)$ is contractible. 
-
   \item To see that $\bigcap_{n:\N}D_n(x)$ is inhabited, by \Cref{inhabitedIntersection}, it is sufficient to show for any $k:\N$ that $\bigcap_{n\leq k}D_n(x)$ is inhabited. 
-    Consider $\bigcap_{n\leq k}V_n(x)$, which is an open subset of $X$ containing $x$, hence by density, there exists some $q:Z$ such that $\bigcap_{n\leq k}V_n(x,\iota(q))$. We claim that $f(q)\in \bigcap_{n\leq k}D_n(x)$. So suppose $n\leq k$ and let $z:Z$ be such that $V_n(x,\iota(z))$. Then as we assumed $V_n$ to be symmetric, we have that $(V_n\circ V_n)(\iota(z),\iota(q))$. Hence $(f(z),f(q)) \in G_n\subseteq C_n$. We conclude that $f(q)\in D_n(x)$, as required. 
-  \item To see that $\bigcap_{n:\N} D_n(x)$ is a proposition, suppose $y,y':Y$ and $y,y' \in \bigcap_{n:\N} D_n(x)$. We claim that then $(y,y') \in \bigcap_{n:\N} E_n$ and hence $y = y'$. So let $n:\N$ and suppose that $y,y':D_n$. By density we can find some $z:Z$ with $V_n(x,\iota(z))$, and thus $(f(z),y),(f(z),y') \in C_n\subseteq F_n$. As $F_n$ was assumed to be symmetric, we conclude that $(y,y') \in F_n \circ F_n \subseteq E_n$. 
-  \item Now note that for any $z:Z$ we have $f(z) \in \bigcap_{n:\N} D_n(\iota(z))$. Hence the function $X \to Y$ defined by sending $x$ to the unique element of $\bigcap_{n:\N}D_n(x)$ is an extension of $f$. 
+    Consider $\bigcap_{n\leq k}V_n(x)$, which is an open subset of $X$ containing $x$, hence by density, there exists some $q:Z$ such that $\bigcap_{n\leq k}V_n(x,\iota q)$. We claim that $f(q)\in \bigcap_{n\leq k}D_n(x)$. So suppose $n\leq k$ and let $z:Z$ be such that $V_n(x,\iota z)$. Then $(V_n\circ V_n)(\iota z,\iota q)$. Hence $(f(z),f(q)) \in C_n$ as required. 
+  \item To see that $\bigcap_{n:\N} D_n(x)$ is a proposition, suppose $y,y':Y$ and $y,y' \in \bigcap_{n:\N} D_n(x)$. We claim that then $(y,y') \in \bigcap_{n:\N} E_n$ and hence $y = y'$. So let $n:\N$ and suppose that $y,y':D_n$. By density we can find some $z:Z$ with $V_n(x,\iota z)$, and thus $(f(z),y),(f(z),y') \in C_n\subseteq F_n$. As $F_n$ was assumed to be symmetric, we conclude that $(y,y') \in F_n \circ F_n \subseteq E_n$. 
+  \item Now note that for any $z:Z$ we have $f(z) \in \bigcap_{n:\N} D_n(\iota z)$. Hence the function $X \to Y$ defined by sending $x$ to the unique element of $\bigcap_{n:\N}D_n(x)$ is an extension of $f$. 
 
 \end{proof}
 
@@ -53,14 +48,14 @@ $\Pi_{q,z:Z} (V_n \circ V_n)(\iota q,\iota z) \to C_n (f(q),f(z))$.
   By relative uniform continuity,  there is an entourage $U_n$ of $X$ such that $(f \times f)\left(U_n \cap \left(Z \times Z\right)\right) \subseteq G_n$. By \Cref{shrinking}, there is an entourage $V_n$, such that $V_n\circ V_n \subseteq U_n$. 
   We may assume that $G_n,C_n,V_n,F_n$ are all symmetric by replacing them with the intersection with their inverse. 
   Now we have defined these helper sets, let $x:X$ and define 
-  $$D_n(x):=  \{y:Y | \Pi_{z:Z} .V_n(x,\iota(z)) \to C_n(f(z),y)\}. $$
+  $$D_n(x):=  \{y:Y | \Pi_{z:Z} .V_n(x,\iota z) \to C_n(f(z),y)\}. $$
   As each $C_n$ is closed, each $V_n$ is open and $Z$ is overtly discrete, by \Cref{Tychonov}, each $D_n(x)$ is closed. 
   We claim that $\bigcap_{n:\N}D_n(x)$ is contractible. 
 
   \item To see that $\bigcap_{n:\N}D_n(x)$ is inhabited, by \Cref{inhabitedIntersection}, it is sufficient to show for any $k:\N$ that $\bigcap_{n\leq k}D_n(x)$ is inhabited. 
-    Consider $\bigcap_{n\leq k}V_n(x)$, which is an open subset of $X$ containing $x$, hence by density, there exists some $q:Z$ such that $\bigcap_{n\leq k}V_n(x,\iota(q))$. We claim that $f(q)\in \bigcap_{n\leq k}D_n(x)$. So suppose $n\leq k$ and let $z:Z$ be such that $V_n(x,\iota(z))$. Then as we assumed $V_n$ to be symmetric, we have that $(V_n\circ V_n)(\iota(z),\iota(q))$. Hence $(f(z),f(q)) \in G_n\subseteq C_n$. We conclude that $f(q)\in D_n(x)$, as required. 
-  \item To see that $\bigcap_{n:\N} D_n(x)$ is a proposition, suppose $y,y':Y$ and $y,y' \in \bigcap_{n:\N} D_n(x)$. We claim that then $(y,y') \in \bigcap_{n:\N} E_n$ and hence $y = y'$. So let $n:\N$ and suppose that $y,y':D_n$. By density we can find some $z:Z$ with $V_n(x,\iota(z))$, and thus $(f(z),y),(f(z),y') \in C_n\subseteq F_n$. As $F_n$ was assumed to be symmetric, we conclude that $(y,y') \in F_n \circ F_n \subseteq E_n$. 
-  \item Now note that for any $z:Z$ we have $f(z) \in \bigcap_{n:\N} D_n(\iota(z))$. Hence the function $X \to Y$ defined by sending $x$ to the unique element of $\bigcap_{n:\N}D_n(x)$ is an extension of $f$. 
+    Consider $\bigcap_{n\leq k}V_n(x)$, which is an open subset of $X$ containing $x$, hence by density, there exists some $q:Z$ such that $\bigcap_{n\leq k}V_n(x,\iota q)$. We claim that $f(q)\in \bigcap_{n\leq k}D_n(x)$. So suppose $n\leq k$ and let $z:Z$ be such that $V_n(x,\iota z)$. Then as we assumed $V_n$ to be symmetric, we have that $(V_n\circ V_n)(\iota z,\iota q)$. Hence $C_n(f(z),f(q))$. We conclude that $f(q)\in D_n(x)$, as required. 
+  \item To see that $\bigcap_{n:\N} D_n(x)$ is a proposition, suppose $y,y':Y$ and $y,y' \in \bigcap_{n:\N} D_n(x)$. We claim that then $(y,y') \in \bigcap_{n:\N} E_n$ and hence $y = y'$. So let $n:\N$ and suppose that $y,y':D_n$. By density we can find some $z:Z$ with $V_n(x,\iota z)$, and thus $(f(z),y),(f(z),y') \in C_n\subseteq F_n$. As $F_n$ was assumed to be symmetric, we conclude that $(y,y') \in F_n \circ F_n \subseteq E_n$. 
+  \item Now note that for any $z:Z$ we have $f(z) \in \bigcap_{n:\N} D_n(\iota z)$. Hence the function $X \to Y$ defined by sending $x$ to the unique element of $\bigcap_{n:\N}D_n(x)$ is an extension of $f$. 
 
 \end{proof}
 
