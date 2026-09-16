@@ -79,13 +79,6 @@ We will now consider some bigger examples, in the sense that they are not sub-fi
 
 In this subsection, we present examples of finitely adequate modules, as well as counterexamples.
 We are particularly interested in finding counterexamples among modules that satisfy several of the following conditions: being weakly quasi-coherent, infinitesimally linear, tangential, reflexive, or not-not finite free.
-We begin by investigating finitely generated ideals of $R$.
-
-\begin{example}\label{ex:fin-gen-ideal}
-  Let $I$ be a finitely generated ideal of $R$.
-  Then $I$ is finitely adequate. Indeed it is the kernel of the map $R\to R/I$ with $R$ and $R/I$ finitely presented.
-  %Indeed, if $r_1, \dots, r_n$ generate $I$, then $I$ is the image of the map $R^n \to R$ given by $(x_1, \dots, x_n) \mapsto \sum_{i} r_i x_i$. The result then follows from \Cref{thm:fin-adeq-class}.
-\end{example}
 
 We can construct interesting examples and counterexamples using three families of propositions.
 For each $r : R$, we define the propositions $V(r) \defeq (r = 0)$, $D(r) \defeq (r \neq 0)$, and $\neg D(r) \defeq \neg (r \neq 0)$.
@@ -246,8 +239,10 @@ It is not hard to check that the resulting equivalence is homotopic to the canon
 
 \begin{example}\label{ex:K^V(r)-fin-adeq}
   The module $K^{V(r)}$ is finitely adequate for every $r : R$.
-  By \Cref{ex:exp-Vr-fin-adeq}, $R^{V(r)} = \quot{R}{\ideal{r}}$.
-  Thus, $K^{V(r)} = \ideal{r}$, which is finitely adequate by \Cref{ex:fin-gen-ideal}.
+  Indeed, it is the kernel of the map $\mathrm{const} : R \to R^{V(r)}$,
+  and is therefore finitely adequate by \Cref{cor:fin-adeq-ker-closure} and \Cref{ex:exp-Vr-fin-adeq}.
+  Note that $K^{V(r)} = \ideal{r}$, and a similar argument shows that every finitely generated
+  ideal in $R$ is finitely adequate.
 \end{example}
 
 Observe that the modules $R_U$ and $K^U$ are ideals of $R$ for every proposition $U$.
