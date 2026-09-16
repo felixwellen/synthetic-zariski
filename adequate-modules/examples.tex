@@ -6,8 +6,10 @@ We begin by discussing various infinitesimally linear and tangential modules.
 These properties are weaker than finite adequacy, and they serve as a good starting point to build intuition for the kinds of modules we are interested in.
 
 \subsection{Infinitesimally Linear and Tangential Modules}
-In this subsection, we discuss various infinitesimally linear and tangential modules, as well as modules that fail to satisfy these properties.
-We also show that the implication from tangentiality to infinitesimal linearity is strict.
+In this subsection, we note that free modules are both infinitesimally linear and tangential,
+give examples of modules that are infinitesimally linear but not tangential,
+give an example of a module that is not infinitesimally linear,
+and give an example of a module that is tangential but not adequate.
 Schemes provide a natural starting point for this discussion.
 
 \begin{example}\label{ex:sch-inf-lin}
@@ -30,15 +32,18 @@ Consider \Cref{prp:inf-lin-hood}, from which we can extract the following princi
   As an example, $\mathrm{Nil}(R)$ is infinitesimally linear at $0$ since it contains $\hood{R,0}{1} = \D(1)$.
 \end{example}
 
-On the other hand, the above principle behaves very differently when we consider tangential modules.
-Suppose $M$ and $N$ are $R$-modules such that $\hood{M,0}{1} \subset N \subset M$.
-Then, by \Cref{prp:hood-factorization}, we have $\tangent{M}{0} = \tangent{N}{0}$.
-Thus, at most one of $M$ and $N$ can be tangential.
+On the other hand, the property of being tangential behaves differently.
+Suppose that $M$ and $N$ are $R$-modules such that $\hood{M,0}{1} \subseteq N \subseteq M$.
+Then, by \Cref{prp:hood-factorization}, we have that the induced map
+$\tangent{N}{0} \to \tangent{M}{0}$ is an equivalence.
+Thus, if both $M$ and $N$ are tangential, the inclusion $N \to M$ must be an equivalence.
+It follows that if the inclusion is not an equivalence, it is not true that both $M$
+and $N$ are tangential.
 
 \begin{counterexample}\label{cex:nil-not-tangential}
   The nilradical $\Nil(R)$ is not tangential.
-  There is a chain of proper inclusions $\D(1) \subset \Nil(R) \subset R$.
-  Therefore, $\Nil(R)$ cannot be tangential, since $R$ is.
+  There is a chain of inclusions $\D(1) \subseteq \Nil(R) \subseteq R$.
+  Therefore, $\Nil(R)$ cannot be tangential, since $R$ is and the inclusion is proper.
 \end{counterexample}
 
 \begin{counterexample}\label{cex:hood-p-not-tangential}
@@ -59,7 +64,7 @@ However, not every module satisfies this condition; we present a counterexample 
   \[
     M \defeq R[\D(2)]/R[\D(1) \vee \D(1)]
   \]
-  To see why this is not infinitesimally linear at $0$, let $\eta : \D(2) \to R[\D(2)]$ be the unit map and $p : R[\D(2)] \to M$ the projection map.
+  Indeed, let $\eta : \D(2) \to R[\D(2)]$ be the unit map and $p : R[\D(2)] \to M$ the projection map.
   The composite map $p \circ \eta : \D(2) \to M$ is pointed and satisfies $(p \circ \eta)|_{\{0\} \vee \D(1)} = 0$ and $(p \circ \eta)|_{\D(1) \vee \{0\}} = 0$.
   However, since $\D(1) \vee \D(1) \to \D(2)$ is provably not surjective, we see that $p \circ \eta \neq 0$.
   Thus, the canonical map $(M,0)^{\D(2)} \to (M,0)^{\D(1)} \times (M,0)^{\D(1)}$ is not injective.
