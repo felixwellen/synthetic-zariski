@@ -16,7 +16,7 @@
 \end{proof}
 The following technical lemma shows an typical application of shrinking:
 \begin{lemma}\label{technicalExtension}
-  Let $X,Y:\CHaus$ and $\iota: Z\subseteq X$ be a dense subset inclusion. And let $f:Y\to Z$ be a uniformly continuous relative to $\iota$, and finally let $E$ be an entourage of $X$. 
+  Let $X,Y:\CHaus$ and $\iota: Z\subseteq X$ be a dense subset inclusion. And let $f:Z\to Y$ be a uniformly continuous relative to $\iota$, and finally let $E$ be an entourage of $Y$. 
   Then there exist a symmetric closed relation $C$ on $Y$ such that $C\circ C\subseteq E$ and a symmetric entourage $V$ of $X$ such that $\Pi_{z,q:Z} (V \circ V)(\iota(z),\iota(q)) \to C (f(z),f(q))$. 
 \end{lemma}
 \begin{proof}
@@ -33,8 +33,8 @@ The following technical lemma shows an typical application of shrinking:
   Now we will define for each $x:X$ and $n:\N$ a set $D_n(x)\subseteq Y$ such that $\bigcap_{n:\N} D_n(x)$ is contractible. Define
   $$D_n(x):=  \{y:Y | \Pi_{z:Z} V_n(x,\iota(z)) \to C_n(f(z),y)\}. $$
   \item To see that $\bigcap_{n:\N}D_n(x)$ is inhabited, note that by \Cref{Tychonov}, each $D_n(x)$ is closed, hence by \Cref{inhabitedIntersection}, it is sufficient to show for any $k:\N$ that $\bigcap_{n\leq k}D_n(x)$ is inhabited. 
-    Consider $\bigcap_{n\leq k}V_n(x)$, which is an open subset of $X$ containing $x$, hence by density, there exists some $q:Z$ such that $\bigcap_{n\leq k}V_n(x,\iota(q))$. We claim that $f(q)\in \bigcap_{n\leq k}D_n(x)$. So suppose $n\leq k$ and let $z:Z$ be such that $V_n(x,\iota(z))$. Then $(V_n\circ V_n)(\iota(z),\iota(q))$. Hence $(f(z),f(q)) \in C_n$ as required. 
-  \item To see that $\bigcap_{n:\N} D_n(x)$ is a proposition, suppose $y,y':Y$ and $y,y' \in \bigcap_{n:\N} D_n(x)$. We claim that $(y,y') \in \bigcap_{n:\N} E_n = \Delta_Y$ and hence $y = y'$. So let $n:\N$ and suppose that $y,y':D_n$. By density we can find some $z:Z$ with $V_n(x,\iota(z))$, and thus $(f(z),y),(f(z),y') \in C_n$, hence $(y,y') \in C_n \circ C_n \subseteq E_n$. 
+    Consider $\bigcap_{n\leq k}V_n(x)$, which is an open subset of $X$ containing $x$, hence by density, there exists some $q:Z$ such that $\bigcap_{n\leq k}V_n(x,\iota(q))$. We claim that $f(q)\in \bigcap_{n\leq k}D_n(x)$. So suppose $n\leq k$ and let $z:Z$ be such that $V_n(x,\iota(z))$. Then $(V_n\circ V_n)(\iota(z),\iota(q))$. Hence $C_n(f(z),f(q))$ as required. 
+  \item To see that $\bigcap_{n:\N} D_n(x)$ is a proposition, suppose $y,y':Y$ and $y,y' \in \bigcap_{n:\N} D_n(x)$. We claim that $(y,y') \in \bigcap_{n:\N} E_n = \Delta_Y$ and hence $y = y'$. So let $n:\N$. By density we can find some $z:Z$ with $V_n(x,\iota(z))$, and as $y,y'\in D_n(x)$ we must have $(f(z),y),(f(z),y') \in C_n$, hence $(y,y') \in C_n \circ C_n \subseteq E_n$. 
   \item Now note that for any $z:Z$ we have $f(z) \in \bigcap_{n:\N} D_n(\iota(z))$. Hence the function $X \to Y$ defined by sending $x$ to the unique element of $\bigcap_{n:\N}D_n(x)$ is an extension of $f$. Uniqueness follows from \Cref{ExtensionUnique}
 
 \end{proof}
