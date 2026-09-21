@@ -1,18 +1,16 @@
-The first motivating question behind this article is whether synthetic algebraic geometry admits a notion similar to the coherent sheaves in classical algebraic geometry.
-Coherent sheaves share properties with finite dimensional vector spaces and appear for example in Serre duality.
-To prove a basic version of the Serre duality theorem (following e.g.\ \cite{Hartshorne}) which covers useful examples the following properties are essential:
+The first motivating question behind this article is whether synthetic algebraic geometry admits a notion similar to the coherent sheaves in classical algebraic geometry. Coherent sheaves share properties with finite dimensional vector spaces and appear for example in Serre duality, an important tool of classical algebraic geometry.
+
+In synthetic algebraic geometry, we work with a generalization of $\mathcal O_X$ sheaves called $R$-module \emph{bundles}, where $R$ is the base ring of synthetic algebraic geometry. This ring $R$ has lots of surprising properties which come from working synthetically. Module bundles are just maps $X\to \Mod{R}$, assigning to each point of a type $X$ an $R$-module. In \cite{draft}, the abelian category of \emph{weakly quasi coherent} $R$-modules was defined and bundles of such modules on schemes were used for cohomological calculations. While these bundles are more general than the usual quasi-coherent $\mathcal O_X$-modules, it was still possible to adapt lots of proofs from the literature. Similarly, a synthetic replacement for coherent sheaves should admit the same arguments used in known proofs. Any direct adaption of the definition of coherent sheaves is bound to fail: Classically, it only works well if finitely presented modules over the base ring form an abelian category, which is known to be false for the base ring in synthetic algebraic geometry.
+
+Let $X$ be a smooth projective scheme. To prove a basic version of the Serre duality theorem (following e.g.\ \cite{Hartshorne}), which covers useful examples, we would ideally need one subcategory $\mathcal A$ of the $R$-module bundles on $X$ and one subcategory $\mathcal A^\prime\subset \Mod{R}$ with the following properties:
 
 \begin{enumerate}[(i)]
-\item Coherent sheaves on a scheme $X$ form an abelian category.
-\item Locally free sheaves are coherent.
-\item There should be an abelian category $\mathcal{A}$ that contains all cohomology modules $H^i(X,\mathcal F)$ of a coherent sheaf $\mathcal F$, such that the dualization functor given by $\Hom_R(\argmhole,R)$ is exact on $\mathcal{A}$.
+\item Locally free sheaves are contained in $\mathcal A$.
+\item For any $\mathcal F$ in $\mathcal A$ all cohomology modules $H^i(X,\mathcal F)$ are in $\mathcal A^\prime$.
+\item The dualization functor given by $\Hom_R(\argmhole,R)$ is exact on $\mathcal{A}^\prime$.
 \end{enumerate}
 
-For a non-trivial scheme, (ii) can only be the case if the base is coherent (which would be a consequence of being noetherian). In synthetic algebraic geometry, we usually do not use (module-) sheaves.
-Instead, we work with \emph{bundles} on a type $X$ which are just maps $X\to \Mod{R}$.
-Also, to get more specific kinds of bundles, we usually just restrict the target type $\Mod{R}$.
-So a convenient solution to the problem above would be a subcategory of the category of $R$-modules, which contains at least the finite free modules over the base ring $R$ and behaves well with respect to dualization.
-\rednote{This paragraph seems awkwark.  For example, it's not clear why the first sentence is there or how it relates to the rest of the paragraph.}
+Our initial hope was, that $\mathcal A^\prime$ can be the category of \emph{finitely adequate $R$-modules}, which we describe below and $\mathcal A$ can be chosen as bundles on $X$ with values in $\mathcal A^\prime$. In work in progress based on this article it turned out, that $\mathcal A$ has to be chosen as the strictly smaller category of vector bundles on $X$ in order for the cohomology to take values in finitely adequate modules.
 
 Since the base ring in synthetic algebraic geometry is not coherent, we cannot mimic the classical definition of coherent sheaves.
 It was already seen in~\cite{diffgeo-article} that there is a duality between finitely presented $R$-modules and finitely \emph{co}presented $R$-modules, where a module is finitely copresented if it merely is the kernel of a map between finite free modules.
