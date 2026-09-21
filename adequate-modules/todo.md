@@ -11,15 +11,7 @@
 - Dan/Thomas: Section 3: Examples and Counterexamples
   In particular, reorder Section 3.2, and merge former A.1 and A.2
   to an appropriate spot.
-- Add a subsection on notations on conventions, e.g. at end of intro:
-  - we follow HoTT book except for ...
-  - including \exists for mere existence;
-    P \lor Q as merely (P + Q);
-    \forall as a synonym for \Pi, used for propositions;
-  - all algebraic structures are assumed to be sets;
-  - our global assumptions on the ring R (SAG axioms);
-  - anything else?  Any ways in which we differ from HoTT book?
-- Handle 16 \rednote's
+- Handle remaining \rednote's
 
 ## Proofreading
 
@@ -31,6 +23,8 @@
 ## Misc
 
 - all: think about an appropriate journal
+  Maybe ZML:  https://zml.international/   Awodey, Riehl and other possible editors.
+  Or MSCS?
 
 ## Typesetting
 
