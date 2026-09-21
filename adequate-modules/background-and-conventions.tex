@@ -1,14 +1,16 @@
 We follow the conventions of the HoTT book \cite{hott}, with some minor notational differences.
 In particular, we use the symbol $\Type$ to denote the universe of small types, $\pType$ for the type of small, pointed types, and $\Prop$ for the type of small propositions.
-The type of functions from $X$ to $Y$ will be denoted by $Y^X$.
-Given pointed types $(X,x)$ and $(Y,y)$ we write $(Y,y)^{(X,x)}$ for the subtype of pointed maps.
-If ever the point $x$ is clear from the context, we simply write $(Y,y)^X$.
-With $\|X\|$ we mean the propositional trunction, while $\|X\|_0$ stands for the set truncation of a type $X$.
+The type $X \to Y$ of functions from $X$ to $Y$ will sometimes be denoted by $Y^X$.
+Given pointed types $(X,x)$ and $(Y,y)$, the subtype $(X,x) \rightarrow_\ast (Y,y)$ of pointed maps will sometimes be written $(Y,y)^{(X,x)}$.
+If the point $x$ is clear from the context, we simply write $(Y,y)^X$.
+By $\|X\|$ we mean the propositional trunction of the type $X$, while $\|X\|_0$ stands for the set truncation of $X$.
 All algebraic structures appearing in this article, such as rings, modules and groups, are assumed to have small underlying types which are sets.
 
 We use the usual logical notation interpreted in type theory. For a type family $P:A \to \Prop$ of propositions, we write
 \[
-  \forall x:A,P(x) \; \quad\text{for}\quad \prod_{x:A} P(x),
+  \forall x:A,P(x) \; \quad\text{for}\quad \prod_{x:A} P(x)
+  \qquad
+  \text{and}
   \qquad
   \exists x:A,P(x) \quad\text{for}\quad \Big\|\sum_{x:A}P(x)\Big\|.
 \]
@@ -17,20 +19,20 @@ We use the adverb \emph{merely} to emphasize a truncated existence statement.
 For example, ``there merely exists an $x:X$ such that $P(x)$'' means that $\|\sum_{x:X}P(x)\|$ is inhabited.
 \bigskip
 
-In extension to homotopy type theory as a mathematical foundation, we assume a commutative ring $R$ subject to the three axioms of~\cite{draft}.
+In addition, we assume the framework of synthetic algebraic geometry, which extends homotopy type theory by assuming a commutative ring $R$ subject to the three axioms of~\cite{draft}.
 We recall them briefly.
 For this let $A$ be an arbitrary finitely presented $R$-algebra.
 We will write $\Spec A \;:\equiv\; \Hom_{R\text{-Alg}}(A,R)$ for what we call its synthetic spectrum.
 The first axiom of \emph{Locality} states that $R$ is a local ring: We have $1 \neq 0$ and if $x+y$ is invertible in $R$, then so is either $x$ or $y$.
-The second axiom of \emph{Duality} establishes that the evaluation
+The second axiom of \emph{Duality} asserts that the evaluation map
 \[
   A \longrightarrow R^{\Spec A},\;
   f \mapsto (\varphi \mapsto \varphi(f))
 \]
-is an equivalence.
+is an equivalence for every finitely presented $R$-algebra $A$.
 
 To state the third axiom, we introduce for $f:A$ the \emph{basic open} $D(f)$ as the subtype of those $x:\Spec A$, such that $x(f)$ is invertible.
-The final axiom, \emph{Zariski-local choice}, then says that for a family $B:\Spec(A) \to \Type$ such that $\forall x:\Spec(A), \|B(x)\|$, there merely exist $f_1, \hdots, f_n:A$ generating the unit ideal in $A$ such that
+The final axiom, \emph{Zariski-local choice}, then says that for $A$ a finitely presented $R$-algebra and $B:\Spec(A) \to \Type$ a family such that $\forall x:\Spec(A), \|B(x)\|$, there merely exist $f_1, \hdots, f_n:A$ generating the unit ideal in $A$ such that
 \[
   \Big\|
     \prod_{i=1, \hdots, n} \prod_{x:D(f_i)} B(x)
