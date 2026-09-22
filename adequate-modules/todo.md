@@ -6,7 +6,7 @@
 
 ## Writing
 
-- Felix: Introduction:  Dan thinks it needs a lot more detail.
+- Felix: Introduction:  Dan thinks it needs a lot more detail. Add Sebastian, refer to 1.1 in abstract
 - Paper is a jumble of results.  Can we tell a story?  Improve all section intros.
 - Dan/Thomas: Section 3: Examples and Counterexamples
   In particular, reorder Section 3.2, and merge former A.1 and A.2
@@ -18,7 +18,7 @@
 - Dan (others too): intro:  one pass done, but needs more revision
 - Fabian: Section 1
 - Thomas: Section 2
-- Felix:  Section 3
+- Felix:  Section 3, 3.23: find ref
 
 ## Misc
 
