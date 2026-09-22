@@ -9,14 +9,52 @@
 \usepackage{pgfplots}
 
 \begin{document}
-In this note we show that the topologists sine curve $Y$ can be defined in the setting of 
+In this note we show that the topologists sine curve $\mathcal S$ can be defined in the setting of 
 synthetic Stone duality (SSD) as introduced in \cite{synthetic-stone-duality}. 
-We show that $Y$ is not path-connected. 
-We will also show that $Y$ is $\mathbb I$-contractible. 
+We show that $\mathcal S$ is not path-connected. 
+We will also show that $\mathcal S$ is $\mathbb I$-contractible. 
 Note that any path-connected space is $\mathbb I$-contractible 
 (Lemma 5.24 of \cite{synthetic-stone-duality}) but the converse thus does not hold. 
-\tableofcontents
+%\tableofcontents
 \section{Preliminaries}
+We recall that in \cite{synthetic-stone-duality}, synthetic stone duality (SSD) was introduced. SSD consists of an extension of Homotopy type theory by four axioms. These allow us to study compact Hausdorff spaces, including the interval. In this section, we will recall some of the results from SSD that will be needed for later arguments. 
+\begin{definition}
+  A proposition $P$ is called \textbf{closed} if there exists a binary sequence $\alpha:2^\N$ such that $P\leftrightarrow \forall_{n:\N} \alpha_n = 0$. Similarly, $P$ is called \textbf{open} if there exists some $\alpha:2^\N$ such that  $P\leftrightarrow \exists_{n:\N} \alpha_n = 1$. 
+
+  For $X$ a type and $A:X \to \Prop$ a subset, we call $A$ closed/open if for any $x:X$ the proposition $A(x)$ is closed/open respectively. 
+\end{definition}
+\begin{remark}
+  With the above definition, it is clear that any function is continuous in the sense that the inverse image of any open subset is open. 
+\end{remark}
+
+\begin{definition}
+  Recall that a type is called a Stone if it is a sequential limit of finite sets. The type of Stone types is denoted $\Stone$. 
+  A type is called compact Hausdorff if it is the quotient of a Stone type by a closed equivalence relation. The type of Compact Hausdorff types is denoted $\CHaus$. 
+\end{definition}
+\begin{example}\label{DfnInterval}
+  The type $2^\N$ of binary sequences is Stone. The relation $\sim$ defined by $$\alpha \sim \beta = \forall_{n:\N} \left(\left|\sum\limits_{i<n} \frac{\alpha(i) -\beta(i)}{2^{i+1}}\right| \leq \frac{1}{2^{n}}\right)$$ is a closed equivalence relation and $[0,1]:= 2^\N /\sim$ is therefore a compact Hausdorff space. 
+\end{example}
+In the setting of SSD, we can decide Bishop's omniscience principles. We posulate \parencite[Axiom 4]{synthetic-stone-duality} dependent choice
+
+\begin{remark}
+  By dependent choice and LLPO, the interval in \Cref{DfnInterval} agrees with the interval defined using Cauchy reals \parencite[Prop 1.4.2]{HannesDiener}. 
+  In particular, we can make use of some standard concepts for the Cauchy reals in \cite{Bishop}. 
+  For example, we can define the functions $\frac{1}{\cdot}:\R_{\neq 0} \to \R$ \parencite[Prop 2.12]{Bishop}, 
+  $|\cdot|,\sin:\R \to \R$ \parencite[Dfn2.4,p. 58]{Bishop} and 
+  $+,-,\cdot,\max: \R \to \R \to \R$ \parencite[Dfn 2.4]{Bishop}.
+  Also, we can define the relations $<,\leq : \R \to \R \to \Prop$, which are open and closed respectively \parencite[Dfn 2.10, Lemma 2.8]{Bishop}. 
+\end{remark}
+\begin{remark}
+  By a standard rescaling argument, one can also see that $[a,b]:\CHaus$ for any $a,b:\R$. 
+\end{remark}
+
+
+\begin{lemma}
+  A subset of $[0,1]$ is open iff it can be written as countable 
+\end{lemma}
+
+
+
 \begin{remark}
   By LLPO and dependent choice, the Cauchy reals agree with the reals in the setting of SSD. Thus we can define any function which comes with a Cauchy sequence. In particular, in the setting of SSD, we can define the following functions:
   \begin{itemize}
