@@ -1,46 +1,52 @@
-The first motivating question behind this article is whether synthetic algebraic geometry admits a notion similar to the coherent sheaves in classical algebraic geometry. Coherent sheaves share properties with finite dimensional vector spaces and appear for example in Serre duality, an important tool of classical algebraic geometry.
+The first motivating question behind this article is whether synthetic algebraic geometry admits a notion similar to the coherent sheaves in classical algebraic geometry. Coherent sheaves share properties with finite-dimensional vector spaces and appear for example in Serre duality, an important tool of classical algebraic geometry.
+
+\rednote{Let's discuss the overall order of this material at the next meeting.}
 
 Before going into the challenges with finding a synthetic analogue of coherent sheaves, we will give some background.
 Let $R$ be the base ring of synthetic algebraic geometry, as mentioned above. 
-The three axioms of synthetic algebraic geometry imply that some properties of $R$ are close to that of a field.
-For example, it was noticed in~\cite{diffgeo-article} that any finitely presented $R$-module $M$ is reflexive, i.e.\ canonically isomorphic to its double dual $M^{\ast\ast}$ where $M^\ast$ is $\Hom_R(M,R)$. In this article, we define \emph{finitely adequate $R$-modules} to be $R$-modules, which are merely the kernel of a linear map between finitely presented $R$-modules. Reflexivity extends to this category of $R$-modules.
+The three axioms of synthetic algebraic geometry imply that $R$ shares many properties with a field.
+For example, it was noticed in~\cite{diffgeo-article} that any finitely presented $R$-module $M$ is reflexive, i.e.\ canonically isomorphic to its double dual $M^{\ast\ast}$, where $M^\ast$ is $\Hom_R(M,R)$. In this article, we define \emph{finitely adequate $R$-modules} to be $R$-modules that are merely the kernel of a linear map between finitely presented $R$-modules. Reflexivity extends to this category of $R$-modules.
 
 In synthetic algebraic geometry, we work with a generalization of $\mathcal O_X$-module sheaves called $R$-module \emph{bundles}.
-Module bundles are just maps $X\to \Mod{R}$, assigning to each point of a type $X$ an $R$-module. In \cite{draft}, the abelian category of \emph{weakly quasi-coherent} $R$-modules was defined and bundles of such modules on schemes were used for cohomological calculations. While these bundles are more general than the usual quasi-coherent $\mathcal O_X$-modules, it was still possible to adapt many proofs from the literature. Similarly, a synthetic replacement for coherent sheaves should admit the same arguments used in known proofs. Any direct adaption of the definition of coherent sheaves is bound to fail: Classically, it only works well if finitely presented modules over the base ring form an abelian category, which is known to be false for $R$.
+Module bundles are just maps $X\to \Mod{R}$, assigning to each point of a type $X$ an $R$-module. In \cite{draft}, the abelian category of \emph{weakly quasi-coherent} $R$-modules was defined and bundles of such modules on schemes were used for cohomological calculations. While these bundles are more general than the usual quasi-coherent $\mathcal O_X$-modules, it was still possible to adapt many proofs from the literature to this setting. Similarly, a synthetic replacement for coherent sheaves should admit the same arguments used in known proofs. However, any direct parallel of the definition of coherent sheaves is bound to fail: classically, this definition only works well if finitely presented modules over the base ring form an abelian category, which is known to be false for $R$.
 
-We will now give some requirements for a basic proof of Serre duality, like it is found in \cite{Hartshorne}. Let $X$ be a smooth projective scheme. We would ideally need one subcategory $\mathcal A$ of the $R$-module bundles on $X$ and one subcategory $\mathcal A^\prime\subseteq \Mod{R}$ with the following properties:
+We will now give some requirements for a basic proof of Serre duality, as is found in \cite{Hartshorne}. Let $X$ be a smooth projective scheme. We would ideally need one subcategory $\mathcal A$ of the $R$-module bundles on $X$ and one subcategory $\mathcal A^\prime\subseteq \Mod{R}$ with the following properties:
+\rednote{Do we want these to be \emph{abelian} subcategories?}
+\rednote{Clarify what $\mathcal A$ and $\mathcal A^{\prime}$ correspond to classically?}
 
 \begin{enumerate}[(i)]
-\item Locally free sheaves are contained in $\mathcal A$.
-\item For any $\mathcal F$ in $\mathcal A$ all cohomology modules $H^i(X,\mathcal F)$ are in $\mathcal A^\prime$.
+\item All locally free sheaves are contained in $\mathcal A$.
+\item For every $\mathcal F$ in $\mathcal A$, all cohomology modules $H^i(X,\mathcal F)$ are in $\mathcal A^\prime$.
 \item The dualization functor given by $\Hom_R(\argmhole,R)$ is exact on $\mathcal{A}^\prime$.
 \end{enumerate}
 
-Our initial hope was that $\mathcal A^\prime$ can be the category of \emph{finitely adequate $R$-modules} and $\mathcal A$ can be chosen as bundles on $X$ with values in $\mathcal A^\prime$. In work in progress based on this article it turned out that $\mathcal A$ has to be a smaller category, for example the category of vector bundles on $X$, in order for the cohomology to take values in finitely adequate $R$-modules. With this restriction it seems to be the case that Serre duality follows with a proof similar to that of Hartshorne. The externalization of this proof would give a constructive proof of Serre duality over a general ring. We do not know of an existing constructive proof or any proof in this generality.
+Our initial hope was that $\mathcal A^\prime$ could be the category of \emph{finitely adequate $R$-modules} and $\mathcal A$ could be the bundles on $X$ with values in $\mathcal A^\prime$. In work in progress based on this article it turned out that $\mathcal A$ has to be a smaller category, for example the category of vector bundles on $X$, in order for the cohomology to take values in finitely adequate $R$-modules. With this restriction it seems to be the case that Serre duality follows with a proof similar to that of Hartshorne. The externalization of this proof would give a constructive proof of Serre duality over a general ring. We do not know of an existing constructive proof or any proof in this generality.
 
-Beyond what is needed for Serre duality there are many good and surprising properties of the abelian category of finitely adequate $R$-modules:
+Beyond what is needed for Serre duality, the abelian category $\finadeq$ of finitely adequate $R$-modules has many good and surprising properties:
 
 \begin{itemize}
 \item The module $\Hom_R(M, N)$ is finitely adequate when $M$ and $N$ are.
 \item Dualization is an equivalence $\Hom_R(\argmhole, R) : (\finadeq)^{\op} \to \finadeq$.
-\item The injective modules are exactly the finitely presented modules and the projective modules are exactly the finitely copresented modules.
+\item In $\finadeq$, the injective modules are exactly the finitely presented modules and the projective modules are exactly the finitely copresented modules.
 \item Finitely adequate $R$-modules are closed under extensions (inside $\Mod{R}$).
-\item The category $\finadeq$ of finitely adequate modules is closed symmetric monoidal, with tensor product the double dual of the usual tensor product.
+\item The category of finitely adequate modules is closed symmetric monoidal, with tensor product the double dual of the usual tensor product.
 \end{itemize}
 
-All these results are shown in \Cref{adequate-section}, together with the theorem that finitely adequate $R$-modules form an abelian category. Already the prior work in \cite{diffgeo-article} used a differential geometry argument to show projectivity of finitely copresented $R$-modules. The differential geometry of the underlying type of  some modules plays even more a role in the present work and is essential in our proof that finitely adequate $R$-modules are closed under extension.
+All of these results are shown in \Cref{adequate-section}, together with the theorem that finitely adequate $R$-modules form an abelian category. Prior work in~\cite{diffgeo-article} already showed that finitely copresented $R$-modules are projective, and the argument used differential geometry. The differential geometry of the underlying types of some modules plays an even larger role in the present work and is essential in our proof that finitely adequate $R$-modules are closed under extension.
 
-In \Cref{infinitesimally-linear-section}, as a preparation for the central proofs in \Cref{adequate-section}, we study how the differential geometric properties of the underlying type relates to the algebraic structure of a $R$-module.
-The synthetic definition of tangent spaces works for general types. For \emph{infinitesimally linear} types, these tangent spaces are $R$-modules. If $M$ is an infinitesimally linear $R$-module, we can compare $M$ with its own tangent space via a canonical map, which always exists and which we prove to be linear. If, for a general $R$-module, this canonical map turns out to be an equivalence, we call the module \emph{tangential}. We show that tangential $R$-modules are always infinitesimally linear and that the canonical map is an isomorphism to their tangent space at 0.  To our surprise, many $R$-modules in synthetic algebraic geometry are tangential, in particular weakly quasi-coherent and finitely adequate $R$-modules.
+In \Cref{infinitesimally-linear-section}, as a preparation for the central proofs in \Cref{adequate-section}, we study how the differential geometric properties of the underlying type relate to the algebraic structure of a $R$-module.
+The synthetic definition of tangent spaces works for general types. For \emph{infinitesimally linear} types, these tangent spaces are $R$-modules. If $M$ is an infinitesimally linear $R$-module, we can compare $M$ with its own tangent space via a canonical map, which always exists and which we prove to be linear. If, for a general $R$-module, this canonical map turns out to be an equivalence, we call the module \emph{tangential}. We show that tangential $R$-modules are always infinitesimally linear and that the canonical map is an isomorphism to their tangent space at 0.  To our surprise, many $R$-modules in synthetic algebraic geometry are tangential.  In particular, this is true for weakly quasi-coherent $R$-modules and therefore for finitely adequate $R$-modules.
 
-An alternative to the explicit definition of finitely adequate $R$-modules given above would be to describe the finitely adequate $R$-modules as the smallest abelian subcategory of $\Mod{R}$ containing all finite free $R$-modules. More surprisingly, finitely adequate $R$-modules are also described by the construction of the free abelian category in \cite{adelman-construction}. For this reason, we considered calling finitely adequate $R$-modules ``Adelman modules'', but decided to name them after the existing notion of adequate modules \cite[Chapter 46]{stacks-project}, once we were aware of it.
-\rednote{``quite similar'':  should we say that it \emph{is} the free abelian category on the finite free modules?}
+We gave an explicit definition of ``finitely adequate'' above, but the subcategory of finitely adequate $R$-modules has some more conceptual descriptions.
+For example, it is the smallest abelian subcategory of $\Mod{R}$ containing all finite free $R$-modules.
+More surprisingly, by making use of Adelman's work~\cite{adelman-construction}, one can show that it is in fact the free abelian category on the category of finite free $R$-modules.
+For this reason, we considered calling finitely adequate $R$-modules ``Adelman modules'', but decided to name them after the existing notion of adequate modules~\cite[Chapter 46]{stacks-project}, once we were aware of it.
 
 Apart from the free abelian category and slight variations on the definition given in the beginning, we also asked if one of the following categories coincides with the finitely adequate $R$-modules:
-\begin{center}
+
 \begin{enumerate}[(i)]
-\item Reflexive modules, i.e.\ all $R$-modules $M$ with $M^{\ast\ast}=M$ by the canonical isomorphism.
+\item Reflexive modules, i.e., all $R$-modules $M$ such that the canonical map with $M \to M^{\ast\ast}$ is an isomorphism.
 \item $R$-modules $M$ that are not not finite free.
 \end{enumerate}
-\end{center}
-The answer turned out to be negative in both cases. We present these results in \Cref{examples-section} together with other examples that show the relations of the various types of $R$-modules which appear in synthetic algebraic geometry.
+
+The answer turned out to be negative in both cases. We present these results in \Cref{examples-section} together with other examples that show the relationships between the various conditions one can put on $R$-modules in synthetic algebraic geometry.
