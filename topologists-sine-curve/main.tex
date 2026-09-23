@@ -23,45 +23,39 @@ We recall that in \cite{synthetic-stone-duality}, synthetic stone duality (SSD) 
 
   For $X$ a type and $A:X \to \Prop$ a subset, we call $A$ closed/open if for any $x:X$ the proposition $A(x)$ is closed/open respectively. 
 \end{definition}
-\begin{remark}
-  With the above definition, it is clear that any function is continuous in the sense that the inverse image of any open subset is open. 
-\end{remark}
+%\begin{remark}
+%  With the above definition, it is clear that any function is continuous in the sense that the inverse image of any open subset is open. 
+%\end{remark}
 
 \begin{definition}
-  Recall that a type is called a Stone if it is a sequential limit of finite sets. The type of Stone types is denoted $\Stone$. 
-  A type is called compact Hausdorff if it is the quotient of a Stone type by a closed equivalence relation. The type of Compact Hausdorff types is denoted $\CHaus$. 
+  Recall that a type is called a Stone if it is a sequential limit of finite sets. %The type of Stone types is denoted $\Stone$. 
+  A type is called compact Hausdorff if it is the quotient of a Stone type by a closed equivalence relation. %The type of Compact Hausdorff types is denoted $\CHaus$. 
 \end{definition}
-\begin{example}\label{DfnInterval}
-  The type $2^\N$ of binary sequences is Stone. The relation $\sim$ defined by $$\alpha \sim \beta = \forall_{n:\N} \left(\left|\sum\limits_{i<n} \frac{\alpha(i) -\beta(i)}{2^{i+1}}\right| \leq \frac{1}{2^{n}}\right)$$ is a closed equivalence relation and $[0,1]:= 2^\N /\sim$ is therefore a compact Hausdorff space. 
+\begin{example}
+  In \parencite[Thm 4.22]{synthetic-stone-duality}, it is shown that the interval $[0,1]$ of Cauchy reals is compact Hausdorff. By rescaling, so is any closed interval $[a,b]\subseteq \R$ for any $a,b:\R$. Furthermore, in \parencite[Lemma 4.11]{synthetic-stone-duality}, it is shown that $\CHaus$ is closed under $\Sigma$, and hence in particular finite products. 
 \end{example}
-In the setting of SSD, we can decide Bishop's omniscience principles. We posulate \parencite[Axiom 4]{synthetic-stone-duality} dependent choice
-
 \begin{remark}
-  By dependent choice and LLPO, the interval in \Cref{DfnInterval} agrees with the interval defined using Cauchy reals \parencite[Prop 1.4.2]{HannesDiener}. 
-  In particular, we can make use of some standard concepts for the Cauchy reals in \cite{Bishop}. 
-  For example, we can define the functions $\frac{1}{\cdot}:\R_{\neq 0} \to \R$ \parencite[Prop 2.12]{Bishop}, 
-  $|\cdot|,\sin:\R \to \R$ \parencite[Dfn2.4,p. 58]{Bishop} and 
-  $+,-,\cdot,\max: \R \to \R \to \R$ \parencite[Dfn 2.4]{Bishop}.
-  Also, we can define the relations $<,\leq : \R \to \R \to \Prop$, which are open and closed respectively \parencite[Dfn 2.10, Lemma 2.8]{Bishop}. 
-\end{remark}
-\begin{remark}
-  By a standard rescaling argument, one can also see that $[a,b]:\CHaus$ for any $a,b:\R$. 
+  We recall that for the Cauchy reals, we can define the relations $<,\leq : \R \to \R \to \Prop$, which are open and closed respectively \parencite[Dfn 2.7, 2.10]{Bishop}. 
 \end{remark}
 
-
-\begin{lemma}
-  A subset of $[0,1]$ is open iff it can be written as countable 
-\end{lemma}
-
-
+%\begin{remark}
+%  From \parencite[Lemma 4.27]{synthetic-stone-duality}, it follows that for any $U\subseteq [0,1]$ open, we can find $a,b$ dyadic rationals such that $(a,b)\subseteq [a,b]\subseteq U$. This means that $[0,1]$ is strongly locally compact in the sense of \parencite[p. 59,60]{SyntheticTopologyLesnik}, and hence $[0,1]\times [0,1]$ has the product topology \parencite[Prop 2.59]{SyntheticTopologyLesnik}. 
+%\end{remark}
 
 \begin{remark}
-  By LLPO and dependent choice, the Cauchy reals agree with the reals in the setting of SSD. Thus we can define any function which comes with a Cauchy sequence. In particular, in the setting of SSD, we can define the following functions:
-  \begin{itemize}
-    \item For each $k:\mathbb N$, we can define $t_k: [\frac1k , 1] \to [-1,1]$ by $t_k(r) = \sin(\frac1r)$. 
-    \item We can define for each $n:\mathbb N$ the standard metric $d:\mathbb R^n \times \mathbb R^n \to \mathbb R_{\geq 0}$. 
-  \end{itemize}
+  We recall from \cite{Bishop} that some standard functions on the Cauchy reals can be defined, including 
+ $\frac{1}{\cdot}:\R_{\neq 0} \to \R$ \parencite[Prop 2.12]{Bishop}, 
+  $|\cdot|,\sin,-:\R \to \R$ \parencite[Dfn2.4,p. 58]{Bishop} and 
+  $+,\cdot,\max,\min: \R \to \R \to \R$ \parencite[Dfn 2.4,p. 20]{Bishop}.
 \end{remark}
+
+
+
+
+
+\begin{corollary}
+  For any $n:\N$ we can define the Manhattan distance $d:\R^n \to \R^n \to \R^n$. Also for any $k:\N$ we can define the function $s_k:[\frac1k , 1] \to [-1,1]$ given by $s_k(x) = \sin({\frac1x})$.
+\end{corollary}
 
 \begin{lemma}[uniform continuity of maps $\mathbb I \to \mathbb R^n$]\label{uniformContinuity}
   For any map $f:\mathbb I \to [0,1] \times [-1,1]$, and for every $\epsilon:\mathbb R$ with $\epsilon>0$, 
