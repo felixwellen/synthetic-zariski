@@ -192,25 +192,28 @@ As expected, the cohomology of such bundles is not usually finitely presented.
 This already fails for global sections on $\bP^1$, as the following example illustrates.
 
 \begin{example}
+  \label{cohomology-of-vectorbundle-prescribed-by-matrix}
+  We work over $\bP^n$ for an arbitrary $n \geq 1$.
+  Suppose $A : R^s \to R^t$ is a matrix.
   Consider the exact sequence
   \[
-    0 \to \mathcal O(-2) \to \mathcal O(-2) \oplus \mathcal O(-1) \oplus \mathcal O(-1) \to \mathcal F_t \to 0,
+    0 \longrightarrow \mathcal O(-n-1)^{\oplus s}
+    \overset{(A,x_0,\hdots, x_n)}{\longrightarrow} \mathcal O(-n-1)^{\oplus t} \oplus \mathcal O(-n)^{\oplus (n+1)s}
+    \longrightarrow \mathcal F_A \longrightarrow 0,
   \]
-  where the first map is given by multiplication with $(t,x,y)$ for $t : R$ and $x,y : H^0(\bP^1,\mathcal O(1))$ the canonical basis.
-  The bundle $\mathcal F_t$ is the cokernel of this map and is pointwise free of rank $2$:
-  At the point $(\ell,p) : \bP^1$ it is given by the cokernel of the map
+  where $\mc F_A$ is the cokernel of the previous map.
+  Since we multiply by all $x_0, \hdots, x_n$,  this first map is pointwise injective and therefore $\mc F_A$ is a vector bundle of rank $(n+1)s + t - s$.
+  As $H^i(\mc O(-n)) = 0$ for all $0 \leq i \leq n$, $H^n(\bP^n,\mc O(-n-1)) = R$ and $H^n(\bP^n,\mc O(-n)) = 0$, the long exact sequence of cohomology gives
   \[
-    \ell^{\otimes -2} \to \ell^{\otimes -2} \oplus \ell^{\otimes -1} \oplus \ell^{\otimes -1}, \;
-    \varphi\otimes\psi \mapsto (t\varphi\otimes\psi, \varphi (p_0)\psi, \psi(p_1)\varphi),
+    H^i(\bP^n, \mc F_A) = \begin{cases}
+      \coker(A) &\mbox{if } i = n \\
+      \ker(A)  &\mbox{if } i = n-1 \\
+      0        &\mbox{else}
+    \end{cases}
+    \rlap{.}
   \]
-  which is free of rank $2$ since $p_0 \neq 0 \lor p_1 \neq 0$.
-  Then from the long exact sequence of cohomology we see that $H^0(\bP^1, \mathcal F_t)$ is the kernel of
-  \[
-    R = H^1(\bP^1, \mathcal O(-2)) \to H^1(\bP^1, \mathcal O(-2) \oplus \mathcal O(-1) \oplus \mathcal O(-1)) = R \oplus 0 \oplus 0,
-  \]
-  which is just the map $R \to R, r \mapsto rt$.
-  For one, this implies that it is not true that $H^0(\bP^1,\mathcal F_t)$ is finitely presented for all $t:R$.
-  Interestingly enough, this also shows that is not true that all vector bundles on $\bP^1$ split into line bundles, since then $H^0(\bP^1, \mathcal F_t)$ would need to be finite free for all $t:R$.
+  In case of $n=1$, this implies that it is not true that $H^0(\bP^1,\mathcal F_A)$ is finitely presented for all matrices $A$.
+  Interestingly enough, this also shows that is not true that all vector bundles on $\bP^1$ split into line bundles, since then $H^0(\bP^1, \mathcal F_A)$ would need to be finite free for all $A$.
 \end{example}
 
 It is also true, although much less clear, that the global sections of such bundles is not always finitely adequate.
@@ -398,3 +401,5 @@ As we are working over a local ring, a lot of the classical theorems and their p
   Using the second statement of \Cref{vector-bundles-have-faq-cohomology-which-eventually-vanishes}, we see that $H^1(\bP^n, \mathcal K(d)) = 0$ is finitely generated for $d \gg 0$.
   However, any module that is both finitely copresented and finitely generated is finite free, hence so is $H^0(\bP^n, \mathcal E(d))$.
 \end{proof}
+
+\Cref{cohomology-of-vectorbundle-prescribed-by-matrix} shows that one cannot choose $d_0 = 0$ for all vector bundles $\mc E$.
