@@ -1,100 +1,120 @@
-In this section, we recall and rephrase some results from synthetic Stone duality (SSD, \cite{synthetic-stone-duality}) and synthetic topology \cite{SyntheticTopologyEscardo,SyntheticTopologyLesnik,abstractstone,faissole2017synthetic,vickers2007locales} for the purposes of this note.  
+In \cite{synthetic-stone-duality}, synthetic stone duality (SSD) was introduced. SSD consists of an extension of Homotopy type theory by four axioms. In this section, we will recall some of the results from SSD that will be needed for later arguments. %Note that all of these results assume the axioms of SSD as in \cite{synthetic-stone-duality}.
 
-List of stuff we use, to complete later
-\begin{itemize}
-  \item Open and Closed propositions and subsets. 
-  \item Countably presented algebras and some of their closure properties. 
-  \item Compact Hausdorff spaces. (Not sure we need ODisc in this note). 
-  \item All the axioms (Local choice phrased in terms of CHaus). 
-  \item Definition of a basis ala Lesnik.
-  \item Point out what is a basis of CHaus spaces. 
-  \item Local compactness of CHaus
-  \item Product topology. 
-  \item Interval, Cauchy completeness, LLPO and MP as interval results. 
-  \item Intermediate value theorem. 
-\end{itemize}
-\subsection{SSD}
-\begin{definition}
-\item A proposition $P$ is called \textbf{open} if there exists some sequence $\alpha:2^\mathbb N$ such that $P\leftrightarrow \exists_{n:\N} \alpha n = 1$. \parencite[Dfn 1.19]{synthetic-stone-duality}
-    \item A proposition $P$ is called \textbf{closed} if there exists some sequence $\alpha:2^\mathbb N$ such that $P\leftrightarrow \forall_{n:\N} \alpha n = 0$. \parencite[Dfn 1.19]{synthetic-stone-duality}
-    \item We denote $\Open, \Closed$ for the types of open and closed propositions respectively. \parencite[Dfn 1.19]{synthetic-stone-duality}
-  \item For $X$ a set, an \textbf{open subset} of $X$ is a map $X \to \Open$. \parencite[Dfn 1.25]{synthetic-stone-duality}
-    \item For $X$ a set, a \textbf{closed subset} of $X$ is a map $X \to \Closed$. \parencite[Dfn 1.25]{synthetic-stone-duality}
-    \item A type is \textbf{countable} iff it is merely equivalent to a decidable subset of $\mathbb N$. \parencite[Dfn 1.2]{synthetic-stone-duality}.
-    \item A type is \textbf{overtly discrete} if there is the quotient of a countable set by an open equivalence relation. \parencite[Dfn 2.1, Lem 2.12]{synthetic-stone-duality}.
+\begin{definition}\label{dfnClosedOpen}
+  A proposition $P$ is called \textbf{closed} if there exists a binary sequence $\alpha:2^\N$ such that $P\leftrightarrow \forall_{n:\N} \alpha_n = 0$. Similarly, $P$ is called \textbf{open} if there exists some $\alpha:2^\N$ such that  $P\leftrightarrow \exists_{n:\N} \alpha_n = 1$. 
+  The types of closed,open propositions are called $\Closed,\Open$ respectively. 
+  For $X$ a type and $A:X \to \Prop$ a subset, we call $A$ closed,open if $A$ factors over $\Closed,\Open$ respectively. 
 \end{definition}
 
-\subsection{Topology}
-
 \begin{definition}
-\item A map $f: A \to B$ is overt if for all $U : B \to \Open$, the statement $\exists_{a:A}.U(f(a))$ is open \parencite[Dfn 2.39]{lesnik2021synthetictopologyconstructivemetric}.
-\item A map $f:A \to B$ is compact if for all $U : B \to \Open$, the statement $\forall_{a:A} U(f(a))$ is open \parencite[Dfn 2.39]{lesnik2021synthetictopologyconstructivemetric}. 
-\item A subset is subovert/subcompact iff the inclusion map is. 
-\item We denote $Comp(X)$ for the subcompacta of $X$. 
-\item Let $X$ be a set. A \textbf{weak basis} for $X$ is a map $b: \mathcal B\to (X \to \Open)$ such that for any open subset $U\subseteq X$ there merely exists a set $I$ and map $u:I \to \mathcal B$ such that $U = \bigcup_{i: I} b(u_i)$. \parencite[Dfn 2.55]{lesnik2021synthetictopologyconstructivemetric}. 
-\item Such a weak basis is called a \textbf{basis} if $u$ can always be taken to be an overt map. 
-\item Such a basis is called \textbf{canonical} if there is a function that assigns to each $U\subseteq X$ a set and map $I,u$ as above. 
+  Recall that a type is called Stone if it is 
+  the spectrum of a countably presented Boolean algebra. 
+  %a sequential limit of finite sets. The type of Stone types is denoted $\Stone$. 
+  A type is called compact Hausdorff if it is the quotient of a Stone type by a closed equivalence relation. The type of Compact Hausdorff types is denoted $\CHaus$. 
 \end{definition}
+With these definitions, we can restate the axioms of SSD:
+\rednote{Discussion point: we don't use the first two axioms, explicitly, might leave them out of the presentation?}
+\begin{axiom}[Stone duality]\label{AxStoneDuality}
+  For all countably presented Boolean algebras $B$
+  the evaluation map $B\rightarrow  2^{\Sp(B)}$ is an isomorphism.
+\end{axiom} 
 
-\begin{remark}
-\item If $A$ is overt or compact, so are all maps out of $A$. In particular, and closed subset of a compact Hausdorff space is subcompact. 
-\item If $X$ has a weak basis and there exists a map $c:\mathcal C \to \mathcal B$ such that for each open $B \in \mathcal B$, 
-  there exists some $v:J \to \mathcal C$ such that $B = \bigcup_{j\in J} c(v(j))$, then $b \circ c$ is also a weak basis for $X$. 
-\item Moreover, if the weak basis was a basis and $v$ was overt, $b\circ c$ is a basis. 
-\end{remark}
+\begin{axiom}[Surjections are formal surjections]\label{SurjectionsAreFormalSurjections}
+  For all morphism $g:B\to C$ of countably presented Boolean algebras, we have that $g$ is injective if and only if
+  $(-)\circ g: \Sp(C) \to \Sp(B)$ is surjective. 
+\end{axiom} 
 
-\begin{definition}
-  Let $X$ be a type. A \textbf{local compactness structure} on $X$ consists of a map 
-  $b = (b_O,b_K) : \mathcal B \to ((X \to \Open) \times (Comp(X)))$ such that:
-  \begin{itemize}
-    \item $\mathcal B$ is overt. 
-    \item For all $j:\mathcal B$, $b_O(j) \subseteq b_K(j)$. 
-    \item For all $U\subseteq X$ open and $x\in U$, there exists some $j\in\mathcal B$ such that $x \in b_O(j)\subseteq b_K(j) \subseteq U$. 
-  \end{itemize}
-\end{definition} 
-\begin{remark}
-In \parencite[p59]{lesnik2021synthetictopologyconstructivemetric}, a type is called \textbf{strongly locally compact} if it merely has a local compactness structure. 
-In \parencite[Prop 2.59]{lesnik2021synthetictopologyconstructivemetric} it is shown that for a local compactness structure $b$, $b_O$ forms a canonical basis. 
-Moreover, it is shown that given two types $X,Y$ with local compactness structures $b,c$, then $b \times c$ forms a local compactness structure on $X \times Y$, and hence $b_O\times c_O$ a canonical basis. 
-\end{remark}
+\begin{axiom}[Local choice]\label{AxLocalChoice}
+  Given $X:\CHaus$ with $E,F$ arbitrary types, a map $f:X \to F$ and a 
+  surjection $e:E \twoheadrightarrow F$, 
+  there exists a Stone space $T$, a surjective map 
+  $T\twoheadrightarrow X$ and an arrow $T\to E$ making the following diagram commute:
+    \[\begin{tikzcd}
+      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+      X  \arrow[r, swap,"f"] & F
+    \end{tikzcd}\]  
+\end{axiom}
 
-\begin{lemma}
-  Compact Hausdorff spaces have a local compactness strucutre. 
+\begin{axiom}[Dependent choice]\label{axDependentChoice}
+For all types $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$ for all $n:\N$, the projection from the sequential limit $\lim_kE_k$ to $E_0$ is surjective.
+\end{axiom}
+From now on, we will assume these axioms. In \parencite[Lemma 1.21]{synthetic-stone-duality} the following is shown:
+\begin{lemma}\label{ClosureClosedOpen}
+  $\Closed$ is closed under countable conjunctions and finite disjunctions. $\Open$ is closed under countable disjunctions and finite conjunctions. 
+\end{lemma}
+
+\begin{lemma}\label{CHausClosedImage}
+  Let $X:\CHaus$ and $A\subseteq X$ a subset. Then $A$ is closed if and only if it is the image of a compact Hausdorff space. 
 \end{lemma}
 \begin{proof}
-  Let $q:S \twoheadrightarrow X$ represent a compact Hausdorff space. 
-  Following \parencite[Cor 4.7]{synthetic-stone-duality}, every open subset of $X$ can be written as $\bigcup_{n:\mathbb N} \neg q(D_n)$ for some family $D_\bullet : \mathbb N \to 2^S$. 
-  Hence we can take $\mathcal B = 2^S$, $b_O(D) = \neg q(D)$ and $b_K(D) = q(\neg D_n)$. 
+  Assume $A\subseteq X$ closed, by \parencite[Lemma 4.2]{synthetic-stone-duality}, $A$ is the image of some closed subset of a Stone space, which is itself Stone by \parencite[Cor 3.12]{synthetic-stone-duality}. If $f:X \to Y$ is a map of compact Hausdorff types, then $f(X) = \{ y : Y | \exists_{x:X} f(x) = y\}$, which is closed by \parencite[Cor 3.13]{synthetic-stone-duality}. 
+\end{proof}
+\begin{lemma}\label{Boundedness}
+  Let $X:\CHaus$ and $f:X \to \N$. Then the image of $f$ is bounded. 
+\end{lemma}
+\begin{proof}
+  It sufficices to show this for $X:\Stone$, which is done in \parencite[Lemma 3.6]{synthetic-stone-duality}
 \end{proof}
 
-\begin{remark}
-  Denote $2^*$ for the set of finite binary sequences. 
-  Recall from \parencite[Lemma 4.27]{synthetic-stone-duality} that there is a basis of the unit interval $[0,1]$ given by the map $b_O:2^* \times 2^* \to ([0,1] \to \Open)$ sending $(\alpha, \beta)$ to the open interval $\Sigma_{x : [0,1]} cs(\alpha)< x <cs(\beta)$, where $cs$ denotes the binary expansion $\alpha:2^n$ to $\sum_{i:\mathbb N_{\leq n}} \frac{\alpha_i}{2^{i+1}}$. 
-  Note that together with the map 
-  $b_K:2^* \times 2^* \to ([0,1] \to \Closed)$ sending $(\alpha, \beta)$ to the closed interval $\Sigma_{x : [0,1]} cs(\alpha)\leq x \leq cs(\beta)$, we get a local compactness structure on $[0,1]$. 
-  A corollary is that $[0,1]\times [0,1]$ has a basis indexed by four finite binary sequences $\alpha,\beta,\gamma,\delta$ corresponding to the open square $(cs(\alpha), cs(\beta)) \times (cs(\gamma) , cs(\delta))$. 
+\begin{example}
+  In \parencite[Thm 4.22]{synthetic-stone-duality}, it is shown that the interval $[0,1]$ of Cauchy reals is compact Hausdorff. By rescaling, so is any closed interval $[a,b]\subseteq \R$ for any $a,b:\R$. Furthermore, in \parencite[Lemma 4.11]{synthetic-stone-duality}, it is shown that $\CHaus$ is closed under $\Sigma$, and hence in particular finite products. 
+\end{example}
+\begin{remark}\label{CauchyDfns}
+  We recall that for the Cauchy reals, we can define the relations $<,\leq : \R \to \R \to \Prop$, which are open and closed respectively \parencite[Dfn 2.7, 2.10]{Bishop}. 
+  We also recall  that we can define the standard functions
+ $\frac{1}{\cdot}:\R_{\neq 0} \to \R$,
+  $|\cdot|,\sin,-:\R \to \R$ and 
+  $+,\cdot,\max,\min: \R \to \R \to \R$ \parencite[Dfn 2.4, Prop 2.12, p 20, p58]{Bishop}.
+  \rednote{TODO when done see which you really need}
 \end{remark}
 
+  In \parencite[Cor 1.16]{synthetic-stone-duality}, Markov's principle is shown, which is equivalent to the following statement:
+\begin{lemma}
+Whenever $x:[0,1]$ satisfies $x\neq 0$, there is some $k:\N$ with $x\geq\frac1k$.
+\end{lemma}
 
-\subsection{Analysis}
+
+  In \parencite[Thm 1.17]{synthetic-stone-duality}, the lesser limited principle of omniscience (LLPO) is shown, which is equivalent to the following statement by \parencite[Prop 1.4.2]{HannesDiener}:
+\begin{lemma}
+ For $x,y:[0,1]$ we have $x\leq y \vee x \geq y$ .
+\end{lemma} 
+
+\begin{lemma}
+  Intermediate value theorem. 
+\end{lemma}
+
+From \Cref{dfnClosedOpen} it is immediate that any function is continuous in the sense that the inverse image of any open is open. However, it is not immediate that this is the classically correct sense of continuity for the interval. 
+%
+In \cite[Thm 4.28]{synthetic-stone-duality}, we show that all functions on $[0,1]$ are continuous in the following sense:
+\begin{lemma}\label{continuity}
+  For any $f:[0,1] \to [0,1]$ and every $x:[0,1]$ and $\epsilon>0$, there exists some $\delta:[0,1]$ with $\delta>0$ such that whenever $|x-y|<\delta$ we have $|f(x) -f(y)| < \epsilon$. 
+\end{lemma}
+
+We shall show that every function on the unit interval is uniformly continuous. This result shall be generalized to general compact Hausdorff spaces in future work. 
+\begin{corollary}
+  For any $f:[0,1] \to [0,1]$ and every $\epsilon>0$, there exists some $\delta>0$ such that whenever $|x-y|<\delta$ we have $|f(x) -f(y)| < \epsilon$. 
+\end{corollary}
+\begin{proof}
+  Because $f$ is continuous, for each $x:\mathbb I$ there exists some $n:\mathbb N$ such that 
+  if $d(x,y)<\frac1n$, then $d((f(x), f(y)))<\epsilon$. 
+  By local choice, we get a Stone space $S$ with a surjection $a:S\twoheadrightarrow \mathbb I$ 
+  and a map $b:S\to \mathbb N$ such that if $d(x,a(s))<\frac1{b(s)}$, then $d(f(x), f(a(s)))<\epsilon$. 
+  By Lemma 3.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
+  Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
+\end{proof} 
 
 
-
-
-\begin{remark}\label{IntermediateValue}
-  The intermediate value theorem as stated in Theorem 5.29 of \cite{synthetic-stone-duality} has the following consequence: If $f : [0,1] \to [0,1]$ is such that for some $x<y, a<b$ we have $f(x) = a, f(y) = b$, then for all $c$ with $a<c<b$ there exists some $z$ with $x<z<y$ such that $f(z) = c$. 
-\end{remark}
-\begin{remark}
-  Closed propositions are double negation stable and closed under disjunction and countable intersection. 
-\end{remark}
-\begin{remark}
-  Fix the statement of $\Sigma(x \sim y) $ vs $\exists(x\sim y)$ for $x\sim y$ the path relation. 
-\end{remark}
-\begin{remark}
-  Cauchy reals agree with set quotient of $2^\mathbb N$ by $\sim_n$. 
-  Conclude from this which functions one can definitely define on $\mathbb R^n \to \mathbb R^m$. 
-\end{remark}
-
-\begin{remark}
-  Let $X:\CHaus$ be represented by $q:S\twoheadrightarrow X$. Lemma \parencite[TODO]{synthetic-stone-duality} says that any open $U\subseteq X$ can be written as $\bigcup_{n:\mathbb N} \neg q(D_n)$ where $D : \mathbb N \to 2^S$ is some $\mathbb N$-indexed collection of decidable subsets of $S$. 
-\end{remark}
+%\begin{corollary}[uniform continuity of maps $\mathbb I \to \mathbb R^n$]\label{uniformContinuity}
+%  For any map $f:\mathbb I \to [0,1] \times [-1,1]$, and for every $\epsilon:\mathbb R$ with $\epsilon>0$, 
+%  there exists a $\delta>0$ such that for any $x,y:\mathbb I$ with $d(x,y)<\delta$, we have
+%  that $d(f(x) , f(y))<\epsilon$.
+%\end{corollary}
+%\begin{proof}
+%  Because $f$ is continuous, for each $x:\mathbb I$ there exists some $n:\mathbb N$ such that 
+%  if $d(x,y)<\frac1n$, then $d((f(x), f(y)))<\epsilon$. 
+%  By local choice, we get a Stone space $S$ with a surjection $a:S\twoheadrightarrow \mathbb I$ 
+%  and a map $b:S\to \mathbb N$ such that if $d(x,a(s))<\frac1{b(s)}$, then $d(f(x), f(a(s)))<\epsilon$. 
+%  By Lemma 3.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
+%  Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
+%\end{proof}
+%

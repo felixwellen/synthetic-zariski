@@ -1,15 +1,5 @@
 
-\begin{lemma}
-  For $A\subseteq X$ a closed subset of a compact Hausdorff space and 
-  $f: A \to Y$ a function to a compact Hausdorff space, 
-  $graph(f) \subseteq X \times Y$ is closed. 
-\end{lemma}
-\begin{proof}
-  $(x,y)$ lies in $graph(f)$ iff $A(x) \wedge f x = y$, 
-  equality in $Y$ is closed and $A$ is closed. 
-  As closed propositions are conjunction-closed, $graph(f)$ is closed. 
-\end{proof}
-
+Because of \Cref{CauchyDfns} we can make the following definition:
 \begin{definition}[The topologist's sine curve]
   For each $k:\mathbb N$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $Y_k \subset [0,1] \times [-1,1]$ by 
   $$Y_k = ([0, \frac1k] \times [-1,1]) \cup graph(s_k)$$
@@ -17,11 +7,12 @@
   We denote $\iota_k : Y_k \to [0,1] \times [-1,1]$ 
   and $\iota:Y \to [0,1] \times [-1,1]$ for the inclusion maps. 
 \end{definition}
-\begin{remark}
-  $Y_k$ is a closed for each $k:\mathbb N$, 
-  as it's the union of two closed subsets. 
-  It follows that $Y$ is closed also, as it's a countable intersection of closed subsets. 
-\end{remark}
+\begin{lemma}
+  The topologists's sine curve is a compact Hausdorff space.
+\end{lemma}
+\begin{proof}
+  By \Cref{ClosureClosedOpen}, if for each $k:\N$ the sets  $[0,\frac1k]\times [-1,1]$ and $graph(s_k)$ are closed, so is $Y\subseteq [0,1] \times[-1,1]$. Both are the images of maps from a compact Hausdorff space, hence we conclude by \Cref{CHausClosedImage}.
+\end{proof}
 
 \begin{remark}\label{positiveNumbersCharacter}
   Recall that Markov's principle is equivalent to the fact that for $x:\mathbb I$ with $x\neq 0$ there exists some $k:\mathbb N$ with $\frac1k<x$. 

@@ -17,59 +17,9 @@ Note that any path-connected space is $\mathbb I$-contractible
 (Lemma 5.24 of \cite{synthetic-stone-duality}) but the converse thus does not hold. 
 %\tableofcontents
 \section{Preliminaries}
-We recall that in \cite{synthetic-stone-duality}, synthetic stone duality (SSD) was introduced. SSD consists of an extension of Homotopy type theory by four axioms. These allow us to study compact Hausdorff spaces, including the interval. In this section, we will recall some of the results from SSD that will be needed for later arguments. 
-\begin{definition}
-  A proposition $P$ is called \textbf{closed} if there exists a binary sequence $\alpha:2^\N$ such that $P\leftrightarrow \forall_{n:\N} \alpha_n = 0$. Similarly, $P$ is called \textbf{open} if there exists some $\alpha:2^\N$ such that  $P\leftrightarrow \exists_{n:\N} \alpha_n = 1$. 
-
-  For $X$ a type and $A:X \to \Prop$ a subset, we call $A$ closed/open if for any $x:X$ the proposition $A(x)$ is closed/open respectively. 
-\end{definition}
-%\begin{remark}
-%  With the above definition, it is clear that any function is continuous in the sense that the inverse image of any open subset is open. 
-%\end{remark}
-
-\begin{definition}
-  Recall that a type is called a Stone if it is a sequential limit of finite sets. %The type of Stone types is denoted $\Stone$. 
-  A type is called compact Hausdorff if it is the quotient of a Stone type by a closed equivalence relation. %The type of Compact Hausdorff types is denoted $\CHaus$. 
-\end{definition}
-\begin{example}
-  In \parencite[Thm 4.22]{synthetic-stone-duality}, it is shown that the interval $[0,1]$ of Cauchy reals is compact Hausdorff. By rescaling, so is any closed interval $[a,b]\subseteq \R$ for any $a,b:\R$. Furthermore, in \parencite[Lemma 4.11]{synthetic-stone-duality}, it is shown that $\CHaus$ is closed under $\Sigma$, and hence in particular finite products. 
-\end{example}
-\begin{remark}
-  We recall that for the Cauchy reals, we can define the relations $<,\leq : \R \to \R \to \Prop$, which are open and closed respectively \parencite[Dfn 2.7, 2.10]{Bishop}. 
-\end{remark}
-
-%\begin{remark}
-%  From \parencite[Lemma 4.27]{synthetic-stone-duality}, it follows that for any $U\subseteq [0,1]$ open, we can find $a,b$ dyadic rationals such that $(a,b)\subseteq [a,b]\subseteq U$. This means that $[0,1]$ is strongly locally compact in the sense of \parencite[p. 59,60]{SyntheticTopologyLesnik}, and hence $[0,1]\times [0,1]$ has the product topology \parencite[Prop 2.59]{SyntheticTopologyLesnik}. 
-%\end{remark}
-
-\begin{remark}
-  We recall from \cite{Bishop} that some standard functions on the Cauchy reals can be defined, including 
- $\frac{1}{\cdot}:\R_{\neq 0} \to \R$ \parencite[Prop 2.12]{Bishop}, 
-  $|\cdot|,\sin,-:\R \to \R$ \parencite[Dfn2.4,p. 58]{Bishop} and 
-  $+,\cdot,\max,\min: \R \to \R \to \R$ \parencite[Dfn 2.4,p. 20]{Bishop}.
-\end{remark}
+\input{Preliminaries.tex}
 
 
-
-
-
-\begin{corollary}
-  For any $n:\N$ we can define the Manhattan distance $d:\R^n \to \R^n \to \R^n$. Also for any $k:\N$ we can define the function $s_k:[\frac1k , 1] \to [-1,1]$ given by $s_k(x) = \sin({\frac1x})$.
-\end{corollary}
-
-\begin{lemma}[uniform continuity of maps $\mathbb I \to \mathbb R^n$]\label{uniformContinuity}
-  For any map $f:\mathbb I \to [0,1] \times [-1,1]$, and for every $\epsilon:\mathbb R$ with $\epsilon>0$, 
-  there exists a $\delta>0$ such that for any $x,y:\mathbb I$ with $d(x,y)<\delta$, we have
-  that $d(f(x) , f(y))<\epsilon$.
-\end{lemma}
-\begin{proof}
-  Because $f$ is continuous, for each $x:\mathbb I$ there exists some $n:\mathbb N$ such that 
-  if $d(x,y)<\frac1n$, then $d((f(x), f(y)))<\epsilon$. 
-  By local choice, we get a Stone space $S$ with a surjection $a:S\twoheadrightarrow \mathbb I$ 
-  and a map $b:S\to \mathbb N$ such that if $d(x,a(s))<\frac1{b(s)}$, then $d(f(x), f(a(s)))<\epsilon$. 
-  By Lemma 3.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
-  Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
-\end{proof}
 
 
 
