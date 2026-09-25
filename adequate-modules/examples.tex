@@ -395,14 +395,14 @@ This next counterexample will use the same strategy as \Cref{cex:exp-Dr-not-fin-
   Suppose that for every $r : R$, the module $K^{\lnot D(r)} = \bigcap_k \ideal{r^k}$ is weakly quasi-coherent.
   Then for every $r : R$, the canonical map
   \[
-    \phi : (K^{\lnot D(r)})[1/r] \to (K^{\lnot D(r)})^{D(r)}
+    \phi : (K^{\lnot D(r)})[r^{-1}] \to (K^{\lnot D(r)})^{D(r)}
   \]
   is an equivalence.
   Assuming $D(r)$, we get that $K^{\neg D(r)} = R$ since $R^{\neg D(r)} = 0$ whenever $r$ is invertible.
-  Thus, $(K^{\lnot D(r)})^{D(r)} \cong R^{D(r)} = R[1/r]$.
+  Thus, $(K^{\lnot D(r)})^{D(r)} \cong R^{D(r)} = R[r^{-1}]$.
 
-  Since $\phi$ is an equivalence, the element $1 \in R[1/r]$ must have a preimage under $\phi$, which is represented by some fraction $a/r^n$ for $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
-  The relation $\phi(a/r^n) = 1$ in $R[1/r]$ means there exists $k : \mathbb{N}$ such that $r^k(a - r^n) = 0$, so $r^k a = r^{k+n}$.
+  Since $\phi$ is an equivalence, the element $1 \in R[r^{-1}]$ must have a preimage under $\phi$, which is represented by some fraction $a/r^n$ for $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
+  The relation $\phi(a/r^n) = 1$ in $R[r^{-1}]$ means there exists $k : \mathbb{N}$ such that $r^k(a - r^n) = 0$, so $r^k a = r^{k+n}$.
   Since $a \in K^{\lnot D(r)} = \bigcap_m \ideal{r^m}$, we can write $a = r^{k+n+1}b$ for some $b : R$.
   Substituting this back yields $r^{2k+n+1}b = r^{k+n}$.
   Letting $N \defeq k+n$, we have $r^N(r^{k+1}b - 1) = 0$.
@@ -440,7 +440,7 @@ This is how we will use the above counterexample to derive more.
 
 \begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
   It is not the case that $K^{D(r)}$ is finitely adequate for all $r : R$.
-  Since $R^{D(r)} = R[1/r]$ and the map $R \to R[1/r]$ is the localization map, the kernel consists of every element which is annihilated by some power of $r$, i.e.\ $K^{D(r)} = \bigcup_k \Ann(r^k)$.
+  Since $R^{D(r)} = R[r^{-1}]$ and the map $R \to R[r^{-1}]$ is the localization map, the kernel consists of every element which is annihilated by some power of $r$, i.e.\ $K^{D(r)} = \bigcup_k \Ann(r^k)$.
   By \Cref{ex:K^V(r)-fin-adeq} and \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = K^{V(r^k)} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ by \Cref{rmk:triple-Ann}.
   Moreover, it is clear that the annihilator of a union is the same as the intersection of the annihilators.
   Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \Ann(r^k)) = \bigcap_k \Ann(\Ann(r^k)) = \bigcap_k \ideal{r^k} = K^{\neg D(r)}$.
