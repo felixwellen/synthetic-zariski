@@ -28,9 +28,6 @@
 
 ## Typesetting
 
-- use align(ed), not eqnarray, for aligned equations
+- use align(ed), not eqnarray, for aligned equations?
 - why is there no \Box after displayed equations, e.g. proof of lem:ann-R_U-K^U in examples.tex?
-- R[X] and R[[X]] notation, e.g. in Counterexample 3.27:
-  - capital X?  We use lowercase, e.g. in Example 1.4 and everywhere
-  - conflict with R[D(2)] notation in Counterexample 3.8; use \langle \rangle
 - get rid of latex warnings and bad boxes
