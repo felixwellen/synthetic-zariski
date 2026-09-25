@@ -8,9 +8,6 @@
 
 - Felix: Introduction:  Dan thinks it needs a lot more detail. Add Sebastian, refer to 1.1 in abstract
 - Paper is a jumble of results.  Can we tell a story?  Improve all section intros.
-- Dan/Thomas: Section 3: Examples and Counterexamples
-  In particular, reorder Section 3.2, and merge former A.1 and A.2
-  to an appropriate spot.
 - Handle remaining \rednote's
 
 ## Proofreading

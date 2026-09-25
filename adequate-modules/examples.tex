@@ -146,79 +146,76 @@ finitely copresented.
 
 \subsection{Finitely Adequate Modules}
 
-In this subsection, we present examples of finitely adequate modules, as well as counterexamples.
-We are particularly interested in finding counterexamples among modules that satisfy several of the following conditions: being weakly quasi-coherent, infinitesimally linear, tangential, or not not finite free.
+In this subsection, we study nine families of $R$-modules in order to have a
+supply of $R$-modules that we can use to separate some of the properties we have considered.
+For example, we will use these families to show that none of the following imply that
+an $R$-module is finitely adequate:
+being quasi-coherent, being tangential, or being not not finite free.
+% - quasi-coherent implies tangential, so tangential is redundant,
+%   but I decided to list it explicitly.
+% - quasi-coherent implies wqc, so latter not listed.
+%   And no explicit example given.
+% - tangential implies infinitesimally linear, so latter not listed.
+%   And no explicit example given.
+These families of $R$-modules are also interesting in their own right,
+as they give ``small'' examples of modules that are not all finitely adequate.
+For example, we will see that five of the families that are not all
+finitely adequate are submodules of $R$.
 
-We can construct interesting examples and counterexamples using three families of propositions.
-For each $r : R$, we define the propositions $V(r) \defeq (r = 0)$, $D(r) \defeq (r \neq 0)$, and $\neg D(r) \defeq \neg (r \neq 0)$.
-Although one could also consider finite sequences of elements $r_1, \dots, r_n$ in $R$ and their joint propositions, it is sufficient to consider a single element to obtain our main counterexamples.
+We begin by defining three families of $R$-modules, each indexed by a proposition $U$:
+\begin{align*}
+  R^U &\defeq U \to R \\[5pt]
+  K^U &\defeq \sum_{x:R} \, (U \to (x = 0)) \\[5pt]
+  R_U &\defeq \sum_{x:R} \, (x = 0) \lor U
+\end{align*}
+Here $R^U$ has the pointwise module structure and $K^U$ and $R_U$ are submodules of $R$.
+Note that there is a natural map $R \to R^U$ sending $r$ to the constant map with value $r$ and that $K^U$ is the kernel of this map.
 
-Let $U$ be a proposition.
-The module $R^U$ is tangential by \Cref{prp:exp-tangential}, but it is not always finitely adequate.
-We analyze $R^U$ as $U$ ranges over the three families defined above.
-Observe that if $U$ is either $V(r)$ or $D(r)$, then $R^U$ is a finitely presented algebra by \cite[Definition 4.1.1]{draft} and \cite[Proposition 3.1.6]{draft}; consequently, these modules are quasi-coherent.
-For the first case, $U = V(r)$, we obtain an example of a finitely adequate module.
+\begin{remark}\label{rmk:strange-not-not-fin-free}
+  Let $U$ be a proposition.
+  The modules $R^U$, $K^U$, and $R_U$ are not not finite free.
+  Indeed, these modules are all isomorphic to $R$ or $0$ when $U$ is either true or false.
+  Since $\lnot\lnot(U \lor \lnot U)$ holds, the claim follows by double-negation elimination.
+\end{remark}
 
-\begin{example}\label{ex:exp-Vr-fin-adeq}
-  Let $r : R$.
-  The module $R^{V(r)} = \quot{R}{\ideal{r}}$ is finitely adequate as it is finitely presented. %by \Cref{ex:fin-gen-ideal} and \Cref{prp:fin-adeq-cok-closure}.
-\end{example}
+As a consequence, these modules are not not finitely adequate.
+Therefore, it will be impossible to find a particular $U$ such that one of
+these modules is not finitely adequate, but we \emph{will} be able to show
+that they are not all finitely adequate later in this subsection.
 
-For the second family, $U = D(r)$, the module is the localization $R^{D(r)} = R[r^{-1}]$ by \cite[Proposition 2.2.3]{draft}.
-Rather than constructing a specific counterexample, the next result shows that $R[r^{-1}]$ cannot be finitely adequate for all $r : R$.
+\begin{proposition}\label{prp:strange-tangential}
+For each proposition $U$, the modules $R^U$, $K^U$ and $R_U$ are tangential.
+\end{proposition}
 
-\begin{counterexample}\label{cex:exp-Dr-not-fin-adeq}
-  It is not the case that $R^{D(r)}$ is finitely adequate for all $r : R$.
-  For the sake of contradiction, suppose that $R^{D(r)}$ is finitely adequate for all $r : R$.
-  Then
-  \[
-    R[r^{-1}]^\ast = \{ a=(a_0,a_1,\dots) : R^{\N} \;|\; \forall k \geq 1.\; a_{k-1} = ra_k \}
-  \]
-  is also finitely adequate, and is thus weakly quasi-coherent.
-  We now have a commutative square
-  \[
-  \begin{tikzcd}
-    (R[r^{-1}]^\ast)[r^{-1}] \ar[d, "\simeq"]\ar[r] & R[r^{-1}], \ar[d, "\simeq"] &[-25pt] \frac{a}{r^n} \mapsto \frac{a_0}{r^n} \\
-    (R[r^{-1}]^\ast)^{D(r)} \ar[r, "\simeq"] & R^{D(r)}, & f \mapsto f_0
-  \end{tikzcd}
-  \]
-  where the lower horizontal map is an equivalence with inverse
-  \[
-    b \mapsto (p \mapsto (b(p),r^{-1}b(p),\dots))\rlap{.}
-  \]
-  This is well-defined because $p$ witnesses that $r$ is invertible.
-  Accordingly, the upper horizontal map is an equivalence.
-  The preimage of $\frac{1}{1}:R[r^{-1}]$ along this map is represented by an element $\frac{a}{r^n}$ such that $0=r^k(a_0-r^n)=r^k(r^{n+1}a_{n+1}-r^n)=r^{k+n}(ra_{n+1}-1)$ for some $k$.
-  Since $R$ is local, we have $(ra_{n+1} \neq 0) \lor (ra_{n+1}-1 \neq 0)$, which readily implies that $(r \neq 0) \lor (r^{k+n} = 0)$.
-  But then any element $r:R$ would either be invertible or nilpotent, contradicting~\cite[Corollary~1.2.4]{topology-draft}.
-\end{counterexample}
+\begin{proof}
+The module $R^U$ is tangential by \Cref{prp:exp-tangential}.
+Thus $K^U$ is tangential by the closure under kernels, \Cref{prp:op-closure-inf-lin-tangential}.
+\rednote{Cited result is currently not strong enough.}
 
-For the third family, we consider $R^{\neg D(r)}$.
-First, observe that, by \cite[Proposition 2.2.3]{draft}, $\neg D(r)$ is the proposition that $r$ is nilpotent.
-Equivalently, $\neg D(r) = \bigcup_{n : \N} (r^n = 0)$.
-Using continuity of the exponential and duality, we obtain $R^{\lnot D(r)} = R^{\bigcup_{k : \N}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k \quot{R}{\ideal{r^k}} = \widehat{R_r}$; i.e., $R^{\neg D(r)}$ is the $r$-adic completion of $R$.
-If $r$ is either invertible or nilpotent, then $\widehat{R_r}$ is finitely adequate.
-Our next counterexample proves that it is not the case that $R^{\neg D(r)}$ is weakly quasi-coherent for all $r:R$, and so it is not finitely adequate for all $r:R$ by \Cref{prp:wqc-adeq}.
+The proof that $R_U$ is tangential requires more work.
+Since $R_U \defeq \sum_{x : R} (x = 0) \lor U$,
+the type $(R_U,0)^{\D(1)}$ is equivalent to
+\[
+  \sum_{f : \D(1) \pto R} \forall \epsilon : \D(1), ((f(\epsilon) = 0) \lor U) .
+\]
+Since $\D(1)$ is projective (\Cref{lem:disk-projective}) and all maps $\D(1) \to \Bool$
+are constant (\cite[Proposition 1.3.4]{diffgeo-article}),
+we can apply \Cref{lem:forall-distributes-over-or} below to
+get an equivalence to
+\[
+  \sum_{f : \D(1) \pto R} (f = 0) \lor U ,
+\]
+where we have replaced $\forall \epsilon : \D(1), f(\epsilon) = 0$ with $f = 0$
+and have used that $\D(1)$ is pointed to replace $\D(1) \to U$ with $U$.
+Since $R$ is tangential, we can replace $\D(1) \pto R$ with $R$, giving
+\[
+  \sum_{x : R} (x = 0) \lor U ,
+\]
+which equals $R_U$.
+It is not hard to check that the resulting equivalence is homotopic to the canonical map $\can : R_U \to (R_U,0)^{\D(1)}$, showing that $R_U$ is tangential.
+\end{proof}
 
-\begin{counterexample}\label{cex:exp-not-Dr-wqc}
-  It is not the case that $R^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
-  For the sake of contradiction, assume that $R^{\lnot D(r)}$ is weakly quasi-coherent for all $r : R$.
-  By virtue of duality, the global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module:
-  \[
-    R[[x]] = \lim_n R[x]/\ideal{x^n} = R^{\mathrm{colim}_n \Spec R[x]/\ideal{x^n}} = R^{\{r:R | \lnot\lnot(r=0)\}} = \prod_{r : R} R^{\lnot D(r)}\rlap{.}
-  \]
-  By \cite[Lemma 7.1.10]{draft}, we can deduce that $R[[x]]$ is weakly quasi-coherent since it is the global sections of a family of weakly quasi-coherent modules.
-  However, $R[[x]]$ is not weakly quasi-coherent by \cite[Proposition A.0.5]{draft}, which is a contradiction.
-  Thus, it follows that $R^{\lnot D(r)}$ is not weakly quasi-coherent for all $r$, and so it cannot be finitely adequate either by \Cref{prp:wqc-adeq}.
-\end{counterexample}
-
-We will now consider two more classes of examples.
-We will see that all three classes introduced are tightly related to each other.
-Let $U$ be a proposition.
-We define the types $K^U \defeq \sigmatype{x:R}(U \to (x = 0))$ and $R_U \defeq \sigmatype{x : R} (x = 0) \lor U$.
-Observe that $K^U$ is the kernel of the map $\mathrm{const} : R \to R^U$.
-Thus $K^U$ is tangential by \Cref{prp:op-closure-inf-lin-tangential}.
-To show that $R_U$ is tangential, we need the following lemma.
+We used the following lemma in the previous argument.
 
 \begin{lemma}\label{lem:forall-distributes-over-or}
 Let $X$ be a projective type such that every map to $\Bool$ is constant.
@@ -238,39 +235,91 @@ This gives us a map $X \to \Bool$, which by assumption must be constant.
 This implies that we have either $\prod_x P(x)$ or $\prod_x Q(x)$, as required.
 \end{proof}
 
-\begin{proposition}\label{prp:R_U-tangential}
-For each proposition $U$, the module $R_U$ is tangential.
-\end{proposition}
+\smallskip
 
-\begin{proof}
-Since $R_U \defeq \sum_{x : R} (x = 0) \lor U$,
-the type $(R_U,0)^{\D(1)}$ is equivalent to
-\[
-  \sum_{f : \D(1) \pto R} \forall \epsilon : \D(1), ((f(\epsilon) = 0) \lor U) .
-\]
-Since $\D(1)$ is projective (\Cref{lem:disk-projective}) and all maps $\D(1) \to \Bool$
-are constant (\cite[Proposition 1.3.4]{diffgeo-article}), we can apply \Cref{lem:forall-distributes-over-or} to
-get an equivalence to
-\[
-  \sum_{f : \D(1) \pto R} (f = 0) \lor U ,
-\]
-where we have replaced $\forall \epsilon : \D(1), f(\epsilon) = 0$ with $f = 0$
-and have used that $\D(1)$ is pointed to replace $\D(1) \to U$ with $U$.
-Since $R$ is tangential, we can replace $\D(1) \pto R$ with $R$,
-giving
-\[
-  \sum_{x : R} (x = 0) \lor U ,
-\]
-which equals $R_U$.
-It is not hard to check that the resulting equivalence is homotopic to the canonical map $\can : R_U \to (R_U,0)^{\D(1)}$, showing that $R_U$ is tangential.
-\end{proof}
+We can construct interesting examples and counterexamples using three families of propositions
+indexed by $r : R$:
+\begin{equation}\label{eq:three-props}
+\begin{aligned}
+       V(r) &\defeq      (r =    0) \\[5pt]
+       D(r) &\defeq      (r \neq 0) \\[5pt]
+  \lnot D(r) &\,=      \lnot (r \neq 0)
+\end{aligned}
+\end{equation}
+Combined with the three proposition-indexed families above, this gives nine
+$R$-indexed families of $R$-modules.
+In the remainder of this subsection, we will show that $R^{V(r)}$ and $K^{V(r)}$ are
+finitely adequate for every $r : R$, but that it is not the case that
+every $F(r)$ is finitely adequate when $F$ is one of the seven other families.
+Combined with \Cref{rmk:strange-not-not-fin-free} and \Cref{prp:strange-tangential},
+this shows that neither not not finite free nor tangential implies finitely adequate.
+Moreover, if $U$ is either $V(r)$ or $D(r)$, then $R^U$ is a finitely presented algebra
+by~\cite[Definition 4.1.1]{draft} and~\cite[Proposition 3.1.6]{draft}.
+Consequently, these modules are quasi-coherent.
+Thus we will see that quasi-coherent does not imply finitely adequate.
 
-\begin{remark}\label{rmk:R^U-R_U-not-not-fin-adeq}
-  Let $U$ be a proposition.
-  The modules $R^U$, $K^U$, and $R_U$ are not not finitely adequate.
-  Indeed, these modules are finitely adequate when $U$ is either true or false.
-  Since $\lnot\lnot(U \lor \lnot U)$ holds, the claim follows by double-negation elimination.
-\end{remark}
+\smallskip
+
+We begin by studying $R^U$ as $U$ ranges over the three families in~\eqref{eq:three-props}.
+
+\begin{example}\label{ex:exp-Vr-fin-adeq}
+  For $r : R$, the module $R^{V(r)}$ is finitely adequate.
+  Indeed, since $V(r) = \Spec \quot{R}{\ideal{r}}$, we have that
+  $R^{V(r)} = \quot{R}{\ideal{r}}$, which is finitely presented.
+\end{example}
+
+\begin{counterexample}\label{cex:exp-Dr-not-fin-adeq}
+  It is not the case that $R^{D(r)}$ is finitely adequate for all $r : R$.
+  We have that $R^{D(r)}$ is the localization $R[r^{-1}]$, since $\Spec R[r^{-1}]$
+  is the proposition that $r$ is invertible, which is equivalent to $D(r)$
+  by \cite[Proposition 2.2.3]{draft}.
+  For the sake of contradiction, suppose that $R^{D(r)}$ is finitely adequate for all $r : R$.
+  By \Cref{cor:dual-equiv},
+  \[
+    R[r^{-1}]^\ast = \{ a=(a_0,a_1,\dots) : R^{\N} \;|\; \forall k \geq 1.\; a_{k-1} = ra_k \}
+  \]
+  is also finitely adequate, and is thus weakly quasi-coherent by \Cref{prp:fin-adeq-adeq}.
+  We now have a commutative square
+  \[
+  \begin{tikzcd}
+    (R[r^{-1}]^\ast)[r^{-1}] \ar[d, "\simeq"]\ar[r] & R[r^{-1}], \ar[d, "\simeq"] &[-25pt] \frac{a}{r^n} \mapsto \frac{a_0}{r^n} \\
+    (R[r^{-1}]^\ast)^{D(r)} \ar[r, "\simeq"] & R^{D(r)}, & f \mapsto f_0
+  \end{tikzcd}
+  \]
+  where the lower horizontal map is an equivalence with inverse
+  \[
+    b \mapsto (p \mapsto (b(p),r^{-1}b(p),\dots))\rlap{.}
+  \]
+  This is well-defined because $p$ witnesses that $r$ is invertible.
+  Accordingly, the upper horizontal map is an equivalence.
+  The preimage of $\frac{1}{1}:R[r^{-1}]$ along this map is represented by an element $\frac{a}{r^n}$ such that $0=r^k(a_0-r^n)=r^k(r^{n+1}a_{n+1}-r^n)=r^{k+n}(ra_{n+1}-1)$ for some $k$.
+  Since $R$ is local, we have $(ra_{n+1} \neq 0) \lor (ra_{n+1}-1 \neq 0)$, which readily implies that $(r \neq 0) \lor (r^{k+n} = 0)$.
+  But then any element $r:R$ would either be invertible or nilpotent, contradicting~\cite[Corollary~1.2.4]{topology-draft}.
+\end{counterexample}
+
+We next consider $R^{\lnot D(r)}$.
+First, observe that, by \cite[Proposition 2.2.3]{draft}, $\lnot D(r)$ is the proposition that $r$ is nilpotent.
+Equivalently, $\lnot D(r) = \bigcup_{n : \N} (r^n = 0)$.
+Using continuity of the exponential and duality, we obtain $R^{\lnot D(r)} = R^{\bigcup_{k : \N}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k \quot{R}{\ideal{r^k}} = \widehat{R_r}$,
+the $r$-adic completion of $R$.
+If $r$ is either invertible or nilpotent, then $\widehat{R_r}$ is finitely adequate,
+but this is not the case for all $r$.
+
+\begin{counterexample}\label{cex:exp-not-Dr-wqc}
+  It is not the case that $R^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
+  In particular, by \Cref{prp:wqc-adeq}, it cannot be finitely adequate for every $r$.
+  For the sake of contradiction, assume that $R^{\lnot D(r)}$ is weakly quasi-coherent for all $r : R$.
+  By virtue of duality, the global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module:
+  \[
+    R[[x]] = \lim_n R[x]/\ideal{x^n} = R^{\mathrm{colim}_n \Spec R[x]/\ideal{x^n}} = R^{\{r:R | \lnot\lnot(r=0)\}} = \prod_{r : R} R^{\lnot D(r)}\rlap{.}
+  \]
+  By \cite[Lemma 7.1.10]{draft}, we can deduce that $R[[x]]$ is weakly quasi-coherent since it is the global sections of a family of weakly quasi-coherent modules.
+  However, $R[[x]]$ is not weakly quasi-coherent by \cite[Proposition A.0.5]{draft}, which is a contradiction.
+\end{counterexample}
+
+\smallskip
+
+We next study $K^U$ as $U$ ranges over the three families in~\eqref{eq:three-props}.
 
 \begin{example}\label{ex:K^V(r)-fin-adeq}
   The module $K^{V(r)}$ is finitely adequate for every $r : R$.
@@ -280,8 +329,39 @@ It is not hard to check that the resulting equivalence is homotopic to the canon
   ideal in $R$ is finitely adequate.
 \end{example}
 
-Observe that the modules $R_U$ and $K^U$ are ideals of $R$ for every proposition $U$.
-We can use this to compute duals of these and related modules, which will be very useful going forward.
+We next handle $K^{\lnot D(r)}$, as we will use this result to study $K^{D(r)}$.
+We saw above that $R^{\lnot D(r)}$ is the $r$-adic completion of $R$, and so
+$K^{\lnot D(r)}$ is the kernel of the natural map $R \to \hat{R_r}$.
+Thus we have $K^{\lnot D(r)} = \bigcap_k \ideal{r^k}$.
+The next counterexample will use the same strategy as \Cref{cex:exp-Dr-not-fin-adeq}.
+
+% This counterexample is made with help of Gemini.
+\begin{counterexample}\label{cex:K-not-Dr-not-wqc}
+  It is not the case that $K^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
+  In particular, it is not the case that $K^{\lnot D(r)}$ is finitely adequate for every $r : R$.
+  For the sake of contradiction, assume that for every $r : R$,
+  the module $K^{\lnot D(r)} = \bigcap_k \ideal{r^k}$ is weakly quasi-coherent.
+  Then for every $r : R$, the canonical map
+  \[
+    \phi : (K^{\lnot D(r)})[r^{-1}] \to (K^{\lnot D(r)})^{D(r)}
+  \]
+  is an equivalence.
+  Assuming $D(r)$, we get that $K^{\lnot D(r)} = R$ since $R^{\lnot D(r)} = 0$ whenever $r$ is invertible.
+  Thus, $(K^{\lnot D(r)})^{D(r)} \cong R^{D(r)} = R[r^{-1}]$.
+
+  Since $\phi$ is an equivalence, the element $1 \in R[r^{-1}]$ must have a preimage under $\phi$, which is represented by some fraction $a/r^n$ for $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
+  The relation $\phi(a/r^n) = 1$ in $R[r^{-1}]$ means there exists $k : \mathbb{N}$ such that $r^k(a - r^n) = 0$, so $r^k a = r^{k+n}$.
+  Since $a \in K^{\lnot D(r)} = \bigcap_m \ideal{r^m}$, we can write $a = r^{k+n+1}b$ for some $b : R$.
+  Substituting this back yields $r^{2k+n+1}b = r^{k+n}$.
+  Letting $N \defeq k+n$, we have $r^N(r^{k+1}b - 1) = 0$.
+  Since $R$ is local and $r^{k+1}b + (1 - r^{k+1}b) = 1$, we constructively have $(1 - r^{k+1}b \text{ is invertible}) \lor (r^{k+1}b \text{ is invertible})$.
+  If $1 - r^{k+1}b$ is invertible, then $r^N = 0$, so $r$ is nilpotent.
+  If $r^{k+1}b$ is invertible, then $r$ is invertible.
+  This gives $(r \text{ is nilpotent}) \lor (r \text{ is invertible})$ for every $r : R$, contradicting~\cite[Corollary~1.2.4]{topology-draft}.
+\end{counterexample}
+
+Our study of the remaining families will make use of a relationship between $R_U$ and $K^U$
+and will use some general facts about annihilator ideals.
 Recall that for an $R$-module $M$, the \notion{annihilator ideal}
 $\Ann(M)$ is defined to be $\sum_{x : R} \prod_{m : M} (xm = 0)$.
 
@@ -291,6 +371,9 @@ but that they are not equal in general.
 However, it is straightforward to see that $\Ann(I) = \Ann(\Ann(\Ann(I)))$
 for every ideal $I$.
 \end{remark}
+
+The modules $R_U$ and $K^U$ are ideals of $R$ for every proposition $U$
+and are related in the following way.
 
 \begin{lemma}\label{lem:ann-R_U-K^U}
   Let $U$ be a proposition.
@@ -306,6 +389,7 @@ for every ideal $I$.
     & = & U\to x=0 \\
     & = & x\in K^U
   \end{eqnarray*}
+  as required.
   %  Let $x : R$ and assume that $x$ is in $\Ann(R_U)$.
   %We must show that $U$ implies that $x = 0$.
   %If $U$ holds, then $R_U = R$.
@@ -349,7 +433,54 @@ for every ideal $I$.
   %that commutes with the natural map $R \to R^*$.
 \end{proof}
 
-The next counterexample will use the above observations.
+Since we can express annihilators as duals, this allows us to transfer some properties of finitely adequate modules along annihilators.
+
+\begin{proposition}\label{prp:ann-fin-adeq}
+  Let $I$ be a finitely adequate ideal of $R$.
+  Then $\Ann{I}$ is a finitely adequate ideal as well.
+\end{proposition}
+
+\begin{proof}
+  By \Cref{lem:ann-dual-quotient}, $\Ann(I) \simeq (\quot{R}{I})^*$,
+  which is finitely adequate by \Cref{prp:fin-adeq-cok-closure} and \Cref{cor:dual-equiv}.
+  \rednote{Change last cross-ref if we mention earlier that the dual of a finitely adequate
+  module is finitely adequate.}
+\end{proof}
+
+With these tools in place, we can now handle the remaining family of the form $K^U$.
+
+\begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
+  It is not the case that $K^{D(r)}$ is finitely adequate for all $r : R$.
+  Since $R^{D(r)} = R[r^{-1}]$ and the map $R \to R[r^{-1}]$ is the localization map, the kernel consists of every element which is annihilated by some power of $r$, i.e.\ $K^{D(r)} = \bigcup_k \Ann(r^k)$.
+  By \Cref{ex:K^V(r)-fin-adeq} and \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = K^{V(r^k)} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ by \Cref{rmk:triple-Ann}.
+  Moreover, it is clear that the annihilator of a union is the same as the intersection of the annihilators.
+  Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \Ann(r^k)) = \bigcap_k \Ann(\Ann(r^k)) = \bigcap_k \ideal{r^k} = K^{\lnot D(r)}$.
+  Our claim now follows from \Cref{prp:ann-fin-adeq} and \Cref{cex:K-not-Dr-not-wqc}.
+\end{counterexample}
+
+\smallskip
+
+Finally, we study $R_U$ as $U$ ranges over the three families in~\eqref{eq:three-props}.
+Two of the three are made trivial by the following remark.
+
+\begin{remark}\label{rem:ann-for-cex}
+  If $K^U$ is not finitely adequate, then $R_U$ is not finitely adequate.
+  Indeed, by \Cref{lem:ann-R_U-K^U}, $K^U = \Ann{R_U}$, so this follows from
+  the contrapositive of \Cref{prp:ann-fin-adeq}.
+\end{remark}
+
+\begin{counterexample}\label{cex:R_Dr-not-fin-adeq}
+  It is not the case that $R_{D(r)}$ is finitely adequate for all $r : R$.
+  This follows from \Cref{rem:ann-for-cex} and \Cref{cex:K^Dr-not-fin-adeq}.
+\end{counterexample}
+
+\begin{counterexample}\label{cex:R_not-Dr-not-fin-adeq}
+  It is not the case that $R_{\lnot D(r)}$ is finitely adequate for all $r : R$.
+  This follows from \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc}.
+\end{counterexample}
+
+The remaining family, $R_{V(r)}$, cannot be handled so easily, as $K^{V(r)}$
+\emph{is} finitely adequate for each $r$.
 
 \begin{counterexample}\label{cex:R_V(r)-not-reflexive}
   It is not the case that $R_{V(r)}$ is finitely adequate for all $r : R$.
@@ -370,7 +501,7 @@ The next counterexample will use the above observations.
   By the comments in the first paragraph, the square commutes, and so it follows
   that $(R_{V(r)})^* = \quot{R}{\ideal{r}}$.
 
-  Again using \Cref{lem:ann-dual-quotient} we see that $(R_{V(r)})^{**} = (\quot{R}{\ideal{r}})^* = \Ann(r)$.
+  Again using \Cref{lem:ann-dual-quotient}, we see that $(R_{V(r)})^{**} = (\quot{R}{\ideal{r}})^* = \Ann(r)$.
   Since $R_{V(r)}$ is reflexive (\Cref{{thm:can-dual-iso}}), we get that
   $R_{V(r)} = \Ann(r)$.
   One can check that this is an equality of submodules.
@@ -379,77 +510,6 @@ The next counterexample will use the above observations.
   In particular, $x^2 = 0$ implies $x = 0$,
   so $\Spec(R[x]/(x^2)) = \{x:R \mid x^2 = 0\} = \{0\}$,
   which by duality leads to the contradiction $R[x]/(x^2) = R$.
-\end{counterexample}
-
-From the counterexample established below, we shall derive the remaining counterexamples for these classes of modules.
-The module $K^{\lnot D(r)}$ is the kernel of the localization map into the $r$-adic completion, $R \to \hat{R_r}$.
-Thus we have $K^{\neg D(r)} = \bigcap_k \ideal{r^k}$.
-This next counterexample will use the same strategy as \Cref{cex:exp-Dr-not-fin-adeq}.
-
-% This counterexample is made with help of Gemini.
-
-\begin{counterexample}\label{cex:K-not-Dr-not-wqc}
-  It is not the case that $K^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
-  In particular, it is not the case that $K^{\lnot D(r)}$ is finitely adequate for every $r : R$.
-
-  Suppose that for every $r : R$, the module $K^{\lnot D(r)} = \bigcap_k \ideal{r^k}$ is weakly quasi-coherent.
-  Then for every $r : R$, the canonical map
-  \[
-    \phi : (K^{\lnot D(r)})[r^{-1}] \to (K^{\lnot D(r)})^{D(r)}
-  \]
-  is an equivalence.
-  Assuming $D(r)$, we get that $K^{\neg D(r)} = R$ since $R^{\neg D(r)} = 0$ whenever $r$ is invertible.
-  Thus, $(K^{\lnot D(r)})^{D(r)} \cong R^{D(r)} = R[r^{-1}]$.
-
-  Since $\phi$ is an equivalence, the element $1 \in R[r^{-1}]$ must have a preimage under $\phi$, which is represented by some fraction $a/r^n$ for $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
-  The relation $\phi(a/r^n) = 1$ in $R[r^{-1}]$ means there exists $k : \mathbb{N}$ such that $r^k(a - r^n) = 0$, so $r^k a = r^{k+n}$.
-  Since $a \in K^{\lnot D(r)} = \bigcap_m \ideal{r^m}$, we can write $a = r^{k+n+1}b$ for some $b : R$.
-  Substituting this back yields $r^{2k+n+1}b = r^{k+n}$.
-  Letting $N \defeq k+n$, we have $r^N(r^{k+1}b - 1) = 0$.
-  Since $R$ is local and $r^{k+1}b + (1 - r^{k+1}b) = 1$, we constructively have $(1 - r^{k+1}b \text{ is invertible}) \lor (r^{k+1}b \text{ is invertible})$.
-  If $1 - r^{k+1}b$ is invertible, then $r^N = 0$, so $r$ is nilpotent.
-  If $r^{k+1}b$ is invertible, then $r$ is invertible.
-  This gives $(r \text{ is nilpotent}) \lor (r \text{ is invertible})$ for every $r : R$, contradicting~\cite[Corollary~1.2.4]{topology-draft}.
-\end{counterexample}
-
-Since we can express annihilators as duals, this allows us to transfer some properties of finitely adequate modules along annihilators.
-This is how we will use the above counterexample to derive more.
-
-\begin{proposition}\label{prp:ann-fin-adeq}
-  Let $I$ be a finitely adequate ideal of $R$.
-  Then $\Ann{I}$ is a finitely adequate ideal as well.
-\end{proposition}
-
-\begin{proof}
-  By \Cref{lem:ann-dual-quotient}, $\Ann(I) \simeq (\quot{R}{I})^*$,
-  which is finitely adequate by \Cref{prp:fin-adeq-cok-closure} and \Cref{cor:dual-equiv}.
-  \rednote{Change last cross-ref if we mention earlier that the dual of a finitely adequate
-  module is finitely adequate.}
-\end{proof}
-
-\begin{remark}\label{rem:ann-for-cex}
-  If $K^U$ is not finitely adequate, then $R_U$ is not finitely adequate.
-  Indeed, by \Cref{lem:ann-R_U-K^U}, $K^U = \Ann{R_U}$, so this follows from
-  the contrapositive of \Cref{prp:ann-fin-adeq}.
-\end{remark}
-
-\begin{counterexample}\label{cex:R_not-Dr-not-fin-adeq}
-  It is not the case that $R_{\neg D(r)}$ is finitely adequate for all $r : R$.
-  This follows from \Cref{rem:ann-for-cex} and \Cref{cex:K-not-Dr-not-wqc}.
-\end{counterexample}
-
-\begin{counterexample}\label{cex:K^Dr-not-fin-adeq}
-  It is not the case that $K^{D(r)}$ is finitely adequate for all $r : R$.
-  Since $R^{D(r)} = R[r^{-1}]$ and the map $R \to R[r^{-1}]$ is the localization map, the kernel consists of every element which is annihilated by some power of $r$, i.e.\ $K^{D(r)} = \bigcup_k \Ann(r^k)$.
-  By \Cref{ex:K^V(r)-fin-adeq} and \Cref{lem:ann-R_U-K^U}, we know that $\ideal{r^k} = K^{V(r^k)} = \Ann(R_{V(r^k)})$, and thus $\Ann(\Ann(r^k)) = \ideal{r^k}$ by \Cref{rmk:triple-Ann}.
-  Moreover, it is clear that the annihilator of a union is the same as the intersection of the annihilators.
-  Thus we get that $\Ann(K^{D(r)}) = \Ann(\bigcup_k \Ann(r^k)) = \bigcap_k \Ann(\Ann(r^k)) = \bigcap_k \ideal{r^k} = K^{\neg D(r)}$.
-  Our claim now follows from \Cref{prp:ann-fin-adeq} and \Cref{cex:K-not-Dr-not-wqc}.
-\end{counterexample}
-
-\begin{counterexample}\label{cex:R_Dr-not-fin-adeq}
-  It is not the case that $R_{D(r)}$ is finitely adequate for all $r : R$.
-  This follows from \Cref{rem:ann-for-cex} and \Cref{cex:K^Dr-not-fin-adeq}.
 \end{counterexample}
 
 \subsection{Reflexive modules}
