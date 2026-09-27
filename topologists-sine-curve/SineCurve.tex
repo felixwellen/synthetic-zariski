@@ -1,29 +1,34 @@
-
+\section{The topologist's sine curve}
 Because of \Cref{CauchyDfns} we can make the following definition:
-\begin{definition}[The topologist's sine curve]
-  For each $k:\mathbb N$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $Y_k \subset [0,1] \times [-1,1]$ by 
-  $$Y_k = ([0, \frac1k] \times [-1,1]) \cup graph(s_k)$$
-  Then define $Y = \bigcap_{k:\mathbb N} Y_k$. 
-  We denote $\iota_k : Y_k \to [0,1] \times [-1,1]$ 
-  and $\iota:Y \to [0,1] \times [-1,1]$ for the inclusion maps. 
+\begin{definition}%[The topologist's sine curve]
+  For each $k:\mathbb N$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $\mathcal S_k \subseteq [0,1] \times [-1,1]$ by 
+  $$\mathcal S_k = ([0, \frac1k] \times [-1,1]) \cup graph(s_k)$$
+  Then define \textbf{the topologist's since curve} $\mathcal S = \bigcap_{k:\mathbb N} \mathcal S_k$. 
+  We denote $\iota_k : \mathcal S_k \to [0,1] \times [-1,1]$ 
+  and $\iota:\mathcal S \to [0,1] \times [-1,1]$ for the inclusion maps. 
+\input{Picture.tex}
 \end{definition}
+
+
 \begin{lemma}
   The topologists's sine curve is a compact Hausdorff space.
 \end{lemma}
 \begin{proof}
-  By \Cref{ClosureClosedOpen}, if for each $k:\N$ the sets  $[0,\frac1k]\times [-1,1]$ and $graph(s_k)$ are closed, so is $Y\subseteq [0,1] \times[-1,1]$. Both are the images of maps from a compact Hausdorff space, hence we conclude by \Cref{CHausClosedImage}.
+  Note that both $[0,\frac1k] \times [-1,1]$ and $graph(s_k)$ are the image of compact Hausdorff spaces, hence closed by \Cref{CHausClosedImage}.
+  By \Cref{ClosureClosedOpen} is follows that $\mathcal S$ is closed. We conclude by \Cref{CHausClosedImage}
 \end{proof}
 
-\begin{remark}\label{positiveNumbersCharacter}
-  Recall that Markov's principle is equivalent to the fact that for $x:\mathbb I$ with $x\neq 0$ there exists some $k:\mathbb N$ with $\frac1k<x$. 
+\begin{remark}\label{NonZeroOnGraph}
+  Let $(x,y):[0,1]\times[-1,1]$. By \Cref{positiveNumbersCharacter}, if $(x,y)\in \mathcal S$ and $x \neq 0$, there is some $k:\N$ such that $x>\frac1k$ and hence $(x,y)\in \mathcal S_k$. 
 \end{remark}
-\begin{corollary}\label{NonZeroOnGraph}
-  By the above, if for some $x:[0,1] \times [-1,1]$ we have $x\in Y$ and $\pi_1(x)\neq 0$, there must be some $k\in\mathbb N$ with $x \in graph(t_k)$ and hence $\pi_2(x) =\sin(\frac1{\pi_1(x)})$. 
-\end{corollary}
 
-\section{The curve is not path-connected}
+%\begin{corollary}\label{NonZeroOnGraph}
+%  By the above, if for some $x:[0,1] \times [-1,1]$ we have $x\in Y$ and $\pi_1(x)\neq 0$, there must be some $k\in\mathbb N$ with $x \in graph(t_k)$ and hence $\pi_2(x) =\sin(\frac1{\pi_1(x)})$. 
+%\end{corollary}
+
+\subsection{The curve is not path-connected}
 \begin{remark}\label{topbottomSeq}
-  For each $k:\N$, denote $t_k = \frac1{(2k+\frac12) \pi}$ and  $b_n = \frac1{(2k+\frac32) \pi}$. 
+  For each $k:\N$, denote $t_k = \frac1{(2k+\frac12) \pi}$ and  $b_k = \frac1{(2k+\frac32) \pi}$. 
   Note that for all $k:\N$ we have $\sin(\frac1{b_k})=-1, \sin(\frac1{t_k})=1$ and
   $1>t_k>b_k>t_{k+1}>b_{k+1}>0$. 
 \end{remark}
@@ -64,7 +69,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
   We conjecture that the space of path-connected components of $Y$ is equivalent to the type of open propositions. 
 \end{remark}
 
-\section{The shape of the curve}
+\subsection{The shape of the curve}
 \begin{lemma}
   $\pi_1\circ \iota : Y \to [0,1]$ is surjective.  
 \end{lemma}

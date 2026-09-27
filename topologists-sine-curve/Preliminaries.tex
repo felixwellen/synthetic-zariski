@@ -1,47 +1,50 @@
-In \cite{synthetic-stone-duality}, synthetic stone duality (SSD) was introduced. SSD consists of an extension of Homotopy type theory by four axioms. In this section, we will recall some of the results from SSD that will be needed for later arguments. %Note that all of these results assume the axioms of SSD as in \cite{synthetic-stone-duality}.
+In \cite{synthetic-stone-duality}, synthetic stone duality (SSD) was introduced. SSD consists of an extension of homotopy type theory by four axioms. In this section, we will recall the results from SSD that will be needed for later arguments. 
+Note that all of these results assume the axioms of SSD as in \cite{synthetic-stone-duality}.
 
+\subsection{Compact Hausdorff spaces and their topology}
 \begin{definition}\label{dfnClosedOpen}
   A proposition $P$ is called \textbf{closed} if there exists a binary sequence $\alpha:2^\N$ such that $P\leftrightarrow \forall_{n:\N} \alpha_n = 0$. Similarly, $P$ is called \textbf{open} if there exists some $\alpha:2^\N$ such that  $P\leftrightarrow \exists_{n:\N} \alpha_n = 1$. 
-  The types of closed,open propositions are called $\Closed,\Open$ respectively. 
-  For $X$ a type and $A:X \to \Prop$ a subset, we call $A$ closed,open if $A$ factors over $\Closed,\Open$ respectively. 
+  The types of closed, open propositions are called $\Closed,\Open$ respectively. 
+  For $X$ a type and $A:X \to \Prop$ a subset, we call $A$ closed, open if $A$ factors over $\Closed,\Open$ respectively. 
 \end{definition}
-
-\begin{definition}
-  Recall that a type is called Stone if it is 
-  the spectrum of a countably presented Boolean algebra. 
-  %a sequential limit of finite sets. The type of Stone types is denoted $\Stone$. 
-  A type is called compact Hausdorff if it is the quotient of a Stone type by a closed equivalence relation. The type of Compact Hausdorff types is denoted $\CHaus$. 
-\end{definition}
-With these definitions, we can restate the axioms of SSD:
-\rednote{Discussion point: we don't use the first two axioms, explicitly, might leave them out of the presentation?}
-\begin{axiom}[Stone duality]\label{AxStoneDuality}
-  For all countably presented Boolean algebras $B$
-  the evaluation map $B\rightarrow  2^{\Sp(B)}$ is an isomorphism.
-\end{axiom} 
-
-\begin{axiom}[Surjections are formal surjections]\label{SurjectionsAreFormalSurjections}
-  For all morphism $g:B\to C$ of countably presented Boolean algebras, we have that $g$ is injective if and only if
-  $(-)\circ g: \Sp(C) \to \Sp(B)$ is surjective. 
-\end{axiom} 
-
-\begin{axiom}[Local choice]\label{AxLocalChoice}
-  Given $X:\CHaus$ with $E,F$ arbitrary types, a map $f:X \to F$ and a 
-  surjection $e:E \twoheadrightarrow F$, 
-  there exists a Stone space $T$, a surjective map 
-  $T\twoheadrightarrow X$ and an arrow $T\to E$ making the following diagram commute:
-    \[\begin{tikzcd}
-      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
-      X  \arrow[r, swap,"f"] & F
-    \end{tikzcd}\]  
-\end{axiom}
-
-\begin{axiom}[Dependent choice]\label{axDependentChoice}
-For all types $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$ for all $n:\N$, the projection from the sequential limit $\lim_kE_k$ to $E_0$ is surjective.
-\end{axiom}
-From now on, we will assume these axioms. In \parencite[Lemma 1.21]{synthetic-stone-duality} the following is shown:
+In \parencite[Lemma 1.21]{synthetic-stone-duality} the following is shown:
 \begin{lemma}\label{ClosureClosedOpen}
   $\Closed$ is closed under countable conjunctions and finite disjunctions. $\Open$ is closed under countable disjunctions and finite conjunctions. 
 \end{lemma}
+
+\begin{definition}
+  Recall that a type is called \textbf{Stone} if it is 
+  the spectrum of a countably presented Boolean algebra. 
+  %a sequential limit of finite sets. The type of Stone types is denoted $\Stone$. 
+  A type is called \textbf{compact Hausdorff} if it is the quotient of a Stone type by a closed equivalence relation. The type of compact Hausdorff types is denoted $\CHaus$. 
+\end{definition}
+%With these definitions, we can restate the axioms of SSD:
+%\rednote{Discussion point: we don't use the first two axioms, explicitly, might leave them out of the presentation?}
+%\begin{axiom}[Stone duality]\label{AxStoneDuality}
+%  For all countably presented Boolean algebras $B$
+%  the evaluation map $B\rightarrow  2^{\Sp(B)}$ is an isomorphism.
+%\end{axiom} 
+%
+%\begin{axiom}[Surjections are formal surjections]\label{SurjectionsAreFormalSurjections}
+%  For all morphism $g:B\to C$ of countably presented Boolean algebras, we have that $g$ is injective if and only if
+%  $(-)\circ g: \Sp(C) \to \Sp(B)$ is surjective. 
+%\end{axiom} 
+%
+%\begin{axiom}[Local choice]\label{AxLocalChoice}
+%  Given $X:\CHaus$ with $E,F$ arbitrary types, a map $f:X \to F$ and a 
+%  surjection $e:E \twoheadrightarrow F$, 
+%  there exists a Stone space $T$, a surjective map 
+%  $T\twoheadrightarrow X$ and an arrow $T\to E$ making the following diagram commute:
+%    \[\begin{tikzcd}
+%      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+%      X  \arrow[r, swap,"f"] & F
+%    \end{tikzcd}\]  
+%\end{axiom}
+%
+%\begin{axiom}[Dependent choice]\label{axDependentChoice}
+%For all types $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$ for all $n:\N$, the projection from the sequential limit $\lim_kE_k$ to $E_0$ is surjective.
+%\end{axiom}
+%From now on, we will assume these axioms. 
 
 \begin{lemma}\label{CHausClosedImage}
   Let $X:\CHaus$ and $A\subseteq X$ a subset. Then $A$ is closed if and only if it is the image of a compact Hausdorff space. 
@@ -49,28 +52,37 @@ From now on, we will assume these axioms. In \parencite[Lemma 1.21]{synthetic-st
 \begin{proof}
   Assume $A\subseteq X$ closed, by \parencite[Lemma 4.2]{synthetic-stone-duality}, $A$ is the image of some closed subset of a Stone space, which is itself Stone by \parencite[Cor 3.12]{synthetic-stone-duality}. If $f:X \to Y$ is a map of compact Hausdorff types, then $f(X) = \{ y : Y | \exists_{x:X} f(x) = y\}$, which is closed by \parencite[Cor 3.13]{synthetic-stone-duality}. 
 \end{proof}
-\begin{lemma}\label{Boundedness}
-  Let $X:\CHaus$ and $f:X \to \N$. Then the image of $f$ is bounded. 
+%\begin{lemma}\label{Boundedness}
+%  Let $X:\CHaus$ and $f:X \to \N$. Then the image of $f$ is bounded. 
+%\end{lemma}
+%\begin{proof}
+%  It sufficices to show this for $X:\Stone$, which is done in \parencite[Lemma 3.6]{synthetic-stone-duality}
+%\end{proof}
+
+The compact Hausdorff spaces are indeed compact in the following sense \parencite[Lemma 4.5]{synthetic-stone-duality}:
+\begin{lemma}
+  Let $X:\CHaus$ and $C:\N \to X \to \Closed$. Then $\bigcap_{n:\N} C_n$ is inhabited as soon as for all $k:\N$ the finite intersection $\bigcap_{n<k} C_n$ is inhabited. 
 \end{lemma}
 \begin{proof}
-  It sufficices to show this for $X:\Stone$, which is done in \parencite[Lemma 3.6]{synthetic-stone-duality}
+  By \parencite[Cor 4.3]{synthetic-stone-duality}, it' sufficient to show that the infinite intersection is nonempty as soon as the finite intersections are, which is \parencite[Lemma 4.5]{synthetic-stone-duality}.
 \end{proof}
 
+\subsection{The unit interval}
 \begin{example}
-  In \parencite[Thm 4.22]{synthetic-stone-duality}, it is shown that the interval $[0,1]$ of Cauchy reals is compact Hausdorff. By rescaling, so is any closed interval $[a,b]\subseteq \R$ for any $a,b:\R$. Furthermore, in \parencite[Lemma 4.11]{synthetic-stone-duality}, it is shown that $\CHaus$ is closed under $\Sigma$, and hence in particular finite products. 
+  In \parencite[Thm 4.22]{synthetic-stone-duality}, it is shown that the interval $[0,1]$ of Cauchy reals as in \cite{Bishop} is compact Hausdorff. By rescaling, so is any closed interval $[a,b]\subseteq \R$ for any $a,b:\R$. Furthermore, in \parencite[Lemma 4.11]{synthetic-stone-duality}, it is shown that $\CHaus$ is closed under $\Sigma$, and hence in particular finite products. 
 \end{example}
 \begin{remark}\label{CauchyDfns}
   We recall that for the Cauchy reals, we can define the relations $<,\leq : \R \to \R \to \Prop$, which are open and closed respectively \parencite[Dfn 2.7, 2.10]{Bishop}. 
   We also recall  that we can define the standard functions
  $\frac{1}{\cdot}:\R_{\neq 0} \to \R$,
   $|\cdot|,\sin,-:\R \to \R$ and 
-  $+,\cdot,\max,\min: \R \to \R \to \R$ \parencite[Dfn 2.4, Prop 2.12, p 20, p58]{Bishop}.
+  $+,\cdot,\max,\min: \R \to \R \to \R$ \parencite[Dfn 2.4, Prop 2.13, p 20, p58]{Bishop}.
   \rednote{TODO when done see which you really need}
 \end{remark}
 
   In \parencite[Cor 1.16]{synthetic-stone-duality}, Markov's principle is shown, which is equivalent to the following statement:
-\begin{lemma}
-Whenever $x:[0,1]$ satisfies $x\neq 0$, there is some $k:\N$ with $x\geq\frac1k$.
+\begin{lemma}\label{positiveNumbersCharacter}
+Whenever $x:[0,1]$ satisfies $x\neq 0$, there is some $k:\N$ with $x > \frac1k$.
 \end{lemma}
 
 
@@ -78,43 +90,46 @@ Whenever $x:[0,1]$ satisfies $x\neq 0$, there is some $k:\N$ with $x\geq\frac1k$
 \begin{lemma}
  For $x,y:[0,1]$ we have $x\leq y \vee x \geq y$ .
 \end{lemma} 
+\subsection{Functions on intervals}
+From \Cref{dfnClosedOpen} it is immediate that any function is continuous in the sense that the inverse image of any open is open. However, it is not immediate that this is the classically correct sense of continuity.
 
-\begin{lemma}
-  Intermediate value theorem. 
-\end{lemma}
-
-From \Cref{dfnClosedOpen} it is immediate that any function is continuous in the sense that the inverse image of any open is open. However, it is not immediate that this is the classically correct sense of continuity for the interval. 
-%
-In \cite[Thm 4.28]{synthetic-stone-duality}, we show that all functions on $[0,1]$ are continuous in the following sense:
+By a standard rescaling argument, from \parencite[Thm 4.28]{synthetic-stone-duality}, we can show all functions on intervals are continuous in the following sense:
 \begin{lemma}\label{continuity}
-  For any $f:[0,1] \to [0,1]$ and every $x:[0,1]$ and $\epsilon>0$, there exists some $\delta:[0,1]$ with $\delta>0$ such that whenever $|x-y|<\delta$ we have $|f(x) -f(y)| < \epsilon$. 
+  Let $a,b,c,d:\R$ and $f:[a,b]\to [c,d]$. Suppose $x:[a,b]$ and $\epsilon:\R_{>0}$. Then there exists some $\delta:\R_{>0}$ such that whenever $y:[a,b]$ satisfies $|x-y|<\delta$ we have $|f(x) -f(y)| < \epsilon$. 
 \end{lemma}
-
-We shall show that every function on the unit interval is uniformly continuous. This result shall be generalized to general compact Hausdorff spaces in future work. 
-\begin{corollary}
-  For any $f:[0,1] \to [0,1]$ and every $\epsilon>0$, there exists some $\delta>0$ such that whenever $|x-y|<\delta$ we have $|f(x) -f(y)| < \epsilon$. 
+\begin{proof}
+  In \parencite[Thm 4.28]{synthetic-stone-duality}, the result holds for $f:[0,1]\to[0,1]$. We conclude by rescaling. 
+\end{proof}
+We can also show that every function on the unit interval is uniformly continuous. This result shall be generalized to general compact Hausdorff spaces in future work. 
+\begin{corollary}\label{UniformContinuity}
+  Let $a,b,c,d:\R$ for any $f:[a,b] \to [c,d]$ and every $\epsilon:\R_{>0}$, there exists some $\delta:R_{>0}$ such that whenever $x,y:[a,b]$ satisfy $|x-y|<\delta$ we have $|f(x) -f(y)| < \epsilon$. 
 \end{corollary}
 \begin{proof}
-  Because $f$ is continuous, for each $x:\mathbb I$ there exists some $n:\mathbb N$ such that 
-  if $d(x,y)<\frac1n$, then $d((f(x), f(y)))<\epsilon$. 
-  By local choice, we get a Stone space $S$ with a surjection $a:S\twoheadrightarrow \mathbb I$ 
-  and a map $b:S\to \mathbb N$ such that if $d(x,a(s))<\frac1{b(s)}$, then $d(f(x), f(a(s)))<\epsilon$. 
-  By Lemma 3.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
+  By \Cref{continuity}, and \parencite[Rmk 1.11]{synthetic-stone-duality}, there exists a Stone space $S$, a surjection $q:S\twoheadrightarrow [a,b]$ and a map $g:S \to \mathbb N$ such that for any $x:[a,b],s:S$ with $|x-q(s)| < \frac1{g(s)}$, we have $|f(x) - f(q(s))| < \epsilon$. 
+  By \parencite[Lemma 3.6]{synthetic-stone-duality}, $g$ factors over $Fin(k)$. 
   Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
 \end{proof} 
+We conclude with the intermediate value theorem, \parencite[Thm 5.29]{synthetic-stone-duality}:
+\begin{lemma}
+  Let $a,b:\R$. For any $f:[0,1]\to[a,b]$ and $y:[a,b]$ with $f(0)\leq y \leq f(1)$, there exists some $x:[0,1]$ with $f(x) = y$. 
+\end{lemma}
 
+\subsection{The interval shape}
+In this note, we will compare the notion of a space being path-connected and a space being $[0,1]$-contractible. In this section, we recall these notions.
 
-%\begin{corollary}[uniform continuity of maps $\mathbb I \to \mathbb R^n$]\label{uniformContinuity}
-%  For any map $f:\mathbb I \to [0,1] \times [-1,1]$, and for every $\epsilon:\mathbb R$ with $\epsilon>0$, 
-%  there exists a $\delta>0$ such that for any $x,y:\mathbb I$ with $d(x,y)<\delta$, we have
-%  that $d(f(x) , f(y))<\epsilon$.
-%\end{corollary}
-%\begin{proof}
-%  Because $f$ is continuous, for each $x:\mathbb I$ there exists some $n:\mathbb N$ such that 
-%  if $d(x,y)<\frac1n$, then $d((f(x), f(y)))<\epsilon$. 
-%  By local choice, we get a Stone space $S$ with a surjection $a:S\twoheadrightarrow \mathbb I$ 
-%  and a map $b:S\to \mathbb N$ such that if $d(x,a(s))<\frac1{b(s)}$, then $d(f(x), f(a(s)))<\epsilon$. 
-%  By Lemma 3.6 of \cite{synthetic-stone-duality}, $b$ factors over $Fin(k)$. 
-%  Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
-%\end{proof}
-%
+\begin{definition}
+  Let $A$ be a type. $A$ is called \textbf{path-connected} if for any $a,b:A$ we have a map $\gamma:[0,1]\to A$ with $\gamma(0) = a$ and $\gamma(1) = b$. 
+\end{definition}
+
+\begin{definition}
+  We denote $L_{[0,1]}$ for the modality defined by localizing at $[0,1]$ as in \cite{modalities}. 
+
+  A type $X$ is called \textbf{$[0,1]$-contractible} if $L_{[0,1]}(X)$ is contractible as a type. 
+\end{definition}
+In \parencite[Lemma 5.24]{synthetic-stone-duality}, it is shown that any path-connected type is $[0,1]$-contractible. 
+
+\begin{definition}
+  Let $X\subseteq R^n$. $X$ is called \textbf{convex} if for any $x,y:X$ and $a,b:[0,1]$ with $a+b = 1$, we have $X(x) \wedge X(y) \to X(ax+by)$. 
+\end{definition}
+Using the path $t\mapsto tx + (1-t)y$, it can be shown that any convex type is path-connected, and hence $[0,1]$-contractible. 
+
