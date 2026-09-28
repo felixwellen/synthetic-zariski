@@ -1,13 +1,14 @@
 \section{The topologist's sine curve}
 Because of \Cref{CauchyDfns} we can make the following definition:
 \begin{definition}%[The topologist's sine curve]
-  For each $k:\mathbb N$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $\mathcal S_k \subseteq [0,1] \times [-1,1]$ by 
+  For $k:\mathbb N$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $\mathcal S_k \subseteq [0,1] \times [-1,1]$ by 
   $$\mathcal S_k = ([0, \frac1k] \times [-1,1]) \cup graph(s_k)$$
-  Then define \textbf{the topologist's since curve} $\mathcal S = \bigcap_{k:\mathbb N} \mathcal S_k$. 
-  We denote $\iota_k : \mathcal S_k \to [0,1] \times [-1,1]$ 
-  and $\iota:\mathcal S \to [0,1] \times [-1,1]$ for the inclusion maps. 
+  We define \textbf{the topologist's since curve} $\mathcal S = \bigcap_{k:\mathbb N} \mathcal S_k$. 
 \input{Picture.tex}
 \end{definition}
+  We shall denote $\iota_k : \mathcal S_k \to [0,1] \times [-1,1]$ 
+  and $\iota:\mathcal S \to [0,1] \times [-1,1]$ for the inclusion maps, and $\pi_0:[0,1] \times[-1,1] \to [0,1],
+\pi_1:[0,1] \times[-1,1] \to [-1,1]$ for the projection maps. 
 
 
 \begin{lemma}
@@ -18,12 +19,12 @@ Because of \Cref{CauchyDfns} we can make the following definition:
   By \Cref{ClosureClosedOpen} is follows that $\mathcal S$ is closed. We conclude by \Cref{CHausClosedImage}
 \end{proof}
 
-\begin{remark}\label{NonZeroOnGraph}
-  Let $(x,y):[0,1]\times[-1,1]$. By \Cref{positiveNumbersCharacter}, if $(x,y)\in \mathcal S$ and $x \neq 0$, there is some $k:\N$ such that $x>\frac1k$ and hence $(x,y)\in \mathcal S_k$. 
-\end{remark}
+%\begin{remark}\label{NonZeroOnGraph}
+%  Let $(x,y):[0,1]\times[-1,1]$. By \Cref{positiveNumbersCharacter}, if $(x,y)\in \mathcal S$ and $x \neq 0$, there is some $k:\N$ such that $x>\frac1k$ and hence $(x,y)\in \mathcal S_k$. 
+%\end{remark}
 
 %\begin{corollary}\label{NonZeroOnGraph}
-%  By the above, if for some $x:[0,1] \times [-1,1]$ we have $x\in Y$ and $\pi_1(x)\neq 0$, there must be some $k\in\mathbb N$ with $x \in graph(t_k)$ and hence $\pi_2(x) =\sin(\frac1{\pi_1(x)})$. 
+%  By the above, if for some $x:[0,1] \times [-1,1]$ we have $x\in \mathcal S$ and $\pi_1(x)\neq 0$, there must be some $k\in\mathbb N$ with $x \in graph(t_k)$ and hence $\pi_2(x) =\sin(\frac1{\pi_1(x)})$. 
 %\end{corollary}
 
 \subsection{The curve is not path-connected}
@@ -38,26 +39,34 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \begin{proof}
   By \Cref{positiveNumbersCharacter}, there is some $k:\N$ with $\frac1k<r$. As $(2k+\frac32)\pi,(2k+\frac12)\pi>k$, this $k$ suffices.
 \end{proof}
+\begin{lemma}\label{NonZeroOnGraph}
+  Let $(x,y):[0,1]\times[-1,1]$ be such that $(x,y)\in\mathcal S$ and $x>0$.
+  Then $y = \sin(\frac1x)$
+\end{lemma}
+\begin{proof}
+  By \Cref{positiveNumbersCharacter}, there is some $k:\N$ such that $x>\frac1k$ and hence $(x,y)\in \mathcal S_k$ and $y = \sin(\frac1x)$. 
+\end{proof}
+
 \begin{lemma}\label{SineWillHitTopBot}
-  Let $\gamma:[0,1] \to Y$. 
+  Let $\gamma:[0,1] \to \mathcal S$. 
   Assume that $\pi_1(\gamma(0)) = 0$ and $\pi_1(\gamma(r))>0$ for some $r:[0,1]$. 
   Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_2(\gamma(u)) = 1$, and $\pi_2(\gamma(v)) = -1$. 
 \end{lemma}
 \begin{proof}
-  We apply the intermediate value theorem (\Cref{IntermediateValue}) to $\pi_1\circ \gamma : [0,1] \to [0,1]$. 
-  By \Cref{cofinaltbseq}, there exists some $v:[0,1]$ such that $\pi_1(\gamma(v)) = b_k$. 
-  As $b_k>0$, by \Cref{NonZeroOnGraph}, we may conclude that $\pi_2(\gamma(v)) = -1$. 
+  By \Cref{cofinaltbseq}, there exists some $k:\N$ such that $0 < b_k<r$. 
+  We can thus apply \Cref{IntermediateValue} to $\pi_1\circ \gamma : [0,1] \to [0,1]$ to find some $v:[0,1]$ with $\pi_1(\gamma(v)) = b_k$. Then by \Cref{NonZeroOnGraph} and \Cref{topbottomSeq} we find that $\pi_2(\gamma(v)) = -1$. 
   The case for $u$ is similar. 
 \end{proof}
+
 \begin{theorem}[The topologist's sine curve is not path-connected]
-  There is no map $\gamma:\mathbb I \to Y$ such that $\gamma(0) = (0,0)$ and $\gamma(1) = (1,sin(1))$. 
+  There is no map $\gamma:[0,1] \to \mathcal S$ such that $\gamma(0) = (0,0)$ and $\gamma(1) = (1,sin(1))$. 
 \end{theorem}
 \begin{proof}
   By applying dependent choice to \Cref{SineWillHitTopBot}, 
   we can find sequences $u_i,v_i,~i:\N$ such that $\pi_2(\gamma(u_i)) = 1, \pi_2(\gamma(v_i)) = -1$ and 
   $u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\mathbb N$. 
-  We now apply uniform continuity (\Cref{uniformContinuity}). 
-  For $\epsilon = 2$, there is some $\delta>0$ such that $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$ as  $d(\gamma(u_i), \gamma(v_j)) > 2$. 
+  We now apply \Cref{UniformContinuity} for $\epsilon =2 $.
+  There is some $\delta>0$ such that $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$ as  $d(\gamma(u_i), \gamma(v_j)) \geq 2$. 
   Therefore, the sequence $u_i$ is decreasing with steps of at least size $2\delta>0$. 
   But this means that for $N>\frac1{2\delta}$, we have $u_{N}<0$, while $u_N :[0,1]$, which is a contradiction. 
 \end{proof}
@@ -66,91 +75,85 @@ Because of \Cref{CauchyDfns} we can make the following definition:
   One could define an equivalence relation on any type $X$ such that 
   $x\sim y$ iff there is a path from $x$ to $y$. 
   The equivalence classes of this relation would normally be called the path-connected components. 
-  We conjecture that the space of path-connected components of $Y$ is equivalent to the type of open propositions. 
+  We conjecture that the space of path-connected components of $\mathcal S$ is equivalent to the type of open propositions. 
 \end{remark}
 
 \subsection{The shape of the curve}
-\begin{lemma}
-  $\pi_1\circ \iota : Y \to [0,1]$ is surjective.  
+We will prove that $\mathcal S$ is $[0,1]$-contractible. 
+\begin{remark}
+  We denote for each $r:[0,1]$ the fiber 
+  $\mathcal S_r:= (\pi_1\circ \iota)^{-r}$. 
+  Note that 
+  $\mathcal S_r = \mathcal S \cap (\pi_1^{-1}(r)) = 
+  \mathcal S \cap (\{r\} \times [-1,1])$, and that $\mathcal S_r$ is closed for all $r:[0,1]$. 
+\end{remark}
+
+
+\begin{lemma}\label{fiberInhabited}
+  $\pi_1\circ \iota : \mathcal S \to [0,1]$ is surjective.  
 \end{lemma}
 \begin{proof}
-  We shall show that for each $r:[0,1]$ the fiber $\pi_1\circ \iota^{-1}(r)$ is merely inhabited. 
-  As the fiber is closed, it's sufficient to show it's non-empty. 
-
-  Note that $\pi_1\circ \iota^{-1}(r)= \pi_1^{-1}(r) \cap Y$. 
-  By Lemma 4.1.5 of \cite{synthetic-stone-duality}, 
-  it's sufficient to show that $\pi_1^{-1}(r) \cap Y_k$ 
-  is non-empty for any $k:\mathbb N$. 
-
+  We shall show that for each $r:[0,1]$ the fiber $\mathcal S_r$ is merely inhabited. 
+%
+  By \Cref{compactnessCHaus}, 
+  it's sufficient to show that $\pi_1^{-1}(r) \cap \mathcal S_k$ 
+  is merely inhabited for any $k:\mathbb N$. 
+%
   Let $k:\mathbb N$. 
-  Note that $r\leq \frac1k \vee r \geq \frac 1k$. 
+  As we're showing a proposition, we make for each $k:\N$ a case distinction based on \Cref{LLPO}:
+%  Note that $r\leq \frac1k \vee r \geq \frac 1k$. 
   \begin{itemize}
-    \item If $r\leq \frac1k$, we have that $(r,0) \in Y_k$. 
+    \item If $r\leq \frac1k$, we have that $(r,0) \in \mathcal S_k$. 
     \item If $r\geq \frac1k$, $\frac1r$ is well-defined and 
-      $(r,\sin(\frac1r)) \in Y_k$. 
+      $(r,\sin(\frac1r)) \in \mathcal S_k$. 
   \end{itemize}
-  Hence in both cases we have that $\pi_1^{-1}(r) \cap Y_k$ is non-empty, as required. 
+  Hence in both cases we have that $\pi_1^{-1}(r) \cap \mathcal S_k$ is inhabited, as required. 
 \end{proof}
 
-\begin{definition}
-  A subset $X$ of $\mathbb R^n$ is called convex if 
-  for any $\alpha,\beta:\mathbb I$ with $\alpha + \beta = 1$, we have 
-  $X(y) \wedge X(y') \to X(\alpha y + \beta y')$
-\end{definition}
 \begin{lemma}
-  For each $k:\mathbb N$ and $r:[0,1]$, $Y_k\cap \pi_1^{-1}(r)$ is convex. 
+  For each $k:\mathbb N$ and $r:[0,1]$, $\mathcal S_k\cap \pi_1^{-1}(r)$ is convex. 
 \end{lemma}
 \begin{proof}
-  Suppose that $(x,y), (x',y')$ both lie in $Y_k\cap \pi_1^{-1}(r)$. 
-  Suppose furthermore that $\alpha,\beta:\mathbb I, \alpha+ \beta = 1$. 
+  Suppose that $(x,y), (x',y')$ both lie in $\mathcal S_k\cap \pi_1^{-1}(r)$. 
+  Suppose furthermore that $\alpha,\beta:[0,1], \alpha+ \beta = 1$. 
   We will show that $\alpha\cdot (x,y) + \beta\cdot (x',y') $ also lies in 
-  $Y_k \cap \pi_1^{-1}(r)$. 
+  $\mathcal S_k \cap \pi_1^{-1}(r)$. 
 
   Recall that 
-  $Y_k = [0,\frac1k] \times [-1,1]  \cup graph(t)$. 
+  $\mathcal S_k = [0,\frac1k] \times [-1,1]  \cup graph(s_k)$. 
   As we will show a proposition, we can make a case distinction 
   for both $(x,y), (x',y')$ on whether they come from $[0,\frac 1k] \times [-1,1]$ or 
-  from $graph(t)$.
+  from $graph(s_k)$.
   \begin{itemize}
     \item 
       If either comes from $[0,\frac1k] \times [-1,1]$, we must have that 
       then $r \leq \frac1k$. 
-      Then $\pi_1^{-1}(r) = \{r\} \times [-1,1]\subseteq Y_k$. 
-      It follows that $\pi_1^{-1}(r) \cap Y_k = \{r\} \times [-1, 1]$, which is convex. 
+      Then $\pi_1^{-1}(r) = \{r\} \times [-1,1]\subseteq \mathcal S_k$. 
+      It follows that $\pi_1^{-1}(r) \cap \mathcal S_k = \{r\} \times [-1, 1]$, which is convex. 
     \item 
       If both come from $graph(t)$, 
       then $x = x' = r$ and $y = y' = \sin(\frac1r)$. 
       Hence $(x,y) = (x',y')$ and thus $\alpha(x,y) + \beta(x',y') = (x',y')$. 
   \end{itemize}
   In both cases we conclude that $\alpha (x,y) + \beta(x',y')$ lies in 
-  $Y_k\cap \pi_1^{-1}(r)$. 
+  $\mathcal S_k\cap \pi_1^{-1}(r)$. 
 \end{proof}
 
-
-\begin{remark}
-  Any intersection of convex subspaces of $\mathbb R^n$ is itself convex. 
-\end{remark}
-\begin{corollary}
-  for each $r:\mathbb I$, the fiber 
-  $Y_r:=(\pi_1\circ \iota)^{-1}(r) = Y\cap \pi_1^{-1}(r)$ is convex. 
+\begin{corollary}\label{fiberConvex}
+  For each $r:[0,1]$, the fiber 
+  $\mathcal S_r$ is convex. 
 \end{corollary}
-\begin{lemma}
-  Any convex inhabited subspace of $\mathbb R^n$ is $\mathbb I$-contractible. 
-\end{lemma} 
 \begin{proof}
-  See Lemma 5.24 of \cite{synthetic-stone-duality}. 
-  Convex spaces can shown to be path-connected.
+  Any intersection of convex subspaces of $\mathbb R^n$ is itself convex
 \end{proof}
 \begin{theorem}
-  $Y$ is $\mathbb I$-contractible. 
+  $\mathcal S$ is $[0,1]$-contractible. 
 \end{theorem}
 \begin{proof}
-  By the above, we can write $Y = \sum\limits_{r:\mathbb I} Y_r$, 
-  such that for all $r:\mathbb I$, we have 
-  $Y_r$ $\mathbb I$-contractible. 
-
-  Thus both the maps $\sum\limits_{r:\mathbb I} Y_r \to \mathbb I$ and 
-  $\mathbb I \to 1$ have $\mathbb I$-contractible fibers. 
-  By Lemma 1.33 of \cite{modalities}, so does their composite. 
-  It follows that $Y$ is $\mathbb I$-contractible. 
+%  We write $\mathcal S = \sum\limits_{r:[0,1]} \mathcal S_r$.
+  By \Cref{fiberConvex} and \Cref{fiberInhabited}, each fiber $S_r$ is convex and inhabited, hence by \Cref{ConvexInhabitedToContractible} also $[0,1]$-contractible. 
+%
+  Thus both the maps $\pi_0 \circ i :\mathcal S \to [0,1]$ and $[0,1] \to 1$ have $[0,1]$-contractible fibers. 
+  By \parencite[Lemma 1.33]{modalities}, so does their composite. 
+  It follows that $\mathcal S$ is $[0,1]$-contractible. 
 \end{proof}

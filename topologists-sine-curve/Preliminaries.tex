@@ -1,50 +1,43 @@
 In \cite{synthetic-stone-duality}, synthetic stone duality (SSD) was introduced. SSD consists of an extension of homotopy type theory by four axioms. In this section, we will recall the results from SSD that will be needed for later arguments. 
-Note that all of these results assume the axioms of SSD as in \cite{synthetic-stone-duality}.
 
-\subsection{Compact Hausdorff spaces and their topology}
+\subsection{The setting of SSD}
+Note that all of the results we will present assume the axioms of SSD as in \cite{synthetic-stone-duality}. We will mention two of these axioms as they are useful for the purposes of this note. 
+\begin{definition}
+  Recall that a type is called \textbf{Stone} if it is 
+  %the spectrum of a countably presented Boolean algebra. 
+  a sequential limit of finite sets. The type of Stone types is denoted $\Stone$. 
+  A type is called \textbf{compact Hausdorff} if it is the quotient of a Stone type by a Stone equivalence relation. The type of compact Hausdorff types is denoted $\CHaus$. 
+\end{definition}
+  
+\begin{axiom}[Local choice]\label{AxLocalChoice}
+  Given $X:\CHaus$ with $E,F$ arbitrary types, a map $f:X \to F$ and a 
+  surjection $e:E \twoheadrightarrow F$, 
+  there exists a Stone space $T$, a surjective map 
+  $T\twoheadrightarrow X$ and an arrow $T\to E$ making the following diagram commute:
+    \[\begin{tikzcd}
+      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+      X  \arrow[r, swap,"f"] & F
+    \end{tikzcd}\]  
+\end{axiom}
+
+\begin{axiom}[Dependent choice]\label{axDependentChoice}
+For all types $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$ for all $n:\N$, the projection from the sequential limit $\lim_kE_k$ to $E_0$ is surjective.
+\end{axiom}
+%From now on, we will assume these axioms. 
+
+\subsection{The topology of compact Hausdorff spaces}
 \begin{definition}\label{dfnClosedOpen}
-  A proposition $P$ is called \textbf{closed} if there exists a binary sequence $\alpha:2^\N$ such that $P\leftrightarrow \forall_{n:\N} \alpha_n = 0$. Similarly, $P$ is called \textbf{open} if there exists some $\alpha:2^\N$ such that  $P\leftrightarrow \exists_{n:\N} \alpha_n = 1$. 
+  A proposition $P$ is called \textbf{closed} if it is Stone. if there exists a binary sequence $\alpha:2^\N$ such that $P\leftrightarrow \forall_{n:\N} \alpha_n = 0$. Similarly, $P$ is called \textbf{open} if there exists some $\alpha:2^\N$ such that  $P\leftrightarrow \exists_{n:\N} \alpha_n = 1$. 
   The types of closed, open propositions are called $\Closed,\Open$ respectively. 
   For $X$ a type and $A:X \to \Prop$ a subset, we call $A$ closed, open if $A$ factors over $\Closed,\Open$ respectively. 
 \end{definition}
-In \parencite[Lemma 1.21]{synthetic-stone-duality} the following is shown:
+In \parencite[Lemma 1.21,Rmk 1.20, Cor 3.9]{synthetic-stone-duality} the following is shown:
 \begin{lemma}\label{ClosureClosedOpen}
   $\Closed$ is closed under countable conjunctions and finite disjunctions. $\Open$ is closed under countable disjunctions and finite conjunctions. 
+  The negation of an open proposition is closed and the other way around. Both classes are $\neg\neg$-stable. 
+  A proposition is closed if and only if it is Stone. 
 \end{lemma}
 
-\begin{definition}
-  Recall that a type is called \textbf{Stone} if it is 
-  the spectrum of a countably presented Boolean algebra. 
-  %a sequential limit of finite sets. The type of Stone types is denoted $\Stone$. 
-  A type is called \textbf{compact Hausdorff} if it is the quotient of a Stone type by a closed equivalence relation. The type of compact Hausdorff types is denoted $\CHaus$. 
-\end{definition}
-%With these definitions, we can restate the axioms of SSD:
-%\rednote{Discussion point: we don't use the first two axioms, explicitly, might leave them out of the presentation?}
-%\begin{axiom}[Stone duality]\label{AxStoneDuality}
-%  For all countably presented Boolean algebras $B$
-%  the evaluation map $B\rightarrow  2^{\Sp(B)}$ is an isomorphism.
-%\end{axiom} 
-%
-%\begin{axiom}[Surjections are formal surjections]\label{SurjectionsAreFormalSurjections}
-%  For all morphism $g:B\to C$ of countably presented Boolean algebras, we have that $g$ is injective if and only if
-%  $(-)\circ g: \Sp(C) \to \Sp(B)$ is surjective. 
-%\end{axiom} 
-%
-%\begin{axiom}[Local choice]\label{AxLocalChoice}
-%  Given $X:\CHaus$ with $E,F$ arbitrary types, a map $f:X \to F$ and a 
-%  surjection $e:E \twoheadrightarrow F$, 
-%  there exists a Stone space $T$, a surjective map 
-%  $T\twoheadrightarrow X$ and an arrow $T\to E$ making the following diagram commute:
-%    \[\begin{tikzcd}
-%      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
-%      X  \arrow[r, swap,"f"] & F
-%    \end{tikzcd}\]  
-%\end{axiom}
-%
-%\begin{axiom}[Dependent choice]\label{axDependentChoice}
-%For all types $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$ for all $n:\N$, the projection from the sequential limit $\lim_kE_k$ to $E_0$ is surjective.
-%\end{axiom}
-%From now on, we will assume these axioms. 
 
 \begin{lemma}\label{CHausClosedImage}
   Let $X:\CHaus$ and $A\subseteq X$ a subset. Then $A$ is closed if and only if it is the image of a compact Hausdorff space. 
@@ -59,12 +52,12 @@ In \parencite[Lemma 1.21]{synthetic-stone-duality} the following is shown:
 %  It sufficices to show this for $X:\Stone$, which is done in \parencite[Lemma 3.6]{synthetic-stone-duality}
 %\end{proof}
 
-The compact Hausdorff spaces are indeed compact in the following sense \parencite[Lemma 4.5]{synthetic-stone-duality}:
-\begin{lemma}
+The compact Hausdorff spaces are indeed compact in the following sense:
+\begin{lemma}\label{compactnessCHaus}
   Let $X:\CHaus$ and $C:\N \to X \to \Closed$. Then $\bigcap_{n:\N} C_n$ is inhabited as soon as for all $k:\N$ the finite intersection $\bigcap_{n<k} C_n$ is inhabited. 
 \end{lemma}
 \begin{proof}
-  By \parencite[Cor 4.3]{synthetic-stone-duality}, it' sufficient to show that the infinite intersection is nonempty as soon as the finite intersections are, which is \parencite[Lemma 4.5]{synthetic-stone-duality}.
+  By \parencite[Cor 4.3]{synthetic-stone-duality}, it is sufficient to show that the infinite intersection is nonempty as soon as the finite intersections are, which is \parencite[Lemma 4.5]{synthetic-stone-duality}.
 \end{proof}
 
 \subsection{The unit interval}
@@ -87,7 +80,7 @@ Whenever $x:[0,1]$ satisfies $x\neq 0$, there is some $k:\N$ with $x > \frac1k$.
 
 
   In \parencite[Thm 1.17]{synthetic-stone-duality}, the lesser limited principle of omniscience (LLPO) is shown, which is equivalent to the following statement by \parencite[Prop 1.4.2]{HannesDiener}:
-\begin{lemma}
+  \begin{lemma}\label{LLPO}
  For $x,y:[0,1]$ we have $x\leq y \vee x \geq y$ .
 \end{lemma} 
 \subsection{Functions on intervals}
@@ -105,20 +98,21 @@ We can also show that every function on the unit interval is uniformly continuou
   Let $a,b,c,d:\R$ for any $f:[a,b] \to [c,d]$ and every $\epsilon:\R_{>0}$, there exists some $\delta:R_{>0}$ such that whenever $x,y:[a,b]$ satisfy $|x-y|<\delta$ we have $|f(x) -f(y)| < \epsilon$. 
 \end{corollary}
 \begin{proof}
-  By \Cref{continuity}, and \parencite[Rmk 1.11]{synthetic-stone-duality}, there exists a Stone space $S$, a surjection $q:S\twoheadrightarrow [a,b]$ and a map $g:S \to \mathbb N$ such that for any $x:[a,b],s:S$ with $|x-q(s)| < \frac1{g(s)}$, we have $|f(x) - f(q(s))| < \epsilon$. 
+  By \Cref{continuity} and local choice, there exists a Stone space $S$, a surjection $q:S\twoheadrightarrow [a,b]$ and a map $g:S \to \mathbb N$ such that for any $x:[a,b],s:S$ with $|x-q(s)| < \frac1{g(s)}$, we have $|f(x) - f(q(s))| < \epsilon$. 
   By \parencite[Lemma 3.6]{synthetic-stone-duality}, $g$ factors over $Fin(k)$. 
   Hence we can take the maximal element $N$ of it's image, and set $\delta = \frac1N$. 
 \end{proof} 
 We conclude with the intermediate value theorem, \parencite[Thm 5.29]{synthetic-stone-duality}:
-\begin{lemma}
+\begin{theorem}\label{IntermediateValue}
   Let $a,b:\R$. For any $f:[0,1]\to[a,b]$ and $y:[a,b]$ with $f(0)\leq y \leq f(1)$, there exists some $x:[0,1]$ with $f(x) = y$. 
-\end{lemma}
+\end{theorem}
 
-\subsection{The interval shape}
+\subsection{Paths and $[0,1]$-contractibility}
 In this note, we will compare the notion of a space being path-connected and a space being $[0,1]$-contractible. In this section, we recall these notions.
 
 \begin{definition}
-  Let $A$ be a type. $A$ is called \textbf{path-connected} if for any $a,b:A$ we have a map $\gamma:[0,1]\to A$ with $\gamma(0) = a$ and $\gamma(1) = b$. 
+  Let $A$ be a type. For $a,b:A$, a \textbf{path} from $a$ to $b$ is a map $\gamma:[0,1]\to A$ with $\gamma(0) = a,\gamma(1) = b$. 
+  $A$ is called \textbf{path-connected} if for any $a,b:A$ we have a path from $a$ to $b$. %$\gamma:[0,1]\to A$ with $\gamma(0) = a$ and $\gamma(1) = b$. 
 \end{definition}
 
 \begin{definition}
@@ -126,10 +120,14 @@ In this note, we will compare the notion of a space being path-connected and a s
 
   A type $X$ is called \textbf{$[0,1]$-contractible} if $L_{[0,1]}(X)$ is contractible as a type. 
 \end{definition}
-In \parencite[Lemma 5.24]{synthetic-stone-duality}, it is shown that any path-connected type is $[0,1]$-contractible. 
-
+\begin{remark}\label{pathConnectedToContractible}
+In \parencite[Lemma 5.24]{synthetic-stone-duality}, it is shown that any inhabited path-connected type is $[0,1]$-contractible. 
+\end{remark} 
 \begin{definition}
   Let $X\subseteq R^n$. $X$ is called \textbf{convex} if for any $x,y:X$ and $a,b:[0,1]$ with $a+b = 1$, we have $X(x) \wedge X(y) \to X(ax+by)$. 
 \end{definition}
-Using the path $t\mapsto tx + (1-t)y$, it can be shown that any convex type is path-connected, and hence $[0,1]$-contractible. 
+\begin{remark}\label{ConvexInhabitedToContractible}
+Using the path $t\mapsto tx + (1-t)y$, it can be shown that any convex type is path-connected. 
+Hence if  a convex type is inhabited, it is also $[0,1]$-contractible by \Cref{pathConnectedToContractible}.\end{remark}  
+
 
