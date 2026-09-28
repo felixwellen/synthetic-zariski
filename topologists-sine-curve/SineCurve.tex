@@ -3,7 +3,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \begin{definition}%[The topologist's sine curve]
   For $k:\mathbb N$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $\mathcal S_k \subseteq [0,1] \times [-1,1]$ by 
   $$\mathcal S_k = ([0, \frac1k] \times [-1,1]) \cup graph(s_k)$$
-  We define \textbf{the topologist's since curve} $\mathcal S = \bigcap_{k:\mathbb N} \mathcal S_k$. 
+  We define \textbf{the topologist's sine curve} $\mathcal S = \bigcap_{k:\mathbb N} \mathcal S_k$. 
 \input{Picture.tex}
 \end{definition}
   We shall denote $\iota_k : \mathcal S_k \to [0,1] \times [-1,1]$ 
@@ -12,11 +12,11 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 
 
 \begin{lemma}
-  The topologists's sine curve is a compact Hausdorff space.
+  The topologist's sine curve is a compact Hausdorff space.
 \end{lemma}
 \begin{proof}
   Note that both $[0,\frac1k] \times [-1,1]$ and $graph(s_k)$ are the image of compact Hausdorff spaces, hence closed by \Cref{CHausClosedImage}.
-  By \Cref{ClosureClosedOpen} is follows that $\mathcal S$ is closed. We conclude by \Cref{CHausClosedImage}
+  By \Cref{ClosureClosedOpen} it follows that $\mathcal S$ is closed. We conclude by \Cref{CHausClosedImage}.
 \end{proof}
 
 %\begin{remark}\label{NonZeroOnGraph}
@@ -41,7 +41,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \end{proof}
 \begin{lemma}\label{NonZeroOnGraph}
   Let $(x,y):[0,1]\times[-1,1]$ be such that $(x,y)\in\mathcal S$ and $x>0$.
-  Then $y = \sin(\frac1x)$
+  Then $y = \sin(\frac1x)$.
 \end{lemma}
 \begin{proof}
   By \Cref{positiveNumbersCharacter}, there is some $k:\N$ such that $x>\frac1k$ and hence $(x,y)\in \mathcal S_k$ and $y = \sin(\frac1x)$. 
@@ -49,21 +49,21 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 
 \begin{lemma}\label{SineWillHitTopBot}
   Let $\gamma:[0,1] \to \mathcal S$. 
-  Assume that $\pi_1(\gamma(0)) = 0$ and $\pi_1(\gamma(r))>0$ for some $r:[0,1]$. 
-  Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_2(\gamma(u)) = 1$, and $\pi_2(\gamma(v)) = -1$. 
+  Assume that $\pi_0(\gamma(0)) = 0$ and $\pi_0(\gamma(r))>0$ for some $r:[0,1]$.
+  Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_1(\gamma(u)) = 1$, and $\pi_1(\gamma(v)) = -1$.
 \end{lemma}
 \begin{proof}
   By \Cref{cofinaltbseq}, there exists some $k:\N$ such that $0 < b_k<r$. 
-  We can thus apply \Cref{IntermediateValue} to $\pi_1\circ \gamma : [0,1] \to [0,1]$ to find some $v:[0,1]$ with $\pi_1(\gamma(v)) = b_k$. Then by \Cref{NonZeroOnGraph} and \Cref{topbottomSeq} we find that $\pi_2(\gamma(v)) = -1$. 
+  We can thus apply \Cref{IntermediateValue} to $\pi_0\circ \gamma : [0,1] \to [0,1]$ to find some $v:[0,1]$ with $\pi_0(\gamma(v)) = b_k$. Then by \Cref{NonZeroOnGraph} and \Cref{topbottomSeq} we find that $\pi_1(\gamma(v)) = -1$.
   The case for $u$ is similar. 
 \end{proof}
 
 \begin{theorem}[The topologist's sine curve is not path-connected]
-  There is no map $\gamma:[0,1] \to \mathcal S$ such that $\gamma(0) = (0,0)$ and $\gamma(1) = (1,sin(1))$. 
+  There is no map $\gamma:[0,1] \to \mathcal S$ such that $\gamma(0) = (0,0)$ and $\gamma(1) = (1,\sin(1))$. 
 \end{theorem}
 \begin{proof}
   By applying dependent choice to \Cref{SineWillHitTopBot}, 
-  we can find sequences $u_i,v_i,~i:\N$ such that $\pi_2(\gamma(u_i)) = 1, \pi_2(\gamma(v_i)) = -1$ and 
+  we can find sequences $u_i,v_i,~i:\N$ such that $\pi_1(\gamma(u_i)) = 1, \pi_1(\gamma(v_i)) = -1$ and 
   $u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\mathbb N$. 
   We now apply \Cref{UniformContinuity} for $\epsilon =2 $.
   There is some $\delta>0$ such that $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$ as  $d(\gamma(u_i), \gamma(v_j)) \geq 2$. 
@@ -79,45 +79,44 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \end{remark}
 
 \subsection{The shape of the curve}
-We will prove that $\mathcal S$ is $[0,1]$-contractible. 
 \begin{remark}
   We denote for each $r:[0,1]$ the fiber 
-  $\mathcal S_r:= (\pi_1\circ \iota)^{-r}$. 
+  $\mathcal S_r:= (\pi_0\circ \iota)^{-1}(r)$. 
   Note that 
-  $\mathcal S_r = \mathcal S \cap (\pi_1^{-1}(r)) = 
+  $\mathcal S_r = \mathcal S \cap (\pi_0^{-1}(r)) =
   \mathcal S \cap (\{r\} \times [-1,1])$, and that $\mathcal S_r$ is closed for all $r:[0,1]$. 
 \end{remark}
 
 
 \begin{lemma}\label{fiberInhabited}
-  $\pi_1\circ \iota : \mathcal S \to [0,1]$ is surjective.  
+  $\pi_0\circ \iota : \mathcal S \to [0,1]$ is surjective.
 \end{lemma}
 \begin{proof}
   We shall show that for each $r:[0,1]$ the fiber $\mathcal S_r$ is merely inhabited. 
 %
   By \Cref{compactnessCHaus}, 
-  it's sufficient to show that $\pi_1^{-1}(r) \cap \mathcal S_k$ 
+  it's sufficient to show that $\pi_0^{-1}(r) \cap \mathcal S_k$
   is merely inhabited for any $k:\mathbb N$. 
 %
   Let $k:\mathbb N$. 
-  As we're showing a proposition, we make for each $k:\N$ a case distinction based on \Cref{LLPO}:
+  As we're showing a proposition, we can make a case distinction based on \Cref{LLPO}:
 %  Note that $r\leq \frac1k \vee r \geq \frac 1k$. 
   \begin{itemize}
     \item If $r\leq \frac1k$, we have that $(r,0) \in \mathcal S_k$. 
     \item If $r\geq \frac1k$, $\frac1r$ is well-defined and 
       $(r,\sin(\frac1r)) \in \mathcal S_k$. 
   \end{itemize}
-  Hence in both cases we have that $\pi_1^{-1}(r) \cap \mathcal S_k$ is inhabited, as required. 
+  Hence in both cases we have that $\pi_0^{-1}(r) \cap \mathcal S_k$ is inhabited, as required. 
 \end{proof}
 
 \begin{lemma}
-  For each $k:\mathbb N$ and $r:[0,1]$, $\mathcal S_k\cap \pi_1^{-1}(r)$ is convex. 
+  For each $k:\mathbb N$ and $r:[0,1]$, $\mathcal S_k\cap \pi_0^{-1}(r)$ is convex.
 \end{lemma}
 \begin{proof}
-  Suppose that $(x,y), (x',y')$ both lie in $\mathcal S_k\cap \pi_1^{-1}(r)$. 
+  Suppose that $(x,y), (x',y')$ both lie in $\mathcal S_k\cap \pi_0^{-1}(r)$.
   Suppose furthermore that $\alpha,\beta:[0,1], \alpha+ \beta = 1$. 
-  We will show that $\alpha\cdot (x,y) + \beta\cdot (x',y') $ also lies in 
-  $\mathcal S_k \cap \pi_1^{-1}(r)$. 
+  We will show that $\alpha\cdot (x,y) + \beta\cdot (x',y') $ also lies in
+  $\mathcal S_k \cap \pi_0^{-1}(r)$.
 
   Recall that 
   $\mathcal S_k = [0,\frac1k] \times [-1,1]  \cup graph(s_k)$. 
@@ -126,17 +125,17 @@ We will prove that $\mathcal S$ is $[0,1]$-contractible.
   from $graph(s_k)$.
   \begin{itemize}
     \item 
-      If either comes from $[0,\frac1k] \times [-1,1]$, we must have that 
-      then $r \leq \frac1k$. 
-      Then $\pi_1^{-1}(r) = \{r\} \times [-1,1]\subseteq \mathcal S_k$. 
-      It follows that $\pi_1^{-1}(r) \cap \mathcal S_k = \{r\} \times [-1, 1]$, which is convex. 
+      If either comes from $[0,\frac1k] \times [-1,1]$, we must have that
+      $r \leq \frac1k$.
+      Then $\pi_0^{-1}(r) = \{r\} \times [-1,1]\subseteq \mathcal S_k$.
+      It follows that $\pi_0^{-1}(r) \cap \mathcal S_k = \{r\} \times [-1, 1]$, which is convex. 
     \item 
-      If both come from $graph(t)$, 
+      If both come from $graph(s_k)$,
       then $x = x' = r$ and $y = y' = \sin(\frac1r)$. 
       Hence $(x,y) = (x',y')$ and thus $\alpha(x,y) + \beta(x',y') = (x',y')$. 
   \end{itemize}
-  In both cases we conclude that $\alpha (x,y) + \beta(x',y')$ lies in 
-  $\mathcal S_k\cap \pi_1^{-1}(r)$. 
+  In both cases we conclude that $\alpha (x,y) + \beta(x',y')$ lies in
+  $\mathcal S_k\cap \pi_0^{-1}(r)$.
 \end{proof}
 
 \begin{corollary}\label{fiberConvex}
@@ -144,16 +143,16 @@ We will prove that $\mathcal S$ is $[0,1]$-contractible.
   $\mathcal S_r$ is convex. 
 \end{corollary}
 \begin{proof}
-  Any intersection of convex subspaces of $\mathbb R^n$ is itself convex
+  Any intersection of convex subspaces of $\mathbb R^n$ is itself convex.
 \end{proof}
 \begin{theorem}
   $\mathcal S$ is $[0,1]$-contractible. 
 \end{theorem}
 \begin{proof}
 %  We write $\mathcal S = \sum\limits_{r:[0,1]} \mathcal S_r$.
-  By \Cref{fiberConvex} and \Cref{fiberInhabited}, each fiber $S_r$ is convex and inhabited, hence by \Cref{ConvexInhabitedToContractible} also $[0,1]$-contractible. 
+  By \Cref{fiberConvex} and \Cref{fiberInhabited}, each fiber $\mathcal S_r$ is convex and inhabited, hence by \Cref{ConvexInhabitedToContractible} also $[0,1]$-contractible. 
 %
-  Thus both the maps $\pi_0 \circ i :\mathcal S \to [0,1]$ and $[0,1] \to 1$ have $[0,1]$-contractible fibers. 
+  Thus both the maps $\pi_0 \circ \iota :\mathcal S \to [0,1]$ and $[0,1] \to 1$ have $[0,1]$-contractible fibers. 
   By \parencite[Lemma 1.33]{modalities}, so does their composite. 
   It follows that $\mathcal S$ is $[0,1]$-contractible. 
 \end{proof}
