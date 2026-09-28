@@ -26,38 +26,34 @@ For all types $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$ fo
 %From now on, we will assume these axioms. 
 
 \subsection{The topology of compact Hausdorff spaces}
+By \parencite[Cor 3.9]{synthetic-stone-duality}, we can define the type of closed propositions as follows:
 \begin{definition}\label{dfnClosedOpen}
-  A proposition $P$ is called \textbf{closed} if it is Stone. if there exists a binary sequence $\alpha:2^\N$ such that $P\leftrightarrow \forall_{n:\N} \alpha_n = 0$. Similarly, $P$ is called \textbf{open} if there exists some $\alpha:2^\N$ such that  $P\leftrightarrow \exists_{n:\N} \alpha_n = 1$. 
-  The types of closed, open propositions are called $\Closed,\Open$ respectively. 
-  For $X$ a type and $A:X \to \Prop$ a subset, we call $A$ closed, open if $A$ factors over $\Closed,\Open$ respectively. 
+  A proposition $P$ is called \textbf{closed} if it is Stone. 
+  The type of closed propositions is called $\Closed$.
+  For $X$ a type and $A:X \to \Prop$ a subset, we call $A$ closed if $A$ factors over $\Closed$.
 \end{definition}
-In \parencite[Lemma 1.21,Rmk 1.20, Cor 3.9]{synthetic-stone-duality} the following is shown:
+In \parencite[Rmk 1.20, Lemma 1.21]{synthetic-stone-duality} the following is shown:
 \begin{lemma}\label{ClosureClosedOpen}
-  $\Closed$ is closed under countable conjunctions and finite disjunctions. $\Open$ is closed under countable disjunctions and finite conjunctions. 
-  The negation of an open proposition is closed and the other way around. Both classes are $\neg\neg$-stable. 
-  A proposition is closed if and only if it is Stone. 
+  $\Closed$ is closed under countable conjunctions and finite disjunctions. Also closed propositions are double-negation stable.
 \end{lemma}
 
+From \parencite[Cor 4.9]{synthetic-stone-duality}, we recall the following:
+\begin{lemma}\label{ExistsClosedSubsetDoubleNegation}
+  Let $X:\CHaus$ and $A\subseteq X$ closed. Then $\exists_{x:X}A(x)$ is closed and equivalent to $A\neq \emptyset$. 
+\end{lemma}
 
 \begin{lemma}\label{CHausClosedImage}
   Let $X:\CHaus$ and $A\subseteq X$ a subset. Then $A$ is closed if and only if it is the image of a compact Hausdorff space. 
 \end{lemma}
 \begin{proof}
-  Assume $A\subseteq X$ closed, by \parencite[Lemma 4.2]{synthetic-stone-duality}, $A$ is the image of some closed subset of a Stone space, which is itself Stone by \parencite[Cor 3.12]{synthetic-stone-duality}. If $f:X \to Y$ is a map of compact Hausdorff types, then $f(X) = \{ y : Y | \exists_{x:X} f(x) = y\}$, which is closed by \parencite[Cor 3.13]{synthetic-stone-duality}. 
+  Assume $A\subseteq X$ closed, by \parencite[Lemma 4.2]{synthetic-stone-duality}, $A$ is the image of some closed subset of a Stone space, which is itself Stone by \parencite[Cor 3.12]{synthetic-stone-duality}. If $f:X \to Y$ is a map of compact Hausdorff types, then $f(X) = \{ y : Y | \exists_{x:X} f(x) = y\}$, which is closed by \Cref{ExistsClosedSubsetDoubleNegation}.
 \end{proof}
-%\begin{lemma}\label{Boundedness}
-%  Let $X:\CHaus$ and $f:X \to \N$. Then the image of $f$ is bounded. 
-%\end{lemma}
-%\begin{proof}
-%  It sufficices to show this for $X:\Stone$, which is done in \parencite[Lemma 3.6]{synthetic-stone-duality}
-%\end{proof}
-
 The compact Hausdorff spaces are indeed compact in the following sense:
 \begin{lemma}\label{compactnessCHaus}
   Let $X:\CHaus$ and $C:\N \to X \to \Closed$. Then $\bigcap_{n:\N} C_n$ is inhabited as soon as for all $k:\N$ the finite intersection $\bigcap_{n<k} C_n$ is inhabited. 
 \end{lemma}
 \begin{proof}
-  By \parencite[Cor 4.3]{synthetic-stone-duality}, it is sufficient to show that the infinite intersection is nonempty as soon as the finite intersections are, which is \parencite[Lemma 4.5]{synthetic-stone-duality}.
+  By \Cref{ExistsClosedSubsetDoubleNegation}, it is sufficient to show that the infinite intersection is nonempty as soon as the finite intersections are, which is \parencite[Lemma 4.5]{synthetic-stone-duality}.
 \end{proof}
 
 \subsection{The unit interval}
@@ -65,12 +61,17 @@ The compact Hausdorff spaces are indeed compact in the following sense:
   In \parencite[Thm 4.22]{synthetic-stone-duality}, it is shown that the interval $[0,1]$ of Cauchy reals as in \cite{Bishop} is compact Hausdorff. By rescaling, so is any closed interval $[a,b]\subseteq \R$ for any $a,b:\R$. Furthermore, in \parencite[Lemma 4.11]{synthetic-stone-duality}, it is shown that $\CHaus$ is closed under $\Sigma$, and hence in particular finite products. 
 \end{example}
 \begin{remark}\label{CauchyDfns}
-  We recall that for the Cauchy reals, we can define the relations $<,\leq : \R \to \R \to \Prop$, which are open and closed respectively \parencite[Dfn 2.7, 2.10]{Bishop}. 
-  We also recall  that we can define the standard functions
- $\frac{1}{\cdot}:\R_{\neq 0} \to \R$,
-  $|\cdot|,\sin,-:\R \to \R$ and 
-  $+,\cdot,\max,\min: \R \to \R \to \R$ \parencite[Dfn 2.4, Prop 2.13, p 20, p58]{Bishop}.
-  \rednote{TODO when done see which you really need}
+  We recall that for the Cauchy reals, we can define the relations $<,\leq : \R \to \R \to \Prop$, and the standard functions 
+ $\frac{1}{\cdot}:\R_{\neq 0} \to \R$ and
+%  $|\cdot|,\sin,-:\R \to \R$ and 
+  $\sin:\R \to \R$ 
+%  $+,\cdot,\max,\min: \R \to \R \to \R$ 
+%  Dfn 2.4 (+,times,max,-, 
+%  Prop 2.13, 1/
+% p 20 min, 
+% p58 sin,cos
+  % 2.7 defines nonnegative and positive and 2.10 defines >,\geq using these
+  \parencite[Dfn 2.7,Dfn 2.10, Prop 2.13, p58]{Bishop}.
 \end{remark}
 
   In \parencite[Cor 1.16]{synthetic-stone-duality}, Markov's principle is shown, which is equivalent to the following statement:
