@@ -13,9 +13,9 @@
 ## Proofreading
 
 - Dan (others too): intro:  one pass done, but needs more revision
-- Fabian: Section 1
-- Thomas: Section 2
-- Felix:  Section 3, 3.23: find ref
+- Fabian: Section 2
+- Thomas: Section 3
+- Felix:  Section 4
 
 ## Misc
 
