@@ -53,8 +53,8 @@ Because of \Cref{CauchyDfns} we can make the following definition:
   Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_1(\gamma(u)) = 1$, and $\pi_1(\gamma(v)) = -1$.
 \end{lemma}
 \begin{proof}
-  By \Cref{cofinaltbseq}, there exists some $k:\N$ such that $0 < b_k<r$. 
-  We can thus apply \Cref{IntermediateValue} to $\pi_0\circ \gamma : [0,1] \to [0,1]$ to find some $v:[0,1]$ with $\pi_0(\gamma(v)) = b_k$. Then by \Cref{NonZeroOnGraph} and \Cref{topbottomSeq} we find that $\pi_1(\gamma(v)) = -1$.
+  By \Cref{cofinaltbseq}, there exists some $k:\N$ such that $0 < b_k<\pi_0(\gamma(r))$. 
+  We can thus apply \Cref{IntermediateValue} to $\pi_0\circ \gamma : [0,r] \to [0,1]$ to find some $v:[0,r]$ with $\pi_0(\gamma(v)) = b_k$. Then by \Cref{NonZeroOnGraph} and \Cref{topbottomSeq} we find that $\pi_1(\gamma(v)) = -1$.
   The case for $u$ is similar. 
 \end{proof}
 
@@ -80,11 +80,11 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 
 \subsection{The shape of the curve}
 \begin{remark}
-  We denote for each $r:[0,1]$ the fiber 
-  $\mathcal S_r:= (\pi_0\circ \iota)^{-1}(r)$. 
-  Note that 
-  $\mathcal S_r = \mathcal S \cap (\pi_0^{-1}(r)) =
-  \mathcal S \cap (\{r\} \times [-1,1])$, and that $\mathcal S_r$ is closed for all $r:[0,1]$. 
+%  We denote for each $r:[0,1]$ the fiber 
+%  $\mathcal S_r := (\pi_0\circ \iota)^{-1}(r)$. 
+  Note that for each $r$ the fiber 
+  $ (\pi_0\circ \iota)^{-1}(r) = \mathcal S \cap (\pi_0^{-1}(r)) =
+  \mathcal S \cap (\{r\} \times [-1,1])$ is closed.% for all $r:[0,1]$. 
 \end{remark}
 
 
@@ -92,7 +92,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
   $\pi_0\circ \iota : \mathcal S \to [0,1]$ is surjective.
 \end{lemma}
 \begin{proof}
-  We shall show that for each $r:[0,1]$ the fiber $\mathcal S_r$ is merely inhabited. 
+  We shall show that for each $r:[0,1]$ the fiber $(\pi_0\circ \iota)^{-1}(r)$ is merely inhabited. 
 %
   By \Cref{compactnessCHaus}, 
   it's sufficient to show that $\pi_0^{-1}(r) \cap \mathcal S_k$
@@ -128,7 +128,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
       If either comes from $[0,\frac1k] \times [-1,1]$, we must have that
       $r \leq \frac1k$.
       Then $\pi_0^{-1}(r) = \{r\} \times [-1,1]\subseteq \mathcal S_k$.
-      It follows that $\pi_0^{-1}(r) \cap \mathcal S_k = \{r\} \times [-1, 1]$, which is convex. 
+      It follows that $\mathcal S_k \cap \pi_0^{-1}(r) = \{r\} \times [-1, 1]$, which is convex. 
     \item 
       If both come from $graph(s_k)$,
       then $x = x' = r$ and $y = y' = \sin(\frac1r)$. 
@@ -140,7 +140,9 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 
 \begin{corollary}\label{fiberConvex}
   For each $r:[0,1]$, the fiber 
-  $\mathcal S_r$ is convex. 
+  $(\pi\circ\iota)^{-1}(r)$
+  %$S \cap (\{r\} \times [-1,1])$ 
+  is convex. 
 \end{corollary}
 \begin{proof}
   Any intersection of convex subspaces of $\mathbb R^n$ is itself convex.
@@ -150,9 +152,9 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \end{theorem}
 \begin{proof}
 %  We write $\mathcal S = \sum\limits_{r:[0,1]} \mathcal S_r$.
-  By \Cref{fiberConvex} and \Cref{fiberInhabited}, each fiber $\mathcal S_r$ is convex and inhabited, hence by \Cref{ConvexInhabitedToContractible} also $[0,1]$-contractible. 
+  By \Cref{fiberConvex} and \Cref{fiberInhabited}, each fiber $(\pi\circ\iota)^{-1}(r)$ is convex and inhabited, hence by \Cref{ConvexInhabitedToContractible} also $[0,1]$-contractible. 
 %
-  Thus both the maps $\pi_0 \circ \iota :\mathcal S \to [0,1]$ and $[0,1] \to 1$ have $[0,1]$-contractible fibers. 
+  Thus both $\pi_0 \circ \iota :\mathcal S \to [0,1]$ and $[0,1] \to 1$ have $[0,1]$-contractible fibers. 
   By \parencite[Lemma 1.33]{modalities}, so does their composite. 
   It follows that $\mathcal S$ is $[0,1]$-contractible. 
 \end{proof}
