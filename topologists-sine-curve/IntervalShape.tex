@@ -1,0 +1,69 @@
+TODO intro mentioning \cite{shulman-Brouwer-fixed-point}, \cite{modalities}.
+
+\begin{definition}
+  Let $C$ be any type. 
+  A type $X$ is \textbf{$C$-local} whenever the map $X \to X^{C}$ is an equivalence. 
+  A type $Y$ is \textbf{$C$-contractible} if for all $C$-local types $X$ the map $X \to X^Y$ is an equivalence. 
+\end{definition}
+\begin{lemma}
+  For any $C$ type, the $C$-contractible types are closed under $\Sigma$.
+\end{lemma}
+\begin{proof}
+  Let $X$ be a $C$-local type, and let 
+  $Y$ be a $C$-contractible type and 
+  $Z(y)$ a family of $C$-contracitlbe types over $Y$. 
+  Then the map $X \to X^{\Sigma_{y:Y} Z(y)}$ factors as 
+  $$
+  X \simeq 
+  X^Y\simeq 
+  \Pi_{y:Y} X \simeq 
+  \Pi_{y:Y} X^{Z(y)} \simeq 
+  X^{\Sigma_{y:Y} Z(y)} 
+  $$
+\end{proof}
+
+\begin{definition}
+  Let $A$ be a type. For $a,b:A$, a \textbf{path} from $a$ to $b$ is a map $\gamma:[0,1]\to A$ with $\gamma(0) = a,\gamma(1) = b$. 
+  $A$ is called \textbf{path connected} if for any $a,b:X$ there merely exists a path from $a$ to $b$.
+  $A$ is called \textbf{continuously path-connected} if for any $a,b:A$ we have a path from $a$ to $b$. 
+  %Note difference with \exists and \Sigma
+\end{definition} 
+Note the difference between the above two definitions. It is known for example that the topological circle is path-connected, but not continuously. 
+
+
+
+
+
+
+
+
+
+\subsection{Paths and $[0,1]$-contractibility}
+In this note, we will compare the notion of a space being path-connected and a space being $[0,1]$-contractible. In this section, we recall these notions.
+
+\begin{definition}
+  Let $A$ be a type. For $a,b:A$, a \textbf{path} from $a$ to $b$ is a map $\gamma:[0,1]\to A$ with $\gamma(0) = a,\gamma(1) = b$. 
+  $A$ is called \textbf{continuously path-connected} if for any $a,b:A$ we have a path from $a$ to $b$. %$\gamma:[0,1]\to A$ with $\gamma(0) = a$ and $\gamma(1) = b$. 
+  %Note difference with \exists and \Sigma
+\end{definition}
+\begin{remark}
+  Note the difference 
+\end{remark}
+
+\begin{definition}
+  We denote $L_{[0,1]}$ for the modality defined by localizing at $[0,1]$ as in \cite{modalities}. 
+%
+  A type $X$ is called \textbf{$[0,1]$-contractible} if $L_{[0,1]}(X)$ is contractible as a type. 
+\end{definition}
+
+\begin{remark}\label{pathConnectedToContractible}
+In \parencite[Lemma 5.24]{synthetic-stone-duality}, it is shown that any inhabited continuously path-connected type is $[0,1]$-contractible. 
+\end{remark} 
+\begin{definition}
+  Let $X\subseteq \R^n$. $X$ is called \textbf{convex} if for any $x,y:X$ and $a,b:[0,1]$ with $a+b = 1$, we have $X(x) \wedge X(y) \to X(ax+by)$. 
+\end{definition}
+\begin{remark}\label{ConvexInhabitedToContractible}
+Using the path $t\mapsto tx + (1-t)y$, it can be shown that any convex type is path-connected. 
+Hence if  a convex type is inhabited, it is also $[0,1]$-contractible by \Cref{pathConnectedToContractible}.\end{remark}  
+
+
