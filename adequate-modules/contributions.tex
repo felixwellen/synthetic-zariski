@@ -8,12 +8,12 @@ A proof of Serre duality for a projective scheme $X$ over a field $k$ can be fou
 \end{enumerate}
 
 In synthetic algebraic geometry, the base ring $R$ is inherently not a field in a strong enough sense to support these points. Moreover, $R$ is not coherent. Even classically, for non coherent rings, \ref{locally-free-is-coherent} fails.
-Over a more general ring, the best one can hope for concerning \ref{coherent-cohomology-groups} is, that the cohomology modules are all in the abelian closure of finite free modules.
-Then, \ref{coherent-cohomology-groups} and \ref{dualization-on-k-vector-spaces} together mean that the abelian closure of finite free modules should have an exact dualization functor. Classically, this is very specific to fields and one might think at this point that this proof of Serre duality is not suitable for a synthetic adaption.
+Over the ring $R$, the best one can hope for concerning \ref{coherent-cohomology-groups} is that the cohomology modules are all in the abelian closure of finite free modules.
+Then, \ref{coherent-cohomology-groups} and \ref{dualization-on-k-vector-spaces} entail together that the abelian closure of finite free modules should have an exact dualization functor. Classically, this is very specific to fields and one might think at this point this approach to a synthetic Serre duality is too naiv.
 
 However, in~\cite{diffgeo-article}, a surprising observation was made:
 Any finitely presented $R$-module $M$ is reflexive, i.e.\ canonically isomorphic to its double dual $M^{\ast\ast}$, where $M^\ast$ is $\Hom_R(M,R)$.
-It is known that finitely presented $R$-modules do not form an abelian category, so at least kernels of maps between finitely presented $R$-modules have to be included. We call the modules that merely are such kernels \emph{finitely adequate $R$-modules} and it turns out that they already form an abelian category $\finadeq$ with the following surprisingly good properties:
+It is known that finitely presented $R$-modules do not form an abelian category, so at least kernels of maps between finitely presented $R$-modules have to considered as well. We call the modules that merely are such kernels \emph{finitely adequate $R$-modules} and it turns out that they already form an abelian category $\finadeq$ with the following surprisingly good properties:
 
 \begin{itemize}
 \item The module $\Hom_R(M, N)$ is finitely adequate when $M$ and $N$ are.
@@ -23,12 +23,9 @@ It is known that finitely presented $R$-modules do not form an abelian category,
 \item The category of finitely adequate modules is closed symmetric monoidal, with tensor product the double dual of the usual tensor product.
 \end{itemize}
 
-\rednote{TODO: BEGIN transition/adapt}
-In synthetic algebraic geometry, we work with a generalization of $\mathcal O_X$-module sheaves called $R$-module \emph{bundles}.
-Module bundles are just maps $X\to \Mod{R}$, assigning to each point of a type $X$ an $R$-module. In \cite{draft}, the abelian category of \emph{weakly quasi-coherent} $R$-modules was defined and bundles of such modules on schemes were used for cohomological calculations. While these bundles are more general than the usual quasi-coherent $\mathcal O_X$-modules, it was still possible to adapt many proofs from the literature to this setting. Similarly, a synthetic replacement for coherent sheaves should admit the same arguments used in known proofs. However, any direct parallel of the definition of coherent sheaves is bound to fail: classically, this definition only works well if finitely presented modules over the base ring form an abelian category, which is known to be false for $R$.
-
-Our initial hope was that $\mathcal A^\prime$ could be the category of \emph{finitely adequate $R$-modules} and $\mathcal A$ could be the bundles on $X$ with values in $\mathcal A^\prime$. In work in progress based on this article it turned out that $\mathcal A$ has to be a smaller category, for example the category of vector bundles on $X$, in order for the cohomology to take values in finitely adequate $R$-modules. With this restriction it seems to be the case that Serre duality follows with a proof similar to that of Hartshorne. The externalization of this proof would give a constructive proof of Serre duality over a general ring. We do not know of an existing constructive proof or any proof in this generality.
-\rednote{TODO: END transition/adapt}
+To present the synthetic notion of coherent sheaf suggested by these results,
+we have to note that in synthetic algebraic geometry, we work with a generalization of $\mathcal O_X$-module sheaves called $R$-module \emph{bundles}.
+Module bundles are just maps $X\to \Mod{R}$, assigning to each point of a type $X$ an $R$-module. Our initial hope was that module bundles on a scheme which are pointwise finitely adequate are a good synthetic adaption of coherent sheaves. In work in progress based on this article it turned out that this was a bit too optimistic since the obvious translation of Serre duality does not even hold for these finitely adequate bundles. Despite that negative result, we still expect that these bundles will play a role in the further development of synthetic algebraic geometry due to the good properties mentioned above. In the same work in progress it was proven that vector bundles on smooth projective schemes, which we define as pointwise finite free module bundles, do have cohomology in finitely adequate modules. With this restriction to vector bundles and smooth schemes it seems to be the case that Serre duality follows with a proof similar to that of Hartshorne. The externalization of this proof would give a constructive proof of Serre duality over a general ring. We do not know of an existing constructive proof or any proof in this generality.
 
 All of the results about the category of finitely adequate modules mentioned above are shown in \Cref{adequate-section}. Prior work in~\cite{diffgeo-article} already showed that finitely copresented $R$-modules are projective, and the argument used differential geometry. The differential geometry of the underlying types of some modules plays an even larger role in the present work and is essential in our proof that finitely adequate $R$-modules are closed under extension.
 
