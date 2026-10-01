@@ -1,18 +1,18 @@
 TODO intro mentioning \cite{shulman-Brouwer-fixed-point}, \cite{modalities}.
 
 \begin{definition}
-  Let $C$ be any type. 
-  A type $X$ is \textbf{$C$-local} whenever the map $X \to X^{C}$ is an equivalence. 
-  A type $Y$ is \textbf{$C$-contractible} if for all $C$-local types $X$ the map $X \to X^Y$ is an equivalence. 
+  Let $C$ be a type. 
+  A type $X$ is \textbf{$C$-local} if the constant map $X \to X^{C}$ is an equivalence. 
+  A type $Y$ is \textbf{$C$-contractible} if for all $C$-local types $X$ the constant map $X \to X^Y$ is an equivalence. 
 \end{definition}
 \begin{lemma}
-  For any $C$ type, the $C$-contractible types are closed under $\Sigma$.
+  For any $C$ type, the $C$-contractible types are closed under dependent sums. 
 \end{lemma}
 \begin{proof}
   Let $X$ be a $C$-local type, and let 
   $Y$ be a $C$-contractible type and 
   $Z(y)$ a family of $C$-contracitlbe types over $Y$. 
-  Then the map $X \to X^{\Sigma_{y:Y} Z(y)}$ factors as 
+  Then the constant map $X \to X^{\Sigma_{y:Y} Z(y)}$ factors as 
   $$
   X \simeq 
   X^Y\simeq 
@@ -25,11 +25,24 @@ TODO intro mentioning \cite{shulman-Brouwer-fixed-point}, \cite{modalities}.
 \begin{definition}
   Let $A$ be a type. For $a,b:A$, a \textbf{path} from $a$ to $b$ is a map $\gamma:[0,1]\to A$ with $\gamma(0) = a,\gamma(1) = b$. 
   $A$ is called \textbf{path connected} if for any $a,b:X$ there merely exists a path from $a$ to $b$.
-  $A$ is called \textbf{continuously path-connected} if for any $a,b:A$ we have a path from $a$ to $b$. 
+  $A$ is called \textbf{strongly path-connected} if we have a function that assigns to each $a,b:A$ a path from $a$ to $b$. 
   %Note difference with \exists and \Sigma
 \end{definition} 
-Note the difference between the above two definitions. It is known for example that the topological circle is path-connected, but not continuously. 
-
+\begin{example}
+  Note that the topological circle is path connected, but not strongly so. 
+\end{example}
+\begin{lemma}
+  Any inhabited strongly path-connected type is $[0,1]$-contracitble. 
+\end{lemma}
+\begin{proof}
+  Let $X$ be $[0,1]$-local and $A$ strongly path-connected and inhabited. As we're showing a proposition, we may assume $a:A$. We claim that $ev_a:X^A\to X$ is an inverse of the constant map $c:X \to X^A$. 
+  This requires us to show that for any $f:X^A, b:A$ we have $f(a) = f(b)$. 
+%  Clearly we have $ev_a\circ c = id_X$. To see that $c\circ ev_a = id_{X^A}$, we need to show that $\Pi_{f:X^A,b:A}(f(b) =f(a))$. 
+  %Let $f:X^A$ and $b:A$. 
+  By strong path-connectedness we have $\gamma:[0,1]\to A$ with $\gamma(0) = a,\gamma(1) = b$. 
+  By $[0,1]$-locality, $f\circ \gamma : [0,1] \to X$ equals some constant path at $x:X$. 
+  In partciular we have $f(a) = f(\gamma(0)) = x = f(\gamma(1)) = f(b)$ as required. 
+\end{proof}
 
 
 
