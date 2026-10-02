@@ -5,7 +5,7 @@
   A type $Y$ is \textbf{$C$-contractible} if for all $C$-local types $X$ the constant map $X \to X^Y$ is an equivalence. 
 \end{definition}
 \begin{lemma}\label{contractibleSigma}
-  For any $C$ type, the $C$-contractible types are closed under dependent sums. 
+  For any type $C$, the $C$-contractible types are closed under dependent sums. 
 \end{lemma}
 \begin{proof}
   Let $X$ be a $C$-local type, and let 
@@ -28,7 +28,7 @@
 
 \begin{definition}
   Let $A$ be a type. For $a,b:A$, a \textbf{path} from $a$ to $b$ is a map $\gamma:[0,1]\to A$ with $\gamma(0) = a,\gamma(1) = b$. 
-  $A$ is called \textbf{path-connected} if for any $a,b:X$ there merely exists a path from $a$ to $b$.
+  $A$ is called \textbf{path-connected} if for any $a,b:A$ there merely exists a path from $a$ to $b$.
   $A$ is called \textbf{path-contractible} if we have a function that assigns to each $a,b:A$ a path from $a$ to $b$. 
   %Note difference with \exists and \Sigma
 \end{definition} 
@@ -39,22 +39,22 @@
   Any inhabited path-contractible type is $[0,1]$-contractible. 
 \end{lemma}
 \begin{proof}
-  Let $X$ be $[0,1]$-local and $A$ path-contractible and inhabited. As we're showing a proposition, we may assume $a:A$. We claim that $ev_a:X^A\to X$ is an inverse of the constant map $X \to X^A$. 
+  Let $X$ be $[0,1]$-local and $A$ path-contractible and inhabited. As we're showing a proposition, we may assume $a:A$. We claim that $\mathrm{ev}_a:X^A\to X$ is an inverse of the constant map $X \to X^A$. 
   This requires us to show that for any $f:X^A, b:A$ we have $f(a) = f(b)$. 
 %  Clearly we have $ev_a\circ c = id_X$. To see that $c\circ ev_a = id_{X^A}$, we need to show that $\Pi_{f:X^A,b:A}(f(b) =f(a))$. 
   %Let $f:X^A$ and $b:A$. 
   By path-contractibility we have $\gamma:[0,1]\to A$ with $\gamma(0) = a,\gamma(1) = b$. 
   By $[0,1]$-locality, $f\circ \gamma : [0,1] \to X$ equals some constant path at $x:X$. 
-  In partciular we have $f(a) = f(\gamma(0)) = x = f(\gamma(1)) = f(b)$ as required. 
+  In particular, we have $f(a) = f(\gamma(0)) = x = f(\gamma(1)) = f(b)$ as required. 
 \end{proof}
 We shall see in the rest of this note that the converse to \Cref{pathContractibleToLocalizationContractible} is false. % being $[0,1]$-contractible does not make a type path-contractible. 
 We conclude this section by mentioning the helpful notion of convexity: 
 \begin{definition}
-  Let $X\subseteq \R^n$. $X$ is called \textbf{convex} if for any $x,y:X$ and $a,b:[0,1]$ with $a+b = 1$, we have $X(x) \wedge X(y) \to X(ax+by)$. 
+  Let $X\subseteq \R^n$. $X$ is called \textbf{convex} if for any $x,y:\R^n$ and $a,b:[0,1]$ with $a+b = 1$, we have $X(x) \wedge X(y) \to X(ax+by)$. 
 \end{definition}
 \begin{remark}\label{ConvexInhabitedToContractible}
 Using the path $t\mapsto tx + (1-t)y$, it can be shown that any convex type is path-contractible. 
-Hence if  a convex type is inhabited, it is also $[0,1]$-contractible by \Cref{pathContractibleToLocalizationContractible}.
+Hence if a convex type is inhabited, it is also $[0,1]$-contractible by \Cref{pathContractibleToLocalizationContractible}.
 \end{remark}
 
   

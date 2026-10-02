@@ -5,11 +5,11 @@ The topologist's sine curve $\mathcal S$ is an example of a topological space th
 Because of \Cref{CauchyDfns} we can make the following definition:
 \begin{definition}%[The topologist's sine curve]
   For $k:\mathbb N_{\geq1}$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $\mathcal S_k \subseteq [0,1] \times [-1,1]$ by 
-  $$\mathcal S_k = \left([0, \frac1k] \times [-1,1]\right) \cup graph(s_k)$$
+  $$\mathcal S_k = \left([0, \frac1k] \times [-1,1]\right) \cup \mathrm{graph}(s_k).$$
   We define \textbf{the topologist's sine curve} $\mathcal S = \bigcap_{k:\mathbb N_{\geq1}} \mathcal S_k$. 
 \input{Picture.tex}
 \end{definition}
-  We shall denote $\iota_k : \mathcal S_k \to [0,1] \times [-1,1]$ 
+  We shall write $\iota_k : \mathcal S_k \to [0,1] \times [-1,1]$ 
   and $\iota:\mathcal S \to [0,1] \times [-1,1]$ for the inclusion maps, and $\pi_0:[0,1] \times[-1,1] \to [0,1],
 \pi_1:[0,1] \times[-1,1] \to [-1,1]$ for the projection maps. 
 
@@ -18,7 +18,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
   The topologist's sine curve is a compact Hausdorff space.
 \end{lemma}
 \begin{proof}
-  Note that both $[0,\frac1k] \times [-1,1]$ and $graph(s_k)$ are the image of compact Hausdorff spaces, hence closed by \Cref{CHausClosedImage}.
+  Note that both $[0,\frac1k] \times [-1,1]$ and $\mathrm{graph}(s_k)$ are images of compact Hausdorff spaces, hence closed by \Cref{CHausClosedImage}.
   By \Cref{ClosureClosedOpen} it follows that $\mathcal S$ is closed. We conclude by \Cref{CHausClosedImage}.
 \end{proof}
 
@@ -34,7 +34,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \begin{remark}
 %  We denote for each $r:[0,1]$ the fiber 
 %  $\mathcal S_r := (\pi_0\circ \iota)^{-1}(r)$. 
-  Note that for each $r$ the fiber 
+  Note that for each $r:[0,1]$ the fiber
   $ (\pi_0\circ \iota)^{-1}(r) = \mathcal S \cap (\pi_0^{-1}(r)) =
   \mathcal S \cap (\{r\} \times [-1,1])$ is closed.% for all $r:[0,1]$. 
 \end{remark}
@@ -66,15 +66,15 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \end{lemma}
 \begin{proof}
   Suppose that $(x,y), (x',y')$ both lie in $\mathcal S_k\cap \pi_0^{-1}(r)$.
-  Suppose furthermore that $\alpha,\beta:[0,1], \alpha+ \beta = 1$. 
+  Suppose furthermore $\alpha,\beta:[0,1]$ with $\alpha+ \beta = 1$. 
   We will show that $\alpha\cdot (x,y) + \beta\cdot (x',y') $ also lies in
   $\mathcal S_k \cap \pi_0^{-1}(r)$.
 
   Recall that 
-  $\mathcal S_k = [0,\frac1k] \times [-1,1]  \cup graph(s_k)$. 
+  $\mathcal S_k = [0,\frac1k] \times [-1,1]  \cup \mathrm{graph}(s_k)$. 
   As we will show a proposition, we can make a case distinction 
   for both $(x,y), (x',y')$ on whether they come from $[0,\frac 1k] \times [-1,1]$ or 
-  from $graph(s_k)$.
+  from $\mathrm{graph}(s_k)$.
   \begin{itemize}
     \item 
       If either comes from $[0,\frac1k] \times [-1,1]$, we must have that
@@ -82,7 +82,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
       Then $\pi_0^{-1}(r) = \{r\} \times [-1,1]\subseteq \mathcal S_k$.
       It follows that $\mathcal S_k \cap \pi_0^{-1}(r) = \{r\} \times [-1, 1]$, which is convex. 
     \item 
-      If both come from $graph(s_k)$,
+      If both come from $\mathrm{graph}(s_k)$,
       then $x = x' = r$ and $y = y' = \sin(\frac1r)$. 
       Hence $(x,y) = (x',y')$ and thus $\alpha(x,y) + \beta(x',y') = (x',y')$. 
   \end{itemize}
@@ -92,7 +92,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 
 \begin{corollary}\label{fiberConvex}
   For each $r:[0,1]$, the fiber 
-  $(\pi\circ\iota)^{-1}(r)$
+  $(\pi_0\circ\iota)^{-1}(r)$
   %$S \cap (\{r\} \times [-1,1])$ 
   is convex. 
 \end{corollary}
@@ -104,10 +104,10 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \end{theorem}
 \begin{proof}
 %  We write $\mathcal S = \sum\limits_{r:[0,1]} \mathcal S_r$.
-  By \Cref{fiberConvex} and \Cref{fiberInhabited}, each fiber $(\pi\circ\iota)^{-1}(r)$ is convex and inhabited, hence by \Cref{ConvexInhabitedToContractible} also $[0,1]$-contractible. 
+  By \Cref{fiberConvex} and \Cref{fiberInhabited}, each fiber $(\pi_0\circ\iota)^{-1}(r)$ is convex and inhabited, hence by \Cref{ConvexInhabitedToContractible} also $[0,1]$-contractible. 
   Also, note that $[0,1]$ is $[0,1]$-contractible by definition. 
   By \Cref{contractibleSigma} we conclude that  
-  $\mathcal S = \Sigma_{r:[0,1]} (\pi\circ\iota)^{-1}(r)$ is $[0,1]$-contractible. 
+  $\mathcal S = \Sigma_{r:[0,1]} (\pi_0\circ\iota)^{-1}(r)$ is $[0,1]$-contractible. 
 %  Hence by \Cref{contractibleSigma} we conclude. 
 %
 %  Thus both $\pi_0 \circ \iota :\mathcal S \to [0,1]$ and $[0,1] \to 1$ have $[0,1]$-contractible fibers. 
@@ -117,7 +117,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 
 \subsection{The curve is not path-connected}\label{curveNotPathConnected}
 \begin{remark}\label{topbottomSeq}
-  For each $k:\N$, denote $t_k = \frac1{(2k+\frac12) \pi}$ and  $b_k = \frac1{(2k+\frac32) \pi}$. 
+  For each $k:\N$, denote $t_k = \frac1{(2k+\frac12) \pi}$ and $b_k = \frac1{(2k+\frac32) \pi}$. 
   Note that for all $k:\N$ we have $\sin(\frac1{b_k})=-1, \sin(\frac1{t_k})=1$ and
   $1>t_k>b_k>t_{k+1}>b_{k+1}>0$. 
 \end{remark}
@@ -138,7 +138,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \begin{lemma}\label{SineWillHitTopBot}
   Let $\gamma:[0,1] \to \mathcal S$. 
   Assume that $\pi_0(\gamma(0)) = 0$ and $\pi_0(\gamma(r))>0$ for some $r:[0,1]$.
-  Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_1(\gamma(u)) = 1$, and $\pi_1(\gamma(v)) = -1$.
+  Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_1(\gamma(u)) = 1$ and $\pi_1(\gamma(v)) = -1$.
 \end{lemma}
 \begin{proof}
   By \Cref{cofinaltbseq}, there exists some $k:\N$ such that $0 < b_k<\pi_0(\gamma(r))$. 
@@ -153,9 +153,9 @@ Because of \Cref{CauchyDfns} we can make the following definition:
   By applying dependent choice to \Cref{SineWillHitTopBot}, 
   we can find sequences $u_i,v_i,~i:\N$ such that $\pi_1(\gamma(u_i)) = 1, \pi_1(\gamma(v_i)) = -1$ and 
   $u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\mathbb N$. 
-  We now apply \Cref{UniformContinuity} for $\epsilon =2 $.
+  We now apply \Cref{UniformContinuity} with $\epsilon =2 $.
   There is some $\delta>0$ such that $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$ as  $d(\gamma(u_i), \gamma(v_j)) \geq 2$. 
-  Therefore, the sequence $u_i$ is decreasing with steps of at least size $2\delta>0$. 
+  Therefore, the sequence $u_i$ is decreasing with steps of size at least $2\delta>0$. 
   But this means that for $N>\frac1{2\delta}$, we have $u_{N}<0$, while $u_N :[0,1]$, which is a contradiction. 
 \end{proof}
 
