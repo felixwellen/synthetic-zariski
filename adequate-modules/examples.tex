@@ -282,33 +282,33 @@ We begin by studying $R^U$ as $U$ ranges over the three families in~\eqref{eq:th
   is the proposition that $r$ is invertible, which is equivalent to $D(r)$
   by \cite[Proposition 2.2.3]{draft}.
   For the sake of contradiction, suppose that $R^{D(r)}$ is finitely adequate for all $r : R$.
-  By \Cref{cor:dual-equiv},
-  \[
-    R[r^{-1}]^\ast = \{ a=(a_0,a_1,\dots) : R^{\N} \;|\; \forall k \geq 1.\; a_{k-1} = ra_k \}
-  \]
+  By \Cref{cor:dual-equiv}, $R[r^{-1}]^\ast$
   is also finitely adequate, and is thus weakly quasi-coherent by \Cref{prp:fin-adeq-adeq}.
-  We now have a commutative square
+  We have a commutative square
   \[
   \begin{tikzcd}
-    (R[r^{-1}]^\ast)[r^{-1}] \ar[d, "\simeq"]\ar[r] & R[r^{-1}], \ar[d, "\simeq"] &[-25pt] \frac{a}{r^n} \mapsto \frac{a_0}{r^n} \\
-    (R[r^{-1}]^\ast)^{D(r)} \ar[r, "\simeq"] & R^{D(r)}, & f \mapsto f_0
+    (R[r^{-1}]^\ast)[r^{-1}] \ar[d, "\simeq"]\ar[r] & R[r^{-1}], \ar[d, "\simeq"] &[-25pt] \frac{g}{r^n} \mapsto \frac{g(1)}{r^n} \\
+    (R[r^{-1}]^\ast)^{D(r)} \ar[r, "\simeq"] & R^{D(r)}, & f \mapsto (p \mapsto f(p)(1))
   \end{tikzcd}
   \]
-  where the lower horizontal map is an equivalence with inverse
-  \[
-    b \mapsto (p \mapsto (b(p),r^{-1}b(p),\dots))\rlap{.}
-  \]
-  This is well-defined because $p$ witnesses that $r$ is invertible.
-  Accordingly, the upper horizontal map is an equivalence.
-  The preimage of $\frac{1}{1}:R[r^{-1}]$ along this map is represented by an element $\frac{a}{r^n}$ such that $0=r^k(a_0-r^n)=r^k(r^{n+1}a_{n+1}-r^n)=r^{k+n}(ra_{n+1}-1)$ for some $k$.
-  Since $R$ is local, we have $(ra_{n+1} \neq 0) \lor (ra_{n+1}-1 \neq 0)$, which readily implies that $(r \neq 0) \lor (r^{k+n} = 0)$.
+  in which the horizontal maps are induced by the map $R[r^{-1}]^{\ast} \to R$ that evaluates at $1$
+  and the vertical maps are equivalences by weak quasi-coherence.
+  The lower horizontal map is an equivalence because when we have $p : D(r)$,
+  we know that $r$ is invertible, and so $R[r^{-1}] = R$ and the evaluation
+  map gives the duality $R^\ast = R$.
+  Thus the upper horizontal map is an equivalence.
+
+  The preimage of $\frac{1}{1}:R[r^{-1}]$ along this map is represented by an element $\frac{g}{r^n}$ such that $0=r^k(g(1)-r^n)$ for some $k$.
+  Since $g(1) = r^{n+1} a$ for $a = g(1/r^{n+1})$, we have that
+  $0=r^k(r^{n+1}a-r^n)=r^{k+n}(ra-1)$.
+  Since $R$ is local, we have $(ra \neq 0) \lor (ra-1 \neq 0)$, which readily implies that $(r \neq 0) \lor (r^{k+n} = 0)$.
   But then any element $r:R$ would either be invertible or nilpotent, contradicting~\cite[Corollary~1.2.4]{topology-draft}.
 \end{counterexample}
 
 We next consider $R^{\lnot D(r)}$.
 First, observe that, by \cite[Proposition 2.2.3]{draft}, $\lnot D(r)$ is the proposition that $r$ is nilpotent.
-Equivalently, $\lnot D(r) = \bigcup_{n : \N} (r^n = 0)$.
-Using continuity of the exponential and duality, we obtain $R^{\lnot D(r)} = R^{\bigcup_{k : \N}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k \quot{R}{\ideal{r^k}} = \widehat{R_r}$,
+Equivalently, $\lnot D(r) = \bigvee_{n : \N} (r^n = 0)$.
+Using continuity of the exponential and duality, we obtain $R^{\lnot D(r)} = R^{\bigvee_{k : \N}(r^k = 0)} = \lim_k R^{(r^k = 0)} = \lim_k \quot{R}{\ideal{r^k}} = \widehat{R_r}$,
 the $r$-adic completion of $R$.
 If $r$ is either invertible or nilpotent, then $\widehat{R_r}$ is finitely adequate,
 but this is not the case for all $r$.
@@ -319,7 +319,9 @@ but this is not the case for all $r$.
   For the sake of contradiction, assume that $R^{\lnot D(r)}$ is weakly quasi-coherent for all $r : R$.
   By virtue of duality, the global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module:
   \[
-    R[[x]] = \lim_n R[x]/\ideal{x^n} = R^{\mathrm{colim}_n \Spec R[x]/\ideal{x^n}} = R^{\{r:R | \lnot\lnot(r=0)\}} = \prod_{r : R} R^{\lnot D(r)}\rlap{.}
+    \prod_{r : R} R^{\lnot D(r)} = R^{\{r:R | \lnot D(r)\}}
+    = R^{\mathrm{colim}_n \Spec R[x]/\ideal{x^n}}
+    = \lim_n R[x]/\ideal{x^n} = R[[x]]\rlap{.}
   \]
   By \cite[Lemma 7.1.10]{draft}, we can deduce that $R[[x]]$ is weakly quasi-coherent since it is the global sections of a family of weakly quasi-coherent modules.
   However, $R[[x]]$ is not weakly quasi-coherent by \cite[Proposition A.0.5]{draft}, which is a contradiction.
@@ -354,18 +356,11 @@ The next counterexample will use the same strategy as \Cref{cex:exp-Dr-not-fin-a
     \phi : (K^{\lnot D(r)})[r^{-1}] \to (K^{\lnot D(r)})^{D(r)}
   \]
   is an equivalence.
-  Assuming $D(r)$, we get that $K^{\lnot D(r)} = R$ since $R^{\lnot D(r)} = 0$ whenever $r$ is invertible.
+  Assuming $D(r)$, we get that $K^{\lnot D(r)} = R$, since $R^{\lnot D(r)} = 0$ whenever $r$ is invertible.
   Thus, $(K^{\lnot D(r)})^{D(r)} \cong R^{D(r)} = R[r^{-1}]$.
-
-  Since $\phi$ is an equivalence, the element $1 \in R[r^{-1}]$ must have a preimage under $\phi$, which is represented by some fraction $a/r^n$ for $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
-  The relation $\phi(a/r^n) = 1$ in $R[r^{-1}]$ means there exists $k : \mathbb{N}$ such that $r^k(a - r^n) = 0$, so $r^k a = r^{k+n}$.
-  Since $a \in K^{\lnot D(r)} = \bigcap_m \ideal{r^m}$, we can write $a = r^{k+n+1}b$ for some $b : R$.
-  Substituting this back yields $r^{2k+n+1}b = r^{k+n}$.
-  Letting $N \defeq k+n$, we have $r^N(r^{k+1}b - 1) = 0$.
-  Since $R$ is local and $r^{k+1}b + (1 - r^{k+1}b) = 1$, we constructively have $(1 - r^{k+1}b \text{ is invertible}) \lor (r^{k+1}b \text{ is invertible})$.
-  If $1 - r^{k+1}b$ is invertible, then $r^N = 0$, so $r$ is nilpotent.
-  If $r^{k+1}b$ is invertible, then $r$ is invertible.
-  This gives $(r \text{ is nilpotent}) \lor (r \text{ is invertible})$ for every $r : R$, contradicting~\cite[Corollary~1.2.4]{topology-draft}.
+  The element $\frac{1}{1} \in R[r^{-1}]$ must have a preimage under this equivalence, which is represented by a fraction $a/r^n$ with $a \in K^{\lnot D(r)}$ and $n : \mathbb{N}$.
+  Then $a$ is divisible by every power of $r$, so this leads to a contradiction using
+  the same argument as in the last paragraph of \Cref{cex:exp-Dr-not-fin-adeq}.
 \end{counterexample}
 
 Our study of the remaining families will make use of a relationship between $R_U$ and $K^U$
