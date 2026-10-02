@@ -284,27 +284,24 @@ We begin by studying $R^U$ as $U$ ranges over the three families in~\eqref{eq:th
   For the sake of contradiction, suppose that $R^{D(r)}$ is finitely adequate for all $r : R$.
   By \Cref{cor:dual-equiv}, $R[r^{-1}]^\ast$
   is also finitely adequate, and is thus weakly quasi-coherent by \Cref{prp:fin-adeq-adeq}.
-  One can show that
-  \[
-    R[r^{-1}]^\ast = \{ a=(a_0,a_1,\dots) : R^{\N} \;|\; \forall k \geq 1.\; a_{k-1} = ra_k \} ,
-  \]
-  an identification we use implicitly below.
-  We now have a commutative square
+  We have a commutative square
   \[
   \begin{tikzcd}
-    (R[r^{-1}]^\ast)[r^{-1}] \ar[d, "\simeq"]\ar[r] & R[r^{-1}], \ar[d, "\simeq"] &[-25pt] \frac{a}{r^n} \mapsto \frac{a_0}{r^n} \\
-    (R[r^{-1}]^\ast)^{D(r)} \ar[r, "\simeq"] & R^{D(r)}, & f \mapsto f_0
+    (R[r^{-1}]^\ast)[r^{-1}] \ar[d, "\simeq"]\ar[r] & R[r^{-1}], \ar[d, "\simeq"] &[-25pt] \frac{g}{r^n} \mapsto \frac{g(1)}{r^n} \\
+    (R[r^{-1}]^\ast)^{D(r)} \ar[r, "\simeq"] & R^{D(r)}, & f \mapsto (p \mapsto f(p)(1))
   \end{tikzcd}
   \]
-  in which the left vertical map is an equivalence by weak quasi-coherence
-  and the lower horizontal map is an equivalence with inverse
-  \[
-    b \mapsto (p \mapsto (b(p),r^{-1}b(p),\dots))\rlap{.}
-  \]
-  This is well-defined because $p$ witnesses that $r$ is invertible.
+  in which the horizontal maps are induced by the map $R[r^{-1}]^{\ast} \to R$ that evaluates at $1$
+  and the vertical maps are equivalences by weak quasi-coherence.
+  The lower horizontal map is an equivalence because when we have $p : D(r)$,
+  we know that $r$ is invertible, and so $R[r^{-1}] = R$ and the evaluation
+  map gives the duality $R^\ast = R$.
   Thus the upper horizontal map is an equivalence.
-  The preimage of $\frac{1}{1}:R[r^{-1}]$ along this map is represented by an element $\frac{a}{r^n}$ such that $0=r^k(a_0-r^n)=r^k(r^{n+1}a_{n+1}-r^n)=r^{k+n}(ra_{n+1}-1)$ for some $k$.
-  Since $R$ is local, we have $(ra_{n+1} \neq 0) \lor (ra_{n+1}-1 \neq 0)$, which readily implies that $(r \neq 0) \lor (r^{k+n} = 0)$.
+
+  The preimage of $\frac{1}{1}:R[r^{-1}]$ along this map is represented by an element $\frac{g}{r^n}$ such that $0=r^k(g(1)-r^n)$ for some $k$.
+  Since $g(1) = r^{n+1} a$ for $a = g(1/r^{n+1})$, we have that
+  $0=r^k(r^{n+1}a-r^n)=r^{k+n}(ra-1)$.
+  Since $R$ is local, we have $(ra \neq 0) \lor (ra-1 \neq 0)$, which readily implies that $(r \neq 0) \lor (r^{k+n} = 0)$.
   But then any element $r:R$ would either be invertible or nilpotent, contradicting~\cite[Corollary~1.2.4]{topology-draft}.
 \end{counterexample}
 
