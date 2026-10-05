@@ -7,14 +7,15 @@ It follows that the notions of being path-contractible and $[0,1]$-contractible 
 
 Because of \Cref{CauchyDfns} we can make the following definition:
 \begin{definition}%[The topologist's sine curve]
-  For $k:\mathbb N_{\geq1}$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $\mathcal S_k \subseteq [0,1] \times [-1,1]$ by 
+  For $k:\mathbb N_{>1}$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $\mathcal S_k \subseteq [0,1] \times [-1,1]$ by 
   $$\mathcal S_k = \left([0, \frac1k] \times [-1,1]\right) \cup \mathrm{graph}(s_k).$$
-  We define \textbf{the topologist's sine curve} $\mathcal S = \bigcap_{k:\mathbb N_{\geq1}} \mathcal S_k$. 
+  We define \textbf{the topologist's sine curve} $\mathcal S = \bigcap_{k:\mathbb N_{>1}} \mathcal S_k$. 
 \input{Picture.tex}
 \end{definition}
   We shall write $\iota_k : \mathcal S_k \to [0,1] \times [-1,1]$ 
   and $\iota:\mathcal S \to [0,1] \times [-1,1]$ for the inclusion maps, and $\pi_0:[0,1] \times[-1,1] \to [0,1],
 \pi_1:[0,1] \times[-1,1] \to [-1,1]$ for the projection maps. 
+We might omit the inclusion maps when it improves readability. 
 
 
 \begin{lemma}
@@ -51,9 +52,9 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 %
   By \Cref{compactnessCHaus}, 
   it's sufficient to show that $\pi_0^{-1}(r) \cap \mathcal S_k$
-  is merely inhabited for any $k:\mathbb N_{\geq 1}$. 
+  is merely inhabited for any $k:\mathbb N_{>1}$. 
 %
-  Let $k:\mathbb N_{\geq 1}$. 
+  Let $k:\mathbb N_{> 1}$. 
   As we're showing a proposition, we can make a case distinction based on \Cref{LLPO}:
 %  Note that $r\leq \frac1k \vee r \geq \frac 1k$. 
   \begin{itemize}
@@ -65,7 +66,7 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \end{proof}
 
 \begin{lemma}
-  For each $k:\mathbb N_{\geq 1}$ and $r:[0,1]$, $\mathcal S_k\cap \pi_0^{-1}(r)$ is convex.
+  For each $k:\mathbb N_{>1}$ and $r:[0,1]$, $\mathcal S_k\cap \pi_0^{-1}(r)$ is convex.
 \end{lemma}
 \begin{proof}
   Suppose that $(x,y), (x',y')$ both lie in $\mathcal S_k\cap \pi_0^{-1}(r)$.
@@ -153,12 +154,12 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \end{theorem}
 \begin{proof}
   By \Cref{UniformContinuity} applied to 
-  $\pi_1\circ \iota \circ \gamma:[0,1] \to [-1,1]$, for $\epsilon = 2$, 
+  $\pi_1\circ \iota \circ \gamma:[0,1] \to [-1,1]$ for $\epsilon = 2$, 
   there exists some $\delta:\R_{>0}$ such that for any $u,v:[0,1]$ with 
-  $|\pi_1(\iota(\gamma(u)))- \pi_1(\iota(\gamma(v)))| = 2$ we have $|u-v|\geq \delta$. 
-  Let $N:\N$ be such that $\frac1N>\frac\delta2$. 
-  Applying \Cref{SineWillHitTopBot} $N$ times, we can find a sequence 
-  $u_i,v_i,~i:\N_{\leq N}$ such that $\pi_1(\gamma(u_i)) = 1, \pi_1(\gamma(v_i) = -1$ and $u_{i+1},v_{i+1}<u_i<v_i$ for all $i:\mathbb N_{<n}$. 
+  $|\pi_1(\gamma(u))- \pi_1(\gamma(v))| = 2$ we have $|u-v|\geq \delta$. 
+  Let $N:\N_{\geq1}$ be such that $\frac1{N}<\frac\delta2$.
+  Applying \Cref{SineWillHitTopBot} $N+1$ times, we can find a sequence
+  $u_i,v_i,~i:\N_{\leq N}$ such that $\pi_1(\gamma(u_i)) = 1, \pi_1(\gamma(v_i)) = -1$ and $u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\mathbb N_{< N}$.
   But then the sequence $u_i$ is decreasing with steps at least $2\delta>0$, and thus $u_N<0$, while $u_N:[0,1]$, which is a contradiction. 
 %  But then the difference between each $u$ and $v$ is at least $\delta$, which means that $u_{N}<0$. 
 %
@@ -174,9 +175,9 @@ Because of \Cref{CauchyDfns} we can make the following definition:
 \end{proof}
 
 \begin{remark}
-  One could define an equivalence relation on any type $X$ such that 
-  $x\sim y$ iff there is a path from $x$ to $y$. 
-  The equivalence classes of this relation would be called the path-connected components. 
+  One could define a relation on any type $X$ such that 
+  $x\sim y$ iff there is a path from $x$ to $y$. Note that this relation is transitive by \Cref{LLPO}, and always reflexive and symmetric.
+  The equivalence classes of this relation are called the path-connected components. 
   We conjecture that the space of path-connected components of $\mathcal S$ is equivalent to the type of open propositions, which is the type of propositions $P$ for which there exists some $x:[0,1]$ such that $P\leftrightarrow x>0$.
 \end{remark}
 
