@@ -1,10 +1,17 @@
 \section{Path- and $[0,1]$-contractibility}
-In the setting of \cite{shulman-Brouwer-fixed-point}, there is an operator, called the shape, which forces a type to think that $\R$ is contractible. To be more precise, it is a localization in the sense of \cite{modalities}. Using this shape, we can send a topological CW-complex to its corresponding type in HoTT. A type is then $\R$-contractible if its shape is contractible. We can achieve something similar in the setting of SSD by looking at the localization at $[0,1]$. In order to make this note more self-contained, we will explain the notion of $[0,1]$-contractibility without referring to this localization. 
-
+In the setting of \cite{shulman-Brouwer-fixed-point} there is an operator, called the shape, which forces a type to think that $\R$ is contractible. 
+To be more precise, the shape is a localization at $\R$ in the sense of \cite{modalities}.
+A type is $\R$-local if it cannot tell $\R$ from the unit type, and the shape of a type is the best $\R$-local approximation of that type. 
+For example, the shape sends a topological CW-complex to its corresponding higher inductive type in HoTT. 
+We can achieve something similar in the setting of SSD by looking at the localization at $[0,1]$. 
+In order to make this note more self-contained, we will 
+explain the notion of $[0,1]$-contractibility in simpler terms and
+mention neither shape nor localization outside this section. 
 \begin{definition}
   Let $C$ be a type. 
   A type $X$ is \textbf{$C$-local} if the constant map $X \to X^{C}$ is an equivalence. 
-  A type $Y$ is \textbf{$C$-contractible} if for all $C$-local types $X$ the constant map $X \to X^Y$ is an equivalence. 
+%  A type $Y$ is \textbf{$C$-contractible} if for all $C$-local types $X$ the constant map $X \to X^Y$ is an equivalence. 
+  A type $Y$ is \textbf{$C$-contractible} if all $C$-local types are also $Y$-local. 
 \end{definition}
 \begin{lemma}\label{contractibleSigma}
   For any type $C$, the $C$-contractible types are closed under dependent sums. 
@@ -22,13 +29,19 @@ In the setting of \cite{shulman-Brouwer-fixed-point}, there is an operator, call
   X^{\Sigma_{y:Y} Z(y)} 
   $$
 \end{proof}
-\begin{remark}
-  A type is $C$-contractible if and only if its localization at $C$ as in \cite{modalities} is contractible as a type. 
-\end{remark}
+\begin{lemma}\label{retractContractible}
+  Let $Y$ be a retract of $C$. 
+  Then $Y$ is $C$-contractible.
+\end{lemma}
+\begin{proof}
+  Let $i: Y \to C,  r:C \to Y$ satisfy $r\circ i = id_Y$. 
+
+\end{proof}
+
 \begin{remark}\label{contractibleVSconnected}
   By \Cref{IntermediateValue}, every function $[0,1]\to 2$ is constant and hence $2$ is $[0,1]$-local. 
   Thus if a type $X$ is $[0,1]$-contractible, it is connected in the sense that every map $X \to 2$ is constant. 
-  The converse is not true. For example, for $\mathbb S^1$ the circle of HoTT, any map $\mathbb S^1 \to 2$ is constant. But $\mathbb S^1$ is not $[0,1]$-contractible: a cohomological argument \parencite[3.4.4.ii]{ssd-cohomology-draft} shows that $\mathbb S^1$ is $[0,1]$-local, but not every map $\mathbb S^1 \to \mathbb S^1$ is constant. 
+  The converse is not true. For example, for $\mathbb S^1$ the circle as higher inductive type, any map $\mathbb S^1 \to 2$ is constant. But $\mathbb S^1$ is not $[0,1]$-contractible: a cohomological argument \parencite[3.4.4.ii]{ssd-cohomology-draft} shows that $\mathbb S^1$ is $[0,1]$-local, but not every map $\mathbb S^1 \to \mathbb S^1$ is constant. 
 \end{remark}
 
 \begin{definition}
@@ -53,7 +66,7 @@ In the setting of \cite{shulman-Brouwer-fixed-point}, there is an operator, call
   In particular, we have $f(a) = f(\gamma(0)) = x = f(\gamma(1)) = f(b)$ as required. 
 \end{proof}
 We shall see in the rest of this note that the converse to \Cref{pathContractibleToLocalizationContractible} is false. % being $[0,1]$-contractible does not make a type path-contractible. 
-We conclude this section by mentioning the helpful notion of convexity: 
+%We conclude this section by mentioning the helpful notion of convexity: 
 \begin{definition}
   Let $X\subseteq \R^n$. $X$ is called \textbf{convex} if for any $x,y:\R^n$ and $a,b:[0,1]$ with $a+b = 1$, we have $X(x) \wedge X(y) \to X(ax+by)$. 
 \end{definition}
@@ -62,6 +75,11 @@ Using the path $t\mapsto tx + (1-t)y$, it can be shown that any convex type is p
 Hence if a convex type is inhabited, it is also $[0,1]$-contractible by \Cref{pathContractibleToLocalizationContractible}.
 \end{remark}
 
-  
+ \begin{remark}
+  A type is $C$-contractible if and only if its localization at $C$ as in \cite{modalities} is contractible as a type. 
+  Instead of considering localization at $\R$ as in \cite{shulman-Brouwer-fixed-point}, in the setting of SSD, it makes more sense to study the shape as localization at $[0,1]$. 
+  By \Cref{ConvexInhabitedToContractible}, $\R$ is $[0,1]$-contractible. By the function $x \mapsto \max(0,\min(1,x))$, $[0,1]$ is a retract of $\R$, and hence by \Cref{retractContractible}, $[0,1]$ is $\R$-contractible. 
+  Hence the $\R$-local and $\I$-local types agree and so do the localization at $\R$ and at $[0,1]$. 
+\end{remark} 
 
 
