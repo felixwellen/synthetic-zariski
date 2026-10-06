@@ -1,0 +1,83 @@
+We study some basic properties of the type of open propositions.
+The discussion leading up to Phoa's principle is inspired by the corresponding one from synthetic stone duality.
+
+\begin{lemma}
+  \label{open-connected}
+  The type $\Open$ of open propositions is connected, i.e.\ the diagonal
+  \[
+    \Delta : \Bool \longrightarrow \Bool^{\Open}
+  \]
+  is an equivalence.
+\end{lemma}
+
+\begin{proof}
+  Consider the map $h:R \to \Open, r \mapsto P \lor (r \neq 0)$.
+  If $f : \Open \to \Bool$ is any map, then by connectedness of $R$ we get
+  \[
+    f(P) = f(h(0)) = f(h(1)) = f(\top)\rlap{,}
+  \]
+  for all open propositions $P$.
+\end{proof}
+
+\begin{lemma}
+  \label{open-monotony}
+  All maps $F : \Open \to \Open$ are monotone: If $P \to Q$, then $F(P) \to F(Q)$.
+\end{lemma}
+
+\begin{proof}
+  Since $F(Q)$ is stable under double-negation, we may assume $P \lor \neg P$ and $Q \lor \neg Q$.
+  The case $P \land \neg Q$ is impossible since we assumed $P \to Q$, and the other three amount to showing $F(\bot) \to F(\bot)$, $F(\top) \to F(\top)$ and $F(\bot) \to F(\top)$.
+  Thus it remains to verify the last implication, for which we assume $F(\bot)$.
+  For a contradiction assume further $\neg F(\top)$.
+  Then we claim that
+  \[
+    \prod_{P:\Open} F(P) \longleftrightarrow \neg P \rlap{.}
+  \]
+  Indeed, for the implication from left to right suppose $F(P)$ and $P$, i.e.\ $P=\top$. Then $F(P)=F(\top)$.
+  Therefore we have $F(\top)$, which contradicts the assumption $\neg F(\top)$.
+  For the converse suppose $\neg P$, i.e.\ $P = \bot$.
+  Then $F(P) = F(\bot)$ and since we assumed $F(\bot)$, we conclude that $F(P)$.
+
+  As $F(P)$ is open, this in particular implies that $\neg P$ is open for all $P : \Open$.
+  Hence we know $P \lor \neg P$, giving us a non-constant choice map $\Open \to \Bool$ mapping the truth value.
+  This contradicts \Cref{open-connected}.
+\end{proof}
+
+This immediately implies the following.
+
+\begin{corollary}
+  Let $F : \Open \to \Open$ be arbitrary.
+  Then we have
+  \[
+    \prod_{P: \Open} F(P) = F(\bot)
+    \qquad\text{and}\qquad
+    \Big\| \sum_{P : \Open} F(P) \Big\| = F(\top) \rlap{.}
+  \]
+  In particular, the type $\Open$ is compact and overt.
+\end{corollary}
+
+We have a map
+\[
+  (\mathrm{ev}_\bot, \mathrm{ev}_\top) : \Open^{\Open} \longrightarrow \Open \times \Open, \;
+  F \longmapsto (F(\bot),F(\top)) \rlap{.}
+\]
+
+
+\begin{proposition}[Phoa's principle]
+  The map
+  \[
+    \Phi :
+    \sum_{P,Q: \Open}Q^P
+    \longrightarrow
+    \Open^{\Open}, \;
+    (P,Q) \longmapsto \big(U \mapsto (U \lor P) \land Q) \big)
+  \]
+  is an equivalence over $\Open \times \Open$.
+\end{proposition}
+
+\begin{proof}
+  We construct an inverse $\Psi$ by mapping $F$ to $(F(\bot), F(\top))$.
+  By \Cref{open-monotony}, this is well-defined.
+  It is clear that $\Psi \circ \Phi = id$. For $\Phi(\Psi(U)) = U$ we first observe that this equality is stable under double-negation, hence we may assume $U \lor \neg U$.
+  Each of the resulting two cases can now be checked by a quick computation.
+\end{proof}
