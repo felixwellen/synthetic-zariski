@@ -1,7 +1,7 @@
-In \cite{synthetic-stone-duality}, SSD was introduced. SSD consists of an extension of homotopy type theory by four axioms. In this section, we will recall the results from SSD that will be needed for later arguments. 
+In \cite{synthetic-stone-duality}, SSD was introduced. SSD consists of an extension of homotopy type theory \cite{hott} by four axioms. In this section, we will recall the results from SSD that will be needed for later arguments. 
 
 \subsection{The setting of SSD}
-Note that all of the results we will present assume the axioms of SSD as in \cite{synthetic-stone-duality}. We will mention two of these axioms as they are useful for the purposes of this note. 
+Note that all of the results we will present assume the axioms of SSD as in \cite{synthetic-stone-duality}. We will state only one of these axioms explicitly, as it will be used later in this note. %are useful for the purposes of this note. 
 \begin{definition}
   Recall that a type is called \textbf{Stone} if it is 
   %the spectrum of a countably presented Boolean algebra. 
@@ -10,7 +10,7 @@ Note that all of the results we will present assume the axioms of SSD as in \cit
 \end{definition}
   
 \begin{axiom}[Local choice]\label{AxLocalChoice}
-  Given $X:\CHaus$ with $E,F$ arbitrary types, a map $f:X \to F$ and a 
+  Given $X:\CHaus$, arbitrary types $E,F$, a map $f:X \to F$ and a 
   surjection $e:E \twoheadrightarrow F$, 
   there exists a Stone space $T$, a surjective map 
   $T\twoheadrightarrow X$ and an arrow $T\to E$ making the following diagram commute:
@@ -20,10 +20,10 @@ Note that all of the results we will present assume the axioms of SSD as in \cit
     \end{tikzcd}\]  
 \end{axiom}
 
-\begin{axiom}[Dependent choice]\label{axDependentChoice}
-For all towers $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$, the projection from $\lim_kE_k$ to $E_0$ is surjective.
-\end{axiom}
-%From now on, we will assume these axioms. 
+%\begin{axiom}[Dependent choice]\label{axDependentChoice}
+%For all towers $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$, the projection from $\lim_kE_k$ to $E_0$ is surjective.
+%\end{axiom}
+%%From now on, we will assume these axioms. 
 
 \subsection{The topology of compact Hausdorff spaces}
 By \parencite[Cor 3.9]{synthetic-stone-duality}, we can define the type of closed propositions as follows:
@@ -48,7 +48,7 @@ From \parencite[Cor 4.9]{synthetic-stone-duality}, we recall the following:
   Let $X:\CHaus$ and $A\subseteq X$ a subset. Then $A$ is closed if and only if it is the image of a compact Hausdorff space. 
 \end{lemma}
 \begin{proof}
-  Assume $A\subseteq X$ closed, by \parencite[Lemma 4.2]{synthetic-stone-duality}, $A$ is the image of some closed subset of a Stone space, which is itself Stone by \parencite[Cor 3.12]{synthetic-stone-duality}. If $f:X \to Y$ is a map of compact Hausdorff types, then $f(X) = \{ y : Y | \exists_{x:X} f(x) = y\}$, which is closed by \Cref{ExistsClosedSubsetDoubleNegation}.
+  Assume $A\subseteq X$ closed, by \parencite[Lemma 4.2]{synthetic-stone-duality}, $A$ is the image of some closed subset of a Stone space, which is itself Stone by \parencite[Cor 3.12]{synthetic-stone-duality}. If $f:B \to X$ is a map of compact Hausdorff types, then $f(B) = \{ x : X | \exists_{b:B} f(b) = x\}$, which is closed by \Cref{ExistsClosedSubsetDoubleNegation}.
 \end{proof}
 The compact Hausdorff spaces are indeed compact in the following sense:
 \begin{lemma}\label{compactnessCHaus}
@@ -60,31 +60,32 @@ The compact Hausdorff spaces are indeed compact in the following sense:
 
 \subsection{The unit interval}
 \begin{example}
-  In \parencite[Thm 4.22]{synthetic-stone-duality}, it is shown that the interval $[0,1]$ of Cauchy reals as in \cite{Bishop} is compact Hausdorff. By rescaling, so is any closed interval $[a,b]\subseteq \R$ for any $a,b:\R$. Furthermore, in \parencite[Lemma 4.11]{synthetic-stone-duality}, it is shown that $\CHaus$ is closed under $\Sigma$, and hence in particular finite products. 
+  In \parencite[Thm 4.22]{synthetic-stone-duality}, it is shown that the interval $[0,1]$ of Cauchy reals as in \cite{Bishop} is compact Hausdorff. By rescaling, so is any closed interval $[a,b]\subseteq \R$ for any $a\leq b:\R$. Furthermore, in \parencite[Lemma 4.11]{synthetic-stone-duality}, it is shown that $\CHaus$ is closed under $\Sigma$, and hence in particular finite products. 
 \end{example}
 \begin{remark}\label{CauchyDfns}
   We recall that for the Cauchy reals, we can define the relations $<,\leq : \R \to \R \to \Prop$, and the standard functions 
- $\frac{1}{\cdot}:\R_{\neq 0} \to \R$ and
+ $\max,\min,+,-,\cdot : \R \to \R \to \R$,
 %  $|\cdot|,\sin,-:\R \to \R$ and 
-  $\sin:\R \to \R$ 
+  $\sin,|\cdot|:\R \to \R$ and 
+  $\frac{1}{\cdot}:\R_{\neq 0} \to \R$.
 %  $+,\cdot,\max,\min: \R \to \R \to \R$ 
 %  Dfn 2.4 (+,times,max,-, 
 %  Prop 2.13, 1/
 % p 20 min, 
 % p58 sin,cos
   % 2.7 defines nonnegative and positive and 2.10 defines >,\geq using these
-  \parencite[Dfn 2.7,Dfn 2.10, Prop 2.13, p58]{Bishop}.
+  \parencite[Dfn 2.4, Dfn 2.7,Dfn 2.10, Prop 2.13, p20,p58]{Bishop}.
 \end{remark}
 
   In \parencite[Cor 1.16]{synthetic-stone-duality}, Markov's principle is shown, which is equivalent to the following statement:
 \begin{lemma}\label{positiveNumbersCharacter}
-Whenever $x:[0,1]$ satisfies $x\neq 0$, there is some $k:\N$ with $x > \frac1k$.
+  Whenever $x:[0,1]$ satisfies $x\neq 0$, there is some $k:\N_{\geq 1}$ with $x > \frac1k$.
 \end{lemma}
 
 
   In \parencite[Thm 1.17]{synthetic-stone-duality}, the lesser limited principle of omniscience (LLPO) is shown, which is equivalent to the following statement by \parencite[Prop 1.4.2]{HannesDiener}:
   \begin{lemma}\label{LLPO}
- For $x,y:[0,1]$ we have $x\leq y \vee x \geq y$ .
+ For $x,y:[0,1]$ we have $x\leq y \vee x \geq y$.
 \end{lemma} 
 \subsection{Functions on intervals}
 %From \Cref{dfnClosedOpen} it is immediate that any function is continuous in the sense that the inverse image of any closed subset is closed. However, it is not immediate that this is the classically correct sense of continuity.
@@ -97,19 +98,19 @@ All functions on intervals are continuous in the following sense:
 \begin{proof}
   In \parencite[Thm 4.28]{synthetic-stone-duality}, the result holds for $f:[0,1]\to[0,1]$. We conclude by rescaling. 
 \end{proof}
-We shall show that every function on an interval is uniformly continuous in the $\epsilon-\delta$ sense. This result shall be generalized to general uniform continuity and compact Hausdorff spaces in future work. 
+We shall show that every function on an interval is uniformly continuous in the $\epsilon$-$\delta$ sense. This result will be generalized to general uniform continuity and compact Hausdorff spaces in future work. 
 \begin{corollary}\label{UniformContinuity}
   Let $a\leq b,c<d:\R$. For any $f:[a,b] \to [c,d]$ and every $\epsilon:\R_{>0}$, there exists some $\delta:\R_{>0}$ such that whenever $x,y:[a,b]$ satisfy $|x-y|<\delta$ we have $|f(x) -f(y)| < \epsilon$. 
 \end{corollary}
 \begin{proof}
-  By \Cref{continuity} and local choice, there exists a Stone space $S$, a surjection $q:S\twoheadrightarrow [a,b]$ and a map $g:S \to \mathbb N$ such that for any $x:[a,b],s:S$ with $|x-q(s)| < \frac1{g(s)}$, we have $|f(x) - f(q(s))| < \epsilon$. 
-  By \parencite[Lemma 3.6]{synthetic-stone-duality}, $g$ factors over $Fin(k)$. 
+  By \Cref{continuity}, \Cref{positiveNumbersCharacter} and local choice, there exists a Stone space $S$, a surjection $q:S\twoheadrightarrow [a,b]$ and a map $g:S \to \mathbb N_{\geq 1}$ such that for any $x:[a,b],s:S$ with $|x-q(s)| < \frac1{g(s)}$, we have $|f(x) - f(q(s))| < \epsilon$. 
+  By \parencite[Lemma 3.6]{synthetic-stone-duality}, $g$ factors over $\mathrm{Fin}(k)$ for some $k$.
   Hence we can take the maximal element $N$ of its image, and set $\delta = \frac1N$. 
 \end{proof} 
+
 We conclude with a rescaled version of the intermediate value theorem, \parencite[Thm 5.29]{synthetic-stone-duality}:
 \begin{theorem}\label{IntermediateValue}
   Let $a\leq b,c<d:\R$.
   For any $f:[a,b]\to[c,d]$ and $y:[c,d]$ with $f(a)\leq y \leq f(b)$ there exists some $x:[a,b]$ with $f(x) = y$. 
 %  For any $f:[0,1]\to[0,1]$ and $y:[0,1]$ with $f(0)\leq y \leq f(1)$, there exists some $x:[0,1]$ with $f(x) = y$. 
 \end{theorem}
-
