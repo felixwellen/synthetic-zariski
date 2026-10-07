@@ -1,12 +1,11 @@
 
-Some loose notes on bigger classes of bundles, in particular finitely adequate ones.
+Some loose notes on bigger classes of bundles.
 This is very incomplete as of now and might not ever be useful.
 Amongst other things, we show that the cohomology of a finitely adequate bundle -- and in fact an even larger class of bundles we have yet to introduce -- is an fppf sheaf.
 This was originally meant as a first step in proving that the cohomology of \emph{nice enough} bundles is finitely adequate.
 This has turned out to be provably false for even finitely presented bundles on $\bP^1$, see \Cref{example-non-f-aq-cohomology}.
 
-\subsection{Cohomology Modules that are fppf Sheaves}
-
+\subsection{Cohomology Modules are fppf Sheaves}
 
 \begin{definition}
   An $R$-module $M$ is called \emph{fppf-quasi-coherent} {\color{red}(open for better names)} if for every faithfully flat and finitely presented $R$-algebra $A$ the canonical map $M \otimes A \to M^{\Spec A}$ is an equivalence.
@@ -19,26 +18,29 @@ This is a key property that makes this notion better behaved than quasi-coherenc
 In fact, we will see that the category of fppf-quasi-coherent modules is Abelian and closed under extensions.
 
 \begin{lemma}
-  \label{fppf-qc-implies-wqc}
-  Any fppf-quasi-coherent module is weakly quasi-coherent.
+  An $R$-module $M$ is fppf quasi-coherent if and only if the canonical map $M \otimes B \to M^{\Spec B}$ is an equivalence for all flat and finitely presented $R$-algebras $B$.
 \end{lemma}
 
 \begin{proof}
-  Let $M$ be a fppf-quasi-coherent $R$-module.
-  Let $r:R$.
-  The faithfully flat $R$-algebra $A :\equiv R \times R[r^{-1}] \cong R[x]/(x(rx-1))$ is finitely presented (the idempotent $rx$ splits the algebra) and the canonical map $M \otimes A \to M^{\Spec A}$ can be identified with the map $id \times \Delta: M \times M[r^{-1}] \to M \times M^{D(r)}$.
-  By assumption this is an equivalence, hence so is $\Delta$.
+  If $B$ is such an algebra, then $A : \equiv R \times B \cong B[x]/(x(x-1))$ is a faithfully flat and finitely presented $R$-algebra.
+  The map $M \otimes A \to M^{\Spec A}$, which can be identified with $id_M \times \big( M \otimes B \to M \times M^{\Spec B} \big)$, is an isomorphism.
+  It follows that $M \otimes B \to M^{\Spec B}$ is an isomorphism as well.
 \end{proof}
+
+\begin{corollary}
+  \label{fppf-qc-implies-wqc}
+  Any fppf-quasi-coherent module is weakly quasi-coherent.
+  $\hfill\square$
+\end{corollary}
 
 \begin{lemma}
   \label{fppf-qc-closed-under-dependent-prod}
-  Let $A$ be finitely presented $R$-algebra.
-  Let $M_x$ be an fppf-quasi-coherent $R$-module for every $x:\Spec A$.
-  Then $\prod_{x:\Spec A}M_x$ is also fppf-quasi-coherent.
+  Let $X$ be an affine scheme an suppose $\mc F : X \to \Mod R$ is a bundle of fppf-quasi-coherent $R$-modules.
+  Then $\prod_{x:X}\mc F_x$ is also fppf-quasi-coherent.
 \end{lemma}
 
 \begin{proof}
-  The same proof that shows that quasi-coherent modules are closed under dependent products when indexed by affine schemes works in this case, see for instance the adequate modules draft.
+  The same proof that shows that quasi-coherent modules are closed under dependent products indexed by affine schemes works in this case; see \Cref{wqc-closed-under-dep-prod}.
 \end{proof}
 
 \begin{lemma}
@@ -135,4 +137,4 @@ In fact, we will see that the category of fppf-quasi-coherent modules is Abelian
 \subsection{Failure of Cohomology to be Finitely Adequate}
   \label{example-non-f-aq-cohomology}
 
-  \rednote{TODO}
+  \rednote{TODO: Write down this long counterexample. Acknowledge Marc.}

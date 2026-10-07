@@ -1,0 +1,759 @@
+{\rednote{TODO: This chapter needs more structure; is kind of a dump for results as of now.}}
+
+\subsection{Basics on Bundles}
+
+The following lemmas and parts of their proofs carry over from \cite[Chapter II.5]{Hartshorne}.
+
+\begin{lemma}
+  \label{affine-extension-of-sections}
+  Let $X$ be an affine scheme and $f:\Gamma(X,\mc O_X)$.
+  Let furthermore $\mathcal F : X \to \Mod R$ be a weakly quasi-coherent bundle of $R$-modules.
+  \begin{itemize}
+    \item[i)] Given $s:\Gamma (X,\mathcal F)$ with $s|_{D(f)} = 0$  there merely exists a $n>0$ such that $f^ns=0$.
+    \item[ii)] For any section $t:\Gamma (D(f),\mathcal F)$ there merely exists a $n>0$
+      such that $f^nt$ extends to a global section of $\mathcal F$.
+  \end{itemize}
+\end{lemma}
+
+\begin{proof}
+  Since $\mathcal F$ is weakly quasi-coherent we have $\Gamma (X,\mathcal F)_f = \Gamma (D(f),\mathcal F)$.
+  This implies both the first and second part.
+\end{proof}
+
+
+\begin{lemma}
+  \label{extension-of-sections-by-twisting}
+  Let $X$ be a scheme and $\mathcal L$ a line bundle on $X$ with a given section $f:\Gamma (X,\mathcal L)$.
+  Let $\mathcal F:X\to \Mod{R}_{\mathrm{wqc}}$ be a weakly quasi-coherent bundle of $R$-modules.
+  Denote by $D(f) \subseteq X$ the open locus where $f$ does not vanish.
+  \begin{itemize}
+    \item[i)] Given $s:\Gamma (X,\mathcal F)$ with $s|_{D(f)} = 0$ there merely exists a $n>0$ such that $f^ns=0$,
+      when considered as a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
+    \item[ii)] For any section $t:\Gamma (D(f),\mathcal F)$ there merely exists a $n>0$
+      such that $f^nt$ extends to a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
+  \end{itemize}
+\end{lemma}
+
+This generalizes the above lemma by simultaneously allowing non-affine schemes, as well as twists.
+
+\begin{proof}
+  For the first part consider any affine open subscheme $U=\Spec A$ of $X$ that trivializes $\mathcal L$,
+  i.e. suppose there is an equivalence  $\varphi:\mathcal L_U \to \mathcal O_U$ and set $g :\equiv \varphi(f|_U)$.
+  Thus we have $D(f)\cap U = D(g)$ and $s|_{D(g)}=0$.
+  By virtue of \Cref{affine-extension-of-sections} there is a $n>0$ such that $g^ns=0: \Gamma (U,\mathcal F)$.
+  Using the equivalence $\mathcal F|_U\otimes\mathcal L^{\otimes n}|_U \to \mathcal F|_U$ this implies $f^ns=0$,
+  when considered as a section of $\mathcal F\otimes\mathcal L^{\otimes n}$ over $U$.
+  Since $X$ can be covered by finitely many such $U$, we finally obtain a natural number $n>0$ such that $f^ns=0$ as a global section of $\mathcal F\otimes\mathcal L^{\otimes n}$.
+
+  {\color{red} TODO: write up part (ii)}
+\end{proof}
+
+\begin{lemma}
+  \label{tensor-gamma-commute-on-affines}
+  Let $X$ be an affine scheme and suppose that $\mathcal F, \mathcal G : X \to \Mod R$ are pointwise weakly quasi-coherent bundles.
+  Then the map
+  \[
+    \vartheta_X : \Gamma(X,\mathcal F) \otimes_{R^X}\Gamma(X,\mathcal G) \to \Gamma(X,\mathcal F \otimes \mathcal G), \;\;
+    f \otimes g \mapsto (x \mapsto f(x) \otimes g(x))
+  \]
+  is an $R^X$-linear isomorphism.
+\end{lemma}
+
+For the proof we need the following vanishing criterion for tensors.
+
+\begin{remark}
+  \label{null-tensor-criterion}
+  Let $M$ and $N$ be $A$-modules over an arbitrary commutative ring $A$.
+  For a tensor $k = \sum_{j=1}^n x_j \otimes y_j : M \otimes_A N$ we have $k = 0 : M \otimes_A N$ if and only if there merely are $p \geq n$, $q \geq 0$ together with elements $x_{n+1},\hdots,x_p : M$, $z_1,\hdots,z_q : N$ and a matrix $G : A^{p \times q}$, such that with
+  \begin{align*}
+    S &\equiv (x_1 \ \cdots \ x_p) : M^{1 \times p}, \\
+    T &\equiv (y_1 \ \cdots \ y_n \; 0 \ \cdots \ 0)^T : N^{p \times 1}, \\
+    U &\equiv (z_1 \ \cdots \ z_q)^T : N^{q \times 1}
+  \end{align*}
+  we have $SG = 0 : M^{1 \times q}$ and $GU = T : N^{p \times 1}$.
+\end{remark}
+
+For finitely generated $M$, this is the null-tensor lemma \cite[Lemma IV-4.14]{lombardi-quitte}.
+The arbitrary case follows from the criterion that $k=0 : M\otimes_A N$ if and only if, merely, there is a finitely generated submodule $M'\subseteq M$ containing $x_1,\ldots,x_n$ such that $k = 0 : M' \otimes_A N$; see also \cite[Exercise IV-4]{lombardi-quitte}.
+
+\begin{proof}
+  Say $X = \Spec A$.
+  We start by showing injectivity of $\vartheta_X$.
+  Let us first explain how this is a local problem.
+  From commutative algebra we know that it is enough to find $a_1,\hdots,a_m:A$ with $(a_1,\hdots,a_m) = A$ such that $\vartheta_X[a_i^{-1}]$ is injective for all $i=1,\hdots,m$.
+  As $\mc F$ and $\mc G$ are weakly quasi-coherent, we use \cite[Lemma 7.1.8]{draft} to see that the left vertical map in the commutative square
+  \[ \begin{tikzcd}[column sep=large]
+    \Gamma(X,\mc F)[a_i^{-1}] \otimes_{A[a_i^{-1}]} \Gamma(X,\mc G)[a_i^{-1}] \ar[d, "\simeq"]\ar[r, "\vartheta_X{[a_i^{-1}]}"]
+    &
+    \Gamma(X, \mc F \otimes \mc G)[a_i^{-1}] \ar[d]
+    \\
+    \Gamma(D(a_i),\mc F) \otimes_{R^{D(a_i)}}\Gamma(D(a_i),\mc G) \ar[r, "\vartheta_{D(a_i)}"]
+    &
+    \Gamma(D(a_i),\mc F \otimes \mc G)
+  \end{tikzcd}
+  \]
+  is an isomorphism.
+  Hence the injectivity of all $\vartheta_{D(a_i)}$ implies the injectivity of $\vartheta_X$.
+  Together with the fact that $(a_1,\hdots,a_m) = A$ if and only if $X = D(a_1) \cup \hdots \cup D(a_m)$, this means in particular that, for a given element of the kernel of $\vartheta_X$, it is enough to prove its vanishing after replacing $X$ by the members of a finite affine cover. We shall use this when invoking Zariski-local choice below.
+
+  Now let $k:\Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$ be such an element, i.e.\ $\vartheta_X(k)=0$.
+  Merely, we may find $f_1,\hdots,f_n : \Gamma(X,\mc F)$ and $g_1,\hdots,g_n : \Gamma(X,\mc G)$ such that $k = \sum_{j=1}^n f_j \otimes_A g_j$ and $\sum_{j=1}^n f_j(x) \otimes g_j(x) = 0  : \mc F_x \otimes \mc G_x$ for all $x:X$.
+  By virtue of \Cref{null-tensor-criterion}, we merely get the datum
+  \[
+    p_x \geq n, \;\;
+    q_x \geq 0, \;\;
+    S_x : \mc F_x^{1 \times p_x}, \;\;
+    T_x : \mc G_x^{p_x \times 1}, \;\;
+    U_x : \mc G_x^{q_x \times 1}, \;\;
+    G_x : R^{p_x \times q_x},
+  \]
+  such that $S_xG_x = 0$ and $G_xU_x = T_x$. Here, $S_x$, $T_x$ and $U_x$ are defined as in the remark.
+  Explicitly, the first $n$ entries of $S_x$ are $f_1(x), \hdots, f_n(x)$  and the remaining are supplied datum by the remark.
+  The first $n$ entries of $T_x$ are $g_1(x), \hdots, g_n(x)$ while the trailing entries are zero.
+  Using Zariski-local choice while shrinking $X$ if necessary as explained in the first paragraph, we get functions $p,q : X \to \mathbb N$ such that $p_x \geq n$ for all $x:X$, together with dependent functions $S : (x:X) \to \mc F_x^{1 \times p_x}$, $T : (x:X) \to \mc G_x^{p_x \times 1}$, $U : (x:X) \to \mc G_x^{q_x \times 1}$ and $G : (x:X) \to R^{p_x \times q_x}$ such that $SG = 0$ and $GU = T$.
+  The functions $p$ and $q$ are bounded by \cite[Theorem 3.3.3]{draft}.
+  Furthermore, because equality in $\mathbb N$ is decidable and hence open, all fibers of $p$ and $q$ are open subschemes of $X$.
+  It follows that $(\fib_p(n))_{n:\mathbb N}$ and $(\fib_q(n))_{n:\mathbb N}$ are both finite open covers of $X$.
+  Again shrinking $X$, we thus may assume that $p$ and $q$ are constant.
+  Therefore we have $S : \Gamma(X,\mc F)^{1 \times p}$, $T : \Gamma(X,\mc G)^{p \times 1}$, $U : \Gamma(X,\mc G)^{q \times 1}$ and $G : \Gamma(X, R)^{p \times q} \simeq A^{p \times q}$.
+
+  By construction, the first $n$ entries of $S$ and $T$ are given by $f_1, \hdots, f_n$ and $g_1, \hdots, g_n$ respectively and the trailing entries of $T$ are zero.
+  Therefore the reverse implication of \Cref{null-tensor-criterion} gives that $k = \sum_{j=1}^n f_j \otimes g_j = 0$\footnote{
+    Alternatively, it is perhaps enlightening to do this calculation by foot:
+    \[
+      \textstyle
+      \sum_{j=1}^n f_j \otimes g_j = \sum_{i=1}^p S_i \otimes T_i = \sum_{i,k} S_i \otimes G_{ik}U_k = \sum_k(\sum_i S_iG_{ik}) \otimes U_k = 0 \rlap{.}
+    \]
+    This is essentially the proof of the reverse implication of the remark.
+  }.
+
+  Lastly we verify surjectivity.
+  Let $s:\Gamma(X,\mc F \otimes \mc G)$ and set $H :\equiv \Gamma(X,\mc F) \otimes_A \Gamma(X,\mc G)$.
+  We know that $s(x) : \mc F_x \otimes \mc G_x$ merely is a finite sum of elementary tensors.
+  Applying Zariski-local choice with boundedness again, we find an affine cover $D(a_1),\dots,D(a_n) \subseteq X$ together with sections $h_i : \Gamma(D(a_i), \mc F) \otimes_{R^{D(a_i)}} \Gamma(D(a_i),\mc G)$ such that $s|_{D(a_i)} = \vartheta_{D(a_i)}(h_i)$.
+  As above, let us identify $H[a^{-1}] \simeq \Gamma(D(a),\mc F) \otimes_{A[a^{-1}]} \Gamma(D(a), \mc G)$ for all $a:A$.
+  Then we regard $h_i$ as an element of $H[a_i^{-1}]$ and  the map $\vartheta_{D(a_ia_j)}$ is of type $H[(a_ia_j)^{-1}] \to \Gamma(D(a_ia_j),\mc F \otimes \mc G)$.
+  We have just verified that it is injective, thus the images of $h_i$ and $h_j$ in $H[(a_ia_j)^{-1}]$ agree and glue to an element $h : H$ with $\vartheta_X(h)|_{D(a_i)} = \vartheta_{D(a_i)}(h_i) = s|_{D(a_i)}$ for all $i$.
+  Therefore also $\vartheta_X(h) = s$.
+\end{proof}
+
+\begin{corollary}
+  We have the following.
+  \begin{enumerate}
+  \item[i)]
+    \label{wqc-closed-under-tensorprod}
+    If $M$ and $N$ are (weakly) quasi-coherent $R$-modules, then so is $M \otimes N$.
+
+  \item[ii)]
+    \label{wqc-closed-under-dep-prod}
+    If $\mc F : X \to \Mod R$ is a bundle of (weakly) quasi-coherent $R$-modules on an affine scheme $X$, then $\Gamma(X,\mc F)$ is (weakly) quasi-coherent.
+  \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+  The first item is clear.
+  For the second one let $B$ be an arbitrary finitely presented $R$-algebra and suppose $X = \Spec A$.
+  Note that $B$ is quasi-coherent as an $R$-module.
+  In the following we conflate notation for $B$ and its induced constant bundle $x \mapsto B$ on $X$.
+  Consider the composition of isomorphisms:
+  \begin{align*}
+    \Gamma(X, \mc F) \otimes_R B &\overset{\cong}{\rightarrow} \Gamma(X,\mc F) \otimes_A (A \otimes_R B) \\
+                                 &\overset{\cong}{\rightarrow} \Gamma(X,\mc F) \otimes_A \Gamma(X,B)
+                                 &&\text{by quasi-coherence of $B$} \\
+                                 &\overset{\cong}{\rightarrow} \Gamma(X, \mc F \otimes B)
+                                 &&\text{by \Cref{tensor-gamma-commute-on-affines}} \\
+                                 &\overset{\cong}{\rightarrow} \Gamma(X, {\mc F}^{\Spec B})
+                                 &&\text{by quasi-coherence of $\mc F_x$} \\
+                                 &\overset{\cong}{\rightarrow} \Gamma(X,\mc F)^{\Spec B}
+  \end{align*}
+  We omit the verification that this composition is the given map in the definition of (weak) quasi-coherence.
+  This shows the claim for quasi-coherence and, by restricting $B$ to algebras of the form $R[r^{-1}]$, also for weak quasi-coherence.
+\end{proof}
+
+\begin{lemma}[Projection Formula I]
+  \label{projection-formula-I}
+  Let $f : X \to Y$ be an affine map of schemes and suppose $\mc F : X \to \Mod R$ is a weakly quasi-coherent and $\mc G : Y \to \Mod R$ a quasi-coherent bundle.
+  Then there is an isomorphism of bundles
+  \[
+    (f_\ast\mc F) \otimes \mc G
+    \overset{\cong}{\longrightarrow}
+    f_\ast(\mc F \otimes f^\ast \mc G)
+  \]
+  that is natural in both $\mc F$ and $\mc G$.
+\end{lemma}
+
+\begin{proof}
+  We verify the statement pointwise for $y:Y$.
+  Then consider the following chain of isomorphisms:
+  \begingroup
+  \let\displaystyle\textstyle
+  \begin{align*}
+    (f_\ast\mc F \otimes \mc G)_y &= ( \prod_{x:\fib_f(y)} \mc F_x) \otimes \mc G_y \\
+                                  &\overset{\cong}{\rightarrow} ( \prod_{x:\fib_f(y)} \mc F_x) \otimes_{R^{\fib_f(y)}} (R^{\fib_f(y)} \otimes \mc G_y) \\
+                                  &\overset{\cong}{\rightarrow} ( \prod_{x:\fib_f(y)} \mc F_x) \otimes_{R^{\fib_f(y)}} (\prod_{x:\fib_f(y)} \mc G_y)
+                                  && \text{by quasi-coherence of $\mc G_y$} \\
+                                  &\overset{\cong}{\rightarrow} \prod_{x:\fib_f(y)} (\mc F_x \otimes \mc G_y)
+                                  && \text{by \Cref{tensor-gamma-commute-on-affines}}\\
+                                  &= f_\ast (\mc F \otimes f^\ast\mc G)_y
+  \end{align*}
+  \endgroup
+  We omit the calulation showing the naturality claim.
+\end{proof}
+
+Let us also prove a second version of the projection formula.
+We trade off having to impose a much stronger restriction on $\mc G$ with the benefit of not needing any conditions on $f$ or $\mc F$.
+
+\begin{lemma}[Projection Formula II]
+  \label{projection-formula-II}
+  Let $f : X \to Y$ be a map of arbitrary types and suppose $\mc F : X \to \Mod R$ and $\mc G : Y \to \Mod R$ are bundles.
+  Assume further, that $\mc G$ is a vector bundle.
+  Then there is an isomorphism of bundles
+  \[
+    (f_\ast\mc F) \otimes \mc G
+    \overset{\cong}{\longrightarrow}
+    f_\ast(\mc F \otimes f^\ast \mc G)
+  \]
+  that is natural in both $\mc F$ and $\mc G$.
+\end{lemma}
+
+\begin{proof}
+  Just like the first projection formula we can check this pointwise.
+  We omit this standard computation.
+\end{proof}
+
+\begin{lemma}
+  \label{SES-induced-by-regular-section}
+  Suppose $X$ is a scheme.
+  Let $\mc L$ be a line bundle and $\mc E$ be a vector bundle on $X$.
+  If $s : H^0(X,\mc L)$ is a regular section, then the sequence
+  \[
+    0 \longrightarrow \mc E \otimes \mc L^\ast
+      \overset{\cdot s}{\longrightarrow}  \mc E
+      \longrightarrow \mc E^{s=0}
+      \longrightarrow 0
+  \]
+  is affine-locally exact.
+  Here, $\mc E^{s=0}$ is the bundle $x \mapsto \mc E_x^{s(x)=0}$.
+\end{lemma}
+
+\begin{proof}
+  Let $U = \Spec A \subseteq X$ be an affine open subscheme that trivializes both $\mc E$ and $\mc L$, such that $s|_U: \Gamma(U,\mc L) \simeq A$ is a regular element.
+  Then, under these trivializations, the sequence $0 \to \Gamma(U,\mc E \otimes \mc L^\ast) \to \Gamma(U, \mc E) \to \Gamma(U,\mc E^{s=0}) \to 0$ is isomorphic to the sequence
+  \[
+    0 \longrightarrow A^{\rk \mc E}
+    \overset{s|_U}{\longrightarrow} A^{\rk\mc E}
+    \longrightarrow \big( A/(s|_U) \big)^{\rk\mc E}
+      \longrightarrow 0 \rlap{,}
+  \]
+  which is exact by regularity of $s$.
+\end{proof}
+
+\begin{remark}
+  \Cref{SES-induced-by-regular-section} can be generalized beyond vector bundles using the notion of $s$-torsion.
+  We won't need such a generalization, however.
+\end{remark}
+
+
+
+
+
+\subsection{Basics on Projective Space}
+
+We use notation from \cite{draft} and \cite{sag-projective}.
+
+\begin{definition}
+  \label{Pn-definitions}
+  $\bP^n$ may be defined as one of the following equivalent types:
+  \begin{enumerate}[(i)]
+  \item The type of lines\footnote{Submodules $M\subseteq R^{n+1}$ with $\| M=R^1 \|$} through the origin in $R^{n+1}$.
+  \item The set-quotient of $R^{n+1}\setminus\{0\}$ by the relation $x\sim y$ iff $x=\lambda y$ for some $\lambda :R^\times$.
+  \item\label{Pn-as-homotopy-quotient} The homotopy quotient:
+    \[
+      \sum_{l : K(R^\times,1)} l^{n+1}\setminus\{0\}
+    \]
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  \label{D-for-Pn}
+  Let $U\subseteq \bP^n$.
+  The following are equivalent:
+  \begin{enumerate}[(i)]
+  \item $U$ is open.
+  \item $U=D(P_0,\dots,P_l)$ for $P_i:R[X_0,\dots,X_n]_d$.
+  \item There are $N:\N$ and $s_0,\dots,s_l:\prod \mathcal O(1)^{\otimes N}$ such that\index{$D(s_0,\dots,s_l)$}
+    \[
+      U=D(s_0,\dots,s_l)\colonequiv\sum_{x:X}s_0(x)\neq 0\vee \dots \vee s_l(x)\neq 0
+      \rlap{.}
+    \]
+  \end{enumerate}
+\end{lemma}
+
+The equivalence between the last two statements follows from \cite{cech-draft}[Theorem 8.3].
+The following is a direct consequence of \Cref{Pn-definitions} \ref{Pn-as-homotopy-quotient}:
+
+\begin{remark}
+  The type of maps $X\to \bP^n$ is equivalent to the type
+  \[
+  (\mathcal L:X\to K(R^\times,1))\times (s_0,\dots,s_n:(x:X)\to \mathcal L_x) \to (x:X) \to \exists_{i} s_i(x)\neq 0
+  \]
+  i.e.\ the type of line bundles on $X$ that come with $n+1$ sections that do not simultaneously vanish.
+\end{remark}
+
+\begin{definition}
+  A line bundle $\mathcal L:X\to K(R^\times,1)$ is called \notion{very ample}
+  if one of the following equivalent statement holds:
+  \begin{enumerate}[(i)]
+  \item There is a closed embedding $i:X\to \bP^n$ and $\mathcal L=i_\ast \mathcal O(1)$.
+  \item There are non-simultaneously vanishing sections $s_0,\dots,s_n$ of $\mathcal L$
+    such that $[s_0,\dots,s_n]:X\to \bP^n$ is a closed embedding.
+  \end{enumerate}
+\end{definition}
+
+\begin{proof}
+  All we have to do is to show that if (ii) holds, for $i\colonequiv [s_0,\dots,s_n]$,
+  there is an equality $\mathcal L=i_\ast \mathcal O(1)$.
+  Let $x:X$ and note first that $\mathcal O(-1)_x$ is generated by $(s_0,\dots,s_n)^T$.
+  Let $\varphi:R^1\to \mathcal L_x$ be an isomorphism of $R$-modules.
+  Then there are $\lambda_0,\dots,\lambda_n$ such that $\sum \lambda_i s_i(x) =\varphi(1)$,
+  which lets us define:
+  \begin{center}
+    \begin{tikzcd}
+      \mathcal L_x \ar[r] & \mathcal O(1)=\Hom_R(\mathcal O(-1),R) \\
+      \lambda \cdot \varphi(1)\ar[mapsto,r] & \sum \lambda_i \varphi^{-1}(s_i(x))
+    \end{tikzcd}
+  \end{center}
+  which is an isomorphism independent of the choice of $\varphi$.
+\end{proof}
+
+This is a variant of \cite{vakil}[Theorem 17.6.2] (which might hold):
+
+\begin{definition}
+  Let $X$ be a proper scheme.
+  A line bundle $\mathcal L : X\to K(R^\times,1)$ is \notion{ample}
+  if one of the following equivalent statements holds:
+  \begin{enumerate}[(i)]
+  \item There is $N>0$ such that $\mathcal L^{\otimes N}$ is very ample.
+  \item Any open subset $U\subseteq X$ is of the form $U=D(s_0,\dots,s_n)$,
+    for some $s_i:\mathcal L^{\otimes l_i}(X)$ with $l_i>0$.
+  \item Any open subset $U\subseteq X$ is of the form $U=D(s_0,\dots,s_n)$,
+    for some $N>0$ and $s_i:\mathcal L^{\otimes N}(X)$.
+  \item For any finite type, weakly quasi-coherent module bundle $\mathcal F:X\to \Mod{R}_{\mathrm{wqc,fg}}$,
+    there is $N>0$, $j:\N$ and a (pointwise) surjection
+    $\mathcal O^{\oplus j}\to \mathcal F\otimes \mathcal L^{\otimes N}$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition}
+  For a scheme $X$, we call
+  \[
+    T_X : X \to \Mod{R},\; x \mapsto T_xX
+  \]
+  the \emph{tangent bundle} and
+  \[
+    \Omega_X : X \to \Mod{R},\; x \mapsto T_xX^\vee
+  \]
+  then \emph{cotangent bundle}.
+  If $X$ is smooth of dimension $n$, we write $\omega_X :\equiv \det(\Omega_X) :\equiv \bigwedge^n\Omega_X$ for the  \emph{canonical line bundle}.
+\end{definition}
+
+\begin{lemma}
+  There are pointwise exact sequences of $R$-modules
+  \[
+    0 \longrightarrow
+    \mathcal O_{\bP^n} \longrightarrow
+    \mathcal O(1)^{\oplus n+1} \longrightarrow
+    T_{\bP^n} \longrightarrow
+    0
+  \]
+  and
+  \[
+    0 \longrightarrow
+    \Omega_{\bP^n} \longrightarrow
+    \mathcal O(-1)^{\oplus n+1} \longrightarrow
+    \mathcal O_{\bP^n} \longrightarrow
+    0,
+  \]
+  where the maps are to be specified in the proof below.
+\end{lemma}
+
+  We give a coordinate free proof of this statement.
+
+\begin{proof}
+  {\color{red} TODO: Replace with the more conceptual proof.}
+  Let $x :\equiv (l,p) : \bP^n$ be arbitrary.
+  The exactness of the second sequence follows from the exactness of the first by dualizing,
+  which is exact in this case as $T_x\bP^n$ is a free $R$-module.
+  For the first sequence, we represent projective space as the homotopy quotient
+  \[
+    \bP^n = \sum_{l : K(R^\times,1)} l^{n+1}\setminus\{0\}
+  \]
+  and define auxiliary maps
+  \[
+    \pi : l^{n+1}\setminus\{0\} \to \bP^n, q \mapsto (l,q)
+  \]
+  as well as
+  \[
+    \alpha : l^{\oplus n+1} \to T_p(l^{n+1}\setminus\{0\}), v \mapsto (r \mapsto p + rv).
+  \]
+  Note that $\alpha$ is an isomorphism of $R$-modules.
+  It suffices to show that the composition
+  \[
+    l^{\oplus n+1} \overset{\alpha}{\longrightarrow}
+    T_p(l^{n+1}\setminus\{0\}) \overset{d_p\pi}{\longrightarrow}
+  T_{(l,p)}\bP^n
+  \]
+  is surjective with kernel generated by $p$, for then $T_x\bP^n = l^{\oplus n+1}/(p)$ and we obtain an exact sequence
+  \[
+    0 \longrightarrow
+    R \overset{1 \mapsto p}{\longrightarrow}
+    l^{\oplus n+1} \longrightarrow
+    T_x\bP^n \longrightarrow 0.
+  \]
+  \begin{enumerate}
+    \item[i)]
+    Note that $\pi$ is smooth, as for any $y : \bP^n$ we have that $\propTrunc{\fib_\pi(y) = R^\times}$ and $R^\times$ is smooth.
+    It then follows from \cite[Corollary 4.1.1]{diffgeo-article} that $d_p\pi$ is surjective.
+
+
+    \item[ii)]
+    That the kernel is spanned by $p : l^{\oplus n+1}$ can be seen by virtue of a direct calculation.
+    Alternatively, consider the fiber sequence $(\fib_\pi(x),p) \to (l^{n+1}\setminus\{0\},p) \to (\bP^n,x)$.
+    It induces an exact sequence
+    \[
+      0 \longrightarrow
+      T_p\fib_\pi(x) \longrightarrow
+      T_p(l^{n+1}\setminus\{0\}) \longrightarrow
+      T_x\bP^n \longrightarrow
+      0,
+    \]
+    where exactness on the right has been verified in the step before.
+    Hence we see that $\ker(d_p\pi \circ \alpha) = T_p\fib_\pi(x)$ is free of rank $1$ and must therefore be generated by the non-zero element $p$.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}\label{canonical-bundle-as-twist}
+  We have an isomorphism $\omega_{\bP^n} = \mathcal O(-n-1)$ of $R$-module bundles.
+\end{corollary}
+
+\begin{proof}
+  By virtue of the previous lemma we have
+  \[
+    \omega_{\bP^n} = \det(\Omega_X) \otimes \det(\mathcal O_{\bP^n}) = \det(\mathcal O(-1)^{\oplus n+1}) = \mathcal O (-n-1).
+  \]
+\end{proof}
+
+
+
+
+
+\subsection{Étale-Overt Types}
+
+In the following we use \((\_)_{\et}\) to denote étale sheafification, which is the localization at those types $\|X\|$, where $X$ an affine, formally étale and non-empty scheme.
+In particular, $\|X\|_\et$ is the étale sheafification of the propositional truncation of $X$.
+
+Étale sheaves in synthetic algebraic geometry have been extensively studied by Hugo Moeneclay and Thierry Coquand and we build the discussion in this section on their foundational work {\color{red}CITE}.
+
+\begin{definition}
+  A type \(X\) is called \emph{étale-overt} if for any open subset \(U\subseteq X\)
+  the proposition \(\|U\|_\et\) is open.
+\end{definition}
+
+\begin{example}
+  \begin{enumerate}
+    \item[i)] All open propositions are étale-overt.
+    \item[ii)] It is not the case that all closed propositions are étale-overt.
+      Indeed, assume the family of propositions $r=0$ is étale-overt for all $r:R$.
+      Then $r=0$ would also be an open proposition and we thus would have $\neg\neg(r=0) \to (r=0)$, showing that any nilpotent element of $R$ is zero. This violates duality.
+  \end{enumerate}
+\end{example}
+
+\begin{lemma}
+  \label{etale-overtness-is-local}
+  Let $X$ be a type with an open cover $U_1,\dots,U_n$.
+  Then $X$ is étale-overt if and only if all $U_i$ are étale-overt.
+\end{lemma}
+
+\begin{proof}
+  This follows immediately from the equivalence
+  \[
+    \|X\|_\et = \|U_1\|_\et \lor \dots \lor \|U_n\|_\et\rlap{.}
+  \]
+\end{proof}
+
+\begin{proposition}
+  \label{étale-overt-is-sigma-closed}
+  Étale-overt types are closed under dependent sums.
+\end{proposition}
+
+\begin{proof}
+  Let $Y_x$ be a family of étale-overt types indexed by another étale-overt type $X$.
+  Suppose $U \subseteq \sum_{x:X} Y$ is open.
+  Writing $U = \sum_{x:X}U_x$ for open subsets $U_x \subseteq Y_x$ we obtain
+  \[
+    \|U\|_\et = \Big\|\sum_{x:X} \|U_x\|_\et\Big\|_\et\rlap{.}
+  \]
+  Indeed, the universal properties of propositional truncation and étale-sheafification immediately give a map from left to right. The same argument twice, together with currying the dependent sum after the first application, gives a map from right to left.
+  Since $\sum_{x:X} \|U_x\|_\et$ is an open subtype of the étale-overt type $X$, we see that $\|U\|_\et$ is open.
+\end{proof}
+
+We will use the following lemma to show that $R^n$ and $\bP^n$ are étale-overt.
+A much less general lemma would suffice for this objective alone, this stronger version will however later be instrumental in showing that a smooth projective scheme $X$ admits a finite map $X \to \bP^{\dim X}$; see \Cref{merely-finite-map}.
+
+\begin{lemma}
+    \label{consume-non-emptiness-of-open-subset}
+  Let $U \subseteq \bP^n$ be open such that $\neg\neg U$.
+  Then there merely exists an étale $R$-algebra $A$, that is finite free of positive rank as an $R$-module, together with a map
+  \[
+    \Spec(A) \longrightarrow U \rlap{.}
+  \]
+\end{lemma}
+
+\begin{proof}
+  Writing $U = D_+(F_1, \hdots, F_m)$, we see that $\neg\neg U$ is equivalent to $\bigvee_j F_j \neq 0$.
+  In particular, $\neg\neg U$ is equivalent to $\bigvee_j \neg\neg D_+(F_j)$.
+  Thus we may reduce to the case of $m=1$.
+  Argueing similarly, we may even replace $\bP^n$ by $R^n$.
+  Hence we may assume $U = D(f)$ for some primitive polynomial $f : R[X_1, \hdots, X_n]$.
+  Now choose $M$ such that $M > \deg f$ and define a polynomial $F : R[T]$ via $F(T) : \equiv f(T, T^M, \hdots, T^{M^{n-1}})$.
+  By choice of $M$, the set of coefficients appearing in $F$ agrees with the set of coefficients of $f$, thus $F$ is primitive as well.
+  Suppose $D \geq \deg F$ and let $p:\bN$ be a prime such that $p \geq D + 2$ and $p \neq 0$ in $R$.
+  Now we claim that
+  \[
+    A :\equiv R[X]/(\Phi_p(X)),
+    \quad \text{with} \quad
+    \Phi_p(X) :\equiv 1 + X + \hdots + X^{p-1} : R[X]
+  \]
+  satisfies the statement.
+  Clearly $A$ is finite free of rank $p - 1$ and a routine verification yields that $\Spec(A)$ is standard étale and hence, of course, étale.
+  It remains to construct a map $\Spec(A) \to U$.
+  For this we write $x$ for the image of $X$ in $A$.
+  Note that $x^k - x^l = x^k(1-x^{l-k})$ is invertible in $A$ for $1 \leq k < l < p$.
+  Indeed, since $(X-1)\Phi_p(X) = X^p-1$, we have $x^p = 1 : A$ and thus $x^k$ is invertible in $A$ as well.
+  It is now enough to show that $1 - x^l$ is invertible for $1 \leq l < p$.
+  As
+  \[
+    p - \Phi_p(X) = (1 - X) \sum_{j=1}^{p-1} 1 + X + \hdots + X^{j-1} : R[X] \rlap{,}
+  \]
+  with $\Phi_p(x) = 0 : A$ and $p : A^\ast$, $1-x$ is invertible in $A$.
+  Then $1-x^l$, being the image of $1-x$ along the well-defined $R$-algebra map $A \to A, x \mapsto x^l$, is invertible as well.
+  Now consider $F$ as a polynomial in $A[T] \equiv (R[X]/(\Phi_p(X))[T]$ and write $F(T) = \sum_{j=0}^{D} c_jT^j$.
+  Then the Vandermonde matrix in the linear system
+  \[
+    \begin{pmatrix}
+      1 & 1 & 1 & \cdots & 1 \\
+      1 & x & x^2 & \cdots & x^D \\
+      \vdots & \vdots & \vdots & \ddots & \vdots\\
+      1 & x^D & x^{2D} & \cdots & x^{D^2}
+      \end{pmatrix}
+      \begin{pmatrix}
+      c_0\\
+      c_1\\
+      \vdots\\
+      c_D
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      F(1) \\
+      F(x) \\
+      \vdots\\
+      F(x^D)
+    \end{pmatrix}
+    : A^{D+1}
+  \]
+  is invertible, meaning that the coefficients of $F$ can be expressed as $A$-linear combinations of the $F(x^j)$.
+  Thus $(F(1), \hdots, F(x^D)) = A$.
+  The ring $A$, being a finite extension of the local ring $R$, is a local-global ring \cite[Chapter IX, Theorem 6.13]{lombardi-quitte}.
+  Hence there merely is an $a:A$ such that $F(a)$ is a unit of $A$.
+  Define an $R$-algebra map $\alpha : R[X_1, \hdots, X_n] \to A, X_j \mapsto a^{M^{j-1}}$.
+  Then $\alpha(f) = F(a)$, hence we get an induced map in
+  \[
+    \begin{tikzcd}
+      R[X_1, \hdots, X_n] \ar[r, "\alpha"] \ar[d] & A \\
+      R[X_1, \hdots, X_n][f^{-1}] \ar[ur, "\exists !\overline{\alpha}"', dashed] &
+    \end{tikzcd}
+  \]
+  as desired.
+
+\end{proof}
+
+\begin{corollary}
+  \label{R^n-etale-overt}
+  Both $\bP^n$ and $R^n$ are étale-overt.
+\end{corollary}
+
+\begin{proof}
+  Since open subsets of étale-overt types are again étale-overt, it suffices to show that $\bP^n$ is étale-overt.
+  Say $U \subseteq \bP^n$ is open.
+  It suffices to show that $\|U\|_\et = \neg\neg U$, since $\neg\neg U$ is open as observed in the beginning of the proof of \Cref{consume-non-emptiness-of-open-subset}.
+  This fact also makes the implication $\|U\|_\et \to \neg\neg U$ immediate, since open propositions are étale sheaves.
+  To verify the converse, assume $\neg\neg U$. Then by \Cref{consume-non-emptiness-of-open-subset} we find a map $\Spec(A) \to U$ and thus in particular maps $\|\Spec(A)\| \to \|U\| \to \|U\|_\et$.
+  Since $\Phi_p(X)$ has a zero up to double-negation, we have $\neg\neg\Spec(A)$.
+  Hence $\|\Spec(A)\|$ is part of the étale topology.
+  Therefore $\|\Spec(A)\| \to \|U\|_\et$ is equivalent to $\|U\|_\et$ and we win.
+\end{proof}
+
+The argument in \Cref{R^n-etale-overt} proving that $\neg\neg U$ is open, is very special to the case of projective and affine space.
+As far as the author knows, it does not generalize well.
+However, as the following lemma shows, even though the above proof does not generalize, the phenomenon does.
+This was first proven in \cite[Lemma 1.1.7]{étale-sheaves-compendium}.
+We, nonetheless, present a different interesting proof here using Cayley-Hamilton.
+
+\begin{lemma}
+  \label{notnot-Spec(R[X]/P)_G-is-open}
+  Let $P,G:R[x]$ such that $P$ is monic and non-constant and set $X \equiv \Spec ((R[x]/P)[G^{-1}])$.
+  Then $\neg\neg X$ is an open proposition.
+\end{lemma}
+
+\begin{proof}
+  Let $M :\equiv R[x]/P$ and note that this is a finite free $R$-module of rank $n \equiv \deg P$.
+  Define an $R$-linear endomorphism $f : M \to M , m \mapsto G \cdot m$ and denote by
+  \[
+    \chi(\lambda) = \lambda^n + c_1\lambda^{n-1} + \dots + c_n : R[\lambda]
+  \]
+  its characteristic polynomial.
+  Cayley-Hamilton establishes that $\chi (f) = 0$ and thus in particular
+  \[
+    0 = \chi (f(1)) = G^n + c_1G^{n-1} + \dots + c_n : M\rlap{.}
+  \]
+  For $D :\equiv c_1 \neq 0 \lor \dots \lor c_n \neq 0$ we now claim that $D = \neg\neg X$.
+  To see $\neg\neg X \to D$ we can assume that we have $x:X$ such that $P(x) = 0$ and $G(x)\neq 0$ and thus get a well-defined equation
+  \[
+    0 \neq G(x)^n = -c_1G(x)^{n-1} - \dots - c_n
+  \]
+  in $R$, showing that some $c_j$ must be invertible.
+  For the converse direction $D \to \neg\neg X$ we show $\neg X \to \neg D$.
+  If $X$ is empty, then $G$ is nilpotent in $M$ and hence $f : M \to M$ is a nilpotent endomorphism, say $f^{m+1}=0$.
+  Then we have $(id - \lambda f)(1 + \lambda f + ... + \lambda^m f^m) = id$ and thus $\det(id - \lambda f) = c_n\lambda^n + \dots c_1 \lambda + 1$ is invertible in $R[\lambda]$.
+  Therefore the coefficients $c_1,\dots,c_n$ are nilpotent as well, which is to say that $\neg D$.
+\end{proof}
+
+\begin{lemma}
+  An étale scheme is étale-overt.
+\end{lemma}
+
+\begin{proof}
+  Being étale-overt is a local property by \Cref{etale-overtness-is-local}  and étale schemes are locally basic étale, so it is enough to show that any basic étale scheme $X = \Spec((R[X]/P)[G^{-1}])$ is étale-overt.
+  Since even any open $U \subseteq X$ is étale again, the same argument shows that it is enough to prove that $\|X\|_\et$ is open.
+  From \Cref{notnot-Spec(R[X]/P)_G-is-open} we know that $\neg\neg X$ is open, so we are done once we verify that
+  \[
+    \neg\neg X = \|X\|_\et\rlap{.}
+  \]
+  As open propositions are étale sheaves, we immediately get a map from right to left. For the opposite direction note that once we assume $\neg\neg X$, $\|X\|$ becomes part of the étale topology and hence
+  $\|X\| \to \|X\|_\et$ implies $\|X\|_\et$, but the former proposition is clearly true.
+\end{proof}
+
+\begin{corollary}
+  \label{smooth-implies-etale-overt}
+  Any smooth scheme is étale-overt.
+\end{corollary}
+
+\begin{proof}
+  Let $X$ be a smooth scheme.
+  Because of \Cref{etale-overtness-is-local} we may assume that $X$ is standard smooth.
+  Then we merely have an étale map $f : X \to R^n$, i.e.\ $X = \sum_{x:R^n} \fib_f(x)$.
+  Hence $X$, being a dependent sum of étale-overt types, is itself étale-overt by \Cref{étale-overt-is-sigma-closed}.
+\end{proof}
+
+
+
+
+\subsection{Finite and Finite Free Maps}
+
+\begin{definition}
+  \label{def:finite-free-map}
+  Let $f : X \to Y$ be a map of schemes.
+  We say that $f$ is \emph{finite}, if $f_\ast\mc O_X$ is a bundle of pointwise finitely presented $R$-modules.
+  If $f_\ast\mc O_X$ is even a vector bundle (of degree $d$), then we call $f$ \emph{finite free (of degree $d$)}.
+  Furthermore, we say a scheme $X$ is \emph{finite (free)}, if $X \to 1$ is finite (free).
+\end{definition}
+
+It is important to distinguish the concept of a finite (free) scheme, as just defined, from the concept of a \emph{standard finite} type.
+Recall that this is a type $X$, such that
+\[
+  \Big\| \sum_{n:\bN} X = \{1,\hdots,n\} \Big\| \rlap{.}
+\]
+A scheme that is a standard finite type is finite free, and a finite free scheme is finite.
+However, no reverse implication holds.
+
+In classical algebraic geometry, a morphism of schemes $f : X \to Y$ such that $f_\ast\mc O_X$ is locally finite free is called \emph{finite locally free}.
+We intentionally drop the adverb \emph{locally} from our convention, as our definition is a pointwise, rather than an affine-local, condition.
+
+\begin{lemma}
+  Let $f : X \to Y$ be a map of schemes.
+  Then $f$ is finite free if and only if it is finite and flat.
+\end{lemma}
+
+\begin{proof}
+  By \cite[Theorem VIII-1.4]{lombardi-quitte} the $R$-module $(f_\ast \mc O_X)_y = R^{\fib_f(y)}$ is finitely generated and projective if and only if it is finitely presented and flat.
+  Since finitely generated projective modules over local rings are precisely the finite free modules, we are done.
+\end{proof}
+
+\begin{lemma}
+  \label{finite-free-morphisms-preserve-vector-bundles}
+  Let $f : X \to Y$ be a finite free morphism between schemes and suppose $\mc E$ is a vector bundle on $X$.
+  Then $f_\ast \mc E$ is a vector bundle as well.
+\end{lemma}
+
+\begin{proof}
+  First note that $f_\ast\mc E$ is an $f_\ast\mc O_X$-algebra and abbreviate $A :\equiv R^{\fib_f(y)}$.
+  We know that $(f_\ast\mc E)_y = \prod_{x:\fib_f(y)}\mc E_x$ is a finitely generated projective $A$-module.
+  By assumptions on $f$, we have that $A$ is finite free as an $R$-module.
+  These two facts together imply that $(f_\ast \mc E)_y$ is even a finitely generated projective $R$-module and hence is finite free over $R$.
+\end{proof}
+
+\begin{theorem}
+  \label{miracle-flatness}
+  Let $R$ be any commutative ring with $1$ and let $A$ be an $R$-algebra that is finite.
+  Suppose there merely are $f_1,\dots,f_n:R[x_1,\dots,x_n]$ such that
+  \[
+    A \cong R[x_1,\dots,x_n]/(f_1,\dots,f_n) \rlap{.}
+  \]
+  Then $A$ is a projective and flat $R$-module.
+\end{theorem}
+
+\begin{proof}
+  A constructively valid proof is given in \cite[Théorème 12]{lombardi2025theoremesmitetlenstra}.
+\end{proof}
+
+
+\begin{lemma}
+  \label{fin-subscheme-contained-in-std-smooth}
+  Let $F$ be a finite and closed subscheme of an affine scheme $X$ that is smooth.
+  Then there merely is a function $h : X \to R$ such that $D(h)$ is standard smooth and such that $F \subseteq D(h)$.
+\end{lemma}
+
+\begin{proof}
+  {\color{red}TODO: Write down my proof.}
+\end{proof}
+
+\begin{lemma}
+  \label{finite-map-of-equidimensional-smooth-schemes-is-finite-free}
+  Let $f : X \to Y = \bP^n$ be a finite map between smooth schemes $X$ and $Y$ of the same dimension $n:\bN$.
+  Then $f_\ast\mc O_X$ is a vector bundle.
+\end{lemma}
+
+{\color{red}TODO: generalize from $\bP^n$ to an arbitrary smooth $Y$ with $\dim Y = n$.}
+
+\begin{proof}
+  Without loss of generality replace $\bP^n$ by $R^n$.
+  Since $f$ is affine and affine schemes are closed under dependent sums, we thus see that $X$ is affine.
+  It is enough to show that $(f_\ast\mc O_X)_0 = R^{\fib_f(0)}$ is finite free.
+  By \Cref{fin-subscheme-contained-in-std-smooth} we find a function $h : X \to R$ such that $D(h)$ is standard smooth of dimension $n$ and $\fib_f(0) \subseteq D(h)$.
+  Suppose that $D(h) = \Spec R[X_1,\hdots, X_m, Y_1, \hdots, Y_n]/(P_1, \hdots P_m)$.
+  Then
+  \[
+    R^{\fib_f(0)} \cong R[X_1, \hdots, X_m, Y_1, \hdots, Y_n]/(P_1, \hdots, P_m, f_1, \hdots, f_n) \rlap{.}
+  \]
+  This $R$-algebra is finite by assumption, hence by \Cref{miracle-flatness} we see that $R^{\fib_f(0)}$ is projective and thus finite free.
+\end{proof}
+
+\begin{corollary}
+  \label{finite-map-of-equidimensional-smooth-schemes-preserves-vectorbundles}
+  In the situation of \Cref{finite-map-of-equidimensional-smooth-schemes-is-finite-free}, the pushforward $f_\ast$ preserves vector bundles.
+\end{corollary}
+
+\begin{proof}
+  This follows directly from \Cref{finite-free-morphisms-preserve-vector-bundles}.
+\end{proof}
+
