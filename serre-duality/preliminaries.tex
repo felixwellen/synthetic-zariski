@@ -1,16 +1,16 @@
-{\rednote{TODO: This chapter needs more structure; is kind of a dump for results as of now.}}
+{\rednote{TODO: This chapter needs more structure and contains lots of results, which for which we just didn't find a better place yet.}}
 
 \subsection{Basics on Bundles}
 
-The following lemmas and parts of their proofs carry over from \cite[Chapter II.5]{Hartshorne}.
+The following lemmas and parts of their proofs are direct adaptions from \cite[Chapter II.5]{Hartshorne}.
 
 \begin{lemma}
   \label{affine-extension-of-sections}
   Let $X$ be an affine scheme and $f:\Gamma(X,\mc O_X)$.
   Let furthermore $\mathcal F : X \to \Mod R$ be a weakly quasi-coherent bundle of $R$-modules.
   \begin{itemize}
-    \item[i)] Given $s:\Gamma (X,\mathcal F)$ with $s|_{D(f)} = 0$  there merely exists a $n>0$ such that $f^ns=0$.
-    \item[ii)] For any section $t:\Gamma (D(f),\mathcal F)$ there merely exists a $n>0$
+    \item[i)] Given $s:\Gamma (X,\mathcal F)$ with $s|_{D(f)} = 0$  there merely exists an $n>0$ such that $f^ns=0$.
+    \item[ii)] For any section $t:\Gamma (D(f),\mathcal F)$ there merely exists an $n>0$
       such that $f^nt$ extends to a global section of $\mathcal F$.
   \end{itemize}
 \end{lemma}
@@ -27,9 +27,9 @@ The following lemmas and parts of their proofs carry over from \cite[Chapter II.
   Let $\mathcal F:X\to \Mod{R}_{\mathrm{wqc}}$ be a weakly quasi-coherent bundle of $R$-modules.
   Denote by $D(f) \subseteq X$ the open locus where $f$ does not vanish.
   \begin{itemize}
-    \item[i)] Given $s:\Gamma (X,\mathcal F)$ with $s|_{D(f)} = 0$ there merely exists a $n>0$ such that $f^ns=0$,
+    \item[i)] Given $s:\Gamma (X,\mathcal F)$ with $s|_{D(f)} = 0$ there merely exists an $n>0$ such that $f^ns=0$,
       when considered as a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
-    \item[ii)] For any section $t:\Gamma (D(f),\mathcal F)$ there merely exists a $n>0$
+    \item[ii)] For any section $t:\Gamma (D(f),\mathcal F)$ there merely exists an $n>0$
       such that $f^nt$ extends to a global section of $\mathcal F \otimes \mathcal L^{\otimes n}$.
   \end{itemize}
 \end{lemma}
@@ -47,6 +47,8 @@ This generalizes the above lemma by simultaneously allowing non-affine schemes, 
 
   {\color{red} TODO: write up part (ii)}
 \end{proof}
+
+\rednote{The following Lemma is also in \href{https://felix-cherubini.de/adequate.pdf}{this} draft.}
 
 \begin{lemma}
   \label{tensor-gamma-commute-on-affines}
@@ -170,6 +172,8 @@ The arbitrary case follows from the criterion that $k=0 : M\otimes_A N$ if and o
   This shows the claim for quasi-coherence and, by restricting $B$ to algebras of the form $R[r^{-1}]$, also for weak quasi-coherence.
 \end{proof}
 
+\rednote{TODO: Write a warning that \(f_\ast\) and \(f^\ast\) do not have the same properties as in traditional algebraic geometry.}
+
 \begin{lemma}[Projection Formula I]
   \label{projection-formula-I}
   Let $f : X \to Y$ be an affine map of schemes and suppose $\mc F : X \to \Mod R$ is a weakly quasi-coherent and $\mc G : Y \to \Mod R$ a quasi-coherent bundle.
@@ -217,7 +221,8 @@ We trade off having to impose a much stronger restriction on $\mc G$ with the be
 \end{lemma}
 
 \begin{proof}
-  Just like the first projection formula we can check this pointwise.
+  Just like the first projection formula we can check this pointwise,
+  but using different arguments to show the neccessary identities.
   We omit this standard computation.
 \end{proof}
 
@@ -240,9 +245,9 @@ We trade off having to impose a much stronger restriction on $\mc G$ with the be
   Let $U = \Spec A \subseteq X$ be an affine open subscheme that trivializes both $\mc E$ and $\mc L$, such that $s|_U: \Gamma(U,\mc L) \simeq A$ is a regular element.
   Then, under these trivializations, the sequence $0 \to \Gamma(U,\mc E \otimes \mc L^\ast) \to \Gamma(U, \mc E) \to \Gamma(U,\mc E^{s=0}) \to 0$ is isomorphic to the sequence
   \[
-    0 \longrightarrow A^{\rk \mc E}
-    \overset{s|_U}{\longrightarrow} A^{\rk\mc E}
-    \longrightarrow \big( A/(s|_U) \big)^{\rk\mc E}
+    0 \longrightarrow A^{\rk(\mc E)}
+    \overset{s|_U}{\longrightarrow} A^{\rk(\mc E)}
+    \longrightarrow \big( A/(s|_U) \big)^{\rk(\mc E)}
       \longrightarrow 0 \rlap{,}
   \]
   which is exact by regularity of $s$.
@@ -326,6 +331,8 @@ The following is a direct consequence of \Cref{Pn-definitions} \ref{Pn-as-homoto
   which is an isomorphism independent of the choice of $\varphi$.
 \end{proof}
 
+
+\rednote{The following definition of ample line bundles is never used.}
 This is a variant of \cite{vakil}[Theorem 17.6.2] (which might hold):
 
 \begin{definition}
@@ -449,7 +456,7 @@ This is a variant of \cite{vakil}[Theorem 17.6.2] (which might hold):
 
 \subsection{Étale-Overt Types}
 
-In the following we use \((\_)_{\et}\) to denote étale sheafification, which is the localization at those types $\|X\|$, where $X$ an affine, formally étale and non-empty scheme.
+In the following we use \((\_)_{\et}\) to denote étale sheafification, which is the localization at those types $\|X\|$, where $X$ is an affine, formally étale and non-empty scheme.
 In particular, $\|X\|_\et$ is the étale sheafification of the propositional truncation of $X$.
 
 Étale sheaves in synthetic algebraic geometry have been extensively studied by Hugo Moeneclay and Thierry Coquand and we build the discussion in this section on their foundational work {\color{red}CITE}.
@@ -662,7 +669,7 @@ We, nonetheless, present a different interesting proof here using Cayley-Hamilto
 
 \begin{definition}
   \label{def:finite-free-map}
-  Let $f : X \to Y$ be a map of schemes.
+  Let $f : X \to Y$ be a map of schemes such that all fibers of \(f\) are affine schemes.
   We say that $f$ is \emph{finite}, if $f_\ast\mc O_X$ is a bundle of pointwise finitely presented $R$-modules.
   If $f_\ast\mc O_X$ is even a vector bundle (of degree $d$), then we call $f$ \emph{finite free (of degree $d$)}.
   Furthermore, we say a scheme $X$ is \emph{finite (free)}, if $X \to 1$ is finite (free).
