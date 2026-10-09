@@ -131,7 +131,7 @@ Compactness is inherited by closed subtypes, affording us the following conseque
 
 \begin{lemma}
   Suppose $X$ is a scheme that is smooth of dimension $d$ and for $n > d$ let $f : X \to R^n$ be any map.
-  Then there does \emph{not not} exist a polynomial $P : R[X_1, \hdots, X_n]$ that is monic with respect to the lexicographical ordering of monomials and such that
+  Then there does \emph{not not} exist a primitive polynomial $P : R[X_1, \hdots, X_n]$ such that
   \[
     P(f) = 0 \rlap{.}
   \]
@@ -167,7 +167,7 @@ This version of Bertini and the preceding remark allows us to employ a very clas
 \begin{corollary}
   \label{etale-merely-finite-map}
   Let $X$ be a smooth scheme of dimension $n$ and suppose $\mc L$ is a very ample bundle on $X$.
-  Then the étale-merely is a finite map $f : X \to \bP^n$ such that $\mc L = f^\ast\mc O(1)$.
+  Then there étale-merely is a finite map $f : X \to \bP^n$ such that $\mc L = f^\ast\mc O(1)$.
 \end{corollary}
 
 \begin{proof}
@@ -179,12 +179,22 @@ This version of Bertini and the preceding remark allows us to employ a very clas
   \]
   If $l_0, \hdots, l_n$ are linear homogeneous polynomials cutting out $H_0, \hdots, H_n$, then we have just verified that they have no common zero on $X$.
   Hence the universal property of $\bP^n$ yields a map $f :\equiv [l_0 : \hdots : l_n] : X \to \bP^n$ such that $f^\ast\mc O(1) = \mc L$.
+  In the next \Cref{criterion-finiteness-via-ample} we will this map is finite.
 \end{proof}
 
 In \Cref{merely-finite-map} we will invest significant effort to upgrade this result to mere existence.
 In that case however, we cannot use linear sections in $\mc O(1)$ to construct the map $f$ and instead have to resort to sections of some $\mc O(d)$.
 It is however noteworthy, that even this weaker existence result can be quite useful, since a lot of interesting results turn out to be étale sheaves anyway.
 The type of dualizing bundles on a scheme is an instance of such a proposition that is an étale sheaf.
+
+\begin{lemma}
+  \label{criterion-finiteness-via-ample}
+  If $f : X \to \bP^n$ is a map from a scheme $X$ such that $f^\ast\mc  O(1)$ is very ample, then $f$ is finite.
+\end{lemma}
+
+\begin{proof}
+  {\color{red}TODO: Write down proof. This could also be formulated more generally.}
+\end{proof}
 
 
 
@@ -276,7 +286,7 @@ With this we are finally ready to state the proof.
   where the last proposition was recently observed to be true.
   Now set $m :\equiv d_0 \cdot \hdots \cdot d_n$ and $s_j :\equiv \iota^\ast(F_j^{m/d_j}) : H^0(X, \iota^\ast\mc O(m))$.
   We have just seen that the sections $s_0, \hdots, s_n$ form a basepoint free system of $\mc L^{\otimes m} = \iota^\ast \mc O(m)$, so by the universal property of $\bP^n$ we obtain a map $f :\equiv [s_0 : \hdots : s_n] : X \to \bP^n$ such that $f^\ast\mc O(1) = \mc L^{\otimes m}$.
-  {\color{red}TODO: $f$ is finite.}
+  Using \Cref{criterion-finiteness-via-ample} we see that $f$ is finite.
 \end{proof}
 
 

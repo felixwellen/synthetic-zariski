@@ -4,25 +4,17 @@ We use the synthetic algebro-geometric notions of \cite{draft}
 and recollect some results of \cite{cech-draft}.
 This entails that we use a pullback $f_\ast$ and push-forward $f^\ast$ which arguably deviates somewhat from the usual notion and is more of a pointwise nature.
 
+Recall the following notions.
+\rednote{We already used pointwise exactness before this defnition...}
+
 \begin{definition}
-  \begin{enumerate}[(a)]
-  \item Let $A,B:X\to \Mod{R}$.
-    For subsets $U\subseteq X$, we write $A(U)\colonequiv (x:U)\to A_x$.
-    Similarly, if for each $x:X$ we have a morphisms $f_x:A_x\to B_x$,
-    we write $f:A\to B$ and $m_U\colonequiv (s:A(U))\mapsto ((x:U)\mapsto f_x(s(x)))$.
-  \item Let $A,B,C:X\to \Mod{R}$.
-    If for all $x:X$ we have a sequence
-    \begin{center}
-      \begin{tikzcd}
-        A_x\ar[r,"m_x"] & B_x\ar[r,"e_x"] & C_x
-      \end{tikzcd}
-    \end{center}
-    we write $A\to B\to C$ and call this datum a sequence.
-    The sequence is called \notion{(pointwise) exact}
-    if for all $x:X$ the sequence above is exact.
-    The sequence is called \notion{locally exact},
-    if $e$ is surjective and there is an open affine cover such that $m_U$ is injective.
-  \end{enumerate}
+  Let $X$ be a type and $\mc F \to \mc G \to \mc H$ two composable morphisms of $R$-module bundles over $X$.
+  We say this sequence is \emph{(pointwise) exact}, if for all $x:X$ the sequence $\mc F_x \to \mc G_x \to \mc H_x$ is exact as a sequence of $R$-modules.
+  If $X$ is even a scheme, we say that it is \emph{affine-locally exact}, if there merely is a finite affine open cover $U_1,\dots,U_n \subseteq X$ such that
+  \[
+    \Gamma(U_j,\mc F) \longrightarrow \Gamma(U_j,\mc G) \longrightarrow \Gamma(U_j,\mc H)
+  \]
+  is an exact sequence of $R^{U_j}$-modules for all $j=1,\dots,n$.
 \end{definition}
 
 Note that pointwise exactness is a strictly stronger requirement than local exactness.

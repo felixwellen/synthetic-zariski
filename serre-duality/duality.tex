@@ -1,3 +1,24 @@
+\subsection{Dualizing Bundles}
+
+
+\begin{definition}
+  Let $X$ be a scheme of cohomological dimension $n$.
+  A \emph{dualizing bundle} for $X$ is a vector bundle $\omega^\circ_X$ together with an $R$-linear \emph{trace map} $t : H^n(X, \omega_X^\circ) \to R$ such that for all vector bundles $\mc E$ on $X$ the canonical map
+  \[
+    \Hom_X(\mc E, \omega_X^\circ) \longrightarrow H^n(X,\mc E)^\ast
+  \]
+  is an isomorphism.
+  We denote by $\mathrm{Dual}(X)$ the type of such tuples $(\omega_X^\circ,t)$.
+\end{definition}
+
+\begin{lemma}
+  The type of dualizing bundles $\mathrm{Dual}(X)$ is a proposition and an fppf sheaf.
+  In particular, it is an étale sheaf.
+\end{lemma}
+
+
+
+
 \subsection{Duality for Projective Space}
 
 Given a bundle $\mc F : X:\equiv\bP^n \to \Mod R$ there is a natural pairing
@@ -6,21 +27,22 @@ Given a bundle $\mc F : X:\equiv\bP^n \to \Mod R$ there is a natural pairing
   (\varphi,\xi) \mapsto H^n(\varphi)(\xi)
   \rlap{.}
 \]
-Since $H^n(\bP^n,\omega) = R$ by \Cref{canonical-bundle-as-twist}, it induces a map
+Since $H^n(\bP^n,\omega) \xrightarrow{\cong} R$ by \Cref{canonical-bundle-as-twist}, it induces a map
 \[
   \vartheta^0(\mc F) : \Hom_X(\mc F,\omega) \to H^n(X,\mc F)^\ast \rlap{.}
 \]
+This is to say that $(\omega, H^n(\bP^n,\omega) \to R)$ is a dualizing bundle for $\bP^n$.
 
-\begin{proposition}
+\begin{lemma}
   If $\mc F$ is finitely presented, then $\vartheta^0(\mc F)$ is an isomorphism.
-\end{proposition}
+\end{lemma}
 
 \begin{proof}
   In the case $\mathcal F\simeq \mathcal O(q)$ we compute $\Hom_X(\mathcal O(q),\omega)\simeq H^0(\bP^n,\omega\otimes \mathcal O(-q))$.
   So in this case, we can conclude as we know the cohomology of twisting sheaves.
   By \Cref{fp-module-bundle-globally-generated}, we get an exact sequence:
   \[ \mathcal O(p)^{\oplus n}\to\mathcal O(p')^{\oplus n'}\to \mathcal F\to 0 \]
-  and the functors $\Hom_X(-,\omega)$ and $H^n(X,-)^\ast$ both map right exact sequences to left exact sequences. So we can conclude with the 5-lemma.
+  and the functors $\Hom_X(-,\omega)$ and $H^n(X,-)^\ast$ both map right exact sequences to left exact sequences. So we can conclude by the universality of kernels.
 \end{proof}
 
 \begin{proposition}
@@ -63,14 +85,31 @@ Since $H^n(\bP^n,\omega) = R$ by \Cref{canonical-bundle-as-twist}, it induces a 
 \end{remark}
 
 Note that the above example works even in classical algebraic geometry.
-If one wants to generalize the statement to a bigger class of bundles, then one needs to replace $H^i(X,\mc F^\ast \otimes \omega_X)$ by a suitable notion of $\Ext^i(\mc F,\omega_X)$.
+If one wants to generalize the statement of Serre duality to a bigger class of bundles, then one needs to replace $H^i(X,\mc F^\ast \otimes \omega_X)$ by a suitable notion of $\Ext^i(\mc F,\omega_X)$.
 Roughly, the problem is as follows.
 
-If one sets $\Ext^i(\mc F,\mc G) :\equiv H^i(X, \uHom(\mc F, \mc G))$ -- as was silently done in the case of vector bundles -- then the resulting spaces only classify pointwise split extensions.
+If one sets $\Ext^i(\mc F,\mc G) :\equiv H^i(X, \uHom(\mc F, \mc G))$ -- as was silently done in the case of vector bundles -- then the resulting spaces only classify pointwise exact extensions.
 This is exactly the entrypoint of the counterexamples of the above remarks:
-The appearing sequences are not pointwise exact, hence do not constitute an element of $\Ext^1$, but are affine-locally exact.
+The appearing sequences are not pointwise exact, hence do not constitute an element of $\Ext^1$, but are instead affine-locally exact.
 In both examples, the $\Ext^1$-modules vanish, while the corresponding modules, that Serre duality wants them to compare to, do not.
 In this sense, they are too small because they classify a too restictive notion of exactness.
 
 
 
+
+\subsection{Duality for Smooth Projective Schemes}
+
+We now extend Serre duality to smooth projective schemes of pure dimension using the theory of finite free maps we have previously developed.
+Informally speaking, the mechanism we use is that, if $X$ is a scheme satisfying Serre duality, then any finite free cover will also satisfy Serre duality.
+
+\begin{proposition}
+  Let $X$ be a smooth projective scheme of pure dimension and let $\omega^\circ_X$ be a dualizing bundle.
+  If $\mathcal E : X \to \Mod R$ is a vector bundle then for every $i\geq 0$ there are natural isomorphisms
+  \[
+    \vartheta^i(\mathcal E) : H^i(X, \mathcal E^\ast \otimes \omega^\circ_X) \to H^{n-i}(X,\mathcal E)^\ast \rlap{.}
+  \]
+\end{proposition}
+
+\begin{proof}
+  {\color{red} TODO: Combine the previous results (still need to write down the relevant results about $f^!$).}
+\end{proof}
