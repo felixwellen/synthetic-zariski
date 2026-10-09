@@ -1,0 +1,47 @@
+The following definition was strongly suggested by the computations in \href{https://felix-cherubini.de/elliptic.pdf}{https://felix-cherubini.de/elliptic.pdf}.
+
+\begin{definition}
+  A scheme \(C\) is called a \notion{curve} if it is (irreducible?), projective and smooth of dimension 1.
+\end{definition}
+
+\begin{definition}
+  Let \(C\) be a curve.
+  \begin{enumerate}[(a)]
+  \item The type of \notion{Weil-Divisors} \(\Div(C)\) is the set quotient of the type of lists
+  of points and integers
+  \[
+    \Div(C)\colonequiv \left(\sum_{n:\N}(C\times \Z)^n\right)/\sim
+  \]
+  where the following pairs of lists with \(D_i=D_j\) are equivalent:
+  \begin{align*}
+    &((D_0,n_0),\dots, (D_i,n_i),\dots, (D_j,n_j),\dots, (D_{k+1},n_{k+1})) \\
+    &\sim((D_0,n_0),\dots,(D_i,n_i+n_j),\dots, \widehat{(D_j,n_j+n_i)},\dots, (D_{k+1},n_{k+1}))
+  \end{align*}
+  (we assume \(i\neq j\) and also allow \(j<i\))
+  \item The sum of the integers appearing in a Weil-Divisor \(D:\Div(C)\) is well-defined and we call it the degree \(\deg(D)\) of the divisor.
+  \end{enumerate}
+\end{definition}
+
+It is unclear if we can define \(\mathrm{div}(f):\Div(C)\) for a function \(f:C\to \bP^1\). We can assign a degree as \(\rk(f_\ast\mc O_0)-\rk(f_\ast\mc O_\infty)\).
+
+We will two synthetic variants of the sheaves appearing in the Riemann-Roch theorem. One will be a vector bundle, the other will have the usual global sections, i.e.\ functions on a curve with conditions on the orders of their zeroes and pole. The following definition and lemma are steps towards these definitions.
+
+\begin{definition}
+  Let \(X\) be a type and \(A\subseteq X\) a closed subset.
+  \(A\) is called \notion{locally regular of codimension \(k\)}, if there is a finite open affine cover \(U_0,\dots,U_n\) of \(X\) such that on each \(U_i\) we have \(A|U_i=V(r_{i1},\dots,r_{r_{ik}})\) where \(r_{i1},\dots,r_{r_{ik}}\) is a regular sequence. We will only use this defintion for \(k=1\), where ``regular sequence'' just means that \(A|U_i=V(r_i)\), with \(r_i\) regular\footnote{Which means that multiplication with \(r\) is injective in \(R^{U_i}\).}.
+\end{definition}
+
+\begin{lemma}
+  Let \(C\) be a curve and \(P:C\) a point.
+  Then \(P\) is locally regular of codimension 1.
+\end{lemma}
+
+\begin{proof}
+  \(P\) is closed since \(C\) is separated.
+  \(P\) has an open neighbourhood \(U\) which is standard smooth of dimension 1.
+  So there is an étale map \(f:U\to R\) and \(f(P):R\) is of the form \(V(r^\prime)\) for a regular element in \((R^R)=R[X]\), namely \(X-f(P)\).
+  We set \(r\colonequiv r^\prime\circ f\).
+
+  We will first check that \(r\) is regular in \(R^U\).
+\end{proof}
+
