@@ -1,3 +1,5 @@
+\rednote{This section is an experimental, incomplete approach to Riemann-Roch for curves.}
+
 The following definitions were strongly suggested by the computations in \href{https://felix-cherubini.de/elliptic.pdf}{https://felix-cherubini.de/elliptic.pdf}.
 
 \begin{definition}
@@ -28,12 +30,12 @@ We will construct two synthetic variants of the sheaves appearing in the Riemann
 
 \begin{definition}
   Let \(X\) be a type and \(A\subseteq X\) a closed subset.
-  \(A\) is called \notion{locally nilregular of codimension \(k\)}, if there is a finite open affine cover \(U_0,\dots,U_n\) of \(X\) such that on each \(U_i\) we have \(A|U_i=V(r_{i1},\dots,r_{r_{ik}})\) where \(r_{i1},\dots,r_{r_{ik}}\) is a nilregular sequence. We will only use this defintion for \(k=1\), where ``nilregular sequence'' just means that \(A|U_i=V(r_i)\), with \(r_i\) nilregular\footnote{Which means that whenever \(r_is=0\)  in \(R^{U_i}\), we have \(s^n=0\) for some \(n:\N\).}.
+  \(A\) is called \notion{locally nilregular of codimension \(k\)}, if there is a finite open affine cover \(U_0,\dots,U_n\) of \(X\) such that on each \(U_i\) we have \(A|U_i=V(r_{i1},\dots,r_{r_{ik}})\) where \(r_{i1},\dots,r_{r_{ik}}\) is a nilregular sequence. We will only use this defintion for \(k=1\), where ``nilregular sequence'' just means that \(A|U_i=V(r_i)\), with \(r_i\) nilregular\footnote{Which means that whenever \(r_is=0\)  in \(R^{U_i}\), we have \(s^n=0\) for some \(n:\N\).}. We will drop the ``codimension'' part and just assume \(k=1\). 
 \end{definition}
 
 \begin{lemma}
   Let \(C\) be a curve and \(P:C\) a point.
-  Then \(P\) is locally nilregular of codimension 1.
+  Then \(\{P\}\) is locally nilregular of codimension 1.
 \end{lemma}
 
 \begin{proof}
@@ -46,12 +48,48 @@ We will construct two synthetic variants of the sheaves appearing in the Riemann
   Let \(F\colonequiv \fib_f(f(P))\), \(U^\prime\colonequiv U\setminus (F\setminus \{P\})\)  and \(V\colonequiv U^\prime\setminus \{P\}\).
   Then \(U^\prime\) is open, since, by \(F\) being étale,
   \(F\setminus\{P\}\) is closed.
-  \(V\) is open and non-empty: \(U^\prime\) is smooth and \(\neg V\) would imply that \(U=\{x:U\mid \neg\neg(x=P)\), which together means \(U=\{P\}\).
+  \(V\) is open and non-empty: \(U^\prime\) is smooth and \(\neg V\) would imply that \(U=\{x:U\mid \neg\neg(x=P)\}\), which together means \(U=\{P\}\).
   But that can not be the case, since the tangent space of \(U\) must be free of rank 1. Since non-empty opens of irreducible types are dense, \(V\) is dense.
   
   Now let \(h:R^{U^\prime}\) such that \(rh=0\).
   If we have \(x:V\) then \(r(x)\) is invertible and we have \(V\subseteq\fib_h(0)\), so \(h\) is zero on a dense open subset.
   If we assume \(y:U^\prime\) with \(h(y)\neq 0\) we have the contradiction \(f^{-1}(R^\times)\cap V\neq \emptyset\).
   So \(h(y)\) is always nilpotent and therefore, \(h\) is nilpotent.
+
+  The complement of \(\{P\}\) in \(C\) is an open subscheme and has a finite open affine cover, so we can use that and choose \(1\) everywhere as the nilregular element cutting out \(P\).
 \end{proof}
 
+Let \(A\subseteq C\) be closed locally nilregular and \(U_1,\dots,U_n\)  affine open cover such that \(A\cap U_i=V(r_i)\) with \(r_i\) nilregular.
+Then, on overlaps \(U_{ij}\colonequiv U_i\cap U_j\) we have \(V(r_i)\cap U_{ij}=V(r_j)\cap U_{ij}\). So there are \(a,b\in R^{U_{ij}}\) such that \(ar_i=r_j\) and \(br_j=r_i\). This implies that \(a,b\) are units and we can use them as glueing data for a line bundle.
+
+\begin{definition}
+  Let \(C\) be a curve and \(A\subseteq C\) be closed locally nilregular.
+  \begin{enumerate}[(a)]
+  \item Then we write \(\mathcal L(A)\) for the line bundle given by the glueing data described above.
+  \item For \(D\in\Div(C)\) we write \(\mathcal L(D)\) for the bundle given as follows:
+  \begin{enumerate}[(i)]
+  \item For \(D\equiv (P,1):\Div(C)\) we set \(\mathcal L(D)\colonequiv \mathcal L(P)\).
+  \item To construct \(\mathcal L(D+E)\) we use the glueing data obtained by multipliplying the units in glueing data for \(\mathcal L(D)\) and \(\mathcal L(E)\).
+  \item We invert the units in the glueing data for \(\mathcal L(P)\) to obtain \(\mathcal L(-D)\).
+  \end{enumerate}
+  \end{enumerate}
+\end{definition}
+
+\begin{proof}
+\begin{enumerate}[(a)]
+\item The units constructed above satisfy a cocycle condition, which is enough to construct a map into the 1-type of line bundles on \(C\).
+\item \rednote{TODO: Write down a proof that this is well-defined}
+\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  Let \(C\) be a curve and \(D,E:\Div(C)\). Then we have:
+  \begin{enumerate}[(i)]
+  \item \(\mathcal L(D+E)=\mathcal L(D)\otimes\mathcal L(E)\)
+  \item \(\mathcal L(-D)=\mathcal L(D)^\vee\)
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\rednote{TODO: Write down a proof}
+\end{proof}
