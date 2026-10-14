@@ -416,22 +416,24 @@ Equivalently, $\mcal{A}$ is a weak Serre class if it is inhabited, and if for ev
 We will end this section by showing that tangential modules admit a powerful linearization trick.
 
 \begin{theorem}\label{thm:linearize-lift}
-  Suppose we have the following square of tangential $R$-modules
+  Suppose we have a commuting square of tangential $R$-modules:
   \begin{center}
     \begin{tikzcd}
       A \ar{r}{u} \ar{d}{m} & X \ar{d}{e} \\
       B \ar{r}{v} & Y
     \end{tikzcd}
   \end{center}
-  If there merely exists a pointed solution $h':(B,0) \pto (X,0)$ to the lifting problem above, then there merely exists a linear solution as well.
+  If there merely exists a possibly non-linear solution $h : B \to X$ to the lifting problem above, then there merely exists a linear solution as well.
 \end{theorem}
 
 \begin{proof}
-  Assume we have a lift $h':B \pto X$.
+  Assume we have a lift $h : B \to X$.
+  Define $h' : (B,0) \pto (X,0)$ by $h'(b) \coloneq h(b) - h(0)$,
+  and note that $h'$ still is a solution to the lifting problem.
   Since $\can_{(\argmhole)}$ is a natural isomorphism on the given square, it is sufficient to find a linear lift on the tangent spaces.
   By \Cref{prp:derivative-inf-lin}, $\der{h'}{0}$ is the desired linear map.
 \end{proof}
 
 \begin{remark}
-  Explicitly, the linear solution that the above proof produces is $h \coloneq \can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
+  Explicitly, the linear solution that the above proof produces is $\can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
 \end{remark}
