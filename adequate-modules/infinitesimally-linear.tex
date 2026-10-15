@@ -18,18 +18,19 @@ most often in the paper.
 
 Taking $n$-th order neighbourhoods defines a functor $\hood{\argmhole}{n} : \pType \rightarrow \pType$.
 The action on maps $f : (X,x) \pto (Y,y)$ is given by $\hood{f}{n} \defeq f|_{\hood{X,x}{n}}$.
+It is straightforward to check that this is well-defined.
 
-\begin{proposition}\label{prp:hood-fun-welldef}
-  $\hood{\argmhole}{n}$ is a well-defined functor.
-\end{proposition}
+% \begin{proposition}\label{prp:hood-fun-welldef}
+%   $\hood{\argmhole}{n}$ is a well-defined functor.
+% \end{proposition}
+% 
+% \begin{proof}
+%   We need to show that for every $x' \in \hood{X,x}{n}$, we have $f(x') \in \hood{Y,y}{n}$.
+%   By assumption, we merely have a finitely generated ideal $I \subseteq R$ such that $I^{n+1} = 0$ and if $I = 0$ then $x' = x$.
+%   It follows that $f(x') \in \hood{Y,y}{n}$, because if $I = 0$, then $f(x') = f(x) = y$ by applying $f$ to $x' = x$ and using that $f$ is pointed.
+% \end{proof}
 
-\begin{proof}
-  We need to show that for every $x' \in \hood{X,x}{n}$, we have $f(x') \in \hood{Y,y}{n}$.
-  By assumption, we merely have a finitely generated ideal $I \subseteq R$ such that $I^{n+1} = 0$ and if $I = 0$ then $x' = x$.
-  It follows that $f(x') \in \hood{Y,y}{n}$, because if $I = 0$, then $f(x') = f(x) = y$ by applying $f$ to $x' = x$ and using that $f$ is pointed.
-\end{proof}
-
-Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ natural in $(X,x)$.
+Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$, natural in $(X,x)$.
 
 \begin{definition}\label{def:hood}
   A type $X$ is an \notion{$n$-th order neighbourhood around $x : X$} if the inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ is an equivalence of types.
@@ -76,7 +77,7 @@ Taking tangent spaces is a local construction in the following sense.
 \end{lemma}
 
 \begin{proof}
-  This is immediate by functoriality of $\hood{\argmhole}{n}$, \Cref{prp:hood-fun-welldef}, as $f$ factors as $i_y \circ \hood{f}{n} \circ i_x^{-1}$.
+  This is immediate by functoriality of $\hood{\argmhole}{n}$, as $f$ factors as $i_y \circ \hood{f}{n} \circ i_x^{-1}$.
   This factorization is unique, since $i_y$ is an inclusion.
 \end{proof}
 
