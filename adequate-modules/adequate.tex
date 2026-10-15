@@ -414,9 +414,32 @@ With the improved duality result, we can now dualize \Cref{rem:fcp-is-proj} in t
   Consequently, the data needed to specify an exact functor $K$ is an assignment of $R$ to an object $KR$ in $\mathcal{B}$ and a group homomorphism $\Hom_R(R,R) \rightarrow \mathcal{B}(KR,KR)$.
 \end{remark}
 
-Since $\finadeq$ is the free abelian category over $\finfree$, it follows by \cite[Proposition 1.3]{adelman-construction} that finitely copresented modules are closed under kernels and finitely presented modules are closed under cokernels.
-Consequently, both classes are closed under direct summands.
-We get the following proposition as a result.
+We end this section by characterizing the projective and injective objects in $\finadeq$.
+
+\begin{lemma}
+  Finitely copresented modules are closed under kernels.
+  Dually, finitely presented modules are closed under cokernels.
+\end{lemma}
+
+\begin{proof}
+  Let $f : K \to L$ be a homomorphism between finitely copresented modules.
+  Since finitely presented modules are injective by \Cref{lem:dual-exact-fp-inc}, the map $f$ extends to a square of finite free modules, as in the diagram below.
+  \begin{center}
+    \begin{tikzcd}
+      K \ar{d}{f} \ar[hook]{r} & R^{k_1} \ar{r}{k} \ar{d}{f_1} & R^{k_2} \ar{d}{f_2} \\
+      L \ar[hook]{r} & R^{l_1} \ar{r}{l} & R^{l_2}
+    \end{tikzcd}
+  \end{center}
+  Here, the rows are exact.
+  By \Cref{lem:diff-ker-is-ker}, the kernel of $f$ is now given by the kernel of the map $\langle k, f_1 \rangle : R^{k_1} \to R^{k_2} \oplus R^{l_1}$.
+  Thus, $\Ker(f)$ is finitely copresented as desired.
+  The dual statement follows by a dual argument.
+\end{proof}
+
+Consequently, it now follows that both classes are closed under direct summands.
+Let $M$ be a direct summand of a finitely copresented module $L$, with projection $p : L \twoheadrightarrow M$ and inclusion $i : M \hookrightarrow L$.
+Then, $M$ is merely the kernel of the idempotent map $\id_L - i \circ p$.
+The following proposition follows.
 
 \begin{proposition}\label{prp:proj-inj-char}
   Let $M$ be finitely adequate. $M$ is injective if and only if $M$ is finitely presented, and $M$ is projective if and only if $M$ is finitely copresented.
