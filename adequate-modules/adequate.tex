@@ -260,11 +260,15 @@ Before giving our construction, we will need the following lemma regarding kerne
 \end{proof}
 
 \begin{proposition}\label{prp:ad-ab}
-  Let $\mcal{B}$ be an abelian category and $\mcal{A} \subseteq \mcal{B}$ be an additive subcategory of $\mcal{B}$.
-  $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$ if:
-  \begin{itemize}[noitemsep]
+  Let $\mcal{B}$ be an abelian category and $\mcal{A} \subseteq \mcal{B}$ be an additive subcategory of $\mcal{B}$ such that:
+    \begin{itemize}[noitemsep]
     \item $\mcal{A}$-copresented objects are projective in $\Ad{\mcal{A}}$,
     \item $\mcal{A}$-presented objects are injective in $\Ad{\mcal{A}}$. 
+  \end{itemize}
+  Then $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$. Moreover:
+      \begin{itemize}[noitemsep]
+    \item $\mcal{A}$-copresented objects are closed under kernel, and any projective in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented.
+    \item $\mcal{A}$-presented objects closed under cokernel, and any injective in $\Ad{\mcal{A}}$ is $\mcal{A}$-presented. 
   \end{itemize}
 \end{proposition}
 
@@ -273,8 +277,7 @@ Before giving our construction, we will need the following lemma regarding kerne
 \end{remark}
 
 \begin{proof}
-  We only need to verify that $\Ad{\mcal{A}}$ is closed under kernels and cokernels.
-  Showing closure under kernels is sufficient, as the other case follows from a dual argument.
+  First we check that $\Ad{\mcal{A}}$ is closed under kernels. We get closure under cokernel by a dual argument, and together they imply $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$.
   
   Let $f : M \to N$ be a morphism between $\mcal{A}$-Adelman objects, and let $K$ be the kernel of $f$ taken in $\mcal{B}$.
   Since proving that $K$ is $\mcal{A}$-Adelman is a proposition, we can assume that there are resolutions $p : P_1 \to P_2$ and $q : Q_1 \to Q_2$, exhibiting $M$ and $N$ as kernels of $\mcal{A}$-presented objects respectively, by \Cref{lem:adel-desc}.
@@ -287,9 +290,27 @@ Before giving our construction, we will need the following lemma regarding kerne
   \end{center}
   By \Cref{lem:diff-ker-is-ker}, $K$ is now the kernel of $(p, f_1) : P_1 \to P_2 \oplus Q_1$.
   Thus, $K$ is $\mcal{A}$-Adelman by \Cref{lem:adel-desc}.
+  
+  Next we check that $\mcal{A}$-copresented modules are closed under kernel. The closure of $\mcal{A}$-presented objects under cokernel follows by dual argument.
+  
+    Let $f : K \to L$ be a homomorphism between $\mcal{A}$-copresented modules. Since modules in $\mcal{A}$ are injective in $\Ad{\mcal{A}}$, the map $f$ extends to a square of modules in $\mcal{A}$ as in the diagram below.
+  \begin{center}
+    \begin{tikzcd}
+      K \ar{d}{f} \ar[hook]{r} & K_1 \ar{r}{k} \ar{d}{f_1} & K_2 \ar{d}{f_2} \\
+      L \ar[hook]{r} & L_1 \ar{r}{l} & L_2
+    \end{tikzcd}
+  \end{center}
+  Here, the rows are exact.
+  By \Cref{lem:diff-ker-is-ker}, the kernel of $f$ is now given by the kernel of the map $\langle k, f_1 \rangle : K_1 \to K_2 \oplus L_1$.
+  Thus, $\Ker(f)$ is $\mcal{A}$-copresented as desired.
+  
+Finally we check that any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented. The fact that injective are $\mcal{A}$-presented follows from a dual argument.
+
+Let $M$ by projective in $\Ad{\mcal{A}}$, then we have an $\mcal{A}$-copresented module $L$ with a surjection $p: L \twoheadrightarrow M$. By projectivity, $M$ is a direct summand of $L$ with inclusion $i : M \hookrightarrow L$.
+Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$ so it is $\mcal{A}$-copresented by the previous point.
 \end{proof}
 
-We now apply the above proposition to $\mcal{B} \defeq \modcat{R}$ and $\mcal{A} \defeq \finfree$.
+We now want to apply the above proposition to $\mcal{B} \defeq \modcat{R}$ and $\mcal{A} \defeq \finfree$.
 Under this assignment, the $\finfree$-presented and $\finfree$-copresented objects are precisely the finitely presented and finitely copresented modules, which by \Cref{lem:adel-desc} yields $\Ad{\finfree} = \finadeq$.
 Since finitely copresented modules are projective in $\adeq$, they are clearly projective in $\finadeq$ as well.
 Therefore, it only remains to prove that finitely presented modules are injective in $\finadeq$.
@@ -396,8 +417,14 @@ With the improved duality result, we can now dualize \Cref{rem:fcp-is-proj} in t
   This follows immediately from \Cref{rem:fcp-is-proj}.
 \end{proof}
 
+We can now conclude this section by applying \Cref{prp:ad-ab} with $\mcal{B} \defeq \modcat{R}$ and $\mcal{A} \defeq \finfree$.
+
 \begin{theorem}\label{thm:fin-adeq-abelian}
-  The category $\finadeq$ is an abelian subcategory of $\modcat{R}$, i.e. $\finadeq$ is closed under kernels and cokernels.
+  The category $\finadeq$ is an abelian subcategory of $\modcat{R}$, i.e. $\finadeq$ is closed under kernels and cokernels. Moreover: 
+  \begin{itemize}[noitemsep]
+  \item Finitely copresented modules are closed under kernel, and any projective in $\finadeq$ in finitely copresented.
+  \item Finitely presented modules are closed under cokernel, and any injective in $\finadeq$ in finitely presented.
+  \end{itemize}
 \end{theorem}
 
 \begin{proof}
@@ -417,37 +444,37 @@ With the improved duality result, we can now dualize \Cref{rem:fcp-is-proj} in t
   Consequently, the data needed to specify an exact functor $K$ is an assignment of $R$ to an object $KR$ in $\mathcal{B}$ and a group homomorphism $\Hom_R(R,R) \rightarrow \mathcal{B}(KR,KR)$.
 \end{remark}
 
-We end this section by characterizing the projective and injective objects in $\finadeq$.
+%We end this section by characterizing the projective and injective objects in $\finadeq$.
 
-\begin{lemma}
-  Finitely copresented modules are closed under kernels.
-  Dually, finitely presented modules are closed under cokernels.
-\end{lemma}
+%\begin{lemma}
+ % Finitely copresented modules are closed under kernels.
+ % Dually, finitely presented modules are closed under cokernels.
+%\end{lemma}
 
-\begin{proof}
-  Let $f : K \to L$ be a homomorphism between finitely copresented modules.
-  Since finitely presented modules are injective by \Cref{lem:dual-exact-fp-inc}, the map $f$ extends to a square of finite free modules, as in the diagram below.
-  \begin{center}
-    \begin{tikzcd}
-      K \ar{d}{f} \ar[hook]{r} & R^{k_1} \ar{r}{k} \ar{d}{f_1} & R^{k_2} \ar{d}{f_2} \\
-      L \ar[hook]{r} & R^{l_1} \ar{r}{l} & R^{l_2}
-    \end{tikzcd}
-  \end{center}
-  Here, the rows are exact.
-  By \Cref{lem:diff-ker-is-ker}, the kernel of $f$ is now given by the kernel of the map $\langle k, f_1 \rangle : R^{k_1} \to R^{k_2} \oplus R^{l_1}$.
-  Thus, $\Ker(f)$ is finitely copresented as desired.
-  The dual statement follows by a dual argument.
-\end{proof}
+%\begin{proof}
+%  Let $f : K \to L$ be a homomorphism between finitely copresented modules.
+%  Since finitely presented modules are injective by \Cref{lem:dual-exact-fp-inc}, the map $f$ extends to a square of finite free modules, as in the diagram below.
+%  \begin{center}
+%    \begin{tikzcd}
+%      K \ar{d}{f} \ar[hook]{r} & R^{k_1} \ar{r}{k} \ar{d}{f_1} & R^{k_2} \ar{d}{f_2} \\
+%      L \ar[hook]{r} & R^{l_1} \ar{r}{l} & R^{l_2}
+%    \end{tikzcd}
+%  \end{center}
+%  Here, the rows are exact.
+%  By \Cref{lem:diff-ker-is-ker}, the kernel of $f$ is now given by the kernel of the map $\langle k, f_1 \rangle : R^{k_1} \to R^{k_2} \oplus R^{l_1}$.
+%  Thus, $\Ker(f)$ is finitely copresented as desired.
+%  The dual statement follows by a dual argument.
+%\end{proof}
 
-Consequently, it now follows that both classes are closed under direct summands.
-Let $M$ be a direct summand of a finitely copresented module $L$, with projection $p : L \twoheadrightarrow M$ and inclusion $i : M \hookrightarrow L$.
-Then, $M$ is merely the kernel of the idempotent map $\id_L - i \circ p$.
-The following proposition follows.
+%Consequently, it now follows that both classes are closed under direct summands.
+%Indeed let $M$ be a direct summand of a finitely copresented module $L$, with projection $p : L \twoheadrightarrow M$ and inclusion $i : M \hookrightarrow L$.
+%Then, $M$ is merely the kernel of the idempotent map $\id_L - i \circ p$.
+%The following proposition follows.
 
-\begin{proposition}\label{prp:proj-inj-char}
-  Let $M$ be finitely adequate. $M$ is injective if and only if $M$ is finitely presented, and $M$ is projective if and only if $M$ is finitely copresented.
-  \earlyqed
-\end{proposition}
+%\begin{proposition}\label{prp:proj-inj-char}
+%  Let $M$ be finitely adequate. $M$ is injective if and only if $M$ is finitely presented, and $M$ is projective if and only if $M$ is %finitely copresented.
+%  \earlyqed
+%\end{proposition}
 
 \subsection{Properties of Finitely Adequate Modules}
 
