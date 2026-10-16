@@ -6,15 +6,15 @@
 
 ## Writing
 
-- Felix: Introduction:  Dan thinks it needs a lot more detail. Add Sebastian, refer to 1.1 in abstract
+- We still need an abstract.
+- Felix: Introduction:  Done now?
 - Paper is a jumble of results.  Can we tell a story?  Improve all section intros.
 - Handle remaining \rednote's
 - Fabian: reorg Section 3.2
 
 ## Proofreading
 
-- Dan (others too): intro:  one pass done, but needs more revision
-- Dan: Section 2: proof read, reorganize
+- Intro:  done?
 - Fabian: Section 2
 - Thomas: Section 3
 - Felix:  Section 4
