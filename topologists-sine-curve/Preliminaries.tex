@@ -10,15 +10,20 @@ Note that all of the results we will present assume the axioms of SSD as in \cit
 \end{definition}
   
 \begin{axiom}[Local choice]\label{AxLocalChoice}
-  Given $X:\CHaus$, arbitrary types $E,F$, a map $f:X \to F$ and a 
-  surjection $e:E \twoheadrightarrow F$, 
-  there exists a Stone space $T$, a surjective map 
-  $T\twoheadrightarrow X$ and an arrow $T\to E$ making the following diagram commute:
-    \[\begin{tikzcd}
-      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
-      X  \arrow[r, swap,"f"] & F
-    \end{tikzcd}\]  
+  Given $X:\CHaus$, and $P$ a type family over $X$ such that $\Pi_{x:X} \|P(x)\|$, there merely exists a stone space $S$ and surjection $q:S \to X$ such that $\Pi_{s:S}P(qs)$.  
+%  Given $X:\CHaus$, arbitrary types $E,F$, a map $f:X \to F$ and a 
+%  surjection $e:E \twoheadrightarrow F$, 
+%  there exists a Stone space $T$, a surjective map 
+%  $T\twoheadrightarrow X$ and an arrow $T\to E$ making the following diagram commute:
+%    \[\begin{tikzcd}
+%      T \arrow[d,dashed, two heads ] \arrow[r,dashed]&  E \arrow[d,""',two heads, "e"]\\
+%      X  \arrow[r, swap,"f"] & F
+%    \end{tikzcd}\]  
 \end{axiom}
+We conclude with stating a useful property of Stone spaces \parencite[Lemma 3.6]{synthetic-stone-duality}.
+\begin{lemma}\label{Boundedness}
+  Any function from a Stone space into $\N$ factors over $\Fin(k)$ for some $k:\N$. 
+\end{lemma}
 
 %\begin{axiom}[Dependent choice]\label{axDependentChoice}
 %For all towers $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$, the projection from $\lim_kE_k$ to $E_0$ is surjective.
@@ -100,12 +105,12 @@ All functions on intervals are continuous in the following sense:
 \end{proof}
 We shall show that every function on an interval is uniformly continuous in the $\epsilon$-$\delta$ sense. This result will be generalized to general uniform continuity and compact Hausdorff spaces in future work. 
 \begin{corollary}\label{UniformContinuity}
-  Let $a\leq b,c<d:\R$. For any $f:[a,b] \to [c,d]$ and every $\epsilon:\R_{>0}$, there exists some $\delta:\R_{>0}$ such that whenever $x,y:[a,b]$ satisfy $|x-y|<\delta$ we have $|f(x) -f(y)| < \epsilon$. 
+  Let $a\leq b,c<d:\R$. For any $f:[a,b] \to [c,d]$ and every $\epsilon:\R_{>0}$, there exists some $N:\N_{\geq1}$ such that whenever $x,y:[a,b]$ satisfy $|x-y|<\frac1N$ we have $|f(x) -f(y)| < \epsilon$. 
 \end{corollary}
 \begin{proof}
   By \Cref{continuity}, \Cref{positiveNumbersCharacter} and local choice, there exists a Stone space $S$, a surjection $q:S\twoheadrightarrow [a,b]$ and a map $g:S \to \mathbb N_{\geq 1}$ such that for any $x:[a,b],s:S$ with $|x-q(s)| < \frac1{g(s)}$, we have $|f(x) - f(q(s))| < \epsilon$. 
-  By \parencite[Lemma 3.6]{synthetic-stone-duality}, $g$ factors over $\mathrm{Fin}(k)$ for some $k$.
-  Hence we can take the maximal element $N$ of its image, and set $\delta = \frac1N$. 
+  By \Cref{Boundedness} the image of $g$ has a maximal element $N$. %factors over $\mathrm{Fin}(k)$ for some $k$.
+%  Hence we can take the maximal element $N$ of its image.%, and set $\delta = \frac1N$. 
 \end{proof} 
 
 We conclude with a rescaled version of the intermediate value theorem, \parencite[Thm 5.29]{synthetic-stone-duality}:
