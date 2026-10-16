@@ -18,18 +18,19 @@ most often in the paper.
 
 Taking $n$-th order neighbourhoods defines a functor $\hood{\argmhole}{n} : \pType \rightarrow \pType$.
 The action on maps $f : (X,x) \pto (Y,y)$ is given by $\hood{f}{n} \defeq f|_{\hood{X,x}{n}}$.
+It is straightforward to check that this is well-defined.
 
-\begin{proposition}\label{prp:hood-fun-welldef}
-  $\hood{\argmhole}{n}$ is a well-defined functor.
-\end{proposition}
+% \begin{proposition}\label{prp:hood-fun-welldef}
+%   $\hood{\argmhole}{n}$ is a well-defined functor.
+% \end{proposition}
+% 
+% \begin{proof}
+%   We need to show that for every $x' \in \hood{X,x}{n}$, we have $f(x') \in \hood{Y,y}{n}$.
+%   By assumption, we merely have a finitely generated ideal $I \subseteq R$ such that $I^{n+1} = 0$ and if $I = 0$ then $x' = x$.
+%   It follows that $f(x') \in \hood{Y,y}{n}$, because if $I = 0$, then $f(x') = f(x) = y$ by applying $f$ to $x' = x$ and using that $f$ is pointed.
+% \end{proof}
 
-\begin{proof}
-  We need to show that for every $x' \in \hood{X,x}{n}$, we have $f(x') \in \hood{Y,y}{n}$.
-  By assumption, we merely have a finitely generated ideal $I \subseteq R$ such that $I^{n+1} = 0$ and if $I = 0$ then $x' = x$.
-  It follows that $f(x') \in \hood{Y,y}{n}$, because if $I = 0$, then $f(x') = f(x) = y$ by applying $f$ to $x' = x$ and using that $f$ is pointed.
-\end{proof}
-
-Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ natural in $(X,x)$.
+Observe that we have an inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$, natural in $(X,x)$.
 
 \begin{definition}\label{def:hood}
   A type $X$ is an \notion{$n$-th order neighbourhood around $x : X$} if the inclusion $i_x : \hood{X,x}{n} \hookrightarrow X$ is an equivalence of types.
@@ -76,7 +77,7 @@ Taking tangent spaces is a local construction in the following sense.
 \end{lemma}
 
 \begin{proof}
-  This is immediate by functoriality of $\hood{\argmhole}{n}$, \Cref{prp:hood-fun-welldef}, as $f$ factors as $i_y \circ \hood{f}{n} \circ i_x^{-1}$.
+  This is immediate by functoriality of $\hood{\argmhole}{n}$, as $f$ factors as $i_y \circ \hood{f}{n} \circ i_x^{-1}$.
   This factorization is unique, since $i_y$ is an inclusion.
 \end{proof}
 
@@ -393,45 +394,47 @@ To show that tangential and infinitesimally linear $R$-modules are closed under 
   The same follows for $(\argmhole,0)^{\D(m) \vee \D(n)}$ since $(M,0)^{\D(m) \vee \D(n)} \simeq (M,0)^{\D(m)} \times (M,0)^{\D(n)}$, and a product of exact functors is exact.
 \end{proof}
 
-We say that a class of modules $\mathcal A$ has the two-out-of-three property if for all short exact sequences of modules $0\to M \to N\to L\to 0$, if two of the modules are in $\mathcal A$ then so is the third. This implies that $\mathcal A$ is stable under finite limits and colimits.
-\rednote{How does this show closure under all finite limits and colimits?  For example, it only shows closure under kernels of surjections, but we want closure under all kernels, don't we?}
+We say that a class of modules $\mcal{A}$ is a \notion{weak Serre class} if it contains the zero module and is closed under kernels, cokernels, and extensions. 
+Equivalently, $\mcal{A}$ is a weak Serre class if it is inhabited, and if for every exact sequence of modules $A \to B \to C \to D\to E$ where $A$, $B$, $D$, and $E$ are in $\mcal{A}$, then $C$ is in $\mcal{A}$ as well.
 
 \begin{proposition}\label{prp:op-closure-inf-lin-tangential}
-  The class of $R$-modules that are infinitesimally linear $0$ and the class of tangential $R$-modules have the two-out-of-three property.
+  The class of $R$-modules that are infinitesimally linear $0$ and the class of tangential $R$-modules are weak Serre classes.
 \end{proposition}
 
 \begin{proof}
-  Assume given a short exact sequence of modules $0\to M\to N\to L\to 0$ such that two of the modules are infinitesimally linear at $0$. Then for all $m,n:\N$ consider the diagram
+  Assume that $A \to B \to C \to D \to E$ is an exact sequence such that four of the modules are tangential. Consider the diagram
       \[
     \begin{tikzcd}
-    0 \ar{r} &  M^{\D(m+n)}\ar{d}[left]{\inc_{m,n}^\ast} \ar{r} & N^{\D(m+n)} \ar{r}\ar{d}[left]{\inc_{m,n}^\ast} & L^{\D(m+n)}\ar{r}\ar{d}[left]{\inc_{m,n}^\ast} & 0\\
-    0 \ar{r} &  M^{\D(m)\vee\D(n)} \ar{r} & N^{\D(m)\vee\D(n)} \ar{r} & L^{\D(m)\vee\D(n)}\ar{r} & 0
+    A \ar{d}[left]{\Psi_A} \ar{r} &  B \ar{d}[left]{\Psi_B} \ar{r} & C \ar{r} \ar{d}[left]{\Psi_C} & D \ar{r} \ar{d}[left]{\Psi_D} & E \ar{d}[left]{\Psi_E}\\
+    \tangent{A}{0} \ar{r} &  \tangent{B}{0} \ar{r} & \tangent{C}{0} \ar{r} & \tangent{D}{0}\ar{r} & \tangent{E}{0}
     \end{tikzcd}
     \]
-    The rows are exact by \Cref{prp:tangent-exact}, and two of the vertical maps are equivalences by hypothesis. So the third vertical map is also an equivalence by the five lemma.
-
-    The case of tangential modules is similar.
+    The rows are exact by \Cref{prp:tangent-exact}, and four of the vertical maps are equivalences by assumption. 
+    Therefore, the remaining vertical map is also an equivalence by the five lemma.
+    The case for infinitesimally linear modules follows an analogous argument.
 \end{proof}
 
 We will end this section by showing that tangential modules admit a powerful linearization trick.
 
 \begin{theorem}\label{thm:linearize-lift}
-  Suppose we have the following square of tangential $R$-modules
+  Suppose we have a commuting square of tangential $R$-modules:
   \begin{center}
     \begin{tikzcd}
       A \ar{r}{u} \ar{d}{m} & X \ar{d}{e} \\
       B \ar{r}{v} & Y
     \end{tikzcd}
   \end{center}
-  If there merely exists a pointed solution $h':(B,0) \pto (X,0)$ to the lifting problem above, then there merely exists a linear solution as well.
+  If there merely exists a possibly non-linear solution $h : B \to X$ to the lifting problem above, then there merely exists a linear solution as well.
 \end{theorem}
 
 \begin{proof}
-  Assume we have a lift $h':B \pto X$.
+  Assume we have a lift $h : B \to X$.
+  Define $h' : (B,0) \pto (X,0)$ by $h'(b) \coloneq h(b) - h(0)$,
+  and note that $h'$ still is a solution to the lifting problem.
   Since $\can_{(\argmhole)}$ is a natural isomorphism on the given square, it is sufficient to find a linear lift on the tangent spaces.
   By \Cref{prp:derivative-inf-lin}, $\der{h'}{0}$ is the desired linear map.
 \end{proof}
 
 \begin{remark}
-  Explicitly, the linear solution that the above proof produces is $h \coloneq \can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
+  Explicitly, the linear solution that the above proof produces is $\can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
 \end{remark}
