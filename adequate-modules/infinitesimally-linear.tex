@@ -279,14 +279,39 @@ Despite this, the canonical map is also linear with respect to the microlinear s
 \subsection{Tangential Modules}
 
 In this subsection, we study tangential modules.
-We show that this class of modules is closed under standard operations like finite limits and finite colimits.
-We then conclude this subsection by showing that pointed maps between such modules admit a linearization.
+We begin by showing tangential modules admit a linearization technique that will be useful in the rest of the paper.
+We then show that tangential modules are always infinitesimally linear.
+We end this subsection by showing that tangential modules are closed under standard operations such as finite limits and finite colimits.
 
 \begin{definition}\label{def:tangential}
   An $R$-module $M$ is \notion{tangential} if the canonical map $\can_M : M \rightarrow \tangent{M}{0}$ (see \Cref{def:canonical-map}) is an equivalence.
 \end{definition}
 
-We can generalize $\can_M$ to a family of canonical maps $\can_M^k : M^k \to (M,0)^{\D(k)}$ for $k \geq 1$, defined by
+\begin{theorem}\label{thm:linearize-lift}
+  Suppose we have a commuting square of tangential $R$-modules:
+  \begin{center}
+    \begin{tikzcd}
+      A \ar{r}{u} \ar{d}{m} & X \ar{d}{e} \\
+      B \ar{r}{v} & Y
+    \end{tikzcd}
+  \end{center}
+  If there merely exists a possibly non-linear solution $h : B \to X$ to the lifting problem above, then there merely exists a linear solution as well.
+\end{theorem}
+
+\begin{proof}
+  Assume we have a lift $h : B \to X$.
+  Define $h' : (B,0) \pto (X,0)$ by $h'(b) \coloneq h(b) - h(0)$,
+  and note that $h'$ still is a solution to the lifting problem.
+  Since $\can_{(\argmhole)}$ is a natural isomorphism on the given square, it is sufficient to find a linear lift on the tangent spaces.
+  By \Cref{prp:derivative-inf-lin}, $\der{h'}{0}$ is the desired linear map.
+\end{proof}
+
+\begin{remark}
+  Explicitly, the linear solution that the above proof produces is $\can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
+\end{remark}
+
+Our proof that tangential modules are infinitesimally linear will make use of the following generalization of the canonical map $\can_M$.
+For $k \geq 1$, we define $\can_M^k : M^k \to (M,0)^{\D(k)}$ by
 \[
 \can_M^k (m_1, \dots, m_k) (\varepsilon_1, \dots, \varepsilon_k) = \sum_{i=1}^k \varepsilon_i m_i .
 \]
@@ -413,28 +438,3 @@ Equivalently, $\mcal{A}$ is a weak Serre class if it is inhabited, and if for ev
     Therefore, the remaining vertical map is also an equivalence by the five lemma.
     The case for infinitesimally linear modules follows an analogous argument.
 \end{proof}
-
-We will end this section by showing that tangential modules admit a powerful linearization trick.
-
-\begin{theorem}\label{thm:linearize-lift}
-  Suppose we have a commuting square of tangential $R$-modules:
-  \begin{center}
-    \begin{tikzcd}
-      A \ar{r}{u} \ar{d}{m} & X \ar{d}{e} \\
-      B \ar{r}{v} & Y
-    \end{tikzcd}
-  \end{center}
-  If there merely exists a possibly non-linear solution $h : B \to X$ to the lifting problem above, then there merely exists a linear solution as well.
-\end{theorem}
-
-\begin{proof}
-  Assume we have a lift $h : B \to X$.
-  Define $h' : (B,0) \pto (X,0)$ by $h'(b) \coloneq h(b) - h(0)$,
-  and note that $h'$ still is a solution to the lifting problem.
-  Since $\can_{(\argmhole)}$ is a natural isomorphism on the given square, it is sufficient to find a linear lift on the tangent spaces.
-  By \Cref{prp:derivative-inf-lin}, $\der{h'}{0}$ is the desired linear map.
-\end{proof}
-
-\begin{remark}
-  Explicitly, the linear solution that the above proof produces is $\can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
-\end{remark}
