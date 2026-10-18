@@ -20,10 +20,20 @@ Note that all of the results we will present assume the axioms of SSD as in \cit
 %      X  \arrow[r, swap,"f"] & F
 %    \end{tikzcd}\]  
 \end{axiom}
-We conclude with stating a useful property of Stone spaces \parencite[Lemma 3.6]{synthetic-stone-duality}.
+We conclude by stating a property of Stone spaces \parencite[Lemma 3.6]{synthetic-stone-duality}, and a useful technical corollary. 
 \begin{lemma}\label{Boundedness}
   Any function from a Stone space into $\N$ factors over $\Fin(k)$ for some $k:\N$. 
 \end{lemma}
+\begin{corollary}\label{chooseMaxNTrick}
+  Let $X:\Chaus$, and $Q$ a family of types over $X,\N$, 
+  such that for any $x:X,n\leq m:\N$ we have $Q(x,n)\to Q(x,m)$. 
+  Then $\Pi_{x:X}\exists_{n:N}Q(x,n)\to \exists_{n:\N}\Pi_{x:X}\|Q(x,n)\|$. 
+\end{corollary}
+\begin{proof}
+  By applying local choice to the formula $\Sigma_{n:\N}Q(x,n)$,
+  there exists some $S:\Stone, q:S\twoheadrightarrow X$ surjective and some $g:\Pi_{s:S}\Sigma_{n:\N}Q(qs,n)$. 
+  By \Cref{Boundedness}, $\pi_{\N}\circ g : S \to \N$ is bounded by some $N:\N$, and by the assumption on $Q$, it follows that $\Pi_{s:S}Q(qs,N)$. As $q$ is surjective, we conclude $\Pi_{x:X}\|Q(x,N)\|$. 
+\end{proof}
 
 %\begin{axiom}[Dependent choice]\label{axDependentChoice}
 %For all towers $(E_n)_{n:\N}$ with surjections $E_{n+1}\twoheadrightarrow E_n$, the projection from $\lim_kE_k$ to $E_0$ is surjective.
@@ -108,9 +118,9 @@ We shall show that every function on an interval is uniformly continuous in the 
   Let $a\leq b,c<d:\R$. For any $f:[a,b] \to [c,d]$ and every $\epsilon:\R_{>0}$, there exists some $N:\N_{\geq1}$ such that whenever $x,y:[a,b]$ satisfy $|x-y|<\frac1N$ we have $|f(x) -f(y)| < \epsilon$. 
 \end{corollary}
 \begin{proof}
-  By \Cref{continuity}, \Cref{positiveNumbersCharacter} and local choice, there exists a Stone space $S$, a surjection $q:S\twoheadrightarrow [a,b]$ and a map $g:S \to \mathbb N_{\geq 1}$ such that for any $x:[a,b],s:S$ with $|x-q(s)| < \frac1{g(s)}$, we have $|f(x) - f(q(s))| < \epsilon$. 
-  By \Cref{Boundedness} the image of $g$ has a maximal element $N$. %factors over $\mathrm{Fin}(k)$ for some $k$.
-%  Hence we can take the maximal element $N$ of its image.%, and set $\delta = \frac1N$. 
+  By \Cref{continuity} and \Cref{positiveNumbersCharacter}, for every $x:[a,b],\epsilon:\R_{>0}$, there exists an $N:\N_{\geq1}$ such that $|x-y|<\frac1N$ implies $|f(x)-f(y)|<\epsilon$. We conclude by \Cref{chooseMaxNTrick}.
+%  By \Cref{continuity}, \Cref{positiveNumbersCharacter} and local choice, there exists a Stone space $S$, a surjection $q:S\twoheadrightarrow [a,b]$ and a map $g:S \to \mathbb N_{\geq 1}$ such that for any $x:[a,b],s:S$ with $|x-q(s)| < \frac1{g(s)}$, we have $|f(x) - f(q(s))| < \epsilon$. 
+%  By \Cref{Boundedness} the image of $g$ has a maximal element $N$. 
 \end{proof} 
 
 We conclude with a rescaled version of the intermediate value theorem, \parencite[Thm 5.29]{synthetic-stone-duality}:
