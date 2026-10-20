@@ -148,17 +148,12 @@ We might omit the inclusion maps when it improves readability.
   We can thus apply \Cref{IntermediateValue} to $\pi_0\circ \gamma : [0,r] \to [0,1]$ to find some $v:[0,r]$ with $\pi_0(\gamma(v)) = b_k$. Then by \Cref{NonZeroOnGraph} and \Cref{topbottomSeq} we find that $\pi_1(\gamma(v)) = -1$.
   The case for $u$ is similar. 
 \end{proof}
+\begin{remark}
+  Let $\gamma$ be a path in $\mathcal S$. We call a pair of finite sequences $u_i,v_i,~i:\N_{\leq m}$ of terms of $[0,1]$ \textbf{a sequence of extremes for $\gamma$} if for all $i:\N_{\leq m}$ we have $\pi_1(\gamma(u_i)) = 1, \pi_1(\gamma(v_i) = -1$, and for all $i:\N_{<m}$ we have $u_{i+1}<v_{i+1}<u_i<v_i$.
+\end{remark}
 
-\begin{lemma}\label{MaxLengthOZSeq}
-  Let $\gamma:[0,1] \to \mathcal S$ be any path in the topologist's sine curve. There exists an $N:\N$ such that for any finite sequences $u_i,v_i,~i:\N_{\leq m}$
-  of terms in $[0,1]$ such that:
-  \begin{itemize}
-    \item for any $i:\N_{\leq m}$ we have 
-      %$\pi_0(\gamma(u_i)),\pi_0(\gamma(v_i))>0$ and 
-      $\pi_1(\gamma(u_i)) = 1,\pi_1(\gamma(v_i)) = -1$, and
-    \item for any $i:\N_{<m}$ we have $u_{i+1}<v_{i+1}<u_i<v_i$,
-\end{itemize}
-we have $m<N$. 
+\begin{lemma}\label{MaxLengthExtremeSeq}
+  Let $\gamma:[0,1] \to \mathcal S$ be any path in the topologist's sine curve. Then there exists some $N:\N$ such that for any sequence of extremes $u_i,v_i,~i:\N_{\leq m}$ we have $m<N$. 
 \end{lemma}
 \begin{proof}
   By \Cref{UniformContinuity} applied to 
@@ -170,11 +165,11 @@ we have $m<N$.
 
 
 \begin{theorem}[The topologist's sine curve is not path-connected]\label{NotPathConnected}
-  There is no map $\gamma:[0,1] \to \mathcal S$ such that $\gamma(0) = (0,0)$ and $\gamma(1) = (1,\sin(1))$. 
+  There is no map $\gamma:[0,1] \to \mathcal S$ such that $\pi_0(\gamma(0)) = 0$ and $\pi_0(\gamma(1)) > 0$. 
 \end{theorem}
 \begin{proof}
-  Let $N:\N$ be as in \Cref{MaxLengthOZSeq}.
-  By applying \Cref{SineWillHitTopBot} $N+1$ times, we can find sequences $u_i,v_i,~i:\N_{\leq N}$ giving the required contradiction.
+  Let $N:\N$ be as in \Cref{MaxLengthExtremeSeq}.
+  By applying \Cref{SineWillHitTopBot} $N+1$ times, we can find sequences of extremes $u_i,v_i,~i:\N_{\leq N}$ of length $N$, giving a contradiction.
 %  By \Cref{UniformContinuity} applied to 
 %  $\pi_1\circ \iota \circ \gamma:[0,1] \to [-1,1]$ for $\epsilon = 2$, 
 %  there exists some $N:\N_{\geq1}$ such that for any $u,v:[0,1]$ with 
@@ -221,7 +216,7 @@ By \Cref{positiveNumbersCharacter} it follows that $$x\alpha>0 \leftrightarrow x
   For any $\alpha:\Noo$ we have that $(x\alpha,1),(x'\alpha,1) \in \mathcal S$.
 \end{lemma}
 \begin{proof}
-  We shall show that for any $k:\N$ we have $(x\alpha,1) \in \mathcal S_k$. The case for $x'$ is similar. 
+  We shall show that for any $k:\N_{\geq1}$ we have $(x\alpha,1) \in \mathcal S_k$. The case for $x'$ is similar. 
   By \Cref{LLPO}, we have $x\alpha\leq \frac1k \vee x\alpha \geq \frac 1k$.
   In the first case, $(x\alpha,1) \in [0,\frac1k]\times [-1,1]$, and in the second case there is some $i:\N$ such that $x \alpha = t_i$, hence $(x\alpha,1)\in graph({s_k})$. 
 \end{proof}
@@ -229,18 +224,15 @@ By \Cref{positiveNumbersCharacter} it follows that $$x\alpha>0 \leftrightarrow x
   Let $\sim,\Open$ be as in \Cref{PathConnectedComponents}. The map $g:\mathcal S \to \Open$ given by $g(s) = (\pi_0(\iota(s))>0)$ induces a map $f:\mathcal S/\sim \to \Open$ that is surjective but not injective. 
 \end{theorem}
 \begin{proof}
-  To see that $f$ is well-defined, we need to show that when $s\sim t$, we have $g(s)=g(t)$. By \Cref{NotPathConnected}, if $\pi_0(\iota(s))>0$ then $\pi_0(\iota(t)) \neq 0$, which by \Cref{positiveNumbersCharacter} implies that $\pi_1(\iota(t))>0$ also. It follows that $g(s)\leftrightarrow g(t)$, and we conclude by equality of propositions. 
+  To see that $f$ is well-defined, we need to show that when $s\sim t$, we have $g(s)=g(t)$. By \Cref{NotPathConnected}, if $\pi_0(\iota(s))>0$ then $\pi_0(\iota(t)) \neq 0$, which by \Cref{positiveNumbersCharacter} implies that $\pi_0(\iota(t))>0$ also. It follows that $g(s)\leftrightarrow g(t)$, and we conclude by equality of propositions. 
 
   Surjectivity follows from \Cref{fiberInhabited}. 
-
-  Now assume $f$ is injective. 
-  By \Cref{sequenceLandsInS} we can define $y,y':\Noo \to \mathcal S$ by $y\alpha = (x\alpha,1),y'\alpha = (x'\alpha,1)$. And by \Cref{sequenceAbove0Toghether} we have that $g(y\alpha) = g(y'\alpha)$. By injectivity, $\Pi_{\alpha:\Noo}y\alpha \sim y'\alpha$. 
-  For each $\alpha:\Noo$ there exists some $N:\N$ such that there are are no sequences $u_i,v_i,~i:\N_{\leq N}$ as in \Cref{MaxLengthOZSeq}. But by \Cref{chooseMaxNTrick}, there then exists an $N:\N$ that works for all $\alpha:\Noo$. 
-  But consider $\alpha$ the sequence with $\alpha_i = 1\leftrightarrow i = N$. For this $\alpha$, the sequences $u_j = t_{N+j}, v_j = b_{N+j},~i:\N_{\leq N}$ give a contradiciton. 
+  By \Cref{sequenceLandsInS} we can define $y,y':\Noo \to \mathcal S$ by $y\alpha = (x\alpha,1),y'\alpha = (x'\alpha,1)$. And by \Cref{sequenceAbove0Toghether} we have that $g(y\alpha) = g(y'\alpha)$. 
   
-%  Suppose that for each $\alpha:\Noo$ there exists some path $\gamma:[0,1] \to \mathcal S$ such that $\gamma(0) = y\alpha, \gamma(1) = y'\alpha$. 
-%  Then for each $\alpha:\Noo$, we could apply \Cref{UniformContinuity} to $\pi_1\circ \iota\circ \gamma$ for $\epsilon=2$, and get an $N:\N$ such that $|r-s|<\frac1N \to |\pi_2(\gamma(r))-\pi_2(\gamma(s))| < 2$. 
-%  But now by \Cref{chooseMaxNTrick},there exists some maximal $N:\N$ such that for all $\alpha:\Noo$ there exists some $\gamma:[0,1] \to \mathcal S$ with $\gamma(0) = y\alpha,\gamma(1) = y'\alpha$ and $|r-s|<\frac1N \to |\pi_2(\gamma(r))-\pi_2(\gamma(s))| < 2$. But this cannot hold for $\alpha$ the sequence that is $1$ at $2N$ and $0$ otherwise. 
+  If $f$ were to be injective, for each $\alpha:\Noo$ we'd merely have a path $\gamma$ in $\mathcal S$ from $y\alpha$ to $y'\alpha$. Moreover, by \Cref{MaxLengthExtremeSeq} that $\gamma$ would have a maximal sequence of extremes of some length $N$. 
+  By \Cref{chooseMaxNTrick}, we would have some $N:\N$ such that for each $\alpha:\Noo$ there exists some path $\gamma$ from $y\alpha$ to $y'\alpha$ with a maximal sequence of extremes of length $N$. 
+  But consider $\alpha$ the sequence with $\alpha_i = 1\leftrightarrow i = N+1$. 
+  For this $\alpha$, by \Cref{IntermediateValue}, there exist sequences $u_i,v_i,~i:\N_{\leq N+1}$ with $\pi_0(\gamma(u_i)) = (t_{N+i},1), \gamma(v_i) = (b_{N+i},-1)$, giving a contradiction as required. 
 \end{proof}
 
 %\begin{lemma}
