@@ -155,7 +155,7 @@ We have the following:
 
 Here we prove the results required for our cohomology computations, namely Propositions \ref{scott-continuity-right}, \ref{scott-continuity-left} and \ref{tychonov-dual-stone}. We then sum up these results nicely as \Cref{eine-scott-continuity-stone}, which is a dependent version of the following statement: 
 
-\begin{goal}\label{GoalScottGeneralNonDependent}[Non-dependent version]
+\begin{goal}[Non-dependent version]%\label{GoalScottGeneralNonDependent}
 Given a tower of Stone spaces $(S_k)_{k:\N}$ and a tower of overtly discrete types $(I_j)_{j:\N}$, we have that the canonical map $\mathrm{colim}_{k,j}(S_k\to I_j) \to (\mathrm{lim}_k S_k\to \mathrm{colim}_j I_j)$ is an equivalence.
 \end{goal}
 
@@ -185,20 +185,20 @@ Now we show that factoring through the image is enough.
 \end{lemma}
 
 \begin{proof}
-  Let $i:\N, f:\Pi_{x:S}(\mathrm{Im}(I_i(x)))$. By local choice there exists a surjective map $p:T\to S$
-with $g:\Pi_{x:T}\, I_i(p(x))$ such that $[g(x)] =_{I(x)} f(p(x))$ for all $x:T$.
+  Assume $i:\N$ with $f:\Pi_{x:S}(\mathrm{Im}(I_i(x)))$. By local choice there exists a surjective map $p:T\to S$
+with $g:\Pi_{x:T}\, I_i(p(x))$ such that $[g(x)] =_{I(p(x))} f(p(x))$ for all $x:T$.
 Then we have
-\[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I(x)} [g(y)])\]
+\[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I(p(x))} [g(y)])\]
 so that
-\[ \{x,y:T\ |\ p(x)=p(y)\} \to \exists(i:\N). [g(x)] =_{I_i(x)} [g(y)].\]
+\[ \{x,y:T\ |\ p(x)=p(y)\} \to \exists(i:\N). [g(x)] =_{I_i(p(x))} [g(y)].\]
 Since $\{x,y:T\ |\ p(x)=p(y)\}$ is Stone, we can apply \Cref{compact-hausforff-countable-cover} to get a $j:\N$ such that:
-\[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I_j(x)} [g(y)])\]
+\[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I_j(p(x))} [g(y)])\]
 which gives a factorisation of $f$ through $I_j$.
 \end{proof}
 
-From this, we can conclude \Cref{GoalScottGeneralNonDependent} in the case where the source $S_k$ is constant in $k$. 
+From this, we can conclude our goal in the case where the source $S_k$ is constant in $k$. 
 \begin{proposition}\label{scott-continuity-right}
-Assume given a Stone space $S$ and for each $x:S$ a tower of overtly discrete types $(I_i(x))_{i:\N}$. Then the canonical map $\mathrm{colim}_i (\Pi_{x:S} I_i(x)) \to \Pi_{x:S} \mathrm{colim}_i I(x)$ is an equivalence.
+Assume given a Stone space $S$ and for each $x:S$ a tower of overtly discrete types $(I_i(x))_{i:\N}$. Then the canonical map $\mathrm{colim}_i (\Pi_{x:S} I_i(x)) \to \Pi_{x:S} \mathrm{colim}_i I_i(x)$ is an equivalence.
 \end{proposition}
 
 \begin{proof}
@@ -381,7 +381,7 @@ S_{k+1}\ar[d,swap,"\pi_1"]\ar[r] & C_{k+1}\times_{C_k} S_k\ar[r]  \ar[d]& S_k\ar
 T \ar[r,swap,"q"] & C_{k+1}\ar[r]  & C_k
 \end{tikzcd}
 \end{center}
-Note that $S_{k+1}$ is Stone by \Cref{Stone-closure}.
+Note that $S_{k+1}$ is Stone by \Cref{Stone-closure} and identity types in $C_{k+1}$ being closed.
 We define $p_{k+1} = q\circ \pi_1$. The induced map in $S_{k+1}\to C_{k+1}\times_{C_k} S_k$ is a surjection as it is a pullback of the surjection $q$. 
 
 By dependent choice we get the required map of towers and surjectivity of the induced map $\lim_kS_k \to \lim_kC_k$. 
