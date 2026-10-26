@@ -180,18 +180,23 @@ In this way, finitely adequate modules are tangential, infinitesimally linear, a
 To show that $\finadeq$ forms an abelian category, we first pass through a general construction modeled after Adelman's recognition theorem for free abelian categories~\cite[Theorem 1.15]{adelman-construction}.
 
 Let $\mcal{B}$ be an abelian category.
-Following an observation of Faber and Freyd~\cite[Section 6]{faberFillinTheorems1966}, given composable morphisms $f : X \to Y$ and $g : Y \to Z$ in $\mcal{B}$, we define their \notion{homology} as
-\[
-  H(f,g) \defeq \Cok\bigl(\Ker (g \circ f) \rightarrow \Ker (g)\bigr).
-\]
-This generalizes the usual notion of homology: whenever $g \circ f = 0$, we have $\Ker(g \circ f) = X$, so $H(f,g) \simeq \quot{\Ker (g)}{\Im (f)}$.
-In general, one has canonical isomorphisms between:
-\begin{itemize}[noitemsep]
-  \item $H(f,g)$,
-  \item $\Ker\bigl(\Cok (f) \to \Cok(g \circ f)\bigr)$,
-  \item and $\Im\bigl(\Ker (g) \to \Cok (f)\bigr)$.
-\end{itemize}
-In particular, this notion of homology is self-dual.
+Following an observation of Faber and Freyd~\cite[Section 6]{faberFillinTheorems1966}, given composable morphisms $f : X \to Y$ and $g : Y \to Z$ in $\mcal{B}$, we define the following objects to be the \notion{homology} of $(f,g)$:
+\begin{align*}
+  \hat{H}(f,g) & \defeq \Ker\bigl(\Cok (f) \to \Cok(g \circ f)\bigr)\text{,} \\
+  \check{H}(f,g) & \defeq \Cok\bigl(\Ker (g \circ f) \rightarrow \Ker (g)\bigr)\text{,} \\
+  \text{and } H(f,g) & \defeq \Im\bigl(\Ker (g) \to \Cok (f)\bigr)\text{.}
+\end{align*}
+Since the first isomorphism theorem is true in any abelian category, it is clear that these objects are equivalent from the following commutative diagram:
+\begin{center}
+  \begin{tikzcd}[cramped, column sep = 0.7em]
+    & X \ar{rrr}{f} & & & Y \ar{rrr}{g} \ar[two heads]{rrd}{p_f} & & & Z \ar[two heads]{rd} \\
+    \Ker (g \circ f) \ar{rr} \ar[hook]{ru} \ar[two heads]{rd} & & \Ker (g) \ar[two heads]{rd} \ar[hook]{rru}{i_g} \ar[two heads]{rr} & & H(f,g) \ar[dashed]{rd}{\simeq} \ar[hook]{rr} & & \Cok (f) \ar{rr} \ar[two heads]{rd} & & \Cok (g \circ f) \\
+    & \Ker (p_f \circ i_g) \ar[hook]{ru} & & \check{H}(f,g) \ar[dashed]{rr}{\simeq} \ar[dashed]{ru}{\simeq} & & \hat{H}(f,g) \ar[hook]{ru} & & \Cok (p_f \circ i_g) \ar[hook]{ru}
+  \end{tikzcd}
+\end{center}
+As these objects are isomorphic, we will simply denote them by $H(f,g)$.
+Also observe that our notion of homology is self-dual.
+This also generalizes the usual notion of homology: whenever $g \circ f = 0$, we have $\Ker(g \circ f) = X$, so $H(f,g) \simeq \quot{\Ker (g)}{\Im (f)}$.
 
 Now, let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ (in our application, $\mcal{B} = \modcat{R}$ and $\mcal{A}$ is the category of finite free $R$-modules).
 An object $M$ is called \notion{$\mcal{A}$-presented} if it is merely a cokernel of a morphism in $\mcal{A}$, and \notion{$\mcal{A}$-copresented} if it is merely a kernel of a morphism in $\mcal{A}$.
@@ -213,12 +218,20 @@ It is readily seen to be additive.
   Since the objects of $\mcal{A}$ are projective, the map $f$ lifts to these presentations:
   \begin{center}
     \begin{tikzcd}
-      & A_{p_2} \ar{r}{f_2} \ar{d}{p} & A_{q_2} \ar{d}{q} \\
-      & A_{p_1} \ar{r}{f_1} \ar[two heads]{d} & A_{q_1} \ar[two heads]{d} \\
-      M \ar[hook]{r} & P \ar{r}{f} & Q \rlap{.}
+      A_{p_2} \ar{r}{f_2} \ar{d}{p} & A_{q_2} \ar{d}{q} \\
+      A_{p_1} \ar{r}{f_1} \ar[two heads]{d} & A_{q_1} \ar[two heads]{d} \\
+      P \ar{r}{f} & Q \rlap{.}
     \end{tikzcd}
   \end{center}
-  It is clear from the equivalent characterizations of homology that $H(p, f_1) = M$.
+  The kernel $M$ now fits into the following commutative diagram:
+  \begin{center}
+    \begin{tikzcd}[cramped]
+      A_{p_2} \oplus A_{q_2} \ar{rr}{p \oplus \id} & & A_{p_1} \oplus A_{q_2} \ar[two heads]{rd} \ar{rr}{[f_1,q]} & & A_{q_1} \ar[two heads]{rd} \\
+      & & M \ar[hook]{r} & P \ar{rr}{f} & & Q
+    \end{tikzcd}
+  \end{center}
+  where $P = \Cok (p \oplus \id)$ and $Q = \Cok ([f_1 \circ p,q])$.
+  Thus it is $\mcal{A}$-Adelman.
   % Let $L$ be the kernel of the map $[f_1, -q] : A_{p_1} \oplus A_{q_2} \to A_{q_1}$, which is $\mcal{A}$-copresented.
   % It is clear that the induced kernel map $L \twoheadrightarrow M$ is surjective, since the right hand square below
   % \begin{center}
@@ -232,8 +245,7 @@ It is readily seen to be additive.
   % Introduce left vertical map after the diagram.}
 
   For the other direction, suppose that $M$ is the homology of maps $f : A_1 \to A_2$ and $g : A_2 \to A_3$.
-  By the equivalent definitions of homology, $M = \Ker (\Cok (f) \to \Cok(g \circ f))$.
-  Thus, $M$ is the kernel of a morphism between the $\mcal{A}$-presented objects $\Cok f$ and $\Cok(g \circ f)$.
+  Now, $M = \Ker (\Cok (f) \to \Cok(g \circ f))$ just as desired.
   % let $i: M \to P$ and $p: L \twoheadrightarrow M$ be the image factorization of $h : L \to P$.
   % Furthermore, let $l : A_{l_1} \to A_{l_2}$ be a resolution of $L$, and $p : A_{p_2} \to A_{p_1}$ be a resolution of $P$.
   % Setting $q \defeq l \oplus p : A_{l_1} \oplus A_{p_2} \to A_{l_2} \oplus A_{p_1}$ and $Q \defeq \Cok q$, we get an induced map $f : P \to Q$.
