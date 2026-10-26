@@ -177,14 +177,28 @@ In this subsection, we show that this subcategory is an abelian subcategory of $
 Finitely adequate modules are in particular adequate modules, since finitely presented modules are quasi-coherent~(\Cref{rem:fp-is-qc}).
 In this way, finitely adequate modules are tangential, infinitesimally linear, and weakly quasi-coherent~(\Cref{prp:tangential-wqc-adeq} and \Cref{cor:tangential-inf-lin}).
 
-To show that $\finadeq$ forms an abelian category, we will first pass through a general construction modeled after Adelman's recognition theorem for free abelian categories~\cite[Theorem 1.15]{adelman-construction}.
-Let $\mcal{B}$ be an abelian category and $\mcal{A}$ an additive subcategory of $\mcal{B}$.
-(In our applications, $\mcal{B}$ will be $\modcat{R}$ and $\mcal{A}$ will be the finite free $R$-modules.)
+To show that $\finadeq$ forms an abelian category, we first pass through a general construction modeled after Adelman's recognition theorem for free abelian categories~\cite[Theorem 1.15]{adelman-construction}.
+
+Let $\mcal{B}$ be an abelian category.
+Following an observation of Faber and Freyd~\cite[Section 6]{faberFillinTheorems1966}, given composable morphisms $f : X \to Y$ and $g : Y \to Z$ in $\mcal{B}$, we define their \notion{homology} as
+\[
+  H(f,g) \defeq \Cok\bigl(\Ker (g \circ f) \rightarrow \Ker (g)\bigr).
+\]
+This generalizes the usual notion of homology: whenever $g \circ f = 0$, we have $\Ker(g \circ f) = X$, so $H(f,g) \simeq \quot{\Ker (g)}{\Im (f)}$.
+In general, one has canonical isomorphisms between:
+\begin{itemize}[noitemsep]
+  \item $H(f,g)$,
+  \item $\Ker\bigl(\Cok (f) \to \Cok(g \circ f)\bigr)$,
+  \item and $\Im\bigl(\Ker (g) \to \Cok (f)\bigr)$.
+\end{itemize}
+In particular, this notion of homology is self-dual.
+
+Now, let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ (in our application, $\mcal{B} = \modcat{R}$ and $\mcal{A}$ is the category of finite free $R$-modules).
 An object $M$ is called \notion{$\mcal{A}$-presented} if it is merely a cokernel of a morphism in $\mcal{A}$, and \notion{$\mcal{A}$-copresented} if it is merely a kernel of a morphism in $\mcal{A}$.
-We say that an object $M : \mcal{B}$ is \notion{$\mcal{A}$-Adelman} if $M$ is merely the image of a morphism $f : L \to P$, where $L$ is $\mcal{A}$-copresented and $P$ is $\mcal{A}$-presented.
-For these notions, the kernels and cokernels are taken in $\mcal{B}$, as we cannot ask for them to exist in a general additive subcategory $\mcal{A}$.
-Let $\Ad{\mcal{A}}$ be the subcategory of $\mcal{B}$ consisting of all $\mcal{A}$-Adelman objects.
-It is clear that $\Ad{\mcal{A}}$ is additive.
+More generally, we say that an object $M : \mcal{B}$ is \notion{$\mcal{A}$-Adelman} if it is merely the homology of a pair of composable morphisms in $\mcal{A}$.
+Here, all limits, colimits, and homologies are computed in $\mcal{B}$.
+We denote by $\Ad{\mcal{A}}$ the full subcategory of $\mcal{B}$ spanned by the $\mcal{A}$-Adelman objects.
+It is readily seen to be additive.
 
 \begin{lemma}\label{lem:adel-desc}
   Suppose that the objects of $\mcal{A}$ are projective in $\Ad{\mcal{A}}$.
@@ -192,7 +206,7 @@ It is clear that $\Ad{\mcal{A}}$ is additive.
 \end{lemma}
 
 \begin{proof}
-  In both directions, we are proving a mere proposition, so we may assume without loss of generality that all presentations and copresentations are given explicitly.
+  In both directions, we are proving a mere proposition, so we may assume without loss of generality that all presentations are given explicitly.
 
   Assume first that $M$ is the kernel of $f : P \to Q$ with $P$ and $Q$ $\mcal{A}$-presented.
   Choose $\mcal{A}$-presentations of $P$ and $Q$ as displayed below.
@@ -204,23 +218,27 @@ It is clear that $\Ad{\mcal{A}}$ is additive.
       M \ar[hook]{r} & P \ar{r}{f} & Q \rlap{.}
     \end{tikzcd}
   \end{center}
-  Let $L$ be the kernel of the map $[f_1, -q] : A_{p_1} \oplus A_{q_2} \to A_{q_1}$, which is $\mcal{A}$-copresented.
-  It is clear that the induced kernel map $L \twoheadrightarrow M$ is surjective, since the right hand square below
-  \begin{center}
-    \begin{tikzcd}
-      L \ar[hook]{r} \ar[two heads, dashed]{d} & A_{p_1} \oplus A_{q_2} \ar{r}{[f_1, -q]} \ar[two heads]{d} \ar[phantom]{rd}[very near end]{\ulcorner} & A_{q_1} \ar[two heads]{d} \\
-      M \ar[hook]{r} & P \ar{r}{f} & Q
-    \end{tikzcd}
-  \end{center}
-  is a pushout.
-  \rednote{What is middle vertical map?  Explain why right square is a pushout.
-  Introduce left vertical map after the diagram.}
+  It is clear from the equivalent characterizations of homology that $H(p, f_1) = M$.
+  % Let $L$ be the kernel of the map $[f_1, -q] : A_{p_1} \oplus A_{q_2} \to A_{q_1}$, which is $\mcal{A}$-copresented.
+  % It is clear that the induced kernel map $L \twoheadrightarrow M$ is surjective, since the right hand square below
+  % \begin{center}
+  %   \begin{tikzcd}
+  %     L \ar[hook]{r} \ar[two heads, dashed]{d} & A_{p_1} \oplus A_{q_2} \ar{r}{[f_1, -q]} \ar[two heads]{d} \ar[phantom]{rd}[very near end]{\ulcorner} & A_{q_1} \ar[two heads]{d} \\
+  %     M \ar[hook]{r} & P \ar{r}{f} & Q
+  %   \end{tikzcd}
+  % \end{center}
+  % is a pushout.
+  % \rednote{What is middle vertical map?  Explain why right square is a pushout.
+  % Introduce left vertical map after the diagram.}
 
-  For the other direction, let $i: M \to P$ and $p: L \twoheadrightarrow M$ be the image factorization of $h : L \to P$.
-  Furthermore, let $l : A_{l_1} \to A_{l_2}$ be a resolution of $L$, and $p : A_{p_2} \to A_{p_1}$ be a resolution of $P$.
-  Setting $q \defeq l \oplus p : A_{l_1} \oplus A_{p_2} \to A_{l_2} \oplus A_{p_1}$ and $Q \defeq \Cok q$, we get an induced map $f : P \to Q$.
-  It is clear that $M = \Ker f$.
-  \rednote{Why clear?  Is $f$ in fact injective?  (Also, two $p$'s.)}
+  For the other direction, suppose that $M$ is the homology of maps $f : A_1 \to A_2$ and $g : A_2 \to A_3$.
+  By the equivalent definitions of homology, $M = \Ker (\Cok (f) \to \Cok(g \circ f))$.
+  Thus, $M$ is the kernel of a morphism between the $\mcal{A}$-presented objects $\Cok f$ and $\Cok(g \circ f)$.
+  % let $i: M \to P$ and $p: L \twoheadrightarrow M$ be the image factorization of $h : L \to P$.
+  % Furthermore, let $l : A_{l_1} \to A_{l_2}$ be a resolution of $L$, and $p : A_{p_2} \to A_{p_1}$ be a resolution of $P$.
+  % Setting $q \defeq l \oplus p : A_{l_1} \oplus A_{p_2} \to A_{l_2} \oplus A_{p_1}$ and $Q \defeq \Cok q$, we get an induced map $f : P \to Q$.
+  % It is clear that $M = \Ker f$.
+  % \rednote{Why clear?  Is $f$ in fact injective?  (Also, two $p$'s.)}
 \end{proof}
 
 \begin{remark}\label{rem:adel-desc}
@@ -314,6 +332,11 @@ Let $M$ be projective in $\Ad{\mcal{A}}$. Then we have an $\mcal{A}$-copresented
 Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it is $\mcal{A}$-copresented by the previous point.
 \end{proof}
 
+\begin{remark}\label{rem:adelman-as-image}
+  Under the assumptions of \Cref{prp:ad-ab}, the category $\Ad{\mcal{A}}$ is closed under taking images.
+  Thus, an object $M$ is $\mcal{A}$-Adelman if and only if it is merely the image of a morphism $L \to P$, where $L$ is $\mcal{A}$-copresented and $P$ is $\mcal{A}$-presented.
+\end{remark}
+
 We now want to apply the above proposition to $\mcal{B} \defeq \modcat{R}$ and $\mcal{A} \defeq \finfree$.
 The $\finfree$-presented and $\finfree$-copresented objects are precisely the finitely presented and finitely copresented modules, which by \Cref{lem:adel-desc} yields $\Ad{\finfree} = \finadeq$.
 Since finitely copresented modules are projective in $\adeq$, they are clearly projective in $\finadeq$ as well.
@@ -355,11 +378,9 @@ We first need the following lemma.
   merely admits a linear solution.
 \end{lemma}
 
-\rednote{The following proof broke a bit when I removed homology of composable pairs. This shouldn't be too much of a problem, if we can adapt Fabian's new ideas into this paper.}
-
 \begin{proof}
-  Since we're proving a proposition, we can choose $p : L \twoheadrightarrow M$ with $L$ finitely copresented.
-  By the proof of \Cref{lem:adel-desc}, we get a pair of composable morphisms $f : R^l \to R^m$ and $g : R^m \to R^n$ such that $L = \Ker g$ and $P = \Cok f$.
+  Since we are proving a proposition, we can choose $f : R^l \to R^m$ and $g : R^m \to R^n$ such that $M = H(f,g)$. 
+  Then, let $K = \Ker (g \circ f)$, $L = \Ker (g)$, and $P = \Cok (f)$.
   This gives us the following commutative diagram, in which every row and column is exact:
 
   \begin{center}
