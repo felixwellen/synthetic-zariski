@@ -17,7 +17,8 @@ finitely adequate, by showing that $R[x]$ and $R[[x]]$ are each other's dual.
 In this subsection, we note that free modules are both infinitesimally linear and tangential,
 give examples of modules that are infinitesimally linear but not tangential,
 give an example of a module that is not infinitesimally linear,
-and give an example of a module that is tangential but not adequate.
+give an example of a module that is tangential but not adequate,
+and show that the first-order neighbourhood functor is not full when restricted to tangential modules.
 Schemes provide a natural starting point for this discussion.
 
 \begin{example}\label{ex:sch-inf-lin}
@@ -86,6 +87,19 @@ We will now consider some bigger examples, in the sense that they are not sub-fi
   By \Cref{cor:tangential-inf-lin}, these modules are also infinitesimally linear.
   Note that $R[[x]]$ is not adequate, as it is not weakly quasi-coherent (see \cite[Proposition A.0.5]{draft}).
 \end{example}
+
+We end with an example related to the functor $\hood{\argmhole}{1}$.
+
+\begin{counterexample}
+  We saw in \Cref{prop:hood-faithful} that taking first-order neighbourhoods
+  gives a faithful functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$
+  when restricted to tangential modules.
+  This functor is full when restricted even further to finitely copresented $R$-modules.
+  \rednote{Citation for prev sentence?}
+  However, this fails on finitely adequate $R$-modules and therefore on tangential modules.
+
+  To see this, consider the modules $(\varepsilon)$ for every $\varepsilon:\D(1)$. We have that $(\varepsilon) = \hood{(\varepsilon),0}{1}$, so that the functor $\hood{\argmhole}{1}$ acts as the identity on maps between such modules. So if $\hood{\argmhole}{1}$ is full on finitely adequate modules, then any pointed map from $((\varepsilon),0)$ to itself is linear. Let us consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$. These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$. If $\alpha_\varepsilon$ is linear then for all $r:R$ we have that $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence that $(r^2-r)\varepsilon=0$. By duality this implies that $\varepsilon=0$. So we see that every $\alpha_\varepsilon$ being linear implies $\D(1)=0$, a contradiction.
+\end{counterexample}
 
 
 \subsection{Tensor Products}\label{ss:ex-tensor-products}

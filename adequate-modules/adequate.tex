@@ -453,17 +453,13 @@ We can now conclude this section by applying \Cref{prp:ad-ab} with $\mcal{B} \de
 %  Consequently, the data needed to specify an exact functor $K$ is a choice of object $KR$ in $\mathcal{C}$ and a monoid homomorphism $\Hom_R(R,R) \rightarrow \mathcal{C}(KR,KR)$.
 \end{remark}
 
-\subsection{Properties of Finitely Adequate Modules}
-
-In this subsection we collect some properties of finitely adequate $R$-modules.
-\rednote{Expand on this introductory paragraph, and include more connecting prose between the results in this subsection.
-Consider whether the order of results in this subsection is optimal.
-Is \Cref{prp:fin-adeq-hom-closure} better here or in the next subsection?
-Make a new subsection just containing extension closure.  Fabian.}
+\subsection{To delete?}
 
 \begin{proposition}
   Let $A$ be a closed submodule of a finitely adequate module $M$. Then $A$ is finitely adequate if $A$ is tangential.
 \end{proposition}
+
+\rednote{jdc:  I suggest we drop this.  I don't think it is used anywhere else, and we haven't introduced the notion of a closed subtype in this paper.}
 
 \begin{proof}
   Let $M$ be presented by the finitely copresented modules $K \to L \twoheadrightarrow M$. Consider the pullback $L' \coloneq A \times_M L$.
@@ -473,23 +469,11 @@ Make a new subsection just containing extension closure.  Fabian.}
   The sequence $K \to L' \twoheadrightarrow A$ presents $A$ as a cokernel of a map of finitely copresented modules, so $A$ is finitely adequate.
 \end{proof}
 
-\begin{proposition}\label{prop:hood-faithful}
-  The functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$ is faithful when restricted to the subcategory of tangential $R$-modules.
-\end{proposition}
+\subsection{Finitely Adequate Modules are Extension Closed}
 
-\begin{proof}
-  Let $f,g : M \rightrightarrows N$ be two linear maps between tangential $R$-modules with $\hood{f,0}{1} = \hood{g,0}{1}$.
-  Then $df_0=dg_0$ and by naturality of the canonical maps $\can_{(\argmhole)}$ the claim follows.
-\end{proof}
-
-\begin{remark}
-  The functor $\hood{\argmhole}{1}$ of the previous proposition is full when restricted even further to finitely copresented $R$-modules.
-  This, however, already fails on finitely adequate $R$-modules.
-
-  To see this, consider the modules $(\varepsilon)$ for every $\varepsilon:\D(1)$. We have that $(\varepsilon) = \hood{(\varepsilon),0}{1}$, so that the functor $\hood{\argmhole}{1}$ acts as the identity on maps between such modules. So if $\hood{\argmhole}{1}$ is full on finitely adequate modules, then any pointed map from $((\varepsilon),0)$ to itself is linear. Let us consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$. These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$. If $\alpha_\varepsilon$ is linear then for all $r:R$ we have that $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence that $(r^2-r)\varepsilon=0$. By duality this implies that $\varepsilon=0$. So we see that every $\alpha_\varepsilon$ being linear implies $\D(1)=0$, a contradiction.
-\end{remark}
-
-Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$, meaning that finitely adequate modules are closed under extension. We need two auxiliary results.
+In this subsection we show that finitely adequate modules form a weak
+Serre subcategory of $\modcat{R}$, meaning that finitely adequate
+modules are closed under extension. We need two auxiliary results.
 
 \begin{lemma}\label{lem:fin-adeq-ext-pb-red}
 Suppose we have a pullback diagram:
@@ -556,8 +540,15 @@ Finding a splitting amounts to showing that any lifting problem
   By \Cref{lem:fin-adeq-ext-pb-red} it is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so this follows from \Cref{prp:extension-fin-adeq-lin-adeq}.
 \end{proof}
 
+\subsection{Characterizing Finite Presented Modules among Finitely Adequate Modules}
 
-We finish this subsection by characterizing finitely presented $R$-modules amongst all finitely adequate modules as exactly those that are quasi-coherent.
+\rednote{jdc: Should this maybe move after the next subsection?  Or before the previous subsection?}
+
+In this subsection, we characterize finitely presented $R$-modules amongst all finitely adequate modules as exactly those that are quasi-coherent.
+In addition, \Cref{identification-hom-tensor-for-fp-modules} will be used in
+\Cref{ss:ex-tensor-products} to show that finitely adequate modules are not closed
+under tensor products.
+
 For $R$-modules $M$ and $N$, we will make use of the $R$-module homomorphism
   \[
     \beta_{M,N} : M \otimes N \to \Hom_R(M^\ast, N), \quad
