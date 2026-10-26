@@ -511,7 +511,7 @@ Make a new subsection just containing extension closure.  Fabian.}
   To see this, consider the modules $(\varepsilon)$ for every $\varepsilon:\D(1)$. We have that $(\varepsilon) = \hood{(\varepsilon),0}{1}$, so that the functor $\hood{\argmhole}{1}$ acts as the identity on maps between such modules. So if $\hood{\argmhole}{1}$ is full on finitely adequate modules, then any pointed map from $((\varepsilon),0)$ to itself is linear. Let us consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$. These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$. If $\alpha_\varepsilon$ is linear then for all $r:R$ we have that $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence that $(r^2-r)\varepsilon=0$. By duality this implies that $\varepsilon=0$. So we see that every $\alpha_\varepsilon$ being linear implies $\D(1)=0$, a contradiction.
 \end{remark}
 
-Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$, meaning that finitely adequate modules are stable under extension. We need two auxiliary results.
+Finitely adequate modules form a weak Serre subcategory of $\modcat{R}$, meaning that finitely adequate modules are closed under extension. We need two auxiliary results.
 
 \begin{lemma}\label{lem:fin-adeq-ext-pb-red}
 Suppose we have a pullback diagram:
@@ -544,21 +544,21 @@ Given $B$ finitely adequate and $L$ finitely copresented, any extension:
 \end{lemma}
 
 \begin{proof}
-Finding a splitting amounts to showing that any lifting problem:
+Finding a splitting amounts to showing that any lifting problem
   \begin{center}
     \begin{tikzcd}
       & E \ar[two heads]{d}{p} \\
-      L \ar[equal]{r} & L
+      L \ar[equal]{r} & L \rlap{,}
     \end{tikzcd}
   \end{center}
   where $L$ is finitely adequate and $B \defeq \Ker(p)$ is finitely adequate, merely has a linear solution.
   Observe that $E$ is tangential by \Cref{prp:op-closure-inf-lin-tangential}, since $B$ and $L$ are tangential by \Cref{prp:tangential-wqc-adeq}.
   $B$ is also weakly quasi-coherent by \Cref{prp:tangential-wqc-adeq}.
-  Thus, the lifting problem has a solution by \Cref{lem:lin-adeq-lift}. Once we have a splitting, we get $E=B \oplus L$ which is indeed finitely adequate.
+  Thus, the lifting problem has a solution by \Cref{lem:lin-adeq-lift}. Once we have a splitting, we get $E=B \oplus L$, which is indeed finitely adequate.
 \end{proof}
 
 \begin{theorem}\label{thm:fin-adeq-ext-closed}
-  Finitely adequate $R$-modules are stable under extension.
+  Finitely adequate $R$-modules are closed under extension.
 \end{theorem}
 
 \begin{proof}
@@ -575,13 +575,7 @@ Finding a splitting amounts to showing that any lifting problem:
       E \ar{r} & A
     \end{tikzcd}
   \end{center}
-  By \Cref{lem:fin-adeq-ext-pb-red} it is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so we have a new extension problem:
-    \begin{center}
-    \begin{tikzcd}
-      B \ar[hook]{r} & p^*E \ar[two heads]{r} & L
-    \end{tikzcd}
-  \end{center}
- We can conclude by \Cref{prp:extension-fin-adeq-lin-adeq}.
+  By \Cref{lem:fin-adeq-ext-pb-red} it is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so this follows from \Cref{prp:extension-fin-adeq-lin-adeq}.
 \end{proof}
 
 
