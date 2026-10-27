@@ -218,20 +218,21 @@ It is readily seen to be additive.
   Since the objects of $\mcal{A}$ are projective, the map $f$ lifts to these presentations:
   \begin{center}
     \begin{tikzcd}
-      A_{p_2} \ar{r}{f_2} \ar{d}{p} & A_{q_2} \ar{d}{q} \\
-      A_{p_1} \ar{r}{f_1} \ar[two heads]{d} & A_{q_1} \ar[two heads]{d} \\
+      A_2 \ar{r}{f_2} \ar[swap]{d}{p_1} & B_2 \ar{d}{q_1} \\
+      A_1 \ar{r}{f_1} \ar[two heads,swap]{d}{p_0} & B_1 \ar[two heads]{d}{q_0} \\
       P \ar{r}{f} & Q \rlap{.}
     \end{tikzcd}
   \end{center}
   The kernel $M$ now fits into the following commutative diagram:
   \begin{center}
     \begin{tikzcd}[cramped]
-      A_{p_2} \oplus A_{q_2} \ar{rr}{p \oplus \id} & & A_{p_1} \oplus A_{q_2} \ar[two heads]{rd} \ar{rr}{[f_1,q]} & & A_{q_1} \ar[two heads]{rd} \\
-      & & M \ar[hook]{r} & P \ar{rr}{f} & & Q
+      A_2 \oplus B_2 \ar{rr}{p_1 \oplus \id} & & A_1 \oplus B_2 \ar[two heads]{rd}{[p_0,0]} \ar{rr}{[f_1,q_1]} & & B_1 \ar[two heads]{rd}{q_0} \\
+      & & M \ar[hook]{r} & P \ar{rr}{f} & & Q \rlap{.}
     \end{tikzcd}
   \end{center}
-  where $P = \Cok (p \oplus \id)$ and $Q = \Cok ([f_1 \circ p,q])$.
-  Thus it is $\mcal{A}$-Adelman.
+  Since the diagram displays $P$ as the cokernel of $p_1 \oplus \id$ and
+  $Q$ as the cokernel of the composite $[f_1 \circ p_1, q_1]$,
+  it follows that $M$ is $\mcal{A}$-Adelman.
   % Let $L$ be the kernel of the map $[f_1, -q] : A_{p_1} \oplus A_{q_2} \to A_{q_1}$, which is $\mcal{A}$-copresented.
   % It is clear that the induced kernel map $L \twoheadrightarrow M$ is surjective, since the right hand square below
   % \begin{center}
@@ -245,7 +246,7 @@ It is readily seen to be additive.
   % Introduce left vertical map after the diagram.}
 
   For the other direction, suppose that $M$ is the homology of maps $f : A_1 \to A_2$ and $g : A_2 \to A_3$.
-  Now, $M = \Ker (\Cok (f) \to \Cok(g \circ f))$ just as desired.
+  Then $M = \Ker (\Cok (f) \to \Cok(g \circ f))$, as desired.
   % let $i: M \to P$ and $p: L \twoheadrightarrow M$ be the image factorization of $h : L \to P$.
   % Furthermore, let $l : A_{l_1} \to A_{l_2}$ be a resolution of $L$, and $p : A_{p_2} \to A_{p_1}$ be a resolution of $P$.
   % Setting $q \defeq l \oplus p : A_{l_1} \oplus A_{p_2} \to A_{l_2} \oplus A_{p_1}$ and $Q \defeq \Cok q$, we get an induced map $f : P \to Q$.
