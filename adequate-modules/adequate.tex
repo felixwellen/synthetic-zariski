@@ -186,7 +186,11 @@ Following an observation of Faber and Freyd~\cite[Section 6]{faberFillinTheorems
   \check{H}(f,g) & \defeq \Cok\bigl(\Ker (g \circ f) \rightarrow \Ker (g)\bigr)\text{,} \\
   \text{and } H(f,g) & \defeq \Im\bigl(\Ker (g) \to \Cok (f)\bigr)\text{.}
 \end{align*}
-Since the first isomorphism theorem is true in any abelian category, it is clear that these objects are equivalent from the following commutative diagram:
+Notice that $\hat{H}(f,g)$ and $\check{H}(f,g)$ are dual to one another while $H(f,g)$ is self-dual.
+Moreover, this generalizes the usual notion of homology: whenever $g \circ f = 0$, we have $\Ker(g \circ f) = X$, so $\check{H}(f,g) \simeq \quot{\Ker (g)}{\Im (f)}$.
+
+In fact, all three objects are isomorphic by the first isomorphism theorem, as we can see by considering the following commutative diagram:
+% Since the first isomorphism theorem is true in any abelian category, it is clear that these objects are equivalent from the following commutative diagram:
 \begin{center}
   \begin{tikzcd}[cramped, column sep = 0.7em]
     & X \ar{rrr}{f} & & & Y \ar{rrr}{g} \ar[two heads]{rrd}{p_f} & & & Z \ar[two heads]{rd} \\
@@ -194,9 +198,10 @@ Since the first isomorphism theorem is true in any abelian category, it is clear
     & \Ker (p_f \circ i_g) \ar[hook]{ru} & & \check{H}(f,g) \ar[dashed]{rr}{\simeq} \ar[dashed]{ru}{\simeq} & & \hat{H}(f,g) \ar[hook]{ru} & & \Cok (p_f \circ i_g) \ar[hook]{ru}
   \end{tikzcd}
 \end{center}
-As these objects are isomorphic, we will simply denote them by $H(f,g)$.
-Also observe that our notion of homology is self-dual.
-This also generalizes the usual notion of homology: whenever $g \circ f = 0$, we have $\Ker(g \circ f) = X$, so $H(f,g) \simeq \quot{\Ker (g)}{\Im (f)}$.
+The induced triangle of the three variants of homology is commutative.
+By exactness, we get that the induced map $\check{H}(f,g) \to H(f,g)$ is an isomorphism if and only if the map $\Ker(g\circ f) \to \Ker(p_f \circ i_g)$ is an epimorphism, and dually that $H(f,g) \to \hat{H}(f,g)$ is an isomorphism if and only if the map $\Cok(p_f \circ i_g) \to \Cok(g \circ f)$ is a monomorphism.
+A diagram chase is sufficient to verify that the maps on the kernels and cokernels are respectively epic and monic.
+We will therefore simply denote all three objects by $H(f,g)$.
 
 Now, let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ (in our application, $\mcal{B} = \modcat{R}$ and $\mcal{A}$ is the category of finite free $R$-modules).
 An object $M$ is called \notion{$\mcal{A}$-presented} if it is merely a cokernel of a morphism in $\mcal{A}$, and \notion{$\mcal{A}$-copresented} if it is merely a kernel of a morphism in $\mcal{A}$.
