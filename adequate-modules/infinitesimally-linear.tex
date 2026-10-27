@@ -279,48 +279,13 @@ Despite this, the canonical map is also linear with respect to the microlinear s
 \subsection{Tangential Modules}
 
 In this subsection, we study tangential modules.
-We begin by showing that tangential modules admit a linearization technique that will be useful in the rest of the paper.
-We then show that tangential modules are always infinitesimally linear.
+We begin by showing that tangential modules are always infinitesimally linear.
+We then use this to show that tangential modules admit a linearization technique that will be useful in the rest of the paper.
 We end this subsection by showing that tangential modules are closed under standard operations such as finite limits and finite colimits.
 
 \begin{definition}\label{def:tangential}
   An $R$-module $M$ is \notion{tangential} if the canonical map $\can_M : M \rightarrow \tangent{M}{0}$ (see \Cref{def:canonical-map}) is an equivalence.
 \end{definition}
-
-\begin{theorem}\label{thm:linearize-lift}
-  Suppose we have a commuting square of tangential $R$-modules:
-  \begin{center}
-    \begin{tikzcd}
-      A \ar{r}{u} \ar{d}{m} & X \ar{d}{e} \\
-      B \ar{r}{v} & Y
-    \end{tikzcd}
-  \end{center}
-  If there merely exists a possibly non-linear solution $h : B \to X$ to the lifting problem above, then there merely exists a linear solution as well.
-\end{theorem}
-
-\begin{proof}
-  Assume we have a lift $h : B \to X$.
-  Define $h' : (B,0) \pto (X,0)$ by $h'(b) \coloneq h(b) - h(0)$,
-  and note that $h'$ still is a solution to the lifting problem.
-  Since $\can_{(\argmhole)}$ is a natural isomorphism on the given square, it is sufficient to find a linear lift on the tangent spaces.
-  By \Cref{prp:derivative-inf-lin}, $\der{h'}{0}$ is the desired linear map.
-\end{proof}
-
-\begin{remark}
-  Explicitly, the linear solution that the above proof produces is $\can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
-\end{remark}
-
-A similar technique shows that taking first-order neighbourhoods is
-faithful on tangential modules.
-
-\begin{proposition}\label{prop:hood-faithful}
-  The functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$ is faithful when restricted to the subcategory of tangential $R$-modules.
-\end{proposition}
-
-\begin{proof}
-  Let $f,g : M \rightrightarrows N$ be two linear maps between tangential $R$-modules with $\hood{f,0}{1} = \hood{g,0}{1}$.
-  Then $df_0=dg_0$ and by naturality of the canonical maps $\can_{(\argmhole)}$ the claim follows.
-\end{proof}
 
 Our proof that tangential modules are infinitesimally linear will make use of the following generalization of the canonical map $\can_M$.
 For $k \geq 1$, we define $\can_M^k : M^k \to (M,0)^{\D(k)}$ by
@@ -375,6 +340,45 @@ As with $\can_M$, we write $\can^k$ when $M$ is clear from context.
   \end{center}
   The maps $\can^{m+n}$ and $\can^m \times \can^n$ are equivalences by \Cref{prp:tangential-implies-gen-can-equiv}, and it is clear that the two other maps labelled as equivalences are equivalences.
   So $\inc_{m,n}^\ast$ is an equivalence, as required.
+\end{proof}
+
+As a consequence, we deduce the following linearization result:
+
+\begin{theorem}\label{thm:linearize-lift}
+  Suppose we have a commuting square of tangential $R$-modules:
+  \begin{center}
+    \begin{tikzcd}
+      A \ar{r}{u} \ar{d}{m} & X \ar{d}{e} \\
+      B \ar{r}{v} & Y
+    \end{tikzcd}
+  \end{center}
+  If there merely exists a possibly non-linear solution $h : B \to X$ to the lifting problem above, then there merely exists a linear solution as well.
+\end{theorem}
+
+\begin{proof}
+  Assume we have a lift $h : B \to X$.
+  Define $h' : (B,0) \pto (X,0)$ by $h'(b) \coloneq h(b) - h(0)$,
+  and note that $h'$ still is a solution to the lifting problem.
+  Since $\can_{(\argmhole)}$ is a natural isomorphism on the given square, it is sufficient to find a linear lift on the tangent spaces.
+  By \Cref{cor:tangential-inf-lin}, $B$ and $X$ are infinitesimally linear,
+  so we can apply \Cref{prp:derivative-inf-lin} to deduce that $\der{h'}{0}$
+  is linear and therefore provides the linear lift on tangent spaces.
+\end{proof}
+
+\begin{remark}
+  Explicitly, the linear solution that the above proof produces is $\can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
+\end{remark}
+
+A similar technique shows that taking first-order neighbourhoods is
+faithful on tangential modules.
+
+\begin{proposition}\label{prop:hood-faithful}
+  The functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$ is faithful when restricted to the subcategory of tangential $R$-modules.
+\end{proposition}
+
+\begin{proof}
+  Let $f,g : M \rightrightarrows N$ be two linear maps between tangential $R$-modules with $\hood{f,0}{1} = \hood{g,0}{1}$.
+  Then $df_0=dg_0$ and by naturality of the canonical maps $\can_{(\argmhole)}$ the claim follows.
 \end{proof}
 
 Tangentiality and infinitesimal linearity are preserved under many common categorical constructions.
