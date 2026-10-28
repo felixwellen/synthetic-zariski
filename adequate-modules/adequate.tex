@@ -408,7 +408,7 @@ We first need the following lemma.
   \end{center}
   Here, the map $\Hom_R(R^n,R) \to \Hom_R(\Im(f),R)$ is epic by \cite[Lemma 2.3.8]{diffgeo-article}, and $\Ext^1_R(R^n,R) = 0$ as $R^n$ is projective, so $\Ext^1_R(P,R) = 0$.
 
-  Furthermore, since $R^n$ is projective, we have that $\Ext^2_R(P,R) = \Ext^1_R(\Im (f), R)$ by dimension shifting.
+  Furthermore, since $R^n$ is projective, we have that $\Ext^2_R(P,R) = \Ext^1_R(\Im (f), R)$ by dimension shift.
   Now, the long exact sequence associated to $L \hookrightarrow R^m \twoheadrightarrow \Im (f)$ yields the exact sequence
   \begin{center}
     \begin{tikzcd}
@@ -419,7 +419,7 @@ We first need the following lemma.
 \end{proof}
 
 \begin{lemma}\label{lem:dual-exact-fp-inc}
-  Let $M$ be the kernel of a map $P \to Q$ between finitely presented $R$-modules.
+  Let $M$ be the kernel of a map $f : P \to Q$ between finitely presented $R$-modules.
   The induced map $\Hom_R(P,R) \to \Hom_R(M,R)$ is epic.
   % Any extension problem
   % \begin{center}
@@ -432,15 +432,14 @@ We first need the following lemma.
 \end{lemma}
 
 \begin{proof}
-  Since we are proving a proposition, we can choose $f : P \to Q$ such that $M = \Ker (f)$.
-  Now, $\Ext^1_R(Q,R) = 0$ by \Cref{lem:ext^2-fp-R}, splicing the long exact sequences associated to $M \hookrightarrow P \twoheadrightarrow \Im(f)$ and $\Im(f) \hookrightarrow Q \twoheadrightarrow \Cok(f)$ at $\Ext^1_R(\Im(f),R)$ yields an exact sequence
+  $\Ext^i_R(Q,R) = 0$ for $i = 1, 2$ by \Cref{lem:ext^2-fp-R}.
+  Thus, by dimension shift and \Cref{lem:ext^2-fp-R}, we get that $\Ext^1(\Im (f), R) = \Ext^2(\Cok (f), R) = 0$, as $\Cok (f)$ is finitely presented. From the long exact sequences of $\Ext^\ast_R(\argmhole, R)$ associated to $M \hookrightarrow P \twoheadrightarrow \Im(f)$, we get an exact sequence
   \begin{center}
     \begin{tikzcd}
-      \Hom_R(P,R) \ar{r} & \Hom_R(M,R) \ar{r} & \Ext^2_R(\Cok (f), R)
+      \Hom_R(P,R) \ar{r} & \Hom_R(M,R) \ar{r} & 0
     \end{tikzcd}
   \end{center}
-  Now, $\Cok (f)$ is finitely presented as finitely presented modules are closed under cokernels.
-  The result follows, as $\Ext^2_R(\Cok (f), R) = 0$ by \Cref{lem:ext^2-fp-R}.
+  The result now follows from exactness.
 \end{proof}
 
 With this result, we can now show that finitely adequate modules play well with dualization.
