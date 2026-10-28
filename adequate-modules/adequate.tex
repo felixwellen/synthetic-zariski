@@ -385,56 +385,74 @@ As stated, the theorem above is not strong enough to establish that finitely pre
 By extending this duality result to all finitely adequate modules, we will obtain the desired injectivity result.
 We first need the following lemma.
 
-\begin{lemma}\label{lem:dual-exact-fp-inc}
-  Let $M$ be a finitely adequate $R$-module, and $P$ a finitely presented $R$-module.
-  Any extension problem
-  \begin{center}
-    \begin{tikzcd}
-      M \ar[hook]{d}{m} \ar{r}{u} & R \\
-      P \ar[dashed]{ur}
-    \end{tikzcd}
-  \end{center}
-  merely admits a linear solution.
+\begin{lemma}\label{lem:ext^2-fp-R}
+  Let $P$ be finitely presented.
+  Then $\Ext^1_R(P,R) = 0$ and $\Ext^2_R(P,R) = 0$.
 \end{lemma}
 
 \begin{proof}
-  Since we are proving a proposition, we can choose $f : R^l \to R^m$ and $g : R^m \to R^n$ such that $M = H(f,g)$. 
-  Then, let $K = \Ker (g \circ f)$, $L = \Ker (g)$, and $P = \Cok (f)$.
-  This gives us the following commutative diagram, in which every row and column is exact:
-
+  Consider an exact sequence
   \begin{center}
     \begin{tikzcd}
-      K \ar{d}{} \ar[hook]{r} & R^{l} \ar{r}{g \circ f} \ar{d}{f} & R^{n} \ar[equal]{d} \\
-      L \ar[two heads]{d}{p} \ar[hook]{r} & R^{m} \ar{r}{g} \ar[two heads]{d} & R^{n} \\
-      M \ar[hook]{r}{m} & P
+      L \ar[hook]{r} & R^m \ar{r}{f} & R^n \ar[two heads]{r} & P \rlap{,}
     \end{tikzcd}
   \end{center}
+  where $L \defeq \Ker(f)$ is finitely copresented.
+  The long exact sequence associated to $\Im(f) \hookrightarrow R^n \twoheadrightarrow P$ yields the exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      \Hom_R(R^n,R) \ar[two heads]{r} & \Hom_R(\Im(f),R) \ar{r} & \Ext^1_R(P,R) \ar{r} & \Ext^1_R(R^n, R) \rlap{.}
+    \end{tikzcd}
+  \end{center}
+  Here, the map $\Hom_R(R^n,R) \to \Hom_R(\Im(f),R)$ is epic by \cite[Lemma 2.3.8]{diffgeo-article}, and $\Ext^1_R(R^n,R) = 0$ as $R^n$ is projective, so $\Ext^1_R(P,R) = 0$.
 
-  We now proceed with a diagram chase argument to show that $u : M \to R$ extends along $m :M \hookrightarrow P$.
-  The linear map $u : M \to R$ restricts to a map $l_1 : L \to R$ that is zero on $K$.
-  By~\cite[Lemma 2.3.7]{diffgeo-article}, it is possible to extend $l_1$ to $l_2 : R^{m} \to R$.
-  $l_2$ will descend to $M$ if and only if it vanishes on the image of $f$.
-  Although this is not generally the case, we can construct a linear correction $c : R^{m} \to R$ such that $l_2 - c$ has this property.
-
-  To construct $c$, let $c_0 \defeq l_2 \circ f$.
-  Note that $c_0$ vanishes on $K$ and therefore descends to a linear map $c_1 : \Im(g \circ f) \to R$.
-  By \cite[Lemma 2.3.8]{diffgeo-article}, $c_1$ extends to a map $c_2 : R^{n} \to R$.
-  Now, $c \defeq c_2 \circ g \circ f$ is a linear map on $R^{l}$ that is zero on $K$,
-  so $l_2 - c$ vanishes on the image of $f$.
-  Therefore, $l_2 - c$ descends to a map $l_3 : P \to R$.
-
-  Finally, note that $l_3$ restricts to $l_1$ on $L$.
-  Thus, we have $u = l_3 \circ m$.
+  Furthermore, since $R^m$ and $R^n$ are projective, splicing the long exact sequences associated to $L \hookrightarrow R^m \twoheadrightarrow \Im(f)$ and $\Im(f) \hookrightarrow R^n \twoheadrightarrow P$ at $\Ext^1_R(\Im(f),R)$ yields the exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      \Hom_R(R^m,R) \ar[two heads]{r} & \Hom_R(L,R) \ar{r} & \Ext^2_R(P,R) \ar{r} & \Ext^2_R(R^n, R) \rlap{.}
+    \end{tikzcd}
+  \end{center}
+  Now, the map $\Hom_R(R^m,R) \to \Hom_R(L,R)$ is epic by \Cref{thm:lin-adeq-dual}, and $\Ext^2_R(R^n,R) = 0$ as $R^n$ is projective.
+  It follows that $\Ext^2_R(P,R) = 0$ as well.
 \end{proof}
+
+\begin{lemma}\label{lem:dual-exact-fp-inc}
+  Let $M$ be the kernel of a map $P \to Q$ between finitely presented $R$-modules.
+  The induced map $\Hom_R(P,R) \to \Hom_R(M,R)$ is epic.
+  % Any extension problem
+  % \begin{center}
+  %   \begin{tikzcd}
+  %     M \ar[hook]{d}{} \ar{r}{} & R \\
+  %     P \ar[dashed]{ur}
+  %   \end{tikzcd}
+  % \end{center}
+  % merely admits a linear solution.
+\end{lemma}
+
+\begin{proof}
+  Since we are proving a proposition, we can choose $f : P \to Q$ such that $M = \Ker (f)$.
+  Now, $\Ext^1_R(Q,R) = 0$ by \Cref{lem:ext^2-fp-R}, splicing the long exact sequences associated to $M \hookrightarrow P \twoheadrightarrow \Im(f)$ and $\Im(f) \hookrightarrow Q \twoheadrightarrow \Cok(f)$ at $\Ext^1_R(\Im(f),R)$ yields an exact sequence
+  \begin{center}
+    \begin{tikzcd}
+      \Hom_R(P,R) \ar{r} & \Hom_R(M,R) \ar{r} & \Ext^2_R(\Cok (f), R)
+    \end{tikzcd}
+  \end{center}
+  Now, $\Cok (f)$ is finitely presented as finitely presented modules are closed under cokernels.
+  The result follows, as $\Ext^2_R(\Cok (f), R) = 0$ by \Cref{lem:ext^2-fp-R}.
+\end{proof}
+
+With this result, we can now show that finitely adequate modules play well with dualization.
+In particular, let $M$ be a finitely adequate module which is merely given by the homology of some maps $f : R^l \to R^m$ and $g : R^m \to R^n$.
+Now, pre-composing with the map $M \hookrightarrow \Cok (f)$ induces an epimorphism $\Hom_R(\Cok (f), R) \twoheadrightarrow \Hom_R(M,R)$.
 
 \begin{proposition}\label{prp:dual-fin-ad}
   Let $M$ be a finitely adequate $R$-module. Then $M^\ast$ is finitely adequate.
 \end{proposition}
 
 \begin{proof}
-  By \Cref{lem:adel-desc}, there merely exists a surjection $p : L \twoheadrightarrow M$ with $L$ finitely copresented and an injection $i : M \hookrightarrow P$ with $P$ finitely presented.
+  By \Cref{lem:adel-desc}, $M$ is merely the homology of a sequence $f : R^l \to R^m$ and $g : R^m \to R^n$. Let $L \defeq \Ker (g)$ and $P \defeq \Cok (f)$. Then we obtain a surjection $p : L \twoheadrightarrow M$ and an injection $i : M \hookrightarrow P$.
   Taking duals, we get that $p^\ast : M^\ast \hookrightarrow L^\ast$ is an injection, and $i^\ast : P^\ast \twoheadrightarrow M^\ast$ is a surjection by \Cref{lem:dual-exact-fp-inc}.
-  Thus, $M^\ast$ is finitely adequate by \Cref{lem:adel-desc}.
+  Since dualization $(\argmhole)^\ast : \fcpmod \rightarrow \fpmod$ is an anti-equivalence by \Cref{thm:lin-adeq-dual}, we get that $M^\ast \simeq H(g^\ast, f^\ast)$, which is therefore finitely adequate by \Cref{lem:adel-desc}.
 \end{proof}
 
 \begin{proposition}\label{prp:can-dual-iso}
@@ -442,11 +460,11 @@ We first need the following lemma.
 \end{proposition}
 
 \begin{proof}
-  By \Cref{lem:adel-desc}, $M$ is the image of a map $f : L \to P$ with $L$ finitely copresented and $P$ finitely presented.
-  By \Cref{lem:dual-exact-fp-inc}, dualization takes images to images,
-  and so $M^{\ast\ast}$ is the image of $f^{\ast\ast} : L^{\ast\ast} \to P^{\ast\ast}$.
-  By \Cref{thm:lin-adeq-dual}, $\ev$ yields an isomorphism between $f$ and $f^{\ast\ast}$
-  and therefore $\ev : M \to M^{\ast\ast}$ induces an isomorphism between their images.
+  Retaining the notation of the previous proof, we let $h \defeq i \circ p : L \to P$.
+  Consider the factorization $h^{\ast\ast} = i^{\ast\ast} \circ p^{\ast\ast}$.
+  It is clear that $i^{\ast\ast}$ is monic, and $p^{\ast\ast}$ is epic by \Cref{lem:dual-exact-fp-inc}.
+  The maps $\ev : L \to L^{\ast\ast}$ and $\ev : P \to P^{\ast\ast}$ are isomorphisms by \Cref{thm:lin-adeq-dual}.
+  By naturality, the induced map $\ev : M \to M^{\ast\ast}$ between the images of $h$ and $h^{\ast\ast}$ is an isomorphism.
 \end{proof}
 
 Combining the above propositions, we get the following result:
