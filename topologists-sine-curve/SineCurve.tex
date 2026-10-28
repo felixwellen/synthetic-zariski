@@ -3,13 +3,14 @@ The topologist's sine curve $\mathcal S$ is an example of a topological space th
 In \Cref{curveShape} we shall show $\mathcal S$ is $[0,1]$-contractible, hence by \Cref{contractibleVSconnected} also connected. 
 In \Cref{curveNotPathConnected} we shall recall a proof that $\mathcal S$ is not path-connected in the setting of SSD, and hence not path-contractible. 
 It follows that the notions of being path-contractible and $[0,1]$-contractible don't agree. 
+In \Cref{PathConnectedcomponentsWeird} we shall see that we can define the path-connected components of $\mathcal S$, but they behave in an unexpected way. 
 
-
+\subsection{The topologist's sine curve in SSD}
 Because of \Cref{CauchyDfns} we can make the following definition:
 \begin{definition}%[The topologist's sine curve]
-  For $k:\mathbb N_{>1}$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $\mathcal S_k \subseteq [0,1] \times [-1,1]$ by 
+  For $k:\mathbb N_{\geq1}$, define $s_k:[\frac1k,1] \to [-1,1]$ by $s_k(x) = \sin(\frac1x)$ and $\mathcal S_k \subseteq [0,1] \times [-1,1]$ by 
   $$\mathcal S_k = \left([0, \frac1k] \times [-1,1]\right) \cup \mathrm{graph}(s_k).$$
-  We define \textbf{the topologist's sine curve} $\mathcal S = \bigcap_{k:\mathbb N_{>1}} \mathcal S_k$. 
+  We define \textbf{the topologist's sine curve} $\mathcal S = \bigcap_{k:\mathbb N_{\geq1}} \mathcal S_k$. 
 \input{Picture.tex}
 \end{definition}
   We shall write $\iota_k : \mathcal S_k \to [0,1] \times [-1,1]$ 
@@ -34,11 +35,11 @@ We might omit the inclusion maps when it improves readability.
 %  By the above, if for some $x:[0,1] \times [-1,1]$ we have $x\in \mathcal S$ and $\pi_1(x)\neq 0$, there must be some $k\in\mathbb N$ with $x \in graph(t_k)$ and hence $\pi_2(x) =\sin(\frac1{\pi_1(x)})$. 
 %\end{corollary}
 
-\subsection{The curve is $[0,1]$-contractible}\label{curveShape}
+\subsection{$\mathcal S$ is $[0,1]$-contractible}\label{curveShape}
 \begin{remark}
 %  We denote for each $r:[0,1]$ the fiber 
 %  $\mathcal S_r := (\pi_0\circ \iota)^{-1}(r)$. 
-  Note that for each $r:[0,1]$ the fiber
+  For each $r:[0,1]$ the fiber
   $ (\pi_0\circ \iota)^{-1}(r) = \mathcal S \cap (\pi_0^{-1}(r)) =
   \mathcal S \cap (\{r\} \times [-1,1])$ is closed.% for all $r:[0,1]$. 
 \end{remark}
@@ -52,9 +53,9 @@ We might omit the inclusion maps when it improves readability.
 %
   By \Cref{compactnessCHaus}, 
   it's sufficient to show that $\pi_0^{-1}(r) \cap \mathcal S_k$
-  is merely inhabited for any $k:\mathbb N_{>1}$. 
+  is merely inhabited for any $k:\mathbb N_{\geq1}$. 
 %
-  Let $k:\mathbb N_{> 1}$. 
+  Let $k:\mathbb N_{\geq 1}$. 
   As we're showing a proposition, we can make a case distinction based on \Cref{LLPO}:
 %  Note that $r\leq \frac1k \vee r \geq \frac 1k$. 
   \begin{itemize}
@@ -66,7 +67,7 @@ We might omit the inclusion maps when it improves readability.
 \end{proof}
 
 \begin{lemma}
-  For each $k:\mathbb N_{>1}$ and $r:[0,1]$, $\mathcal S_k\cap \pi_0^{-1}(r)$ is convex.
+  For each $k:\mathbb N_{\geq 1}$ and $r:[0,1]$, $\mathcal S_k\cap \pi_0^{-1}(r)$ is convex.
 \end{lemma}
 \begin{proof}
   Suppose that $(x,y), (x',y')$ both lie in $\mathcal S_k\cap \pi_0^{-1}(r)$.
@@ -118,7 +119,7 @@ We might omit the inclusion maps when it improves readability.
 %  By \parencite[Lemma 1.33]{modalities}, so does their composite. 
 %  It follows that $\mathcal S$ is $[0,1]$-contractible. 
 \end{proof}
-\subsection{The curve is not path-connected}\label{curveNotPathConnected}
+\subsection{$\mathcal S$ is not path-connected}\label{curveNotPathConnected}
 \begin{remark}\label{topbottomSeq}
   For each $k:\N$, denote $t_k = \frac1{(2k+\frac12) \pi}$ and $b_k = \frac1{(2k+\frac32) \pi}$. 
   Note that for all $k:\N$ we have $\sin(\frac1{b_k})=-1, \sin(\frac1{t_k})=1$ and
@@ -141,43 +142,92 @@ We might omit the inclusion maps when it improves readability.
 \begin{lemma}\label{SineWillHitTopBot}
   Let $\gamma:[0,1] \to \mathcal S$. 
   Assume that $\pi_0(\gamma(0)) = 0$ and $\pi_0(\gamma(r))>0$ for some $r:[0,1]$.
-  Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_1(\gamma(u)) = 1$ and $\pi_1(\gamma(v)) = -1$.
+  Then there exist some $u,v:[0,1]$ with $0<u<v<r$ such that $\pi_1(\gamma(u)) = -1$ and $\pi_1(\gamma(v)) = 1$.
 \end{lemma}
 \begin{proof}
   By \Cref{cofinaltbseq}, there exists some $k:\N$ such that $0 < b_k<\pi_0(\gamma(r))$. 
-  We can thus apply \Cref{IntermediateValue} to $\pi_0\circ \gamma : [0,r] \to [0,1]$ to find some $v:[0,r]$ with $\pi_0(\gamma(v)) = b_k$. Then by \Cref{NonZeroOnGraph} and \Cref{topbottomSeq} we find that $\pi_1(\gamma(v)) = -1$.
-  The case for $u$ is similar. 
+  We can thus apply \Cref{IntermediateValue} to $\pi_0\circ \gamma : [0,r] \to [0,1]$ to find some $u:[0,r]$ with $\pi_0(\gamma(u)) = b_k$. Then by \Cref{NonZeroOnGraph} and \Cref{topbottomSeq} we find that $\pi_1(\gamma(u)) = -1$.
+  The case for $v$ is similar. 
 \end{proof}
+\begin{remark}
+  Let $\gamma$ be a path in $\mathcal S$. We call a pair of finite sequences $u_i,v_i,~i:\N_{\leq m}$ of terms of $[0,1]$ \textbf{a sequence of extremes for $\gamma$} if for all $i:\N_{\leq m}$ we have $\pi_1(\gamma(u_i)) = -1, \pi_1(\gamma(v_i)) = 1$, and for all $i:\N_{<m}$ we have $u_{i+1}<v_{i+1}<u_i<v_i$.
+\end{remark}
 
-\begin{theorem}[The topologist's sine curve is not path-connected]
-  There is no map $\gamma:[0,1] \to \mathcal S$ such that $\gamma(0) = (0,0)$ and $\gamma(1) = (1,\sin(1))$. 
-\end{theorem}
+\begin{lemma}\label{MaxLengthExtremeSeq}
+  Let $\gamma:[0,1] \to \mathcal S$ be any path in the topologist's sine curve. Then there exists some $N:\N$ such that for any sequence of extremes $u_i,v_i,~i:\N_{\leq m}$ we have $m<N$. 
+\end{lemma}
 \begin{proof}
   By \Cref{UniformContinuity} applied to 
   $\pi_1\circ \iota \circ \gamma:[0,1] \to [-1,1]$ for $\epsilon = 2$, 
-  there exists some $\delta:\R_{>0}$ such that for any $u,v:[0,1]$ with 
-  $|\pi_1(\gamma(u))- \pi_1(\gamma(v))| = 2$ we have $|u-v|\geq \delta$. 
-  Let $N:\N_{\geq1}$ be such that $\frac1{N}<\frac\delta2$.
-  Applying \Cref{SineWillHitTopBot} $N+1$ times, we can find a sequence
-  $u_i,v_i,~i:\N_{\leq N}$ such that $\pi_1(\gamma(u_i)) = 1, \pi_1(\gamma(v_i)) = -1$ and $u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\mathbb N_{< N}$.
-  But then the sequence $u_i$ is decreasing with steps at least $2\delta>0$, and thus $u_N<0$, while $u_N:[0,1]$, which is a contradiction. 
-%  But then the difference between each $u$ and $v$ is at least $\delta$, which means that $u_{N}<0$. 
-%
-%
-%
-%  By applying dependent choice to \Cref{SineWillHitTopBot}, 
-%  we can find sequences $u_i,v_i,~i:\N$ such that $\pi_1(\gamma(u_i)) = 1, \pi_1(\gamma(v_i)) = -1$ and 
-%  $u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\mathbb N$. 
-%  We now apply \Cref{UniformContinuity} with $\epsilon =2 $.
-%  There is some $\delta>0$ such that $d(u_i, v_j)\geq \delta$ for any $i,j:\mathbb N$ as  $d(\gamma(u_i), \gamma(v_j)) \geq 2$. 
-%  Therefore, the sequence $u_i$ is decreasing with steps of size at least $2\delta>0$. 
-%  But this means that for $N>\frac1{2\delta}$, we have $u_{N}<0$, while $u_N :[0,1]$, which is a contradiction. 
+  there exists some $N:\N_{\geq1}$ such that for any $u,v:[0,1]$ with 
+  $|\pi_1(\gamma(u))- \pi_1(\gamma(v))| \geq 2$ we have $|u-v|\geq \frac1N$. 
+  But then the sequence $u_i$ is decreasing with steps at least $\frac2N$. So if $m\geq N$ we'd have that $u_m <0$. 
 \end{proof}
 
+
+\begin{theorem}[The topologist's sine curve is not path-connected]\label{NotPathConnected}
+  There is no map $\gamma:[0,1] \to \mathcal S$ such that $\pi_0(\gamma(0)) = 0$ and $\pi_0(\gamma(1)) > 0$. 
+\end{theorem}
+\begin{proof}
+  Let $N:\N$ be as in \Cref{MaxLengthExtremeSeq}.
+  By applying \Cref{SineWillHitTopBot} $N+1$ times, we can find sequences of extremes $u_i,v_i,~i:\N_{\leq N}$, giving a contradiction.
+\end{proof}
+\subsection{The path-connected components of $\mathcal S$}\label{PathConnectedcomponentsWeird}
+\begin{remark}\label{PathConnectedComponents}
+  For $X$ a type, we can define a relation on $X$ such that 
+  $x\sim y$ if there is a path from $x$ to $y$. This relation is reflexive and symmetric, and by \Cref{LLPO} also transitive.
+  The equivalence classes of $\sim$ are called the \textbf{path-connected components}.
+
+  We conjectured that the space of path-connected components of $\mathcal S$ is equivalent to the type of \textbf{open propositions} $\Open$, which is the type of propositions $P$ for which there exists some $x:[0,1]$ such that $P\leftrightarrow x>0$. 
+\end{remark}
+  We fed the above conjecture to an AI system. The answer it gave does not disprove the conjecture, but it shows a naive approach does not work. Because we find it interesting, we include it here. 
 \begin{remark}
-  One could define a relation on any type $X$ such that 
-  $x\sim y$ iff there is a path from $x$ to $y$. Note that this relation is transitive by \Cref{LLPO}, and always reflexive and symmetric.
-  The equivalence classes of this relation are called the path-connected components. 
-  We conjecture that the space of path-connected components of $\mathcal S$ is equivalent to the type of open propositions, which is the type of propositions $P$ for which there exists some $x:[0,1]$ such that $P\leftrightarrow x>0$.
+  Recall that $\Noo:\Stone$ is the space of binary sequences that hit $1$ at most once. 
+  %More formally, the space of $\alpha:2^\N$ such that for any $n,m:\N$ we have $\alpha_n = \alpha_m =1 \to n = m$. 
+\end{remark}
+\begin{remark}
+  Denote $x,x':\Noo \to [0,1]$ by $$x\alpha = \sum\limits_{i:\N} \alpha_i \cdot t_i, x'\alpha = \sum\limits_{i:\N}\alpha_i \cdot t_{2i}.$$ Indeed, as $\alpha$ hits $1$ at most once, both $x,x'$ can be described as Cauchy reals. 
+\end{remark} 
+\begin{remark}\label{sequenceAbove0Toghether}
+  Note that for any $k:\N,\alpha:\Noo$ we have $x\alpha>\frac1k$ if and only if $\alpha_i = 1$ for some $i:\N$ with $t_i>\frac1k$. 
+  Similarly we have that $x'\alpha>\frac1k$ if and only if $\alpha_i = 1$ for some $i:\N$ with $t_{2i} >\frac1k$. 
+By \Cref{positiveNumbersCharacter} it follows that $$x\alpha>0 \leftrightarrow x'\alpha>0\leftrightarrow \exists_{i:\N} \alpha_i = 1.$$
 \end{remark}
 
+\begin{lemma}\label{sequenceLandsInS}
+  For any $\alpha:\Noo$ we have that $(x\alpha,1),(x'\alpha,1) \in \mathcal S$.
+\end{lemma}
+\begin{proof}
+  We shall show that for any $k:\N_{\geq1}$ we have $(x\alpha,1) \in \mathcal S_k$. The case for $x'$ is similar. 
+  By \Cref{LLPO}, we have $x\alpha\leq \frac1k \vee x\alpha \geq \frac 1k$.
+  In the first case, $(x\alpha,1) \in [0,\frac1k]\times [-1,1]$, and in the second case there is some $i:\N$ such that $x \alpha = t_i$, hence $(x\alpha,1)\in graph({s_k})$. 
+\end{proof}
+\begin{theorem}
+  Let $\sim,\Open$ be as in \Cref{PathConnectedComponents}. The map $g:\mathcal S \to \Open$ given by $g(s) = (\pi_0(\iota(s))>0)$ induces a map $f:\mathcal S/\sim \to \Open$ that is surjective but not injective. 
+\end{theorem}
+\begin{proof}
+  To see that $f$ is well-defined, we need to show that when $s\sim t$, we have $g(s)=g(t)$. By \Cref{NotPathConnected}, if $\pi_0(\iota(s))>0$ then $\pi_0(\iota(t)) \neq 0$, which by \Cref{positiveNumbersCharacter} implies that $\pi_0(\iota(t))>0$ also. It follows that $g(s)\leftrightarrow g(t)$, and we conclude by equality of propositions. 
+
+  Surjectivity follows from \Cref{fiberInhabited}. 
+  By \Cref{sequenceLandsInS} we can define $y,y':\Noo \to \mathcal S$ by $y\alpha = (x\alpha,1),y'\alpha = (x'\alpha,1)$. And by \Cref{sequenceAbove0Toghether} we have that $g(y'\alpha) = g(y\alpha)$. 
+  
+  If $f$ were to be injective, for each $\alpha:\Noo$ we'd merely have a path $\gamma$ in $\mathcal S$ from $y'\alpha$ to $y\alpha$. Moreover, by \Cref{MaxLengthExtremeSeq} that $\gamma$ would have an upper bound $N$ on the length of a sequence of extremes.
+  By \Cref{chooseMaxNTrick}, we would have some $N:\N$ such that for each $\alpha:\Noo$ there exists some path $\gamma$ from $y'\alpha$ to $y\alpha$ with $N$ as an upper bound for the length of sequence of extremes.
+
+  But consider $\alpha$ the sequence with $\alpha_i = 1\leftrightarrow i = N+1$. 
+  Then $x\alpha = t_{N+1}$ and $x'\alpha = t_{2N+2}$. 
+  By repeatedly applying \Cref{IntermediateValue}, we can find $u_i,v_i,~i:\N_{\leq N}$ with 
+  $\pi_0(\gamma(u_i)) = b_{N+1+i},\pi_0(\gamma(v_i)) = t_{N+1+i}$ for all $i:\N_{\leq N}$, and $0<u_{i+1}<v_{i+1}<u_i<v_i$ for all $i:\N_{<N}$,  which gives the required contradiction by \Cref{topbottomSeq}. 
+\end{proof}
+
+%\begin{lemma}
+%  Let $\sim$ be as in \Cref{pathConnectedComponents}. There are functions $p,p':\Noo \to \mathcal S$ such that for all $\alpha:\Noo$ we have $\pi_0(p\alpha)>0 \leftrightarrow \pi_0(p' \alpha) >0$ but we don't have for all $\alpha:\Noo$ that $p\alpha \sim p' \alpha$. 
+%\end{lemma}
+%\begin{proof}
+%  Define $x,x':\Noo \to [0,1]$ by $
+%  x \alpha = \sum_{i:\N} \alpha_i \cdot t_i, 
+%  x'\alpha = \sum_{i:\N} \alpha_i \cdot t_{2i}$. Note that as $\alpha_i=1$ for at most one $i:\N$, both are Cauchy sequences, and hence define real numbers. Furthermore, note that for all $k:\N$ we have $(x\alpha,1),(x'\alpha,1) \in \mathcal S_k$ and $(x',1)\in \mathcal S_k$. Hence $(x,1),(x',1)$
+%
+%  Then both $\pi_0(p\alpha>0),\pi_0(q\alpha)>0$ are equivalent to $\exists_{i:\N} \alpha_i = 1$, 
+%\end{proof}
+%

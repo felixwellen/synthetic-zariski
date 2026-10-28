@@ -6,18 +6,20 @@
 
 ## Writing
 
-- Felix: Introduction:  Dan thinks it needs a lot more detail. Add Sebastian, refer to 1.1 in abstract
+- Felix: abstract.
 - Paper is a jumble of results.  Can we tell a story?  Improve all section intros.
 - Handle remaining \rednote's
-- Fabian: reorg Section 3.2
+- Fabian: improvements to some parts of Section 3?
+- Dan: expand intro to Section 3
 
 ## Proofreading
 
-- Dan (others too): intro:  one pass done, but needs more revision
-- Dan: Section 2: proof read, reorganize
 - Fabian: Section 2
 - Thomas: Section 3
 - Felix:  Section 4
+- Section 3.2:
+  - Proofread again now that homology reintroduced.
+  - Should abstract material be in a separate subsection or appendix?
 
 ## Misc
 

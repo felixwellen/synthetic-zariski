@@ -1,0 +1,94 @@
+\rednote{This section is an experimental, incomplete approach to Riemann-Roch for curves.}
+
+The following definitions were strongly suggested by the computations in \href{https://felix-cherubini.de/elliptic.pdf}{https://felix-cherubini.de/elliptic.pdf}.
+
+\begin{definition}
+  A scheme \(C\) is called a \notion{curve} if it is (irreducible?), projective and smooth of dimension 1.
+\end{definition}
+
+\begin{definition}
+  Let \(C\) be a curve.
+  \begin{enumerate}[(a)]
+  \item The type of \notion{Weil-Divisors} \(\Div(C)\) is the set quotient of the type of lists
+  of points and integers
+  \[
+    \Div(C)\colonequiv \left(\sum_{n:\N}(C\times \Z)^n\right)/\sim
+  \]
+  where the following pairs of lists with \(D_i=D_j\) are equivalent:
+  \begin{align*}
+    &((D_0,n_0),\dots, (D_i,n_i),\dots, (D_j,n_j),\dots, (D_{k+1},n_{k+1})) \\
+    &\sim((D_0,n_0),\dots,(D_i,n_i+n_j),\dots, \widehat{(D_j,n_j+n_i)},\dots, (D_{k+1},n_{k+1}))
+  \end{align*}
+  (we assume \(i\neq j\) and also allow \(j<i\))
+  \item The sum of the integers appearing in a Weil-Divisor \(D:\Div(C)\) is well-defined and we call it the degree \(\deg(D)\) of the divisor.
+  \end{enumerate}
+\end{definition}
+
+It is unclear if we can define \(\mathrm{div}(f):\Div(C)\) for a function \(f:C\to \bP^1\). We can assign a degree as \(\rk(f_\ast\mc O_0)-\rk(f_\ast\mc O_\infty)\).
+
+We will construct two synthetic variants of the sheaves appearing in the Riemann-Roch theorem. One will be a vector bundle, the other will have the usual global sections, i.e.\ functions on a curve with conditions on the orders of their zeroes and pole. The following definition and lemma are steps towards these definitions.
+
+\begin{definition}
+  Let \(X\) be a type and \(A\subseteq X\) a closed subset.
+  \(A\) is called \notion{locally regular of codimension \(k\)}, if there is a finite open affine cover \(U_0,\dots,U_n\) of \(X\) such that on each \(U_i\) we have \(A|U_i=V(r_{i1},\dots,r_{r_{ik}})\) where \(r_{i1},\dots,r_{r_{ik}}\) is a regular sequence. We will only use this definition for \(k=1\), where ``regular sequence'' just means that \(A|U_i=V(r_i)\), with \(r_i\) regular\footnote{Which means that whenever \(r_is=0\)  in \(R^{U_i}\), we have \(s^n=0\) for some \(n:\N\).}. We will drop the ``codimension'' part and just assume \(k=1\). 
+\end{definition}
+
+\begin{lemma}
+  Let \(C\) be a curve and \(P:C\) a point.
+  Then \(\{P\}\) is locally regular of codimension 1.
+\end{lemma}
+
+\begin{proof}
+  \(P\) is closed since \(C\) is separated.
+  \(P\) has an open neighbourhood \(U\) which is standard smooth of dimension 1.
+  So there is an étale map \(f:U\to R\) and \(f(P):R\) is of the form \(V(r^\prime)\) for a regular element in \((R^R)=R[X]\), namely \(X-f(P)\).
+  We set \(r\colonequiv r^\prime\circ f\).
+
+Let \(F\colonequiv \fib_f(f(P))\), \(U^\prime\colonequiv U\setminus (F\setminus \{P\})\)  and \(V\colonequiv U^\prime\setminus \{P\}\).
+  Then \(U^\prime\) is open, since, by \(F\) being étale,
+  \(F\setminus\{P\}\) is closed.
+  We will now check that \(r\) is regular in \(R^{U^\prime}\), which allows us to conclude that \(P\) is locally regular.
+  
+  Now let \(h:R^{U^\prime}\) such that \(rh=0\).
+  If we have \(x:V\) then \(r(x)\) is invertible and we have \(V\subseteq\fib_h(0)\), so \(h\) is zero on \(C\setminus\{P\}\).
+  Since the complement of \(P\) has an affine open cover, which has disjoint intersections with \(U^\prime\), we can extend \(h\) with \(0\) to a global map \(h:C\to R\).
+
+  Let \(f:C\to \bP^1\) be a finite free map.
+  Then we have a section \(f_\ast h\) of \(f_\ast \mathcal O_C\) which vanishes on the complement of \(f(P)\). Let \(U=R\) be a chart of \(\bP^1\). Then \(f_\ast h|U\) vanishes on a non-empty open, which means \(f_\ast h|U=0\), by regularity of non-zero polynomials\footnote{Alternatively, we could argue, that \(f_\ast h|U\) vanishes on a formal disk and is therefore 0. Also, this part of the proof works more generally for \(\bP^n\).}.
+  So \(f_\ast h=0\) and therefore \(h=0\).
+\end{proof}
+
+Let \(A\subseteq C\) be closed locally regular and \(U_1,\dots,U_n\)  affine open cover such that \(A\cap U_i=V(r_i)\) with \(r_i\) regular.
+Then, on overlaps \(U_{ij}\colonequiv U_i\cap U_j\) we have \(V(r_i)\cap U_{ij}=V(r_j)\cap U_{ij}\). So there are \(a,b\in R^{U_{ij}}\) such that \(ar_i=r_j\) and \(br_j=r_i\). This implies that \(a,b\) are units and we can use them as glueing data for a line bundle.
+
+\begin{definition}
+  Let \(C\) be a curve and \(A\subseteq C\) be closed locally regular.
+  \begin{enumerate}[(a)]
+  \item Then we write \(\mathcal L(A)\) for the line bundle given by the glueing data described above.
+  \item For \(D\in\Div(C)\) we write \(\mathcal L(D)\) for the bundle given as follows:
+  \begin{enumerate}[(i)]
+  \item For \(D\equiv (P,1):\Div(C)\) we set \(\mathcal L(D)\colonequiv \mathcal L(P)\).
+  \item To construct \(\mathcal L(D+E)\) we use the glueing data obtained by multipliplying the units in glueing data for \(\mathcal L(D)\) and \(\mathcal L(E)\).
+  \item We invert the units in the glueing data for \(\mathcal L(P)\) to obtain \(\mathcal L(-D)\).
+  \end{enumerate}
+  \end{enumerate}
+\end{definition}
+
+\begin{proof}
+\begin{enumerate}[(a)]
+\item The units constructed above satisfy a cocycle condition, which is enough to construct a map into the 1-type of line bundles on \(C\).
+\item \rednote{TODO: Write down a proof that this is well-defined}
+\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  Let \(C\) be a curve and \(D,E:\Div(C)\). Then we have:
+  \begin{enumerate}[(i)]
+  \item \(\mathcal L(D+E)=\mathcal L(D)\otimes\mathcal L(E)\)
+  \item \(\mathcal L(-D)=\mathcal L(D)^\vee\)
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\rednote{TODO: Write down a proof}
+\end{proof}

@@ -1,6 +1,6 @@
 In this section, we investigate examples and counterexamples for the various concepts defined in this article.
 We hope this section highlights the non-trivial nature of finitely adequate modules.
-So far, the most effective method for finding counterexamples is not to construct a specific module that is not finitely adequate, but instead to show that, within a given family of modules, not all the members are finitely adequate.
+There are two kinds of counterexamples: counterexamples in the traditional sense and \emph{counterexample families}. The latter means that for a property \(P:X\to \Prop\) it is sometimes only possible to produce a family \(F:I\to X\) such that \(\neg \prod_{i:I}P(F(i))\), but not to construct a specific \(x:X\) with \(\neg P(x)\). It will often be the case in this section that we only have a counterexample family and sometimes we will in fact know that there can be no concrete counterexample.
 
 We begin in \Cref{ss:ex-inf-lin} by discussing various infinitesimally linear and tangential modules.
 We show that being tangential is strictly stronger than being infinitesimally linear.
@@ -11,13 +11,14 @@ The longer \Cref{ss:ex-strange} studies nine families of $R$-modules
 and uses them to show that none of quasi-coherent, tangential or
 not not finite free implies finitely adequate.
 Finally, in \Cref{ss:ex-reflexive}, we show that reflexive does not imply
-finitely adequate, by showing that $R[x]$ and $R[[x]]$ are dual.
+finitely adequate, by showing that $R[x]$ and $R[[x]]$ are each other's dual.
 
 \subsection{Infinitesimally Linear and Tangential Modules}\label{ss:ex-inf-lin}
 In this subsection, we note that free modules are both infinitesimally linear and tangential,
 give examples of modules that are infinitesimally linear but not tangential,
 give an example of a module that is not infinitesimally linear,
-and give an example of a module that is tangential but not adequate.
+give an example of a module that is tangential but not adequate,
+and show that the first-order neighbourhood functor is not full when restricted to tangential modules.
 Schemes provide a natural starting point for this discussion.
 
 \begin{example}\label{ex:sch-inf-lin}
@@ -36,7 +37,7 @@ Schemes provide a natural starting point for this discussion.
 
 Consider \Cref{prp:inf-lin-hood}, from which we can extract the following principle: if $M$ and $N$ are modules such that $\hood{M,0}{1} \subseteq N \subseteq M$, then $(M,0)$ is infinitesimally linear at $0$ if and only if $(N,0)$ is.
 
-\begin{example}
+\begin{example}\label{ex:nil-inf-linear}
   As an example, $\mathrm{Nil}(R)$ is infinitesimally linear at $0$ since it contains $\hood{R,0}{1} = \D(1)$.
 \end{example}
 
@@ -54,14 +55,14 @@ and $N$ are tangential.
   Therefore, $\Nil(R)$ cannot be tangential, since $R$ is and the inclusion is proper.
 \end{counterexample}
 
-\begin{counterexample}\label{cex:hood-p-not-tangential}
-  Suppose that $p:\mathbb N$ is a prime number that is zero in $R$ and let $n > 0$ be arbitrary.
-  Then $\hood{R,0}{p^n-1}$, which is equivalent to $\setbuild{x:R}{x^{p^n}=0}$, is a submodule of $R$ and we have a chain of inclusions $\hood{R,0}{1} \subseteq \hood{R,0}{p^n-1} \subsetneq R$.
-  Therefore, $\hood{R,0}{p^n-1}$ cannot be tangential, since $R$ is.
-\end{counterexample}
+%\begin{counterexample}\label{cex:hood-p-not-tangential}
+%  Suppose that $p:\mathbb N$ is a prime number that is zero in $R$ and let $n > 0$ be arbitrary.
+%  Then $\hood{R,0}{p^n-1}$, which is equivalent to $\setbuild{x:R}{x^{p^n}=0}$, is a submodule of $R$ and we have a chain of inclusions $\hood{R,0}{1} \subseteq \hood{R,0}{p^n-1} \subsetneq R$.
+%  Therefore, $\hood{R,0}{p^n-1}$ cannot be tangential, since $R$ is.
+%\end{counterexample}
 
 \begin{remark}
-  By \Cref{cex:nil-not-tangential} or \Cref{cex:hood-p-not-tangential}, we see that being tangential is a strictly stronger condition than being infinitesimally linear.
+  By \Cref{ex:nil-inf-linear} and \Cref{cex:nil-not-tangential} we see that being tangential is a strictly stronger condition than being infinitesimally linear.
 \end{remark}
 
 So far, all modules we have considered are infinitesimally linear.
@@ -87,6 +88,19 @@ We will now consider some bigger examples, in the sense that they are not sub-fi
   Note that $R[[x]]$ is not adequate, as it is not weakly quasi-coherent (see \cite[Proposition A.0.5]{draft}).
 \end{example}
 
+We end with an example related to the functor $\hood{\argmhole}{1}$.
+
+\begin{counterexample}
+  We saw in \Cref{prop:hood-faithful} that taking first-order neighbourhoods
+  gives a faithful functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$
+  when restricted to tangential modules.
+  This functor is full when restricted even further to finitely copresented $R$-modules
+  by~\cite[Lemma 2.3.8]{diffgeo-article}.
+  However, this fails on finitely adequate $R$-modules and therefore on tangential modules.
+
+  To see this, consider the modules $(\varepsilon)$ for every $\varepsilon:\D(1)$. We have that $(\varepsilon) = \hood{(\varepsilon),0}{1}$, so that the functor $\hood{\argmhole}{1}$ acts as the identity on maps between such modules. So if $\hood{\argmhole}{1}$ is full on finitely adequate modules, then any pointed map from $((\varepsilon),0)$ to itself is linear. Let us consider the maps $\alpha_\varepsilon : (\varepsilon) \to (\varepsilon), r\varepsilon \mapsto r^2\varepsilon$ for every $\varepsilon:\D(1)$. These are well-defined, since $r\varepsilon = s\varepsilon$ implies $r^2\varepsilon-s^2\varepsilon = (r+s)(r-s)\varepsilon = 0$. If $\alpha_\varepsilon$ is linear then for all $r:R$ we have that $r^2\varepsilon = \alpha_\varepsilon(r\varepsilon) = r\alpha_\varepsilon(\varepsilon) = r\varepsilon$ and hence that $(r^2-r)\varepsilon=0$. By duality this implies that $\varepsilon=0$. So we see that every $\alpha_\varepsilon$ being linear implies $\D(1)=0$, a contradiction.
+\end{counterexample}
+
 
 \subsection{Tensor Products}\label{ss:ex-tensor-products}
 
@@ -96,7 +110,7 @@ This shows that it is not equivalent to the double dual tensor product and canno
 \begin{counterexample}\label{cex:tensor-not-closed}
   Let $\varepsilon : \D(1)$ be arbitrary and consider the annihilator $M_\varepsilon :\equiv \ker(R\overset{\cdot \varepsilon}{\to}R)$.
   We show that $N_\varepsilon :\equiv M_\varepsilon \otimes M_\varepsilon$ cannot be reflexive for all $\varepsilon : \D(1)$.
-  It then follows from \Cref{thm:can-dual-iso} that these modules cannot be finitely adequate for all $\varepsilon$.
+  It then follows from \Cref{prp:can-dual-iso} that these modules cannot be finitely adequate for all $\varepsilon$.
 
   Indeed, since dualizing is exact, we have $M_\varepsilon^\ast = R/(\varepsilon)$.
   Then we have
@@ -105,6 +119,7 @@ This shows that it is not equivalent to the double dual tensor product and canno
   \]
   where, for the penultimate equivalence, we use that $\Hom_R(M_\varepsilon,\argmhole)$ is right exact by \Cref{identification-hom-tensor-for-fp-modules}.
   In particular, $N_\varepsilon^{\ast\ast} = M_\varepsilon$, and under this identification the evaluation map $\ev : N_\varepsilon \to M_\varepsilon$ is the multiplication $s \otimes t \mapsto st$.
+  \rednote{Explain previous sentence?}
   Hence $\ev(\varepsilon\otimes\varepsilon)=0$ and thus even $\varepsilon \otimes \varepsilon = 0$ by virtue of our assumption.
   Now, using \Cref{tensor-gamma-commute-on-affines}, compute
   \[
@@ -282,9 +297,12 @@ We begin by studying $R^U$ as $U$ ranges over the three families in~\eqref{eq:th
   is the proposition that $r$ is invertible, which is equivalent to $D(r)$
   by \cite[Proposition 2.2.3]{draft}.
   For the sake of contradiction, suppose that $R^{D(r)}$ is finitely adequate for all $r : R$.
-  By \Cref{cor:dual-equiv}, $R[r^{-1}]^\ast$
-  is also finitely adequate, and is thus weakly quasi-coherent by \Cref{prp:fin-adeq-adeq}.
-  We have a commutative square
+  By \Cref{cor:dual-equiv},
+  \[
+    R[r^{-1}]^\ast = \{ a=(a_0,a_1,\dots) : R^{\N} \;|\; \forall k \geq 1.\; a_{k-1} = ra_k \}
+  \]
+  is also finitely adequate, and is thus weakly quasi-coherent.
+  We now have a commutative square
   \[
   \begin{tikzcd}
     (R[r^{-1}]^\ast)[r^{-1}] \ar[d, "\simeq"]\ar[r] & R[r^{-1}], \ar[d, "\simeq"] &[-25pt] \frac{g}{r^n} \mapsto \frac{g(1)}{r^n} \\
@@ -315,7 +333,7 @@ but this is not the case for all $r$.
 
 \begin{counterexample}\label{cex:exp-not-Dr-wqc}
   It is not the case that $R^{\lnot D(r)}$ is weakly quasi-coherent for every $r : R$.
-  In particular, by \Cref{prp:wqc-adeq}, it cannot be finitely adequate for every $r$.
+  In particular, by \Cref{prp:tangential-wqc-adeq}, it cannot be finitely adequate for every $r$.
   For the sake of contradiction, assume that $R^{\lnot D(r)}$ is weakly quasi-coherent for all $r : R$.
   By virtue of duality, the global sections of the bundle ${r \mapsto R^{\lnot D(r)}}$ form the power series module:
   \[
@@ -334,7 +352,7 @@ We next study $K^U$ as $U$ ranges over the three families in~\eqref{eq:three-pro
 \begin{example}\label{ex:K^V(r)-fin-adeq}
   The module $K^{V(r)}$ is finitely adequate for every $r : R$.
   Indeed, it is the kernel of the map $\mathrm{const} : R \to R^{V(r)}$,
-  and is therefore finitely adequate by \Cref{cor:fin-adeq-ker-closure} and \Cref{ex:exp-Vr-fin-adeq}.
+  and is therefore finitely adequate by \Cref{thm:fin-adeq-abelian} and \Cref{ex:exp-Vr-fin-adeq}.
   Note that $K^{V(r)} = \ideal{r}$, and a similar argument shows that every finitely generated
   ideal in $R$ is finitely adequate.
 \end{example}
@@ -445,7 +463,7 @@ Since we can express annihilators as duals, this allows us to transfer some prop
 
 \begin{proof}
   By \Cref{lem:ann-dual-quotient}, $\Ann(I) \simeq (\quot{R}{I})^*$,
-  which is finitely adequate by \Cref{prp:fin-adeq-cok-closure} and \Cref{cor:dual-equiv}.
+  which is finitely adequate by \Cref{thm:fin-adeq-abelian} and \Cref{cor:dual-equiv}.
   \rednote{Change last cross-ref if we mention earlier that the dual of a finitely adequate
   module is finitely adequate.}
 \end{proof}
@@ -505,7 +523,7 @@ The remaining family, $R_{V(r)}$, cannot be handled so easily, as $K^{V(r)}$
   that $(R_{V(r)})^* = \quot{R}{\ideal{r}}$.
 
   Again using \Cref{lem:ann-dual-quotient}, we see that $(R_{V(r)})^{**} = (\quot{R}{\ideal{r}})^* = \Ann(r)$.
-  Since $R_{V(r)}$ is reflexive (\Cref{{thm:can-dual-iso}}), we get that
+  Since $R_{V(r)}$ is reflexive (\Cref{{prp:can-dual-iso}}), we get that
   $R_{V(r)} = \Ann(r)$.
   One can check that this is an equality of submodules.
   % It takes a few steps to check the previous sentence as far as I can see.
