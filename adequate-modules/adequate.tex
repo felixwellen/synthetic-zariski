@@ -453,9 +453,10 @@ With this result, we can now show that finitely adequate modules interact well w
 \end{proposition}
 
 \begin{proof}
-  By \Cref{lem:adel-desc}, $M$ is merely the homology of a sequence $f : R^l \to R^m$ and $g : R^m \to R^n$. Let $L \defeq \Ker (g)$ and $P \defeq \Cok (f)$. Then we obtain a surjection $p : L \twoheadrightarrow M$ and an injection $i : M \hookrightarrow P$.
-  Taking duals, we get that $p^\ast : M^\ast \hookrightarrow L^\ast$ is an injection, and $i^\ast : P^\ast \twoheadrightarrow M^\ast$ is a surjection by \Cref{lem:dual-exact-fp-inc}.
-  Since dualization $(\argmhole)^\ast : \fcpmod \rightarrow \fpmod$ is an anti-equivalence by \Cref{thm:lin-adeq-dual}, we get that $M^\ast \simeq H(g^\ast, f^\ast)$, which is therefore finitely adequate by \Cref{lem:adel-desc}.
+  By \Cref{lem:adel-desc}, $M$ is merely the homology of a sequence $f : R^l \to R^m$ and $g : R^m \to R^n$. Let $L \defeq \Ker (g)$ and $P \defeq \Cok (f)$. Then the natural map $L \to P$ factors into a surjection $p : L \twoheadrightarrow M$ and an injection $i : M \hookrightarrow P$.
+  Since dualization $(\argmhole)^\ast : \fcpmod \rightarrow \fpmod$ is an anti-equivalence (\Cref{thm:lin-adeq-dual}), we have that $L^{\ast} = \Cok(g^{\ast})$, $P^{\ast} = \Ker(f^{\ast})$, and the natural map $P^{\ast} \to L^{\ast}$ factors through $M^{\ast}$ as $p^{\ast} \circ i^{\ast}$.
+  The dual map $p^\ast : M^\ast \hookrightarrow L^\ast$ is an injection, and $i^\ast : P^\ast \twoheadrightarrow M^\ast$ is a surjection by \Cref{lem:dual-exact-fp-inc}.
+  \rednote{Why does the new version of lemma apply in this situation?}
 \end{proof}
 
 \begin{proposition}\label{prp:can-dual-iso}
@@ -466,9 +467,12 @@ With this result, we can now show that finitely adequate modules interact well w
   Retaining the notation of the previous proof, we let $h \defeq i \circ p : L \to P$.
   Consider the factorization $h^{\ast\ast} = i^{\ast\ast} \circ p^{\ast\ast}$.
   It is clear that $i^{\ast\ast}$ is monic, and $p^{\ast\ast}$ is epic by \Cref{lem:dual-exact-fp-inc}.
+  \rednote{Why does lemma apply here?}
   The maps $\ev : L \to L^{\ast\ast}$ and $\ev : P \to P^{\ast\ast}$ are isomorphisms by \Cref{thm:lin-adeq-dual}.
   By naturality, the induced map $\ev : M \to M^{\ast\ast}$ between the images of $h$ and $h^{\ast\ast}$ is an isomorphism.
 \end{proof}
+
+\rednote{Would it be easier to use \Cref{rem:adelman-as-image} for the previous two results?}
 
 Combining the above propositions, we get the following result:
 
