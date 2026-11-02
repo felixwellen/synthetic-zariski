@@ -5,8 +5,10 @@ When the base ring is coherent, this notion coincides with that of coherent modu
 Synthetically, however, our base ring $R$ is provably not coherent~\cite[Theorem~3.2.1]{topology-draft} and these two notions diverge.
 As it turns out, neither is well-behaved in our setting.
 The category of finitely presented $R$-modules lacks kernels, and the category of coherent $R$-modules, while always abelian, is much too small as it does not even contain crucial modules like $R^n$.
-In this section, we study a larger category of finitely adequate modules~(\Cref{def:fin-adeq}) as a suitable replacement whose objects still retain a certain sense of finiteness.
+In this section, we study the larger category of finitely adequate modules~(\Cref{def:fin-adeq}) as a suitable replacement whose objects still retain a certain sense of finiteness.
 This notion is not completely novel and has already been studied externally in~\cite[Chapter 06Z1]{stacks-project}.
+
+\rednote{Add details about what is in each subsection?}
 
 \subsection{Quasi-Coherent and Adequate Modules}
 
@@ -164,10 +166,10 @@ Finitely copresented modules have also been studied externally in~\cite[Chapter 
 \subsection{Finitely Adequate Modules Form an Abelian Category}
 
 As discussed in the introduction, finding an appropriate replacement for the algebro-geometric notion of a coherent sheaf of modules remains an open question.
-Finitely presented $R$-modules do not form an abelian category \rednote{Reference?}, as this category is not closed under kernels.
-This naturally leads us to consider the kernel closure of finitely presented $R$-modules as a potential replacement instead.
-Even though it is known that this subcategory is not the exact replacement sought, it still exhibits many remarkable properties and forms an important first step in this program.
-In this subsection, we show that this subcategory is an abelian subcategory of $\modcat{R}$.
+Finitely presented $R$-modules do not form an abelian category, as this category is not closed under kernels (see \Cref{lem:finitely-adequate-not-fp}).
+This naturally leads us to consider the kernel closure of finitely presented $R$-modules.
+The modules in this subcategory have many good properties.
+In this subsection, we show that they form an abelian subcategory of $\modcat{R}$.
 
 \begin{definition}\label{def:fin-adeq}
   An $R$-module $M$ is \notion{finitely adequate} if it is merely the kernel of a homomorphism between finitely presented modules.
@@ -204,9 +206,10 @@ By exactness, we get that the induced map $\check{H}(f,g) \to H(f,g)$ is an isom
 A diagram chase is sufficient to verify that the maps on the kernels and cokernels are respectively epic and monic.
 We will therefore simply denote all three objects by $H(f,g)$.
 
-Now, let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ (in our application, $\mcal{B} = \modcat{R}$ and $\mcal{A}$ is the category of finite free $R$-modules).
+Now, let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
+(In our application, $\mcal{B} = \modcat{R}$ and $\mcal{A}$ is the category of finite free $R$-modules.)
 An object $M$ is called \notion{$\mcal{A}$-presented} if it is merely a cokernel of a morphism in $\mcal{A}$, and \notion{$\mcal{A}$-copresented} if it is merely a kernel of a morphism in $\mcal{A}$.
-More generally, we say that an object $M : \mcal{B}$ is \notion{$\mcal{A}$-Adelman} if it is merely the homology of a pair of composable morphisms in $\mcal{A}$.
+More generally, we say that an object $M$ of $\mcal{B}$ is \notion{$\mcal{A}$-Adelman} if it is merely the homology of a pair of composable morphisms in $\mcal{A}$.
 Here, all limits, colimits, and homologies are computed in $\mcal{B}$.
 We denote by $\Ad{\mcal{A}}$ the full subcategory of $\mcal{B}$ spanned by the $\mcal{A}$-Adelman objects.
 It is readily seen to be additive.
@@ -261,10 +264,10 @@ It is readily seen to be additive.
 \end{proof}
 
 \begin{remark}\label{rem:adel-desc}
-  Assuming instead that the objects of $\mcal{A}$ are injective yields a dual description: an object $M$ is $\mcal{A}$-Adelman if and only if it is merely the cokernel of a morphism between $\mcal{A}$-copresented objects.
+  Assuming instead that the objects of $\mcal{A}$ are injective in $\Ad{\mcal{A}}$ yields a dual description: an object $M$ is $\mcal{A}$-Adelman if and only if it is merely the cokernel of a morphism between $\mcal{A}$-copresented objects.
 \end{remark}
 
-Before giving our construction, we will need the following lemma regarding kernels of maps in a commutative square:
+We will need the following lemma regarding kernels of maps in a commutative square:
 
 \begin{lemma}\label{lem:diff-ker-is-ker}
   Suppose we have a commutative square
@@ -360,7 +363,7 @@ Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it 
 
 We now want to apply the above proposition to $\mcal{B} \defeq \modcat{R}$ and $\mcal{A} \defeq \finfree$.
 The $\finfree$-presented and $\finfree$-copresented objects are precisely the finitely presented and finitely copresented modules, which by \Cref{lem:adel-desc} yields $\Ad{\finfree} = \finadeq$.
-Since finitely copresented modules are projective in $\adeq$, they are clearly projective in $\finadeq$ as well.
+Since finitely copresented modules are projective in $\adeq$ (\Cref{rem:fcp-is-proj}), they are clearly projective in $\finadeq$ as well.
 Therefore, to apply \Cref{prp:ad-ab}, it only remains to prove that finitely presented modules are injective in $\finadeq$.
 
 This injectivity result will follow from duality.
@@ -393,13 +396,13 @@ We first need the following lemma.
 \end{lemma}
 
 \begin{proof}
-  Consider an exact sequence
+  Choose a presentation
   \begin{center}
     \begin{tikzcd}
-      L \ar[hook]{r} & R^m \ar{r}{f} & R^n \ar[two heads]{r} & P \rlap{,}
+      R^m \ar{r}{f} & R^n \ar[two heads]{r} & P
     \end{tikzcd}
   \end{center}
-  where $L \defeq \Ker(f)$ is finitely copresented.
+  of $P$.
   By \cite{ext-groups-in-hott}, the long exact sequence of $\Ext^\ast_R(\argmhole, R)$ associated to $\Im(f) \hookrightarrow R^n \twoheadrightarrow P$ yields the exact sequence
   \begin{center}
     \begin{tikzcd}
@@ -409,18 +412,20 @@ We first need the following lemma.
   Here, the map $\Hom_R(R^n,R) \to \Hom_R(\Im(f),R)$ is epic by \cite[Lemma 2.3.8]{diffgeo-article}, and $\Ext^1_R(R^n,R) = 0$ as $R^n$ is projective, so $\Ext^1_R(P,R) = 0$.
 
   Furthermore, since $R^n$ is projective, we have that $\Ext^2_R(P,R) = \Ext^1_R(\Im (f), R)$ by dimension shift.
-  Now, the long exact sequence associated to $L \hookrightarrow R^m \twoheadrightarrow \Im (f)$ yields the exact sequence
+  The long exact sequence associated to $\Ker(f) \hookrightarrow R^m \twoheadrightarrow \Im (f)$ yields the exact sequence
   \begin{center}
     \begin{tikzcd}
-      \Hom_R(R^m, R) \ar[two heads]{r} & \Hom_R(L, R) \ar{r} & \Ext^1_R(\Im (f), R) \ar{r} & \Ext^1_R(R^m, R) \rlap{.}
+      \Hom_R(R^m, R) \ar[two heads]{r} & \Hom_R(\Ker(f), R) \ar{r} & \Ext^1_R(\Im (f), R) \ar{r} & \Ext^1_R(R^m, R) \rlap{.}
     \end{tikzcd}
   \end{center}
-  The map $\Hom_R(R^m, R) \to \Hom_R(L,R)$ is epic by \Cref{thm:lin-adeq-dual}, and $\Ext^1_R(R^m, R) = 0$ as $R^m$ is projective, hence $\Ext^2_R(P,R) = \Ext^1_R(\Im (f), R) = 0$.
+  The map $\Hom_R(R^m, R) \to \Hom_R(\Ker(f),R)$ is the dual of a monomorphism between
+  finitely copresented modules, so \Cref{thm:lin-adeq-dual} implies that it is epic.
+  Moreover, $\Ext^1_R(R^m, R) = 0$ as $R^m$ is projective, hence $\Ext^2_R(P,R) = \Ext^1_R(\Im (f), R) = 0$.
 \end{proof}
 
 \begin{lemma}\label{lem:dual-exact-fp-inc}
   Let $M$ be the kernel of a map $f : P \to Q$ between finitely presented $R$-modules.
-  The induced map $\Hom_R(P,R) \to \Hom_R(M,R)$ is epic.
+  Then the induced map $\Hom_R(P,R) \to \Hom_R(M,R)$ is epic.
   % Any extension problem
   % \begin{center}
   %   \begin{tikzcd}
@@ -432,19 +437,19 @@ We first need the following lemma.
 \end{lemma}
 
 \begin{proof}
-  $\Ext^i_R(Q,R) = 0$ for $i = 1, 2$ by \Cref{lem:ext^2-fp-R}.
-  Thus, by dimension shift and \Cref{lem:ext^2-fp-R}, we get that $\Ext^1(\Im (f), R) = \Ext^2(\Cok (f), R) = 0$, as $\Cok (f)$ is finitely presented. From the long exact sequences of $\Ext^\ast_R(\argmhole, R)$ associated to $M \hookrightarrow P \twoheadrightarrow \Im(f)$, we get an exact sequence
+  The long exact sequence of $\Ext^\ast_R(\argmhole, R)$ associated to $M \hookrightarrow P \twoheadrightarrow \Im(f)$ gives an exact sequence
   \begin{center}
     \begin{tikzcd}
-      \Hom_R(P,R) \ar{r} & \Hom_R(M,R) \ar{r} & 0
+      \Hom_R(P,R) \ar{r} & \Hom_R(M,R) \ar{r} & \Ext^1(\Im (f), R)
     \end{tikzcd}
   \end{center}
-  The result now follows from exactness.
+  so it suffices to show that $\Ext^1(\Im (f), R)$ vanishes.
+  By dimension shift, $\Ext^1(\Im (f), R) = \Ext^2(\Cok (f), R)$,
+  as $\Ext^i_R(Q,R) = 0$ for $i = 1, 2$ by \Cref{lem:ext^2-fp-R}.
+  But $\Ext^2(\Cok (f), R) = 0$, since $\Cok(f)$ is finitely presented, again using \Cref{lem:ext^2-fp-R}.
 \end{proof}
 
-With this result, we can now show that finitely adequate modules play well with dualization.
-In particular, let $M$ be a finitely adequate module which is merely given by the homology of some maps $f : R^l \to R^m$ and $g : R^m \to R^n$.
-Now, pre-composing with the map $M \hookrightarrow \Cok (f)$ induces an epimorphism $\Hom_R(\Cok (f), R) \twoheadrightarrow \Hom_R(M,R)$.
+With this result, we can now show that finitely adequate modules interact well with dualization.
 
 \begin{proposition}\label{prp:dual-fin-ad}
   Let $M$ be a finitely adequate $R$-module. Then $M^\ast$ is finitely adequate.
