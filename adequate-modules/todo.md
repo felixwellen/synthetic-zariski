@@ -2,14 +2,12 @@
 
 ## Research Questions
 
-- Hugo: Finitely adequate sets
 
 ## Writing
 
 - Felix: abstract.
 - Paper is a jumble of results.  Can we tell a story?  Improve all section intros.
 - Handle remaining \rednote's
-- Fabian: improvements to some parts of Section 3?
 - Dan: expand intro to Section 3
 
 ## Proofreading
@@ -19,7 +17,6 @@
 - Felix:  Section 4
 - Section 3.2:
   - Proofread again now that homology reintroduced.
-  - Should abstract material be in a separate subsection or appendix?
 
 ## Misc
 
