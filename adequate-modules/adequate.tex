@@ -197,14 +197,11 @@ In fact, all three objects are isomorphic by the first isomorphism theorem, as w
   \begin{tikzcd}[cramped, column sep = 0.7em]
     & X \ar{rrr}{f} & & & Y \ar{rrr}{g} \ar[two heads]{rrd}{p_f} & & & Z \ar[two heads]{rd} \\
     \Ker (g \circ f) \ar{rr} \ar[hook]{ru} \ar[two heads]{rd} & & \Ker (g) \ar[two heads]{rd} \ar[hook]{rru}{i_g} \ar[two heads]{rr} & & H(f,g) \ar[dashed]{rd}{\simeq} \ar[hook]{rr} & & \Cok (f) \ar{rr} \ar[two heads]{rd} & & \Cok (g \circ f) \\
-    & \Ker (p_f \circ i_g) \ar[hook]{ru} & & \check{H}(f,g) \ar[dashed]{rr}{\simeq} \ar[dashed]{ru}{\simeq} & & \hat{H}(f,g) \ar[hook]{ru} & & \Cok (p_f \circ i_g) \ar[hook]{ru}
+    & \Ker (p_f \circ i_g) \ar[hook]{ru} & & \check{H}(f,g) \ar[dashed]{ru}{\simeq} & & \hat{H}(f,g) \ar[hook]{ru} & & \Cok (p_f \circ i_g) \ar[hook]{ru}
   \end{tikzcd}
 \end{center}
-The induced triangle of the three variants of homology is commutative.
-\rednote{Maybe drop the horizontal dashed arrow and drop the previous sentence?}
 By exactness, we get that the induced map $\check{H}(f,g) \to H(f,g)$ is an isomorphism if and only if the map $\Ker(g\circ f) \to \Ker(p_f \circ i_g)$ is an epimorphism, and dually that $H(f,g) \to \hat{H}(f,g)$ is an isomorphism if and only if the map $\Cok(p_f \circ i_g) \to \Cok(g \circ f)$ is a monomorphism.
 A diagram chase is sufficient to verify that the maps on the kernels and cokernels are respectively epic and monic.
-We will therefore simply denote all three objects by $H(f,g)$.
 
 Now, let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
 (In our application, $\mcal{B} = \modcat{R}$ and $\mcal{A}$ is the category of finite free $R$-modules.)
@@ -605,11 +602,10 @@ Finding a splitting amounts to showing that any lifting problem
 
 \subsection{Characterizing Finite Presented Modules among Finitely Adequate Modules}
 
-\rednote{jdc: Should this maybe move after the next subsection?  Or before the previous subsection?}
-
 In this subsection, we characterize finitely presented $R$-modules amongst all finitely adequate modules as exactly those that are quasi-coherent.
 In addition, \Cref{identification-hom-tensor-for-fp-modules} will be used in
-\Cref{ss:ex-tensor-products} to show that finitely adequate modules are not closed
+\Cref{ss:closed-monoidal} to show that finitely adequate modules are closed under $\Hom$
+and in \Cref{ss:ex-tensor-products} to show that finitely adequate modules are not closed
 under tensor products.
 
 For $R$-modules $M$ and $N$, we will make use of the $R$-module homomorphism
@@ -700,7 +696,7 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
   Thus, we have $\Ext_R^1(M^\ast,A)=0$, since \Cref{identification-hom-tensor-for-fp-modules} implies that $\Hom_R(M^{\ast},\argmhole)$ is exact on the category of finitely presented modules.
 \end{proof}
 
-\subsection{The Closed Symmetric Monoidal Structure}
+\subsection{The Closed Symmetric Monoidal Structure}\label{ss:closed-monoidal}
 
 In this subsection, we show that the category $\finadeq$ of finitely adequate $R$-modules carries a closed symmetric monoidal structure.
 To construct this structure, we first establish that $\finadeq$ is closed under taking homs.
