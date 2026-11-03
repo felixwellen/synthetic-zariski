@@ -421,23 +421,17 @@ We first need the following lemma.
 \end{proof}
 
 \begin{lemma}\label{lem:dual-exact-fp-inc}
-  Let $M$ be the kernel of a map $f : P \to Q$ between finitely presented $R$-modules.
-  Then the induced map $\Hom_R(P,R) \to \Hom_R(M,R)$ is epic.
-  % Any extension problem
-  % \begin{center}
-  %   \begin{tikzcd}
-  %     M \ar[hook]{d}{} \ar{r}{} & R \\
-  %     P \ar[dashed]{ur}
-  %   \end{tikzcd}
-  % \end{center}
-  % merely admits a linear solution.
+  Suppose that there is an exact sequence $0 \to M \overset{i}{\hookrightarrow} P \xrightarrow{f} Q$ where $P$ and $Q$ are finitely presented.
+  Then the induced map $i^\ast : \Hom_R(P,R) \to \Hom_R(M,R)$ is epic.
+  % Let $M$ be the kernel of a map $f : P \to Q$ between finitely presented $R$-modules.
+  % Then the induced map $\Hom_R(P,R) \to \Hom_R(M,R)$ is epic.
 \end{lemma}
 
 \begin{proof}
-  The long exact sequence of $\Ext^\ast_R(\argmhole, R)$ associated to $M \hookrightarrow P \twoheadrightarrow \Im(f)$ gives an exact sequence
+  The long exact sequence of $\Ext^\ast_R(\argmhole, R)$ associated to $M \overset{i}{\hookrightarrow} P \twoheadrightarrow \Im(f)$ gives an exact sequence
   \begin{center}
     \begin{tikzcd}
-      \Hom_R(P,R) \ar{r} & \Hom_R(M,R) \ar{r} & \Ext^1(\Im (f), R)
+      \Hom_R(P,R) \ar{r}{i^\ast} & \Hom_R(M,R) \ar{r} & \Ext^1(\Im (f), R)
     \end{tikzcd}
   \end{center}
   so it suffices to show that $\Ext^1(\Im (f), R)$ vanishes.
@@ -446,33 +440,57 @@ We first need the following lemma.
   But $\Ext^2(\Cok (f), R) = 0$, since $\Cok(f)$ is finitely presented, again using \Cref{lem:ext^2-fp-R}.
 \end{proof}
 
-With this result, we can now show that finitely adequate modules interact well with dualization.
+This result applies in particular to finitely adequate modules and their descriptions by homology.
+If $M$ is such a finitely adequate module, which is merely given as the homology of the maps $f : R^l \to R^m$ and $g : R^m \to R^n$, then $M$ fits into the following diagram:
+\begin{center}
+  \begin{tikzcd}[cramped, column sep = 0.7em]
+    & R^l \ar{rrr}{f} & & & R^m \ar{rrr}{g} \ar[two heads]{rrd}{p_f} & & & R^n \ar[two heads]{rd} \\
+    \Ker (g \circ f) \ar{rr} \ar[hook]{ru} & & \Ker (g) \ar[hook]{rru}{i_g} \ar[two heads]{rr}{p} & & M \ar[hook]{rr}{i} & & \Cok (f) \ar{rr} & & \Cok (g \circ f)
+  \end{tikzcd}
+\end{center}
+where the bottom row is exact at $\Ker (g)$ and $\Cok (f)$.
+In this diagram, the cokernels $\Cok(f)$ and $\Cok(g \circ f)$ are finitely presented, while the kernels $\Ker(g)$ and $\Ker(g \circ f)$ are finitely copresented.
+In particular, the inclusion map $i : M \to \Cok (f)$ exhibits $M$ as the kernel of a map between finitely presented modules, so \Cref{lem:dual-exact-fp-inc} applies.
+Fixing this notation, we will now show that finitely adequate modules interact well with dualization.
 
 \begin{proposition}\label{prp:dual-fin-ad}
-  Let $M$ be a finitely adequate $R$-module. Then $M^\ast$ is finitely adequate.
+  Let $M$ be finitely adequate. Then $M^\ast$ is finitely adequate.
 \end{proposition}
 
 \begin{proof}
-  By \Cref{lem:adel-desc}, $M$ is merely the homology of a sequence $f : R^l \to R^m$ and $g : R^m \to R^n$. Let $L \defeq \Ker (g)$ and $P \defeq \Cok (f)$. Then the natural map $L \to P$ factors into a surjection $p : L \twoheadrightarrow M$ and an injection $i : M \hookrightarrow P$.
-  Since dualization $(\argmhole)^\ast : \fcpmod \rightarrow \fpmod$ is an anti-equivalence (\Cref{thm:lin-adeq-dual}), we have that $L^{\ast} = \Cok(g^{\ast})$, $P^{\ast} = \Ker(f^{\ast})$, and the natural map $P^{\ast} \to L^{\ast}$ factors through $M^{\ast}$ as $p^{\ast} \circ i^{\ast}$.
-  The dual map $p^\ast : M^\ast \hookrightarrow L^\ast$ is an injection, and $i^\ast : P^\ast \twoheadrightarrow M^\ast$ is a surjection by \Cref{lem:dual-exact-fp-inc}.
-  \rednote{Why does the new version of lemma apply in this situation?}
+  Dualization is exact on finitely presented and finitely copresented modules by \Cref{thm:lin-adeq-dual}.
+  Thus, we have that $\Cok (f)^\ast = \Ker (f^\ast)$ and $\Ker (g)^\ast = \Cok (g^\ast)$.
+  Applying dualization to the entire diagram above yields:
+  \begin{center}
+  \begin{tikzcd}[cramped, column sep = 0.7em]
+    & (R^n)^\ast \ar{rrr}{g^\ast} & & & (R^m)^\ast \ar{rrr}{f^\ast} \ar[two heads]{rrd}{i_g^\ast} & & & (R^l)^\ast \ar[two heads]{rd} \\
+    \Ker (f^\ast \circ g^\ast) \ar{rr} \ar[hook]{ru} & & \Ker (f^\ast) \ar[hook]{rru}{p_f^\ast} \ar{rr}{i^\ast} & & M^\ast \ar[hook]{rr}{p^\ast} & & \Cok (g^\ast) \ar{rr} & & \Cok (f^\ast \circ g^\ast)
+  \end{tikzcd}
+\end{center}
+The map $i^\ast : \Ker(f^\ast) \to M^\ast$ is epic by \Cref{lem:dual-exact-fp-inc}, while $p^\ast : M^\ast \hookrightarrow \Cok(g^\ast)$ is monic by left-exactness of dualization.
+Thus, $M^\ast = H(g^\ast, f^\ast)$, showing that $M^\ast$ is finitely adequate.
+
+  % By \Cref{lem:adel-desc}, $M$ is merely the homology of a sequence $f : R^l \to R^m$ and $g : R^m \to R^n$. Let $L \defeq \Ker (g)$ and $P \defeq \Cok (f)$. Then the natural map $L \to P$ factors into a surjection $p : L \twoheadrightarrow M$ and an injection $i : M \hookrightarrow P$.
+  % Since dualization $(\argmhole)^\ast : \fcpmod \rightarrow \fpmod$ is an anti-equivalence (\Cref{thm:lin-adeq-dual}), we have that $L^{\ast} = \Cok(g^{\ast})$, $P^{\ast} = \Ker(f^{\ast})$, and the natural map $P^{\ast} \to L^{\ast}$ factors through $M^{\ast}$ as $p^{\ast} \circ i^{\ast}$.
+  % The dual map $p^\ast : M^\ast \hookrightarrow L^\ast$ is an injection, and $i^\ast : P^\ast \twoheadrightarrow M^\ast$ is a surjection by \Cref{lem:dual-exact-fp-inc}.
+  % \rednote{Why does the new version of lemma apply in this situation?}
 \end{proof}
 
 \begin{proposition}\label{prp:can-dual-iso}
-  Let $M$ be a finitely adequate $R$-module. Then $M$ is reflexive.
+  Let $M$ be finitely adequate. Then $M$ is reflexive.
 \end{proposition}
 
 \begin{proof}
-  Retaining the notation of the previous proof, we let $h \defeq i \circ p : L \to P$.
-  Consider the factorization $h^{\ast\ast} = i^{\ast\ast} \circ p^{\ast\ast}$.
-  It is clear that $i^{\ast\ast}$ is monic, and $p^{\ast\ast}$ is epic by \Cref{lem:dual-exact-fp-inc}.
-  \rednote{Why does lemma apply here?}
-  The maps $\ev : L \to L^{\ast\ast}$ and $\ev : P \to P^{\ast\ast}$ are isomorphisms by \Cref{thm:lin-adeq-dual}.
-  By naturality, the induced map $\ev : M \to M^{\ast\ast}$ between the images of $h$ and $h^{\ast\ast}$ is an isomorphism.
-\end{proof}
+  Applying \Cref{prp:dual-fin-ad} to $M^\ast = H(g^\ast, f^\ast)$, we obtain $M^{\ast\ast} = H(f^{\ast\ast}, g^{\ast\ast})$.
+  Since finite free modules are reflexive, we have $f^{\ast\ast} = f$ and $g^{\ast\ast} = g$, yielding $M^{\ast\ast} = H(f,g) = M$.
 
-\rednote{Would it be easier to use \Cref{rem:adelman-as-image} for the previous two results?}
+  % Retaining the notation of the previous proof, we let $h \defeq i \circ p : L \to P$.
+  % Consider the factorization $h^{\ast\ast} = i^{\ast\ast} \circ p^{\ast\ast}$.
+  % It is clear that $i^{\ast\ast}$ is monic, and $p^{\ast\ast}$ is epic by \Cref{lem:dual-exact-fp-inc}.
+  % \rednote{Why does lemma apply here?}
+  % The maps $\ev : L \to L^{\ast\ast}$ and $\ev : P \to P^{\ast\ast}$ are isomorphisms by \Cref{thm:lin-adeq-dual}.
+  % By naturality, the induced map $\ev : M \to M^{\ast\ast}$ between the images of $h$ and $h^{\ast\ast}$ is an isomorphism.
+\end{proof}
 
 Combining the above propositions, we get the following result:
 
