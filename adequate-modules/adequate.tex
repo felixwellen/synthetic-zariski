@@ -463,8 +463,8 @@ Fixing this notation, we will now show that finitely adequate modules interact w
   Applying dualization to the entire diagram above yields:
   \begin{center}
   \begin{tikzcd}[cramped, column sep = 0.7em]
-    & (R^n)^\ast \ar{rrr}{g^\ast} & & & (R^m)^\ast \ar{rrr}{f^\ast} \ar[two heads]{rrd}{i_g^\ast} & & & (R^l)^\ast \ar[two heads]{rd} \\
-    \Ker (f^\ast \circ g^\ast) \ar{rr} \ar[hook]{ru} & & \Ker (f^\ast) \ar[hook]{rru}{p_f^\ast} \ar{rr}{i^\ast} & & M^\ast \ar[hook]{rr}{p^\ast} & & \Cok (g^\ast) \ar{rr} & & \Cok (f^\ast \circ g^\ast)
+    & (R^l)^\ast \ar[two heads]{ld} & & & (R^m)^\ast \ar{lll}[swap]{f^\ast} \ar[two heads]{lld}[swap]{i_g^\ast} & & & (R^n)^\ast \ar{lll}[swap]{g^\ast} \\
+    \Cok (f^\ast \circ g^\ast) & & \Cok (g^\ast) \ar{ll} & & M^\ast \ar[hook]{ll}[swap]{p^\ast} & & \Ker (f^\ast) \ar{ll}[swap]{i^\ast} \ar[hook]{llu}[swap]{p_f^\ast} & & \Ker (f^\ast \circ g^\ast) \ar{ll} \ar[hook]{lu}
   \end{tikzcd}
 \end{center}
 The map $i^\ast : \Ker(f^\ast) \to M^\ast$ is epic by \Cref{lem:dual-exact-fp-inc}, while $p^\ast : M^\ast \hookrightarrow \Cok(g^\ast)$ is monic by left-exactness of dualization.
@@ -482,7 +482,14 @@ Thus, $M^\ast = H(g^\ast, f^\ast)$, showing that $M^\ast$ is finitely adequate.
 
 \begin{proof}
   Applying \Cref{prp:dual-fin-ad} to $M^\ast = H(g^\ast, f^\ast)$, we obtain $M^{\ast\ast} = H(f^{\ast\ast}, g^{\ast\ast})$.
-  Since finite free modules are reflexive, we have $f^{\ast\ast} = f$ and $g^{\ast\ast} = g$, yielding $M^{\ast\ast} = H(f,g) = M$.
+  The evaluation map $\ev : M \to M^{\ast\ast}$ is now obtained by taking the homology of the following morphism of composable pairs:
+  \begin{center}
+    \begin{tikzcd}
+      R^l \ar{r}{f} \ar{d}{\ev} & R^m \ar{r}{g} \ar{d}{\ev} & R^n \ar{d}{\ev} \\
+      (R^l)^{\ast\ast} \ar{r}{f^{\ast\ast}} & (R^m)^{\ast\ast} \ar{r}{g^{\ast\ast}} & (R^n)^{\ast\ast}
+    \end{tikzcd}
+  \end{center}
+  Since evaluation is an isomorphism on finite free modules, it follows that $\ev : M \to M^{\ast\ast}$ is an isomorphism as well.
 
   % Retaining the notation of the previous proof, we let $h \defeq i \circ p : L \to P$.
   % Consider the factorization $h^{\ast\ast} = i^{\ast\ast} \circ p^{\ast\ast}$.
