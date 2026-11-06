@@ -440,7 +440,7 @@ We first need the following lemma.
   But $\Ext^2(\Cok (f), R) = 0$, since $\Cok(f)$ is finitely presented, again using \Cref{lem:ext^2-fp-R}.
 \end{proof}
 
-This result applies in particular to finitely adequate modules and their descriptions by homology.
+This result applies in particular to finitely adequate modules and their descriptions by homology via \Cref{lem:adel-desc}.
 If $M$ is such a finitely adequate module, which is merely given as the homology of the maps $f : R^l \to R^m$ and $g : R^m \to R^n$, then $M$ fits into the following diagram:
 \begin{center}
   \begin{tikzcd}[cramped, column sep = 0.7em]
@@ -466,10 +466,10 @@ Fixing this notation, we will now show that finitely adequate modules interact w
     & (R^l)^\ast \ar[two heads]{ld} & & & (R^m)^\ast \ar{lll}[swap]{f^\ast} \ar[two heads]{lld}[swap]{i_g^\ast} & & & (R^n)^\ast \ar{lll}[swap]{g^\ast} \\
     \Cok (f^\ast \circ g^\ast) & & \Cok (g^\ast) \ar{ll} & & M^\ast \ar[hook]{ll}[swap]{p^\ast} & & \Ker (f^\ast) \ar{ll}[swap]{i^\ast} \ar[hook]{llu}[swap]{p_f^\ast} & & \Ker (f^\ast \circ g^\ast) \ar{ll} \ar[hook]{lu}
   \end{tikzcd}
-\end{center}
-The map $i^\ast : \Ker(f^\ast) \to M^\ast$ is epic by \Cref{lem:dual-exact-fp-inc}, while $p^\ast : M^\ast \hookrightarrow \Cok(g^\ast)$ is monic by left-exactness of dualization.
-Thus, $M^\ast = H(g^\ast, f^\ast)$, showing that $M^\ast$ is finitely adequate.
-
+  \end{center}
+  The map $i^\ast : \Ker(f^\ast) \to M^\ast$ is epic by \Cref{lem:dual-exact-fp-inc}, while $p^\ast : M^\ast \hookrightarrow \Cok(g^\ast)$ is monic by left-exactness of dualization.
+  Thus, $M^\ast = H(g^\ast, f^\ast)$, showing that $M^\ast$ is finitely adequate.
+  %
   % By \Cref{lem:adel-desc}, $M$ is merely the homology of a sequence $f : R^l \to R^m$ and $g : R^m \to R^n$. Let $L \defeq \Ker (g)$ and $P \defeq \Cok (f)$. Then the natural map $L \to P$ factors into a surjection $p : L \twoheadrightarrow M$ and an injection $i : M \hookrightarrow P$.
   % Since dualization $(\argmhole)^\ast : \fcpmod \rightarrow \fpmod$ is an anti-equivalence (\Cref{thm:lin-adeq-dual}), we have that $L^{\ast} = \Cok(g^{\ast})$, $P^{\ast} = \Ker(f^{\ast})$, and the natural map $P^{\ast} \to L^{\ast}$ factors through $M^{\ast}$ as $p^{\ast} \circ i^{\ast}$.
   % The dual map $p^\ast : M^\ast \hookrightarrow L^\ast$ is an injection, and $i^\ast : P^\ast \twoheadrightarrow M^\ast$ is a surjection by \Cref{lem:dual-exact-fp-inc}.
@@ -490,7 +490,7 @@ Thus, $M^\ast = H(g^\ast, f^\ast)$, showing that $M^\ast$ is finitely adequate.
     \end{tikzcd}
   \end{center}
   Since evaluation is an isomorphism on finite free modules, it follows that $\ev : M \to M^{\ast\ast}$ is an isomorphism as well.
-
+  %
   % Retaining the notation of the previous proof, we let $h \defeq i \circ p : L \to P$.
   % Consider the factorization $h^{\ast\ast} = i^{\ast\ast} \circ p^{\ast\ast}$.
   % It is clear that $i^{\ast\ast}$ is monic, and $p^{\ast\ast}$ is epic by \Cref{lem:dual-exact-fp-inc}.
