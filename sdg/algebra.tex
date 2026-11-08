@@ -1,6 +1,8 @@
 {
 \newcommand{\EE}{\mathbf{E}}
 \newcommand{\ev}{\operatorname{\mathrm{ev}}}
+\newcommand{\Trunc}[2][]{\lVert{#2}\rVert_{#1}}
+\newcommand{\quotient}[2]{{#1}/{#2}}
 
 \subsection{Endomorphism Theories}
 
@@ -28,7 +30,12 @@ We make implicit use of this equivalence by identifying an \(n\)-tuple of functi
   and with composition, in that for all \(m,n:\N\), \(f:\EE_X(n)\) and \(g_1,\dots,g_n : \EE_X(m)\)
   \[\interpret{f\circ (g_1,\dots,g_n)} \underset{A^m \to A}{=} \interpret{f}\circ (\interpret{g_1},\dots,\interpret{g_n}).\]
   The set \(A\) is called the \emph{carrier} of the \(\EE_X\)-algebra and the function \(\interpret{-}\) the \emph{interpretation function}.
-  A \emph{morphism of \(\EE_X\)-algebras} is a map between the underlying carriers which commutes with the respective interpretation functions.
+  A \emph{homomorphism of \(\EE_X\)-algebras} is a map between the underlying carriers which commutes with the respective interpretation functions.
+  Concretely, a map \(\varphi : A \to B\) is a homomorphism if
+  \[
+    \varphi(\interpret{f}_A(a_1,\dots,a_n)) = \interpret{f}_B(\varphi(a_1),\dots,\varphi(a_n))
+  \]
+  for each \(f:\EE_X(n)\) and \(a_1,\dots,a_n : A\).
   Given two \(\EE_X\)-algebras \(A\) and \(B\), we write \(\Alg{\EE_X}(A,B)\) for the subset of maps \(A\to B\) which are morphisms of \(\EE_X\)-algebras.
   Here, we identify an algebra with its carrier, suppressing the interpretation function and compatibility equalities, as usual.
 \end{definition}
@@ -43,22 +50,32 @@ We may collect (small) \(\EE_X\)-algebras together with their morphisms into a c
 In the following, we will investigate some universal constructions in this category.
 
 \paragraph{Direct Products}
-\begin{example}
-  The set \(X\) itself carries the structure of an \(\EE_X\)-algebra in a canonical fashion.
-  More generally, for a type \(Y\), the set of functions \(Y \to X\) carries the structure of an \(\EE_X\)-algebra by setting
-  \[\interpret{f}_{Y\to X} : (Y\to X)^n \to (Y\to X), \quad (s_1,\dots,s_n) \mapsto f\circ (s_1,\dots,s_n)\]
-  for \(f:\EE_X(n)\), which is easily seen to be compatible with projections and composition.
-  % Moreover, we write \(X_i\colonequiv\pi^n_i : F(n)\) for the \(n\) projection functions
-  % We call this the \emph{free \(\EE_X\)-algebra} on \(n\) generators.
-  % More specifically, the generators are given by the projection functions \(\pi^n_1,\dots,\pi^n_n : F(n)\)
-\end{example}
+
+Let \(I\) be a type and let \(A(i)\) be an \(I\)-indexed family of \(\EE_X\)-algebras.
+There is a unique structure of an \(\EE_X\)-algebra on the dependent product \(A\colonequiv \prod_{i:I}A(i)\) which makes the evaluation maps \(A \to A(i), s \mapsto s(i)\) homomorphisms of \(\EE_X\)-algebras.
+Namely, for all \(f:\EE_X(n)\), \(s_1,\dots,s_n:A\) and \(i:I\) we are forced to define
+\[
+  \interpret{f}_A(s_1,\dots,s_n)(i) \colonequiv \interpret{f}_{A(i)}(s_1(i),\dots,s_n(i)),
+\]
+which is obviously compatible with projections and composition and determines \(\interpret{f}_A\) uniquely.
+It is easy to see that \(A\), together with the evaluation maps, satisfies the universal property of the \(\Trunc[0]{I}\)-indexed product in the category \(\Alg{\EE_X}\).
+
+% \begin{example}
+%   The set \(X\) itself carries the structure of an \(\EE_X\)-algebra in a canonical fashion.
+%   More generally, for a type \(Y\), the set of functions \(Y \to X\) carries the structure of an \(\EE_X\)-algebra by setting
+%   \[\interpret{f}_{Y\to X} : (Y\to X)^n \to (Y\to X), \quad (s_1,\dots,s_n) \mapsto f\circ (s_1,\dots,s_n)\]
+%   for \(f:\EE_X(n)\), which is easily seen to be compatible with projections and composition.
+%   % Moreover, we write \(X_i\colonequiv\pi^n_i : F(n)\) for the \(n\) projection functions
+%   % We call this the \emph{free \(\EE_X\)-algebra} on \(n\) generators.
+%   % More specifically, the generators are given by the projection functions \(\pi^n_1,\dots,\pi^n_n : F(n)\)
+% \end{example}
 
 \paragraph{Finitely Generated Free Algebras}
-The previous example allows us to view \(\EE_X(m)\) itself as an \(\EE_X\)-algebra for each natural number \(m\), by setting \(Y\equiv X^m\).
-To distinguish this \(\EE_X\)-algebra from the \(m\)-ary operations of the endomorphism theory of \(X\), we denote it by \(F(m)\) or \(F_X(m)\).
-Moreover, we also write \(X_1\colonequiv \pi^m_1, \dots X_m\colonequiv\pi^m_m : F(m)\) for the projection functions.
+As a special case of the previous construction, every function space into an \(\EE_X\)-algebra can be equipped with a canonical \(\EE_X\)-algebra structure.
+Since \(X\) itself is an \(\EE_X\)-algebra in a canonical fashion, this applies in particular for each of the sets \(\EE_X(m)\equiv X^m\to X\), where \(m:\N\).
+To distinguish this \(\EE_X\)-algebra from the set \(\EE_X(m)\) of \(m\)-ary operations, we denote it by \(F(m)\).
+Moreover, we write \(X_1\colonequiv \pi^m_1, \dots X_m\colonequiv\pi^m_m : F(m)\) for the projection functions.
 The following lemma shows that \(F(m)\) is the \emph{free \(\EE_X\)-algebra} generated by \(m\) generators \(X_1,\dots,X_m\).
- % the \emph{free \(\EE_X\)-algebra} on \(m\) generators.
 
 \begin{lemma}
   Let \(m\) be a natural number.
@@ -90,7 +107,7 @@ The following lemma shows that \(F(m)\) is the \emph{free \(\EE_X\)-algebra} gen
      \equiv \varphi(g\circ (X_1,\dots,X_m))
      = \varphi(g\circ\id) \equiv \varphi(g).
   \end{equation*}
-  This shows that mapping \(\vec a \mapsto \ev_{\vec a}\) defines an inverse to the map in question.
+  This shows that the mapping \(\vec a \mapsto \ev_{\vec a}\) defines an inverse to the map in question.
   % \begin{align*}
   %   \ev_{\vec a}(g) & \equiv \interpret{g}_A(\varphi(X_1),\dots,\varphi(X_m))\\
   %   & = \varphi(\interpret{g}_{F(m)}(X_1,\dots,X_m)) \\ 
@@ -100,36 +117,116 @@ The following lemma shows that \(F(m)\) is the \emph{free \(\EE_X\)-algebra} gen
 \end{proof}
 
 \paragraph{Quotients}
-\begin{definition}
-  An equivalence relation \(R\) on (the carrier of) an \(\EE_X\)-algebra \(A\) is called a \emph{congruence} if it is compatible with the interpretation function of \(A\) in the following sense:
-  for every natural number \(n\), every operation \(f:\EE_X(n)\) and all \(a_1,\dots,a_n,b_1,\dots,b_n : A\) we have an implication
-  \[
-    R(a_1,b_1) \times \dots\times R(a_n,b_n) \to R(\interpret{f}(a_1,\dots,a_n),\interpret{f}(b_1,\dots,b_n)).
-  \]
-\end{definition}
 
-\begin{lemma}
-  Let \(R\) be an equivalence relation on the carrier of an \(\EE_X\)-algebra \(A\) and suppose that \(A/R\) is the set quotient of \(A\) by \(R\) with quotient map \([-]:A \to A/R\).
-  If \(R\) is a congruence relation, there is a unique \(\EE_X\)-algebra structure on \(A/R\) such that \([-]\) becomes a morphism of \(\EE_X\)-algebras.
-\end{lemma}
-\begin{proof}
-  Since \(R\) is a congruence relation, we are allowed to define
-  \[
-    \interpret{f}_{A/R}([a_1],\dots,[a_n]) \colonequiv [\interpret{f}_A(a_1,\dots,a_n)]
-  \]
-  for \(f:\EE_X(n)\).
-  Obviously, \(\interpret{-}_{A/R}\) is compatible with projections and composition.
-  Moreover, the quotient map \([-]\) becomes a morphism of \(\EE_X\)-algebras and this requirement already determines the \(\EE_X\)-algebra structure on \(A/R\) uniquely.
-\end{proof}
+Recall that an equivalence relation on a type \(A\) is a proposition-valued binary relation \(\sim\) on \(A\) which is reflexive, symmetric and transitive.
+In case \(A\) is the underlying carrier of an \(\EE_X\)-algebra we call \(\sim\) a \emph{congruence relation} if for every \(n\)-ary operation \(f:\EE_X(n)\) and all \(a_1,\dots,a_n,b_1,\dots,b_n : A\) the following implication holds:
+\[
+  a_1 \sim b_1 \times \dots\times a_n \sim b_n \to \interpret{f}(a_1,\dots,a_n) \sim \interpret{f}(b_1,\dots,b_n).
+\]
+If \(\quotient{A}{\sim}\) is the set quotient of \(A\) by \(\sim\) with quotient map \([-]:A \to \quotient{A}{\sim}\), there is a unique \(\EE_X\)-algebra structure on \(\quotient{A}{\sim}\) such that \([-]\) becomes a morphism of \(\EE_X\)-algebras.
+Namely, for \(f:\EE_X(n)\) and \(a_1,\dots,a_n:A\) we have to set
+\[
+  \interpret{f}_{\quotient{A}{\sim}}([a_1],\dots,[a_n]) \colonequiv [\interpret{f}_A(a_1,\dots,a_n)],
+\]
+which is well-defined as \(\sim\) is a congruence relation, is compatible with projections and composition, and determines \(\interpret{f}_{\quotient{A}{\sim}}\) uniquely.
+
 
 \subsection{Ringed Endomorphism Theories}
 
-We now assume that the generic object of the endomorphism theory in consideration carries an additional ring structure.
-From now on, let us write \(R\) for this ring.
+We will now assume that our base object \(X\equiv R\) carries the structure of a ring.%
+\footnote{As usual, we assume all rings to be commutative.}
+\begin{lemma}
+  Every \(\EE_R\)-algebra carries the structure of an \(R\)-algebra in a canonical fashion and every homomorphism of \(\EE_R\)-algebras is a homomorphism of \(R\)-algebras with respect to this structure.
+\end{lemma}
+\begin{proof}
+  Let \(A\) be an \(\EE_R\)-algebra.
+  We obtain the structure of a ring on \(A\) by interpreting the ring operations \(0,1:1\to R\), \(- : R\to R\) and \(+,\cdot : R^2\to R\) using the interpretation function of \(A\).
+  Note that since it is a function, it preserves equalities, and thus \(A\) satisfies the ring axioms because \(R\) does.
+  In particular, every homomorphism of \(\EE_R\)-algebras preserves this canonical ring structure.
+  Note that since \(R = (1\to R)= F(0)\) is the \emph{initial} \(\EE_R\)-algebra, every \(\EE_R\)-algebra \(A\) admits a unique homomorphism of \(\EE_R\)-algebras \(R\to A\), giving it the structure of an \(\R\)-algebra.
+  By initiality, every morphism of \(\EE_R\)-algebras commutes with this unique morphism from \(R\), making it a homomorphism of \(\R\)-algebras.
+\end{proof}
+
+Recall that a congruence relation on a ring \(A\) is an equivalence relation which is compatible with the ring operations \(-\), \(+\), \(\cdot\) in an obvious manner.
+It is easy to see that each such congruence relation gives rise to an ideal \(I_\sim\colonequiv \{a:A\mid a\sim 0\}\) of \(A\) and that, conversely, every ideal \(I\) determines a congruence relation \(\sim_I\) on \(A\) by setting \(a\sim_I b\colonequiv a-b\in I\).
+Moreover, these constructions are mutually inverse to each other.
+
+Now suppose that \(A\) is an \(\EE_R\)-algebra.
+Every congruence relation on \(A\) with respect to the \(\EE_R\)-algebra structure is in particular a congruence relation with respect to the underlying ring structure and thus determines an ideal.
+However, it may no longer be the case that every ideal gives rise to an \(\EE_R\)-congruence relation, as the following example shows.
+
+\begin{example}
+  \rednote{Missing.}
+\end{example}
+
+We will show in proposition ?? that the correspondence between ideals and congruence relations for \(\EE_R\)-algebras can be restored by restricting to rings \(R\) which are \emph{Fermat-Hadamard rings} in the sense of \cref{def:hadamard-quotient} below.
+To make this definition more readable, let us introduce some notational conventions.
+Recall that we denoted the projection operations \(R^n\to R\) by \(X_1,\dots, X_n\).
+By suppressing the composition symbol \(\circ\), we may write every \(n\)-ary operation \(f:\EE_X(n)\) as
+\[
+  f = f\circ\id_{X^n} = f \circ (X_1,\dots,X_n) = f(X_1,\dots,X_n),
+\]
+allowing us to treat the projection operations as variables.
+We will also use different variable names like \(X,Y,Z_1,\dots,Z_n\).
+Moreover, the ring operations will be written in infix notation as usual.
+Lastly, we will make use of vector notation for variables, for example, we have \(f = f(\vec X)\).
+
+
+\begin{definition}
+  \label{def:hadamard-quotient}
+  Given an \((n+1)\)-ary operation \(f:\EE_R(n+1)\), a \emph{Hadamard quotient} of \(f\) is an \((n+2)\)-ary operation \(g : \EE_R(n+2)\) which satisfies
+  \[
+    f(X,\vec Z) - f(Y,\vec Z) = (X-Y)\cdot g(X,Y,\vec Z) \qquad \text{(in \(\EE_R(n+2)\))},
+  \]
+  where we denote the projection operations in \(\EE_R(n+2)\) by \(X,Y,Z_1,\dots,Z_n\).
+  The ring \(R\) is said to be a \emph{Fermat-Hadamard ring} if each \((n+1)\)-ary operation \(f:\EE_R(n+1)\) admits a unique Hadamard quotient.
+\end{definition}
+
+\begin{example}
+  \rednote{Assuming SAG duality, the affine line is a Fermat-Hadamard ring.}
+\end{example}
+
+\begin{example}
+  \rednote{Assuming Kock-Lawvere ... ?}
+\end{example}
+
+\begin{proposition}
+  \label{prop:fermat-ring-quotients}
+  \rednote{Conjecture}
+  Let \(R\) be a ring.
+  The following are equivalent:
+
+  \begin{enumerate}
+    \item
+      For every ideal \(I\) of every \(\EE_R\)-algebra \(A\), the equivalence relation \(\sim_I\) is a congruence relation.
+    \item
+      For every ideal \(I\) of every finitely generated free \(\EE_R\)-algebra, the equivalence relation \(\sim_I\) is a congruence relation.
+    \item
+      The ring \(R\) is a Fermat-Hadamard ring.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  The first implication is trivial.
+  Thus, suppose that the second proposition holds and let \(f:\EE_R(n+1)\) be an arbitrary operation.
+  Consider the ideal \(I\) generated by \(X-Y\) in the free algebra \(F(n+2)\) on \(n+2\) generators \(X,Y,Z_1,\dots,Z_n\).
+  To construct a Hadamard quotient of \(f\) it is enough to show that \(f(X,\vec Z)-f(Y,\vec Z)\) lies in the ideal \(I\), i.e.~that \(f(X,\vec Z)\sim_I f(Y,\vec Z)\) holds.
+  By definition of the \(\EE_X\)-algebra structure on \(F(n+2)\) we have
+  \[
+    f(X,\vec Z) = f \circ (X,\vec Z) = \interpret{f}_{F(n+2)}(X,\vec Z)
+  \]
+  and similarly for \(f(Y,\vec Z)\).
+  Therefore, since \(\sim_I\) is a congruence by assumption, it suffices to show that \(X\sim_I Y\) and \(Z_1 \sim_I Z_1\), \dots, \(Z_n\sim_I Z_n\), which is clearly the case.
+  \rednote{For uniqueness of the Hadamard quotient, we need to show that \(X-Y\) is a regular element in \(F(n+2)\).
+    This holds for Fermat theories, see [Dubuc-Kock, paragraph before Prop. 1.1].
+    Maybe add locality condition?}
+
+  \rednote{\(3\Rightarrow 1\) is in Dubuc-Kock}
+\end{proof}
+
+
 
 TODO:
 \begin{enumerate}
-  \item Quotients by Ideals (needs Fermat property).
   \item Localization?
 \end{enumerate}
 
