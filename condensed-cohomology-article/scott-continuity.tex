@@ -7,7 +7,7 @@ The goal of this section is to prove that the axioms of Barton-Commelin's conden
   If $(I_n)_{n:\N}$ is some tower with a colimit, we may denote $I$ for the colimit, we may use $i\mapsto [i]$ both for the inclusion maps $I_n \to I$ and $I_n \to I_m$ with $n\leq m$. 
 \item If $(C_n(x))_{n:\N}$ is any tower depending on some $x:X$, we may denote $C(x)$ for the limit or colimit if this is unambiguous in context. 
 \item If $(p_k:C_k \to D_k)_{k:\N}$ is a map of towers, we may also denote $p:C \to D$ to denote the induced map between limits or colimits. 
-\item If $S$ is a set and $P$ an $S$-indexed family of propositions, we may denote $\{s:S | P s\}$ for the $\Sigma$-type $\Sigma_SP$. 
+\item If $S$ is a set and $P$ an $S$-indexed family of propositions, we may denote $\{s:S\ |\ P(s)\}$ for the $\Sigma$-type $\Sigma_SP$. 
 \end{remark} 
 
 \subsection{Stone spaces}
@@ -28,7 +28,7 @@ Propositions that are Stone are called closed.
 \end{remark}
 
 \begin{definition}
-  We say a class of types $\mathcal C$ has local choice if for any $X:\mathcal C$, and $P$ a family of types over $X$ with $\Pi_{x:X} \| P x\| $, there merely exists some $Y:\mathcal C$ and surjection $q: Y \twoheadrightarrow X $ such that $\| \Pi_{y:Y} P (q y)\|$. 
+  We say a class of types $\mathcal C$ has local choice if for any $X:\mathcal C$, and $P$ a family of types over $X$ with $\Pi_{x:X} \| P(x)\| $, there merely exists some $Y:\mathcal C$ and surjection $q: Y \twoheadrightarrow X $ such that $\| \Pi_{y:Y} P (q(y))\|$. 
 \end{definition}
 
 \begin{proposition}\label{Stone-closure}
@@ -72,7 +72,7 @@ and then we conclude by surjectivity of $f$.
 Next we give a finite approximation result for surjections between Stone spaces, which will be key in showing the vanishing of the first cohomology groups of Stone spaces.
 
 \begin{lemma}\label{finite-approximation-stone-surjection-cohomology}
-Assume given $S:\Stone$ and $T:S\to \Stone$ such that $\Pi_{x:S}\, \propTrunc{T(x)}$. Then there exists a family $(T_k: S\to \Stone)_{k:\N}$ with maps $d_k:\Pi_{x:S}\, T_{k+1}(x)\to T_k(x)$ such that:
+Assume given $S:\Stone$ and $T:S\to \Stone$ such that $\Pi_{x:S}\, \propTrunc{T(x)}$. Then there exists families $(T_k: S\to \Stone)_{k:\N}$ with maps $(d_k:\Pi_{x:S}\, T_{k+1}(x)\to T_k(x))_{k:\N}$ such that:
 
 \begin{itemize} 
 \item For all $x:S$ we have $\mathrm{lim}_k\, T_k(x) = T(x)$.
@@ -111,7 +111,7 @@ A type is countable if it merely is a decidable subset of $\N$.
 \end{definition}
 
 \begin{remark}\label{overtly-discrete-countably-presented}
-  In Corollary 2.14 of \cite{synthetic-stone-duality}, it is shown that a Boolean algebra is countably presented if and only if it is overtly discrete. Such a result holds if we replace ``Boolean algebra'' by any finitary algebraic notion, such as groups or abelian groups. The following lemma gives the intuition that in general overtly discrete types are countably presented sets. 
+  In Corollary 2.14 of \cite{synthetic-stone-duality}, it is shown that a Boolean algebra is countably presented if and only if it is overtly discrete. Such a result holds if we replace ``Boolean algebra'' by any finitary algebraic notion, such as groups or abelian groups. The following lemma can be intuitively understood as stating that overtly discrete types are precisely countably presented sets. 
 \end{remark}
 \begin{lemma}\label{overtly-discrete-colimit-finite}
 Let $X$ be a type, the following are equivalent:
@@ -155,7 +155,7 @@ We have the following:
 
 Here we prove the results required for our cohomology computations, namely Propositions \ref{scott-continuity-right}, \ref{scott-continuity-left} and \ref{tychonov-dual-stone}. We then sum up these results nicely as \Cref{eine-scott-continuity-stone}, which is a dependent version of the following statement: 
 
-\begin{goal}\label{GoalScottGeneralNonDependent}[Non-dependent version]
+\begin{goal}[Non-dependent version]%\label{GoalScottGeneralNonDependent}
 Given a tower of Stone spaces $(S_k)_{k:\N}$ and a tower of overtly discrete types $(I_j)_{j:\N}$, we have that the canonical map $\mathrm{colim}_{k,j}(S_k\to I_j) \to (\mathrm{lim}_k S_k\to \mathrm{colim}_j I_j)$ is an equivalence.
 \end{goal}
 
@@ -185,20 +185,20 @@ Now we show that factoring through the image is enough.
 \end{lemma}
 
 \begin{proof}
-  Let $i:\N, f:\Pi_{x:S}(\mathrm{Im}(I_i(x)))$. By local choice there exists a surjective map $p:T\to S$
-with $g:\Pi_{x:T}\, I_i(p(x))$ such that $[g(x)] =_{I(x)} f(p(x))$ for all $x:T$.
+  Assume $i:\N$ with $f:\Pi_{x:S}(\mathrm{Im}(I_i(x)))$. By local choice there exists a surjective map $p:T\to S$
+with $g:\Pi_{x:T}\, I_i(p(x))$ such that $[g(x)] =_{I(p(x))} f(p(x))$ for all $x:T$.
 Then we have
-\[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I(x)} [g(y)])\]
+\[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I(p(x))} [g(y)])\]
 so that
-\[ \{x,y:T\ |\ p(x)=p(y)\} \to \exists(i:\N). [g(x)] =_{I_i(x)} [g(y)].\]
+\[ \{x,y:T\ |\ p(x)=p(y)\} \to \exists(i:\N). [g(x)] =_{I_i(p(x))} [g(y)].\]
 Since $\{x,y:T\ |\ p(x)=p(y)\}$ is Stone, we can apply \Cref{compact-hausforff-countable-cover} to get a $j:\N$ such that:
-\[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I_j(x)} [g(y)])\]
+\[\forall(x,y:T).\, (p(x)=p(y) \to [g(x)] =_{I_j(p(x))} [g(y)])\]
 which gives a factorisation of $f$ through $I_j$.
 \end{proof}
 
-From this, we can conclude \Cref{GoalScottGeneralNonDependent} in the case where the source $S_k$ is constant in $k$. 
+From this, we can conclude our goal in the case where the source $S_k$ is constant in $k$. 
 \begin{proposition}\label{scott-continuity-right}
-Assume given a Stone space $S$ and for each $x:S$ a tower of overtly discrete types $(I_i(x))_{i:\N}$. Then the canonical map $\mathrm{colim}_i (\Pi_{x:S} I_i(x)) \to \Pi_{x:S} \mathrm{colim}_i I(x)$ is an equivalence.
+Assume given a Stone space $S$ and for each $x:S$ a tower of overtly discrete types $(I_i(x))_{i:\N}$. Then the canonical map $\mathrm{colim}_i (\Pi_{x:S} I_i(x)) \to \Pi_{x:S} \mathrm{colim}_i I_i(x)$ is an equivalence.
 \end{proposition}
 
 \begin{proof}
@@ -381,7 +381,7 @@ S_{k+1}\ar[d,swap,"\pi_1"]\ar[r] & C_{k+1}\times_{C_k} S_k\ar[r]  \ar[d]& S_k\ar
 T \ar[r,swap,"q"] & C_{k+1}\ar[r]  & C_k
 \end{tikzcd}
 \end{center}
-Note that $S_{k+1}$ is Stone by \Cref{Stone-closure}.
+Note that $S_{k+1}$ is Stone by \Cref{Stone-closure} and identity types in $C_{k+1}$ being closed.
 We define $p_{k+1} = q\circ \pi_1$. The induced map in $S_{k+1}\to C_{k+1}\times_{C_k} S_k$ is a surjection as it is a pullback of the surjection $q$. 
 
 By dependent choice we get the required map of towers and surjectivity of the induced map $\lim_kS_k \to \lim_kC_k$. 
@@ -410,7 +410,7 @@ assume given a tower of compact Hausdorff spaces $(C_k)_{k:\N}$. Closed proposit
 %Since the propositional truncation of a Stone space is closed, we have that a proposition is a compact Hausdorff space if and only if it is closed. Therefore condition (iv) can be rephrased as compact Hausdorff spaces being stable under equivalence relations valued in compact Hausdorff spaces. This is how this condition is phrased in Barton-Commelin's axiom.
 %\end{remark}
 
-Next we need to prove Tychonov and its dual for compact Hausdorff spaces.
+Next we need to prove Tychonov and its dual for compact Hausdorff spaces. Note we did not prove Tychonov for Stone spaces as it was never needed in our development, although the same proof would work.
 
 \begin{proposition}[Tychonov]
 Assume given an overtly discrete type $I$ and for each $i:I$ a compact Hausdorff space $C(i)$. Then $\Pi_{i:I}\,C(i)$ is a compact Hausdorff space.

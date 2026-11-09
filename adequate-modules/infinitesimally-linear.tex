@@ -23,7 +23,7 @@ It is straightforward to check that this is well-defined.
 % \begin{proposition}\label{prp:hood-fun-welldef}
 %   $\hood{\argmhole}{n}$ is a well-defined functor.
 % \end{proposition}
-% 
+%
 % \begin{proof}
 %   We need to show that for every $x' \in \hood{X,x}{n}$, we have $f(x') \in \hood{Y,y}{n}$.
 %   By assumption, we merely have a finitely generated ideal $I \subseteq R$ such that $I^{n+1} = 0$ and if $I = 0$ then $x' = x$.
@@ -279,36 +279,13 @@ Despite this, the canonical map is also linear with respect to the microlinear s
 \subsection{Tangential Modules}
 
 In this subsection, we study tangential modules.
-We begin by showing tangential modules admit a linearization technique that will be useful in the rest of the paper.
-We then show that tangential modules are always infinitesimally linear.
+We begin by showing that tangential modules are always infinitesimally linear.
+We then use this to show that tangential modules admit a linearization technique that will be useful in the rest of the paper.
 We end this subsection by showing that tangential modules are closed under standard operations such as finite limits and finite colimits.
 
 \begin{definition}\label{def:tangential}
   An $R$-module $M$ is \notion{tangential} if the canonical map $\can_M : M \rightarrow \tangent{M}{0}$ (see \Cref{def:canonical-map}) is an equivalence.
 \end{definition}
-
-\begin{theorem}\label{thm:linearize-lift}
-  Suppose we have a commuting square of tangential $R$-modules:
-  \begin{center}
-    \begin{tikzcd}
-      A \ar{r}{u} \ar{d}{m} & X \ar{d}{e} \\
-      B \ar{r}{v} & Y
-    \end{tikzcd}
-  \end{center}
-  If there merely exists a possibly non-linear solution $h : B \to X$ to the lifting problem above, then there merely exists a linear solution as well.
-\end{theorem}
-
-\begin{proof}
-  Assume we have a lift $h : B \to X$.
-  Define $h' : (B,0) \pto (X,0)$ by $h'(b) \coloneq h(b) - h(0)$,
-  and note that $h'$ still is a solution to the lifting problem.
-  Since $\can_{(\argmhole)}$ is a natural isomorphism on the given square, it is sufficient to find a linear lift on the tangent spaces.
-  By \Cref{prp:derivative-inf-lin}, $\der{h'}{0}$ is the desired linear map.
-\end{proof}
-
-\begin{remark}
-  Explicitly, the linear solution that the above proof produces is $\can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
-\end{remark}
 
 Our proof that tangential modules are infinitesimally linear will make use of the following generalization of the canonical map $\can_M$.
 For $k \geq 1$, we define $\can_M^k : M^k \to (M,0)^{\D(k)}$ by
@@ -365,6 +342,45 @@ As with $\can_M$, we write $\can^k$ when $M$ is clear from context.
   So $\inc_{m,n}^\ast$ is an equivalence, as required.
 \end{proof}
 
+As a consequence, we deduce the following linearization result:
+
+\begin{theorem}\label{thm:linearize-lift}
+  Suppose we have a commuting square of tangential $R$-modules:
+  \begin{center}
+    \begin{tikzcd}
+      A \ar{r}{u} \ar{d}{m} & X \ar{d}{e} \\
+      B \ar{r}{v} & Y
+    \end{tikzcd}
+  \end{center}
+  If there merely exists a possibly non-linear solution $h : B \to X$ to the lifting problem above, then there merely exists a linear solution as well.
+\end{theorem}
+
+\begin{proof}
+  Assume we have a lift $h : B \to X$.
+  Define $h' : (B,0) \pto (X,0)$ by $h'(b) \coloneq h(b) - h(0)$,
+  and note that $h'$ still is a solution to the lifting problem.
+  Since $\can_{(\argmhole)}$ is a natural isomorphism on the given square, it is sufficient to find a linear lift on the tangent spaces.
+  By \Cref{cor:tangential-inf-lin}, $B$ and $X$ are infinitesimally linear,
+  so we can apply \Cref{prp:derivative-inf-lin} to deduce that $\der{h'}{0}$
+  is linear and therefore provides the linear lift on tangent spaces.
+\end{proof}
+
+\begin{remark}
+  Explicitly, the linear solution that the above proof produces is $\can_X^{-1} \circ \der{h'}{0} \circ \can_B$.
+\end{remark}
+
+A similar technique shows that taking first-order neighbourhoods is
+faithful on tangential modules.
+
+\begin{proposition}\label{prop:hood-faithful}
+  The functor $\hood{\argmhole}{1} : \modcat R \rightarrow \pType$ is faithful when restricted to the subcategory of tangential $R$-modules.
+\end{proposition}
+
+\begin{proof}
+  Let $f,g : M \rightrightarrows N$ be two linear maps between tangential $R$-modules with $\hood{f,0}{1} = \hood{g,0}{1}$.
+  Then $df_0=dg_0$ and by naturality of the canonical maps $\can_{(\argmhole)}$ the claim follows.
+\end{proof}
+
 Tangentiality and infinitesimal linearity are preserved under many common categorical constructions.
 These results are needed for the theoretical work in \Cref{adequate-section}, and
 will also be useful when studying examples in \Cref{examples-section}.
@@ -396,7 +412,7 @@ To show that tangential and infinitesimally linear $R$-modules are closed under 
 \end{lemma}
 
 \begin{proof}
-  Let $f : X \to \D(m)$ be a surjection. The family $\fib_f : \D(m) \to \UU$ is inhabited by assumption. By Zariski-local choice, there exists a unimodular vector $f_1, \dots, f_n : \quot{R[x_1,\dots,x_m]}{\ideal{x_1, \dots, x_m}^2}$ such that there exists a local section $s_i : D(f_i) \to X$ for each $i$. Since $\quot{R[x_1,\dots,x_m]}{\ideal{x_1, \dots, x_m}^2}$ is a local ring, at least one of the $f_i$ is a unit, say $f_k$. Then $s_k$ is a global section of $f$.
+  Let $f : X \to \D(m)$ be a surjection. The family $\fib_f : \D(m) \to \Type$ is inhabited by assumption. By Zariski-local choice, there exists a unimodular vector $f_1, \dots, f_n : \quot{R[x_1,\dots,x_m]}{\ideal{x_1, \dots, x_m}^2}$ such that there exists a local section $s_i : D(f_i) \to X$ for each $i$. Since $\quot{R[x_1,\dots,x_m]}{\ideal{x_1, \dots, x_m}^2}$ is a local ring, at least one of the $f_i$ is a unit, say $f_k$. Then $s_k$ is a global section of $f$.
 \end{proof}
 
 \begin{lemma}\label{lem:projective-exact}
@@ -420,7 +436,7 @@ To show that tangential and infinitesimally linear $R$-modules are closed under 
   The same follows for $(\argmhole,0)^{\D(m) \vee \D(n)}$ since $(M,0)^{\D(m) \vee \D(n)} \simeq (M,0)^{\D(m)} \times (M,0)^{\D(n)}$, and a product of exact functors is exact.
 \end{proof}
 
-We say that a class of modules $\mcal{A}$ is a \notion{weak Serre class} if it contains the zero module and is closed under kernels, cokernels, and extensions. 
+We say that a class of modules $\mcal{A}$ is a \notion{weak Serre class} if it contains the zero module and is closed under kernels, cokernels, and extensions.
 Equivalently, $\mcal{A}$ is a weak Serre class if it is inhabited and for every exact sequence of modules $A \to B \to C \to D\to E$ with $A$, $B$, $D$, and $E$ in $\mcal{A}$, $C$ is in $\mcal{A}$ as well.
 
 \begin{proposition}\label{prp:op-closure-inf-lin-tangential}
@@ -435,7 +451,7 @@ Equivalently, $\mcal{A}$ is a weak Serre class if it is inhabited and for every 
     \tangent{A}{0} \ar{r} &  \tangent{B}{0} \ar{r} & \tangent{C}{0} \ar{r} & \tangent{D}{0}\ar{r} & \tangent{E}{0}
     \end{tikzcd}
     \]
-    The rows are exact by \Cref{prp:tangent-exact}, and four of the vertical maps are equivalences by assumption. 
+    The rows are exact by \Cref{prp:tangent-exact}, and four of the vertical maps are equivalences by assumption.
     Therefore, the remaining vertical map is also an equivalence by the five lemma.
     The case for infinitesimally linear modules follows an analogous argument.
 \end{proof}
