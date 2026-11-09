@@ -52,9 +52,7 @@ Most notably for our purposes, the finite free modules $R^n$ are quasi-coherent 
   In particular, they form an abelian subcategory of $\modcat{R}$.
 \end{remark}
 
-It is not true that quasi-coherent modules are closed under kernels in general.
-Thus, this collection of modules does not form an abelian category.
-However, we can prove that they are closed under cokernels.
+To see that all finitely presented $R$-modules are quasi-coherent, we show:
 
 \begin{lemma}\label{lem:qc-colimits}
   Quasi-coherent $R$-modules are closed under cokernels.
@@ -89,8 +87,10 @@ However, we can prove that they are closed under cokernels.
   By \Cref{lem:qc-colimits}, every finitely presented $R$-module is quasi-coherent, as it is the cokernel of a map between finite free $R$-modules.
 \end{remark}
 
-Tangentiality of quasi-coherent modules can be proved by a direct computation.
-By \Cref{cor:tangential-inf-lin}, we then get that quasi-coherent modules are infinitesimally linear.
+However, quasi-coherent $R$-modules are not closed under kernels in general, and this collection of modules does not form an abelian category.
+
+Tangentiality of quasi-coherent $R$-modules can be proved by a direct computation.
+By \Cref{cor:tangential-inf-lin}, we then get that quasi-coherent $R$-modules are infinitesimally linear.
 
 % \rednote{These pointed maps are already linear. Does linearity make sense when the domain is $\D(n)$? Respects scalar multiplication and addition whenever it exists.}
 
@@ -656,7 +656,7 @@ Finding a splitting amounts to showing that any lifting problem
   By \Cref{lem:fin-adeq-ext-pb-red} it is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so this follows from \Cref{prp:extension-fin-adeq-lin-adeq}.
 \end{proof}
 
-\subsection{Characterizing Finite Presented Modules among Finitely Adequate Modules}
+\subsection{Characterizing Finitely Presented Modules among Finitely Adequate Modules}
 \label{ss:char-fp}
 
 In this subsection, we characterize finitely presented $R$-modules amongst all finitely adequate modules as exactly those that are quasi-coherent.
@@ -738,18 +738,19 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
 \end{remark}
 
 \begin{proposition}
-  Let $M$ be an $R$-module that is finitely adequate and quasi-coherent.
-  Then $M$ is finitely presented.
+  Let $M$ be an $R$-module.
+  Then $M$ is finitely presented if and only if it is finitely adequate and quasi-coherent.
 \end{proposition}
 
 \begin{proof}
-  We show that $M^\ast$ is finitely copresented.
+  If $M$ is finitely presented, then it is finitely adequate by definition and quasi-coherent by \Cref{rem:fp-is-qc}.
+  Now assume that $M$ is finitely adequate and quasi-coherent, then we show that $M^\ast$ is finitely copresented.
   By \Cref{thm:fin-adeq-abelian}, it suffices to show that $M^\ast$ is projective, i.e.\ we need to show that $H :\equiv \Hom_R(M^\ast,\argmhole)$ is exact on the category of finitely adequate modules.
-  For this let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
+  For this, let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
   We get an induced exact sequence $0 \to H(A) \to H(B) \to H(C) \to \Ext_R^1(M^\ast,A)$, where $\Ext_R^1$ is defined as in \cite[Definition 2.1.5]{ext-groups-in-hott}.
   Since finitely adequate $R$-modules are closed under extensions, $\Ext_R^1$ taken either in this category or the category of all $R$-modules is the same.
   Then the proof of \cite[Proposition 2.5.4]{ext-groups-in-hott} also shows that $\Ext_R^1(M^\ast,A)$ can be calculated using an injective resolution of $A$ in the category of finitely adequate $R$-modules.
-  Recall from \Cref{thm:fin-adeq-abelian} that the injective modules are exactly the finitely presented modules.
+  Recall from \Cref{thm:fin-adeq-abelian} that the injective modules are precisely the finitely presented modules.
   Thus, we have $\Ext_R^1(M^\ast,A)=0$, since \Cref{identification-hom-tensor-for-fp-modules} implies that $\Hom_R(M^{\ast},\argmhole)$ is exact on the category of finitely presented modules.
 \end{proof}
 
