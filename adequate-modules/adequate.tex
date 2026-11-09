@@ -411,6 +411,15 @@ We first recall that duality is an anti-equivalence between finitely copresented
 
 As stated, the theorem above is not strong enough to establish that finitely presented modules are injective among all finitely adequate ones.
 By extending this duality result to all finitely adequate modules, we will obtain the desired injectivity result.
+In order to do this, we will need to make use of the $\Ext$ groups developed
+in homotopy type theory in~\cite{ext-groups-in-hott} and~\cite{formalising-yoneda-ext}.
+Since in general there are not enough injective or projective $R$-modules,
+these groups are defined in a resolution-free way as Yoneda $\Ext$ groups,
+with $\Ext_R^n(M, N)$ consisting of certain equivalence classes of exact
+sequences starting with $N$ and ending with $M$.
+They behave as expected, and in particular have long-exact sequences associated
+to short-exact sequences in each variable.
+
 We first need the following lemma.
 
 \begin{lemma}\label{lem:ext^2-fp-R}
@@ -426,7 +435,7 @@ We first need the following lemma.
     \end{tikzcd}
   \end{center}
   of $P$.
-  By \cite{ext-groups-in-hott}, the long exact sequence of $\Ext^\ast_R(\argmhole, R)$ associated to $\Im(f) \hookrightarrow R^n \twoheadrightarrow P$ yields the exact sequence
+  By~\cite[Theorem 26]{formalising-yoneda-ext}, the long exact sequence of $\Ext^\ast_R(\argmhole, R)$ associated to $\Im(f) \hookrightarrow R^n \twoheadrightarrow P$ yields the exact sequence
   \begin{center}
     \begin{tikzcd}
       \Hom_R(R^n,R) \ar[two heads]{r} & \Hom_R(\Im(f),R) \ar{r} & \Ext^1_R(P,R) \ar{r} & \Ext^1_R(R^n, R) \rlap{.}
