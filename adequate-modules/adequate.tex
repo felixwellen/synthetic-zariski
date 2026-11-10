@@ -316,31 +316,21 @@ We will need the following lemma regarding kernels of maps in a commutative squa
   Since $i_v$ is a monomorphism, we deduce that $K' = \Ker(k_f) = K$, as desired.
 \end{proof}
 
-\begin{proposition}\label{prp:ad-ab}
-  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ such that:
+\begin{proposition}\label{prp:cofp-closed-kernel}
+  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
   \begin{itemize}[noitemsep]
-    \item all $\mcal{A}$-copresented objects are projective in $\Ad{\mcal{A}}$, and
-    \item all $\mcal{A}$-presented objects are injective in $\Ad{\mcal{A}}$.
-  \end{itemize}
-  Then $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$. Moreover:
-  \begin{itemize}[noitemsep]
-    \item $\mcal{A}$-copresented objects are closed under kernels, and any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented.
-    \item $\mcal{A}$-presented objects are closed under cokernels, and any injective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-presented.
+  \item If any module in $\mcal{A}$ is injective in $\Ad{\mcal{A}}$, then $\mcal{A}$-copresented objects are closed under kernels, and any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented. 
+  \item  If any module in $\mcal{A}$ is projective in $\Ad{\mcal{A}}$, then $\mcal{A}$-presented objects are closed under cokernels, and any injective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-presented. 
   \end{itemize}
 \end{proposition}
 
-\rednote{To show that $\mcal{A}$-presented objects are closed under cokernels, we only need to know that the objects of $\mcal{A}$ are projective, not all $\mcal{A}$-copresented objects. Should we factor this out into its own lemma? We're technically using this in \Cref{lem:dual-exact-fp-inc} to prove that all the $\mcal{A}$-presented objects are injective. This will allow us to internally avoid a circular argument, but it is also well known that finitely presented modules are closed under cokernels.}
-
-Note that under these assumptions, all objects in $\mcal{A}$ are both projective and injective in $\Ad{\mcal{A}}$, since they are both $\mcal{A}$-presented and $\mcal{A}$-copresented.
-
 \begin{proof}
-  First we check that $\Ad{\mcal{A}}$ is closed under kernels. We get closure under cokernels by a dual argument, and together they imply that $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$.
+We just prove the first point, the second follow by a dual argument.
 
-  Let $f : M \to N$ be a morphism between $\mcal{A}$-Adelman objects, and let $K$ be the kernel of $f$ taken in $\mcal{B}$.
-  By \Cref{lem:adel-desc}, $M$ and $N$ are merely kernels of maps between $\mcal{A}$-presented objects.
-  Since proving that $K$ is $\mcal{A}$-Adelman is a proposition,
-  we can assume that $M$ and $N$ are kernels of given maps $p : P_1 \to P_2$ and $q : Q_1 \to Q_2$
-  between $\mcal{A}$-presented objects.
+  Let $f : M \to N$ be a morphism between $\mcal{A}$-copresented objects, and let $K$ be the kernel of $f$ taken in $\mcal{B}$.
+  We want to prove that $K$ is $\mcal{A}$-copresented,
+  so we can assume that $M$ and $N$ are kernels of given maps $p : P_1 \to P_2$ and $q : Q_1 \to Q_2$
+  between objects in $\mcal{A}$.
   Since $Q_1$ and $Q_2$ are injective in $\Ad{\mcal{A}}$, we can extend $f$ to $f_1 : P_1 \to Q_1$ and $f_2 : P_2 \to Q_2$ making the following diagram with exact rows commute:
   \begin{center}
     \begin{tikzcd}
@@ -349,10 +339,51 @@ Note that under these assumptions, all objects in $\mcal{A}$ are both projective
     \end{tikzcd}
   \end{center}
   By \Cref{lem:diff-ker-is-ker}, $K$ is the kernel of $(p, f_1) : P_1 \to P_2 \oplus Q_1$.
-  Thus, $K$ is $\mcal{A}$-Adelman by \Cref{lem:adel-desc}.
+  Thus, $K$ is $\mcal{A}$-copresented.
 
-  Next we check that $\mcal{A}$-copresented modules are closed under kernels. The closure of $\mcal{A}$-presented objects under cokernels follows by a dual argument.
-  Let $f:M\to N$ be a homomorphism between $\mcal{A}$-copresented modules. We proceed exactly as above with $P_1,P_2,Q_1,Q_2$ in $\mcal{A}$ instead of being $\mcal{A}$-presented. We get that $\Ker(f)$ is the kernel of a map in $P_1 \to P_2 \oplus Q_1$ and is therefore $\mcal{A}$-copresented.
+Now let $M$ be projective in $\Ad{\mcal{A}}$, we prove it is $\mcal{A}$-copresented. Then we have an $\mcal{A}$-copresented module $L$ with a surjection $p: L \twoheadrightarrow M$. By projectivity, $M$ is a direct summand of $L$ with inclusion $i : M \hookrightarrow L$.
+Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it is $\mcal{A}$-copresented by the previous point.
+\end{proof}
+
+\begin{proposition}\label{prp:ad-ab}
+  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ such that:
+  \begin{itemize}[noitemsep]
+    \item all $\mcal{A}$-copresented objects are projective in $\Ad{\mcal{A}}$, and
+    \item all $\mcal{A}$-presented objects are injective in $\Ad{\mcal{A}}$.
+  \end{itemize}
+  Then $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$. %Moreover:
+%  \begin{itemize}[noitemsep]
+%    \item $\mcal{A}$-copresented objects are closed under kernels, and any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented.
+%    \item $\mcal{A}$-presented objects are closed under cokernels, and any injective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-presented.
+%  \end{itemize}
+\end{proposition}
+
+%\rednote{To show that $\mcal{A}$-presented objects are closed under cokernels, we only need to know that the objects of $\mcal{A}$ are projective, not all $\mcal{A}$-copresented objects. Should we factor this out into its own lemma? We're technically using this in \Cref{lem:dual-exact-fp-inc} to prove that all the $\mcal{A}$-presented objects are injective. This will allow us to internally avoid a circular argument, but it is also well known that finitely presented modules are closed under cokernels.}
+
+%Note that under these assumptions, all objects in $\mcal{A}$ are both projective and injective in $\Ad{\mcal{A}}$, since they are both $\mcal{A}$-presented and $\mcal{A}$-copresented.
+
+\begin{proof}
+  We only check that $\Ad{\mcal{A}}$ is closed under kernels. We get closure under cokernels by a dual argument, and together they imply that $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$.
+  
+  We use \Cref{lem:adel-desc} to characterize $\mcal{A}$-Adelman as kernel of maps between $\mcal{A}$-presented modules, and then reason as in \Cref{prp:cofp-closed-kernel} with $P_1,P_2,Q_1,Q_2$ being $\mcal{A}$-presented instead of in $\mcal{A}$.
+
+%  Let $f : M \to N$ be a morphism between $\mcal{A}$-Adelman objects, and let $K$ be the kernel of $f$ taken in $\mcal{B}$.
+%  By \Cref{lem:adel-desc}, $M$ and $N$ are merely kernels of maps between $\mcal{A}$-presented objects.
+%  Since proving that $K$ is $\mcal{A}$-Adelman is a proposition,
+%  we can assume that $M$ and $N$ are kernels of given maps $p : P_1 \to P_2$ and $q : Q_1 \to Q_2$
+%  between $\mcal{A}$-presented objects.
+%  Since $Q_1$ and $Q_2$ are injective in $\Ad{\mcal{A}}$, we can extend $f$ to $f_1 : P_1 \to Q_1$ and $f_2 : P_2 \to Q_2$ making the following diagram with exact rows commute:
+%  \begin{center}
+%    \begin{tikzcd}
+%      M \ar[hook]{r} \ar{d}{f} & P_1 \ar{d}{f_1} \ar{r}{p} & P_2 \ar{d}{f_2} \\
+%      N \ar[hook]{r} & Q_1 \ar{r}{q} & Q_2 \rlap{.}
+%    \end{tikzcd}
+%  \end{center}
+%  By \Cref{lem:diff-ker-is-ker}, $K$ is the kernel of $(p, f_1) : P_1 \to P_2 \oplus Q_1$.
+%  Thus, $K$ is $\mcal{A}$-Adelman by \Cref{lem:adel-desc}.
+
+%  Next we check that $\mcal{A}$-copresented modules are closed under kernels. The closure of $\mcal{A}$-presented objects under cokernels follows by a dual argument.
+%  Let $f:M\to N$ be a homomorphism between $\mcal{A}$-copresented modules. We proceed exactly as above with $P_1,P_2,Q_1,Q_2$ in $\mcal{A}$ instead of being $\mcal{A}$-presented. We get that $\Ker(f)$ is the kernel of a map in $P_1 \to P_2 \oplus Q_1$ and is therefore $\mcal{A}$-copresented.
 
  %   Let $f : K \to L$ be a homomorphism between $\mcal{A}$-copresented modules. Since modules in $\mcal{A}$ are injective in $\Ad{\mcal{A}}$, the map $f$ extends to a square of modules in $\mcal{A}$ as in the diagram below.
  % \begin{center}
@@ -365,9 +396,9 @@ Note that under these assumptions, all objects in $\mcal{A}$ are both projective
  % By \Cref{lem:diff-ker-is-ker}, the kernel of $f$ is now given by the kernel of the map $(k, f_1) : K_1 \to K_2 \oplus L_1$.
  % Thus, $\Ker(f)$ is $\mcal{A}$-copresented as desired.
 
-Finally we check that any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented. The fact that injective objects are $\mcal{A}$-presented follows from a dual argument.
-Let $M$ be projective in $\Ad{\mcal{A}}$. Then we have an $\mcal{A}$-copresented module $L$ with a surjection $p: L \twoheadrightarrow M$. By projectivity, $M$ is a direct summand of $L$ with inclusion $i : M \hookrightarrow L$.
-Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it is $\mcal{A}$-copresented by the previous point.
+%Finally we check that any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented. The fact that injective objects are $\mcal{A}$-presented follows from a dual argument.
+%Let $M$ be projective in $\Ad{\mcal{A}}$. Then we have an $\mcal{A}$-copresented module $L$ with a surjection $p: L \twoheadrightarrow M$. By projectivity, $M$ is a direct summand of $L$ with inclusion $i : M \hookrightarrow L$.
+%Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it is $\mcal{A}$-copresented by the previous point.
 \end{proof}
 
 \begin{remark}\label{rem:adelman-as-image}
@@ -463,7 +494,9 @@ We first need the following lemma.
   so it suffices to show that $\Ext^1(\Im (f), R)$ vanishes.
   By dimension shift, $\Ext^1(\Im (f), R) = \Ext^2(\Cok (f), R)$,
   as $\Ext^i_R(Q,R) = 0$ for $i = 1, 2$ by \Cref{lem:ext^2-fp-R}.
-  But $\Ext^2(\Cok (f), R) = 0$, since $\Cok(f)$ is finitely presented, again using \Cref{lem:ext^2-fp-R}.
+  But since finite free modules are projective we can apply \Cref{prp:cofp-closed-kernel} to get that finitely presented modules are closed kernel, so that $\Cok(f)$ is finitely presented and $\Ext^2(\Cok (f), R) = 0$ by \Cref{lem:ext^2-fp-R}.
+
+  %But $\Ext^2(\Cok (f), R) = 0$, since $\Cok(f)$ is finitely presented, again using \Cref{lem:ext^2-fp-R}.
 \end{proof}
 
 This result applies in particular to finitely adequate modules and their descriptions by homology via \Cref{lem:adel-desc}.
@@ -553,7 +586,7 @@ We can now conclude this section by applying \Cref{prp:ad-ab} with $\mcal{B} \de
 \end{theorem}
 
 \begin{proof}
-  This is a direct consequence of \Cref{prp:ad-ab}, \Cref{rem:fcp-is-proj}, and \Cref{prp:fp-is-inj}.
+  This is a direct consequence of \Cref{prp:ad-ab}, \Cref{rem:fcp-is-proj}, and \Cref{prp:fp-is-inj}, together with \Cref{prp:cofp-closed-kernel}.
 \end{proof}
 
 \begin{remark}\label{rem:free-abelian}
@@ -769,7 +802,7 @@ We will start with the following lemmas.
 \begin{proof}
   Since we want to prove a proposition, we can let $p : R^{m_2} \to R^{m_1}$ be a linear map such that $M = \Cok(p)$.
   By taking tensors we get that $M \otimes N$ is the cokernel of $p \otimes N : R^{m_2} \otimes N \to R^{m_1} \otimes N$.
-  The domain and codomain of $p \otimes N$ are finitely presented, so $M \otimes N$ is finitely presented as well.
+  The domain and codomain of $p \otimes N$ are finitely presented, so $M \otimes N$ is finitely presented as well by \Cref{prp:cofp-closed-kernel}.
 \end{proof}
 
 \begin{lemma}\label{lem:lin-adeq-fp-hom-fp}
