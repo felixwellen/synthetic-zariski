@@ -220,7 +220,7 @@ In fact, all three objects are isomorphic by the first isomorphism theorem, as w
 By exactness, we get that the induced map $\check{H}(f,g) \to H(f,g)$ is an isomorphism if and only if the map $\Ker(g\circ f) \to \Ker(p_f \circ i_g)$ is an epimorphism, and dually that $H(f,g) \to \hat{H}(f,g)$ is an isomorphism if and only if the map $\Cok(p_f \circ i_g) \to \Cok(g \circ f)$ is a monomorphism.
 A diagram chase is sufficient to verify that the maps on the kernels and cokernels are respectively epic and monic.
 
-Now, let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
+Assume given $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
 (In our application, $\mcal{B} = \modcat{R}$ and $\mcal{A}$ is the category of finite free $R$-modules.)
 An object $M$ is called \notion{$\mcal{A}$-presented} if it is merely a cokernel of a morphism in $\mcal{A}$, and \notion{$\mcal{A}$-copresented} if it is merely a kernel of a morphism in $\mcal{A}$.
 More generally, we say that an object $M$ of $\mcal{B}$ is \notion{$\mcal{A}$-Adelman} if it is merely the homology of a pair of composable morphisms in $\mcal{A}$.
@@ -229,12 +229,16 @@ We denote by $\Ad{\mcal{A}}$ the full subcategory of $\mcal{B}$ spanned by the $
 It is readily seen to be additive.
 
 \begin{lemma}\label{lem:adel-desc}
-  Suppose that the objects of $\mcal{A}$ are projective in $\Ad{\mcal{A}}$.
-  Then, $M$ is $\mcal{A}$-Adelman if and only if $M$ is merely the kernel of a morphism between $\mcal{A}$-presented objects.
+  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
+  \begin{itemize}[noitemsep]
+    \item If the objects of $\mcal{A}$ are injective in $\Ad{\mcal{A}}$, then $M$ is $\mcal{A}$-Adelman if and only if $M$ is merely the cokernel of a morphism between $\mcal{A}$-copresented objects.
+  \item If the objects of $\mcal{A}$ are projective in $\Ad{\mcal{A}}$, then $M$ is $\mcal{A}$-Adelman if and only if $M$ is merely the kernel of a morphism between $\mcal{A}$-presented objects.
+%  Then, $M$ is $\mcal{A}$-Adelman if and only if $M$ is merely the kernel of a morphism between $\mcal{A}$-presented objects.
+  \end{itemize}
 \end{lemma}
 
 \begin{proof}
-  In both directions, we are proving a mere proposition, so we may assume without loss of generality that all presentations are given explicitly.
+  We just prove the second point, the first follows by a dual argument. In both directions, we are proving a mere proposition, so we may assume without loss of generality that all presentations are given explicitly.
 
   Assume first that $M$ is the kernel of $f : P \to Q$ with $P$ and $Q$ $\mcal{A}$-presented.
   Choose $\mcal{A}$-presentations of $P$ and $Q$ as displayed below.
@@ -277,9 +281,9 @@ It is readily seen to be additive.
   % \rednote{Why clear?  Is $f$ in fact injective?  (Also, two $p$'s.)}
 \end{proof}
 
-\begin{remark}\label{rem:adel-desc}
-  Assuming instead that the objects of $\mcal{A}$ are injective in $\Ad{\mcal{A}}$ yields a dual description: an object $M$ is $\mcal{A}$-Adelman if and only if it is merely the cokernel of a morphism between $\mcal{A}$-copresented objects.
-\end{remark}
+%\begin{remark}\label{rem:adel-desc}
+%  Assuming instead that the objects of $\mcal{A}$ are injective in $\Ad{\mcal{A}}$ yields a dual description: an object $M$ is $\mcal{A}$-Adelman if and only if it is merely the cokernel of a morphism between $\mcal{A}$-copresented objects.
+%\end{remark}
 
 We will need the following lemma regarding kernels of maps in a commutative square:
 
@@ -319,8 +323,8 @@ We will need the following lemma regarding kernels of maps in a commutative squa
 \begin{proposition}\label{prp:cofp-closed-kernel}
   Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
   \begin{itemize}[noitemsep]
-  \item If any module in $\mcal{A}$ is injective in $\Ad{\mcal{A}}$, then $\mcal{A}$-copresented objects are closed under kernels, and any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented. 
-  \item  If any module in $\mcal{A}$ is projective in $\Ad{\mcal{A}}$, then $\mcal{A}$-presented objects are closed under cokernels, and any injective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-presented. 
+  \item If the objects of $\mcal{A}$ are injective in $\Ad{\mcal{A}}$, then $\mcal{A}$-copresented objects are closed under kernels, and any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented. 
+  \item  If the objects of $\mcal{A}$ are projective in $\Ad{\mcal{A}}$, then $\mcal{A}$-presented objects are closed under cokernels, and any injective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-presented. 
   \end{itemize}
 \end{proposition}
 
@@ -473,7 +477,7 @@ We first need the following lemma.
     \end{tikzcd}
   \end{center}
   The map $\Hom_R(R^m, R) \to \Hom_R(\Ker(f),R)$ is the dual of a monomorphism between
-  finitely copresented modules, so \Cref{thm:lin-adeq-dual} implies that it is epic.
+  finitely copresented modules, so \Cref{thm:lin-adeq-dual} implies that it is epic \rednote{Is this obvious? I feel it requires some exactness from dualisation}.
   Moreover, $\Ext^1_R(R^m, R) = 0$ as $R^m$ is projective, hence $\Ext^2_R(P,R) = \Ext^1_R(\Im (f), R) = 0$.
 \end{proof}
 
@@ -494,7 +498,7 @@ We first need the following lemma.
   so it suffices to show that $\Ext^1(\Im (f), R)$ vanishes.
   By dimension shift, $\Ext^1(\Im (f), R) = \Ext^2(\Cok (f), R)$,
   as $\Ext^i_R(Q,R) = 0$ for $i = 1, 2$ by \Cref{lem:ext^2-fp-R}.
-  But since finite free modules are projective we can apply \Cref{prp:cofp-closed-kernel} to get that finitely presented modules are closed kernel, so that $\Cok(f)$ is finitely presented and $\Ext^2(\Cok (f), R) = 0$ by \Cref{lem:ext^2-fp-R}.
+  But since finite free modules are projective we can apply \Cref{prp:cofp-closed-kernel} to get that finitely presented modules are closed under kernels, so that $\Cok(f)$ is finitely presented and $\Ext^2(\Cok (f), R) = 0$ by \Cref{lem:ext^2-fp-R} again.
 
   %But $\Ext^2(\Cok (f), R) = 0$, since $\Cok(f)$ is finitely presented, again using \Cref{lem:ext^2-fp-R}.
 \end{proof}
@@ -517,7 +521,7 @@ Fixing this notation, we will now show that finitely adequate modules interact w
 \end{proposition}
 
 \begin{proof}
-  Dualization is exact on finitely presented and finitely copresented modules by \Cref{thm:lin-adeq-dual}.
+  Dualization is exact on finitely presented and finitely copresented modules by \Cref{thm:lin-adeq-dual}. \rednote{Is that immediate? I don't see it. In both cases we just use left exactness and that the dual of $0 \to M \to R^m \to R^n$ is exact, which is 2.3.9 from diffgeo}
   Thus, we have that $\Cok (f)^\ast = \Ker (f^\ast)$ and $\Ker (g)^\ast = \Cok (g^\ast)$.
   Applying dualization to the entire diagram above yields:
   \begin{center}
