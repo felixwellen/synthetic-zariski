@@ -3,7 +3,7 @@ In mathematics, it is common practice to assume a fixed set theory, usually with
 We use the word ``synthetic'' to indicate that the latter approach is used,
 as it was used by Kock and Lawvere to describe development of mathematics internal to certain categories \cite{lawvere-categorical-dynamics}, in particular toposes -- a program which dates back as far as 1967.
 
-Already in the 70s in the same program, what we call  synthetic algebraic geometry today appeared for the first time. Anders Kock suggested to use the language of higher-order logic \cite{Church40} to describe the Zariski topos, the collection of sheaves on the opposite category of finitely presentable algebras over a fixed base ring \(k\) with respect to the Zariski topology \cite{Kock74,kockreyes}. 
+Already in the 70s in the same program, what we call  synthetic algebraic geometry today appeared for the first time. Anders Kock suggested to use the language of higher-order logic \cite{Church40} to describe the big Zariski topos, i.e.\ the collection of sheaves on the opposite category of finitely presentable algebras over a fixed base ring \(k\) with respect to the Zariski topology \cite{Kock74,kockreyes}. 
 Kock's approach allowed for a more suggestive and geometrical description of schemes.
 There is in particular a ``generic local ring'' $R$, which, as a sheaf, associates to any algebra $A$ its underlying set and, as described in \cite{kockreyes}, the projective space $\bP^n$ is then the set of lines in $R^{n+1}$.
 
@@ -28,16 +28,25 @@ However, restricted versions of LEM and AC are compatible with the Kock-Lawvere 
 A very basic example that LEM holds for some propositions in the flavor of synthetic mathematics we study, is that equality of natural numbers is always decidable, meaning that two natural numbers are either equal or not equal. We will momentarily explain why full LEM and AC tend to be incompatible with synthetic approaches to various geometry.
 
 The use of nilpotent elements to capture infinitesimal quantities as mentioned above was inspired by the Grothendieck school of algebraic geometry. Anders Kock also worked with an extended axiom \cite{Kock74,kockreyes} suitable for synthetic algebraic geometry, where the role of $\D(1)$ above can be taken by any finitely presented affine scheme. We will give a synthetic definition of these affine schemes in the next paragraph.
-In his 2017 doctoral thesis, Ingo Blechschmidt noticed a property holding internally in the Zariski-topos, which he called synthetic quasi-coherence. It is a generalised and fully internal version of what Kock used. In 2018, David Jaz Myers\footnote{Myers' never published on the subject, but communicated his ideas to Felix Cherubini and in talks to a larger audience \cite{myers-talk1,myers-talk2}.} started working with a specialization of Blechschmidt's synthetic quasi-coherence, which is what we now call \emph{duality axiom}.
+In his 2017 doctoral thesis, Ingo Blechschmidt noticed a property holding internally in the big Zariski-topos, which he called synthetic quasi-coherence. It is a generalised and fully internal version of what Kock used. In 2018, David Jaz Myers\footnote{Myers' never published on the subject, but communicated his ideas to Felix Cherubini and in talks to a larger audience \cite{myers-talk1,myers-talk2}.} started working with a specialization of Blechschmidt's synthetic quasi-coherence, which is what we now call \emph{duality axiom}.
 
-To state the duality axiom we need to go from the space $\D(1)$ to spaces that are the common zeros of some finite system of polynomial equations over $R$. Such a space can be encoded independently of the choice of polynomials as a finitely presented $R$-algebra, i.e.\ an $R$-algebra $A$ which is of the form $R[X_1,\dots,X_n]/(P_1,\dots,P_l)$ for some numbers $n,l$ and polynomials $P_i\in R[X_1,\dots,X_n]$.
-Then the set of roots of the system is given by the type $\Hom_{\Alg{R}}(A,R)$ of $R$-algebra homomorphisms from $A$ to the base ring $R$.
-We denote this type of roots by $\Spec A$ and call those types \emph{(finitely presented) affine schemes}.
+To state the duality axiom in synthetic algebraic geometry we replace $\D(1)$ with a general affine scheme of finite presentation. Synthetically, an affine scheme (of finite presentation) is just a set \(X\) such that there are \(n,l:\N\), polynomials \(P_1,\dots,P_l:R[X_1,\dots,X_n]\) and an identification
+\[
+  X = V(P) \coloneq \{x:R^n\mid \forall i.P_i(x)=0\}\rlap{.}
+\]
+More precisely, we ask that there \emph{merely} is such a system of polynomials and an identification with \(X\) in the sense of homotopy type theory. This means that if we assume an affine scheme \(X\), we can not use some polynomials describing \(X\) as freely as we could in the presence of AC.
+It is however possible to recover the set of zeros \(V(P)\) from the finitely presented \(R\)-algebra \(R[X_1,\dots,X_n]/(P_1,\dots,P_l)\) and in synthetic algebraic geometry these algebras turn out to be isomorphic for any polynomial system describing the same set of zeros.
+In general, an \(R\)-algebra \(A\) is finitely presented if there merely are \(n,l:\N\) and \(P_1,\dots,P_l\in R[X_1,\dots,X_n]\) such that \(A\cong R[X_1,\dots,X_n]/(P_1,\dots,P_l)\). For such an algebra \(A\) we define the (synthetic) spectrum as
+\[
+\Spec(A)\coloneq \Hom_{\Alg{R}}(A,R)\rlap{.}
+\]
 Now the duality axiom states that $\Spec$ is the inverse to exponentiating with $R$, i.e.\ for all 
 finitely presented $R$-algebras $A$ the following is an isomorphism:
-\[ (a\mapsto (\varphi\mapsto \varphi(a))) : A\to R^{\Spec A}\rlap{.}\]
+\[
+(a\mapsto (\varphi\mapsto \varphi(a))) : A\to R^{\Spec A}\rlap{.}
+\]
 
-Myers used homotopy type theory as a base language, which is now the standard in synthetic algebraic geometry. An introduction to homotopy type theory can be found in \cite{shulman-logic-of-spaces}.
+Myers also used homotopy type theory as a base language for synthetic algebraic geometry, which is now the standard in synthetic algebraic geometry. An introduction to homotopy type theory can be found in \cite{shulman-logic-of-spaces}.
 In the next paragraphs we will explain how it fits with synthetic algebraic geometry. Homotopy type theory is a language for synthetic homotopy theory.
 This means that when using it, we can think of the basic objects of the theory, that is types, directly as homotopy types. This should be contrasted with the usual practice in algebraic topology, which is to implement these homotopy types as topological spaces or Kan complexes.
 So the rules of homotopy type theory allow us to work with types in very much the same way as one would work with homotopy types in traditional mathematics. And we will in fact mostly work with homotopy types without homotopical information beyond their connected components which we call \emph{sets} in homotopy type theory. These sets will however still carry spatial structure which can be exposesd through the axiom we introduce below.
