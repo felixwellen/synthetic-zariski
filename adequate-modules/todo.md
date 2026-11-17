@@ -5,10 +5,8 @@
 
 ## Writing
 
-- Felix: abstract.
 - Paper is a jumble of results.  Can we tell a story?  Improve all section intros.
 - Handle remaining \rednote's
-- Dan: expand intro to Section 3
 
 ## Proofreading
 

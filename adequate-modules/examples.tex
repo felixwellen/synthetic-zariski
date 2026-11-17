@@ -112,15 +112,39 @@ This shows that it is not equivalent to the double dual tensor product and canno
   We show that $N_\varepsilon :\equiv M_\varepsilon \otimes M_\varepsilon$ cannot be reflexive for all $\varepsilon : \D(1)$.
   It then follows from \Cref{prp:can-dual-iso} that these modules cannot be finitely adequate for all $\varepsilon$.
 
-  Indeed, since dualizing is exact, we have $M_\varepsilon^\ast = R/(\varepsilon)$.
-  Then we have
+  For this we first observe that $p : R/(\varepsilon) \otimes M_\varepsilon \to R, \overline{r} \otimes s \mapsto rs$ is a perfect pairing.
+  Indeed, if in the following diagram
   \[
-    N_\varepsilon^\ast = \Hom_R(M_\varepsilon,R/(\varepsilon)) = \coker(M_\varepsilon^\ast \overset{\cdot \varepsilon}{\to} M_\varepsilon^\ast) = R/(\varepsilon)\rlap{,}
+  \begin{tikzcd}
+    0 \ar[r] & M_\varepsilon \ar[r]\ar[d, dashed]
+             & R \ar[r, "\varepsilon"]\ar[d, "\cong"]
+             & R \ar[r]\ar[d, "\cong"]
+             & R/(\varepsilon) \ar[r]\ar[d, dashed]
+             & 0 \\
+    0 \ar[r] & (R/(\varepsilon))^\ast \ar[r]
+             & R^\ast \ar[r, "\varepsilon"]
+             & R^\ast \ar[r]
+             & M_\varepsilon^\ast \ar[r]
+             & 0
+  \end{tikzcd}
   \]
-  where, for the penultimate equivalence, we use that $\Hom_R(M_\varepsilon,\argmhole)$ is right exact by \Cref{identification-hom-tensor-for-fp-modules}.
-  In particular, $N_\varepsilon^{\ast\ast} = M_\varepsilon$, and under this identification the evaluation map $\ev : N_\varepsilon \to M_\varepsilon$ is the multiplication $s \otimes t \mapsto st$.
-  \rednote{Explain previous sentence?}
-  Hence $\ev(\varepsilon\otimes\varepsilon)=0$ and thus even $\varepsilon \otimes \varepsilon = 0$ by virtue of our assumption.
+  the two inner vertical maps $R \to R^\ast$ are the canonical identifications $r \mapsto (s \mapsto rs)$, then the two induced dashed maps are exactly the two adjoints of the pairing $p$ and must furthermore be isomorphisms themselves.
+  \rednote{This is similar to \Cref{lem:ann-dual-quotient} and perhaps could be factored out?}
+  Note that the rows are exact since dualizing is so on finitely adequate modules.
+
+  Now suppose $\beta: N_\varepsilon \to R$ is bilinear.
+  By perfection of $p$, we find a unique linear map $f : M_\varepsilon \to R/(\varepsilon)$ such that $\beta = p \circ (f \otimes \id)$.
+  Denoting by $\pi : R \to R/(\varepsilon)$ the quotient map and using that finitely copresented $R$-mpdules are projective in the category of finitely adequate modules, we merely find a lift $h : M_\varepsilon \to R$ such that $f = \pi \circ h$.
+  Therefore we have
+  \[
+    \beta(r \otimes s) = p(f(r) \otimes s)
+                       = p(\pi(h(r)) \otimes s)
+                       = h(r) p(\overline{1} \otimes s)
+                       = h(r)s
+                       = h(rs) \rlap{,}
+  \]
+  and thus in particular $\beta( \varepsilon \otimes \varepsilon) = h(\varepsilon^2) = 0$.
+  Now if $N_\varepsilon$ were reflextive, then this would imply $\varepsilon \otimes \varepsilon = 0$.
   Now, using \Cref{tensor-gamma-commute-on-affines}, compute
   \[
     \Gamma(\D(1),N) = \Gamma(\D(1),M) \otimes_A \Gamma(\D(1),M) = I \otimes_A I = I \otimes_R I \rlap{,}
@@ -147,9 +171,22 @@ finitely copresented.
   Indeed, finitely copresented modules are projective in the category of finitely adequate $R$-modules,
   so the epimorphism $r : R \to (r)$ splits.
   Thus $(r)$ is a direct summand of $R$ such that $(r) = (e)$ for an idempotent $e:R$.
+
+
   Since $R$ is local, $(e=0) \lor (e=1)$ and thus $(r=0) \lor (r \neq 0)$.
   % e(1-e) = 0, and at least one of e and 1-e is invertible since e + (1-e) is.
   % If e is invertible, then 1-e = 0 so e = 1, and if 1-e is invertible, then e = 0.
+
+  \rednote{
+  Proposed reformulation:
+
+  Let $r : R$.
+  We first show that if $(r)$ is finitely copresented, then $(r=0) \lor (r \neq 0)$.
+  Indeed, finitely copresented modules are projective in the category of finitely adequate $R$-modules, so the epimorphism $r : R \to (r)$ admits a section $s : (r) \to R$.
+  The map $p :\equiv s \circ r :R \to R$ is idempotent, specifically it is multiplication by the idempotent $e :\equiv p(1)$.
+  Thus $\im(s) = \im(p) = (e)$ and hence $(r) \cong (e)$ as $R$-modules, because $s$ is injective.
+  Since $R$ is local, $(e=0) \lor (e=1)$ and thus $(r=0) \lor (r \neq 0)$.
+  }
 
   A dual argument shows that if $(r)$ is finitely presented, then also $(r=0) \lor (r \neq 0)$.
 
@@ -213,7 +250,6 @@ For each proposition $U$, the modules $R^U$, $K^U$ and $R_U$ are tangential.
 \begin{proof}
 The module $R^U$ is tangential by \Cref{prp:exp-tangential}.
 Thus $K^U$ is tangential by the closure under kernels, \Cref{prp:op-closure-inf-lin-tangential}.
-\rednote{Cited result is currently not strong enough.}
 
 The proof that $R_U$ is tangential requires more work.
 Since $R_U \defeq \sum_{x : R} (x = 0) \lor U$,
@@ -463,9 +499,7 @@ Since we can express annihilators as duals, this allows us to transfer some prop
 
 \begin{proof}
   By \Cref{lem:ann-dual-quotient}, $\Ann(I) \simeq (\quot{R}{I})^*$,
-  which is finitely adequate by \Cref{thm:fin-adeq-abelian} and \Cref{cor:dual-equiv}.
-  \rednote{Change last cross-ref if we mention earlier that the dual of a finitely adequate
-  module is finitely adequate.}
+  which is finitely adequate by \Cref{thm:fin-adeq-abelian} and \Cref{prp:dual-fin-ad}.
 \end{proof}
 
 With these tools in place, we can now handle the remaining family of the form $K^U$.

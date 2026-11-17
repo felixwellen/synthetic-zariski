@@ -1,16 +1,28 @@
-A finitely presented module is described by finitely many generators and relations.
-These modules can be investigated by methods of linear algebra and play a central role in algebraic geometry.
-When the base ring is coherent, this notion coincides with that of coherent modules, which is usually the generality to which one restricts classically.
-
-Synthetically, however, our base ring $R$ is provably not coherent~\cite[Theorem~3.2.1]{topology-draft} and these two notions diverge.
-As it turns out, neither is well-behaved in our setting.
-The category of finitely presented $R$-modules lacks kernels, and the category of coherent $R$-modules, while always abelian, is much too small as it does not even contain crucial modules like $R^n$.
-In this section, we study the larger category of finitely adequate modules~(\Cref{def:fin-adeq}) as a suitable replacement whose objects still retain a certain sense of finiteness.
-This notion is not completely novel and has already been studied externally in~\cite[Chapter 06Z1]{stacks-project}.
-
-\rednote{Add details about what is in each subsection?}
+As discussed in \Cref{intro-section}, the focus of this article is on the
+study of finitely adequate modules.
+However, before formally introducing these modules, we begin in
+\Cref{ss:qc-and-adequate} by studying quasi-coherent, weakly quasi-coherent
+and adequate modules, where the latter are defined to be the kernels of maps
+between quasi-coherent modules.
+\Cref{ss:finad-abelian} contains our main results.
+We define finitely adequate modules to be the kernels of maps between
+finitely presented modules, and show that they form an abelian subcategory
+of all modules on which duality is an anti-equivalence.
+We also characterize the injective and projective modules in this subcategory.
+In \Cref{ss:finad-extension-closed} we show that the subcategory of finitely
+adequate modules is closed under extension, a result that relies on our work on
+tangential modules.
+We next characterize the finitely presented modules as exactly those that are
+finitely adequate and quasi-coherent, in \Cref{ss:char-fp}.
+The methods here are also used in \Cref{ss:closed-monoidal} to show that the
+subcategory of finitely adequate modules has a closed symmetric monoidal structure.
+The internal hom is the usual $\Hom_R$ of $R$-modules, but the symmetric monoidal
+operation is given by the \emph{double-dual} of the usual tensor product.
+Indeed, we show in \Cref{cex:tensor-not-closed} that finitely adequate modules
+are not closed under tensor.
 
 \subsection{Quasi-Coherent and Adequate Modules}
+\label{ss:qc-and-adequate}
 
 Before defining finitely adequate modules~(\Cref{def:fin-adeq}), we shall first consider some more general notions.
 In fact, the finitely adequate modules inherit several good properties from the broader class of adequate modules~(\Cref{def:adequate}), including tangentiality and weak quasi-coherence.
@@ -32,8 +44,7 @@ Recall that for an $R$-module $M$ and a finitely presented $R$-algebra $A$, ther
   is an equivalence.
 \end{definition}
 
-Typical examples of quasi-coherent modules include finitely presented $R$-algebras, considered as $R$-modules.
-\rednote{Reference?}
+Typical examples of quasi-coherent modules include finitely presented $R$-algebras, considered as $R$-modules \cite[Lemma 3.3.1]{draft}.
 Most notably for our purposes, the finite free modules $R^n$ are quasi-coherent for all $n : \N$.
 
 \begin{remark}\label{rem:wqc-abelian}
@@ -41,9 +52,7 @@ Most notably for our purposes, the finite free modules $R^n$ are quasi-coherent 
   In particular, they form an abelian subcategory of $\modcat{R}$.
 \end{remark}
 
-It is not true that quasi-coherent modules are closed under kernels in general.
-Thus, this collection of modules does not form an abelian category.
-However, we can prove that they are closed under cokernels.
+To see that all finitely presented $R$-modules are quasi-coherent, we show:
 
 \begin{lemma}\label{lem:qc-colimits}
   Quasi-coherent $R$-modules are closed under cokernels.
@@ -78,8 +87,10 @@ However, we can prove that they are closed under cokernels.
   By \Cref{lem:qc-colimits}, every finitely presented $R$-module is quasi-coherent, as it is the cokernel of a map between finite free $R$-modules.
 \end{remark}
 
-Tangentiality of quasi-coherent modules can be proved by a direct computation.
-By \Cref{cor:tangential-inf-lin}, we then get that quasi-coherent modules are infinitesimally linear.
+However, quasi-coherent $R$-modules are not closed under kernels in general, and this collection of modules does not form an abelian category.
+
+Tangentiality of quasi-coherent $R$-modules can be proved by a direct computation.
+By \Cref{cor:tangential-inf-lin}, we then get that quasi-coherent $R$-modules are infinitesimally linear.
 
 % \rednote{These pointed maps are already linear. Does linearity make sense when the domain is $\D(n)$? Respects scalar multiplication and addition whenever it exists.}
 
@@ -114,6 +125,8 @@ By \Cref{cor:tangential-inf-lin}, we then get that quasi-coherent modules are in
 
 The category of quasi-coherent modules is far too small to be an appropriate replacement for the algebro-geometric notion of a coherent sheaf of modules.
 We therefore consider the category of adequate modules, which is the kernel closure of quasi-coherent modules.
+These modules were also studied
+in~\cite[\href{https://stacks.math.columbia.edu/tag/06Z1}{Tag 06Z1}]{stacks-project}.
 As we will see, this larger family of modules will inherit tangentiality and weak quasi-coherence.
 
 \begin{definition}\label{def:adequate}
@@ -132,7 +145,9 @@ kernel closure of quasi-coherent modules.
 We end this section by providing a class of projective adequate modules.
 An $R$-module $L$ is called \notion{finitely copresented} if it is merely the kernel of a linear map $f : R^m \rightarrow R^n$.
 The finitely copresented modules played an important role in \cite{diffgeo-article}, as the tangent spaces of schemes are always finitely copresented~\cite[Lemma 2.2.8]{diffgeo-article}.
-Finitely copresented modules have also been studied externally in~\cite[Chapter 06Z1]{stacks-project}, where they go under the name of linearly adequate modules.
+Finitely copresented modules have also been studied externally
+in~\cite[\href{https://stacks.math.columbia.edu/tag/06Z1}{Tag 06Z1}]{stacks-project},
+where they go under the name of linearly adequate modules.
 
 \begin{lemma}\label{lem:lin-adeq-lift}
   Let $L$ be a finitely copresented $R$-module.
@@ -164,12 +179,14 @@ Finitely copresented modules have also been studied externally in~\cite[Chapter 
 \end{remark}
 
 \subsection{Finitely Adequate Modules Form an Abelian Category}
+\label{ss:finad-abelian}
 
 As discussed in the introduction, finding an appropriate replacement for the algebro-geometric notion of a coherent sheaf of modules remains an open question.
 Finitely presented $R$-modules do not form an abelian category, as this category is not closed under kernels (see \Cref{lem:finitely-adequate-not-fp}).
 This naturally leads us to consider the kernel closure of finitely presented $R$-modules.
 The modules in this subcategory have many good properties.
-In this subsection, we show that they form an abelian subcategory of $\modcat{R}$.
+In this subsection, we show that they form an abelian subcategory of $\modcat{R}$
+on which duality is an anti-equivalence.
 
 \begin{definition}\label{def:fin-adeq}
   An $R$-module $M$ is \notion{finitely adequate} if it is merely the kernel of a homomorphism between finitely presented modules.
@@ -203,7 +220,7 @@ In fact, all three objects are isomorphic by the first isomorphism theorem, as w
 By exactness, we get that the induced map $\check{H}(f,g) \to H(f,g)$ is an isomorphism if and only if the map $\Ker(g\circ f) \to \Ker(p_f \circ i_g)$ is an epimorphism, and dually that $H(f,g) \to \hat{H}(f,g)$ is an isomorphism if and only if the map $\Cok(p_f \circ i_g) \to \Cok(g \circ f)$ is a monomorphism.
 A diagram chase is sufficient to verify that the maps on the kernels and cokernels are respectively epic and monic.
 
-Now, let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
+Assume given $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
 (In our application, $\mcal{B} = \modcat{R}$ and $\mcal{A}$ is the category of finite free $R$-modules.)
 An object $M$ is called \notion{$\mcal{A}$-presented} if it is merely a cokernel of a morphism in $\mcal{A}$, and \notion{$\mcal{A}$-copresented} if it is merely a kernel of a morphism in $\mcal{A}$.
 More generally, we say that an object $M$ of $\mcal{B}$ is \notion{$\mcal{A}$-Adelman} if it is merely the homology of a pair of composable morphisms in $\mcal{A}$.
@@ -212,12 +229,16 @@ We denote by $\Ad{\mcal{A}}$ the full subcategory of $\mcal{B}$ spanned by the $
 It is readily seen to be additive.
 
 \begin{lemma}\label{lem:adel-desc}
-  Suppose that the objects of $\mcal{A}$ are projective in $\Ad{\mcal{A}}$.
-  Then, $M$ is $\mcal{A}$-Adelman if and only if $M$ is merely the kernel of a morphism between $\mcal{A}$-presented objects.
+  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
+  \begin{itemize}[noitemsep]
+    \item If the objects of $\mcal{A}$ are injective in $\Ad{\mcal{A}}$, then $M$ is $\mcal{A}$-Adelman if and only if $M$ is merely the cokernel of a morphism between $\mcal{A}$-copresented objects.
+  \item If the objects of $\mcal{A}$ are projective in $\Ad{\mcal{A}}$, then $M$ is $\mcal{A}$-Adelman if and only if $M$ is merely the kernel of a morphism between $\mcal{A}$-presented objects.
+%  Then, $M$ is $\mcal{A}$-Adelman if and only if $M$ is merely the kernel of a morphism between $\mcal{A}$-presented objects.
+  \end{itemize}
 \end{lemma}
 
 \begin{proof}
-  In both directions, we are proving a mere proposition, so we may assume without loss of generality that all presentations are given explicitly.
+  We just prove the second point, the first follows by a dual argument. In both directions, we are proving a mere proposition, so we may assume without loss of generality that all presentations are given explicitly.
 
   Assume first that $M$ is the kernel of $f : P \to Q$ with $P$ and $Q$ $\mcal{A}$-presented.
   Choose $\mcal{A}$-presentations of $P$ and $Q$ as displayed below.
@@ -260,9 +281,9 @@ It is readily seen to be additive.
   % \rednote{Why clear?  Is $f$ in fact injective?  (Also, two $p$'s.)}
 \end{proof}
 
-\begin{remark}\label{rem:adel-desc}
-  Assuming instead that the objects of $\mcal{A}$ are injective in $\Ad{\mcal{A}}$ yields a dual description: an object $M$ is $\mcal{A}$-Adelman if and only if it is merely the cokernel of a morphism between $\mcal{A}$-copresented objects.
-\end{remark}
+%\begin{remark}\label{rem:adel-desc}
+%  Assuming instead that the objects of $\mcal{A}$ are injective in $\Ad{\mcal{A}}$ yields a dual description: an object $M$ is $\mcal{A}$-Adelman if and only if it is merely the cokernel of a morphism between $\mcal{A}$-copresented objects.
+%\end{remark}
 
 We will need the following lemma regarding kernels of maps in a commutative square:
 
@@ -299,31 +320,21 @@ We will need the following lemma regarding kernels of maps in a commutative squa
   Since $i_v$ is a monomorphism, we deduce that $K' = \Ker(k_f) = K$, as desired.
 \end{proof}
 
-\begin{proposition}\label{prp:ad-ab}
-  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ such that:
+\begin{proposition}\label{prp:cofp-closed-kernel}
+  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
   \begin{itemize}[noitemsep]
-    \item all $\mcal{A}$-copresented objects are projective in $\Ad{\mcal{A}}$, and
-    \item all $\mcal{A}$-presented objects are injective in $\Ad{\mcal{A}}$.
-  \end{itemize}
-  Then $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$. Moreover:
-  \begin{itemize}[noitemsep]
-    \item $\mcal{A}$-copresented objects are closed under kernels, and any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented.
-    \item $\mcal{A}$-presented objects are closed under cokernels, and any injective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-presented.
+  \item If the objects of $\mcal{A}$ are injective in $\Ad{\mcal{A}}$, then $\mcal{A}$-copresented objects are closed under kernels, and any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented. 
+  \item  If the objects of $\mcal{A}$ are projective in $\Ad{\mcal{A}}$, then $\mcal{A}$-presented objects are closed under cokernels, and any injective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-presented. 
   \end{itemize}
 \end{proposition}
 
-\rednote{To show that $\mcal{A}$-presented objects are closed under cokernels, we only need to know that the objects of $\mcal{A}$ are projective, not all $\mcal{A}$-copresented objects. Should we factor this out into its own lemma? We're technically using this in \Cref{lem:dual-exact-fp-inc} to prove that all the $\mcal{A}$-presented objects are injective. This will allow us to internally avoid a circular argument, but it is also well known that finitely presented modules are closed under cokernels.}
-
-Note that under these assumptions, all objects in $\mcal{A}$ are both projective and injective in $\Ad{\mcal{A}}$, since they are both $\mcal{A}$-presented and $\mcal{A}$-copresented.
-
 \begin{proof}
-  First we check that $\Ad{\mcal{A}}$ is closed under kernels. We get closure under cokernels by a dual argument, and together they imply that $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$.
+We just prove the first point, the second follow by a dual argument.
 
-  Let $f : M \to N$ be a morphism between $\mcal{A}$-Adelman objects, and let $K$ be the kernel of $f$ taken in $\mcal{B}$.
-  By \Cref{lem:adel-desc}, $M$ and $N$ are merely kernels of maps between $\mcal{A}$-presented objects.
-  Since proving that $K$ is $\mcal{A}$-Adelman is a proposition,
-  we can assume that $M$ and $N$ are kernels of given maps $p : P_1 \to P_2$ and $q : Q_1 \to Q_2$
-  between $\mcal{A}$-presented objects.
+  Let $f : M \to N$ be a morphism between $\mcal{A}$-copresented objects, and let $K$ be the kernel of $f$ taken in $\mcal{B}$.
+  We want to prove that $K$ is $\mcal{A}$-copresented,
+  so we can assume that $M$ and $N$ are kernels of given maps $p : P_1 \to P_2$ and $q : Q_1 \to Q_2$
+  between objects in $\mcal{A}$.
   Since $Q_1$ and $Q_2$ are injective in $\Ad{\mcal{A}}$, we can extend $f$ to $f_1 : P_1 \to Q_1$ and $f_2 : P_2 \to Q_2$ making the following diagram with exact rows commute:
   \begin{center}
     \begin{tikzcd}
@@ -332,10 +343,51 @@ Note that under these assumptions, all objects in $\mcal{A}$ are both projective
     \end{tikzcd}
   \end{center}
   By \Cref{lem:diff-ker-is-ker}, $K$ is the kernel of $(p, f_1) : P_1 \to P_2 \oplus Q_1$.
-  Thus, $K$ is $\mcal{A}$-Adelman by \Cref{lem:adel-desc}.
+  Thus, $K$ is $\mcal{A}$-copresented.
 
-  Next we check that $\mcal{A}$-copresented modules are closed under kernels. The closure of $\mcal{A}$-presented objects under cokernels follows by a dual argument.
-  Let $f:M\to N$ be a homomorphism between $\mcal{A}$-copresented modules. We proceed exactly as above with $P_1,P_2,Q_1,Q_2$ in $\mcal{A}$ instead of being $\mcal{A}$-presented. We get that $\Ker(f)$ is the kernel of a map in $P_1 \to P_2 \oplus Q_1$ and is therefore $\mcal{A}$-copresented.
+Now let $M$ be projective in $\Ad{\mcal{A}}$, we prove it is $\mcal{A}$-copresented. Then we have an $\mcal{A}$-copresented module $L$ with a surjection $p: L \twoheadrightarrow M$. By projectivity, $M$ is a direct summand of $L$ with inclusion $i : M \hookrightarrow L$.
+Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it is $\mcal{A}$-copresented by the previous point.
+\end{proof}
+
+\begin{proposition}\label{prp:ad-ab}
+  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ such that:
+  \begin{itemize}[noitemsep]
+    \item all $\mcal{A}$-copresented objects are projective in $\Ad{\mcal{A}}$, and
+    \item all $\mcal{A}$-presented objects are injective in $\Ad{\mcal{A}}$.
+  \end{itemize}
+  Then $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$. %Moreover:
+%  \begin{itemize}[noitemsep]
+%    \item $\mcal{A}$-copresented objects are closed under kernels, and any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented.
+%    \item $\mcal{A}$-presented objects are closed under cokernels, and any injective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-presented.
+%  \end{itemize}
+\end{proposition}
+
+%\rednote{To show that $\mcal{A}$-presented objects are closed under cokernels, we only need to know that the objects of $\mcal{A}$ are projective, not all $\mcal{A}$-copresented objects. Should we factor this out into its own lemma? We're technically using this in \Cref{lem:dual-exact-fp-inc} to prove that all the $\mcal{A}$-presented objects are injective. This will allow us to internally avoid a circular argument, but it is also well known that finitely presented modules are closed under cokernels.}
+
+%Note that under these assumptions, all objects in $\mcal{A}$ are both projective and injective in $\Ad{\mcal{A}}$, since they are both $\mcal{A}$-presented and $\mcal{A}$-copresented.
+
+\begin{proof}
+  We only check that $\Ad{\mcal{A}}$ is closed under kernels. We get closure under cokernels by a dual argument, and together they imply that $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$.
+  
+  We use \Cref{lem:adel-desc} to characterize $\mcal{A}$-Adelman as kernel of maps between $\mcal{A}$-presented modules, and then reason as in \Cref{prp:cofp-closed-kernel} with $P_1,P_2,Q_1,Q_2$ being $\mcal{A}$-presented instead of in $\mcal{A}$.
+
+%  Let $f : M \to N$ be a morphism between $\mcal{A}$-Adelman objects, and let $K$ be the kernel of $f$ taken in $\mcal{B}$.
+%  By \Cref{lem:adel-desc}, $M$ and $N$ are merely kernels of maps between $\mcal{A}$-presented objects.
+%  Since proving that $K$ is $\mcal{A}$-Adelman is a proposition,
+%  we can assume that $M$ and $N$ are kernels of given maps $p : P_1 \to P_2$ and $q : Q_1 \to Q_2$
+%  between $\mcal{A}$-presented objects.
+%  Since $Q_1$ and $Q_2$ are injective in $\Ad{\mcal{A}}$, we can extend $f$ to $f_1 : P_1 \to Q_1$ and $f_2 : P_2 \to Q_2$ making the following diagram with exact rows commute:
+%  \begin{center}
+%    \begin{tikzcd}
+%      M \ar[hook]{r} \ar{d}{f} & P_1 \ar{d}{f_1} \ar{r}{p} & P_2 \ar{d}{f_2} \\
+%      N \ar[hook]{r} & Q_1 \ar{r}{q} & Q_2 \rlap{.}
+%    \end{tikzcd}
+%  \end{center}
+%  By \Cref{lem:diff-ker-is-ker}, $K$ is the kernel of $(p, f_1) : P_1 \to P_2 \oplus Q_1$.
+%  Thus, $K$ is $\mcal{A}$-Adelman by \Cref{lem:adel-desc}.
+
+%  Next we check that $\mcal{A}$-copresented modules are closed under kernels. The closure of $\mcal{A}$-presented objects under cokernels follows by a dual argument.
+%  Let $f:M\to N$ be a homomorphism between $\mcal{A}$-copresented modules. We proceed exactly as above with $P_1,P_2,Q_1,Q_2$ in $\mcal{A}$ instead of being $\mcal{A}$-presented. We get that $\Ker(f)$ is the kernel of a map in $P_1 \to P_2 \oplus Q_1$ and is therefore $\mcal{A}$-copresented.
 
  %   Let $f : K \to L$ be a homomorphism between $\mcal{A}$-copresented modules. Since modules in $\mcal{A}$ are injective in $\Ad{\mcal{A}}$, the map $f$ extends to a square of modules in $\mcal{A}$ as in the diagram below.
  % \begin{center}
@@ -348,9 +400,9 @@ Note that under these assumptions, all objects in $\mcal{A}$ are both projective
  % By \Cref{lem:diff-ker-is-ker}, the kernel of $f$ is now given by the kernel of the map $(k, f_1) : K_1 \to K_2 \oplus L_1$.
  % Thus, $\Ker(f)$ is $\mcal{A}$-copresented as desired.
 
-Finally we check that any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented. The fact that injective objects are $\mcal{A}$-presented follows from a dual argument.
-Let $M$ be projective in $\Ad{\mcal{A}}$. Then we have an $\mcal{A}$-copresented module $L$ with a surjection $p: L \twoheadrightarrow M$. By projectivity, $M$ is a direct summand of $L$ with inclusion $i : M \hookrightarrow L$.
-Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it is $\mcal{A}$-copresented by the previous point.
+%Finally we check that any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented. The fact that injective objects are $\mcal{A}$-presented follows from a dual argument.
+%Let $M$ be projective in $\Ad{\mcal{A}}$. Then we have an $\mcal{A}$-copresented module $L$ with a surjection $p: L \twoheadrightarrow M$. By projectivity, $M$ is a direct summand of $L$ with inclusion $i : M \hookrightarrow L$.
+%Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it is $\mcal{A}$-copresented by the previous point.
 \end{proof}
 
 \begin{remark}\label{rem:adelman-as-image}
@@ -385,6 +437,15 @@ We first recall that duality is an anti-equivalence between finitely copresented
 
 As stated, the theorem above is not strong enough to establish that finitely presented modules are injective among all finitely adequate ones.
 By extending this duality result to all finitely adequate modules, we will obtain the desired injectivity result.
+In order to do this, we will need to make use of the $\Ext$ groups developed
+in homotopy type theory in~\cite{ext-groups-in-hott} and~\cite{formalising-yoneda-ext}.
+Since in general there are not enough injective or projective $R$-modules,
+these groups are defined in a resolution-free way as Yoneda $\Ext$ groups,
+with $\Ext_R^n(M, N)$ consisting of certain equivalence classes of exact
+sequences starting with $N$ and ending with $M$.
+They behave as expected, and in particular have long-exact sequences associated
+to short-exact sequences in each variable.
+
 We first need the following lemma.
 
 \begin{lemma}\label{lem:ext^2-fp-R}
@@ -400,7 +461,7 @@ We first need the following lemma.
     \end{tikzcd}
   \end{center}
   of $P$.
-  By \cite{ext-groups-in-hott}, the long exact sequence of $\Ext^\ast_R(\argmhole, R)$ associated to $\Im(f) \hookrightarrow R^n \twoheadrightarrow P$ yields the exact sequence
+  By~\cite[Theorem 26]{formalising-yoneda-ext}, the long exact sequence of $\Ext^\ast_R(\argmhole, R)$ associated to $\Im(f) \hookrightarrow R^n \twoheadrightarrow P$ yields the exact sequence
   \begin{center}
     \begin{tikzcd}
       \Hom_R(R^n,R) \ar[two heads]{r} & \Hom_R(\Im(f),R) \ar{r} & \Ext^1_R(P,R) \ar{r} & \Ext^1_R(R^n, R) \rlap{.}
@@ -416,7 +477,7 @@ We first need the following lemma.
     \end{tikzcd}
   \end{center}
   The map $\Hom_R(R^m, R) \to \Hom_R(\Ker(f),R)$ is the dual of a monomorphism between
-  finitely copresented modules, so \Cref{thm:lin-adeq-dual} implies that it is epic.
+  finitely copresented modules, so \Cref{thm:lin-adeq-dual} implies that it is epic \rednote{Is this obvious? I feel it requires some exactness from dualisation}.
   Moreover, $\Ext^1_R(R^m, R) = 0$ as $R^m$ is projective, hence $\Ext^2_R(P,R) = \Ext^1_R(\Im (f), R) = 0$.
 \end{proof}
 
@@ -437,7 +498,9 @@ We first need the following lemma.
   so it suffices to show that $\Ext^1(\Im (f), R)$ vanishes.
   By dimension shift, $\Ext^1(\Im (f), R) = \Ext^2(\Cok (f), R)$,
   as $\Ext^i_R(Q,R) = 0$ for $i = 1, 2$ by \Cref{lem:ext^2-fp-R}.
-  But $\Ext^2(\Cok (f), R) = 0$, since $\Cok(f)$ is finitely presented, again using \Cref{lem:ext^2-fp-R}.
+  But since finite free modules are projective we can apply \Cref{prp:cofp-closed-kernel} to get that finitely presented modules are closed under kernels, so that $\Cok(f)$ is finitely presented and $\Ext^2(\Cok (f), R) = 0$ by \Cref{lem:ext^2-fp-R} again.
+
+  %But $\Ext^2(\Cok (f), R) = 0$, since $\Cok(f)$ is finitely presented, again using \Cref{lem:ext^2-fp-R}.
 \end{proof}
 
 This result applies in particular to finitely adequate modules and their descriptions by homology via \Cref{lem:adel-desc}.
@@ -458,7 +521,7 @@ Fixing this notation, we will now show that finitely adequate modules interact w
 \end{proposition}
 
 \begin{proof}
-  Dualization is exact on finitely presented and finitely copresented modules by \Cref{thm:lin-adeq-dual}.
+  Dualization is exact on finitely presented and finitely copresented modules by \Cref{thm:lin-adeq-dual}. \rednote{Is that immediate? I don't see it. In both cases we just use left exactness and that the dual of $0 \to M \to R^m \to R^n$ is exact, which is 2.3.9 from diffgeo}
   Thus, we have that $\Cok (f)^\ast = \Ker (f^\ast)$ and $\Ker (g)^\ast = \Cok (g^\ast)$.
   Applying dualization to the entire diagram above yields:
   \begin{center}
@@ -527,7 +590,7 @@ We can now conclude this section by applying \Cref{prp:ad-ab} with $\mcal{B} \de
 \end{theorem}
 
 \begin{proof}
-  This is a direct consequence of \Cref{prp:ad-ab}, \Cref{rem:fcp-is-proj}, and \Cref{prp:fp-is-inj}.
+  This is a direct consequence of \Cref{prp:ad-ab}, \Cref{rem:fcp-is-proj}, and \Cref{prp:fp-is-inj}, together with \Cref{prp:cofp-closed-kernel}.
 \end{proof}
 
 \begin{remark}\label{rem:free-abelian}
@@ -559,6 +622,7 @@ We can now conclude this section by applying \Cref{prp:ad-ab} with $\mcal{B} \de
 %\end{proof}
 
 \subsection{Finitely Adequate Modules are Extension Closed}
+\label{ss:finad-extension-closed}
 
 In this subsection we show that finitely adequate modules form a weak
 Serre subcategory of $\modcat{R}$, meaning that finitely adequate
@@ -629,7 +693,8 @@ Finding a splitting amounts to showing that any lifting problem
   By \Cref{lem:fin-adeq-ext-pb-red} it is enough to show that $p^*E$ is finitely adequate, but the kernel of the top map is equal to $B$, so this follows from \Cref{prp:extension-fin-adeq-lin-adeq}.
 \end{proof}
 
-\subsection{Characterizing Finite Presented Modules among Finitely Adequate Modules}
+\subsection{Characterizing Finitely Presented Modules among Finitely Adequate Modules}
+\label{ss:char-fp}
 
 In this subsection, we characterize finitely presented $R$-modules amongst all finitely adequate modules as exactly those that are quasi-coherent.
 In addition, \Cref{identification-hom-tensor-for-fp-modules} will be used in
@@ -710,18 +775,19 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
 \end{remark}
 
 \begin{proposition}
-  Let $M$ be an $R$-module that is finitely adequate and quasi-coherent.
-  Then $M$ is finitely presented.
+  Let $M$ be an $R$-module.
+  Then $M$ is finitely presented if and only if it is finitely adequate and quasi-coherent.
 \end{proposition}
 
 \begin{proof}
-  We show that $M^\ast$ is finitely copresented.
+  If $M$ is finitely presented, then it is finitely adequate by definition and quasi-coherent by \Cref{rem:fp-is-qc}.
+  Now assume that $M$ is finitely adequate and quasi-coherent, then we show that $M^\ast$ is finitely copresented.
   By \Cref{thm:fin-adeq-abelian}, it suffices to show that $M^\ast$ is projective, i.e.\ we need to show that $H :\equiv \Hom_R(M^\ast,\argmhole)$ is exact on the category of finitely adequate modules.
-  For this let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
+  For this, let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
   We get an induced exact sequence $0 \to H(A) \to H(B) \to H(C) \to \Ext_R^1(M^\ast,A)$, where $\Ext_R^1$ is defined as in \cite[Definition 2.1.5]{ext-groups-in-hott}.
   Since finitely adequate $R$-modules are closed under extensions, $\Ext_R^1$ taken either in this category or the category of all $R$-modules is the same.
   Then the proof of \cite[Proposition 2.5.4]{ext-groups-in-hott} also shows that $\Ext_R^1(M^\ast,A)$ can be calculated using an injective resolution of $A$ in the category of finitely adequate $R$-modules.
-  Recall from \Cref{thm:fin-adeq-abelian} that the injective modules are exactly the finitely presented modules.
+  Recall from \Cref{thm:fin-adeq-abelian} that the injective modules are precisely the finitely presented modules.
   Thus, we have $\Ext_R^1(M^\ast,A)=0$, since \Cref{identification-hom-tensor-for-fp-modules} implies that $\Hom_R(M^{\ast},\argmhole)$ is exact on the category of finitely presented modules.
 \end{proof}
 
@@ -740,7 +806,7 @@ We will start with the following lemmas.
 \begin{proof}
   Since we want to prove a proposition, we can let $p : R^{m_2} \to R^{m_1}$ be a linear map such that $M = \Cok(p)$.
   By taking tensors we get that $M \otimes N$ is the cokernel of $p \otimes N : R^{m_2} \otimes N \to R^{m_1} \otimes N$.
-  The domain and codomain of $p \otimes N$ are finitely presented, so $M \otimes N$ is finitely presented as well.
+  The domain and codomain of $p \otimes N$ are finitely presented, so $M \otimes N$ is finitely presented as well by \Cref{prp:cofp-closed-kernel}.
 \end{proof}
 
 \begin{lemma}\label{lem:lin-adeq-fp-hom-fp}
