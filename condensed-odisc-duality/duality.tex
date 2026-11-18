@@ -1,0 +1,74 @@
+
+
+\begin{lemma}\label{scott-boolean-algebra}
+Consider a tower of compact Hausdorff Boolean algebras $(B_k)_{k:\N}$ and $C$ an overtly discrete Boolean algebra. Then the induced map
+\[\mathrm{colim}_k\Hom(B_k,C) \to \Hom(\mathrm{lim}_kB_k,C)\]
+is an equivalence.
+\end{lemma}
+
+\begin{proof}
+By Scott continuity the canonical map
+\[\psi : \mathrm{colim}_k(B_k\to C) \to (\mathrm{lim}_kB_k\to C)\]
+is an equivalence, $\Hom(\mathrm{lim}_kB_k,C)$ is clearly a subset of $(\mathrm{lim}_kB_k\to C)$ and $\mathrm{colim}_k\Hom(B_k,C)$ is a subset of $\mathrm{colim}_k(B_k\to C)$ as is a sequential colimit of subsets.
+
+Therefore it is enough to show that given $f:\mathrm{colim}_k(B_k\to C)$, if $\psi(f)\in \Hom(\mathrm{lim}_kB_k,C)$ then $f\in \mathrm{colim}_k\Hom(B_k,C)$. 
+
+Assume $l:\N$ with $f:B_l\to C$ such that $\psi(f) = f\circ \pi_l$ is a Boolean algebra morphism. First we immediately see that $f(0)=0$ and $f(1)=1$.
+
+Then we know e.g.\ that
+\[\forall x,y:\mathrm{lim}_kB_k.\, f(x_l\lor y_l) =_C f(x_l)\lor f(y_l)\]
+Then by the dependent version of Scott continuity and using that equality on $C$ is open, we get that there exists $m\geq l$ such that
+\[\forall x,y:B_{m}.\, f(x_l\lor y_l) =_C f(x_l)\lor f(y_l)\]
+But then $f\circ \pi^{m}_l$ commutes with $\lor$. 
+
+We do the same for $\land$ and $\neg$ and takes the maximum of the three natural numbers to get an $n$ such that $f\circ \pi_{n}^l$ is in $\Hom(B_n,C)$. But then $[f] = [f\circ pi_{n}^l]$ in $\mathrm{colim}_k(B_k\to C)$, so that $[f]\in \mathrm{colim}_k\Hom(B_k,C)$ and we can conclude.
+\end{proof}
+
+\begin{lemma}\label{overtly-discrete-inverse}
+Given an overtly discrete type $I$, the map $I\to \Spec(2^I)$ is an equivalence.
+\end{lemma}
+
+\begin{proof}
+Write $I=\mathrm{colim}_iI_i$ with $(I_i)_{i:\I}$ a tower of finite type, then 
+\begin{eqnarray}
+I &=& \mathrm{colim}_iI_i\nonumber\\
+&=& \mathrm{colim}_i\Spec(2^{I_i})\nonumber\\
+&=& \Spec(\mathrm{lim}_i2^{I_i})\nonumber\\
+&=& \Spec(2^{\mathrm{colim}_i I_i})\nonumber\\
+&=& \Spec(2^I)\nonumber
+\end{eqnarray}
+where the third equality comes from \Cref{scott-boolean-algebra}.
+\end{proof}
+
+\begin{lemma}\label{stone-boolean-is-limit-stone-finite}
+Let $B$ be a Stone boolean algebra. Then there exists a tower of finite Boolean algebras $(B_k)_{k:\N}$ such that $B=\mathrm{lim}_kB_k$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\begin{lemma}\label{stone-boolean-inverse}
+Assume $B$ a Stone boolean algebra, then the map $B\to 2^{\Spec(B)}$ is an equivalence.
+\end{lemma}
+
+\begin{proof}
+By \Cref{stone-boolean-is-limit-stone-finite} we get $B=\mathrm{lim}_kB_k$ with $B_k$ finite Boolean algebras. Then
+\begin{eqnarray}
+B &=& \mathrm{lim}_kB_k\nonumber\\
+&=& \mathrm{lim}_k2^{\Spec(B_k)}\nonumber\\
+&=& 2^{\mathrm{colim}_k\Spec(B_k)}\nonumber\\
+&=& 2^{\Spec(\mathrm{lim}_kB_k)} \nonumber\\
+&=& 2^{\Spec(B)}\nonumber
+\end{eqnarray}
+where the fourth equality comes from \Cref{scott-boolean-algebra}.
+\end{proof}
+
+\begin{theorem}
+We have a duality between overtly discrete sets and Stone boolean algebras.
+\end{theorem}
+
+\begin{proof}
+By \Cref{overtly-discrete-inverse} and \Cref{stone-boolean-inverse}.
+\end{proof}
+

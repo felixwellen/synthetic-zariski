@@ -15,11 +15,11 @@ Given $A,B:R-\Alg_{nc}$ and $M:\Mod{A}{B}$. We say that $M$ is invertible if the
 \begin{lemma}
 Given $A,B:R-\Alg_{nc}$ and $M:\Mod{A}{B}$, the type:
 \[ (\Sigma_{N:\Mod{B}{A}}N\otimes_AM=B) \times (\Sigma_{N':\Mod{B}{A}} M\otimes_BN = A)\]
-is a proposition, equivalent to $M$ being invertible. \rednote{TODO, we didn't check.}
+is a proposition, equivalent to $M$ being invertible.
 \end{lemma}
 
 \begin{proof}
-TODO
+\rednote{TODO, we didn't check.}
 \end{proof}
 
 \begin{definition}
@@ -35,7 +35,7 @@ is an equivalence.
 \end{lemma}
 
 \begin{proof}
-\rednote{TODO, we didn't check.}
+\rednote{TODO, we didn't check, might need restrictions on the functors.}
 \end{proof}
 
 \begin{corollary}
@@ -51,7 +51,7 @@ The module $A^n:\Mod{M_n(A)}{A}$ is invertible. Therefore we have $\Mor(A,M_n(A)
 \end{lemma}
 
 \begin{proof}
-As an inverse for $A^n$ we consider $A^n:\Mod{A}{M_n(A)}$ with the obvious right action. Then the map $A^n\otimes_AA^n \to M_n(A)$ sending $e_i\otimes e_j$ to $e_{i,j}$ is clearly an equivalence. For the converse we define $A^n\otimes_{M_n(A)}A^n\to A$ by sending $e_i\otimes e_j$ to $\delta_{i,j}$. Since we have $e_i\otimes e_j = \delta_{i,j} e_1\otimes e_1$ in $A^n\otimes_{M_n(A)}A^n$. TODO
+As an inverse for $A^n$ we consider $A^n:\Mod{A}{M_n(A)}$ with the obvious right action. Then the map $A^n\otimes_AA^n \to M_n(A)$ sending $e_i\otimes e_j$ to $e_{i,j}$ is clearly an equivalence. For the converse we define $A^n\otimes_{M_n(A)}A^n\to A$ by sending $e_i\otimes e_j$ to $\delta_{i,j}$. Since we have $e_i\otimes e_j = \delta_{i,j} e_1\otimes e_1$ in $A^n\otimes_{M_n(A)}A^n$, this is an equivalence with inverse $r\mapsto r (e_1\otimes e_1)$.
 \end{proof}
 
 Next the big Morita result. First we define progenerator.
@@ -141,7 +141,7 @@ We know the type of finite free $R$-module is an \'etale sheaf, so we just need 
 \subsection{Azumaya algebras and \'etale torsors}
 
 \begin{definition}
-Given $A:\Az$, we define $\psi(A) = \Sigma_{V:\Mod{R}{ff\geq 1}}\, A=\End_R(V)\}$.
+Given $A:\Az$, we define $\psi(A) = \Sigma(V:\Mod{R}{ff\geq 1})\, A=\End_R(V)$.
 \end{definition}
 
 \begin{lemma}\label{psi-equivalent-mor}
@@ -190,8 +190,13 @@ Using that $\psi(A) = \Mor(A,R)$, the fact that Morita equivalences compose appr
 where vertical maps are equivalences, it is enough to check the the bottom map is an equivalence. We even have the more general property that the map $\Mor(A,R) \to \psi(A)=\psi(R)$ is an equivalence simply because for any pseudotorsor $X$ we have that $X=(X=*)$. We omit the verification that the generic such equivalence indeed match with the $\psi$ we defined.
 \end{proof}
 
+
+\subsection{$\Az/\Mor$ is an \'etale sheaf}
+
+\rednote{TODO, conjecture}
+
 \begin{remark}
-Using this we can even prove that we have an equality $\Az/\Mor = \B^2_{\Et}R^\times$, where the quotient $\Az/\Mor$ happens in \'etale sheaves. I don't know whether this holds with the usual quotient, or equivalently whether the naive $\Az/\Mor$ is an \'etale sheaf.
+Using this we can prove that $\Az/\Mor = \B^2_{\Et}R^\times$. %, where the quotient $\Az/_{\Et}\Mor$ happens in \'etale sheaves. I don't know whether this holds with the usual quotient, or equivalently whether the naive $\Az/\Mor$ is an \'etale sheaf.
 \end{remark}
 
 
@@ -204,15 +209,15 @@ Consider $X$ a type then:
 \begin{itemize}
 \item The type $\Az(X)$ of Azumaya algebra over $X$ is defined by $\Az(X) = X\to \Az$.
 \item Given $A,B:\Az(X)$, the type $\Mor_X(A,B)$ of Morita equivalences over $X$ is defined by $\Mor_X(A,B) = \Pi_{x:X}\Mor(A(x),B(x))$.
-\item The Brauer stack $\Br'(X)$ is defined as $\Az(X)/\Mor_X$.
-\item The Brauer group $\Br(X)$ is defined as $\propTrunc{\Br(X)}_0$.
+\item The Brauer stack $\BrSt(X)$ is defined as $\Az(X)/\Mor_X$. The cohomological Brauer stack is defined as $\BrSt'(X) = X\to \B^2_{\Et}R^\times$.
+\item The Brauer group $\Br(X)$ is defined as $\propTrunc{\Br(X)}_0$, the cohomological Brauer group $\Br'(X)$ is defined as $\propTrunc{\BrSt'(X)}_0$, i.e. $H^2_{\Et}(X,R^\times)$.
 \end{itemize}
 \end{definition}
 
 \begin{lemma}
-For any type $X$, the map $\Br'(X)\to (X\to \B^2_{\Et}R^\times)$ is an embedding.
+For any type $X$, the map $\BrSt(X)\to \BrSt'(X)$ is an embedding.
 
-So the map $\Br(X)\to H^2_{\Et}(X,R^\times)$ is injective.
+So the map $\Br(X)\to \Br'(X)$ is injective.
 \end{lemma}
 
 \begin{proof}
@@ -220,17 +225,17 @@ Immediate from \Cref{torsor-morita-invariant}.
 \end{proof}
 
 \begin{remark}
-The map $\Br(X)\to (X\to \B^2_{\Et}R^\times)$ is equivalent a map in $\Az(X)/\Mor_X \to (X\to \Az/\Mor)$, which is surjective if and only the map $\Br(X)\to H^2_{\Et}(X,R^\times)$ is surjective.
+The map $\BrSt(X)\to \BrSt'(X)$ is surjective if and only if the map $\Br(X)\to \Br'(X)$ is. From now on we will focus on $\Br(X)\to \Br'(X)$ for the simplicity of working with sets, but any result immediately transpose to one about $\BrSt(X)\to \BrSt'(X)$.
 
-This map fail to be surjective in general.
+Assuming $\Az/\Mor$ is an étale sheaf (otherwise I think we should use $\Az/_{\Et}\Mor$ instead), this bowls down to the question of whether any map $X\to \Az/\Mor$ merely factors through $X\to\Az$.
 
-I would need to know whether the naive $\Az/\Mor$ is an \'etale sheaf to give more intuition.
+This fails in general, but holds in a bunch of nice cases.
 \end{remark}
 
-So now for any type $X$ we have a subtype $\Br(X)\subseteq H^2_{\Et}(X,R^\times)$. What can we say depending on $X$?
+So now for any type $X$ we have a subtype $\Br(X)\subseteq \Br'(X)$. What can we say depending on $X$?
 
 \begin{lemma}
-If $X$ has choice, then $\Br(X)=H^2_{\Et}(X,R^\times)$
+If $X$ has choice, then $\Br(X)=\Br'(X)$.
 \end{lemma}
 
 \begin{proof}
@@ -238,11 +243,14 @@ If $X$ has choice, then $\Br(X)=H^2_{\Et}(X,R^\times)$
 \end{proof}
 
 \begin{lemma}
-Assuming any map from $X$ to $\N$ is bounded, then $\Br(X)$ is torsion.
+Assuming any map from $X$ to $\N$ is bounded, then $\Br(X)$ is a torsion subgroup of $\Br'(X)$.
 \end{lemma}
 
 \begin{proof}
-\rednote{TODO, presumably following 2.7 p.146 of Milne's \'Etale Cohomology.}
+Assume $X\to \Az$, using the assumed boundedness we get that the map factors through $\Sigma_{k\leq n}\Az_n$ for some $n$.
+So it is enough to check that the map $\delta:\Az_k \to \B^2_{\Et}R^\times$ takes values in $k+1$-torsion to conclude.
+
+But recall that $\Az_k = \B_{\Et}PGL_{k+1}$, and consider that the map $SL_{n+1}\to PGL_{n+1}$ is \'etale surjective, its kernel is $\mu_{k+1}$. So by considering the associated \'etale deloopings fiber sequences, the map $\B_{\Et}PGL_{k+1}\to \B^2_{\Et}R^\times$ factors through $\B_{\Et}^2\mu_{k+1}$, so its image is $k+1$-torsion.
 \end{proof}
 
 
