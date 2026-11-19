@@ -220,7 +220,7 @@ In fact, all three objects are isomorphic by the first isomorphism theorem, as w
 By exactness, we get that the induced map $\check{H}(f,g) \to H(f,g)$ is an isomorphism if and only if the map $\Ker(g\circ f) \to \Ker(p_f \circ i_g)$ is an epimorphism, and dually that $H(f,g) \to \hat{H}(f,g)$ is an isomorphism if and only if the map $\Cok(p_f \circ i_g) \to \Cok(g \circ f)$ is a monomorphism.
 A diagram chase is sufficient to verify that the maps on the kernels and cokernels are respectively epic and monic.
 
-Assume given $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
+Let $\mcal{A}$ be an additive subcategory of $\mcal{B}$.
 (In our application, $\mcal{B} = \modcat{R}$ and $\mcal{A}$ is the category of finite free $R$-modules.)
 An object $M$ is called \notion{$\mcal{A}$-presented} if it is merely a cokernel of a morphism in $\mcal{A}$, and \notion{$\mcal{A}$-copresented} if it is merely a kernel of a morphism in $\mcal{A}$.
 More generally, we say that an object $M$ of $\mcal{B}$ is \notion{$\mcal{A}$-Adelman} if it is merely the homology of a pair of composable morphisms in $\mcal{A}$.
@@ -238,7 +238,7 @@ It is readily seen to be additive.
 \end{lemma}
 
 \begin{proof}
-  We just prove the second point, the first follows by a dual argument. In both directions, we are proving a mere proposition, so we may assume without loss of generality that all presentations are given explicitly.
+  We just prove the second point; the first follows by a dual argument. In both directions, we are proving a mere proposition, so we may assume without loss of generality that all presentations are given explicitly.
 
   Assume first that $M$ is the kernel of $f : P \to Q$ with $P$ and $Q$ $\mcal{A}$-presented.
   Choose $\mcal{A}$-presentations of $P$ and $Q$ as displayed below.
@@ -329,7 +329,7 @@ We will need the following lemma regarding kernels of maps in a commutative squa
 \end{proposition}
 
 \begin{proof}
-We just prove the first point, the second follow by a dual argument.
+  We just prove the first point; the second follows by a dual argument.
 
   Let $f : M \to N$ be a morphism between $\mcal{A}$-copresented objects, and let $K$ be the kernel of $f$ taken in $\mcal{B}$.
   We want to prove that $K$ is $\mcal{A}$-copresented,
@@ -345,16 +345,14 @@ We just prove the first point, the second follow by a dual argument.
   By \Cref{lem:diff-ker-is-ker}, $K$ is the kernel of $(p, f_1) : P_1 \to P_2 \oplus Q_1$.
   Thus, $K$ is $\mcal{A}$-copresented.
 
-Now let $M$ be projective in $\Ad{\mcal{A}}$, we prove it is $\mcal{A}$-copresented. Then we have an $\mcal{A}$-copresented module $L$ with a surjection $p: L \twoheadrightarrow M$. By projectivity, $M$ is a direct summand of $L$ with inclusion $i : M \hookrightarrow L$.
+  Now let $M$ be a projective object in $\Ad{\mcal{A}}$.  We will show that it is $\mcal{A}$-copresented.  Since $M$ is in $\Ad{\mcal{A}}$, we have an $\mcal{A}$-copresented module $L$ with a surjection $p: L \twoheadrightarrow M$. By projectivity, $M$ is a direct summand of $L$ with inclusion $i : M \hookrightarrow L$.
 Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it is $\mcal{A}$-copresented by the previous point.
 \end{proof}
 
 \begin{proposition}\label{prp:ad-ab}
-  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ such that:
-  \begin{itemize}[noitemsep]
-    \item all $\mcal{A}$-copresented objects are projective in $\Ad{\mcal{A}}$, and
-    \item all $\mcal{A}$-presented objects are injective in $\Ad{\mcal{A}}$.
-  \end{itemize}
+  Let $\mcal{B}$ be an abelian category and let $\mcal{A}$ be an additive subcategory of $\mcal{B}$ such that
+  all $\mcal{A}$-copresented objects are projective in $\Ad{\mcal{A}}$ and
+  all $\mcal{A}$-presented objects are injective in $\Ad{\mcal{A}}$.
   Then $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$. %Moreover:
 %  \begin{itemize}[noitemsep]
 %    \item $\mcal{A}$-copresented objects are closed under kernels, and any projective object in $\Ad{\mcal{A}}$ is $\mcal{A}$-copresented.
@@ -367,9 +365,9 @@ Then, $M$ is the kernel of the idempotent map $\id_L - i \circ p:L\to L$, so it 
 %Note that under these assumptions, all objects in $\mcal{A}$ are both projective and injective in $\Ad{\mcal{A}}$, since they are both $\mcal{A}$-presented and $\mcal{A}$-copresented.
 
 \begin{proof}
-  We only check that $\Ad{\mcal{A}}$ is closed under kernels. We get closure under cokernels by a dual argument, and together they imply that $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$.
+  We will check that $\Ad{\mcal{A}}$ is closed under kernels. We get closure under cokernels by a dual argument, and together they imply that $\Ad{\mcal{A}}$ is an abelian subcategory of $\mcal{B}$.
   
-  We use \Cref{lem:adel-desc} to characterize $\mcal{A}$-Adelman as kernel of maps between $\mcal{A}$-presented modules, and then reason as in \Cref{prp:cofp-closed-kernel} with $P_1,P_2,Q_1,Q_2$ being $\mcal{A}$-presented instead of in $\mcal{A}$.
+  We use \Cref{lem:adel-desc} to characterize the $\mcal{A}$-Adelman objects as kernels of maps between $\mcal{A}$-presented modules, and then reason as in \Cref{prp:cofp-closed-kernel} with $P_1,P_2,Q_1,Q_2$ being $\mcal{A}$-presented instead of in $\mcal{A}$.
 
 %  Let $f : M \to N$ be a morphism between $\mcal{A}$-Adelman objects, and let $K$ be the kernel of $f$ taken in $\mcal{B}$.
 %  By \Cref{lem:adel-desc}, $M$ and $N$ are merely kernels of maps between $\mcal{A}$-presented objects.
@@ -478,6 +476,7 @@ We first need the following lemma.
   \end{center}
   The map $\Hom_R(R^m, R) \to \Hom_R(\Ker(f),R)$ is the dual of a monomorphism between
   finitely copresented modules, so \Cref{thm:lin-adeq-dual} implies that it is epic \rednote{Is this obvious? I feel it requires some exactness from dualisation}.
+  \rednote{Dualisation on finitely copresented modules is an equivalence, so it is exact.}
   Moreover, $\Ext^1_R(R^m, R) = 0$ as $R^m$ is projective, hence $\Ext^2_R(P,R) = \Ext^1_R(\Im (f), R) = 0$.
 \end{proof}
 
@@ -498,8 +497,9 @@ We first need the following lemma.
   so it suffices to show that $\Ext^1(\Im (f), R)$ vanishes.
   By dimension shift, $\Ext^1(\Im (f), R) = \Ext^2(\Cok (f), R)$,
   as $\Ext^i_R(Q,R) = 0$ for $i = 1, 2$ by \Cref{lem:ext^2-fp-R}.
-  But since finite free modules are projective we can apply \Cref{prp:cofp-closed-kernel} to get that finitely presented modules are closed under kernels, so that $\Cok(f)$ is finitely presented and $\Ext^2(\Cok (f), R) = 0$ by \Cref{lem:ext^2-fp-R} again.
-
+  But since finite free modules are projective we can apply \Cref{prp:cofp-closed-kernel} to get that finitely presented modules are closed under kernels, so that $\Cok(f)$ is finitely presented.
+  Thus $\Ext^2(\Cok (f), R) = 0$, again by \Cref{lem:ext^2-fp-R}.
+  %
   %But $\Ext^2(\Cok (f), R) = 0$, since $\Cok(f)$ is finitely presented, again using \Cref{lem:ext^2-fp-R}.
 \end{proof}
 
@@ -781,7 +781,8 @@ By the universality of kernels we then see that $\beta_{M,N}$ is an equivalence 
 
 \begin{proof}
   If $M$ is finitely presented, then it is finitely adequate by definition and quasi-coherent by \Cref{rem:fp-is-qc}.
-  Now assume that $M$ is finitely adequate and quasi-coherent, then we show that $M^\ast$ is finitely copresented.
+
+  Now assume that $M$ is finitely adequate and quasi-coherent.  We will show that $M^\ast$ is finitely copresented.
   By \Cref{thm:fin-adeq-abelian}, it suffices to show that $M^\ast$ is projective, i.e.\ we need to show that $H :\equiv \Hom_R(M^\ast,\argmhole)$ is exact on the category of finitely adequate modules.
   For this, let $0 \to A \to B \to C \to 0$ be an exact sequence of finitely adequate $R$-modules.
   We get an induced exact sequence $0 \to H(A) \to H(B) \to H(C) \to \Ext_R^1(M^\ast,A)$, where $\Ext_R^1$ is defined as in \cite[Definition 2.1.5]{ext-groups-in-hott}.
