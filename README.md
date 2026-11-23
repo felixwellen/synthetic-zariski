@@ -3,8 +3,7 @@ Stay updated on synthetic algebraic geometry by [watching this repository](#watc
 Due to a *bug* in the mailinglist-service of chalmers, it does not work to just answer to the  email-confirmation email - so use the link to confirm your email address instead.
 
 This is a latex documentation of our understanding of the synthetic theory of the Zariski-Topos
-and related ideas. The drafts below are currently built hourly -
-if you want to make sure you are viewing the latest built, CTRL+F5 should clear all caches in most browsers.
+and related ideas. We recommend to read the "latest pdf" version of the articles below, since they are most up to date.
 There are currently the following preprints/articles:
 - Foundations ([latest pdf](https://felix-cherubini.de/iag.pdf), [arxiv](https://arxiv.org/abs/2307.00073), [talk](https://www.youtube.com/watch?v=lp4kcmQ0ueY), [published verions at MSCS](https://www.cambridge.org/core/journals/mathematical-structures-in-computer-science/article/foundation-for-synthetic-algebraic-geometry/166673A0C34C63B01F2337E252FE5177) with the occasional error that "not not" was replaced with "not")
 - Automorphisms of and line bundles on projective space ([latest pdf](https://felix-cherubini.de/projective.pdf), [arxiv](https://arxiv.org/abs/2405.13916), [talk](https://www.youtube.com/watch?v=SS-47RKmnVc))
