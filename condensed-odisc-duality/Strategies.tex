@@ -1,0 +1,35 @@
+This draft file contains some possible directions to go in. Non of them are finished yet. 
+
+
+
+\begin{itemize}
+  \item For $S = \lim S_n$, we can consider the free Boolean algebra on $S_n$ and quotient out the relations making the induced map from $S$ into a morphism of Boolean algebras. 
+    It is not generally true that those quotients are finite though, and one has to maybe do some clever stuff from there. 
+  \item (After conversation with Evan): If the above can be made to work, we can study a more general version of the theorem.  One can consider the free algebra-forgetful functor adjunction. $\begin{tikzcd}
+      BA 
+      \arrow[r, bend right = -20 ,"F"{name=2}]
+      &
+      Set 
+      \arrow[l,"U"{name = 1},bend right = -20]
+      \arrow[to=2, from=1,draw=none,"\dashv"{anchor=center,rotate=-90}]
+    \end{tikzcd}$. Then for any Boolean algebra $B$ we have an adjunction 
+$\begin{tikzcd}
+      {UB/Set}
+      \arrow[r,""{anchor=center,name = a},bend right = -20]
+      &
+      {B/BA}
+      \arrow[l, bend right = -20 ,"B/U"{name=b,anchor=center}]
+      \arrow[to=a, from=b,draw=none,"\dashv"{anchor=center,rotate=-90}]
+    \end{tikzcd}$
+    where the left adjoint is given by the above construction. One could find out in general whether the left adjoint preserves sequential limits. 
+  \item (After asking Chaitanya about the above), the general statement would have something to do with literature on lifting pro-objects along monadic functors. 
+  \item (After conversation with Lorenzo) One thing we haven't looked at yet is what it means for the underlying boolean algebra of $S$. $2^S$ now has both a boolean algebra structure and a co-boolean algebra structure. Note that it has this as a set, not as an object of the category of Boolean algebras (it's boolean algebra structure does not contain of Boolean morphisms). 
+  \item (After conversation with Jonas) It is known that if $B$ is a Stone ring, then we can consider the poset of open ideals $I\subseteq B$ and consider $B/I$ which are all finite sets, and we can show that the limit of $B/I$ is $B$. 
+\end{itemize}
+
+\begin{remark}
+  It is not the case that a Stone space with decidable equality is finite. For example, any closed proposition is Stone and has decidable equality, but not any closed proposition is finite. 
+
+  It is the case that if $S$ is Stone and has decidable equality, $S$ embeds into a finite set. Consider that if $S$ has decidable equality we have the singleton map $S\hookrightarrow 2^S$, which by Scott factors over some finite set. 
+\end{remark}
+
