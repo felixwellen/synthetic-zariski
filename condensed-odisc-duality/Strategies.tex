@@ -33,3 +33,62 @@ $\begin{tikzcd}
   It is the case that if $S$ is Stone and has decidable equality, $S$ embeds into a finite set. Consider that if $S$ has decidable equality we have the singleton map $S\hookrightarrow 2^S$, which by Scott factors over some finite set. 
 \end{remark}
 
+\begin{theorem}
+  Consider $\mathbb T$ any finite algebraic theory. Let $S$ be a Stone type with a $\mathbb T$-structure. Then $S$ can be written as a limit of finite types that have a $\mathbb T$-structure also. 
+\end{theorem}
+\begin{proof}
+  We will first write $S$ as a limit of 
+\end{proof}
+
+The following came out of a chatgpt conversation
+\begin{lemma}
+  Let $\sim$ be a closed relation on $2$. 
+  Then $2/\sim$ is totally disconnected.
+\end{lemma}
+We have two proofs for this:
+\begin{proof}
+  Denote $\pi : 2 \to 2/\sim$ for the quotient map. 
+  We need to show that for any $x,y:2/\sim$ we have that $\Pi_{D:2/\sim \to 2} D(x) = D(y) \to x = y$. It suffices to show this for $x= \pi(0), y = \pi(1)$.
+  So assume that $D(\pi(0)) = D(\pi(1))$ for all $D: 2/\sim \to 2$, we shall show that $0\sim 1$. 
+As $\sim$ was closed, we can show the double negation. 
+  Suppose that $0\nsim 1$, then $E: 2\to 2$ given by $a \mapsto a = 0$ respects $\sim$, and thus induces a map $2/\sim\to 2$, and thus $E(0) = E(1)$, contradicting that $0 \neq 1$. 
+\end{proof}
+\begin{proof}
+  Denote $P = 0 \sim 1$. 
+  We claim that $2/\sim = \neg P \to 2$. 
+  The latter is Stone by Tychonov, so this would be sufficient. 
+  For the map $2/\sim \to (\neg P \to 2)$, consider that if $\neg P$, then $2/\sim = 2$. 
+
+  For the map $\neg P \to 2\to 2/\sim$, let $f:\neg P \to 2$. 
+  We claim that 
+  $(\Pi_{x : \neg P} fx = 0) \vee (\Pi_{x : \neg P} fx = 1)$. By Tychonov, this is closed, hence double negation stable. 
+  Then sending the left case to $0$ and the right case to $1$ defines a map
+  $$
+  (\Pi_{x : \neg P} fx = 0) + (\Pi_{x : \neg P} fx = 1) \to 2
+  $$
+  that induces the desired map
+  $$
+  (\Pi_{x : \neg P} fx = 0) \vee (\Pi_{x : \neg P} fx = 1) \to 2/\sim.
+  $$
+\end{proof}
+
+The first proof generalizes as follows:
+\begin{lemma}
+  Let $F$ finite and $\sim $ a double-negation stable equivalence relation on $F$. 
+  Then $X:=F/\sim$ is totally disconnected. 
+\end{lemma}
+\begin{proof}
+  We need to show 
+  $$
+  \Pi_{x,y:X} ((\Pi_{D:X\to 2} D(x) = D(y)) \to x = y)
+  $$
+  Denote $\pi: F\to X$ for the quotient map. Consider $a,b:F$ and suppose $\Pi_{D:X\to 2} D(\pi(a)) = D(\pi (b))$. We will show that $\neg \neg (\pi(a) = \pi(b))$. 
+  Suppose $\pi(a)\neg \pi(b)$, we will show a contradiction. As we have $\neg \neg (a \sim c \vee a\nsim c$ for all $c:F$ and $F$ is finite, we have $\neg\neg \Pi_{c:F} (a\sim c \vee a \nsim c)$. As we're showing a contradiction, we may thus assume $\sim$ is decidable. But then we can define $E: F\to 2$ by $E(x)=a \sim x$, and this induces a map $D:X \to 2$ seperating $\pi(a)$ and $\pi(b)$, contradicting our assumption. 
+\end{proof}
+
+
+
+
+
+
+
