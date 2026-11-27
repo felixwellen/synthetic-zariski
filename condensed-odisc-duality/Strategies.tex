@@ -86,8 +86,31 @@ The first proof generalizes as follows:
   Suppose $\pi(a)\neg \pi(b)$, we will show a contradiction. As we have $\neg \neg (a \sim c \vee a\nsim c$ for all $c:F$ and $F$ is finite, we have $\neg\neg \Pi_{c:F} (a\sim c \vee a \nsim c)$. As we're showing a contradiction, we may thus assume $\sim$ is decidable. But then we can define $E: F\to 2$ by $E(x)=a \sim x$, and this induces a map $D:X \to 2$ seperating $\pi(a)$ and $\pi(b)$, contradicting our assumption. 
 \end{proof}
 
+I think this proof is slightly more elegant:
+\begin{lemma}\label{eqRelApproxFin}
+  Suppose $\sim$ is a closed equivalence relation on a finite type $F$. Then $\sim$ can be written as a limit of decidable equivalence relations. 
+\end{lemma}
+\begin{remark}
+  The above doesn't necessarily hold if we let $F$ be any profinite set. 
+\end{remark}
+\begin{proof}
+  By \parencite[Thm 3.11.]{synthetic-stone-duality}, there is some $\alpha : \N \to F \to F \to 2$ be such that $a \sim b \leftrightarrow \forall_{n:\N} \alpha_n = 0$. 
+  For $n:\N$ define $\sim_n$ as the equivalence relation induced by $R_n(a,b) := \forall_{k\leq n} \alpha_k(a,b) = 0$. As $F$ is finite, $\sim_n$ is decidable. It remains to be shown that $a\sim b \leftrightarrow \forall_{n:\N} a\sim_n b$. It is clear that if $a\sim b$ then $R_n(a,b)$ for all $n:\N$ and hence $a \sim_n b$ for all $n:\N$. 
+  Conversely, by Markov's principle we can show the contraposition. So suppose that $a \nsim_n b$ for some $n:\N$. Then in particular we cannot have $R_n(a,b)$ and thus there is some $k:\N$ with $\alpha_k(a,b) = 1$ and thus $a\nsim b$. 
+\end{proof}
 
-
+\begin{lemma}
+  Let $F$ finite and $\sim $ a closed equivalence relation on $F$. 
+  Then $X:=F/\sim$ is Stone. 
+\end{lemma}
+\begin{proof}
+  By definition, $X$ is compact Hausdorff. It is then Stone if it is totally disconnected \parencite[Lemma 4.17]{synthetic-stone-duality}. We thus need to show 
+  $$
+  \Pi_{x,y:X} ((\Pi_{D:X\to 2} D(x) = D(y)) \to x = y)
+  $$
+  It is sufficient to show that if $a,b:F$ are such that $D(\pi(a)) = D(\pi(b))$ for all $D:F \to 2$ respecting $\sim$, then $a\sim b$. 
+  As $a\sim b$ is closed, we can instead show the double negation, and by \Cref{eqRelApproxFin} assume that $\sim$ is the limit of decidable relations $\sim_n$. So suppose $a\nsim b$. By Markov there is some $k:\N$ with $a\nsim_k b$. Define $E:F\to 2$ by $E(c) = a\sim_k b$. $E$ respects $\sim$, and hence induces a map $X\to 2$ seperating $\pi(a)$ and $\pi(b)$, contradicting our assumption. 
+\end{proof}
 
 
 
